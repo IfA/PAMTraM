@@ -8,6 +8,11 @@ package de.mfreund.gentrans.ui.launching;
 class GentransLaunchContext {
 
 	/**
+	 * The name of the project that this generic transformation works on.
+	 */
+	private String project = "";
+
+	/**
 	 * Whether the '<em>HistoryResolvingStrategy</em>' shall be applied to resolve ambiguites.
 	 */
 	private boolean enableHistory = false;
@@ -26,6 +31,20 @@ class GentransLaunchContext {
 	 * The name of the transformation to use.
 	 */
 	private String transformationModelToUse = "";
+
+	/**
+	 * @return the project
+	 */
+	public String getProject() {
+		return project;
+	}
+
+	/**
+	 * @param project the project to set
+	 */
+	public void setProject(String project) {
+		this.project = project;
+	}
 
 	/**
 	 * @return the enableHistory

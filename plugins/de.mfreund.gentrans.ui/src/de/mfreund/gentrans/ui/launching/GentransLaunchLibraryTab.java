@@ -29,6 +29,9 @@ import de.mfreund.pamtram.properties.PropertySupplier;
 
 public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
+	// the context containing all settings necessary to launch a new generic transformation
+	private GentransLaunchContext context;
+
 	/**
 	 * A text field to specify the full path to the folder that holds the target library.
 	 */
@@ -48,6 +51,10 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	 * A text field to specify the concrete library path parser of the specific target library.
 	 */
 	private Text targetLibParserText;
+
+	public GentransLaunchLibraryTab(GentransLaunchContext context) {
+		this.context = context;
+	}
 
 	@Override
 	public void createControl(Composite parent) {

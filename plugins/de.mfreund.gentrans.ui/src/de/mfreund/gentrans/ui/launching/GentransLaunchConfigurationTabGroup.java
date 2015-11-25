@@ -14,10 +14,11 @@ AbstractLaunchConfigurationTabGroup {
 
 	@Override
 	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
+		GentransLaunchContext context = new GentransLaunchContext();
 		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
-				new GentransLaunchMainTab(),
-				new GentransLaunchAmbiguityTab(),
-				new GentransLaunchLibraryTab(),
+				new GentransLaunchMainTab(context),
+				new GentransLaunchAmbiguityTab(context),
+				new GentransLaunchLibraryTab(context),
 				new CommonTab()
 		};
 		setTabs(tabs);

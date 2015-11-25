@@ -39,6 +39,9 @@ import de.mfreund.pamtram.util.SelectionListener2;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
+	// the context containing all settings necessary to launch a new generic transformation
+	private GentransLaunchContext context;
+
 	// the workspace root
 	private final IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
@@ -63,6 +66,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private Button createTransformationModel;
 
 	public List sourceFileList;
+
+	public GentransLaunchMainTab(GentransLaunchContext context) {
+		this.context = context;
+	}
 
 	/**
 	 * @wbp.parser.entryPoint

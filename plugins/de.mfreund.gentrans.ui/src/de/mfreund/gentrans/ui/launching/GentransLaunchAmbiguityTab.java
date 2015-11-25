@@ -21,6 +21,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PlatformUI;
 
 public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
+
+
 	private DataBindingContext m_bindingContext;
 	private Button btnUseSpecificTransformation;
 	private Combo comboSelectTransformation;
@@ -31,8 +33,12 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * This keeps track of the various settings to be changed in this tab.
 	 */
-	private GentransLaunchContext ambiguityResolvingContext = new GentransLaunchContext();
+	private GentransLaunchContext context = new GentransLaunchContext();
 	private Button btnEnableUser;
+
+	public GentransLaunchAmbiguityTab(GentransLaunchContext context) {
+		this.context = context;
+	}
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -129,19 +135,19 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		bindingContext.bindValue(observeEnabledBtnUseSpecificTransformationObserveWidget, observeSelectionBtnEnableHistoryObserveWidget_1, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
 		//
 		IObservableValue observeSelectionBtnEnableHistoryObserveWidget_3 = WidgetProperties.selection().observe(btnEnableHistory);
-		IObservableValue enableHistoryAmbiguityResolvingContextObserveValue = PojoProperties.value("enableHistory").observe(ambiguityResolvingContext);
+		IObservableValue enableHistoryAmbiguityResolvingContextObserveValue = PojoProperties.value("enableHistory").observe(context);
 		bindingContext.bindValue(observeSelectionBtnEnableHistoryObserveWidget_3, enableHistoryAmbiguityResolvingContextObserveValue, null, null);
 		//
 		IObservableValue observeSelectionBtnEnableUserObserveWidget = WidgetProperties.selection().observe(btnEnableUser);
-		IObservableValue enableUserAmbiguityResolvingContextObserveValue = PojoProperties.value("enableUser").observe(ambiguityResolvingContext);
+		IObservableValue enableUserAmbiguityResolvingContextObserveValue = PojoProperties.value("enableUser").observe(context);
 		bindingContext.bindValue(observeSelectionBtnEnableUserObserveWidget, enableUserAmbiguityResolvingContextObserveValue, null, null);
 		//
 		IObservableValue observeSelectionComboSelectTransformationObserveWidget = WidgetProperties.selection().observe(comboSelectTransformation);
-		IObservableValue transformationModelToUseAmbiguityResolvingContextObserveValue = PojoProperties.value("transformationModelToUse").observe(ambiguityResolvingContext);
+		IObservableValue transformationModelToUseAmbiguityResolvingContextObserveValue = PojoProperties.value("transformationModelToUse").observe(context);
 		bindingContext.bindValue(observeSelectionComboSelectTransformationObserveWidget, transformationModelToUseAmbiguityResolvingContextObserveValue, null, null);
 		//
 		IObservableValue observeSelectionBtnUseSpecificTransformationObserveWidget = WidgetProperties.selection().observe(btnUseSpecificTransformation);
-		IObservableValue useSpecificTransformationModelAmbiguityResolvingContextObserveValue = PojoProperties.value("useSpecificTransformationModel").observe(ambiguityResolvingContext);
+		IObservableValue useSpecificTransformationModelAmbiguityResolvingContextObserveValue = PojoProperties.value("useSpecificTransformationModel").observe(context);
 		bindingContext.bindValue(observeSelectionBtnUseSpecificTransformationObserveWidget, useSpecificTransformationModelAmbiguityResolvingContextObserveValue, null, null);
 		//
 		return bindingContext;

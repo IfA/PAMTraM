@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
@@ -104,7 +105,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	private ArrayList<Comparison> sourceCompareResults;
 
 	/**
-	 * This map is filled once during the {@link #init(PAMTraM, ArrayList)} method and contains associations between
+	 * This map is filled once during the {@link #init(PAMTraM, ArrayList, MessageConsoleStream)} method and contains associations between
 	 * {@link TargetSection TargetSections} and lists of {@link TransformationMappingHintGroup TransformationMappingHintGroups}
 	 * that are contained in the {@link #transformationModel}. It can be used to retrieve all hint groups from the 
 	 * transformation model that were responsible for instantiating a certain target section.
@@ -128,9 +129,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws Exception {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
 
-		super.init(pamtramModel, sourceModels);
+		super.init(pamtramModel, sourceModels, messageStream);
 
 		/*
 		 * load the transformation model to be used by this strategy
@@ -203,6 +204,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		if(!(transformationModelResource.getContents().get(0) instanceof Transformation)) {
 			throw new RuntimeException("The transformation model does not contain a stored transformation.");
 		}
+		messageStream.println("Transformation model successfully loaded from path: " + transformationModelPath);
 		transformationModel = (Transformation) transformationModelResource.getContents().get(0);
 
 	}

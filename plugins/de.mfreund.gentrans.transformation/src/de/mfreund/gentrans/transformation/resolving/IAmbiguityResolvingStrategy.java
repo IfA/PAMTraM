@@ -176,7 +176,7 @@ public interface IAmbiguityResolvingStrategy {
 	/**
 	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a {@link NonContainmentReference}
 	 * during the '<em>linking</em>' step of the transformation. This method is either called if no {@link MappingInstanceSelector} 
-	 * has been defined for the the affected reference or if the evaluation of the MappingInstanceSelector's 
+	 * has been defined for the affected reference or if the evaluation of the MappingInstanceSelector's 
 	 * {@link MappingInstanceSelector#getMatcher() matcher} delivered multiple possible target elements.
 	 * 
 	 * @param choices The list of {@link EObjectWrapper elements} that can be chosen as target. 

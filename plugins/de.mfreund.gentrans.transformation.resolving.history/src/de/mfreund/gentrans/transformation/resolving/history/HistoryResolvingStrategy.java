@@ -958,6 +958,12 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 	}
 
+	/**
+	 * This class provides some convenience methods to create comparators (instances of {@link EMFCompare}) that can be
+	 * used to {@link EMFCompare#compare(IComparisonScope) compare} model elements, models, or complete resources.
+	 * 
+	 * @author mfreund
+	 */
 	private static class EMFComparatorFactory {
 
 		/**

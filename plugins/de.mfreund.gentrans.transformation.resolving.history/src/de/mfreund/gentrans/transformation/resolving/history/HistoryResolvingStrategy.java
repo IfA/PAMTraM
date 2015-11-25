@@ -55,6 +55,8 @@ import pamtram.mapping.MappingType;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * This class implements a concrete {@link ComposedAmbiguityResolvingStrategy} that consults previous resolving 
@@ -791,6 +793,146 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			return super.joiningSelectRootElement(choices);
 		}
 	}
+
+	/**
+	 * This consults the {@link #transformationModel} in order to determine which combination of
+	 * {@link TargetSectionClass} and {@link EObjectWrapper} was used during the 'old' transformation.
+	 */
+	@Override
+	public HashMap<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
+			HashMap<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
+			MappingHintGroupType hintGroup) throws Exception {
+
+		/*
+		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
+		 */
+		Match sectionMatch = pamtramCompareResult.getMatch(hintGroup.getTargetMMSection());
+		Match hintGroupMatch = pamtramCompareResult.getMatch(hintGroup);
+		if(sectionMatch == null || sectionMatch.getRight() == null || !(sectionMatch.getRight() instanceof TargetSection) ||
+				hintGroupMatch == null || hintGroupMatch.getRight() == null || !(hintGroupMatch.getRight() instanceof MappingHintGroupType)) {
+			return super.linkingSelectTargetSectionAndInstance(choices, reference, hintGroup);
+		}
+
+		// the matched section/hintGroup from the 'old' pamtram model
+		TargetSection matchedSection = (TargetSection) sectionMatch.getRight();
+		MappingHintGroupType matchedHintGroup = (MappingHintGroupType) hintGroupMatch.getRight();
+
+		/*
+		 * Now, we try to determine an element from the 'old' target model that represents the found 'matchedSection'.
+		 * Therefore, we make use of the map 'targetSectionToTransformationHintGroups' and collect all instantiated
+		 * target elements from all TransformationMappingHintGroups that represent the given 'hintGroup'. Thereby, it should not 
+		 * be relevant which of the (possible multiple) target model elements we determine as their 'references' should all
+		 * be connected to the same element. Thus, we simply get the first one.
+		 */
+		if(!targetSectionToTransformationHintGroups.containsKey(matchedSection)) {
+			return super.linkingSelectTargetSectionAndInstance(choices, reference, hintGroup);
+		}
+		EObject oldInstance = null;
+		for (TransformationMappingHintGroup transformationMappingHintGroup : targetSectionToTransformationHintGroups.get(matchedSection)) {
+
+			/*
+			 * As only 'InstantiableHintGroups' are stored in the transformation model whereas
+			 * the given 'matchedHintGroup' is of type 'MappingHintGroupType' we need to determine the corresponding
+			 * 'MappingHintGroupType' for each 'transformationMappingHintGroup'.
+			 */
+			MappingHintGroupType mappingHintGroupType = null;
+			if(transformationMappingHintGroup.getAssociatedMappingHintGroup() instanceof MappingHintGroup) {
+				mappingHintGroupType = (MappingHintGroupType) transformationMappingHintGroup.getAssociatedMappingHintGroup();
+			} else if(transformationMappingHintGroup.getAssociatedMappingHintGroup() instanceof MappingHintGroupImporter) {
+				mappingHintGroupType = ((MappingHintGroupImporter) transformationMappingHintGroup.getAssociatedMappingHintGroup()).getHintGroup();
+			}
+			if(mappingHintGroupType != null && mappingHintGroupType.equals(matchedHintGroup)) {
+				oldInstance = transformationMappingHintGroup.getTargetElements().get(0);
+			}
+
+		}
+
+		if(oldInstance == null) {
+			return super.linkingSelectTargetSectionAndInstance(choices, reference, hintGroup);
+		}
+
+		/*
+		 * Now, we can check which element was used as target for the 'reference'.
+		 */
+		EClass usedTargetClass = null;
+		EObject usedTargetInstance = null;
+
+		if(reference.getEReference().isMany()) {
+			@SuppressWarnings("unchecked")
+			EList<EObject> referenceTargets = ((EList<EObject>) (oldInstance.eGet(reference.getEReference())));
+			if(referenceTargets.isEmpty()) {
+				return super.linkingSelectTargetSectionAndInstance(choices, reference, hintGroup);
+			} else {
+				usedTargetInstance = referenceTargets.get(0);
+			}
+		} else {
+			usedTargetInstance = (EObject) oldInstance.eGet(reference.getEReference());
+		}
+
+		if(usedTargetInstance == null) {
+			return super.linkingSelectTargetSectionAndInstance(choices, reference, hintGroup);	
+		}
+
+		usedTargetClass = usedTargetInstance.eClass();
+
+		/*
+		 * Finally, we have to determine which of the new choices matches the given combination of
+		 * 'old' element and class. Therefore, we once more rely on EMFCompare.
+		 */
+		// create a comparator first
+		EMFCompare comparator = getComparator(new DefaultDiffEngine(new DiffBuilder()) {
+			@Override
+			protected FeatureFilter createFeatureFilter() {
+				return new FeatureFilter() {
+					@Override
+					protected boolean isIgnoredReference(Match match, EReference reference) {
+
+						/*
+						 * again, we only rely on the element itself and not on contained or referenced
+						 * elements (this should be sufficient and faster)
+						 */
+						return true;
+					}
+
+					@Override
+					public boolean checkForOrderingChanges(EStructuralFeature feature) {
+						return false;
+					}
+				};
+			}
+		});
+		TargetSectionClass usedTargetSectionClass = null;
+		ArrayList<EObjectWrapper> targetInstancesToUse = new ArrayList<>();
+		for (TargetSectionClass targetSectionClass : choices.keySet()) {
+			if(targetSectionClass.getEClass().equals(usedTargetClass)) {
+				usedTargetSectionClass = targetSectionClass;
+				for (EObjectWrapper instance : choices.get(targetSectionClass)) {
+					IComparisonScope scope = new DefaultComparisonScope(instance.getEObject(), usedTargetInstance, null);
+					Comparison comparison = comparator.compare(scope);
+					Match match = comparison.getMatch(usedTargetInstance);
+					if(match == null || match.getLeft() == null) {
+						continue;
+					}
+					if(match.getDifferences().isEmpty()) {
+						// we have found a matching instance that can be used
+						targetInstancesToUse.add(instance);
+					}
+				}
+				break;
+			}
+		}
+
+		if(usedTargetSectionClass == null || targetInstancesToUse.isEmpty()) {
+			return super.linkingSelectTargetSectionAndInstance(choices, reference, hintGroup);
+		} else {
+			System.out.println("Reusing choice during 'linkingSelectTargetSectionAndInstance': " + usedTargetSectionClass.getName() + "; " + targetInstancesToUse);
+			HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
+			ret.put(usedTargetSectionClass, targetInstancesToUse);
+			return super.linkingSelectTargetSectionAndInstance(ret, reference, hintGroup);
+		}
+
+	}
+
 
 	/**
 	 * This returns an {@link EMFCompare} object that can be used to compare {@link Notifier Notifiers}.

@@ -299,6 +299,32 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
+	 * This is a convenience method to find a match for the given source model element in one of the stored 
+	 * {@link #sourceCompareResults}. This method simply iterates over all compare results.
+	 * 
+	 * @param objectToMatch An element from a source model for that a match shall be found.
+	 * @return The {@link Match} for the given source model element or '<em>null</em>' if no
+	 * match could be found.
+	 */
+	private Match getSourceModelMatch(EObject objectToMatch) {
+
+		Match foundMatch = null;
+
+		/*
+		 * Iterate over all of the stored 'sourceCompareResults' and try to find 
+		 * a match for the given 'objectToMatch'.
+		 */
+		for (Comparison compareResult : sourceCompareResults) {
+			foundMatch = compareResult.getMatch(objectToMatch);
+			if(foundMatch != null) {
+				break;
+			}
+		}
+
+		return foundMatch;
+	}
+
+	/**
 	 * Consult the list of {@link TransformationMapping TransformationMappings} stored in the 
 	 * {@link #transformationModel} in order to retrieve the corresponding selection for the given
 	 * list of choices. If a corresponding choice is found, reuse it; otherwise, forward the decision
@@ -519,7 +545,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		EObject oldSectionInstanceToUse = null;
 
 		// create a comparator first
-		EMFCompare comparator = EMFComparatorFactory.getIgnoringReferenceChangesComparator();
+		EMFCompare comparator = EMFComparatorFactory.getIgnoreAllReferenceChangesComparator();
 
 		for (int i = 0; i < element.size(); i++) {
 			for (EObject oldSectionInstance : oldSectionInstances) {
@@ -698,7 +724,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 */
 
 		// create a comparator first
-		EMFCompare comparator = EMFComparatorFactory.getIgnoringReferenceChangesComparator();
+		EMFCompare comparator = EMFComparatorFactory.getIgnoreAllReferenceChangesComparator();
 
 		// now, compare every instance
 		ArrayList<EObjectWrapper> containerInstancesToUse = new ArrayList<>();
@@ -757,7 +783,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * First, we need to check if we can find a match for the given 'sourceElement' in the 'old' target model.
 		 */
-		EMFCompare comparator = EMFComparatorFactory.getIgnoringNonContainmentReferenceChangesComparator();
+		EMFCompare comparator = EMFComparatorFactory.getIgnoreNonContainmentReferenceChangesComparator();
 		IComparisonScope scope = new DefaultComparisonScope(EcoreUtil.getRootContainer(sourceElement.getEObject()), this.transformationModel.getTargetModels().get(0), null);
 		Comparison comparison = comparator.compare(scope);
 		Match match = comparison.getMatch(sourceElement.getEObject());
@@ -899,7 +925,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * Finally, we have to determine which of the new choices matches the given combination of
 		 * 'old' element and class. Therefore, we once more rely on EMFCompare.
 		 */
-		EMFCompare comparator = EMFComparatorFactory.getIgnoringReferenceChangesComparator();
+		EMFCompare comparator = EMFComparatorFactory.getIgnoreAllReferenceChangesComparator();
 		TargetSectionClass usedTargetSectionClass = null;
 		ArrayList<EObjectWrapper> targetInstancesToUse = new ArrayList<>();
 		for (TargetSectionClass targetSectionClass : choices.keySet()) {
@@ -930,33 +956,6 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			return super.linkingSelectTargetSectionAndInstance(ret, reference, hintGroup);
 		}
 
-	}
-
-
-	/**
-	 * This is a convenience method to find a match for the given source model element in one of the stored 
-	 * {@link #sourceCompareResults}. This method simply iterates over all compare results.
-	 * 
-	 * @param objectToMatch An element from a source model for that a match shall be found.
-	 * @return The {@link Match} for the given source model element or '<em>null</em>' if no
-	 * match could be found.
-	 */
-	private Match getSourceModelMatch(EObject objectToMatch) {
-
-		Match foundMatch = null;
-
-		/*
-		 * Iterate over all of the stored 'sourceCompareResults' and try to find 
-		 * a match for the given 'objectToMatch'.
-		 */
-		for (Comparison compareResult : sourceCompareResults) {
-			foundMatch = compareResult.getMatch(objectToMatch);
-			if(foundMatch != null) {
-				break;
-			}
-		}
-
-		return foundMatch;
 	}
 
 	private static class EMFComparatorFactory {
@@ -1019,7 +1018,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * 
 		 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
 		 */
-		private static EMFCompare getIgnoringReferenceChangesComparator() {
+		private static EMFCompare getIgnoreAllReferenceChangesComparator() {
 			return getComparator(new DefaultDiffEngine(new DiffBuilder()) {
 				@Override
 				protected FeatureFilter createFeatureFilter() {
@@ -1053,7 +1052,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * 
 		 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
 		 */
-		private static EMFCompare getIgnoringNonContainmentReferenceChangesComparator() {
+		private static EMFCompare getIgnoreNonContainmentReferenceChangesComparator() {
 			return getComparator(new DefaultDiffEngine(new DiffBuilder()) {
 				@Override
 				protected FeatureFilter createFeatureFilter() {

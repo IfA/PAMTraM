@@ -53,6 +53,8 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 		super.init(pamtramModel, sourceModels, messageStream);
 
+		messageStream.println("\t--> Init composed stragies:");
+
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			strategy.init(pamtramModel, sourceModels, messageStream);
 		}

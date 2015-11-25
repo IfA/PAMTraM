@@ -32,6 +32,8 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	@Override
 	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
 
+		messageStream.println("Initializing strategy '" + this.getClass().getSimpleName() + "'...");
+
 		this.pamtramModel = pamtramModel;
 		this.sourceModels = sourceModels;
 		this.messageStream = messageStream;

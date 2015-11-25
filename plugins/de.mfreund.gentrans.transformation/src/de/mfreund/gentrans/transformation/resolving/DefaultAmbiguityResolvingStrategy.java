@@ -35,8 +35,8 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) {
-		return;
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+		super.init(pamtramModel, sourceModels, messageStream);
 	}
 
 	@Override

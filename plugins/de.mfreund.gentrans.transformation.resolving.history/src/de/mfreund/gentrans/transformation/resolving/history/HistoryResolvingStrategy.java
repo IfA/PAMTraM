@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
+import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.EMFCompare;
 import org.eclipse.emf.compare.EMFCompare.Builder;
 import org.eclipse.emf.compare.Match;
@@ -522,28 +523,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		EObject oldSectionInstanceToUse = null;
 
 		// create a comparator first
-		EMFCompare comparator = getComparator(new DefaultDiffEngine(new DiffBuilder()) {
-			@Override
-			protected FeatureFilter createFeatureFilter() {
-				return new FeatureFilter() {
-					@Override
-					protected boolean isIgnoredReference(Match match, EReference reference) {
-
-						/*
-						 * as the sections are not yet joined and linked, we do not at all take references
-						 * into account during comparing container instances; consequently, we only compare 
-						 * attributes
-						 */
-						return true;
-					}
-
-					@Override
-					public boolean checkForOrderingChanges(EStructuralFeature feature) {
-						return false;
-					}
-				};
-			}
-		});
+		EMFCompare comparator = getIgnoringReferenceChangesComparator();
 
 		for (int i = 0; i < element.size(); i++) {
 			for (EObject oldSectionInstance : oldSectionInstances) {
@@ -722,28 +702,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 */
 
 		// create a comparator first
-		EMFCompare comparator = getComparator(new DefaultDiffEngine(new DiffBuilder()) {
-			@Override
-			protected FeatureFilter createFeatureFilter() {
-				return new FeatureFilter() {
-					@Override
-					protected boolean isIgnoredReference(Match match, EReference reference) {
-
-						/*
-						 * as the sections are not yet joined and linked, we do not at all take references
-						 * into account during comparing container instances; consequently, we only compare 
-						 * attributes
-						 */
-						return true;
-					}
-
-					@Override
-					public boolean checkForOrderingChanges(EStructuralFeature feature) {
-						return false;
-					}
-				};
-			}
-		});
+		EMFCompare comparator = getIgnoringReferenceChangesComparator();
 
 		// now, compare every instance
 		ArrayList<EObjectWrapper> containerInstancesToUse = new ArrayList<>();
@@ -879,28 +838,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * Finally, we have to determine which of the new choices matches the given combination of
 		 * 'old' element and class. Therefore, we once more rely on EMFCompare.
 		 */
-		// create a comparator first
-		EMFCompare comparator = getComparator(new DefaultDiffEngine(new DiffBuilder()) {
-			@Override
-			protected FeatureFilter createFeatureFilter() {
-				return new FeatureFilter() {
-					@Override
-					protected boolean isIgnoredReference(Match match, EReference reference) {
-
-						/*
-						 * again, we only rely on the element itself and not on contained or referenced
-						 * elements (this should be sufficient and faster)
-						 */
-						return true;
-					}
-
-					@Override
-					public boolean checkForOrderingChanges(EStructuralFeature feature) {
-						return false;
-					}
-				};
-			}
-		});
+		EMFCompare comparator = getIgnoringReferenceChangesComparator();
 		TargetSectionClass usedTargetSectionClass = null;
 		ArrayList<EObjectWrapper> targetInstancesToUse = new ArrayList<>();
 		for (TargetSectionClass targetSectionClass : choices.keySet()) {
@@ -972,6 +910,40 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 		return builder.build();
 
+	}
+
+	/**
+	 * This returns an {@link EMFCompare} object that can be used to compare {@link Notifier Notifiers}.
+	 * It makes use of a default implementation of {@link IEObjectMatcher} and of an implementation of
+	 * {@link IDiffEngine} that <b>ignores any changes to {@link EReference EReferences}</b>. Consequently, only changes to the
+	 * elements themselves (including attribute changes) are marked as {@link Diff Differences} - changes to
+	 * contained or referenced elements are not marked!
+	 * <p/>
+	 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
+	 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
+	 * 
+	 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
+	 */
+	private EMFCompare getIgnoringReferenceChangesComparator() {
+		return getComparator(new DefaultDiffEngine(new DiffBuilder()) {
+			@Override
+			protected FeatureFilter createFeatureFilter() {
+				return new FeatureFilter() {
+					@Override
+					protected boolean isIgnoredReference(Match match, EReference reference) {
+						/*
+						 * We ignore changes to references (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
+						 */
+						return true;
+					}
+
+					@Override
+					public boolean checkForOrderingChanges(EStructuralFeature feature) {
+						return false;
+					}
+				};
+			}
+		});
 	}
 
 	/**

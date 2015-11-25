@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
@@ -52,6 +53,7 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingType;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.MetamodelPackage;
@@ -753,6 +755,71 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 	}
 
+	@Override
+	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
+			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
+			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) throws Exception {
+
+		/*
+		 * First, we need to check if we can find a match for the given 'sourceElement' in the 'old' target model.
+		 */
+		EMFCompare comparator = getIgnoringNonContainmentReferenceChangesComparator();
+		IComparisonScope scope = new DefaultComparisonScope(EcoreUtil.getRootContainer(sourceElement.getEObject()), this.transformationModel.getTargetModels().get(0), null);
+		Comparison comparison = comparator.compare(scope);
+		Match match = comparison.getMatch(sourceElement.getEObject());
+		if(match == null || match.getRight() == null || match.getAllDifferences().iterator().hasNext()) {
+			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector, sourceElement);
+		}
+
+		EObject oldInstance = match.getRight();
+
+		/*
+		 * Now, we can check which element was used as target for the 'reference'.
+		 */
+		EObject oldTargetInstance = null;
+
+		if(reference.getEReference().isMany()) {
+			@SuppressWarnings("unchecked")
+			EList<EObject> referenceTargets = ((EList<EObject>) (oldInstance.eGet(reference.getEReference())));
+			if(referenceTargets.isEmpty()) {
+				return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector, sourceElement);
+			} else {
+				oldTargetInstance = referenceTargets.get(0);
+			}
+		} else {
+			oldTargetInstance = (EObject) oldInstance.eGet(reference.getEReference());
+		}
+
+		if(oldTargetInstance == null) {
+			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector, sourceElement);
+		}
+
+		/*
+		 * Finally, we have to determine which of the new choices matches the 'oldTargetInstance'. 
+		 * Therefore, we once more rely on EMFCompare.
+		 */
+		ArrayList<EObjectWrapper> targetInstancesToUse = new ArrayList<>();
+		for (EObjectWrapper instance : choices) {
+			scope = new DefaultComparisonScope(instance.getEObject(), oldTargetInstance, null);
+			comparison = comparator.compare(scope);
+			match = comparison.getMatch(oldTargetInstance);
+			if(match == null || match.getLeft() == null) {
+				continue;
+			}
+			if(match.getDifferences().isEmpty()) {
+				// we have found a matching instance that can be used
+				targetInstancesToUse.add(instance);
+			}
+		}
+
+		if(targetInstancesToUse.isEmpty()) {
+			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector, sourceElement);
+		} else {
+			System.out.println("Reusing choice during 'linkingSelectTargetInstance': " + targetInstancesToUse);
+			return super.linkingSelectTargetInstance(targetInstancesToUse, reference, hintGroup, mappingInstanceSelector, sourceElement);
+		}
+	}
+
 	/**
 	 * This consults the {@link #transformationModel} in order to determine which combination of
 	 * {@link TargetSectionClass} and {@link EObjectWrapper} was used during the 'old' transformation.
@@ -935,6 +1002,40 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 						 * We ignore changes to references (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
 						 */
 						return true;
+					}
+
+					@Override
+					public boolean checkForOrderingChanges(EStructuralFeature feature) {
+						return false;
+					}
+				};
+			}
+		});
+	}
+
+	/**
+	 * This returns an {@link EMFCompare} object that can be used to compare {@link Notifier Notifiers}.
+	 * It makes use of a default implementation of {@link IEObjectMatcher} and of an implementation of
+	 * {@link IDiffEngine} that <b>ignores any changes to non-containment {@link EReference EReferences}</b>. Consequently, only changes to the
+	 * elements themselves (including attribute changes and changes to contained elements) are marked as {@link Diff Differences} - changes to
+	 * referenced elements are not marked!
+	 * <p/>
+	 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
+	 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
+	 * 
+	 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
+	 */
+	private EMFCompare getIgnoringNonContainmentReferenceChangesComparator() {
+		return getComparator(new DefaultDiffEngine(new DiffBuilder()) {
+			@Override
+			protected FeatureFilter createFeatureFilter() {
+				return new FeatureFilter() {
+					@Override
+					protected boolean isIgnoredReference(Match match, EReference reference) {
+						/*
+						 * We ignore changes to non-containment references (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
+						 */
+						return !reference.isContainment();
 					}
 
 					@Override

@@ -119,7 +119,6 @@ import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.presentation.PamtramEditorPlugin;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
-import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
 
 
 /**
@@ -624,7 +623,6 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		adapterFactory.addAdapterFactory(new PamtramItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MetamodelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new TransformationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenLibraryItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());

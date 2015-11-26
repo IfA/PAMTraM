@@ -1,10 +1,13 @@
 package de.mfreund.gentrans.ui.launching;
 
+import java.util.Arrays;
+
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
@@ -12,6 +15,8 @@ import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -67,6 +72,17 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		btnEnableHistory.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 3, 1));
 		btnEnableHistory.setAlignment(SWT.CENTER);
 		btnEnableHistory.setText("History Strategy");
+		btnEnableHistory.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
 
 		historyComposite = new Composite(ambiguityStrategyGroup, SWT.NONE);
 		GridLayout gl_historyComposite = new GridLayout(2, false);
@@ -78,16 +94,49 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		btnUseLatestTransformation.setSelection(true);
 		btnUseLatestTransformation.setToolTipText("Always use the latest stored transformation model to resolve ambiguities");
 		btnUseLatestTransformation.setText("Use latest transformation model");
+		btnUseLatestTransformation.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
 		new Label(historyComposite, SWT.NONE);
 
 		btnUseSpecificTransformation = new Button(historyComposite, SWT.RADIO);
 		btnUseSpecificTransformation.setToolTipText("Use a specific transformation model to resolve ambiguities");
 		btnUseSpecificTransformation.setText("Use specific transformation model");
+		btnUseSpecificTransformation.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
 
 		comboSelectTransformation = new Combo(historyComposite, SWT.NONE);
 		comboSelectTransformation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		comboSelectTransformation.setEnabled(false);
 		comboSelectTransformation.setItems(new String[] {"a", "b"});
+		comboSelectTransformation.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
 
 		Label label = new Label(ambiguityStrategyGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
@@ -98,6 +147,18 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		btnEnableUser.setToolTipText("Enable to use a strategy that resolves ambiguities based on user decisions...");
 		btnEnableUser.setText("User Decision Strategy");
 		btnEnableUser.setAlignment(SWT.CENTER);
+		btnEnableUser.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
+
 		m_bindingContext = initDataBindings();
 
 
@@ -107,14 +168,47 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
+		// set the enableHistory attribute
+		configuration.setAttribute("enableHistory", false);
+
+		// set the transformationModel attribute
+		configuration.setAttribute("transformationModel", "");
+
+		// set the enableUser attribute
+		configuration.setAttribute("enableUser", false);
 	}
 
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
+		try {
+			// set the enableHistory/User fields in the context
+			context.setEnableHistory(configuration.getAttribute("enableHistory", false));
+			context.setEnableUser(configuration.getAttribute("enableUser", true));
+
+			// udpate the selection of the selectTransformation combo
+			String transformationToUse = configuration.getAttribute("transformationModel", "");
+			String[] transformationsToChooseFrom = comboSelectTransformation.getItems();
+			int index = Arrays.asList(transformationsToChooseFrom).indexOf(transformationToUse);
+			if(index == -1 ) {
+				comboSelectTransformation.clearSelection();
+			} else {
+				comboSelectTransformation.select(index);
+			}
+		} catch (CoreException e) {
+			setErrorMessage(e.getMessage());
+		}
 	}
 
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
+		// set the enableHistory attribute
+		configuration.setAttribute("enableHistory", context.isEnableHistory());
+
+		// set the transformationModel attribute
+		configuration.setAttribute("transformationModel", context.getTransformationModelToUse());
+
+		// set the enableUser attribute
+		configuration.setAttribute("enableUser", context.isEnableUser());
 	}
 
 	@Override

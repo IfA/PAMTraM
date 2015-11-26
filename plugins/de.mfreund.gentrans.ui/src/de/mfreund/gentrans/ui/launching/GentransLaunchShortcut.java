@@ -58,6 +58,11 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 				mainTab.setDefaults(workingCopy);
 				mainTab.dispose();
 
+				// set default for gentrans ambiguity settings
+				GentransLaunchAmbiguityTab ambiguityTab = new GentransLaunchAmbiguityTab(context);
+				ambiguityTab.setDefaults(workingCopy);
+				ambiguityTab.dispose();
+
 				// set default for gentrans library settings
 				GentransLaunchLibraryTab libraryTab = new GentransLaunchLibraryTab(context);
 				libraryTab.setDefaults(workingCopy);

@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
@@ -75,6 +76,12 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy {
 
 	/**
+	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after successfully 
+	 * resolving an ambiguity.
+	 */
+	private static final String historyDecisionPrefix = "History";
+
+	/**
 	 * The path to the {@link Transformation TransformationModel} to be used to 
 	 * consult previous resolving results
 	 */
@@ -84,16 +91,6 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * The {@link Transformation TransformationModel} to be used to consult previous resolving results.
 	 */
 	private Transformation transformationModel;
-
-	/**
-	 * This keeps track of the {@link PAMTraM} instance that the current transformation operates on.
-	 */
-	private PAMTraM pamtramModel;
-
-	/**
-	 * This keeps track of the list of {@link EObject sourceModels} that serve as input to the current transformation.
-	 */
-	private ArrayList<EObject> sourceModels;
 
 	/**
 	 * This will contain the result of the comparison process between the current PAMTraM model and the 'old' PAMTraM model
@@ -114,7 +111,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	private ArrayList<Comparison> sourceCompareResults;
 
 	/**
-	 * This map is filled once during the {@link #init(PAMTraM, ArrayList)} method and contains associations between
+	 * This map is filled once during the {@link #init(PAMTraM, ArrayList, MessageConsoleStream)} method and contains associations between
 	 * {@link TargetSection TargetSections} and lists of {@link TransformationMappingHintGroup TransformationMappingHintGroups}
 	 * that are contained in the {@link #transformationModel}. It can be used to retrieve all hint groups from the 
 	 * transformation model that were responsible for instantiating a certain target section.
@@ -138,13 +135,13 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws IOException {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+
+		super.init(pamtramModel, sourceModels, messageStream);
 
 		/*
-		 * initialize the models to be used by this strategy
+		 * load the transformation model to be used by this strategy
 		 */
-		this.pamtramModel = pamtramModel;
-		this.sourceModels = sourceModels;
 		loadTransformationModel();
 
 		/*
@@ -213,6 +210,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		if(!(transformationModelResource.getContents().get(0) instanceof Transformation)) {
 			throw new RuntimeException("The transformation model does not contain a stored transformation.");
 		}
+		printMessage("Transformation model successfully loaded from path: " + transformationModelPath);
 		transformationModel = (Transformation) transformationModelResource.getContents().get(0);
 
 	}
@@ -391,7 +389,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 */
 		Match mappingMatch = pamtramCompareResult.getMatch(oldTransformationMapping.getAssociatedMapping());
 
-		System.out.println("Reusing choice during 'matchingSelectMapping': " + ((Mapping) (mappingMatch.getLeft())).getName());
+		printMessage(((Mapping) (mappingMatch.getLeft())).getName(), historyDecisionPrefix);
 		return Arrays.asList((Mapping) (mappingMatch.getLeft()));
 
 	}
@@ -473,7 +471,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		if(usedPath == null) {
 			return super.joiningSelectConnectionPath(choices, section);			
 		} else {
-			System.out.println("Reusing choice during 'joiningSelectConnectionPath': " + usedPath);
+			printMessage(usedPath.toString(), historyDecisionPrefix);
 			return Arrays.asList(usedPath);
 		}
 
@@ -603,7 +601,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		if(containerInstancesToUse.isEmpty()) {
 			return super.joiningSelectContainerInstance(choices, element, hintGroup, modelConnectionHint, hintValue);	
 		} else {
-			System.out.println("Reusing choice during 'joiningSelectContainerInstance': " + containerInstancesToUse);
+			printMessage(containerInstancesToUse.toString(), historyDecisionPrefix);
 			return super.joiningSelectContainerInstance(containerInstancesToUse, element, hintGroup, modelConnectionHint, hintValue);	
 		}
 
@@ -744,7 +742,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		if(containerInstancesToUse.isEmpty()) {
 			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);	
 		} else {
-			System.out.println("Reusing choice during 'joiningSelectConnectionPathAndInstance': " + usedPath + "; " + containerInstancesToUse);
+			printMessage(usedPath.toString() + "-->" + containerInstancesToUse.toString(), historyDecisionPrefix);
 			HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
 			ret.put(usedPath, containerInstancesToUse);
 			return  super.joiningSelectConnectionPathAndContainerInstance(ret, section, sectionInstances, hintGroup);
@@ -768,7 +766,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		EClass targetModelRootClass = targetModelRoot.eClass();
 
 		if(choices.contains(targetModelRootClass)) {
-			System.out.println("Reusing choice during 'joiningSelectRootElement': " + targetModelRootClass.getName());
+			printMessage(targetModelRootClass.getName(), historyDecisionPrefix);
 			return Arrays.asList(targetModelRootClass);
 		} else {
 			return super.joiningSelectRootElement(choices);
@@ -835,6 +833,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		if(targetInstancesToUse.isEmpty()) {
 			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector, sourceElement);
 		} else {
+			printMessage(targetInstancesToUse.toString(), historyDecisionPrefix);
 			System.out.println("Reusing choice during 'linkingSelectTargetInstance': " + targetInstancesToUse);
 			return super.linkingSelectTargetInstance(targetInstancesToUse, reference, hintGroup, mappingInstanceSelector, sourceElement);
 		}
@@ -950,7 +949,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		if(usedTargetSectionClass == null || targetInstancesToUse.isEmpty()) {
 			return super.linkingSelectTargetSectionAndInstance(choices, reference, hintGroup);
 		} else {
-			System.out.println("Reusing choice during 'linkingSelectTargetSectionAndInstance': " + usedTargetSectionClass.getName() + "; " + targetInstancesToUse);
+			printMessage(usedTargetSectionClass.getName() + "-->" + targetInstancesToUse, historyDecisionPrefix);
 			HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
 			ret.put(usedTargetSectionClass, targetInstancesToUse);
 			return super.linkingSelectTargetSectionAndInstance(ret, reference, hintGroup);

@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.resolving;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,9 +10,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 
-import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
+import de.mfreund.gentrans.transformation.EObjectWrapper;
+import de.mfreund.gentrans.transformation.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.resolving.wizards.GenericItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.NamedElementItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -27,7 +29,12 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * 
  * @author mfreund
  */
-public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrategy {
+public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
+
+	/**
+	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after user selections.
+	 */
+	private static final String userDecisionPrefix = "User";
 
 	@Override
 	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {
@@ -40,6 +47,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
+		printMessage(dialog.getSelection().getName(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
 	}
 
@@ -60,6 +68,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
+		printMessage(dialog.getSelection(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(choices.get(classNames.indexOf(dialog.getSelection()))));
 	}
 
@@ -91,6 +100,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
+		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
 	}
 
@@ -145,6 +155,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 		}
 		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
 		ret.put(retPath, Arrays.asList(retWrapper));
+		printMessage(retPath + "-->" + retWrapper.toString(), userDecisionPrefix);
 		return ret;
 
 	}
@@ -170,6 +181,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 			throw new UserAbortException();
 		}
 
+		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
 		return Arrays.asList(dialog.getSelection());
 	}
 
@@ -201,6 +213,8 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
+
+		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
 		return Arrays.asList(dialog.getSelection());
 	}
 
@@ -262,6 +276,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 		}
 		HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
 		ret.put(retSection, Arrays.asList(retWrapper));
+		printMessage(retSection.getName() + "-->" + retWrapper.toString(), userDecisionPrefix);
 		return ret;
 	}
 }

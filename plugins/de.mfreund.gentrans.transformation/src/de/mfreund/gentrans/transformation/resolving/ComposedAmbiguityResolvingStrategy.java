@@ -36,6 +36,22 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	protected ArrayList<IAmbiguityResolvingStrategy> composedStrategies;
 
 	/**
+	 * This is the getter for the {@link #composedStrategies}.
+	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
+	 */
+	public ArrayList<IAmbiguityResolvingStrategy> getComposedStrategies() {
+		return composedStrategies;
+	}
+
+	/**
+	 * This adds a new strategy to end of the list of {@link #composedStrategies}. 
+	 * @param strategyToAdd The {@link IAmbiguityResolvingStrategy strategy} to add.
+	 */
+	public void addStrategy(IAmbiguityResolvingStrategy strategyToAdd) {
+		composedStrategies.add(strategyToAdd);
+	}
+
+	/**
 	 * This creates an instance.
 	 * 
 	 * @param composedStrategies The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.

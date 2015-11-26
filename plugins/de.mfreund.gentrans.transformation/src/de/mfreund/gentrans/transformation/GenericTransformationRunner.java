@@ -323,6 +323,18 @@ public class GenericTransformationRunner {
 			this.ambiguityResolvingStrategy = new DefaultAmbiguityResolvingStrategy();
 		} else if(ambiguityResolvingStrategy instanceof DefaultAmbiguityResolvingStrategy) {
 			this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+		} else if(ambiguityResolvingStrategy instanceof ComposedAmbiguityResolvingStrategy) {
+			boolean containsDefaultStrategy = false;
+			for (IAmbiguityResolvingStrategy strategy : ((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy).getComposedStrategies()) {
+				if(strategy instanceof DefaultAmbiguityResolvingStrategy) {
+					containsDefaultStrategy = true;
+					break;
+				}
+			};
+			if(!containsDefaultStrategy) {
+				((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy).addStrategy(new DefaultAmbiguityResolvingStrategy());
+			}
+			this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		} else {
 			ArrayList<IAmbiguityResolvingStrategy> composed = new ArrayList<>();
 			composed.add(ambiguityResolvingStrategy);

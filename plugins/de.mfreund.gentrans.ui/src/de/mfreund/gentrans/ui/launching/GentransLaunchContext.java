@@ -4,12 +4,21 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+
 /**
  * A POJO to describe all settings necessary to launch a new generic transformation.
  * 
  * @author mfreund
  */
 class GentransLaunchContext {
+
+	// the workspace root
+	private final IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
 	private final PropertyChangeSupport changeSupport = 
 			new PropertyChangeSupport(this);
@@ -68,12 +77,17 @@ class GentransLaunchContext {
 	 */
 	public void setProject(String project) {
 		firePropertyChange("project", this.project, project);
-		System.out.println(project);
-		ArrayList<String> test = new ArrayList<>();
-		test.add("test1");
-		test.add("test2");
-		test.add(project);
-		this.setModelsToChooseFrom(test);
+		ArrayList<String> transformationModels = new ArrayList<>();
+		try {
+			IResource[] transformationFolders = workspaceRoot.getProject(project).getFolder("Pamtram").getFolder("transformation").members();
+			for (IResource iResource : transformationFolders) {
+				if(iResource instanceof IFolder && ((IFolder) iResource).getFile(iResource.getName() + ".transformation").exists()) {
+					transformationModels.add(iResource.getName());
+				}
+			}
+		} catch (CoreException e) {
+		}
+		this.setModelsToChooseFrom(transformationModels);
 		this.project = project;
 	}
 
@@ -88,7 +102,6 @@ class GentransLaunchContext {
 	 * @param enableHistory the enableHistory to set
 	 */
 	public void setEnableHistory(boolean enableHistory) {
-		System.out.println("enable history: " + enableHistory);
 		firePropertyChange("enableHistory", this.enableHistory, enableHistory);
 		this.enableHistory = enableHistory;
 	}

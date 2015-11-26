@@ -88,6 +88,7 @@ class GentransLaunchContext {
 	 * @param enableHistory the enableHistory to set
 	 */
 	public void setEnableHistory(boolean enableHistory) {
+		System.out.println("enable history: " + enableHistory);
 		firePropertyChange("enableHistory", this.enableHistory, enableHistory);
 		this.enableHistory = enableHistory;
 	}

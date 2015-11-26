@@ -161,10 +161,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 		m_bindingContext = initDataBindings();
 
-
 	}
-
-
 
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
@@ -182,18 +179,25 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
 			// set the enableHistory/User fields in the context
-			context.setEnableHistory(configuration.getAttribute("enableHistory", false));
-			context.setEnableUser(configuration.getAttribute("enableUser", true));
+			//			context.setEnableHistory(configuration.getAttribute("enableHistory", false));
+			btnEnableHistory.setSelection(configuration.getAttribute("enableHistory", false));
+			//			context.setEnableUser(configuration.getAttribute("enableUser", true));
+			btnEnableUser.setSelection(configuration.getAttribute("enableUser", true));
 
 			// udpate the selection of the selectTransformation combo
 			String transformationToUse = configuration.getAttribute("transformationModel", "");
+			btnUseLatestTransformation.setSelection(transformationToUse.isEmpty());
+			btnUseLatestTransformation.setEnabled(configuration.getAttribute("enableHistory", false));
+			btnUseSpecificTransformation.setSelection(!transformationToUse.isEmpty());
+			btnUseSpecificTransformation.setEnabled(configuration.getAttribute("enableHistory", false));
 			String[] transformationsToChooseFrom = comboSelectTransformation.getItems();
 			int index = Arrays.asList(transformationsToChooseFrom).indexOf(transformationToUse);
 			if(index == -1 ) {
-				comboSelectTransformation.clearSelection();
+				comboSelectTransformation.deselectAll();
 			} else {
 				comboSelectTransformation.select(index);
 			}
+			comboSelectTransformation.setEnabled(configuration.getAttribute("enableHistory", false));
 		} catch (CoreException e) {
 			setErrorMessage(e.getMessage());
 		}
@@ -202,13 +206,14 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		// set the enableHistory attribute
-		configuration.setAttribute("enableHistory", context.isEnableHistory());
+		configuration.setAttribute("enableHistory", btnEnableHistory.getSelection());
 
 		// set the transformationModel attribute
-		configuration.setAttribute("transformationModel", context.getTransformationModelToUse());
+		configuration.setAttribute("transformationModel", btnEnableHistory.getSelection() && btnUseSpecificTransformation.getSelection() ? comboSelectTransformation.getText() : "");
 
 		// set the enableUser attribute
-		configuration.setAttribute("enableUser", context.isEnableUser());
+		configuration.setAttribute("enableUser", btnEnableUser.getSelection());
+
 	}
 
 	@Override
@@ -217,7 +222,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	}
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
-		//
+
 		IObservableValue observeEnabledComboSelectTransformationObserveWidget_1 = WidgetProperties.enabled().observe(comboSelectTransformation);
 		IObservableValue observeSelectionBtnEnableHistoryObserveWidget_2 = WidgetProperties.selection().observe(btnEnableHistory);
 		bindingContext.bindValue(observeEnabledComboSelectTransformationObserveWidget_1, observeSelectionBtnEnableHistoryObserveWidget_2, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);

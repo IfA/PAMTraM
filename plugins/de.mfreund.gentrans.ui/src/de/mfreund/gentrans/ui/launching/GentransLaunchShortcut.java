@@ -27,11 +27,11 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 		ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 		ILaunchConfigurationType type = launchManager
 				.getLaunchConfigurationType("de.mfreund.gentrans.launchConfigurationType.gentrans");
-		
+
 		// get the existing launch configurations for the current selection
 		ILaunchConfiguration[] launchConfigs =
 				getLaunchConfigurations(selection);
-		
+
 		ILaunchConfiguration configToLaunch = null;
 		if(launchConfigs.length == 0) {
 			// if no launch config has been found, create a new one
@@ -44,46 +44,54 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 				}
 				ILaunchConfigurationWorkingCopy workingCopy = 
 						type.newInstance(null, res.getName());
-				
+
 				// set default for common settings
 				CommonTab tab = new CommonTab();
 				tab.setDefaults(workingCopy);
 				tab.dispose();
-				
+
+				// the context to use in the transformation
+				GentransLaunchContext context = new GentransLaunchContext();
+
 				// set default for gentrans main settings
-				GentransLaunchMainTab mainTab = new GentransLaunchMainTab();
+				GentransLaunchMainTab mainTab = new GentransLaunchMainTab(context);
 				mainTab.setDefaults(workingCopy);
 				mainTab.dispose();
-				
+
+				// set default for gentrans ambiguity settings
+				GentransLaunchAmbiguityTab ambiguityTab = new GentransLaunchAmbiguityTab(context);
+				ambiguityTab.setDefaults(workingCopy);
+				ambiguityTab.dispose();
+
 				// set default for gentrans library settings
-				GentransLaunchLibraryTab libraryTab = new GentransLaunchLibraryTab();
+				GentransLaunchLibraryTab libraryTab = new GentransLaunchLibraryTab(context);
 				libraryTab.setDefaults(workingCopy);
 				libraryTab.dispose();
-				
+
 				// save the working copy
 				configToLaunch = workingCopy.doSave();
-			
+
 			} catch (CoreException e) {
 				MessageDialog.openError(new Shell(), "Error", e.getMessage());
 				return;
 			}
-			    
+
 		} else {
 			// use the first available launch configuration
 			// TODO let the user choose
 			configToLaunch = launchConfigs[0];
 		}
-		
+
 		try {
 
 			// launch the configuration
 			configToLaunch.launch(mode, null);
-			
+
 		} catch (CoreException e) {
 			MessageDialog.openError(new Shell(), "Error", e.getMessage());
 			return;
 		}
-		
+
 	}
 
 	@Override
@@ -100,39 +108,39 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	 */
 	@Override
 	public ILaunchConfiguration[] getLaunchConfigurations(ISelection selection) {
-		
+
 		IResource res = getLaunchableResource(selection);
 		// if no launchable project could be determined, return
 		// an empty list of launch configurations
 		if(res == null || !(res instanceof IProject)) {
 			return new ILaunchConfiguration[]{};
 		}
-		
+
 		IProject project = (IProject) res;
 		ArrayList<ILaunchConfiguration> launchConfigs = 
 				new ArrayList<ILaunchConfiguration>();
-		
-		try {
-		    
-			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
-		    ILaunchConfigurationType type = launchManager
-		    		.getLaunchConfigurationType("de.mfreund.gentrans.launchConfigurationType.gentrans");
 
-		    // retrieve the launch configurations from the launch manager
-		    ILaunchConfiguration[] launchConfigurations = 
-		    		launchManager.getLaunchConfigurations(type);
-		    
-		    for (ILaunchConfiguration launchConfiguration : launchConfigurations) {
-		    	// the launch configuration is applicable if the project
-		    	// attribute matches the launchable resource
-		    	if (launchConfiguration.getAttribute("project", "").equals(project.getName())) {
-		    		launchConfigs.add(launchConfiguration);
-		    	}
-		    }
+		try {
+
+			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
+			ILaunchConfigurationType type = launchManager
+					.getLaunchConfigurationType("de.mfreund.gentrans.launchConfigurationType.gentrans");
+
+			// retrieve the launch configurations from the launch manager
+			ILaunchConfiguration[] launchConfigurations = 
+					launchManager.getLaunchConfigurations(type);
+
+			for (ILaunchConfiguration launchConfiguration : launchConfigurations) {
+				// the launch configuration is applicable if the project
+				// attribute matches the launchable resource
+				if (launchConfiguration.getAttribute("project", "").equals(project.getName())) {
+					launchConfigs.add(launchConfiguration);
+				}
+			}
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
-		
+
 		// return the matching launch configurations
 		return launchConfigs.toArray(new ILaunchConfiguration[launchConfigs.size()]);
 	}
@@ -144,19 +152,19 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 	@Override
 	public IResource getLaunchableResource(ISelection selection) {
-		
+
 		if(!selection.isEmpty() && selection instanceof TreeSelection) {
-			
+
 			// the selected object
 			Object el = ((TreeSelection) selection).getFirstElement();
-			
+
 			if(el instanceof IProject) {
-				
+
 				// if a project has been selected, return it
 				return (IProject) el;
-				
+
 			} else if(el instanceof IFile) {
-				
+
 				// if a source or pamtram file has been selected, determine
 				// the corresponding project and return it
 				IFile file = (IFile) el;
@@ -169,7 +177,7 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 				}
 			}
 		}
-		
+
 		// no launchable resource could be determined
 		return null;
 	}
@@ -178,5 +186,5 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	public IResource getLaunchableResource(IEditorPart editorpart) {
 		return null;
 	}
-	
+
 }

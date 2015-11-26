@@ -3,6 +3,9 @@ package de.mfreund.gentrans.ui.launching;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.beans.PojoProperties;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -12,6 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
@@ -38,6 +42,7 @@ import org.eclipse.ui.PlatformUI;
 import de.mfreund.pamtram.util.SelectionListener2;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
+	private DataBindingContext m_bindingContext;
 
 	// the context containing all settings necessary to launch a new generic transformation
 	private GentransLaunchContext context;
@@ -341,6 +346,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		createTransformationModel.setToolTipText("Whether a TransformationModel shall be created in the folder 'Pamtram/transformation' for every executed transformation. This trace model can be used for further reasoning about the executed transformation...");
 		createTransformationModel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		createTransformationModel.setText("Create transformation model");
+		m_bindingContext = initDataBindings();
 
 	}
 
@@ -544,5 +550,14 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			return;
 		}
 
+	}
+	protected DataBindingContext initDataBindings() {
+		DataBindingContext bindingContext = new DataBindingContext();
+		//
+		IObservableValue observeTextProjectComboObserveWidget = WidgetProperties.text().observe(projectCombo);
+		IObservableValue projectContextObserveValue = PojoProperties.value("project").observe(context);
+		bindingContext.bindValue(observeTextProjectComboObserveWidget, projectContextObserveValue, null, null);
+		//
+		return bindingContext;
 	}
 }

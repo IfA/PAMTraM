@@ -1,11 +1,33 @@
 package de.mfreund.gentrans.ui.launching;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+
 /**
  * A POJO to describe all settings necessary to launch a new generic transformation.
  * 
  * @author mfreund
  */
 class GentransLaunchContext {
+
+	private final PropertyChangeSupport changeSupport = 
+			new PropertyChangeSupport(this);
+
+	public void addPropertyChangeListener(PropertyChangeListener 
+			listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener 
+			listener) {
+		changeSupport.removePropertyChangeListener(listener);
+	}
+
+	protected void firePropertyChange(String propertyName, Object oldValue,
+			Object newValue) {
+		changeSupport.firePropertyChange(propertyName, oldValue, newValue);
+	}
 
 	/**
 	 * The name of the project that this generic transformation works on.
@@ -32,6 +54,8 @@ class GentransLaunchContext {
 	 */
 	private String transformationModelToUse = "";
 
+	private ArrayList<String> modelsToChooseFrom = new ArrayList<>();
+
 	/**
 	 * @return the project
 	 */
@@ -43,6 +67,13 @@ class GentransLaunchContext {
 	 * @param project the project to set
 	 */
 	public void setProject(String project) {
+		firePropertyChange("project", this.project, project);
+		System.out.println(project);
+		ArrayList<String> test = new ArrayList<>();
+		test.add("test1");
+		test.add("test2");
+		test.add(project);
+		this.setModelsToChooseFrom(test);
 		this.project = project;
 	}
 
@@ -57,6 +88,7 @@ class GentransLaunchContext {
 	 * @param enableHistory the enableHistory to set
 	 */
 	public void setEnableHistory(boolean enableHistory) {
+		firePropertyChange("enableHIstory", this.enableHistory, enableHistory);
 		this.enableHistory = enableHistory;
 	}
 
@@ -71,6 +103,7 @@ class GentransLaunchContext {
 	 * @param enableUser the enableUser to set
 	 */
 	public void setEnableUser(boolean enableUser) {
+		firePropertyChange("enableUser", this.enableUser, enableUser);
 		this.enableUser = enableUser;
 	}
 
@@ -85,10 +118,10 @@ class GentransLaunchContext {
 	 * @param useSpecificTransformationModel the useSpecificTransformationModel to set
 	 */
 	public void setUseSpecificTransformationModel(boolean useSpecificTransformationModel) {
-		System.out.println(useSpecificTransformationModel);
+		firePropertyChange("useSpecificTransformationModel", this.useSpecificTransformationModel, useSpecificTransformationModel);
 		if(!useSpecificTransformationModel) {
 			// reset the selection of the transformation model to use
-			setTransformationModelToUse("test");
+			setTransformationModelToUse("");
 		}
 		this.useSpecificTransformationModel = useSpecificTransformationModel;
 	}
@@ -104,7 +137,22 @@ class GentransLaunchContext {
 	 * @param transformationModelToUse the transformationModelToUse to set
 	 */
 	public void setTransformationModelToUse(String transformationModelToUse) {
-		System.out.println(transformationModelToUse);
+		firePropertyChange("transformationModelToUse", this.transformationModelToUse, transformationModelToUse);
 		this.transformationModelToUse = transformationModelToUse;
+	}
+
+	/**
+	 * @return the modelsToChooseFrom
+	 */
+	public ArrayList<String> getModelsToChooseFrom() {
+		return modelsToChooseFrom;
+	}
+
+	/**
+	 * @param modelsToChooseFrom the modelsToChooseFrom to set
+	 */
+	public void setModelsToChooseFrom(ArrayList<String> modelsToChooseFrom) {
+		firePropertyChange("modelsToChooseFrom", this.modelsToChooseFrom, modelsToChooseFrom);
+		this.modelsToChooseFrom = modelsToChooseFrom;
 	}
 }

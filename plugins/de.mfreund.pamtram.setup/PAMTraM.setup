@@ -531,7 +531,7 @@
           id="workingset.pamtram.transformation">
         <predicate
             xsi:type="predicates:NamePredicate"
-            pattern="de.mfreund.pamtram.model.transformation"/>
+            pattern="de.mfreund.pamtram.transformation.model"/>
       </workingSet>
       <description>Add projects to working sets.</description>
     </setupTask>

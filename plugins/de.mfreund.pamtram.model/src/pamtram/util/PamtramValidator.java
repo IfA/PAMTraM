@@ -17,7 +17,6 @@ import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.TransformationModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -121,8 +120,6 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 			return validateTargetSectionModel((TargetSectionModel)value, diagnostics, context);
 		case PamtramPackage.MAPPING_MODEL:
 			return validateMappingModel((MappingModel)value, diagnostics, context);
-		case PamtramPackage.TRANSFORMATION_MODEL:
-			return validateTransformationModel((TransformationModel)value, diagnostics, context);
 		default:
 			return true;
 		}
@@ -240,15 +237,6 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateMappingModel(MappingModel mappingModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(mappingModel, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTransformationModel(TransformationModel transformationModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(transformationModel, diagnostics, context);
 	}
 
 	/**

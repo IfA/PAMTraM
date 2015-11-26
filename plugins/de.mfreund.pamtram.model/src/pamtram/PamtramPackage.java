@@ -179,22 +179,13 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M__MAPPING_MODEL = 3;
 
 	/**
-	 * The feature id for the '<em><b>Transformation Model</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAM_TRA_M__TRANSFORMATION_MODEL = 4;
-
-	/**
 	 * The feature id for the '<em><b>Source Sections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__SOURCE_SECTIONS = 5;
+	int PAM_TRA_M__SOURCE_SECTIONS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Target Sections</b></em>' reference list.
@@ -203,7 +194,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__TARGET_SECTIONS = 6;
+	int PAM_TRA_M__TARGET_SECTIONS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
@@ -212,7 +203,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MAPPINGS = 7;
+	int PAM_TRA_M__MAPPINGS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Active Mappings</b></em>' reference list.
@@ -221,7 +212,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__ACTIVE_MAPPINGS = 8;
+	int PAM_TRA_M__ACTIVE_MAPPINGS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Global Values</b></em>' reference list.
@@ -230,7 +221,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__GLOBAL_VALUES = 9;
+	int PAM_TRA_M__GLOBAL_VALUES = 8;
 
 	/**
 	 * The feature id for the '<em><b>Modifier Sets</b></em>' reference list.
@@ -239,7 +230,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MODIFIER_SETS = 10;
+	int PAM_TRA_M__MODIFIER_SETS = 9;
 
 	/**
 	 * The number of structural features of the '<em>PAM Tra M</em>' class.
@@ -248,7 +239,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_FEATURE_COUNT = 11;
+	int PAM_TRA_M_FEATURE_COUNT = 10;
 
 	/**
 	 * The operation id for the '<em>Merge Extends</em>' operation.
@@ -266,7 +257,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP = 1;
+	int PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1 = 1;
 
 	/**
 	 * The operation id for the '<em>Target Section Models Have Same EPackage</em>' operation.
@@ -275,7 +266,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP = 2;
+	int PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1 = 2;
 
 	/**
 	 * The number of operations of the '<em>PAM Tra M</em>' class.
@@ -534,44 +525,6 @@ public interface PamtramPackage extends EPackage {
 	int MAPPING_MODEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.impl.TransformationModelImpl <em>Transformation Model</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.impl.TransformationModelImpl
-	 * @see pamtram.impl.PamtramPackageImpl#getTransformationModel()
-	 * @generated
-	 */
-	int TRANSFORMATION_MODEL = 7;
-
-	/**
-	 * The feature id for the '<em><b>Transformation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION_MODEL__TRANSFORMATION = 0;
-
-	/**
-	 * The number of structural features of the '<em>Transformation Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION_MODEL_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Transformation Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION_MODEL_OPERATION_COUNT = 0;
-
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -668,17 +621,6 @@ public interface PamtramPackage extends EPackage {
 	EReference getPAMTraM_MappingModel();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.PAMTraM#getTransformationModel <em>Transformation Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Transformation Model</em>'.
-	 * @see pamtram.PAMTraM#getTransformationModel()
-	 * @see #getPAMTraM()
-	 * @generated
-	 */
-	EReference getPAMTraM_TransformationModel();
-
-	/**
 	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSourceSections <em>Source Sections</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -762,7 +704,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.PAMTraM#sourceSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map();
+	EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_1();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.PAMTraM#targetSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Target Section Models Have Same EPackage</em>}' operation.
@@ -772,7 +714,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.PAMTraM#targetSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map();
+	EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_1();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.SectionModel <em>Section Model</em>}'.
@@ -891,27 +833,6 @@ public interface PamtramPackage extends EPackage {
 	EOperation getMappingModel__GetActiveMappings();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.TransformationModel <em>Transformation Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Transformation Model</em>'.
-	 * @see pamtram.TransformationModel
-	 * @generated
-	 */
-	EClass getTransformationModel();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.TransformationModel#getTransformation <em>Transformation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Transformation</em>'.
-	 * @see pamtram.TransformationModel#getTransformation()
-	 * @see #getTransformationModel()
-	 * @generated
-	 */
-	EReference getTransformationModel_Transformation();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1013,14 +934,6 @@ public interface PamtramPackage extends EPackage {
 		EReference PAM_TRA_M__MAPPING_MODEL = eINSTANCE.getPAMTraM_MappingModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Transformation Model</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PAM_TRA_M__TRANSFORMATION_MODEL = eINSTANCE.getPAMTraM_TransformationModel();
-
-		/**
 		 * The meta object literal for the '<em><b>Source Sections</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1082,7 +995,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map();
+		EOperation PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_1();
 
 		/**
 		 * The meta object literal for the '<em><b>Target Section Models Have Same EPackage</b></em>' operation.
@@ -1090,7 +1003,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map();
+		EOperation PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_1();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.
@@ -1187,24 +1100,6 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MAPPING_MODEL___GET_ACTIVE_MAPPINGS = eINSTANCE.getMappingModel__GetActiveMappings();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.impl.TransformationModelImpl <em>Transformation Model</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.impl.TransformationModelImpl
-		 * @see pamtram.impl.PamtramPackageImpl#getTransformationModel()
-		 * @generated
-		 */
-		EClass TRANSFORMATION_MODEL = eINSTANCE.getTransformationModel();
-
-		/**
-		 * The meta object literal for the '<em><b>Transformation</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSFORMATION_MODEL__TRANSFORMATION = eINSTANCE.getTransformationModel_Transformation();
 
 	}
 

@@ -24,8 +24,6 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.impl.MetamodelPackageImpl;
-import pamtram.transformation.TransformationPackage;
-import pamtram.transformation.impl.TransformationPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -128,21 +126,18 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		// Obtain or create and register interdependencies
 		PamtramPackageImpl thePamtramPackage = (PamtramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) instanceof PamtramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) : PamtramPackage.eINSTANCE);
 		MetamodelPackageImpl theMetamodelPackage = (MetamodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) instanceof MetamodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) : MetamodelPackage.eINSTANCE);
-		TransformationPackageImpl theTransformationPackage = (TransformationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformationPackage.eNS_URI) instanceof TransformationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformationPackage.eNS_URI) : TransformationPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theConditionPackage.createPackageContents();
 		thePamtramPackage.createPackageContents();
 		theMetamodelPackage.createPackageContents();
-		theTransformationPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theConditionPackage.initializePackageContents();
 		thePamtramPackage.initializePackageContents();
 		theMetamodelPackage.initializePackageContents();
-		theTransformationPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

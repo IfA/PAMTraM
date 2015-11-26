@@ -37,7 +37,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	private Composite historyComposite;
 
 	/**
-	 * This keeps track of the various settings to be changed in this tab.
+	 * The domain model that this tab operates on.
 	 */
 	private GentransLaunchContext context = new GentransLaunchContext();
 	private Button btnEnableUser;

@@ -11,15 +11,20 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 
 /**
- * A POJO to describe all settings necessary to launch a new generic transformation.
+ * A bean to describe all settings necessary to launch a new generic transformation.
  * 
  * @author mfreund
  */
 class GentransLaunchContext {
 
-	// the workspace root
+	/**
+	 * The workspace root that will be used to retrieve possible transformation models.
+	 */
 	private final IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
+	/**
+	 * Add basic 'Bean' behavior (cf. http://www.vogella.com/tutorials/EclipseDataBinding/article.html#databinding_pojovsbean).	
+	 */
 	private final PropertyChangeSupport changeSupport = 
 			new PropertyChangeSupport(this);
 
@@ -77,6 +82,8 @@ class GentransLaunchContext {
 	 */
 	public void setProject(String project) {
 		firePropertyChange("project", this.project, project);
+
+		// update the list of possible transformation models to choose from based on the changed selection
 		ArrayList<String> transformationModels = new ArrayList<>();
 		try {
 			IResource[] transformationFolders = workspaceRoot.getProject(project).getFolder("Pamtram").getFolder("transformation").members();

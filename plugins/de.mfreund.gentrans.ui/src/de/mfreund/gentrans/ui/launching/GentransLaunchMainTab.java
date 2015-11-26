@@ -44,7 +44,9 @@ import de.mfreund.pamtram.util.SelectionListener2;
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private DataBindingContext m_bindingContext;
 
-	// the context containing all settings necessary to launch a new generic transformation
+	/**
+	 * The domain model that this tab operates on.
+	 */
 	private GentransLaunchContext context;
 
 	// the workspace root

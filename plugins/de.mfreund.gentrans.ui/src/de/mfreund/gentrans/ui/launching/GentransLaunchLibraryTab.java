@@ -29,7 +29,9 @@ import de.mfreund.pamtram.properties.PropertySupplier;
 
 public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
-	// the context containing all settings necessary to launch a new generic transformation
+	/**
+	 * The domain model that this tab operates on.
+	 */
 	private GentransLaunchContext context;
 
 	/**

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
@@ -280,7 +281,9 @@ public class SourceSectionMatcher extends CancellableElement {
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
 				try {
+					consoleStream.println("[Ambiguity] Resolve matching ambiguity...");
 					List<Mapping> resolved = ambiguityResolvingStrategy.matchingSelectMapping(new ArrayList<>(applicableMappings.keySet()), element);
+					consoleStream.println("[Ambiguity] ...finished.\n");
 					ret = applicableMappings.get(resolved.get(0));
 					ambiguousMappingSelections.put(applicableMappings.keySet(), resolved.get(0));
 				} catch (Exception e) {

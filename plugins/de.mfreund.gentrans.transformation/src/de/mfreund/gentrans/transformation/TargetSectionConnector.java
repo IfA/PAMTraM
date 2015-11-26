@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
@@ -214,7 +215,9 @@ public class TargetSectionConnector extends CancellableElement {
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
 				try {
+					consoleStream.println("[Ambiguity] Resolve joining ambiguity...");
 					List<EClass> resolved = ambiguityResolvingStrategy.joiningSelectRootElement(new ArrayList<>(common));
+					consoleStream.println("[Ambiguity] ...finished.\n");
 					rootClass = resolved.get(0);
 				} catch (Exception e) {
 					consoleStream.println(e.getMessage());
@@ -271,7 +274,9 @@ public class TargetSectionConnector extends CancellableElement {
 								 * Consult the specified resolving strategy to resolve the ambiguity.				
 								 */
 								try {
+									consoleStream.println("[Ambiguity] Resolve joining ambiguity...");
 									List<ModelConnectionPath> resolved = ambiguityResolvingStrategy.joiningSelectConnectionPath(fittingPaths, (TargetSection) tSection);
+									consoleStream.println("[Ambiguity] ...finished.\n");
 									chosenPath = resolved.get(0);
 								} catch (Exception e) {
 									consoleStream.println(e.getMessage());
@@ -495,9 +500,11 @@ public class TargetSectionConnector extends CancellableElement {
 				choices.put(entry.getValue(), new ArrayList<>(instancesByPath.get(entry.getKey()).values()));
 			}
 			try {
+				consoleStream.println("[Ambiguity] Resolve joining ambiguity...");
 				HashMap<ModelConnectionPath, List<EObjectWrapper>> resolved = ambiguityResolvingStrategy.joiningSelectConnectionPathAndContainerInstance(choices, section, rootInstances, mappingGroup);
+				consoleStream.println("[Ambiguity] ...finished.\n");
 				modelConnectionPath = resolved.entrySet().iterator().next().getKey();
-				inst = instancesByPath.get(modelConnectionPath).get(resolved.entrySet().iterator().next().getValue().get(0));
+				inst = instancesByPath.get(modelConnectionPath.toString()).get(resolved.entrySet().iterator().next().getValue().get(0).toString());
 			} catch (Exception e) {
 				consoleStream.println(e.getMessage());
 				cancel();
@@ -678,8 +685,10 @@ public class TargetSectionConnector extends CancellableElement {
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
 				try {
+					consoleStream.println("[Ambiguity] Resolve joining ambiguity...");
 					List<EObjectWrapper> resolved = ambiguityResolvingStrategy.joiningSelectContainerInstance(
-							new LinkedList<>(contInstsByHintVal.get(hintVal)), new LinkedList<>(rootInstancesByHintVal.get(hintVal)), null, connectionHint, hintVal);
+							new LinkedList<>(contInstsByHintVal.get(hintVal)), new LinkedList<>(rootInstancesByHintVal.get(hintVal)), mappingGroup, connectionHint, hintVal);
+					consoleStream.println("[Ambiguity] ...finished.\n");
 					rootInstancesByContainer.put(resolved.get(0), rootInstancesByHintVal.get(hintVal));
 				} catch (Exception e) {
 					consoleStream.println(e.getMessage());
@@ -757,7 +766,9 @@ public class TargetSectionConnector extends CancellableElement {
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
 				try {
+					consoleStream.println("[Ambiguity] Resolve joining ambiguity...");
 					List<ModelConnectionPath> resolved = ambiguityResolvingStrategy.joiningSelectConnectionPath(pathsToConsider, section);
+					consoleStream.println("[Ambiguity] ...finished.\n");
 					modelConnectionPath = resolved.get(0);
 				} catch (Exception e) {
 					consoleStream.println(e.getMessage());

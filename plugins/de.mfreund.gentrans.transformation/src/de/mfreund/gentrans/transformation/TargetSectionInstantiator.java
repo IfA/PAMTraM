@@ -23,6 +23,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
@@ -867,8 +868,10 @@ class TargetSectionInstantiator extends CancellableElement {
 											 * Consult the specified resolving strategy to resolve the ambiguity.				
 											 */
 											try {
+												consoleStream.println("[Ambiguity] Resolve linking ambiguity...");
 												List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
 														fittingVals, ((MappingInstanceSelector) h).getAffectedReference(), (MappingHintGroupType) group, (MappingInstanceSelector) h, srcInst);
+												consoleStream.println("[Ambiguity] ...finished.\n");
 												targetInst = resolved.get(0);
 											} catch (Exception e) {
 												consoleStream.println(e.getMessage());
@@ -1284,7 +1287,9 @@ class TargetSectionInstantiator extends CancellableElement {
 											.getFlattenedPamtramClassInstances(targetSection)));
 								}
 								try {
+									consoleStream.println("[Ambiguity] Resolve linking ambiguity...");
 									HashMap<TargetSectionClass, List<EObjectWrapper>> resolved = ambiguityResolvingStrategy.linkingSelectTargetSectionAndInstance(choices, ref, (MappingHintGroupType) group);
+									consoleStream.println("[Ambiguity] ...finished.\n");
 									targetInstance = resolved.entrySet().iterator().next().getValue().get(0);
 								} catch (Exception e) {
 									consoleStream.println(e.getMessage());

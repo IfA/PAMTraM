@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.resolving;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,11 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.EObjectWrapper;
+import de.mfreund.gentrans.transformation.ModelConnectionPath;
+import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -19,7 +23,8 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * This interface may be implemented to expose a concrete strategy to resolve ambiguities that
- * arise during the execution of a generic transformation.
+ * arise during the execution of a generic transformation. Instead of directly implementing this interface,
+ * clients should consider extending {@link AbstractAmbiguityResolvingStrategy}.
  * <p />
  * Ambiguities may arise in different situations during the generic transformation (e.g. during the selection
  * of a mapping to be applied or during the selection of a concrete model connection path to be used to connect
@@ -41,6 +46,17 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  */
 public interface IAmbiguityResolvingStrategy {
 
+	/**
+	 * Initialize the strategy.
+	 * 
+	 * @param pamtramModel The {@link PAMTraM} instance that the current transformation operates on.
+	 * @param sourceModels The list of {@link EObject sourceModels} that serve as input to the current transformation.
+	 * @param messageStream A {@link MessageConsoleStream} that can be used to print messages.
+	 * @throws Exception If an error occurs during the initialization of the strategy.
+	 */
+	public default void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+		return;
+	}
 
 	/**
 	 * Resolve ambiguities that arise when selecting a {@link Mapping} for a given 'element' in the '<em>matching</em>' step
@@ -163,7 +179,7 @@ public interface IAmbiguityResolvingStrategy {
 	/**
 	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a {@link NonContainmentReference}
 	 * during the '<em>linking</em>' step of the transformation. This method is either called if no {@link MappingInstanceSelector} 
-	 * has been defined for the the affected reference or if the evaluation of the MappingInstanceSelector's 
+	 * has been defined for the affected reference or if the evaluation of the MappingInstanceSelector's 
 	 * {@link MappingInstanceSelector#getMatcher() matcher} delivered multiple possible target elements.
 	 * 
 	 * @param choices The list of {@link EObjectWrapper elements} that can be chosen as target. 

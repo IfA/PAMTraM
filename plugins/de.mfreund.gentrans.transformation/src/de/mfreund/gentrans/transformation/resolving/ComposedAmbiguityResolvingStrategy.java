@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.resolving;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,11 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.EObjectWrapper;
+import de.mfreund.gentrans.transformation.ModelConnectionPath;
+import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -24,12 +28,28 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * 
  * @author mfreund
  */
-public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingStrategy {
+public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	/**
 	 * This keeps track of the strategies that this ComposedStrategy composes.
 	 */
 	protected ArrayList<IAmbiguityResolvingStrategy> composedStrategies;
+
+	/**
+	 * This is the getter for the {@link #composedStrategies}.
+	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
+	 */
+	public ArrayList<IAmbiguityResolvingStrategy> getComposedStrategies() {
+		return composedStrategies;
+	}
+
+	/**
+	 * This adds a new strategy to end of the list of {@link #composedStrategies}. 
+	 * @param strategyToAdd The {@link IAmbiguityResolvingStrategy strategy} to add.
+	 */
+	public void addStrategy(IAmbiguityResolvingStrategy strategyToAdd) {
+		composedStrategies.add(strategyToAdd);
+	}
 
 	/**
 	 * This creates an instance.
@@ -38,6 +58,22 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	 */
 	public ComposedAmbiguityResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
 		this.composedStrategies = composedStrategies; 
+	}
+
+	/**
+	 * Initialize each child strategy.
+	 * @throws Exception 
+	 */
+	@Override
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+
+		super.init(pamtramModel, sourceModels, messageStream);
+
+		printMessage("\t--> Init composed stragies:");
+
+		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
+			strategy.init(pamtramModel, sourceModels, messageStream);
+		}
 	}
 
 	@Override

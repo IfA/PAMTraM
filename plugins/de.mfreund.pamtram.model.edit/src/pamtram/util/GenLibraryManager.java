@@ -95,8 +95,10 @@ public class GenLibraryManager {
 	 * @param libraryEntry
 	 *            The {@link LibraryEntry} to be inserted
 	 *            into the target model.
+	 * @return The {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} that has been inserted in the target model.
 	 */
-	public void insertIntoTargetModel(EObject targetModel, LibraryEntry libraryEntry) {
+	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertIntoTargetModel(
+			EObject targetModel, LibraryEntry libraryEntry) {
 
 		/*
 		 * We need to create a self-contained copy of the library entry and pass it to the
@@ -111,6 +113,8 @@ public class GenLibraryManager {
 				targetModel, 
 				originalLibraryEntry, 
 				libraryEntry.getPath().getValue());
+
+		return originalLibraryEntry;
 	}
 
 	/**
@@ -125,8 +129,10 @@ public class GenLibraryManager {
 	 *            The {@link LibraryEntry} to be inserted
 	 *            into the target model.
 	 * @param path The classpath of the '<em>libraryEntry</em>' to be inserted.
+	 * @return The {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} that has been inserted in the target model.
 	 */
-	public void insertIntoTargetModel(EObject targetModel, de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libraryEntry, String path) {
+	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertIntoTargetModel(
+			EObject targetModel, de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libraryEntry, String path) {
 
 		/*
 		 * We need to create a self-contained copy of the library entry and pass it to the
@@ -141,6 +147,8 @@ public class GenLibraryManager {
 				targetModel, 
 				originalLibraryEntry, 
 				path);
+
+		return originalLibraryEntry;
 	}
 
 }

@@ -151,9 +151,9 @@ extends MatcherItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ClassMatcher.class)) {
-		case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

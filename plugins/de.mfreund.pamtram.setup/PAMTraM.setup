@@ -181,6 +181,13 @@
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
+          id="clone.gentrans.transformation.resolving.history"
+          location="${clone.location.pamtram}\de.mfreund.gentrans.transformation.resolving.history.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.transformation.resolving.history.git">
+        <description>Clone the 'de.mfreund.gentrans.transformation.resolving.history.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
           id="clone.gentrans.ui"
           location="${clone.location.pamtram}\de.mfreund.gentrans.ui.git"
           remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.ui.git">
@@ -258,6 +265,13 @@
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
+          id="clone.pamtram.transformation.model"
+          location="${clone.location.pamtram}\de.mfreund.pamtram.transformation.model.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.transformation.model.git">
+        <description>Clone the 'de.mfreund.pamtram.transformation.model.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
           id="clone.pamtram.setup"
           location="${clone.location.pamtram}\de.mfreund.pamtram.setup.git"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.setup.git">
@@ -318,9 +332,15 @@
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
-          id="import.gentrans.transformation.selectors">
+          id="import.gentrans.transformation.resolving.user">
         <sourceLocator
             rootFolder="${clone.location.pamtram}\de.mfreund.gentrans.transformation.selectors.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.gentrans.transformation.resolving.history">
+        <sourceLocator
+            rootFolder="${clone.location.pamtram}\de.mfreund.gentrans.transformation.resolving.history.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
@@ -381,6 +401,12 @@
           id="import.pamtram.model">
         <sourceLocator
             rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.model.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.transformation.model">
+        <sourceLocator
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.transformation.model.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
@@ -499,6 +525,13 @@
                 pattern="de.tud.et.ifa.agtele.genlibrary.*"/>
           </operand>
         </predicate>
+      </workingSet>
+      <workingSet
+          name="pamtram.transformation"
+          id="workingset.pamtram.transformation">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="de.mfreund.pamtram.transformation.model"/>
       </workingSet>
       <description>Add projects to working sets.</description>
     </setupTask>

@@ -15,6 +15,7 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
+import pamtram.metamodel.FileAttribute;
 
 /**
  * @author Sascha Steffen
@@ -33,7 +34,12 @@ public class GenericTransformationJob extends Job {
 	 * @param jobName The name of the transformation job to be created.
 	 * @param sourceFilePath A file path pointing to the single source model to be transformed.
 	 * @param pamtramPath A file path pointing to the {@link PAMTraM} model to be transformed.
-	 * @param targetFilePath A file path denoting the location where the target model created by the transformation shall be stored.
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param transformationModelPath
 	 * 				This is the file path where an instance of {@link Transformation} that contains information
 	 * about the execution will be stored after the transformation.
@@ -45,7 +51,8 @@ public class GenericTransformationJob extends Job {
 	 */
 	public GenericTransformationJob(final String jobName,
 			final String sourceFilePath, final String pamtramPath,
-			final String targetFilePath, final String transformationModelPath,
+			final String targetBasePath, 
+			final String defaultTargetModel, final String transformationModelPath,
 			final LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
@@ -53,7 +60,7 @@ public class GenericTransformationJob extends Job {
 		ArrayList<String> sourceFilePaths = new ArrayList<>();
 		sourceFilePaths.add(sourceFilePath);
 		genTransRunner = GenericTransformationRunner.createInstanceFromSourcePaths(sourceFilePaths,
-				pamtramPath, targetFilePath, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				pamtramPath, targetBasePath, defaultTargetModel, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		genTransRunner.setTransformationModelPath(transformationModelPath);
 		setPriority(Job.BUILD);
 
@@ -65,7 +72,12 @@ public class GenericTransformationJob extends Job {
 	 * @param jobName The name of the transformation job to be created.
 	 * @param sourceFilePaths A list of file paths pointing to the source models to be transformed.
 	 * @param pamtramPath A file path pointing to the {@link PAMTraM} model to be transformed.
-	 * @param targetFilePath A file path denoting the location where the target model created by the transformation shall be stored.
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param transformationModelPath
 	 * 				This is the file path where an instance of {@link Transformation} that contains information
 	 * about the execution will be stored after the transformation.
@@ -77,12 +89,13 @@ public class GenericTransformationJob extends Job {
 	 */
 	public GenericTransformationJob(final String jobName,
 			final ArrayList<String> sourceFilePaths, final String pamtramPath,
-			final String targetFilePath, final String transformationModelPath, 
+			final String targetBasePath, 
+			final String defaultTargetModel, final String transformationModelPath, 
 			final LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 		super(jobName);
 		genTransRunner = GenericTransformationRunner.createInstanceFromSourcePaths(sourceFilePaths,
-				pamtramPath, targetFilePath, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				pamtramPath, targetBasePath, defaultTargetModel, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		genTransRunner.setTransformationModelPath(transformationModelPath);
 		setPriority(Job.BUILD);
 	}

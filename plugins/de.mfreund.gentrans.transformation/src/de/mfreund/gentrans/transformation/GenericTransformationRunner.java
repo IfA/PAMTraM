@@ -79,6 +79,7 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.CardinalityType;
+import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -121,9 +122,16 @@ public class GenericTransformationRunner {
 	private PAMTraM pamtramModel;
 
 	/**
-	 * File path to the transformation target
+	 *  File path relative to that all target models will be created.
 	 */
-	private final String targetFilePath;
+	private final String targetBasePath;
+	
+	/**
+	 * File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
+	 */
+	private final String defaultTargetModel;
 
 	/**
 	 * The target model resource where the result of the transformation shall be stored
@@ -273,8 +281,12 @@ public class GenericTransformationRunner {
 	 *            List of file paths of the source models
 	 * @param pamtramPath
 	 *            Path to the transformation model
-	 * @param targetFilePath
-	 *            File path to the transformation target
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param transformationModelPath
 	 * 				This is the file path where an instance of {@link Transformation} that contains information
 	 * about the execution will be stored after the transformation.
@@ -292,7 +304,8 @@ public class GenericTransformationRunner {
 	private GenericTransformationRunner(
 			final ArrayList<String> sourceFilePaths,
 			final String pamtramPath, 
-			final String targetFilePath, 
+			final String targetBasePath, 
+			final String defaultTargetModel,
 			final String transformationModelPath,
 			int maxPathLength,
 			boolean onlyAskOnceOnAmbiguousMappings, 
@@ -303,7 +316,8 @@ public class GenericTransformationRunner {
 		this.sourceModels = new ArrayList<>();
 		this.sourceFilePaths = sourceFilePaths;
 		this.pamtramPath = pamtramPath;
-		this.targetFilePath = targetFilePath;
+		this.targetBasePath = targetBasePath;
+		this.defaultTargetModel = (defaultTargetModel == null ? "out.xmi" : defaultTargetModel);
 		this.setTransformationModelPath(transformationModelPath);
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
@@ -356,8 +370,12 @@ public class GenericTransformationRunner {
 	 *            List of file paths of the source models
 	 * @param pamtramPath
 	 *            Path to the transformation model
-	 * @param targetFilePath
-	 *            File path to the transformation target
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
@@ -368,11 +386,12 @@ public class GenericTransformationRunner {
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
 			final ArrayList<String> sourceFilePaths,
 			final String pamtramPath,
-			final String targetFilePath, 
+			final String targetBasePath, 
+			final String defaultTargetModel,
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
-		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetBasePath, defaultTargetModel, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 	}
 
 	/**
@@ -382,8 +401,12 @@ public class GenericTransformationRunner {
 	 *             List of file paths of the source models
 	 * @param pamtramModel
 	 *            The transformation model
-	 * @param targetFilePath
-	 *            File path to the transformation target
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
@@ -394,12 +417,13 @@ public class GenericTransformationRunner {
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
 			final ArrayList<String> sourceFilePaths,
 			final PAMTraM pamtramModel, 
-			final String targetFilePath, 
+			final String targetBasePath, 
+			final String defaultTargetModel,
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				new GenericTransformationRunner(sourceFilePaths, null, targetBasePath, defaultTargetModel, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		return instance;
 	}
@@ -411,8 +435,12 @@ public class GenericTransformationRunner {
 	 *            The list of source models
 	 * @param pamtramModel
 	 *            The transformation model
-	 * @param targetFilePath
-	 *            File path to the transformation target
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
@@ -423,12 +451,13 @@ public class GenericTransformationRunner {
 	public static GenericTransformationRunner createInstanceFromSourceModels(
 			final ArrayList<EObject> sourceModels,
 			final PAMTraM pamtramModel, 
-			final String targetFilePath, 
+			final String targetBasePath, 
+			final String defaultTargetModel,
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(null, null, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				new GenericTransformationRunner(null, null, targetBasePath, defaultTargetModel, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		instance.sourceModels = sourceModels;
 		return instance;

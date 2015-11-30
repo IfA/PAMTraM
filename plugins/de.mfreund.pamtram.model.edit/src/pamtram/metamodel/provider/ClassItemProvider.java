@@ -364,17 +364,22 @@ extends MetaModelElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
+				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
+				 MetamodelFactory.eINSTANCE.createFileAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
 				 MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
 				 MetamodelFactory.eINSTANCE.createActualAttribute()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
 	}
 
 }

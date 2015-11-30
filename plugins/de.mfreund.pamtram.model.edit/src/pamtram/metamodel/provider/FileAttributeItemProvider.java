@@ -4,6 +4,7 @@ package pamtram.metamodel.provider;
 
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -11,8 +12,10 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
+import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
 import pamtram.metamodel.FileAttribute;
+import pamtram.metamodel.VirtualAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.FileAttribute} object.
@@ -72,17 +75,31 @@ public class FileAttributeItemProvider extends VirtualAttributeItemProvider {
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((FileAttribute)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_FileAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
+		
+		FileAttribute attribute = (FileAttribute) object;
+
+		StyledString styledLabel = new StyledString();
+
+		if(attribute.getName() == null || attribute.getName().isEmpty()) {
+			styledLabel.append("File", StyledString.Style.QUALIFIER_STYLER).append((StyledString) super.getStyledText(object));
 		} else {
-			styledLabel.append(getString("_UI_FileAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
+			while(it.hasNext()) {
+				Fragment next = it.next();
+				if(next.getString().equals(attribute.getName())) {
+					// use the 'qualifier styler' for the label
+					styledLabel.append(next.getString(), StyledString.Style.QUALIFIER_STYLER);
+				} else {
+					// every other fragment is added as is
+					styledLabel.append(next.getString(), next.getStyle());
+				}
+			}
 		}
+
 		return styledLabel;
 	}	
 

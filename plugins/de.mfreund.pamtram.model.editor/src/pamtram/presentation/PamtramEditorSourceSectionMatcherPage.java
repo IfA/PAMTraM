@@ -308,12 +308,13 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		sourceModelViewer.setInput(contents);
 
 		// the target file
-		String targetFile =  project.getName() + Path.SEPARATOR + "Target" + Path.SEPARATOR + "temp.xmi";
+		String targetBasePath = project.getName() + Path.SEPARATOR + "Target";
+		String defaultTargetModel = "temp.xmi";
 
 		// Create a transformation runner and use it to get the matching source sections
 		GenericTransformationRunner tr = 
 				GenericTransformationRunner.createInstanceFromSourceModels(
-						new ArrayList<EObject>(Arrays.asList(contents.get(0))), editor.pamtram, targetFile, null, new UserDecisionResolvingStrategy());
+						new ArrayList<EObject>(Arrays.asList(contents.get(0))), editor.pamtram, targetBasePath, defaultTargetModel, null, new UserDecisionResolvingStrategy());
 
 		matchedSections = tr.mapSections();
 

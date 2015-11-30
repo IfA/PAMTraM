@@ -461,11 +461,6 @@ public class GenericTransformationRunner {
 		// load the source model
 		loadSourceModel(resourceSet);
 
-		// create the target model
-		if(!createTargetModel(resourceSet)) {
-			return;
-		}
-
 		// set the start date (after loading all models)
 		this.transformationModel.setStartDate(new Date());
 
@@ -510,8 +505,10 @@ public class GenericTransformationRunner {
 		this.transformationModel.setEndDate(new Date());
 
 		if (transformationResult != null && transformationResult.getOverallResult() && !isCancelled) {
-			// save targetModels
 			
+			/*
+			 * create the target models
+			 */
 			String basePath = targetModel.getURI().trimSegments(1).toPlatformString(true);
 			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().createTargetModels(resourceSet, basePath);
 			
@@ -1728,35 +1725,6 @@ public class GenericTransformationRunner {
 			sourceModels.add(sourceResource.getContents().get(0));
 
 		}
-	}
-
-	/**
-	 * This creates the resource to hold the target model created by the
-	 * transformation.
-	 * 
-	 * @param resourceSet The resource set used to create the resource.
-	 * @return true if the resource has successfully been created, false otherwise.
-	 */
-	private boolean createTargetModel(ResourceSet resourceSet) {
-
-		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
-
-		// the URI of the target resource
-		final URI targetFileUri = URI.createPlatformResourceURI(targetFilePath, true);
-
-		try {
-			targetModel = (XMIResource) resFactory.createResource(targetFileUri);
-			targetModel.setEncoding("UTF-8");
-
-		} catch (final Exception e) {
-			MessageDialog.openError(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), "Error",
-					"The XMI resource for the targetModel output could not be created.");
-			e.printStackTrace();
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

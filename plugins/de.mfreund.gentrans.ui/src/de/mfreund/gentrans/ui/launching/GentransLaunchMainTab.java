@@ -282,7 +282,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// create a label for the target file
 		Label targetFileLabel = new Label(fileGroup, SWT.NONE);
-		targetFileLabel.setText("Target File:");
+		targetFileLabel.setToolTipText("If no distinct target models are specified via the 'path' attribute of TargetSections, this will be used as single target model.");
+		targetFileLabel.setText("Default Target File:");
 
 		// create drop-down list for the target file selection (based on the project)
 		targetFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);

@@ -5,7 +5,6 @@ package pamtram.condition.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import pamtram.condition.*;
 import pamtram.condition.And;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;

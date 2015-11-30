@@ -2554,46 +2554,55 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (mappingEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "containsHintGroups containsDeactivatedHintGroups"
 		   });	
 		addAnnotation
 		  (attributeMappingEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "targetAttributeMatchesSection"
 		   });	
 		addAnnotation
 		  (cardinalityMappingEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"
 		   });	
 		addAnnotation
 		  (mappingInstanceSelectorEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "affectedReferenceIsNonContainment affectedReferenceMatchesSection"
 		   });	
 		addAnnotation
 		  (attributeMatcherEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "targetMatchesAffectedReferenceType"
 		   });	
 		addAnnotation
 		  (localModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "sourceAttributeMatchesSectionOrContainedSection"
 		   });	
 		addAnnotation
 		  (modelConnectionHintTargetAttributeEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "sourceMatchesPossibleContainerType"
 		   });	
 		addAnnotation
 		  (globalAttributeEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "sourceAttributeHasUpperBoundOne"
 		   });	
 		addAnnotation
 		  (externalModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "sourceAttributeMatchesContainerSection"
 		   });
 	}
 

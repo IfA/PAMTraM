@@ -316,6 +316,9 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 			childFeature == MetamodelPackage.Literals.TARGET_SECTION__FILE;
 
 		if (qualify) {
+			if(childFeature == MetamodelPackage.Literals.TARGET_SECTION__FILE) {
+				return "File Attribute";
+			}
 			return getString
 				("_UI_CreateChild_text2",
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });

@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.Path;
@@ -15,7 +13,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ui.console.MessageConsoleStream;
 import pamtram.metamodel.FileAttribute;
@@ -42,6 +39,15 @@ public class TargetModelRegistry {
 	 * '${basePath}/path/to/the/target.model').
 	 */
 	private final HashMap<String, ArrayList<EObject>> targetModels;
+	
+	/**
+	 * This is the getter for the {@link #targetModels}.
+	 * 
+	 * @return The map representing the target models to be created.
+	 */
+	public HashMap<String, ArrayList<EObject>> getTargetModels() {
+		return targetModels;
+	}
 	
 	/**
 	 * This represents the path for the <em>default</em> target model (relative to the {@link #basePath}). The default 

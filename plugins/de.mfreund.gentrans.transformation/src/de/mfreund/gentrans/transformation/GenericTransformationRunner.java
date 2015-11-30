@@ -1782,8 +1782,10 @@ public class GenericTransformationRunner {
 			}
 		}
 		this.transformationModel.getSourceModels().addAll(sourceModels); // add source models
-		this.transformationModel.getTargetModels().addAll(targetModel.getContents()); // add target models
-
+		for (ArrayList<EObject> targetModelElements : // add target models
+			transformationResult.getJoiningResult().getTargetModelRegistry().getTargetModels().values()) {
+			this.transformationModel.getTargetModels().addAll(targetModelElements);
+		}
 		if(this.transformationResult.getMatchingResult() == null) {
 			return false;
 		}

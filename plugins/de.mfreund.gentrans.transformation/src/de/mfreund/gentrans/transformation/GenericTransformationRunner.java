@@ -39,6 +39,7 @@ import org.eclipse.ui.progress.UIJob;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
+import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
@@ -509,21 +510,16 @@ public class GenericTransformationRunner {
 		this.transformationModel.setEndDate(new Date());
 
 		if (transformationResult != null && transformationResult.getOverallResult() && !isCancelled) {
-			// save targetModel
-			try {
-				// try to save the xmi resource
-				// xmiResource.save(Collections.EMPTY_MAP);
-				final Map<Object, Object> options = new LinkedHashMap<>();
-				options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-				options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
-				targetModel.save(Collections.EMPTY_MAP);
-				final long endTime = System.nanoTime();
-				writePamtramMessage("Transformation done. Time: "
-						+ Math.ceil((endTime - startTime) / 100000000L) / 10.0 + "s");
-			} catch (final Exception e) {
-				MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
-						"The XMI resource could not be saved.");
-				e.printStackTrace();
+			// save targetModels
+			
+			String basePath = targetModel.getURI().trimSegments(1).toPlatformString(true);
+			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().createTargetModels(resourceSet, basePath);
+			
+			final long endTime = System.nanoTime();
+			writePamtramMessage("Transformation done. Time: "
+					+ Math.ceil((endTime - startTime) / 100000000L) / 10.0 + "s");
+
+			if(!result) {
 				return;
 			}
 
@@ -592,11 +588,11 @@ public class GenericTransformationRunner {
 		/*
 		 * Perform the 'joining' step of the transformation
 		 */
-		boolean joiningResult = performJoining(targetModel, suitableMappings,
+		JoiningResult joiningResult = performJoining(targetModel, suitableMappings,
 				expandingResult, attributeValueModifier, matchingResult, monitor); 
 		transformationResult.setJoiningResult(joiningResult);
 
-		if (!joiningResult) {
+		if (joiningResult.isCanceled()) {
 			return transformationResult;
 		}
 
@@ -614,10 +610,10 @@ public class GenericTransformationRunner {
 		/*
 		 * Finally, instantiate the collected library entries in the target model. 
 		 */
-		if(targetModel.getContents().isEmpty()) {
+		if(joiningResult.getTargetModelRegistry().isEmpty()) {
 			consoleStream.println("Something seems to be wrong! Target model is empty!");
 		} else {
-			boolean libEntryExpandingResult = performInstantiatingLibraryEntries(targetModel.getContents().get(0), monitor);
+			boolean libEntryExpandingResult = performInstantiatingLibraryEntries(joiningResult.getTargetModelRegistry(), monitor);
 			transformationResult.setLibEntryExpandingResult(libEntryExpandingResult);
 		}
 		return transformationResult;
@@ -1044,9 +1040,9 @@ public class GenericTransformationRunner {
 	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
 	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
 	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
-	 * @return '<em><b>true</b></em>' if everything went well, '<em><b>false</b></em>' otherwise.
+	 * @return A {@link JoiningResult} representing the result of the joining step.
 	 */
-	private boolean performJoining(
+	private JoiningResult performJoining(
 			final XMIResource targetModel,
 			final List<Mapping> suitableMappings,
 			final ExpandingResult expandingResult,
@@ -1056,13 +1052,18 @@ public class GenericTransformationRunner {
 
 		writePamtramMessage("Joining targetModelSections");
 		monitor.subTask("Joining targetModelSections");
+		
+		/*
+		 * The TargetModelRegistry that will be returned at the end as part of the 'JoiningResult'.
+		 */
+		TargetModelRegistry targetModelRegistry = new TargetModelRegistry(targetModel.getURI().lastSegment(), consoleStream);
 
 		/*
 		 * Initialize the TargetSectionConnector
 		 */
 		targetSectionConnector = new TargetSectionConnector(
 				expandingResult.getTargetSectionRegistry(),
-				attributeValueModifier, targetModel, maxPathLength,
+				attributeValueModifier, targetModelRegistry, maxPathLength,
 				ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(targetSectionConnector);
 		final double workUnit = 250.0 / suitableMappings.size();
@@ -1090,7 +1091,7 @@ public class GenericTransformationRunner {
 
 									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
 										if (isCancelled) {
-											return false;
+											return JoiningResult.createJoiningCanceledResult();
 										}
 
 										targetSectionConnector.linkToTargetModelUsingModelConnectionHint(
@@ -1102,7 +1103,7 @@ public class GenericTransformationRunner {
 												selMap.getHintValues().getHintValues(((MappingHintGroup) g).getModelConnectionMatcher()));
 										if (targetSectionConnector.isCancelled()) {
 											writePamtramMessage("Transformation aborted.");
-											return false;
+											return JoiningResult.createJoiningCanceledResult();
 										}
 									}
 								}
@@ -1132,7 +1133,7 @@ public class GenericTransformationRunner {
 												containerInstances);
 								if (targetSectionConnector.isCancelled()) {
 									writePamtramMessage("Transformation aborted.");
-									return false;
+									return JoiningResult.createJoiningCanceledResult();
 								}
 							}
 						}
@@ -1162,7 +1163,7 @@ public class GenericTransformationRunner {
 								for (final MappingHintGroupType group : m
 										.getActiveMappingHintGroups()) {
 									if (isCancelled) {
-										return false;
+										return JoiningResult.createJoiningCanceledResult();
 									}
 
 									if (group instanceof MappingHintGroup) {
@@ -1185,7 +1186,7 @@ public class GenericTransformationRunner {
 										containerInstances);
 								if (targetSectionConnector.isCancelled()) {
 									writePamtramMessage("Transformation aborted.");
-									return false;
+									return JoiningResult.createJoiningCanceledResult();
 								}
 							}
 						}
@@ -1220,7 +1221,7 @@ public class GenericTransformationRunner {
 										containerInstances);
 								if (targetSectionConnector.isCancelled()) {
 									writePamtramMessage("Transformation aborted.");
-									return false;
+									return JoiningResult.createJoiningCanceledResult();
 								}
 							}
 						}
@@ -1239,9 +1240,9 @@ public class GenericTransformationRunner {
 		targetSectionConnector.combineUnlinkedSectionsWithTargetModelRoot();
 		if (targetSectionConnector.isCancelled()) {
 			writePamtramMessage("Transformation aborted.");
-			return false;
+			return JoiningResult.createJoiningCanceledResult();
 		} else {
-			return true;
+			return JoiningResult.createJoiningCompletedResult(targetModelRegistry);
 		}
 
 	}
@@ -1340,15 +1341,16 @@ public class GenericTransformationRunner {
 	 * This performs the final step of the transformation:
 	 * The stored library entries are finally instantiated in the target model.
 	 * 
-	 * @param targetModel The targetModel in which the library entries are to be instantiated.
+	 * @param targetModelRegistry The {@link TargetModelRegistry} representing the target models in which the 
+	 * library entries are to be instantiated.
 	 * @param monitor 
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	private boolean performInstantiatingLibraryEntries(EObject targetModel, IProgressMonitor monitor) {
+	private boolean performInstantiatingLibraryEntries(TargetModelRegistry targetModelRegistry, IProgressMonitor monitor) {
 
 		writePamtramMessage("Instantiating libraryEntries for selected mappings.");
 		monitor.subTask("Instantiating libraryEntries for selected mappings.");
-		return targetSectionInstantiator.instantiateLibraryEntries(targetModel, targetLibraryContextDescriptor);
+		return targetSectionInstantiator.instantiateLibraryEntries(targetModelRegistry, targetLibraryContextDescriptor);
 	}
 
 	/**

@@ -2203,6 +2203,80 @@ public class GenericTransformationRunner {
 				return new ExpandingResult(attributeValueRegistry, targetSectionRegistry); 
 			}
 		}
+		
+		/**
+		 * This class encapsulates the various results of the <em>joining</em> process during a generic transformation:
+		 * <br />
+		 * <ul>
+		 *  <li>the status of the matching process,</li>
+		 *  <li>a {@link TargetModelRegistry} representing the target models to be created</li>
+		 * </ul>
+		 * @author mfreund
+		 * 
+		 */
+		static class JoiningResult {
+			
+			/**
+			 * This describes the status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
+			 * canceled, '<em><b>false</b></em>' otherwise.
+			 */
+			private final boolean canceled;
+			
+			/**
+			 * This is the getter for the {@link #canceled}.
+			 * @return The status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
+			 * canceled, '<em><b>false</b></em>' otherwise.
+			 */
+			boolean isCanceled() {
+				return canceled; 
+			}
+
+			/**
+			 * The {@link TargetModelRegistry} representing the target models to be created.
+			 */
+			private TargetModelRegistry targetModelRegistry;
+			
+			/**
+			 * This is the getter for the {@link #targetModelRegistry}.
+			 * @return The {@link TargetModelRegistry} representing the target models to be created.
+			 */
+			TargetModelRegistry getTargetModelRegistry() {
+				return targetModelRegistry;
+			}
+			
+			/**
+			 * This constructs an instance.
+			 * 
+			 * @param canceled '<em><b>true</b></em>' indicates that the joining process was canceled, '<em><b>false</b></em>' indicates that
+			 * the joining process completed successfully.
+			 * @param targetModelRegistry 
+			 */
+			private JoiningResult(
+					boolean canceled,
+					TargetModelRegistry targetModelRegistry) {
+				this.canceled = canceled;
+				this.targetModelRegistry = targetModelRegistry;
+			}
+			
+			/**
+			 * This constructs an instance for a joining process that has been canceled.
+			 * @return An instance of {@link JoiningResult} indicating that the joining was canceled.
+			 */
+			public static JoiningResult createJoiningCanceledResult() {
+				return new JoiningResult(true, null);
+			}
+
+			/**
+			 * This constructs an instance for a joining process that has finished successfully.
+			 * @param targetModelRegistry The {@link TargetModelRegistry} instance representing the target models
+			 * to be created.
+			 * @return An instance of {@link JoiningResult} indicating that the joining has completed successfully.
+			 */
+			public static JoiningResult createJoiningCompletedResult(
+					TargetModelRegistry targetModelRegistry) {
+				return new JoiningResult(false, targetModelRegistry);
+			}
+		}
 
 		/**
 		 * An instance of {@link MatchingResult} containing the results of the <em>matching</em> process.
@@ -2215,9 +2289,9 @@ public class GenericTransformationRunner {
 		private ExpandingResult expandingResult;
 
 		/**
-		 * A boolean indicating the result of the <em>joining</em> process.
+		 * An instance of {@link JoiningResult} indicating the result of the <em>joining</em> process.
 		 */
-		private boolean joiningResult;
+		private JoiningResult joiningResult;
 
 		/**
 		 * A boolean indicating the result of the <em>linking</em> process.
@@ -2260,14 +2334,14 @@ public class GenericTransformationRunner {
 		/**
 		 * @return the joiningResult
 		 */
-		public boolean isJoiningResult() {
+		public JoiningResult getJoiningResult() {
 			return joiningResult;
 		}
 
 		/**
 		 * @param joiningResult the joiningResult to set
 		 */
-		public void setJoiningResult(boolean joiningResult) {
+		public void setJoiningResult(JoiningResult joiningResult) {
 			this.joiningResult = joiningResult;
 		}
 
@@ -2309,7 +2383,7 @@ public class GenericTransformationRunner {
 				return false;
 			} else if(getExpandingResult() == null) {
 				return false;
-			} else if(!isJoiningResult()) {
+			} else if(getJoiningResult() == null || getJoiningResult().isCanceled()) {
 				return false;
 			} else if(!isLinkingResult()) {
 				return false;

@@ -538,8 +538,7 @@ public class GenericTransformationRunner {
 			/*
 			 * create the target models
 			 */
-			String basePath = targetModel.getURI().trimSegments(1).toPlatformString(true);
-			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().createTargetModels(resourceSet, basePath);
+			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().createTargetModels(resourceSet, targetBasePath);
 			
 			final long endTime = System.nanoTime();
 			writePamtramMessage("Transformation done. Time: "
@@ -614,7 +613,7 @@ public class GenericTransformationRunner {
 		/*
 		 * Perform the 'joining' step of the transformation
 		 */
-		JoiningResult joiningResult = performJoining(targetModel, suitableMappings,
+		JoiningResult joiningResult = performJoining(defaultTargetModel, suitableMappings,
 				expandingResult, attributeValueModifier, matchingResult, monitor); 
 		transformationResult.setJoiningResult(joiningResult);
 
@@ -1057,7 +1056,7 @@ public class GenericTransformationRunner {
 	 * {@link #performExpanding(MatchingResult, List, IProgressMonitor, AttributeValueModifierExecutor) expanding step} are linked
 	 * via containment references and added to the target model. If necessary, intermediary object are created as well.
 	 * 
-	 * @param targetModel The {@link XMIResource} where the coherent target model shall be stored.
+	 * @param defaultTargetModel File path of the <em>default</em> target model (relative to the {@link #targetBasePath}).
 	 * @param suitableMappings The active {@link Mapping mappings} from the PAMTraM model.
 	 * @param expandingResult The {@link ExpandingResult} that contains the results of the 
 	 * {@link #performExpanding(MatchingResult, List, IProgressMonitor, AttributeValueModifierExecutor) expanding step}.
@@ -1069,7 +1068,7 @@ public class GenericTransformationRunner {
 	 * @return A {@link JoiningResult} representing the result of the joining step.
 	 */
 	private JoiningResult performJoining(
-			final XMIResource targetModel,
+			final String defaultTargetModel,
 			final List<Mapping> suitableMappings,
 			final ExpandingResult expandingResult,
 			final AttributeValueModifierExecutor attributeValueModifier,
@@ -1082,7 +1081,7 @@ public class GenericTransformationRunner {
 		/*
 		 * The TargetModelRegistry that will be returned at the end as part of the 'JoiningResult'.
 		 */
-		TargetModelRegistry targetModelRegistry = new TargetModelRegistry(targetModel.getURI().lastSegment(), consoleStream);
+		TargetModelRegistry targetModelRegistry = new TargetModelRegistry(defaultTargetModel, consoleStream);
 
 		/*
 		 * Initialize the TargetSectionConnector

@@ -335,7 +335,7 @@ extends MetaModelElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
@@ -366,10 +366,13 @@ extends MetaModelElementItemProvider {
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
 				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createFileAttribute()));
+		/*
+		 * A 'FileAttribute' must only be added as child of a 'TargetSection'
+		 */
+//		newChildDescriptors.add
+//			(createChildParameter
+//				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
+//				 MetamodelFactory.eINSTANCE.createFileAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -170,6 +170,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappingType = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_MappingType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MetaModelSectionReference = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_MetaModelSectionReference);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PAMTraM = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_PAMTraM);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TargetSection = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_TargetSection);
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationLiteralId ELITid_ONE = MetamodelTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeValueConstraint = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_AttributeValueConstraint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EAttribute = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_EAttribute);

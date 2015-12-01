@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -88,7 +87,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	protected EList<TargetSection> extend;
 
 	/**
-	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
+	 * The cached value of the '{@link #getFile() <em>File</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFile()
@@ -198,6 +197,14 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * @generated
 	 */
 	public FileAttribute getFile() {
+		if (file != null && file.eIsProxy()) {
+			InternalEObject oldFile = (InternalEObject)file;
+			file = (FileAttribute)eResolveProxy(oldFile);
+			if (file != oldFile) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TARGET_SECTION__FILE, oldFile, file));
+			}
+		}
 		return file;
 	}
 
@@ -206,14 +213,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFile(FileAttribute newFile, NotificationChain msgs) {
-		FileAttribute oldFile = file;
-		file = newFile;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.TARGET_SECTION__FILE, oldFile, newFile);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public FileAttribute basicGetFile() {
+		return file;
 	}
 
 	/**
@@ -222,17 +223,10 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * @generated
 	 */
 	public void setFile(FileAttribute newFile) {
-		if (newFile != file) {
-			NotificationChain msgs = null;
-			if (file != null)
-				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.TARGET_SECTION__FILE, null, msgs);
-			if (newFile != null)
-				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.TARGET_SECTION__FILE, null, msgs);
-			msgs = basicSetFile(newFile, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TARGET_SECTION__FILE, newFile, newFile));
+		FileAttribute oldFile = file;
+		file = newFile;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TARGET_SECTION__FILE, oldFile, file));
 	}
 
 	/**
@@ -504,20 +498,6 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION__FILE:
-				return basicSetFile(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
@@ -527,7 +507,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 			case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return getReferencingMappingHintGroups();
 			case MetamodelPackage.TARGET_SECTION__FILE:
-				return getFile();
+				if (resolve) return getFile();
+				return basicGetFile();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -640,8 +621,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
 				case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS: return MetamodelPackage.TARGET_SECTION___EXTENDS_ONLY_VALID_SECTIONS;
-				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2: return MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2;
-				case MetamodelPackage.SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_2: return MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_2;
+				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				case MetamodelPackage.SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -657,13 +638,13 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
 				return isReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case MetamodelPackage.TARGET_SECTION___EXTENDS_ONLY_VALID_SECTIONS:
 				return extendsOnlyValidSections();
-			case MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return containerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

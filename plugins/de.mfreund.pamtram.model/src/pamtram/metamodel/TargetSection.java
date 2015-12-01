@@ -45,27 +45,26 @@ public interface TargetSection extends TargetSectionClass, Section<TargetSection
 	EList<MappingHintGroupType> getReferencingMappingHintGroups();
 
 	/**
-	 * Returns the value of the '<em><b>File</b></em>' containment reference.
+	 * Returns the value of the '<em><b>File</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>File</em>' containment reference.
+	 * @return the value of the '<em>File</em>' reference.
 	 * @see #setFile(FileAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getTargetSection_File()
-	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!TargetSection!file'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!TargetSection!file'"
 	 * @generated
 	 */
 	FileAttribute getFile();
 
 	/**
-	 * Sets the value of the '{@link pamtram.metamodel.TargetSection#getFile <em>File</em>}' containment reference.
+	 * Sets the value of the '{@link pamtram.metamodel.TargetSection#getFile <em>File</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>File</em>' containment reference.
+	 * @param value the new value of the '<em>File</em>' reference.
 	 * @see #getFile()
 	 * @generated
 	 */

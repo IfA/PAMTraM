@@ -8,10 +8,16 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -150,36 +156,6 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 				 null));
 	}
 
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.TARGET_SECTION__FILE);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
 	@Override
 	protected Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
 		if(labelRelatedChildrenFeatures == null) {
@@ -267,10 +243,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 		switch (notification.getFeatureID(TargetSection.class)) {
 			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case MetamodelPackage.TARGET_SECTION__FILE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -320,6 +294,21 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
+	}
+
+	@Override
+	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
+
+		/*
+		 * If a 'FileAttribute' is created, we also need to add it to the 'attributes' reference.
+		 */
+		if(feature == MetamodelPackage.Literals.TARGET_SECTION__FILE) {
+			CompoundCommand command = new CompoundCommand();
+			command.append(new AddCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));				
+			command.append(new SetCommand(domain, owner, feature, value));
+			return command;
+		}
+		return super.createSetCommand(domain, owner, feature, value);
 	}
 
 }

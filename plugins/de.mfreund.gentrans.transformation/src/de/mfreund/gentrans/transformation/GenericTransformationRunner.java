@@ -538,7 +538,7 @@ public class GenericTransformationRunner {
 			/*
 			 * create the target models
 			 */
-			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().createTargetModels(resourceSet, targetBasePath);
+			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().saveTargetModels();
 			
 			final long endTime = System.nanoTime();
 			writePamtramMessage("Transformation done. Time: "
@@ -1081,7 +1081,7 @@ public class GenericTransformationRunner {
 		/*
 		 * The TargetModelRegistry that will be returned at the end as part of the 'JoiningResult'.
 		 */
-		TargetModelRegistry targetModelRegistry = new TargetModelRegistry(defaultTargetModel, consoleStream);
+		TargetModelRegistry targetModelRegistry = new TargetModelRegistry(targetBasePath, defaultTargetModel, new ResourceSetImpl(), consoleStream);
 
 		/*
 		 * Initialize the TargetSectionConnector

@@ -119,7 +119,7 @@ public class TargetSectionConnector extends CancellableElement {
 	 *
 	 * @param elementsToAdd The list of {@link EObjectWrapper elements} to add.
 	 */
-	private void addToTargetModelRoot(
+	public void addToTargetModelRoot(
 			final Collection<EObjectWrapper> elementsToAdd) {
 		for (final EObjectWrapper h : elementsToAdd) {
 			addToTargetModelRoot(h);
@@ -134,10 +134,17 @@ public class TargetSectionConnector extends CancellableElement {
 	 */
 	private void addToTargetModelRoot(final EObjectWrapper helper) {
 		
-		// TODO evaluate the 'path' attribute
+		// the element to add
+		EObject element = helper.getEObject();
 		
-		targetModelRegistry.addToTargetModel(helper.getEObject());
-//		targetModel.getContents().add(helper.getEObject());
+		// the path of the target model
+		String path = helper.getFile();
+		
+		if(path.isEmpty()) {
+			targetModelRegistry.addToTargetModel(element);			
+		} else {
+			targetModelRegistry.addToTargetModel(element, path);
+		}
 	}
 
 	/**

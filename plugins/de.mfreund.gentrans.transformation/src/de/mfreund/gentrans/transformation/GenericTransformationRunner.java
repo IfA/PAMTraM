@@ -1100,8 +1100,18 @@ public class GenericTransformationRunner {
 		for (final Mapping m : suitableMappings) {
 			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
 
-				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup) {// targetSection
+				if (g.getTargetMMSection() != null // targetSection
+						&& g instanceof MappingHintGroup) { 
+					
+					/*
+					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
+					 */
+					if(g.getTargetMMSection().getFile() != null) {
+						targetSectionConnector.addToTargetModelRoot(
+								expandingResult.getTargetSectionRegistry().getPamtramClassInstances(g.getTargetMMSection()).get(g));
+						continue;
+					}
+
 					// exists?
 					final TargetSection section = g.getTargetMMSection();
 					if (expandingResult.getTargetSectionRegistry().getPamtramClassInstances(section)
@@ -1166,10 +1176,19 @@ public class GenericTransformationRunner {
 				}
 			}
 
-			for (final MappingHintGroupImporter i : m
-					.getActiveImportedMappingHintGroups()) {
+			for (final MappingHintGroupImporter i : m.getActiveImportedMappingHintGroups()) {
 				final ExportedMappingHintGroup g = i.getHintGroup();
 				if (g.getTargetMMSection() != null) {
+					
+					/*
+					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
+					 */
+					if(g.getTargetMMSection().getFile() != null) {
+						targetSectionConnector.addToTargetModelRoot(
+								expandingResult.getTargetSectionRegistry().getPamtramClassInstances(g.getTargetMMSection()).get(i));
+						continue;
+					}
+					
 					/*
 					 * ImportedMAppingHintGroups with containers specified will
 					 * be linked to a section that was created by the same

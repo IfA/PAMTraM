@@ -5,11 +5,14 @@ package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.FileAttribute;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.VirtualAttribute;
 
@@ -44,7 +47,7 @@ public class EObjectWrapper {
 	 * in a separate map.
 	 */
 	private final LinkedHashMap<VirtualAttribute, String> virtualAttributeValues;
-
+	
 	/**
 	 * This creates an instance that wraps the given 'eObject'.
 	 *
@@ -245,6 +248,22 @@ public class EObjectWrapper {
 		}
 
 		return returnString;
+	}
+	
+	/**
+	 * If this represents a {@link TargetSection}, return the value of the {@link FileAttribute} associated
+	 * with this via the {@link TargetSection#getFile() file} reference.
+	 * 
+	 * @return The value of the {@link FileAttribute} or an empty String if this either does not represent
+	 * a {@link TargetSection} or if the {@link TargetSection#getFile() file} reference has not been set. 
+	 */
+	public String getFile() {
+		for (Entry<VirtualAttribute, String> entry : virtualAttributeValues.entrySet()) {
+			if(entry.getKey() instanceof FileAttribute) {
+				return (entry.getValue() != null ? entry.getValue() : "");
+			}
+		}
+		return "";
 	}
 
 }

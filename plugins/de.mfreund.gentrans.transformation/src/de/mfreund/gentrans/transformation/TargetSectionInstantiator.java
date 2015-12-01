@@ -48,7 +48,6 @@ import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
-import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
@@ -469,13 +468,6 @@ class TargetSectionInstantiator extends CancellableElement {
 			final LinkedList<EObjectWrapper> markedForDelete = new LinkedList<>();
 
 			EList<TargetSectionAttribute> attributes = metamodelSection.getAttributes();
-			
-			/*
-			 * Also take care of the 'FileAttribute' if the metamodelSection is a 'TargetSection'...
-			 */
-			if(metamodelSection instanceof TargetSection && ((TargetSection) metamodelSection).getFile() != null) {
-				attributes.add(((TargetSection) metamodelSection).getFile());
-			}
 
 			if(metamodelSection.isLibraryEntry()) {
 				// the metamodelsection is a library entry, thus there must not be any attributes as direct children of it

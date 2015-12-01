@@ -3,6 +3,7 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -394,6 +395,36 @@ extends MetaModelElementItemProvider {
 	}
 
 	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+			Collection<?> collection, int index) {
+
+		/*
+		 * If a 'FileAttribute' is added, we also need to set the 'file' reference.
+		 */
+		if(feature == MetamodelPackage.Literals.CLASS__ATTRIBUTES) {
+			for (Object object : collection) {
+				if(object instanceof FileAttribute && owner instanceof TargetSection) {
+					if(((TargetSection) owner).getFile() == null) {
+						CompoundCommand command = new CompoundCommand();
+						command.append(super.createAddCommand(domain, owner, feature, collection, index));
+						command.append(new SetCommand(domain, owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, object));
+						return command;
+					} else {
+						/*
+						 * Do not override the 'file' if there already is one
+						 */
+						Collection<Object> collectionWithoutFile = new ArrayList<>();
+						collectionWithoutFile.addAll(collection);
+						collectionWithoutFile.remove(object);
+						return super.createAddCommand(domain, owner, feature, collectionWithoutFile, index);
+					}
+				}
+			}
+		}
+		return super.createAddCommand(domain, owner, feature, collection, index);
+	}
+	
+	@Override
 	protected Command createRemoveCommand(EditingDomain domain, EObject owner, EReference feature,
 			Collection<?> collection) {
 
@@ -404,7 +435,7 @@ extends MetaModelElementItemProvider {
 			for (Object object : collection) {
 				if(object instanceof FileAttribute && owner instanceof TargetSection) {
 					CompoundCommand command = new CompoundCommand();
-					command.append(new SetCommand(domain, owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, null));
+					command.append(new SetCommand(domain, owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, SetCommand.UNSET_VALUE));
 					command.append(super.createRemoveCommand(domain, owner, feature, collection));
 					return command;
 				}
@@ -412,4 +443,5 @@ extends MetaModelElementItemProvider {
 		}
 		return super.createRemoveCommand(domain, owner, feature, collection);
 	}
+	
 }

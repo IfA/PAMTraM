@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.command.CopyCommand.Helper;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -311,4 +312,9 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		return super.createSetCommand(domain, owner, feature, value);
 	}
 
+	@Override
+	protected Command createCopyCommand(EditingDomain domain, EObject owner, Helper helper) {
+		// TODO Auto-generated method stub
+		return super.createCopyCommand(domain, owner, helper);
+	}
 }

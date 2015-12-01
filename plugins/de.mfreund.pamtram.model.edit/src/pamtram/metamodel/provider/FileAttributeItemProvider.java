@@ -15,7 +15,6 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
 import pamtram.metamodel.FileAttribute;
-import pamtram.metamodel.VirtualAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.FileAttribute} object.

@@ -10,6 +10,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.mfreund.gentrans.transformation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.HintValueStorage;
+import de.mfreund.gentrans.transformation.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.TargetSectionRegistry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
@@ -108,16 +109,27 @@ public class LibraryEntryInstantiator {
 	 * This instantiates the {@link #libraryEntry} in a given target model.
 	 * 
 	 * @param manager The {@link GenLibraryManager} that proxies calls to the {@link LibraryPlugin}.  
-	 * @param targetModel The target model in which the {@link #libraryEntry} shall be instantiated.
+	 * @param targetModelRegistry The {@link TargetModelRegistry} representing the target models in which the {@link #libraryEntry} shall be instantiated.
 	 * @param calculator The calculator that can be used to calculate attribute values.
 	 * @param targetSectionConnector The {@link TargetSectionConnector} that can be used to connect the library entries.
 	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that has registered the target sections.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
 	@SuppressWarnings("unchecked")
-	public boolean instantiate(GenLibraryManager manager, EObject targetModel, AttributeValueCalculator calculator, TargetSectionConnector targetSectionConnector,
+	public boolean instantiate(GenLibraryManager manager, TargetModelRegistry targetModelRegistry, AttributeValueCalculator calculator, TargetSectionConnector targetSectionConnector,
 			TargetSectionRegistry targetSectionRegistry) {
 
+		EObject targetModel = EcoreUtil.getRootContainer(transformationHelper.getEObject());
+		
+		/*
+		 * Library entries always need to be instantiated in a target model.
+		 */
+		//TODO may, support for this should be added to the genlibrary
+		if(targetModel.equals(transformationHelper.getEObject())) {
+			consoleStream.println("Internal Error: Could not instantiate library entry for element '" + transformationHelper.getEObject().toString() + "' as the element has no"
+					+ "container. This is currently not supported by the 'genlibrary'.");
+		}
+		
 		/*
 		 * Now, we prepare the parameters.
 		 */

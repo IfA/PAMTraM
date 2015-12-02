@@ -14,7 +14,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -47,9 +46,9 @@ public class TargetSectionConnector extends CancellableElement {
 	private final TargetSectionRegistry targetSectionRegistry;
 
 	/**
-	 * The {@link XMIResource resource} that the coherent target model is added to.
+	 * The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
 	 */
-	private final XMIResource targetModel;
+	private final TargetModelRegistry targetModelRegistry;
 
 	/**
 	 * The {@link MessageConsoleStream} that is used to print messages to inform the user.
@@ -91,7 +90,7 @@ public class TargetSectionConnector extends CancellableElement {
 	 * @param attributeValuemodifier An {@link AttributeValueModifierExecutor} that is used to modify attribute values. This is necessary to
 	 * calculate the values of {@link ModelConnectionHintTargetAttribute ModelConnectionHintTargetAttributes} that 
 	 * are evaluated here.
-	 * @param targetModel The {@link XMIResource resource} that the coherent target model shall be added to.
+	 * @param targetModelRegistry The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
 	 * @param maxPathLength The maximum length for connection paths that shall be considered by this TargetSectionConnector. If 'maxPathLength'
 	 * is set to '-1' or any other value below '0', connection paths of unbounded length are considered.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
@@ -100,12 +99,12 @@ public class TargetSectionConnector extends CancellableElement {
 	TargetSectionConnector(
 			final TargetSectionRegistry targetSectionRegistry,
 			final AttributeValueModifierExecutor attributeValuemodifier,
-			final XMIResource targetModel, final int maxPathLength,
+			final TargetModelRegistry targetModelRegistry, final int maxPathLength,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, 
 			final MessageConsoleStream consoleStream) {
 		this.standardPaths = new LinkedHashMap<>();
 		this.targetSectionRegistry = targetSectionRegistry;
-		this.targetModel = targetModel;
+		this.targetModelRegistry = targetModelRegistry;
 		this.consoleStream = consoleStream;
 		this.canceled = false;
 		this.attributeValuemodifier = attributeValuemodifier;
@@ -120,7 +119,7 @@ public class TargetSectionConnector extends CancellableElement {
 	 *
 	 * @param elementsToAdd The list of {@link EObjectWrapper elements} to add.
 	 */
-	private void addToTargetModelRoot(
+	public void addToTargetModelRoot(
 			final Collection<EObjectWrapper> elementsToAdd) {
 		for (final EObjectWrapper h : elementsToAdd) {
 			addToTargetModelRoot(h);
@@ -134,7 +133,18 @@ public class TargetSectionConnector extends CancellableElement {
 	 * @param helper The {@link EObjectWrapper element} to add.
 	 */
 	private void addToTargetModelRoot(final EObjectWrapper helper) {
-		targetModel.getContents().add(helper.getEObject());
+		
+		// the element to add
+		EObject element = helper.getEObject();
+		
+		// the path of the target model
+		String path = helper.getFile();
+		
+		if(path.isEmpty()) {
+			targetModelRegistry.addToTargetModel(element);			
+		} else {
+			targetModelRegistry.addToTargetModel(element, path);
+		}
 	}
 
 	/**

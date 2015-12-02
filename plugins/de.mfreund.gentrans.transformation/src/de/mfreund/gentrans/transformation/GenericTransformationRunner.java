@@ -39,6 +39,7 @@ import org.eclipse.ui.progress.UIJob;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
+import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
@@ -78,6 +79,7 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.CardinalityType;
+import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -120,9 +122,16 @@ public class GenericTransformationRunner {
 	private PAMTraM pamtramModel;
 
 	/**
-	 * File path to the transformation target
+	 *  File path relative to that all target models will be created.
 	 */
-	private final String targetFilePath;
+	private final String targetBasePath;
+	
+	/**
+	 * File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
+	 */
+	private final String defaultTargetModel;
 
 	/**
 	 * The target model resource where the result of the transformation shall be stored
@@ -272,8 +281,12 @@ public class GenericTransformationRunner {
 	 *            List of file paths of the source models
 	 * @param pamtramPath
 	 *            Path to the transformation model
-	 * @param targetFilePath
-	 *            File path to the transformation target
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param transformationModelPath
 	 * 				This is the file path where an instance of {@link Transformation} that contains information
 	 * about the execution will be stored after the transformation.
@@ -291,7 +304,8 @@ public class GenericTransformationRunner {
 	private GenericTransformationRunner(
 			final ArrayList<String> sourceFilePaths,
 			final String pamtramPath, 
-			final String targetFilePath, 
+			final String targetBasePath, 
+			final String defaultTargetModel,
 			final String transformationModelPath,
 			int maxPathLength,
 			boolean onlyAskOnceOnAmbiguousMappings, 
@@ -302,7 +316,8 @@ public class GenericTransformationRunner {
 		this.sourceModels = new ArrayList<>();
 		this.sourceFilePaths = sourceFilePaths;
 		this.pamtramPath = pamtramPath;
-		this.targetFilePath = targetFilePath;
+		this.targetBasePath = targetBasePath;
+		this.defaultTargetModel = (defaultTargetModel == null ? "out.xmi" : defaultTargetModel);
 		this.setTransformationModelPath(transformationModelPath);
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
@@ -355,8 +370,12 @@ public class GenericTransformationRunner {
 	 *            List of file paths of the source models
 	 * @param pamtramPath
 	 *            Path to the transformation model
-	 * @param targetFilePath
-	 *            File path to the transformation target
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
@@ -367,11 +386,12 @@ public class GenericTransformationRunner {
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
 			final ArrayList<String> sourceFilePaths,
 			final String pamtramPath,
-			final String targetFilePath, 
+			final String targetBasePath, 
+			final String defaultTargetModel,
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
-		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetBasePath, defaultTargetModel, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 	}
 
 	/**
@@ -381,8 +401,12 @@ public class GenericTransformationRunner {
 	 *             List of file paths of the source models
 	 * @param pamtramModel
 	 *            The transformation model
-	 * @param targetFilePath
-	 *            File path to the transformation target
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
@@ -393,12 +417,13 @@ public class GenericTransformationRunner {
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
 			final ArrayList<String> sourceFilePaths,
 			final PAMTraM pamtramModel, 
-			final String targetFilePath, 
+			final String targetBasePath, 
+			final String defaultTargetModel,
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				new GenericTransformationRunner(sourceFilePaths, null, targetBasePath, defaultTargetModel, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		return instance;
 	}
@@ -410,8 +435,12 @@ public class GenericTransformationRunner {
 	 *            The list of source models
 	 * @param pamtramModel
 	 *            The transformation model
-	 * @param targetFilePath
-	 *            File path to the transformation target
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created.
+	 * @param defaultTargetModel
+	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
+	 * target model is that target model to which all contents will be added that are not associated with a special model
+	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
@@ -422,12 +451,13 @@ public class GenericTransformationRunner {
 	public static GenericTransformationRunner createInstanceFromSourceModels(
 			final ArrayList<EObject> sourceModels,
 			final PAMTraM pamtramModel, 
-			final String targetFilePath, 
+			final String targetBasePath, 
+			final String defaultTargetModel,
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(null, null, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				new GenericTransformationRunner(null, null, targetBasePath, defaultTargetModel, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		instance.sourceModels = sourceModels;
 		return instance;
@@ -459,11 +489,6 @@ public class GenericTransformationRunner {
 
 		// load the source model
 		loadSourceModel(resourceSet);
-
-		// create the target model
-		if(!createTargetModel(resourceSet)) {
-			return;
-		}
 
 		// set the start date (after loading all models)
 		this.transformationModel.setStartDate(new Date());
@@ -509,21 +534,17 @@ public class GenericTransformationRunner {
 		this.transformationModel.setEndDate(new Date());
 
 		if (transformationResult != null && transformationResult.getOverallResult() && !isCancelled) {
-			// save targetModel
-			try {
-				// try to save the xmi resource
-				// xmiResource.save(Collections.EMPTY_MAP);
-				final Map<Object, Object> options = new LinkedHashMap<>();
-				options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-				options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
-				targetModel.save(Collections.EMPTY_MAP);
-				final long endTime = System.nanoTime();
-				writePamtramMessage("Transformation done. Time: "
-						+ Math.ceil((endTime - startTime) / 100000000L) / 10.0 + "s");
-			} catch (final Exception e) {
-				MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
-						"The XMI resource could not be saved.");
-				e.printStackTrace();
+			
+			/*
+			 * create the target models
+			 */
+			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().saveTargetModels();
+			
+			final long endTime = System.nanoTime();
+			writePamtramMessage("Transformation done. Time: "
+					+ Math.ceil((endTime - startTime) / 100000000L) / 10.0 + "s");
+
+			if(!result) {
 				return;
 			}
 
@@ -592,11 +613,11 @@ public class GenericTransformationRunner {
 		/*
 		 * Perform the 'joining' step of the transformation
 		 */
-		boolean joiningResult = performJoining(targetModel, suitableMappings,
+		JoiningResult joiningResult = performJoining(defaultTargetModel, suitableMappings,
 				expandingResult, attributeValueModifier, matchingResult, monitor); 
 		transformationResult.setJoiningResult(joiningResult);
 
-		if (!joiningResult) {
+		if (joiningResult.isCanceled()) {
 			return transformationResult;
 		}
 
@@ -614,10 +635,10 @@ public class GenericTransformationRunner {
 		/*
 		 * Finally, instantiate the collected library entries in the target model. 
 		 */
-		if(targetModel.getContents().isEmpty()) {
+		if(joiningResult.getTargetModelRegistry().isEmpty()) {
 			consoleStream.println("Something seems to be wrong! Target model is empty!");
 		} else {
-			boolean libEntryExpandingResult = performInstantiatingLibraryEntries(targetModel.getContents().get(0), monitor);
+			boolean libEntryExpandingResult = performInstantiatingLibraryEntries(joiningResult.getTargetModelRegistry(), monitor);
 			transformationResult.setLibEntryExpandingResult(libEntryExpandingResult);
 		}
 		return transformationResult;
@@ -1035,7 +1056,7 @@ public class GenericTransformationRunner {
 	 * {@link #performExpanding(MatchingResult, List, IProgressMonitor, AttributeValueModifierExecutor) expanding step} are linked
 	 * via containment references and added to the target model. If necessary, intermediary object are created as well.
 	 * 
-	 * @param targetModel The {@link XMIResource} where the coherent target model shall be stored.
+	 * @param defaultTargetModel File path of the <em>default</em> target model (relative to the {@link #targetBasePath}).
 	 * @param suitableMappings The active {@link Mapping mappings} from the PAMTraM model.
 	 * @param expandingResult The {@link ExpandingResult} that contains the results of the 
 	 * {@link #performExpanding(MatchingResult, List, IProgressMonitor, AttributeValueModifierExecutor) expanding step}.
@@ -1044,10 +1065,10 @@ public class GenericTransformationRunner {
 	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
 	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
 	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
-	 * @return '<em><b>true</b></em>' if everything went well, '<em><b>false</b></em>' otherwise.
+	 * @return A {@link JoiningResult} representing the result of the joining step.
 	 */
-	private boolean performJoining(
-			final XMIResource targetModel,
+	private JoiningResult performJoining(
+			final String defaultTargetModel,
 			final List<Mapping> suitableMappings,
 			final ExpandingResult expandingResult,
 			final AttributeValueModifierExecutor attributeValueModifier,
@@ -1056,13 +1077,18 @@ public class GenericTransformationRunner {
 
 		writePamtramMessage("Joining targetModelSections");
 		monitor.subTask("Joining targetModelSections");
+		
+		/*
+		 * The TargetModelRegistry that will be returned at the end as part of the 'JoiningResult'.
+		 */
+		TargetModelRegistry targetModelRegistry = new TargetModelRegistry(targetBasePath, defaultTargetModel, new ResourceSetImpl(), consoleStream);
 
 		/*
 		 * Initialize the TargetSectionConnector
 		 */
 		targetSectionConnector = new TargetSectionConnector(
 				expandingResult.getTargetSectionRegistry(),
-				attributeValueModifier, targetModel, maxPathLength,
+				attributeValueModifier, targetModelRegistry, maxPathLength,
 				ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(targetSectionConnector);
 		final double workUnit = 250.0 / suitableMappings.size();
@@ -1074,8 +1100,18 @@ public class GenericTransformationRunner {
 		for (final Mapping m : suitableMappings) {
 			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
 
-				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup) {// targetSection
+				if (g.getTargetMMSection() != null // targetSection
+						&& g instanceof MappingHintGroup) { 
+					
+					/*
+					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
+					 */
+					if(g.getTargetMMSection().getFile() != null) {
+						targetSectionConnector.addToTargetModelRoot(
+								expandingResult.getTargetSectionRegistry().getPamtramClassInstances(g.getTargetMMSection()).get(g));
+						continue;
+					}
+
 					// exists?
 					final TargetSection section = g.getTargetMMSection();
 					if (expandingResult.getTargetSectionRegistry().getPamtramClassInstances(section)
@@ -1090,7 +1126,7 @@ public class GenericTransformationRunner {
 
 									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
 										if (isCancelled) {
-											return false;
+											return JoiningResult.createJoiningCanceledResult();
 										}
 
 										targetSectionConnector.linkToTargetModelUsingModelConnectionHint(
@@ -1102,7 +1138,7 @@ public class GenericTransformationRunner {
 												selMap.getHintValues().getHintValues(((MappingHintGroup) g).getModelConnectionMatcher()));
 										if (targetSectionConnector.isCancelled()) {
 											writePamtramMessage("Transformation aborted.");
-											return false;
+											return JoiningResult.createJoiningCanceledResult();
 										}
 									}
 								}
@@ -1132,7 +1168,7 @@ public class GenericTransformationRunner {
 												containerInstances);
 								if (targetSectionConnector.isCancelled()) {
 									writePamtramMessage("Transformation aborted.");
-									return false;
+									return JoiningResult.createJoiningCanceledResult();
 								}
 							}
 						}
@@ -1140,10 +1176,19 @@ public class GenericTransformationRunner {
 				}
 			}
 
-			for (final MappingHintGroupImporter i : m
-					.getActiveImportedMappingHintGroups()) {
+			for (final MappingHintGroupImporter i : m.getActiveImportedMappingHintGroups()) {
 				final ExportedMappingHintGroup g = i.getHintGroup();
 				if (g.getTargetMMSection() != null) {
+					
+					/*
+					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
+					 */
+					if(g.getTargetMMSection().getFile() != null) {
+						targetSectionConnector.addToTargetModelRoot(
+								expandingResult.getTargetSectionRegistry().getPamtramClassInstances(g.getTargetMMSection()).get(i));
+						continue;
+					}
+					
 					/*
 					 * ImportedMAppingHintGroups with containers specified will
 					 * be linked to a section that was created by the same
@@ -1162,7 +1207,7 @@ public class GenericTransformationRunner {
 								for (final MappingHintGroupType group : m
 										.getActiveMappingHintGroups()) {
 									if (isCancelled) {
-										return false;
+										return JoiningResult.createJoiningCanceledResult();
 									}
 
 									if (group instanceof MappingHintGroup) {
@@ -1185,7 +1230,7 @@ public class GenericTransformationRunner {
 										containerInstances);
 								if (targetSectionConnector.isCancelled()) {
 									writePamtramMessage("Transformation aborted.");
-									return false;
+									return JoiningResult.createJoiningCanceledResult();
 								}
 							}
 						}
@@ -1220,7 +1265,7 @@ public class GenericTransformationRunner {
 										containerInstances);
 								if (targetSectionConnector.isCancelled()) {
 									writePamtramMessage("Transformation aborted.");
-									return false;
+									return JoiningResult.createJoiningCanceledResult();
 								}
 							}
 						}
@@ -1239,9 +1284,9 @@ public class GenericTransformationRunner {
 		targetSectionConnector.combineUnlinkedSectionsWithTargetModelRoot();
 		if (targetSectionConnector.isCancelled()) {
 			writePamtramMessage("Transformation aborted.");
-			return false;
+			return JoiningResult.createJoiningCanceledResult();
 		} else {
-			return true;
+			return JoiningResult.createJoiningCompletedResult(targetModelRegistry);
 		}
 
 	}
@@ -1340,15 +1385,16 @@ public class GenericTransformationRunner {
 	 * This performs the final step of the transformation:
 	 * The stored library entries are finally instantiated in the target model.
 	 * 
-	 * @param targetModel The targetModel in which the library entries are to be instantiated.
+	 * @param targetModelRegistry The {@link TargetModelRegistry} representing the target models in which the 
+	 * library entries are to be instantiated.
 	 * @param monitor 
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	private boolean performInstantiatingLibraryEntries(EObject targetModel, IProgressMonitor monitor) {
+	private boolean performInstantiatingLibraryEntries(TargetModelRegistry targetModelRegistry, IProgressMonitor monitor) {
 
 		writePamtramMessage("Instantiating libraryEntries for selected mappings.");
 		monitor.subTask("Instantiating libraryEntries for selected mappings.");
-		return targetSectionInstantiator.instantiateLibraryEntries(targetModel, targetLibraryContextDescriptor);
+		return targetSectionInstantiator.instantiateLibraryEntries(targetModelRegistry, targetLibraryContextDescriptor);
 	}
 
 	/**
@@ -1729,35 +1775,6 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * This creates the resource to hold the target model created by the
-	 * transformation.
-	 * 
-	 * @param resourceSet The resource set used to create the resource.
-	 * @return true if the resource has successfully been created, false otherwise.
-	 */
-	private boolean createTargetModel(ResourceSet resourceSet) {
-
-		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
-
-		// the URI of the target resource
-		final URI targetFileUri = URI.createPlatformResourceURI(targetFilePath, true);
-
-		try {
-			targetModel = (XMIResource) resFactory.createResource(targetFileUri);
-			targetModel.setEncoding("UTF-8");
-
-		} catch (final Exception e) {
-			MessageDialog.openError(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), "Error",
-					"The XMI resource for the targetModel output could not be created.");
-			e.printStackTrace();
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * This populates the contents of the {@link #transformationModel} and stores it to the path denoted by 
 	 * {@link #transformationModelPath}.
 	 * <p/>
@@ -1784,8 +1801,10 @@ public class GenericTransformationRunner {
 			}
 		}
 		this.transformationModel.getSourceModels().addAll(sourceModels); // add source models
-		this.transformationModel.getTargetModels().addAll(targetModel.getContents()); // add target models
-
+		for (ArrayList<EObject> targetModelElements : // add target models
+			transformationResult.getJoiningResult().getTargetModelRegistry().getTargetModels().values()) {
+			this.transformationModel.getTargetModels().addAll(targetModelElements);
+		}
 		if(this.transformationResult.getMatchingResult() == null) {
 			return false;
 		}
@@ -2203,6 +2222,80 @@ public class GenericTransformationRunner {
 				return new ExpandingResult(attributeValueRegistry, targetSectionRegistry); 
 			}
 		}
+		
+		/**
+		 * This class encapsulates the various results of the <em>joining</em> process during a generic transformation:
+		 * <br />
+		 * <ul>
+		 *  <li>the status of the matching process,</li>
+		 *  <li>a {@link TargetModelRegistry} representing the target models to be created</li>
+		 * </ul>
+		 * @author mfreund
+		 * 
+		 */
+		static class JoiningResult {
+			
+			/**
+			 * This describes the status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
+			 * canceled, '<em><b>false</b></em>' otherwise.
+			 */
+			private final boolean canceled;
+			
+			/**
+			 * This is the getter for the {@link #canceled}.
+			 * @return The status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
+			 * canceled, '<em><b>false</b></em>' otherwise.
+			 */
+			boolean isCanceled() {
+				return canceled; 
+			}
+
+			/**
+			 * The {@link TargetModelRegistry} representing the target models to be created.
+			 */
+			private TargetModelRegistry targetModelRegistry;
+			
+			/**
+			 * This is the getter for the {@link #targetModelRegistry}.
+			 * @return The {@link TargetModelRegistry} representing the target models to be created.
+			 */
+			TargetModelRegistry getTargetModelRegistry() {
+				return targetModelRegistry;
+			}
+			
+			/**
+			 * This constructs an instance.
+			 * 
+			 * @param canceled '<em><b>true</b></em>' indicates that the joining process was canceled, '<em><b>false</b></em>' indicates that
+			 * the joining process completed successfully.
+			 * @param targetModelRegistry 
+			 */
+			private JoiningResult(
+					boolean canceled,
+					TargetModelRegistry targetModelRegistry) {
+				this.canceled = canceled;
+				this.targetModelRegistry = targetModelRegistry;
+			}
+			
+			/**
+			 * This constructs an instance for a joining process that has been canceled.
+			 * @return An instance of {@link JoiningResult} indicating that the joining was canceled.
+			 */
+			public static JoiningResult createJoiningCanceledResult() {
+				return new JoiningResult(true, null);
+			}
+
+			/**
+			 * This constructs an instance for a joining process that has finished successfully.
+			 * @param targetModelRegistry The {@link TargetModelRegistry} instance representing the target models
+			 * to be created.
+			 * @return An instance of {@link JoiningResult} indicating that the joining has completed successfully.
+			 */
+			public static JoiningResult createJoiningCompletedResult(
+					TargetModelRegistry targetModelRegistry) {
+				return new JoiningResult(false, targetModelRegistry);
+			}
+		}
 
 		/**
 		 * An instance of {@link MatchingResult} containing the results of the <em>matching</em> process.
@@ -2215,9 +2308,9 @@ public class GenericTransformationRunner {
 		private ExpandingResult expandingResult;
 
 		/**
-		 * A boolean indicating the result of the <em>joining</em> process.
+		 * An instance of {@link JoiningResult} indicating the result of the <em>joining</em> process.
 		 */
-		private boolean joiningResult;
+		private JoiningResult joiningResult;
 
 		/**
 		 * A boolean indicating the result of the <em>linking</em> process.
@@ -2260,14 +2353,14 @@ public class GenericTransformationRunner {
 		/**
 		 * @return the joiningResult
 		 */
-		public boolean isJoiningResult() {
+		public JoiningResult getJoiningResult() {
 			return joiningResult;
 		}
 
 		/**
 		 * @param joiningResult the joiningResult to set
 		 */
-		public void setJoiningResult(boolean joiningResult) {
+		public void setJoiningResult(JoiningResult joiningResult) {
 			this.joiningResult = joiningResult;
 		}
 
@@ -2309,7 +2402,7 @@ public class GenericTransformationRunner {
 				return false;
 			} else if(getExpandingResult() == null) {
 				return false;
-			} else if(!isJoiningResult()) {
+			} else if(getJoiningResult() == null || getJoiningResult().isCanceled()) {
 				return false;
 			} else if(!isLinkingResult()) {
 				return false;

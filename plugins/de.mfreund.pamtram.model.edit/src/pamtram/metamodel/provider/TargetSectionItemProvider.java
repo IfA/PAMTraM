@@ -303,6 +303,36 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
+	
+	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+			Collection<?> collection, int index) {
+
+		/*
+		 * If a 'FileAttribute' is added, we also need to set the 'file' reference.
+		 */
+		if(feature == MetamodelPackage.Literals.CLASS__ATTRIBUTES) {
+			for (Object object : collection) {
+				if(object instanceof FileAttribute && owner instanceof TargetSection) {
+					if(((TargetSection) owner).getFile() == null) {
+						CompoundCommand command = new CompoundCommand();
+						command.append(new AddCommand(domain, owner, feature, collection, index));
+						command.append(new SetCommand(domain, owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, object));
+						return command;
+					} else {
+						/*
+						 * Do not override the 'file' if there already is one
+						 */
+						Collection<Object> collectionWithoutFile = new ArrayList<>();
+						collectionWithoutFile.addAll(collection);
+						collectionWithoutFile.remove(object);
+						return super.createAddCommand(domain, owner, feature, collectionWithoutFile, index);
+					}
+				}
+			}
+		}
+		return super.createAddCommand(domain, owner, feature, collection, index);
+	}
 
 	@Override
 	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {

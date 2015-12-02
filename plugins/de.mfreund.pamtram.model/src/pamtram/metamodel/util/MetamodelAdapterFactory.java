@@ -18,6 +18,7 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
+import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
@@ -116,6 +117,10 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTargetSection(TargetSection object) {
 				return createTargetSectionAdapter();
+			}
+			@Override
+			public Adapter caseFileAttribute(FileAttribute object) {
+				return createFileAttributeAdapter();
 			}
 			@Override
 			public Adapter caseSourceSectionClass(SourceSectionClass object) {
@@ -320,6 +325,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTargetSectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.FileAttribute <em>File Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.FileAttribute
+	 * @generated
+	 */
+	public Adapter createFileAttributeAdapter() {
 		return null;
 	}
 

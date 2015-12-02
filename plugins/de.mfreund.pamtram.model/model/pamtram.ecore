@@ -414,6 +414,7 @@
           <details key="derivation" value="pamtram::mapping::MappingHintGroupType.allInstances()->select(mhg | self = mhg.targetMMSection)"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//metamodel/FileAttribute"/>
       <eGenericSuperTypes eClassifier="#//metamodel/TargetSectionClass"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Section">
         <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
@@ -422,6 +423,7 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//metamodel/VirtualAttribute"/>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>

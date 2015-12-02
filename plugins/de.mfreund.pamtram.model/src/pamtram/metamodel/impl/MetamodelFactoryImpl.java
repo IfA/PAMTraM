@@ -17,6 +17,7 @@ import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
+import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
@@ -79,6 +80,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eClass.getClassifierID()) {
 			case MetamodelPackage.SOURCE_SECTION: return createSourceSection();
 			case MetamodelPackage.TARGET_SECTION: return createTargetSection();
+			case MetamodelPackage.FILE_ATTRIBUTE: return createFileAttribute();
 			case MetamodelPackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
 			case MetamodelPackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
 			case MetamodelPackage.ATTRIBUTE_PARAMETER: return createAttributeParameter();
@@ -154,6 +156,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public TargetSection createTargetSection() {
 		TargetSectionImpl targetSection = new TargetSectionImpl();
 		return targetSection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileAttribute createFileAttribute() {
+		FileAttributeImpl fileAttribute = new FileAttributeImpl();
+		return fileAttribute;
 	}
 
 	/**

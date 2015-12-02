@@ -17,6 +17,7 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
+import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
@@ -140,6 +141,17 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseClass(targetSection);
 				if (result == null) result = caseMetaModelElement(targetSection);
 				if (result == null) result = caseNamedElement(targetSection);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.FILE_ATTRIBUTE: {
+				FileAttribute fileAttribute = (FileAttribute)theEObject;
+				T result = caseFileAttribute(fileAttribute);
+				if (result == null) result = caseVirtualAttribute(fileAttribute);
+				if (result == null) result = caseTargetSectionAttribute(fileAttribute);
+				if (result == null) result = caseAttribute(fileAttribute);
+				if (result == null) result = caseMetaModelElement(fileAttribute);
+				if (result == null) result = caseNamedElement(fileAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -466,6 +478,21 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTargetSection(TargetSection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileAttribute(FileAttribute object) {
 		return null;
 	}
 

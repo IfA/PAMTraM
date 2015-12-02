@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
@@ -379,6 +380,10 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		
 		if(file == null) {
 			return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
+		}
+		
+		if(owner instanceof TargetSection && ((TargetSection) owner).getFile() != null) {
+			return UnexecutableCommand.INSTANCE;
 		}
 		
 		BasicDragAndDropCompoundCommand command = new BasicDragAndDropCompoundCommand();

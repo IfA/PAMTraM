@@ -3,16 +3,29 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
+
+import pamtram.mapping.commands.BasicDragAndDropCompoundCommand;
+import pamtram.metamodel.Attribute;
+import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.Reference;
+import pamtram.metamodel.TargetSection;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -114,4 +127,49 @@ public class MetaModelElementItemProvider
 		return PamtramEditPlugin.INSTANCE;
 	}
 
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+		
+		/*
+		 * If a 'FileAttribute' is dragged, we also need to remove the 'file' from the old owner and set
+		 * the 'file' reference in the new owner..
+		 */
+		Collection<Object> collectionWithoutFile = new ArrayList<>();
+		FileAttribute file = null;
+		
+		for (Object object : collection) {
+			if(object instanceof FileAttribute) {
+				file = (FileAttribute) object;
+			} else {
+				collectionWithoutFile.add(object);
+			}
+		}
+		
+		if(file == null || file == owner) {
+			return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
+		}
+		
+		EObject targetSection = null;
+		if(owner instanceof TargetSection) {
+			targetSection = (EObject) owner;
+		} else if(owner instanceof Class) {
+			return UnexecutableCommand.INSTANCE;
+		} else if(owner instanceof Attribute || owner instanceof Reference) {
+			if(!(((EObject) owner).eContainer() instanceof TargetSection) || 
+					((TargetSection) (((EObject) owner).eContainer())).getFile() != null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		targetSection = ((EObject) owner).eContainer();
+		
+		// use the specialized remove/set methods from the TargetSectionItemProvider class
+		TargetSectionItemProvider targetSectionItemProvider = ((TargetSectionItemProvider) getAdapterFactory().adapt(((EObject) owner).eContainer(), TargetSectionItemProvider.class));
+		
+		BasicDragAndDropCompoundCommand command = new BasicDragAndDropCompoundCommand();
+		command.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, collectionWithoutFile));
+		command.append(targetSectionItemProvider.createRemoveCommand(domain, file.eContainer(), MetamodelPackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
+		command.append(targetSectionItemProvider.createSetCommand(domain, targetSection, MetamodelPackage.Literals.TARGET_SECTION__FILE, file));
+		return command;
+	}
 }

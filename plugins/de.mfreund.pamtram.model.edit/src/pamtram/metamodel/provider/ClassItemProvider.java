@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -444,4 +446,18 @@ extends MetaModelElementItemProvider {
 		return super.createRemoveCommand(domain, owner, feature, collection);
 	}
 	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		/*
+		 * 'FileAttributes' may not be dragged onto a class.
+		 */
+		for (Object object : collection) {
+			if(object instanceof FileAttribute) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
+	}
 }

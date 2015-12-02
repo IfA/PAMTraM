@@ -4,6 +4,7 @@ package pamtram.metamodel.provider;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -13,11 +14,14 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.command.CopyCommand.Helper;
+import org.eclipse.emf.edit.command.DragAndDropCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -25,6 +29,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import pamtram.mapping.commands.BasicDragAndDropCompoundCommand;
+import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Section;
@@ -304,17 +311,51 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		 * If a 'FileAttribute' is created, we also need to add it to the 'attributes' reference.
 		 */
 		if(feature == MetamodelPackage.Literals.TARGET_SECTION__FILE) {
-			CompoundCommand command = new CompoundCommand();
-			command.append(new AddCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));				
-			command.append(new SetCommand(domain, owner, feature, value));
-			return command;
+			if(value.equals(SetCommand.UNSET_VALUE)) {
+				CompoundCommand command = new CompoundCommand();
+				if(((EList<Object>) (owner.eGet(MetamodelPackage.Literals.CLASS__ATTRIBUTES))).contains(value)) {
+					command.append(new RemoveCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));									
+				}
+				command.append(new SetCommand(domain, owner, feature, SetCommand.UNSET_VALUE));
+				return command;		
+			} else {
+				CompoundCommand command = new CompoundCommand();
+				command.append(new AddCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));				
+				command.append(new SetCommand(domain, owner, feature, value));
+				return command;				
+			}
 		}
 		return super.createSetCommand(domain, owner, feature, value);
 	}
-
+	
 	@Override
-	protected Command createCopyCommand(EditingDomain domain, EObject owner, Helper helper) {
-		// TODO Auto-generated method stub
-		return super.createCopyCommand(domain, owner, helper);
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		/*
+		 * If a 'FileAttribute' is dragged, we also need to remove the 'file' from the old owner and set
+		 * the 'file' reference in the new owner..
+		 */
+		Collection<Object> collectionWithoutFile = new ArrayList<>();
+		FileAttribute file = null;
+		
+		for (Object object : collection) {
+			if(object instanceof FileAttribute) {
+				file = (FileAttribute) object;
+			} else {
+				collectionWithoutFile.add(object);
+			}
+		}
+		
+		if(file == null) {
+			return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
+		}
+		
+		BasicDragAndDropCompoundCommand command = new BasicDragAndDropCompoundCommand();
+		command.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, collectionWithoutFile));
+		command.append(createRemoveCommand(domain, file.eContainer(), MetamodelPackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
+		command.append(createSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, file));
+		return command;
 	}
+
 }

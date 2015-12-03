@@ -61,8 +61,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		}
 		String pamtramFile = project + Path.SEPARATOR + 
 				"Pamtram" + Path.SEPARATOR + configuration.getAttribute("pamtramFile", "");
-		String targetFile = project + Path.SEPARATOR + 
-				"Target" + Path.SEPARATOR + configuration.getAttribute("targetFile", "");
+		String targetBasePath = project + Path.SEPARATOR + "Target";
+		String defaultTargetModel = configuration.getAttribute("targetFile", "out.xmi");
 
 		// determine the name of the transformation file from the current date
 		String transformationFile = null;
@@ -93,7 +93,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		new LibraryContextDescriptor(configuration.getAttribute("targetLibPath", ""), (Class<LibraryContext>) targetLibContextClass, (Class<LibraryPathParser>) targetLibParserClass);
 
 		/* 
-		 * Initializt the strategy that shall be used to resolve ambiguities base on the given launch configuration.
+		 * Initialize the strategy that shall be used to resolve ambiguities base on the given launch configuration.
 		 */
 		IAmbiguityResolvingStrategy resolvingStrategy = null;
 		String transformationModelPath = null;
@@ -126,7 +126,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		}
 
 		GenericTransformationJob job = new GenericTransformationJob(
-				"GenTrans", sourceFiles, pamtramFile, targetFile, transformationFile, targetLibraryContextDescriptor, resolvingStrategy);
+				"GenTrans", sourceFiles, pamtramFile, targetBasePath, defaultTargetModel, transformationFile, targetLibraryContextDescriptor, resolvingStrategy);
 		job.getGenTransRunner().setMaxPathLength(maxPathLength);
 		job.getGenTransRunner().setOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice);
 

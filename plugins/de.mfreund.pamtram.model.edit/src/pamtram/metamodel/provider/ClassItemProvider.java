@@ -3,17 +3,26 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -23,10 +32,12 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.SectionModel;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainerParameter;
+import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.TargetSection;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.Class} object.
@@ -335,7 +346,7 @@ extends MetaModelElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
@@ -364,17 +375,82 @@ extends MetaModelElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
+				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
+
+		/*
+		 * A 'FileAttribute' must only be added as child of a 'TargetSection'
+		 */
+//		newChildDescriptors.add
+//			(createChildParameter
+//				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
+//				 MetamodelFactory.eINSTANCE.createFileAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
 				 MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
 				 MetamodelFactory.eINSTANCE.createActualAttribute()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
 	}
 
+	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+			Collection<?> collection, int index) {
+
+		/*
+		 * We must not add a 'FileAttribute' to anything but a TargetSection.
+		 */
+		if(feature == MetamodelPackage.Literals.CLASS__ATTRIBUTES) {
+			for (Object object : collection) {
+				if(object instanceof FileAttribute && !(owner instanceof TargetSection)) {
+					/*
+					 * Do not override the 'file' if there already is one
+					 */
+					Collection<Object> collectionWithoutFile = new ArrayList<>();
+					collectionWithoutFile.addAll(collection);
+					collectionWithoutFile.remove(object);
+					return super.createAddCommand(domain, owner, feature, collectionWithoutFile, index);
+				}
+			}
+		}
+		return super.createAddCommand(domain, owner, feature, collection, index);
+	}
+	
+	@Override
+	protected Command createRemoveCommand(EditingDomain domain, EObject owner, EReference feature,
+			Collection<?> collection) {
+
+		/*
+		 * If a 'FileAttribute' is removed, we also need to reset the 'file' reference.
+		 */
+		if(feature == MetamodelPackage.Literals.CLASS__ATTRIBUTES) {
+			for (Object object : collection) {
+				if(object instanceof FileAttribute && owner instanceof TargetSection) {
+					CompoundCommand command = new CompoundCommand();
+					command.append(new SetCommand(domain, owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, SetCommand.UNSET_VALUE));
+					command.append(super.createRemoveCommand(domain, owner, feature, collection));
+					return command;
+				}
+			}
+		}
+		return super.createRemoveCommand(domain, owner, feature, collection);
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		/*
+		 * 'FileAttributes' may not be dragged onto a class.
+		 */
+		for (Object object : collection) {
+			if(object instanceof FileAttribute) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
+	}
 }

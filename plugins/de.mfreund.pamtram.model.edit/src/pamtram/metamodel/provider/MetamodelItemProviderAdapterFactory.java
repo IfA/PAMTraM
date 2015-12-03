@@ -128,6 +128,29 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.FileAttribute} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FileAttributeItemProvider fileAttributeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.FileAttribute}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFileAttributeAdapter() {
+		if (fileAttributeItemProvider == null) {
+			fileAttributeItemProvider = new FileAttributeItemProvider(this);
+		}
+
+		return fileAttributeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.SourceSectionClass} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

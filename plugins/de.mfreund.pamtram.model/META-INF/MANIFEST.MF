@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: PAMTraM Model
 Bundle-SymbolicName: de.mfreund.pamtram.model;singleton:=true
-Bundle-Version: 1.3.3.qualifier
+Bundle-Version: 1.3.4.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
+Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: pamtram,
  pamtram.condition,
  pamtram.condition.impl,

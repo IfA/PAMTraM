@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Pamtram UI
+Bundle-Name: PAMTraM UI
 Bundle-SymbolicName: de.mfreund.pamtram.ui;singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: de.mfreund.pamtram.ui.PamtramUIPlugin$Implementation
-Bundle-Vendor: mfreund
+Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.mfreund.pamtram.pages,

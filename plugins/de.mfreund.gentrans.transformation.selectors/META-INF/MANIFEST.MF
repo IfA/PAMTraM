@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GenTrans Ambiguity Resolving (User: Based on Dialogs)
 Bundle-SymbolicName: de.mfreund.gentrans.transformation.resolving.user;singleton:=true
-Bundle-Version: 1.5.0.qualifier
+Bundle-Version: 1.5.1.qualifier
 Bundle-Activator: de.mfreund.gentrans.transformation.resolving.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface,

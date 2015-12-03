@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="de.mfreund.pamtram.feature"
-      label="PAMTraM"
-      version="1.3.2.qualifier"
-      provider-name="mfreund">
+      label="PAMTraM Feature"
+      version="1.3.3.qualifier"
+      provider-name="Matthias Freund, Institute of Automation, TU Dresden">
 
    <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+      This feature includes the entire PAMTraM development environment for model transformations including the generic transformation GenTrans.
    </description>
 
    <copyright url="http://www.example.com/copyright">

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Gentrans
+Bundle-Name: GenTrans
 Bundle-SymbolicName: de.mfreund.gentrans;singleton:=true
 Bundle-Version: 1.4.2.qualifier
 Bundle-Activator: de.mfreund.gentrans.Activator
@@ -14,3 +14,4 @@ Require-Bundle: org.eclipse.core.runtime,
  de.mfreund.gentrans.transformation.resolving.history;bundle-version="1.0.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: transformation
+Bundle-Name: GenTrans Transformation
 Bundle-SymbolicName: de.mfreund.gentrans.transformation;singleton:=true
-Bundle-Version: 1.4.1.qualifier
+Bundle-Version: 1.4.2.qualifier
 Bundle-Activator: de.mfreund.gentrans.transformation.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- de.mfreund.pamtram.model;bundle-version="1.3.3",
+ de.mfreund.pamtram.model;bundle-version="1.3.4",
  org.eclipse.core.resources,
  org.eclipse.xsd,
  org.eclipse.ui.console;bundle-version="3.5.200",
- de.mfreund.pamtram.model.edit;bundle-version="1.3.3",
+ de.mfreund.pamtram.model.edit;bundle-version="1.3.4",
  org.eclipse.ui.ide,
  org.eclipse.emf.ecore,
  de.mfreund.pamtram.transformation.model;bundle-version="1.0.0"
@@ -26,3 +26,4 @@ Export-Package: de.mfreund.gentrans.transformation,
  de.mfreund.gentrans.transformation.handler,
  de.mfreund.gentrans.transformation.library,
  de.mfreund.gentrans.transformation.resolving
+Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

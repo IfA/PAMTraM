@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -1375,14 +1376,14 @@ class TargetSectionInstantiator extends CancellableElement {
 	 * Instantiate all library entry-based target sections that have been collected
 	 * during {@link #instantiateTargetSectionFirstPass}.
 	 * 
-	 * @param targetModel The coherent target model into that the library entries are to be
-	 * 			instantiated.
+	 * @param targetModelRegistry The {@link TargetModelRegistry} representing the target models into that the library entries are 
+	 * to be instantiated.
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
 	boolean instantiateLibraryEntries(
-			EObject targetModel, LibraryContextDescriptor targetLibraryContextDescriptor) {
+			TargetModelRegistry targetModelRegistry, LibraryContextDescriptor targetLibraryContextDescriptor) {
 
 		if(libEntryInstantiators.isEmpty()) { // nothing to be done
 			return true;
@@ -1414,7 +1415,7 @@ class TargetSectionInstantiator extends CancellableElement {
 		 */
 		for (LibraryEntryInstantiator libraryEntryInstantiator : libEntryInstantiators) {
 			if(!libraryEntryInstantiator.instantiate(
-					manager, targetModel, calculator, 
+					manager, targetModelRegistry, calculator, 
 					transformationRunner.getTargetSectionConnector(),
 					targetSectionRegistry)) {
 				consoleStream.println("Failed to instantiate library entry '" + 

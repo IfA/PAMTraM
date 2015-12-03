@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Pamtram
+Bundle-Name: PAMTraM
 Bundle-SymbolicName: de.mfreund.pamtram;singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-Activator: de.mfreund.pamtram.Activator
@@ -11,3 +11,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.mfreund.pamtram.preferences,
  de.mfreund.pamtram.properties,
  de.mfreund.pamtram.util
+Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

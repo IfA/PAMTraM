@@ -27,6 +27,11 @@
             name="Disl -&gt; Movisa"
             project="true">
       </wizard>
+      <category
+            id="de.mfreund.pamtram.examples.category"
+            name="PAMTraM"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
    </extension>
    <extension
          point="org.eclipse.emf.common.ui.examples">

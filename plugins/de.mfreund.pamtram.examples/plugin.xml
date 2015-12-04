@@ -7,6 +7,7 @@
             category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
             id="de.mfreund.pamtram.examples.autoprobe"
             name="AutoProBe"
             project="true">
@@ -15,6 +16,7 @@
             category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
             id="de.mfreund.pamtram.examples.w3caui-movisa"
             name="W3CAUI -&gt; Movisa"
             project="true">
@@ -23,6 +25,7 @@
             category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
             id="de.mfreund.pamtram.examples.disl-movisa"
             name="Disl -&gt; Movisa"
             project="true">

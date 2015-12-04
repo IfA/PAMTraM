@@ -51,7 +51,7 @@
          </fileToOpen>
       </example>
       <example
-            wizardID="de.mfreund.pamtram.examples.autoprobe">
+            wizardID="de.mfreund.pamtram.examples.disl-movisa">
          <projectDescriptor
                contentURI="zips/disl-movisa.zip"
                description="This casestudy demonstrates a simple transformation from &apos;DISL&apos; to &apos;Movisa&apos;."
@@ -63,7 +63,7 @@
          </fileToOpen>
       </example>
       <example
-            wizardID="de.mfreund.pamtram.examples.disl-movisa">
+            wizardID="de.mfreund.pamtram.examples.w3caui-movisa">
          <projectDescriptor
                contentURI="zips/w3caui-movisa.zip"
                description="This casestudy demonstrates a transformation from &apos;W3CAUI&apos; to &apos;Movisa&apos;."

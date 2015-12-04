@@ -216,6 +216,13 @@
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
+          id="clone.pamtram.examples"
+          location="${clone.location.pamtram}\de.mfreund.pamtram.examples.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.examples.git">
+        <description>Clone the 'de.mfreund.pamtram.examples.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
           id="clone.pamtram.documentation"
           location="${clone.location.pamtram}\de.mfreund.pamtram.documentation.git"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.documentation.git">
@@ -368,6 +375,12 @@
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.examples">
+        <sourceLocator
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.examples.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.feature">
         <sourceLocator
             rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.feature.git"/>
@@ -479,8 +492,14 @@
           name="casestudies"
           id="workingset.casestudies">
         <predicate
-            xsi:type="predicates:NamePredicate"
-            pattern="de.mfreund.pamtram.casestudies.*"/>
+            xsi:type="predicates:OrPredicate">
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram.casestudies.*"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram.examples"/>
+        </predicate>
       </workingSet>
       <workingSet
           name="admin"

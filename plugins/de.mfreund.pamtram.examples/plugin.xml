@@ -28,5 +28,44 @@
             project="true">
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.emf.common.ui.examples">
+      <example
+            wizardID="de.mfreund.pamtram.examples.autoprobe">
+         <projectDescriptor
+               contentURI="zips/autoprobe.zip"
+               description="This casestudy demonstrates the results from the &apos;AutoProBe&apos; project."
+               name="de.mfreund.pamtram.casestudies.autoprobe">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.autoprobe/Pamtram/STGML2Movisa_enhanced.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.autoprobe">
+         <projectDescriptor
+               contentURI="zips/disl-movisa.zip"
+               description="This casestudy demonstrates a simple transformation from &apos;DISL&apos; to &apos;Movisa&apos;."
+               name="de.mfreund.pamtram.casestudies.disl-movisa">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.disl-movisa/Pamtram/DISL2Movisa.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.disl-movisa">
+         <projectDescriptor
+               contentURI="zips/w3caui-movisa.zip"
+               description="This casestudy demonstrates a transformation from &apos;W3CAUI&apos; to &apos;Movisa&apos;."
+               name="de.mfreund.pamtram.casestudies.w3caui-movisa">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.w3caui-movisa/Pamtram/w3caui-movisa.pamtram">
+         </fileToOpen>
+      </example>
+   </extension>
 
 </plugin>

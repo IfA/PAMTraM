@@ -1,49 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This uses Eclipse ANT tasks. It MUST run in the same JRE as the workspace. -->
-<project name="org.eclipse.ocl.examples" default="zip.examples" basedir=".">
+<project name="de.mfreund.pamtram.examples" default="zip.examples" basedir=".">
 	<target name="init">
 	</target>
-
-	<patternset id="zip.excludes"
-		excludes="src.zip,build.xml,javaCompiler*,temp.folder/**,@dot/**"/>
 	
-	<target name="zip.examples" depends="init">
-		<!-- OCL examples -->
-		<eclipse.convertPath resourcePath="org.eclipse.ocl.examples.interpreter" property="projectDir"/>
-		<zip destfile="zips/interpreter.zip" basedir="${projectDir}">
-			<patternset refid="zip.excludes"/>
-		</zip>
-		
-		<eclipse.convertPath resourcePath="org.eclipse.ocl.examples.project.empty" property="projectDir"/>
-		<zip destfile="zips/empty.zip" basedir="${projectDir}">
-			<patternset refid="zip.excludes"/>
-		</zip>
-		
-		<eclipse.convertPath resourcePath="org.eclipse.ocl.examples.project.completeocltutorial" property="projectDir"/>
-		<zip destfile="zips/completeocltutorial.zip" basedir="${projectDir}">
-			<patternset refid="zip.excludes"/>
-		</zip>
-		
-		<eclipse.convertPath resourcePath="org.eclipse.ocl.examples.project.oclinecoretutorial" property="projectDir"/>
-		
-		<zip destfile="zips/oclinecoretutorial.zip" basedir="${projectDir}">
-			<patternset refid="zip.excludes"/>
-		</zip>
-		
-		<eclipse.convertPath resourcePath="org.eclipse.ocl.examples.project.royalandloyal" property="projectDir"/>
-		<zip destfile="zips/royalandloyal.zip" basedir="${projectDir}">
-			<patternset refid="zip.excludes"/>
-		</zip>
+	<!-- The files to include in the 'AutoProBe' example -->
+	<patternset id="autoprobe.includes"
+			includes=".project,
+				metamodel/stgml.xsd_original.ecore,
+				metamodel/stgml.xsd_enhanced.ecore,
+				Pamtram/lib/**,
+				Pamtram/STGML2Movisa_enhanced.pamtram,
+				Pamtram/STGML2Movisa_original.pamtram,
+				Source/beispiel_ver_0_2_3.xml,
+				Target"/>
+	
+	<!-- The files to include in the 'disl-movisa' example -->
+	<patternset id="disl-movisa.includes"
+			includes=".project,
+				de.mfreund.pamtram.casestudies.disl-movisa.launch,
+				metamodel/disl.ecore,
+				Pamtram/Disl2Movisa.pamtram,
+				Source/usecase.xmi
+				Target"/>
+	
+	<!-- The files to include in the 'w3caui-movisa' example -->
+	<patternset id="w3caui-movisa.includes"
+		includes=".project,
+			metamodel/aui.xsd.ecore,
+			Pamtram/w3caui-movisa.pamtram,
+			Source/allgemeinesModell.xmi,
+			Source/Kleinversuchsanlage.xmi,
+			Target"/>
 
-		<!-- EMF examples -->
-		<eclipse.convertPath resourcePath="org.eclipse.emf.examples.library" property="projectDir"/>
-		<zip destfile="zips/library.zip" basedir="${projectDir}"/>
-			
-		<eclipse.convertPath resourcePath="org.eclipse.emf.examples.library.edit" property="projectDir"/>
-		<zip destfile="zips/libraryEdit.zip" basedir="${projectDir}"/>
+	
+	<!-- Zip the PAMTraM examples -->
+	<target name="zip.examples" depends="init">
+		<!-- AutoProBe -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.autoprobe" property="projectDir"/>
+		<zip destfile="zips/autoprobe.zip" basedir="${projectDir}">
+			<patternset refid="autoprobe.includes"/>
+		</zip>
 		
-		<eclipse.convertPath resourcePath="org.eclipse.emf.examples.library.editor" property="projectDir"/>
-		<zip destfile="zips/libraryEditor.zip" basedir="${projectDir}"/>
+		<!-- Disl-Movisa -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.disl-movisa" property="projectDir"/>
+		<zip destfile="zips/disl-movisa.zip" basedir="${projectDir}">
+			<patternset refid="disl-movisa.includes"/>
+		</zip>
+		
+		<!-- W3CAUI-Movisa -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.w3caui-movisa.git" property="projectDir"/>
+		<zip destfile="zips/w3caui-movisa.zip" basedir="${projectDir}">
+			<patternset refid="w3caui-movisa.includes"/>
+		</zip>
+		
 	</target>
 
 	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.ocl.examples.">
@@ -54,6 +64,6 @@
 	</target>
 
 	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<eclipse.refreshLocal resource="/org.eclipse.ocl.examples" depth="infinite"/>
+		<eclipse.refreshLocal resource="/de.mfreund.pamtram.examples" depth="infinite"/>
 	</target>
 </project>

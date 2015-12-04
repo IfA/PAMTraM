@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            id="de.mfreund.pamtram.examples.autoprobe"
+            name="AutoProBe"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            id="de.mfreund.pamtram.examples.w3caui-movisa"
+            name="W3CAUI -&gt; Movisa"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            id="de.mfreund.pamtram.examples.disl-movisa"
+            name="Disl -&gt; Movisa"
+            project="true">
+      </wizard>
+   </extension>
+
+</plugin>

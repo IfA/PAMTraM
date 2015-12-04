@@ -1,6 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PAMTraM Examples
-Bundle-SymbolicName: de.mfreund.pamtram.examples
+Bundle-SymbolicName: de.mfreund.pamtram.examples;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.emf.common.ui;bundle-version="2.10.0"

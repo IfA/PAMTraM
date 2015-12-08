@@ -826,8 +826,13 @@
       <eLiterals name="ZERO__INFINITY" value="2"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RangeConstraint" eSuperTypes="#//metamodel/AttributeValueConstraint">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="upperBoundValue" eType="#//metamodel/SourceSectionAttribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBoundValue" eType="#//metamodel/SourceSectionAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//metamodel/RangeBound"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//metamodel/RangeBound"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RangeBound">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boundValue" lowerBound="1"
+          eType="#//metamodel/SourceSectionAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundType" eType="#//metamodel/AttributeValueConstraintType"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">

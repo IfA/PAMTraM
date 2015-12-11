@@ -527,6 +527,9 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 	 */
 	public void addSourceEPackages(Collection<String> nsUris) {
 		for (String nsUri : nsUris) {
+			if(nsUri == null || nsUri.isEmpty()) {
+				continue;
+			}
 			sourceEPackages.add(nsUri);
 			sourceEPackageList.add(nsUri);
 			if(!registeredEPackages.containsKey(nsUri)) {

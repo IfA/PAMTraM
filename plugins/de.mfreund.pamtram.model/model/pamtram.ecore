@@ -858,18 +858,19 @@
       <eLiterals name="GE" value="3" literal="GE"/>
       <eLiterals name="LE" value="4" literal="LE"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//condition/ComplexCondition">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="2"
+    <eClassifiers xsi:type="ecore:EClass" name="MultipleConditionOperator" abstract="true"
+        eSuperTypes="#//condition/ComplexCondition">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condParts" lowerBound="2"
           upperBound="-1" eType="#//condition/ComplexCondition" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//condition/ComplexCondition">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="2"
-          upperBound="-1" eType="#//condition/ComplexCondition" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//condition/ComplexCondition">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+    <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//condition/MultipleConditionOperator"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//condition/MultipleConditionOperator"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SingleConditionOperator" abstract="true"
+        eSuperTypes="#//condition/ComplexCondition">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condPart" lowerBound="1"
           eType="#//condition/ComplexCondition" containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//condition/SingleConditionOperator"/>
   </eSubpackages>
   <eSubpackages name="transformation" nsURI="http://mfreund.de/pamtram/transformation"
       nsPrefix="transformation">

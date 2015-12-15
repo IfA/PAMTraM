@@ -900,8 +900,6 @@
           <details key="body" value="EList&lt;MappingHintGroupImporter> hintGroups = getImportedMappingHintGroups();&#xD;&#xA;EList&lt;MappingHintGroupImporter> activeHintGroups = new BasicEList&lt;>();&#xD;&#xA;for (MappingHintGroupImporter hintGroup : hintGroups) {&#xD;&#xA;&#x9;if(hintGroup.isDeactivated()) {&#xD;&#xA;&#x9;&#x9;// skip this one&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;activeHintGroups.add(hintGroup);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return activeHintGroups;"/>
         </eAnnotations>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//condition/ComplexCondition"
-          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHintGroups" upperBound="-1"
           eType="#//mapping/MappingHintGroupType" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="importedMappingHintGroups"

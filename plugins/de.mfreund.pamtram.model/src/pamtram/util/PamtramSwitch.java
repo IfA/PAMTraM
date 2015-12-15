@@ -9,14 +9,6 @@ import pamtram.*;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
-import pamtram.MappingModel;
-import pamtram.NamedElement;
-import pamtram.PAMTraM;
-import pamtram.PamtramPackage;
-import pamtram.SectionModel;
-import pamtram.SourceSectionModel;
-import pamtram.TargetSectionModel;
-import pamtram.TransformationModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,12 +112,6 @@ public class PamtramSwitch<T> extends Switch<T> {
 				MappingModel mappingModel = (MappingModel)theEObject;
 				T result = caseMappingModel(mappingModel);
 				if (result == null) result = caseNamedElement(mappingModel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PamtramPackage.TRANSFORMATION_MODEL: {
-				TransformationModel transformationModel = (TransformationModel)theEObject;
-				T result = caseTransformationModel(transformationModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -235,21 +221,6 @@ public class PamtramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMappingModel(MappingModel object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Transformation Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Transformation Model</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTransformationModel(TransformationModel object) {
 		return null;
 	}
 

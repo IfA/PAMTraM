@@ -12,9 +12,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
 import pamtram.metamodel.Section;
@@ -51,6 +52,7 @@ import pamtram.metamodel.TargetSection;
  *   <li>{@link pamtram.metamodel.impl.TargetSectionImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionImpl#getExtend <em>Extend</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionImpl#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.TargetSectionImpl#getFile <em>File</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,6 +85,16 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * @ordered
 	 */
 	protected EList<TargetSection> extend;
+
+	/**
+	 * The cached value of the '{@link #getFile() <em>File</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFile()
+	 * @generated
+	 * @ordered
+	 */
+	protected FileAttribute file;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,7 +154,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<MappingHintGroupType> getReferencingMappingHintGroups() {
@@ -159,27 +171,62 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		/*@NonNull*/ Iterator<?> ITERATOR_mhg = allInstances.iterator();
 		/*@NonNull*/ /*@Thrown*/ SetValue select;
 		while (true) {
-			if (!ITERATOR_mhg.hasNext()) {
-				select = accumulator;
-				break;
-			}
-			/*@NonNull*/ /*@NonInvalid*/ MappingHintGroupType mhg = (MappingHintGroupType)ITERATOR_mhg.next();
-			/**
-			 * self = mhg.targetMMSection
-			 */
-			final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetMMSection();
-			final /*@Thrown*/ boolean eq = this.equals(targetMMSection);
-			//
-			if (eq == ValueUtil.TRUE_VALUE) {
-				accumulator.add(mhg);
-			}
+		    if (!ITERATOR_mhg.hasNext()) {
+		        select = accumulator;
+		        break;
+		    }
+		    /*@NonNull*/ /*@NonInvalid*/ MappingHintGroupType mhg = (MappingHintGroupType)ITERATOR_mhg.next();
+		    /**
+		     * self = mhg.targetMMSection
+		     */
+		    final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetMMSection();
+		    final /*@Thrown*/ boolean eq = this.equals(targetMMSection);
+		    //
+		    if (eq == ValueUtil.TRUE_VALUE) {
+		        accumulator.add(mhg);
+		    }
 		}
 		final List<MappingHintGroupType> UNBOXED_select = select.asEcoreObjects(idResolver, pamtram.mapping.MappingHintGroupType.class);
 		assert UNBOXED_select != null;
-		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=474307
-		return new EcoreEList.UnmodifiableEList.FastCompare<> 
-		(this, MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS, UNBOXED_select.size(), UNBOXED_select.toArray()); 
-		//		return (EList<MappingType>)UNBOXED_select;
+		return (EList<MappingHintGroupType>)UNBOXED_select;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileAttribute getFile() {
+		if (file != null && file.eIsProxy()) {
+			InternalEObject oldFile = (InternalEObject)file;
+			file = (FileAttribute)eResolveProxy(oldFile);
+			if (file != oldFile) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TARGET_SECTION__FILE, oldFile, file));
+			}
+		}
+		return file;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileAttribute basicGetFile() {
+		return file;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFile(FileAttribute newFile) {
+		FileAttribute oldFile = file;
+		file = newFile;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TARGET_SECTION__FILE, oldFile, file));
 	}
 
 	/**
@@ -305,6 +352,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean containerMatchesExtendContainer(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -458,6 +506,9 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 				return getExtend();
 			case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return getReferencingMappingHintGroups();
+			case MetamodelPackage.TARGET_SECTION__FILE:
+				if (resolve) return getFile();
+				return basicGetFile();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -478,6 +529,9 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 				getExtend().clear();
 				getExtend().addAll((Collection<? extends TargetSection>)newValue);
 				return;
+			case MetamodelPackage.TARGET_SECTION__FILE:
+				setFile((FileAttribute)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -495,6 +549,9 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 				return;
 			case MetamodelPackage.TARGET_SECTION__EXTEND:
 				getExtend().clear();
+				return;
+			case MetamodelPackage.TARGET_SECTION__FILE:
+				setFile((FileAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -514,6 +571,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 				return extend != null && !extend.isEmpty();
 			case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return !getReferencingMappingHintGroups().isEmpty();
+			case MetamodelPackage.TARGET_SECTION__FILE:
+				return file != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -562,8 +621,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
 				case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS: return MetamodelPackage.TARGET_SECTION___EXTENDS_ONLY_VALID_SECTIONS;
-				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1: return MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1;
-				case MetamodelPackage.SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1: return MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1;
+				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				case MetamodelPackage.SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -579,13 +638,13 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
 				return isReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case MetamodelPackage.TARGET_SECTION___EXTENDS_ONLY_VALID_SECTIONS:
 				return extendsOnlyValidSections();
-			case MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return containerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

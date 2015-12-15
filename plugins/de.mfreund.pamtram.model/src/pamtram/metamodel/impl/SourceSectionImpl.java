@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -142,7 +141,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<MappingType> getReferencingMappings() {
@@ -157,27 +156,24 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		/*@NonNull*/ Iterator<?> ITERATOR_m = allInstances.iterator();
 		/*@NonNull*/ /*@Thrown*/ SetValue select;
 		while (true) {
-			if (!ITERATOR_m.hasNext()) {
-				select = accumulator;
-				break;
-			}
-			/*@NonNull*/ /*@NonInvalid*/ MappingType m = (MappingType)ITERATOR_m.next();
-			/**
-			 * self = m.sourceMMSection
-			 */
-			final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection = m.getSourceMMSection();
-			final /*@Thrown*/ boolean eq = this.equals(sourceMMSection);
-			//
-			if (eq == ValueUtil.TRUE_VALUE) {
-				accumulator.add(m);
-			}
+		    if (!ITERATOR_m.hasNext()) {
+		        select = accumulator;
+		        break;
+		    }
+		    /*@NonNull*/ /*@NonInvalid*/ MappingType m = (MappingType)ITERATOR_m.next();
+		    /**
+		     * self = m.sourceMMSection
+		     */
+		    final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection = m.getSourceMMSection();
+		    final /*@Thrown*/ boolean eq = this.equals(sourceMMSection);
+		    //
+		    if (eq == ValueUtil.TRUE_VALUE) {
+		        accumulator.add(m);
+		    }
 		}
 		final List<MappingType> UNBOXED_select = select.asEcoreObjects(idResolver, pamtram.mapping.MappingType.class);
 		assert UNBOXED_select != null;
-		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=474307
-		return new EcoreEList.UnmodifiableEList.FastCompare<> 
-		(this, MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS, UNBOXED_select.size(), UNBOXED_select.toArray()); 
-		//		return (EList<MappingType>)UNBOXED_select;
+		return (EList<MappingType>)UNBOXED_select;
 	}
 
 	/**
@@ -303,6 +299,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean containerMatchesExtendContainer(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -560,8 +557,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
 				case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS: return MetamodelPackage.SOURCE_SECTION___EXTENDS_ONLY_VALID_SECTIONS;
-				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1: return MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1;
-				case MetamodelPackage.SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1: return MetamodelPackage.SOURCE_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1;
+				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				case MetamodelPackage.SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.SOURCE_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -577,13 +574,13 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP:
 				return isReferencedByMapping((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case MetamodelPackage.SOURCE_SECTION___EXTENDS_ONLY_VALID_SECTIONS:
 				return extendsOnlyValidSections();
-			case MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.SOURCE_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.SOURCE_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return containerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

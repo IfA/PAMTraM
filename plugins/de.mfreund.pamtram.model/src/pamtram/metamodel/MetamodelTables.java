@@ -99,6 +99,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_EObject = MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EObject", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_EReference = MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EReference", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ExternalReferenceParameter = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ExternalReferenceParameter", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_FileAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("FileAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_GlobalAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry = MetamodelTables.PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib.getClassId("LibraryEntry", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry_0 = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("LibraryEntry", 0);
@@ -169,6 +170,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappingType = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_MappingType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MetaModelSectionReference = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_MetaModelSectionReference);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PAMTraM = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_PAMTraM);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TargetSection = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_TargetSection);
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationLiteralId ELITid_ONE = MetamodelTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeValueConstraint = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_AttributeValueConstraint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EAttribute = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_EAttribute);
@@ -260,6 +262,7 @@ public class MetamodelTables
 		public static final /*@NonNull*/ EcoreExecutorType _EndingMatcher = new EcoreExecutorType(MetamodelPackage.Literals.ENDING_MATCHER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _EqualityMatcher = new EcoreExecutorType(MetamodelPackage.Literals.EQUALITY_MATCHER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExternalReferenceParameter = new EcoreExecutorType(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _FileAttribute = new EcoreExecutorType(MetamodelPackage.Literals.FILE_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LibraryEntry = new EcoreExecutorType(MetamodelPackage.Literals.LIBRARY_ENTRY, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LibraryParameter = new EcoreExecutorType(MetamodelPackage.Literals.LIBRARY_PARAMETER, PACKAGE, 0, TypeParameters._LibraryParameter_ParameterType);
 		public static final /*@NonNull*/ EcoreExecutorType _MetaModelElement = new EcoreExecutorType(MetamodelPackage.Literals.META_MODEL_ELEMENT, PACKAGE, 0, TypeParameters._MetaModelElement_S, TypeParameters._MetaModelElement_C, TypeParameters._MetaModelElement_R, TypeParameters._MetaModelElement_A);
@@ -297,6 +300,7 @@ public class MetamodelTables
 			_EndingMatcher,
 			_EqualityMatcher,
 			_ExternalReferenceParameter,
+			_FileAttribute,
 			_LibraryEntry,
 			_LibraryParameter,
 			_MetaModelElement,
@@ -449,6 +453,15 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorFragment _ExternalReferenceParameter__NamedElement = new ExecutorFragment(Types._ExternalReferenceParameter, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _ExternalReferenceParameter__OclAny = new ExecutorFragment(Types._ExternalReferenceParameter, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _ExternalReferenceParameter__OclElement = new ExecutorFragment(Types._ExternalReferenceParameter, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__Attribute = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._Attribute);
+		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__FileAttribute = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._FileAttribute);
+		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__MetaModelElement = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._MetaModelElement);
+		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__NamedElement = new ExecutorFragment(Types._FileAttribute, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__OclAny = new ExecutorFragment(Types._FileAttribute, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__OclElement = new ExecutorFragment(Types._FileAttribute, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__TargetSectionAttribute = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._TargetSectionAttribute);
+		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__VirtualAttribute = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._VirtualAttribute);
 
 		private static final /*@NonNull*/ ExecutorFragment _LibraryEntry__LibraryEntry = new ExecutorFragment(Types._LibraryEntry, MetamodelTables.Types._LibraryEntry);
 		private static final /*@NonNull*/ ExecutorFragment _LibraryEntry__OclAny = new ExecutorFragment(Types._LibraryEntry, OCLstdlibTables.Types._OclAny);
@@ -715,6 +728,8 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _ExternalReferenceParameter__reference = new EcoreExecutorProperty(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, Types._ExternalReferenceParameter, 0);
 
+		public static final /*@NonNull*/ ExecutorProperty _FileAttribute__TargetSection__file = new ExecutorPropertyWithImplementation("TargetSection", Types._FileAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.TARGET_SECTION__FILE));
+
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__id = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ID, Types._LibraryEntry, 0);
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__libraryFile = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE, Types._LibraryEntry, 1);
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__originalLibraryEntry = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, Types._LibraryEntry, 2);
@@ -741,8 +756,9 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _SourceSectionClass__MetaModelSectionReference__value = new ExecutorPropertyWithImplementation("MetaModelSectionReference", Types._SourceSectionClass, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE));
 
-		public static final /*@NonNull*/ ExecutorProperty _TargetSection__referencingMappingHintGroups = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS, Types._TargetSection, 0);
-		public static final /*@NonNull*/ ExecutorProperty _TargetSection__ContainerParameter__class = new ExecutorPropertyWithImplementation("ContainerParameter", Types._TargetSection, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.CONTAINER_PARAMETER__CLASS));
+		public static final /*@NonNull*/ ExecutorProperty _TargetSection__file = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION__FILE, Types._TargetSection, 0);
+		public static final /*@NonNull*/ ExecutorProperty _TargetSection__referencingMappingHintGroups = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS, Types._TargetSection, 1);
+		public static final /*@NonNull*/ ExecutorProperty _TargetSection__ContainerParameter__class = new ExecutorPropertyWithImplementation("ContainerParameter", Types._TargetSection, 2, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.CONTAINER_PARAMETER__CLASS));
 
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionAttribute__unique = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__UNIQUE, Types._TargetSectionAttribute, 0);
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionAttribute__value = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, Types._TargetSectionAttribute, 1);
@@ -932,6 +948,19 @@ public class MetamodelTables
 			Fragments._ExternalReferenceParameter__ExternalReferenceParameter /* 4 */
 		};
 		private static final /*@NonNull*/ int[] __ExternalReferenceParameter = { 1,1,1,1,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment[] _FileAttribute =
+		{
+			Fragments._FileAttribute__OclAny /* 0 */,
+			Fragments._FileAttribute__OclElement /* 1 */,
+			Fragments._FileAttribute__NamedElement /* 2 */,
+			Fragments._FileAttribute__MetaModelElement /* 3 */,
+			Fragments._FileAttribute__Attribute /* 4 */,
+			Fragments._FileAttribute__TargetSectionAttribute /* 5 */,
+			Fragments._FileAttribute__VirtualAttribute /* 6 */,
+			Fragments._FileAttribute__FileAttribute /* 7 */
+		};
+		private static final /*@NonNull*/ int[] __FileAttribute = { 1,1,1,1,1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _LibraryEntry =
 		{
@@ -1185,6 +1214,7 @@ public class MetamodelTables
 			Types._EndingMatcher.initFragments(_EndingMatcher, __EndingMatcher);
 			Types._EqualityMatcher.initFragments(_EqualityMatcher, __EqualityMatcher);
 			Types._ExternalReferenceParameter.initFragments(_ExternalReferenceParameter, __ExternalReferenceParameter);
+			Types._FileAttribute.initFragments(_FileAttribute, __FileAttribute);
 			Types._LibraryEntry.initFragments(_LibraryEntry, __LibraryEntry);
 			Types._LibraryParameter.initFragments(_LibraryParameter, __LibraryParameter);
 			Types._MetaModelElement.initFragments(_MetaModelElement, __MetaModelElement);
@@ -1654,6 +1684,38 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
+
+		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__FileAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__Attribute = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__MetaModelElement = {
+			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
+			MetamodelTables.Operations._MetaModelElement__getContainingSectionModel /* getContainingSectionModel() */,
+			MetamodelTables.Operations._MetaModelElement__isLibraryEntry /* isLibraryEntry() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__TargetSectionAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__VirtualAttribute = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _LibraryEntry__LibraryEntry = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _LibraryEntry__OclAny = {
@@ -2430,6 +2492,15 @@ public class MetamodelTables
 			Fragments._ExternalReferenceParameter__OclAny.initOperations(_ExternalReferenceParameter__OclAny);
 			Fragments._ExternalReferenceParameter__OclElement.initOperations(_ExternalReferenceParameter__OclElement);
 
+			Fragments._FileAttribute__Attribute.initOperations(_FileAttribute__Attribute);
+			Fragments._FileAttribute__FileAttribute.initOperations(_FileAttribute__FileAttribute);
+			Fragments._FileAttribute__MetaModelElement.initOperations(_FileAttribute__MetaModelElement);
+			Fragments._FileAttribute__NamedElement.initOperations(_FileAttribute__NamedElement);
+			Fragments._FileAttribute__OclAny.initOperations(_FileAttribute__OclAny);
+			Fragments._FileAttribute__OclElement.initOperations(_FileAttribute__OclElement);
+			Fragments._FileAttribute__TargetSectionAttribute.initOperations(_FileAttribute__TargetSectionAttribute);
+			Fragments._FileAttribute__VirtualAttribute.initOperations(_FileAttribute__VirtualAttribute);
+
 			Fragments._LibraryEntry__LibraryEntry.initOperations(_LibraryEntry__LibraryEntry);
 			Fragments._LibraryEntry__OclAny.initOperations(_LibraryEntry__OclAny);
 			Fragments._LibraryEntry__OclElement.initOperations(_LibraryEntry__OclElement);
@@ -2680,6 +2751,15 @@ public class MetamodelTables
 			MetamodelTables.Properties._LibraryParameter__source
 		};
 
+		private static final /*@NonNull*/ ExecutorProperty[] _FileAttribute = {
+			MetamodelTables.Properties._Attribute__owningClass,
+			MetamodelTables.Properties._TargetSectionAttribute__unique,
+			MetamodelTables.Properties._TargetSectionAttribute__value,
+			MetamodelTables.Properties._VirtualAttribute__LibraryEntry__id,
+			MetamodelTables.Properties._VirtualAttribute__LibraryEntry__path,
+			MetamodelTables.Properties._FileAttribute__TargetSection__file
+		};
+
 		private static final /*@NonNull*/ ExecutorProperty[] _LibraryEntry = {
 			MetamodelTables.Properties._LibraryEntry__id,
 			MetamodelTables.Properties._LibraryEntry__libraryFile,
@@ -2780,6 +2860,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
 			MetamodelTables.Properties._Section__extend,
+			MetamodelTables.Properties._TargetSection__file,
 			MetamodelTables.Properties._Class__references,
 			MetamodelTables.Properties._TargetSection__referencingMappingHintGroups,
 			MetamodelTables.Properties._TargetSection__ContainerParameter__class
@@ -2843,6 +2924,7 @@ public class MetamodelTables
 			Fragments._EndingMatcher__EndingMatcher.initProperties(_EndingMatcher);
 			Fragments._EqualityMatcher__EqualityMatcher.initProperties(_EqualityMatcher);
 			Fragments._ExternalReferenceParameter__ExternalReferenceParameter.initProperties(_ExternalReferenceParameter);
+			Fragments._FileAttribute__FileAttribute.initProperties(_FileAttribute);
 			Fragments._LibraryEntry__LibraryEntry.initProperties(_LibraryEntry);
 			Fragments._LibraryParameter__LibraryParameter.initProperties(_LibraryParameter);
 			Fragments._MetaModelElement__MetaModelElement.initProperties(_MetaModelElement);

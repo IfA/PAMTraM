@@ -40,6 +40,15 @@ public interface MetamodelFactory extends EFactory {
 	TargetSection createTargetSection();
 
 	/**
+	 * Returns a new object of class '<em>File Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File Attribute</em>'.
+	 * @generated
+	 */
+	FileAttribute createFileAttribute();
+
+	/**
 	 * Returns a new object of class '<em>Source Section Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

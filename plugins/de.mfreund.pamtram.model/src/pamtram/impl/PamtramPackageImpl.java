@@ -22,15 +22,12 @@ import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.TransformationModel;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.impl.MetamodelPackageImpl;
-import pamtram.transformation.TransformationPackage;
-import pamtram.transformation.impl.TransformationPackageImpl;
 import pamtram.util.PamtramValidator;
 
 /**
@@ -90,13 +87,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	private EClass mappingModelEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass transformationModelEClass = null;
-
-	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -148,21 +138,18 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		// Obtain or create and register interdependencies
 		MetamodelPackageImpl theMetamodelPackage = (MetamodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) instanceof MetamodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) : MetamodelPackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
-		TransformationPackageImpl theTransformationPackage = (TransformationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformationPackage.eNS_URI) instanceof TransformationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformationPackage.eNS_URI) : TransformationPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePamtramPackage.createPackageContents();
 		theMetamodelPackage.createPackageContents();
 		theConditionPackage.createPackageContents();
-		theTransformationPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		thePamtramPackage.initializePackageContents();
 		theMetamodelPackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
-		theTransformationPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 
 		// Register package validator
@@ -269,7 +256,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_TransformationModel() {
+	public EReference getPAMTraM_SourceSections() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -278,7 +265,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SourceSections() {
+	public EReference getPAMTraM_TargetSections() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -287,7 +274,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_TargetSections() {
+	public EReference getPAMTraM_Mappings() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -296,7 +283,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_Mappings() {
+	public EReference getPAMTraM_ActiveMappings() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -305,7 +292,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ActiveMappings() {
+	public EReference getPAMTraM_GlobalValues() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -314,17 +301,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_GlobalValues() {
-		return (EReference)pamTraMEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getPAMTraM_ModifierSets() {
-		return (EReference)pamTraMEClass.getEStructuralFeatures().get(10);
+		return (EReference)pamTraMEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -341,7 +319,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_1() {
+	public EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map() {
 		return pamTraMEClass.getEOperations().get(1);
 	}
 
@@ -350,7 +328,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_1() {
+	public EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map() {
 		return pamTraMEClass.getEOperations().get(2);
 	}
 
@@ -458,24 +436,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTransformationModel() {
-		return transformationModelEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTransformationModel_Transformation() {
-		return (EReference)transformationModelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public PamtramFactory getPamtramFactory() {
 		return (PamtramFactory)getEFactoryInstance();
 	}
@@ -510,7 +470,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(pamTraMEClass, PAM_TRA_M__SOURCE_SECTION_MODEL);
 		createEReference(pamTraMEClass, PAM_TRA_M__TARGET_SECTION_MODEL);
 		createEReference(pamTraMEClass, PAM_TRA_M__MAPPING_MODEL);
-		createEReference(pamTraMEClass, PAM_TRA_M__TRANSFORMATION_MODEL);
 		createEReference(pamTraMEClass, PAM_TRA_M__SOURCE_SECTIONS);
 		createEReference(pamTraMEClass, PAM_TRA_M__TARGET_SECTIONS);
 		createEReference(pamTraMEClass, PAM_TRA_M__MAPPINGS);
@@ -518,8 +477,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(pamTraMEClass, PAM_TRA_M__GLOBAL_VALUES);
 		createEReference(pamTraMEClass, PAM_TRA_M__MODIFIER_SETS);
 		createEOperation(pamTraMEClass, PAM_TRA_M___MERGE_EXTENDS);
-		createEOperation(pamTraMEClass, PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1);
-		createEOperation(pamTraMEClass, PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1);
+		createEOperation(pamTraMEClass, PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(pamTraMEClass, PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP);
 
 		sectionModelEClass = createEClass(SECTION_MODEL);
 		createEReference(sectionModelEClass, SECTION_MODEL__META_MODEL_PACKAGE);
@@ -535,9 +494,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(mappingModelEClass, MAPPING_MODEL__MODIFIER_SETS);
 		createEReference(mappingModelEClass, MAPPING_MODEL__GLOBAL_VALUES);
 		createEOperation(mappingModelEClass, MAPPING_MODEL___GET_ACTIVE_MAPPINGS);
-
-		transformationModelEClass = createEClass(TRANSFORMATION_MODEL);
-		createEReference(transformationModelEClass, TRANSFORMATION_MODEL__TRANSFORMATION);
 	}
 
 	/**
@@ -566,13 +522,11 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		// Obtain other dependent packages
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
 		ConditionPackage theConditionPackage = (ConditionPackage)EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI);
-		TransformationPackage theTransformationPackage = (TransformationPackage)EPackage.Registry.INSTANCE.getEPackage(TransformationPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theMetamodelPackage);
 		getESubpackages().add(theConditionPackage);
-		getESubpackages().add(theTransformationPackage);
 		getESubpackages().add(theMappingPackage);
 
 		// Create type parameters
@@ -659,7 +613,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getPAMTraM_SourceSectionModel(), this.getSourceSectionModel(), null, "sourceSectionModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_TargetSectionModel(), this.getTargetSectionModel(), null, "targetSectionModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_MappingModel(), this.getMappingModel(), null, "mappingModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_TransformationModel(), this.getTransformationModel(), null, "transformationModel", null, 0, 1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_SourceSections(), theMetamodelPackage.getSourceSection(), null, "sourceSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_TargetSections(), theMetamodelPackage.getTargetSection(), null, "targetSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_Mappings(), theMappingPackage.getMapping(), null, "mappings", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -669,7 +622,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEOperation(getPAMTraM__MergeExtends(), null, "mergeExtends", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "sourceSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "sourceSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -678,7 +631,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "targetSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "targetSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -703,9 +656,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getMappingModel_GlobalValues(), theMappingPackage.getGlobalValue(), null, "globalValues", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getMappingModel__GetActiveMappings(), theMappingPackage.getMapping(), "getActiveMappings", 0, -1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(transformationModelEClass, TransformationModel.class, "TransformationModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransformationModel_Transformation(), theTransformationPackage.getTransformation(), null, "transformation", null, 0, -1, TransformationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

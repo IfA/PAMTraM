@@ -26,7 +26,6 @@ import pamtram.metamodel.TargetSection;
  *   <li>{@link pamtram.PAMTraM#getSourceSectionModel <em>Source Section Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getTargetSectionModel <em>Target Section Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getMappingModel <em>Mapping Model</em>}</li>
- *   <li>{@link pamtram.PAMTraM#getTransformationModel <em>Transformation Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getSourceSections <em>Source Sections</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getTargetSections <em>Target Sections</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getMappings <em>Mappings</em>}</li>
@@ -106,33 +105,6 @@ public interface PAMTraM extends EObject {
 	 * @generated
 	 */
 	EList<MappingModel> getMappingModel();
-
-	/**
-	 * Returns the value of the '<em><b>Transformation Model</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Transformation Model</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transformation Model</em>' containment reference.
-	 * @see #setTransformationModel(TransformationModel)
-	 * @see pamtram.PamtramPackage#getPAMTraM_TransformationModel()
-	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!transformationModel'"
-	 * @generated
-	 */
-	TransformationModel getTransformationModel();
-
-	/**
-	 * Sets the value of the '{@link pamtram.PAMTraM#getTransformationModel <em>Transformation Model</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transformation Model</em>' containment reference.
-	 * @see #getTransformationModel()
-	 * @generated
-	 */
-	void setTransformationModel(TransformationModel value);
 
 	/**
 	 * Returns the value of the '<em><b>Source Sections</b></em>' reference list.

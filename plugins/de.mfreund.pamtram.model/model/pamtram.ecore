@@ -38,8 +38,6 @@
         upperBound="-1" eType="#//TargetSectionModel" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingModel" lowerBound="1"
         upperBound="-1" eType="#//MappingModel" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transformationModel" eType="#//TransformationModel"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSections" upperBound="-1"
         eType="#//metamodel/SourceSection" changeable="false" volatile="true" transient="true"
         derived="true">
@@ -153,10 +151,6 @@
         eType="#//mapping/AttributeValueModifierSet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalValues" upperBound="-1"
         eType="#//mapping/GlobalValue" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TransformationModel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transformation" upperBound="-1"
-        eType="#//transformation/Transformation" containment="true"/>
   </eClassifiers>
   <eSubpackages name="metamodel" nsURI="http://mfreund.de/pamtram/metamodel" nsPrefix="metamodel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -420,6 +414,7 @@
           <details key="derivation" value="pamtram::mapping::MappingHintGroupType.allInstances()->select(mhg | self = mhg.targetMMSection)"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//metamodel/FileAttribute"/>
       <eGenericSuperTypes eClassifier="#//metamodel/TargetSectionClass"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Section">
         <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
@@ -428,6 +423,7 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//metamodel/VirtualAttribute"/>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
@@ -871,22 +867,6 @@
           eType="#//condition/ComplexCondition" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//condition/SingleConditionOperator"/>
-  </eSubpackages>
-  <eSubpackages name="transformation" nsURI="http://mfreund.de/pamtram/transformation"
-      nsPrefix="transformation">
-    <eClassifiers xsi:type="ecore:EClass" name="Transformation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="transformationMapping"
-          lowerBound="1" upperBound="-1" eType="#//transformation/TransformationMapping"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TransformationMapping" eSuperTypes="#//mapping/MappingType">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMElement" lowerBound="1"
-          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetMElement" lowerBound="1"
-          upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="mapping" nsURI="http://mfreund.de/pamtram/mapping" nsPrefix="mapping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

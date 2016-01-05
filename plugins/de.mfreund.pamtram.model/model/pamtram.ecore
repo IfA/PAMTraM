@@ -850,11 +850,11 @@
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">
     <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//condition/ComplexCondition">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparator" eType="#//condition/ComparatorEnum"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" eSuperTypes="#//condition/ComplexCondition">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="comparativeSourceSection"
+          lowerBound="1" eType="#//metamodel/SourceSection"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="additionalConditionSpecification"
+          upperBound="-1" eType="#//condition/ConditionInstanceVerifier" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ComparatorEnum">
       <eLiterals name="EQ" literal="EQ"/>
@@ -876,6 +876,12 @@
           eType="#//condition/ComplexCondition" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//condition/SingleConditionOperator"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityCondition" eSuperTypes="#//condition/Condition">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparator" eType="#//condition/ComparatorEnum"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SectionCondition" eSuperTypes="#//condition/Condition"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionInstanceVerifier"/>
   </eSubpackages>
   <eSubpackages name="mapping" nsURI="http://mfreund.de/pamtram/mapping" nsPrefix="mapping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

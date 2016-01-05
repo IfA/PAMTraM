@@ -831,6 +831,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValue"
           eType="#//ReferenceableElement"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundType" eType="#//metamodel/AttributeValueConstraintType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral=""/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeValueConstraint"
         abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint">
@@ -838,6 +841,9 @@
           eType="#//metamodel/AttributeValueConstraintType" defaultValueLiteral="INCLUSION"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValue"
           eType="#//ReferenceableElement"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral=""/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MultipleReferencesAttributeValueConstraint"
         abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint"/>

@@ -812,9 +812,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="SubstringMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="BeginningMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="EndingMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
-    <eClassifiers xsi:type="ecore:EClass" name="RegExMatcher" eSuperTypes="#//metamodel/DualAttributeValueConstraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RegExMatcher" eSuperTypes="#//metamodel/SingleReferenceAttributeValueConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="CaseSensitiveConstraint" abstract="true"
-        interface="true" eSuperTypes="#//metamodel/DualAttributeValueConstraint">
+        interface="true" eSuperTypes="#//metamodel/SingleReferenceAttributeValueConstraint">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseSensitive" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
@@ -824,7 +824,7 @@
       <eLiterals name="ONE__INFINITY" value="1"/>
       <eLiterals name="ZERO__INFINITY" value="2"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="RangeConstraint" eSuperTypes="#//metamodel/MultipleAttributeValueConstraint">
+    <eClassifiers xsi:type="ecore:EClass" name="RangeConstraint" eSuperTypes="#//metamodel/MultipleReferencesAttributeValueConstraint">
       <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//metamodel/RangeBound"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//metamodel/RangeBound"/>
     </eClassifiers>
@@ -833,14 +833,14 @@
           eType="#//metamodel/SourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundType" eType="#//metamodel/AttributeValueConstraintType"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DualAttributeValueConstraint" abstract="true"
-        eSuperTypes="#//metamodel/AttributeValueConstraint">
+    <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeValueConstraint"
+        abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
           eType="#//metamodel/AttributeValueConstraintType" defaultValueLiteral="INCLUSION"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraintValue" lowerBound="1"
           eType="#//metamodel/SourceSectionAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MultipleAttributeValueConstraint"
+    <eClassifiers xsi:type="ecore:EClass" name="MultipleReferencesAttributeValueConstraint"
         abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint"/>
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">

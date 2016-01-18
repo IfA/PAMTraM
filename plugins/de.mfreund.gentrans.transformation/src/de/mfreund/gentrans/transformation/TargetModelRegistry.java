@@ -276,6 +276,49 @@ public class TargetModelRegistry {
 					ret = false;
 					continue;
 				} else {
+					
+					/*
+					 * For XML resources, we need to manually create a 'DocumentRoot' in order to get the right serialization.
+					 */
+					if(resource.getClass().equals(XMLResourceImpl.class)) {
+						EObject root = resource.getContents().get(0);
+						EClassifier docRootClass =  root.eClass().getEPackage().getEClassifier("DocumentRoot");
+						
+						if(docRootClass == null || !(docRootClass instanceof EClass)) {
+							consoleStream.println("Error creating a document root for file '" + targetFileUri + 
+									"'! The XML content might not be serialized correctly.");
+						}
+						
+						EObject docRoot = EcoreUtil.create((EClass) docRootClass);
+						
+						/*
+						 * Find the correct reference for the document root and add the technical root element to
+						 * the document root.
+						 */
+						Iterator<EStructuralFeature> it = docRoot.eClass().getEStructuralFeatures().iterator();
+						EStructuralFeature feature = null;
+						while(it.hasNext()) {
+							EStructuralFeature next = it.next();
+							if(next.getEType().equals(root.eClass())) {
+								feature = next;
+								break;
+							}
+						}
+						
+						if(feature == null) {
+							consoleStream.println("Error creating a document root for file '" + targetFileUri + 
+									"'! The XML content might not be serialized correctly.");
+						} else {
+							docRoot.eSet(feature, root);
+							resource.getContents().clear();
+							resource.getContents().add(docRoot);		
+						}
+						
+					}
+					
+					/*
+					 * Save the resource.
+					 */
 					resource.save(Collections.EMPTY_MAP);
 					consoleStream.println("Target model resource '" + entry.getKey() + "' successfully saved.");
 				}

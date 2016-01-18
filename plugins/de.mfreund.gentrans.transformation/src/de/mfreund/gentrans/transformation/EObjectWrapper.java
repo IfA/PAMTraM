@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.FileAttribute;
+import pamtram.metamodel.FileTypeEnum;
+import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.VirtualAttribute;
@@ -264,6 +266,23 @@ public class EObjectWrapper {
 			}
 		}
 		return "";
+	}
+	
+	/**
+	 * If this represents a {@link TargetSection}, return the {@link FileAttribute#getFileType() fileType} of the 
+	 * {@link FileAttribute} associated with this via the {@link TargetSection#getFile() file} reference.
+	 * 
+	 * @return The value of the {@link FileAttribute#getFileType()} or the default value {@link FileTypeEnum#XMI} 
+	 * if this either does not represent a {@link TargetSection}, if the {@link TargetSection#getFile() file} 
+	 * reference has not been set, or if no {@link FileAttribute#getFileType()} fileType has been set. 
+	 */
+	public FileTypeEnum getFileType() {
+		for (Entry<VirtualAttribute, String> entry : virtualAttributeValues.entrySet()) {
+			if(entry.getKey() instanceof FileAttribute) {
+				return (((FileAttribute) (entry.getKey())).getFileType() == null ? FileTypeEnum.XMI : ((FileAttribute) (entry.getKey())).getFileType());
+			}
+		}
+		return FileTypeEnum.XMI;
 	}
 
 }

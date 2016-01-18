@@ -33,6 +33,7 @@ import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.FileAttribute;
+import pamtram.metamodel.FileTypeEnum;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
@@ -302,6 +303,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass caseSensitiveConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum fileTypeEnumEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -678,6 +686,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EClass getFileAttribute() {
 		return fileAttributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFileAttribute_FileType() {
+		return (EAttribute)fileAttributeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1234,6 +1251,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getFileTypeEnum() {
+		return fileTypeEnumEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAttributeValueConstraintType() {
 		return attributeValueConstraintTypeEEnum;
 	}
@@ -1311,6 +1337,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEOperation(targetSectionEClass, TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP);
 
 		fileAttributeEClass = createEClass(FILE_ATTRIBUTE);
+		createEAttribute(fileAttributeEClass, FILE_ATTRIBUTE__FILE_TYPE);
 
 		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
 
@@ -1402,6 +1429,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEAttribute(caseSensitiveConstraintEClass, CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE);
 
 		// Create enums
+		fileTypeEnumEEnum = createEEnum(FILE_TYPE_ENUM);
 		attributeValueConstraintTypeEEnum = createEEnum(ATTRIBUTE_VALUE_CONSTRAINT_TYPE);
 		cardinalityTypeEEnum = createEEnum(CARDINALITY_TYPE);
 	}
@@ -2099,6 +2127,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(fileAttributeEClass, FileAttribute.class, "FileAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFileAttribute_FileType(), this.getFileTypeEnum(), "fileType", null, 1, 1, FileAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2250,6 +2279,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEAttribute(getCaseSensitiveConstraint_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", "true", 1, 1, CaseSensitiveConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
+		initEEnum(fileTypeEnumEEnum, FileTypeEnum.class, "FileTypeEnum");
+		addEEnumLiteral(fileTypeEnumEEnum, FileTypeEnum.XMI);
+		addEEnumLiteral(fileTypeEnumEEnum, FileTypeEnum.XML);
+
 		initEEnum(attributeValueConstraintTypeEEnum, AttributeValueConstraintType.class, "AttributeValueConstraintType");
 		addEEnumLiteral(attributeValueConstraintTypeEEnum, AttributeValueConstraintType.INCLUSION);
 		addEEnumLiteral(attributeValueConstraintTypeEEnum, AttributeValueConstraintType.EXCLUSION);

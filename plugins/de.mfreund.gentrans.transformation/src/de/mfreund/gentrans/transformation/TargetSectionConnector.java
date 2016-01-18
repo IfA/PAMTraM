@@ -23,6 +23,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.metamodel.FileTypeEnum;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -140,10 +141,13 @@ public class TargetSectionConnector extends CancellableElement {
 		// the path of the target model
 		String path = helper.getFile();
 		
+		// the file type of the target model
+		FileTypeEnum fileType = helper.getFileType();
+		
 		if(path.isEmpty()) {
 			targetModelRegistry.addToTargetModel(element);			
 		} else {
-			targetModelRegistry.addToTargetModel(element, path);
+			targetModelRegistry.addToTargetModel(element, path, fileType);
 		}
 	}
 

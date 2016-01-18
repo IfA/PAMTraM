@@ -5,16 +5,28 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.ui.console.MessageConsoleStream;
 import pamtram.metamodel.FileAttribute;
+import pamtram.metamodel.FileTypeEnum;
 
 /**
  * This class represents a registry for the various target models to be created during a transformation.
@@ -117,7 +129,7 @@ public class TargetModelRegistry {
 	 */
 	public void addToTargetModel(final Collection<EObject> elementsToAdd) {
 		
-		addToTargetModel(elementsToAdd, defaultTargetModel);
+		addToTargetModel(elementsToAdd, defaultTargetModel, null);
 	}
 	
 	/**
@@ -126,8 +138,10 @@ public class TargetModelRegistry {
 	 *
 	 * @param elementsToAdd The list of {@link EObject elements} to add.
 	 * @param path The path (relative to {@link #basePath} of the target model.
+	 * @param fileType The {@link FileTypeEnum fileType} of the target model. If this is '<em>null</em>', 
+	 * the type will be determined by the {@link #resourceSet}.
 	 */
-	public void addToTargetModel(final Collection<EObject> elementsToAdd, String path) {
+	public void addToTargetModel(final Collection<EObject> elementsToAdd, String path, FileTypeEnum fileType) {
 		
 		if(!targetModels.containsKey(path)) {
 			targetModels.put(path, new ArrayList<>());
@@ -136,7 +150,7 @@ public class TargetModelRegistry {
 		/*
 		 * the resource to contain the target model
 		 */
-		Resource resource = getTargetModelResource(path);
+		Resource resource = getTargetModelResource(path, fileType);
 		
 		if(resource != null) {
 			
@@ -161,7 +175,7 @@ public class TargetModelRegistry {
 	 */
 	public void addToTargetModel(final EObject elementToAdd) {
 		
-		addToTargetModel(elementToAdd, defaultTargetModel);
+		addToTargetModel(elementToAdd, defaultTargetModel, null);
 	}
 	
 	/**
@@ -170,10 +184,12 @@ public class TargetModelRegistry {
 	 *
 	 * @param elementToAdd The {@link EObject element} to add.
 	 * @param path The path (relative to {@link #basePath} of the target model.
+	 * @param fileType The {@link FileTypeEnum fileType} of the target model. If this is '<em>null</em>', 
+	 * the type will be determined by the {@link #resourceSet}.
 	 */
-	public void addToTargetModel(final EObject elementToAdd, String path) {
+	public void addToTargetModel(final EObject elementToAdd, String path, FileTypeEnum fileType) {
 		
-		addToTargetModel(Arrays.asList(elementToAdd), path);		
+		addToTargetModel(Arrays.asList(elementToAdd), path, fileType);		
 	}
 	
 	/**
@@ -183,8 +199,10 @@ public class TargetModelRegistry {
 	 * @param path The path (relative to {@link #basePath} of the target model.
 	 * @return The resource representing the target model for the given '<em>path</em>', '<em><b>null</b></em>' if the resource
 	 * does not exist and could not be created.
+	 * @param fileType The {@link FileTypeEnum fileType} of the target model. If this is '<em>null</em>', 
+	 * the type will be determined by the {@link #resourceSet}.
 	 */
-	private Resource getTargetModelResource(String path) {
+	private Resource getTargetModelResource(String path, FileTypeEnum fileType) {
 		
 		// the URI of the target resource
 		final URI targetFileUri = URI.createPlatformResourceURI(basePath + Path.SEPARATOR + path, true);
@@ -206,7 +224,14 @@ public class TargetModelRegistry {
 		 */
 		try {
 
+			if(fileType == FileTypeEnum.XMI) {
+				resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(targetFileUri.fileExtension(), new XMIResourceFactoryImpl());
+			} else if(fileType == FileTypeEnum.XML) {
+				resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(targetFileUri.fileExtension(), new GenericXMLResourceFactoryImpl());
+			}
+			
 			resource = resourceSet.createResource(targetFileUri);
+			
 			if(resource == null) {
 				consoleStream.println("The resource for the target model '" + path + "' could not be created.");
 			} else {
@@ -251,6 +276,49 @@ public class TargetModelRegistry {
 					ret = false;
 					continue;
 				} else {
+					
+					/*
+					 * For XML resources, we need to manually create a 'DocumentRoot' in order to get the right serialization.
+					 */
+					if(resource.getClass().equals(XMLResourceImpl.class)) {
+						EObject root = resource.getContents().get(0);
+						EClassifier docRootClass =  root.eClass().getEPackage().getEClassifier("DocumentRoot");
+						
+						if(docRootClass == null || !(docRootClass instanceof EClass)) {
+							consoleStream.println("Error creating a document root for file '" + targetFileUri + 
+									"'! The XML content might not be serialized correctly.");
+						}
+						
+						EObject docRoot = EcoreUtil.create((EClass) docRootClass);
+						
+						/*
+						 * Find the correct reference for the document root and add the technical root element to
+						 * the document root.
+						 */
+						Iterator<EStructuralFeature> it = docRoot.eClass().getEStructuralFeatures().iterator();
+						EStructuralFeature feature = null;
+						while(it.hasNext()) {
+							EStructuralFeature next = it.next();
+							if(next.getEType().equals(root.eClass())) {
+								feature = next;
+								break;
+							}
+						}
+						
+						if(feature == null) {
+							consoleStream.println("Error creating a document root for file '" + targetFileUri + 
+									"'! The XML content might not be serialized correctly.");
+						} else {
+							docRoot.eSet(feature, root);
+							resource.getContents().clear();
+							resource.getContents().add(docRoot);		
+						}
+						
+					}
+					
+					/*
+					 * Save the resource.
+					 */
 					resource.save(Collections.EMPTY_MAP);
 					consoleStream.println("Target model resource '" + entry.getKey() + "' successfully saved.");
 				}

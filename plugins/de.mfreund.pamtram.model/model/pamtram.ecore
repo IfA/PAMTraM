@@ -857,6 +857,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MultipleReferencesAttributeValueConstraint"
         abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributePointer" lowerBound="1"
+          eType="#//metamodel/SourceSectionAttribute"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">
     <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"
@@ -869,7 +873,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="comparativeSourceSection"
           lowerBound="1" eType="#//metamodel/SourceSection"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="additionalConditionSpecification"
-          upperBound="-1" eType="#//condition/ConditionInstanceVerifier" containment="true"/>
+          upperBound="-1" eType="#//metamodel/InstancePointer" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ComparatorEnum">
       <eLiterals name="EQ" literal="EQ"/>
@@ -900,7 +904,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SectionCondition" eSuperTypes="#//condition/Condition"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ConditionInstanceVerifier"/>
   </eSubpackages>
   <eSubpackages name="mapping" nsURI="http://mfreund.de/pamtram/mapping" nsPrefix="mapping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

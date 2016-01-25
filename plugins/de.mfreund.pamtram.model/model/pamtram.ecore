@@ -870,8 +870,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MultipleConditionOperator" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condParts" lowerBound="2"
-          upperBound="-1" eType="#//condition/ComplexCondition" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condParts" upperBound="-1"
+          eType="#//condition/ComplexCondition" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condPartsRef" upperBound="-1"
+          eType="#//condition/ComplexCondition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//condition/MultipleConditionOperator"/>
     <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//condition/MultipleConditionOperator"/>
@@ -879,6 +881,8 @@
         eSuperTypes="#//condition/ComplexCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="condPart" lowerBound="1"
           eType="#//condition/ComplexCondition" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condPartRef" upperBound="-1"
+          eType="#//condition/ComplexCondition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//condition/SingleConditionOperator"/>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityCondition" eSuperTypes="#//condition/Condition">

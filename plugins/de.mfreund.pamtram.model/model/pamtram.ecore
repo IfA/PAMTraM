@@ -163,7 +163,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionRef" eType="#//condition/ComplexCondition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceableElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ConditionalModel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" upperBound="-1"
+        eType="#//condition/ComplexCondition" containment="true"/>
+  </eClassifiers>
   <eSubpackages name="metamodel" nsURI="http://mfreund.de/pamtram/metamodel" nsPrefix="metamodel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>

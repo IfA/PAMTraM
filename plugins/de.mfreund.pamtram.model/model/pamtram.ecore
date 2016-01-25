@@ -155,6 +155,9 @@
         eType="#//mapping/GlobalValue" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalElement" abstract="true">
+    <eOperations name="checkCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="condition" eType="#//condition/ComplexCondition"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//condition/ComplexCondition"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionRef" eType="#//condition/ComplexCondition"/>
@@ -854,7 +857,11 @@
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">
     <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"
-        eSuperTypes="#//NamedElement"/>
+        eSuperTypes="#//NamedElement">
+      <eOperations name="checkCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="condition" eType="#//condition/ComplexCondition"/>
+      </eOperations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" eSuperTypes="#//condition/ComplexCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="comparativeSourceSection"
           lowerBound="1" eType="#//metamodel/SourceSection"/>

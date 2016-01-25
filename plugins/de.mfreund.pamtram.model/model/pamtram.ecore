@@ -853,7 +853,8 @@
         abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint"/>
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"
+        eSuperTypes="#//NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" eSuperTypes="#//condition/ComplexCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="comparativeSourceSection"
           lowerBound="1" eType="#//metamodel/SourceSection"/>

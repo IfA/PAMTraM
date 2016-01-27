@@ -3,6 +3,7 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
+import pamtram.ReferenceableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ import pamtram.NamedElement;
  * @model
  * @generated
  */
-public interface GlobalValue extends NamedElement {
+public interface GlobalValue extends NamedElement, ReferenceableElement {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

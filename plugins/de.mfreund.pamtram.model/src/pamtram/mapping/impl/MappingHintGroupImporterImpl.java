@@ -2,6 +2,7 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -13,8 +14,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
+import pamtram.condition.ComplexCondition;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -32,6 +35,8 @@ import pamtram.metamodel.TargetSectionClass;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#isDeactivated <em>Deactivated</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getConditionRef <em>Condition Ref</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getHintGroup <em>Hint Group</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getMappingHints <em>Mapping Hints</em>}</li>
@@ -59,6 +64,26 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * @ordered
 	 */
 	protected boolean deactivated = DEACTIVATED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCondition()
+	 * @generated
+	 * @ordered
+	 */
+	protected ComplexCondition condition;
+
+	/**
+	 * The cached value of the '{@link #getConditionRef() <em>Condition Ref</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConditionRef()
+	 * @generated
+	 * @ordered
+	 */
+	protected ComplexCondition conditionRef;
 
 	/**
 	 * The cached value of the '{@link #getHintGroup() <em>Hint Group</em>}' reference.
@@ -137,6 +162,87 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED, oldDeactivated, deactivated));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexCondition getCondition() {
+		return condition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCondition(ComplexCondition newCondition, NotificationChain msgs) {
+		ComplexCondition oldCondition = condition;
+		condition = newCondition;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION, oldCondition, newCondition);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCondition(ComplexCondition newCondition) {
+		if (newCondition != condition) {
+			NotificationChain msgs = null;
+			if (condition != null)
+				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION, null, msgs);
+			if (newCondition != null)
+				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION, null, msgs);
+			msgs = basicSetCondition(newCondition, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION, newCondition, newCondition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexCondition getConditionRef() {
+		if (conditionRef != null && conditionRef.eIsProxy()) {
+			InternalEObject oldConditionRef = (InternalEObject)conditionRef;
+			conditionRef = (ComplexCondition)eResolveProxy(oldConditionRef);
+			if (conditionRef != oldConditionRef) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF, oldConditionRef, conditionRef));
+			}
+		}
+		return conditionRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexCondition basicGetConditionRef() {
+		return conditionRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConditionRef(ComplexCondition newConditionRef) {
+		ComplexCondition oldConditionRef = conditionRef;
+		conditionRef = newConditionRef;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF, oldConditionRef, conditionRef));
 	}
 
 	/**
@@ -275,9 +381,20 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean checkCondition(final ComplexCondition condition) {
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!ConditionalElement!checkCondition(http://mfreund.de/pamtram/condition!ComplexCondition)
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+				return basicSetCondition(null, msgs);
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
 				return ((InternalEList<?>)getMappingHints()).basicRemove(otherEnd, msgs);
 		}
@@ -294,6 +411,11 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
 				return isDeactivated();
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+				return getCondition();
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
+				if (resolve) return getConditionRef();
+				return basicGetConditionRef();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				if (resolve) return getHintGroup();
 				return basicGetHintGroup();
@@ -317,6 +439,12 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
 				setDeactivated((Boolean)newValue);
+				return;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+				setCondition((ComplexCondition)newValue);
+				return;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
+				setConditionRef((ComplexCondition)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				setHintGroup((ExportedMappingHintGroup)newValue);
@@ -343,6 +471,12 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
 				setDeactivated(DEACTIVATED_EDEFAULT);
 				return;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+				setCondition((ComplexCondition)null);
+				return;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
+				setConditionRef((ComplexCondition)null);
+				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				setHintGroup((ExportedMappingHintGroup)null);
 				return;
@@ -366,6 +500,10 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
 				return deactivated != DEACTIVATED_EDEFAULT;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+				return condition != null;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
+				return conditionRef != null;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				return hintGroup != null;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
@@ -386,6 +524,13 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		if (baseClass == DeactivatableElement.class) {
 			switch (derivedFeatureID) {
 				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED: return PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED;
+				default: return -1;
+			}
+		}
+		if (baseClass == ConditionalElement.class) {
+			switch (derivedFeatureID) {
+				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION;
+				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF;
 				default: return -1;
 			}
 		}
@@ -410,12 +555,59 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				default: return -1;
 			}
 		}
+		if (baseClass == ConditionalElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF;
+				default: return -1;
+			}
+		}
 		if (baseClass == InstantiableMappingHintGroup.class) {
 			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == DeactivatableElement.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ConditionalElement.class) {
+			switch (baseOperationID) {
+				case PamtramPackage.CONDITIONAL_ELEMENT___CHECK_CONDITION__COMPLEXCONDITION: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER___CHECK_CONDITION__COMPLEXCONDITION;
+				default: return -1;
+			}
+		}
+		if (baseClass == InstantiableMappingHintGroup.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___CHECK_CONDITION__COMPLEXCONDITION:
+				return checkCondition((ComplexCondition)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

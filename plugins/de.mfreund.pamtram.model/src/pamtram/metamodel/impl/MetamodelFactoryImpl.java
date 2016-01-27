@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
@@ -18,13 +17,15 @@ import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.FileAttribute;
+import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.RangeBound;
+import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SubstringMatcher;
@@ -91,14 +92,15 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
 			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: return createSourceSectionAttribute();
-			case MetamodelPackage.ACTUAL_ATTRIBUTE: return createActualAttribute();
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE: return createVirtualAttribute();
 			case MetamodelPackage.EQUALITY_MATCHER: return createEqualityMatcher();
 			case MetamodelPackage.SUBSTRING_MATCHER: return createSubstringMatcher();
 			case MetamodelPackage.BEGINNING_MATCHER: return createBeginningMatcher();
 			case MetamodelPackage.ENDING_MATCHER: return createEndingMatcher();
 			case MetamodelPackage.REG_EX_MATCHER: return createRegExMatcher();
+			case MetamodelPackage.RANGE_CONSTRAINT: return createRangeConstraint();
+			case MetamodelPackage.RANGE_BOUND: return createRangeBound();
+			case MetamodelPackage.INSTANCE_POINTER: return createInstancePointer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -273,26 +275,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute createSourceSectionAttribute() {
-		SourceSectionAttributeImpl sourceSectionAttribute = new SourceSectionAttributeImpl();
-		return sourceSectionAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActualAttribute createActualAttribute() {
-		ActualAttributeImpl actualAttribute = new ActualAttributeImpl();
-		return actualAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public VirtualAttribute createVirtualAttribute() {
 		VirtualAttributeImpl virtualAttribute = new VirtualAttributeImpl();
 		return virtualAttribute;
@@ -346,6 +328,36 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public RegExMatcher createRegExMatcher() {
 		RegExMatcherImpl regExMatcher = new RegExMatcherImpl();
 		return regExMatcher;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RangeConstraint createRangeConstraint() {
+		RangeConstraintImpl rangeConstraint = new RangeConstraintImpl();
+		return rangeConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RangeBound createRangeBound() {
+		RangeBoundImpl rangeBound = new RangeBoundImpl();
+		return rangeBound;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstancePointer createInstancePointer() {
+		InstancePointerImpl instancePointer = new InstancePointerImpl();
+		return instancePointer;
 	}
 
 	/**

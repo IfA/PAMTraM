@@ -2,7 +2,7 @@
  */
 package pamtram.condition;
 
-import org.eclipse.emf.ecore.EObject;
+import pamtram.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +14,14 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface ComplexCondition extends EObject {
+public interface ComplexCondition extends NamedElement {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!ComplexCondition!checkCondition(http://mfreund.de/pamtram/condition!ComplexCondition)'"
+	 * @generated
+	 */
+	boolean checkCondition(ComplexCondition condition);
 } // ComplexCondition

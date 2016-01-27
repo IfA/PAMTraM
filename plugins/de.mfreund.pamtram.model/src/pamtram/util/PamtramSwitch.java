@@ -115,6 +115,24 @@ public class PamtramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PamtramPackage.CONDITIONAL_ELEMENT: {
+				ConditionalElement conditionalElement = (ConditionalElement)theEObject;
+				T result = caseConditionalElement(conditionalElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PamtramPackage.CONDITIONAL_MODEL: {
+				ConditionalModel conditionalModel = (ConditionalModel)theEObject;
+				T result = caseConditionalModel(conditionalModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PamtramPackage.REFERENCEABLE_ELEMENT: {
+				ReferenceableElement referenceableElement = (ReferenceableElement)theEObject;
+				T result = caseReferenceableElement(referenceableElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -221,6 +239,51 @@ public class PamtramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMappingModel(MappingModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalElement(ConditionalElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalModel(ConditionalModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Referenceable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Referenceable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReferenceableElement(ReferenceableElement object) {
 		return null;
 	}
 

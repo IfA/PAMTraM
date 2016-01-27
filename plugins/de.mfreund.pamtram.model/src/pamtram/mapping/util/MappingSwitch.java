@@ -5,8 +5,10 @@ package pamtram.mapping.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
+import pamtram.ReferenceableElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
@@ -98,6 +100,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseInstantiableMappingHintGroup(instantiableMappingHintGroup);
 				if (result == null) result = caseNamedElement(instantiableMappingHintGroup);
 				if (result == null) result = caseDeactivatableElement(instantiableMappingHintGroup);
+				if (result == null) result = caseConditionalElement(instantiableMappingHintGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -108,6 +111,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseInstantiableMappingHintGroup(mappingHintGroup);
 				if (result == null) result = caseNamedElement(mappingHintGroup);
 				if (result == null) result = caseDeactivatableElement(mappingHintGroup);
+				if (result == null) result = caseConditionalElement(mappingHintGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -281,6 +285,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseInstantiableMappingHintGroup(mappingHintGroupImporter);
 				if (result == null) result = caseNamedElement(mappingHintGroupImporter);
 				if (result == null) result = caseDeactivatableElement(mappingHintGroupImporter);
+				if (result == null) result = caseConditionalElement(mappingHintGroupImporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -404,6 +409,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMappingSourceInterface(fixedValue);
 				if (result == null) result = caseAttributeMatcherSourceInterface(fixedValue);
 				if (result == null) result = caseModelConnectionHintSourceInterface(fixedValue);
+				if (result == null) result = caseReferenceableElement(fixedValue);
 				if (result == null) result = caseMappingHintSourceInterface(fixedValue);
 				if (result == null) result = caseNamedElement(fixedValue);
 				if (result == null) result = defaultCase(theEObject);
@@ -413,6 +419,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				GlobalAttribute globalAttribute = (GlobalAttribute)theEObject;
 				T result = caseGlobalAttribute(globalAttribute);
 				if (result == null) result = caseNamedElement(globalAttribute);
+				if (result == null) result = caseReferenceableElement(globalAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -558,6 +565,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				GlobalValue globalValue = (GlobalValue)theEObject;
 				T result = caseGlobalValue(globalValue);
 				if (result == null) result = caseNamedElement(globalValue);
+				if (result == null) result = caseReferenceableElement(globalValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1402,6 +1410,36 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDeactivatableElement(DeactivatableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalElement(ConditionalElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Referenceable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Referenceable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReferenceableElement(ReferenceableElement object) {
 		return null;
 	}
 

@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import pamtram.ReferenceableElement;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcherSourceInterface;
@@ -186,6 +187,11 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 			}
 		}
 		if (baseClass == ModelConnectionHintSourceInterface.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ReferenceableElement.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

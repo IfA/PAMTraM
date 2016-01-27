@@ -13,5 +13,5 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface RegExMatcher extends AttributeValueConstraint {
+public interface RegExMatcher extends SingleReferenceAttributeValueConstraint {
 } // RegExMatcher

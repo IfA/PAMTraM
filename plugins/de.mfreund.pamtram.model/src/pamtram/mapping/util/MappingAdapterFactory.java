@@ -6,8 +6,10 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
+import pamtram.ReferenceableElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
@@ -292,6 +294,14 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDeactivatableElement(DeactivatableElement object) {
 				return createDeactivatableElementAdapter();
+			}
+			@Override
+			public Adapter caseConditionalElement(ConditionalElement object) {
+				return createConditionalElementAdapter();
+			}
+			@Override
+			public Adapter caseReferenceableElement(ReferenceableElement object) {
+				return createReferenceableElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1094,6 +1104,34 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDeactivatableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.ConditionalElement <em>Conditional Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.ConditionalElement
+	 * @generated
+	 */
+	public Adapter createConditionalElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.ReferenceableElement <em>Referenceable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.ReferenceableElement
+	 * @generated
+	 */
+	public Adapter createReferenceableElementAdapter() {
 		return null;
 	}
 

@@ -32,6 +32,7 @@ import pamtram.metamodel.TargetSection;
  *   <li>{@link pamtram.PAMTraM#getActiveMappings <em>Active Mappings</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getGlobalValues <em>Global Values</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getModifierSets <em>Modifier Sets</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getConditionModel <em>Condition Model</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getPAMTraM()
@@ -207,6 +208,22 @@ public interface PAMTraM extends EObject {
 	 * @generated
 	 */
 	EList<AttributeValueModifierSet> getModifierSets();
+
+	/**
+	 * Returns the value of the '<em><b>Condition Model</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.ConditionalModel}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Condition Model</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Condition Model</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_ConditionModel()
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!conditionModel'"
+	 * @generated
+	 */
+	EList<ConditionalModel> getConditionModel();
 
 	/**
 	 * <!-- begin-user-doc -->

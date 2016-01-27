@@ -6,8 +6,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.condition.ComplexCondition;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Mapping</b></em>'.
@@ -17,7 +15,6 @@ import pamtram.condition.ComplexCondition;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.Mapping#getCondition <em>Condition</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getGlobalVariables <em>Global Variables</em>}</li>
@@ -29,33 +26,6 @@ import pamtram.condition.ComplexCondition;
  * @generated
  */
 public interface Mapping extends MappingType {
-	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(ComplexCondition)
-	 * @see pamtram.mapping.MappingPackage#getMapping_Condition()
-	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!condition'"
-	 * @generated
-	 */
-	ComplexCondition getCondition();
-
-	/**
-	 * Sets the value of the '{@link pamtram.mapping.Mapping#getCondition <em>Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' containment reference.
-	 * @see #getCondition()
-	 * @generated
-	 */
-	void setCondition(ComplexCondition value);
-
 	/**
 	 * Returns the value of the '<em><b>Mapping Hint Groups</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.mapping.MappingHintGroupType}.

@@ -58,6 +58,24 @@ public interface PamtramFactory extends EFactory {
 	MappingModel createMappingModel();
 
 	/**
+	 * Returns a new object of class '<em>Conditional Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conditional Model</em>'.
+	 * @generated
+	 */
+	ConditionalModel createConditionalModel();
+
+	/**
+	 * Returns a new object of class '<em>Referenceable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Referenceable Element</em>'.
+	 * @generated
+	 */
+	ReferenceableElement createReferenceableElement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

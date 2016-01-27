@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
-
+import pamtram.ConditionalModel;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
@@ -91,6 +91,7 @@ import pamtram.metamodel.impl.MetamodelPackageImpl;
  *   <li>{@link pamtram.impl.PAMTraMImpl#getActiveMappings <em>Active Mappings</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getGlobalValues <em>Global Values</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getModifierSets <em>Modifier Sets</em>}</li>
+ *   <li>{@link pamtram.impl.PAMTraMImpl#getConditionModel <em>Condition Model</em>}</li>
  * </ul>
  *
  * @generated
@@ -135,6 +136,16 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @ordered
 	 */
 	protected EList<MappingModel> mappingModel;
+
+	/**
+	 * The cached value of the '{@link #getConditionModel() <em>Condition Model</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConditionModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConditionalModel> conditionModel;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -338,6 +349,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Mapping> getActiveMappings() {
 		/**
@@ -456,6 +468,18 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		final List<AttributeValueModifierSet> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.AttributeValueModifierSet.class);
 		assert UNBOXED_collect != null;
 		return (EList<AttributeValueModifierSet>)UNBOXED_collect;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ConditionalModel> getConditionModel() {
+		if (conditionModel == null) {
+			conditionModel = new EObjectResolvingEList<ConditionalModel>(ConditionalModel.class, this, PamtramPackage.PAM_TRA_M__CONDITION_MODEL);
+		}
+		return conditionModel;
 	}
 
 	/**
@@ -1084,6 +1108,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				return getGlobalValues();
 			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
 				return getModifierSets();
+			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
+				return getConditionModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1113,6 +1139,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				getMappingModel().clear();
 				getMappingModel().addAll((Collection<? extends MappingModel>)newValue);
 				return;
+			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
+				getConditionModel().clear();
+				getConditionModel().addAll((Collection<? extends ConditionalModel>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1136,6 +1166,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				return;
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
 				getMappingModel().clear();
+				return;
+			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
+				getConditionModel().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -1169,6 +1202,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				return !getGlobalValues().isEmpty();
 			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
 				return !getModifierSets().isEmpty();
+			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
+				return conditionModel != null && !conditionModel.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1185,9 +1220,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			case PamtramPackage.PAM_TRA_M___MERGE_EXTENDS:
 				mergeExtends();
 				return null;
-			case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP:
+			case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1:
 				return sourceSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP:
+			case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1:
 				return targetSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

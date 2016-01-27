@@ -139,24 +139,6 @@ public interface MetamodelFactory extends EFactory {
 	MetaModelSectionReference createMetaModelSectionReference();
 
 	/**
-	 * Returns a new object of class '<em>Source Section Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Attribute</em>'.
-	 * @generated
-	 */
-	SourceSectionAttribute createSourceSectionAttribute();
-
-	/**
-	 * Returns a new object of class '<em>Actual Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Actual Attribute</em>'.
-	 * @generated
-	 */
-	ActualAttribute createActualAttribute();
-
-	/**
 	 * Returns a new object of class '<em>Virtual Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -209,6 +191,33 @@ public interface MetamodelFactory extends EFactory {
 	 * @generated
 	 */
 	RegExMatcher createRegExMatcher();
+
+	/**
+	 * Returns a new object of class '<em>Range Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Range Constraint</em>'.
+	 * @generated
+	 */
+	RangeConstraint createRangeConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Range Bound</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Range Bound</em>'.
+	 * @generated
+	 */
+	RangeBound createRangeBound();
+
+	/**
+	 * Returns a new object of class '<em>Instance Pointer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Pointer</em>'.
+	 * @generated
+	 */
+	InstancePointer createInstancePointer();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -30,7 +30,6 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import pamtram.condition.ComplexCondition;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -47,7 +46,6 @@ import pamtram.mapping.MappingTables;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.MappingImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getGlobalVariables <em>Global Variables</em>}</li>
@@ -57,16 +55,6 @@ import pamtram.mapping.MappingTables;
  * @generated
  */
 public class MappingImpl extends MappingTypeImpl implements Mapping {
-	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCondition()
-	 * @generated
-	 * @ordered
-	 */
-	protected ComplexCondition condition;
-
 	/**
 	 * The cached value of the '{@link #getMappingHintGroups() <em>Mapping Hint Groups</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -134,51 +122,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.MAPPING;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ComplexCondition getCondition() {
-		return condition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCondition(ComplexCondition newCondition, NotificationChain msgs) {
-		ComplexCondition oldCondition = condition;
-		condition = newCondition;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__CONDITION, oldCondition, newCondition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCondition(ComplexCondition newCondition) {
-		if (newCondition != condition) {
-			NotificationChain msgs = null;
-			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING__CONDITION, null, msgs);
-			if (newCondition != null)
-				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING__CONDITION, null, msgs);
-			msgs = basicSetCondition(newCondition, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__CONDITION, newCondition, newCondition));
 	}
 
 	/**
@@ -432,8 +375,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				return basicSetCondition(null, msgs);
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return ((InternalEList<?>)getMappingHintGroups()).basicRemove(otherEnd, msgs);
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
@@ -452,8 +393,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				return getCondition();
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return getMappingHintGroups();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
@@ -475,9 +414,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				setCondition((ComplexCondition)newValue);
-				return;
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				getMappingHintGroups().clear();
 				getMappingHintGroups().addAll((Collection<? extends MappingHintGroupType>)newValue);
@@ -505,9 +441,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				setCondition((ComplexCondition)null);
-				return;
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				getMappingHintGroups().clear();
 				return;
@@ -532,8 +465,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				return condition != null;
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return mappingHintGroups != null && !mappingHintGroups.isEmpty();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
@@ -559,9 +490,9 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getActiveMappingHintGroups();
 			case MappingPackage.MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS:
 				return getActiveImportedMappingHintGroups();
-			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_1:
 				return containsHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_1:
 				return containsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

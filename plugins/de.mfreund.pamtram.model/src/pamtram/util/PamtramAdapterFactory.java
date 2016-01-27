@@ -96,6 +96,18 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 				return createMappingModelAdapter();
 			}
 			@Override
+			public Adapter caseConditionalElement(ConditionalElement object) {
+				return createConditionalElementAdapter();
+			}
+			@Override
+			public Adapter caseConditionalModel(ConditionalModel object) {
+				return createConditionalModelAdapter();
+			}
+			@Override
+			public Adapter caseReferenceableElement(ReferenceableElement object) {
+				return createReferenceableElementAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -210,6 +222,48 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappingModelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.ConditionalElement <em>Conditional Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.ConditionalElement
+	 * @generated
+	 */
+	public Adapter createConditionalElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.ConditionalModel <em>Conditional Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.ConditionalModel
+	 * @generated
+	 */
+	public Adapter createConditionalModelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.ReferenceableElement <em>Referenceable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.ReferenceableElement
+	 * @generated
+	 */
+	public Adapter createReferenceableElementAdapter() {
 		return null;
 	}
 

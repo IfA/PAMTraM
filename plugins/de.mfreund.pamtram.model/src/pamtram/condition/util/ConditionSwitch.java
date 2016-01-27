@@ -5,6 +5,7 @@ package pamtram.condition.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import pamtram.NamedElement;
 import pamtram.condition.*;
 import pamtram.condition.And;
 import pamtram.condition.ComplexCondition;
@@ -73,6 +74,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 			case ConditionPackage.COMPLEX_CONDITION: {
 				ComplexCondition complexCondition = (ComplexCondition)theEObject;
 				T result = caseComplexCondition(complexCondition);
+				if (result == null) result = caseNamedElement(complexCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -80,27 +82,68 @@ public class ConditionSwitch<T> extends Switch<T> {
 				Condition condition = (Condition)theEObject;
 				T result = caseCondition(condition);
 				if (result == null) result = caseComplexCondition(condition);
+				if (result == null) result = caseNamedElement(condition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR: {
+				MultipleConditionOperator multipleConditionOperator = (MultipleConditionOperator)theEObject;
+				T result = caseMultipleConditionOperator(multipleConditionOperator);
+				if (result == null) result = caseComplexCondition(multipleConditionOperator);
+				if (result == null) result = caseNamedElement(multipleConditionOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ConditionPackage.AND: {
 				And and = (And)theEObject;
 				T result = caseAnd(and);
+				if (result == null) result = caseMultipleConditionOperator(and);
 				if (result == null) result = caseComplexCondition(and);
+				if (result == null) result = caseNamedElement(and);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ConditionPackage.OR: {
 				Or or = (Or)theEObject;
 				T result = caseOr(or);
+				if (result == null) result = caseMultipleConditionOperator(or);
 				if (result == null) result = caseComplexCondition(or);
+				if (result == null) result = caseNamedElement(or);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConditionPackage.SINGLE_CONDITION_OPERATOR: {
+				SingleConditionOperator singleConditionOperator = (SingleConditionOperator)theEObject;
+				T result = caseSingleConditionOperator(singleConditionOperator);
+				if (result == null) result = caseComplexCondition(singleConditionOperator);
+				if (result == null) result = caseNamedElement(singleConditionOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ConditionPackage.NOT: {
 				Not not = (Not)theEObject;
 				T result = caseNot(not);
+				if (result == null) result = caseSingleConditionOperator(not);
 				if (result == null) result = caseComplexCondition(not);
+				if (result == null) result = caseNamedElement(not);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConditionPackage.ATTRIBUTE_CONDITION: {
+				AttributeCondition attributeCondition = (AttributeCondition)theEObject;
+				T result = caseAttributeCondition(attributeCondition);
+				if (result == null) result = caseCondition(attributeCondition);
+				if (result == null) result = caseComplexCondition(attributeCondition);
+				if (result == null) result = caseNamedElement(attributeCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConditionPackage.SECTION_CONDITION: {
+				SectionCondition sectionCondition = (SectionCondition)theEObject;
+				T result = caseSectionCondition(sectionCondition);
+				if (result == null) result = caseCondition(sectionCondition);
+				if (result == null) result = caseComplexCondition(sectionCondition);
+				if (result == null) result = caseNamedElement(sectionCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -139,6 +182,21 @@ public class ConditionSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multiple Condition Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multiple Condition Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultipleConditionOperator(MultipleConditionOperator object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>And</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -169,6 +227,21 @@ public class ConditionSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Single Condition Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Single Condition Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSingleConditionOperator(SingleConditionOperator object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Not</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -180,6 +253,51 @@ public class ConditionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNot(Not object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeCondition(AttributeCondition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Section Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Section Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSectionCondition(SectionCondition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
 		return null;
 	}
 

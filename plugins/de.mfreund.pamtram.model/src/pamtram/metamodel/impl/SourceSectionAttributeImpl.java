@@ -48,23 +48,13 @@ import pamtram.metamodel.SourceSectionReference;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionAttribute {
-	/**
-	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttribute()
-	 * @generated
-	 * @ordered
-	 */
-	protected EAttribute attribute;
-
+public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionAttribute {
 	/**
 	 * The cached value of the '{@link #getValueConstraint() <em>Value Constraint</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -74,6 +64,16 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, Sou
 	 * @ordered
 	 */
 	protected EList<AttributeValueConstraint> valueConstraint;
+
+	/**
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected EAttribute attribute;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,45 +95,6 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, Sou
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAttribute() {
-		if (attribute != null && attribute.eIsProxy()) {
-			InternalEObject oldAttribute = (InternalEObject)attribute;
-			attribute = (EAttribute)eResolveProxy(oldAttribute);
-			if (attribute != oldAttribute) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
-			}
-		}
-		return attribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute basicGetAttribute() {
-		return attribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAttributeGen(EAttribute newAttribute) {
-		EAttribute oldAttribute = attribute;
-		attribute = newAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
-	}
-	
-	/**
 	 * Before setting the {@link newEAttribute}, update the name.
 	 */
 	@Override
@@ -153,6 +114,32 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, Sou
 			valueConstraint = new EObjectContainmentEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
 		}
 		return valueConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute() {
+		if (attribute != null && attribute.eIsProxy()) {
+			InternalEObject oldAttribute = (InternalEObject)attribute;
+			attribute = (EAttribute)eResolveProxy(oldAttribute);
+			if (attribute != oldAttribute) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+			}
+		}
+		return attribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute basicGetAttribute() {
+		return attribute;
 	}
 
 	/**
@@ -293,11 +280,11 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, Sou
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+				return getValueConstraint();
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				return getValueConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -311,12 +298,12 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, Sou
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
-				setAttribute((EAttribute)newValue);
-				return;
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				getValueConstraint().clear();
 				getValueConstraint().addAll((Collection<? extends AttributeValueConstraint>)newValue);
+				return;
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
+				setAttribute((EAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -330,11 +317,11 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, Sou
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
-				setAttribute((EAttribute)null);
-				return;
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				getValueConstraint().clear();
+				return;
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
+				setAttribute((EAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -348,10 +335,10 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, Sou
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
-				return attribute != null;
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				return valueConstraint != null && !valueConstraint.isEmpty();
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
+				return attribute != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -365,7 +352,7 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, Sou
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1:
 				return attributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

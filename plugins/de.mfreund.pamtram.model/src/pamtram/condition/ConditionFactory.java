@@ -22,15 +22,6 @@ public interface ConditionFactory extends EFactory {
 	ConditionFactory eINSTANCE = pamtram.condition.impl.ConditionFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Condition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Condition</em>'.
-	 * @generated
-	 */
-	Condition createCondition();
-
-	/**
 	 * Returns a new object of class '<em>And</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,6 +47,24 @@ public interface ConditionFactory extends EFactory {
 	 * @generated
 	 */
 	Not createNot();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Condition</em>'.
+	 * @generated
+	 */
+	AttributeCondition createAttributeCondition();
+
+	/**
+	 * Returns a new object of class '<em>Section Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Section Condition</em>'.
+	 * @generated
+	 */
+	SectionCondition createSectionCondition();
 
 	/**
 	 * Returns the package supported by this factory.

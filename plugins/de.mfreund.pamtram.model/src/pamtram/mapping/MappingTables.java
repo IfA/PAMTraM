@@ -39,7 +39,6 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import pamtram.PamtramPackage;
 import pamtram.PamtramTables;
-import pamtram.condition.ConditionPackage;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
 import pamtram.metamodel.MetamodelPackage;
@@ -72,7 +71,6 @@ public class MappingTables
 	 */
     public static final /*@NonNull*/ /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram = IdManager.getNsURIPackageId("http://mfreund.de/pamtram", null, PamtramPackage.eINSTANCE);
-    public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/condition", null, ConditionPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/mapping", null, MappingPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/metamodel", null, MetamodelPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
@@ -90,7 +88,6 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_CardinalityMapping = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("CardinalityMapping", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Class = MappingTables.PACKid_$metamodel$.getClassId("Class", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Class_0 = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Class", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ComplexCondition = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_EAttribute = MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_EClass = MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EClass", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_EReference = MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EReference", 0);
@@ -540,11 +537,13 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__NamedElement = new ExecutorFragment(Types._FixedValue, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__OclAny = new ExecutorFragment(Types._FixedValue, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__OclElement = new ExecutorFragment(Types._FixedValue, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _FixedValue__ReferenceableElement = new ExecutorFragment(Types._FixedValue, PamtramTables.Types._ReferenceableElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttribute__GlobalAttribute = new ExecutorFragment(Types._GlobalAttribute, MappingTables.Types._GlobalAttribute);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttribute__NamedElement = new ExecutorFragment(Types._GlobalAttribute, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttribute__OclAny = new ExecutorFragment(Types._GlobalAttribute, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttribute__OclElement = new ExecutorFragment(Types._GlobalAttribute, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _GlobalAttribute__ReferenceableElement = new ExecutorFragment(Types._GlobalAttribute, PamtramTables.Types._ReferenceableElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__AttributeMappingSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._AttributeMappingSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__AttributeMatcherSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._AttributeMatcherSourceInterface);
@@ -559,6 +558,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _GlobalValue__NamedElement = new ExecutorFragment(Types._GlobalValue, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalValue__OclAny = new ExecutorFragment(Types._GlobalValue, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalValue__OclElement = new ExecutorFragment(Types._GlobalValue, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _GlobalValue__ReferenceableElement = new ExecutorFragment(Types._GlobalValue, PamtramTables.Types._ReferenceableElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _HintImporterMappingHint__HintImporterMappingHint = new ExecutorFragment(Types._HintImporterMappingHint, MappingTables.Types._HintImporterMappingHint);
 		private static final /*@NonNull*/ ExecutorFragment _HintImporterMappingHint__MappingHintBaseType = new ExecutorFragment(Types._HintImporterMappingHint, MappingTables.Types._MappingHintBaseType);
@@ -567,6 +567,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _HintImporterMappingHint__OclAny = new ExecutorFragment(Types._HintImporterMappingHint, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _HintImporterMappingHint__OclElement = new ExecutorFragment(Types._HintImporterMappingHint, OCLstdlibTables.Types._OclElement);
 
+		private static final /*@NonNull*/ ExecutorFragment _InstantiableMappingHintGroup__ConditionalElement = new ExecutorFragment(Types._InstantiableMappingHintGroup, PamtramTables.Types._ConditionalElement);
 		private static final /*@NonNull*/ ExecutorFragment _InstantiableMappingHintGroup__DeactivatableElement = new ExecutorFragment(Types._InstantiableMappingHintGroup, PamtramTables.Types._DeactivatableElement);
 		private static final /*@NonNull*/ ExecutorFragment _InstantiableMappingHintGroup__InstantiableMappingHintGroup = new ExecutorFragment(Types._InstantiableMappingHintGroup, MappingTables.Types._InstantiableMappingHintGroup);
 		private static final /*@NonNull*/ ExecutorFragment _InstantiableMappingHintGroup__NamedElement = new ExecutorFragment(Types._InstantiableMappingHintGroup, PamtramTables.Types._NamedElement);
@@ -641,6 +642,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintBaseType__OclAny = new ExecutorFragment(Types._MappingHintBaseType, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintBaseType__OclElement = new ExecutorFragment(Types._MappingHintBaseType, OCLstdlibTables.Types._OclElement);
 
+		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroup__ConditionalElement = new ExecutorFragment(Types._MappingHintGroup, PamtramTables.Types._ConditionalElement);
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroup__DeactivatableElement = new ExecutorFragment(Types._MappingHintGroup, PamtramTables.Types._DeactivatableElement);
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroup__InstantiableMappingHintGroup = new ExecutorFragment(Types._MappingHintGroup, MappingTables.Types._InstantiableMappingHintGroup);
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroup__MappingHintGroup = new ExecutorFragment(Types._MappingHintGroup, MappingTables.Types._MappingHintGroup);
@@ -649,6 +651,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroup__OclAny = new ExecutorFragment(Types._MappingHintGroup, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroup__OclElement = new ExecutorFragment(Types._MappingHintGroup, OCLstdlibTables.Types._OclElement);
 
+		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroupImporter__ConditionalElement = new ExecutorFragment(Types._MappingHintGroupImporter, PamtramTables.Types._ConditionalElement);
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroupImporter__DeactivatableElement = new ExecutorFragment(Types._MappingHintGroupImporter, PamtramTables.Types._DeactivatableElement);
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroupImporter__InstantiableMappingHintGroup = new ExecutorFragment(Types._MappingHintGroupImporter, MappingTables.Types._InstantiableMappingHintGroup);
 		private static final /*@NonNull*/ ExecutorFragment _MappingHintGroupImporter__MappingHintGroupImporter = new ExecutorFragment(Types._MappingHintGroupImporter, MappingTables.Types._MappingHintGroupImporter);
@@ -909,10 +912,9 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorProperty _MappedAttributeValueExpander__hintsToExpand = new EcoreExecutorProperty(MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, Types._MappedAttributeValueExpander, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _Mapping__abstract = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__ABSTRACT, Types._Mapping, 0);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__condition = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__CONDITION, Types._Mapping, 1);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__globalVariables = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES, Types._Mapping, 2);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__importedMappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS, Types._Mapping, 3);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__mappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, Types._Mapping, 4);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__globalVariables = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES, Types._Mapping, 1);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__importedMappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS, Types._Mapping, 2);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__mappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, Types._Mapping, 3);
 
 		public static final /*@NonNull*/ ExecutorProperty _MappingHint__MappingHintGroupType__mappingHints = new ExecutorPropertyWithImplementation("MappingHintGroupType", Types._MappingHint, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS));
 
@@ -1206,22 +1208,24 @@ public class MappingTables
 			Fragments._FixedValue__OclAny /* 0 */,
 			Fragments._FixedValue__OclElement /* 1 */,
 			Fragments._FixedValue__NamedElement /* 2 */,
+			Fragments._FixedValue__ReferenceableElement /* 2 */,
 			Fragments._FixedValue__MappingHintSourceInterface /* 3 */,
 			Fragments._FixedValue__AttributeMappingSourceInterface /* 4 */,
 			Fragments._FixedValue__AttributeMatcherSourceInterface /* 4 */,
 			Fragments._FixedValue__ModelConnectionHintSourceInterface /* 4 */,
 			Fragments._FixedValue__FixedValue /* 5 */
 		};
-		private static final /*@NonNull*/ int[] __FixedValue = { 1,1,1,1,3,1 };
+		private static final /*@NonNull*/ int[] __FixedValue = { 1,1,2,1,3,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _GlobalAttribute =
 		{
 			Fragments._GlobalAttribute__OclAny /* 0 */,
 			Fragments._GlobalAttribute__OclElement /* 1 */,
 			Fragments._GlobalAttribute__NamedElement /* 2 */,
+			Fragments._GlobalAttribute__ReferenceableElement /* 2 */,
 			Fragments._GlobalAttribute__GlobalAttribute /* 3 */
 		};
-		private static final /*@NonNull*/ int[] __GlobalAttribute = { 1,1,1,1 };
+		private static final /*@NonNull*/ int[] __GlobalAttribute = { 1,1,2,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _GlobalAttributeImporter =
 		{
@@ -1241,9 +1245,10 @@ public class MappingTables
 			Fragments._GlobalValue__OclAny /* 0 */,
 			Fragments._GlobalValue__OclElement /* 1 */,
 			Fragments._GlobalValue__NamedElement /* 2 */,
+			Fragments._GlobalValue__ReferenceableElement /* 2 */,
 			Fragments._GlobalValue__GlobalValue /* 3 */
 		};
-		private static final /*@NonNull*/ int[] __GlobalValue = { 1,1,1,1 };
+		private static final /*@NonNull*/ int[] __GlobalValue = { 1,1,2,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _HintImporterMappingHint =
 		{
@@ -1260,11 +1265,12 @@ public class MappingTables
 		{
 			Fragments._InstantiableMappingHintGroup__OclAny /* 0 */,
 			Fragments._InstantiableMappingHintGroup__OclElement /* 1 */,
+			Fragments._InstantiableMappingHintGroup__ConditionalElement /* 2 */,
 			Fragments._InstantiableMappingHintGroup__DeactivatableElement /* 2 */,
 			Fragments._InstantiableMappingHintGroup__NamedElement /* 2 */,
 			Fragments._InstantiableMappingHintGroup__InstantiableMappingHintGroup /* 3 */
 		};
-		private static final /*@NonNull*/ int[] __InstantiableMappingHintGroup = { 1,1,2,1 };
+		private static final /*@NonNull*/ int[] __InstantiableMappingHintGroup = { 1,1,3,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _LocalMappedAttributeValueExpander =
 		{
@@ -1370,24 +1376,26 @@ public class MappingTables
 		{
 			Fragments._MappingHintGroup__OclAny /* 0 */,
 			Fragments._MappingHintGroup__OclElement /* 1 */,
+			Fragments._MappingHintGroup__ConditionalElement /* 2 */,
 			Fragments._MappingHintGroup__DeactivatableElement /* 2 */,
 			Fragments._MappingHintGroup__NamedElement /* 2 */,
 			Fragments._MappingHintGroup__InstantiableMappingHintGroup /* 3 */,
 			Fragments._MappingHintGroup__MappingHintGroupType /* 3 */,
 			Fragments._MappingHintGroup__MappingHintGroup /* 4 */
 		};
-		private static final /*@NonNull*/ int[] __MappingHintGroup = { 1,1,2,2,1 };
+		private static final /*@NonNull*/ int[] __MappingHintGroup = { 1,1,3,2,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _MappingHintGroupImporter =
 		{
 			Fragments._MappingHintGroupImporter__OclAny /* 0 */,
 			Fragments._MappingHintGroupImporter__OclElement /* 1 */,
+			Fragments._MappingHintGroupImporter__ConditionalElement /* 2 */,
 			Fragments._MappingHintGroupImporter__DeactivatableElement /* 2 */,
 			Fragments._MappingHintGroupImporter__NamedElement /* 2 */,
 			Fragments._MappingHintGroupImporter__InstantiableMappingHintGroup /* 3 */,
 			Fragments._MappingHintGroupImporter__MappingHintGroupImporter /* 4 */
 		};
-		private static final /*@NonNull*/ int[] __MappingHintGroupImporter = { 1,1,2,1,1 };
+		private static final /*@NonNull*/ int[] __MappingHintGroupImporter = { 1,1,3,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _MappingHintGroupType =
 		{
@@ -2237,6 +2245,7 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation[] _FixedValue__ReferenceableElement = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttribute__GlobalAttribute = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttribute__NamedElement = {};
@@ -2261,6 +2270,7 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttribute__ReferenceableElement = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttributeImporter__GlobalAttributeImporter = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttributeImporter__AttributeMappingSourceInterface = {};
@@ -2315,6 +2325,7 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation[] _GlobalValue__ReferenceableElement = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _HintImporterMappingHint__HintImporterMappingHint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _HintImporterMappingHint__MappingHintBaseType = {};
@@ -2343,6 +2354,9 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__InstantiableMappingHintGroup = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__ConditionalElement = {
+			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__OclAny = {
@@ -2611,6 +2625,9 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__MappingHintGroup = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__ConditionalElement = {
+			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__InstantiableMappingHintGroup = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__MappingHintGroupType = {};
@@ -2638,6 +2655,9 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__MappingHintGroupImporter = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__ConditionalElement = {
+			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__InstantiableMappingHintGroup = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__NamedElement = {};
@@ -3328,11 +3348,13 @@ public class MappingTables
 			Fragments._FixedValue__NamedElement.initOperations(_FixedValue__NamedElement);
 			Fragments._FixedValue__OclAny.initOperations(_FixedValue__OclAny);
 			Fragments._FixedValue__OclElement.initOperations(_FixedValue__OclElement);
+			Fragments._FixedValue__ReferenceableElement.initOperations(_FixedValue__ReferenceableElement);
 
 			Fragments._GlobalAttribute__GlobalAttribute.initOperations(_GlobalAttribute__GlobalAttribute);
 			Fragments._GlobalAttribute__NamedElement.initOperations(_GlobalAttribute__NamedElement);
 			Fragments._GlobalAttribute__OclAny.initOperations(_GlobalAttribute__OclAny);
 			Fragments._GlobalAttribute__OclElement.initOperations(_GlobalAttribute__OclElement);
+			Fragments._GlobalAttribute__ReferenceableElement.initOperations(_GlobalAttribute__ReferenceableElement);
 
 			Fragments._GlobalAttributeImporter__AttributeMappingSourceInterface.initOperations(_GlobalAttributeImporter__AttributeMappingSourceInterface);
 			Fragments._GlobalAttributeImporter__AttributeMatcherSourceInterface.initOperations(_GlobalAttributeImporter__AttributeMatcherSourceInterface);
@@ -3347,6 +3369,7 @@ public class MappingTables
 			Fragments._GlobalValue__NamedElement.initOperations(_GlobalValue__NamedElement);
 			Fragments._GlobalValue__OclAny.initOperations(_GlobalValue__OclAny);
 			Fragments._GlobalValue__OclElement.initOperations(_GlobalValue__OclElement);
+			Fragments._GlobalValue__ReferenceableElement.initOperations(_GlobalValue__ReferenceableElement);
 
 			Fragments._HintImporterMappingHint__HintImporterMappingHint.initOperations(_HintImporterMappingHint__HintImporterMappingHint);
 			Fragments._HintImporterMappingHint__MappingHintBaseType.initOperations(_HintImporterMappingHint__MappingHintBaseType);
@@ -3355,6 +3378,7 @@ public class MappingTables
 			Fragments._HintImporterMappingHint__OclAny.initOperations(_HintImporterMappingHint__OclAny);
 			Fragments._HintImporterMappingHint__OclElement.initOperations(_HintImporterMappingHint__OclElement);
 
+			Fragments._InstantiableMappingHintGroup__ConditionalElement.initOperations(_InstantiableMappingHintGroup__ConditionalElement);
 			Fragments._InstantiableMappingHintGroup__DeactivatableElement.initOperations(_InstantiableMappingHintGroup__DeactivatableElement);
 			Fragments._InstantiableMappingHintGroup__InstantiableMappingHintGroup.initOperations(_InstantiableMappingHintGroup__InstantiableMappingHintGroup);
 			Fragments._InstantiableMappingHintGroup__NamedElement.initOperations(_InstantiableMappingHintGroup__NamedElement);
@@ -3429,6 +3453,7 @@ public class MappingTables
 			Fragments._MappingHintBaseType__OclAny.initOperations(_MappingHintBaseType__OclAny);
 			Fragments._MappingHintBaseType__OclElement.initOperations(_MappingHintBaseType__OclElement);
 
+			Fragments._MappingHintGroup__ConditionalElement.initOperations(_MappingHintGroup__ConditionalElement);
 			Fragments._MappingHintGroup__DeactivatableElement.initOperations(_MappingHintGroup__DeactivatableElement);
 			Fragments._MappingHintGroup__InstantiableMappingHintGroup.initOperations(_MappingHintGroup__InstantiableMappingHintGroup);
 			Fragments._MappingHintGroup__MappingHintGroup.initOperations(_MappingHintGroup__MappingHintGroup);
@@ -3437,6 +3462,7 @@ public class MappingTables
 			Fragments._MappingHintGroup__OclAny.initOperations(_MappingHintGroup__OclAny);
 			Fragments._MappingHintGroup__OclElement.initOperations(_MappingHintGroup__OclElement);
 
+			Fragments._MappingHintGroupImporter__ConditionalElement.initOperations(_MappingHintGroupImporter__ConditionalElement);
 			Fragments._MappingHintGroupImporter__DeactivatableElement.initOperations(_MappingHintGroupImporter__DeactivatableElement);
 			Fragments._MappingHintGroupImporter__InstantiableMappingHintGroup.initOperations(_MappingHintGroupImporter__InstantiableMappingHintGroup);
 			Fragments._MappingHintGroupImporter__MappingHintGroupImporter.initOperations(_MappingHintGroupImporter__MappingHintGroupImporter);
@@ -3758,7 +3784,6 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _Mapping = {
 			MappingTables.Properties._Mapping__abstract,
-			MappingTables.Properties._Mapping__condition,
 			MappingTables.Properties._Mapping__globalVariables,
 			MappingTables.Properties._Mapping__importedMappingHintGroups,
 			MappingTables.Properties._Mapping__mappingHintGroups,

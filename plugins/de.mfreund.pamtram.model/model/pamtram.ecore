@@ -776,6 +776,8 @@
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" upperBound="-1"
           eType="#//metamodel/AttributeValueConstraint" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Attribute">
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>

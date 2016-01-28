@@ -1,7 +1,6 @@
 package de.mfreund.pamtram.pages;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,13 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
-import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
-import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -25,7 +19,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.layout.GridLayout;
@@ -33,29 +26,15 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.List;
 
 import de.mfreund.pamtram.util.BundleContentHelper;
-import de.mfreund.pamtram.util.ResourceHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
 import pamtram.util.EPackageHelper;
 
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
-import org.eclipse.jface.viewers.DecoratingLabelProvider;
-import org.eclipse.jface.viewers.IBaseLabelProvider;
-import org.eclipse.jface.viewers.IDecorationContext;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.jface.viewers.LabelDecorator;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.window.ToolTip;
 
@@ -98,6 +77,7 @@ public class EPackageSpecificationPage extends WizardPage {
 	 * This keeps track of the selected meta-model files.
 	 */
 	private List fileList;
+	
 	/**
 	 * This keeps track of the selected namespace URIs.
 	 */
@@ -296,5 +276,18 @@ public class EPackageSpecificationPage extends WizardPage {
 	private void updateEPackageViewer() {
 		ePackageViewer.setInput(new ArrayList<>());
 		ePackageViewer.setInput(namespaceURIs);		
+		getWizard().getContainer().updateButtons();
+	}
+	
+	@Override
+	public boolean isPageComplete() {
+		
+		// check if all specified namespace URIs are registered
+		for (String namespaceURI : namespaceURIs) {
+			if(!registry.containsKey(namespaceURI)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

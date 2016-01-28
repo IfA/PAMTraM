@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -18,18 +25,39 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.List;
 
+import de.mfreund.pamtram.util.BundleContentHelper;
+import de.mfreund.pamtram.util.ResourceHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
 import pamtram.util.EPackageHelper;
 
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
+import org.eclipse.jface.viewers.DecoratingLabelProvider;
+import org.eclipse.jface.viewers.IBaseLabelProvider;
+import org.eclipse.jface.viewers.IDecorationContext;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.LabelDecorator;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.StyledCellLabelProvider;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.jface.window.ToolTip;
 
 /**
  * A wizard page that allows the specification of {@link EPackage EPackages}. These may be selected either from the 
@@ -39,6 +67,8 @@ import org.eclipse.swt.widgets.Button;
  */
 public class EPackageSpecificationPage extends WizardPage {
 
+	private static final String BUNDLE_ID = "de.mfreund.pamtram.ui";
+	
 	/**
 	 * This keeps track of all registered {@link EPackage EPackages} that can be selected by the user.
 	 */
@@ -47,12 +77,17 @@ public class EPackageSpecificationPage extends WizardPage {
 	/**
 	 * This keeps track of the namespace URIs that are contained in each of the specified meta-model files.
 	 */
-	private Map<String, Collection<String>> metamodelFilesToNamespaceURIs;
+	private Map<String, Set<String>> metamodelFilesToNamespaceURIs;
 	
 	/**
 	 * This keeps track of the meta-model files that specify namespace URIs.
 	 */
-	private Map<String, Collection<String>> namespaceURIsToMetamodelFiles;
+	private Map<String, Set<String>> namespaceURIsToMetamodelFiles;
+	
+	/**
+	 * This keeps track of the selected namespace URIs (those that are displayed in the {@link #ePackageViewer}).
+	 */
+	private Set<String> namespaceURIs;
 
 	/**
 	 * This combo allows the user to specify a namespace URI.
@@ -63,11 +98,10 @@ public class EPackageSpecificationPage extends WizardPage {
 	 * This keeps track of the selected meta-model files.
 	 */
 	private List fileList;
-
 	/**
 	 * This keeps track of the selected namespace URIs.
 	 */
-	private List ePackageList;
+	private TableViewer ePackageViewer;
 	
 	public EPackageSpecificationPage(String pageName, String title, ImageDescriptor titleImage) {
 		super(pageName, title, titleImage);
@@ -80,6 +114,7 @@ public class EPackageSpecificationPage extends WizardPage {
 		
 		metamodelFilesToNamespaceURIs = new HashMap<>();
 		namespaceURIsToMetamodelFiles = new HashMap<>();
+		namespaceURIs = new HashSet<>();
 		
 	}
 	
@@ -98,13 +133,9 @@ public class EPackageSpecificationPage extends WizardPage {
 		container.setLayout(new GridLayout(1, false));
 		
 		Group grpAddMetamodelFiles = new Group(container, SWT.NONE);
-		grpAddMetamodelFiles.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		grpAddMetamodelFiles.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		grpAddMetamodelFiles.setText("Add meta-model files");
 		GridLayout gl_grpAddMetamodelFiles = new GridLayout(3, false);
-		gl_grpAddMetamodelFiles.marginBottom = 3;
-		gl_grpAddMetamodelFiles.marginTop = 3;
-		gl_grpAddMetamodelFiles.marginRight = 3;
-		gl_grpAddMetamodelFiles.marginLeft = 3;
 		grpAddMetamodelFiles.setLayout(gl_grpAddMetamodelFiles);
 		
 		FileFieldEditor fileEditor = new FileFieldEditor("metamodelSelect", "Meta-model file:", grpAddMetamodelFiles);
@@ -120,13 +151,18 @@ public class EPackageSpecificationPage extends WizardPage {
 				if(!metamodelFilesToNamespaceURIs.containsKey(metamodelFile)) {
 				
 					HashMap<String, EPackage> packages = EPackageHelper.getEPackages(metamodelFile, true, false);
-					ArrayList<String> namespaceURIs = new ArrayList<>();
+					
+					if(packages == null || packages.isEmpty()) {
+						return;
+					}
+					
+					HashSet<String> namespaceURIs = new HashSet<>();
 					
 					for (Entry<String, EPackage> entry : packages.entrySet()) {
 						registry.put(entry.getKey(), entry.getValue());
 						namespaceURIs.add(entry.getKey());
 						
-						ArrayList<String> metamodelFiles = new ArrayList<>();
+						HashSet<String> metamodelFiles = new HashSet<>();
 						if(namespaceURIsToMetamodelFiles.get(entry.getKey()) != null) {
 							metamodelFiles.addAll(namespaceURIsToMetamodelFiles.get(entry.getKey()));
 						}
@@ -139,13 +175,15 @@ public class EPackageSpecificationPage extends WizardPage {
 					fileList.add(metamodelFile);
 				
 					updateCombo();
+					updateEPackageViewer();
+					fileEditor.setStringValue("");
 				}				
 			}
 
 		});
 		
-		fileList = new List(grpAddMetamodelFiles, SWT.BORDER);
-		fileList.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		fileList = new List(grpAddMetamodelFiles, SWT.BORDER | SWT.V_SCROLL);
+		fileList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 		fileList.addKeyListener(new KeyListener() {
 
 			@Override
@@ -166,26 +204,24 @@ public class EPackageSpecificationPage extends WizardPage {
 									namespaceURIsToMetamodelFiles.get(namespaceURI).iterator().next().equals(fileList.getSelection()[0])) {
 								
 								registry.remove(namespaceURI);
-								if(Arrays.asList(ePackageList.getItems()).contains(namespaceURI)) {
-									ePackageList.remove(namespaceURI); //TODO only grey out
-								}
 							}
 						}
+						updateEPackageViewer();
 						updateCombo();
 					}
-					
+					metamodelFilesToNamespaceURIs.remove(fileList.getSelection()[0]);
 					fileList.remove(fileList.getSelectionIndex());
 				}
 			}
 		});
 		
 		Group grpSpecifyEpackages = new Group(container, SWT.NONE);
-		grpSpecifyEpackages.setLayout(new GridLayout(2, false));
-		grpSpecifyEpackages.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		grpSpecifyEpackages.setLayout(new GridLayout(3, false));
+		grpSpecifyEpackages.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		grpSpecifyEpackages.setText("Specify EPackages");
 		
 		combo = new Combo(grpSpecifyEpackages, SWT.NONE);
-		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		
 		Button btnAdd = new Button(grpSpecifyEpackages, SWT.NONE);
 		btnAdd.setText("Add...");
@@ -198,15 +234,43 @@ public class EPackageSpecificationPage extends WizardPage {
 				String nsURI = combo.getText();
 				
 				if(nsURI != null && !nsURI.isEmpty() && registry.containsKey(nsURI)) {
-					if(!Arrays.asList(ePackageList.getItems()).contains(nsURI)) {
-						ePackageList.add(nsURI);
-					}
+					namespaceURIs.add(nsURI);
+					updateEPackageViewer();
+					combo.setText("");
 				}
 			}
 		});
 		
-		ePackageList = new List(grpSpecifyEpackages, SWT.BORDER);
-		ePackageList.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		ePackageViewer = new TableViewer(grpSpecifyEpackages, SWT.BORDER | SWT.FULL_SELECTION);
+		ePackageViewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
+		ePackageViewer.setContentProvider(new ArrayContentProvider());
+		ColumnViewerToolTipSupport.enableFor(ePackageViewer, ToolTip.NO_RECREATE); 
+		ePackageViewer.setLabelProvider(new StyledCellLabelProvider() {
+			@Override
+			public void update(ViewerCell cell) {
+				Object element= cell.getElement();
+
+				if(element instanceof String) {
+					cell.setText((String) element);
+					
+					if(!registry.containsKey(element)) {
+						cell.setImage(BundleContentHelper.getBundleImage(BUNDLE_ID, "icons/warning.gif"));
+					}
+				}
+
+				super.update(cell);
+			}
+			@Override
+			public String getToolTipText(Object element) {
+				if(element instanceof String && !registry.containsKey(element)) {
+					return "This namespace URI is neither contained in the global EPackage registry nor specified by one "
+							+ "of the selected meta-model files";					
+				} else {
+					return super.getToolTipText(element);
+				}
+			}
+		});
+				
 		
 	}
 	
@@ -223,5 +287,14 @@ public class EPackageSpecificationPage extends WizardPage {
 		if(combo.getItemCount() == 1) {
 			combo.select(0);
 		}
+	}
+	
+	/**
+	 * Updates the list of namespace URIs displayed in the {@link #ePackageViewer} based on the value of the
+	 * {@link #namespaceURIs}.
+	 */
+	private void updateEPackageViewer() {
+		ePackageViewer.setInput(new ArrayList<>());
+		ePackageViewer.setInput(namespaceURIs);		
 	}
 }

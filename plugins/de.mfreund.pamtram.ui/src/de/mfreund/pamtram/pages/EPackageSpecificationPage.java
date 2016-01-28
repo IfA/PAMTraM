@@ -1,0 +1,227 @@
+package de.mfreund.pamtram.pages;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.jface.preference.FileFieldEditor;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.List;
+
+import de.mfreund.pamtram.util.SelectionListener2;
+import pamtram.util.EPackageHelper;
+
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Button;
+
+/**
+ * A wizard page that allows the specification of {@link EPackage EPackages}. These may be selected either from the 
+ * global {@link org.eclipse.emf.ecore.EPackage.Registry} or from a specified meta-model file (Ecore or XSD).
+ * 
+ * @author mfreund
+ */
+public class EPackageSpecificationPage extends WizardPage {
+
+	/**
+	 * This keeps track of all registered {@link EPackage EPackages} that can be selected by the user.
+	 */
+	private EPackage.Registry registry;
+	
+	/**
+	 * This keeps track of the namespace URIs that are contained in each of the specified meta-model files.
+	 */
+	private Map<String, Collection<String>> metamodelFilesToNamespaceURIs;
+	
+	/**
+	 * This keeps track of the meta-model files that specify namespace URIs.
+	 */
+	private Map<String, Collection<String>> namespaceURIsToMetamodelFiles;
+
+	/**
+	 * This combo allows the user to specify a namespace URI.
+	 */
+	private Combo combo;
+
+	/**
+	 * This keeps track of the selected meta-model files.
+	 */
+	private List fileList;
+
+	/**
+	 * This keeps track of the selected namespace URIs.
+	 */
+	private List ePackageList;
+	
+	public EPackageSpecificationPage(String pageName, String title, ImageDescriptor titleImage) {
+		super(pageName, title, titleImage);
+		
+		// we create a copy of the global ePackage registry
+		registry = new EPackageRegistryImpl();
+		for (Entry<String, Object> entry : EPackage.Registry.INSTANCE.entrySet()) {
+			registry.put(entry.getKey(), entry.getValue());
+		}
+		
+		metamodelFilesToNamespaceURIs = new HashMap<>();
+		namespaceURIsToMetamodelFiles = new HashMap<>();
+		
+	}
+	
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		updateCombo();
+	}
+
+	@Override
+	public void createControl(Composite parent) {
+		
+		Composite container = new Composite(parent, SWT.NULL);
+		
+		setControl(container);
+		container.setLayout(new GridLayout(1, false));
+		
+		Group grpAddMetamodelFiles = new Group(container, SWT.NONE);
+		grpAddMetamodelFiles.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		grpAddMetamodelFiles.setText("Add meta-model files");
+		GridLayout gl_grpAddMetamodelFiles = new GridLayout(3, false);
+		gl_grpAddMetamodelFiles.marginBottom = 3;
+		gl_grpAddMetamodelFiles.marginTop = 3;
+		gl_grpAddMetamodelFiles.marginRight = 3;
+		gl_grpAddMetamodelFiles.marginLeft = 3;
+		grpAddMetamodelFiles.setLayout(gl_grpAddMetamodelFiles);
+		
+		FileFieldEditor fileEditor = new FileFieldEditor("metamodelSelect", "Meta-model file:", grpAddMetamodelFiles);
+		fileEditor.setFileExtensions(new String[]{"*.ecore", "*.xsd"});
+		fileEditor.setPropertyChangeListener(new IPropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent event) {
+
+				// update the list of available EPackages based on the specified meta-model
+				String metamodelFile = fileEditor.getStringValue();
+				
+				if(!metamodelFilesToNamespaceURIs.containsKey(metamodelFile)) {
+				
+					HashMap<String, EPackage> packages = EPackageHelper.getEPackages(metamodelFile, true, false);
+					ArrayList<String> namespaceURIs = new ArrayList<>();
+					
+					for (Entry<String, EPackage> entry : packages.entrySet()) {
+						registry.put(entry.getKey(), entry.getValue());
+						namespaceURIs.add(entry.getKey());
+						
+						ArrayList<String> metamodelFiles = new ArrayList<>();
+						if(namespaceURIsToMetamodelFiles.get(entry.getKey()) != null) {
+							metamodelFiles.addAll(namespaceURIsToMetamodelFiles.get(entry.getKey()));
+						}
+						metamodelFiles.add(metamodelFile);
+						namespaceURIsToMetamodelFiles.put(entry.getKey(), metamodelFiles);
+					}
+					
+					metamodelFilesToNamespaceURIs.put(metamodelFile, namespaceURIs);
+					
+					fileList.add(metamodelFile);
+				
+					updateCombo();
+				}				
+			}
+
+		});
+		
+		fileList = new List(grpAddMetamodelFiles, SWT.BORDER);
+		fileList.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		fileList.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				// delete the selected item from the file list and update the registry and the combo if necessary
+				if(e.keyCode == SWT.DEL && fileList.getSelectionIndex() != -1 && fileList.getSelection().length == 1) {
+					
+					Collection<String> namespaceURIs = metamodelFilesToNamespaceURIs.get(fileList.getSelection()[0]);
+					if(namespaceURIs != null && !namespaceURIs.isEmpty()) {
+						for (String namespaceURI : namespaceURIs) {
+
+							if(namespaceURIsToMetamodelFiles.get(namespaceURI) != null && namespaceURIsToMetamodelFiles.get(namespaceURI).size() == 1 &&
+									namespaceURIsToMetamodelFiles.get(namespaceURI).iterator().next().equals(fileList.getSelection()[0])) {
+								
+								registry.remove(namespaceURI);
+								if(Arrays.asList(ePackageList.getItems()).contains(namespaceURI)) {
+									ePackageList.remove(namespaceURI); //TODO only grey out
+								}
+							}
+						}
+						updateCombo();
+					}
+					
+					fileList.remove(fileList.getSelectionIndex());
+				}
+			}
+		});
+		
+		Group grpSpecifyEpackages = new Group(container, SWT.NONE);
+		grpSpecifyEpackages.setLayout(new GridLayout(2, false));
+		grpSpecifyEpackages.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		grpSpecifyEpackages.setText("Specify EPackages");
+		
+		combo = new Combo(grpSpecifyEpackages, SWT.NONE);
+		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+		Button btnAdd = new Button(grpSpecifyEpackages, SWT.NONE);
+		btnAdd.setText("Add...");
+		btnAdd.addSelectionListener(new SelectionListener2() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				// add the specified nsURI to the list
+				String nsURI = combo.getText();
+				
+				if(nsURI != null && !nsURI.isEmpty() && registry.containsKey(nsURI)) {
+					if(!Arrays.asList(ePackageList.getItems()).contains(nsURI)) {
+						ePackageList.add(nsURI);
+					}
+				}
+			}
+		});
+		
+		ePackageList = new List(grpSpecifyEpackages, SWT.BORDER);
+		ePackageList.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		
+	}
+	
+
+	/**
+	 * Updates the list of namespace URIs displayed in the {@link #combo} based on the current set of
+	 * entries in the {@link #registry}.
+	 */
+	private void updateCombo() {
+		combo.removeAll();
+		for (String nsUri : registry.keySet()) {
+			combo.add(nsUri);
+		}
+		if(combo.getItemCount() == 1) {
+			combo.select(0);
+		}
+	}
+}

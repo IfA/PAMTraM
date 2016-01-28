@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -98,16 +99,7 @@ public class EPackageSpecificationPage extends WizardPage {
 		super(pageName, title, titleImage);
 		setMessage(message);
 		
-		// we create a copy of the global ePackage registry
-		registry = new EPackageRegistryImpl();
-		for (Entry<String, Object> entry : EPackage.Registry.INSTANCE.entrySet()) {
-			registry.put(entry.getKey(), entry.getValue());
-		}
-		
-		metamodelFilesToNamespaceURIs = new HashMap<>();
-		namespaceURIsToMetamodelFiles = new HashMap<>();
-		namespaceURIs = new HashSet<>();
-		
+		init();
 	}
 	
 	@Override
@@ -319,5 +311,65 @@ public class EPackageSpecificationPage extends WizardPage {
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Initialize the page. This initializes the {@link #registry} and clears both the {@link #fileList} and 
+	 * the {@link #ePackageViewer}.
+	 */
+	private void init() {
+		
+		// we create a copy of the global ePackage registry
+		registry = new EPackageRegistryImpl();
+		for (Entry<String, Object> entry : EPackage.Registry.INSTANCE.entrySet()) {
+			registry.put(entry.getKey(), entry.getValue());
+		}
+		
+		this.metamodelFilesToNamespaceURIs = new HashMap<>();
+		this.namespaceURIsToMetamodelFiles = new HashMap<>();
+		this.namespaceURIs = new HashSet<>();
+	}
+	
+	/**
+	 * {@link #init() Initialize} the page and afterwards set the given list of '<em>namspaceURIs</em>' as initial
+	 * content of the {@link #ePackageViewer}.
+	 * 
+	 * @param namespaceURIs The set of namespace URIs to initially display in the {@link #ePackageViewer} or 
+	 * '<em>null</em>' if nothing is to be displayed.
+	 */
+	public void setNamespaceURIs(HashSet<String> namespaceURIs) {
+		init();
+		this.namespaceURIs = (namespaceURIs == null ? new HashSet<>() : namespaceURIs);
+		updateEPackageViewer();
+	}
+	
+	/**
+	 * This returns an {@link org.eclipse.emf.ecore.EPackage.Registry} for all namespace URIs specified by the user.
+	 * 
+	 * @return The {@link org.eclipse.emf.ecore.EPackage.Registry} for all namespace URIs specified by the user.
+	 */
+	public Registry getRegistry() {
+		
+		EPackage.Registry specifiedNamespaceURIs = new EPackageRegistryImpl();
+		for (String nsURI : namespaceURIs) {
+			specifiedNamespaceURIs.put(nsURI, registry.getEPackage(nsURI));
+		}
+		return specifiedNamespaceURIs;
+	}
+	
+	/**
+	 * This returns a map that links all namespace URIs to the files that contain their meta-model. This map does only contain
+	 * those of the specified {@link #namespaceURIs} that are file-based (not present in the global EPackage registry).
+	 *  
+	 * @return The map that links namespace URIs and meta-model files (Ecore/XSD).
+	 */
+	public HashMap<String, String> getNamespaceURIsToMetamodelFiles() {
+		HashMap<String, String> specifiedNamespaceURIsToMetamodelFiles = new HashMap<>();
+		for (String nsURI : namespaceURIs) {
+			if(namespaceURIsToMetamodelFiles.containsKey(nsURI)) {
+				specifiedNamespaceURIsToMetamodelFiles.put(nsURI, namespaceURIsToMetamodelFiles.get(nsURI).iterator().next());
+			}
+		}
+		return specifiedNamespaceURIsToMetamodelFiles;
 	}
 }

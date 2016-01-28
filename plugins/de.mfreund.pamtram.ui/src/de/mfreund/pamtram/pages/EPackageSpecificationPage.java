@@ -83,8 +83,20 @@ public class EPackageSpecificationPage extends WizardPage {
 	 */
 	private TableViewer ePackageViewer;
 	
-	public EPackageSpecificationPage(String pageName, String title, ImageDescriptor titleImage) {
+	/**
+	 *  Creates a new wizard page with the given name, title, message, and image.
+     *
+     * @param pageName the name of the page
+     * @param title the title for this wizard page,
+     *   or <code>null</code> if none
+     * @param message the message for this wizard page,
+     *   or <code>null</code> if none
+     * @param titleImage the image descriptor for the title of this wizard page,
+     *   or <code>null</code> if none
+	 */
+	public EPackageSpecificationPage(String pageName, String title, String message, ImageDescriptor titleImage) {
 		super(pageName, title, titleImage);
+		setMessage(message);
 		
 		// we create a copy of the global ePackage registry
 		registry = new EPackageRegistryImpl();
@@ -250,7 +262,24 @@ public class EPackageSpecificationPage extends WizardPage {
 				}
 			}
 		});
+		ePackageViewer.getTable().addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
 				
+				// delete the selected item from the file list and update the registry and the combo if necessary
+				if(e.keyCode == SWT.DEL && ePackageViewer.getTable().getSelectionIndex() != -1 && ePackageViewer.getTable().getSelection().length == 1) {
+					
+					String namespaceURI = ePackageViewer.getTable().getSelection()[0].getText();
+					namespaceURIs.remove(namespaceURI);
+					updateEPackageViewer();
+				}
+			}
+		});
 		
 	}
 	
@@ -267,6 +296,7 @@ public class EPackageSpecificationPage extends WizardPage {
 		if(combo.getItemCount() == 1) {
 			combo.select(0);
 		}
+		getWizard().getContainer().updateButtons();
 	}
 	
 	/**

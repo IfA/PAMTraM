@@ -3,7 +3,8 @@ package de.mfreund.pamtram.wizards;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
-import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
@@ -30,11 +31,17 @@ import org.eclipse.ui.ide.undo.CreateProjectOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
+import de.mfreund.pamtram.pages.EPackageSpecificationPage;
 import de.mfreund.pamtram.pages.PamtramFileSpecificationPage;
 import de.mfreund.pamtram.util.ResourceHelper;
 
+/**
+ * A wizard that handles the creation of new PAMTraM projects.
+ * 
+ * @author mfreund
+ */
 public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExecutableExtension{
-
+	
 	// the element currently selected (might e.g. be a working set)
 	private IStructuredSelection selection;
 
@@ -43,7 +50,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 	// the wizard page where the project name can be entered
 	private WizardNewProjectCreationPage mainPage;
-
+	
 	// the wizard page where the name of the pamtram file can be entered
 	private PamtramFileSpecificationPage fileSpecPage;
 
@@ -92,7 +99,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 			public void setVisible(boolean visible) {
 				super.setVisible(visible);
 				if(!visible) {
-					ePackageSpecificationPage.addSourceEPackages(fileSpecPage.getNsUris());
+					sourceEPackageSpecificationPage.setNamespaceURIs(new HashSet<>(fileSpecPage.getNsUris()));
 				}
 			}
 		};
@@ -100,10 +107,20 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		fileSpecPage.setDescription("Specify the name of the PAMTraM file and the source file(s) (optional).");
 		this.addPage(fileSpecPage);
 
-		ePackageSpecificationPage = new de.mfreund.pamtram.pages.PamtramEPackageSpecificationPage("Whatever3");
-		ePackageSpecificationPage.setTitle("ePackage specification");
-		ePackageSpecificationPage.setDescription("Specify the ePackages of the source and target sections.");
-		this.addPage(ePackageSpecificationPage);
+		sourceEPackageSpecificationPage = new EPackageSpecificationPage("sourceEPackageSelection", "Source EPackage Specification", 
+				"Specify all EPackages (via their namespace URIs) for that a 'SourceSectionModel' shall "
+				+ "be generated. The EPackages can thereby either be selected from the global EPackage registry or "
+				+ "based on a meta-model file (Ecore/XSD).", 
+				null);
+		this.addPage(sourceEPackageSpecificationPage);
+		
+		targetEPackageSpecificationPage = new EPackageSpecificationPage("targetEPackageSelection", "Target EPackage Specification", 
+				"Specify all EPackages (via their namespace URIs) for that a 'TargetSectionModel' shall "
+				+ "be generated. The EPackages can thereby either be selected from the global EPackage registry or "
+				+ "based on a meta-model file (Ecore/XSD).",
+				null);
+		this.addPage(targetEPackageSpecificationPage);
+		
 	}
 
 	@Override
@@ -218,9 +235,8 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 	 */
 	private void doFinish() {
 
-		final boolean isTargetFileBased = ePackageSpecificationPage.isTargetFileBased();
-		final Collection<String> sourceEcorePaths = ePackageSpecificationPage.getSourceEcorePaths();
-		final String targetEcorePath = ePackageSpecificationPage.getTargetEcorePath();
+		HashMap<String, String> sourceMap = sourceEPackageSpecificationPage.getNamespaceURIsToMetamodelFiles();
+		HashMap<String, String> targetMap = targetEPackageSpecificationPage.getNamespaceURIsToMetamodelFiles();
 
 		/*
 		 * Create the folders, create a pamtram model and copy the source model
@@ -234,7 +250,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 				try {
 					// create the folders inside the project
-					if(!sourceEcorePaths.isEmpty() || isTargetFileBased) {
+					if(!sourceMap.values().isEmpty() || ! targetMap.isEmpty()) {
 						ResourceHelper.addToProjectStructure(
 								newProject.getProject(), new String[]{ "metamodel", "Source", "Pamtram", "Target" });
 					} else {
@@ -258,13 +274,13 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 
 				// copy the source ecore model(s) if necessary
-				for (String sourceEcorePath : sourceEcorePaths) {
+				for (String sourceEcorePath : sourceMap.values()) {
 					ResourceHelper.copyFile(new File(sourceEcorePath), 
 							"metamodel", newProject.getProject());
 				}
 
 				// copy the target ecore model if necessary
-				if(isTargetFileBased) {
+				for (String targetEcorePath : targetMap.values()) {
 					ResourceHelper.copyFile(new File(targetEcorePath), 
 							"metamodel", newProject.getProject());
 				}

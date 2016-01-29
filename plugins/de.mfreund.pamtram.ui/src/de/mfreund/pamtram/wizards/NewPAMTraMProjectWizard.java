@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
@@ -388,6 +387,16 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 			e.printStackTrace();
 			return false;
 		}				
+		
+		/*
+		 * Adapt the uri of the resource to point to the namespace URI. This needs to be set after saving the
+		 * resource so that the resource is still stored to the correct location. However, the in-memory representation
+		 * of the URI needs to represent the namespace instead of the location so that all references (e.g. in the PAMTraM model 
+		 * are namespace- instead of location-based.
+		 */
+		org.eclipse.emf.common.util.URI namespaceURI = org.eclipse.emf.common.util.URI.createURI(ePackage.getNsURI());
+		ePackage.eResource().setURI(namespaceURI);
+
 		return true;
 	}
 }

@@ -10,6 +10,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -19,6 +20,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.xsd.ecore.XSDEcoreBuilder;
+import org.eclipse.xsd.impl.XSDSchemaImpl;
 
 import pamtram.PAMTraM;
 import pamtram.SourceSectionModel;
@@ -145,17 +148,19 @@ public class EPackageHelper {
 	}
 
 	/**
-	 * This tries to determine the ePackages defined in an ecore model. Therefore,
-	 * the resource is loaded and the ePackages are extracted.
+	 * This tries to determine the ePackages defined in a meta-model (either Ecore or XSD). Therefore,
+	 * the resource is loaded and the ePackages are extracted. If an XSD file is specified, corresponding
+	 * EPackages are automatically generated via the {@link XSDEcoreBuilder}.
 	 * 
-	 * @param absolutePathToEcoreModel the absolute path to the ecore model to be analyzed.
+	 * @param absolutePathToMetaModelFile the absolute path to the meta-model to be analyzed. This may point either to 
+	 * an Ecore or to an XSD file.
 	 * @param adaptResourceUri if true, the uri of the resource that contains the ePackage will be set to the
 	 * namespace uri of the ePackage. That way, this namespace uri is used for references to the package during 
 	 * serialization of resources, otherwise there will be file-based references 
 	 * @param register if the packages shall be registered to the global ePackage registry.
-	 * @return a map of nsUris and corresponding ePackages found in the ecore model, null if any error occurs.
+	 * @return a map of nsUris and corresponding ePackages found in the Ecore/XSD meta-model, null if any error occurs.
 	 */
-	public static HashMap<String, EPackage> getEPackages(String absolutePathToEcoreModel, boolean adaptResourceUri, boolean register) {
+	public static HashMap<String, EPackage> getEPackages(String absolutePathToMetaModelFile, boolean adaptResourceUri, boolean register) {
 
 		HashMap<String, EPackage> ePackages = new HashMap<>();
 
@@ -164,7 +169,7 @@ public class EPackageHelper {
 
 		try {
 			metamodel = (new ResourceSetImpl()).getResource(
-					URI.createFileURI(absolutePathToEcoreModel), true);
+					URI.createFileURI(absolutePathToMetaModelFile), true);
 		} catch (Exception e) {
 			return null;
 		}
@@ -175,8 +180,25 @@ public class EPackageHelper {
 
 		// get the contents of the resource
 		EList<EObject> contents = metamodel.getContents();
-		if(contents == null || contents.isEmpty() || !(contents.get(0) instanceof EPackage)) {
+		if(contents == null || contents.isEmpty()) {
 			return null;
+		}
+		
+		// if we deal with an XSD, we need to generate the corresponding EPackages on-the-fly
+		if(!(contents.get(0) instanceof EPackage)) {
+			if(!(contents.get(0) instanceof XSDSchemaImpl)) {
+				return null;
+			}
+			
+			XSDEcoreBuilder builder = new XSDEcoreBuilder();
+			contents = new BasicEList<>(builder.generate(URI.createFileURI(absolutePathToMetaModelFile)));
+			
+			if(!(contents.get(0) instanceof EPackage)) {
+				return null;
+			} else if(contents.size() > 1 && contents.get(1) instanceof EPackage) {
+				System.out.println("The XSD '" + absolutePathToMetaModelFile + "'defines more than one namespace. "
+						+ "This is currently not supported by the 'EPackageHelper'. Only the first namespace will be used!");
+			}
 		}
 
 		// the ePackage defined by the metamodel
@@ -186,7 +208,7 @@ public class EPackageHelper {
 
 		for (EPackage ePackage : ePackageSet) {
 
-			if(adaptResourceUri) {
+			if(adaptResourceUri && ePackage.eResource() != null) {
 				// adapt the uri of the resource
 				ePackage.eResource().setURI(URI.createURI(ePackage.getNsURI()));				
 			}

@@ -106,6 +106,7 @@ public class EPackageSpecificationPage extends WizardPage {
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
 		updateCombo();
+		updateEPackageViewer();
 	}
 
 	@Override

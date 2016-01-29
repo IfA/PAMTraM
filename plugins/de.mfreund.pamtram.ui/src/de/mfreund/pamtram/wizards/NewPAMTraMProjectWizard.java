@@ -1,10 +1,13 @@
 package de.mfreund.pamtram.wizards;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
@@ -16,13 +19,16 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkingSet;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -235,7 +241,9 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 	 */
 	private void doFinish() {
 
+		EPackage.Registry sourceRegistry = sourceEPackageSpecificationPage.getRegistry();
 		HashMap<String, String> sourceMap = sourceEPackageSpecificationPage.getNamespaceURIsToMetamodelFiles();
+		EPackage.Registry targetRegistry = targetEPackageSpecificationPage.getRegistry();
 		HashMap<String, String> targetMap = targetEPackageSpecificationPage.getNamespaceURIsToMetamodelFiles();
 
 		/*
@@ -274,15 +282,30 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 
 				// copy the source ecore model(s) if necessary
-				for (String sourceEcorePath : sourceMap.values()) {
-					ResourceHelper.copyFile(new File(sourceEcorePath), 
+				for (Entry<String, String> entry : sourceMap.entrySet()) {
+					ResourceHelper.copyFile(new File(entry.getValue()), 
 							"metamodel", newProject.getProject());
+					
+					// if the meta-model is an XSD file, we need to create the corresponding Ecore file
+					if(entry.getValue().endsWith(".xsd")) {
+						if(!createEcoreForXSD(entry.getValue(), sourceRegistry.getEPackage(entry.getKey()))) {
+							throw new RuntimeException("Could not create Ecore model for XSD '" + entry.getValue() + "'!");
+						}
+					}
 				}
 
 				// copy the target ecore model if necessary
-				for (String targetEcorePath : targetMap.values()) {
-					ResourceHelper.copyFile(new File(targetEcorePath), 
+				for (Entry<String, String> entry : targetMap.entrySet()) {
+					ResourceHelper.copyFile(new File(entry.getValue()), 
 							"metamodel", newProject.getProject());
+					
+					// if the meta-model is an XSD file, we need to create the corresponding Ecore file
+					if(entry.getValue().endsWith(".xsd")) {
+						if(!createEcoreForXSD(entry.getValue(), targetRegistry.getEPackage(entry.getKey()))) {
+							throw new RuntimeException("Could not create Ecore model for XSD '" + entry.getValue() + "'!");
+						}
+					}
+
 				}
 
 				progressMonitor.beginTask("Creating PAMTraM instance", 1);
@@ -315,6 +338,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 				}
 				catch (Exception e) {
 					e.printStackTrace();
+					throw new RuntimeException("An error occurred during the creation of the PAMTraM model!");
 				}
 
 				progressMonitor.done();
@@ -327,7 +351,13 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 			getContainer().run(true, false, operation);
 		} catch (InvocationTargetException | InterruptedException e) {
 			e.printStackTrace();
+			return;
 		}
+		
+		MessageDialog.openInformation(
+				new Shell(),
+				"PAMTraM Project Wizard",
+				"New PAMTraM project '" + newProject.getName() + "' successfully created!");
 	}
 
 	@Override
@@ -337,4 +367,27 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		this.config = config;
 	}
 
+	/**
+	 * Create an Ecore file for the given '<em>xsdFile</em>' and the corresponding '<em>ePackage</em>'.
+	 * 
+	 * @param xsdFile The absolute path to the file containing the XSD.
+	 * @param ePackage The {@link EPackage} that has been created from the XSD.
+	 * @return '<em><b>true</b></em>' if the Ecore file could be created successfully, '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean createEcoreForXSD(String xsdFile, EPackage ePackage) {
+	
+		org.eclipse.emf.common.util.URI ecoreURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(
+				newProject.getProject().getName() + "/metamodel/" + new File(xsdFile).getName() + ".ecore", true);
+		Resource resource = (new ResourceSetImpl()).createResource(ecoreURI);
+		resource.getContents().add(ePackage);
+		
+		try {
+			resource.save(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}				
+		return true;
+	}
 }

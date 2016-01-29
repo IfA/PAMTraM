@@ -58,7 +58,13 @@ public class PamtramFileSpecificationPage extends WizardPage {
 	 * @return The namespace URI(s) of the source file(s).
 	 */
 	public Collection<String> getNsUris() {
-		return nsUris.values();
+		HashSet<String> ret = new HashSet<>();
+		for (String nsUri : nsUris.values()) {
+			if(nsUri != null && !nsUri.isEmpty()) {
+				ret.add(nsUri);
+			}
+		}
+		return ret;
 	}
 
 	public PamtramFileSpecificationPage(String pageName) {

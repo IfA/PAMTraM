@@ -12,52 +12,8 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
-         <command
-               commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
-               label="PAMTraM: Export MetaModelSection"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeMenuSelection">
-                  <iterate
-                        ifEmpty="false"
-                        operator="or">
-                     <adapt
-                           type="org.eclipse.emf.ecore.EObject">
-                     </adapt>
-                  </iterate>
-               </with>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.emf.ecore.presentation.XMLReflectiveEditorID">
-         <command
-               commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
-               label="PAMTraM: Export MetaModelSection"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeMenuSelection">
-                  <iterate
-                        ifEmpty="false"
-                        operator="or">
-                     <adapt
-                           type="org.eclipse.emf.ecore.EObject">
-                     </adapt>
-                  </iterate>
-               </with>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.epsilon.dt.exeed.ExeedEditor">
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any">
          <command
                commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
                label="PAMTraM: Export MetaModelSection"

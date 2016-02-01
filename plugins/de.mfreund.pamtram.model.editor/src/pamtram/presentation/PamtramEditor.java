@@ -5,6 +5,7 @@ package pamtram.presentation;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -792,7 +793,8 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 * This returns an existing {@link PamtramEditor} that is used for the given '<em>pamtram</em>' instance.
 	 *  
 	 * @param pamtram The {@link PAMTraM} model for which an existing editor shall be returned.
-	 * @return The {@link PamtramEditor} for the given '<em>pamtram</em>' instance.
+	 * @return The {@link PamtramEditor} for the given '<em>pamtram</em>' instance or '<em>null</em>' if no editor
+	 * exists.
 	 */
 	public static PamtramEditor getEditor(PAMTraM pamtram) {
 
@@ -812,12 +814,61 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
 		return null;
 	}
+	
+	/**
+	 * This returns an existing {@link PamtramEditor} that is used for the given '<em>pamtram</em>' instance.
+	 *  
+	 * @param pamtram The {@link PAMTraM} model for which an existing editor shall be returned.
+	 * @param openNewEditor Whether a new editor shall be opened if no editor for the given '<em>pamtram</em>' exists.
+	 * @return The {@link PamtramEditor} for the given '<em>pamtram</em>' instance or '<em>null</em>' if no editor
+	 * exists/could be opened.
+	 */
+	public static PamtramEditor getEditor(PAMTraM pamtram, boolean openNewEditor) {
+		
+		PamtramEditor editor = getEditor(pamtram);
+
+		if(editor != null || !openNewEditor) {
+			return editor;
+		}
+		
+		// no editor has been found so we open a new one
+		IFile file = null;
+		try {
+			
+			IFile[] files = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(
+					new java.net.URI(pamtram.eResource().getURI().toString()));
+			
+			if(files.length == 0) {
+				return null;
+			}
+			
+			file = files[0];
+			
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
+			return null;
+		}
+
+		try {
+			// get the active workbench window
+			IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+			
+			IEditorPart editorPart = workbenchWindow.getActivePage().openEditor(new FileEditorInput(file), "pamtram.presentation.PamtramEditorID");
+			
+			return (PamtramEditor) editorPart;
+			
+		} catch (PartInitException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	/**
 	 * This returns an existing {@link PamtramEditor} that is used for the given path to a pamtram instance.
 	 *  
 	 * @param pamtramPath The absolute full path to the pamtram model for which an existing editor shall be returned.
-	 * @return The {@link PamtramEditor} for the given '<em>pamtram</em>' instance.
+	 * @return The {@link PamtramEditor} for the given '<em>pamtram</em>' instance or '<em>null</em>' if no editor
+	 * exists.
 	 */
 	public static PamtramEditor getEditor(String pamtramPath) {
 
@@ -834,8 +885,57 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			}
 
 		}
-
+		
 		return null;
+	}
+	
+	/**
+	 * This returns an existing {@link PamtramEditor} that is used for the given path to a pamtram instance.
+	 *  
+	 * @param pamtramPath The absolute full path to the pamtram model for which an existing editor shall be returned.
+	 * @param openNewEditor Whether a new editor shall be opened if no editor for the given '<em>pamtramPath</em>' exists.
+	 * @return The {@link PamtramEditor} for the given '<em>pamtram</em>' instance or '<em>null</em>' if no editor
+	 * exists/could be opened.
+	 */
+	public static PamtramEditor getEditor(String pamtramPath, boolean openNewEditor) {
+
+		PamtramEditor editor = getEditor(pamtramPath);
+		
+		if(editor != null || !openNewEditor) {
+			return editor;
+		}
+		
+		// no editor has been found so we open a new one
+		IFile file = null;
+		try {
+			
+			IFile[] files = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(
+					new java.net.URI(URI.createFileURI(pamtramPath).toString()));
+			
+			if(files.length == 0) {
+				return null;
+			}
+			
+			file = files[0];
+			
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
+			return null;
+		}
+
+		try {
+			// get the active workbench window
+			IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+			
+			IEditorPart editorPart = workbenchWindow.getActivePage().openEditor(new FileEditorInput(file), "pamtram.presentation.PamtramEditorID");
+			
+			return (PamtramEditor) editorPart;
+			
+		} catch (PartInitException e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	/**

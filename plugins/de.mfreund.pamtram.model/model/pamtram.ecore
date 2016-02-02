@@ -81,7 +81,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionModel" upperBound="-1"
-        eType="#//ConditionalModel"/>
+        eType="#//ConditionModel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SectionModel" abstract="true" eSuperTypes="#//NamedElement">
     <eTypeParameters name="S">
@@ -162,7 +162,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionRef" eType="#//condition/ComplexCondition"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConditionalModel">
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" upperBound="-1"
         eType="#//condition/ComplexCondition" containment="true"/>
   </eClassifiers>

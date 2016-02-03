@@ -151,6 +151,8 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 	 * This is the {@link PAMTraM} instance into that the LibraryEntry shall be imported.
 	 */
 	private PAMTraM pamtram;
+	private GridData gd_1;
+	private GridData gd_2;
 
 	public boolean isCreateMappings() {
 		return createMappings;
@@ -221,6 +223,7 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 
 		// create the list that will display the library entries
 		list = new org.eclipse.swt.widgets.List (container, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
+		list.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, true, 1, 1));
 		list.setEnabled(false);
 		GridDataFactory.swtDefaults().span(3, 1).grab(true, true).align(SWT.FILL, SWT.FILL).applyTo(list);
 
@@ -241,6 +244,7 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 
 		// create the check box that enables automatic generation of mappings for library entries
 		createMappingButton = new Button(container, SWT.CHECK);
+		createMappingButton.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 3, 1));
 		createMappingButton.setSelection(true);
 		GridDataFactory.swtDefaults().span(3, 1).align(GridData.FILL, GridData.BEGINNING);
 		createMappingButton.setText("Create Mapping(s)");
@@ -273,11 +277,13 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 		mappingModelSelectionLabel.setLayoutData(gd);
 
 		// list for selecting the target argetSectionModel
-		targetModelSelectionList = new org.eclipse.swt.widgets.List(container, SWT.NONE);
+		targetModelSelectionList = new org.eclipse.swt.widgets.List(container, SWT.BORDER | SWT.V_SCROLL);
 		targetModelSelectionList.setToolTipText("Please specify the TargetSectionModel into that the LibraryEntry shall be added..."); 
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = 2;
-		targetModelSelectionList.setLayoutData(gd);
+		gd_1 = new GridData(GridData.FILL_HORIZONTAL);
+		gd_1.verticalAlignment = SWT.FILL;
+		gd_1.grabExcessVerticalSpace = true;
+		gd_1.horizontalSpan = 2;
+		targetModelSelectionList.setLayoutData(gd_1);
 		if(pamtram != null) {
 			for (TargetSectionModel targetSectionModel : pamtram.getTargetSectionModel()) {
 				targetModelSelectionList.add("TargetSectionModel " + (targetSectionModel.getName() != null ? targetSectionModel.getName() : ""));
@@ -300,11 +306,13 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 
 
 		// list for selecting the target MappingModel
-		mappingModelSelectionList = new org.eclipse.swt.widgets.List(container, SWT.NONE);
+		mappingModelSelectionList = new org.eclipse.swt.widgets.List(container, SWT.BORDER | SWT.V_SCROLL);
 		mappingModelSelectionList.setToolTipText("Please specify the MappingModel into that the generated Mapping for the LibraryEntry shall be added..."); 
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = 1;
-		mappingModelSelectionList.setLayoutData(gd);
+		gd_2 = new GridData(GridData.FILL_HORIZONTAL);
+		gd_2.grabExcessVerticalSpace = true;
+		gd_2.verticalAlignment = SWT.FILL;
+		gd_2.horizontalSpan = 1;
+		mappingModelSelectionList.setLayoutData(gd_2);
 		if(pamtram != null) {
 			for (MappingModel mappingModel : pamtram.getMappingModel()) {
 				mappingModelSelectionList.add("MappingModel " + (mappingModel.getName() != null ? mappingModel.getName() : ""));

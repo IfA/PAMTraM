@@ -9,8 +9,11 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -175,6 +178,7 @@ public class PamtramEditorMainPage extends SashForm {
 		sourceViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				System.out.println("sel1");
 				editor.setCurrentViewer(sourceViewer);
 
 				if(((TreeItem) e.item).getData() instanceof MetaModelSectionReference) {
@@ -207,6 +211,8 @@ public class PamtramEditorMainPage extends SashForm {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
+		sourceViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, sourceViewer));
+		
 		new AdapterFactoryTreeEditor(sourceViewer.getTree(), adapterFactory);
 		editor.createContextMenuFor(sourceViewer);
 	}
@@ -617,7 +623,8 @@ public class PamtramEditorMainPage extends SashForm {
 			}
 
 		});
-
+		mappingViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, mappingViewer));
+		
 		new AdapterFactoryTreeEditor(mappingViewer.getTree(), adapterFactory);
 
 		editor.setCurrentViewer(mappingViewer);
@@ -643,6 +650,7 @@ public class PamtramEditorMainPage extends SashForm {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
+		globalElementsViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, globalElementsViewer));
 
 		new AdapterFactoryTreeEditor(globalElementsViewer.getTree(), adapterFactory);
 
@@ -707,6 +715,7 @@ public class PamtramEditorMainPage extends SashForm {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
+		targetViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, targetViewer));
 
 		new AdapterFactoryTreeEditor(targetViewer.getTree(), adapterFactory);
 
@@ -772,11 +781,14 @@ public class PamtramEditorMainPage extends SashForm {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
+		libTargetViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, libTargetViewer));
 
 		new AdapterFactoryTreeEditor(libTargetViewer.getTree(), adapterFactory);
 
 		editor.createContextMenuFor(libTargetViewer);
 
 	}
+	
+	
 
 }

@@ -160,6 +160,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 			}
 		};
 		sourceViewer.getTree().addSelectionListener(sourceTreeSelectionListener);
+		sourceViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, sourceViewer));
 
 		new AdapterFactoryTreeEditor(sourceViewer.getTree(), adapterFactory);
 
@@ -189,6 +190,9 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 			}
 		};
 		mappingViewer.getTree().addSelectionListener(mappingTreeSelectionListener);
+		mappingViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, mappingViewer));
+
+		new AdapterFactoryTreeEditor(mappingViewer.getTree(), adapterFactory);
 
 		editor.createContextMenuFor(mappingViewer);
 

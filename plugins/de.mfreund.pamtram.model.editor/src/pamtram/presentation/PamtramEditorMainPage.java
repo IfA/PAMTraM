@@ -9,16 +9,12 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -37,6 +33,7 @@ import pamtram.contentprovider.ModifierSetContentProvider;
 import pamtram.contentprovider.SourceSectionContentProvider;
 import pamtram.contentprovider.TargetSectionContentProvider;
 import pamtram.listeners.SetViewerMouseListener;
+import pamtram.listeners.SetViewerSelectionListener;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -59,7 +56,6 @@ import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.NonContainmentReference;
@@ -235,7 +231,7 @@ public class PamtramEditorMainPage extends SashForm {
 		globalElementsViewer.setContentProvider(new ModifierSetContentProvider(adapterFactory));
 		globalElementsViewer.setInput(editor.pamtram);
 	
-		globalElementsViewer.getTree().addSelectionListener(new GlobalElementsViewerSelectionListener());
+		globalElementsViewer.getTree().addSelectionListener(new SetViewerSelectionListener(editor, globalElementsViewer));
 		globalElementsViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, globalElementsViewer));
 	
 		new AdapterFactoryTreeEditor(globalElementsViewer.getTree(), adapterFactory);
@@ -301,7 +297,7 @@ public class PamtramEditorMainPage extends SashForm {
 	
 		libTargetViewer.setContentProvider(new LibraryEntryContentProvider(adapterFactory));
 		libTargetViewer.setInput(editor.pamtram);
-		libTargetViewer.getTree().addSelectionListener(new LibTargetViewerSelectionListener());
+		libTargetViewer.getTree().addSelectionListener(new SetViewerSelectionListener(editor, libTargetViewer));
 		libTargetViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, libTargetViewer));
 	
 		new AdapterFactoryTreeEditor(libTargetViewer.getTree(), adapterFactory);
@@ -311,17 +307,22 @@ public class PamtramEditorMainPage extends SashForm {
 	}
 
 	/**
-	 * A {@link SelectionListener2 SelectionListener} that handles selections in the {@link PamtramEditorMainPage#sourceViewer}.
+	 * A {@link SourceViewerSelectionListener} that handles selections in the {@link PamtramEditorMainPage#sourceViewer}.
 	 * <p />
 	 * It automatically expands referenced {@link SourceSectionClass SourceSectionClasses} if a {@link MetaModelSectionReference}
 	 * is selected.
 	 * 
 	 * @author mfreund
 	 */
-	private final class SourceViewerSelectionListener implements SelectionListener2 {
+	private final class SourceViewerSelectionListener extends SetViewerSelectionListener {
+		
+		private SourceViewerSelectionListener() {
+			super(editor, sourceViewer);
+		}
+		
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			editor.setCurrentViewer(sourceViewer);
+			super.widgetSelected(e);
 	
 			if(((TreeItem) e.item).getData() instanceof MetaModelSectionReference) {
 	
@@ -340,14 +341,14 @@ public class PamtramEditorMainPage extends SashForm {
 	}
 
 	/**
-	 * A {@link SelectionListener2 SelectionListener} that handles selections in the {@link PamtramEditorMainPage#mappingViewer}.
+	 * A {@link SourceViewerSelectionListener} that handles selections in the {@link PamtramEditorMainPage#mappingViewer}.
 	 * <p />
 	 * It automatically expands referenced elements. For example, if an {@link AttributeMapping} is selected, the
 	 * associated source and target elements are expanded so that the user can easily determine those.
 	 * 
 	 * @author mfreund
 	 */
-	private final class MappingViewerSelectionListener implements SelectionListener2 {
+	private final class MappingViewerSelectionListener extends SetViewerSelectionListener {
 		
 		/**
 		 * This keeps track of the mapping that is currently selected. It is used to
@@ -355,10 +356,14 @@ public class PamtramEditorMainPage extends SashForm {
 		 * a elements from a different mapping are selected).
 		 */
 		private Mapping currentMapping;
+		
+		private MappingViewerSelectionListener() {
+			super(editor, mappingViewer);
+		}
 	
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			editor.setCurrentViewer(mappingViewer);
+			super.widgetSelected(e);
 	
 			TreeItem item = (TreeItem) e.item;
 	
@@ -723,31 +728,22 @@ public class PamtramEditorMainPage extends SashForm {
 	}
 
 	/**
-	 * A {@link SelectionListener2 SelectionListener} that handles selections in the {@link PamtramEditorMainPage#globalElementsViewer}.
-	 * <p />
-	 * It only updates the {@link PamtramEditor#setCurrentViewer(Viewer) current viewer} of the Pamtram editor. 
-	 * 
-	 * @author mfreund
-	 */
-	private final class GlobalElementsViewerSelectionListener implements SelectionListener2 {
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			editor.setCurrentViewer(globalElementsViewer);
-		}
-	}
-
-	/**
-	 * A {@link SelectionListener2 SelectionListener} that handles selections in the {@link PamtramEditorMainPage#targetViewer}.
+	 * A {@link SetViewerSelectionListener} that also handles selections in the {@link PamtramEditorMainPage#targetViewer}.
 	 * <p />
 	 * It automatically expands referenced {@link TargetSectionClass TargetSectionClasses} if a 
 	 * {@link TargetSectionNonContainmentReference} is selected.
 	 * 
 	 * @author mfreund
 	 */
-	private final class TargetViewerSelectionListener implements SelectionListener2 {
+	private final class TargetViewerSelectionListener extends SetViewerSelectionListener {
+		
+		private TargetViewerSelectionListener() {
+			super(editor, targetViewer);
+		}
+		
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			editor.setCurrentViewer(targetViewer);
+			super.widgetSelected(e);
 	
 			// if a non containment reference has been selected while holding down the
 			// control key, jump to the referenced class 
@@ -765,19 +761,6 @@ public class PamtramEditorMainPage extends SashForm {
 		}
 	}
 
-	/**
-	 * A {@link SelectionListener2 SelectionListener} that handles selections in the {@link PamtramEditorMainPage#libTargetViewer}.
-	 * <p />
-	 * It only updates the {@link PamtramEditor#setCurrentViewer(Viewer) current viewer} of the Pamtram editor. 
-	 * 
-	 * @author mfreund
-	 */
-	private final class LibTargetViewerSelectionListener implements SelectionListener2 {
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			editor.setCurrentViewer(libTargetViewer);
-		}
-	}
 	
 	
 

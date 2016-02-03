@@ -42,6 +42,7 @@ import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrateg
 import pamtram.contentprovider.MappingContentProvider;
 import pamtram.contentprovider.SourceSectionContentProvider;
 import pamtram.listeners.SetViewerMouseListener;
+import pamtram.listeners.SetViewerSelectionListener;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.presentation.widgets.TreeViewerGroup;
@@ -150,16 +151,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 				).getViewer();
 		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram);
-		sourceTreeSelectionListener = new SelectionListener() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				editor.setCurrentViewer(sourceViewer);
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-		};
+		sourceTreeSelectionListener = new SetViewerSelectionListener(editor, sourceViewer);
 		sourceViewer.getTree().addSelectionListener(sourceTreeSelectionListener);
 		sourceViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, sourceViewer));
 
@@ -179,17 +171,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 
 		mappingViewer.setContentProvider(new MappingContentProvider(adapterFactory));
 		mappingViewer.setInput(editor.pamtram);
-		mappingTreeSelectionListener = new SelectionListener() {
-
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				editor.setCurrentViewer(mappingViewer);
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-		};
+		mappingTreeSelectionListener = new SetViewerSelectionListener(editor, mappingViewer);
 		mappingViewer.getTree().addSelectionListener(mappingTreeSelectionListener);
 		mappingViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, mappingViewer));
 
@@ -245,17 +227,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 				new GridData(SWT.FILL, SWT.FILL, true, true));
 		sourceModelViewer.setContentProvider(new EObjectTreeContentProvider());
 		sourceModelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-		sourceModelTree.addSelectionListener(new SelectionListener() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				editor.setCurrentViewer(sourceModelViewer);
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-		});
-
+		sourceModelTree.addSelectionListener(new SetViewerSelectionListener(editor, sourceModelViewer));
 	}
 
 	/**

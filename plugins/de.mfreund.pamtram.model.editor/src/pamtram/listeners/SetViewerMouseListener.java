@@ -16,7 +16,7 @@ import pamtram.presentation.PamtramEditor;
  * 
  * @author mfreund
  */
-final public class SetViewerMouseListener implements MouseListener {
+public class SetViewerMouseListener implements MouseListener {
 	
 	/**
 	 * The {@link PamtramEditor} for that the viewer shall be {@link PamtramEditor#setCurrentViewer(Viewer) activated}

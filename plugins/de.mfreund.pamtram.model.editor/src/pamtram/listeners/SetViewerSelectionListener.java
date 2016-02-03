@@ -16,7 +16,7 @@ import pamtram.presentation.PamtramEditor;
  * 
  * @author mfreund
  */
-final public class SetViewerSelectionListener implements SelectionListener2 {
+public class SetViewerSelectionListener implements SelectionListener2 {
 	
 	/**
 	 * The {@link PamtramEditor} for that the viewer shall be {@link PamtramEditor#setCurrentViewer(Viewer) activated}
@@ -45,13 +45,10 @@ final public class SetViewerSelectionListener implements SelectionListener2 {
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
-		// TODO Auto-generated method stub
-		
+		editor.setCurrentViewer(viewer);			
 	}
 
 	@Override
-	public void widgetDefaultSelected(SelectionEvent e) {
-		editor.setCurrentViewer(viewer);		
-	}
+	public void widgetDefaultSelected(SelectionEvent e) {}
 
 }

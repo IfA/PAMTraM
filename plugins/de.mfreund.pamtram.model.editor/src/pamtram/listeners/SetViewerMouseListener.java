@@ -1,9 +1,11 @@
-package pamtram.presentation;
+package pamtram.listeners;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Control;
+
+import pamtram.presentation.PamtramEditor;
 
 /**
  * A {@link MouseListener} that triggers {@link PamtramEditor#setCurrentViewer(Viewer)}.

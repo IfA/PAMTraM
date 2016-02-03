@@ -36,6 +36,7 @@ import pamtram.contentprovider.MappingContentProvider;
 import pamtram.contentprovider.ModifierSetContentProvider;
 import pamtram.contentprovider.SourceSectionContentProvider;
 import pamtram.contentprovider.TargetSectionContentProvider;
+import pamtram.listeners.SetViewerMouseListener;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;

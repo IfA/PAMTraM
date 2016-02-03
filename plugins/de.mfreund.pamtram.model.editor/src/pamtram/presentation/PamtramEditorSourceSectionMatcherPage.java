@@ -41,6 +41,7 @@ import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import pamtram.contentprovider.MappingContentProvider;
 import pamtram.contentprovider.SourceSectionContentProvider;
+import pamtram.listeners.SetViewerMouseListener;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.presentation.widgets.TreeViewerGroup;

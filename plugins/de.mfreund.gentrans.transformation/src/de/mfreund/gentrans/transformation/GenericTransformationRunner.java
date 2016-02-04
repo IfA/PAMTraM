@@ -10,11 +10,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -22,11 +23,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.ConsolePlugin;
@@ -485,6 +489,23 @@ public class GenericTransformationRunner {
 		// load the mapping model
 		if(pamtramModel == null && !loadPamtramModel(resourceSet)) {
 			return;
+		}
+		
+		// validate the pamtram model
+		Diagnostic diag = Diagnostician.INSTANCE.validate(pamtramModel);
+		if(diag.getSeverity() == Diagnostic.ERROR) {
+			final AtomicBoolean result = new AtomicBoolean();
+			Display.getDefault().syncExec(new Runnable() {
+				
+				@Override
+				public void run() {
+					result.set(ErrorDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), 
+							"Errors exist in the specified PAMTraM model. Continue anyway?"));
+				}
+			});
+			if(!result.get()) {
+				return;
+			}
 		}
 
 		// load the source model
@@ -2411,6 +2432,32 @@ public class GenericTransformationRunner {
 			} else {
 				return true;
 			}
+		}
+	}
+	
+	/**
+	 * A {@link MessageDialog} that informs about an error and asks the user whether he wants to 
+	 * continue or to abort.
+	 * 
+	 * @author mfreund
+	 */
+	private static class ErrorDialog extends MessageDialog {
+
+		private ErrorDialog(Shell parentShell, String dialogMessage) {
+			super(parentShell, "Error", null, dialogMessage, MessageDialog.ERROR , new String[]{"Continue", "Abort"}, 0);
+		}
+		
+		/**
+		 * This creates and opens a dialog.
+		 * 
+		 * @param parentShell The parent shell of the dialog, or <code>null</code> if none.
+		 * @param dialogMessage The message to display to the user.
+		 * @return '<em><b>true</b></em>' if the user selected <em>Continue</em>, '<em><b>false</b></em>'
+		 * if he selected <em>Abort</em>.
+		 */
+		public static boolean open(Shell parentShell, String dialogMessage) {
+			ErrorDialog dialog = new ErrorDialog(parentShell, dialogMessage);
+			return dialog.open() == 0;
 		}
 	}
 }

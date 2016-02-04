@@ -42,7 +42,6 @@ import org.eclipse.ui.PlatformUI;
 import de.mfreund.pamtram.util.SelectionListener2;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
-	private DataBindingContext m_bindingContext;
 
 	/**
 	 * The domain model that this tab operates on.
@@ -349,7 +348,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		createTransformationModel.setToolTipText("Whether a TransformationModel shall be created in the folder 'Pamtram/transformation' for every executed transformation. This trace model can be used for further reasoning about the executed transformation...");
 		createTransformationModel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		createTransformationModel.setText("Create transformation model");
-		m_bindingContext = initDataBindings();
+		initDataBindings();
 
 	}
 
@@ -470,7 +469,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		return targetFileCombo.getText().endsWith(".xmi");
 	}
 
-	/** Initializes the values of a launch configuration based on the current selection
+	/** 
+	 * Initializes the values of a launch configuration based on the current selection
 	 * 
 	 * @param workingCopy a launch configuration to be initialized
 	 * @param selection the current selection
@@ -512,7 +512,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			if(srcFile == null) {
 				for(IResource res : project.getFolder("Source").members()) {
 					// search for a suitable src file
-					if(res instanceof IFile && ((IFile) res).getName().endsWith(".xmi")) {
+					if(res instanceof IFile && 
+							(((IFile) res).getName().endsWith(".xmi") || ((IFile) res).getName().endsWith(".xml"))) {
 						srcFile = (IFile) res;
 						break;
 					}

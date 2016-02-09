@@ -63,7 +63,7 @@ public class PamtramFactoryImpl extends EFactoryImpl implements PamtramFactory {
 			case PamtramPackage.SOURCE_SECTION_MODEL: return createSourceSectionModel();
 			case PamtramPackage.TARGET_SECTION_MODEL: return createTargetSectionModel();
 			case PamtramPackage.MAPPING_MODEL: return createMappingModel();
-			case PamtramPackage.CONDITIONAL_MODEL: return createConditionalModel();
+			case PamtramPackage.CONDITION_MODEL: return createConditionModel();
 			case PamtramPackage.REFERENCEABLE_ELEMENT: return createReferenceableElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -115,9 +115,9 @@ public class PamtramFactoryImpl extends EFactoryImpl implements PamtramFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionalModel createConditionalModel() {
-		ConditionalModelImpl conditionalModel = new ConditionalModelImpl();
-		return conditionalModel;
+	public ConditionModel createConditionModel() {
+		ConditionModelImpl conditionModel = new ConditionModelImpl();
+		return conditionModel;
 	}
 
 	/**

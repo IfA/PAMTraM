@@ -211,7 +211,7 @@ public interface PAMTraM extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Condition Model</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.ConditionalModel}.
+	 * The list contents are of type {@link pamtram.ConditionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition Model</em>' reference list isn't clear,
@@ -223,7 +223,7 @@ public interface PAMTraM extends EObject {
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!conditionModel'"
 	 * @generated
 	 */
-	EList<ConditionalModel> getConditionModel();
+	EList<ConditionModel> getConditionModel();
 
 	/**
 	 * <!-- begin-user-doc -->

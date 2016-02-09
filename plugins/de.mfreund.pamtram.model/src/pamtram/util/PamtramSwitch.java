@@ -121,9 +121,9 @@ public class PamtramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PamtramPackage.CONDITIONAL_MODEL: {
-				ConditionalModel conditionalModel = (ConditionalModel)theEObject;
-				T result = caseConditionalModel(conditionalModel);
+			case PamtramPackage.CONDITION_MODEL: {
+				ConditionModel conditionModel = (ConditionModel)theEObject;
+				T result = caseConditionModel(conditionModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -258,17 +258,17 @@ public class PamtramSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conditional Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conditional Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionalModel(ConditionalModel object) {
+	public T caseConditionModel(ConditionModel object) {
 		return null;
 	}
 

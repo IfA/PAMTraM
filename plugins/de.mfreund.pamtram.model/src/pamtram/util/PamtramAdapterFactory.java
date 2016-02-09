@@ -100,8 +100,8 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 				return createConditionalElementAdapter();
 			}
 			@Override
-			public Adapter caseConditionalModel(ConditionalModel object) {
-				return createConditionalModelAdapter();
+			public Adapter caseConditionModel(ConditionModel object) {
+				return createConditionModelAdapter();
 			}
 			@Override
 			public Adapter caseReferenceableElement(ReferenceableElement object) {
@@ -240,16 +240,16 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.ConditionalModel <em>Conditional Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.ConditionModel <em>Condition Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.ConditionalModel
+	 * @see pamtram.ConditionModel
 	 * @generated
 	 */
-	public Adapter createConditionalModelAdapter() {
+	public Adapter createConditionModelAdapter() {
 		return null;
 	}
 

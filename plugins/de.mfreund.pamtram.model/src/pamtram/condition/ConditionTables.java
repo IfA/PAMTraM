@@ -72,8 +72,8 @@ public class ConditionTables
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeValueConstraint = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("AttributeValueConstraint", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ComplexCondition = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ConditionModel = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ConditionalElement = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionalElement", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ConditionalModel = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionalModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_InstancePointer = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointer", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MultipleConditionOperator = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("MultipleConditionOperator", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SingleConditionOperator = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("SingleConditionOperator", 0);

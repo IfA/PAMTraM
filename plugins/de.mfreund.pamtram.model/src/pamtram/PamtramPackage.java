@@ -266,7 +266,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1 = 1;
+	int PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_4 = 1;
 
 	/**
 	 * The operation id for the '<em>Target Section Models Have Same EPackage</em>' operation.
@@ -275,7 +275,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1 = 2;
+	int PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_4 = 2;
 
 	/**
 	 * The number of operations of the '<em>PAM Tra M</em>' class.
@@ -589,14 +589,14 @@ public interface PamtramPackage extends EPackage {
 	int CONDITIONAL_ELEMENT_OPERATION_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.impl.ConditionalModelImpl <em>Conditional Model</em>}' class.
+	 * The meta object id for the '{@link pamtram.impl.ConditionModelImpl <em>Condition Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.impl.ConditionalModelImpl
-	 * @see pamtram.impl.PamtramPackageImpl#getConditionalModel()
+	 * @see pamtram.impl.ConditionModelImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getConditionModel()
 	 * @generated
 	 */
-	int CONDITIONAL_MODEL = 8;
+	int CONDITION_MODEL = 8;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference list.
@@ -605,25 +605,25 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_MODEL__CONDITION = 0;
+	int CONDITION_MODEL__CONDITION = 0;
 
 	/**
-	 * The number of structural features of the '<em>Conditional Model</em>' class.
+	 * The number of structural features of the '<em>Condition Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_MODEL_FEATURE_COUNT = 1;
+	int CONDITION_MODEL_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Conditional Model</em>' class.
+	 * The number of operations of the '<em>Condition Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_MODEL_OPERATION_COUNT = 0;
+	int CONDITION_MODEL_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.ReferenceableElementImpl <em>Referenceable Element</em>}' class.
@@ -844,7 +844,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.PAMTraM#sourceSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_1();
+	EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_4();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.PAMTraM#targetSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Target Section Models Have Same EPackage</em>}' operation.
@@ -854,7 +854,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.PAMTraM#targetSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_1();
+	EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_4();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.SectionModel <em>Section Model</em>}'.
@@ -1015,25 +1015,25 @@ public interface PamtramPackage extends EPackage {
 	EOperation getConditionalElement__CheckCondition__ComplexCondition();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.ConditionalModel <em>Conditional Model</em>}'.
+	 * Returns the meta object for class '{@link pamtram.ConditionModel <em>Condition Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Conditional Model</em>'.
-	 * @see pamtram.ConditionalModel
+	 * @return the meta object for class '<em>Condition Model</em>'.
+	 * @see pamtram.ConditionModel
 	 * @generated
 	 */
-	EClass getConditionalModel();
+	EClass getConditionModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.ConditionalModel#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.ConditionModel#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Condition</em>'.
-	 * @see pamtram.ConditionalModel#getCondition()
-	 * @see #getConditionalModel()
+	 * @see pamtram.ConditionModel#getCondition()
+	 * @see #getConditionModel()
 	 * @generated
 	 */
-	EReference getConditionalModel_Condition();
+	EReference getConditionModel_Condition();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.ReferenceableElement <em>Referenceable Element</em>}'.
@@ -1216,7 +1216,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_1();
+		EOperation PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_4 = eINSTANCE.getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_4();
 
 		/**
 		 * The meta object literal for the '<em><b>Target Section Models Have Same EPackage</b></em>' operation.
@@ -1224,7 +1224,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_1();
+		EOperation PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_4 = eINSTANCE.getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_4();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.
@@ -1357,14 +1357,14 @@ public interface PamtramPackage extends EPackage {
 		EOperation CONDITIONAL_ELEMENT___CHECK_CONDITION__COMPLEXCONDITION = eINSTANCE.getConditionalElement__CheckCondition__ComplexCondition();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.impl.ConditionalModelImpl <em>Conditional Model</em>}' class.
+		 * The meta object literal for the '{@link pamtram.impl.ConditionModelImpl <em>Condition Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.impl.ConditionalModelImpl
-		 * @see pamtram.impl.PamtramPackageImpl#getConditionalModel()
+		 * @see pamtram.impl.ConditionModelImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getConditionModel()
 		 * @generated
 		 */
-		EClass CONDITIONAL_MODEL = eINSTANCE.getConditionalModel();
+		EClass CONDITION_MODEL = eINSTANCE.getConditionModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference list feature.
@@ -1372,7 +1372,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITIONAL_MODEL__CONDITION = eINSTANCE.getConditionalModel_Condition();
+		EReference CONDITION_MODEL__CONDITION = eINSTANCE.getConditionModel_Condition();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.ReferenceableElementImpl <em>Referenceable Element</em>}' class.

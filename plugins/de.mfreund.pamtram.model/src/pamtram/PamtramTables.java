@@ -76,7 +76,7 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_TMPLid_ = TypeId.SEQUENCE.getSpecializedId(IdManager.getTemplateParameterId(0));
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeValueModifierSet = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeValueModifierSet", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ComplexCondition = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ConditionalModel = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionalModel", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ConditionModel = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_EPackage = PamtramTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EPackage", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_GlobalValue = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalValue", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("LibraryEntry", 0);
@@ -101,7 +101,7 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SingleReferenceAttributeValueConstraint = TypeId.BAG.getSpecializedId(PamtramTables.CLSSid_SingleReferenceAttributeValueConstraint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeValueModifierSet = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_AttributeValueModifierSet);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ComplexCondition = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_ComplexCondition);
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ConditionalModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_ConditionalModel);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ConditionModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_ConditionModel);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EPackage = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_EPackage);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_GlobalValue = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_GlobalValue);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_LibraryEntry = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_LibraryEntry);
@@ -150,8 +150,8 @@ public class PamtramTables
 			TypeParameters.init();
 		}
 
+		public static final /*@NonNull*/ EcoreExecutorType _ConditionModel = new EcoreExecutorType(PamtramPackage.Literals.CONDITION_MODEL, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ConditionalElement = new EcoreExecutorType(PamtramPackage.Literals.CONDITIONAL_ELEMENT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ConditionalModel = new EcoreExecutorType(PamtramPackage.Literals.CONDITIONAL_MODEL, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _DeactivatableElement = new EcoreExecutorType(PamtramPackage.Literals.DEACTIVATABLE_ELEMENT, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _MappingModel = new EcoreExecutorType(PamtramPackage.Literals.MAPPING_MODEL, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _NamedElement = new EcoreExecutorType(PamtramPackage.Literals.NAMED_ELEMENT, PACKAGE, 0);
@@ -162,8 +162,8 @@ public class PamtramTables
 		public static final /*@NonNull*/ EcoreExecutorType _TargetSectionModel = new EcoreExecutorType(PamtramPackage.Literals.TARGET_SECTION_MODEL, PACKAGE, 0);
 
 		private static final /*@NonNull*/ EcoreExecutorType[] types = {
+			_ConditionModel,
 			_ConditionalElement,
-			_ConditionalModel,
 			_DeactivatableElement,
 			_MappingModel,
 			_NamedElement,
@@ -197,13 +197,13 @@ public class PamtramTables
 			Types.init();
 		}
 
+		private static final /*@NonNull*/ ExecutorFragment _ConditionModel__ConditionModel = new ExecutorFragment(Types._ConditionModel, PamtramTables.Types._ConditionModel);
+		private static final /*@NonNull*/ ExecutorFragment _ConditionModel__OclAny = new ExecutorFragment(Types._ConditionModel, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ConditionModel__OclElement = new ExecutorFragment(Types._ConditionModel, OCLstdlibTables.Types._OclElement);
+
 		private static final /*@NonNull*/ ExecutorFragment _ConditionalElement__ConditionalElement = new ExecutorFragment(Types._ConditionalElement, PamtramTables.Types._ConditionalElement);
 		private static final /*@NonNull*/ ExecutorFragment _ConditionalElement__OclAny = new ExecutorFragment(Types._ConditionalElement, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _ConditionalElement__OclElement = new ExecutorFragment(Types._ConditionalElement, OCLstdlibTables.Types._OclElement);
-
-		private static final /*@NonNull*/ ExecutorFragment _ConditionalModel__ConditionalModel = new ExecutorFragment(Types._ConditionalModel, PamtramTables.Types._ConditionalModel);
-		private static final /*@NonNull*/ ExecutorFragment _ConditionalModel__OclAny = new ExecutorFragment(Types._ConditionalModel, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _ConditionalModel__OclElement = new ExecutorFragment(Types._ConditionalModel, OCLstdlibTables.Types._OclElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _DeactivatableElement__DeactivatableElement = new ExecutorFragment(Types._DeactivatableElement, PamtramTables.Types._DeactivatableElement);
 		private static final /*@NonNull*/ ExecutorFragment _DeactivatableElement__OclAny = new ExecutorFragment(Types._DeactivatableElement, OCLstdlibTables.Types._OclAny);
@@ -312,11 +312,11 @@ public class PamtramTables
 			Operations.init();
 		}
 
+		public static final /*@NonNull*/ ExecutorProperty _ConditionModel__condition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITION_MODEL__CONDITION, Types._ConditionModel, 0);
+		public static final /*@NonNull*/ ExecutorProperty _ConditionModel__PAMTraM__conditionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._ConditionModel, 1, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL));
+
 		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__condition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION, Types._ConditionalElement, 0);
 		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__conditionRef = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF, Types._ConditionalElement, 1);
-
-		public static final /*@NonNull*/ ExecutorProperty _ConditionalModel__condition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_MODEL__CONDITION, Types._ConditionalModel, 0);
-		public static final /*@NonNull*/ ExecutorProperty _ConditionalModel__PAMTraM__conditionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._ConditionalModel, 1, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL));
 
 		public static final /*@NonNull*/ ExecutorProperty _DeactivatableElement__deactivated = new EcoreExecutorProperty(PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED, Types._DeactivatableElement, 0);
 
@@ -365,6 +365,14 @@ public class PamtramTables
 			Properties.init();
 		}
 
+		private static final /*@NonNull*/ ExecutorFragment[] _ConditionModel =
+		{
+			Fragments._ConditionModel__OclAny /* 0 */,
+			Fragments._ConditionModel__OclElement /* 1 */,
+			Fragments._ConditionModel__ConditionModel /* 2 */
+		};
+		private static final /*@NonNull*/ int[] __ConditionModel = { 1,1,1 };
+
 		private static final /*@NonNull*/ ExecutorFragment[] _ConditionalElement =
 		{
 			Fragments._ConditionalElement__OclAny /* 0 */,
@@ -372,14 +380,6 @@ public class PamtramTables
 			Fragments._ConditionalElement__ConditionalElement /* 2 */
 		};
 		private static final /*@NonNull*/ int[] __ConditionalElement = { 1,1,1 };
-
-		private static final /*@NonNull*/ ExecutorFragment[] _ConditionalModel =
-		{
-			Fragments._ConditionalModel__OclAny /* 0 */,
-			Fragments._ConditionalModel__OclElement /* 1 */,
-			Fragments._ConditionalModel__ConditionalModel /* 2 */
-		};
-		private static final /*@NonNull*/ int[] __ConditionalModel = { 1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _DeactivatableElement =
 		{
@@ -455,8 +455,8 @@ public class PamtramTables
 		 *	Install the fragment descriptors in the class descriptors.
 		 */
 		static {
+			Types._ConditionModel.initFragments(_ConditionModel, __ConditionModel);
 			Types._ConditionalElement.initFragments(_ConditionalElement, __ConditionalElement);
-			Types._ConditionalModel.initFragments(_ConditionalModel, __ConditionalModel);
 			Types._DeactivatableElement.initFragments(_DeactivatableElement, __DeactivatableElement);
 			Types._MappingModel.initFragments(_MappingModel, __MappingModel);
 			Types._NamedElement.initFragments(_NamedElement, __NamedElement);
@@ -484,6 +484,29 @@ public class PamtramTables
 			TypeFragments.init();
 		}
 
+		private static final /*@NonNull*/ ExecutorOperation[] _ConditionModel__ConditionModel = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _ConditionModel__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _ConditionModel__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+
 		private static final /*@NonNull*/ ExecutorOperation[] _ConditionalElement__ConditionalElement = {
 			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
 		};
@@ -504,29 +527,6 @@ public class PamtramTables
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ConditionalElement__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
-		};
-
-		private static final /*@NonNull*/ ExecutorOperation[] _ConditionalModel__ConditionalModel = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _ConditionalModel__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation[] _ConditionalModel__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
@@ -730,13 +730,13 @@ public class PamtramTables
 		 *	Install the operation descriptors in the fragment descriptors.
 		 */
 		static {
+			Fragments._ConditionModel__ConditionModel.initOperations(_ConditionModel__ConditionModel);
+			Fragments._ConditionModel__OclAny.initOperations(_ConditionModel__OclAny);
+			Fragments._ConditionModel__OclElement.initOperations(_ConditionModel__OclElement);
+
 			Fragments._ConditionalElement__ConditionalElement.initOperations(_ConditionalElement__ConditionalElement);
 			Fragments._ConditionalElement__OclAny.initOperations(_ConditionalElement__OclAny);
 			Fragments._ConditionalElement__OclElement.initOperations(_ConditionalElement__OclElement);
-
-			Fragments._ConditionalModel__ConditionalModel.initOperations(_ConditionalModel__ConditionalModel);
-			Fragments._ConditionalModel__OclAny.initOperations(_ConditionalModel__OclAny);
-			Fragments._ConditionalModel__OclElement.initOperations(_ConditionalModel__OclElement);
 
 			Fragments._DeactivatableElement__DeactivatableElement.initOperations(_DeactivatableElement__DeactivatableElement);
 			Fragments._DeactivatableElement__OclAny.initOperations(_DeactivatableElement__OclAny);
@@ -794,14 +794,14 @@ public class PamtramTables
 			FragmentOperations.init();
 		}
 
+		private static final /*@NonNull*/ ExecutorProperty[] _ConditionModel = {
+			PamtramTables.Properties._ConditionModel__condition,
+			PamtramTables.Properties._ConditionModel__PAMTraM__conditionModel
+		};
+
 		private static final /*@NonNull*/ ExecutorProperty[] _ConditionalElement = {
 			PamtramTables.Properties._ConditionalElement__condition,
 			PamtramTables.Properties._ConditionalElement__conditionRef
-		};
-
-		private static final /*@NonNull*/ ExecutorProperty[] _ConditionalModel = {
-			PamtramTables.Properties._ConditionalModel__condition,
-			PamtramTables.Properties._ConditionalModel__PAMTraM__conditionModel
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _DeactivatableElement = {
@@ -861,8 +861,8 @@ public class PamtramTables
 		 *	Install the property descriptors in the fragment descriptors.
 		 */
 		static {
+			Fragments._ConditionModel__ConditionModel.initProperties(_ConditionModel);
 			Fragments._ConditionalElement__ConditionalElement.initProperties(_ConditionalElement);
-			Fragments._ConditionalModel__ConditionalModel.initProperties(_ConditionalModel);
 			Fragments._DeactivatableElement__DeactivatableElement.initProperties(_DeactivatableElement);
 			Fragments._MappingModel__MappingModel.initProperties(_MappingModel);
 			Fragments._NamedElement__NamedElement.initProperties(_NamedElement);

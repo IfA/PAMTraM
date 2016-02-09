@@ -47,7 +47,7 @@ public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMini
 	protected void createAdditionalToolbarItems(ToolBar toolbar) {
 
 		isMinimized = false;
-		minimizeImage = BundleContentHelper.getBundleImage(bundleID, "icons/thin_min_view.gif");
+		minimizeImage = BundleContentHelper.getBundleImage(bundleID, "icons/minimize.gif");
 		restoreImage = BundleContentHelper.getBundleImage(bundleID, "icons/restore.gif");
 		
 		final ToolItem minimizeItem = new ToolItem(toolbar, SWT.PUSH);

@@ -52,6 +52,7 @@ public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMini
 		
 		final ToolItem minimizeItem = new ToolItem(toolbar, SWT.PUSH);
 		minimizeItem.setImage(minimizeImage);
+		minimizeItem.setToolTipText("Minimize");
 
 		// the listener that removes the 'minimized' state when the user manually resizes the control
 		final Listener resizeListener = new Listener() {
@@ -59,6 +60,7 @@ public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMini
 			public void handleEvent(Event event) {
 				isMinimized = false;
 				minimizeItem.setImage(minimizeImage);
+				minimizeItem.setToolTipText("Minimize");
 				MinimizableTreeViewerGroup.this.removeListener(SWT.Resize, this);
 			}
 		};
@@ -73,11 +75,13 @@ public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMini
 				if(isMinimized) {
 					((MinimizableSashForm) parent).minimizeControl(MinimizableTreeViewerGroup.this);
 					minimizeItem.setImage(restoreImage);
+					minimizeItem.setToolTipText("Restore");
 					MinimizableTreeViewerGroup.this.addListener(SWT.Resize, resizeListener);
 					
 				} else {
 					((MinimizableSashForm) parent).restoreLayout();
 					minimizeItem.setImage(minimizeImage);
+					minimizeItem.setToolTipText("Minimize");
 					MinimizableTreeViewerGroup.this.removeListener(SWT.Resize, resizeListener);
 				}
 			}

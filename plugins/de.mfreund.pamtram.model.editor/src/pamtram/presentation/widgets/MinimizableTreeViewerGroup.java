@@ -21,7 +21,7 @@ import de.mfreund.pamtram.util.SelectionListener2;
  * @author Matthias
  *
  */
-public class MinimizableTreeViewerGroup extends TreeViewerGroup {
+public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMinimizedHeightProvider {
 	
 	private final String bundleID = "de.mfreund.pamtram.model.editor";
 	
@@ -91,6 +91,13 @@ public class MinimizableTreeViewerGroup extends TreeViewerGroup {
 		minimizeImage.dispose();
 		restoreImage.dispose();
 		super.dispose();
+	}
+
+	@Override
+	public int getMinimizedHeight() {
+		
+		// in the 'minimized' state, we do not want to display the tree viewer
+		return (this.group.getSize().y - this.treeViewer.getTree().getSize().y);
 	}
 
 }

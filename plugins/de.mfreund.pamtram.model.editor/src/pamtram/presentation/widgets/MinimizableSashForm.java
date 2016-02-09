@@ -134,7 +134,8 @@ public class MinimizableSashForm extends SashForm {
 				Control child = realChildren.get(i);
 				
 				if(controlToBeMinimized.equals(child)) {
-					weights[i] = defaultMinHeight;
+					weights[i] = (controlToBeMinimized instanceof IMinimizedHeightProvider ? 
+							((IMinimizedHeightProvider) controlToBeMinimized).getMinimizedHeight() : defaultMinHeight);
 				} else {
 					weights[i] = (getClientArea().height - defaultMinHeight)/(realChildren.size() - 1);
 				}

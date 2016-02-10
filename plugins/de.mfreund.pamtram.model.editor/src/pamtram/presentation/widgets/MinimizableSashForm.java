@@ -1,6 +1,7 @@
 package pamtram.presentation.widgets;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -42,7 +43,23 @@ public class MinimizableSashForm extends SashForm {
 		super(parent, style);
 		this.minimizedControl = null;
 		this.resizeListener = null;
-		this.removeResizeListenerListener = null;
+		
+		// this listener will be attached to every sash inside the sash form
+		this.removeResizeListenerListener = new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				if(minimizedControl != null) {
+					if(resizeListener != null) {
+						removeListener(SWT.Resize, resizeListener);					
+					}
+					if(minimizedControl instanceof IMinimizable) {
+						((IMinimizable) minimizedControl).restore();
+					}
+					minimizedControl = null;
+					resizeListener = null;
+				}
+			}
+		};
 	}
 		
 	/**
@@ -58,40 +75,59 @@ public class MinimizableSashForm extends SashForm {
 		}
 		
 		// minimize the control
+		minimizedControl = control;
 		setWeights(calculateWeights(control));
+		for (Control child : getChildren()) {
+			if(child instanceof IMinimizable) {
+				if(control.equals(child)) {
+					((IMinimizable) child).minimize();					
+				} else {
+					((IMinimizable) child).restore();
+				}
+			}
+		}
 		
 		// ensure that the control stays minimized even when the sash form is resized
+		if(resizeListener != null) {
+			// remove the listener from the previously minimized control
+			removeListener(SWT.Resize, resizeListener);					
+		}
 		resizeListener = new Listener () {
 			@Override
 		    public void handleEvent (Event e) {
 		    	setWeights(calculateWeights(control));
-		    	System.out.println(getWeights());
 		    }
 		};
 		addListener(SWT.Resize, resizeListener);
 		
-		// ensure that above listener is removed when the user manually moves the sash
-		removeResizeListenerListener = new Listener() {
-			@Override
-			public void handleEvent(Event event) {
-				if(resizeListener != null) {
-					removeListener(SWT.Resize, resizeListener);					
+		// add a listener to each contained sash that ensures that above 'resizeListener' is removed when the user 
+		// manually moves the sash
+		for (int i = 0; i < getChildren().length; i++) {
+			Control child = getChildren()[i];
+			if(child instanceof Sash) {
+				if(!Arrays.asList(child.getListeners(SWT.DragDetect)).contains(removeResizeListenerListener)) {
+					child.addListener(SWT.DragDetect, removeResizeListenerListener);							
 				}
-				if(removeResizeListenerListener != null) {
-					control.removeListener(SWT.Resize, removeResizeListenerListener);
-				}
-				minimizedControl = null;
-				resizeListener = null;
-				removeResizeListenerListener = null;
 			}
-		};
-		control.addListener(SWT.Resize, removeResizeListenerListener);
+		}
 	}
 	
 	/**
 	 * Restores the layout (no control is minimized).
 	 */
 	public void restoreLayout() {
+		
+		if(resizeListener != null) {
+			removeListener(SWT.Resize, resizeListener);					
+		}
+		for (Control child : getChildren()) {
+			if(child instanceof IMinimizable) {
+				((IMinimizable) child).restore();
+			}
+		}
+		minimizedControl = null;
+		resizeListener = null;
+		
 		setWeights(calculateWeights(null));
 	}
 
@@ -129,22 +165,37 @@ public class MinimizableSashForm extends SashForm {
 			}
 			
 		} else {
-			// determine the weights so that height of the 'minimizedControl' will be 'defaultMinHeight'
+			// determine the weights so that height of the 'minimizedControl' will be 'minimized'
+			int minHeight = (controlToBeMinimized instanceof IMinimizedHeightProvider ? 
+					((IMinimizedHeightProvider) controlToBeMinimized).getMinimizedHeight() : defaultMinHeight);
 			for (int i = 0; i < realChildren.size(); i++) {
 				Control child = realChildren.get(i);
 				
 				if(controlToBeMinimized.equals(child)) {
-					weights[i] = (controlToBeMinimized instanceof IMinimizedHeightProvider ? 
-							((IMinimizedHeightProvider) controlToBeMinimized).getMinimizedHeight() : defaultMinHeight);
+					weights[i] = minHeight;
 				} else {
-					weights[i] = (getClientArea().height - defaultMinHeight)/(realChildren.size() - 1);
+					weights[i] = (getClientArea().height - minHeight)/(realChildren.size() - 1);
 				}
 				
 			}
 		}
 		
-		
 		return weights;
+	}
+	
+	@Override
+	public void dispose() {
+
+		// remove the 'removeResizeListenerListener' from each sash
+		for (int i = 0; i < getChildren().length; i++) {
+			if(getChildren()[i] instanceof Sash) {
+				if(Arrays.asList(getChildren()[i].getListeners(SWT.DragDetect)).contains(removeResizeListenerListener)) {
+					getChildren()[i].removeListener(SWT.DragDetect, removeResizeListenerListener);							
+				}
+			}
+		}
+		
+		super.dispose();
 	}
 
 }

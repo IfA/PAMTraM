@@ -8,8 +8,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
@@ -17,11 +15,11 @@ import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
 
 /**
- * A {@link TreeViewerGroup} that can be minimized (and restored) when placed insied a {@link MinimizableSashForm}.
+ * A {@link TreeViewerGroup} that can be minimized (and restored) when placed inside a {@link MinimizableSashForm}.
  * @author Matthias
  *
  */
-public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMinimizedHeightProvider {
+public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMinimizedHeightProvider, IMinimizable {
 	
 	private final String bundleID = "de.mfreund.pamtram.model.editor";
 	
@@ -31,6 +29,16 @@ public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMini
 	 * This keeps track of the state of the control.
 	 */
 	private boolean isMinimized;
+
+	/**
+	 * The {@link ToolItem} that toggles the state of the tree viewer group between <em>minimized</em> and <em>normal</em>.
+	 */
+	private ToolItem minimizeItem;
+	
+	/**
+	 * This stores the minimized height that is only calculate once. 
+	 */
+	private int minimizedHeight;
 	
 	public MinimizableTreeViewerGroup(MinimizableSashForm parent, ComposedAdapterFactory adapterFactory,
 			EditingDomain editingDomain, String groupText) {
@@ -47,42 +55,23 @@ public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMini
 	protected void createAdditionalToolbarItems(ToolBar toolbar) {
 
 		isMinimized = false;
+		minimizedHeight = -1;
 		minimizeImage = BundleContentHelper.getBundleImage(bundleID, "icons/minimize.gif");
 		restoreImage = BundleContentHelper.getBundleImage(bundleID, "icons/restore.gif");
 		
-		final ToolItem minimizeItem = new ToolItem(toolbar, SWT.PUSH);
+		minimizeItem = new ToolItem(toolbar, SWT.PUSH);
 		minimizeItem.setImage(minimizeImage);
 		minimizeItem.setToolTipText("Minimize");
 
-		// the listener that removes the 'minimized' state when the user manually resizes the control
-		final Listener resizeListener = new Listener() {
-			@Override
-			public void handleEvent(Event event) {
-				isMinimized = false;
-				minimizeItem.setImage(minimizeImage);
-				minimizeItem.setToolTipText("Minimize");
-				MinimizableTreeViewerGroup.this.removeListener(SWT.Resize, this);
-			}
-		};
-		
 		// either minimize or restore the control depending on the 'minimized' state
 		minimizeItem.addSelectionListener(new SelectionListener2() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				isMinimized = !isMinimized;
-				
-				if(isMinimized) {
+				if(!isMinimized) {
 					((MinimizableSashForm) parent).minimizeControl(MinimizableTreeViewerGroup.this);
-					minimizeItem.setImage(restoreImage);
-					minimizeItem.setToolTipText("Restore");
-					MinimizableTreeViewerGroup.this.addListener(SWT.Resize, resizeListener);
-					
 				} else {
 					((MinimizableSashForm) parent).restoreLayout();
-					minimizeItem.setImage(minimizeImage);
-					minimizeItem.setToolTipText("Minimize");
-					MinimizableTreeViewerGroup.this.removeListener(SWT.Resize, resizeListener);
 				}
 			}
 		});
@@ -99,9 +88,27 @@ public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMini
 
 	@Override
 	public int getMinimizedHeight() {
-		
-		// in the 'minimized' state, we do not want to display the tree viewer
-		return (this.group.getSize().y - this.treeViewer.getTree().getSize().y);
+
+		if(minimizedHeight == -1) {
+			// in the 'minimized' state, we do not want to display the tree viewer
+			minimizedHeight = (this.group.getSize().y - this.treeViewer.getTree().getSize().y);
+		}
+
+		return minimizedHeight;
+	}
+
+	@Override
+	public void minimize() {
+		isMinimized = true;
+		minimizeItem.setImage(restoreImage);
+		minimizeItem.setToolTipText("Restore");
+	}
+
+	@Override
+	public void restore() {
+		isMinimized = false;
+		minimizeItem.setImage(minimizeImage);
+		minimizeItem.setToolTipText("Minimize");
 	}
 
 }

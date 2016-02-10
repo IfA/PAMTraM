@@ -47,6 +47,24 @@
     <requirement
         name="org.eclipse.egit.gitflow.feature.feature.group"
         versionRange="4.0.0"/>
+    <requirement
+        name="org.eclipse.wb.core.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.core.java.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.core.ui.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.core.xml.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.doc.user.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.layout.group.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.swt.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.rcp.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.rcp.doc.user.feature.feature.group"/>
     <repository
         url="http://download.eclipse.org/epsilon/updates/"/>
   </setupTask>

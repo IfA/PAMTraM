@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
-
 import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
@@ -64,6 +63,8 @@ import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.presentation.widgets.MinimizableSashForm;
+import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
 import pamtram.presentation.widgets.TreeViewerGroup;
 
 public class PamtramEditorMainPage extends SashForm {
@@ -98,6 +99,11 @@ public class PamtramEditorMainPage extends SashForm {
 	protected Group mappingGroup;
 
 	/**
+	 * The {@link TreeViewerGroup} for the mappings.
+	 */
+	protected TreeViewerGroup mappingViewerGroup;
+	
+	/**
 	 * This is the the viewer for the mappings.
 	 */
 	protected TreeViewer mappingViewer;
@@ -107,6 +113,11 @@ public class PamtramEditorMainPage extends SashForm {
 	 */
 	protected Group attValModGroup;
 
+	/**
+	 * The {@link TreeViewerGroup} for the att val modifier sets.
+	 */
+	protected TreeViewerGroup globalElementsViewerGroup;
+	
 	/**
 	 * This is the the viewer for the att val modifier sets.
 	 */
@@ -118,9 +129,19 @@ public class PamtramEditorMainPage extends SashForm {
 	protected Group targetGroup;
 
 	/**
+	 * The {@link TreeViewerGroup} for the target meta model sections.
+	 */
+	protected TreeViewerGroup targetViewerGroup;
+	
+	/**
 	 * This is the the viewer for the target meta model sections.
 	 */
 	protected TreeViewer targetViewer;
+	
+	/**
+	 * The {@link TreeViewerGroup} for the library target meta model sections.
+	 */
+	protected TreeViewerGroup libTargetViewerGroup;
 
 	/**
 	 * This is the group for the library element tree viewer.
@@ -185,7 +206,7 @@ public class PamtramEditorMainPage extends SashForm {
 	private void createMappingViewer() {
 	
 		// Create a sash form to host the mapping and the attribute value modifier view
-		SashForm mappingSash = new SashForm(this,SWT.NONE | SWT.VERTICAL);
+		MinimizableSashForm mappingSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
 		{
 			GridData data = new GridData();
 			data.verticalAlignment = GridData.FILL;
@@ -197,10 +218,11 @@ public class PamtramEditorMainPage extends SashForm {
 		// Create the viewer for the source sections.
 		//
 	
-		mappingViewer = new TreeViewerGroup(
+		mappingViewerGroup = new MinimizableTreeViewerGroup(
 				mappingSash, adapterFactory, editor.getEditingDomain(),
 				"Mappings", null, null, true, true
-				).getViewer();
+				);
+		mappingViewer = mappingViewerGroup.getViewer();
 		/*
 		 * We add a special content adapter that will refresh the viewer when an element
 		 * gets (de-)activated. Otherwise, the updates to the label and its colors are
@@ -223,10 +245,10 @@ public class PamtramEditorMainPage extends SashForm {
 		// Create the viewer for the attribute value modifier sets.
 		//
 	
-		globalElementsViewer = new TreeViewerGroup(
+		globalElementsViewerGroup = new MinimizableTreeViewerGroup(
 				mappingSash, adapterFactory, editor.getEditingDomain(), 
-				"Modifier Sets and Global Values", null, null, true, true
-				).getViewer();
+				"Modifier Sets and Global Values", null, null, true, true);
+		globalElementsViewer = globalElementsViewerGroup.getViewer();
 	
 		globalElementsViewer.setContentProvider(new ModifierSetContentProvider(adapterFactory));
 		globalElementsViewer.setInput(editor.pamtram);
@@ -245,7 +267,7 @@ public class PamtramEditorMainPage extends SashForm {
 	private void createTargetViewer() {
 	
 		// Create a sash form to host the target section and the library element view
-		SashForm targetSash = new SashForm(this, SWT.NONE | SWT.VERTICAL);
+		final MinimizableSashForm targetSash = new MinimizableSashForm(this, SWT.NONE | SWT.VERTICAL);
 		{
 			GridData data = new GridData();
 			data.verticalAlignment = GridData.FILL;
@@ -257,10 +279,11 @@ public class PamtramEditorMainPage extends SashForm {
 	
 		// Create the viewer for the target sections.
 		//
-		targetViewer = new TreeViewerGroup(
+		targetViewerGroup = new MinimizableTreeViewerGroup(
 				targetSash, adapterFactory, editor.getEditingDomain(),
 				"Target Sections", null, null, true, true
-				).getViewer();
+				);
+		targetViewer = targetViewerGroup.getViewer();
 	
 		targetViewer.setContentProvider(new TargetSectionContentProvider(adapterFactory));
 		targetViewer.setInput(editor.pamtram);
@@ -273,11 +296,13 @@ public class PamtramEditorMainPage extends SashForm {
 	
 		// Create the viewer for the library element target sections.
 		//
-		libTargetViewer = new TreeViewerGroup(
+		libTargetViewerGroup = new MinimizableTreeViewerGroup(
 				targetSash, adapterFactory, editor.getEditingDomain(), 
 				"Library Element Target Sections", null, null, true, false){
 			@Override
 			protected void createAdditionalToolbarItems(org.eclipse.swt.widgets.ToolBar toolbar) {
+				
+				// import library entries
 				ToolItem item = new ToolItem(toolbar, SWT.PUSH);
 				item.setImage(BundleContentHelper.getBundleImage(bundleID, "icons/import_wiz.gif"));
 				item.addSelectionListener(new SelectionListener2() {
@@ -292,8 +317,11 @@ public class PamtramEditorMainPage extends SashForm {
 						wizardDialog.open();
 					}
 				});
+				
+				super.createAdditionalToolbarItems(toolbar);
 			};
-		}.getViewer();
+		};
+		libTargetViewer = libTargetViewerGroup.getViewer();
 	
 		libTargetViewer.setContentProvider(new LibraryEntryContentProvider(adapterFactory));
 		libTargetViewer.setInput(editor.pamtram);
@@ -760,8 +788,5 @@ public class PamtramEditorMainPage extends SashForm {
 			}
 		}
 	}
-
-	
-	
 
 }

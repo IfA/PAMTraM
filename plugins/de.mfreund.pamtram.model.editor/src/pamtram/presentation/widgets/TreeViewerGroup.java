@@ -53,41 +53,41 @@ import pamtram.presentation.PamtramEditorPlugin;
  */
 public class TreeViewerGroup extends FilteredTree{
 
-	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
+	protected final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
 
 	/**
 	 * This is the adapter factory used to create content and
 	 * label providers.
 	 */
-	private ComposedAdapterFactory adapterFactory;
+	protected ComposedAdapterFactory adapterFactory;
 
 	/**
 	 * This is the group that contains all other parts.
 	 */
-	private Group group;
+	protected Group group;
 
 	/**
 	 * This is the tool bar.
 	 */
-	private ToolBar toolbar;
+	protected ToolBar toolbar;
 
 	/**
 	 * This is the label of the group containing all other widgets.
 	 */
-	private String groupText;
+	protected String groupText;
 
 	/**
 	 * This is the list of additional images to display in the tool bar
 	 * (besides standard icons like 'collapseAll').
 	 */
-	private ArrayList<Image> toolbarImages;
+	protected ArrayList<Image> toolbarImages;
 
 	/**
 	 * A setter for the tool bar images that checks for 'null' parameter.
 	 * 
 	 * @param toolbarImages (may be 'null')
 	 */
-	private void setToolbarImages(ArrayList<Image> toolbarImages) {
+	protected void setToolbarImages(ArrayList<Image> toolbarImages) {
 		this.toolbarImages = 
 				(toolbarImages != null ? toolbarImages : new ArrayList<Image>()); 
 	}
@@ -96,26 +96,26 @@ public class TreeViewerGroup extends FilteredTree{
 	 * This is the list of additional listeners that are invoked when the
 	 * user selects one of the additional images in the tool bar.
 	 */
-	private ArrayList<SelectionListener> toolbarListeners;
+	protected ArrayList<SelectionListener> toolbarListeners;
 
 	/**
 	 * Whether to display a 'collapseAll' button in the tool bar.
 	 */
-	private boolean displayCollapseAll;
+	protected boolean displayCollapseAll;
 
 	/**
 	 * Whether to display an 'add' button in the tool bar.
 	 */
-	private boolean displayAdd;
+	protected boolean displayAdd;
 
-	private EditingDomain editingDomain;
+	protected EditingDomain editingDomain;
 
 	/**
 	 * A setter for the tool bar listeners that checks for 'null' parameter.
 	 * 
 	 * @param toolbarListeners (may be 'null')
 	 */
-	private void setToolbarListeners(ArrayList<SelectionListener> toolbarListeners) {
+	protected void setToolbarListeners(ArrayList<SelectionListener> toolbarListeners) {
 		this.toolbarListeners = 
 				(toolbarListeners != null ? toolbarListeners : new ArrayList<SelectionListener>()); 
 	}
@@ -286,7 +286,7 @@ public class TreeViewerGroup extends FilteredTree{
 	 * @param displayCollapseAll If to include a 'collapseAll' button in the tool bar.
 	 * @param displayAdd If to include an add button.
 	 */
-	private void createToolbar(Composite parent, ArrayList<Image> images,
+	protected void createToolbar(Composite parent, ArrayList<Image> images,
 			ArrayList<SelectionListener> listeners, boolean displayCollapseAll,
 			boolean displayAdd) {
 

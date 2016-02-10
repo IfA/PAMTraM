@@ -305,6 +305,7 @@ public class PamtramEditorMainPage extends SashForm {
 				// import library entries
 				ToolItem item = new ToolItem(toolbar, SWT.PUSH);
 				item.setImage(BundleContentHelper.getBundleImage(bundleID, "icons/import_wiz.gif"));
+				item.setToolTipText("Import Library Item");
 				item.addSelectionListener(new SelectionListener2() {
 	
 					@Override

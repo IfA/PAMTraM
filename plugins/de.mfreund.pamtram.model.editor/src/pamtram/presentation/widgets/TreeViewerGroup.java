@@ -308,6 +308,7 @@ public class TreeViewerGroup extends FilteredTree{
 		if(displayCollapseAll) {
 			ToolItem item = new ToolItem(toolbar, SWT.PUSH | SWT.TRAIL);
 			item.setImage(BundleContentHelper.getBundleImage(bundleID, "icons/collapse_all.gif"));
+			item.setToolTipText("Collapse Tree");
 			item.addSelectionListener(new SelectionListener() {
 
 				@Override
@@ -324,6 +325,7 @@ public class TreeViewerGroup extends FilteredTree{
 		if(displayAdd) {
 			ToolItem item = new ToolItem(toolbar, SWT.DROP_DOWN);
 			item.setImage(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
+			item.setToolTipText("Add Sibling of Same Type");
 
 			item.addSelectionListener(
 					new AddDropDownSelectionListener(item));

@@ -91,7 +91,7 @@ public class MappingModelSelectorPage extends WizardPage {
 							wizardData.setEditor(null);
 						}
 
-						PamtramEditor editor = PamtramEditor.getEditor((String) file);
+						PamtramEditor editor = PamtramEditor.getEditor((String) file, true);
 
 						// we may use an exising editor and its editing domain for our work 
 						if(editor != null) {

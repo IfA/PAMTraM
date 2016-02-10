@@ -6,10 +6,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.ContainmentUpdatingFeatureMapEntry;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
-import org.eclipse.emf.edit.provider.FeatureMapEntryWrapperItemProvider;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -46,38 +44,21 @@ public class ExportMetaModelSectionHandler extends AbstractHandler {
 			return null;
 		}
 		
-		if(!(selection.getFirstElement() instanceof EObject) && 
-				!(selection.getFirstElement() instanceof DelegatingWrapperItemProvider)) {
+		/*
+		 * first, we unwrap the selection to get rid of all the 'WrappedItemProvider' stuff 
+		 * that may be returned by 'getSelection()';
+		 * cf. https://www.eclipse.org/forums/index.php/t/803088/
+		 */
+		Object selected = AdapterFactoryEditingDomain.unwrap(selection.getFirstElement());
+		
+		if(!(selected instanceof EObject)) {
 			MessageDialog.openError(workbenchWindow.getShell(), "Error", 
 					"The selected element is of no supported type!");
 			return null;
 		}
 		
-		EObject eObject = null;
 		
-		// get the selected eObject (the root object of the metamodel section)
-		// depending on the type of selection
-		if(selection.getFirstElement() instanceof EObject) {
-			eObject = (EObject) selection.getFirstElement();
-		} else {
-			DelegatingWrapperItemProvider provider = 
-					((DelegatingWrapperItemProvider) selection.getFirstElement());
-			if(provider.getValue() instanceof EObject) {
-				eObject = (EObject) provider.getValue();
-			} else if(provider.getValue() instanceof ContainmentUpdatingFeatureMapEntry) {
-				Object object = ((ContainmentUpdatingFeatureMapEntry) provider.getValue()).getValue();
-				if(!(object instanceof EObject)) {
-					MessageDialog.openError(workbenchWindow.getShell(), "Error", 
-							"The selected element is of no supported type!");
-					return null;
-				}
-				eObject = (EObject) object;
-			} else {
-				MessageDialog.openError(workbenchWindow.getShell(), "Error", 
-						"The selected element is of no supported type!");
-				return null;
-			}
-		}
+		EObject eObject = (EObject) selected;
 		
 		// get the package that the eObject belongs to
 		EPackage ePackage = (EPackage) EcoreUtil.getRootContainer(eObject.eClass());

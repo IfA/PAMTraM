@@ -57,12 +57,13 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import de.mfreund.pamtram.pages.PamtramEPackageSpecificationPage;
+import de.mfreund.pamtram.pages.EPackageSpecificationPage;
 import de.mfreund.pamtram.ui.PamtramUIPlugin;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.SourceSectionModel;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
@@ -160,9 +161,14 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	protected PamtramModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
-	 * This is the ePackage specification page.
+	 * The wizard page that allows to specify the EPackages for the SourceSectionModel.
 	 */
-	protected PamtramEPackageSpecificationPage ePackageSpecificationPage;
+	protected EPackageSpecificationPage sourceEPackageSpecificationPage;
+	
+	/**
+	 * The wizard page that allows to specify the EPackages for the TargetSectionModel.
+	 */
+	protected EPackageSpecificationPage targetEPackageSpecificationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -247,14 +253,18 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		PAMTraM pamtram = pamtramFactory.createPAMTraM();
 
 		// add a source section model for every source ePackage
-		if(ePackageSpecificationPage.getSourceEPackages().isEmpty()) {
+		EPackage.Registry sourceRegistry = sourceEPackageSpecificationPage.getRegistry();
+		if(sourceRegistry.values().isEmpty()) {
 			pamtram.getSourceSectionModel().add(pamtramFactory.createSourceSectionModel());			
 		} else {
-			for (EPackage ePackage : ePackageSpecificationPage.getSourceEPackages()) {
+			for (Object ePackage : sourceRegistry.values()) {
+				if(!(ePackage instanceof EPackage)) {
+					continue;
+				}
 				SourceSectionModel ssm = pamtramFactory.createSourceSectionModel();
 				// set the ePackage of the source section model
-				ssm.setMetaModelPackage(ePackage);
-				ssm.setName(ePackage.getName());
+				ssm.setMetaModelPackage((EPackage) ePackage);
+				ssm.setName(((EPackage) ePackage).getName());
 				pamtram.getSourceSectionModel().add(ssm);		
 			}
 		}
@@ -265,25 +275,38 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			ssm.getMetaModelSections().add(sourceSection);			
 		}
 
-		// add a target section model
-		pamtram.getTargetSectionModel().add(pamtramFactory.createTargetSectionModel());
-		// set the ePackage of the target section model
-		if(ePackageSpecificationPage.getTargetEPackage() != null) {
-			pamtram.getTargetSectionModel().get(0).setMetaModelPackage(ePackageSpecificationPage.getTargetEPackage());
+		// add a target section model for every target ePackage
+		EPackage.Registry targetRegistry = targetEPackageSpecificationPage.getRegistry();
+		if(targetRegistry.values().isEmpty()) {
+			pamtram.getTargetSectionModel().add(pamtramFactory.createTargetSectionModel());			
+		} else {
+			for (Object ePackage : targetRegistry.values()) {
+				if(!(ePackage instanceof EPackage)) {
+					continue;
+				}
+				TargetSectionModel tsm = pamtramFactory.createTargetSectionModel();
+				// set the ePackage of the source section model
+				tsm.setMetaModelPackage((EPackage) ePackage);
+				tsm.setName(((EPackage) ePackage).getName());
+				pamtram.getTargetSectionModel().add(tsm);		
+			}
 		}
-		// add an empty target section to the target section model
-		MappingHintGroup  mappingHintGroup = mappingFactory.createMappingHintGroup();
-		TargetSection targetSection = metamodelFactory.createTargetSection();
-		targetSection.setName("target");
-		pamtram.getTargetSectionModel().get(0).getMetaModelSections().add(targetSection);
+		// add an empty target section to each target section model
+		for (TargetSectionModel tsm : pamtram.getTargetSectionModel()) {
+			MappingHintGroup  mappingHintGroup = mappingFactory.createMappingHintGroup();
+			TargetSection targetSection = metamodelFactory.createTargetSection();
+			targetSection.setName("target");
+			pamtram.getTargetSectionModel().get(0).getMetaModelSections().add(targetSection);		
+		}
 
 		// add a mapping model
 		pamtram.getMappingModel().add(pamtramFactory.createMappingModel());
 		// add a simple mapping to the mapping model
 		Mapping mapping = mappingFactory.createMapping();
+		MappingHintGroup  mappingHintGroup = mappingFactory.createMappingHintGroup();
 		mapping.setSourceMMSection(pamtram.getSourceSectionModel().get(0).getMetaModelSections().get(0));
 		mapping.getMappingHintGroups().add(mappingHintGroup);
-		mappingHintGroup.setTargetMMSection(targetSection);
+		mappingHintGroup.setTargetMMSection(pamtram.getTargetSectionModel().get(0).getMetaModelSections().get(0));
 		pamtram.getMappingModel().get(0).getMapping().add(mapping);
 
 		return pamtram;
@@ -833,10 +856,12 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			}
 		}
 
-		ePackageSpecificationPage = new PamtramEPackageSpecificationPage("Whatever3");
-		ePackageSpecificationPage.setTitle("ePackage specification");
-		ePackageSpecificationPage.setDescription("Specify the ePackages of the source and target sections.");
-		addPage(ePackageSpecificationPage);
+		sourceEPackageSpecificationPage = new EPackageSpecificationPage("Whatever3", "Source EPackage specification",
+				"Specify the ePackages of the source sections.", null);
+		addPage(sourceEPackageSpecificationPage);
+		targetEPackageSpecificationPage = new EPackageSpecificationPage("Whatever3", "Target EPackage specification",
+				"Specify the ePackages of the target sections.", null);
+		addPage(targetEPackageSpecificationPage);
 	}
 
 	/**
@@ -849,8 +874,5 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		return newFileCreationPage.getModelFile();
 	}
 
-	public PamtramEPackageSpecificationPage getePackageSpecificationPage() {
-		return ePackageSpecificationPage;
-	}
 
 }

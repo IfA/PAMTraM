@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+  <sourceSectionModel name="it.cnr.isti.giove.ctt">
+    <metaModelPackage href="http://giove.isti.cnr.it/ctt#/"/>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="RootElement">
+      <eClass href="http://giove.isti.cnr.it/ctt#//TaskModelType"/>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="SubTask">
+      <eClass href="http://giove.isti.cnr.it/ctt#//SubTask"/>
+    </metaModelSections>
+  </sourceSectionModel>
+  <targetSectionModel>
+    <metaModelPackage href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation/Properties#/"/>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="CUIModel">
+      <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation/Properties#//CUIModel"/>
+    </metaModelSections>
+  </targetSectionModel>
+  <mappingModel>
+    <mapping name="sourceMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetMMSection="//@targetSectionModel.0/@metaModelSections.0"/>
+    </mapping>
+  </mappingModel>
+</pamtram:PAMTraM>

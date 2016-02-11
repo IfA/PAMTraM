@@ -291,7 +291,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		// Create a transformation runner and use it to get the matching source sections
 		GenericTransformationRunner tr = 
 				GenericTransformationRunner.createInstanceFromSourceModels(
-						new ArrayList<EObject>(Arrays.asList(contents.get(0))), editor.pamtram, targetBasePath, defaultTargetModel, null, new UserDecisionResolvingStrategy());
+						new ArrayList<EObject>(contents), editor.pamtram, targetBasePath, defaultTargetModel, null, new UserDecisionResolvingStrategy());
 
 		matchedSections = tr.mapSections();
 

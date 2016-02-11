@@ -16,25 +16,25 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import pamtram.ConditionalModel;
+import pamtram.ConditionModel;
 import pamtram.PamtramPackage;
 
 import pamtram.condition.ComplexCondition;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Conditional Model</b></em>'.
+ * An implementation of the model object '<em><b>Condition Model</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.impl.ConditionalModelImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link pamtram.impl.ConditionModelImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConditionalModelImpl extends MinimalEObjectImpl.Container implements ConditionalModel {
+public class ConditionModelImpl extends MinimalEObjectImpl.Container implements ConditionModel {
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -50,7 +50,7 @@ public class ConditionalModelImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConditionalModelImpl() {
+	protected ConditionModelImpl() {
 		super();
 	}
 
@@ -61,7 +61,7 @@ public class ConditionalModelImpl extends MinimalEObjectImpl.Container implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PamtramPackage.Literals.CONDITIONAL_MODEL;
+		return PamtramPackage.Literals.CONDITION_MODEL;
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class ConditionalModelImpl extends MinimalEObjectImpl.Container implement
 	 */
 	public EList<ComplexCondition> getCondition() {
 		if (condition == null) {
-			condition = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, PamtramPackage.CONDITIONAL_MODEL__CONDITION);
+			condition = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, PamtramPackage.CONDITION_MODEL__CONDITION);
 		}
 		return condition;
 	}
@@ -84,7 +84,7 @@ public class ConditionalModelImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PamtramPackage.CONDITIONAL_MODEL__CONDITION:
+			case PamtramPackage.CONDITION_MODEL__CONDITION:
 				return ((InternalEList<?>)getCondition()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -98,7 +98,7 @@ public class ConditionalModelImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PamtramPackage.CONDITIONAL_MODEL__CONDITION:
+			case PamtramPackage.CONDITION_MODEL__CONDITION:
 				return getCondition();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -113,7 +113,7 @@ public class ConditionalModelImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PamtramPackage.CONDITIONAL_MODEL__CONDITION:
+			case PamtramPackage.CONDITION_MODEL__CONDITION:
 				getCondition().clear();
 				getCondition().addAll((Collection<? extends ComplexCondition>)newValue);
 				return;
@@ -129,7 +129,7 @@ public class ConditionalModelImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.CONDITIONAL_MODEL__CONDITION:
+			case PamtramPackage.CONDITION_MODEL__CONDITION:
 				getCondition().clear();
 				return;
 		}
@@ -144,10 +144,10 @@ public class ConditionalModelImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.CONDITIONAL_MODEL__CONDITION:
+			case PamtramPackage.CONDITION_MODEL__CONDITION:
 				return condition != null && !condition.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ConditionalModelImpl
+} //ConditionModelImpl

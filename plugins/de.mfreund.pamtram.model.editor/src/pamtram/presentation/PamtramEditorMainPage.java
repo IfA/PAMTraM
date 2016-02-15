@@ -9,6 +9,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -67,7 +68,7 @@ import pamtram.presentation.widgets.MinimizableSashForm;
 import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
 import pamtram.presentation.widgets.TreeViewerGroup;
 
-public class PamtramEditorMainPage extends SashForm {
+public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
 
@@ -160,6 +161,16 @@ public class PamtramEditorMainPage extends SashForm {
 	 */
 	protected DeactivationListenerAdapter deactivationListener;
 
+	/**
+	 * The {@link MinimizableSashForm} containing the {@link #mappingViewerGroup} and the {@link #globalElementsViewerGroup}.
+	 */
+	protected MinimizableSashForm mappingSash;
+
+	/**
+	 * The {@link MinimizableSashForm} containing the {@link #targetViewerGroup} and the {@link #libTargetViewerGroup}.
+	 */
+	protected MinimizableSashForm targetSash;
+
 	public PamtramEditorMainPage(
 			Composite parent, 
 			int style, 
@@ -205,8 +216,7 @@ public class PamtramEditorMainPage extends SashForm {
 
 	private void createMappingViewer() {
 	
-		// Create a sash form to host the mapping and the attribute value modifier view
-		MinimizableSashForm mappingSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
+		mappingSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
 		{
 			GridData data = new GridData();
 			data.verticalAlignment = GridData.FILL;
@@ -266,8 +276,7 @@ public class PamtramEditorMainPage extends SashForm {
 
 	private void createTargetViewer() {
 	
-		// Create a sash form to host the target section and the library element view
-		final MinimizableSashForm targetSash = new MinimizableSashForm(this, SWT.NONE | SWT.VERTICAL);
+		targetSash = new MinimizableSashForm(this, SWT.NONE | SWT.VERTICAL);
 		{
 			GridData data = new GridData();
 			data.verticalAlignment = GridData.FILL;
@@ -785,6 +794,101 @@ public class PamtramEditorMainPage extends SashForm {
 				if(reference != null && e.stateMask == SWT.CTRL) {
 					targetViewer.setSelection(
 							new StructuredSelection(referencedElements.toArray()));
+				}
+			}
+		}
+	}
+
+	@Override
+	public void persist(IDialogSettings settings) {
+		
+		// Persist the state of the 'mappingSash'
+		//
+		String minimizedControl = "";
+		if(mappingSash.getMinimizedControl() != null) {
+			if(mappingSash.getMinimizedControl().equals(mappingViewerGroup)) {
+				minimizedControl = "MAPPING_VIEWER_GROUP";
+			} else if(mappingSash.getMinimizedControl().equals(globalElementsViewerGroup)) {
+				minimizedControl = "GLOBAL_ELEMENTS_VIEWER_GROUP";
+			}
+		}
+		
+		if(minimizedControl.isEmpty()) {
+			settings.put("MAPPING_SASH_MINIMIZED_CONTROL", "");
+			settings.put("MAPPING_SASH_WEIGHTS", Arrays.toString(mappingSash.getWeights()).split(", "));
+		} else {
+			settings.put("MAPPING_SASH_MINIMIZED_CONTROL", minimizedControl);
+			settings.put("MAPPING_SASH_WEIGHTS", "");
+		}
+		
+		// Persist the state of the 'targetSash'
+		//
+		minimizedControl = "";
+		if(targetSash.getMinimizedControl() != null) {
+			if(targetSash.getMinimizedControl().equals(targetViewerGroup)) {
+				minimizedControl = "TARGET_VIEWER_GROUP";
+			} else if(targetSash.getMinimizedControl().equals(libTargetViewerGroup)) {
+				minimizedControl = "LIBRARY_TARGET_VIEWER_GROUP";
+			}
+		}
+		
+		if(minimizedControl.isEmpty()) {
+			settings.put("TARGET_SASH_MINIMIZED_CONTROL", "");
+			settings.put("TARGET_SASH_WEIGHTS", Arrays.toString(targetSash.getWeights()).split("[\\[\\]]")[1].split(", "));
+		} else {
+			settings.put("TARGET_SASH_MINIMIZED_CONTROL", minimizedControl);
+			settings.put("TARGET_SASH_WEIGHTS", "");
+		}
+	}
+
+
+	@Override
+	public void restore(IDialogSettings settings) {
+
+		// Restore the state of the 'mappingSash'
+		//
+		String minimizedControl = settings.get("MAPPING_SASH_MINIMIZED_CONTROL");
+		if(minimizedControl != null && !minimizedControl.isEmpty()) {
+			if(minimizedControl.equals("MAPPING_VIEWER_GROUP")) {
+				mappingSash.minimizeControl(mappingViewerGroup);
+			} else if(minimizedControl.equals("GLOBAL_ELEMENTS_VIEWER_GROUP")) {
+				mappingSash.minimizeControl(globalElementsViewerGroup);
+			}
+		} else {
+			String[] weights = settings.getArray("MAPPING_SASH_WEIGHTS");
+			if(weights != null) {
+				try {
+					int[] parsedWeights = new int[weights.length];
+					for (int i = 0; i < weights.length; i++) {
+						parsedWeights[i] = Integer.parseInt(weights[i]);
+					}
+					mappingSash.setWeights(parsedWeights);
+				} catch (NumberFormatException e) {
+					// do nothing
+				}
+			}
+		}
+			
+		// Restore the state of the 'mappingSash'
+		//
+		minimizedControl = settings.get("TARGET_SASH_MINIMIZED_CONTROL");
+		if(minimizedControl != null && !minimizedControl.isEmpty()) {
+			if(minimizedControl.equals("TARGET_VIEWER_GROUP")) {
+				targetSash.minimizeControl(targetViewerGroup);
+			} else if(minimizedControl.equals("GLOBAL_ELEMENTS_VIEWER_GROUP")) {
+				targetSash.minimizeControl(libTargetViewerGroup);
+			}
+		} else {
+			String[] weights = settings.getArray("TARGET_SASH_WEIGHTS");
+			if(weights != null) {
+				try {
+					int[] parsedWeights = new int[weights.length];
+					for (int i = 0; i < weights.length; i++) {
+						parsedWeights[i] = Integer.parseInt(weights[i]);
+					}
+					targetSash.setWeights(parsedWeights);
+				} catch (NumberFormatException e) {
+					// do nothing
 				}
 			}
 		}

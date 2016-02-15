@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -446,10 +447,10 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					source = mapping.getSourceMMSection();
 					TargetSectionClass target = hintGroup.getTargetMMSection();
 					if(target != null) {
-						if(target.eContainer() instanceof TargetSectionModel) {
-							targets.add(target);	
-						} else if(target.eContainer() instanceof ContainerParameter) {
+						if(target.eContainer() instanceof ContainerParameter) {
 							libraryTargets.add(target);
+						} else {
+							targets.add(target);	
 						}							
 					}
 					expanded.add(mapping);
@@ -467,11 +468,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					if(hintGroupImporter.getHintGroup() != null) {
 						TargetSectionClass target = hintGroupImporter.getHintGroup().getTargetMMSection(); 
 						if(target != null) {
-							if(target.eContainer() instanceof TargetSectionModel) {
-								targets.add(target);	
-							} else if(target.eContainer() instanceof ContainerParameter) {
+							if(target.eContainer() instanceof ContainerParameter) {
 								libraryTargets.add(target);
-							}								
+							} else {
+								targets.add(target);
+							}
 						}
 					}
 					expanded.add(mapping);
@@ -505,10 +506,10 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 						for(MappingHintGroupType group : mapping.getMappingHintGroups()){
 							if(group.getTargetMMSection() != null) {
 								TargetSectionClass target = group.getTargetMMSection();
-								if(target.eContainer() instanceof TargetSectionModel) {
-									targets.add(target);	
-								} else if(target.eContainer() instanceof ContainerParameter) {
+								if(target.eContainer() instanceof ContainerParameter) {
 									libraryTargets.add(target);
+								} else {
+									targets.add(target);
 								}
 							}
 						}

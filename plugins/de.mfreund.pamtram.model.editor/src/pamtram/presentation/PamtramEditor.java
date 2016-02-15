@@ -2370,22 +2370,28 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
 	@Override
 	public void persist(IDialogSettings settings) {
+		
+		// persist the active page
 		int index = getActivePage();
 		settings.put("ACTIVE_PAGE", index);
 		
+		// persist the state of the 'mainPage'
 		mainPage.persist(settings);
 	}
 
 	@Override
 	public void restore(final IDialogSettings settings) {
+		// perform the restore operations in an asynchronous way
 		try {
-			final int index = settings.getInt("ACTIVE_PAGE");
 			getSite().getShell().getDisplay().asyncExec
 			(new Runnable() {
 				@Override
 				public void run() {
+					// restore the active page
+					int index = settings.getInt("ACTIVE_PAGE");
 					setActivePage(index);
 					
+					// restore the state of the 'mainPage'
 					mainPage.restore(settings);
 				}
 			});

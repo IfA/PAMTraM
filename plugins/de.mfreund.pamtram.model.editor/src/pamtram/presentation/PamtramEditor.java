@@ -360,27 +360,43 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			}
 			public void partClosed(IWorkbenchPart p) {
 				
-				// Save the UI state
-				//
-				IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();				
-				IDialogSettings section = settings.getSection("UI_STATE");
-				if (section == null) {
-					section = settings.addNewSection("UI_STATE");
+				if(getEditorInput() instanceof FileEditorInput) {
+					
+					// Save the UI state
+					//
+					IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();				
+					IDialogSettings section = settings.getSection("UI_STATE");
+					if (section == null) {
+						section = settings.addNewSection("UI_STATE");
+					}
+					String pamtramFile = ((FileEditorInput) getEditorInput()).getFile().toString();
+					IDialogSettings project = settings.getSection(pamtramFile);
+					if (project == null) {
+						project = section.addNewSection(pamtramFile);
+					}
+					PamtramEditor.this.persist(project);
 				}
-				PamtramEditor.this.persist(section);
-//				section.put("MAPPING_SASH_MINIMIZED_CONTROL", mainPage.get);
+				
 			}
 			public void partDeactivated(IWorkbenchPart p) {
 				// Ignore.
 			}
 			public void partOpened(IWorkbenchPart p) {
 
-				// Restore the UI state
-				//
-				IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();				
-				IDialogSettings section = settings.getSection("UI_STATE");
-				if (section != null) {
-					PamtramEditor.this.restore(section);
+				if(getEditorInput() instanceof FileEditorInput) {
+					
+					// Restore the UI state
+					//
+					IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();				
+					IDialogSettings section = settings.getSection("UI_STATE");
+					if (section != null) {
+						String pamtramFile = ((FileEditorInput) getEditorInput()).getFile().toString();
+						IDialogSettings project = section.getSection(pamtramFile);
+						
+						if(project != null) {
+							PamtramEditor.this.restore(project);							
+						}
+					}
 				}
 			}
 		};

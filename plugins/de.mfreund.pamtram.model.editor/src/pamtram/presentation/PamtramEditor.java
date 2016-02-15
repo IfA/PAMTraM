@@ -86,6 +86,7 @@ import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -164,7 +165,7 @@ import pamtram.util.EPackageHelper.EPackageCheck;
  */
 public class PamtramEditor 
 extends MultiPageEditorPart
-implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
+implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, IPersistable {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 * <!-- begin-user-doc -->
@@ -332,7 +333,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 * This listens for when the outline becomes active
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IPartListener partListener =
 			new IPartListener() {
@@ -358,13 +359,29 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				// Ignore.
 			}
 			public void partClosed(IWorkbenchPart p) {
-				// Ignore.
+				
+				// Save the UI state
+				//
+				IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();				
+				IDialogSettings section = settings.getSection("UI_STATE");
+				if (section == null) {
+					section = settings.addNewSection("UI_STATE");
+				}
+				PamtramEditor.this.persist(section);
+//				section.put("MAPPING_SASH_MINIMIZED_CONTROL", mainPage.get);
 			}
 			public void partDeactivated(IWorkbenchPart p) {
 				// Ignore.
 			}
 			public void partOpened(IWorkbenchPart p) {
-				// Ignore.
+
+				// Restore the UI state
+				//
+				IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();				
+				IDialogSettings section = settings.getSection("UI_STATE");
+				if (section != null) {
+					PamtramEditor.this.restore(section);
+				}
 			}
 		};
 
@@ -2333,5 +2350,27 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 */
 	protected boolean showOutlineView() {
 		return true;
+	}
+
+	@Override
+	public void persist(IDialogSettings settings) {
+		int index = getActivePage();
+		settings.put("ACTIVE_PAGE", index);
+	}
+
+	@Override
+	public void restore(IDialogSettings settings) {
+		try {
+			final int index = settings.getInt("ACTIVE_PAGE");
+			getSite().getShell().getDisplay().asyncExec
+			(new Runnable() {
+				@Override
+				public void run() {
+					setActivePage(index);
+				}
+			});
+		} catch (Exception e) {
+			// do nothing
+		}
 	}
 }

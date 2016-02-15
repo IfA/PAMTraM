@@ -161,7 +161,7 @@ import pamtram.util.EPackageHelper.EPackageCheck;
  * This is an example of a Pamtram model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * @generated
+ * @generated NOT
  */
 public class PamtramEditor 
 extends MultiPageEditorPart
@@ -360,7 +360,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			}
 			public void partClosed(IWorkbenchPart p) {
 				
-				if(getEditorInput() instanceof FileEditorInput) {
+				if(p == PamtramEditor.this && getEditorInput() instanceof FileEditorInput) {
 					
 					// Save the UI state
 					//
@@ -383,7 +383,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			}
 			public void partOpened(IWorkbenchPart p) {
 
-				if(getEditorInput() instanceof FileEditorInput) {
+				if(p == PamtramEditor.this && getEditorInput() instanceof FileEditorInput) {
 					
 					// Restore the UI state
 					//

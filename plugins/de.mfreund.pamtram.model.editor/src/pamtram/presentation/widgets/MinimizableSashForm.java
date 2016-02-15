@@ -30,6 +30,14 @@ public class MinimizableSashForm extends SashForm {
 	private Control minimizedControl;
 	
 	/**
+	 * This is the getter for the {@link #minimizedControl}.
+	 * @return The currently minimized control in this sash form or '<em>null</em>' if no control is minimized.
+	 */
+	public Control getMinimizedControl() {
+		return minimizedControl;
+	}
+	
+	/**
 	 * The listener that adjusts the weights if the sash form is resized.
 	 */
 	private Listener resizeListener;

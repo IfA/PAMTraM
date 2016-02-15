@@ -628,6 +628,16 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	protected ArrayList<Resource> libraryResources = new ArrayList<>();
 
 	/**
+	 * The main page that allows to configure source and target section as well as mappings.
+	 */
+	protected PamtramEditorMainPage mainPage;
+
+	/**
+	 * A page that allows to match the configured source sections against a source model to be selected.
+	 */
+	protected PamtramEditorSourceSectionMatcherPage sourceSectionMatcherPage;
+
+	/**
 	 * Handles activation of the editor or it's associated views.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1590,7 +1600,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			// Create a page for the selection tree view.
 			//
 			{
-				PamtramEditorMainPage mainPage = new PamtramEditorMainPage(
+				mainPage = new PamtramEditorMainPage(
 						getContainer(), SWT.None, adapterFactory, this);
 				int pageIndex = addPage(mainPage);
 				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
@@ -1599,10 +1609,9 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			// Create a page for the source section matcher view.
 			//
 			{
-				PamtramEditorSourceSectionMatcherPage sourceSectionMatcherPage =
-						new PamtramEditorSourceSectionMatcherPage(
-								getContainer(), 
-								SWT.NONE, adapterFactory, this);
+				sourceSectionMatcherPage = new PamtramEditorSourceSectionMatcherPage(
+						getContainer(), 
+						SWT.NONE, adapterFactory, this);
 				//										createContextMenuFor(parentViewer);
 				int pageIndex = addPage(sourceSectionMatcherPage);
 				setPageText(pageIndex, getString("_UI_ParentPage_label"));

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -48,7 +49,7 @@ import pamtram.metamodel.SourceSectionClass;
 import pamtram.presentation.widgets.TreeViewerGroup;
 import pamtram.util.EObjectTreeContentProvider;
 
-public class PamtramEditorSourceSectionMatcherPage extends SashForm {
+public class PamtramEditorSourceSectionMatcherPage extends SashForm implements IPersistable {
 
 	/**
 	 * This is the editor that this view is hosted in.
@@ -68,6 +69,11 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	protected Group sourceGroup;
 
 	/**
+	 * The {@link TreeViewerGroup} for the source sections.
+	 */
+	protected TreeViewerGroup sourceViewerGroup;
+
+	/**
 	 * This is the viewer for the source meta model sections.
 	 */
 	protected TreeViewer sourceViewer;
@@ -81,6 +87,11 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	 * This is the group for the mapping tree viewer.
 	 */
 	protected Group mappingGroup;
+
+	/**
+	 * The {@link TreeViewerGroup} for the mappings.
+	 */
+	protected TreeViewerGroup mappingViewerGroup;
 
 	/**
 	 * This is the the viewer for the mappings.
@@ -146,9 +157,10 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 
 		// Create the viewer for the source sections.
 		//
-		sourceViewer = new TreeViewerGroup(
+		sourceViewerGroup = new TreeViewerGroup(
 				this, adapterFactory, editor.getEditingDomain(), "Source Sections"
-				).getViewer();
+				);
+		sourceViewer = sourceViewerGroup.getViewer();
 		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram);
 		sourceTreeSelectionListener = new SetViewerSelectionListener(editor, sourceViewer);
@@ -165,9 +177,10 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 
 		// Create the viewer for the source sections.
 		//
-		mappingViewer = new TreeViewerGroup(
+		mappingViewerGroup = new TreeViewerGroup(
 				this, adapterFactory, editor.getEditingDomain(), "Mappings"
-				).getViewer();
+				);
+		mappingViewer = mappingViewerGroup.getViewer();
 
 		mappingViewer.setContentProvider(new MappingContentProvider(adapterFactory));
 		mappingViewer.setInput(editor.pamtram);
@@ -397,6 +410,28 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 			public void widgetDefaultSelected(SelectionEvent e) {}
 		};
 		mappingViewer.getTree().addSelectionListener(mappingTreeSelectionListener);
+	}
+
+	@Override
+	public void persist(IDialogSettings settings) {
+		
+		// Persist the expanded tree paths of the various tree viewers
+		//
+		sourceViewerGroup.persist(settings.addNewSection("SOURCE_VIEWER"));
+		mappingViewerGroup.persist(settings.addNewSection("MAPPING_VIEWER"));
+	}
+
+	@Override
+	public void restore(IDialogSettings settings) {
+
+		// Restore the expanded tree paths of the various tree viewers
+		//
+		if(settings.getSection("SOURCE_VIEWER") != null) {
+			sourceViewerGroup.restore(settings.getSection("SOURCE_VIEWER"));
+		}
+		if(settings.getSection("MAPPING_VIEWER") != null) {
+			mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));
+		}
 	}
 
 }

@@ -86,6 +86,7 @@ import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -160,11 +161,11 @@ import pamtram.util.EPackageHelper.EPackageCheck;
  * This is an example of a Pamtram model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * @generated
+ * @generated NOT
  */
 public class PamtramEditor 
 extends MultiPageEditorPart
-implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
+implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, IPersistable {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 * <!-- begin-user-doc -->
@@ -332,7 +333,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 * This listens for when the outline becomes active
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IPartListener partListener =
 			new IPartListener() {
@@ -358,13 +359,45 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				// Ignore.
 			}
 			public void partClosed(IWorkbenchPart p) {
-				// Ignore.
+				
+				if(p == PamtramEditor.this && getEditorInput() instanceof FileEditorInput) {
+					
+					// Save the UI state
+					//
+					IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();				
+					IDialogSettings section = settings.getSection("UI_STATE");
+					if (section == null) {
+						section = settings.addNewSection("UI_STATE");
+					}
+					String pamtramFile = ((FileEditorInput) getEditorInput()).getFile().toString();
+					IDialogSettings project = settings.getSection(pamtramFile);
+					if (project == null) {
+						project = section.addNewSection(pamtramFile);
+					}
+					PamtramEditor.this.persist(project);
+				}
+				
 			}
 			public void partDeactivated(IWorkbenchPart p) {
 				// Ignore.
 			}
 			public void partOpened(IWorkbenchPart p) {
-				// Ignore.
+
+				if(p == PamtramEditor.this && getEditorInput() instanceof FileEditorInput) {
+					
+					// Restore the UI state
+					//
+					IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();				
+					IDialogSettings section = settings.getSection("UI_STATE");
+					if (section != null) {
+						String pamtramFile = ((FileEditorInput) getEditorInput()).getFile().toString();
+						IDialogSettings project = section.getSection(pamtramFile);
+						
+						if(project != null) {
+							PamtramEditor.this.restore(project);							
+						}
+					}
+				}
 			}
 		};
 
@@ -626,6 +659,16 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 * This is a list of {@link Resource}s that represent {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry}s in the {@link PAMTraM}
 	 */
 	protected ArrayList<Resource> libraryResources = new ArrayList<>();
+
+	/**
+	 * The main page that allows to configure source and target section as well as mappings.
+	 */
+	protected PamtramEditorMainPage mainPage;
+
+	/**
+	 * A page that allows to match the configured source sections against a source model to be selected.
+	 */
+	protected PamtramEditorSourceSectionMatcherPage sourceSectionMatcherPage;
 
 	/**
 	 * Handles activation of the editor or it's associated views.
@@ -1590,7 +1633,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			// Create a page for the selection tree view.
 			//
 			{
-				PamtramEditorMainPage mainPage = new PamtramEditorMainPage(
+				mainPage = new PamtramEditorMainPage(
 						getContainer(), SWT.None, adapterFactory, this);
 				int pageIndex = addPage(mainPage);
 				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
@@ -1599,10 +1642,9 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			// Create a page for the source section matcher view.
 			//
 			{
-				PamtramEditorSourceSectionMatcherPage sourceSectionMatcherPage =
-						new PamtramEditorSourceSectionMatcherPage(
-								getContainer(), 
-								SWT.NONE, adapterFactory, this);
+				sourceSectionMatcherPage = new PamtramEditorSourceSectionMatcherPage(
+						getContainer(), 
+						SWT.NONE, adapterFactory, this);
 				//										createContextMenuFor(parentViewer);
 				int pageIndex = addPage(sourceSectionMatcherPage);
 				setPageText(pageIndex, getString("_UI_ParentPage_label"));
@@ -2324,5 +2366,45 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 */
 	protected boolean showOutlineView() {
 		return true;
+	}
+
+	@Override
+	public void persist(IDialogSettings settings) {
+		
+		// persist the active page
+		int index = getActivePage();
+		settings.put("ACTIVE_PAGE", index);
+		
+		// persist the state of the pages displayed by the editor
+		mainPage.persist(settings.addNewSection("MAIN_PAGE"));
+		sourceSectionMatcherPage.persist(settings.addNewSection("SOURCE_SECTION_MATCHER_PAGE"));
+	}
+
+	@Override
+	public void restore(final IDialogSettings settings) {
+		// perform the restore operations in an asynchronous way
+		try {
+			getSite().getShell().getDisplay().asyncExec
+			(new Runnable() {
+				@Override
+				public void run() {
+					// restore the active page
+					int index = settings.getInt("ACTIVE_PAGE");
+					setActivePage(index);
+					
+					// restore the state of the pages displayed by the editor
+					IDialogSettings page = settings.getSection("MAIN_PAGE");
+					if (page != null) {
+						mainPage.restore(page);
+					}
+					page = settings.getSection("SOURCE_SECTION_MATCHER_PAGE");
+					if (page != null) {
+						sourceSectionMatcherPage.restore(page);
+					}
+				}
+			});
+		} catch (Exception e) {
+			// do nothing
+		}
 	}
 }

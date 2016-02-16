@@ -3,6 +3,7 @@ package pamtram.presentation.widgets;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.widgets.Composite;
@@ -11,13 +12,15 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Sash;
 
+import pamtram.presentation.IPersistable;
+
 /**
  * A {@link SashForm} that supports minimizing of controls. Currently, this only supports a single
  * minimized child control.
  * 
  * @author mfreund
  */
-public class MinimizableSashForm extends SashForm {
+public class MinimizableSashForm extends SashForm implements IPersistable {
 	
 	/**
 	 * The default height of minimized controls.
@@ -28,6 +31,14 @@ public class MinimizableSashForm extends SashForm {
 	 * The currently minimized {@link Control} in this sash form or '<em>null</em>' if no control is minimized.
 	 */
 	private Control minimizedControl;
+	
+	/**
+	 * This is the getter for the {@link #minimizedControl}.
+	 * @return The currently minimized control in this sash form or '<em>null</em>' if no control is minimized.
+	 */
+	public Control getMinimizedControl() {
+		return minimizedControl;
+	}
 	
 	/**
 	 * The listener that adjusts the weights if the sash form is resized.
@@ -196,6 +207,56 @@ public class MinimizableSashForm extends SashForm {
 		}
 		
 		super.dispose();
+	}
+
+	@Override
+	public void persist(IDialogSettings settings) {
+		
+		// Persist the minimized control and/or the weights
+		//
+		String minimized = "";
+		
+		if(minimizedControl != null) {
+			minimized += Arrays.asList(getChildren()).indexOf(minimizedControl);
+		}
+		
+		if(minimized.isEmpty()) {
+			settings.put("MINIMIZED_CONTROL", "");
+			settings.put("WEIGHTS", Arrays.toString(getWeights()).split(", "));
+		} else {
+			settings.put("MINIMIZED_CONTROL", minimized);
+			settings.put("WEIGHTS", "");
+		}
+	}
+
+	@Override
+	public void restore(IDialogSettings settings) {
+
+		// Restore the minimized control and/or the weights
+		//
+		String minimizedControl = settings.get("MINIMIZED_CONTROL");
+		if(minimizedControl != null && !minimizedControl.isEmpty()) {
+			try {
+				int index = Integer.parseInt(minimizedControl);
+				Control control = Arrays.asList(getChildren()).get(index);
+				minimizeControl(control);
+			} catch (NumberFormatException|IndexOutOfBoundsException e) {
+				// do nothing
+			}
+		} else {
+			String[] weights = settings.getArray("WEIGHTS");
+			if(weights != null) {
+				try {
+					int[] parsedWeights = new int[weights.length];
+					for (int i = 0; i < weights.length; i++) {
+						parsedWeights[i] = Integer.parseInt(weights[i]);
+					}
+					setWeights(parsedWeights);
+				} catch (NumberFormatException e) {
+					// do nothing
+				}
+			}
+		}
 	}
 
 }

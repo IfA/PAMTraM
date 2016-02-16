@@ -7,8 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -24,7 +27,6 @@ import org.eclipse.swt.widgets.TreeItem;
 import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
-import pamtram.TargetSectionModel;
 import pamtram.contentadapter.DeactivationListenerAdapter;
 import pamtram.contentprovider.LibraryEntryContentProvider;
 import pamtram.contentprovider.MappingContentProvider;
@@ -67,7 +69,7 @@ import pamtram.presentation.widgets.MinimizableSashForm;
 import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
 import pamtram.presentation.widgets.TreeViewerGroup;
 
-public class PamtramEditorMainPage extends SashForm {
+public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
 
@@ -87,6 +89,11 @@ public class PamtramEditorMainPage extends SashForm {
 	 * This is the group for the source tree viewer.
 	 */
 	protected Group sourceGroup;
+
+	/**
+	 * The {@link TreeViewerGroup} for the source sections.
+	 */
+	protected TreeViewerGroup sourceViewerGroup;
 
 	/**
 	 * This is the the viewer for the source meta model sections.
@@ -160,6 +167,16 @@ public class PamtramEditorMainPage extends SashForm {
 	 */
 	protected DeactivationListenerAdapter deactivationListener;
 
+	/**
+	 * The {@link MinimizableSashForm} containing the {@link #mappingViewerGroup} and the {@link #globalElementsViewerGroup}.
+	 */
+	protected MinimizableSashForm mappingSash;
+
+	/**
+	 * The {@link MinimizableSashForm} containing the {@link #targetViewerGroup} and the {@link #libTargetViewerGroup}.
+	 */
+	protected MinimizableSashForm targetSash;
+
 	public PamtramEditorMainPage(
 			Composite parent, 
 			int style, 
@@ -189,10 +206,11 @@ public class PamtramEditorMainPage extends SashForm {
 		// Create the viewer for the source sections.
 		//
 	
-		sourceViewer = new TreeViewerGroup(
+		sourceViewerGroup = new TreeViewerGroup(
 				this, adapterFactory, editor.getEditingDomain(),
 				"Source Sections", null, null, true, true
-				).getViewer();
+				);
+		sourceViewer = sourceViewerGroup.getViewer();
 		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram);
 		sourceViewer.getTree().addSelectionListener(new SourceViewerSelectionListener());
@@ -205,8 +223,7 @@ public class PamtramEditorMainPage extends SashForm {
 
 	private void createMappingViewer() {
 	
-		// Create a sash form to host the mapping and the attribute value modifier view
-		MinimizableSashForm mappingSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
+		mappingSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
 		{
 			GridData data = new GridData();
 			data.verticalAlignment = GridData.FILL;
@@ -266,8 +283,7 @@ public class PamtramEditorMainPage extends SashForm {
 
 	private void createTargetViewer() {
 	
-		// Create a sash form to host the target section and the library element view
-		final MinimizableSashForm targetSash = new MinimizableSashForm(this, SWT.NONE | SWT.VERTICAL);
+		targetSash = new MinimizableSashForm(this, SWT.NONE | SWT.VERTICAL);
 		{
 			GridData data = new GridData();
 			data.verticalAlignment = GridData.FILL;
@@ -437,10 +453,10 @@ public class PamtramEditorMainPage extends SashForm {
 					source = mapping.getSourceMMSection();
 					TargetSectionClass target = hintGroup.getTargetMMSection();
 					if(target != null) {
-						if(target.eContainer() instanceof TargetSectionModel) {
-							targets.add(target);	
-						} else if(target.eContainer() instanceof ContainerParameter) {
+						if(target.eContainer() instanceof ContainerParameter) {
 							libraryTargets.add(target);
+						} else {
+							targets.add(target);	
 						}							
 					}
 					expanded.add(mapping);
@@ -458,11 +474,11 @@ public class PamtramEditorMainPage extends SashForm {
 					if(hintGroupImporter.getHintGroup() != null) {
 						TargetSectionClass target = hintGroupImporter.getHintGroup().getTargetMMSection(); 
 						if(target != null) {
-							if(target.eContainer() instanceof TargetSectionModel) {
-								targets.add(target);	
-							} else if(target.eContainer() instanceof ContainerParameter) {
+							if(target.eContainer() instanceof ContainerParameter) {
 								libraryTargets.add(target);
-							}								
+							} else {
+								targets.add(target);
+							}
 						}
 					}
 					expanded.add(mapping);
@@ -496,10 +512,10 @@ public class PamtramEditorMainPage extends SashForm {
 						for(MappingHintGroupType group : mapping.getMappingHintGroups()){
 							if(group.getTargetMMSection() != null) {
 								TargetSectionClass target = group.getTargetMMSection();
-								if(target.eContainer() instanceof TargetSectionModel) {
-									targets.add(target);	
-								} else if(target.eContainer() instanceof ContainerParameter) {
+								if(target.eContainer() instanceof ContainerParameter) {
 									libraryTargets.add(target);
+								} else {
+									targets.add(target);
 								}
 							}
 						}
@@ -787,6 +803,61 @@ public class PamtramEditorMainPage extends SashForm {
 							new StructuredSelection(referencedElements.toArray()));
 				}
 			}
+		}
+	}
+
+	@Override
+	public void persist(IDialogSettings settings) {
+		
+		// Persist the state of the 'mappingSash'
+		//
+		mappingSash.persist(settings.addNewSection("MAPPING_SASH"));
+		
+		// Persist the state of the 'targetSash'
+		//
+		targetSash.persist(settings.addNewSection("TARGET_SASH"));
+		
+		// Persist the expanded tree paths of the various tree viewers
+		//
+		sourceViewerGroup.persist(settings.addNewSection("SOURCE_VIEWER"));
+		mappingViewerGroup.persist(settings.addNewSection("MAPPING_VIEWER"));
+		globalElementsViewerGroup.persist(settings.addNewSection("GLOBAL_ELEMENTS_VIEWER"));
+		targetViewerGroup.persist(settings.addNewSection("TARGET_VIEWER"));
+		libTargetViewerGroup.persist(settings.addNewSection("LIB_TARGET_VIEWER"));
+		
+	}
+
+	@Override
+	public void restore(IDialogSettings settings) {
+
+		// Restore the state of the 'mappingSash'
+		//
+		if(settings.getSection("MAPPING_SASH") != null) {
+			mappingSash.restore(settings.getSection("MAPPING_SASH"));
+		}
+		
+		// Restore the state of the 'targetSash'
+		//
+		if(settings.getSection("TARGET_SASH") != null) {
+			targetSash.restore(settings.getSection("TARGET_SASH"));
+		}
+		
+		// Restore the expanded tree paths of the various tree viewers
+		//
+		if(settings.getSection("SOURCE_VIEWER") != null) {
+			sourceViewerGroup.restore(settings.getSection("SOURCE_VIEWER"));
+		}
+		if(settings.getSection("MAPPING_VIEWER") != null) {
+			mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));
+		}
+		if(settings.getSection("GLOBAL_ELEMENTS_VIEWER") != null) {
+			globalElementsViewerGroup.restore(settings.getSection("GLOBAL_ELEMENTS_VIEWER"));
+		}
+		if(settings.getSection("TARGET_VIEWER") != null) {
+			targetViewerGroup.restore(settings.getSection("TARGET_VIEWER"));
+		}
+		if(settings.getSection("LIB_TARGET_VIEWER") != null) {
+			libTargetViewerGroup.restore(settings.getSection("LIB_TARGET_VIEWER"));
 		}
 	}
 

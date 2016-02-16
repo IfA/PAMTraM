@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.action.ControlAction;
@@ -26,19 +27,31 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.SubContributionItem;
+import org.eclipse.jface.viewers.ContentViewer;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
+import pamtram.PamtramPackage;
+import pamtram.contentprovider.LibraryEntryContentProvider;
+import pamtram.contentprovider.MappingContentProvider;
+import pamtram.contentprovider.ModifierSetContentProvider;
+import pamtram.contentprovider.SourceSectionContentProvider;
+import pamtram.contentprovider.TargetSectionContentProvider;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.ExportedMappingHintGroup;
+import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.impl.MappingFactoryImpl;
+import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.presentation.actions.CutClassAndPasteAsNewSectionAction;
 import pamtram.presentation.actions.GenericConversionCommandAction;
@@ -322,13 +335,22 @@ public class PamtramActionBarContributor
 	 * and returns the collection of these actions.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
+			
+			IContentProvider provider = null;
+			if(activeEditorPart instanceof PamtramEditor && ((PamtramEditor) activeEditorPart).getViewer() instanceof ContentViewer) {
+				provider = ((ContentViewer) (((PamtramEditor) activeEditorPart).getViewer())).getContentProvider();
+			}
+			
 			for (Object descriptor : descriptors) {
-				actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
+				
+				if(isValidDescriptor(descriptor, provider)) {				
+					actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
+				}
 			}
 		}
 		return actions;
@@ -361,16 +383,82 @@ public class PamtramActionBarContributor
 	 * and returns the collection of these actions.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
+			
+			IContentProvider provider = null;
+			if(activeEditorPart instanceof PamtramEditor && ((PamtramEditor) activeEditorPart).getViewer() instanceof ContentViewer) {
+				provider = ((ContentViewer) (((PamtramEditor) activeEditorPart).getViewer())).getContentProvider();
+			}
+			
 			for (Object descriptor : descriptors) {
-				actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));
+				
+				if(isValidDescriptor(descriptor, provider)) {
+					actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));					
+				}
+			
 			}
 		}
 		return actions;
+	}
+	
+	/**
+	 * This is used by {@link #generateCreateChildActions(Collection, ISelection)} and {@link #generateCreateSiblingActions(Collection, ISelection)}
+	 * to perform additional checks if an action corresponding to the given <em>descriptor</em> is valid for the active <em>content provider</em>.
+	 * 
+	 * @param descriptor The {@link CommandParameter} that describes an action to be executed.
+	 * @param provider The {@link IContentProvider content provider} that is associated with the active viewer.
+	 * @return '<em><b>true</b></em>' if the descriptor is valid for the active viewer; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean isValidDescriptor(Object descriptor, IContentProvider provider) {
+		
+		if(descriptor == null || provider == null) {
+			return false;
+		}
+		
+		if(!(descriptor instanceof CommandParameter)) {
+			return true;
+		}
+		
+		CommandParameter commandParam = (CommandParameter) descriptor;
+		
+		if(provider instanceof SourceSectionContentProvider) {
+			if(commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
+				return false;
+			}
+		} else if(provider instanceof MappingContentProvider) {
+			if(commandParam.getFeature().equals(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
+				return false;
+			}
+		} else if(provider instanceof ModifierSetContentProvider) {
+			if(commandParam.getFeature().equals(PamtramPackage.Literals.MAPPING_MODEL__MAPPING) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
+				return false;
+			}
+		} else if(provider instanceof TargetSectionContentProvider) {
+			if(commandParam.getFeature().equals(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
+				return false;
+			}
+		}
+		 else if(provider instanceof LibraryEntryContentProvider) {
+			if(commandParam.getFeature().equals(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
+					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 	/**

@@ -497,6 +497,10 @@ public class TreeViewerGroup extends FilteredTree implements IPersistable {
 			}
 		}
 		settings.put("EXPANDED_TREE_PATHS", paths.toArray(new String[paths.size()]));
+		
+		// Persist the filter text
+		//
+		settings.put("FILTER_TEXT", (getFilterString() != null ? getFilterString() : ""));
 	}
 
 	@Override
@@ -516,6 +520,13 @@ public class TreeViewerGroup extends FilteredTree implements IPersistable {
 					treeViewer.setExpandedState(expanded, true);					
 				}
 			}
+		}
+		
+		// Restore the filter text
+		//
+		String filterText = settings.get("FILTER_TEXT"); 
+		if(filterText != null && !filterText.isEmpty()) {
+			setFilterText(filterText);		
 		}
 	}
 

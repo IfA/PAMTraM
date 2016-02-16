@@ -2376,7 +2376,11 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		settings.put("ACTIVE_PAGE", index);
 		
 		// persist the state of the 'mainPage'
-		mainPage.persist(settings);
+		IDialogSettings mainPageSettings = settings.getSection("MAIN_PAGE");
+		if (mainPageSettings == null) {
+			mainPageSettings = settings.addNewSection("MAIN_PAGE");
+		}
+		mainPage.persist(mainPageSettings);
 	}
 
 	@Override
@@ -2392,7 +2396,10 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 					setActivePage(index);
 					
 					// restore the state of the 'mainPage'
-					mainPage.restore(settings);
+					IDialogSettings mainPageSettings = settings.getSection("MAIN_PAGE");
+					if (mainPageSettings != null) {
+						mainPage.restore(mainPageSettings);
+					}
 				}
 			});
 		} catch (Exception e) {

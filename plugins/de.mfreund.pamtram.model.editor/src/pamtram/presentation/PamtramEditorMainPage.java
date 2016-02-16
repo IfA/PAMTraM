@@ -811,41 +811,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		
 		// Persist the state of the 'mappingSash'
 		//
-		String minimizedControl = "";
-		if(mappingSash.getMinimizedControl() != null) {
-			if(mappingSash.getMinimizedControl().equals(mappingViewerGroup)) {
-				minimizedControl = "MAPPING_VIEWER_GROUP";
-			} else if(mappingSash.getMinimizedControl().equals(globalElementsViewerGroup)) {
-				minimizedControl = "GLOBAL_ELEMENTS_VIEWER_GROUP";
-			}
-		}
-		
-		if(minimizedControl.isEmpty()) {
-			settings.put("MAPPING_SASH_MINIMIZED_CONTROL", "");
-			settings.put("MAPPING_SASH_WEIGHTS", Arrays.toString(mappingSash.getWeights()).split(", "));
-		} else {
-			settings.put("MAPPING_SASH_MINIMIZED_CONTROL", minimizedControl);
-			settings.put("MAPPING_SASH_WEIGHTS", "");
-		}
+		mappingSash.persist(settings.addNewSection("MAPPING_SASH"));
 		
 		// Persist the state of the 'targetSash'
 		//
-		minimizedControl = "";
-		if(targetSash.getMinimizedControl() != null) {
-			if(targetSash.getMinimizedControl().equals(targetViewerGroup)) {
-				minimizedControl = "TARGET_VIEWER_GROUP";
-			} else if(targetSash.getMinimizedControl().equals(libTargetViewerGroup)) {
-				minimizedControl = "LIBRARY_TARGET_VIEWER_GROUP";
-			}
-		}
-		
-		if(minimizedControl.isEmpty()) {
-			settings.put("TARGET_SASH_MINIMIZED_CONTROL", "");
-			settings.put("TARGET_SASH_WEIGHTS", Arrays.toString(targetSash.getWeights()).split("[\\[\\]]")[1].split(", "));
-		} else {
-			settings.put("TARGET_SASH_MINIMIZED_CONTROL", minimizedControl);
-			settings.put("TARGET_SASH_WEIGHTS", "");
-		}
+		targetSash.persist(settings.addNewSection("TARGET_SASH"));
 		
 		// Persist the expanded tree paths of the various tree viewers
 		//
@@ -862,60 +832,14 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		// Restore the state of the 'mappingSash'
 		//
-		String minimizedControl = settings.get("MAPPING_SASH_MINIMIZED_CONTROL");
-		if(minimizedControl != null && !minimizedControl.isEmpty()) {
-			if(minimizedControl.equals("MAPPING_VIEWER_GROUP")) {
-				mappingSash.minimizeControl(mappingViewerGroup);
-			} else if(minimizedControl.equals("GLOBAL_ELEMENTS_VIEWER_GROUP")) {
-				mappingSash.minimizeControl(globalElementsViewerGroup);
-			}
-		} else {
-			String[] weights = settings.getArray("MAPPING_SASH_WEIGHTS");
-			if(weights != null) {
-				try {
-					int[] parsedWeights = new int[weights.length];
-					for (int i = 0; i < weights.length; i++) {
-						parsedWeights[i] = Integer.parseInt(weights[i]);
-					}
-					mappingSash.setWeights(parsedWeights);
-				} catch (NumberFormatException e) {
-					// do nothing
-				}
-			}
-		}
-			
-		// Restore the state of the 'mappingSash'
-		//
-		minimizedControl = settings.get("TARGET_SASH_MINIMIZED_CONTROL");
-		if(minimizedControl != null && !minimizedControl.isEmpty()) {
-			if(minimizedControl.equals("TARGET_VIEWER_GROUP")) {
-				targetSash.minimizeControl(targetViewerGroup);
-			} else if(minimizedControl.equals("GLOBAL_ELEMENTS_VIEWER_GROUP")) {
-				targetSash.minimizeControl(libTargetViewerGroup);
-			}
-		} else {
-			String[] weights = settings.getArray("TARGET_SASH_WEIGHTS");
-			if(weights != null) {
-				try {
-					int[] parsedWeights = new int[weights.length];
-					for (int i = 0; i < weights.length; i++) {
-						parsedWeights[i] = Integer.parseInt(weights[i]);
-					}
-					targetSash.setWeights(parsedWeights);
-				} catch (NumberFormatException e) {
-					// do nothing
-				}
-			}
+		if(settings.getSection("MAPPING_SASH") != null) {
+			mappingSash.restore(settings.getSection("MAPPING_SASH"));
 		}
 		
-		if(settings.getArray("SOURCE_VIEWER_EXPANDED_PATHS") != null) {
-			String[] paths = settings.getArray("SOURCE_VIEWER_EXPANDED_PATHS");
-			for (int i = 0; i < paths.length; i++) {
-				EObject expanded = EcoreUtil.getEObject(editor.getPamtram(), paths[i]);
-				if(expanded != null) {
-					sourceViewer.setExpandedState(expanded, true);					
-				}
-			}
+		// Restore the state of the 'targetSash'
+		//
+		if(settings.getSection("TARGET_SASH") != null) {
+			targetSash.restore(settings.getSection("TARGET_SASH"));
 		}
 		
 		// Restore the expanded tree paths of the various tree viewers

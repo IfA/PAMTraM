@@ -2376,11 +2376,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		settings.put("ACTIVE_PAGE", index);
 		
 		// persist the state of the 'mainPage'
-		IDialogSettings mainPageSettings = settings.getSection("MAIN_PAGE");
-		if (mainPageSettings == null) {
-			mainPageSettings = settings.addNewSection("MAIN_PAGE");
-		}
-		mainPage.persist(mainPageSettings);
+		mainPage.persist(settings.addNewSection("MAIN_PAGE"));
 	}
 
 	@Override

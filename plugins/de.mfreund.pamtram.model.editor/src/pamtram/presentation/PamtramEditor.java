@@ -2375,8 +2375,9 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		int index = getActivePage();
 		settings.put("ACTIVE_PAGE", index);
 		
-		// persist the state of the 'mainPage'
+		// persist the state of the pages displayed by the editor
 		mainPage.persist(settings.addNewSection("MAIN_PAGE"));
+		sourceSectionMatcherPage.persist(settings.addNewSection("SOURCE_SECTION_MATCHER_PAGE"));
 	}
 
 	@Override
@@ -2391,10 +2392,14 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 					int index = settings.getInt("ACTIVE_PAGE");
 					setActivePage(index);
 					
-					// restore the state of the 'mainPage'
-					IDialogSettings mainPageSettings = settings.getSection("MAIN_PAGE");
-					if (mainPageSettings != null) {
-						mainPage.restore(mainPageSettings);
+					// restore the state of the pages displayed by the editor
+					IDialogSettings page = settings.getSection("MAIN_PAGE");
+					if (page != null) {
+						mainPage.restore(page);
+					}
+					page = settings.getSection("SOURCE_SECTION_MATCHER_PAGE");
+					if (page != null) {
+						sourceSectionMatcherPage.restore(page);
 					}
 				}
 			});

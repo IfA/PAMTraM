@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
@@ -26,7 +27,6 @@ import org.eclipse.swt.widgets.TreeItem;
 import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
-import pamtram.TargetSectionModel;
 import pamtram.contentadapter.DeactivationListenerAdapter;
 import pamtram.contentprovider.LibraryEntryContentProvider;
 import pamtram.contentprovider.MappingContentProvider;
@@ -89,6 +89,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 * This is the group for the source tree viewer.
 	 */
 	protected Group sourceGroup;
+
+	/**
+	 * The {@link TreeViewerGroup} for the source sections.
+	 */
+	protected TreeViewerGroup sourceViewerGroup;
 
 	/**
 	 * This is the the viewer for the source meta model sections.
@@ -201,10 +206,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		// Create the viewer for the source sections.
 		//
 	
-		sourceViewer = new TreeViewerGroup(
+		sourceViewerGroup = new TreeViewerGroup(
 				this, adapterFactory, editor.getEditingDomain(),
 				"Source Sections", null, null, true, true
-				).getViewer();
+				);
+		sourceViewer = sourceViewerGroup.getViewer();
 		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram);
 		sourceViewer.getTree().addSelectionListener(new SourceViewerSelectionListener());
@@ -805,93 +811,53 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		
 		// Persist the state of the 'mappingSash'
 		//
-		String minimizedControl = "";
-		if(mappingSash.getMinimizedControl() != null) {
-			if(mappingSash.getMinimizedControl().equals(mappingViewerGroup)) {
-				minimizedControl = "MAPPING_VIEWER_GROUP";
-			} else if(mappingSash.getMinimizedControl().equals(globalElementsViewerGroup)) {
-				minimizedControl = "GLOBAL_ELEMENTS_VIEWER_GROUP";
-			}
-		}
-		
-		if(minimizedControl.isEmpty()) {
-			settings.put("MAPPING_SASH_MINIMIZED_CONTROL", "");
-			settings.put("MAPPING_SASH_WEIGHTS", Arrays.toString(mappingSash.getWeights()).split(", "));
-		} else {
-			settings.put("MAPPING_SASH_MINIMIZED_CONTROL", minimizedControl);
-			settings.put("MAPPING_SASH_WEIGHTS", "");
-		}
+		mappingSash.persist(settings.addNewSection("MAPPING_SASH"));
 		
 		// Persist the state of the 'targetSash'
 		//
-		minimizedControl = "";
-		if(targetSash.getMinimizedControl() != null) {
-			if(targetSash.getMinimizedControl().equals(targetViewerGroup)) {
-				minimizedControl = "TARGET_VIEWER_GROUP";
-			} else if(targetSash.getMinimizedControl().equals(libTargetViewerGroup)) {
-				minimizedControl = "LIBRARY_TARGET_VIEWER_GROUP";
-			}
-		}
+		targetSash.persist(settings.addNewSection("TARGET_SASH"));
 		
-		if(minimizedControl.isEmpty()) {
-			settings.put("TARGET_SASH_MINIMIZED_CONTROL", "");
-			settings.put("TARGET_SASH_WEIGHTS", Arrays.toString(targetSash.getWeights()).split("[\\[\\]]")[1].split(", "));
-		} else {
-			settings.put("TARGET_SASH_MINIMIZED_CONTROL", minimizedControl);
-			settings.put("TARGET_SASH_WEIGHTS", "");
-		}
+		// Persist the expanded tree paths of the various tree viewers
+		//
+		sourceViewerGroup.persist(settings.addNewSection("SOURCE_VIEWER"));
+		mappingViewerGroup.persist(settings.addNewSection("MAPPING_VIEWER"));
+		globalElementsViewerGroup.persist(settings.addNewSection("GLOBAL_ELEMENTS_VIEWER"));
+		targetViewerGroup.persist(settings.addNewSection("TARGET_VIEWER"));
+		libTargetViewerGroup.persist(settings.addNewSection("LIB_TARGET_VIEWER"));
+		
 	}
-
 
 	@Override
 	public void restore(IDialogSettings settings) {
 
 		// Restore the state of the 'mappingSash'
 		//
-		String minimizedControl = settings.get("MAPPING_SASH_MINIMIZED_CONTROL");
-		if(minimizedControl != null && !minimizedControl.isEmpty()) {
-			if(minimizedControl.equals("MAPPING_VIEWER_GROUP")) {
-				mappingSash.minimizeControl(mappingViewerGroup);
-			} else if(minimizedControl.equals("GLOBAL_ELEMENTS_VIEWER_GROUP")) {
-				mappingSash.minimizeControl(globalElementsViewerGroup);
-			}
-		} else {
-			String[] weights = settings.getArray("MAPPING_SASH_WEIGHTS");
-			if(weights != null) {
-				try {
-					int[] parsedWeights = new int[weights.length];
-					for (int i = 0; i < weights.length; i++) {
-						parsedWeights[i] = Integer.parseInt(weights[i]);
-					}
-					mappingSash.setWeights(parsedWeights);
-				} catch (NumberFormatException e) {
-					// do nothing
-				}
-			}
+		if(settings.getSection("MAPPING_SASH") != null) {
+			mappingSash.restore(settings.getSection("MAPPING_SASH"));
 		}
-			
-		// Restore the state of the 'mappingSash'
+		
+		// Restore the state of the 'targetSash'
 		//
-		minimizedControl = settings.get("TARGET_SASH_MINIMIZED_CONTROL");
-		if(minimizedControl != null && !minimizedControl.isEmpty()) {
-			if(minimizedControl.equals("TARGET_VIEWER_GROUP")) {
-				targetSash.minimizeControl(targetViewerGroup);
-			} else if(minimizedControl.equals("GLOBAL_ELEMENTS_VIEWER_GROUP")) {
-				targetSash.minimizeControl(libTargetViewerGroup);
-			}
-		} else {
-			String[] weights = settings.getArray("TARGET_SASH_WEIGHTS");
-			if(weights != null) {
-				try {
-					int[] parsedWeights = new int[weights.length];
-					for (int i = 0; i < weights.length; i++) {
-						parsedWeights[i] = Integer.parseInt(weights[i]);
-					}
-					targetSash.setWeights(parsedWeights);
-				} catch (NumberFormatException e) {
-					// do nothing
-				}
-			}
+		if(settings.getSection("TARGET_SASH") != null) {
+			targetSash.restore(settings.getSection("TARGET_SASH"));
+		}
+		
+		// Restore the expanded tree paths of the various tree viewers
+		//
+		if(settings.getSection("SOURCE_VIEWER") != null) {
+			sourceViewerGroup.restore(settings.getSection("SOURCE_VIEWER"));
+		}
+		if(settings.getSection("MAPPING_VIEWER") != null) {
+			mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));
+		}
+		if(settings.getSection("GLOBAL_ELEMENTS_VIEWER") != null) {
+			globalElementsViewerGroup.restore(settings.getSection("GLOBAL_ELEMENTS_VIEWER"));
+		}
+		if(settings.getSection("TARGET_VIEWER") != null) {
+			targetViewerGroup.restore(settings.getSection("TARGET_VIEWER"));
+		}
+		if(settings.getSection("LIB_TARGET_VIEWER") != null) {
+			libTargetViewerGroup.restore(settings.getSection("LIB_TARGET_VIEWER"));
 		}
 	}
 

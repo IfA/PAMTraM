@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.CreateChildCommand;
@@ -19,9 +20,11 @@ import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -42,16 +45,18 @@ import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 
 import de.mfreund.pamtram.util.BundleContentHelper;
+import pamtram.presentation.IPersistable;
 import pamtram.presentation.PamtramEditorPlugin;
 
 /**
  * A class that represents an SWT group containing a filtered tree viewer and 
- * optionally a tool bar.
+ * optionally a tool bar. It supports {@link IPersistable persisting and restoring}
+ * the state of the tree viewer (i.e. the expanded paths).
  * 
  * @author mfreund
  *
  */
-public class TreeViewerGroup extends FilteredTree{
+public class TreeViewerGroup extends FilteredTree implements IPersistable {
 
 	protected final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
 
@@ -468,6 +473,60 @@ public class TreeViewerGroup extends FilteredTree{
 			for (IAction iAction : createSiblingActions) {
 				menuManager.add(iAction);
 			}
+		}
+	}
+
+	@Override
+	public void persist(IDialogSettings settings) {
+		
+		// Persist the expanded tree paths of the tree viewer
+		//
+		ArrayList<String> paths = new ArrayList<>();
+		for (int i = 0; i < treeViewer.getExpandedTreePaths().length; i++) {
+			TreePath path = treeViewer.getExpandedTreePaths()[i];
+			// TODO currently, persisting only works for objects representing a real eObject
+			if(path.getLastSegment() instanceof EObject) {
+				try {
+					/*
+					 * use the URI of the eObject as unique identifier
+					 */
+					paths.add(EcoreUtil.getURI((EObject) path.getLastSegment()).toString());
+				} catch (IllegalArgumentException e) {
+					// do nothing
+				}
+			}
+		}
+		settings.put("EXPANDED_TREE_PATHS", paths.toArray(new String[paths.size()]));
+		
+		// Persist the filter text
+		//
+		settings.put("FILTER_TEXT", (getFilterString() != null ? getFilterString() : ""));
+	}
+
+	@Override
+	public void restore(IDialogSettings settings) {
+		
+		// Restore the expanded tree paths of the tree viewer
+		//
+		if(settings.getArray("EXPANDED_TREE_PATHS") != null) {
+			String[] paths = settings.getArray("EXPANDED_TREE_PATHS");
+			for (int i = 0; i < paths.length; i++) {
+				/*
+				 * as the URI of an eObject also reflects the containing resource, we can use this to
+				 * uniquely identify an eObject inside a resource set
+				 */
+				EObject expanded = editingDomain.getResourceSet().getEObject(URI.createURI(paths[i]), true);
+				if(expanded != null) {
+					treeViewer.setExpandedState(expanded, true);					
+				}
+			}
+		}
+		
+		// Restore the filter text
+		//
+		String filterText = settings.get("FILTER_TEXT"); 
+		if(filterText != null && !filterText.isEmpty()) {
+			setFilterText(filterText);		
 		}
 	}
 

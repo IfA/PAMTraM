@@ -13,7 +13,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -28,7 +27,6 @@ import org.eclipse.swt.widgets.TreeItem;
 import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
-import pamtram.TargetSectionModel;
 import pamtram.contentadapter.DeactivationListenerAdapter;
 import pamtram.contentprovider.LibraryEntryContentProvider;
 import pamtram.contentprovider.MappingContentProvider;
@@ -91,6 +89,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 * This is the group for the source tree viewer.
 	 */
 	protected Group sourceGroup;
+
+	/**
+	 * The {@link TreeViewerGroup} for the source sections.
+	 */
+	protected TreeViewerGroup sourceViewerGroup;
 
 	/**
 	 * This is the the viewer for the source meta model sections.
@@ -203,10 +206,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		// Create the viewer for the source sections.
 		//
 	
-		sourceViewer = new TreeViewerGroup(
+		sourceViewerGroup = new TreeViewerGroup(
 				this, adapterFactory, editor.getEditingDomain(),
 				"Source Sections", null, null, true, true
-				).getViewer();
+				);
+		sourceViewer = sourceViewerGroup.getViewer();
 		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram);
 		sourceViewer.getTree().addSelectionListener(new SourceViewerSelectionListener());
@@ -845,11 +849,12 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		
 		// Persist the expanded tree paths of the various tree viewers
 		//
-		persistExpandedTreePaths(sourceViewer, editor.getPamtram(), settings, "SOURCE_VIEWER_EXPANDED_PATHS");
-		persistExpandedTreePaths(mappingViewer, editor.getPamtram(), settings, "MAPPING_VIEWER_EXPANDED_PATHS");
-		persistExpandedTreePaths(globalElementsViewer, editor.getPamtram(), settings, "GLOBAL_ELEMENT_VIEWER_EXPANDED_PATHS");
-		persistExpandedTreePaths(targetViewer, editor.getPamtram(), settings, "TARGET_VIEWER_EXPANDED_PATHS");
-		persistExpandedTreePaths(libTargetViewer, editor.getPamtram(), settings, "LIB_TARGET_VIEWER_EXPANDED_PATHS");
+		sourceViewerGroup.persist(settings.addNewSection("SOURCE_VIEWER"));
+		mappingViewerGroup.persist(settings.addNewSection("MAPPING_VIEWER"));
+		globalElementsViewerGroup.persist(settings.addNewSection("GLOBAL_ELEMENTS_VIEWER"));
+		targetViewerGroup.persist(settings.addNewSection("TARGET_VIEWER"));
+		libTargetViewerGroup.persist(settings.addNewSection("LIB_TARGET_VIEWER"));
+		
 	}
 
 	@Override
@@ -915,62 +920,20 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		
 		// Restore the expanded tree paths of the various tree viewers
 		//
-		restoreExpandedTreePaths(sourceViewer, editor.getPamtram(), settings, "SOURCE_VIEWER_EXPANDED_PATHS");
-		restoreExpandedTreePaths(mappingViewer, editor.getPamtram(), settings, "MAPPING_VIEWER_EXPANDED_PATHS");
-		restoreExpandedTreePaths(globalElementsViewer, editor.getPamtram(), settings, "GLOBAL_ELEMENT_VIEWER_EXPANDED_PATHS");
-		restoreExpandedTreePaths(targetViewer, editor.getPamtram(), settings, "TARGET_VIEWER_EXPANDED_PATHS");
-		restoreExpandedTreePaths(libTargetViewer, editor.getPamtram(), settings, "LIB_TARGET_VIEWER_EXPANDED_PATHS");
-	}
-
-	/**
-	 * Persists the expanded tree paths of the given {@link TreeViewer viewer} in the given instance of
-	 * {@link IDialogSettings}.
-	 * <p />
-	 * In order, to create a string representation of the expanded paths, their 
-	 * {@link EcoreUtil#getRelativeURIFragmentPath(EObject, EObject) relative URI fragment path} relative to the given
-	 * {@link EObject ancestor} is used.
-	 * 
-	 * @param viewer The {@link TreeViewer} for that the expanded tree paths are to be persisted.
-	 * @param ancestor An {@link EObject} that is a common ancestor of all the objects represented by the tree paths.
-	 * This is used in the calculation of the {@link EcoreUtil#getRelativeURIFragmentPath(EObject, EObject)} that
-	 * is used as string representation of the path. 
-	 * @param settings The instance of {@link IDialogSettings} that the expanded paths shall be persisted to.
-	 * @param key The {@link IDialogSettings#put(String, String[]) key} under that the paths shall be stored.
-	 */
-	private void persistExpandedTreePaths(TreeViewer viewer, EObject ancestor, IDialogSettings settings, String key) {
-		ArrayList<String> paths = new ArrayList<>();
-		for (int i = 0; i < viewer.getExpandedTreePaths().length; i++) {
-			TreePath path = viewer.getExpandedTreePaths()[i];
-			if(path.getLastSegment() instanceof EObject) {
-				try {
-					paths.add(EcoreUtil.getRelativeURIFragmentPath(editor.getPamtram(), ((EObject) (path.getLastSegment()))));				
-				} catch (IllegalArgumentException e) {
-					// do nothing
-				}
-			}
+		if(settings.getSection("SOURCE_VIEWER") != null) {
+			sourceViewerGroup.restore(settings.getSection("SOURCE_VIEWER"));
 		}
-		settings.put(key, paths.toArray(new String[paths.size()]));
-	}
-	
-	/**
-	 * Restore the expanded tree paths of the given {@link TreeViewer viewer} that have been persisted via
-	 * {@link #persistExpandedTreePaths(TreeViewer, EObject, IDialogSettings, String)}.
-	 * 
-	 * @param viewer The {@link TreeViewer} for that the expanded tree paths are to be restored.
-	 * @param ancestor The same {@link EObject ancestor} that has been used during the persisting of
-	 * the tree paths via {@link #persistExpandedTreePaths(TreeViewer, EObject, IDialogSettings, String)}.
-	 * @param settings The instance of {@link IDialogSettings} that the expanded paths shall be restored from.
-	 * @param key The {@link IDialogSettings#put(String, String[]) key} from that the paths shall be restored.
-	 */
-	private void restoreExpandedTreePaths(TreeViewer viewer, EObject ancestor, IDialogSettings settings, String key) {
-		if(settings.getArray(key) != null) {
-			String[] paths = settings.getArray(key);
-			for (int i = 0; i < paths.length; i++) {
-				EObject expanded = EcoreUtil.getEObject(ancestor, paths[i]);
-				if(expanded != null) {
-					viewer.setExpandedState(expanded, true);					
-				}
-			}
+		if(settings.getSection("MAPPING_VIEWER") != null) {
+			mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));
+		}
+		if(settings.getSection("GLOBAL_ELEMENTS_VIEWER") != null) {
+			globalElementsViewerGroup.restore(settings.getSection("GLOBAL_ELEMENTS_VIEWER"));
+		}
+		if(settings.getSection("TARGET_VIEWER") != null) {
+			targetViewerGroup.restore(settings.getSection("TARGET_VIEWER"));
+		}
+		if(settings.getSection("LIB_TARGET_VIEWER") != null) {
+			libTargetViewerGroup.restore(settings.getSection("LIB_TARGET_VIEWER"));
 		}
 	}
 

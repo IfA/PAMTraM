@@ -2,6 +2,7 @@
  */
 package pamtram.metamodel;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,4 +15,13 @@ package pamtram.metamodel;
  * @generated
  */
 public interface MultipleReferencesAttributeValueConstraint extends AttributeValueConstraint {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" attrValueRequired="true" refValueRequired="true" refValueMany="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!MultipleReferencesAttributeValueConstraint!checkConstraint(String,http://www.eclipse.org/ocl/2015/Library!OrderedSet[String]_1)'"
+	 * @generated
+	 */
+	boolean checkConstraint(String attrValue, EList<String> refValue);
 } // MultipleReferencesAttributeValueConstraint

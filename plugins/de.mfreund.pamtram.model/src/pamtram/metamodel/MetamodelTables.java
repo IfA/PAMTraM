@@ -691,7 +691,8 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ParameterTypes _ = TypeUtil.createParameterTypes();
 		public static final /*@NonNull*/ ParameterTypes _Class_C = TypeUtil.createParameterTypes(MetamodelTables.TypeParameters._Class_C);
 		public static final /*@NonNull*/ ParameterTypes _Class_C___OrderedSet__Class_C__ = TypeUtil.createParameterTypes(MetamodelTables.TypeParameters._Class_C, new ExecutorSpecializedType("OrderedSet", MetamodelTables.TypeParameters._Class_C));
-		public static final /*@NonNull*/ ParameterTypes _String = TypeUtil.createParameterTypes(OCLstdlibTables.Types._String);
+		public static final /*@NonNull*/ ParameterTypes _String___OrderedSet__String__ = TypeUtil.createParameterTypes(OCLstdlibTables.Types._String, new ExecutorSpecializedType("OrderedSet", OCLstdlibTables.Types._String));
+		public static final /*@NonNull*/ ParameterTypes _String___String = TypeUtil.createParameterTypes(OCLstdlibTables.Types._String, OCLstdlibTables.Types._String);
 
 		static {
 			Init.initEnd();
@@ -712,9 +713,6 @@ public class MetamodelTables
 			Parameters.init();
 		}
 
-		public static final /*@NonNull*/ ExecutorOperation _AttributeValueConstraint__checkConstraint = new ExecutorOperation("checkConstraint", Parameters._String, Types._AttributeValueConstraint,
-			0, TemplateParameters.EMPTY_LIST, null);
-
 		public static final /*@NonNull*/ ExecutorOperation _Class__getOwningContainmentReference = new ExecutorOperation("getOwningContainmentReference", Parameters._, Types._Class,
 			0, TemplateParameters.EMPTY_LIST, null);
 		public static final /*@NonNull*/ ExecutorOperation _Class__isContainedIn = new ExecutorOperation("isContainedIn", Parameters._Class_C, Types._Class,
@@ -731,7 +729,13 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorOperation _MetaModelElement__isLibraryEntry = new ExecutorOperation("isLibraryEntry", Parameters._, Types._MetaModelElement,
 			2, TemplateParameters.EMPTY_LIST, null);
 
+		public static final /*@NonNull*/ ExecutorOperation _MultipleReferencesAttributeValueConstraint__checkConstraint = new ExecutorOperation("checkConstraint", Parameters._String___OrderedSet__String__, Types._MultipleReferencesAttributeValueConstraint,
+			0, TemplateParameters.EMPTY_LIST, null);
+
 		public static final /*@NonNull*/ ExecutorOperation _Section__extendsOnlyValidSections = new ExecutorOperation("extendsOnlyValidSections", Parameters._, Types._Section,
+			0, TemplateParameters.EMPTY_LIST, null);
+
+		public static final /*@NonNull*/ ExecutorOperation _SingleReferenceAttributeValueConstraint__checkConstraint = new ExecutorOperation("checkConstraint", Parameters._String___String, Types._SingleReferenceAttributeValueConstraint,
 			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _SourceSectionReference__getValuesGeneric = new ExecutorOperation("getValuesGeneric", Parameters._, Types._SourceSectionReference,
@@ -766,7 +770,8 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _AttributeParameter__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE, Types._AttributeParameter, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _AttributeValueConstraint__SourceSectionAttribute__valueConstraint = new ExecutorPropertyWithImplementation("SourceSectionAttribute", Types._AttributeValueConstraint, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT));
+		public static final /*@NonNull*/ ExecutorProperty _AttributeValueConstraint__type = new EcoreExecutorProperty(MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT__TYPE, Types._AttributeValueConstraint, 0);
+		public static final /*@NonNull*/ ExecutorProperty _AttributeValueConstraint__SourceSectionAttribute__valueConstraint = new ExecutorPropertyWithImplementation("SourceSectionAttribute", Types._AttributeValueConstraint, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT));
 
 		public static final /*@NonNull*/ ExecutorProperty _CaseSensitiveConstraint__caseSensitive = new EcoreExecutorProperty(MetamodelPackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE, Types._CaseSensitiveConstraint, 0);
 
@@ -816,7 +821,6 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _SingleReferenceAttributeValueConstraint__constraintReferenceValue = new EcoreExecutorProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE, Types._SingleReferenceAttributeValueConstraint, 0);
 		public static final /*@NonNull*/ ExecutorProperty _SingleReferenceAttributeValueConstraint__expression = new EcoreExecutorProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION, Types._SingleReferenceAttributeValueConstraint, 1);
-		public static final /*@NonNull*/ ExecutorProperty _SingleReferenceAttributeValueConstraint__type = new EcoreExecutorProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE, Types._SingleReferenceAttributeValueConstraint, 2);
 
 		public static final /*@NonNull*/ ExecutorProperty _SourceSection__referencingMappings = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS, Types._SourceSection, 0);
 
@@ -1469,9 +1473,7 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _AttributeValueConstraint__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _AttributeValueConstraint__AttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeValueConstraint__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeValueConstraint__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -1543,9 +1545,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeValueConstraintType__Visitable = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _BeginningMatcher__BeginningMatcher = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _BeginningMatcher__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _BeginningMatcher__AttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _BeginningMatcher__CaseSensitiveConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _BeginningMatcher__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _BeginningMatcher__OclAny = {
@@ -1569,7 +1569,9 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _BeginningMatcher__SingleReferenceAttributeValueConstraint = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _BeginningMatcher__SingleReferenceAttributeValueConstraint = {
+			MetamodelTables.Operations._SingleReferenceAttributeValueConstraint__checkConstraint /* checkConstraint(String[1],String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _CardinalityType__CardinalityType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _CardinalityType__Class = {};
@@ -1619,9 +1621,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorOperation[] _CardinalityType__Visitable = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _CaseSensitiveConstraint__CaseSensitiveConstraint = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _CaseSensitiveConstraint__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _CaseSensitiveConstraint__AttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _CaseSensitiveConstraint__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _CaseSensitiveConstraint__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -1644,7 +1644,9 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _CaseSensitiveConstraint__SingleReferenceAttributeValueConstraint = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _CaseSensitiveConstraint__SingleReferenceAttributeValueConstraint = {
+			MetamodelTables.Operations._SingleReferenceAttributeValueConstraint__checkConstraint /* checkConstraint(String[1],String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _Class__Class_1 = {
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
@@ -1736,9 +1738,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorOperation[] _ContainmentReference__Reference = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _EndingMatcher__EndingMatcher = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _EndingMatcher__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _EndingMatcher__AttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _EndingMatcher__CaseSensitiveConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _EndingMatcher__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _EndingMatcher__OclAny = {
@@ -1762,12 +1762,12 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _EndingMatcher__SingleReferenceAttributeValueConstraint = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _EndingMatcher__SingleReferenceAttributeValueConstraint = {
+			MetamodelTables.Operations._SingleReferenceAttributeValueConstraint__checkConstraint /* checkConstraint(String[1],String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _EqualityMatcher__EqualityMatcher = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _EqualityMatcher__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _EqualityMatcher__AttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _EqualityMatcher__CaseSensitiveConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _EqualityMatcher__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _EqualityMatcher__OclAny = {
@@ -1791,7 +1791,9 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _EqualityMatcher__SingleReferenceAttributeValueConstraint = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _EqualityMatcher__SingleReferenceAttributeValueConstraint = {
+			MetamodelTables.Operations._SingleReferenceAttributeValueConstraint__checkConstraint /* checkConstraint(String[1],String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalReferenceParameter__ExternalReferenceParameter = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalReferenceParameter__LibraryParameter = {};
@@ -1981,10 +1983,10 @@ public class MetamodelTables
 			MetamodelTables.Operations._SourceSectionReference__getValuesGeneric /* getValuesGeneric() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _MultipleReferencesAttributeValueConstraint__MultipleReferencesAttributeValueConstraint = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _MultipleReferencesAttributeValueConstraint__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
+		private static final /*@NonNull*/ ExecutorOperation[] _MultipleReferencesAttributeValueConstraint__MultipleReferencesAttributeValueConstraint = {
+			MetamodelTables.Operations._MultipleReferencesAttributeValueConstraint__checkConstraint /* checkConstraint(String[1],OrderedSet(String[+|?])) */
 		};
+		private static final /*@NonNull*/ ExecutorOperation[] _MultipleReferencesAttributeValueConstraint__AttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MultipleReferencesAttributeValueConstraint__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MultipleReferencesAttributeValueConstraint__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -2062,10 +2064,10 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _RangeConstraint__RangeConstraint = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _RangeConstraint__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
+		private static final /*@NonNull*/ ExecutorOperation[] _RangeConstraint__AttributeValueConstraint = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _RangeConstraint__MultipleReferencesAttributeValueConstraint = {
+			MetamodelTables.Operations._MultipleReferencesAttributeValueConstraint__checkConstraint /* checkConstraint(String[1],OrderedSet(String[+|?])) */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _RangeConstraint__MultipleReferencesAttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _RangeConstraint__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _RangeConstraint__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -2119,9 +2121,7 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _RegExMatcher__RegExMatcher = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _RegExMatcher__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _RegExMatcher__AttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _RegExMatcher__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _RegExMatcher__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -2144,7 +2144,9 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _RegExMatcher__SingleReferenceAttributeValueConstraint = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _RegExMatcher__SingleReferenceAttributeValueConstraint = {
+			MetamodelTables.Operations._SingleReferenceAttributeValueConstraint__checkConstraint /* checkConstraint(String[1],String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _Section__Section = {
 			MetamodelTables.Operations._Section__extendsOnlyValidSections /* extendsOnlyValidSections() */
@@ -2183,10 +2185,10 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _SingleReferenceAttributeValueConstraint__SingleReferenceAttributeValueConstraint = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _SingleReferenceAttributeValueConstraint__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
+		private static final /*@NonNull*/ ExecutorOperation[] _SingleReferenceAttributeValueConstraint__SingleReferenceAttributeValueConstraint = {
+			MetamodelTables.Operations._SingleReferenceAttributeValueConstraint__checkConstraint /* checkConstraint(String[1],String[1]) */
 		};
+		private static final /*@NonNull*/ ExecutorOperation[] _SingleReferenceAttributeValueConstraint__AttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SingleReferenceAttributeValueConstraint__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SingleReferenceAttributeValueConstraint__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -2382,9 +2384,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorOperation[] _SourceSectionReference__Reference = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _SubstringMatcher__SubstringMatcher = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _SubstringMatcher__AttributeValueConstraint = {
-			MetamodelTables.Operations._AttributeValueConstraint__checkConstraint /* checkConstraint(String[1]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _SubstringMatcher__AttributeValueConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SubstringMatcher__CaseSensitiveConstraint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SubstringMatcher__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SubstringMatcher__OclAny = {
@@ -2408,7 +2408,9 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _SubstringMatcher__SingleReferenceAttributeValueConstraint = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _SubstringMatcher__SingleReferenceAttributeValueConstraint = {
+			MetamodelTables.Operations._SingleReferenceAttributeValueConstraint__checkConstraint /* checkConstraint(String[1],String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _TargetSection__TargetSection = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _TargetSection__Class_1 = {
@@ -2986,6 +2988,7 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _AttributeValueConstraint = {
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
@@ -2995,7 +2998,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
-			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__type,
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
@@ -3005,7 +3008,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
-			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__type,
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
@@ -3033,7 +3036,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
-			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__type,
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
@@ -3041,7 +3044,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
-			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__type,
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
@@ -3086,6 +3089,7 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _MultipleReferencesAttributeValueConstraint = {
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
@@ -3105,6 +3109,7 @@ public class MetamodelTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _RangeConstraint = {
 			MetamodelTables.Properties._RangeConstraint__lowerBound,
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._RangeConstraint__upperBound,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
@@ -3117,7 +3122,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty[] _RegExMatcher = {
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
-			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__type,
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
@@ -3134,7 +3139,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty[] _SingleReferenceAttributeValueConstraint = {
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
-			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__type,
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
@@ -3183,7 +3188,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
-			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__type,
+			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 

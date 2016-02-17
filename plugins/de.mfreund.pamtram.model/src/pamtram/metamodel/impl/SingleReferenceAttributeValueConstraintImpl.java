@@ -191,8 +191,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean checkConstraint(final String attrValue) {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!AttributeValueConstraint!checkConstraint(String)
+	public boolean checkConstraint(final String attrValue, final String refValue) {
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceAttributeValueConstraint!checkConstraint(String,String)
 	}
 
 	/**
@@ -282,8 +282,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING:
-				return checkConstraint((String)arguments.get(0));
+			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING:
+				return checkConstraint((String)arguments.get(0), (String)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

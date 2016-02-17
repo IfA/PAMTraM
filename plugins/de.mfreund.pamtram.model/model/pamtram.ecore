@@ -816,9 +816,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="EqualityMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeValueConstraint" abstract="true"
         interface="true" eSuperTypes="#//NamedElement">
-      <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
           eType="#//metamodel/AttributeValueConstraintType" defaultValueLiteral="INCLUSION"/>
     </eClassifiers>
@@ -851,6 +848,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeValueConstraint"
         abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint">
+      <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="refValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValue"
           eType="#//ReferenceableElement"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
@@ -858,7 +859,12 @@
           defaultValueLiteral=""/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MultipleReferencesAttributeValueConstraint"
-        abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint"/>
+        abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint">
+      <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="refValue" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstancePointer">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributePointer" lowerBound="1"
           eType="#//metamodel/SourceSectionAttribute"/>

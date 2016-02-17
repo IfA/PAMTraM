@@ -819,6 +819,8 @@
       <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
+          eType="#//metamodel/AttributeValueConstraintType" defaultValueLiteral="INCLUSION"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SubstringMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="BeginningMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
@@ -849,8 +851,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeValueConstraint"
         abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
-          eType="#//metamodel/AttributeValueConstraintType" defaultValueLiteral="INCLUSION"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValue"
           eType="#//ReferenceableElement"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"

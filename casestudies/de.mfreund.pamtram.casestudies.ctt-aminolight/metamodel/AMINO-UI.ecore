@@ -24,6 +24,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sounds" eType="#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundDefinition"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="SignalCollection" eType="#//SignalCollection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colors" eType="#//PresentationModel/VisualPresentationProfile/Colors/ColorDefinition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component">
     <eTypeParameters name="PropertyTypes">
@@ -613,19 +616,31 @@
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="An animation record provides all animation paths for the current element."/>
         </eAnnotations>
-        <eTypeParameters name="ValueType">
-          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="documentation" value="The ValueType argument configures which kind of variables a property may hold."/>
-          </eAnnotations>
-          <eBounds eClassifier="#//Variables/PrimitiveVariable"/>
-        </eTypeParameters>
         <eStructuralFeatures xsi:type="ecore:EReference" name="val" upperBound="-1"
             eType="#//PresentationModel/Animation/Animation" containment="true"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Animation" abstract="true">
+      <eClassifiers xsi:type="ecore:EClass" name="Animation">
+        <eTypeParameters name="AnimationTypes">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The PropertySample arguments configures the style property composite concerning the style properties that can be stored within the composite leafs."/>
+          </eAnnotations>
+          <eBounds eClassifier="#//PresentationModel/Animation/AnimationPropertySample"/>
+        </eTypeParameters>
         <eStructuralFeatures xsi:type="ecore:EReference" name="Trigger" eType="#//Signal"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="PropertyAnimation"
+            upperBound="-1" containment="true">
+          <eGenericType eClassifier="#//PresentationModel/Animation/PropertyAnimation">
+            <eTypeArguments eTypeParameter="#//PresentationModel/Animation/Animation/AnimationTypes"/>
+          </eGenericType>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="val" upperBound="-1"
+            containment="true">
+          <eGenericType eClassifier="#//PresentationModel/Animation/Animations/AnimationProperty">
+            <eTypeArguments eClassifier="#//Variables/Variable"/>
+          </eGenericType>
+        </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="VariableAnimation" eSuperTypes="#//PresentationModel/Animation/Animation">
+      <eClassifiers xsi:type="ecore:EClass" name="VariableAnimation">
         <eTypeParameters name="ValueType">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="documentation" value="The ValueType argument configures which kind of variables a property may hold."/>
@@ -635,11 +650,14 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="PropertyToAnimate">
           <eGenericType eTypeParameter="#//PresentationModel/Animation/VariableAnimation/ValueType"/>
         </eStructuralFeatures>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="variableResult" containment="true">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="variableResult">
           <eGenericType eTypeParameter="#//PresentationModel/Animation/VariableAnimation/ValueType"/>
         </eStructuralFeatures>
+        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/PropertyAnimation">
+          <eTypeArguments eClassifier="#//Variables/Variable"/>
+        </eGenericSuperTypes>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="StylePropertyAnimation" eSuperTypes="#//PresentationModel/Animation/Animation">
+      <eClassifiers xsi:type="ecore:EClass" name="StylePropertyAnimation" eSuperTypes="#//PresentationModel/Animation/PropertyAnimation">
         <eTypeParameters name="ValueType">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="documentation" value="The ValueType argument configures which kind of variables a property may hold."/>
@@ -656,7 +674,7 @@
           <eGenericType eTypeParameter="#//PresentationModel/Animation/StylePropertyAnimation/ValueType"/>
         </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="MultiStylePropertyAnimation" eSuperTypes="#//PresentationModel/Animation/Animation">
+      <eClassifiers xsi:type="ecore:EClass" name="MultiStylePropertyAnimation" eSuperTypes="#//PresentationModel/Animation/PropertyAnimation">
         <eTypeParameters name="ValueType">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="documentation" value="The ValueType argument configures which kind of variables a property may hold."/>
@@ -673,6 +691,111 @@
           <eGenericType eTypeParameter="#//PresentationModel/Animation/MultiStylePropertyAnimation/ValueType"/>
         </eStructuralFeatures>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AnimationPropertySample"/>
+      <eClassifiers xsi:type="ecore:EClass" name="PropertyAnimation" abstract="true">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="val" upperBound="-1"
+            containment="true">
+          <eGenericType eClassifier="#//PresentationModel/Animation/Animations/AnimationProperty">
+            <eTypeArguments eClassifier="#//Variables/Variable"/>
+          </eGenericType>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eSubpackages name="AnimationValues" nsURI="dfsa" nsPrefix="df">
+        <eClassifiers xsi:type="ecore:EClass" name="animationDelayValue" eSuperTypes="#//Variables/IntegerVariable"/>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationDurationValue" eSuperTypes="#//Variables/IntegerVariable"/>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationIterationCountValue"
+            abstract="true"/>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationIterationCountInt" eSuperTypes="#//Variables/IntegerVariable #//PresentationModel/Animation/AnimationValues/AnimationIterationCountValue"/>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationIterationCountPresetValue"
+            eSuperTypes="#//Variables/BuiltinEnumVariable #//PresentationModel/Animation/AnimationValues/AnimationIterationCountValue"/>
+        <eClassifiers xsi:type="ecore:EEnum" name="AnimationIterationCountEnum">
+          <eLiterals name="infinite"/>
+          <eLiterals name="initial" value="1"/>
+          <eLiterals name="inherit" value="2"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationFillModePresetValue"
+            eSuperTypes="#//Variables/BuiltinEnumVariable">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" lowerBound="1"
+              eType="#//PresentationModel/Animation/AnimationValues/AnimationFillModeEnum"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EEnum" name="AnimationFillModeEnum">
+          <eLiterals name="none"/>
+          <eLiterals name="forwards" value="1"/>
+          <eLiterals name="backwards" value="2"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationPlayStatePresetValue"
+            eSuperTypes="#//Variables/BuiltinEnumVariable">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" lowerBound="1"
+              eType="#//PresentationModel/Animation/AnimationValues/AnimationPlayStateEnum"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EEnum" name="AnimationPlayStateEnum">
+          <eLiterals name="running"/>
+          <eLiterals name="paused" value="1"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationDirectionPresetValue"
+            eSuperTypes="#//Variables/BuiltinEnumVariable">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" lowerBound="1"
+              eType="#//PresentationModel/Animation/AnimationValues/AnimationDirectionEnum"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EEnum" name="AnimationDirectionEnum">
+          <eLiterals name="normal"/>
+          <eLiterals name="reverse" value="1"/>
+          <eLiterals name="alternate" value="2"/>
+          <eLiterals name="alternate-reverse" value="3"/>
+          <eLiterals name="initial" value="4"/>
+          <eLiterals name="inherit" value="5"/>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages name="AnimationSamples" nsURI="dsadf" nsPrefix="fes">
+        <eClassifiers xsi:type="ecore:EClass" name="GeneralAnimationPropertySample"
+            abstract="true" interface="true" eSuperTypes="#//PresentationModel/Animation/AnimationPropertySample"/>
+      </eSubpackages>
+      <eSubpackages name="Animations" nsURI="sewef" nsPrefix="se">
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationDelay">
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/AnimationSamples/GeneralAnimationPropertySample"/>
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/Animations/AnimationProperty">
+            <eTypeArguments eClassifier="#//PresentationModel/Animation/AnimationValues/animationDelayValue"/>
+          </eGenericSuperTypes>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationDuration">
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/Animations/AnimationProperty">
+            <eTypeArguments eClassifier="#//PresentationModel/Animation/AnimationValues/AnimationDurationValue"/>
+          </eGenericSuperTypes>
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/AnimationSamples/GeneralAnimationPropertySample"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationIterationCount">
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/AnimationSamples/GeneralAnimationPropertySample"/>
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/Animations/AnimationProperty">
+            <eTypeArguments eClassifier="#//PresentationModel/Animation/AnimationValues/AnimationIterationCountValue"/>
+          </eGenericSuperTypes>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationFillMode">
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/AnimationSamples/GeneralAnimationPropertySample"/>
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/Animations/AnimationProperty">
+            <eTypeArguments eClassifier="#//PresentationModel/Animation/AnimationValues/AnimationFillModePresetValue"/>
+          </eGenericSuperTypes>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationPlayState">
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/AnimationSamples/GeneralAnimationPropertySample"/>
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/Animations/AnimationProperty">
+            <eTypeArguments eClassifier="#//PresentationModel/Animation/AnimationValues/AnimationPlayStatePresetValue"/>
+          </eGenericSuperTypes>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationDirection">
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/AnimationSamples/GeneralAnimationPropertySample"/>
+          <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/Animations/AnimationProperty">
+            <eTypeArguments eClassifier="#//PresentationModel/Animation/AnimationValues/AnimationDirectionPresetValue"/>
+          </eGenericSuperTypes>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="AnimationProperty" abstract="true">
+          <eTypeParameters name="ValueType">
+            <eBounds eClassifier="#//Variables/Variable"/>
+          </eTypeParameters>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="val" containment="true">
+            <eGenericType eTypeParameter="#//PresentationModel/Animation/Animations/AnimationProperty/ValueType"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </eSubpackages>
     </eSubpackages>
     <eSubpackages name="VisualPresentationProfile" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile"
         nsPrefix="pp-vis">
@@ -764,7 +887,8 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="theme" lowerBound="1"
               eType="#//PresentationModel/VisualPresentationProfile/Colors/ColorTheme"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
-              eType="#//PresentationModel/VisualPresentationProfile/Colors/ColorValue"/>
+              eType="#//PresentationModel/VisualPresentationProfile/Colors/ColorValue"
+              containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="ColorItemGroup" eSuperTypes="#//PresentationModel/VisualPresentationProfile/Colors/ColorItemGroupable">
           <eStructuralFeatures xsi:type="ecore:EReference" name="colorItem" upperBound="-1"
@@ -3520,6 +3644,18 @@
           <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
         </eGenericSuperTypes>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="HapticalVariableAnimation">
+        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/VariableAnimation">
+          <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="HapticalStylePropertyAnimation">
+        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/StylePropertyAnimation">
+          <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
+            <eTypeArguments eClassifier="#//Variables/Variable"/>
+          </eTypeArguments>
+        </eGenericSuperTypes>
+      </eClassifiers>
       <eSubpackages name="Representation" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticPresentationProfile/Representation"
           nsPrefix="pp-hap-rep">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3604,9 +3740,11 @@
                 eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"
                 containment="true"/>
           </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationIntegerVariable" eSuperTypes="#//Variables/IntegerVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationBooleanVariable" eSuperTypes="#//Variables/BooleanVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationFloatVariable" eSuperTypes="#//Variables/FloatVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationIntegerVariable" eSuperTypes="#//Variables/IntegerVariable #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationBooleanVariable" eSuperTypes="#//Variables/BooleanVariable #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationFloatVariable" eSuperTypes="#//Variables/FloatVariable #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationPrimitiveVariable"
+              eSuperTypes="#//Variables/PrimitiveVariable"/>
         </eSubpackages>
       </eSubpackages>
     </eSubpackages>

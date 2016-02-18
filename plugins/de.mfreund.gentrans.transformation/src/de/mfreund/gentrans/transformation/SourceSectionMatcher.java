@@ -712,7 +712,7 @@ public class SourceSectionMatcher extends CancellableElement {
 						(!ref.isMany() && srcModelObject.eGet(ref) != null)) {
 					return false;
 				} else {
-					break;					
+					continue;					
 				}
 			}
 
@@ -777,7 +777,7 @@ public class SourceSectionMatcher extends CancellableElement {
 							return false;
 						}
 						if (res != null) {
-							break;
+							continue;
 						}
 					}
 				}

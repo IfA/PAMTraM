@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -415,6 +416,35 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	@Override
 	public void persist(IDialogSettings settings) {
 		
+		// Persist the active editor and its selection
+		//
+		String activeViewer = "";
+		String activeSelection = "";
+		if(editor.getSelectedPage() != null && editor.getSelectedPage().equals(this) && 
+				editor.currentViewer != null) {
+			if(editor.currentViewer.equals(sourceViewer)) {
+				activeViewer = "SOURCE_VIEWER";
+			} else if(editor.currentViewer.equals(mappingViewer)) {
+				activeViewer = "MAPPING_VIEWER";
+			}
+			if(!editor.currentViewer.getSelection().isEmpty() && 
+					editor.currentViewer.getSelection() instanceof TreeSelection) {
+				Object selection = ((TreeSelection) editor.currentViewer.getSelection()).getFirstElement();
+				if(selection instanceof EObject) {
+					try {
+						/*
+						 * use the URI of the eObject as unique identifier
+						 */
+						activeSelection = EcoreUtil.getURI((EObject) selection).toString();
+					} catch (IllegalArgumentException e) {
+						// do nothing
+					}
+				}
+			}
+		}
+		settings.put("ACTIVE_VIEWER", activeViewer);
+		settings.put("ACTIVE_SELECTION", activeSelection);
+		
 		// Persist the expanded tree paths of the various tree viewers
 		//
 		sourceViewerGroup.persist(settings.addNewSection("SOURCE_VIEWER"));
@@ -423,6 +453,32 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 
 	@Override
 	public void restore(IDialogSettings settings) {
+		
+		// Restore the active editor and its selection
+		//
+		if(editor.getSelectedPage() != null && editor.getSelectedPage().equals(this) && 
+				settings.get("ACTIVE_VIEWER") != null) {
+			
+			String activeViewer = settings.get("ACTIVE_VIEWER");
+			if(activeViewer.equals("SOURCE_VIEWER")) {
+				editor.setCurrentViewer(sourceViewer);
+			} else if(activeViewer.equals("MAPPING_VIEWER")) {
+				editor.setCurrentViewer(mappingViewer);
+			}
+		}
+		if(editor.getSelectedPage() != null && editor.getSelectedPage().equals(this) && 
+				settings.get("ACTIVE_SELECTION") != null && !settings.get("ACTIVE_SELECTION").isEmpty()) {
+			
+			String activeSelection = settings.get("ACTIVE_SELECTION");
+			/*
+			 * as the URI of an eObject also reflects the containing resource, we can use this to
+			 * uniquely identify an eObject inside a resource set
+			 */
+			EObject selection = editor.getEditingDomain().getResourceSet().getEObject(URI.createURI(activeSelection), true);
+			if(selection != null) {
+				editor.currentViewer.setSelection(new StructuredSelection(selection));			
+			}
+		}
 
 		// Restore the expanded tree paths of the various tree viewers
 		//

@@ -23,10 +23,17 @@
         upperBound="-1" eType="#//Component" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sounds" eType="#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundDefinition"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="SignalCollection" eType="#//SignalCollection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="SignalCollection" eType="#//SignalCollection"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="colors" eType="#//PresentationModel/VisualPresentationProfile/Colors/ColorDefinition"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="DataItems" eType="#//DataItemCollection"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Conditions" eType="#//ConditionModel/ConditionModel"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assets" eType="#//PresentationModel/Assets/AssetGroupable"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component">
     <eTypeParameters name="PropertyTypes">
@@ -67,11 +74,65 @@
       <eTypeArguments eClassifier="#//PresentationModel/VisualPresentationProfile/Representation/PropertySamples/BorderStylePropertySample"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Signal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Signal" eSuperTypes="#//Utils/NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="SignalCollection">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Signals" upperBound="-1"
         eType="#//Signal" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataItemCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="DataItems" upperBound="-1"
+        eType="#//DataItem" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataItem" eSuperTypes="#//Utils/NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="SignalOnChange" eType="#//Signal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Type" eType="#//Variables/PrimitiveVariable"
+        containment="true"/>
+  </eClassifiers>
+  <eSubpackages name="ConditionModel">
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionModel">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" upperBound="-1"
+          eType="#//ConditionModel/ConditionGroup" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionGroup" eSuperTypes="#//Utils/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conditionGroup" upperBound="-1"
+          eType="#//ConditionModel/ConditionGroup" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" upperBound="-1"
+          eType="#//ConditionModel/Condition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="CheckConditionTrigger"
+          lowerBound="1" eType="#//Signal"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ConditionMetSignal" lowerBound="1"
+          eType="#//Signal"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Operator" eType="#//ConditionModel/LogicOperator"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//Utils/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="compareType" lowerBound="1"
+          eType="#//ConditionModel/CompareType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ReferneceDataItem" lowerBound="1"
+          upperBound="2" eType="#//DataItem"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="IntegerReferenceValue"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="BooleanReferenceValue"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="StringReferenceValue"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="FloatReferenceValue"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="LogicOperator">
+      <eLiterals name="AND"/>
+      <eLiterals name="OR" value="1"/>
+      <eLiterals name="XOR" value="2"/>
+      <eLiterals name="NOR" value="3"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="CompareType">
+      <eLiterals name="EQ"/>
+      <eLiterals name="GT" value="1"/>
+      <eLiterals name="GTEQ" value="2"/>
+      <eLiterals name="LT" value="3"/>
+      <eLiterals name="LTEQ" value="4"/>
+      <eLiterals name="NOT" value="5"/>
+    </eClassifiers>
+  </eSubpackages>
   <eSubpackages name="Utils" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/Utils"
       nsPrefix="utils">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3688,6 +3749,30 @@
             </eGenericSuperTypes>
             <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
           </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="PatternVibration">
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticMultiStyleProperty">
+              <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/PatternVibrationValue"/>
+            </eGenericSuperTypes>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="ContinousVibration">
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
+              <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/ContinousVibrationValue"/>
+            </eGenericSuperTypes>
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="PulsingVibration">
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
+              <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/PulsingVibrationValue"/>
+            </eGenericSuperTypes>
+          </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationRepeat">
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
+              <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationRepeatValue"/>
+            </eGenericSuperTypes>
+          </eClassifiers>
           <eClassifiers xsi:type="ecore:EClass" name="simpleVibration">
             <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
             <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
@@ -3719,27 +3804,29 @@
           </eClassifiers>
           <eClassifiers xsi:type="ecore:EClass" name="simpleVibrationValue" abstract="true"
               eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationValue"/>
-          <eClassifiers xsi:type="ecore:EClass" name="PatternVibrationValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/simpleVibrationValue">
-            <eStructuralFeatures xsi:type="ecore:EReference" name="PatternValue" upperBound="-1"
-                eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"
-                containment="true"/>
-          </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="ContinousVibrationValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/simpleVibrationValue">
-            <eStructuralFeatures xsi:type="ecore:EReference" name="ContinousVibrationDuration"
-                eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"
-                containment="true"/>
-          </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="PulsingVibrationValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/simpleVibrationValue">
+          <eClassifiers xsi:type="ecore:EClass" name="PatternVibrationValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="ContinousVibrationValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="PulsingVibrationValue" eSuperTypes="#//Variables/Variable">
             <eStructuralFeatures xsi:type="ecore:EReference" name="VibrationFrequency"
-                eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"
+                eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationFrequencyValue"
                 containment="true"/>
             <eStructuralFeatures xsi:type="ecore:EReference" name="VibrationDutyCycle"
-                eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"
+                eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationDutyCycleValue"
                 containment="true"/>
             <eStructuralFeatures xsi:type="ecore:EReference" name="PulsingVibrationDuration"
-                eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"
+                eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/PulsingVibrationDurationValue"
                 containment="true"/>
           </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationFrequencyValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationDutyCycleValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="PulsingVibrationDurationValue"
+              eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationRepeatValue" abstract="true"
+              eSuperTypes="#//Variables/Variable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="QuantityVibrationRepeatValue"
+              eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationRepeatValue #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="PermanentVibrationRepeatValue"
+              eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationRepeatValue #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationBooleanVariable"/>
           <eClassifiers xsi:type="ecore:EClass" name="VibrationIntegerVariable" eSuperTypes="#//Variables/IntegerVariable #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
           <eClassifiers xsi:type="ecore:EClass" name="VibrationBooleanVariable" eSuperTypes="#//Variables/BooleanVariable #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
           <eClassifiers xsi:type="ecore:EClass" name="VibrationFloatVariable" eSuperTypes="#//Variables/FloatVariable #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>

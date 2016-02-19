@@ -35,31 +35,25 @@
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
         <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
       </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="class">
+        <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" value="Numerical"/>
+      </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel name="">
-    <metaModelPackage href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets#/"/>
+    <metaModelPackage href="../metamodel/AMINO-UI.ecore#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="CUIModel">
-      <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets#//CUIModel"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name">
-        <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets#//CUIModel/name"/>
-      </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="BorderComponent" container="//@targetSectionModel.0/@metaModelSections.0">
-      <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets#//BorderComponent"/>
-      <attributes xsi:type="metamodel:VirtualAttribute" name="test" unique="true" value=""/>
-    </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Text" container="//@targetSectionModel.0/@metaModelSections.1">
-      <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets#//PresentationModel/VisualPresentationProfile/Assets/Text"/>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="ref">
-        <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets#//PresentationModel/Assets/Asset/ref"/>
-        <value xsi:type="metamodel:TargetSectionClass" name="AssetReference">
-          <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets#//PresentationModel/Assets/AssetReference"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="ref" value="">
-            <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets#//PresentationModel/Assets/AssetReference/ref"/>
-          </attributes>
+      <eClass href="../metamodel/AMINO-UI.ecore#//CUIModel"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="DataItems">
+        <eReference href="../metamodel/AMINO-UI.ecore#//CUIModel/DataItems"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="DataItemCollection">
+          <eClass href="../metamodel/AMINO-UI.ecore#//DataItemCollection"/>
         </value>
       </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="name">
+        <attribute href="../metamodel/AMINO-UI.ecore#//CUIModel/name"/>
+      </attributes>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
@@ -67,20 +61,6 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="nameTaskModelID" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0"/>
-        </mappingHints>
-      </mappingHintGroups>
-    </mapping>
-    <mapping name="ObjectMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.2">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BorderComponent" targetMMSection="//@targetSectionModel.0/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="testMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
-        </mappingHints>
-      </mappingHintGroups>
-    </mapping>
-    <mapping name="TaskMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BorderComponent" targetMMSection="//@targetSectionModel.0/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="testMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Taskname" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>

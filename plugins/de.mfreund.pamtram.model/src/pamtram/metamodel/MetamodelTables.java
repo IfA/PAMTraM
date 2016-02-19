@@ -3260,8 +3260,6 @@ public class MetamodelTables
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._SourceSectionAttribute__valueConstraint,
 			MetamodelTables.Properties._SourceSectionAttribute__InstancePointer__attributePointer,
-			PamtramTables.Properties._ReferenceableElement__RangeBound__boundReferenceValue,
-			PamtramTables.Properties._ReferenceableElement__SingleReferenceAttributeValueConstraint__constraintReferenceValue
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _SourceSectionClass = {

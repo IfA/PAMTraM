@@ -82,12 +82,12 @@ public class EndingMatcherImpl extends SingleReferenceAttributeValueConstraintIm
 	}
 
 	@Override
-	public boolean checkConstraint(String attrValue) {
+	public boolean checkConstraint(String attrValue, String refValue) {
 		boolean condition;
 		if (this.caseSensitive) {
-			condition = attrValue.endsWith(value);
+			condition = attrValue.endsWith(refValue);
 		} else {
-			condition = attrValue.toLowerCase().endsWith(value.toLowerCase());
+			condition = attrValue.toLowerCase().endsWith(refValue.toLowerCase());
 		}
 		return (condition && type.equals(AttributeValueConstraintType.INCLUSION))
 				|| (!condition && type.equals(AttributeValueConstraintType.EXCLUSION));

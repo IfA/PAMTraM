@@ -84,14 +84,14 @@ public class EqualityMatcherImpl extends SingleReferenceAttributeValueConstraint
 	}
 
 	@Override
-	public boolean checkConstraint(String attrValue) {
+	public boolean checkConstraint(String attrValue, String refValue) {
 		String specValue;
 		String newAttrValue;
 		if (this.caseSensitive) {
-			specValue = value;
+			specValue = refValue;
 			newAttrValue = attrValue;
 		} else {
-			specValue = this.value.toLowerCase();
+			specValue = refValue.toLowerCase();
 			newAttrValue = attrValue.toLowerCase();
 		}
 

@@ -33,8 +33,8 @@ public class RegExMatcherImpl extends SingleReferenceAttributeValueConstraintImp
 	}
 
 	@Override
-	public boolean checkConstraint(String attrValue) {
-		boolean condition = attrValue.matches(this.value);
+	public boolean checkConstraint(String attrValue, String refValue) {
+		boolean condition = attrValue.matches(refValue);
 		return (condition && this.type.equals(AttributeValueConstraintType.INCLUSION))
 				|| (!condition && this.type.equals(AttributeValueConstraintType.EXCLUSION));
 	}

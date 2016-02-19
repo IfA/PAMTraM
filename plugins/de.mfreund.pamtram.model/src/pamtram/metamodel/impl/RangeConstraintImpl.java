@@ -3,7 +3,7 @@
 package pamtram.metamodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -215,11 +215,11 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	}
 	
 	@Override
-	public boolean checkConstraint(String attrValue) {
+	public boolean checkConstraint(String attrValue, EList<String> refValue) {
 		boolean lowerBoundResult=true,upperBoundResult=true; //Keep True in case no rangeBound were established 
-		
+
 		// Firstly, check the attrValue corresponding to his lowerBound and secondly, with his upperBound. (Order doesn't matter)
-		if (this.getLowerBound()!=null){
+		if (refValue.get(0) != null){
 			if(this.getLowerBound().getBoundType().equals(AttributeValueConstraintType.INCLUSION)){
 				lowerBoundResult = Double.parseDouble(attrValue) >= Double.parseDouble(this.getLowerBound().getExpression());
 			}
@@ -227,7 +227,7 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 				lowerBoundResult = Double.parseDouble(attrValue) > Double.parseDouble(this.getLowerBound().getExpression());
 			}
 		}
-		if (this.getUpperBound()!=null){
+		if (refValue.get(1) != null){
 			if(this.getUpperBound().getBoundType().equals(AttributeValueConstraintType.INCLUSION)){
 				upperBoundResult = Double.parseDouble(attrValue) <= Double.parseDouble(this.getUpperBound().getExpression());
 			}

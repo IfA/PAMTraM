@@ -82,12 +82,12 @@ public class SubstringMatcherImpl extends SingleReferenceAttributeValueConstrain
 	}
 
 	@Override
-	public boolean checkConstraint(String attrValue) {
+	public boolean checkConstraint(String attrValue, String refValue) {
 		boolean condition;
 		if (caseSensitive) {
-			condition = value.contains(attrValue);
+			condition = refValue.contains(attrValue);
 		} else {
-			condition = value.toLowerCase().contains(attrValue.toLowerCase());
+			condition = refValue.toLowerCase().contains(attrValue.toLowerCase());
 		}
 
 		return (condition && type.equals(AttributeValueConstraintType.INCLUSION))

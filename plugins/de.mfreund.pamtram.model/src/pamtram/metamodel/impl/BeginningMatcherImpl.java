@@ -82,12 +82,12 @@ public class BeginningMatcherImpl extends SingleReferenceAttributeValueConstrain
 	}
 
 	@Override
-	public boolean checkConstraint(String attrValue) {
+	public boolean checkConstraint(String attrValue, String refValue) {
 		boolean condition;
 		if (caseSensitive) {
-			condition = attrValue.startsWith(value);
+			condition = attrValue.startsWith(refValue);
 		} else {
-			condition = attrValue.toLowerCase().startsWith(value.toLowerCase());
+			condition = attrValue.toLowerCase().startsWith(refValue.toLowerCase());
 		}
 
 		return (condition && type.equals(AttributeValueConstraintType.INCLUSION))

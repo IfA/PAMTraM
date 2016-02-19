@@ -865,6 +865,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				editor.currentViewer != null) {
 			if(editor.currentViewer.equals(sourceViewer)) {
 				activeViewer = "SOURCE_VIEWER";
+			} else if(editor.currentViewer.equals(conditionViewer)) {
+				activeViewer = "CONDITION_VIEWER";
 			} else if(editor.currentViewer.equals(mappingViewer)) {
 				activeViewer = "MAPPING_VIEWER";
 			} else if(editor.currentViewer.equals(globalElementsViewer)) {
@@ -892,6 +894,10 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		settings.put("ACTIVE_VIEWER", activeViewer);
 		settings.put("ACTIVE_SELECTION", activeSelection);
 		
+		// Persist the state of the 'sourceSash'
+		//
+		sourceSash.persist(settings.addNewSection("SOURCE_SASH"));
+		
 		// Persist the state of the 'mappingSash'
 		//
 		mappingSash.persist(settings.addNewSection("MAPPING_SASH"));
@@ -903,6 +909,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		// Persist the expanded tree paths of the various tree viewers
 		//
 		sourceViewerGroup.persist(settings.addNewSection("SOURCE_VIEWER"));
+		conditionViewerGroup.persist(settings.addNewSection("CONDITION_VIEWER"));
 		mappingViewerGroup.persist(settings.addNewSection("MAPPING_VIEWER"));
 		globalElementsViewerGroup.persist(settings.addNewSection("GLOBAL_ELEMENTS_VIEWER"));
 		targetViewerGroup.persist(settings.addNewSection("TARGET_VIEWER"));
@@ -921,6 +928,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 			String activeViewer = settings.get("ACTIVE_VIEWER");
 			if(activeViewer.equals("SOURCE_VIEWER")) {
 				editor.setCurrentViewer(sourceViewer);
+			} else if(activeViewer.equals("CONDITION_VIEWER")) {
+				editor.setCurrentViewer(conditionViewer);
 			} else if(activeViewer.equals("MAPPING_VIEWER")) {
 				editor.setCurrentViewer(mappingViewer);
 			} else if(activeViewer.equals("GLOBAL_ELEMENTS_VIEWER")) {
@@ -945,6 +954,12 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 			}
 		}
 		
+		// Restore the state of the 'sourceSash'
+		//
+		if(settings.getSection("SOURCE_SASH") != null) {
+			sourceSash.restore(settings.getSection("SOURCE_SASH"));
+		}
+		
 		// Restore the state of the 'mappingSash'
 		//
 		if(settings.getSection("MAPPING_SASH") != null) {
@@ -961,6 +976,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 		if(settings.getSection("SOURCE_VIEWER") != null) {
 			sourceViewerGroup.restore(settings.getSection("SOURCE_VIEWER"));
+		}
+		if(settings.getSection("CONDITION_VIEWER") != null) {
+			conditionViewerGroup.restore(settings.getSection("CONDITION_VIEWER"));
 		}
 		if(settings.getSection("MAPPING_VIEWER") != null) {
 			mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));

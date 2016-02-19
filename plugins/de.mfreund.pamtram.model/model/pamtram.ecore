@@ -438,7 +438,14 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//metamodel/VirtualAttribute"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//metamodel/VirtualAttribute">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" lowerBound="1"
+          eType="#//metamodel/FileTypeEnum"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="FileTypeEnum">
+      <eLiterals name="XMI"/>
+      <eLiterals name="XML" value="1"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>

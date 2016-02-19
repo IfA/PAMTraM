@@ -18,6 +18,7 @@ import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.FileTypeEnum;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
@@ -114,6 +115,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case MetamodelPackage.FILE_TYPE_ENUM:
+				return createFileTypeEnumFromString(eDataType, initialValue);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
 				return createAttributeValueConstraintTypeFromString(eDataType, initialValue);
 			case MetamodelPackage.CARDINALITY_TYPE:
@@ -131,6 +134,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case MetamodelPackage.FILE_TYPE_ENUM:
+				return convertFileTypeEnumToString(eDataType, instanceValue);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
 				return convertAttributeValueConstraintTypeToString(eDataType, instanceValue);
 			case MetamodelPackage.CARDINALITY_TYPE:
@@ -358,6 +363,26 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public InstancePointer createInstancePointer() {
 		InstancePointerImpl instancePointer = new InstancePointerImpl();
 		return instancePointer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileTypeEnum createFileTypeEnumFromString(EDataType eDataType, String initialValue) {
+		FileTypeEnum result = FileTypeEnum.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertFileTypeEnumToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

@@ -7,6 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -75,12 +76,16 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EPackage getMetaModelPackage() {
 		if (metaModelPackage != null && metaModelPackage.eIsProxy()) {
 			InternalEObject oldMetaModelPackage = (InternalEObject)metaModelPackage;
-			metaModelPackage = (EPackage)eResolveProxy(oldMetaModelPackage);
+			EObject resolved = eResolveProxy(oldMetaModelPackage);
+			if(!(resolved instanceof EPackage)) {
+				return metaModelPackage;
+			}
+			metaModelPackage = (EPackage) resolved;
 			if (metaModelPackage != oldMetaModelPackage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE, oldMetaModelPackage, metaModelPackage));

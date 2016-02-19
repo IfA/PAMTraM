@@ -1800,13 +1800,22 @@ public interface MetamodelPackage extends EPackage {
 	int FILE_ATTRIBUTE__VALUE = VIRTUAL_ATTRIBUTE__VALUE;
 
 	/**
+	 * The feature id for the '<em><b>File Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTRIBUTE__FILE_TYPE = VIRTUAL_ATTRIBUTE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>File Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_ATTRIBUTE_FEATURE_COUNT = VIRTUAL_ATTRIBUTE_FEATURE_COUNT + 0;
+	int FILE_ATTRIBUTE_FEATURE_COUNT = VIRTUAL_ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -3999,6 +4008,16 @@ public interface MetamodelPackage extends EPackage {
 	int INSTANCE_POINTER_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.metamodel.FileTypeEnum <em>File Type Enum</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.FileTypeEnum
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getFileTypeEnum()
+	 * @generated
+	 */
+	int FILE_TYPE_ENUM = 34;
+
+	/**
 	 * The meta object id for the '{@link pamtram.metamodel.AttributeValueConstraintType <em>Attribute Value Constraint Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4338,6 +4357,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFileAttribute();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.FileAttribute#getFileType <em>File Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>File Type</em>'.
+	 * @see pamtram.metamodel.FileAttribute#getFileType()
+	 * @see #getFileAttribute()
+	 * @generated
+	 */
+	EAttribute getFileAttribute_FileType();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionClass <em>Source Section Class</em>}'.
@@ -5101,6 +5131,16 @@ public interface MetamodelPackage extends EPackage {
 	EReference getInstancePointer_AttributePointer();
 
 	/**
+	 * Returns the meta object for enum '{@link pamtram.metamodel.FileTypeEnum <em>File Type Enum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>File Type Enum</em>'.
+	 * @see pamtram.metamodel.FileTypeEnum
+	 * @generated
+	 */
+	EEnum getFileTypeEnum();
+
+	/**
 	 * Returns the meta object for enum '{@link pamtram.metamodel.AttributeValueConstraintType <em>Attribute Value Constraint Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5402,6 +5442,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass FILE_ATTRIBUTE = eINSTANCE.getFileAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>File Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE_ATTRIBUTE__FILE_TYPE = eINSTANCE.getFileAttribute_FileType();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
@@ -6052,6 +6100,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INSTANCE_POINTER__ATTRIBUTE_POINTER = eINSTANCE.getInstancePointer_AttributePointer();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.FileTypeEnum <em>File Type Enum</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.FileTypeEnum
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getFileTypeEnum()
+		 * @generated
+		 */
+		EEnum FILE_TYPE_ENUM = eINSTANCE.getFileTypeEnum();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.AttributeValueConstraintType <em>Attribute Value Constraint Type</em>}' enum.

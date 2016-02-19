@@ -64,7 +64,6 @@ public class PAMTraMItemProvider
 			addActiveMappingsPropertyDescriptor(object);
 			addGlobalValuesPropertyDescriptor(object);
 			addModifierSetsPropertyDescriptor(object);
-			addConditionModelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -224,28 +223,6 @@ public class PAMTraMItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Condition Model feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConditionModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PAMTraM_conditionModel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_conditionModel_feature", "_UI_PAMTraM_type"),
-				 PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -260,6 +237,7 @@ public class PAMTraMItemProvider
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL);
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL);
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL);
 		}
 		return childrenFeatures;
 	}
@@ -325,6 +303,7 @@ public class PAMTraMItemProvider
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
+			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -356,6 +335,11 @@ public class PAMTraMItemProvider
 			(createChildParameter
 				(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL,
 				 PamtramFactory.eINSTANCE.createMappingModel()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL,
+				 PamtramFactory.eINSTANCE.createConditionModel()));
 	}
 
 	/**

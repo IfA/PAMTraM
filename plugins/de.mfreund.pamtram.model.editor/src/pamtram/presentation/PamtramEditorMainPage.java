@@ -30,6 +30,7 @@ import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import pamtram.contentadapter.DeactivationListenerAdapter;
+import pamtram.contentprovider.ConditionContentProvider;
 import pamtram.contentprovider.LibraryEntryContentProvider;
 import pamtram.contentprovider.MappingContentProvider;
 import pamtram.contentprovider.ModifierSetContentProvider;
@@ -98,10 +99,25 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	protected TreeViewerGroup sourceViewerGroup;
 
 	/**
+	 * This is the the viewer for the condtions.
+	 */
+	protected TreeViewer conditionViewer = null;
+
+	/**
+	 * This is the group for the condition tree viewer.
+	 */
+	protected Group conditionGroup;
+
+	/**
+	 * The {@link TreeViewerGroup} for the conditions.
+	 */
+	protected TreeViewerGroup conditionViewerGroup;
+
+	/**
 	 * This is the the viewer for the source meta model sections.
 	 */
 	protected TreeViewer sourceViewer = null;
-
+	
 	/**
 	 * This is the group for the mapping tree viewer.
 	 */
@@ -170,6 +186,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	protected DeactivationListenerAdapter deactivationListener;
 
 	/**
+	 * The {@link MinimizableSashForm} containing the {@link #sourceViewerGroup} and the {@link #conditionViewerGroup}.
+	 */
+	protected MinimizableSashForm sourceSash;
+	
+	/**
 	 * The {@link MinimizableSashForm} containing the {@link #mappingViewerGroup} and the {@link #globalElementsViewerGroup}.
 	 */
 	protected MinimizableSashForm mappingSash;
@@ -204,12 +225,21 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 
 	private void createSourceViewer() {
+		
+		sourceSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
+		{
+			GridData data = new GridData();
+			data.verticalAlignment = GridData.FILL;
+			data.grabExcessVerticalSpace = true;
+			data.horizontalAlignment = GridData.FILL;
+			sourceSash.setLayoutData(data);
+		}
 	
 		// Create the viewer for the source sections.
 		//
 	
-		sourceViewerGroup = new TreeViewerGroup(
-				this, adapterFactory, editor.getEditingDomain(),
+		sourceViewerGroup = new MinimizableTreeViewerGroup(
+				sourceSash, adapterFactory, editor.getEditingDomain(),
 				"Source Sections", null, null, true, true
 				);
 		sourceViewer = sourceViewerGroup.getViewer();
@@ -220,6 +250,22 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		
 		new AdapterFactoryTreeEditor(sourceViewer.getTree(), adapterFactory);
 		editor.createContextMenuFor(sourceViewer);
+		
+		// Create the viewer for the condtions.
+		//
+	
+		conditionViewerGroup = new MinimizableTreeViewerGroup(
+				sourceSash, adapterFactory, editor.getEditingDomain(),
+				"Conditions", null, null, true, true
+				);
+		conditionViewer = conditionViewerGroup.getViewer();
+		conditionViewer.setContentProvider(new ConditionContentProvider(adapterFactory));
+		conditionViewer.setInput(editor.pamtram);
+		conditionViewer.getTree().addSelectionListener(new SetViewerSelectionListener(editor, conditionViewer));
+		conditionViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, conditionViewer));
+		
+		new AdapterFactoryTreeEditor(conditionViewer.getTree(), adapterFactory);
+		editor.createContextMenuFor(conditionViewer);
 	}
 
 

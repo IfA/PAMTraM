@@ -19,8 +19,18 @@
     <details key="documentation" value="The CoreLanguageModel package consists of the most important sub packages containing classes, that are needed to form a fully functional application.&#xD;&#xA;It also contains the application root-element and defines a common sub-model class.&#xD;&#xA;The most important sub-models are:&#xD;&#xA;&lt;ul>&#xD;&#xA;&#x9;&lt;li>The algorithm model&lt;/li>&#xD;&#xA;&#x9;&lt;li>The presentation model&lt;/li>&#xD;&#xA;&#x9;&lt;li>The client data model&lt;/li>&#xD;&#xA;&#x9;&lt;li>The signalling model&lt;/li>&#xD;&#xA;&lt;/ul>&#xD;&#xA;&#xD;&#xA;Other sub models need to be approved:&#xD;&#xA;&lt;ul>&#xD;&#xA;&#x9;&lt;li>The platform model&lt;/li>&#xD;&#xA;&#x9;&lt;li>The user model&lt;/li>&#xD;&#xA;&#x9;&lt;li>The adaption model&lt;/li>&#xD;&#xA;&#x9;&lt;li>The migration model&lt;/li>&#xD;&#xA;&#x9;&lt;li>The authorization model&lt;/li>&#xD;&#xA;&#x9;&lt;li>The distribution model&lt;/li>&#xD;&#xA;&#x9;&lt;li>The runtime-state model&lt;/li>&#xD;&#xA;&lt;/ul>"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="CUIModel">
+    <eTypeParameters name="PropertyTypes">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The PropertySample argument configures the contained representation record."/>
+      </eAnnotations>
+      <eBounds eClassifier="#//PresentationModel/Representation/StylePropertySample"/>
+    </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" lowerBound="1"
-        upperBound="-1" eType="#//Component" containment="true"/>
+        upperBound="-1" containment="true">
+      <eGenericType eClassifier="#//Component">
+        <eTypeArguments eTypeParameter="#//CUIModel/PropertyTypes"/>
+      </eGenericType>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sounds" eType="#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundDefinition"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="SignalCollection" eType="#//SignalCollection"
@@ -88,7 +98,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="Type" eType="#//Variables/PrimitiveVariable"
         containment="true"/>
   </eClassifiers>
-  <eSubpackages name="ConditionModel">
+  <eSubpackages name="ConditionModel" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/ConditionModel"
+      nsPrefix="cm">
     <eClassifiers xsi:type="ecore:EClass" name="ConditionModel">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" upperBound="-1"
           eType="#//ConditionModel/ConditionGroup" containment="true"/>
@@ -678,7 +689,11 @@
           <details key="documentation" value="An animation record provides all animation paths for the current element."/>
         </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="val" upperBound="-1"
-            eType="#//PresentationModel/Animation/Animation" containment="true"/>
+            containment="true">
+          <eGenericType eClassifier="#//PresentationModel/Animation/Animation">
+            <eTypeArguments eClassifier="#//PresentationModel/Animation/AnimationPropertySample"/>
+          </eGenericType>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Animation">
         <eTypeParameters name="AnimationTypes">
@@ -689,11 +704,8 @@
         </eTypeParameters>
         <eStructuralFeatures xsi:type="ecore:EReference" name="Trigger" eType="#//Signal"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="PropertyAnimation"
-            upperBound="-1" containment="true">
-          <eGenericType eClassifier="#//PresentationModel/Animation/PropertyAnimation">
-            <eTypeArguments eTypeParameter="#//PresentationModel/Animation/Animation/AnimationTypes"/>
-          </eGenericType>
-        </eStructuralFeatures>
+            upperBound="-1" eType="#//PresentationModel/Animation/PropertyAnimation"
+            containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="val" upperBound="-1"
             containment="true">
           <eGenericType eClassifier="#//PresentationModel/Animation/Animations/AnimationProperty">
@@ -701,7 +713,7 @@
           </eGenericType>
         </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="VariableAnimation">
+      <eClassifiers xsi:type="ecore:EClass" name="VariableAnimation" eSuperTypes="#//PresentationModel/Animation/PropertyAnimation">
         <eTypeParameters name="ValueType">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="documentation" value="The ValueType argument configures which kind of variables a property may hold."/>
@@ -714,9 +726,6 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="variableResult">
           <eGenericType eTypeParameter="#//PresentationModel/Animation/VariableAnimation/ValueType"/>
         </eStructuralFeatures>
-        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/PropertyAnimation">
-          <eTypeArguments eClassifier="#//Variables/Variable"/>
-        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StylePropertyAnimation" eSuperTypes="#//PresentationModel/Animation/PropertyAnimation">
         <eTypeParameters name="ValueType">
@@ -765,7 +774,7 @@
         <eClassifiers xsi:type="ecore:EClass" name="animationDelayValue" eSuperTypes="#//Variables/IntegerVariable"/>
         <eClassifiers xsi:type="ecore:EClass" name="AnimationDurationValue" eSuperTypes="#//Variables/IntegerVariable"/>
         <eClassifiers xsi:type="ecore:EClass" name="AnimationIterationCountValue"
-            abstract="true"/>
+            abstract="true" eSuperTypes="#//Variables/Variable"/>
         <eClassifiers xsi:type="ecore:EClass" name="AnimationIterationCountInt" eSuperTypes="#//Variables/IntegerVariable #//PresentationModel/Animation/AnimationValues/AnimationIterationCountValue"/>
         <eClassifiers xsi:type="ecore:EClass" name="AnimationIterationCountPresetValue"
             eSuperTypes="#//Variables/BuiltinEnumVariable #//PresentationModel/Animation/AnimationValues/AnimationIterationCountValue"/>
@@ -802,7 +811,7 @@
           <eLiterals name="normal"/>
           <eLiterals name="reverse" value="1"/>
           <eLiterals name="alternate" value="2"/>
-          <eLiterals name="alternate-reverse" value="3"/>
+          <eLiterals name="alternateReverse" value="3"/>
           <eLiterals name="initial" value="4"/>
           <eLiterals name="inherit" value="5"/>
         </eClassifiers>
@@ -3549,8 +3558,11 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AcousticalStylePropertyAnimation">
-        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/StylePropertyAnimation">
-          <eTypeArguments eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/AcousticalStyleProperty">
+        <eTypeParameters name="ValueType">
+          <eBounds eClassifier="#//Variables/Variable"/>
+        </eTypeParameters>
+        <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/AcousticalStyleProperty">
+          <eTypeArguments eClassifier="#//PresentationModel/Representation/StyleProperty">
             <eTypeArguments eClassifier="#//Variables/Variable"/>
           </eTypeArguments>
         </eGenericSuperTypes>

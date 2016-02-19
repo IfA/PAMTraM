@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<amino-ui:CUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:amino-ui="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1" name="FAS">
-  <DataItems/>
+<amino-ui:CUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:am-var="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/AlgorithmModel/Variables" xmlns:amino-ui="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1" name="FAS">
+  <SignalCollection>
+    <Signals name="distanceChange"/>
+    <Signals name="velocityChange"/>
+  </SignalCollection>
+  <DataItems>
+    <DataItems name="distance" SignalOnChange="//@SignalCollection/@Signals.0">
+      <Type xsi:type="am-var:FloatVariable"/>
+    </DataItems>
+    <DataItems name="velocity" SignalOnChange="//@SignalCollection/@Signals.1">
+      <Type xsi:type="am-var:FloatVariable"/>
+    </DataItems>
+  </DataItems>
+  <Conditions/>
 </amino-ui:CUIModel>

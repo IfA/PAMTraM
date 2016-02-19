@@ -805,7 +805,7 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" abstract="true" eSuperTypes="#//metamodel/TargetSectionAttribute">
+    <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
       </eAnnotations>

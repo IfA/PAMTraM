@@ -3,34 +3,51 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
+
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+
 import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
+
 import org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation;
+
 import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
+
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
+
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
+
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
+
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
@@ -95,20 +112,10 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	}
 
 	/**
-	 * Before setting the {@link newEAttribute}, update the name.
-	 */
-	@Override
-	public void setAttribute(EAttribute newAttribute) {
-		setNameDerived(attribute, newAttribute, null, null);
-		setAttributeGen(newAttribute);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<AttributeValueConstraint> getValueConstraint() {
 		if (valueConstraint == null) {
 			valueConstraint = new EObjectContainmentEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
@@ -140,6 +147,18 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	 */
 	public EAttribute basicGetAttribute() {
 		return attribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAttribute(EAttribute newAttribute) {
+		EAttribute oldAttribute = attribute;
+		attribute = newAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
 	}
 
 	/**
@@ -352,7 +371,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_5:
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1:
 				return attributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

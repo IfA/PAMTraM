@@ -96,7 +96,6 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Not_32_all_32_TargetSectionModels_32_specify_32_the_32_same_32_EPackage_32_This_32_is_32_c = "Not all TargetSectionModels specify the same EPackage. This is currently not supported!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_PAMTraM_c_c_sourceSectionModelsHaveSameEPackage = "PAMTraM::sourceSectionModelsHaveSameEPackage";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_PAMTraM_c_c_targetSectionModelsHaveSameEPackage = "PAMTraM::targetSectionModelsHaveSameEPackage";
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PAMTraM = TypeId.BAG.getSpecializedId(PamtramTables.CLSSid_PAMTraM);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_RangeBound = TypeId.BAG.getSpecializedId(PamtramTables.CLSSid_RangeBound);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SingleReferenceAttributeValueConstraint = TypeId.BAG.getSpecializedId(PamtramTables.CLSSid_SingleReferenceAttributeValueConstraint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeValueModifierSet = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_AttributeValueModifierSet);

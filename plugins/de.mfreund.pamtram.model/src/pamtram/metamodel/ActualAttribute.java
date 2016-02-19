@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EAttribute;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getActualAttribute()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface ActualAttribute extends TargetSectionAttribute {

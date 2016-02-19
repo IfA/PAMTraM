@@ -23,7 +23,7 @@ import pamtram.ReferenceableElement;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getSourceSectionAttribute()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface SourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ReferenceableElement {

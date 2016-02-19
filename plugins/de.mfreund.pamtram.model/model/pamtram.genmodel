@@ -25,7 +25,7 @@
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/activeMappings"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/globalValues"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/modifierSets"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/conditionModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/conditionModel"/>
       <genOperations ecoreOperation="pamtram.ecore#//PAMTraM/mergeExtends"/>
     </genClasses>
     <genClasses image="false" ecoreClass="pamtram.ecore#//SectionModel">

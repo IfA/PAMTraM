@@ -64,6 +64,7 @@ public class PAMTraMItemProvider
 			addActiveMappingsPropertyDescriptor(object);
 			addGlobalValuesPropertyDescriptor(object);
 			addModifierSetsPropertyDescriptor(object);
+			addConditionModelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -217,6 +218,28 @@ public class PAMTraMItemProvider
 				 false,
 				 false,
 				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Condition Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConditionModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_conditionModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_conditionModel_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL,
+				 true,
+				 false,
+				 true,
 				 null,
 				 null,
 				 null));

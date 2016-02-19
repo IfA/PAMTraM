@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.condition.provider;
+package pamtram.provider;
 
 
 import java.util.Collection;
@@ -8,25 +8,42 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.condition.And;
+
+import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.condition.And} object.
+ * This is the item provider adapter for a {@link pamtram.ReferenceableElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AndItemProvider
-	extends MultipleConditionOperatorItemProvider {
+public class ReferenceableElementItemProvider 
+	extends PamtramItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource,
+		IItemStyledLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AndItemProvider(AdapterFactory adapterFactory) {
+	public ReferenceableElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,14 +63,14 @@ public class AndItemProvider
 	}
 
 	/**
-	 * This returns And.gif.
+	 * This returns ReferenceableElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/And"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceableElement"));
 	}
 
 	/**
@@ -66,7 +83,7 @@ public class AndItemProvider
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-
+	
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -75,15 +92,8 @@ public class AndItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((And)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_And_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_And_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
-	}
+		return new StyledString(getString("_UI_ReferenceableElement_type"));
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -108,6 +118,17 @@ public class AndItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

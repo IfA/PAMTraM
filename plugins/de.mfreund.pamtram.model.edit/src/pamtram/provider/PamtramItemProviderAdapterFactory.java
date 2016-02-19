@@ -165,6 +165,52 @@ public class PamtramItemProviderAdapterFactory extends PamtramAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.ConditionModel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConditionModelItemProvider conditionModelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.ConditionModel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConditionModelAdapter() {
+		if (conditionModelItemProvider == null) {
+			conditionModelItemProvider = new ConditionModelItemProvider(this);
+		}
+
+		return conditionModelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.ReferenceableElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReferenceableElementItemProvider referenceableElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.ReferenceableElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReferenceableElementAdapter() {
+		if (referenceableElementItemProvider == null) {
+			referenceableElementItemProvider = new ReferenceableElementItemProvider(this);
+		}
+
+		return referenceableElementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,6 +313,8 @@ public class PamtramItemProviderAdapterFactory extends PamtramAdapterFactory imp
 		if (sourceSectionModelItemProvider != null) sourceSectionModelItemProvider.dispose();
 		if (targetSectionModelItemProvider != null) targetSectionModelItemProvider.dispose();
 		if (mappingModelItemProvider != null) mappingModelItemProvider.dispose();
+		if (conditionModelItemProvider != null) conditionModelItemProvider.dispose();
+		if (referenceableElementItemProvider != null) referenceableElementItemProvider.dispose();
 	}
 
 }

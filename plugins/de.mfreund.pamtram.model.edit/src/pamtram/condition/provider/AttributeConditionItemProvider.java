@@ -8,25 +8,28 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.condition.And;
+
+import pamtram.condition.AttributeCondition;
+import pamtram.condition.ConditionPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.condition.And} object.
+ * This is the item provider adapter for a {@link pamtram.condition.AttributeCondition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AndItemProvider
-	extends MultipleConditionOperatorItemProvider {
+public class AttributeConditionItemProvider extends ConditionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AndItemProvider(AdapterFactory adapterFactory) {
+	public AttributeConditionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -41,19 +44,65 @@ public class AndItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addValueConstraintPropertyDescriptor(object);
+			addConditionAttributeRefPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns And.gif.
+	 * This adds a property descriptor for the Value Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addValueConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeCondition_valueConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeCondition_valueConstraint_feature", "_UI_AttributeCondition_type"),
+				 ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Condition Attribute Ref feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConditionAttributeRefPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeCondition_conditionAttributeRef_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeCondition_conditionAttributeRef_feature", "_UI_AttributeCondition_type"),
+				 ConditionPackage.Literals.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns AttributeCondition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/And"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeCondition"));
 	}
 
 	/**
@@ -66,7 +115,7 @@ public class AndItemProvider
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-
+	
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -75,15 +124,15 @@ public class AndItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((And)object).getName();
+		String label = ((AttributeCondition)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_And_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_AttributeCondition_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_And_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_AttributeCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

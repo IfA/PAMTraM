@@ -8,30 +8,47 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.StyledString;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.metamodel.EndingMatcher;
+
 import pamtram.metamodel.MetamodelPackage;
 
+import pamtram.provider.PamtramEditPlugin;
+
+import pamtram.util.PamtramItemProviderAdapter;
+
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.EndingMatcher} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.InstancePointer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EndingMatcherItemProvider
-	extends SingleReferenceAttributeValueConstraintItemProvider {
+public class InstancePointerItemProvider 
+	extends PamtramItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource,
+		IItemStyledLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EndingMatcherItemProvider(AdapterFactory adapterFactory) {
+	public InstancePointerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,42 +63,42 @@ public class EndingMatcherItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCaseSensitivePropertyDescriptor(object);
+			addAttributePointerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Case Sensitive feature.
+	 * This adds a property descriptor for the Attribute Pointer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCaseSensitivePropertyDescriptor(Object object) {
+	protected void addAttributePointerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CaseSensitiveConstraint_caseSensitive_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CaseSensitiveConstraint_caseSensitive_feature", "_UI_CaseSensitiveConstraint_type"),
-				 MetamodelPackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE,
+				 getString("_UI_InstancePointer_attributePointer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_attributePointer_feature", "_UI_InstancePointer_type"),
+				 MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns EndingMatcher.gif.
+	 * This returns InstancePointer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EndingMatcher"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstancePointer"));
 	}
 
 	/**
@@ -94,7 +111,7 @@ public class EndingMatcherItemProvider
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-
+	
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -103,15 +120,8 @@ public class EndingMatcherItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((EndingMatcher)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_EndingMatcher_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_EndingMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
-	}
+		return new StyledString(getString("_UI_InstancePointer_type"));
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -123,12 +133,6 @@ public class EndingMatcherItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(EndingMatcher.class)) {
-			case MetamodelPackage.ENDING_MATCHER__CASE_SENSITIVE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -142,6 +146,17 @@ public class EndingMatcherItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

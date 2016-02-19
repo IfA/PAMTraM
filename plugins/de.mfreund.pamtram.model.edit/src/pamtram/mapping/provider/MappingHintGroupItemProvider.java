@@ -16,6 +16,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
+import pamtram.condition.ConditionFactory;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
@@ -51,6 +52,7 @@ extends MappingHintGroupTypeItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addDeactivatedPropertyDescriptor(object);
+			addConditionRefPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -78,6 +80,28 @@ extends MappingHintGroupTypeItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Condition Ref feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConditionRefPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConditionalElement_conditionRef_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_conditionRef_feature", "_UI_ConditionalElement_type"),
+				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -89,6 +113,7 @@ extends MappingHintGroupTypeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER);
 		}
 		return childrenFeatures;
@@ -163,6 +188,7 @@ extends MappingHintGroupTypeItemProvider {
 			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case MappingPackage.MAPPING_HINT_GROUP__CONDITION:
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -180,6 +206,31 @@ extends MappingHintGroupTypeItemProvider {
 	@Override
 	protected void collectNewChildDescriptorsGen(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createAnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createOr()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createNot()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createAttributeCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createSectionCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter

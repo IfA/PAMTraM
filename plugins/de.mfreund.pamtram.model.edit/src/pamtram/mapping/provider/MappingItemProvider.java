@@ -17,7 +17,6 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PAMTraM;
-import pamtram.condition.ConditionFactory;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
@@ -90,7 +89,6 @@ extends MappingTypeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING__CONDITION);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES);
@@ -206,7 +204,6 @@ extends MappingTypeItemProvider {
 			case MappingPackage.MAPPING__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MappingPackage.MAPPING__CONDITION:
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
@@ -226,26 +223,6 @@ extends MappingTypeItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING__CONDITION,
-				 ConditionFactory.eINSTANCE.createCondition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING__CONDITION,
-				 ConditionFactory.eINSTANCE.createAnd()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING__CONDITION,
-				 ConditionFactory.eINSTANCE.createOr()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING__CONDITION,
-				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EAttribute;
  *
  * @see pamtram.metamodel.MetamodelPackage#getActualAttribute()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
 public interface ActualAttribute extends TargetSectionAttribute {

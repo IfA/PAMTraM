@@ -24,7 +24,6 @@ import pamtram.ReferenceableElement;
  *
  * @see pamtram.metamodel.MetamodelPackage#getSourceSectionAttribute()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
 public interface SourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ReferenceableElement {

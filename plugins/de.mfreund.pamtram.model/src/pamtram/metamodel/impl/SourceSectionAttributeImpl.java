@@ -95,15 +95,6 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	}
 
 	/**
-	 * Before setting the {@link newEAttribute}, update the name.
-	 */
-	@Override
-	public void setAttribute(EAttribute newAttribute) {
-		setNameDerived(attribute, newAttribute, null, null);
-		setAttributeGen(newAttribute);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,6 +131,27 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	 */
 	public EAttribute basicGetAttribute() {
 		return attribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAttributeGen(EAttribute newAttribute) {
+		EAttribute oldAttribute = attribute;
+		attribute = newAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+	}
+	
+	/**
+	 * Before setting the {@link newEAttribute}, update the name.
+	 */
+	@Override
+	public void setAttribute(EAttribute newAttribute) {
+		setNameDerived(attribute, newAttribute, null, null);
+		setAttributeGen(newAttribute);
 	}
 
 	/**
@@ -352,7 +364,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_4:
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_14:
 				return attributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

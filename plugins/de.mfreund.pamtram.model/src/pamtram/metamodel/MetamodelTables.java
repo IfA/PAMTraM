@@ -10,6 +10,7 @@
  *******************************************************************************/
 package pamtram.metamodel;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import java.lang.String;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.pivot.ParameterTypes;
@@ -82,7 +83,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/metamodel", null, MetamodelPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Orphanage", "orphanage", null);
-    public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib = IdManager.getNsURIPackageId("http://www.et.tu-dresden.de/ifa/agtele/genlib", null, null);
+    public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib = IdManager.getNsURIPackageId("http://www.et.tu-dresden.de/ifa/agtele/genlib", null, GenLibraryPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ActualAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ActualAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeCondition = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("AttributeCondition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeMapping = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMapping", 0);
@@ -276,8 +277,8 @@ public class MetamodelTables
 		public static final /*@NonNull*/ EcoreExecutorType _EqualityMatcher = new EcoreExecutorType(MetamodelPackage.Literals.EQUALITY_MATCHER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExternalReferenceParameter = new EcoreExecutorType(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _FileAttribute = new EcoreExecutorType(MetamodelPackage.Literals.FILE_ATTRIBUTE, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _InstancePointer = new EcoreExecutorType(MetamodelPackage.Literals.INSTANCE_POINTER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorEnumeration _FileTypeEnum = new EcoreExecutorEnumeration(MetamodelPackage.Literals.FILE_TYPE_ENUM, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _InstancePointer = new EcoreExecutorType(MetamodelPackage.Literals.INSTANCE_POINTER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LibraryEntry = new EcoreExecutorType(MetamodelPackage.Literals.LIBRARY_ENTRY, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LibraryParameter = new EcoreExecutorType(MetamodelPackage.Literals.LIBRARY_PARAMETER, PACKAGE, 0, TypeParameters._LibraryParameter_ParameterType);
 		public static final /*@NonNull*/ EcoreExecutorType _MetaModelElement = new EcoreExecutorType(MetamodelPackage.Literals.META_MODEL_ELEMENT, PACKAGE, 0, TypeParameters._MetaModelElement_S, TypeParameters._MetaModelElement_C, TypeParameters._MetaModelElement_R, TypeParameters._MetaModelElement_A);
@@ -320,8 +321,8 @@ public class MetamodelTables
 			_EqualityMatcher,
 			_ExternalReferenceParameter,
 			_FileAttribute,
-			_InstancePointer,
 			_FileTypeEnum,
+			_InstancePointer,
 			_LibraryEntry,
 			_LibraryParameter,
 			_MetaModelElement,
@@ -492,10 +493,6 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__TargetSectionAttribute = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._TargetSectionAttribute);
 		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__VirtualAttribute = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._VirtualAttribute);
 
-		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__InstancePointer = new ExecutorFragment(Types._InstancePointer, MetamodelTables.Types._InstancePointer);
-		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__OclAny = new ExecutorFragment(Types._InstancePointer, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__OclElement = new ExecutorFragment(Types._InstancePointer, OCLstdlibTables.Types._OclElement);
-
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__Class = new ExecutorFragment(Types._FileTypeEnum, PivotTables.Types._Class);
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__DataType = new ExecutorFragment(Types._FileTypeEnum, PivotTables.Types._DataType);
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__Element = new ExecutorFragment(Types._FileTypeEnum, PivotTables.Types._Element);
@@ -510,6 +507,10 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__TemplateableElement = new ExecutorFragment(Types._FileTypeEnum, PivotTables.Types._TemplateableElement);
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__Type = new ExecutorFragment(Types._FileTypeEnum, PivotTables.Types._Type);
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__Visitable = new ExecutorFragment(Types._FileTypeEnum, PivotTables.Types._Visitable);
+
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__InstancePointer = new ExecutorFragment(Types._InstancePointer, MetamodelTables.Types._InstancePointer);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__OclAny = new ExecutorFragment(Types._InstancePointer, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__OclElement = new ExecutorFragment(Types._InstancePointer, OCLstdlibTables.Types._OclElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _LibraryEntry__LibraryEntry = new ExecutorFragment(Types._LibraryEntry, MetamodelTables.Types._LibraryEntry);
 		private static final /*@NonNull*/ ExecutorFragment _LibraryEntry__OclAny = new ExecutorFragment(Types._LibraryEntry, OCLstdlibTables.Types._OclAny);
@@ -1055,14 +1056,6 @@ public class MetamodelTables
 		};
 		private static final /*@NonNull*/ int[] __FileAttribute = { 1,1,1,1,1,1,1,1 };
 
-		private static final /*@NonNull*/ ExecutorFragment[] _InstancePointer =
-		{
-			Fragments._InstancePointer__OclAny /* 0 */,
-			Fragments._InstancePointer__OclElement /* 1 */,
-			Fragments._InstancePointer__InstancePointer /* 2 */
-		};
-		private static final /*@NonNull*/ int[] __InstancePointer = { 1,1,1 };
-
 		private static final /*@NonNull*/ ExecutorFragment[] _FileTypeEnum =
 		{
 			Fragments._FileTypeEnum__OclAny /* 0 */,
@@ -1081,6 +1074,14 @@ public class MetamodelTables
 			Fragments._FileTypeEnum__FileTypeEnum /* 9 */
 		};
 		private static final /*@NonNull*/ int[] __FileTypeEnum = { 1,1,3,1,2,2,1,1,1,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment[] _InstancePointer =
+		{
+			Fragments._InstancePointer__OclAny /* 0 */,
+			Fragments._InstancePointer__OclElement /* 1 */,
+			Fragments._InstancePointer__InstancePointer /* 2 */
+		};
+		private static final /*@NonNull*/ int[] __InstancePointer = { 1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _LibraryEntry =
 		{
@@ -1377,8 +1378,8 @@ public class MetamodelTables
 			Types._EqualityMatcher.initFragments(_EqualityMatcher, __EqualityMatcher);
 			Types._ExternalReferenceParameter.initFragments(_ExternalReferenceParameter, __ExternalReferenceParameter);
 			Types._FileAttribute.initFragments(_FileAttribute, __FileAttribute);
-			Types._InstancePointer.initFragments(_InstancePointer, __InstancePointer);
 			Types._FileTypeEnum.initFragments(_FileTypeEnum, __FileTypeEnum);
+			Types._InstancePointer.initFragments(_InstancePointer, __InstancePointer);
 			Types._LibraryEntry.initFragments(_LibraryEntry, __LibraryEntry);
 			Types._LibraryParameter.initFragments(_LibraryParameter, __LibraryParameter);
 			Types._MetaModelElement.initFragments(_MetaModelElement, __MetaModelElement);
@@ -1889,29 +1890,6 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__TargetSectionAttribute = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _FileAttribute__VirtualAttribute = {};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__InstancePointer = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
-		};
-
 		private static final /*@NonNull*/ ExecutorOperation[] _FileTypeEnum__FileTypeEnum = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _FileTypeEnum__Class = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _FileTypeEnum__DataType = {};
@@ -1958,6 +1936,29 @@ public class MetamodelTables
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _FileTypeEnum__Visitable = {};
+
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__InstancePointer = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _LibraryEntry__LibraryEntry = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _LibraryEntry__OclAny = {
@@ -2855,10 +2856,6 @@ public class MetamodelTables
 			Fragments._FileAttribute__TargetSectionAttribute.initOperations(_FileAttribute__TargetSectionAttribute);
 			Fragments._FileAttribute__VirtualAttribute.initOperations(_FileAttribute__VirtualAttribute);
 
-			Fragments._InstancePointer__InstancePointer.initOperations(_InstancePointer__InstancePointer);
-			Fragments._InstancePointer__OclAny.initOperations(_InstancePointer__OclAny);
-			Fragments._InstancePointer__OclElement.initOperations(_InstancePointer__OclElement);
-
 			Fragments._FileTypeEnum__Class.initOperations(_FileTypeEnum__Class);
 			Fragments._FileTypeEnum__DataType.initOperations(_FileTypeEnum__DataType);
 			Fragments._FileTypeEnum__Element.initOperations(_FileTypeEnum__Element);
@@ -2873,6 +2870,10 @@ public class MetamodelTables
 			Fragments._FileTypeEnum__TemplateableElement.initOperations(_FileTypeEnum__TemplateableElement);
 			Fragments._FileTypeEnum__Type.initOperations(_FileTypeEnum__Type);
 			Fragments._FileTypeEnum__Visitable.initOperations(_FileTypeEnum__Visitable);
+
+			Fragments._InstancePointer__InstancePointer.initOperations(_InstancePointer__InstancePointer);
+			Fragments._InstancePointer__OclAny.initOperations(_InstancePointer__OclAny);
+			Fragments._InstancePointer__OclElement.initOperations(_InstancePointer__OclElement);
 
 			Fragments._LibraryEntry__LibraryEntry.initOperations(_LibraryEntry__LibraryEntry);
 			Fragments._LibraryEntry__OclAny.initOperations(_LibraryEntry__OclAny);
@@ -3162,11 +3163,11 @@ public class MetamodelTables
 			MetamodelTables.Properties._FileAttribute__TargetSection__file
 		};
 
+		private static final /*@NonNull*/ ExecutorProperty[] _FileTypeEnum = {};
+
 		private static final /*@NonNull*/ ExecutorProperty[] _InstancePointer = {
 			MetamodelTables.Properties._InstancePointer__attributePointer
 		};
-
-		private static final /*@NonNull*/ ExecutorProperty[] _FileTypeEnum = {};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _LibraryEntry = {
 			MetamodelTables.Properties._LibraryEntry__id,
@@ -3363,8 +3364,8 @@ public class MetamodelTables
 			Fragments._EqualityMatcher__EqualityMatcher.initProperties(_EqualityMatcher);
 			Fragments._ExternalReferenceParameter__ExternalReferenceParameter.initProperties(_ExternalReferenceParameter);
 			Fragments._FileAttribute__FileAttribute.initProperties(_FileAttribute);
-			Fragments._InstancePointer__InstancePointer.initProperties(_InstancePointer);
 			Fragments._FileTypeEnum__FileTypeEnum.initProperties(_FileTypeEnum);
+			Fragments._InstancePointer__InstancePointer.initProperties(_InstancePointer);
 			Fragments._LibraryEntry__LibraryEntry.initProperties(_LibraryEntry);
 			Fragments._LibraryParameter__LibraryParameter.initProperties(_LibraryParameter);
 			Fragments._MetaModelElement__MetaModelElement.initProperties(_MetaModelElement);

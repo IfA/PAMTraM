@@ -67,15 +67,6 @@ public interface PamtramFactory extends EFactory {
 	ConditionModel createConditionModel();
 
 	/**
-	 * Returns a new object of class '<em>Referenceable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Referenceable Element</em>'.
-	 * @generated
-	 */
-	ReferenceableElement createReferenceableElement();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

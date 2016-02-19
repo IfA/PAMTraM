@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see pamtram.PamtramPackage#getReferenceableElement()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface ReferenceableElement extends EObject {

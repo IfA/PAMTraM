@@ -16,7 +16,7 @@ import pamtram.ReferenceableElement;
  *
  * @generated
  */
-public class ReferenceableElementImpl extends MinimalEObjectImpl.Container implements ReferenceableElement {
+public abstract class ReferenceableElementImpl extends MinimalEObjectImpl.Container implements ReferenceableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

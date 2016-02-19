@@ -25,6 +25,7 @@ import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.TargetSection;
@@ -277,7 +278,7 @@ public class MetaModelSectionGenerator {
 					attValConstraint.setCaseSensitive(true);
 					attValConstraint.setName(eAttribute.getName() + "_Constraint");
 					attValConstraint.setType(AttributeValueConstraintType.INCLUSION);
-					attValConstraint.setValue(attributeValue.toString());
+					attValConstraint.setExpression(attributeValue.toString());
 					((SourceSectionAttribute) attribute).getValueConstraint().add(attValConstraint);
 				} else {
 					((ActualAttribute) attribute).setValue(attributeValue.toString());
@@ -391,8 +392,9 @@ public class MetaModelSectionGenerator {
 		for(Attribute<?, ?, ?, ?> att : createdSection.getAttributes()) {
 			if(sectionType == SectionType.SOURCE) {
 				hash = hash + ((SourceSectionAttribute) att).getAttribute().getName();
-				if( ((SourceSectionAttribute) att).getValueConstraint().size() > 0){
-					hash = hash +  ((SourceSectionAttribute) att).getValueConstraint().get(0).getValue();
+				if( ((SourceSectionAttribute) att).getValueConstraint().size() > 0 &&
+						((SourceSectionAttribute) att).getValueConstraint().get(0) instanceof SingleReferenceAttributeValueConstraint){
+					hash = hash +  ((SingleReferenceAttributeValueConstraint) ((SourceSectionAttribute) att).getValueConstraint().get(0)).getExpression();
 				} else {
 					hash = hash + "noValue";
 				}

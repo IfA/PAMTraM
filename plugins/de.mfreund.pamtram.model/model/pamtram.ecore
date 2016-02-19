@@ -774,7 +774,7 @@
         <eTypeArguments eTypeParameter="#//metamodel/Attribute/A"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" abstract="true">
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
       </eAnnotations>

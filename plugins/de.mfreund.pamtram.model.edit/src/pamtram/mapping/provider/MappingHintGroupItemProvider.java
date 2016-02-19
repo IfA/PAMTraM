@@ -247,17 +247,12 @@ extends MappingHintGroupTypeItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 
-		super.collectNewChildDescriptors(newChildDescriptors, object);
+		collectNewChildDescriptorsGen(newChildDescriptors, object);
 
 		newChildDescriptors.add
 		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
 						MappingFactory.eINSTANCE.createModelConnectionHintWithSourceAndTarget()));
-
-		newChildDescriptors.add
-		(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-						MappingFactory.eINSTANCE.createModelConnectionHint()));
 
 	}
 

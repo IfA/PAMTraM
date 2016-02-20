@@ -14,16 +14,14 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModifiableHint;
 import pamtram.metamodel.TargetSectionAttribute;
-import de.congrace.exp4j.ExpressionBuilder;
-import de.congrace.exp4j.InvalidCustomFunctionException;
-import de.mfreund.gentrans.transformation.calculation.MaxFunction;
-import de.mfreund.gentrans.transformation.calculation.MinFunction;
-import de.mfreund.gentrans.transformation.calculation.RoundFunction;
+
+import de.mfreund.gentrans.transformation.calculation.ExpressionCalculator;
 
 /**
  * This class can be used to calculate values of {@link TargetSectionAttribute}s.
  * 
  * @author mfreund
+ * @author gkoltun (modifier)
  */
 public class AttributeValueCalculator {
 	
@@ -31,21 +29,6 @@ public class AttributeValueCalculator {
 	 * used for modifying attribute values
 	 */
 	private final AttributeValueModifierExecutor attributeValuemodifier;
-
-	/**
-	 * RoundFunction instance, needed when evaluating ClaculatorMappingHints
-	 */
-	private RoundFunction round;
-	
-	/**
-	 * MaxFunction instance, needed when evaluating ClaculatorMappingHints
-	 */
-	private MaxFunction max;
-	
-	/**
-	 * MinFunction instance, needed when evaluating ClaculatorMappingHints
-	 */
-	private MinFunction min;
 	
 	/**
 	 * Registry for values of global Variables that can be mapped to double
@@ -58,15 +41,6 @@ public class AttributeValueCalculator {
 	private MessageConsoleStream consoleStream;
 	
 	public AttributeValueCalculator(Map<String, Double> globalVarValueDoubles, AttributeValueModifierExecutor attributeValuemodifier, MessageConsoleStream consoleStream) {
-		
-		// initialize the custom calculator functions
-		try {
-			round = new RoundFunction();
-			max = new MaxFunction();
-			min = new MinFunction();
-		} catch (InvalidCustomFunctionException e) {
-			e.printStackTrace();
-		}
 		
 		// store the attribute value modifier
 		this.attributeValuemodifier = attributeValuemodifier;
@@ -217,12 +191,8 @@ public class AttributeValueCalculator {
 			vars.putAll(stringVarValues);
 
 			// make calculation
-			attrValue = String.valueOf(new ExpressionBuilder(expression)
-					.withCustomFunction(round)
-					.withCustomFunction(max)
-					.withCustomFunction(min)
-					.withVariables(vars).build()
-					.calculate());
+			ExpressionCalculator expCalc = new ExpressionCalculator();
+			attrValue = expCalc.calculateExpression(expression, vars);
 		} catch (final Exception e) {
 			// TODO this will lead to a lot of error output if it fails
 			consoleStream.println("Error parsing the expression of CalculatorMapping" + hint.getName()

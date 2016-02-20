@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see pamtram.metamodel.MetamodelPackage#getContainmentReference()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceIsContainment'"
  * @generated
  */
 public interface ContainmentReference<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Reference<S, C, R, A> {

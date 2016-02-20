@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMapping()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='containsHintGroups containsDeactivatedHintGroups'"
  * @generated
  */
 public interface Mapping extends MappingType {

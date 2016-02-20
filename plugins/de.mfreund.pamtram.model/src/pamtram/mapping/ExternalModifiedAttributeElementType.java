@@ -16,6 +16,7 @@ import pamtram.metamodel.Section;
  *
  * @see pamtram.mapping.MappingPackage#getExternalModifiedAttributeElementType()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesContainerSection'"
  * @generated
  */
 public interface ExternalModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementType<S, C, R, A> {

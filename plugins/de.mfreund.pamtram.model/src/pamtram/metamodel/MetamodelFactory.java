@@ -139,6 +139,24 @@ public interface MetamodelFactory extends EFactory {
 	MetaModelSectionReference createMetaModelSectionReference();
 
 	/**
+	 * Returns a new object of class '<em>Source Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Source Section Attribute</em>'.
+	 * @generated
+	 */
+	SourceSectionAttribute createSourceSectionAttribute();
+
+	/**
+	 * Returns a new object of class '<em>Actual Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Actual Attribute</em>'.
+	 * @generated
+	 */
+	ActualAttribute createActualAttribute();
+
+	/**
 	 * Returns a new object of class '<em>Virtual Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

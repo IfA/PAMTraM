@@ -138,7 +138,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	protected EList<MappingModel> mappingModel;
 
 	/**
-	 * The cached value of the '{@link #getConditionModel() <em>Condition Model</em>}' reference list.
+	 * The cached value of the '{@link #getConditionModel() <em>Condition Model</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConditionModel()
@@ -477,7 +477,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 */
 	public EList<ConditionModel> getConditionModel() {
 		if (conditionModel == null) {
-			conditionModel = new EObjectResolvingEList<ConditionModel>(ConditionModel.class, this, PamtramPackage.PAM_TRA_M__CONDITION_MODEL);
+			conditionModel = new EObjectContainmentEList<ConditionModel>(ConditionModel.class, this, PamtramPackage.PAM_TRA_M__CONDITION_MODEL);
 		}
 		return conditionModel;
 	}
@@ -1076,6 +1076,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				return ((InternalEList<?>)getTargetSectionModel()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
 				return ((InternalEList<?>)getMappingModel()).basicRemove(otherEnd, msgs);
+			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
+				return ((InternalEList<?>)getConditionModel()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1220,9 +1222,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			case PamtramPackage.PAM_TRA_M___MERGE_EXTENDS:
 				mergeExtends();
 				return null;
-			case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1:
+			case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_3:
 				return sourceSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1:
+			case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_3:
 				return targetSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

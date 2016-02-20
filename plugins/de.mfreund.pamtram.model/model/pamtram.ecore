@@ -81,7 +81,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionModel" upperBound="-1"
-        eType="#//ConditionModel"/>
+        eType="#//ConditionModel" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SectionModel" abstract="true" eSuperTypes="#//NamedElement">
     <eTypeParameters name="S">
@@ -438,7 +438,14 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//metamodel/VirtualAttribute"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//metamodel/VirtualAttribute">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" lowerBound="1"
+          eType="#//metamodel/FileTypeEnum"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="FileTypeEnum">
+      <eLiterals name="XMI"/>
+      <eLiterals name="XML" value="1"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
@@ -767,7 +774,7 @@
         <eTypeArguments eTypeParameter="#//metamodel/Attribute/A"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" abstract="true">
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
       </eAnnotations>
@@ -798,7 +805,7 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" abstract="true" eSuperTypes="#//metamodel/TargetSectionAttribute">
+    <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
       </eAnnotations>

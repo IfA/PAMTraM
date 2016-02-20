@@ -235,7 +235,7 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 				upperBoundResult = Double.parseDouble(attrValue) < Double.parseDouble(this.getUpperBound().getExpression());
 			}
 		}
-		return lowerBoundResult && upperBoundResult; //Combine (And) the results of each rangeBounds
+		return lowerBoundResult && upperBoundResult; //Combine the results of each rangeBound (And = &&) 
 	}
 
 } //RangeConstraintImpl

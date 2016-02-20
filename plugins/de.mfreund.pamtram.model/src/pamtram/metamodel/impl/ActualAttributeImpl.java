@@ -45,7 +45,7 @@ import pamtram.metamodel.MetamodelTables;
  *
  * @generated
  */
-public abstract class ActualAttributeImpl extends TargetSectionAttributeImpl implements ActualAttribute {
+public class ActualAttributeImpl extends TargetSectionAttributeImpl implements ActualAttribute {
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -307,7 +307,7 @@ public abstract class ActualAttributeImpl extends TargetSectionAttributeImpl imp
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_3:
 				return attributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

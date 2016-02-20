@@ -210,7 +210,7 @@ public interface PAMTraM extends EObject {
 	EList<AttributeValueModifierSet> getModifierSets();
 
 	/**
-	 * Returns the value of the '<em><b>Condition Model</b></em>' reference list.
+	 * Returns the value of the '<em><b>Condition Model</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.ConditionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -218,9 +218,10 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition Model</em>' reference list.
+	 * @return the value of the '<em>Condition Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_ConditionModel()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!conditionModel'"
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!conditionModel'"
 	 * @generated
 	 */
 	EList<ConditionModel> getConditionModel();

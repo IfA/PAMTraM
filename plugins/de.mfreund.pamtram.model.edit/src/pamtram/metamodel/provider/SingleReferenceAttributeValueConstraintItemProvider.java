@@ -69,9 +69,9 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SingleReferenceAttributeValueConstraint_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceAttributeValueConstraint_type_feature", "_UI_SingleReferenceAttributeValueConstraint_type"),
-				 MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE,
+				 getString("_UI_AttributeValueConstraint_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeValueConstraint_type_feature", "_UI_AttributeValueConstraint_type"),
+				 MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT__TYPE,
 				 true,
 				 false,
 				 false,

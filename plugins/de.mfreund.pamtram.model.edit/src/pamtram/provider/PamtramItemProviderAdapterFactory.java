@@ -188,29 +188,6 @@ public class PamtramItemProviderAdapterFactory extends PamtramAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.ReferenceableElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReferenceableElementItemProvider referenceableElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.ReferenceableElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReferenceableElementAdapter() {
-		if (referenceableElementItemProvider == null) {
-			referenceableElementItemProvider = new ReferenceableElementItemProvider(this);
-		}
-
-		return referenceableElementItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -314,7 +291,6 @@ public class PamtramItemProviderAdapterFactory extends PamtramAdapterFactory imp
 		if (targetSectionModelItemProvider != null) targetSectionModelItemProvider.dispose();
 		if (mappingModelItemProvider != null) mappingModelItemProvider.dispose();
 		if (conditionModelItemProvider != null) conditionModelItemProvider.dispose();
-		if (referenceableElementItemProvider != null) referenceableElementItemProvider.dispose();
 	}
 
 }

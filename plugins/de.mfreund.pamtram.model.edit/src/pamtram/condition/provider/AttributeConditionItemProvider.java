@@ -19,8 +19,6 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.metamodel.AttributeValueConstraint;

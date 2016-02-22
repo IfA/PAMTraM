@@ -12,9 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
@@ -53,7 +55,10 @@ import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetaModelSectionReference;
+import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -1047,7 +1052,9 @@ public class SourceSectionMatcher extends CancellableElement {
 			final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues,
 			final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues,
 			final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues) {
-
+		
+		ReferenceableValueCalculator refValueCalculator = new ReferenceableValueCalculator(null, null, consoleStream);
+		
 		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
 
 			/*
@@ -1099,10 +1106,32 @@ public class SourceSectionMatcher extends CancellableElement {
 							continue;
 						}
 
-						boolean constraintVal;
+						boolean constraintVal=false; // TODO have to be initialized?!!
 						try {
 							// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
-							constraintVal = constraint.checkConstraint(srcAttrAsString);
+							// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
+							// and we need to extract the right reference Value(s) for each constraint
+							
+							if (constraint instanceof SingleReferenceAttributeValueConstraint){
+								String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(srcAttrValue); //TODO actually reference Values will be calculated for each loop 
+								constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
+								srcAttrRefValAsString = null; //TODO Do we need this?
+							} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
+								
+								if(constraint instanceof RangeConstraint){
+									List<String> srcAttrRefValuesAsList = new ArrayList<String>();
+									srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) srcAttrValue).getLowerBound()));
+									srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) srcAttrValue).getUpperBound()));
+									
+									BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); // TODO Convert List to EList // Check it 
+									constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,RefValuesAsEList);
+									srcAttrRefValuesAsList.clear();
+									RefValuesAsEList.clear(); //TODO Do we need this?
+								}
+								// placeholder for other MultipleReferenceAttributeValueConstraints
+								// else if (constraint instanceof xxx){}
+								
+							}
 						} catch (final Exception e) {
 							constraintsWithErrors.add(constraint);
 							consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"

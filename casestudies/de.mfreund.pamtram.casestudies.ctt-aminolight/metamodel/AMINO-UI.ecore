@@ -35,14 +35,20 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="SignalCollection" eType="#//SignalCollection"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="colors" eType="#//PresentationModel/VisualPresentationProfile/Colors/ColorDefinition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colors" eType="#//PresentationModel/VisualPresentationProfile/Colors/ColorItemGroup"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TextDefinitions" eType="#//PresentationModel/TextDefinition/TextItemGroup"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//PresentationModel/TextDefinition/Language"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colorTheme" eType="#//PresentationModel/VisualPresentationProfile/Colors/ColorTheme"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="DataItems" eType="#//DataItemCollection"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Conditions" eType="#//ConditionModel/ConditionModel"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assets" eType="#//PresentationModel/Assets/AssetGroupable"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assets" eType="#//PresentationModel/Assets/AssetGroup"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component">
@@ -56,6 +62,24 @@
       <eTypeArguments eTypeParameter="#//Component/PropertyTypes"/>
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/AnimatedElement"/>
+    <eGenericSuperTypes eClassifier="#//Utils/NamedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="simpleContainer">
+    <eTypeParameters name="PropertyTypes">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The PropertySample argument configures the contained representation record."/>
+      </eAnnotations>
+      <eBounds eClassifier="#//PresentationModel/Representation/StylePropertySample"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedElements" upperBound="-1"
+        containment="true">
+      <eGenericType eClassifier="#//Component">
+        <eTypeArguments eTypeParameter="#//simpleContainer/PropertyTypes"/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eGenericSuperTypes eClassifier="#//Component">
+      <eTypeArguments eTypeParameter="#//simpleContainer/PropertyTypes"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SoundComponent">
     <eTypeParameters name="PropertyTypes">
@@ -93,7 +117,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="DataItems" upperBound="-1"
         eType="#//DataItem" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataItem" eSuperTypes="#//Utils/NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DataItem" eSuperTypes="#//Utils/NamedElement #//Utils/AminoUIModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="SignalOnChange" eType="#//Signal"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Type" eType="#//Variables/PrimitiveVariable"
         containment="true"/>
@@ -108,9 +132,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionGroup" upperBound="-1"
           eType="#//ConditionModel/ConditionGroup" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" upperBound="-1"
-          eType="#//ConditionModel/Condition"/>
+          eType="#//ConditionModel/Condition" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="CheckConditionTrigger"
-          lowerBound="1" eType="#//Signal"/>
+          lowerBound="1" upperBound="-1" eType="#//Signal"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ConditionMetSignal" lowerBound="1"
           eType="#//Signal"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Operator" eType="#//ConditionModel/LogicOperator"/>
@@ -726,6 +750,7 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="variableResult">
           <eGenericType eTypeParameter="#//PresentationModel/Animation/VariableAnimation/ValueType"/>
         </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="dataItemResult" eType="#//DataItem"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StylePropertyAnimation" eSuperTypes="#//PresentationModel/Animation/PropertyAnimation">
         <eTypeParameters name="ValueType">
@@ -2366,6 +2391,12 @@
             </eGenericSuperTypes>
             <eGenericSuperTypes eClassifier="#//PresentationModel/VisualPresentationProfile/Representation/PropertySamples/TextStylePropertySample"/>
           </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="Text">
+            <eGenericSuperTypes eClassifier="#//PresentationModel/VisualPresentationProfile/Representation/VisualStyleProperty">
+              <eTypeArguments eClassifier="#//Variables/TextReferencingVariable"/>
+            </eGenericSuperTypes>
+            <eGenericSuperTypes eClassifier="#//PresentationModel/VisualPresentationProfile/Representation/PropertySamples/TextContainingBlockElementPropertySample"/>
+          </eClassifiers>
           <eClassifiers xsi:type="ecore:EClass" name="TextAlign">
             <eGenericSuperTypes eClassifier="#//PresentationModel/VisualPresentationProfile/Representation/VisualStyleProperty">
               <eTypeArguments eClassifier="#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/TextAlignPresetValue"/>
@@ -3561,9 +3592,9 @@
         <eTypeParameters name="ValueType">
           <eBounds eClassifier="#//Variables/Variable"/>
         </eTypeParameters>
-        <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/AcousticalStyleProperty">
-          <eTypeArguments eClassifier="#//PresentationModel/Representation/StyleProperty">
-            <eTypeArguments eClassifier="#//Variables/Variable"/>
+        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/StylePropertyAnimation">
+          <eTypeArguments eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/AcousticalStyleProperty">
+            <eTypeArguments eTypeParameter="#//PresentationModel/AcousticalPresentationProfile/AcousticalStylePropertyAnimation/ValueType"/>
           </eTypeArguments>
         </eGenericSuperTypes>
       </eClassifiers>
@@ -3614,7 +3645,7 @@
             <eBounds eClassifier="#//Variables/Variable"/>
           </eTypeParameters>
           <eGenericSuperTypes eClassifier="#//PresentationModel/Representation/StyleProperty">
-            <eTypeArguments eTypeParameter="#//PresentationModel/AcousticalPresentationProfile/Representation/AcousticalStyleProperty/ValueType"/>
+            <eTypeArguments eClassifier="#//Variables/Variable"/>
           </eGenericSuperTypes>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="AcousticalMultiStyleProperty"
@@ -3723,9 +3754,12 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="HapticalStylePropertyAnimation">
+        <eTypeParameters name="ValueType">
+          <eBounds eClassifier="#//Variables/Variable"/>
+        </eTypeParameters>
         <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/StylePropertyAnimation">
           <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
-            <eTypeArguments eClassifier="#//Variables/Variable"/>
+            <eTypeArguments eTypeParameter="#//PresentationModel/HapticalPresentationProfile/HapticalStylePropertyAnimation/ValueType"/>
           </eTypeArguments>
         </eGenericSuperTypes>
       </eClassifiers>
@@ -3739,7 +3773,7 @@
             <eBounds eClassifier="#//Variables/Variable"/>
           </eTypeParameters>
           <eGenericSuperTypes eClassifier="#//PresentationModel/Representation/StyleProperty">
-            <eTypeArguments eTypeParameter="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty/ValueType"/>
+            <eTypeArguments eClassifier="#//Variables/Variable"/>
           </eGenericSuperTypes>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="HapticMultiStyleProperty">
@@ -4015,6 +4049,7 @@
         <eTypeArguments eClassifier="#//PresentationModel/TextDefinition/TextItem"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//Variables/StringDefaultVariable"/>
+      <eGenericSuperTypes eClassifier="#//Variables/TextReferencingVariable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LanguageReferencingVariable">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -4024,5 +4059,14 @@
         <eTypeArguments eClassifier="#//PresentationModel/TextDefinition/Language"/>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataItemReferencingVariable">
+      <eGenericSuperTypes eClassifier="#//Variables/ReferencingVariable">
+        <eTypeArguments eClassifier="#//DataItem"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//Variables/StringDefaultVariable"/>
+      <eGenericSuperTypes eClassifier="#//Variables/TextReferencingVariable"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TextReferencingVariable" abstract="true"
+        eSuperTypes="#//Variables/Variable"/>
   </eSubpackages>
 </ecore:EPackage>

@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<amino-ui:CUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:am-var="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/AlgorithmModel/Variables" xmlns:amino-ui="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1" name="FAS">
+<amino-ui:CUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:am-var="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/AlgorithmModel/Variables" xmlns:amino-ui="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1" xmlns:pp-vis-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/Properties" xmlns:td="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/TextDefinition" name="FAS">
+  <components xsi:type="amino-ui:simpleContainer" name="distance">
+    <containedElements name="StaticdistanceTextComponent">
+      <representation>
+        <styleProperty xsi:type="pp-vis-rep-props:Text">
+          <val xsi:type="am-var:TextItemReferencingVariable" ref="//@TextDefinitions/@textItem.1"/>
+        </styleProperty>
+      </representation>
+    </containedElements>
+    <containedElements name="DynamicdistanceTextComponent">
+      <representation>
+        <styleProperty xsi:type="pp-vis-rep-props:Text">
+          <val xsi:type="am-var:TextItemReferencingVariable" ref="//@DataItems/@DataItems.0"/>
+        </styleProperty>
+      </representation>
+    </containedElements>
+  </components>
+  <sounds/>
   <SignalCollection>
     <Signals name="distanceChange"/>
     <Signals name="velocityChange"/>
+    <Signals name="parkModeActiveSignal"/>
+    <Signals name="noDangerActiveSignal"/>
+    <Signals name="lowDangerActiveSignal"/>
+    <Signals name="mediumDangerActiveSignal"/>
+    <Signals name="highDangerActiveSignal"/>
+    <Signals name="collisionActiveSignal"/>
+    <Signals name="ACCModeActiveSignal"/>
   </SignalCollection>
+  <TextDefinitions>
+    <textItem xsi:type="td:TextItem">
+      <translation val="0.0" language="//@language"/>
+    </textItem>
+    <textItem xsi:type="td:TextItem" name="distance">
+      <translation val="distance" language="//@language"/>
+    </textItem>
+  </TextDefinitions>
+  <language name="defaultLanguage" code="de"/>
+  <colorTheme name="defaultColorTheme"/>
   <DataItems>
     <DataItems name="distance" SignalOnChange="//@SignalCollection/@Signals.0">
       <Type xsi:type="am-var:FloatVariable"/>
@@ -12,5 +46,48 @@
       <Type xsi:type="am-var:FloatVariable"/>
     </DataItems>
   </DataItems>
-  <Conditions/>
+  <Conditions>
+    <Condition name="parkModePrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.2">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.1" StringReferenceValue="15"/>
+    </Condition>
+    <Condition name="noDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.3">
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="12"/>
+    </Condition>
+    <Condition name="lowDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.4">
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="8"/>
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="12"/>
+    </Condition>
+    <Condition name="mediumDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.5">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="8"/>
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="3"/>
+    </Condition>
+    <Condition name="highDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.6">
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="0.2"/>
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="3"/>
+    </Condition>
+    <Condition name="collisionPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.7">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="0.2"/>
+    </Condition>
+    <Condition name="ACCModePrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.8">
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.1" StringReferenceValue="15"/>
+    </Condition>
+    <Condition name="noDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.3">
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="120"/>
+    </Condition>
+    <Condition name="lowDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.4">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="120"/>
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="80"/>
+    </Condition>
+    <Condition name="mediumDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.5">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="80"/>
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="30"/>
+    </Condition>
+    <Condition name="highDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.6">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="30"/>
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="0.2"/>
+    </Condition>
+    <Condition name="collisionPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.7">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="0.2"/>
+    </Condition>
+  </Conditions>
 </amino-ui:CUIModel>

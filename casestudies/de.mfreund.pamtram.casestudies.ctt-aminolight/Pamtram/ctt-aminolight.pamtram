@@ -15,13 +15,13 @@
       </references>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="object">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
-        <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
+        <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ZERO__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="class">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" value="Numerical"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" value="Numerical"/>
           </attributes>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ObjectName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
           </attributes>
         </value>
@@ -42,6 +42,10 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" value="Numerical"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" value="Decimal"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
+        <attribute href="http://giove.isti.cnr.it/ctt#//Object/type"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" value="Perceivable"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="IntObject">
@@ -77,6 +81,94 @@
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
+  <sourceSectionModel name="AlarmTasks">
+    <metaModelPackage href="http://giove.isti.cnr.it/ctt#/"/>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="PreconditionTask">
+      <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="precondition">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/precondition"/>
+        <value xsi:type="metamodel:SourceSection" name="ConditionGroup">
+          <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="conditionGroup">
+            <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
+            <value xsi:type="metamodel:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
+              <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+              <references xsi:type="metamodel:SourceSectionContainmentReference" name="conditionLiteral">
+                <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
+                <value xsi:type="metamodel:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
+                  <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="object">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="value">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="operator">
+                <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="Rootoperator">
+            <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" value="or"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" value="and"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="object">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
+          <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreconditionObjectName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
+          </attributes>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Alarm2Task">
+      <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="parent">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="Parent">
+          <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm2ParentName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//Parent/name"/>
+          </attributes>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" value="Alarm2"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm2TaskName">
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Alarm3Task">
+      <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="parent">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="Parent">
+          <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm3ParentName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//Parent/name"/>
+          </attributes>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm3TaskName">
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" value="Alarm3"/>
+      </attributes>
+    </metaModelSections>
+  </sourceSectionModel>
   <targetSectionModel name="">
     <metaModelPackage href="../metamodel/AMINO-UI.ecore#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="CUIModel">
@@ -99,20 +191,158 @@
           <eClass href="../metamodel/AMINO-UI.ecore#//ConditionModel/ConditionModel"/>
         </value>
       </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="sounds">
+        <eReference href="../metamodel/AMINO-UI.ecore#//CUIModel/sounds"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="SoundDefinition">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundDefinition"/>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="colorTheme">
+        <eReference href="../metamodel/AMINO-UI.ecore#//CUIModel/colorTheme"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="ColorTheme">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/VisualPresentationProfile/Colors/ColorTheme"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="name" value="defaultColorTheme">
+            <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="language">
+        <eReference href="../metamodel/AMINO-UI.ecore#//CUIModel/language"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="defaultLanguage">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/Language"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="name" value="defaultLanguage">
+            <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="code" value="de">
+            <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/Language/code"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="TextDefinitions">
+        <eReference href="../metamodel/AMINO-UI.ecore#//CUIModel/TextDefinitions"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="TextItemGroup">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TextItemGroup"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="textItem">
+            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TextItemGroup/textItem"/>
+            <value xsi:type="metamodel:TargetSectionClass" name="FloatDefaultTextItem">
+              <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TextItem"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="translation">
+                <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TextItem/translation"/>
+                <value xsi:type="metamodel:TargetSectionClass" name="TranslationEntry">
+                  <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TranslationEntry"/>
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.5/@value.0">
+                    <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TranslationEntry/language"/>
+                  </references>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="val" value="0.0">
+                    <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TranslationEntry/val"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="metamodel:ActualAttribute" name="name">
+                <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+      </references>
       <attributes xsi:type="metamodel:ActualAttribute" name="name">
         <attribute href="../metamodel/AMINO-UI.ecore#//CUIModel/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Signal" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Signal" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0">
       <eClass href="../metamodel/AMINO-UI.ecore#//Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="SignalName" unique="true">
+        <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="testTextItem" container="//@targetSectionModel.0/@metaModelSections.0/@references.6/@value.0">
+      <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TextItem"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="translation">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TextItem/translation"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="TranslationEntry">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TranslationEntry"/>
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.5/@value.0">
+            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TranslationEntry/language"/>
+          </references>
+          <attributes xsi:type="metamodel:ActualAttribute" name="val" value="">
+            <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/TextDefinition/TranslationEntry/val"/>
+          </attributes>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="name" unique="true" value="">
+        <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextComponent" container="//@targetSectionModel.0/@metaModelSections.4">
+      <eClass href="../metamodel/AMINO-UI.ecore#//Component"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="representation">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Representation/RepresentedElement/representation"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="RepresentationRecord">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Representation/RepresentationRecord"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="styleProperty">
+            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Representation/RepresentationRecord/styleProperty"/>
+            <value xsi:type="metamodel:TargetSectionClass" name="staticText">
+              <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/VisualPresentationProfile/Representation/Properties/Text"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
+                <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Representation/StyleProperty/val"/>
+                <value xsi:type="metamodel:TargetSectionClass" name="TextItemReferencingVariable">
+                  <eClass href="../metamodel/AMINO-UI.ecore#//Variables/TextItemReferencingVariable"/>
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.2">
+                    <eReference href="../metamodel/AMINO-UI.ecore#//Variables/ReferencingVariable/ref"/>
+                  </references>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="defaultVal">
+                    <attribute href="../metamodel/AMINO-UI.ecore#//Variables/StringDefaultVariable/defaultVal"/>
+                  </attributes>
+                </value>
+              </references>
+            </value>
+          </references>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="TextComponentName" unique="true" value="">
+        <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="simpleContainer" container="//@targetSectionModel.0/@metaModelSections.0">
+      <eClass href="../metamodel/AMINO-UI.ecore#//simpleContainer"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="simpleContainerName" value="">
+        <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ConditionGroup">
+      <eClass href="../metamodel/AMINO-UI.ecore#//ConditionModel/ConditionGroup"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="condition">
+        <eReference href="../metamodel/AMINO-UI.ecore#//ConditionModel/ConditionGroup/condition"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="Condition" cardinality="ZERO__INFINITY">
+          <eClass href="../metamodel/AMINO-UI.ecore#//ConditionModel/Condition"/>
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ReferneceDataItem" value="//@targetSectionModel.1/@metaModelSections.0">
+            <eReference href="../metamodel/AMINO-UI.ecore#//ConditionModel/Condition/ReferneceDataItem"/>
+          </references>
+          <attributes xsi:type="metamodel:ActualAttribute" name="StringReferenceValue">
+            <attribute href="../metamodel/AMINO-UI.ecore#//ConditionModel/Condition/StringReferenceValue"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="compareType">
+            <attribute href="../metamodel/AMINO-UI.ecore#//ConditionModel/Condition/compareType"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ConditionMetSignal" value="//@targetSectionModel.0/@metaModelSections.1">
+        <eReference href="../metamodel/AMINO-UI.ecore#//ConditionModel/ConditionGroup/ConditionMetSignal"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="CheckConditionTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+        <eReference href="../metamodel/AMINO-UI.ecore#//ConditionModel/ConditionGroup/CheckConditionTrigger"/>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Operator">
+        <attribute href="../metamodel/AMINO-UI.ecore#//ConditionModel/ConditionGroup/Operator"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="ConditionGroupName">
         <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
   <targetSectionModel name="DataItems">
     <metaModelPackage href="../metamodel/AMINO-UI.ecore#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="FloatDataItem" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="FloatDataItem" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
       <eClass href="../metamodel/AMINO-UI.ecore#//DataItem"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Type">
         <eReference href="../metamodel/AMINO-UI.ecore#//DataItem/Type"/>
@@ -127,7 +357,7 @@
         <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="IntegerDataItem" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="IntegerDataItem" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
       <eClass href="../metamodel/AMINO-UI.ecore#//DataItem"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Type">
         <eReference href="../metamodel/AMINO-UI.ecore#//DataItem/Type"/>
@@ -164,6 +394,24 @@
       </attributes>
     </metaModelSections>
   </targetSectionModel>
+  <targetSectionModel name="AcousticalElements">
+    <metaModelPackage href="../metamodel/AMINO-UI.ecore#/"/>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="GenericSoundItem" container="//@targetSectionModel.0/@metaModelSections.0/@references.3/@value.0">
+      <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/AcousticalPresentationProfile/Sounds/GenericSoundItem"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Frequency">
+        <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/AcousticalPresentationProfile/Sounds/GenericSoundItem/Frequency"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Waveform" value="sine">
+        <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/AcousticalPresentationProfile/Sounds/GenericSoundItem/Waveform"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Rate">
+        <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/AcousticalPresentationProfile/Sounds/GenericSoundItem/Rate"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="GenericSoundName" unique="true">
+        <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
+      </attributes>
+    </metaModelSections>
+  </targetSectionModel>
   <mappingModel>
     <mapping name="sourceMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
@@ -172,25 +420,105 @@
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <modifierSets name="addChange">
-      <modifier xsi:type="mapping:StringAppender" name="Change" string="Change"/>
-    </modifierSets>
-  </mappingModel>
-  <mappingModel name="DataItems">
-    <mapping name="FloatObjectMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.0">
+    <mapping name="TaskMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.1">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FloatDataItem" targetMMSection="//@targetSectionModel.1/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="ObjectName" source="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="SignalOnChange" affectedReference="//@targetSectionModel.1/@metaModelSections.0/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ObjectName" source="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.0"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.0/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="ObjectName" source="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
+    <mapping name="ConditionTaskMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ConditionGroup" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="OperatorMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="operator" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="operator" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="StringReferenceValueMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ReferneceDataItem" affectedReference="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="object" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ConditionMetSignal" affectedReference="//@targetSectionModel.0/@metaModelSections.5/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="name" source="//@sourceSectionModel.2/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.5/@references.2">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="PreconditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ConditionGroupNameMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.2/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.0/@metaModelSections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.2/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
+    <modifierSets name="addChange">
+      <modifier xsi:type="mapping:StringAppender" name="Change" string="Change"/>
+    </modifierSets>
+    <modifierSets name="convertToUpperCase">
+      <modifier xsi:type="mapping:MatchToUpperCaseConverter" regex="[a-z]*"/>
+    </modifierSets>
+    <modifierSets name="addActive">
+      <modifier xsi:type="mapping:StringAppender" name="ActiveSignal" string="ActiveSignal"/>
+    </modifierSets>
+    <modifierSets name="addPrecondition">
+      <modifier xsi:type="mapping:StringAppender" name="Precondition" string="Precondition"/>
+    </modifierSets>
+  </mappingModel>
+  <mappingModel name="DataItems">
+    <mapping name="FloatObjectMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextItem" targetMMSection="//@targetSectionModel.0/@metaModelSections.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.2/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextComponent" targetMMSection="//@targetSectionModel.0/@metaModelSections.3">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="StaticTextComponentNameMapping" target="//@targetSectionModel.0/@metaModelSections.3/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.1/@modifierSets.0 //@mappingModel.1/@modifierSets.1"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="simpleContainer" targetMMSection="//@targetSectionModel.0/@metaModelSections.4">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="simpleContainerNameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextComponent" targetMMSection="//@targetSectionModel.0/@metaModelSections.3">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="DynamicTextComponentNameMapping" target="//@targetSectionModel.0/@metaModelSections.3/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.1/@modifierSets.0 //@mappingModel.1/@modifierSets.2"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
@@ -215,5 +543,50 @@
         </mappingHints>
       </mappingHintGroups>
     </mapping>
+    <modifierSets name="addTextComponent">
+      <modifier xsi:type="mapping:StringAppender" name="TextComponent" string="TextComponent"/>
+    </modifierSets>
+    <modifierSets name="prependStatic">
+      <modifier xsi:type="mapping:StringPrepender" name="Static" string="Static"/>
+    </modifierSets>
+    <modifierSets name="prependDynamic">
+      <modifier xsi:type="mapping:StringPrepender" name="Dynamic" string="Dynamic"/>
+    </modifierSets>
+  </mappingModel>
+  <mappingModel name="Alarm">
+    <mapping name="Alarm2TaskMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GenericSoundItemAlarm2" targetMMSection="//@targetSectionModel.2/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FrequencyMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" value="440"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RateMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" value="1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="GenericSoundNameMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.1"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
+    <mapping name="Alarm3TaskMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GenericSoundItemAlarm2" targetMMSection="//@targetSectionModel.2/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FrequencyMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" value="550"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RateMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" value="2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="GenericSoundNameMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
+    <modifierSets name="deleteAfter=">
+      <modifier xsi:type="mapping:SubstringReplacer" regex="[=][a-zA-Z\d]*" replacement=""/>
+    </modifierSets>
+    <modifierSets name="deleteBefore=">
+      <modifier xsi:type="mapping:SubstringReplacer" regex="[a-zA-Z\d]*[=]" replacement=""/>
+    </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

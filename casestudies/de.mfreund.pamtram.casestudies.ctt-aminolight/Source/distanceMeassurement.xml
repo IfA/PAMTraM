@@ -32,7 +32,7 @@
     <ConditionGroup operator="gt">
         <ConditionLiteral object="velocity"/>
         <ConditionLiteral value="15"/>
-    </ConditionGroup>
+    </ConditionGroup>    
 </Postcondition>
 <TemporalOperator name="OrderIndependence"/>
 <Parent name="giveFeedback"/>
@@ -41,7 +41,7 @@
 <SubTask>
     <Task Identifier="noDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>noDanger</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm0</Type>
         <Precondition operator="and">
             <ConditionGroup operator="gt">
                 <ConditionLiteral object="distance"/>
@@ -61,7 +61,7 @@
     </Task>
     <Task Identifier="lowDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>lowDanger</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm1</Type>
         <Precondition operator="and">
             <ConditionGroup operator="gt">
                 <ConditionLiteral object="distance"/>
@@ -90,7 +90,7 @@
     </Task>
     <Task Identifier="mediumDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>mediumDanger</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm2</Type>
         <Precondition operator="and">
             <ConditionGroup operator="lteq">
                 <ConditionLiteral object="distance"/>
@@ -119,7 +119,7 @@
     </Task>
     <Task Identifier="highDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>highDanger</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm3</Type>
         <Precondition operator="and">
             <ConditionGroup operator="gt">
                 <ConditionLiteral object="distance"/>
@@ -148,7 +148,7 @@
     </Task>
     <Task Identifier="collision" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>collision</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm4</Type>
         <Precondition operator="and">
             <ConditionGroup operator="lteq">
                 <ConditionLiteral object="distance"/>
@@ -188,7 +188,7 @@
 <SubTask>
     <Task Identifier="noDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>noDanger</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm0</Type>
         <Precondition operator="and">
             <ConditionGroup operator="gt">
                 <ConditionLiteral object="distance"/>
@@ -208,7 +208,7 @@
     </Task>
     <Task Identifier="lowDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>lowDanger</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm1</Type>
         <Precondition operator="and">
             <ConditionGroup operator="lteq">
                 <ConditionLiteral object="distance"/>
@@ -237,7 +237,7 @@
     </Task>
     <Task Identifier="mediumDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>mediumDanger</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm2</Type>
         <Precondition operator="and">
             <ConditionGroup operator="lteq">
                 <ConditionLiteral object="distance"/>
@@ -266,7 +266,7 @@
     </Task>
     <Task Identifier="highDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>highDanger</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm3</Type>
         <Precondition operator="and">
             <ConditionGroup operator="lteq">
                 <ConditionLiteral object="distance"/>
@@ -295,7 +295,7 @@
     </Task>
     <Task Identifier="collision" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>collision</Name>
-        <Type>Feedback</Type>
+        <Type>Alarm4</Type>
         <Precondition operator="and">
             <ConditionGroup operator="lteq">
                 <ConditionLiteral object="distance"/>

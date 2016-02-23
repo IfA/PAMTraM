@@ -6,7 +6,9 @@ import java.util.Collection;
 import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -21,6 +23,7 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -45,6 +48,7 @@ import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 
 import de.mfreund.pamtram.util.BundleContentHelper;
+import pamtram.contentprovider.IFeatureValidator;
 import pamtram.presentation.IPersistable;
 import pamtram.presentation.PamtramEditorPlugin;
 
@@ -434,18 +438,31 @@ public class TreeViewerGroup extends FilteredTree implements IPersistable {
 			Collection<?> newChildDescriptors = null;
 			Collection<?> newSiblingDescriptors = null;
 			ISelection selection = treeViewer.getSelection();
-			if (!(selection instanceof IStructuredSelection) || 
-					!(((IStructuredSelection)selection).size() == 1)) {
+			if (!(selection instanceof IStructuredSelection) || ((IStructuredSelection)selection).size() > 1) {
 				// nothing to be done
-				// TODO if nothing is selected, the user should be allowed
-				// to add top-level elements
 				return;
 			}
 
+			boolean doNotCreateSiblingActions = false;
+			if(((IStructuredSelection)selection).isEmpty()) {
+				// if nothing is selected,we manually select the viewer input; this will allow to add the
+				// top level elements in this viewer
+				doNotCreateSiblingActions = true; // in this case, we only want allow to create child actions
+				try{
+					selection = new StructuredSelection(treeViewer.getInput());					
+				} catch(Exception e) {
+					return;
+				}
+			}
+			
 			Object object = ((IStructuredSelection)selection).getFirstElement();
 
 			newChildDescriptors = editingDomain.getNewChildDescriptors(object, null);
-			newSiblingDescriptors = editingDomain.getNewChildDescriptors(null, object);
+			if(doNotCreateSiblingActions) {
+				newSiblingDescriptors = new ArrayList<Object>();
+			} else {
+				newSiblingDescriptors = editingDomain.getNewChildDescriptors(null, object);				
+			} 
 
 			IEditorPart editorPart = 
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -454,13 +471,17 @@ public class TreeViewerGroup extends FilteredTree implements IPersistable {
 			//
 			ArrayList<IAction> createChildActions = new ArrayList<>();
 			for (Object descriptor : newChildDescriptors) {
-				createChildActions.add(
-						new CreateChildAction(editorPart, selection, descriptor));
+				if(isValidDescriptor(descriptor, treeViewer.getContentProvider())) {
+					createChildActions.add(
+							new CreateChildAction(editorPart, selection, descriptor));
+				}
 			}
 			ArrayList<IAction> createSiblingActions = new ArrayList<>();
 			for (Object descriptor : newSiblingDescriptors) {
-				createSiblingActions.add(
-						new CreateSiblingAction(editorPart, selection, descriptor));
+				if(isValidDescriptor(descriptor, treeViewer.getContentProvider())) {
+					createSiblingActions.add(
+							new CreateSiblingAction(editorPart, selection, descriptor));					
+				}
 			}
 
 			// Populate the context menu
@@ -528,6 +549,34 @@ public class TreeViewerGroup extends FilteredTree implements IPersistable {
 		if(filterText != null && !filterText.isEmpty()) {
 			setFilterText(filterText);		
 		}
+	}
+	
+	/**
+	 * This is used by {@link #generateCreateChildActions(Collection, ISelection)} and {@link #generateCreateSiblingActions(Collection, ISelection)}
+	 * to perform additional checks if an action corresponding to the given <em>descriptor</em> is valid for the active <em>content provider</em>.
+	 * 
+	 * @param descriptor The {@link CommandParameter} that describes an action to be executed.
+	 * @param provider The {@link IContentProvider content provider} that is associated with the active viewer.
+	 * @return '<em><b>true</b></em>' if the descriptor is valid for the active viewer; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean isValidDescriptor(Object descriptor, IContentProvider provider) {
+		
+		if(descriptor == null || provider == null) {
+			return false;
+		}
+		
+		if(!(descriptor instanceof CommandParameter) || 
+				!(((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature)) {
+			return true;
+		}
+		
+		CommandParameter commandParam = (CommandParameter) descriptor;
+		
+		if(provider instanceof IFeatureValidator) {
+			return ((IFeatureValidator) provider).isValidFeature((EStructuralFeature) commandParam.getFeature());
+		}
+		
+		return true;
 	}
 
 }

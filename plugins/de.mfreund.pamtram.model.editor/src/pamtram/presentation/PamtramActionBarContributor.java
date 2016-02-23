@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -40,6 +41,7 @@ import org.eclipse.ui.PartInitException;
 
 import pamtram.PamtramPackage;
 import pamtram.contentprovider.ConditionContentProvider;
+import pamtram.contentprovider.IFeatureValidator;
 import pamtram.contentprovider.LibraryEntryContentProvider;
 import pamtram.contentprovider.MappingContentProvider;
 import pamtram.contentprovider.ModifierSetContentProvider;
@@ -416,54 +418,15 @@ public class PamtramActionBarContributor
 			return false;
 		}
 		
-		if(!(descriptor instanceof CommandParameter)) {
+		if(!(descriptor instanceof CommandParameter) || 
+				!(((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature)) {
 			return true;
 		}
 		
 		CommandParameter commandParam = (CommandParameter) descriptor;
 		
-		if(provider instanceof SourceSectionContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL)) {
-				return false;
-			}
-		} else if(provider instanceof ConditionContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
-				return false;
-			}
-		} else if(provider instanceof MappingContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
-				return false;
-			}
-		} else if(provider instanceof ModifierSetContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.MAPPING_MODEL__MAPPING) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
-				return false;
-			}
-		} else if(provider instanceof TargetSectionContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
-				return false;
-			}
-		}
-		 else if(provider instanceof LibraryEntryContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
-				return false;
-			}
+		if(provider instanceof IFeatureValidator) {
+			return ((IFeatureValidator) provider).isValidFeature((EStructuralFeature) commandParam.getFeature());
 		}
 		
 		return true;

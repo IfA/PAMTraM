@@ -1,10 +1,12 @@
 package pamtram.contentprovider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
 import pamtram.ConditionModel;
 import pamtram.PAMTraM;
+import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 
 /**
@@ -13,7 +15,7 @@ import pamtram.condition.ComplexCondition;
  * 
  * @author mfreund
  */
-public class ConditionContentProvider extends AdapterFactoryContentProvider {
+public class ConditionContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
 	public ConditionContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
@@ -24,5 +26,17 @@ public class ConditionContentProvider extends AdapterFactoryContentProvider {
 			return ((PAMTraM) object).getConditionModel().toArray();
 		}
 		return super.getElements(object);
+	}
+
+	@Override
+	public boolean isValidFeature(EStructuralFeature feature) {
+		
+		if(feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL) ||
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
+			return false;
+		}
+		
+		return true;
 	}
 }

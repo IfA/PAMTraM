@@ -6,15 +6,19 @@ package pamtram.condition.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.SectionCondition;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.metamodel.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.SectionCondition} object.
@@ -134,6 +138,18 @@ public class SectionConditionItemProvider extends ConditionItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		if(collection.size() == 1 && collection.iterator().next() instanceof SourceSectionClass) {
+			return new BasicDragAndDropSetCommand(domain, (EObject) owner, ConditionPackage.Literals.SECTION_CONDITION__CONDITION_SECTION_REF, 
+					collection.iterator().next(), 0);
+		}
+		
+		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 	}
 
 }

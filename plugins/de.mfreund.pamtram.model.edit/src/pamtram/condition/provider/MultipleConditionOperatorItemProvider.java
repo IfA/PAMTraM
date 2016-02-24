@@ -6,19 +6,25 @@ package pamtram.condition.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.MultipleConditionOperator;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.MultipleConditionOperator} object.
@@ -188,6 +194,29 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 			(createChildParameter
 				(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS,
 				 ConditionFactory.eINSTANCE.createSectionCondition()));
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		EList<ComplexCondition> values = new BasicEList<>();
+		for (Object value : collection) {
+			if(value instanceof ComplexCondition) {
+				values.add((ComplexCondition) value);
+			} else {
+				return super.createDragAndDropCommand(domain, owner, location, operations,
+						operation, collection); 
+			}
+		}
+		
+		if(values.isEmpty()) {
+			return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
+		} else {
+			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
+					ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF, values);
+		}
+		
 	}
 
 }

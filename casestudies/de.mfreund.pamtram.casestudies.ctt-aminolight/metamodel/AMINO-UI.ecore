@@ -3741,29 +3741,43 @@
         </eSubpackages>
       </eSubpackages>
     </eSubpackages>
-    <eSubpackages name="HapticalPresentationProfile" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticPresentationProfile"
+    <eSubpackages name="HapticalPresentationProfile" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile"
         nsPrefix="pp-hap">
       <eClassifiers xsi:type="ecore:EClass" name="HapticalRepresentationRecord">
         <eGenericSuperTypes eClassifier="#//PresentationModel/Representation/RepresentationRecord">
           <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
         </eGenericSuperTypes>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="HapticalVariableAnimation">
-        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/VariableAnimation">
-          <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
-        </eGenericSuperTypes>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="HapticalStylePropertyAnimation">
-        <eTypeParameters name="ValueType">
-          <eBounds eClassifier="#//Variables/Variable"/>
-        </eTypeParameters>
-        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/StylePropertyAnimation">
-          <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
-            <eTypeArguments eTypeParameter="#//PresentationModel/HapticalPresentationProfile/HapticalStylePropertyAnimation/ValueType"/>
-          </eTypeArguments>
-        </eGenericSuperTypes>
-      </eClassifiers>
-      <eSubpackages name="Representation" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticPresentationProfile/Representation"
+      <eSubpackages name="Vibration" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Vibration"
+          nsPrefix="pp-hap-vib">
+        <eClassifiers xsi:type="ecore:EClass" name="VibrationItemGroupable" abstract="true"
+            interface="true" eSuperTypes="#//Utils/DefaultElement #//Utils/GroupableElement"/>
+        <eClassifiers xsi:type="ecore:EClass" name="VibrationItemGroup" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroupable">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="soundItem" upperBound="-1"
+              eType="#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundItem"
+              containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="Repeat" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="VibrationItem" abstract="true"
+            eSuperTypes="#//Utils/AminoUIModelElement #//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroupable"/>
+        <eClassifiers xsi:type="ecore:EClass" name="ContinousVibrationItem" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItem">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="PatternVibrationItem" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItem">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternValue" lowerBound="1"
+              upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="PulsingVibrationItem">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="dutyCycle" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages name="Representation" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation"
           nsPrefix="pp-hap-rep">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The Representation package provides classes for defining a haptic presentation model of an AMINO-UI application."/>
@@ -3773,7 +3787,7 @@
             <eBounds eClassifier="#//Variables/Variable"/>
           </eTypeParameters>
           <eGenericSuperTypes eClassifier="#//PresentationModel/Representation/StyleProperty">
-            <eTypeArguments eClassifier="#//Variables/Variable"/>
+            <eTypeArguments eTypeParameter="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty/ValueType"/>
           </eGenericSuperTypes>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="HapticMultiStyleProperty">
@@ -3784,17 +3798,8 @@
             <eTypeArguments eTypeParameter="#//PresentationModel/HapticalPresentationProfile/Representation/HapticMultiStyleProperty/ValueType"/>
           </eGenericSuperTypes>
         </eClassifiers>
-        <eSubpackages name="Properties" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticPresentationProfile/Representation/Properties"
+        <eSubpackages name="Properties" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties"
             nsPrefix="pp-hap-rep-props">
-          <eClassifiers xsi:type="ecore:EClass" name="Vibration">
-            <eTypeParameters name="ValueType">
-              <eBounds eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationValue"/>
-            </eTypeParameters>
-            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticMultiStyleProperty">
-              <eTypeArguments eTypeParameter="#//PresentationModel/HapticalPresentationProfile/Representation/Properties/Vibration/ValueType"/>
-            </eGenericSuperTypes>
-            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
-          </eClassifiers>
           <eClassifiers xsi:type="ecore:EClass" name="PatternVibration">
             <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
             <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticMultiStyleProperty">
@@ -3819,39 +3824,22 @@
               <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationRepeatValue"/>
             </eGenericSuperTypes>
           </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="simpleVibration">
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationReference">
             <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
             <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
-              <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/simpleVibrationValue"/>
-            </eGenericSuperTypes>
-          </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="complexVibration">
-            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
-            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
-              <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/ComplexVibrationValue"/>
+              <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationReferencingValue"/>
             </eGenericSuperTypes>
           </eClassifiers>
         </eSubpackages>
-        <eSubpackages name="PropertySamples" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticPresentationProfile/Representation/PropertySamples"
+        <eSubpackages name="PropertySamples" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/PropertySamples"
             nsPrefix="pp-hap-rep-psamps">
           <eClassifiers xsi:type="ecore:EClass" name="HapticPropertySample" abstract="true"
               interface="true" eSuperTypes="#//PresentationModel/Representation/StylePropertySample"/>
         </eSubpackages>
-        <eSubpackages name="PropertyValues" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticPresentationProfile/Representation/PropertyValues"
+        <eSubpackages name="PropertyValues" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/PropertyValues"
             nsPrefix="pp-hap-rep-pval">
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationValue" abstract="true"
-              eSuperTypes="#//Variables/Variable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="ComplexVibrationValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationValue">
-            <eStructuralFeatures xsi:type="ecore:EReference" name="vibrationValue"
-                upperBound="-1" eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/simpleVibrationValue"
-                containment="true"/>
-            <eStructuralFeatures xsi:type="ecore:EReference" name="repeat" eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationBooleanVariable"
-                containment="true"/>
-          </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="simpleVibrationValue" abstract="true"
-              eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationValue"/>
-          <eClassifiers xsi:type="ecore:EClass" name="PatternVibrationValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="ContinousVibrationValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="PatternVibrationValue" eSuperTypes="#//Variables/IntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="ContinousVibrationValue" eSuperTypes="#//Variables/IntegerVariable"/>
           <eClassifiers xsi:type="ecore:EClass" name="PulsingVibrationValue" eSuperTypes="#//Variables/Variable">
             <eStructuralFeatures xsi:type="ecore:EReference" name="VibrationFrequency"
                 eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationFrequencyValue"
@@ -3863,21 +3851,24 @@
                 eType="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/PulsingVibrationDurationValue"
                 containment="true"/>
           </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationFrequencyValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationDutyCycleValue" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationFrequencyValue" eSuperTypes="#//Variables/IntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationDutyCycleValue" eSuperTypes="#//Variables/FloatVariable"/>
           <eClassifiers xsi:type="ecore:EClass" name="PulsingVibrationDurationValue"
-              eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+              eSuperTypes="#//Variables/IntegerVariable"/>
           <eClassifiers xsi:type="ecore:EClass" name="VibrationRepeatValue" abstract="true"
-              eSuperTypes="#//Variables/Variable"/>
+              interface="true" eSuperTypes="#//Variables/Variable"/>
           <eClassifiers xsi:type="ecore:EClass" name="QuantityVibrationRepeatValue"
-              eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationRepeatValue #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationIntegerVariable"/>
+              eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationRepeatValue #//Variables/Variable #//Variables/IntegerVariable"/>
           <eClassifiers xsi:type="ecore:EClass" name="PermanentVibrationRepeatValue"
-              eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationRepeatValue #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationBooleanVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationIntegerVariable" eSuperTypes="#//Variables/IntegerVariable #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationBooleanVariable" eSuperTypes="#//Variables/BooleanVariable #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationFloatVariable" eSuperTypes="#//Variables/FloatVariable #//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationPrimitiveVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="VibrationPrimitiveVariable"
-              eSuperTypes="#//Variables/PrimitiveVariable"/>
+              eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationRepeatValue #//Variables/Variable #//Variables/BooleanVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationIntegerVariable" eSuperTypes="#//Variables/IntegerVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationBooleanVariable" eSuperTypes="#//Variables/BooleanVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationFloatVariable" eSuperTypes="#//Variables/FloatVariable"/>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationReferencingValue">
+            <eGenericSuperTypes eClassifier="#//Variables/ReferencingVariable">
+              <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroupable"/>
+            </eGenericSuperTypes>
+          </eClassifiers>
         </eSubpackages>
       </eSubpackages>
     </eSubpackages>

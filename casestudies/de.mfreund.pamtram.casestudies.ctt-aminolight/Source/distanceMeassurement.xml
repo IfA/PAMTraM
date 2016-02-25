@@ -5,6 +5,7 @@
         <Type>None</Type>
         <Object name="distance" class="Numerical"/>
         <Object name="velocity" class="Numerical"/>
+        <Object name="velocity2" class="Numerical"/>
         <SubTask>
             <Task Identifier="distanceMeassurement" Category="application" Iterative="false" Optional="false" PartOfCooperation="false" Frequency=" ">
                 <Name>distanceMeassurement</Name>
@@ -38,6 +39,7 @@
 <Parent name="giveFeedback"/>
 <SiblingRight name="ACCMode"/>
 <Object name="velocity" class="Numerical"/>
+<Object name="velocity2" class="Numerical"/>
 <SubTask>
     <Task Identifier="noDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>noDanger</Name>

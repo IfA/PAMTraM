@@ -144,7 +144,13 @@ public class MappingModelItemProvider
 		} else {
 			styledLabel.append(getString("_UI_MappingModel_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
-		return styledLabel;
+
+		if(((MappingModel) object).isDeactivated()) {
+			return new StyledString(styledLabel.getString(), StyledString.Style.newBuilder().setStrikedout(true).toStyle());
+		} else {
+			return styledLabel;
+
+		}
 	}
 
 	/**

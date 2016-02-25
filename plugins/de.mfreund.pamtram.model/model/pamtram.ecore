@@ -847,7 +847,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RangeBound">
       <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValue"
-          eType="#//ReferenceableElement"/>
+          upperBound="-1" eType="#//ReferenceableElement"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundType" eType="#//metamodel/AttributeValueConstraintType"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -860,7 +860,7 @@
         <eParameters name="refValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValue"
-          eType="#//ReferenceableElement"/>
+          upperBound="-1" eType="#//ReferenceableElement"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral=""/>

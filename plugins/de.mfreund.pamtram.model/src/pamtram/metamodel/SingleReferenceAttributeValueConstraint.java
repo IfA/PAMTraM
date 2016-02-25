@@ -2,6 +2,7 @@
  */
 package pamtram.metamodel;
 
+import org.eclipse.emf.common.util.EList;
 import pamtram.ReferenceableElement;
 
 /**
@@ -23,30 +24,20 @@ import pamtram.ReferenceableElement;
  */
 public interface SingleReferenceAttributeValueConstraint extends AttributeValueConstraint {
 	/**
-	 * Returns the value of the '<em><b>Constraint Reference Value</b></em>' reference.
+	 * Returns the value of the '<em><b>Constraint Reference Value</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.ReferenceableElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraint Reference Value</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraint Reference Value</em>' reference.
-	 * @see #setConstraintReferenceValue(ReferenceableElement)
+	 * @return the value of the '<em>Constraint Reference Value</em>' reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getSingleReferenceAttributeValueConstraint_ConstraintReferenceValue()
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceAttributeValueConstraint!constraintReferenceValue'"
 	 * @generated
 	 */
-	ReferenceableElement getConstraintReferenceValue();
-
-	/**
-	 * Sets the value of the '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValue <em>Constraint Reference Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraint Reference Value</em>' reference.
-	 * @see #getConstraintReferenceValue()
-	 * @generated
-	 */
-	void setConstraintReferenceValue(ReferenceableElement value);
+	EList<ReferenceableElement> getConstraintReferenceValue();
 
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' attribute.

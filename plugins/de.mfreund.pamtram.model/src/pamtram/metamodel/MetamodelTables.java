@@ -10,6 +10,7 @@
  *******************************************************************************/
 package pamtram.metamodel;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import java.lang.String;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.pivot.ParameterTypes;
@@ -82,7 +83,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/metamodel", null, MetamodelPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Orphanage", "orphanage", null);
-    public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib = IdManager.getNsURIPackageId("http://www.et.tu-dresden.de/ifa/agtele/genlib", null, null);
+    public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib = IdManager.getNsURIPackageId("http://www.et.tu-dresden.de/ifa/agtele/genlib", null, GenLibraryPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ActualAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ActualAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeCondition = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("AttributeCondition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeMapping = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMapping", 0);
@@ -191,6 +192,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_LibraryParameter = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_LibraryParameter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHintGroupType = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_MappingHintGroupType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingType = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_MappingType);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ReferenceableElement = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_ReferenceableElement);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_SourceSectionClass = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_SourceSectionClass);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TargetSectionClass = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_TargetSectionClass);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SET_CLSSid_MappingHintGroupType = TypeId.SET.getSpecializedId(MetamodelTables.CLSSid_MappingHintGroupType);
@@ -3263,7 +3265,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SourceSectionAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._SourceSectionAttribute__valueConstraint,
-			MetamodelTables.Properties._SourceSectionAttribute__InstancePointer__attributePointer,
+			MetamodelTables.Properties._SourceSectionAttribute__InstancePointer__attributePointer
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _SourceSectionClass = {

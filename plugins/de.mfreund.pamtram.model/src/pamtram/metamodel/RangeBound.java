@@ -2,6 +2,7 @@
  */
 package pamtram.metamodel;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.ReferenceableElement;
@@ -26,30 +27,20 @@ import pamtram.ReferenceableElement;
  */
 public interface RangeBound extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Bound Reference Value</b></em>' reference.
+	 * Returns the value of the '<em><b>Bound Reference Value</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.ReferenceableElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bound Reference Value</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bound Reference Value</em>' reference.
-	 * @see #setBoundReferenceValue(ReferenceableElement)
+	 * @return the value of the '<em>Bound Reference Value</em>' reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getRangeBound_BoundReferenceValue()
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeBound!boundReferenceValue'"
 	 * @generated
 	 */
-	ReferenceableElement getBoundReferenceValue();
-
-	/**
-	 * Sets the value of the '{@link pamtram.metamodel.RangeBound#getBoundReferenceValue <em>Bound Reference Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bound Reference Value</em>' reference.
-	 * @see #getBoundReferenceValue()
-	 * @generated
-	 */
-	void setBoundReferenceValue(ReferenceableElement value);
+	EList<ReferenceableElement> getBoundReferenceValue();
 
 	/**
 	 * Returns the value of the '<em><b>Bound Type</b></em>' attribute.

@@ -2459,12 +2459,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getRangeConstraint_LowerBound(), this.getRangeBound(), null, "lowerBound", null, 0, 1, RangeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rangeBoundEClass, RangeBound.class, "RangeBound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRangeBound_BoundReferenceValue(), thePamtramPackage.getReferenceableElement(), null, "boundReferenceValue", null, 0, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRangeBound_BoundReferenceValue(), thePamtramPackage.getReferenceableElement(), null, "boundReferenceValue", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRangeBound_BoundType(), this.getAttributeValueConstraintType(), "boundType", null, 0, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRangeBound_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(singleReferenceAttributeValueConstraintEClass, SingleReferenceAttributeValueConstraint.class, "SingleReferenceAttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSingleReferenceAttributeValueConstraint_ConstraintReferenceValue(), thePamtramPackage.getReferenceableElement(), null, "constraintReferenceValue", null, 0, 1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceAttributeValueConstraint_ConstraintReferenceValue(), thePamtramPackage.getReferenceableElement(), null, "constraintReferenceValue", null, 0, -1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSingleReferenceAttributeValueConstraint_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);

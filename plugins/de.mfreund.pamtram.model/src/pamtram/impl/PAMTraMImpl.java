@@ -875,53 +875,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	}
 
 	/**
-	 * This merges the given {@link TargetSectionAttribute} 'copy' into the the given {@link TargetSection}
-	 * 'targetSection'. Merging in this case means that before adding the attribute, the algorithm checks whether 
-	 * the 'same' attribute is already present. If this is the case, the attribute is not added but all references 
-	 * to it are redirected to the attribute already present in the target section.
-	 * 
-	 * @param targetSection
-	 * @param att
-	 */
-	//	private void merge(TargetSection targetSection, TargetSectionAttribute att) {
-	//		for (TargetSectionAttribute targetSectionAttribute : targetSection.getAttributes()) {
-	//			if(checkEquality(targetSectionAttribute, att)) {
-	//				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(this, att);
-	//				for (Setting setting : refs) {
-	//					setting.set(targetSectionAttribute);
-	//				}
-	//				return;
-	//			}
-	//		}
-	//	}
-
-	/**
-	 * This merges the given {@link TargetSectionReference} 'copy' into the the given {@link TargetSection}
-	 * 'targetSection'.  Merging in this case means that before adding the reference, the algorithm checks whether 
-	 * the 'same' reference is already present. If this is the case, the reference is not added but all references 
-	 * to it are redirected to the attribute already present in the target section.
-	 * 
-	 * @param targetSection
-	 * @param att
-	 */
-	//	private void merge(TargetSection targetSection, TargetSectionReference ref) {
-	//		for (TargetSectionReference targetSectionReference : targetSection.getReferences()) {
-	//			if(checkEquality(targetSectionReference, ref)) {
-	//				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.findAll(ref., this);
-	//				for (Setting setting : refs) {
-	//					setting.set(targetSectionReference);
-	//				}
-	//				return;
-	//			}
-	//		}
-	//	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean sourceSectionModelsHaveSameEPackage(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -994,7 +951,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean targetSectionModelsHaveSameEPackage(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -1061,6 +1017,48 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PamtramTables.STR_PAMTraM_c_c_targetSectionModelsHaveSameEPackage, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
 	}
+
+	/**
+	 * This merges the given {@link TargetSectionAttribute} 'copy' into the the given {@link TargetSection}
+	 * 'targetSection'. Merging in this case means that before adding the attribute, the algorithm checks whether 
+	 * the 'same' attribute is already present. If this is the case, the attribute is not added but all references 
+	 * to it are redirected to the attribute already present in the target section.
+	 * 
+	 * @param targetSection
+	 * @param att
+	 */
+	//	private void merge(TargetSection targetSection, TargetSectionAttribute att) {
+	//		for (TargetSectionAttribute targetSectionAttribute : targetSection.getAttributes()) {
+	//			if(checkEquality(targetSectionAttribute, att)) {
+	//				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(this, att);
+	//				for (Setting setting : refs) {
+	//					setting.set(targetSectionAttribute);
+	//				}
+	//				return;
+	//			}
+	//		}
+	//	}
+
+	/**
+	 * This merges the given {@link TargetSectionReference} 'copy' into the the given {@link TargetSection}
+	 * 'targetSection'.  Merging in this case means that before adding the reference, the algorithm checks whether 
+	 * the 'same' reference is already present. If this is the case, the reference is not added but all references 
+	 * to it are redirected to the attribute already present in the target section.
+	 * 
+	 * @param targetSection
+	 * @param att
+	 */
+	//	private void merge(TargetSection targetSection, TargetSectionReference ref) {
+	//		for (TargetSectionReference targetSectionReference : targetSection.getReferences()) {
+	//			if(checkEquality(targetSectionReference, ref)) {
+	//				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.findAll(ref., this);
+	//				for (Setting setting : refs) {
+	//					setting.set(targetSectionReference);
+	//				}
+	//				return;
+	//			}
+	//		}
+	//	}
 
 	/**
 	 * <!-- begin-user-doc -->

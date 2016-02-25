@@ -3278,7 +3278,7 @@ public interface MetamodelPackage extends EPackage {
 	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE = ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference.
+	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3351,7 +3351,7 @@ public interface MetamodelPackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT__TYPE = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference.
+	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3433,7 +3433,7 @@ public interface MetamodelPackage extends EPackage {
 	int EQUALITY_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference.
+	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3515,7 +3515,7 @@ public interface MetamodelPackage extends EPackage {
 	int SUBSTRING_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference.
+	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3597,7 +3597,7 @@ public interface MetamodelPackage extends EPackage {
 	int BEGINNING_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference.
+	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3679,7 +3679,7 @@ public interface MetamodelPackage extends EPackage {
 	int ENDING_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference.
+	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3761,7 +3761,7 @@ public interface MetamodelPackage extends EPackage {
 	int REG_EX_MATCHER__TYPE = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference.
+	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3944,7 +3944,7 @@ public interface MetamodelPackage extends EPackage {
 	int RANGE_BOUND = 35;
 
 	/**
-	 * The feature id for the '<em><b>Bound Reference Value</b></em>' reference.
+	 * The feature id for the '<em><b>Bound Reference Value</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5043,10 +5043,10 @@ public interface MetamodelPackage extends EPackage {
 	EClass getRangeBound();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.metamodel.RangeBound#getBoundReferenceValue <em>Bound Reference Value</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.metamodel.RangeBound#getBoundReferenceValue <em>Bound Reference Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Bound Reference Value</em>'.
+	 * @return the meta object for the reference list '<em>Bound Reference Value</em>'.
 	 * @see pamtram.metamodel.RangeBound#getBoundReferenceValue()
 	 * @see #getRangeBound()
 	 * @generated
@@ -5086,10 +5086,10 @@ public interface MetamodelPackage extends EPackage {
 	EClass getSingleReferenceAttributeValueConstraint();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValue <em>Constraint Reference Value</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValue <em>Constraint Reference Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Constraint Reference Value</em>'.
+	 * @return the meta object for the reference list '<em>Constraint Reference Value</em>'.
 	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValue()
 	 * @see #getSingleReferenceAttributeValueConstraint()
 	 * @generated
@@ -6044,7 +6044,7 @@ public interface MetamodelPackage extends EPackage {
 		EClass RANGE_BOUND = eINSTANCE.getRangeBound();
 
 		/**
-		 * The meta object literal for the '<em><b>Bound Reference Value</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bound Reference Value</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -6078,7 +6078,7 @@ public interface MetamodelPackage extends EPackage {
 		EClass SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT = eINSTANCE.getSingleReferenceAttributeValueConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraint Reference Value</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Constraint Reference Value</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

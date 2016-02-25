@@ -5,7 +5,6 @@ package pamtram.metamodel.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -419,7 +418,6 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean containerIsValid(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -496,7 +494,6 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean cardinalityIsValid(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -631,7 +628,6 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eClassMatchesParentEReference(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 

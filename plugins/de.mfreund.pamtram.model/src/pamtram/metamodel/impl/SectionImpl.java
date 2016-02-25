@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -158,7 +157,6 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean extendsValidSections(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 

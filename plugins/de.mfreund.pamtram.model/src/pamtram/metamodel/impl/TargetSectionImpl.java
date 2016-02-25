@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -234,7 +233,6 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isReferencedByMappingHintGroup(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -306,7 +304,6 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean extendsValidSections(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -352,7 +349,6 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean containerMatchesExtendContainer(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 

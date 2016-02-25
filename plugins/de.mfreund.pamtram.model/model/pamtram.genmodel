@@ -211,9 +211,7 @@
       <genClasses ecoreClass="pamtram.ecore#//metamodel/VirtualAttribute"/>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/EqualityMatcher"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/AttributeValueConstraint">
-        <genOperations ecoreOperation="pamtram.ecore#//metamodel/AttributeValueConstraint/checkConstraint">
-          <genParameters ecoreParameter="pamtram.ecore#//metamodel/AttributeValueConstraint/checkConstraint/attrValue"/>
-        </genOperations>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/AttributeValueConstraint/type"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/SubstringMatcher"/>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/BeginningMatcher"/>
@@ -235,12 +233,20 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/RangeBound/expression"/>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/SingleReferenceAttributeValueConstraint">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/SingleReferenceAttributeValueConstraint/type"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/SingleReferenceAttributeValueConstraint/constraintReferenceValue"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/SingleReferenceAttributeValueConstraint/expression"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/SingleReferenceAttributeValueConstraint/checkConstraint">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/SingleReferenceAttributeValueConstraint/checkConstraint/attrValue"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/SingleReferenceAttributeValueConstraint/checkConstraint/refValue"/>
+        </genOperations>
       </genClasses>
-      <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/MultipleReferencesAttributeValueConstraint"/>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/MultipleReferencesAttributeValueConstraint">
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/MultipleReferencesAttributeValueConstraint/checkConstraint">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/MultipleReferencesAttributeValueConstraint/checkConstraint/attrValue"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/MultipleReferencesAttributeValueConstraint/checkConstraint/refValue"/>
+        </genOperations>
+      </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/InstancePointer">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/InstancePointer/attributePointer"/>

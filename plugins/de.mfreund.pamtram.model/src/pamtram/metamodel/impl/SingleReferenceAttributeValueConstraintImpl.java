@@ -4,15 +4,15 @@ package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.ReferenceableElement;
 
 import pamtram.impl.NamedElementImpl;
@@ -58,14 +58,14 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	protected AttributeValueConstraintType type = TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getConstraintReferenceValue() <em>Constraint Reference Value</em>}' reference.
+	 * The cached value of the '{@link #getConstraintReferenceValue() <em>Constraint Reference Value</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConstraintReferenceValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected ReferenceableElement constraintReferenceValue;
+	protected EList<ReferenceableElement> constraintReferenceValue;
 
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
@@ -132,37 +132,11 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceableElement getConstraintReferenceValue() {
-		if (constraintReferenceValue != null && constraintReferenceValue.eIsProxy()) {
-			InternalEObject oldConstraintReferenceValue = (InternalEObject)constraintReferenceValue;
-			constraintReferenceValue = (ReferenceableElement)eResolveProxy(oldConstraintReferenceValue);
-			if (constraintReferenceValue != oldConstraintReferenceValue) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE, oldConstraintReferenceValue, constraintReferenceValue));
-			}
+	public EList<ReferenceableElement> getConstraintReferenceValue() {
+		if (constraintReferenceValue == null) {
+			constraintReferenceValue = new EObjectResolvingEList<ReferenceableElement>(ReferenceableElement.class, this, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE);
 		}
 		return constraintReferenceValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReferenceableElement basicGetConstraintReferenceValue() {
-		return constraintReferenceValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraintReferenceValue(ReferenceableElement newConstraintReferenceValue) {
-		ReferenceableElement oldConstraintReferenceValue = constraintReferenceValue;
-		constraintReferenceValue = newConstraintReferenceValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE, oldConstraintReferenceValue, constraintReferenceValue));
 	}
 
 	/**
@@ -206,8 +180,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
 				return getType();
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE:
-				if (resolve) return getConstraintReferenceValue();
-				return basicGetConstraintReferenceValue();
+				return getConstraintReferenceValue();
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION:
 				return getExpression();
 		}
@@ -219,6 +192,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -226,7 +200,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 				setType((AttributeValueConstraintType)newValue);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE:
-				setConstraintReferenceValue((ReferenceableElement)newValue);
+				getConstraintReferenceValue().clear();
+				getConstraintReferenceValue().addAll((Collection<? extends ReferenceableElement>)newValue);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION:
 				setExpression((String)newValue);
@@ -247,7 +222,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 				setType(TYPE_EDEFAULT);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE:
-				setConstraintReferenceValue((ReferenceableElement)null);
+				getConstraintReferenceValue().clear();
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
@@ -267,7 +242,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
 				return type != TYPE_EDEFAULT;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE:
-				return constraintReferenceValue != null;
+				return constraintReferenceValue != null && !constraintReferenceValue.isEmpty();
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 		}

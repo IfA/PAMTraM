@@ -2,14 +2,15 @@
  */
 package pamtram.metamodel.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.ReferenceableElement;
 
 import pamtram.metamodel.AttributeValueConstraintType;
@@ -33,14 +34,14 @@ import pamtram.metamodel.RangeBound;
  */
 public class RangeBoundImpl extends MinimalEObjectImpl.Container implements RangeBound {
 	/**
-	 * The cached value of the '{@link #getBoundReferenceValue() <em>Bound Reference Value</em>}' reference.
+	 * The cached value of the '{@link #getBoundReferenceValue() <em>Bound Reference Value</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getBoundReferenceValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected ReferenceableElement boundReferenceValue;
+	protected EList<ReferenceableElement> boundReferenceValue;
 
 	/**
 	 * The default value of the '{@link #getBoundType() <em>Bound Type</em>}' attribute.
@@ -106,37 +107,11 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceableElement getBoundReferenceValue() {
-		if (boundReferenceValue != null && boundReferenceValue.eIsProxy()) {
-			InternalEObject oldBoundReferenceValue = (InternalEObject)boundReferenceValue;
-			boundReferenceValue = (ReferenceableElement)eResolveProxy(oldBoundReferenceValue);
-			if (boundReferenceValue != oldBoundReferenceValue) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE, oldBoundReferenceValue, boundReferenceValue));
-			}
+	public EList<ReferenceableElement> getBoundReferenceValue() {
+		if (boundReferenceValue == null) {
+			boundReferenceValue = new EObjectResolvingEList<ReferenceableElement>(ReferenceableElement.class, this, MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE);
 		}
 		return boundReferenceValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReferenceableElement basicGetBoundReferenceValue() {
-		return boundReferenceValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBoundReferenceValue(ReferenceableElement newBoundReferenceValue) {
-		ReferenceableElement oldBoundReferenceValue = boundReferenceValue;
-		boundReferenceValue = newBoundReferenceValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE, oldBoundReferenceValue, boundReferenceValue));
 	}
 
 	/**
@@ -190,8 +165,7 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE:
-				if (resolve) return getBoundReferenceValue();
-				return basicGetBoundReferenceValue();
+				return getBoundReferenceValue();
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
 				return getBoundType();
 			case MetamodelPackage.RANGE_BOUND__EXPRESSION:
@@ -205,11 +179,13 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE:
-				setBoundReferenceValue((ReferenceableElement)newValue);
+				getBoundReferenceValue().clear();
+				getBoundReferenceValue().addAll((Collection<? extends ReferenceableElement>)newValue);
 				return;
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
 				setBoundType((AttributeValueConstraintType)newValue);
@@ -230,7 +206,7 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE:
-				setBoundReferenceValue((ReferenceableElement)null);
+				getBoundReferenceValue().clear();
 				return;
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
 				setBoundType(BOUND_TYPE_EDEFAULT);
@@ -251,7 +227,7 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE:
-				return boundReferenceValue != null;
+				return boundReferenceValue != null && !boundReferenceValue.isEmpty();
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
 				return boundType != BOUND_TYPE_EDEFAULT;
 			case MetamodelPackage.RANGE_BOUND__EXPRESSION:

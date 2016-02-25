@@ -2,20 +2,12 @@
  */
 package pamtram.condition.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.SingleConditionOperator;
@@ -46,14 +38,14 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 	protected ComplexCondition condPart;
 
 	/**
-	 * The cached value of the '{@link #getCondPartRef() <em>Cond Part Ref</em>}' reference list.
+	 * The cached value of the '{@link #getCondPartRef() <em>Cond Part Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCondPartRef()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ComplexCondition> condPartRef;
+	protected ComplexCondition condPartRef;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,11 +114,37 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ComplexCondition> getCondPartRef() {
-		if (condPartRef == null) {
-			condPartRef = new EObjectResolvingEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF);
+	public ComplexCondition getCondPartRef() {
+		if (condPartRef != null && condPartRef.eIsProxy()) {
+			InternalEObject oldCondPartRef = (InternalEObject)condPartRef;
+			condPartRef = (ComplexCondition)eResolveProxy(oldCondPartRef);
+			if (condPartRef != oldCondPartRef) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF, oldCondPartRef, condPartRef));
+			}
 		}
 		return condPartRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexCondition basicGetCondPartRef() {
+		return condPartRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCondPartRef(ComplexCondition newCondPartRef) {
+		ComplexCondition oldCondPartRef = condPartRef;
+		condPartRef = newCondPartRef;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF, oldCondPartRef, condPartRef));
 	}
 
 	/**
@@ -154,7 +172,8 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART:
 				return getCondPart();
 			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF:
-				return getCondPartRef();
+				if (resolve) return getCondPartRef();
+				return basicGetCondPartRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -172,8 +191,7 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 				setCondPart((ComplexCondition)newValue);
 				return;
 			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF:
-				getCondPartRef().clear();
-				getCondPartRef().addAll((Collection<? extends ComplexCondition>)newValue);
+				setCondPartRef((ComplexCondition)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -191,7 +209,7 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 				setCondPart((ComplexCondition)null);
 				return;
 			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF:
-				getCondPartRef().clear();
+				setCondPartRef((ComplexCondition)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -208,7 +226,7 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART:
 				return condPart != null;
 			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF:
-				return condPartRef != null && !condPartRef.isEmpty();
+				return condPartRef != null;
 		}
 		return super.eIsSet(featureID);
 	}

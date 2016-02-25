@@ -408,7 +408,7 @@ public interface ConditionPackage extends EPackage {
 	int SINGLE_CONDITION_OPERATOR__COND_PART = COMPLEX_CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Cond Part Ref</b></em>' reference list.
+	 * The feature id for the '<em><b>Cond Part Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -472,7 +472,7 @@ public interface ConditionPackage extends EPackage {
 	int NOT__COND_PART = SINGLE_CONDITION_OPERATOR__COND_PART;
 
 	/**
-	 * The feature id for the '<em><b>Cond Part Ref</b></em>' reference list.
+	 * The feature id for the '<em><b>Cond Part Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -878,10 +878,10 @@ public interface ConditionPackage extends EPackage {
 	EReference getSingleConditionOperator_CondPart();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.condition.SingleConditionOperator#getCondPartRef <em>Cond Part Ref</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.condition.SingleConditionOperator#getCondPartRef <em>Cond Part Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Cond Part Ref</em>'.
+	 * @return the meta object for the reference '<em>Cond Part Ref</em>'.
 	 * @see pamtram.condition.SingleConditionOperator#getCondPartRef()
 	 * @see #getSingleConditionOperator()
 	 * @generated
@@ -1127,7 +1127,7 @@ public interface ConditionPackage extends EPackage {
 		EReference SINGLE_CONDITION_OPERATOR__COND_PART = eINSTANCE.getSingleConditionOperator_CondPart();
 
 		/**
-		 * The meta object literal for the '<em><b>Cond Part Ref</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Cond Part Ref</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -917,10 +917,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//condition/MultipleConditionOperator"/>
     <eClassifiers xsi:type="ecore:EClass" name="SingleConditionOperator" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condPart" lowerBound="1"
-          eType="#//condition/ComplexCondition" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condPartRef" upperBound="-1"
-          eType="#//condition/ComplexCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condPart" eType="#//condition/ComplexCondition"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condPartRef" eType="#//condition/ComplexCondition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//condition/SingleConditionOperator"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeCondition" eSuperTypes="#//condition/Condition">

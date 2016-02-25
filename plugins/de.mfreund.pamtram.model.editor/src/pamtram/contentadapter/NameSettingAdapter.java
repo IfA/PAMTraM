@@ -4,6 +4,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -11,7 +12,9 @@ import pamtram.NamedElement;
 import pamtram.PamtramPackage;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainmentReference;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 
 /**
@@ -71,17 +74,47 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 		if(n.getEventType() == Notification.ADD) {
 
 			if (n.getFeature() == MetamodelPackage.Literals.CLASS__REFERENCES){
-				if(n.getNewValue() instanceof ContainmentReference) {
-					// the notifying class
-					pamtram.metamodel.Class<?,?,?,?> c = (Class<?,?,?,?>) n.getNotifier();
+				
+				// the notifying class
+				pamtram.metamodel.Class<?,?,?,?> c = (Class<?,?,?,?>) n.getNotifier();
+
+				if(n.getNewValue() instanceof MetaModelSectionReference) {
+					
+					// the created non-containment reference
+					MetaModelSectionReference ref = (MetaModelSectionReference) n.getNewValue();
+
+					if(ref.getEReference() == null && c.getEClass() != null && ! c.getEClass().getEAllReferences().isEmpty()) {
+						
+						// set the first reference type of the class as default value for 
+						// the eReference reference
+						ref.setEReference(c.getEClass().getEAllReferences().get(0));
+					}
+				} else if(n.getNewValue() instanceof ContainmentReference) {
 
 					// the created containment reference
 					ContainmentReference<?,?,?,?> ref = (ContainmentReference<?,?,?,?>) n.getNewValue();
 
-					if(c.getEClass() != null && ! c.getEClass().getEAllContainments().isEmpty()) {
+					if(ref.getEReference() == null && c.getEClass() != null && ! c.getEClass().getEAllContainments().isEmpty()) {
 						// set the first containment reference type of the class as default value for 
 						// the eReference reference
 						ref.setEReference(c.getEClass().getEAllContainments().get(0));
+					}
+				} else if(n.getNewValue() instanceof NonContainmentReference) {
+					
+					// the created non-containment reference
+					NonContainmentReference<?,?,?,?> ref = (NonContainmentReference<?,?,?,?>) n.getNewValue();
+
+					if(ref.getEReference() == null && c.getEClass() != null && ! c.getEClass().getEAllReferences().isEmpty()) {
+						
+						// set the first non-containment reference type of the class as default value for 
+						// the eReference reference
+						for (EReference eReference : c.getEClass().getEAllReferences()) {
+							if(!eReference.isContainment()) {
+								ref.setEReference(eReference);
+								break;
+							}
+							
+						}
 					}
 				}
 			}

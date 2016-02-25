@@ -5,14 +5,17 @@ package pamtram.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeValueModifierSet;
@@ -27,6 +30,7 @@ import pamtram.mapping.Mapping;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link pamtram.impl.MappingModelImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getMapping <em>Mapping</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getGlobalValues <em>Global Values</em>}</li>
@@ -35,6 +39,26 @@ import pamtram.mapping.Mapping;
  * @generated
  */
 public class MappingModelImpl extends NamedElementImpl implements MappingModel {
+	/**
+	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDeactivated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DEACTIVATED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDeactivated()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean deactivated = DEACTIVATED_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getMapping() <em>Mapping</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -82,6 +106,27 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	@Override
 	protected EClass eStaticClass() {
 		return PamtramPackage.Literals.MAPPING_MODEL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isDeactivated() {
+		return deactivated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDeactivated(boolean newDeactivated) {
+		boolean oldDeactivated = deactivated;
+		deactivated = newDeactivated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.MAPPING_MODEL__DEACTIVATED, oldDeactivated, deactivated));
 	}
 
 	/**
@@ -168,6 +213,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case PamtramPackage.MAPPING_MODEL__DEACTIVATED:
+				return isDeactivated();
 			case PamtramPackage.MAPPING_MODEL__MAPPING:
 				return getMapping();
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
@@ -187,6 +234,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case PamtramPackage.MAPPING_MODEL__DEACTIVATED:
+				setDeactivated((Boolean)newValue);
+				return;
 			case PamtramPackage.MAPPING_MODEL__MAPPING:
 				getMapping().clear();
 				getMapping().addAll((Collection<? extends Mapping>)newValue);
@@ -211,6 +261,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case PamtramPackage.MAPPING_MODEL__DEACTIVATED:
+				setDeactivated(DEACTIVATED_EDEFAULT);
+				return;
 			case PamtramPackage.MAPPING_MODEL__MAPPING:
 				getMapping().clear();
 				return;
@@ -232,6 +285,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case PamtramPackage.MAPPING_MODEL__DEACTIVATED:
+				return deactivated != DEACTIVATED_EDEFAULT;
 			case PamtramPackage.MAPPING_MODEL__MAPPING:
 				return mapping != null && !mapping.isEmpty();
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
@@ -248,12 +303,60 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == DeactivatableElement.class) {
+			switch (derivedFeatureID) {
+				case PamtramPackage.MAPPING_MODEL__DEACTIVATED: return PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == DeactivatableElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED: return PamtramPackage.MAPPING_MODEL__DEACTIVATED;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case PamtramPackage.MAPPING_MODEL___GET_ACTIVE_MAPPINGS:
 				return getActiveMappings();
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (deactivated: ");
+		result.append(deactivated);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MappingModelImpl

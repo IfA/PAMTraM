@@ -25,7 +25,7 @@ import pamtram.mapping.Mapping;
  * @model
  * @generated
  */
-public interface MappingModel extends NamedElement {
+public interface MappingModel extends NamedElement, DeactivatableElement {
 	/**
 	 * Returns the value of the '<em><b>Mapping</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.mapping.Mapping}.

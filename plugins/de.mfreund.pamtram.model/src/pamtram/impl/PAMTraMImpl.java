@@ -341,32 +341,56 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public EList<Mapping> getActiveMappings() {
 		/**
-		 * self.mappingModel->collect(m | m.getActiveMappings())
+		 * 
+		 * self.mappingModel->select(m | m.deactivated = false)
+		 * ->collect(m | m.getActiveMappings())
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final /*@NonNull*/ /*@Thrown*/ List<MappingModel> mappingModel = this.getMappingModel();
 		final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_mappingModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_MappingModel, mappingModel);
-		/*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_Mapping);
+		/*@NonNull*/ /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(PamtramTables.ORD_CLSSid_MappingModel);
 		/*@Nullable*/ Iterator<?> ITERATOR_m = BOXED_mappingModel.iterator();
-		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
+		/*@NonNull*/ /*@Thrown*/ OrderedSetValue select;
 		while (true) {
 		    if (!ITERATOR_m.hasNext()) {
-		        collect = accumulator;
+		        select = accumulator;
 		        break;
 		    }
 		    /*@Nullable*/ /*@NonInvalid*/ MappingModel m = (MappingModel)ITERATOR_m.next();
 		    /**
-		     * m.getActiveMappings()
+		     * m.deactivated = false
 		     */
 		    if (m == null) {
+		        throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::DeactivatableElement::deactivated\'");
+		    }
+		    final /*@Thrown*/ boolean deactivated = m.isDeactivated();
+		    final /*@Thrown*/ boolean eq = !deactivated;
+		    //
+		    if (eq == ValueUtil.TRUE_VALUE) {
+		        accumulator.add(m);
+		    }
+		}
+		/*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_Mapping);
+		/*@Nullable*/ Iterator<?> ITERATOR_m_0 = select.iterator();
+		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
+		while (true) {
+		    if (!ITERATOR_m_0.hasNext()) {
+		        collect = accumulator_0;
+		        break;
+		    }
+		    /*@Nullable*/ /*@NonInvalid*/ MappingModel m_0 = (MappingModel)ITERATOR_m_0.next();
+		    /**
+		     * m.getActiveMappings()
+		     */
+		    if (m_0 == null) {
 		        throw new InvalidValueException("Null source for \'pamtram::MappingModel::getActiveMappings() : OrderedSet(pamtram::mapping::Mapping)\'");
 		    }
-		    final /*@NonNull*/ /*@Thrown*/ List<Mapping> getActiveMappings = m.getActiveMappings();
+		    final /*@NonNull*/ /*@Thrown*/ List<Mapping> getActiveMappings = m_0.getActiveMappings();
 		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_getActiveMappings = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_Mapping, getActiveMappings);
 		    //
 		    for (Object value : BOXED_getActiveMappings.flatten().getElements()) {
-		        accumulator.add(value);
+		        accumulator_0.add(value);
 		    }
 		}
 		final List<Mapping> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.Mapping.class);

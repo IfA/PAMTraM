@@ -5,6 +5,7 @@ package pamtram.mapping;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import pamtram.ConditionalElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='containsHintGroups containsDeactivatedHintGroups'"
  * @generated
  */
-public interface Mapping extends MappingType {
+public interface Mapping extends MappingType, ConditionalElement {
 	/**
 	 * Returns the value of the '<em><b>Mapping Hint Groups</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.mapping.MappingHintGroupType}.

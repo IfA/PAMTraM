@@ -2025,6 +2025,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		mappingTypeEClass.getESuperTypes().add(thePamtramPackage.getDeactivatableElement());
 		mappingEClass.getESuperTypes().add(this.getMappingType());
+		mappingEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		mappingHintGroupTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		instantiableMappingHintGroupEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		instantiableMappingHintGroupEClass.getESuperTypes().add(thePamtramPackage.getDeactivatableElement());
@@ -2033,6 +2034,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintGroupEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
 		mappingHintBaseTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		mappingHintEClass.getESuperTypes().add(this.getMappingHintType());
+		mappingHintEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		attributeMappingEClass.getESuperTypes().add(this.getMappingHint());
 		attributeMappingEClass.getESuperTypes().add(this.getExpressionHint());
 		attributeMappingEClass.getESuperTypes().add(this.getModifiableHint());

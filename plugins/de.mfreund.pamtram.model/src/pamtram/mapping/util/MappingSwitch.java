@@ -83,6 +83,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				Mapping mapping = (Mapping)theEObject;
 				T result = caseMapping(mapping);
 				if (result == null) result = caseMappingType(mapping);
+				if (result == null) result = caseConditionalElement(mapping);
 				if (result == null) result = caseNamedElement(mapping);
 				if (result == null) result = caseDeactivatableElement(mapping);
 				if (result == null) result = defaultCase(theEObject);
@@ -126,6 +127,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				MappingHint mappingHint = (MappingHint)theEObject;
 				T result = caseMappingHint(mappingHint);
 				if (result == null) result = caseMappingHintType(mappingHint);
+				if (result == null) result = caseConditionalElement(mappingHint);
 				if (result == null) result = caseMappingHintBaseType(mappingHint);
 				if (result == null) result = caseNamedElement(mappingHint);
 				if (result == null) result = defaultCase(theEObject);
@@ -151,6 +153,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiableHint(attributeMapping);
 				if (result == null) result = caseExpandableHint(attributeMapping);
 				if (result == null) result = caseMappingHintType(attributeMapping);
+				if (result == null) result = caseConditionalElement(attributeMapping);
 				if (result == null) result = caseMappingHintBaseType(attributeMapping);
 				if (result == null) result = caseNamedElement(attributeMapping);
 				if (result == null) result = defaultCase(theEObject);
@@ -161,6 +164,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseCardinalityMapping(cardinalityMapping);
 				if (result == null) result = caseMappingHint(cardinalityMapping);
 				if (result == null) result = caseMappingHintType(cardinalityMapping);
+				if (result == null) result = caseConditionalElement(cardinalityMapping);
 				if (result == null) result = caseMappingHintBaseType(cardinalityMapping);
 				if (result == null) result = caseNamedElement(cardinalityMapping);
 				if (result == null) result = defaultCase(theEObject);
@@ -171,6 +175,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseMappingInstanceSelector(mappingInstanceSelector);
 				if (result == null) result = caseMappingHint(mappingInstanceSelector);
 				if (result == null) result = caseMappingHintType(mappingInstanceSelector);
+				if (result == null) result = caseConditionalElement(mappingInstanceSelector);
 				if (result == null) result = caseMappingHintBaseType(mappingInstanceSelector);
 				if (result == null) result = caseNamedElement(mappingInstanceSelector);
 				if (result == null) result = defaultCase(theEObject);

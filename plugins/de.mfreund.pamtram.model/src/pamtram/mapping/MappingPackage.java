@@ -153,13 +153,31 @@ public interface MappingPackage extends EPackage {
 	int MAPPING__SOURCE_MM_SECTION = MAPPING_TYPE__SOURCE_MM_SECTION;
 
 	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING__CONDITION = MAPPING_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Condition Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING__CONDITION_REF = MAPPING_TYPE_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Mapping Hint Groups</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 0;
+	int MAPPING__MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Imported Mapping Hint Groups</b></em>' containment reference list.
@@ -168,7 +186,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 1;
+	int MAPPING__IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Global Variables</b></em>' containment reference list.
@@ -177,7 +195,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__GLOBAL_VARIABLES = MAPPING_TYPE_FEATURE_COUNT + 2;
+	int MAPPING__GLOBAL_VARIABLES = MAPPING_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -186,7 +204,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__ABSTRACT = MAPPING_TYPE_FEATURE_COUNT + 3;
+	int MAPPING__ABSTRACT = MAPPING_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Mapping</em>' class.
@@ -195,7 +213,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 4;
+	int MAPPING_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>Check Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___CHECK_CONDITION__COMPLEXCONDITION = MAPPING_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Active Mapping Hint Groups</em>' operation.
@@ -204,7 +231,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 0;
+	int MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Active Imported Mapping Hint Groups</em>' operation.
@@ -213,7 +240,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 1;
+	int MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Contains Hint Groups</em>' operation.
@@ -222,7 +249,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 2;
+	int MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Contains Deactivated Hint Groups</em>' operation.
@@ -231,7 +258,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 3;
+	int MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Mapping</em>' class.
@@ -240,7 +267,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 4;
+	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
@@ -712,13 +739,40 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT__NAME = MAPPING_HINT_TYPE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT__CONDITION = MAPPING_HINT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Condition Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT__CONDITION_REF = MAPPING_HINT_TYPE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 0;
+	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Check Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT___CHECK_CONDITION__COMPLEXCONDITION = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Hint</em>' class.
@@ -727,7 +781,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
+	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExpressionHintImpl <em>Expression Hint</em>}' class.
@@ -813,6 +867,24 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING__NAME = MAPPING_HINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__CONDITION = MAPPING_HINT__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Condition Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__CONDITION_REF = MAPPING_HINT__CONDITION_REF;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -856,6 +928,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Check Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING___CHECK_CONDITION__COMPLEXCONDITION = MAPPING_HINT___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -903,6 +984,24 @@ public interface MappingPackage extends EPackage {
 	int CARDINALITY_MAPPING__NAME = MAPPING_HINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__CONDITION = MAPPING_HINT__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Condition Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__CONDITION_REF = MAPPING_HINT__CONDITION_REF;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -928,6 +1027,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Check Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___CHECK_CONDITION__COMPLEXCONDITION = MAPPING_HINT___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
 	 * The operation id for the '<em>No Cardinality Mapping For Source Section Root</em>' operation.
@@ -993,6 +1101,24 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_INSTANCE_SELECTOR__NAME = MAPPING_HINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_INSTANCE_SELECTOR__CONDITION = MAPPING_HINT__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Condition Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_INSTANCE_SELECTOR__CONDITION_REF = MAPPING_HINT__CONDITION_REF;
+
+	/**
 	 * The feature id for the '<em><b>Affected Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1018,6 +1144,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPING_INSTANCE_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Check Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_INSTANCE_SELECTOR___CHECK_CONDITION__COMPLEXCONDITION = MAPPING_HINT___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
 	 * The operation id for the '<em>Affected Reference Matches Section</em>' operation.

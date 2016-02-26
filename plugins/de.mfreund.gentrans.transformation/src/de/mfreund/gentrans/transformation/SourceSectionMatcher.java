@@ -22,6 +22,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
+import pamtram.ConditionalElement;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
@@ -36,6 +37,7 @@ import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
@@ -391,10 +393,61 @@ public class SourceSectionMatcher extends CancellableElement {
 
 		return mappingData;
 	}
-
+	
+	/**
+	 * This recursively checks if a conditional {@link Mapping} is succeeded. If not, the whole {@link Mapping} will be discarded.
+	 * Otherwise all conditional {@link MappingHintGroup} will be checked in the same procedure. 
+	 * Of course, we do it the same way for all conditional {@link MappingHint}s. 
+	 * 
+	 * Note: This process is recursively and a nested procedure which saves time. In case of '<em><b>false</b></em>' other underneath ConditionalElements will be ignored and discarded.
+	 * @param mOld
+	 * 			represents the original {@link Mapping} 
+	 * @return The {@link Mapping} representing a simplified of the origin one. There are all ConditionalElements that returned '<em><b>false</b></em>' are extracted.
+	 */
 	private Mapping checkConditions(Mapping mOld) {
-		// TODO Auto-generated method stub
-		Mapping mNew = null;
+	
+		//Copy Mapping
+		Mapping mNew = mOld;
+		
+		// check Conditions of the Mapping (Note: no condition modeled = true)
+		if(mOld.checkCondition(mOld.getCondition()) && mOld.checkCondition(mOld.getConditionRef())) {
+			
+			// check Condition of corresponding MappingHintGroups
+			for (MappingHintGroupType mHintGroup : mOld.getMappingHintGroups()){
+				
+				if(((ConditionalElement) mHintGroup).checkCondition(((ConditionalElement) mHintGroup).getCondition()) && 
+						((ConditionalElement) mHintGroup).checkCondition(((ConditionalElement) mHintGroup).getConditionRef())){
+					
+					// check now Conditions of corresponding MappingHints
+					for(MappingHint mHint : mHintGroup.getMappingHints()){
+						
+						if(!(((ConditionalElement) mHintGroup).checkCondition(((ConditionalElement) mHintGroup).getCondition()) && 
+								((ConditionalElement) mHintGroup).checkCondition(((ConditionalElement) mHintGroup).getConditionRef()))){
+							
+							//Condition false, so remove it from copied Mapping
+							mHintGroup.getMappingHints().remove(mHintGroup);
+							break;
+						}
+					}
+				} else {
+					//Condition false, so remove it from copied Mapping
+					mNew.getMappingHintGroups().remove(mHintGroup);
+					break;
+				}
+			}
+			
+			// check Condition of corresponding IMPORTED MappingHintGroups
+			for (MappingHintGroupImporter mImportHintGroup : mOld.getImportedMappingHintGroups()){
+				
+				//Condition of imported MappingHintGroup false, than remove it from copied Mapping
+				if(!(((ConditionalElement) mImportHintGroup).checkCondition(((ConditionalElement) mImportHintGroup).getCondition()) && 
+						((ConditionalElement) mImportHintGroup).checkCondition(((ConditionalElement) mImportHintGroup).getConditionRef()))){
+					
+					mNew.getImportedMappingHintGroups().remove(mImportHintGroup);
+					break;
+				}
+			}
+		}
 		return mNew;
 	}
 

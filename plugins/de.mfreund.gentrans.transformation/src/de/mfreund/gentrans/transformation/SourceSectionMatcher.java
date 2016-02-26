@@ -354,6 +354,9 @@ public class SourceSectionMatcher extends CancellableElement {
 				 * check if the section that is referenced as 'container' can be matched
 				 */
 				boolean mappingFailed = !checkContainer(element, m.getSourceMMSection());
+				
+				//Simplify Mapping by checking conditions all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
+				Mapping mSimplified = checkConditions(m);
 
 				if (!mappingFailed) {
 
@@ -387,6 +390,12 @@ public class SourceSectionMatcher extends CancellableElement {
 		}
 
 		return mappingData;
+	}
+
+	private Mapping checkConditions(Mapping mOld) {
+		// TODO Auto-generated method stub
+		Mapping mNew = null;
+		return mNew;
 	}
 
 	/**

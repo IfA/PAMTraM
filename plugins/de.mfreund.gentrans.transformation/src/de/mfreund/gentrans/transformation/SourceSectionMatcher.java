@@ -358,11 +358,11 @@ public class SourceSectionMatcher extends CancellableElement {
 				//Simplify Mapping by checking conditions all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
 				Mapping mSimplified = checkConditions(m);
 
-				if (!mappingFailed) {
+				if (!mappingFailed && mSimplified != null) {
 
 					// check if the mapping is applicable and determine the (local) hint values
-					res = checkMapping(element, false, mappingHints.get(m), m.getGlobalVariables(),
-							m.getSourceMMSection(),
+					res = checkMapping(element, false, mappingHints.get(mSimplified), mSimplified.getGlobalVariables(),
+							mSimplified.getSourceMMSection(),
 							new MappingInstanceStorage());
 
 					if (canceled) {
@@ -377,13 +377,13 @@ public class SourceSectionMatcher extends CancellableElement {
 						 * now, determine the external hint values (the container must be present and valid as this was
 						 * already checked earlier); found values are added to the given MappingInstanceStorage
 						 */
-						mappingFailed = determineExternalHintValues(m, res, mappingFailed);
+						mappingFailed = determineExternalHintValues(mSimplified, res, mappingFailed);
 					}
 
 					if (!mappingFailed) {
 						// all checks were successful -> the mapping is applicable
-						res.setMapping(m);
-						mappingData.put(m, res);
+						res.setMapping(mSimplified);
+						mappingData.put(mSimplified, res);
 					}
 				}
 			}

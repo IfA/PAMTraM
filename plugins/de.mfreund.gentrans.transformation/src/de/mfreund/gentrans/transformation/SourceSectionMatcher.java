@@ -421,11 +421,11 @@ public class SourceSectionMatcher extends CancellableElement {
 					// check now Conditions of corresponding MappingHints
 					for(MappingHint mHint : mHintGroup.getMappingHints()){
 						
-						if(!(((ConditionalElement) mHintGroup).checkCondition(((ConditionalElement) mHintGroup).getCondition()) && 
-								((ConditionalElement) mHintGroup).checkCondition(((ConditionalElement) mHintGroup).getConditionRef()))){
+						if(!(((ConditionalElement) mHint).checkCondition(((ConditionalElement) mHint).getCondition()) && 
+								((ConditionalElement) mHint).checkCondition(((ConditionalElement) mHint).getConditionRef()))){
 							
 							//Condition false, so remove it from copied Mapping
-							mHintGroup.getMappingHints().remove(mHintGroup);
+							mHintGroup.getMappingHints().remove(mHint);
 							break;
 						}
 					}

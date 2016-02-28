@@ -447,6 +447,8 @@ public class SourceSectionMatcher extends CancellableElement {
 					break;
 				}
 			}
+		} else {
+			mNew = null; // Condition false!
 		}
 		return mNew;
 	}

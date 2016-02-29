@@ -11,12 +11,12 @@ import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.GlobalValue;
+import pamtram.mapping.FixedValue;
 
 /**
  * A content provider for a viewer that displays the {@link MappingModel MappingModels} and the
  * contained {@link AttributeValueModifierSet AttributeValueModifierSets} as well as the
- * {@link GlobalValue GlobalValues}.
+ * {@link FixedValue GlobalValues}.
  * 
  * @author mfreund
  */

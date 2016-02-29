@@ -158,10 +158,14 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean checkCondition(final ComplexCondition condition) {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!ConditionalElement!checkCondition(http://mfreund.de/pamtram/condition!ComplexCondition)
+		if(condition == null){ //Note that no condition modeled means true!!
+			return true;
+		} else {
+			return condition.checkCondition(condition);
+		}
 	}
 
 	/**

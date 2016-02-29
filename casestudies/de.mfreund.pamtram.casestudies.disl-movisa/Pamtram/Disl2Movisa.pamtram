@@ -17,7 +17,7 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
                 <attribute xsi:type="ecore:EAttribute" href="http://disl#//Meta/name"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="modell-ID" value="modell-ID"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="modell-ID" expression="modell-ID"/>
               </attributes>
             </value>
             <value xsi:type="metamodel:SourceSectionClass" name="MetaOther" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0">
@@ -49,7 +49,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="interfaceId">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Interface/id"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ende" type="EXCLUSION" value="Ende"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ende" type="EXCLUSION" expression="Ende"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="state">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Interface/state"/>
@@ -72,11 +72,11 @@
           <eClass xsi:type="ecore:EClass" href="http://disl#//IfTrue"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="expression">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/expression"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="expression_Constraint" value="and"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="expression_Constraint" expression="and"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="negation">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/negation"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="negation_Constraint" value="no"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="negation_Constraint" expression="no"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="ruleId">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/ruleId"/>
@@ -108,11 +108,11 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="constant1">
                 <attribute xsi:type="ecore:EAttribute" href="http://disl#//Statement/constant1"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="boolean" value="boolean"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="boolean" expression="boolean"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="assignment">
                 <attribute xsi:type="ecore:EAttribute" href="http://disl#//Statement/assignment"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="assignment_Constraint" value="set"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="assignment_Constraint" expression="set"/>
               </attributes>
             </value>
           </references>
@@ -124,11 +124,11 @@
           <eClass xsi:type="ecore:EClass" href="http://disl#//IfTrue"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="expression">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/expression"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="expression_Constraint" value="and"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="expression_Constraint" expression="and"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="negation">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/negation"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="negation_Constraint" value="no"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="negation_Constraint" expression="no"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="ruleId">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/ruleId"/>
@@ -160,11 +160,11 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="constant1">
                 <attribute xsi:type="ecore:EAttribute" href="http://disl#//Statement/constant1"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="integer" value="integer"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="integer" expression="integer"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="assignment">
                 <attribute xsi:type="ecore:EAttribute" href="http://disl#//Statement/assignment"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="assignment_Constraint" value="set"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="assignment_Constraint" expression="set"/>
               </attributes>
             </value>
           </references>
@@ -176,11 +176,11 @@
           <eClass xsi:type="ecore:EClass" href="http://disl#//IfTrue"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="expression">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/expression"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="expression_Constraint" value="and"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="expression_Constraint" expression="and"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="negation">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/negation"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="negation_Constraint" value="no"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="negation_Constraint" expression="no"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="ruleId">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/ruleId"/>
@@ -216,7 +216,7 @@
                   </attributes>
                   <attributes xsi:type="metamodel:SourceSectionAttribute" name="propertyId">
                     <attribute xsi:type="ecore:EAttribute" href="http://disl#//PropertyContent/propertyId"/>
-                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="value" value="value"/>
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="value" expression="value"/>
                   </attributes>
                 </value>
               </references>
@@ -228,7 +228,7 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="assignment">
                 <attribute xsi:type="ecore:EAttribute" href="http://disl#//Statement/assignment"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="assignment_Constraint" value="set"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="assignment_Constraint" expression="set"/>
               </attributes>
             </value>
           </references>
@@ -240,11 +240,11 @@
           <eClass xsi:type="ecore:EClass" href="http://disl#//IfTrue"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="expression">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/expression"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="expression_Constraint" value="and"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="expression_Constraint" expression="and"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="negation">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/negation"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="negation_Constraint" value="no"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="negation_Constraint" expression="no"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="ruleId">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//IfTrue/ruleId"/>
@@ -256,7 +256,7 @@
       <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="command" value="command"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="command" expression="command"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
@@ -273,11 +273,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="command"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="command"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="title"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="title"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyDescription">
@@ -287,11 +287,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="command"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="command"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="description"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="description"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyHelp">
@@ -301,11 +301,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="command"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="command"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="help"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="help"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertySelected">
@@ -315,11 +315,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="command"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="command"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="selected"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="selected"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyOther" cardinality="ZERO__INFINITY">
@@ -346,17 +346,17 @@
                   <eClass xsi:type="ecore:EClass" href="http://disl#//PropertyContent"/>
                   <attributes xsi:type="metamodel:SourceSectionAttribute" name="propertyId">
                     <attribute xsi:type="ecore:EAttribute" href="http://disl#//PropertyContent/propertyId"/>
-                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="propertyId_Constraint" value="selected"/>
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="propertyId_Constraint" expression="selected"/>
                   </attributes>
                   <attributes xsi:type="metamodel:SourceSectionAttribute" name="widgetId">
                     <attribute xsi:type="ecore:EAttribute" href="http://disl#//PropertyContent/widgetId"/>
-                    <valueConstraint xsi:type="metamodel:EndingMatcher" name="_Confirm" value="_Confirm"/>
+                    <valueConstraint xsi:type="metamodel:EndingMatcher" name="_Confirm" expression="_Confirm"/>
                   </attributes>
                 </value>
               </references>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="constant">
                 <attribute xsi:type="ecore:EAttribute" href="http://disl#//Equal/constant"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" value="yes"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" expression="yes"/>
               </attributes>
             </value>
           </references>
@@ -373,7 +373,7 @@
       <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="textfield" value="textfield"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="textfield" expression="textfield"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
@@ -390,11 +390,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textfield"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="title"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="title"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyDescription">
@@ -404,11 +404,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textfield"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="description"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="description"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyVisible">
@@ -418,11 +418,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textfield"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="visible"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="visible"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyActivated">
@@ -432,11 +432,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textfield"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="activated"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="activated"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyValue">
@@ -446,11 +446,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textfield"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="value"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="value"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyOther">
@@ -465,7 +465,7 @@
       <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="textbox" value="textbox"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="textbox" expression="textbox"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
@@ -482,11 +482,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textbox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="title"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="title"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyDescription">
@@ -496,11 +496,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textbox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="description"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="description"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyHelp">
@@ -510,11 +510,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textbox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="help"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="help"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyVisible">
@@ -524,11 +524,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textbox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="visible"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="visible"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyActivated">
@@ -538,11 +538,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textbox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="activated"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="activated"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyModified">
@@ -552,11 +552,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="textbox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="modified"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="modified"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyOther" cardinality="ZERO__INFINITY">
@@ -575,7 +575,7 @@
           <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="variablefield"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="variablefield"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
@@ -584,7 +584,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="choicegroup"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="choicegroup"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
@@ -601,11 +601,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="choicegroup"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="choicegroup"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="title"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="title"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyDescription">
@@ -615,11 +615,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="choicegroup"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="choicegroup"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="description"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="description"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyHelp">
@@ -629,11 +629,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="choicegroup"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="choicegroup"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="help"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="help"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyVisible">
@@ -643,11 +643,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="choicegroup"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="choicegroup"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="visible"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="visible"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyActivated">
@@ -657,11 +657,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="choicegroup"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="choicegroup"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="activated"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="activated"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyOther" cardinality="ZERO__INFINITY">
@@ -683,11 +683,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="variablefield"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="variablefield"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="title"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="title"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyValue">
@@ -697,11 +697,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="variablefield"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="variablefield"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="value"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="value"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyOther" cardinality="ZERO__INFINITY">
@@ -728,17 +728,17 @@
                   <eClass xsi:type="ecore:EClass" href="http://disl#//PropertyContent"/>
                   <attributes xsi:type="metamodel:SourceSectionAttribute" name="propertyId">
                     <attribute xsi:type="ecore:EAttribute" href="http://disl#//PropertyContent/propertyId"/>
-                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="propertyId_Constraint" value="selected"/>
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="propertyId_Constraint" expression="selected"/>
                   </attributes>
                   <attributes xsi:type="metamodel:SourceSectionAttribute" name="widgetId">
                     <attribute xsi:type="ecore:EAttribute" href="http://disl#//PropertyContent/widgetId"/>
-                    <valueConstraint xsi:type="metamodel:RegExMatcher" name="[a-zA-Z0-9_]+_Select_Option_[0-9]$" value="[a-zA-Z0-9_]+_Select_Option_[0-9]$"/>
+                    <valueConstraint xsi:type="metamodel:RegExMatcher" name="[a-zA-Z0-9_]+_Select_Option_[0-9]$" expression="[a-zA-Z0-9_]+_Select_Option_[0-9]$"/>
                   </attributes>
                 </value>
               </references>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="constant">
                 <attribute xsi:type="ecore:EAttribute" href="http://disl#//Equal/constant"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" value="yes"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" expression="yes"/>
               </attributes>
             </value>
           </references>
@@ -755,7 +755,7 @@
       <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="variablebox"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="variablebox"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
@@ -772,11 +772,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="variablebox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="variablebox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="title"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="title"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyDescription">
@@ -786,11 +786,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="variablebox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="variablebox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="description"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="description"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyHelp">
@@ -800,11 +800,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="variablebox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="variablebox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="help"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="help"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyVisible">
@@ -814,11 +814,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="variablebox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="variablebox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="visible"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="visible"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyActivated">
@@ -828,11 +828,11 @@
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/genericWidget"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="variablebox"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" expression="variablebox"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
             <attribute xsi:type="ecore:EAttribute" href="http://disl#//Property/id"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="activated"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" expression="activated"/>
           </attributes>
         </value>
         <value xsi:type="metamodel:SourceSectionClass" name="PropertyOther" cardinality="ZERO__INFINITY">
@@ -859,17 +859,17 @@
                   <eClass xsi:type="ecore:EClass" href="http://disl#//PropertyContent"/>
                   <attributes xsi:type="metamodel:SourceSectionAttribute" name="propertyId">
                     <attribute xsi:type="ecore:EAttribute" href="http://disl#//PropertyContent/propertyId"/>
-                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="propertyId_Constraint" value="selected"/>
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="propertyId_Constraint" expression="selected"/>
                   </attributes>
                   <attributes xsi:type="metamodel:SourceSectionAttribute" name="widgetId">
                     <attribute xsi:type="ecore:EAttribute" href="http://disl#//PropertyContent/widgetId"/>
-                    <valueConstraint xsi:type="metamodel:EndingMatcher" name="_Input" value="_Input"/>
+                    <valueConstraint xsi:type="metamodel:EndingMatcher" name="_Input" expression="_Input"/>
                   </attributes>
                 </value>
               </references>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="constant">
                 <attribute xsi:type="ecore:EAttribute" href="http://disl#//Equal/constant"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" value="yes"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" expression="yes"/>
               </attributes>
             </value>
           </references>
@@ -886,7 +886,7 @@
       <eClass xsi:type="ecore:EClass" href="http://disl#//InterfaceChange"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="interfaceId">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//InterfaceChange/interfaceId"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ende" type="EXCLUSION" value="Ende"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ende" type="EXCLUSION" expression="Ende"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="IntegerVariable">
@@ -896,7 +896,7 @@
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="constant">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/constant"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" value="no"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" expression="no"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/id"/>
@@ -906,15 +906,15 @@
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="internal">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/internal"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="internal_Constraint" value="no"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="internal_Constraint" expression="no"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/type"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="type_Constraint" value="integer"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="type_Constraint" expression="integer"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="widgetpointer">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/widgetpointer"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="widgetpointer_Constraint" value="none"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="widgetpointer_Constraint" expression="none"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="BooleanVariable">
@@ -924,7 +924,7 @@
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="constant">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/constant"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" value="no"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="constant_Constraint" expression="no"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/id"/>
@@ -934,15 +934,15 @@
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="internal">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/internal"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="internal_Constraint" value="no"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="internal_Constraint" expression="no"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/type"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="type_Constraint" value="boolean"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="type_Constraint" expression="boolean"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="widgetpointer">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/widgetpointer"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="widgetpointer_Constraint" value="none"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="widgetpointer_Constraint" expression="none"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>

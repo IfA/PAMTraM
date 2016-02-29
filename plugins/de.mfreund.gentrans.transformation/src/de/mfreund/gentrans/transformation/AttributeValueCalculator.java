@@ -65,18 +65,18 @@ public class AttributeValueCalculator {
 	 * 		the hint values for one instance that is created.
 	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
 	 */
+	@SuppressWarnings("unchecked")
 	public String calculateAttributeValue(
 			final TargetSectionAttribute attr,
 			MappingHint hint, 
 			Object attrHintValueList) {
 		String attrValue = null;
-		if (attrHintValueList != null) {
-			
+		if (attrHintValueList != null && attrHintValueList instanceof LinkedList<?>) {
+
 			// this is the map of hint values that we will use for this calculation
-			@SuppressWarnings("unchecked")
 			Map<?, AttributeValueRepresentation> attrHintValues = 
 					((LinkedList<Map<?, AttributeValueRepresentation>>) attrHintValueList).removeFirst(); 
-			
+
 			// determine the value of the 'expression' attribute
 			String expression = "";
 			if (hint instanceof AttributeMapping) {

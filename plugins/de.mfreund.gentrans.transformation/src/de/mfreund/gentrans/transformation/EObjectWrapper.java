@@ -4,16 +4,17 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.FileTypeEnum;
-import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.VirtualAttribute;
@@ -227,7 +228,19 @@ public class EObjectWrapper {
 
 		final Object srcAttr = eObject.eGet(attr);
 		try {
-			return attr.getEType().getEPackage().getEFactoryInstance().convertToString(attr.getEAttributeType(), srcAttr);
+			if(!attr.isMany()) {
+				return attr.getEType().getEPackage().getEFactoryInstance().convertToString(attr.getEAttributeType(), srcAttr);				
+			} else {
+				String ret = "";
+				Iterator<?> it = ((EList<?>) srcAttr).iterator();
+				while(it.hasNext()) {
+					ret += attr.getEType().getEPackage().getEFactoryInstance().convertToString(attr.getEAttributeType(), it.next());
+					if(it.hasNext()) {
+						ret += "; ";
+					}
+				}
+				return ret;
+			}
 		} catch (final Exception e) {
 			e.printStackTrace(System.out);
 			return srcAttr.toString();

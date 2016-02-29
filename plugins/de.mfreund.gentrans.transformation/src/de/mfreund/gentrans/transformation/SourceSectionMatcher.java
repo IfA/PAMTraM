@@ -519,12 +519,7 @@ public class SourceSectionMatcher extends CancellableElement {
 					changedRefsAndHints.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, true);
 				}
 			} else if (hint instanceof ModelConnectionHint) {
-				if (newRefsAndHints.getHintValues().containsHint(hint)) {
-					changedRefsAndHints.getHintValues().getHintValues((ModelConnectionHint) hint).addAll(
-							newRefsAndHints.getHintValues().getHintValues((ModelConnectionHint) hint));
-				} else {
-					changedRefsAndHints.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) hint, true);
-				}
+				changedRefsAndHints.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) hint, true);
 			}
 
 		}
@@ -670,8 +665,8 @@ public class SourceSectionMatcher extends CancellableElement {
 			if (h instanceof AttributeMapping) {
 				AttributeMapping attributeMapping = (AttributeMapping) h;
 
-				if (!(attributeMappingsFound.contains(h) && deepestSourceSectionClassesByAttributeMapping
-						.get(h).contains(srcSection))) {
+				if (!(attributeMappingsFound.contains(h)) && deepestSourceSectionClassesByAttributeMapping
+						.get(h).contains(srcSection)) {
 					changedRefsAndHints.getHintValues().removeHintValue(attributeMapping); // remove incomplete hint value
 				} else if (deepestSourceSectionClassesByAttributeMapping
 						.get(h).size() > 1) {
@@ -682,12 +677,13 @@ public class SourceSectionMatcher extends CancellableElement {
 							changedRefsAndHints.getHintValues().removeHintValue(attributeMapping);
 					changedRefsAndHints.getUnsyncedHintValues().addHintValue(attributeMapping, srcSection, val);
 				}
+
 			} else if (h instanceof MappingInstanceSelector) {
 				MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) h;
 
 				if (mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {
-					if (!(attributeMatchersFound.contains(mappingInstanceSelector.getMatcher()) && 
-							deepestSourceSectionClassesByAttributeMatcher.get(mappingInstanceSelector.getMatcher()).contains(srcSection))) {
+					if (!(attributeMatchersFound.contains(mappingInstanceSelector.getMatcher())) && 
+							deepestSourceSectionClassesByAttributeMatcher.get(mappingInstanceSelector.getMatcher()).contains(srcSection)) {
 						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
 					} else if (deepestSourceSectionClassesByAttributeMatcher.get(((MappingInstanceSelector) h).getMatcher()).size() > 1) {
 
@@ -699,8 +695,8 @@ public class SourceSectionMatcher extends CancellableElement {
 			} else if (h instanceof ModelConnectionHint) {
 				ModelConnectionHint modelConnectionHint = (ModelConnectionHint) h;
 
-				if (!(modelConnectionHintsFound.contains(h) && 
-						deepestSourceSectionClassesByModelConnectionHint.get(h).contains(srcSection))) {
+				if (!(modelConnectionHintsFound.contains(h)) && 
+						deepestSourceSectionClassesByModelConnectionHint.get(h).contains(srcSection)) {
 					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
 				} else if (deepestSourceSectionClassesByModelConnectionHint.get(h).size() > 1) {
 
@@ -709,7 +705,20 @@ public class SourceSectionMatcher extends CancellableElement {
 					changedRefsAndHints.getUnsyncedHintValues().addHintValue(modelConnectionHint, srcSection, val);
 				}
 			}
+			
+			/*
+			 * if no (partial) hint value has been found in this iteration cycle, we need to remove the
+			 * 'empty value' that has been create during the initialization of the hint values (see above)
+			 */
+			if(changedRefsAndHints.getHintValues().getHintValues(h) instanceof LinkedList<?>) {
+				Object first = ((LinkedList<?>) (changedRefsAndHints.getHintValues().getHintValues(h))).peek();
+				if(first != null && first instanceof Map<?, ?> && ((Map<?,?>) first).isEmpty()) {
+					((LinkedList<?>) (changedRefsAndHints.getHintValues().getHintValues(h))).removeFirst();					
+				}
+			}
 		}
+
+
 
 		return changedRefsAndHints;
 
@@ -781,7 +790,7 @@ public class SourceSectionMatcher extends CancellableElement {
 						(!ref.isMany() && srcModelObject.eGet(ref) != null)) {
 					return false;
 				} else {
-					break;					
+					continue;					
 				}
 			}
 
@@ -846,7 +855,7 @@ public class SourceSectionMatcher extends CancellableElement {
 							return false;
 						}
 						if (res != null) {
-							break;
+							continue;
 						}
 					}
 				}

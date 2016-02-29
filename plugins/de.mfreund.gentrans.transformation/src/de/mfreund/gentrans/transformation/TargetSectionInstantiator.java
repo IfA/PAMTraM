@@ -1,6 +1,5 @@
 package de.mfreund.gentrans.transformation;
 
-import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -813,96 +812,116 @@ class TargetSectionInstantiator extends CancellableElement {
 									 */
 									LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> newHintValues = 
 											new LinkedList<>();
+									int numberOfInstancesToCreate = 0;
 									if (hintValues.getHintValues((MappingInstanceSelector) h).size() == 1) {
+										
+										// one hint value but multiple instances -> clone the single hint value for each instance
 										final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hintVal = hintValues.getHintValues((MappingInstanceSelector) h).getFirst();
 										for (int i = 0; i < instancesToConsider.size(); i++) {
 											newHintValues.add(hintVal);
 										}
+										numberOfInstancesToCreate = newHintValues.size();
 									} else if (instancesToConsider.size() == hintValues.getHintValues((MappingInstanceSelector) h).size()) {
+										
+										// multiple hint values and the same amount of instances -> each hint value is used for one instance
 										newHintValues = hintValues.getHintValues((MappingInstanceSelector) h);
-										// newHintValues.addAll(hintValues.get(h));
+										numberOfInstancesToCreate = newHintValues.size();
+									} else if(((MappingInstanceSelector) h).getAffectedReference().getEReference().isMany() &&
+											hintValues.getHintValues((MappingInstanceSelector) h).size() % instancesToConsider.size() == 0) {
+										
+										// a multiple of hint values for each instance -> use multiple hint values for each instance
+										newHintValues = hintValues.getHintValues((MappingInstanceSelector) h);
+										numberOfInstancesToCreate = instancesToConsider.size();
 									} else {
-										consoleStream
-										.println("There was a size mismatch while trying to set a non-containment reference, using the Hint "
+										
+										consoleStream.println("There was a size mismatch while trying to set a non-containment reference, using the Hint "
 												+ h.getName() + ". There where " + instancesToConsider.size() + " instances to be connected but "
 												+ hintValues.getHintValues((MappingInstanceSelector) h).size() + " MappingHint values. The output below"
 												+ " shows the hint values and the source instances for the reference:\n"
 												+ hintValues.getHintValues((MappingInstanceSelector) h) + "\n" + instancesToConsider);
 									}
 
-									final int numberOfInstancesToCreate = newHintValues.size();
+									// how many target instances are to be set as value of the non-containment reference of each instance
+									final int targetsPerInstance = newHintValues.size() / numberOfInstancesToCreate;
+									
 									for (int i=0; i<numberOfInstancesToCreate; i++) {
-										String attrValStr = null;
-										if (hSel.getMatcher() instanceof AttributeMatcher) {
-											attrValStr = calculator.calculateAttributeValue(null, hSel,
-													newHintValues);
-										}
+										
 										final EObjectWrapper srcInst = instancesToConsider.remove(0);
-										final List<EObjectWrapper> fittingVals = new LinkedList<>();
-
-										for (final EObjectWrapper targetInst : targetInstances) {
-											// get Attribute value
-											final String targetValStr = targetInst
-													.getAttributeValue(matcher
-															.getTargetAttribute());
-											if (targetValStr != null) {
-												if (targetValStr
-														.equals(attrValStr)) {
-													fittingVals.add(targetInst);
+										
+										for (int j=0; j < targetsPerInstance; j++) {
+											
+											String attrValStr = null;
+											if (hSel.getMatcher() instanceof AttributeMatcher) {
+												attrValStr = calculator.calculateAttributeValue(null, hSel,
+														newHintValues);
+											}
+											final List<EObjectWrapper> fittingVals = new LinkedList<>();
+											
+											for (final EObjectWrapper targetInst : targetInstances) {
+												// get Attribute value
+												final String targetValStr = targetInst
+														.getAttributeValue(matcher
+																.getTargetAttribute());
+												if (targetValStr != null) {
+													if (targetValStr
+															.equals(attrValStr)) {
+														fittingVals.add(targetInst);
+													}
+												} else {
+													consoleStream.println("Problemo?");
 												}
+											}
+											// select targetInst
+											EObjectWrapper targetInst = null;
+											if (fittingVals.size() == 1) {
+												targetInst = fittingVals.get(0);
+												
+											} else if (fittingVals.size() > 1) {
+												
+												if (canceled) {
+													return;
+												}
+												
+												/*
+												 * Consult the specified resolving strategy to resolve the ambiguity.				
+												 */
+												try {
+													consoleStream.println("[Ambiguity] Resolve linking ambiguity...");
+													List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
+															fittingVals, ((MappingInstanceSelector) h).getAffectedReference(), (MappingHintGroupType) group, (MappingInstanceSelector) h, srcInst);
+													consoleStream.println("[Ambiguity] ...finished.\n");
+													targetInst = resolved.get(0);
+												} catch (Exception e) {
+													consoleStream.println(e.getMessage());
+													cancel();
+													return;
+												}
+												
 											} else {
-												consoleStream.println("Problemo?");
+												consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName
+														+ ", Group: " + group.getName() + " ) has an AttributeMatcher that picked up the value '"
+														+ attrValStr + "' to be matched to the "
+														+ "TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
+												
+											}
+											
+											// finally, we can set the value of the reference
+											if(!targetSectionClass.isLibraryEntry()) {
+												addValueToReference(ref, targetInst.getEObject(), srcInst.getEObject());
+											} else {
+												/* 
+												 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
+												 * instead we want to specify the value as 'target' for the affected ExternalReferenceParameter
+												 */
+												LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(srcInst).getLibraryEntry();
+												LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+												ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
+												@SuppressWarnings("unchecked")
+												AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
+												originalParam.setTarget(targetInst.getEObject());
 											}
 										}
-										// select targetInst
-										EObjectWrapper targetInst = null;
-										if (fittingVals.size() == 1) {
-											targetInst = fittingVals.get(0);
-
-										} else if (fittingVals.size() > 1) {
-
-											if (canceled) {
-												return;
-											}
-
-											/*
-											 * Consult the specified resolving strategy to resolve the ambiguity.				
-											 */
-											try {
-												consoleStream.println("[Ambiguity] Resolve linking ambiguity...");
-												List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
-														fittingVals, ((MappingInstanceSelector) h).getAffectedReference(), (MappingHintGroupType) group, (MappingInstanceSelector) h, srcInst);
-												consoleStream.println("[Ambiguity] ...finished.\n");
-												targetInst = resolved.get(0);
-											} catch (Exception e) {
-												consoleStream.println(e.getMessage());
-												cancel();
-												return;
-											}
-
-										} else {
-											consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName
-													+ ", Group: " + group.getName() + " ) has an AttributeMatcher that picked up the value '"
-													+ attrValStr + "' to be matched to the "
-													+ "TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
-
-										}
-
-										// finally, we can set the value of the reference
-										if(!targetSectionClass.isLibraryEntry()) {
-											addValueToReference(ref, targetInst.getEObject(), srcInst.getEObject());
-										} else {
-											/* 
-											 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
-											 * instead we want to specify the value as 'target' for the affected ExternalReferenceParameter
-											 */
-											LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(srcInst).getLibraryEntry();
-											LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-											ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
-											@SuppressWarnings("unchecked")
-											AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
-											originalParam.setTarget(targetInst.getEObject());
-										}
+										
 									}
 
 									/*

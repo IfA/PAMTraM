@@ -15,7 +15,7 @@
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" value="confirmation"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>

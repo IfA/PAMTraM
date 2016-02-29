@@ -9,7 +9,7 @@
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="sequential" value="sequential"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="sequential" expression="sequential"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
@@ -39,7 +39,7 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="triggerType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="navigation" value="navigation"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="navigation" expression="navigation"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="triggerExpression">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerExpression"/>
@@ -55,7 +55,7 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -63,7 +63,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="navigation" value="navigation"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="navigation" expression="navigation"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicNavigation" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -78,7 +78,7 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="triggerType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="next" value="next"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="next" expression="next"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="triggerExpression">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerExpression"/>
@@ -94,7 +94,7 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -102,7 +102,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="navigation" value="navigation"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="navigation" expression="navigation"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Grouping" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -113,7 +113,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" expression="parallel"/>
           </attributes>
         </value>
       </references>
@@ -127,7 +127,7 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -138,7 +138,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" value="grouping"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" expression="grouping"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicGrouping" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -149,7 +149,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" expression="parallel"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="associatedWith">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
@@ -166,7 +166,7 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -174,7 +174,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" value="grouping"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" expression="grouping"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
@@ -195,11 +195,11 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -207,7 +207,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" value="confirmation"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicConfirmation" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -225,11 +225,11 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -237,7 +237,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" value="confirmation"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Slider" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -252,11 +252,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -266,7 +266,7 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" value="single"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" expression="single"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="end">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/end"/>
@@ -276,7 +276,7 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionStep">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionStep"/>
@@ -298,11 +298,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -312,7 +312,7 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" value="single"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" expression="single"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="end">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/end"/>
@@ -322,7 +322,7 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionStep">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionStep"/>
@@ -344,7 +344,7 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="inOut" value="in_out"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="inOut" expression="in_out"/>
               </attributes>
             </value>
           </references>
@@ -359,7 +359,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" expression="parallel"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="associatedWith">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
@@ -376,11 +376,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -390,11 +390,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="multiple" value="multiple"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="multiple" expression="multiple"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -402,7 +402,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" value="grouping"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" expression="grouping"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicCheckBoxArray" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -413,7 +413,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" expression="parallel"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="associatedWith">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
@@ -430,11 +430,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -444,11 +444,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="multiple" value="multiple"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="multiple" expression="multiple"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -456,7 +456,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" value="grouping"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" expression="grouping"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="CheckBox" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -471,11 +471,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="multiple" value="multiple"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="multiple" expression="multiple"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -488,11 +488,11 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -504,7 +504,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" type="EXCLUSION" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" type="EXCLUSION" expression="parallel"/>
           </attributes>
         </value>
       </references>
@@ -525,11 +525,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="multiple" value="multiple"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="multiple" expression="multiple"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -542,11 +542,11 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -558,7 +558,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" type="EXCLUSION" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" type="EXCLUSION" expression="parallel"/>
           </attributes>
         </value>
       </references>
@@ -575,7 +575,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" expression="parallel"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="associatedWith">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
@@ -592,11 +592,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -606,11 +606,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" value="single"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" expression="single"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -618,7 +618,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" value="grouping"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" expression="grouping"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicRadioButtonGroup" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -629,7 +629,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" expression="parallel"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="associatedWith">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
@@ -646,11 +646,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -660,11 +660,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" value="single"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" expression="single"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -672,7 +672,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" value="grouping"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" expression="grouping"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="RadioButton" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -687,14 +687,14 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -704,11 +704,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" value="single"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" expression="single"/>
               </attributes>
             </value>
           </references>
@@ -731,14 +731,14 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="in" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -748,11 +748,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isContinuous">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" value="single"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="single" expression="single"/>
               </attributes>
             </value>
           </references>
@@ -760,7 +760,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" type="EXCLUSION" value="grouping"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" type="EXCLUSION" expression="grouping"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Input" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -771,7 +771,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" expression="parallel"/>
           </attributes>
         </value>
       </references>
@@ -785,14 +785,14 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -814,7 +814,7 @@
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" value="parallel"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" expression="parallel"/>
           </attributes>
         </value>
       </references>
@@ -828,14 +828,14 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" value="in"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="in"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -846,7 +846,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" value="grouping"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" expression="grouping"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
@@ -870,11 +870,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" value="out"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" expression="out"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
             </value>
           </references>
@@ -882,7 +882,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="error management" value="error management"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="error management" expression="error management"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicErrorManagement" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -903,11 +903,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" value="out"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" expression="out"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
             </value>
           </references>
@@ -915,7 +915,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="error management" value="error management"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="error management" expression="error management"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Output" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -930,11 +930,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" value="out"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" expression="out"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" expression="false"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
@@ -960,11 +960,11 @@
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" value="out"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" expression="out"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
@@ -993,7 +993,7 @@
               </attributes>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" value="out"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="out"/>
               </attributes>
             </value>
           </references>
@@ -1001,7 +1001,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="guidance" value="guidance"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="guidance" expression="guidance"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>

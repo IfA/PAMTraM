@@ -4,10 +4,12 @@ package pamtram.provider;
 
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -21,6 +23,12 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.commands.DeleteLibraryEntryCommand;
+import pamtram.mapping.commands.ReplacingDragAndDropAddCommand;
+import pamtram.metamodel.MetamodelFactory;
+import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.TargetSectionModel} object.
@@ -174,4 +182,35 @@ extends SectionModelItemProvider {
 		}
 	}
 
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+		
+		/*
+		 *  Allow to drop Classes onto this SectionModel.
+		 */
+		
+		if(collection.isEmpty()) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
+		HashMap<EObject, EObject> targetSectionClassMap = new HashMap<>();
+		
+		for (Object object : collection) {
+	
+			if(object instanceof TargetSectionClass) {
+				if(object instanceof TargetSection) {
+					targetSectionClassMap.put((TargetSectionClass) object, (TargetSectionClass) object);					
+				} else {
+					targetSectionClassMap.put((TargetSectionClass) object, MetamodelFactory.eINSTANCE.createTargetSection());
+				}
+			} else {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		
+		return  new ReplacingDragAndDropAddCommand(domain, (EObject) owner, PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, 
+				(Collection<EObject>) targetSectionClassMap.keySet(), targetSectionClassMap.values());
+		
+	}
 }

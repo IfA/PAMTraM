@@ -68,7 +68,6 @@ import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.GlobalValue;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
@@ -783,7 +782,7 @@ public class GenericTransformationRunner {
 	 *
 	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
 	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
-	 * @param globalValues The list of {@link GlobalValue GlobalValues} to use.
+	 * @param globalValues The list of {@link FixedValue GlobalValues} to use.
 	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
 	 * @param attributeValuemodifier An instance of {@link AttributeValueModifierExecutor} to use for applying
 	 * {@link AttributeValueModifierSet AttributeValueModifierSets}.
@@ -791,7 +790,7 @@ public class GenericTransformationRunner {
 	 */
 	private ExpandingResult performExpanding(
 			final MatchingResult matchingResult,
-			final List<GlobalValue> globalValues,
+			final List<FixedValue> globalValues,
 			final IProgressMonitor monitor,
 			final AttributeValueModifierExecutor attributeValuemodifier) {
 

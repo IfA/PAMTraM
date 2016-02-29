@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -34,8 +35,8 @@ import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalValue;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
@@ -155,9 +156,9 @@ class TargetSectionInstantiator extends CancellableElement {
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * Registry for values of global Variables that can be mapped to double
+	 * Registry for global values
 	 */
-	private final Map<String, Double> globalVarValueDoubles;
+	private final Map<String, String> globalValues;
 
 	/**
 	 * List of {@link LibraryEntryInstantiator}s that are to be used at the end of the
@@ -195,7 +196,7 @@ class TargetSectionInstantiator extends CancellableElement {
 	 * @param globalVarValues
 	 *            Registry for values of global Variables
 	 * @param attributeValuemodifier An instance of the {@link AttributeValueModifierExecutor}.
-	 * @param globalVals A list of {@link GlobalValue}s.
+	 * @param globalVals A list of {@link FixedValue GlobalValues}.
 	 * @param consoleStream
 	 *            used to write console output
 	 * @param transformationRunner The parent {@link GenericTransformationRunner}.
@@ -205,7 +206,7 @@ class TargetSectionInstantiator extends CancellableElement {
 			final AttributeValueRegistry attributeValueRegistry,
 			final Map<GlobalAttribute, String> globalVarValues,
 			final AttributeValueModifierExecutor attributeValuemodifier,
-			final List<GlobalValue> globalVals,
+			final List<FixedValue> globalVals,
 			final MessageConsoleStream consoleStream,
 			final GenericTransformationRunner transformationRunner,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
@@ -226,37 +227,38 @@ class TargetSectionInstantiator extends CancellableElement {
 		//			consoleStream.println("This will never happen.");
 		//		}
 
-		consoleStream
-		.println("Parsing GlobalVariables for numbers. Look below for potential errors..");
 		// find GlobalAttrs that can be mapped to double
-		globalVarValueDoubles = new HashMap<>();
+		globalValues = new HashMap<>();
 		for (final GlobalAttribute g : globalVarValues.keySet()) {
-			try {
-				final Calculable calc = new ExpressionBuilder(
-						globalVarValues.get(g)).build();
-				final double variableVal = calc.calculate();// parseDouble
-				// doesn't support
-				// Scientific
-				// notation, like:
-				// 0.42e2 == 4200e-2
-				// == 42,
-				globalVarValueDoubles.put(g.getName(), new Double(variableVal));
-			} catch (final Exception e) {
-				consoleStream.println(e.getMessage());
-			}
+			globalValues.put(g.getName(), globalVarValues.get(g));
 
 		}
 
 		/*
 		 * add global values
 		 */
-		for (final GlobalValue val : globalVals) {
+		for (final FixedValue val : globalVals) {
 			if (val.getName() != null) {
-				globalVarValueDoubles.put(val.getName(), val.getValue());
+				globalValues.put(val.getName(), val.getValue());
 			}
 		}
+		
+		/*
+		 * only use global values that represent doubles
+		 */
+		Map<String, Double> globalDoubleValues = new HashMap<>();
+		for (Entry<String, String> globalValue : globalValues.entrySet()) {
+			try {
+				/*
+				 * We make use of the ExpressionBuilder as 'String.valueOf(double)' doesn't support
+				 * scientific notation, like: 0.42e2 == 4200e-2 == 42
+				 */
+				final Calculable calc = new ExpressionBuilder(globalValue.getValue()).build();
+				globalDoubleValues.put(globalValue.getKey(), calc.calculate());
+			} catch (final Exception e) {}
+		}
 
-		calculator = new AttributeValueCalculator(globalVarValueDoubles, attributeValuemodifier, consoleStream);
+		calculator = new AttributeValueCalculator(globalDoubleValues, attributeValuemodifier, consoleStream);
 
 		consoleStream.println("...parsing done!");
 	}

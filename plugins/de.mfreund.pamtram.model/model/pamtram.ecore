@@ -67,7 +67,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalValues" upperBound="-1"
-        eType="#//mapping/GlobalValue" changeable="false" volatile="true" transient="true"
+        eType="#//mapping/FixedValue" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="derivation" value="self.mappingModel->collect(s | s.globalValues)"/>
@@ -152,7 +152,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
         eType="#//mapping/AttributeValueModifierSet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalValues" upperBound="-1"
-        eType="#//mapping/GlobalValue" containment="true"/>
+        eType="#//mapping/FixedValue" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalElement" abstract="true">
     <eOperations name="checkCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1425,10 +1425,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="MatchToUpperCaseConverter" eSuperTypes="#//mapping/AttributeValueModifier">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalValue" eSuperTypes="#//NamedElement #//ReferenceableElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

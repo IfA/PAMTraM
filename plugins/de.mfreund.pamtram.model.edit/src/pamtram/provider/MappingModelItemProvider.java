@@ -201,7 +201,7 @@ public class MappingModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES,
-				 MappingFactory.eINSTANCE.createGlobalValue()));
+				 MappingFactory.eINSTANCE.createFixedValue()));
 	}
 
 }

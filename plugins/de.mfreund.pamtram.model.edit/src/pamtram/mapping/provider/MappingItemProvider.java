@@ -6,10 +6,13 @@ package pamtram.mapping.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -17,9 +20,12 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PAMTraM;
+import pamtram.PamtramPackage;
+import pamtram.condition.ComplexCondition;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.Mapping} object.
@@ -243,6 +249,21 @@ extends MappingTypeItemProvider {
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES,
 				 MappingFactory.eINSTANCE.createGlobalAttribute()));
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		if(collection.size() == 1) {
+			Object object = (Object) collection.iterator().next();
+			if(object instanceof ComplexCondition) {
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+						PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF, object, 0);
+			}
+		}
+		
+		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 	}
 
 }

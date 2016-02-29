@@ -707,6 +707,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g1.getETypeArguments().add(g2);
 		targetSectionModelEClass.getEGenericSuperTypes().add(g1);
 		mappingModelEClass.getESuperTypes().add(this.getNamedElement());
+		mappingModelEClass.getESuperTypes().add(this.getDeactivatableElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

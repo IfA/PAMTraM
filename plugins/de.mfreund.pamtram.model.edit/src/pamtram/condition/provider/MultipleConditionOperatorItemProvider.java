@@ -24,7 +24,6 @@ import pamtram.condition.ConditionFactory;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.MultipleConditionOperator;
 import pamtram.mapping.commands.BasicDragAndDropAddCommand;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.MultipleConditionOperator} object.

@@ -7,7 +7,7 @@ package pamtram.validation;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.GlobalValue;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 
 /**
@@ -21,5 +21,5 @@ public interface MappingModelValidator {
 
 	boolean validateMapping(EList<Mapping> value);
 	boolean validateModifierSets(EList<AttributeValueModifierSet> value);
-	boolean validateGlobalValues(EList<GlobalValue> value);
+	boolean validateGlobalValues(EList<FixedValue> value);
 }

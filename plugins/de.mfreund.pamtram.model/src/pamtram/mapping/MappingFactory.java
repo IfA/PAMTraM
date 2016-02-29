@@ -347,15 +347,6 @@ public interface MappingFactory extends EFactory {
 	MatchToUpperCaseConverter createMatchToUpperCaseConverter();
 
 	/**
-	 * Returns a new object of class '<em>Global Value</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Global Value</em>'.
-	 * @generated
-	 */
-	GlobalValue createGlobalValue();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

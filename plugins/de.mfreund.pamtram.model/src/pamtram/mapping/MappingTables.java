@@ -16,7 +16,6 @@ import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
-import org.eclipse.ocl.pivot.ids.DataTypeId;
 import org.eclipse.ocl.pivot.ids.EnumerationId;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdManager;
@@ -126,7 +125,6 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionAttribute = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionClass = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionClass", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionNonContainmentReference = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionNonContainmentReference", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ DataTypeId DATAid_EDouble = MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EDouble", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationId ENUMid_CardinalityType = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("CardinalityType");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
@@ -271,7 +269,6 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _FixedValue = new EcoreExecutorType(MappingPackage.Literals.FIXED_VALUE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _GlobalAttribute = new EcoreExecutorType(MappingPackage.Literals.GLOBAL_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _GlobalAttributeImporter = new EcoreExecutorType(MappingPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _GlobalValue = new EcoreExecutorType(MappingPackage.Literals.GLOBAL_VALUE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _HintImporterMappingHint = new EcoreExecutorType(MappingPackage.Literals.HINT_IMPORTER_MAPPING_HINT, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _InstantiableMappingHintGroup = new EcoreExecutorType(MappingPackage.Literals.INSTANTIABLE_MAPPING_HINT_GROUP, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LocalMappedAttributeValueExpander = new EcoreExecutorType(MappingPackage.Literals.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER, PACKAGE, 0);
@@ -327,7 +324,6 @@ public class MappingTables
 			_FixedValue,
 			_GlobalAttribute,
 			_GlobalAttributeImporter,
-			_GlobalValue,
 			_HintImporterMappingHint,
 			_InstantiableMappingHintGroup,
 			_LocalMappedAttributeValueExpander,
@@ -555,12 +551,6 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__NamedElement = new ExecutorFragment(Types._GlobalAttributeImporter, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__OclAny = new ExecutorFragment(Types._GlobalAttributeImporter, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__OclElement = new ExecutorFragment(Types._GlobalAttributeImporter, OCLstdlibTables.Types._OclElement);
-
-		private static final /*@NonNull*/ ExecutorFragment _GlobalValue__GlobalValue = new ExecutorFragment(Types._GlobalValue, MappingTables.Types._GlobalValue);
-		private static final /*@NonNull*/ ExecutorFragment _GlobalValue__NamedElement = new ExecutorFragment(Types._GlobalValue, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _GlobalValue__OclAny = new ExecutorFragment(Types._GlobalValue, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _GlobalValue__OclElement = new ExecutorFragment(Types._GlobalValue, OCLstdlibTables.Types._OclElement);
-		private static final /*@NonNull*/ ExecutorFragment _GlobalValue__ReferenceableElement = new ExecutorFragment(Types._GlobalValue, PamtramTables.Types._ReferenceableElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _HintImporterMappingHint__HintImporterMappingHint = new ExecutorFragment(Types._HintImporterMappingHint, MappingTables.Types._HintImporterMappingHint);
 		private static final /*@NonNull*/ ExecutorFragment _HintImporterMappingHint__MappingHintBaseType = new ExecutorFragment(Types._HintImporterMappingHint, MappingTables.Types._MappingHintBaseType);
@@ -912,8 +902,6 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _GlobalAttributeImporter__globalAttribute = new EcoreExecutorProperty(MappingPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, Types._GlobalAttributeImporter, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _GlobalValue__value = new EcoreExecutorProperty(MappingPackage.Literals.GLOBAL_VALUE__VALUE, Types._GlobalValue, 0);
-
 		public static final /*@NonNull*/ ExecutorProperty _MappedAttributeValueExpander__hintsToExpand = new EcoreExecutorProperty(MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, Types._MappedAttributeValueExpander, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _Mapping__abstract = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__ABSTRACT, Types._Mapping, 0);
@@ -1246,16 +1234,6 @@ public class MappingTables
 			Fragments._GlobalAttributeImporter__GlobalAttributeImporter /* 5 */
 		};
 		private static final /*@NonNull*/ int[] __GlobalAttributeImporter = { 1,1,1,1,3,1 };
-
-		private static final /*@NonNull*/ ExecutorFragment[] _GlobalValue =
-		{
-			Fragments._GlobalValue__OclAny /* 0 */,
-			Fragments._GlobalValue__OclElement /* 1 */,
-			Fragments._GlobalValue__NamedElement /* 2 */,
-			Fragments._GlobalValue__ReferenceableElement /* 2 */,
-			Fragments._GlobalValue__GlobalValue /* 3 */
-		};
-		private static final /*@NonNull*/ int[] __GlobalValue = { 1,1,2,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _HintImporterMappingHint =
 		{
@@ -1624,7 +1602,6 @@ public class MappingTables
 			Types._FixedValue.initFragments(_FixedValue, __FixedValue);
 			Types._GlobalAttribute.initFragments(_GlobalAttribute, __GlobalAttribute);
 			Types._GlobalAttributeImporter.initFragments(_GlobalAttributeImporter, __GlobalAttributeImporter);
-			Types._GlobalValue.initFragments(_GlobalValue, __GlobalValue);
 			Types._HintImporterMappingHint.initFragments(_HintImporterMappingHint, __HintImporterMappingHint);
 			Types._InstantiableMappingHintGroup.initFragments(_InstantiableMappingHintGroup, __InstantiableMappingHintGroup);
 			Types._LocalMappedAttributeValueExpander.initFragments(_LocalMappedAttributeValueExpander, __LocalMappedAttributeValueExpander);
@@ -2317,31 +2294,6 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-
-		private static final /*@NonNull*/ ExecutorOperation[] _GlobalValue__GlobalValue = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _GlobalValue__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _GlobalValue__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation[] _GlobalValue__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation[] _GlobalValue__ReferenceableElement = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _HintImporterMappingHint__HintImporterMappingHint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _HintImporterMappingHint__MappingHintBaseType = {};
@@ -3392,12 +3344,6 @@ public class MappingTables
 			Fragments._GlobalAttributeImporter__OclAny.initOperations(_GlobalAttributeImporter__OclAny);
 			Fragments._GlobalAttributeImporter__OclElement.initOperations(_GlobalAttributeImporter__OclElement);
 
-			Fragments._GlobalValue__GlobalValue.initOperations(_GlobalValue__GlobalValue);
-			Fragments._GlobalValue__NamedElement.initOperations(_GlobalValue__NamedElement);
-			Fragments._GlobalValue__OclAny.initOperations(_GlobalValue__OclAny);
-			Fragments._GlobalValue__OclElement.initOperations(_GlobalValue__OclElement);
-			Fragments._GlobalValue__ReferenceableElement.initOperations(_GlobalValue__ReferenceableElement);
-
 			Fragments._HintImporterMappingHint__HintImporterMappingHint.initOperations(_HintImporterMappingHint__HintImporterMappingHint);
 			Fragments._HintImporterMappingHint__MappingHintBaseType.initOperations(_HintImporterMappingHint__MappingHintBaseType);
 			Fragments._HintImporterMappingHint__MappingHintType.initOperations(_HintImporterMappingHint__MappingHintType);
@@ -3771,10 +3717,6 @@ public class MappingTables
 			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty[] _GlobalValue = {
-			MappingTables.Properties._GlobalValue__value
-		};
-
 		private static final /*@NonNull*/ ExecutorProperty[] _HintImporterMappingHint = {
 			MappingTables.Properties._MappingHintType__MappingHintGroupImporter__mappingHints
 		};
@@ -3965,7 +3907,6 @@ public class MappingTables
 			Fragments._FixedValue__FixedValue.initProperties(_FixedValue);
 			Fragments._GlobalAttribute__GlobalAttribute.initProperties(_GlobalAttribute);
 			Fragments._GlobalAttributeImporter__GlobalAttributeImporter.initProperties(_GlobalAttributeImporter);
-			Fragments._GlobalValue__GlobalValue.initProperties(_GlobalValue);
 			Fragments._HintImporterMappingHint__HintImporterMappingHint.initProperties(_HintImporterMappingHint);
 			Fragments._InstantiableMappingHintGroup__InstantiableMappingHintGroup.initProperties(_InstantiableMappingHintGroup);
 			Fragments._LocalMappedAttributeValueExpander__LocalMappedAttributeValueExpander.initProperties(_LocalMappedAttributeValueExpander);

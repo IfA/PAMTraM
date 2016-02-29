@@ -284,10 +284,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMatchToUpperCaseConverterAdapter();
 			}
 			@Override
-			public Adapter caseGlobalValue(GlobalValue object) {
-				return createGlobalValueAdapter();
-			}
-			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1062,20 +1058,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMatchToUpperCaseConverterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.GlobalValue <em>Global Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.GlobalValue
-	 * @generated
-	 */
-	public Adapter createGlobalValueAdapter() {
 		return null;
 	}
 

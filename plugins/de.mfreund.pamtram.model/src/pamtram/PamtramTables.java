@@ -78,7 +78,7 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ComplexCondition = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ConditionModel = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_EPackage = PamtramTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EPackage", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_GlobalValue = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalValue", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_FixedValue = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("FixedValue", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("LibraryEntry", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Mapping = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("Mapping", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MappingModel = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("MappingModel", 0);
@@ -102,7 +102,7 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ComplexCondition = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_ComplexCondition);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ConditionModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_ConditionModel);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EPackage = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_EPackage);
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_GlobalValue = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_GlobalValue);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_FixedValue = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_FixedValue);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_LibraryEntry = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_LibraryEntry);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Mapping = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_Mapping);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_MappingModel);
@@ -112,7 +112,7 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TargetSectionModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_TargetSectionModel);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_AttributeValueModifierSet = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_AttributeValueModifierSet);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_EPackage = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_EPackage);
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_GlobalValue = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_GlobalValue);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_FixedValue = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_FixedValue);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Mapping = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_Mapping);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SET_CLSSid_EPackage = TypeId.SET.getSpecializedId(PamtramTables.CLSSid_EPackage);
 

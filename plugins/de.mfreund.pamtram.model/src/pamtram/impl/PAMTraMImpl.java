@@ -53,7 +53,7 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
-import pamtram.mapping.GlobalValue;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;
@@ -417,7 +417,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public EList<GlobalValue> getGlobalValues() {
+	public EList<FixedValue> getGlobalValues() {
 		/**
 		 * self.mappingModel->collect(s | s.globalValues)
 		 */
@@ -425,7 +425,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final /*@NonNull*/ /*@Thrown*/ List<MappingModel> mappingModel = this.getMappingModel();
 		final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_mappingModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_MappingModel, mappingModel);
-		/*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_GlobalValue);
+		/*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_FixedValue);
 		/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_mappingModel.iterator();
 		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
 		while (true) {
@@ -440,16 +440,16 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		    if (s == null) {
 		        throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::MappingModel::globalValues\'");
 		    }
-		    final /*@NonNull*/ /*@Thrown*/ List<GlobalValue> globalValues = s.getGlobalValues();
-		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_globalValues = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_GlobalValue, globalValues);
+		    final /*@NonNull*/ /*@Thrown*/ List<FixedValue> globalValues = s.getGlobalValues();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_globalValues = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_FixedValue, globalValues);
 		    //
 		    for (Object value : BOXED_globalValues.flatten().getElements()) {
 		        accumulator.add(value);
 		    }
 		}
-		final List<GlobalValue> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.GlobalValue.class);
+		final List<FixedValue> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.FixedValue.class);
 		assert UNBOXED_collect != null;
-		return (EList<GlobalValue>)UNBOXED_collect;
+		return (EList<FixedValue>)UNBOXED_collect;
 	}
 
 	/**
@@ -1244,9 +1244,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			case PamtramPackage.PAM_TRA_M___MERGE_EXTENDS:
 				mergeExtends();
 				return null;
-			case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP:
+			case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1:
 				return sourceSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP:
+			case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1:
 				return targetSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -33,44 +33,44 @@
       <eClass href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="0xxxxx" value="0"/>
+        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="0xxxxx" expression="0"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" value="r"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="r"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="DiscreteInput" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="0xxxxx" value="0"/>
+        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="0xxxxx" expression="0"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" value="rw"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="rw"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="HoldingRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="4xxxxx" value="4"/>
+        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="4xxxxx" expression="4"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" value="r"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="r"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="InputRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="4xxxxx" value="4"/>
+        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="4xxxxx" expression="4"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" value="rw"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="rw"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>

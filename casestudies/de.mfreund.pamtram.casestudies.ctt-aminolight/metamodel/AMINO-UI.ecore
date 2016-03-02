@@ -33,6 +33,8 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sounds" eType="#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundDefinition"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vibrations" eType="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationDefinition"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="SignalCollection" eType="#//SignalCollection"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="colors" eType="#//PresentationModel/VisualPresentationProfile/Colors/ColorItemGroup"
@@ -1000,6 +1002,9 @@
               eType="#//PresentationModel/VisualPresentationProfile/Colors/PredefinedColorCode"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="HSLAColorValue" eSuperTypes="#//PresentationModel/VisualPresentationProfile/Colors/ColorValue"/>
+        <eClassifiers xsi:type="ecore:EClass" name="HEXColorValue" eSuperTypes="#//PresentationModel/VisualPresentationProfile/Colors/ColorValue">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eClassifiers>
         <eClassifiers xsi:type="ecore:EEnum" name="PredefinedColorCode">
           <eLiterals name="RED">
             <eAnnotations source="values">
@@ -3645,7 +3650,7 @@
             <eBounds eClassifier="#//Variables/Variable"/>
           </eTypeParameters>
           <eGenericSuperTypes eClassifier="#//PresentationModel/Representation/StyleProperty">
-            <eTypeArguments eClassifier="#//Variables/Variable"/>
+            <eTypeArguments eTypeParameter="#//PresentationModel/AcousticalPresentationProfile/Representation/AcousticalStyleProperty/ValueType"/>
           </eGenericSuperTypes>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="AcousticalMultiStyleProperty"
@@ -3750,11 +3755,16 @@
       </eClassifiers>
       <eSubpackages name="Vibration" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Vibration"
           nsPrefix="pp-hap-vib">
+        <eClassifiers xsi:type="ecore:EClass" name="VibrationDefinition" eSuperTypes="#//Utils/AminoUIModelElement">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="vibrationComponents"
+              upperBound="-1" eType="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroupable"
+              containment="true"/>
+        </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="VibrationItemGroupable" abstract="true"
             interface="true" eSuperTypes="#//Utils/DefaultElement #//Utils/GroupableElement"/>
         <eClassifiers xsi:type="ecore:EClass" name="VibrationItemGroup" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroupable">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="soundItem" upperBound="-1"
-              eType="#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundItem"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="vibrationItem" upperBound="-1"
+              eType="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItem"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="Repeat" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         </eClassifiers>
@@ -3768,7 +3778,7 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternValue" lowerBound="1"
               upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="PulsingVibrationItem">
+        <eClassifiers xsi:type="ecore:EClass" name="PulsingVibrationItem" eSuperTypes="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItem">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency" lowerBound="1"
               eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="dutyCycle" lowerBound="1"

@@ -5,7 +5,6 @@
         <Type>None</Type>
         <Object name="distance" class="Numerical"/>
         <Object name="velocity" class="Numerical"/>
-        <Object name="velocity2" class="Numerical"/>
         <SubTask>
             <Task Identifier="distanceMeassurement" Category="application" Iterative="false" Optional="false" PartOfCooperation="false" Frequency=" ">
                 <Name>distanceMeassurement</Name>
@@ -22,7 +21,7 @@
                         <SubTask>
                             <Task Identifier="parkMode" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
 <Name>parkMode</Name>
-<Type>Feedback</Type>
+<Type>Alarm_Element</Type>
 <Precondition operator="and">
     <ConditionGroup operator="lteq">
         <ConditionLiteral object="velocity"/>
@@ -39,7 +38,6 @@
 <Parent name="giveFeedback"/>
 <SiblingRight name="ACCMode"/>
 <Object name="velocity" class="Numerical"/>
-<Object name="velocity2" class="Numerical"/>
 <SubTask>
     <Task Identifier="noDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>noDanger</Name>
@@ -171,7 +169,7 @@
                             </Task>
                             <Task Identifier="ACCMode" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
 <Name>ACCMode</Name>
-<Type>Feedback</Type>
+<Type>Alarm_Element</Type>
 <Precondition operator="and">
     <ConditionGroup operator="gt">
         <ConditionLiteral object="velocity"/>

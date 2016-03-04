@@ -39,7 +39,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
-import de.mfreund.pamtram.util.SelectionListener2;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 

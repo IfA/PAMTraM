@@ -4,12 +4,24 @@ package pamtram.metamodel.provider;
 
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
+
+import pamtram.PamtramPackage;
+import pamtram.mapping.commands.ReplacingDragAndDropAddCommand;
+import pamtram.metamodel.MetamodelFactory;
+import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.SourceSectionContainmentReference} object.
@@ -99,6 +111,38 @@ extends ContainmentReferenceItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		/*
+		 *  Allow to drop Sections onto this ContainmentReference.
+		 */
+		
+		if(collection.isEmpty()) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
+		HashMap<EObject, EObject> sourceSectionClassMap = new HashMap<>();
+		
+		for (Object object : collection) {
+	
+			if(object instanceof SourceSectionClass) {
+				if(object instanceof SourceSection) {
+					sourceSectionClassMap.put((SourceSectionClass) object, MetamodelFactory.eINSTANCE.createSourceSectionClass());					
+				} else {
+					sourceSectionClassMap.put((SourceSectionClass) object, (SourceSectionClass) object);
+				}
+			} else {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		
+		return  new ReplacingDragAndDropAddCommand(domain, (EObject) owner, MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, 
+				(Collection<EObject>) sourceSectionClassMap.keySet(), sourceSectionClassMap.values());
+		
 	}
 
 }

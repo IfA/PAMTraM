@@ -4,12 +4,24 @@ package pamtram.metamodel.provider;
 
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
+
+import pamtram.PamtramPackage;
+import pamtram.mapping.commands.ReplacingDragAndDropAddCommand;
+import pamtram.metamodel.MetamodelFactory;
+import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.TargetSectionContainmentReference} object.
@@ -101,4 +113,35 @@ extends ContainmentReferenceItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		/*
+		 *  Allow to drop Classes onto this ContainmentReference.
+		 */
+		
+		if(collection.isEmpty()) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
+		HashMap<EObject, EObject> targetSectionClassMap = new HashMap<>();
+		
+		for (Object object : collection) {
+	
+			if(object instanceof TargetSectionClass) {
+				if(object instanceof TargetSection) {
+					targetSectionClassMap.put((TargetSectionClass) object, MetamodelFactory.eINSTANCE.createTargetSectionClass());					
+				} else {
+					targetSectionClassMap.put((TargetSectionClass) object, (TargetSectionClass) object);
+				}
+			} else {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		
+		return  new ReplacingDragAndDropAddCommand(domain, (EObject) owner, MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, 
+				(Collection<EObject>) targetSectionClassMap.keySet(), targetSectionClassMap.values());
+		
+	}
 }

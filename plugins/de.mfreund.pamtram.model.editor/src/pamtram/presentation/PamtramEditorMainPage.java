@@ -7,12 +7,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -24,8 +26,11 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
-import de.mfreund.pamtram.util.BundleContentHelper;
-import de.mfreund.pamtram.util.SelectionListener2;
+
+import de.tud.et.ifa.agtele.resources.BundleContentHelper;
+import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import pamtram.contentadapter.DeactivationListenerAdapter;
 import pamtram.contentprovider.LibraryEntryContentProvider;
@@ -67,7 +72,6 @@ import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.presentation.widgets.MinimizableSashForm;
 import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
-import pamtram.presentation.widgets.TreeViewerGroup;
 
 public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
@@ -809,6 +813,41 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	@Override
 	public void persist(IDialogSettings settings) {
 		
+		// Persist the active editor and its selection
+		//
+		String activeViewer = "";
+		String activeSelection = "";
+		if(editor.getSelectedPage() != null && editor.getSelectedPage().equals(this) && 
+				editor.currentViewer != null) {
+			if(editor.currentViewer.equals(sourceViewer)) {
+				activeViewer = "SOURCE_VIEWER";
+			} else if(editor.currentViewer.equals(mappingViewer)) {
+				activeViewer = "MAPPING_VIEWER";
+			} else if(editor.currentViewer.equals(globalElementsViewer)) {
+				activeViewer = "GLOBAL_ELEMENTS_VIEWER";
+			} else if(editor.currentViewer.equals(targetViewer)) {
+				activeViewer = "TARGET_VIEWER";
+			} else if(editor.currentViewer.equals(libTargetViewer)) {
+				activeViewer = "LIB_TARGET_VIEWER";
+			}
+			if(!editor.currentViewer.getSelection().isEmpty() && 
+					editor.currentViewer.getSelection() instanceof TreeSelection) {
+				Object selection = ((TreeSelection) editor.currentViewer.getSelection()).getFirstElement();
+				if(selection instanceof EObject) {
+					try {
+						/*
+						 * use the URI of the eObject as unique identifier
+						 */
+						activeSelection = EcoreUtil.getURI((EObject) selection).toString();
+					} catch (IllegalArgumentException e) {
+						// do nothing
+					}
+				}
+			}
+		}
+		settings.put("ACTIVE_VIEWER", activeViewer);
+		settings.put("ACTIVE_SELECTION", activeSelection);
+		
 		// Persist the state of the 'mappingSash'
 		//
 		mappingSash.persist(settings.addNewSection("MAPPING_SASH"));
@@ -830,6 +869,38 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	@Override
 	public void restore(IDialogSettings settings) {
 
+		// Restore the active editor and its selection
+		//
+		if(editor.getSelectedPage() != null && editor.getSelectedPage().equals(this) && 
+				settings.get("ACTIVE_VIEWER") != null) {
+			
+			String activeViewer = settings.get("ACTIVE_VIEWER");
+			if(activeViewer.equals("SOURCE_VIEWER")) {
+				editor.setCurrentViewer(sourceViewer);
+			} else if(activeViewer.equals("MAPPING_VIEWER")) {
+				editor.setCurrentViewer(mappingViewer);
+			} else if(activeViewer.equals("GLOBAL_ELEMENTS_VIEWER")) {
+				editor.setCurrentViewer(globalElementsViewer);
+			} else if(activeViewer.equals("TARGET_VIEWER")) {
+				editor.setCurrentViewer(targetViewer);
+			} else if(activeViewer.equals("LIB_TARGET_VIEWER")) {
+				editor.setCurrentViewer(libTargetViewer);
+			}
+		}
+		if(editor.getSelectedPage() != null && editor.getSelectedPage().equals(this) && 
+				settings.get("ACTIVE_SELECTION") != null && !settings.get("ACTIVE_SELECTION").isEmpty()) {
+			
+			String activeSelection = settings.get("ACTIVE_SELECTION");
+			/*
+			 * as the URI of an eObject also reflects the containing resource, we can use this to
+			 * uniquely identify an eObject inside a resource set
+			 */
+			EObject selection = editor.getEditingDomain().getResourceSet().getEObject(URI.createURI(activeSelection), true);
+			if(selection != null) {
+				editor.currentViewer.setSelection(new StructuredSelection(selection));			
+			}
+		}
+		
 		// Restore the state of the 'mappingSash'
 		//
 		if(settings.getSection("MAPPING_SASH") != null) {

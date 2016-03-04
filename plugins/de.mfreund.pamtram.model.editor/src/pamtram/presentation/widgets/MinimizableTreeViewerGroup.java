@@ -11,8 +11,10 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
-import de.mfreund.pamtram.util.BundleContentHelper;
-import de.mfreund.pamtram.util.SelectionListener2;
+import de.tud.et.ifa.agtele.resources.BundleContentHelper;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
+
 
 /**
  * A {@link TreeViewerGroup} that can be minimized (and restored) when placed inside a {@link MinimizableSashForm}.

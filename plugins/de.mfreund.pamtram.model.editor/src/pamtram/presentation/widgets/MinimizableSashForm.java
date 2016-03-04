@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Sash;
 
-import pamtram.presentation.IPersistable;
+import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 
 /**
  * A {@link SashForm} that supports minimizing of controls. Currently, this only supports a single

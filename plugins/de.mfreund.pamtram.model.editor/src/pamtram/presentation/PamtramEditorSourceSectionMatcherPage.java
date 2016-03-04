@@ -1,7 +1,6 @@
 package pamtram.presentation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Set;
@@ -41,14 +40,15 @@ import org.eclipse.ui.ide.ResourceUtil;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
+import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
+import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
+import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import pamtram.contentprovider.MappingContentProvider;
 import pamtram.contentprovider.SourceSectionContentProvider;
 import pamtram.listeners.SetViewerMouseListener;
 import pamtram.listeners.SetViewerSelectionListener;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.SourceSectionClass;
-import pamtram.presentation.widgets.TreeViewerGroup;
-import pamtram.util.EObjectTreeContentProvider;
 
 public class PamtramEditorSourceSectionMatcherPage extends SashForm implements IPersistable {
 

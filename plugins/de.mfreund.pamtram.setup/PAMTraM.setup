@@ -157,9 +157,17 @@
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
+        id="clone.origin.commons"
+        name="clone.origin.commons"
+        defaultValue="G:\projects\eclipse-commons"
+        label="AGTele Eclipse Commons clone origin">
+      <description>The URL where all projects from the 'AGTele Eclipse Commons' feature will be cloned from.</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:VariableTask"
         id="clone.location.pamtram"
         name="clone.location.pamtram"
-        defaultValue=""
+        defaultValue="${install.root}\repos\pamtram"
         label="Pamtram clone location">
       <description>The folder where all projects related to the 'pamtram' will be cloned to.</description>
     </setupTask>
@@ -167,9 +175,17 @@
         xsi:type="setup:VariableTask"
         id="clone.location.genlibrary"
         name="clone.location.genlibrary"
-        defaultValue="${clone.location.pamtram}"
+        defaultValue="${install.root}\repos\genlibrary"
         label="Genlibrary clone location">
       <description>The folder where all projects related to the 'genlibrary' will be cloned to.</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:VariableTask"
+        id="clone.location.commons"
+        name="clone.location.commons"
+        defaultValue="${install.root}\repos\eclipse-commons"
+        label="AGTele Eclipse Commons clone location">
+      <description>The folder where all projects from the 'AGTele Eclipse Commons' feature will be cloned to.</description>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -337,6 +353,27 @@
           remoteURI="${clone.origin.genlibrary}\de.tud.et.ifa.agtele.genlibrary.ui.git">
         <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.ui.git' repository.</description>
       </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.commons"
+          location="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons"
+          remoteURI="${clone.origin.commons}\de.tud.et.ifa.agtele.eclipse.commons.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.commons.ui"
+          location="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons.ui"
+          remoteURI="${clone.origin.commons}\de.tud.et.ifa.agtele.eclipse.commons.ui.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.ui.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.commons.feature"
+          location="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons.feature"
+          remoteURI="${clone.origin.commons}\de.tud.et.ifa.agtele.eclipse.commons.feature.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.feature.git' repository.</description>
+      </setupTask>
       <description>Clone all necessary git repositories.</description>
     </setupTask>
     <setupTask
@@ -475,6 +512,24 @@
         <sourceLocator
             rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.ui.git"/>
       </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.commons">
+        <sourceLocator
+            rootFolder="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.commons.ui">
+        <sourceLocator
+            rootFolder="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons.ui"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.commons.feature">
+        <sourceLocator
+            rootFolder="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons.feature"/>
+      </setupTask>
       <description>Import all necessary projects.</description>
     </setupTask>
     <setupTask
@@ -569,6 +624,22 @@
         <predicate
             xsi:type="predicates:NamePredicate"
             pattern="de.mfreund.pamtram.transformation.model"/>
+      </workingSet>
+      <workingSet
+          name="commons"
+          id="workingset.commons">
+        <predicate
+            xsi:type="predicates:OrPredicate">
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.tud.et.ifa.agtele.eclipse.commons"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.tud.et.ifa.agtele.eclipse.commons.ui"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.tud.et.ifa.agtele.eclipse.commons.feature"/>
+        </predicate>
       </workingSet>
       <description>Add projects to working sets.</description>
     </setupTask>

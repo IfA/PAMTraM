@@ -145,6 +145,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
+import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.commandlistener.PamtramCommandStackListener;

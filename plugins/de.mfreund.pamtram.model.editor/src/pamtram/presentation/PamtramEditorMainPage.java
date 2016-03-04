@@ -26,8 +26,11 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
-import de.mfreund.pamtram.util.BundleContentHelper;
-import de.mfreund.pamtram.util.SelectionListener2;
+
+import de.tud.et.ifa.agtele.resources.BundleContentHelper;
+import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import pamtram.contentadapter.DeactivationListenerAdapter;
 import pamtram.contentprovider.ConditionContentProvider;
@@ -70,7 +73,6 @@ import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.presentation.widgets.MinimizableSashForm;
 import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
-import pamtram.presentation.widgets.TreeViewerGroup;
 
 public class PamtramEditorMainPage extends SashForm implements IPersistable {
 

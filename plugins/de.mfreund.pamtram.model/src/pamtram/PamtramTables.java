@@ -183,6 +183,7 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorFragment _DeactivatableElement__OclAny = new ExecutorFragment(Types._DeactivatableElement, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _DeactivatableElement__OclElement = new ExecutorFragment(Types._DeactivatableElement, OCLstdlibTables.Types._OclElement);
 
+		private static final /*@NonNull*/ ExecutorFragment _MappingModel__DeactivatableElement = new ExecutorFragment(Types._MappingModel, PamtramTables.Types._DeactivatableElement);
 		private static final /*@NonNull*/ ExecutorFragment _MappingModel__MappingModel = new ExecutorFragment(Types._MappingModel, PamtramTables.Types._MappingModel);
 		private static final /*@NonNull*/ ExecutorFragment _MappingModel__NamedElement = new ExecutorFragment(Types._MappingModel, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _MappingModel__OclAny = new ExecutorFragment(Types._MappingModel, OCLstdlibTables.Types._OclAny);
@@ -336,10 +337,11 @@ public class PamtramTables
 		{
 			Fragments._MappingModel__OclAny /* 0 */,
 			Fragments._MappingModel__OclElement /* 1 */,
+			Fragments._MappingModel__DeactivatableElement /* 2 */,
 			Fragments._MappingModel__NamedElement /* 2 */,
 			Fragments._MappingModel__MappingModel /* 3 */
 		};
-		private static final /*@NonNull*/ int[] __MappingModel = { 1,1,1,1 };
+		private static final /*@NonNull*/ int[] __MappingModel = { 1,1,2,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _NamedElement =
 		{
@@ -442,6 +444,7 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingModel__MappingModel = {
 			PamtramTables.Operations._MappingModel__getActiveMappings /* getActiveMappings() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation[] _MappingModel__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingModel__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingModel__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -595,6 +598,7 @@ public class PamtramTables
 			Fragments._DeactivatableElement__OclAny.initOperations(_DeactivatableElement__OclAny);
 			Fragments._DeactivatableElement__OclElement.initOperations(_DeactivatableElement__OclElement);
 
+			Fragments._MappingModel__DeactivatableElement.initOperations(_MappingModel__DeactivatableElement);
 			Fragments._MappingModel__MappingModel.initOperations(_MappingModel__MappingModel);
 			Fragments._MappingModel__NamedElement.initOperations(_MappingModel__NamedElement);
 			Fragments._MappingModel__OclAny.initOperations(_MappingModel__OclAny);
@@ -648,6 +652,7 @@ public class PamtramTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _MappingModel = {
+			PamtramTables.Properties._DeactivatableElement__deactivated,
 			PamtramTables.Properties._MappingModel__globalValues,
 			PamtramTables.Properties._MappingModel__mapping,
 			PamtramTables.Properties._MappingModel__modifierSets,

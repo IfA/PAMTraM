@@ -26,8 +26,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.List;
 
-import de.mfreund.pamtram.util.BundleContentHelper;
-import de.mfreund.pamtram.util.SelectionListener2;
+import de.tud.et.ifa.agtele.resources.BundleContentHelper;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.util.EPackageHelper;
 
 import org.eclipse.swt.widgets.Combo;

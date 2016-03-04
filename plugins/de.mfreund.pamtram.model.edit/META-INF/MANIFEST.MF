@@ -26,5 +26,6 @@ Require-Bundle: org.eclipse.core.runtime,
  de.tud.et.ifa.agtele.genlibrary.edit;bundle-version="1.0.10";visibility:=reexport,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.common,
- org.eclipse.xsd
+ org.eclipse.xsd,
+ de.tud.et.ifa.agtele.eclipse.commons;bundle-version="0.1.0"
 Bundle-ActivationPolicy: lazy

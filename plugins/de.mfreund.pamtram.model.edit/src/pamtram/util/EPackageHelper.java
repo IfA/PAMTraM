@@ -10,7 +10,6 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -20,14 +19,11 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.xsd.ecore.XSDEcoreBuilder;
-import org.eclipse.xsd.impl.XSDSchemaImpl;
-
 import pamtram.PAMTraM;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 
-public class EPackageHelper {
+public class EPackageHelper extends de.tud.et.ifa.agtele.emf.EPackageHelper {
 
 	/**
 	 * This determines the various ePackages involved in a PAMTraM model (source, target and context

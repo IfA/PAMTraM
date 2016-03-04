@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PAMTraM Edit
 Bundle-SymbolicName: de.mfreund.pamtram.model.edit;singleton:=true
-Bundle-Version: 1.4.0.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: pamtram.provider.PamtramEditPlugin$Implementation
 Bundle-Vendor: Matthias Freund,
@@ -18,7 +18,7 @@ Export-Package: pamtram.condition.provider,
  pamtram.provider,
  pamtram.util
 Require-Bundle: org.eclipse.core.runtime,
- de.mfreund.pamtram.model;bundle-version="1.4.0";visibility:=reexport,
+ de.mfreund.pamtram.model;bundle-version="1.5.0";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  de.tud.et.ifa.agtele.genlibrary;bundle-version="1.0.12";visibility:=reexport,
  org.eclipse.swt,
@@ -26,5 +26,6 @@ Require-Bundle: org.eclipse.core.runtime,
  de.tud.et.ifa.agtele.genlibrary.edit;bundle-version="1.0.10";visibility:=reexport,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.common,
- org.eclipse.xsd
+ org.eclipse.xsd,
+ de.tud.et.ifa.agtele.eclipse.commons;bundle-version="0.1.0"
 Bundle-ActivationPolicy: lazy

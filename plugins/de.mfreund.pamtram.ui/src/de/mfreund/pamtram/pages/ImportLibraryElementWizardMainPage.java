@@ -22,10 +22,10 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 
-import de.mfreund.pamtram.util.SelectionListener2;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.FileParser;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;

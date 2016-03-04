@@ -30,8 +30,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
 
-import de.mfreund.pamtram.util.BundleContentHelper;
-import de.mfreund.pamtram.util.SelectionListener2;
+import de.tud.et.ifa.agtele.resources.BundleContentHelper;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 public class PamtramFileSpecificationPage extends WizardPage {
 

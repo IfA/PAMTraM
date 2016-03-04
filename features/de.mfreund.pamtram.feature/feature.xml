@@ -2,7 +2,7 @@
 <feature
       id="de.mfreund.pamtram.feature"
       label="PAMTraM Feature"
-      version="1.4.0.qualifier"
+      version="1.5.0.qualifier"
       provider-name="Matthias Freund, Institute of Automation, TU Dresden">
 
    <description url="http://www.example.com/description">
@@ -96,6 +96,7 @@
       <import plugin="org.eclipse.emf.compare" version="3.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.console" version="3.6.100" match="greaterOrEqual"/>
       <import plugin="de.mfreund.gentrans.transformation.resolving.history" version="1.0.2" match="greaterOrEqual"/>
+      <import feature="de.tud.et.ifa.agtele.eclipse.commons.feature"/>
    </requires>
 
    <plugin

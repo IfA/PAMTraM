@@ -38,7 +38,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import de.mfreund.pamtram.pages.EPackageSpecificationPage;
 import de.mfreund.pamtram.pages.PamtramFileSpecificationPage;
-import de.mfreund.pamtram.util.ResourceHelper;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 
 /**
  * A wizard that handles the creation of new PAMTraM projects.

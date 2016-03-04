@@ -28,10 +28,10 @@ import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStr
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.history.HistoryResolvingStrategy;
-import de.mfreund.pamtram.util.ResourceHelper;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPathParser;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 
 public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 

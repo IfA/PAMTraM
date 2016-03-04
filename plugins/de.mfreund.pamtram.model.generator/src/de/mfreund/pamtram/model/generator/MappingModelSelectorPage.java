@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 
-import de.mfreund.pamtram.util.SelectionListener2;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.PAMTraM;
 import pamtram.SectionModel;
 import pamtram.presentation.PamtramEditor;

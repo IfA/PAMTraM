@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<amino-ui:CUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:am-var="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/AlgorithmModel/Variables" xmlns:amino-ui="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1" xmlns:pp-ac-assets="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Assets" xmlns:pp-ac-sounds="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Sounds" xmlns:pp-hap-vib="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Vibration" xmlns:pp-vis-colors="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/ColorDefinition" xmlns:pp-vis-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/Properties" xmlns:pp-vis-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/PropertyValues" xmlns:td="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/TextDefinition" name="FAS">
+<amino-ui:CUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:am-var="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/AlgorithmModel/Variables" xmlns:amino-ui="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1" xmlns:ani="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/Animation" xmlns:df="dfsa" xmlns:pp-ac-assets="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Assets" xmlns:pp-ac-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation/Properties" xmlns:pp-ac-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues" xmlns:pp-ac-sounds="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Sounds" xmlns:pp-hap-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties" xmlns:pp-hap-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/PropertyValues" xmlns:pp-hap-vib="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Vibration" xmlns:pp-vis-colors="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/ColorDefinition" xmlns:pp-vis-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/Properties" xmlns:pp-vis-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/PropertyValues" xmlns:se="sewef" xmlns:td="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/TextDefinition" name="FAS">
   <components xsi:type="amino-ui:simpleContainer" name="velocity">
     <containedElements name="StaticvelocityTextComponent">
       <representation>
@@ -32,6 +32,66 @@
       </representation>
     </containedElements>
   </components>
+  <components name="parkModemediumDangerBorder">
+    <representation>
+      <styleProperty xsi:type="pp-vis-rep-props:Visibility">
+        <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue" val="HIDDEN"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderColor">
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.5"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderStyle" val="SOLID"/>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderWidth">
+        <val xsi:type="pp-vis-rep-pval:LengthValue" val="10.0"/>
+      </styleProperty>
+    </representation>
+    <animationRecord/>
+  </components>
+  <components name="ACCModemediumDangerBorder">
+    <representation>
+      <styleProperty xsi:type="pp-vis-rep-props:Visibility">
+        <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue" val="HIDDEN"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderColor">
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.6"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderStyle" val="SOLID"/>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderWidth">
+        <val xsi:type="pp-vis-rep-pval:LengthValue" val="10.0"/>
+      </styleProperty>
+    </representation>
+    <animationRecord/>
+  </components>
+  <components name="parkModehighDangerBorder">
+    <representation>
+      <styleProperty xsi:type="pp-vis-rep-props:Visibility">
+        <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue" val="HIDDEN"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderColor">
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.7"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderStyle" val="SOLID"/>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderWidth">
+        <val xsi:type="pp-vis-rep-pval:LengthValue" val="10.0"/>
+      </styleProperty>
+    </representation>
+    <animationRecord/>
+  </components>
+  <components name="ACCModehighDangerBorder">
+    <representation>
+      <styleProperty xsi:type="pp-vis-rep-props:Visibility">
+        <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue" val="HIDDEN"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderColor">
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.8"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderStyle" val="SOLID"/>
+      <styleProperty xsi:type="pp-vis-rep-props:BorderWidth">
+        <val xsi:type="pp-vis-rep-pval:LengthValue" val="10.0"/>
+      </styleProperty>
+    </representation>
+    <animationRecord/>
+  </components>
   <components xsi:type="amino-ui:simpleContainer" name="parkModeGauge">
     <representation>
       <styleProperty xsi:type="pp-vis-rep-props:Width">
@@ -41,9 +101,109 @@
         <val xsi:type="pp-vis-rep-pval:LengthValue" val="40.0"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.8"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-ac-rep-props:Sound">
+        <val xsi:type="pp-ac-rep-pval:SoundReferencingValue"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-hap-rep-props:VibrationReference">
+        <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue"/>
       </styleProperty>
     </representation>
+    <animationRecord name="parkMode">
+      <val name="parkModenoDangerColorAnimation" Trigger="//@SignalCollection/@Signals.2">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.1"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.3">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.0"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.4">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.0"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="parkModelowDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.4">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.3"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.3">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.0"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.4">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.0"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="parkModemediumDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.6">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.5"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.3">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.2"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.4">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.2"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="parkModehighDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.8">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.7"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.3">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.4"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.4">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.4"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+    </animationRecord>
     <containedElements>
       <representation>
         <styleProperty xsi:type="pp-vis-rep-props:Width">
@@ -53,7 +213,7 @@
           <val xsi:type="pp-vis-rep-pval:LengthValue" val="40.0"/>
         </styleProperty>
         <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
-          <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.8"/>
+          <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.0/@colorEntry.0/@value"/>
         </styleProperty>
       </representation>
     </containedElements>
@@ -67,9 +227,109 @@
         <val xsi:type="pp-vis-rep-pval:LengthValue" val="40.0"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.10"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-ac-rep-props:Sound">
+        <val xsi:type="pp-ac-rep-pval:SoundReferencingValue"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-hap-rep-props:VibrationReference">
+        <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue"/>
       </styleProperty>
     </representation>
+    <animationRecord name="ACCMode">
+      <val name="ACCModenoDangerColorAnimation" Trigger="//@SignalCollection/@Signals.3">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.2"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.3">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.0"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.4">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.0"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="ACCModelowDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.5">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.4"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.3">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.1"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.4">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.1"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="ACCModemediumDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.7">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.6"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.3">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.3"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.4">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.3"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="ACCModehighDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.9">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.8"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.3">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.5"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.4">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.5"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+    </animationRecord>
     <containedElements>
       <representation>
         <styleProperty xsi:type="pp-vis-rep-props:Width">
@@ -79,7 +339,7 @@
           <val xsi:type="pp-vis-rep-pval:LengthValue" val="40.0"/>
         </styleProperty>
         <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
-          <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
+          <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.0/@colorEntry.0/@value"/>
         </styleProperty>
       </representation>
     </containedElements>
@@ -115,8 +375,23 @@
   <SignalCollection>
     <Signals name="distanceChange"/>
     <Signals name="velocityChange"/>
+    <Signals name="parkModenoDangerActiveSignal"/>
+    <Signals name="ACCModenoDangerActiveSignal"/>
+    <Signals name="parkModelowDangerActiveSignal"/>
+    <Signals name="ACCModelowDangerActiveSignal"/>
+    <Signals name="parkModemediumDangerActiveSignal"/>
+    <Signals name="ACCModemediumDangerActiveSignal"/>
+    <Signals name="parkModehighDangerActiveSignal"/>
+    <Signals name="ACCModehighDangerActiveSignal"/>
+    <Signals name="parkModecollisionActiveSignal"/>
+    <Signals name="ACCModecollisionActiveSignal"/>
   </SignalCollection>
   <colors>
+    <colorItem xsi:type="pp-vis-colors:ColorItem">
+      <colorEntry theme="//@colorTheme">
+        <value xsi:type="pp-vis-colors:HEXColorValue"/>
+      </colorEntry>
+    </colorItem>
     <colorItem xsi:type="pp-vis-colors:ColorItem" name="parkModenoDanger">
       <colorEntry theme="//@colorTheme">
         <value xsi:type="pp-vis-colors:HEXColorValue" val="#45B7AF"/>
@@ -189,7 +464,44 @@
       <Type xsi:type="am-var:FloatVariable"/>
     </DataItems>
   </DataItems>
-  <Conditions/>
+  <Conditions>
+    <Condition name="parkModenoDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.2">
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="12"/>
+    </Condition>
+    <Condition name="ACCModenoDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.3">
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="120"/>
+    </Condition>
+    <Condition name="parkModelowDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.4">
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="8"/>
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="12"/>
+    </Condition>
+    <Condition name="ACCModelowDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.5">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="120"/>
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="80"/>
+    </Condition>
+    <Condition name="parkModemediumDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.6">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="8"/>
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="3"/>
+    </Condition>
+    <Condition name="ACCModemediumDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.7">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="80"/>
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="30"/>
+    </Condition>
+    <Condition name="parkModehighDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.8">
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="0.2"/>
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="3"/>
+    </Condition>
+    <Condition name="ACCModehighDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.9">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="30"/>
+      <condition compareType="GT" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="0.2"/>
+    </Condition>
+    <Condition name="parkModecollisionPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.10">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="0.2"/>
+    </Condition>
+    <Condition name="ACCModecollisionPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.11">
+      <condition compareType="LTEQ" ReferneceDataItem="//@DataItems/@DataItems.0" StringReferenceValue="0.2"/>
+    </Condition>
+  </Conditions>
   <assets>
     <asset xsi:type="pp-ac-assets:Sound" name="parkModecollision">
       <ref ref="sound/tireSqueling.mp3"/>

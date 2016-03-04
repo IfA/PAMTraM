@@ -710,7 +710,7 @@
           </eAnnotations>
         </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="AnimationRecord" eSuperTypes="#//Utils/AminoUIModelElement">
+      <eClassifiers xsi:type="ecore:EClass" name="AnimationRecord" eSuperTypes="#//Utils/DefaultElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="An animation record provides all animation paths for the current element."/>
         </eAnnotations>
@@ -721,7 +721,7 @@
           </eGenericType>
         </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Animation">
+      <eClassifiers xsi:type="ecore:EClass" name="Animation" eSuperTypes="#//Utils/NamedElement">
         <eTypeParameters name="AnimationTypes">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="documentation" value="The PropertySample arguments configures the style property composite concerning the style properties that can be stored within the composite leafs."/>
@@ -804,7 +804,10 @@
             abstract="true" eSuperTypes="#//Variables/Variable"/>
         <eClassifiers xsi:type="ecore:EClass" name="AnimationIterationCountInt" eSuperTypes="#//Variables/IntegerVariable #//PresentationModel/Animation/AnimationValues/AnimationIterationCountValue"/>
         <eClassifiers xsi:type="ecore:EClass" name="AnimationIterationCountPresetValue"
-            eSuperTypes="#//Variables/BuiltinEnumVariable #//PresentationModel/Animation/AnimationValues/AnimationIterationCountValue"/>
+            eSuperTypes="#//Variables/BuiltinEnumVariable #//PresentationModel/Animation/AnimationValues/AnimationIterationCountValue">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" lowerBound="1"
+              eType="#//PresentationModel/Animation/AnimationValues/AnimationIterationCountEnum"/>
+        </eClassifiers>
         <eClassifiers xsi:type="ecore:EEnum" name="AnimationIterationCountEnum">
           <eLiterals name="infinite"/>
           <eLiterals name="initial" value="1"/>
@@ -3588,21 +3591,6 @@
           <eTypeArguments eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertySamples/SoundStylePropertySample"/>
         </eGenericSuperTypes>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="AcousticalVariableAnimation">
-        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/VariableAnimation">
-          <eTypeArguments eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundPrimitiveVariable"/>
-        </eGenericSuperTypes>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="AcousticalStylePropertyAnimation">
-        <eTypeParameters name="ValueType">
-          <eBounds eClassifier="#//Variables/Variable"/>
-        </eTypeParameters>
-        <eGenericSuperTypes eClassifier="#//PresentationModel/Animation/StylePropertyAnimation">
-          <eTypeArguments eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/AcousticalStyleProperty">
-            <eTypeArguments eTypeParameter="#//PresentationModel/AcousticalPresentationProfile/AcousticalStylePropertyAnimation/ValueType"/>
-          </eTypeArguments>
-        </eGenericSuperTypes>
-      </eClassifiers>
       <eSubpackages name="Assets" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Assets"
           nsPrefix="pp-ac-assets">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3640,7 +3628,12 @@
         <eClassifiers xsi:type="ecore:EClass" name="GenericSoundItem" eSuperTypes="#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundItem">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="Frequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="Rate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-          <eStructuralFeatures xsi:type="ecore:EAttribute" name="Waveform" eType="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/GenericSoundWaveformEnum"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="Waveform" eType="#//PresentationModel/AcousticalPresentationProfile/Sounds/GenericSoundWaveformEnum"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EEnum" name="GenericSoundWaveformEnum">
+          <eLiterals name="sine"/>
+          <eLiterals name="square" value="1"/>
+          <eLiterals name="sawtooth" value="2"/>
         </eClassifiers>
       </eSubpackages>
       <eSubpackages name="Representation" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation"
@@ -3673,12 +3666,6 @@
             </eGenericSuperTypes>
             <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertySamples/SoundStylePropertySample"/>
           </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="testSound">
-            <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertySamples/SoundStylePropertySample"/>
-            <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/AcousticalMultiStyleProperty">
-              <eTypeArguments eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundValue"/>
-            </eGenericSuperTypes>
-          </eClassifiers>
         </eSubpackages>
         <eSubpackages name="PropertySamples" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation/PropertySamples"
             nsPrefix="pp-ac-rep-psamps">
@@ -3691,58 +3678,12 @@
         </eSubpackages>
         <eSubpackages name="PropertyValues" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues"
             nsPrefix="pp-ac-rep-pval">
-          <eClassifiers xsi:type="ecore:EClass" name="GenericSoundWaveform" eSuperTypes="#//Variables/BuiltinEnumVariable">
-            <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/GenericSoundWaveformEnum"/>
-          </eClassifiers>
-          <eClassifiers xsi:type="ecore:EEnum" name="GenericSoundWaveformEnum">
-            <eLiterals name="sine"/>
-            <eLiterals name="square" value="1"/>
-            <eLiterals name="sawtooth" value="2"/>
-          </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="SoundDefinition" abstract="true"
-              eSuperTypes="#//Variables/Variable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="ReferenceSound" eSuperTypes="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundDefinition"/>
-          <eClassifiers xsi:type="ecore:EClass" name="SoundValue" abstract="true"
-              eSuperTypes="#//Variables/Variable #//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundDefinition"/>
-          <eClassifiers xsi:type="ecore:EClass" name="SoundFileValue">
-            <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundValue"/>
-            <eGenericSuperTypes eClassifier="#//Variables/ReferencingVariable">
-              <eTypeArguments eClassifier="#//PresentationModel/AcousticalPresentationProfile/Assets/Sound"/>
-            </eGenericSuperTypes>
-            <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/ReferenceSound"/>
-          </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="GeneralSoundValues" eSuperTypes="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundValue">
-            <eStructuralFeatures xsi:type="ecore:EReference" name="SoundRepeatValue"
-                eType="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundBooleanVariable"
-                containment="true"/>
-            <eStructuralFeatures xsi:type="ecore:EReference" name="SoundVolumeValue"
-                eType="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundIntegerVariable"
-                containment="true"/>
-            <eStructuralFeatures xsi:type="ecore:EReference" name="SoundDurationValue"
-                eType="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundIntegerVariable"
-                containment="true"/>
-          </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="GenericSoundValue" eSuperTypes="#//Variables/Variable #//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundValue">
-            <eStructuralFeatures xsi:type="ecore:EReference" name="genericSoundFrequency"
-                lowerBound="1" eType="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundIntegerVariable"
-                containment="true"/>
-            <eStructuralFeatures xsi:type="ecore:EReference" name="genericSoundRate"
-                lowerBound="1" eType="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundFloatVariable"
-                containment="true"/>
-            <eStructuralFeatures xsi:type="ecore:EReference" name="genericSoundWave"
-                eType="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/GenericSoundWaveform"
-                containment="true"/>
-          </eClassifiers>
           <eClassifiers xsi:type="ecore:EClass" name="SoundReferencingValue">
             <eGenericSuperTypes eClassifier="#//Variables/ReferencingVariable">
               <eTypeArguments eClassifier="#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundItemGroupable"/>
             </eGenericSuperTypes>
             <eGenericSuperTypes eClassifier="#//Variables/Variable"/>
           </eClassifiers>
-          <eClassifiers xsi:type="ecore:EClass" name="SoundIntegerVariable" eSuperTypes="#//Variables/IntegerVariable #//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundPrimitiveVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="SoundFloatVariable" eSuperTypes="#//Variables/FloatVariable #//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundPrimitiveVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="SoundBooleanVariable" eSuperTypes="#//Variables/BooleanVariable #//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundPrimitiveVariable"/>
-          <eClassifiers xsi:type="ecore:EClass" name="SoundPrimitiveVariable" eSuperTypes="#//Variables/PrimitiveVariable"/>
         </eSubpackages>
       </eSubpackages>
     </eSubpackages>

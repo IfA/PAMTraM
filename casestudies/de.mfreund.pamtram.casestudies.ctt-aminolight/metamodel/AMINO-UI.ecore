@@ -749,7 +749,7 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="PropertyToAnimate">
           <eGenericType eTypeParameter="#//PresentationModel/Animation/VariableAnimation/ValueType"/>
         </eStructuralFeatures>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="variableResult">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="variableResult" containment="true">
           <eGenericType eTypeParameter="#//PresentationModel/Animation/VariableAnimation/ValueType"/>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="dataItemResult" eType="#//DataItem"/>
@@ -3666,6 +3666,12 @@
             </eGenericSuperTypes>
             <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertySamples/SoundStylePropertySample"/>
           </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="SoundActive">
+            <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/AcousticalStyleProperty">
+              <eTypeArguments eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundActiveValue"/>
+            </eGenericSuperTypes>
+            <eGenericSuperTypes eClassifier="#//PresentationModel/AcousticalPresentationProfile/Representation/PropertySamples/SoundStylePropertySample"/>
+          </eClassifiers>
         </eSubpackages>
         <eSubpackages name="PropertySamples" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation/PropertySamples"
             nsPrefix="pp-ac-rep-psamps">
@@ -3684,6 +3690,7 @@
             </eGenericSuperTypes>
             <eGenericSuperTypes eClassifier="#//Variables/Variable"/>
           </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="SoundActiveValue" eSuperTypes="#//Variables/BooleanVariable"/>
         </eSubpackages>
       </eSubpackages>
     </eSubpackages>
@@ -3781,6 +3788,12 @@
               <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationReferencingValue"/>
             </eGenericSuperTypes>
           </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationActive">
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertySamples/HapticPropertySample"/>
+            <eGenericSuperTypes eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/HapticStyleProperty">
+              <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationActiveValue"/>
+            </eGenericSuperTypes>
+          </eClassifiers>
         </eSubpackages>
         <eSubpackages name="PropertySamples" nsURI="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/PropertySamples"
             nsPrefix="pp-hap-rep-psamps">
@@ -3820,6 +3833,7 @@
               <eTypeArguments eClassifier="#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroupable"/>
             </eGenericSuperTypes>
           </eClassifiers>
+          <eClassifiers xsi:type="ecore:EClass" name="VibrationActiveValue" eSuperTypes="#//Variables/BooleanVariable"/>
         </eSubpackages>
       </eSubpackages>
     </eSubpackages>

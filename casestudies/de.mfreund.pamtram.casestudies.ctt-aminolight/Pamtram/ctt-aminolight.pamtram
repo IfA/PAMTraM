@@ -186,6 +186,15 @@
           </attributes>
         </value>
       </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="siblingRight">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="SiblingRight">
+          <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingRightName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//SiblingRight/name"/>
+          </attributes>
+        </value>
+      </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm0TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
@@ -241,6 +250,24 @@
           </references>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="RootOperator">
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="siblingRight">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="SiblingRight">
+          <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingRightName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//SiblingRight/name"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="siblingLeft">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="SiblingLeft">
+          <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingLeftName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//SiblingLeft/name"/>
           </attributes>
         </value>
       </references>
@@ -302,6 +329,24 @@
           </attributes>
         </value>
       </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="siblingRight">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="SiblingRight">
+          <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingRightName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//SiblingRight/name"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="siblingLeft">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="SiblingLeft">
+          <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingLeftName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//SiblingLeft/name"/>
+          </attributes>
+        </value>
+      </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" value="Alarm2"/>
@@ -360,6 +405,24 @@
           </attributes>
         </value>
       </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="siblingRight">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="SiblingRight">
+          <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingRightName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//SiblingRight/name"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="siblingLeft">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="SiblingLeft">
+          <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingLeftName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//SiblingLeft/name"/>
+          </attributes>
+        </value>
+      </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm3TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
@@ -415,6 +478,15 @@
           </references>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="RootOperator">
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="siblingLeft">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="SiblingLeft">
+          <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingLeftName">
+            <attribute href="http://giove.isti.cnr.it/ctt#//SiblingLeft/name"/>
           </attributes>
         </value>
       </references>
@@ -1230,87 +1302,6 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="SoundAnimation" container="//@targetSectionModel.1/@metaModelSections.0/@references.2/@value.0">
-      <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation"/>
-      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="SoundAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
-        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation/Trigger"/>
-      </references>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
-        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation/val"/>
-        <value xsi:type="metamodel:TargetSectionClass" name="AnimationIterationCount">
-          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animations/AnimationIterationCount"/>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
-            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
-            <value xsi:type="metamodel:TargetSectionClass" name="AnimationIterationCountPresetValue">
-              <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationIterationCountPresetValue"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="infinite">
-                <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationIterationCountPresetValue/val"/>
-              </attributes>
-            </value>
-          </references>
-        </value>
-        <value xsi:type="metamodel:TargetSectionClass" name="AnimationPlayState">
-          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animations/AnimationPlayState"/>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
-            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
-            <value xsi:type="metamodel:TargetSectionClass" name="AnimationPlayStatePresetValue">
-              <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationPlayStatePresetValue"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="running">
-                <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationPlayStatePresetValue/val"/>
-              </attributes>
-            </value>
-          </references>
-        </value>
-      </references>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="PropertyAnimation">
-        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation/PropertyAnimation"/>
-        <value xsi:type="metamodel:TargetSectionClass" name="StylePropertyAnimation">
-          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/StylePropertyAnimation"/>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="SoundPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3">
-            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="StylePropertyResult">
-            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
-            <value xsi:type="metamodel:TargetSectionClass" name="Sound">
-              <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/AcousticalPresentationProfile/Representation/Properties/Sound"/>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
-                <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Representation/StyleProperty/val"/>
-                <value xsi:type="metamodel:TargetSectionClass" name="SoundReferencingValue">
-                  <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundReferencingValue"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ResultSoundRef" value="//@targetSectionModel.3/@metaModelSections.0">
-                    <eReference href="../metamodel/AMINO-UI.ecore#//Variables/ReferencingVariable/ref"/>
-                  </references>
-                </value>
-              </references>
-            </value>
-          </references>
-        </value>
-        <value xsi:type="metamodel:TargetSectionClass" name="StylePropertyAnimation">
-          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/StylePropertyAnimation"/>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="VibrationPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.0/@references.0/@value.0/@references.0/@value.5">
-            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="StylePropertyResult">
-            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
-            <value xsi:type="metamodel:TargetSectionClass" name="VibrationReference">
-              <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/HapticalPresentationProfile/Representation/Properties/VibrationReference"/>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
-                <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Representation/StyleProperty/val"/>
-                <value xsi:type="metamodel:TargetSectionClass" name="VibrationReferencingValue">
-                  <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationReferencingValue"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ResultVibrationRef" value="//@targetSectionModel.4/@metaModelSections.0">
-                    <eReference href="../metamodel/AMINO-UI.ecore#//Variables/ReferencingVariable/ref"/>
-                  </references>
-                </value>
-              </references>
-            </value>
-          </references>
-        </value>
-      </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SoundAnimationName">
-        <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
-      </attributes>
-    </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="InfiniteBorderAnimation" container="//@targetSectionModel.1/@metaModelSections.4/@references.1/@value.0">
       <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
@@ -1323,6 +1314,21 @@
               <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationIterationCountPresetValue"/>
               <attributes xsi:type="metamodel:ActualAttribute" name="val">
                 <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationIterationCountPresetValue/val"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+        <value xsi:type="metamodel:TargetSectionClass" name="BorderAnimationPlayState">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animations/AnimationPlayState"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
+            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
+            <value xsi:type="metamodel:TargetSectionClass" name="InfiniteBorderAnimationPlayStatePresetValue">
+              <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationPlayStatePresetValue"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="paused">
+                <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationPlayStatePresetValue/val"/>
+              </attributes>
+              <attributes xsi:type="metamodel:ActualAttribute" name="InfiniteBorderAnimationPlayStateName">
+                <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
               </attributes>
             </value>
           </references>
@@ -1397,7 +1403,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="BorderAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation/Trigger"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="BorderAnimationName">
+      <attributes xsi:type="metamodel:ActualAttribute" name="InfiniteBorderAnimationName">
         <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1420,7 +1426,7 @@
       </references>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="PropertyAnimation">
         <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation/PropertyAnimation"/>
-        <value xsi:type="metamodel:TargetSectionClass" name="StylePropertyAnimation">
+        <value xsi:type="metamodel:TargetSectionClass" name="BorderColorAnimation">
           <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/StylePropertyAnimation"/>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="StylePropertyResult">
             <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
@@ -1448,6 +1454,75 @@
       <attributes xsi:type="metamodel:ActualAttribute" name="BorderAnimationName">
         <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
       </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="AnimationActivateAnimation" container="//@targetSectionModel.5/@metaModelSections.7">
+      <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/VariableAnimation"/>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="AnimationActivePropertyToAnimate" value="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/VariableAnimation/PropertyToAnimate"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="variableResult">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/VariableAnimation/variableResult"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="AnimationPlayStatePresetValue">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationPlayStatePresetValue"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="val" value="running">
+            <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationPlayStatePresetValue/val"/>
+          </attributes>
+        </value>
+      </references>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="AnimationDeactivateAnimation" container="//@targetSectionModel.5/@metaModelSections.7">
+      <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/VariableAnimation"/>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="AnimationDeactivatePropertyToAnimate" value="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/VariableAnimation/PropertyToAnimate"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="variableResult">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/VariableAnimation/variableResult"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="AnimationPlayStatePresetValue">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationPlayStatePresetValue"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="val" value="paused">
+            <attribute href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationPlayStatePresetValue/val"/>
+          </attributes>
+        </value>
+      </references>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Activate_DeactivateAnimation">
+      <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation/val"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="AnimationIterationCount">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animations/AnimationIterationCount"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="val">
+            <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
+            <value xsi:type="metamodel:TargetSectionClass" name="AnimationIterationCountInt">
+              <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/AnimationValues/AnimationIterationCountInt"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="1">
+                <attribute href="../metamodel/AMINO-UI.ecore#//Variables/IntegerVariable/val"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Trigger" value="//@targetSectionModel.0/@metaModelSections.1">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/Animation/Trigger"/>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Activate_DeactivateAnimationName">
+        <attribute href="../metamodel/AMINO-UI.ecore#//Utils/NamedElement/name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="SoundActiveAnimation" container="//@targetSectionModel.5/@metaModelSections.7">
+      <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/VariableAnimation"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="variableResult">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/VariableAnimation/variableResult"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="SoundActiveValue">
+          <eClass href="../metamodel/AMINO-UI.ecore#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundActiveValue"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="SoundActiveVal">
+            <attribute href="../metamodel/AMINO-UI.ecore#//Variables/BooleanVariable/val"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="SoundActivePropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.0/@references.0/@value.0/@references.0/@value.4/@references.0/@value.0">
+        <eReference href="../metamodel/AMINO-UI.ecore#//PresentationModel/Animation/VariableAnimation/PropertyToAnimate"/>
+      </references>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
@@ -1672,6 +1747,22 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Activate_DeactivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Activate_DeactivateAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.8" target="//@targetSectionModel.5/@metaModelSections.7/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel.5/@metaModelSections.7/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.0/@modifierSets.2" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm0TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="GaugeAnimationRecordName" source="//@targetSectionModel.1/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
     </mapping>
     <mapping name="Alarm1TaskMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GenericSoundItemAlarm1" targetMMSection="//@targetSectionModel.3/@metaModelSections.0">
@@ -1823,6 +1914,35 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Activate_DeactivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Activate_DeactivateAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.8" target="//@targetSectionModel.5/@metaModelSections.7/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel.5/@metaModelSections.7/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.0/@modifierSets.2" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="GaugeAnimationRecordName" source="//@targetSectionModel.1/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AnimationDeactivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.6">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="AnimationDeactivatePropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.6/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.2/@modifierSets.6" targetAttribute="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0/@attributes.1">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="SiblingRightName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.3/@value.0/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="Activate_DeactivateAnimationName" source="//@targetSectionModel.5/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.8"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
     </mapping>
     <mapping name="Alarm2TaskMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.3">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GenericSoundItemAlarm2" targetMMSection="//@targetSectionModel.3/@metaModelSections.0">
@@ -1938,24 +2058,24 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SingleBorderAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.5">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="BorderAnimationTrigger" affectedReference="//@targetSectionModel.5/@metaModelSections.5/@references.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SingleBorderAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.4">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="BorderAnimationTrigger" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.0/@modifierSets.2" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="BorderAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.7" target="//@targetSectionModel.5/@metaModelSections.5/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="BorderAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.7" target="//@targetSectionModel.5/@metaModelSections.4/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ref" affectedReference="//@targetSectionModel.5/@metaModelSections.5/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ref" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.5/@references.1/@value.0/@references.1">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.1/@value.0/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.1/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           </matcher>
@@ -1965,24 +2085,28 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InfiniteBorderAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.4">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="BorderAnimationTrigger" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InfiniteBorderAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.3">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="BorderAnimationTrigger" affectedReference="//@targetSectionModel.5/@metaModelSections.3/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.0/@modifierSets.2" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.1/@value.0/@references.2">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.3/@references.1/@value.0/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.1/@value.1/@references.2">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.3/@references.1/@value.1/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="BorderAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.6" target="//@targetSectionModel.5/@metaModelSections.4/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="BorderAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.6" target="//@targetSectionModel.5/@metaModelSections.3/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="AnimationPlayStateNameMapping" resultModifier="//@mappingModel.2/@modifierSets.6" target="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
         </mappingHints>
@@ -2025,6 +2149,48 @@
           <targetAttributes name="SingleGaugeAnimationName" source="//@targetSectionModel.5/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.2/@modifierSets.7"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AnimationActivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="AnimationActivePropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.5/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.2/@modifierSets.6" targetAttribute="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0/@attributes.1">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="Activate_DeactivateAnimationName" source="//@targetSectionModel.5/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.8"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AnimationDeactivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.6">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="AnimationDeactivatePropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.6/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.2/@modifierSets.6" targetAttribute="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0/@attributes.1">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="SiblingRightName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.3/@value.0/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="Activate_DeactivateAnimationName" source="//@targetSectionModel.5/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.8"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Activate_DeactivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Activate_DeactivateAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.8" target="//@targetSectionModel.5/@metaModelSections.7/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel.5/@metaModelSections.7/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.0/@modifierSets.2" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.1"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="GaugeAnimationRecordName" source="//@targetSectionModel.1/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -2117,7 +2283,7 @@
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ColorAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.7" target="//@targetSectionModel.5/@metaModelSections.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="SingleGaugeAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.7" target="//@targetSectionModel.5/@metaModelSections.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
         </mappingHints>
@@ -2142,24 +2308,28 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InfiniteBorderAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.4">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="BorderAnimationTrigger" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InfiniteBorderAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.3">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="BorderAnimationTrigger" affectedReference="//@targetSectionModel.5/@metaModelSections.3/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.0/@modifierSets.2" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.1/@value.0/@references.2">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.3/@references.1/@value.0/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.1/@value.1/@references.2">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.3/@references.1/@value.1/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="BorderAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.6" target="//@targetSectionModel.5/@metaModelSections.4/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="BorderAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.6" target="//@targetSectionModel.5/@metaModelSections.3/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="AnimationPlayStateNameMapping" resultModifier="//@mappingModel.2/@modifierSets.6" target="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
         </mappingHints>
@@ -2168,24 +2338,24 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SingleBorderAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.5">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="BorderAnimationTrigger" affectedReference="//@targetSectionModel.5/@metaModelSections.5/@references.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SingleBorderAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.4">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="BorderAnimationTrigger" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.0/@modifierSets.2" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="BorderAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.7" target="//@targetSectionModel.5/@metaModelSections.5/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="BorderAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.7" target="//@targetSectionModel.5/@metaModelSections.4/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ref" affectedReference="//@targetSectionModel.5/@metaModelSections.5/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ref" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.5/@references.1/@value.0/@references.1">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.4/@references.1/@value.0/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.1/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           </matcher>
@@ -2229,6 +2399,48 @@
           <targetAttributes name="SingleGaugeAnimationName" source="//@targetSectionModel.5/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.2/@modifierSets.7"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AnimationActivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="AnimationActivePropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.5/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.2/@modifierSets.6" targetAttribute="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0/@attributes.1">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="Activate_DeactivateAnimationName" source="//@targetSectionModel.5/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.8"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AnimationDeactivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.6">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="AnimationDeactivatePropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.6/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.2/@modifierSets.6" targetAttribute="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0/@attributes.1">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="SiblingLeftName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="Activate_DeactivateAnimationName" source="//@targetSectionModel.5/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.8"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Activate_DeactivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Activate_DeactivateAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.8" target="//@targetSectionModel.5/@metaModelSections.7/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel.5/@metaModelSections.7/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.0/@modifierSets.2" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="GaugeAnimationRecordName" source="//@targetSectionModel.1/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -2278,6 +2490,50 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.5/@references.0/@value.0/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.0"/>
         </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Activate_DeactivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Activate_DeactivateAnimationNameMapping" resultModifier="//@mappingModel.2/@modifierSets.8" target="//@targetSectionModel.5/@metaModelSections.7/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.5/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel.5/@metaModelSections.7/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.0/@modifierSets.2" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.5/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="GaugeAnimationRecordName" source="//@targetSectionModel.1/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.5/@references.0/@value.0/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SoundActiveAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.8">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="SoundActivePropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.8/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.0/@references.0/@value.0/@references.0/@value.4/@references.0/@value.0/@attributes.1">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.5/@references.0/@value.0/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="SoundActiveValMapping" target="//@targetSectionModel.5/@metaModelSections.8/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="true" value="true"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="Activate_DeactivateAnimationName" source="//@targetSectionModel.5/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.8"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.5/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AnimationDeactivateAnimation" targetMMSection="//@targetSectionModel.5/@metaModelSections.6">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="AnimationDeactivatePropertyToAnimate" affectedReference="//@targetSectionModel.5/@metaModelSections.6/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel.2/@modifierSets.6" targetAttribute="//@targetSectionModel.5/@metaModelSections.3/@references.0/@value.1/@references.0/@value.0/@attributes.1">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.5/@references.0/@value.0/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="SiblingLeftName" source="//@sourceSectionModel.2/@metaModelSections.5/@references.3/@value.0/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="Activate_DeactivateAnimationName" source="//@targetSectionModel.5/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.8"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.5/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.0"/>
+        </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
     <mapping name="GaugeMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.6">
@@ -2372,6 +2628,9 @@
     </modifierSets>
     <modifierSets name="addSingleAnimation">
       <modifier xsi:type="mapping:StringAppender" name="SingleAnimation" string="SingleAnimation"/>
+    </modifierSets>
+    <modifierSets name="addActivateDeactivate">
+      <modifier xsi:type="mapping:StringAppender" name="ActivateDeactivateAnimation" string="ActivateDeactivateAnimation"/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

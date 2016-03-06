@@ -94,6 +94,11 @@
           <val xsi:type="df:AnimationPlayStatePresetValue"/>
         </val>
       </val>
+      <val name="parkModenoDangerActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.2">
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+      </val>
       <val name="parkModelowDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.4">
         <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.2/@containedElements.0/@representation/@styleProperty.2">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
@@ -121,6 +126,14 @@
         </val>
         <val xsi:type="se:AnimationPlayState">
           <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="parkModelowDangerActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.4">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.1/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </val>
       </val>
       <val name="parkModemediumDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.6">
@@ -152,6 +165,17 @@
           <val xsi:type="df:AnimationPlayStatePresetValue"/>
         </val>
       </val>
+      <val name="parkModemediumDangerActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.6">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.1/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue"/>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.2/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+      </val>
       <val name="parkModehighDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.8">
         <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.2/@containedElements.0/@representation/@styleProperty.2">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
@@ -179,6 +203,28 @@
         </val>
         <val xsi:type="se:AnimationPlayState">
           <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="parkModehighDangerActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.8">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.2/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue"/>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.1/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+      </val>
+      <val name="parkModecollisionActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.10">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.2/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </val>
       </val>
     </animationRecord>
@@ -240,6 +286,11 @@
           <val xsi:type="df:AnimationPlayStatePresetValue"/>
         </val>
       </val>
+      <val name="ACCModenoDangerActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.3">
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+      </val>
       <val name="ACCModelowDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.5">
         <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@containedElements.0/@representation/@styleProperty.2">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
@@ -267,6 +318,14 @@
         </val>
         <val xsi:type="se:AnimationPlayState">
           <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="ACCModelowDangerActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.5">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.1/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </val>
       </val>
       <val name="ACCModemediumDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.7">
@@ -298,6 +357,17 @@
           <val xsi:type="df:AnimationPlayStatePresetValue"/>
         </val>
       </val>
+      <val name="ACCModemediumDangerActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.7">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.1/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue"/>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.2/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+      </val>
       <val name="ACCModehighDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.9">
         <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@containedElements.0/@representation/@styleProperty.2">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
@@ -325,6 +395,28 @@
         </val>
         <val xsi:type="se:AnimationPlayState">
           <val xsi:type="df:AnimationPlayStatePresetValue"/>
+        </val>
+      </val>
+      <val name="ACCModehighDangerActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.9">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.2/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue"/>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.1/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </val>
+      </val>
+      <val name="ACCModecollisionActivateDeactivateAnimation" Trigger="//@SignalCollection/@Signals.11">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.2/@val.1/@val">
+          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
+        </PropertyAnimation>
+        <val xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </val>
       </val>
     </animationRecord>
@@ -379,6 +471,9 @@
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
         </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue" name="parkModemediumDangerInfiniteAnimations" val="paused"/>
+        </val>
       </val>
       <val name="parkModehighDangerInfiniteAnimations" Trigger="//@SignalCollection/@Signals.8">
         <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@representation/@styleProperty.0/@val">
@@ -392,6 +487,9 @@
         </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue" name="parkModehighDangerInfiniteAnimations" val="paused"/>
         </val>
       </val>
       <val name="parkModehighDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.8">
@@ -443,6 +541,9 @@
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
         </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue" name="ACCModemediumDangerInfiniteAnimations" val="paused"/>
+        </val>
       </val>
       <val name="ACCModehighDangerInfiniteAnimations" Trigger="//@SignalCollection/@Signals.9">
         <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@representation/@styleProperty.0/@val">
@@ -456,6 +557,9 @@
         </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
+        </val>
+        <val xsi:type="se:AnimationPlayState">
+          <val xsi:type="df:AnimationPlayStatePresetValue" name="ACCModehighDangerInfiniteAnimations" val="paused"/>
         </val>
       </val>
       <val name="ACCModehighDangerSingleAnimation" Trigger="//@SignalCollection/@Signals.9">

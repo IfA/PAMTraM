@@ -2,8 +2,6 @@
  */
 package pamtram.condition.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
@@ -34,29 +32,6 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	@Override
 	protected EClass eStaticClass() {
 		return ConditionPackage.Literals.COMPLEX_CONDITION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean checkCondition(final ComplexCondition condition) {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!ComplexCondition!checkCondition(http://mfreund.de/pamtram/condition!ComplexCondition)
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case ConditionPackage.COMPLEX_CONDITION___CHECK_CONDITION__COMPLEXCONDITION:
-				return checkCondition((ComplexCondition)arguments.get(0));
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 } //ComplexConditionImpl

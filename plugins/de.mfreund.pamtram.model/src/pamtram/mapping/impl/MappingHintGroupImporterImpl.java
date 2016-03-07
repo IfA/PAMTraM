@@ -2,7 +2,6 @@
  */
 package pamtram.mapping.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -381,15 +380,6 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean checkCondition(final ComplexCondition condition) {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!ConditionalElement!checkCondition(http://mfreund.de/pamtram/condition!ComplexCondition)
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -568,46 +558,6 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == DeactivatableElement.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ConditionalElement.class) {
-			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___CHECK_CONDITION__COMPLEXCONDITION: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER___CHECK_CONDITION__COMPLEXCONDITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == InstantiableMappingHintGroup.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___CHECK_CONDITION__COMPLEXCONDITION:
-				return checkCondition((ComplexCondition)arguments.get(0));
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

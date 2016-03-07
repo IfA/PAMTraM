@@ -478,15 +478,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean checkCondition(final ComplexCondition condition) {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!ConditionalElement!checkCondition(http://mfreund.de/pamtram/condition!ComplexCondition)
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -655,22 +646,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * @generated
 	 */
 	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == ConditionalElement.class) {
-			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___CHECK_CONDITION__COMPLEXCONDITION: return MappingPackage.MAPPING___CHECK_CONDITION__COMPLEXCONDITION;
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
@@ -678,12 +653,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getActiveMappingHintGroups();
 			case MappingPackage.MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS:
 				return getActiveImportedMappingHintGroups();
-			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_1:
+			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
 				return containsHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_1:
+			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
 				return containsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___CHECK_CONDITION__COMPLEXCONDITION:
-				return checkCondition((ComplexCondition)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

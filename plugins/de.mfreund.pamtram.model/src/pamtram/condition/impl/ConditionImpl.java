@@ -320,22 +320,6 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	 * @generated
 	 */
 	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == ComplexCondition.class) {
-			switch (baseOperationID) {
-				case ConditionPackage.COMPLEX_CONDITION___CHECK_CONDITION__COMPLEXCONDITION: return ConditionPackage.CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
-				default: return super.eDerivedOperationID(baseOperationID, baseClass);
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case ConditionPackage.CONDITION___CHECK_CONDITION__COMPLEXCONDITION:

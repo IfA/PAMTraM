@@ -3265,7 +3265,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SourceSectionAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._SourceSectionAttribute__valueConstraint,
-			MetamodelTables.Properties._SourceSectionAttribute__InstancePointer__attributePointer,
+			MetamodelTables.Properties._SourceSectionAttribute__InstancePointer__attributePointer
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _SourceSectionClass = {

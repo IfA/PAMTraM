@@ -37,7 +37,6 @@ import org.eclipse.ocl.pivot.values.IntegerValue;
 import pamtram.PamtramPackage;
 import pamtram.PamtramTables;
 import pamtram.condition.ConditionPackage;
-import pamtram.condition.ConditionTables;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -263,7 +262,6 @@ public class PamtramTables
 		}
 
 		public static final /*@NonNull*/ ParameterTypes _ = TypeUtil.createParameterTypes();
-		public static final /*@NonNull*/ ParameterTypes _ComplexCondition = TypeUtil.createParameterTypes(ConditionTables.Types._ComplexCondition);
 
 		static {
 			Init.initEnd();
@@ -283,9 +281,6 @@ public class PamtramTables
 			Init.initStart();
 			Parameters.init();
 		}
-
-		public static final /*@NonNull*/ ExecutorOperation _ConditionalElement__checkCondition = new ExecutorOperation("checkCondition", Parameters._ComplexCondition, Types._ConditionalElement,
-			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _MappingModel__getActiveMappings = new ExecutorOperation("getActiveMappings", Parameters._, Types._MappingModel,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -508,9 +503,7 @@ public class PamtramTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _ConditionalElement__ConditionalElement = {
-			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _ConditionalElement__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ConditionalElement__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,

@@ -2,13 +2,8 @@
  */
 package pamtram.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -158,19 +153,6 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean checkCondition(final ComplexCondition condition) {
-		if(condition == null){ //Note that no condition modeled means true!!
-			return true;
-		} else {
-			return condition.checkCondition(condition);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -249,20 +231,6 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 				return conditionRef != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case PamtramPackage.CONDITIONAL_ELEMENT___CHECK_CONDITION__COMPLEXCONDITION:
-				return checkCondition((ComplexCondition)arguments.get(0));
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 } //ConditionalElementImpl

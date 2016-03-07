@@ -294,9 +294,6 @@ public class ConditionTables
 			Parameters.init();
 		}
 
-		public static final /*@NonNull*/ ExecutorOperation _ComplexCondition__checkCondition = new ExecutorOperation("checkCondition", Parameters._ComplexCondition, Types._ComplexCondition,
-			0, TemplateParameters.EMPTY_LIST, null);
-
 		public static final /*@NonNull*/ ExecutorOperation _Condition__checkCondition = new ExecutorOperation("checkCondition", Parameters._ComplexCondition, Types._Condition,
 			0, TemplateParameters.EMPTY_LIST, null);
 
@@ -526,9 +523,7 @@ public class ConditionTables
 		}
 
 		private static final /*@NonNull*/ ExecutorOperation[] _And__And = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _And__ComplexCondition = {
-			ConditionTables.Operations._ComplexCondition__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _And__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _And__MultipleConditionOperator = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _And__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _And__OclAny = {
@@ -554,9 +549,7 @@ public class ConditionTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeCondition__AttributeCondition = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _AttributeCondition__ComplexCondition = {
-			ConditionTables.Operations._Condition__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _AttributeCondition__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeCondition__Condition = {
 			ConditionTables.Operations._Condition__checkCondition /* checkCondition(ComplexCondition[?]) */
 		};
@@ -630,9 +623,7 @@ public class ConditionTables
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ComparatorEnum__Visitable = {};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _ComplexCondition__ComplexCondition = {
-			ConditionTables.Operations._ComplexCondition__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _ComplexCondition__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ComplexCondition__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ComplexCondition__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -706,9 +697,7 @@ public class ConditionTables
 		private static final /*@NonNull*/ ExecutorOperation[] _Condition__Condition = {
 			ConditionTables.Operations._Condition__checkCondition /* checkCondition(ComplexCondition[?]) */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _Condition__ComplexCondition = {
-			ConditionTables.Operations._Condition__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _Condition__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Condition__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Condition__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -733,9 +722,7 @@ public class ConditionTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__MultipleConditionOperator = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__ComplexCondition = {
-			ConditionTables.Operations._ComplexCondition__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -760,9 +747,7 @@ public class ConditionTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _Not__Not = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _Not__ComplexCondition = {
-			ConditionTables.Operations._ComplexCondition__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _Not__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Not__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Not__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -788,9 +773,7 @@ public class ConditionTables
 		private static final /*@NonNull*/ ExecutorOperation[] _Not__SingleConditionOperator = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__Or = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _Or__ComplexCondition = {
-			ConditionTables.Operations._ComplexCondition__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _Or__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__MultipleConditionOperator = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__OclAny = {
@@ -816,9 +799,7 @@ public class ConditionTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _SectionCondition__SectionCondition = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _SectionCondition__ComplexCondition = {
-			ConditionTables.Operations._Condition__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _SectionCondition__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SectionCondition__Condition = {
 			ConditionTables.Operations._Condition__checkCondition /* checkCondition(ComplexCondition[?]) */
 		};
@@ -846,9 +827,7 @@ public class ConditionTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _SingleConditionOperator__SingleConditionOperator = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _SingleConditionOperator__ComplexCondition = {
-			ConditionTables.Operations._ComplexCondition__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _SingleConditionOperator__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SingleConditionOperator__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SingleConditionOperator__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,

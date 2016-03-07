@@ -88,22 +88,13 @@ public interface ConditionPackage extends EPackage {
 	int COMPLEX_CONDITION_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Check Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_CONDITION___CHECK_CONDITION__COMPLEXCONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Complex Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.
@@ -234,15 +225,6 @@ public interface ConditionPackage extends EPackage {
 	int MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Check Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLE_CONDITION_OPERATOR___CHECK_CONDITION__COMPLEXCONDITION = COMPLEX_CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
-
-	/**
 	 * The number of operations of the '<em>Multiple Condition Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -296,15 +278,6 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int AND_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Check Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AND___CHECK_CONDITION__COMPLEXCONDITION = MULTIPLE_CONDITION_OPERATOR___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -362,15 +335,6 @@ public interface ConditionPackage extends EPackage {
 	int OR_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Check Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OR___CHECK_CONDITION__COMPLEXCONDITION = MULTIPLE_CONDITION_OPERATOR___CHECK_CONDITION__COMPLEXCONDITION;
-
-	/**
 	 * The number of operations of the '<em>Or</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -426,15 +390,6 @@ public interface ConditionPackage extends EPackage {
 	int SINGLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Check Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SINGLE_CONDITION_OPERATOR___CHECK_CONDITION__COMPLEXCONDITION = COMPLEX_CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
-
-	/**
 	 * The number of operations of the '<em>Single Condition Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -488,15 +443,6 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_FEATURE_COUNT = SINGLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Check Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NOT___CHECK_CONDITION__COMPLEXCONDITION = SINGLE_CONDITION_OPERATOR___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
 	 * The number of operations of the '<em>Not</em>' class.
@@ -729,16 +675,6 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getComplexCondition();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#checkCondition(pamtram.condition.ComplexCondition) <em>Check Condition</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Check Condition</em>' operation.
-	 * @see pamtram.condition.ComplexCondition#checkCondition(pamtram.condition.ComplexCondition)
-	 * @generated
-	 */
-	EOperation getComplexCondition__CheckCondition__ComplexCondition();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Condition <em>Condition</em>}'.
@@ -1003,14 +939,6 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COMPLEX_CONDITION = eINSTANCE.getComplexCondition();
-
-		/**
-		 * The meta object literal for the '<em><b>Check Condition</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLEX_CONDITION___CHECK_CONDITION__COMPLEXCONDITION = eINSTANCE.getComplexCondition__CheckCondition__ComplexCondition();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.

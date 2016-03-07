@@ -2,10 +2,8 @@
  */
 package pamtram.mapping.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
@@ -155,15 +153,6 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean checkCondition(final ComplexCondition condition) {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!ConditionalElement!checkCondition(http://mfreund.de/pamtram/condition!ComplexCondition)
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -274,36 +263,6 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == ConditionalElement.class) {
-			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___CHECK_CONDITION__COMPLEXCONDITION: return MappingPackage.MAPPING_HINT___CHECK_CONDITION__COMPLEXCONDITION;
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case MappingPackage.MAPPING_HINT___CHECK_CONDITION__COMPLEXCONDITION:
-				return checkCondition((ComplexCondition)arguments.get(0));
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 } //MappingHintImpl

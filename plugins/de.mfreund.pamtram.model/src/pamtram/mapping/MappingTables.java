@@ -1656,9 +1656,7 @@ public class MappingTables
 			MappingTables.Operations._AttributeMapping__getExternalSourceElements /* getExternalSourceElements() */,
 			MappingTables.Operations._AttributeMapping__getLocalSourceElements /* getLocalSourceElements() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMapping__ConditionalElement = {
-			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMapping__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMapping__ExpandableHint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMapping__ExpressionHint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMapping__MappingHint = {};
@@ -1951,9 +1949,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _CardinalityMapping__CardinalityMapping = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _CardinalityMapping__ConditionalElement = {
-			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _CardinalityMapping__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _CardinalityMapping__MappingHint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _CardinalityMapping__MappingHintBaseType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _CardinalityMapping__MappingHintType = {};
@@ -2322,9 +2318,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__InstantiableMappingHintGroup = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__ConditionalElement = {
-			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstantiableMappingHintGroup__OclAny = {
@@ -2517,9 +2511,7 @@ public class MappingTables
 			MappingTables.Operations._Mapping__getActiveImportedMappingHintGroups /* getActiveImportedMappingHintGroups() */,
 			MappingTables.Operations._Mapping__getActiveMappingHintGroups /* getActiveMappingHintGroups() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _Mapping__ConditionalElement = {
-			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _Mapping__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Mapping__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Mapping__MappingType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Mapping__NamedElement = {};
@@ -2546,9 +2538,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHint__MappingHint = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _MappingHint__ConditionalElement = {
-			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _MappingHint__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHint__MappingHintBaseType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHint__MappingHintType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHint__NamedElement = {};
@@ -2599,9 +2589,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__MappingHintGroup = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__ConditionalElement = {
-			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__InstantiableMappingHintGroup = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroup__MappingHintGroupType = {};
@@ -2629,9 +2617,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__MappingHintGroupImporter = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__ConditionalElement = {
-			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__InstantiableMappingHintGroup = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingHintGroupImporter__NamedElement = {};
@@ -2733,9 +2719,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingInstanceSelector__MappingInstanceSelector = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _MappingInstanceSelector__ConditionalElement = {
-			PamtramTables.Operations._ConditionalElement__checkCondition /* checkCondition(ComplexCondition[?]) */
-		};
+		private static final /*@NonNull*/ ExecutorOperation[] _MappingInstanceSelector__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingInstanceSelector__MappingHint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingInstanceSelector__MappingHintBaseType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingInstanceSelector__MappingHintType = {};

@@ -352,7 +352,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_1() {
+	public EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map() {
 		return pamTraMEClass.getEOperations().get(1);
 	}
 
@@ -361,7 +361,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_1() {
+	public EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map() {
 		return pamTraMEClass.getEOperations().get(2);
 	}
 
@@ -496,15 +496,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getConditionalElement__CheckCondition__ComplexCondition() {
-		return conditionalElementEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getConditionModel() {
 		return conditionModelEClass;
 	}
@@ -574,8 +565,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(pamTraMEClass, PAM_TRA_M__MODIFIER_SETS);
 		createEReference(pamTraMEClass, PAM_TRA_M__CONDITION_MODEL);
 		createEOperation(pamTraMEClass, PAM_TRA_M___MERGE_EXTENDS);
-		createEOperation(pamTraMEClass, PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1);
-		createEOperation(pamTraMEClass, PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1);
+		createEOperation(pamTraMEClass, PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(pamTraMEClass, PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP);
 
 		sectionModelEClass = createEClass(SECTION_MODEL);
 		createEReference(sectionModelEClass, SECTION_MODEL__META_MODEL_PACKAGE);
@@ -595,7 +586,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		conditionalElementEClass = createEClass(CONDITIONAL_ELEMENT);
 		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__CONDITION);
 		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__CONDITION_REF);
-		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___CHECK_CONDITION__COMPLEXCONDITION);
 
 		conditionModelEClass = createEClass(CONDITION_MODEL);
 		createEReference(conditionModelEClass, CONDITION_MODEL__CONDITION);
@@ -731,7 +721,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEOperation(getPAMTraM__MergeExtends(), null, "mergeExtends", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "sourceSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "sourceSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -740,7 +730,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "targetSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "targetSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -769,9 +759,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEClass(conditionalElementEClass, ConditionalElement.class, "ConditionalElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionalElement_Condition(), theConditionPackage.getComplexCondition(), null, "condition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConditionalElement_ConditionRef(), theConditionPackage.getComplexCondition(), null, "conditionRef", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getConditionalElement__CheckCondition__ComplexCondition(), ecorePackage.getEBoolean(), "checkCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theConditionPackage.getComplexCondition(), "condition", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(conditionModelEClass, ConditionModel.class, "ConditionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionModel_Condition(), theConditionPackage.getComplexCondition(), null, "condition", null, 0, -1, ConditionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -822,6 +809,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		  (pamTraMEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "sourceSectionModelsHaveSameEPackage targetSectionModelsHaveSameEPackage"
 		   });
 	}
 

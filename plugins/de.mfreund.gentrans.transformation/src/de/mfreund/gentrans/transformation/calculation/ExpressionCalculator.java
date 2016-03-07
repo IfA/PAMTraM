@@ -12,7 +12,6 @@ import de.mfreund.gentrans.transformation.calculation.MaxFunction;
 import de.mfreund.gentrans.transformation.calculation.MinFunction;
 import de.mfreund.gentrans.transformation.calculation.RoundFunction;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalValue;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.TargetSectionAttribute;
 

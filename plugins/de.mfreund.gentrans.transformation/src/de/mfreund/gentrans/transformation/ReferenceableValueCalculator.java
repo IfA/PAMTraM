@@ -104,14 +104,15 @@ public class ReferenceableValueCalculator {
 			vars.putAll(globalAttrValueDoubles);
 			
 			final Map<String, Double> varsAsDouble = new HashMap<>();
-			
+			/*
 			for (Map.Entry<String, Object> entry : map.entrySet()) {
 			       try{
 			            varsAsDouble.put(entry.getKey(), Double.parseDouble(entry.getValue().toString()));
 			          }catch(ClassCastException cce){
 			           // TODO: handle exception
 			          }
-			 }
+	 		}
+	 		*/
 
 			// make calculation
 			ExpressionCalculator expCalc = new ExpressionCalculator();

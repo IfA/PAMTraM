@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.ConditionalElement;
@@ -172,6 +174,12 @@ public class SourceSectionMatcher extends CancellableElement {
 	 * in a {@link RegExMatcher}.
 	 */
 	private final Set<AttributeValueConstraint> constraintsWithErrors;
+	
+	/**
+	 * Since {@link ComplexCondition}s use model informations which may be available not until the runtime of transformation, we define 
+	 * this {@link ConditionHandler} inside the 'gentrans.transformation'-Plugin.
+	 */
+	private final ConditionHandler conditionHandler;
 
 	/**
 	 * This constructs an instance.
@@ -214,6 +222,7 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
+		this.conditionHandler = new ConditionHandler();
 
 		/*
 		 * initialize the various maps based on the given list of mappings
@@ -404,54 +413,70 @@ public class SourceSectionMatcher extends CancellableElement {
 	 * 			represents the original {@link Mapping} 
 	 * @return The {@link Mapping} representing a simplified of the origin one. There are all ConditionalElements that returned '<em><b>false</b></em>' are extracted.
 	 */
-	private Mapping checkConditions(Mapping mOld) {
-	
-		//Copy Mapping
-		Mapping mNew = mOld;
+	private Mapping checkConditions(Mapping definedMapping) { // FIXME
 		
 		// check Conditions of the Mapping (Note: no condition modeled = true)
-		if(mOld.checkCondition(mOld.getCondition()) && mOld.checkCondition(mOld.getConditionRef())) {
+		if(conditionHandler.checkCondition(definedMapping.getCondition()) && conditionHandler.checkCondition(definedMapping.getConditionRef())) {
 			
-			// check Condition of corresponding MappingHintGroups
-			for (MappingHintGroupType mHintGroup : mOld.getMappingHintGroups()){
+			// Iterate now over all corresponding MappingHintGroups...
+			for (Iterator<MappingHintGroupType> mHintGroupList = definedMapping.getMappingHintGroups().iterator(); mHintGroupList.hasNext();){
 				
-				if(((ConditionalElement) mHintGroup).checkCondition(((ConditionalElement) mHintGroup).getCondition()) && 
-						((ConditionalElement) mHintGroup).checkCondition(((ConditionalElement) mHintGroup).getConditionRef())){
+				MappingHintGroupType mHintGroup = mHintGroupList.next();
+				if(mHintGroup instanceof ConditionalElement){
 					
-					// check now Conditions of corresponding MappingHints
-					for(MappingHint mHint : mHintGroup.getMappingHints()){
+					if(!(conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getCondition()) && 
+							conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()))){
 						
-						if(!(((ConditionalElement) mHint).checkCondition(((ConditionalElement) mHint).getCondition()) && 
-								((ConditionalElement) mHint).checkCondition(((ConditionalElement) mHint).getConditionRef()))){
+						//returned false, so remove this Element and break the loop
+						definedMapping.getMappingHintGroups().remove(mHintGroup);
+						break;
+					} else {
+						
+						// Iterate now over all corresponding MappingHints
+						for(Iterator<MappingHint> mHintList = mHintGroup.getMappingHints().iterator(); mHintList.hasNext();){
 							
-							//Condition false, so remove it from copied Mapping
-							mHintGroup.getMappingHints().remove(mHint);
-							break;
+							MappingHint mHint = mHintList.next();
+							if(mHint instanceof ConditionalElement){
+								
+								if(!(conditionHandler.checkCondition(((ConditionalElement) mHint).getCondition()) && 
+										conditionHandler.checkCondition(((ConditionalElement) mHint).getConditionRef()))){
+									
+									//returned false, so remove this Element and break the loop
+									mHintGroup.getMappingHints().remove(mHint);
+									break;
+								}
+							
+								break;
+							}
 						}
 					}
-				} else {
-					//Condition false, so remove it from copied Mapping
-					mNew.getMappingHintGroups().remove(mHintGroup);
-					break;
 				}
 			}
 			
 			// check Condition of corresponding IMPORTED MappingHintGroups
-			for (MappingHintGroupImporter mImportHintGroup : mOld.getImportedMappingHintGroups()){
+			for (Iterator<MappingHintGroupImporter> mImportHintGroupList = definedMapping.getImportedMappingHintGroups().iterator(); mImportHintGroupList.hasNext();){
 				
-				//Condition of imported MappingHintGroup false, than remove it from copied Mapping
-				if(!(((ConditionalElement) mImportHintGroup).checkCondition(((ConditionalElement) mImportHintGroup).getCondition()) && 
-						((ConditionalElement) mImportHintGroup).checkCondition(((ConditionalElement) mImportHintGroup).getConditionRef()))){
+				MappingHintGroupImporter mImportHintGroup = mImportHintGroupList.next();
+				if(mImportHintGroup instanceof ConditionalElement){
 					
-					mNew.getImportedMappingHintGroups().remove(mImportHintGroup);
-					break;
+					//Condition of imported MappingHintGroup false, than remove it
+					if(!(conditionHandler.checkCondition(((ConditionalElement) mImportHintGroup).getCondition()) && 
+							conditionHandler.checkCondition(((ConditionalElement) mImportHintGroup).getConditionRef()))){
+						
+						mImportHintGroupList.remove();
+						break;
+					}
 				}
+				
+				break;
 			}
 		} else {
-			mNew = null; // Condition false!
+				definedMapping = null; //The Condition of a Mapping false, so return null and the Mapping is excluded from transformations
 		}
-		return mNew;
+		
+		return definedMapping;
 	}
+	
 
 	/**
 	 * This recursively checks if a {@link Mapping} (respectively its {@link Mapping#getSourceMMSection() sourceMMSection}) is 

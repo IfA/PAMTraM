@@ -728,7 +728,8 @@
           </eAnnotations>
           <eBounds eClassifier="#//PresentationModel/Animation/AnimationPropertySample"/>
         </eTypeParameters>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="Trigger" eType="#//Signal"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="StartTrigger" eType="#//Signal"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="StopTrigger" eType="#//Signal"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="PropertyAnimation"
             upperBound="-1" eType="#//PresentationModel/Animation/PropertyAnimation"
             containment="true"/>

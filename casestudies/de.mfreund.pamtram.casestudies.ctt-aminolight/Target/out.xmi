@@ -61,18 +61,6 @@
       <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
         <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
       </styleProperty>
-      <styleProperty xsi:type="pp-ac-rep-props:Sound">
-        <val xsi:type="pp-ac-rep-pval:SoundReferencingValue"/>
-      </styleProperty>
-      <styleProperty xsi:type="pp-ac-rep-props:SoundActive">
-        <val xsi:type="pp-ac-rep-pval:SoundActiveValue" name="parkMode"/>
-      </styleProperty>
-      <styleProperty xsi:type="pp-hap-rep-props:VibrationReference">
-        <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue"/>
-      </styleProperty>
-      <styleProperty xsi:type="pp-hap-rep-props:VibrationActive">
-        <val xsi:type="pp-hap-rep-pval:VibrationActiveValue" name="parkMode"/>
-      </styleProperty>
     </representation>
     <animationRecord name="parkMode">
       <val name="parkModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.2">
@@ -80,26 +68,6 @@
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.1"/>
           </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue"/>
-        </val>
-      </val>
-      <val name="parkModenoDangerActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.2">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
         </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
@@ -111,39 +79,6 @@
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.3"/>
           </StylePropertyResult>
         </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
-            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@sounds/@soundComponents.0"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.0"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue"/>
-        </val>
-      </val>
-      <val name="parkModelowDangerActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.6">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.1/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </val>
@@ -154,42 +89,6 @@
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.5"/>
           </StylePropertyResult>
         </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.2"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
-            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@sounds/@soundComponents.2"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue"/>
-        </val>
-      </val>
-      <val name="parkModemediumDangerActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.10">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.1/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.2/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </val>
@@ -199,56 +98,6 @@
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.7"/>
           </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.4"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
-            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@sounds/@soundComponents.4"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue"/>
-        </val>
-      </val>
-      <val name="parkModehighDangerActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.14">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.2/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.1/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-      </val>
-      <val name="parkModecollisionActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.18">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@animationRecord.0/@val.2/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.2/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
         </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
@@ -280,18 +129,6 @@
       <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
         <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.10"/>
       </styleProperty>
-      <styleProperty xsi:type="pp-ac-rep-props:Sound">
-        <val xsi:type="pp-ac-rep-pval:SoundReferencingValue"/>
-      </styleProperty>
-      <styleProperty xsi:type="pp-ac-rep-props:SoundActive">
-        <val xsi:type="pp-ac-rep-pval:SoundActiveValue" name="ACCMode"/>
-      </styleProperty>
-      <styleProperty xsi:type="pp-hap-rep-props:VibrationReference">
-        <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue"/>
-      </styleProperty>
-      <styleProperty xsi:type="pp-hap-rep-props:VibrationActive">
-        <val xsi:type="pp-hap-rep-pval:VibrationActiveValue" name="ACCMode"/>
-      </styleProperty>
     </representation>
     <animationRecord name="ACCMode">
       <val name="ACCModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.3">
@@ -299,26 +136,6 @@
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.2"/>
           </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue"/>
-        </val>
-      </val>
-      <val name="ACCModenoDangerActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.3">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
         </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
@@ -330,39 +147,6 @@
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.4"/>
           </StylePropertyResult>
         </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
-            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@sounds/@soundComponents.1"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.1"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue"/>
-        </val>
-      </val>
-      <val name="ACCModelowDangerActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.7">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.1/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </val>
@@ -373,42 +157,6 @@
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.6"/>
           </StylePropertyResult>
         </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.3"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
-            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@sounds/@soundComponents.3"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue"/>
-        </val>
-      </val>
-      <val name="ACCModemediumDangerActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.11">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.1/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.2/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </val>
@@ -418,56 +166,6 @@
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.8"/>
           </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.5"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.3">
-          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
-            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@sounds/@soundComponents.5"/>
-          </StylePropertyResult>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue"/>
-        </val>
-      </val>
-      <val name="ACCModehighDangerActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.15">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.2/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.1/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
-        </PropertyAnimation>
-        <val xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </val>
-      </val>
-      <val name="ACCModecollisionActivateDeactivateAnimation" StartTrigger="//@SignalCollection/@Signals.19">
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.4/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@animationRecord.0/@val.2/@val.1/@val">
-          <variableResult xsi:type="df:AnimationPlayStatePresetValue" val="paused"/>
-        </PropertyAnimation>
-        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.6/@val">
-          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
         </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
@@ -525,9 +223,6 @@
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
         </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue" name="parkModemediumDangerInfiniteAnimations" val="paused"/>
-        </val>
       </val>
       <val name="parkModehighDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.14" StopTrigger="//@SignalCollection/@Signals.16">
         <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.4/@representation/@styleProperty.0/@val">
@@ -541,9 +236,6 @@
         </PropertyAnimation>
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
-        </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue" name="parkModehighDangerInfiniteAnimations" val="paused"/>
         </val>
       </val>
       <val name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.14">
@@ -595,9 +287,6 @@
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
         </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue" name="ACCModemediumDangerInfiniteAnimations" val="paused"/>
-        </val>
       </val>
       <val name="ACCModehighDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.15" StopTrigger="//@SignalCollection/@Signals.17">
         <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.5/@representation/@styleProperty.0/@val">
@@ -612,9 +301,6 @@
         <val xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
         </val>
-        <val xsi:type="se:AnimationPlayState">
-          <val xsi:type="df:AnimationPlayStatePresetValue" name="ACCModehighDangerInfiniteAnimations" val="paused"/>
-        </val>
       </val>
       <val name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.15">
         <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.5/@representation/@styleProperty.1">
@@ -628,13 +314,239 @@
       </val>
     </animationRecord>
   </components>
+  <components name="parkModeSound">
+    <representation>
+      <styleProperty xsi:type="pp-ac-rep-props:Sound">
+        <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.0"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-ac-rep-props:SoundActive">
+        <val xsi:type="pp-ac-rep-pval:SoundActiveValue" name="parkMode"/>
+      </styleProperty>
+    </representation>
+    <animationRecord name="parkModeSound">
+      <val name="parkModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.2">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue"/>
+        </PropertyAnimation>
+      </val>
+      <val name="parkModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.6">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.0"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+      </val>
+      <val name="parkModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.10">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.2"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.14">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.4"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="parkModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.18">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.6/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+    </animationRecord>
+  </components>
+  <components name="ACCModeSound">
+    <representation>
+      <styleProperty xsi:type="pp-ac-rep-props:Sound">
+        <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.0"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-ac-rep-props:SoundActive">
+        <val xsi:type="pp-ac-rep-pval:SoundActiveValue" name="ACCMode"/>
+      </styleProperty>
+    </representation>
+    <animationRecord name="ACCModeSound">
+      <val name="ACCModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.3">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue"/>
+        </PropertyAnimation>
+      </val>
+      <val name="ACCModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.7">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.1"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+      </val>
+      <val name="ACCModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.11">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.3"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.15">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
+            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.5"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="ACCModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.19">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+    </animationRecord>
+  </components>
+  <components name="parkModeVibration">
+    <representation>
+      <styleProperty xsi:type="pp-hap-rep-props:VibrationReference">
+        <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-hap-rep-props:VibrationActive">
+        <val xsi:type="pp-hap-rep-pval:VibrationActiveValue" name="parkMode"/>
+      </styleProperty>
+    </representation>
+    <animationRecord name="parkModeVibration">
+      <val name="parkModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.2">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
+        </PropertyAnimation>
+      </val>
+      <val name="parkModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.6">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.0"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="parkModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.10">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.2"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.14">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.4"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="parkModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.18">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
+        </PropertyAnimation>
+      </val>
+    </animationRecord>
+  </components>
+  <components name="ACCModeVibration">
+    <representation>
+      <styleProperty xsi:type="pp-hap-rep-props:VibrationReference">
+        <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue"/>
+      </styleProperty>
+      <styleProperty xsi:type="pp-hap-rep-props:VibrationActive">
+        <val xsi:type="pp-hap-rep-pval:VibrationActiveValue" name="ACCMode"/>
+      </styleProperty>
+    </representation>
+    <animationRecord name="ACCModeVibration">
+      <val name="ACCModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.3">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
+        </PropertyAnimation>
+      </val>
+      <val name="ACCModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.7">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.1"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="ACCModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.11">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.3"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.15">
+        <PropertyAnimation xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.0">
+          <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
+            <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.5"/>
+          </StylePropertyResult>
+        </PropertyAnimation>
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
+        </PropertyAnimation>
+      </val>
+      <val name="ACCModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.19">
+        <PropertyAnimation xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+          <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
+        </PropertyAnimation>
+      </val>
+    </animationRecord>
+  </components>
   <sounds>
-    <soundComponents xsi:type="pp-ac-sounds:GenericSoundItem" name="parkModelowDanger" Frequency="440" Rate="1.0"/>
-    <soundComponents xsi:type="pp-ac-sounds:GenericSoundItem" name="ACCModelowDanger" Frequency="440" Rate="1.0"/>
-    <soundComponents xsi:type="pp-ac-sounds:GenericSoundItem" name="parkModemediumDanger" Frequency="550" Rate="2.0"/>
-    <soundComponents xsi:type="pp-ac-sounds:GenericSoundItem" name="ACCModemediumDanger" Frequency="550" Rate="2.0"/>
-    <soundComponents xsi:type="pp-ac-sounds:GenericSoundItem" name="parkModehighDanger" Frequency="660" Rate="5.0"/>
-    <soundComponents xsi:type="pp-ac-sounds:GenericSoundItem" name="ACCModehighDanger" Frequency="660" Rate="5.0"/>
+    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="parkModelowDanger" Repeat="true">
+      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="parkModelowDanger" Frequency="440" Rate="1.0"/>
+    </soundComponents>
+    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="ACCModelowDanger" Repeat="true">
+      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="ACCModelowDanger" Frequency="440" Rate="1.0"/>
+    </soundComponents>
+    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="parkModemediumDanger" Repeat="true">
+      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="parkModemediumDanger" Frequency="550" Rate="2.0"/>
+    </soundComponents>
+    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="ACCModemediumDanger" Repeat="true">
+      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="ACCModemediumDanger" Frequency="550" Rate="2.0"/>
+    </soundComponents>
+    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="parkModehighDanger" Repeat="true">
+      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="parkModehighDanger" Frequency="660" Rate="5.0"/>
+    </soundComponents>
+    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="ACCModehighDanger" Repeat="true">
+      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="ACCModehighDanger" Frequency="660" Rate="5.0"/>
+    </soundComponents>
+    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="parkModecollision" Repeat="true">
+      <soundItem xsi:type="pp-ac-sounds:SoundFileItem" name="parkModecollision" ref="//@assets/@asset.0"/>
+    </soundComponents>
+    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="ACCModecollision" Repeat="true">
+      <soundItem xsi:type="pp-ac-sounds:SoundFileItem" name="ACCModecollision" ref="//@assets/@asset.1"/>
+    </soundComponents>
   </sounds>
   <vibrations>
     <vibrationComponents xsi:type="pp-hap-vib:VibrationItemGroup" name="parkModelowDanger" Repeat="true">

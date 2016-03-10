@@ -212,7 +212,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	
 		sourceViewerGroup = new TreeViewerGroup(
 				this, adapterFactory, editor.getEditingDomain(),
-				"Source Sections", null, null, true, true
+				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections", null, null, true, true
 				);
 		sourceViewer = sourceViewerGroup.getViewer();
 		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
@@ -240,7 +240,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 	
 		mappingViewerGroup = new MinimizableTreeViewerGroup(
-				mappingSash, adapterFactory, editor.getEditingDomain(),
+				mappingSash, adapterFactory, editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
 				"Mappings", null, null, true, true
 				);
 		mappingViewer = mappingViewerGroup.getViewer();
@@ -267,7 +267,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 	
 		globalElementsViewerGroup = new MinimizableTreeViewerGroup(
-				mappingSash, adapterFactory, editor.getEditingDomain(), 
+				mappingSash, adapterFactory, editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
 				"Modifier Sets and Global Values", null, null, true, true);
 		globalElementsViewer = globalElementsViewerGroup.getViewer();
 	
@@ -300,7 +300,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		// Create the viewer for the target sections.
 		//
 		targetViewerGroup = new MinimizableTreeViewerGroup(
-				targetSash, adapterFactory, editor.getEditingDomain(),
+				targetSash, adapterFactory, editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
 				"Target Sections", null, null, true, true
 				);
 		targetViewer = targetViewerGroup.getViewer();
@@ -317,7 +317,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		// Create the viewer for the library element target sections.
 		//
 		libTargetViewerGroup = new MinimizableTreeViewerGroup(
-				targetSash, adapterFactory, editor.getEditingDomain(), 
+				targetSash, adapterFactory, editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
 				"Library Element Target Sections", null, null, true, false){
 			@Override
 			protected void createAdditionalToolbarItems(org.eclipse.swt.widgets.ToolBar toolbar) {

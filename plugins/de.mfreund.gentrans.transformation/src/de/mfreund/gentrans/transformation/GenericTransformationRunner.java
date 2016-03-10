@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -700,7 +701,7 @@ public class GenericTransformationRunner {
 		 * Create the source section matcher that finds applicable mappings
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(sourceSectionMatcher);
 
 		/*
@@ -1682,7 +1683,7 @@ public class GenericTransformationRunner {
 
 
 		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 
 		/*
 		 * now start mapping each one of the references. We automatically start

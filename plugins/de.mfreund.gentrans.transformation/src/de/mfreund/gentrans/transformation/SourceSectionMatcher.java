@@ -38,6 +38,7 @@ import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
@@ -182,6 +183,11 @@ public class SourceSectionMatcher extends CancellableElement {
 	private final ConditionHandler conditionHandler;
 
 	/**
+	 * It will be used for calculating referenceValues that are needed for {@link AttributeValueConstraint}
+	 */
+	private ReferenceableValueCalculator refValueCalculator;
+
+	/**
 	 * This constructs an instance.
 	 * 
 	 * @param containmentTree 
@@ -189,6 +195,8 @@ public class SourceSectionMatcher extends CancellableElement {
 	 * @param mappingsToChooseFrom
 	 *            A list of {@link Mapping Mappings} that shall be used in the <em>matching</em> process.
 	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
+	 * @param fixedVals Needed for ReferenceableValueCalculator
+	 * @param globalAtts Needed for ReferenceableValueCalculator
 	 * @param attributeValuemodifier The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param consoleStream
@@ -197,7 +205,8 @@ public class SourceSectionMatcher extends CancellableElement {
 	public SourceSectionMatcher(
 			ContainmentTree containmentTree, 
 			final List<Mapping> mappingsToChooseFrom,
-			boolean onlyAskOnceOnAmbiguousMappings, 
+			boolean onlyAskOnceOnAmbiguousMappings,
+			final List<FixedValue> fixedVals,
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
 			final MessageConsoleStream consoleStream) {
@@ -223,6 +232,7 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
 		this.conditionHandler = new ConditionHandler();
+		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals,globalAttributeValues, consoleStream);
 
 		/*
 		 * initialize the various maps based on the given list of mappings
@@ -366,7 +376,7 @@ public class SourceSectionMatcher extends CancellableElement {
 				 */
 				boolean mappingFailed = !checkContainer(element, m.getSourceMMSection());
 				
-				//Simplify Mapping by checking conditions all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
+				//Simplify Mapping by checking conditions of all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
 				Mapping mSimplified = checkConditions(m);
 
 				if (!mappingFailed && mSimplified != null) {
@@ -1150,8 +1160,6 @@ public class SourceSectionMatcher extends CancellableElement {
 			final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues,
 			final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues,
 			final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues) {
-		
-		ReferenceableValueCalculator refValueCalculator = new ReferenceableValueCalculator(null, null, consoleStream);
 		
 		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
 

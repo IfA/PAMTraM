@@ -1432,7 +1432,7 @@ public class GenericTransformationRunner {
 			final SourceSectionMatcher sourceSectionMapper,
 			final LinkedList<MappingInstanceStorage> selectedMappings) {
 
-		consoleStream.println("Getting hint values of exported HintHroups, checking MappingHintImporters, adding GlobalVariables and FixedValues to hints");
+		consoleStream.println("Getting hint values of exported HintGroups, checking MappingHintImporters, adding GlobalVariables and FixedValues to hints");
 		//		final AttributeMappingHintValueMap exportedAttributeMappingHints = new AttributeMappingHintValueMap();
 		//		final CardinalityMappingHintValueMap exportedCardinalityMappingHints = new CardinalityMappingHintValueMap();
 		//		final MappingInstanceSelectorHintValueMap exportedMappingInstanceSelectors= new MappingInstanceSelectorHintValueMap();

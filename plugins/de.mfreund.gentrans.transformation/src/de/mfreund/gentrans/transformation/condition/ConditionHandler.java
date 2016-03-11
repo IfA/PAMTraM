@@ -7,11 +7,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.condition.And;
+import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
+import pamtram.condition.CondSettingEnum;
 import pamtram.condition.Condition;
 import pamtram.condition.MultipleConditionOperator;
 import pamtram.condition.Not;
 import pamtram.condition.Or;
+import pamtram.condition.SectionCondition;
 import pamtram.condition.SingleConditionOperator;
 
 
@@ -60,12 +63,29 @@ public class ConditionHandler {
 					result = checkConditionSingleConditionOperator((SingleConditionOperator) complexCondition);
 				// It's only a single condition
 				} else if (complexCondition instanceof Condition){
-					result = true;//FIXME
+					if(((Condition) complexCondition).getDefaultSetting() == CondSettingEnum.NO_MATCHING_ACCEPTED){
+						complexCondition = null; //TODO Does it work?
+					}
+					if(complexCondition instanceof AttributeCondition){
+						result = checkAttributeCondition((AttributeCondition) complexCondition);
+					} else if (complexCondition instanceof SectionCondition){
+						result = checkSectionCondition((SectionCondition) complexCondition);
+					}
 				}
 			}
 			
 		}
 		return result;
+	}
+
+	private boolean checkSectionCondition(SectionCondition complexCondition) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private boolean checkAttributeCondition(AttributeCondition complexCondition) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	/**

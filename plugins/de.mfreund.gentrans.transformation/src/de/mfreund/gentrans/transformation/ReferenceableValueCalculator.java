@@ -98,6 +98,11 @@ public class ReferenceableValueCalculator {
 			refObts = ((SingleReferenceAttributeValueConstraint) obt).getConstraintReferenceValue();
 		} else if (obt instanceof RangeBound){
 			refObts = ((RangeBound) obt).getBoundReferenceValue();
+		} else {
+			// If we are here, some mistake is happened
+			// more types could be supported in the future
+			consoleStream.println("AttributeValueConstraint type " + obt.getClass().getName() + " is not yet supported!");
+			return null;
 		}
 		
 		//Now we are start to calculate
@@ -114,10 +119,12 @@ public class ReferenceableValueCalculator {
 				// convert Attribute value to String
 				// refValue = ((SourceSectionAttribute) refEle).getAttribute().getEType().getEPackage().getEFactoryInstance()
 						//.convertToString(((SourceSectionAttribute) refEle).getAttribute().getEAttributeType(), srcAttrValue);
-			} else{
+			} else {
 				// If we are here, some mistake is happened
+				// more types could be supported in the future
+				consoleStream.println("ReferenceableElement type " + refEle.getClass().getName() + " is not yet supported!");
 				refValue = null;
-			}			
+			}		
 		} 
 		
 		// If first step fails (String of refValue is empty), so secondly we try to interpret the expression

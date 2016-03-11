@@ -98,6 +98,10 @@ public class ReferenceableValueCalculator {
 			refObts = ((SingleReferenceAttributeValueConstraint) obt).getConstraintReferenceValue();
 		} else if (obt instanceof RangeBound){
 			refObts = ((RangeBound) obt).getBoundReferenceValue();
+		} else {
+			// more types could be supported in the future
+			consoleStream.println("AttributeValueConstraint type " + obt.getClass().getName() + " is not yet supported!");
+			return null;
 		}
 		
 		//Now we are start to calculate

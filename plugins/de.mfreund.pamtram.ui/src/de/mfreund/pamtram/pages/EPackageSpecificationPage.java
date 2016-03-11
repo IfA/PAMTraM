@@ -11,6 +11,8 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.jface.fieldassist.AutoCompleteField;
+import org.eclipse.jface.fieldassist.ComboContentAdapter;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -73,6 +75,11 @@ public class EPackageSpecificationPage extends WizardPage {
 	 * This combo allows the user to specify a namespace URI.
 	 */
 	private Combo combo;
+
+	/**
+	 * This is responsible for the auto-completion in the {@link #combo}.
+	 */
+	private AutoCompleteField comboAutocompleteField;
 
 	/**
 	 * This keeps track of the selected meta-model files.
@@ -207,6 +214,8 @@ public class EPackageSpecificationPage extends WizardPage {
 		
 		combo = new Combo(grpSpecifyEpackages, SWT.NONE);
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		// realize auto-completion for the combo viewer
+		comboAutocompleteField = new AutoCompleteField(combo, new ComboContentAdapter(), combo.getItems());
 		
 		Button btnAdd = new Button(grpSpecifyEpackages, SWT.NONE);
 		btnAdd.setText("Add...");
@@ -289,6 +298,7 @@ public class EPackageSpecificationPage extends WizardPage {
 		if(combo.getItemCount() == 1) {
 			combo.select(0);
 		}
+		comboAutocompleteField.setProposals(combo.getItems());
 		getWizard().getContainer().updateButtons();
 	}
 	

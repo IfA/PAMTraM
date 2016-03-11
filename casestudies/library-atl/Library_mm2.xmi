@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<mm2:Library
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:mm2="http://mm2"
+    name="lib1">
+  <members name="member1"/>
+  <members name="member2"/>
+  <books name="book1"/>
+  <books name="book2"/>
+  <books name="book3"/>
+  <loans book="//@books.0"
+      member="//@members.0"/>
+  <loans book="//@books.1"
+      member="//@members.0"/>
+  <loans book="//@books.2"
+      member="//@members.1"/>
+</mm2:Library>

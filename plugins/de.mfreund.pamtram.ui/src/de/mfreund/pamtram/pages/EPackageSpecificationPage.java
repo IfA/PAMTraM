@@ -1,6 +1,7 @@
 package de.mfreund.pamtram.pages;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -292,13 +293,17 @@ public class EPackageSpecificationPage extends WizardPage {
 	 */
 	private void updateCombo() {
 		combo.removeAll();
-		for (String nsUri : registry.keySet()) {
-			combo.add(nsUri);
-		}
+		
+		String[] entries = new String[registry.size()];
+		registry.keySet().toArray(entries);
+		Arrays.sort(entries);
+		combo.setItems(entries);
+		
 		if(combo.getItemCount() == 1) {
 			combo.select(0);
 		}
 		comboAutocompleteField.setProposals(combo.getItems());
+		
 		getWizard().getContainer().updateButtons();
 	}
 	

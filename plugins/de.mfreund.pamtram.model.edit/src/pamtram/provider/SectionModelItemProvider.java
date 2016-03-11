@@ -8,12 +8,17 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.metamodel.MetamodelFactory;
@@ -141,7 +146,7 @@ extends NamedElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
@@ -151,6 +156,19 @@ extends NamedElementItemProvider {
 			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
+			case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
+				// adapt the uri of the ePackage resource if necessary to force a namespace- instead of a file-based
+				// serialization
+				if(notification.getNewValue() instanceof EPackage) {
+					EPackage ePackage = (EPackage) notification.getNewValue();
+					if(ePackage.eResource() != null && (ePackage.eResource().getURI().isFile() ||
+							ePackage.eResource().getURI().isPlatform())) {
+						// we need to adapt
+						EPackage.Registry.INSTANCE.put(ePackage.getNsURI(), ePackage);
+						ePackage.eResource().setURI(URI.createURI(ePackage.getNsURI()));										
+					}
+				}
+				
 		}
 		super.notifyChanged(notification);
 	}

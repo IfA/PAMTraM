@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
@@ -27,9 +28,21 @@ import pamtram.condition.SingleConditionOperator;
 public class ConditionHandler {
 
 	/**
+	 * Enum for possible results of a condition
+	 */
+	public enum condResult{
+		true_condition, false_condition, irrelevant_condition
+	}
+	
+	/**
 	 * Registry for values of checked conditions
 	 */
-	private final Map<ComplexCondition, Boolean> conditionRepository;
+	private final Map<ComplexCondition, condResult> conditionRepository;
+	
+	/**
+	 * The console stream to be used to print messages.
+	 */
+	private MessageConsoleStream consoleStream;
 	
 	public ConditionHandler(){
 		conditionRepository = new HashMap<>();
@@ -38,23 +51,24 @@ public class ConditionHandler {
 	/**
 	 * This is the checkCondition-Method for SingleConditionOperators (e.g. And, Or). 
 	 * It is only for collecting the arguments and calling the right Operator-Method.
+	 * Note: Enum instead of boolean as returned type is needed as some models or model sections that are not matched
+	 * but the condition should not influence the mapping
 	 * 
 	 * @param complexCondition
-	 * @return The calculated boolean result
+	 * @return The calculated Enum result (true, false, irrelevant)
 	 */
-	public boolean checkCondition(ComplexCondition complexCondition){
+	public condResult checkCondition(ComplexCondition complexCondition){
 		
-		boolean result = true;
+		condResult result = condResult.true_condition;
 		// Note: No modeled condition always returns true
 		if(complexCondition == null){ 
-			return true;
+			return condResult.true_condition;
 		} else {
-			
 			// First, we prove if that condition already have been checked
 			if (conditionRepository.get(complexCondition) != null){
 				result = conditionRepository.get(complexCondition);
 				
-			// Second, we have to calculate the value
+			// Otherwise, we have to calculate the value
 			} else {
 			
 				if(complexCondition instanceof MultipleConditionOperator){
@@ -64,7 +78,7 @@ public class ConditionHandler {
 				// It's only a single condition
 				} else if (complexCondition instanceof Condition){
 					if(((Condition) complexCondition).getDefaultSetting() == CondSettingEnum.NO_MATCHING_ACCEPTED){
-						complexCondition = null; //TODO Does it work?
+						return condResult.irrelevant_condition;
 					}
 					if(complexCondition instanceof AttributeCondition){
 						result = checkAttributeCondition((AttributeCondition) complexCondition);
@@ -73,19 +87,18 @@ public class ConditionHandler {
 					}
 				}
 			}
-			
 		}
 		return result;
 	}
 
-	private boolean checkSectionCondition(SectionCondition complexCondition) {
+	private condResult checkSectionCondition(SectionCondition complexCondition) {
 		// TODO Auto-generated method stub
-		return false;
+		return condResult.irrelevant_condition;
 	}
 
-	private boolean checkAttributeCondition(AttributeCondition complexCondition) {
+	private condResult checkAttributeCondition(AttributeCondition complexCondition) {
 		// TODO Auto-generated method stub
-		return false;
+		return condResult.irrelevant_condition;
 	}
 
 	/**
@@ -95,23 +108,42 @@ public class ConditionHandler {
 	 * @param args A list which contain all arguments of that operator
 	 * @return The calculated boolean result
 	 */
-	private boolean checkConditionSingleConditionOperator(SingleConditionOperator condition) {
+	private condResult checkConditionSingleConditionOperator(SingleConditionOperator condition) {
 
 		if(condition instanceof Not){
 			return checkConditionNot((Not) condition);
-		}
-		return false;
+		}  else {
+			// If we are here, some mistake is happened
+			// more types could be supported in the future
+			consoleStream.println("SingleConditionOperator type " + condition.getClass().getName() + " is not yet supported!");
+			return condResult.irrelevant_condition;
+		}		
 	}
 
-	private boolean checkConditionNot(Not condition) {
+	private condResult checkConditionNot(Not condition) {
+		
+		condResult condTemp = condResult.irrelevant_condition;
 		// Not Implementation
 		if(condition.getCondPartRef()!=null){
-			return !checkCondition(condition.getCondPartRef());
+			condTemp = checkCondition(condition.getCondPartRef());
 		} else if(condition.getCondPart()!=null){
-			return !checkCondition(condition.getCondPart());
+			condTemp = checkCondition(condition.getCondPart());
+		}   else {
+			// If we are here, some mistake is happened
+			// more types could be supported in the future
+			consoleStream.println("Condition Not type " + condition.getClass().getName() + " is not yet supported!");
+			return condResult.irrelevant_condition;
 		}
-		
-		return false;
+		// Invert the result and return
+		if(condTemp == condResult.true_condition){
+			condTemp = condResult.false_condition;
+		} else if(condTemp == condResult.false_condition){
+			condTemp = condResult.true_condition;
+		} else if(condTemp == condResult.irrelevant_condition){ // In this case the condition is optional. So it does not influence the ComplexCondition
+			condTemp = condResult.true_condition;
+		}
+		conditionRepository.put(condition, condTemp);
+		return condTemp;
 	}
 
 	/**
@@ -121,20 +153,18 @@ public class ConditionHandler {
 	 * @param args A list which contain all arguments of that operator
 	 * @return The calculated boolean result
 	 */
-	private boolean checkConditionMultipleConditionOperator(MultipleConditionOperator  multipleCondition) {
-		
-		//Get and put all arguments in a new list
-		EList<ComplexCondition> args = new BasicEList<ComplexCondition>(); 
-		args.addAll(multipleCondition.getCondParts());
-		args.addAll(multipleCondition.getCondPartsRef());
+	private condResult checkConditionMultipleConditionOperator(MultipleConditionOperator  multipleCondition) {
 		
 		if (multipleCondition instanceof And){
-			return checkConditionAnd(args);
+			return checkConditionAnd((And) multipleCondition);
 		} else if(multipleCondition instanceof Or){
-			return checkConditionOr(args);
-		}
-		
-		return false;
+			return checkConditionOr((Or) multipleCondition);
+		} else {
+			// If we are here, some mistake is happened
+			// more types could be supported in the future
+			consoleStream.println("MultipleCondition type " + multipleCondition.getClass().getName() + " is not yet supported!");
+			return condResult.irrelevant_condition;
+		}	
 	}
 
 	/**
@@ -143,19 +173,23 @@ public class ConditionHandler {
 	 * @param args A list which contain all arguments of that operator
 	 * @return The calculated boolean result
 	 */
-	private boolean checkConditionAnd(EList<ComplexCondition> args) {
+	private condResult checkConditionAnd(And condition) {
 		
-		boolean result = true; // Note that is an And
+		//Get and put all arguments in a new list
+		EList<ComplexCondition> args = new BasicEList<ComplexCondition>(); 
+		args.addAll(condition.getCondParts());
+		args.addAll(condition.getCondPartsRef());
+		
+		condResult condTemp = condResult.true_condition; //Note that is an And
 		
 		for(ComplexCondition arg: args){ // Iterate over all arguments
-			
-			result = result && this.checkCondition(arg);
-			if (result==false){ // In order to save some time we break the loop after one argument returned false (And-Operator)
+			condTemp = checkCondition(arg);
+			if(condTemp == condResult.false_condition){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
 			}
 		}
-		
-		return result;
+		conditionRepository.put(condition, condTemp);
+		return condTemp;
 	}
 
 	/**
@@ -164,19 +198,22 @@ public class ConditionHandler {
 	 * @param args A list which contain all arguments of that operator
 	 * @return The calculated boolean result
 	 */
-	private boolean checkConditionOr(EList<ComplexCondition> args) {
+	private condResult checkConditionOr(Or condition) {
 		
-		boolean result = false; // Note that is an Or
+		//Get and put all arguments in a new list
+		EList<ComplexCondition> args = new BasicEList<ComplexCondition>(); 
+		args.addAll(condition.getCondParts());
+		args.addAll(condition.getCondPartsRef());
+		
+		condResult condTemp = condResult.false_condition; // Note that is an Or
 		
 		for(ComplexCondition arg: args){ // Iterate over all arguments
-			
-			result = result || this.checkCondition(arg);
-			if (result==true){ // In order to save some time we break the loop after one argument returned true (Or-Operator
+			condTemp = checkCondition(arg);
+			if(condTemp == condResult.true_condition){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
 			}
 		}
-		
-		return result;
+		conditionRepository.put(condition, condTemp);
+		return condTemp;
 	}
-
 }

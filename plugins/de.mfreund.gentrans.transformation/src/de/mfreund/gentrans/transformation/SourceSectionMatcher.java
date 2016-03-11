@@ -22,6 +22,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
+import de.mfreund.gentrans.transformation.condition.ConditionHandler.condResult;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.ConditionalElement;
@@ -40,7 +41,6 @@ import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
@@ -426,7 +426,8 @@ public class SourceSectionMatcher extends CancellableElement {
 	private Mapping checkConditions(Mapping definedMapping) { // FIXME
 		
 		// check Conditions of the Mapping (Note: no condition modeled = true)
-		if(conditionHandler.checkCondition(definedMapping.getCondition()) && conditionHandler.checkCondition(definedMapping.getConditionRef())) {
+		if(conditionHandler.checkCondition(definedMapping.getCondition()) == condResult.true_condition && 
+				conditionHandler.checkCondition(definedMapping.getConditionRef()) == condResult.true_condition) {
 			
 			// Iterate now over all corresponding MappingHintGroups...
 			for (Iterator<MappingHintGroupType> mHintGroupList = definedMapping.getMappingHintGroups().iterator(); mHintGroupList.hasNext();){
@@ -434,8 +435,8 @@ public class SourceSectionMatcher extends CancellableElement {
 				MappingHintGroupType mHintGroup = mHintGroupList.next();
 				if(mHintGroup instanceof ConditionalElement){
 					
-					if(!(conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getCondition()) && 
-							conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()))){
+					if(conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getCondition()) == condResult.false_condition || 
+							conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()) == condResult.false_condition){
 						
 						//returned false, so remove this Element and break the loop
 						definedMapping.getMappingHintGroups().remove(mHintGroup);
@@ -448,15 +449,13 @@ public class SourceSectionMatcher extends CancellableElement {
 							MappingHint mHint = mHintList.next();
 							if(mHint instanceof ConditionalElement){
 								
-								if(!(conditionHandler.checkCondition(((ConditionalElement) mHint).getCondition()) && 
-										conditionHandler.checkCondition(((ConditionalElement) mHint).getConditionRef()))){
+								if(conditionHandler.checkCondition((mHint).getCondition()) == condResult.false_condition || 
+										conditionHandler.checkCondition((mHint).getConditionRef()) == condResult.false_condition){
 									
 									//returned false, so remove this Element and break the loop
 									mHintGroup.getMappingHints().remove(mHint);
 									break;
 								}
-							
-								break;
 							}
 						}
 					}
@@ -470,8 +469,8 @@ public class SourceSectionMatcher extends CancellableElement {
 				if(mImportHintGroup instanceof ConditionalElement){
 					
 					//Condition of imported MappingHintGroup false, than remove it
-					if(!(conditionHandler.checkCondition(((ConditionalElement) mImportHintGroup).getCondition()) && 
-							conditionHandler.checkCondition(((ConditionalElement) mImportHintGroup).getConditionRef()))){
+					if(conditionHandler.checkCondition(mImportHintGroup.getCondition()) == condResult.false_condition ||
+							conditionHandler.checkCondition(mImportHintGroup.getConditionRef()) == condResult.false_condition){
 						
 						mImportHintGroupList.remove();
 						break;

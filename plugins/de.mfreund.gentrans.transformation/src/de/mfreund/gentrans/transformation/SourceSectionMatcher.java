@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
@@ -186,6 +185,13 @@ public class SourceSectionMatcher extends CancellableElement {
 	 * It will be used for calculating referenceValues that are needed for {@link AttributeValueConstraint}
 	 */
 	private ReferenceableValueCalculator refValueCalculator;
+	
+	/**
+	 * It will be used for extract a more in detail specified Element which was more than one times matched
+	 */
+	private InstancePointer instancePointer;
+	
+	
 
 	/**
 	 * This constructs an instance.
@@ -231,7 +237,8 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
-		this.conditionHandler = new ConditionHandler();
+		this.conditionHandler = new ConditionHandler(this.matchedSections);
+		this.instancePointer = new InstancePointer(this.matchedSections);
 		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals,globalAttributeValues, consoleStream);
 
 		/*
@@ -323,6 +330,7 @@ public class SourceSectionMatcher extends CancellableElement {
 		/*
 		 * Before returning the selected mapping (respectively its MappingInstanceStorage), we mark the affected elements
 		 * as 'matched' in the containment tree and update the 'matchedSections' map
+		 * and also update the matchedSection-HashMap inside the conditionHandler
 		 */
 		for (final SourceSectionClass c : ret.getSourceModelObjectsMapped().keySet()) {
 
@@ -331,7 +339,10 @@ public class SourceSectionMatcher extends CancellableElement {
 			}
 			matchedSections.get(c).addAll(ret.getSourceModelObjectsMapped().get(c));
 			containmentTree.markAsMatched(ret.getSourceModelObjectsMapped().get(c));
-
+			
+			//update ConditionHandler and InstancePointer
+			conditionHandler.updateMatchedSections(matchedSections);
+			instancePointer.updateMatchedSections(matchedSections);
 		}
 
 		return ret;
@@ -419,11 +430,10 @@ public class SourceSectionMatcher extends CancellableElement {
 	 * Of course, we do it the same way for all conditional {@link MappingHint}s. 
 	 * 
 	 * Note: This process is recursively and a nested procedure which saves time. In case of '<em><b>false</b></em>' other underneath ConditionalElements will be ignored and discarded.
-	 * @param mOld
-	 * 			represents the original {@link Mapping} 
+	 * @param mOld represents the original {@link Mapping} 
 	 * @return The {@link Mapping} representing a simplified of the origin one. There are all ConditionalElements that returned '<em><b>false</b></em>' are extracted.
 	 */
-	private Mapping checkConditions(Mapping definedMapping) { // FIXME
+	private Mapping checkConditions(Mapping definedMapping) {
 		
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		if(conditionHandler.checkCondition(definedMapping.getCondition()) == condResult.true_condition && 

@@ -1,10 +1,13 @@
 package de.mfreund.gentrans.transformation.condition;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.condition.And;
@@ -17,6 +20,7 @@ import pamtram.condition.Not;
 import pamtram.condition.Or;
 import pamtram.condition.SectionCondition;
 import pamtram.condition.SingleConditionOperator;
+import pamtram.metamodel.SourceSectionClass;
 
 
 /**
@@ -44,8 +48,16 @@ public class ConditionHandler {
 	 */
 	private MessageConsoleStream consoleStream;
 	
-	public ConditionHandler(){
-		conditionRepository = new HashMap<>();
+	/**
+	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
+	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
+	 */
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
+
+	
+	public ConditionHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections){
+		this.matchedSections =  matchedSections;
+		this.conditionRepository = new HashMap<>();
 	}
 	
 	/**
@@ -215,5 +227,14 @@ public class ConditionHandler {
 		}
 		conditionRepository.put(condition, condTemp);
 		return condTemp;
+	}
+	
+	/**
+	 * This method does an update of class variable matched sections.
+	 * 
+	 * @param matchedSections A list of a all matched sections
+	 */
+	public void updateMatchedSections(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections){
+		this.matchedSections = matchedSections;
 	}
 }

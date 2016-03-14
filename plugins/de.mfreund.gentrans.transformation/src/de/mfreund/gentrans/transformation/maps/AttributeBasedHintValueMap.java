@@ -1,8 +1,10 @@
 package de.mfreund.gentrans.transformation.maps;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -57,24 +59,31 @@ public abstract class AttributeBasedHintValueMap<K extends EObject, S extends EO
 					//TODO maybe also consider merging when 'valueMap.get(h).get(c).size()' is greater than 1?
 					this.get(h).get(c).addAll(valueMap.get(h).get(c));					
 				} else {
-					// check if the we need to combine values (if the 'S' represented in both 'this' and 'valueMap' are
+					// check if the we need to combine values (if the 'K' represented in both 'this' and 'valueMap' are
 					// disjunct) or add new ones (otherwise)
-					boolean combine = false;
-					for (S source : this.get(h).get(c).getFirst().keySet()) {
-						if(!valueMap.get(h).get(c).getFirst().containsKey(source)) {
-							combine = true;
-							break;
-						}
-					}
-					for (S source : valueMap.get(h).get(c).getFirst().keySet()) {
-						if(!this.get(h).get(c).getFirst().containsKey(source)) {
-							combine = true;
-							break;
-						}
-					}
+					Set<S> duplicates = new HashSet<>();
+					duplicates.addAll(this.get(h).get(c).getFirst().keySet());
+					duplicates.retainAll(valueMap.get(h).get(c).getFirst().keySet());
+					boolean combine = duplicates.isEmpty();
+					
 					if(!combine) {
-						// add the values
-						this.get(h).get(c).addAll(valueMap.get(h).get(c));
+						if(this.get(h).get(c).isEmpty()) {
+							// add the values
+							this.get(h).get(c).addAll(valueMap.get(h).get(c));							
+						} else {
+							// add the values but keep all existing (partial) hint values
+							LinkedList<Map<S, AttributeValueRepresentation>> newValues = valueMap.get(h).get(c);
+							Map<S, AttributeValueRepresentation> oldValue = this.get(h).get(c).getLast();	
+							for (Map<S, AttributeValueRepresentation> newValue : newValues) {
+								for (java.util.Map.Entry<S, AttributeValueRepresentation> oldValueEntry : oldValue.entrySet()) {
+									if(!newValue.containsKey(oldValueEntry.getKey())) {
+										newValue.put(oldValueEntry.getKey(), oldValueEntry.getValue());
+									}
+								}
+								// add the 'enriched' new value
+								this.get(h).get(c).add(newValue);
+							}
+						}
 					} else {
 						// combine the values
 						for (Map<S, AttributeValueRepresentation> element : this.get(h).get(c)) {

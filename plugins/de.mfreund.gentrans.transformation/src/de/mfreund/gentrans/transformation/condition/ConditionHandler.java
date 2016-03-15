@@ -1,7 +1,10 @@
 package de.mfreund.gentrans.transformation.condition;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
 import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
@@ -20,6 +24,12 @@ import pamtram.condition.Not;
 import pamtram.condition.Or;
 import pamtram.condition.SectionCondition;
 import pamtram.condition.SingleConditionOperator;
+import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.RangeConstraint;
+import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSectionClass;
 
 
@@ -53,11 +63,26 @@ public class ConditionHandler {
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
 	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
+	
+	/**
+	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be evaluated 
+	 * so we don't need to send a potential error message twice. This might e.g. happen for a malformed regular expression
+	 * in a {@link RegExMatcher}.
+	 */
+	private final Set<AttributeValueConstraint> attributeConditionConstraintsWithErrors;
+	
+	/**
+	 * It will be used for calculating referenceValues that are needed for {@link AttributeCondition}s
+	 */
+	private ReferenceableValueCalculator refValueCalculator;
 
 	
-	public ConditionHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections){
+	public ConditionHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, ReferenceableValueCalculator refValueCalculator){
 		this.matchedSections =  matchedSections;
 		this.conditionRepository = new HashMap<>();
+		this.attributeConditionConstraintsWithErrors = new HashSet<>();
+		this.refValueCalculator = refValueCalculator;
+		
 	}
 	
 	/**
@@ -103,13 +128,83 @@ public class ConditionHandler {
 		return result;
 	}
 
-	private condResult checkSectionCondition(SectionCondition complexCondition) {
-		// TODO Auto-generated method stub
-		return condResult.irrelevant_condition;
+	private condResult checkSectionCondition(SectionCondition condition) {
+		if(this.matchedSections.containsKey(condition) == true){
+			return condResult.true_condition;
+		} else if(this.matchedSections.containsKey(condition) == false){
+			return condResult.false_condition;
+		} else{
+			return condResult.irrelevant_condition;
+		}
 	}
 
-	private condResult checkAttributeCondition(AttributeCondition complexCondition) {
-		// TODO Auto-generated method stub
+	private condResult checkAttributeCondition(AttributeCondition condition) {
+		
+		/*
+		 * check AttributeValueConstraints
+		 *
+		 * Inclusions are OR connected
+		 *
+		 * Exclusions are NOR connected
+		 */
+		boolean inclusionMatched = false;
+		boolean containsInclusions = false;
+		for (final AttributeValueConstraint constraint : condition.getValueConstraint()) {
+
+			if (attributeConditionConstraintsWithErrors.contains(constraint)) {
+				continue;
+			}
+
+			boolean constraintVal=false; // TODO have to be initialized?!!
+			try {
+				// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
+				// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
+				// and we need to extract the right reference Value(s) for each constraint
+				
+				if (constraint instanceof SingleReferenceAttributeValueConstraint){
+					String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(srcAttrValue); //TODO actually reference Values will be calculated for each loop 
+					constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
+				} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
+					
+					if(constraint instanceof RangeConstraint){
+						List<String> srcAttrRefValuesAsList = new ArrayList<String>();
+						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) srcAttrValue).getLowerBound()));
+						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) srcAttrValue).getUpperBound()));
+						
+						BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); // TODO Convert List to EList // Check it 
+						constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,RefValuesAsEList);
+					}  else {
+						// If we are here, some mistake is happened
+						// more types could be supported in the future
+						// placeholder for other MultipleReferenceAttributeValueConstraints
+						consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+					}
+				}  else {
+					// If we are here, some mistake is happened
+					// more types could be supported in the future
+					// placeholder for other MultipleReferenceAttributeValueConstraints
+					consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+				}
+			} catch (final Exception e) {
+				attributeConditionConstraintsWithErrors.add(constraint);
+				consoleStream.println("The AttributeCondition'" + constraint.getName() + " could not be evaluated and will be ignored. The following error was supplied:\n"
+						+ e.getLocalizedMessage());
+				continue;
+			}
+
+			if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+				return condResult.false_condition;
+			} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
+				containsInclusions = true;
+				if (constraintVal) {
+					inclusionMatched = true;
+				}
+			}
+		}
+
+		if (!inclusionMatched && containsInclusions) {
+			return condResult.false_condition;
+		}
 		return condResult.irrelevant_condition;
 	}
 

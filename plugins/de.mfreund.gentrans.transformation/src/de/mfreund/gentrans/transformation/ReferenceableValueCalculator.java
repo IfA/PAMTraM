@@ -1,15 +1,14 @@
 package de.mfreund.gentrans.transformation;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.ReferenceableElement;
@@ -17,10 +16,10 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.RangeBound;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
-import de.congrace.exp4j.InvalidCustomFunctionException;
 import de.mfreund.gentrans.transformation.calculation.ExpressionCalculator;
 
 /**
@@ -28,7 +27,6 @@ import de.mfreund.gentrans.transformation.calculation.ExpressionCalculator;
  * 
  * @author gkoltun
  */
-@SuppressWarnings("unused")
 public class ReferenceableValueCalculator {
 
 	/**
@@ -46,6 +44,12 @@ public class ReferenceableValueCalculator {
 	 */
 	@SuppressWarnings("unused")
 	private MessageConsoleStream consoleStream;
+
+	 /**
+	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
+	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
+	 */
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
 	
 	public ReferenceableValueCalculator(List<FixedValue> fixedVals, Map<GlobalAttribute, String> globalAttrVals, MessageConsoleStream consoleStream) {
 				
@@ -146,7 +150,15 @@ public class ReferenceableValueCalculator {
 	 */
 	private String calculateReferenceValueWithExpression(String expression, EList<ReferenceableElement> refObts) {
 		
-			ExpressionCalculator expCalc = new ExpressionCalculator();
-			return (expCalc.calculateExpression(expression, this.globalValuesAsDouble));
+		Map<String,Double> mapOfValuesForExp = this.globalValuesAsDouble;
+		//mapOfValuesForExp.
+		
+		ExpressionCalculator expCalc = new ExpressionCalculator();
+		return (expCalc.calculateExpression(expression, this.globalValuesAsDouble));
+	}
+
+	public void updateMatchedSections(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections2) {
+		this.matchedSections = matchedSections;
+		
 	}
 }

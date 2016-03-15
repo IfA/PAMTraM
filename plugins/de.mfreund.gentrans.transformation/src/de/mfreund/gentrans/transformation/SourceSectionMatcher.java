@@ -189,7 +189,7 @@ public class SourceSectionMatcher extends CancellableElement {
 	/**
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
 	 */
-	private InstancePointer instancePointer;
+	private InstancePointerHandler instancePointerHandler;
 	
 	
 
@@ -237,9 +237,9 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
-		this.conditionHandler = new ConditionHandler(this.matchedSections);
-		this.instancePointer = new InstancePointer(this.matchedSections);
+		this.instancePointerHandler = new InstancePointerHandler(this.matchedSections);
 		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals,globalAttributeValues, consoleStream);
+		this.conditionHandler = new ConditionHandler(this.matchedSections, this.refValueCalculator);
 
 		/*
 		 * initialize the various maps based on the given list of mappings
@@ -342,7 +342,8 @@ public class SourceSectionMatcher extends CancellableElement {
 			
 			//update ConditionHandler and InstancePointer
 			conditionHandler.updateMatchedSections(matchedSections);
-			instancePointer.updateMatchedSections(matchedSections);
+			instancePointerHandler.updateMatchedSections(matchedSections);
+			refValueCalculator.updateMatchedSections(matchedSections);
 		}
 
 		return ret;
@@ -1221,7 +1222,7 @@ public class SourceSectionMatcher extends CancellableElement {
 							continue;
 						}
 
-						boolean constraintVal=false; // TODO have to be initialized?!!
+						boolean constraintVal=false;
 						try {
 							// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
 							// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
@@ -1230,7 +1231,6 @@ public class SourceSectionMatcher extends CancellableElement {
 							if (constraint instanceof SingleReferenceAttributeValueConstraint){
 								String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(srcAttrValue); //TODO actually reference Values will be calculated for each loop 
 								constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
-								srcAttrRefValAsString = null; //TODO Do we need this?
 							} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
 								
 								if(constraint instanceof RangeConstraint){
@@ -1238,14 +1238,19 @@ public class SourceSectionMatcher extends CancellableElement {
 									srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) srcAttrValue).getLowerBound()));
 									srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) srcAttrValue).getUpperBound()));
 									
-									BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); // TODO Convert List to EList // Check it 
+									BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); 
 									constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,RefValuesAsEList);
-									srcAttrRefValuesAsList.clear();
-									RefValuesAsEList.clear(); //TODO Do we need this?
+								}  else {
+									// If we are here, some mistake is happened
+									// more types could be supported in the future
+									// placeholder for other MultipleReferenceAttributeValueConstraints
+									consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
 								}
+							}  else {
+								// If we are here, some mistake is happened
+								// more types could be supported in the future
 								// placeholder for other MultipleReferenceAttributeValueConstraints
-								// else if (constraint instanceof xxx){}
-								
+								consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
 							}
 						} catch (final Exception e) {
 							constraintsWithErrors.add(constraint);

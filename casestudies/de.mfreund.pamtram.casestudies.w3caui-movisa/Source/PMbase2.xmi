@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ifa.et.tu.dresden.platform.metamodel:PMbase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ifa.et.tu.dresden.platform.metamodel="http://ifa/et/tu/dresden/platform/metamodel"
+    xsi:schemaLocation="http://ifa/et/tu/dresden/platform/metamodel platform_metamodel.ecore">
+  <platformCollection
+      platformName="Nokia Lumia 930 Smartphone"
+      platformId="1"
+      platformType="Smartphone"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Touchscreen"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Display"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Speaker">
+    <genericProperty
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:InteractionProperty"
+        interactionModality="auditiveOutput"/>
+  </ressourceCollection>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Microphone">
+    <genericProperty
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:InteractionProperty"
+        interactionModality="auditiveInput"/>
+    <genericProperty
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:BooleanProperty"
+        propertyName="hasSpeechRecognitionSystem"
+        propertyUnit=""
+        booleanValue="true"/>
+  </ressourceCollection>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:LightingDevice"
+      ressourceName=""
+      lightningType="Dual-LED flashlight"
+      lightSize="small"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+      ressourceName="1"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+      ressourceName="2"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+      ressourceName="Turn up"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+      ressourceName="Turn Down"/>
+</ifa.et.tu.dresden.platform.metamodel:PMbase>

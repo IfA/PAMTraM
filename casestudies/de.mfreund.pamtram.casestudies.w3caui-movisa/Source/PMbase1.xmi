@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ifa.et.tu.dresden.platform.metamodel:PMbase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ifa.et.tu.dresden.platform.metamodel="http://ifa/et/tu/dresden/platform/metamodel"
+    xsi:schemaLocation="http://ifa/et/tu/dresden/platform/metamodel platform_metamodel.ecore">
+  <platformCollection
+      platformName="Work Station 1"
+      platformId="1"
+      platformType="ClassicPC"
+      ressources="//@ressourceCollection.0 //@ressourceCollection.1 //@ressourceCollection.2"/>
+  <platformCollection
+      platformName="Work Station 2"
+      platformId="2"
+      platformType="ClassicPC"
+      ressources="//@ressourceCollection.1 //@ressourceCollection.2 //@ressourceCollection.0/@subRessources.0"/>
+  <platformCollection
+      platformName="Work Station 3"
+      platformId="3"/>
+  <platformCollection
+      platformName="Work Station 4"
+      platformId="4"
+      platformType="ClassicPC"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:GenericComplexRessource"
+      ressourceName="Monitor Samsung">
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Display"
+        ressourceName="Samsung Syncmaster 206bw"
+        xPixel="1050"
+        yPixel="1680"
+        height="270.9"
+        width="433.44"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="On/Off"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="Menue"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="Up"
+        accuratePointingCapable="insufficient"
+        selectingCapable="insufficient"
+        drawingCapable="insufficient"
+        fastDrawingCapable="insufficient"
+        alphanumericCapable="insufficient"
+        safeForUnwantedActions="true"
+        buttonSymbol="On/Off-Symbol"
+        buttonColor="black"
+        buttonSize="small"
+        configurable="true"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="Down"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="Source"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="Auto"/>
+  </ressourceCollection>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Keyboard"
+      ressourceName="Cherry M85">
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Keyboard"
+        ressourceName="Cherry T1 Keyboard"
+        keyboardType="alphanumerical"
+        keyboardTypeExtraInfo="T1 (DIN 2137)"
+        fastTextInput="true"
+        easyTextInput="true"
+        hardkeys="//@ressourceCollection.1/@subRessources.0/@subRessources.0 //@ressourceCollection.1/@subRessources.0/@subRessources.2 //@ressourceCollection.1/@subRessources.0/@subRessources.3">
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="1"/>
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="2"/>
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="..."/>
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="N"/>
+    </subRessources>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Keyboard"
+        ressourceName="Cherry Volume Control Keypad"
+        keyboardType="keypad"
+        keyboardTypeExtraInfo="Volume Control Keypad">
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="Turn up"/>
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="Turn down"/>
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="Mute"/>
+    </subRessources>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Keyboard"
+        ressourceName="Cherry Movie Control Keypad"
+        keyboardType="keypad"
+        keyboardTypeExtraInfo="Movie Control Keypad">
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="Fast Forward"/>
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="Wind Back"/>
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+          ressourceName="Play/Stop"/>
+    </subRessources>
+  </ressourceCollection>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Mouse"
+      ressourceName="Cherry M85"
+      mouseSensibility="normal"
+      mainPointingDevice="//@ressourceCollection.2/@subRessources.0"
+      leftMousebutton="//@ressourceCollection.2/@subRessources.2"
+      rightMousebutton="//@ressourceCollection.2/@subRessources.3">
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:PointingDevice"
+        ressourceName="Mouse"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:PointingDevice"
+        ressourceName="Scrollwheel"
+        hasHighPrecision="false"
+        degreesOfFreedom="1"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="Left Mousebutton"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="Right Mousebutton"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="DPI Button"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="Side Down Button"/>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"
+        ressourceName="Side Up Button"/>
+  </ressourceCollection>
+</ifa.et.tu.dresden.platform.metamodel:PMbase>

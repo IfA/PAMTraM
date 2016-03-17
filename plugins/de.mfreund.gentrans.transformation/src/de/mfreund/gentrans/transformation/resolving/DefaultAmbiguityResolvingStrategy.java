@@ -18,6 +18,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
@@ -41,6 +42,17 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 
 	@Override
 	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) {
+
+		if(choices == null || choices.size() == 0) {
+			return new ArrayList<>();
+		} else {
+			return new ArrayList<>(Arrays.asList(choices.get(0)));
+		}
+	}
+	
+	@Override
+	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
+			EObject element) {
 
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();

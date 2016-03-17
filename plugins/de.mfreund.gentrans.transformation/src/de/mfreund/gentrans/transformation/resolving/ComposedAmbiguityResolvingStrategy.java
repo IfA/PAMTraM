@@ -17,6 +17,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
@@ -90,6 +91,31 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			ret = strategy.matchingSelectMapping(ret, element);
+			if(ret == null) {
+				return null;
+			} else if(ret.size() <= 1) {
+				break;
+			}
+		}
+
+		return ret;
+	}
+	
+	@Override
+	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
+			EObject element) throws Exception {
+		
+		List<String> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
+
+		if(ret.size() <= 1) {
+			return ret;
+		}
+
+		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
+			ret = strategy.expandingSelectAttributeValue(ret, attribute, element);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {

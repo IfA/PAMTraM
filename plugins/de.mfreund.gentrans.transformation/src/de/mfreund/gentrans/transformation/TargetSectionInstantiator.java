@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -518,6 +519,22 @@ class TargetSectionInstantiator extends CancellableElement {
 				for(int i=0; i<instances.size(); i++) {
 					EObjectWrapper instance = instances.get(i);
 					String attrValue = calculator.calculateAttributeValue(attr, hintFound, attrHintValues);
+					
+					if(attrValue == null) {
+						/*
+						 * Consult the specified resolving strategy to resolve the ambiguity.				
+						 */
+						try {
+							consoleStream.println("[Ambiguity] Resolve expanding ambiguity...");
+							List<String> resolved = ambiguityResolvingStrategy.expandingSelectAttributeValue(Arrays.asList((String) null), attr, instance.getEObject());
+							consoleStream.println("[Ambiguity] ...finished.\n");
+							attrValue = resolved.get(0);
+						} catch (Exception e) {
+							consoleStream.println(e.getMessage());
+							canceled = true;
+							return null;
+						}
+					}
 
 					// Check if value is unique and was already used, mark
 					// instance for deletion if necessary

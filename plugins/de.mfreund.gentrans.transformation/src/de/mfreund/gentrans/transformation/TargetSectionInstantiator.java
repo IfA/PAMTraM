@@ -327,6 +327,7 @@ class TargetSectionInstantiator extends CancellableElement {
 		int cardinality = 1;
 		boolean attrMappingExists = false;
 		int cardHintValue = 1;
+		boolean cardMappingExists = false;
 		/*
 		 * check for CardinalityHint
 		 */
@@ -340,6 +341,7 @@ class TargetSectionInstantiator extends CancellableElement {
 						if (hintValues.getHintValues((CardinalityMapping) h).size() >= 1) {
 							final Integer val = hintValues.removeHintValue((CardinalityMapping) h);
 							cardHintValue = val.intValue();
+							cardMappingExists = true;
 						}
 
 					}
@@ -413,7 +415,27 @@ class TargetSectionInstantiator extends CancellableElement {
 				// or cardinality is still 1
 				// last chance
 				if (cardinality <= 1) {
-					cardinality = cardHintValue;
+					if(cardMappingExists) {
+						cardinality = cardHintValue;						
+					} else {
+						/*
+						 * Consult the specified resolving strategy to resolve the ambiguity.				
+						 */
+						try {
+							consoleStream.println("[Ambiguity] Resolve expanding ambiguity...");
+							List<Integer> resolved = ambiguityResolvingStrategy.expandingSelectCardinality(Arrays.asList((Integer) null), metamodelSection, mappingGroup);
+							consoleStream.println("[Ambiguity] ...finished.\n");
+							if(resolved.get(0) != null) {
+								cardinality = resolved.get(0);
+							} else {
+								cardinality = (metamodelSection.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0);									
+							}
+						} catch (Exception e) {
+							consoleStream.println(e.getMessage());
+							canceled = true;
+							return null;
+						}
+					}
 				}
 
 			}

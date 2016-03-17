@@ -12,6 +12,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import pamtram.PAMTraM;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -116,6 +117,31 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			ret = strategy.expandingSelectAttributeValue(ret, attribute, element);
+			if(ret == null) {
+				return null;
+			} else if(ret.size() <= 1) {
+				break;
+			}
+		}
+
+		return ret;
+	}
+	
+	@Override
+	public List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
+			InstantiableMappingHintGroup mappingHintGroup) throws Exception {
+
+		List<Integer> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
+
+		if(ret.size() <= 1) {
+			return ret;
+		}
+
+		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
+			ret = strategy.expandingSelectCardinality(ret, targetSectionClass, mappingHintGroup);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {

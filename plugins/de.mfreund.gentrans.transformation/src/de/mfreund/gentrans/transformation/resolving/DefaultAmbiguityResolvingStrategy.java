@@ -13,6 +13,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import pamtram.PAMTraM;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -53,6 +54,17 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	@Override
 	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
 			EObject element) {
+
+		if(choices == null || choices.size() == 0) {
+			return new ArrayList<>();
+		} else {
+			return new ArrayList<>(Arrays.asList(choices.get(0)));
+		}
+	}
+	
+	@Override
+	public List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
+			InstantiableMappingHintGroup mappingHintGroup) throws Exception {
 
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();

@@ -14,6 +14,8 @@ import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -97,6 +99,26 @@ public interface IAmbiguityResolvingStrategy {
 	public default List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute, EObject element) throws Exception {
 		
 		List<String> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
+		return ret;
+	}
+	
+	/**
+	 * Resolve ambiguities that arise when specifying the cardinality for a given 'targetSectionClass' in the '<em>expanding</em>'
+	 * step of the transformation. This method is called when no hint values from an {@link AttributeMapping} or {@link CardinalityMapping} could be used to determine the cardinality.
+	 *  
+	 * @param choices The list of possible values for the given 'targetSectionClass'. If the list only contains one entry that is 'null', 
+	 * it means the default cardinality as specified by the lower bound of the {@link TargetSectionClass#getCardinality()} shall be used.
+	 * @param targetSectionClass The {@link TargetSectionClass} for that the cardinality shall be selected.
+	 * @param mappingHintGroup The {@link InstantiableMappingHintGroup} that is responsible for the instantiation of the target section.
+	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy. 
+	 */
+	public default List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass, InstantiableMappingHintGroup mappingHintGroup) throws Exception {
+		
+		List<Integer> ret = new ArrayList<>();
 		if(choices != null) {
 			ret.addAll(choices);			
 		}

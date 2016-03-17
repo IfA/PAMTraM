@@ -205,7 +205,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ ") . Please select a target element for the following source:\n" + sourceElement.toString();
 		}
 
-		final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(dialogMessage, choices, 0);
+		final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(dialogMessage, choices, reference.getEReference().isMany(), 0);
 
 		Display.getDefault().syncExec(
 				dialog);
@@ -213,9 +213,13 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
-
-		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
-		return Arrays.asList(dialog.getSingleSelection());
+		
+		printMessage(Arrays.toString(dialog.getSelection().toArray()), userDecisionPrefix);
+		if(reference.getEReference().isMany()) {
+			return new ArrayList<>(dialog.getSelection());
+		} else {			
+			return Arrays.asList(dialog.getSingleSelection());
+		}
 	}
 
 	@Override
@@ -247,7 +251,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						+ hintGroup.getName()
 						+ ") ."
 						+ "Please select a target Class and element.",
-						namesAsList, instanceNames);
+						namesAsList, instanceNames, reference.getEReference().isMany());
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
@@ -264,19 +268,35 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if(retSection == null) {
 			throw new RuntimeException("Internal Error! Could not determine chosen target section...");
 		}
-		EObjectWrapper retWrapper = null;
-		for (EObjectWrapper wrapper : choices.get(retSection)) {
-			if(dialog.getSingleInstance().equals(wrapper.toString())) {
-				retWrapper = wrapper;
-				break;
-			}
-		}
-		if(retWrapper == null) {
-			throw new RuntimeException("Internal Error! Could not determine chosen target instance...");
-		}
+		
 		HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
-		ret.put(retSection, Arrays.asList(retWrapper));
-		printMessage(retSection.getName() + "-->" + retWrapper.toString(), userDecisionPrefix);
+		if(dialog.getInstances().isEmpty()) {
+			ret.put(retSection, new ArrayList<EObjectWrapper>());
+		} else {
+			List<EObjectWrapper> retWrappers = null;
+			for (EObjectWrapper wrapper : choices.get(retSection)) {
+				for (String instance : dialog.getInstances()) {
+					if(instance.equals(wrapper.toString())) {
+						if(retWrappers == null) {
+							retWrappers = new ArrayList<>();
+						}
+						retWrappers.add(wrapper);
+						if(!reference.getEReference().isMany()) {
+							break;						
+						}
+					}
+					if(retWrappers != null && !reference.getEReference().isMany()) {
+						break;
+					}
+					
+				}
+			}
+			if(retWrappers == null) {
+				throw new RuntimeException("Internal Error! Could not determine chosen target instance...");
+			}
+			ret.put(retSection, retWrappers);	
+		}
+		printMessage(retSection.getName() + "-->" + Arrays.toString(ret.get(retSection).toArray()), userDecisionPrefix);
 		return ret;
 	}
 }

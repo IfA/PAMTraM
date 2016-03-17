@@ -145,7 +145,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 		EObjectWrapper retWrapper = null;
 		for (EObjectWrapper wrapper : choices.get(retPath)) {
-			if(dialog.getInstance().equals(wrapper.toString())) {
+			if(dialog.getSingleInstance().equals(wrapper.toString())) {
 				retWrapper = wrapper;
 				break;
 			}
@@ -266,7 +266,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 		EObjectWrapper retWrapper = null;
 		for (EObjectWrapper wrapper : choices.get(retSection)) {
-			if(dialog.getInstance().equals(wrapper.toString())) {
+			if(dialog.getSingleInstance().equals(wrapper.toString())) {
 				retWrapper = wrapper;
 				break;
 			}

@@ -68,7 +68,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
-		printMessage(dialog.getSelection(), userDecisionPrefix);
+		printMessage(dialog.getSingleSelection(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(choices.get(classNames.indexOf(dialog.getSelection()))));
 	}
 
@@ -101,7 +101,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			throw new UserAbortException();
 		}
 		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
-		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
+		return new ArrayList<>(Arrays.asList(dialog.getSingleSelection()));
 	}
 
 	@Override
@@ -182,7 +182,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 
 		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
-		return Arrays.asList(dialog.getSelection());
+		return Arrays.asList(dialog.getSingleSelection());
 	}
 
 	@Override
@@ -215,7 +215,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 
 		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
-		return Arrays.asList(dialog.getSelection());
+		return Arrays.asList(dialog.getSingleSelection());
 	}
 
 	@Override

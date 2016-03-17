@@ -1,6 +1,9 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -52,7 +55,9 @@ public class ItemSelectorDialog extends Dialog {
 
 	protected Object result;
 
-	protected int selectedItem;
+	protected Set<Integer> selectedItems;
+	
+	protected boolean multiSelectionAllowed;
 
 	protected Shell shlPleaseSelectA;
 
@@ -77,7 +82,31 @@ public class ItemSelectorDialog extends Dialog {
 		// selections list
 		this.standardSelectionIndex = standardSelectionIndex >= 0 ? standardSelectionIndex
 				: 0;
-		selectedItem = this.standardSelectionIndex;
+		selectedItems = new HashSet<>();
+		selectedItems.add(this.standardSelectionIndex);
+		multiSelectionAllowed = false;
+	}
+	
+	/**
+	 * Create the dialog.
+	 *
+	 * @param parent
+	 * @param style
+	 */
+	ItemSelectorDialog(final Shell parent, final String message,
+			final List<String> listItems, boolean multiSelectionAllowed, final int standardSelectionIndex) {
+		super(parent, SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
+		setText("SWT Dialog");
+		this.listItems = listItems;
+		this.message = message;
+		transformationStopRequested = false;
+		// we need to check if the value standardSelection is part of the
+		// selections list
+		this.standardSelectionIndex = standardSelectionIndex >= 0 ? standardSelectionIndex
+				: 0;
+		selectedItems = new HashSet<>();
+		selectedItems.add(this.standardSelectionIndex);
+		this.multiSelectionAllowed = multiSelectionAllowed;
 	}
 
 	/**
@@ -127,11 +156,14 @@ public class ItemSelectorDialog extends Dialog {
 		grpPossiblePaths.setLayoutData(gd_possiblePaths);
 
 		final ListViewer listViewer = new ListViewer(grpPossiblePaths,
-				SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+				SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | (multiSelectionAllowed ? SWT.MULTI : 0));
 		listViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			@Override
 			public void selectionChanged(final SelectionChangedEvent event) {
-				selectedItem = listWidget.getSelectionIndex();
+				selectedItems = new HashSet<Integer>();
+				for (int index : listWidget.getSelectionIndices()) {
+					selectedItems.add(index);
+				}
 				listWidget.showSelection();
 			}
 		});
@@ -172,7 +204,7 @@ public class ItemSelectorDialog extends Dialog {
 		abortTransFormationButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				selectedItem = standardSelectionIndex;
+				selectedItems = new HashSet<>(Arrays.asList(standardSelectionIndex));
 				transformationStopRequested = true;
 				shlPleaseSelectA.dispose();
 			}
@@ -213,7 +245,7 @@ public class ItemSelectorDialog extends Dialog {
 		btnAbort.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				selectedItem = standardSelectionIndex;
+				selectedItems = new HashSet<>(Arrays.asList(standardSelectionIndex));
 				shlPleaseSelectA.dispose();
 			}
 		});
@@ -233,12 +265,25 @@ public class ItemSelectorDialog extends Dialog {
 	/**
 	 * Get Selection after dialog has finished, returns standardSelection if
 	 * dialog not run
+	 * <p />
+	 * Note: If multiple elements are selected by the user, this will return one (random!) element.
 	 *
 	 * @return the selection
 	 */
-	public int getSelection() {
+	public int getSingleSelection() {
 
-		return selectedItem;
+		return (selectedItems == null || selectedItems.isEmpty() ? null : selectedItems.iterator().next());
+	}
+	
+	/**
+	 * Get Selection after dialog has finished, returns standardSelection if
+	 * dialog not run
+	 *
+	 * @return the selection
+	 */
+	public Set<Integer> getSelection() {
+
+		return selectedItems;
 	}
 
 	/**

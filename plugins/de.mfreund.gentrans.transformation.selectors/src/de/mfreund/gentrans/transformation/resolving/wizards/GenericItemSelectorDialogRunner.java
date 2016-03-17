@@ -1,7 +1,10 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -17,11 +20,14 @@ public class GenericItemSelectorDialogRunner<AnyType> implements Runnable {
 	private final List<AnyType> listItems;
 	private final String message;
 
-	private AnyType selection;
+	private Set<AnyType> selection;
 
 	private final int standardSelection;
 
+	private boolean multiSelectionAllowed;
+
 	private boolean transformationStopRequested;
+	
 
 	/**
 	 * @param message
@@ -31,16 +37,48 @@ public class GenericItemSelectorDialogRunner<AnyType> implements Runnable {
 	public GenericItemSelectorDialogRunner(final String message,
 			final List<AnyType> listItems, final int standardSelection) {
 		transformationStopRequested = false;
-		selection = listItems.get(0);
+		selection = new HashSet<>(Arrays.asList(listItems.get(0)));
 		this.message = message;
 		this.listItems = listItems;
+		this.multiSelectionAllowed = false;
+		this.standardSelection = standardSelection;
+	}
+	
+	/**
+	 * @param message
+	 * @param listItems
+	 * @param standardSelection
+	 */
+	public GenericItemSelectorDialogRunner(final String message,
+			final List<AnyType> listItems, final boolean multiSelectionAllowed, final int standardSelection) {
+		transformationStopRequested = false;
+		selection = new HashSet<>(Arrays.asList(listItems.get(0)));
+		this.message = message;
+		this.listItems = listItems;
+		this.multiSelectionAllowed = multiSelectionAllowed;
 		this.standardSelection = standardSelection;
 	}
 
 	/**
+	 * Get Selection after dialog has finished, returns standardSelection if
+	 * dialog not run
+	 * <p />
+	 * Note: If multiple elements are selected by the user, this will return one (random!) element.
+	 *
 	 * @return selected <AnyType>
 	 */
-	public AnyType getSelection() {
+	public AnyType getSingleSelection() {
+		return (selection == null || selection.isEmpty() ? null : selection.iterator().next());
+	}
+	
+	/**
+	 * Get Selection after dialog has finished, returns standardSelection if
+	 * dialog not run
+	 *
+	 * @return the selection
+	 */
+	public Set<AnyType> getSelection() {
+
 		return selection;
 	}
 
@@ -59,9 +97,16 @@ public class GenericItemSelectorDialogRunner<AnyType> implements Runnable {
 			newListItems.add(i.toString());
 		}
 		final ItemSelectorDialog d = new ItemSelectorDialog(shell, message,
-				newListItems, standardSelection);
+				newListItems, multiSelectionAllowed, standardSelection);
 		d.open();
-		selection = listItems.get(d.getSelection());
+		if(!multiSelectionAllowed) {
+			selection = new HashSet<>(Arrays.asList(listItems.get(d.getSingleSelection())));
+		} else {
+			selection = new HashSet<>();
+			for (int index : d.getSelection()) {
+				selection.add(listItems.get(index));
+			}
+		}
 		transformationStopRequested = d.isTransformationStopRequested();
 	}
 

@@ -16,6 +16,7 @@ import de.mfreund.gentrans.transformation.resolving.wizards.GenericItemSelectorD
 import de.mfreund.gentrans.transformation.resolving.wizards.NamedElementItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -77,6 +78,46 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		
 		printMessage(dialog.getSingleValue(), userDecisionPrefix);
 		return Arrays.asList(dialog.getSingleValue());
+	}
+	
+	@Override
+	public List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
+			InstantiableMappingHintGroup mappingHintGroup) throws Exception {
+		
+		if(choices == null || choices.size() == 0) {
+			return new ArrayList<>();
+		} else if(choices.size() > 1 || choices.get(0) != null) {
+			return choices;
+		}
+		
+		String dialogMessage = "Please specify a cardinality for the target section class '" + targetSectionClass.getName() 
+				+ "' that is instantiated by the mapping hint group '" + mappingHintGroup.getName() + "'...";
+
+		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage);
+
+		Display.getDefault().syncExec(
+				dialog);
+
+		if (dialog.wasTransformationStopRequested()) {
+			throw new UserAbortException();
+		}
+		
+		int cardinality = -1;
+		if(!(dialog.getSingleValue() == null) && !dialog.getSingleValue().isEmpty()) {
+			try {
+				cardinality = Integer.parseUnsignedInt(dialog.getSingleValue());
+				
+			} catch (NumberFormatException e) {
+				throw new RuntimeException("Could not parse a valid cardinality (positive integer) from the string '" 
+						+ dialog.getSingleValue() + "'!");
+			}			
+		}
+		if(cardinality == -1) {
+			return choices;
+		}
+		printMessage("Cardinality: " + cardinality, userDecisionPrefix);
+		return Arrays.asList(cardinality);
+		
 	}
 
 	@Override

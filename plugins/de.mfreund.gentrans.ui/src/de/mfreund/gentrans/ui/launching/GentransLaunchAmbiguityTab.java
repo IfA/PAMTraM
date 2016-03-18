@@ -34,7 +34,9 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	private Combo comboSelectTransformation;
 	private Button btnUseLatestTransformation;
 	private Button btnEnableHistory;
+	private Button btnHandleExpandingCardinalities;
 	private Composite historyComposite;
+	private Composite userComposite;
 
 	/**
 	 * The domain model that this tab operates on.
@@ -158,6 +160,31 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
+		
+		userComposite = new Composite(ambiguityStrategyGroup, SWT.NONE);
+		GridLayout gl_userComposite = new GridLayout(2, false);
+		gl_userComposite.marginLeft = 10;
+		userComposite.setLayout(gl_userComposite);
+		userComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+
+		btnHandleExpandingCardinalities = new Button(userComposite, SWT.CHECK);
+		btnHandleExpandingCardinalities.setSelection(true);
+		btnHandleExpandingCardinalities.setEnabled(false);
+		btnHandleExpandingCardinalities.setToolTipText("Also handle ambiguities that occur during the expanding step "
+				+ "(Warning: This might lead to many user dialogs!)...");
+		btnHandleExpandingCardinalities.setText("Handle expanding ambiguities");
+		new Label(userComposite, SWT.NONE);
+		btnHandleExpandingCardinalities.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
 
 		m_bindingContext = initDataBindings();
 
@@ -173,6 +200,9 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 		// set the enableUser attribute
 		configuration.setAttribute("enableUser", false);
+		
+		// set the handleExpanding attribute
+		configuration.setAttribute("handleExpanding", false);
 	}
 
 	@Override
@@ -183,6 +213,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 			btnEnableHistory.setSelection(configuration.getAttribute("enableHistory", false));
 			//			context.setEnableUser(configuration.getAttribute("enableUser", true));
 			btnEnableUser.setSelection(configuration.getAttribute("enableUser", true));
+			btnHandleExpandingCardinalities.setSelection(configuration.getAttribute("handleExpanding", false));
 
 			// udpate the selection of the selectTransformation combo
 			String transformationToUse = configuration.getAttribute("transformationModel", "");
@@ -213,6 +244,9 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 		// set the enableUser attribute
 		configuration.setAttribute("enableUser", btnEnableUser.getSelection());
+		
+		// set the handleExpanding attribute
+		configuration.setAttribute("handleExpanding", btnHandleExpandingCardinalities.getSelection());
 
 	}
 
@@ -222,7 +256,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	}
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
-
+		//
 		IObservableValue observeEnabledComboSelectTransformationObserveWidget_1 = WidgetProperties.enabled().observe(comboSelectTransformation);
 		IObservableValue observeSelectionBtnEnableHistoryObserveWidget_2 = WidgetProperties.selection().observe(btnEnableHistory);
 		bindingContext.bindValue(observeEnabledComboSelectTransformationObserveWidget_1, observeSelectionBtnEnableHistoryObserveWidget_2, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
@@ -254,6 +288,14 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		IObservableValue observeSelectionComboSelectTransformationObserveWidget = WidgetProperties.selection().observe(comboSelectTransformation);
 		IObservableValue transformationModelToUseContextObserveValue = BeanProperties.value("transformationModelToUse").observe(context);
 		bindingContext.bindValue(observeSelectionComboSelectTransformationObserveWidget, transformationModelToUseContextObserveValue, null, null);
+		//
+		IObservableValue observeEnabledBtnHandleExpandingCardinalitiesObserveWidget = WidgetProperties.enabled().observe(btnHandleExpandingCardinalities);
+		IObservableValue observeSelectionBtnEnableUserObserveWidget_1 = WidgetProperties.selection().observe(btnEnableUser);
+		bindingContext.bindValue(observeEnabledBtnHandleExpandingCardinalitiesObserveWidget, observeSelectionBtnEnableUserObserveWidget_1, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		//
+		IObservableValue observeSelectionBtnHandleExpandingCardinalitiesObserveWidget = WidgetProperties.selection().observe(btnHandleExpandingCardinalities);
+		IObservableValue handleExpandingAmbiguitiesContextObserveValue = BeanProperties.value("handleExpandingAmbiguities").observe(context);
+		bindingContext.bindValue(observeSelectionBtnHandleExpandingCardinalitiesObserveWidget, handleExpandingAmbiguitiesContextObserveValue, null, null);
 		//
 		return bindingContext;
 	}

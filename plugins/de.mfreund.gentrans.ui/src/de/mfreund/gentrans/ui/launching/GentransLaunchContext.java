@@ -56,7 +56,7 @@ class GentransLaunchContext {
 	/**
 	 * Whether the '<em>UserDecisionResolvingStrategy</em>' shall be applied to resolve ambiguities.
 	 */
-	private boolean enableUser = true;
+	private boolean enableUser = false;
 
 	/**
 	 * Whether a specific transformation model shall be used.
@@ -67,6 +67,11 @@ class GentransLaunchContext {
 	 * The name of the transformation to use.
 	 */
 	private String transformationModelToUse = "";
+	
+	/**
+	 * Whether the UserDecisionResolvingStratety shall also handle expanding ambiguities.
+	 */
+	private boolean handleExpandingAmbiguities = false;
 
 	private ArrayList<String> modelsToChooseFrom = new ArrayList<>();
 
@@ -175,5 +180,13 @@ class GentransLaunchContext {
 	public void setModelsToChooseFrom(ArrayList<String> modelsToChooseFrom) {
 		firePropertyChange("modelsToChooseFrom", this.modelsToChooseFrom, modelsToChooseFrom);
 		this.modelsToChooseFrom = modelsToChooseFrom;
+	}
+
+	public boolean isHandleExpandingAmbiguities() {
+		return handleExpandingAmbiguities;
+	}
+
+	public void setHandleExpandingAmbiguities(boolean handleExpandingAmbiguities) {
+		this.handleExpandingAmbiguities = handleExpandingAmbiguities;
 	}
 }

@@ -67,7 +67,7 @@ public class NamedElementItemSelectorDialogRunner<NamedElementSubClass extends N
 		final ItemSelectorDialog d = new ItemSelectorDialog(shell, message,
 				newListItems, standardSelection);
 		d.open();
-		selection = listItems.get(d.getSelection());
+		selection = listItems.get(d.getSingleSelection());
 		transformationStopRequested = d.isTransformationStopRequested();
 	}
 

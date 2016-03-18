@@ -1,6 +1,9 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ListViewer;
@@ -47,7 +50,9 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 	private final List<List<String>> instances;
 	private org.eclipse.swt.widgets.List instancesList;
 	private final String message;
-	protected String path, instance;
+	protected String path;
+	protected Set<String> selectedInstances;
+	protected boolean multiSelectionAllowed;
 	private org.eclipse.swt.widgets.List pathList;
 	private final List<String> paths;
 	protected Object result;
@@ -59,7 +64,9 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 	 * Create the dialog.
 	 * 
 	 * @param parent
-	 * @param style
+	 * @param message 
+	 * @param paths 
+	 * @param instances 
 	 */
 	public PathAndInstanceSelectorDialog(final Shell parent,
 			final String message, final List<String> paths,
@@ -71,7 +78,31 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		this.message = message;
 		transformationStopRequested = false;
 		path = paths.get(0);
-		instance = instances.get(0).get(0);
+		selectedInstances = new HashSet<>(Arrays.asList(instances.get(0).get(0)));
+		this.multiSelectionAllowed = false;
+	}
+	
+	/**
+	 * Create the dialog.
+	 * 
+	 * @param parent
+	 * @param message 
+	 * @param paths 
+	 * @param instances 
+	 * @param multiSelectionAllowed 
+	 */
+	public PathAndInstanceSelectorDialog(final Shell parent,
+			final String message, final List<String> paths,
+			final List<List<String>> instances, boolean multiSelectionAllowed) {
+		super(parent, SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
+		setText("SWT Dialog");
+		this.paths = paths;
+		this.instances = instances;
+		this.message = message;
+		transformationStopRequested = false;
+		path = paths.get(0);
+		selectedInstances = new HashSet<>(Arrays.asList(instances.get(0).get(0)));
+		this.multiSelectionAllowed = multiSelectionAllowed;
 	}
 
 	/**
@@ -141,8 +172,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		});
 		pathList.setItems(paths.toArray(new String[1]));
 
-		pathListViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		pathListViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 					/**
 					 * Path selection changed
 					 */
@@ -154,8 +184,8 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 								pathList.getSelectionIndex()).toArray(
 								new String[1]));
 						instancesList.setSelection(0);
-						instance = instances.get(pathList.getSelectionIndex())
-								.get(instancesList.getSelectionIndex());
+						selectedInstances = new HashSet<>(Arrays.asList(instances.get(
+								pathList.getSelectionIndex()).get(instancesList.getSelectionIndex())));
 					}
 				});
 
@@ -164,7 +194,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		grpPossibleInstances.setLayout(new FillLayout(SWT.HORIZONTAL));
 
 		final ListViewer instancesListViewer = new ListViewer(
-				grpPossibleInstances, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+				grpPossibleInstances, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | (multiSelectionAllowed ? SWT.MULTI : 0));
 		instancesList = instancesListViewer.getList();
 		instancesList.addKeyListener(new KeyAdapter() {
 			@Override
@@ -211,7 +241,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				path = paths.get(0);
-				instance = instances.get(0).get(0);
+				selectedInstances = new HashSet<>(Arrays.asList(instances.get(0).get(0)));
 				transformationStopRequested = true;
 				shlPleaseSelectA.dispose();
 			}
@@ -241,22 +271,23 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				path = paths.get(0);
-				instance = instances.get(0).get(0);
+				selectedInstances = new HashSet<>(Arrays.asList(instances.get(0).get(0)));
 				shlPleaseSelectA.dispose();
 			}
 		});
 		abortButton.setText("Abort");
 
-		instancesListViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		instancesListViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 					/**
 					 * Instance selection changed
 					 */
 					@Override
 					public void selectionChanged(
 							final SelectionChangedEvent event) {
-						instance = instances.get(pathList.getSelectionIndex())
-								.get(instancesList.getSelectionIndex());
+						selectedInstances = new HashSet<>();
+						for (int index : instancesList.getSelectionIndices()) {
+							selectedInstances.add(instances.get(pathList.getSelectionIndex()).get(index));
+						}
 					}
 				});
 
@@ -273,14 +304,25 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 
 	/**
 	 * Get selected Instance after dialog has finished, return first instance in
-	 * List for first path if dialog aborted / not run
+	 * List for first path if dialog aborted / not run / multi-selection allowed
 	 * 
 	 * @return selected instance
 	 */
-	public String getInstance() {
+	public String getSingleInstance() {
 
-		return instance;
+		return (selectedInstances == null || selectedInstances.isEmpty() ? null : selectedInstances.iterator().next());
 
+	}
+	
+	/**
+	 * Get selected Instances after dialog has finished, return first instance in
+	 * List for first path if dialog aborted / not run.
+	 * 
+	 * @return selected instance
+	 */
+	public Set<String> getInstances() {
+
+		return selectedInstances;
 	}
 
 	protected org.eclipse.swt.widgets.List getInstancesList() {

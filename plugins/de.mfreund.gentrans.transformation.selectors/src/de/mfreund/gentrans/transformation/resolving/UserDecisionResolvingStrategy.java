@@ -15,11 +15,14 @@ import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.NamedElementItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
@@ -35,6 +38,24 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after user selections.
 	 */
 	private static final String userDecisionPrefix = "User";
+	
+	/**
+	 * If this is set to '<em>false</em>' this strategy will also try to resolve ambiguities during the <em>expanding<em>
+	 * step as this might lead to a ton of questions.
+	 * <p />
+	 * The default value is '<em>true</em>'.
+	 */
+	private boolean skipExpandingAmbiguities = true;
+	
+	/**
+	 * This allows to change the {@link #skipExpandingAmbiguities} behavior.
+	 * 
+	 * @param skipExpandingAmbiguities If this is set to '<em>false</em>' this strategy will also try to resolve ambiguities 
+	 * during the <em>expanding<em> step
+	 */
+	public void setSkipExpandingAmbiguities(boolean skipExpandingAmbiguities) {
+		this.skipExpandingAmbiguities = skipExpandingAmbiguities;
+	}
 
 	@Override
 	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {
@@ -49,6 +70,72 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 		printMessage(dialog.getSelection().getName(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
+	}
+	
+	@Override
+	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
+			EObject element) throws Exception {
+		
+		if(choices == null || choices.size() == 0) {
+			return new ArrayList<>();
+		} else if(choices.size() > 1 || choices.get(0) != null || skipExpandingAmbiguities) {
+			return choices;
+		}
+		
+		String dialogMessage = "Please specify a value for the attribute '" + attribute.getName() + "' of the element '" 
+				+ element.toString() + "'...";
+
+		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage);
+
+		Display.getDefault().syncExec(
+				dialog);
+
+		if (dialog.wasTransformationStopRequested()) {
+			throw new UserAbortException();
+		}
+		
+		printMessage(dialog.getSingleValue(), userDecisionPrefix);
+		return Arrays.asList(dialog.getSingleValue());
+	}
+	
+	@Override
+	public List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
+			InstantiableMappingHintGroup mappingHintGroup) throws Exception {
+		
+		if(choices == null || choices.size() == 0) {
+			return new ArrayList<>();
+		} else if(choices.size() > 1 || choices.get(0) != null || skipExpandingAmbiguities) {
+			return choices;
+		}
+		
+		String dialogMessage = "Please specify a cardinality for the target section class '" + targetSectionClass.getName() 
+				+ "' that is instantiated by the mapping hint group '" + mappingHintGroup.getName() + "'...";
+
+		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage);
+
+		Display.getDefault().syncExec(
+				dialog);
+
+		if (dialog.wasTransformationStopRequested()) {
+			throw new UserAbortException();
+		}
+		
+		int cardinality = -1;
+		if(!(dialog.getSingleValue() == null) && !dialog.getSingleValue().isEmpty()) {
+			try {
+				cardinality = Integer.parseUnsignedInt(dialog.getSingleValue());
+				
+			} catch (NumberFormatException e) {
+				throw new RuntimeException("Could not parse a valid cardinality (positive integer) from the string '" 
+						+ dialog.getSingleValue() + "'!");
+			}			
+		}
+		if(cardinality == -1) {
+			return choices;
+		}
+		printMessage("Cardinality: " + cardinality, userDecisionPrefix);
+		return Arrays.asList(cardinality);
+		
 	}
 
 	@Override
@@ -68,7 +155,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
-		printMessage(dialog.getSelection(), userDecisionPrefix);
+		printMessage(dialog.getSingleSelection(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(choices.get(classNames.indexOf(dialog.getSelection()))));
 	}
 
@@ -101,7 +188,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			throw new UserAbortException();
 		}
 		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
-		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
+		return new ArrayList<>(Arrays.asList(dialog.getSingleSelection()));
 	}
 
 	@Override
@@ -145,7 +232,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 		EObjectWrapper retWrapper = null;
 		for (EObjectWrapper wrapper : choices.get(retPath)) {
-			if(dialog.getInstance().equals(wrapper.toString())) {
+			if(dialog.getSingleInstance().equals(wrapper.toString())) {
 				retWrapper = wrapper;
 				break;
 			}
@@ -182,7 +269,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 
 		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
-		return Arrays.asList(dialog.getSelection());
+		return Arrays.asList(dialog.getSingleSelection());
 	}
 
 	@Override
@@ -205,7 +292,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ ") . Please select a target element for the following source:\n" + sourceElement.toString();
 		}
 
-		final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(dialogMessage, choices, 0);
+		final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(dialogMessage, choices, reference.getEReference().isMany(), 0);
 
 		Display.getDefault().syncExec(
 				dialog);
@@ -213,9 +300,13 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
-
-		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
-		return Arrays.asList(dialog.getSelection());
+		
+		printMessage(Arrays.toString(dialog.getSelection().toArray()), userDecisionPrefix);
+		if(reference.getEReference().isMany()) {
+			return new ArrayList<>(dialog.getSelection());
+		} else {			
+			return Arrays.asList(dialog.getSingleSelection());
+		}
 	}
 
 	@Override
@@ -247,7 +338,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						+ hintGroup.getName()
 						+ ") ."
 						+ "Please select a target Class and element.",
-						namesAsList, instanceNames);
+						namesAsList, instanceNames, reference.getEReference().isMany());
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
@@ -264,19 +355,35 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if(retSection == null) {
 			throw new RuntimeException("Internal Error! Could not determine chosen target section...");
 		}
-		EObjectWrapper retWrapper = null;
-		for (EObjectWrapper wrapper : choices.get(retSection)) {
-			if(dialog.getInstance().equals(wrapper.toString())) {
-				retWrapper = wrapper;
-				break;
-			}
-		}
-		if(retWrapper == null) {
-			throw new RuntimeException("Internal Error! Could not determine chosen target instance...");
-		}
+		
 		HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
-		ret.put(retSection, Arrays.asList(retWrapper));
-		printMessage(retSection.getName() + "-->" + retWrapper.toString(), userDecisionPrefix);
+		if(dialog.getInstances().isEmpty()) {
+			ret.put(retSection, new ArrayList<EObjectWrapper>());
+		} else {
+			List<EObjectWrapper> retWrappers = null;
+			for (EObjectWrapper wrapper : choices.get(retSection)) {
+				for (String instance : dialog.getInstances()) {
+					if(instance.equals(wrapper.toString())) {
+						if(retWrappers == null) {
+							retWrappers = new ArrayList<>();
+						}
+						retWrappers.add(wrapper);
+						if(!reference.getEReference().isMany()) {
+							break;						
+						}
+					}
+					if(retWrappers != null && !reference.getEReference().isMany()) {
+						break;
+					}
+					
+				}
+			}
+			if(retWrappers == null) {
+				throw new RuntimeException("Internal Error! Could not determine chosen target instance...");
+			}
+			ret.put(retSection, retWrappers);	
+		}
+		printMessage(retSection.getName() + "-->" + Arrays.toString(ret.get(retSection).toArray()), userDecisionPrefix);
 		return ret;
 	}
 }

@@ -38,6 +38,24 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after user selections.
 	 */
 	private static final String userDecisionPrefix = "User";
+	
+	/**
+	 * If this is set to '<em>false</em>' this strategy will also try to resolve ambiguities during the <em>expanding<em>
+	 * step as this might lead to a ton of questions.
+	 * <p />
+	 * The default value is '<em>true</em>'.
+	 */
+	private boolean skipExpandingAmbiguities = true;
+	
+	/**
+	 * This allows to change the {@link #skipExpandingAmbiguities} behavior.
+	 * 
+	 * @param skipExpandingAmbiguities If this is set to '<em>false</em>' this strategy will also try to resolve ambiguities 
+	 * during the <em>expanding<em> step
+	 */
+	public void setSkipExpandingAmbiguities(boolean skipExpandingAmbiguities) {
+		this.skipExpandingAmbiguities = skipExpandingAmbiguities;
+	}
 
 	@Override
 	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {
@@ -60,7 +78,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
-		} else if(choices.size() > 1 || choices.get(0) != null) {
+		} else if(choices.size() > 1 || choices.get(0) != null || skipExpandingAmbiguities) {
 			return choices;
 		}
 		
@@ -86,7 +104,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
-		} else if(choices.size() > 1 || choices.get(0) != null) {
+		} else if(choices.size() > 1 || choices.get(0) != null || skipExpandingAmbiguities) {
 			return choices;
 		}
 		

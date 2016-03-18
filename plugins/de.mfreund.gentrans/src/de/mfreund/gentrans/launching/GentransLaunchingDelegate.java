@@ -116,9 +116,15 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		}
 
 		if(configuration.getAttribute("enableUser", false)) {
+			
+			UserDecisionResolvingStrategy userStrategy = new UserDecisionResolvingStrategy();
+			if(configuration.getAttribute("handleExpanding", false)) {
+				userStrategy.setSkipExpandingAmbiguities(false);
+			}
+			
 			resolvingStrategy = (transformationModelPath == null ?
-					new UserDecisionResolvingStrategy() : 
-						new HistoryResolvingStrategy(new ArrayList<>(Arrays.asList(new UserDecisionResolvingStrategy())), transformationModelPath));
+					userStrategy : 
+						new HistoryResolvingStrategy(new ArrayList<>(Arrays.asList(userStrategy)), transformationModelPath));
 		} else {
 			resolvingStrategy = (transformationModelPath == null ?
 					new DefaultAmbiguityResolvingStrategy() : 

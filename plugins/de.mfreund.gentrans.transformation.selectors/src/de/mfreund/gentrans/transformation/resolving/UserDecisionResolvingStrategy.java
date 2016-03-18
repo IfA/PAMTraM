@@ -15,11 +15,13 @@ import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.NamedElementItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
@@ -49,6 +51,32 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 		printMessage(dialog.getSelection().getName(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
+	}
+	
+	@Override
+	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
+			EObject element) throws Exception {
+		
+		if(choices == null || choices.size() == 0) {
+			return new ArrayList<>();
+		} else if(choices.size() > 1 || choices.get(0) != null) {
+			return choices;
+		}
+		
+		String dialogMessage = "Please specify a value for the attribute '" + attribute.getName() + "' of the element '" 
+				+ element.toString() + "'...";
+
+		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage);
+
+		Display.getDefault().syncExec(
+				dialog);
+
+		if (dialog.wasTransformationStopRequested()) {
+			throw new UserAbortException();
+		}
+		
+		printMessage(dialog.getSingleValue(), userDecisionPrefix);
+		return Arrays.asList(dialog.getSingleValue());
 	}
 
 	@Override

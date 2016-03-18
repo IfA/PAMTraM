@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
@@ -12,10 +13,14 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import pamtram.PAMTraM;
+import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
@@ -73,6 +78,47 @@ public interface IAmbiguityResolvingStrategy {
 			EObject element) throws Exception {
 
 		List<Mapping> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
+		return ret;
+	}
+	
+	/**
+	 * Resolve ambiguities that arise when specifying an attribute value for a given 'element' in the '<em>expanding</em>'
+	 * step of the transformation. This method is called when no {@link AttributeMapping} was specified (resp. the specified
+	 * mapping did not return any hint values).
+	 *  
+	 * @param choices The list of possible values for the given 'element'. If the list only contains one entry that is 'null', 
+	 * it means that all values as specified by the attribte's {@link EAttribute#getEAttributeType() DataType} are possible.
+	 * @param attribute The {@link TargetSectionAttribute} for that the value shall be selected.
+	 * @param element The source {@link EObject element} for that the attribute value shall be determined.
+	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy. 
+	 */
+	public default List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute, EObject element) throws Exception {
+		
+		List<String> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
+		return ret;
+	}
+	
+	/**
+	 * Resolve ambiguities that arise when specifying the cardinality for a given 'targetSectionClass' in the '<em>expanding</em>'
+	 * step of the transformation. This method is called when no hint values from an {@link AttributeMapping} or {@link CardinalityMapping} could be used to determine the cardinality.
+	 *  
+	 * @param choices The list of possible values for the given 'targetSectionClass'. If the list only contains one entry that is 'null', 
+	 * it means the default cardinality as specified by the lower bound of the {@link TargetSectionClass#getCardinality()} shall be used.
+	 * @param targetSectionClass The {@link TargetSectionClass} for that the cardinality shall be selected.
+	 * @param mappingHintGroup The {@link InstantiableMappingHintGroup} that is responsible for the instantiation of the target section.
+	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy. 
+	 */
+	public default List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass, InstantiableMappingHintGroup mappingHintGroup) throws Exception {
+		
+		List<Integer> ret = new ArrayList<>();
 		if(choices != null) {
 			ret.addAll(choices);			
 		}

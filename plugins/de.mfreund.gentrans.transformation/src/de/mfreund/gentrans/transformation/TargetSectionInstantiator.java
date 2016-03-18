@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -296,6 +297,40 @@ class TargetSectionInstantiator extends CancellableElement {
 
 		}
 	}
+	
+	/**
+	 * Set reference values
+	 *
+	 * @param ref
+	 * @param targets
+	 * @param source
+	 */
+	private void addValuesToReference(
+			final TargetSectionNonContainmentReference ref,
+			final List<EObject> targets, final EObject source) {
+		if (ref.getEReference().getUpperBound() == 1) {
+			if(targets.size() > 1) {
+				consoleStream.println("More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
+						+ ref.getName()
+						+ "' in the target section '"
+						+ ref.getContainingSection()
+						+ "Please check your mapping model.");
+			} else {
+				addValueToReference(ref, targets.get(0), source);
+			}
+		} else {
+			@SuppressWarnings("unchecked")
+			final EList<EObject> oldRefs = (EList<EObject>) source.eGet(ref
+					.getEReference());
+			final LinkedList<EObject> newRefs = new LinkedList<>();
+			if (oldRefs != null) {
+				newRefs.addAll(oldRefs);
+			}
+			newRefs.addAll(targets);
+			source.eSet(ref.getEReference(), newRefs);
+
+		}
+	}
 
 	/**
 	 * instantiate targetModelSection (first pass: attributes and containment
@@ -326,6 +361,7 @@ class TargetSectionInstantiator extends CancellableElement {
 		int cardinality = 1;
 		boolean attrMappingExists = false;
 		int cardHintValue = 1;
+		boolean cardMappingExists = false;
 		/*
 		 * check for CardinalityHint
 		 */
@@ -339,6 +375,7 @@ class TargetSectionInstantiator extends CancellableElement {
 						if (hintValues.getHintValues((CardinalityMapping) h).size() >= 1) {
 							final Integer val = hintValues.removeHintValue((CardinalityMapping) h);
 							cardHintValue = val.intValue();
+							cardMappingExists = true;
 						}
 
 					}
@@ -412,7 +449,27 @@ class TargetSectionInstantiator extends CancellableElement {
 				// or cardinality is still 1
 				// last chance
 				if (cardinality <= 1) {
-					cardinality = cardHintValue;
+					if(cardMappingExists) {
+						cardinality = cardHintValue;						
+					} else {
+						/*
+						 * Consult the specified resolving strategy to resolve the ambiguity.				
+						 */
+						try {
+							consoleStream.println("[Ambiguity] Resolve expanding ambiguity...");
+							List<Integer> resolved = ambiguityResolvingStrategy.expandingSelectCardinality(Arrays.asList((Integer) null), metamodelSection, mappingGroup);
+							consoleStream.println("[Ambiguity] ...finished.\n");
+							if(resolved.get(0) != null) {
+								cardinality = resolved.get(0);
+							} else {
+								cardinality = (metamodelSection.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0);									
+							}
+						} catch (Exception e) {
+							consoleStream.println(e.getMessage());
+							canceled = true;
+							return null;
+						}
+					}
 				}
 
 			}
@@ -518,6 +575,22 @@ class TargetSectionInstantiator extends CancellableElement {
 				for(int i=0; i<instances.size(); i++) {
 					EObjectWrapper instance = instances.get(i);
 					String attrValue = calculator.calculateAttributeValue(attr, hintFound, attrHintValues);
+					
+					if(attrValue == null) {
+						/*
+						 * Consult the specified resolving strategy to resolve the ambiguity.				
+						 */
+						try {
+							consoleStream.println("[Ambiguity] Resolve expanding ambiguity...");
+							List<String> resolved = ambiguityResolvingStrategy.expandingSelectAttributeValue(Arrays.asList((String) null), attr, instance.getEObject());
+							consoleStream.println("[Ambiguity] ...finished.\n");
+							attrValue = resolved.get(0);
+						} catch (Exception e) {
+							consoleStream.println(e.getMessage());
+							canceled = true;
+							return null;
+						}
+					}
 
 					// Check if value is unique and was already used, mark
 					// instance for deletion if necessary
@@ -872,9 +945,9 @@ class TargetSectionInstantiator extends CancellableElement {
 												}
 											}
 											// select targetInst
-											EObjectWrapper targetInst = null;
+											List<EObject> targetInst = new ArrayList<>();
 											if (fittingVals.size() == 1) {
-												targetInst = fittingVals.get(0);
+												targetInst.add(fittingVals.get(0).getEObject());
 												
 											} else if (fittingVals.size() > 1) {
 												
@@ -890,7 +963,13 @@ class TargetSectionInstantiator extends CancellableElement {
 													List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
 															fittingVals, ((MappingInstanceSelector) h).getAffectedReference(), (MappingHintGroupType) group, (MappingInstanceSelector) h, srcInst);
 													consoleStream.println("[Ambiguity] ...finished.\n");
-													targetInst = resolved.get(0);
+													if(ref.getEReference().isMany()) {
+														for (EObjectWrapper eObjectWrapper : resolved) {
+															targetInst.add(eObjectWrapper.getEObject());
+														}
+													} else {
+														targetInst.add(resolved.get(0).getEObject());
+													}
 												} catch (Exception e) {
 													consoleStream.println(e.getMessage());
 													cancel();
@@ -907,7 +986,7 @@ class TargetSectionInstantiator extends CancellableElement {
 											
 											// finally, we can set the value of the reference
 											if(!targetSectionClass.isLibraryEntry()) {
-												addValueToReference(ref, targetInst.getEObject(), srcInst.getEObject());
+												addValuesToReference(ref, targetInst, srcInst.getEObject());
 											} else {
 												/* 
 												 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
@@ -918,7 +997,8 @@ class TargetSectionInstantiator extends CancellableElement {
 												ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
 												@SuppressWarnings("unchecked")
 												AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
-												originalParam.setTarget(targetInst.getEObject());
+												// library entries do currently not support to set multiple target instances for an ExternalReferenceParameter
+												originalParam.setTarget(targetInst.get(0));
 											}
 										}
 										
@@ -1193,11 +1273,17 @@ class TargetSectionInstantiator extends CancellableElement {
 									/*
 									 * Consult the specified resolving strategy to resolve the ambiguity.				
 									 */
-									EObjectWrapper targetInstance = null;
+									List<EObject> targets = new ArrayList<>();
 									try {
 										List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
 												instances, ref, (MappingHintGroupType) group, null, source);
-										targetInstance = resolved.get(0);
+										if(ref.getEReference().isMany()) {
+											for (EObjectWrapper eObjectWrapper : resolved) {
+												targets.add(eObjectWrapper.getEObject());
+											}
+										} else {
+											targets.add(resolved.get(0).getEObject());
+										}
 									} catch (Exception e) {
 										consoleStream.println(e.getMessage());
 										cancel();
@@ -1226,7 +1312,7 @@ class TargetSectionInstantiator extends CancellableElement {
 									//										return;
 									//									}
 									if(!targetSectionClass.isLibraryEntry()) {
-										addValueToReference(ref, targetInstance.getEObject(), source.getEObject());
+										addValuesToReference(ref, targets, source.getEObject());
 									} else {
 										/* 
 										 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
@@ -1237,7 +1323,8 @@ class TargetSectionInstantiator extends CancellableElement {
 										ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
 										@SuppressWarnings("unchecked")
 										AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
-										originalParam.setTarget(targetInstance.getEObject());
+										// library entries do currently not support to set multiple target instances for an ExternalReferenceParameter
+										originalParam.setTarget(targets.get(0));
 									}
 
 								} else {
@@ -1286,11 +1373,11 @@ class TargetSectionInstantiator extends CancellableElement {
 							}
 
 							// the EObjectWrapper that will be set as target of the non-containment reference
-							EObjectWrapper targetInstance = null;
+							List<EObject> targets = null;
 
 							if (targetInstancesToConsider.values().size() == 1) {
 
-								targetInstance = targetInstancesToConsider.values().iterator().next();
+								targets = Arrays.asList(targetInstancesToConsider.values().iterator().next().getEObject());
 
 							} else if (targetInstancesToConsider.values().size() > 1) {
 
@@ -1310,7 +1397,14 @@ class TargetSectionInstantiator extends CancellableElement {
 									consoleStream.println("[Ambiguity] Resolve linking ambiguity...");
 									HashMap<TargetSectionClass, List<EObjectWrapper>> resolved = ambiguityResolvingStrategy.linkingSelectTargetSectionAndInstance(choices, ref, (MappingHintGroupType) group);
 									consoleStream.println("[Ambiguity] ...finished.\n");
-									targetInstance = resolved.entrySet().iterator().next().getValue().get(0);
+									if(ref.getEReference().isMany()) {
+										targets = new ArrayList<>();
+										for (EObjectWrapper eObjectWrapper : resolved.entrySet().iterator().next().getValue()) {
+											targets.add(eObjectWrapper.getEObject());
+										}
+									} else {
+										targets = new ArrayList<>(Arrays.asList((resolved.entrySet().iterator().next().getValue().get(0).getEObject())));
+									}
 								} catch (Exception e) {
 									consoleStream.println(e.getMessage());
 									cancel();
@@ -1325,11 +1419,11 @@ class TargetSectionInstantiator extends CancellableElement {
 								+ "(Group: " + group.getName() + ").");
 							}
 
-							if (targetInstance != null) {
+							if (targets != null) {
 								for (final EObjectWrapper inst : instancesBySection
 										.get(targetSectionClass)) {
 									if(!targetSectionClass.isLibraryEntry()) {
-										addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
+										addValuesToReference(ref, targets, inst.getEObject());
 									} else {
 										/* 
 										 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
@@ -1340,7 +1434,8 @@ class TargetSectionInstantiator extends CancellableElement {
 										ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
 										@SuppressWarnings("unchecked")
 										AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
-										originalParam.setTarget(targetInstance.getEObject());
+										// library entries do currently not support to set multiple target instances for an ExternalReferenceParameter
+										originalParam.setTarget(targets.get(0));
 									}
 								}
 							}

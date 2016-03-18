@@ -111,7 +111,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 			ret.addAll(choices);			
 		}
 
-		if(ret.size() <= 1) {
+		if(ret.isEmpty() || (ret.size() == 1 && ret.get(0) != null)) {
 			return ret;
 		}
 
@@ -136,7 +136,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 			ret.addAll(choices);			
 		}
 
-		if(ret.size() <= 1) {
+		if(ret.isEmpty() || (ret.size() == 1 && ret.get(0) != null)) {
 			return ret;
 		}
 

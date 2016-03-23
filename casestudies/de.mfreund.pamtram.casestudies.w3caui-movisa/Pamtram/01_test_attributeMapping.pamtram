@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel>
 <<<<<<< HEAD
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
@@ -33,6 +33,1620 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.1"/>
 =======
     <metaModelPackage href="http://ifa/et/tu/dresden/platform/metamodel#/"/>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="PMbase">
+      <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//PMbase"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="platformCollection">
+        <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//PMbase/platformCollection"/>
+        <value xsi:type="metamodel:SourceSection" name="Platform">
+          <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Platform"/>
+          <references xsi:type="metamodel:MetaModelSectionReference" name="ressources" value="//@sourceSectionModel.0/@metaModelSections.0/@references.1/@value.0 //@sourceSectionModel.0/@metaModelSections.0/@references.1/@value.1 //@sourceSectionModel.0/@metaModelSections.0/@references.1/@value.2">
+            <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//Platform/ressources"/>
+          </references>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="platformName">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="platformName_Constraint" expression="Work Station 1"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Platform/platformName"/>
+          </attributes>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="platformId">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="platformId_Constraint" expression="1"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Platform/platformId"/>
+          </attributes>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="platformType">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="platformType_Constraint" expression="ClassicPC"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Platform/platformType"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="ressourceCollection">
+        <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//PMbase/ressourceCollection"/>
+        <value xsi:type="metamodel:SourceSection" name="GenericComplexRessource">
+          <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//GenericComplexRessource"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="subRessources">
+            <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//ComplexRessource/subRessources"/>
+            <value xsi:type="metamodel:SourceSection" name="Display">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Display"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Samsung Syncmaster 206bw"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="xPixel">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="xPixel_Constraint" expression="1050"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/xPixel"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="yPixel">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="yPixel_Constraint" expression="1680"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/yPixel"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="height">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="height_Constraint" expression="270.9"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/height"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="width">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="width_Constraint" expression="433.44"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/width"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="isColorCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="isColorCapable_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/isColorCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="isImagesCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="isImagesCapable_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/isImagesCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="isVideosCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="isVideosCapable_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/isVideosCapable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="On/Off"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Menue"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Up"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="insufficient"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="insufficient"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="insufficient"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="insufficient"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="insufficient"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSymbol_Constraint" expression="On/Off-Symbol"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint" expression="black"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="small"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Down"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Source"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Auto"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Monitor Samsung"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+          </attributes>
+        </value>
+        <value xsi:type="metamodel:SourceSection" name="Keyboard">
+          <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="subRessources">
+            <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//ComplexRessource/subRessources"/>
+            <value xsi:type="metamodel:SourceSection" name="Keyboard">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard"/>
+              <references xsi:type="metamodel:SourceSectionContainmentReference" name="subRessources">
+                <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//ComplexRessource/subRessources"/>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="1"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="2"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="..."/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="N"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+              </references>
+              <references xsi:type="metamodel:MetaModelSectionReference" name="hardkeys" value="//@sourceSectionModel.0/@metaModelSections.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.0 //@sourceSectionModel.0/@metaModelSections.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.2 //@sourceSectionModel.0/@metaModelSections.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.3">
+                <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/hardkeys"/>
+              </references>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Cherry T1 Keyboard"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="keyboardType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="keyboardType_Constraint" expression="alphanumerical"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/keyboardType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="keyboardTypeExtraInfo">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="keyboardTypeExtraInfo_Constraint" expression="T1 (DIN 2137)"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/keyboardTypeExtraInfo"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastTextInput">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastTextInput_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/fastTextInput"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="easyTextInput">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="easyTextInput_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/easyTextInput"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Keyboard">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard"/>
+              <references xsi:type="metamodel:SourceSectionContainmentReference" name="subRessources">
+                <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//ComplexRessource/subRessources"/>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Turn up"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Turn down"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Mute"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Cherry Volume Control Keypad"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="keyboardType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="keyboardType_Constraint" expression="keypad"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/keyboardType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="keyboardTypeExtraInfo">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="keyboardTypeExtraInfo_Constraint" expression="Volume Control Keypad"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/keyboardTypeExtraInfo"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastTextInput">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastTextInput_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/fastTextInput"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="easyTextInput">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="easyTextInput_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/easyTextInput"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Keyboard">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard"/>
+              <references xsi:type="metamodel:SourceSectionContainmentReference" name="subRessources">
+                <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//ComplexRessource/subRessources"/>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Fast Forward"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Wind Back"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+                <value xsi:type="metamodel:SourceSection" name="Hardkey">
+                  <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Play/Stop"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                    <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Cherry Movie Control Keypad"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="keyboardType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="keyboardType_Constraint" expression="keypad"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/keyboardType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="keyboardTypeExtraInfo">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="keyboardTypeExtraInfo_Constraint" expression="Movie Control Keypad"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/keyboardTypeExtraInfo"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastTextInput">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastTextInput_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/fastTextInput"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="easyTextInput">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="easyTextInput_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/easyTextInput"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Cherry M85"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+          </attributes>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="keyboardType">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="keyboardType_Constraint" expression="other"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/keyboardType"/>
+          </attributes>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="keyboardTypeExtraInfo">
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/keyboardTypeExtraInfo"/>
+          </attributes>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastTextInput">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastTextInput_Constraint" expression="false"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/fastTextInput"/>
+          </attributes>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="easyTextInput">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="easyTextInput_Constraint" expression="false"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Keyboard/easyTextInput"/>
+          </attributes>
+        </value>
+        <value xsi:type="metamodel:SourceSection" name="Mouse">
+          <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Mouse"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="subRessources">
+            <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//ComplexRessource/subRessources"/>
+            <value xsi:type="metamodel:SourceSection" name="PointingDevice">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//PointingDevice"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Mouse"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hasHighPrecision">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hasHighPrecision_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//PointingDevice/hasHighPrecision"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="degreesOfFreedom">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="degreesOfFreedom_Constraint" expression="2"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//PointingDevice/degreesOfFreedom"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="PointingDevice">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//PointingDevice"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Scrollwheel"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hasHighPrecision">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hasHighPrecision_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//PointingDevice/hasHighPrecision"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="degreesOfFreedom">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="degreesOfFreedom_Constraint" expression="1"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//PointingDevice/degreesOfFreedom"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Left Mousebutton"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Right Mousebutton"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="DPI Button"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Side Down Button"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSection" name="Hardkey">
+              <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Side Up Button"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastPointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastPointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastPointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="accuratePointingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="accuratePointingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/accuratePointingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="selectingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/selectingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="drawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="drawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/drawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="fastDrawingCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="fastDrawingCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/fastDrawingCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="alphanumericCapable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="alphanumericCapable_Constraint" expression="other"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//ElementaryTasksForInputDevices/alphanumericCapable"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="safeForUnwantedActions">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="safeForUnwantedActions_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/safeForUnwantedActions"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithGloves">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithGloves_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithGloves"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableWithOneHand">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableWithOneHand_Constraint" expression="true"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//InputDevice/usableWithOneHand"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSymbol">
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSymbol"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonColor">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonColor_Constraint"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="buttonSize">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="buttonSize_Constraint" expression="middle"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/buttonSize"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="hardkeyType">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="hardkeyType_Constraint" expression="MachineSpecific"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/hardkeyType"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="configurable">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="configurable_Constraint" expression="false"/>
+                <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Hardkey/configurable"/>
+              </attributes>
+            </value>
+          </references>
+          <references xsi:type="metamodel:MetaModelSectionReference" name="mainPointingDevice" value="//@sourceSectionModel.0/@metaModelSections.0/@references.1/@value.2/@references.0/@value.0">
+            <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//Mouse/mainPointingDevice"/>
+          </references>
+          <references xsi:type="metamodel:MetaModelSectionReference" name="leftMousebutton" value="//@sourceSectionModel.0/@metaModelSections.0/@references.1/@value.2/@references.0/@value.2">
+            <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//Mouse/leftMousebutton"/>
+          </references>
+          <references xsi:type="metamodel:MetaModelSectionReference" name="rightMousebutton" value="//@sourceSectionModel.0/@metaModelSections.0/@references.1/@value.2/@references.0/@value.3">
+            <eReference href="http://ifa/et/tu/dresden/platform/metamodel#//Mouse/rightMousebutton"/>
+          </references>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ressourceName">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ressourceName_Constraint" expression="Cherry M85"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
+          </attributes>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="mouseSensibility">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="mouseSensibility_Constraint" expression="normal"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Mouse/mouseSensibility"/>
+          </attributes>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableForTranspartentSurface">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableForTranspartentSurface_Constraint" expression="true"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Mouse/usableForTranspartentSurface"/>
+          </attributes>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="usableForSmoothSurface">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="usableForSmoothSurface_Constraint" expression="true"/>
+            <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Mouse/usableForSmoothSurface"/>
+          </attributes>
+        </value>
+      </references>
+    </metaModelSections>
   </sourceSectionModel>
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
@@ -48,11 +1662,11 @@
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
-    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Button">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Button"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
@@ -60,8 +1674,15 @@
     <mapping name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
+          <condition xsi:type="condition:And">
+            <condParts xsi:type="condition:SectionCondition" name="platform pointer" conditionSectionRef="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0"/>
+            <condParts xsi:type="condition:AttributeCondition" name="" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          </condition>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.1"/>
 >>>>>>> branch 'feature/conditions' of z:\Diplomarbeit\repos\de.mfreund.pamtram.casestudies.w3caui-movisa.git
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="role" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>

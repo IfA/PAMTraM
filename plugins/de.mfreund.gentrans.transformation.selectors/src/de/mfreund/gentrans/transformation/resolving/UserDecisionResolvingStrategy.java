@@ -123,7 +123,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		int cardinality = -1;
 		if(!(dialog.getSingleValue() == null) && !dialog.getSingleValue().isEmpty()) {
 			try {
-				cardinality = Integer.parseUnsignedInt(dialog.getSingleValue());
+				cardinality = Integer.parseInt(dialog.getSingleValue());
 				
 			} catch (NumberFormatException e) {
 				throw new RuntimeException("Could not parse a valid cardinality (positive integer) from the string '" 

@@ -4008,13 +4008,22 @@ public interface MetamodelPackage extends EPackage {
 	int INSTANCE_POINTER__ATTRIBUTE_POINTER = 0;
 
 	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER__VALUE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Instance Pointer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER_FEATURE_COUNT = 1;
+	int INSTANCE_POINTER_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Instance Pointer</em>' class.
@@ -5159,6 +5168,17 @@ public interface MetamodelPackage extends EPackage {
 	EReference getInstancePointer_AttributePointer();
 
 	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.InstancePointer#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see pamtram.metamodel.InstancePointer#getValue()
+	 * @see #getInstancePointer()
+	 * @generated
+	 */
+	EAttribute getInstancePointer_Value();
+
+	/**
 	 * Returns the meta object for enum '{@link pamtram.metamodel.FileTypeEnum <em>File Type Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6136,6 +6156,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INSTANCE_POINTER__ATTRIBUTE_POINTER = eINSTANCE.getInstancePointer_AttributePointer();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INSTANCE_POINTER__VALUE = eINSTANCE.getInstancePointer_Value();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.FileTypeEnum <em>File Type Enum</em>}' enum.

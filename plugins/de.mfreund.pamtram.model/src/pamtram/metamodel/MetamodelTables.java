@@ -811,6 +811,7 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _FileAttribute__TargetSection__file = new ExecutorPropertyWithImplementation("TargetSection", Types._FileAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.TARGET_SECTION__FILE));
 
 		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__attributePointer = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER, Types._InstancePointer, 0);
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__value = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__VALUE, Types._InstancePointer, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__id = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ID, Types._LibraryEntry, 0);
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__libraryFile = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE, Types._LibraryEntry, 1);
@@ -3170,7 +3171,8 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty[] _FileTypeEnum = {};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _InstancePointer = {
-			MetamodelTables.Properties._InstancePointer__attributePointer
+			MetamodelTables.Properties._InstancePointer__attributePointer,
+			MetamodelTables.Properties._InstancePointer__value
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _LibraryEntry = {

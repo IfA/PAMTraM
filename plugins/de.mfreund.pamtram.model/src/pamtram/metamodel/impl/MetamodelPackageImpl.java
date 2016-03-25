@@ -1408,6 +1408,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getInstancePointer_Value() {
+		return (EAttribute)instancePointerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getFileTypeEnum() {
 		return fileTypeEnumEEnum;
 	}
@@ -1602,6 +1611,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		instancePointerEClass = createEClass(INSTANCE_POINTER);
 		createEReference(instancePointerEClass, INSTANCE_POINTER__ATTRIBUTE_POINTER);
+		createEAttribute(instancePointerEClass, INSTANCE_POINTER__VALUE);
 
 		// Create enums
 		fileTypeEnumEEnum = createEEnum(FILE_TYPE_ENUM);
@@ -2479,6 +2489,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(instancePointerEClass, InstancePointer.class, "InstancePointer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInstancePointer_AttributePointer(), this.getSourceSectionAttribute(), null, "attributePointer", null, 1, 1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInstancePointer_Value(), ecorePackage.getEString(), "value", null, 0, 1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(fileTypeEnumEEnum, FileTypeEnum.class, "FileTypeEnum");

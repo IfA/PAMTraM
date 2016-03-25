@@ -872,6 +872,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="InstancePointer">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributePointer" lowerBound="1"
           eType="#//metamodel/SourceSectionAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">

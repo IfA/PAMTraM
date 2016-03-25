@@ -1631,11 +1631,14 @@
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
-    <metaModelPackage href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/generic#/"/>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Button">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/generic#//presentation/Button"/>
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Button"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name">
-        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/generic#//NamedMovisaModelElement/Name"/>
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name2">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
@@ -1649,7 +1652,7 @@
           </condition>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Name2Mapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.1">
           <condition xsi:type="condition:Not" name="testCond2" condPartRef="//@mappingModel.0/@mapping.0/@mappingHintGroups.0/@mappingHints.0/@condition"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="role" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
         </mappingHints>

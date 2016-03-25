@@ -92,7 +92,7 @@ public class ReferenceableValueCalculator {
 	 * @param obt This is the root element which contain information over all referenced values
 	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
 	 */
-	public String calculateReferenceValue(Object obt) {
+	public String calculateReferenceValue(EObject obt) {
 		
 		String refValue = null;
 		
@@ -126,13 +126,21 @@ public class ReferenceableValueCalculator {
 				// If we are here, some mistake is happened
 				// more types could be supported in the future
 				consoleStream.println("ReferenceableElement type " + refEle.getClass().getName() + " is not yet supported!");
-				refValue = null;
+				refValue = "";
 			}		
 		} 
 		
 		// If first step fails (String of refValue is empty), so secondly we try to interpret the expression
 		if(refValue == "" || refValue == null){
-			refValue = calculateReferenceValueWithExpression(((RangeBound) obt).getExpression(), refObts); // TODO cast-operator doesn't matter because it the same method (check it)
+			if(obt instanceof SingleReferenceAttributeValueConstraint){
+				refValue = calculateReferenceValueWithExpression(((SingleReferenceAttributeValueConstraint) obt).getExpression(), refObts);
+			} else if (obt instanceof RangeBound){
+				refValue = calculateReferenceValueWithExpression(((RangeBound) obt).getExpression(), refObts);
+			} else {
+				// more types could be supported in the future
+				consoleStream.println("Expression of " + obt.getClass().getName() + " cannot yet supported!");
+				return null;
+			}
 		}
 			
 		// Return the calculated value, also if it is null or empty
@@ -151,13 +159,12 @@ public class ReferenceableValueCalculator {
 	private String calculateReferenceValueWithExpression(String expression, EList<ReferenceableElement> refObts) {
 		
 		Map<String,Double> mapOfValuesForExp = this.globalValuesAsDouble;
-		//mapOfValuesForExp.
 		
 		ExpressionCalculator expCalc = new ExpressionCalculator();
-		return (expCalc.calculateExpression(expression, this.globalValuesAsDouble));
+		return (expCalc.calculateExpression(expression, mapOfValuesForExp));
 	}
 
-	public void updateMatchedSections(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections2) {
+	public void updateMatchedSections(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections) {
 		this.matchedSections = matchedSections;
 		
 	}

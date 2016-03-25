@@ -140,6 +140,7 @@ public class ConditionHandler {
 
 	private condResult checkAttributeCondition(AttributeCondition condition) {
 		
+		String srcAttrAsString = ""; //FIXME
 		/*
 		 * check AttributeValueConstraints
 		 *
@@ -162,14 +163,14 @@ public class ConditionHandler {
 				// and we need to extract the right reference Value(s) for each constraint
 				
 				if (constraint instanceof SingleReferenceAttributeValueConstraint){
-					String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(srcAttrValue); //TODO actually reference Values will be calculated for each loop 
+					String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint); //TODO actually reference Values will be calculated for each loop 
 					constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
 				} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
 					
 					if(constraint instanceof RangeConstraint){
 						List<String> srcAttrRefValuesAsList = new ArrayList<String>();
-						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) srcAttrValue).getLowerBound()));
-						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) srcAttrValue).getUpperBound()));
+						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getLowerBound()));
+						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getUpperBound()));
 						
 						BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); // TODO Convert List to EList // Check it 
 						constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,RefValuesAsEList);

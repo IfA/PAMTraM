@@ -16,6 +16,7 @@ import pamtram.ReferenceableElement;
  * <ul>
  *   <li>{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValue <em>Constraint Reference Value</em>}</li>
  *   <li>{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getSingleReferenceAttributeValueConstraint()
@@ -66,6 +67,23 @@ public interface SingleReferenceAttributeValueConstraint extends AttributeValueC
 	 * @generated
 	 */
 	void setExpression(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.metamodel.InstancePointer}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constraint Reference Value Additional Specification</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constraint Reference Value Additional Specification</em>' containment reference list.
+	 * @see pamtram.metamodel.MetamodelPackage#getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification()
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceAttributeValueConstraint!constraintReferenceValueAdditionalSpecification'"
+	 * @generated
+	 */
+	EList<InstancePointer> getConstraintReferenceValueAdditionalSpecification();
 
 	/**
 	 * <!-- begin-user-doc -->

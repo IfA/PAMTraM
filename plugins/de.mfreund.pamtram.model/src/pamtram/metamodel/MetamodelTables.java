@@ -124,6 +124,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Section = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Section", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SectionCondition = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("SectionCondition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SectionModel = MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("SectionModel", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SingleReferenceAttributeValueConstraint = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SingleReferenceAttributeValueConstraint", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSection = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSection", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionClass = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
@@ -189,6 +190,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeValueConstraint = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_AttributeValueConstraint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EAttribute = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_EAttribute);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EReference = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_EReference);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_InstancePointer = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_InstancePointer);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_LibraryParameter = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_LibraryParameter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHintGroupType = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_MappingHintGroupType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingType = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_MappingType);
@@ -812,6 +814,8 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__attributePointer = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER, Types._InstancePointer, 0);
 		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__value = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__VALUE, Types._InstancePointer, 1);
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("RangeBound", Types._InstancePointer, 2, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("SingleReferenceAttributeValueConstraint", Types._InstancePointer, 3, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
 
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__id = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ID, Types._LibraryEntry, 0);
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__libraryFile = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE, Types._LibraryEntry, 1);
@@ -827,10 +831,11 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _NonContainmentReference__value = new EcoreExecutorProperty(MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, Types._NonContainmentReference, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _RangeBound__boundReferenceValue = new EcoreExecutorProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE, Types._RangeBound, 0);
-		public static final /*@NonNull*/ ExecutorProperty _RangeBound__boundType = new EcoreExecutorProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_TYPE, Types._RangeBound, 1);
-		public static final /*@NonNull*/ ExecutorProperty _RangeBound__expression = new EcoreExecutorProperty(MetamodelPackage.Literals.RANGE_BOUND__EXPRESSION, Types._RangeBound, 2);
-		public static final /*@NonNull*/ ExecutorProperty _RangeBound__RangeConstraint__lowerBound = new ExecutorPropertyWithImplementation("RangeConstraint", Types._RangeBound, 3, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND));
-		public static final /*@NonNull*/ ExecutorProperty _RangeBound__RangeConstraint__upperBound = new ExecutorPropertyWithImplementation("RangeConstraint", Types._RangeBound, 4, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND));
+		public static final /*@NonNull*/ ExecutorProperty _RangeBound__boundReferenceValueAdditionalSpecification = new EcoreExecutorProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION, Types._RangeBound, 1);
+		public static final /*@NonNull*/ ExecutorProperty _RangeBound__boundType = new EcoreExecutorProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_TYPE, Types._RangeBound, 2);
+		public static final /*@NonNull*/ ExecutorProperty _RangeBound__expression = new EcoreExecutorProperty(MetamodelPackage.Literals.RANGE_BOUND__EXPRESSION, Types._RangeBound, 3);
+		public static final /*@NonNull*/ ExecutorProperty _RangeBound__RangeConstraint__lowerBound = new ExecutorPropertyWithImplementation("RangeConstraint", Types._RangeBound, 4, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND));
+		public static final /*@NonNull*/ ExecutorProperty _RangeBound__RangeConstraint__upperBound = new ExecutorPropertyWithImplementation("RangeConstraint", Types._RangeBound, 5, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND));
 
 		public static final /*@NonNull*/ ExecutorProperty _RangeConstraint__lowerBound = new EcoreExecutorProperty(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND, Types._RangeConstraint, 0);
 		public static final /*@NonNull*/ ExecutorProperty _RangeConstraint__upperBound = new EcoreExecutorProperty(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND, Types._RangeConstraint, 1);
@@ -842,7 +847,8 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _Section__extend = new EcoreExecutorProperty(MetamodelPackage.Literals.SECTION__EXTEND, Types._Section, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _SingleReferenceAttributeValueConstraint__constraintReferenceValue = new EcoreExecutorProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE, Types._SingleReferenceAttributeValueConstraint, 0);
-		public static final /*@NonNull*/ ExecutorProperty _SingleReferenceAttributeValueConstraint__expression = new EcoreExecutorProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION, Types._SingleReferenceAttributeValueConstraint, 1);
+		public static final /*@NonNull*/ ExecutorProperty _SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification = new EcoreExecutorProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION, Types._SingleReferenceAttributeValueConstraint, 1);
+		public static final /*@NonNull*/ ExecutorProperty _SingleReferenceAttributeValueConstraint__expression = new EcoreExecutorProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION, Types._SingleReferenceAttributeValueConstraint, 2);
 
 		public static final /*@NonNull*/ ExecutorProperty _SourceSection__referencingMappings = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS, Types._SourceSection, 0);
 
@@ -3101,6 +3107,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty[] _BeginningMatcher = {
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
+			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
@@ -3111,6 +3118,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty[] _CaseSensitiveConstraint = {
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
+			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
@@ -3139,6 +3147,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty[] _EndingMatcher = {
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
+			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
@@ -3147,6 +3156,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty[] _EqualityMatcher = {
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
+			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
@@ -3172,7 +3182,9 @@ public class MetamodelTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _InstancePointer = {
 			MetamodelTables.Properties._InstancePointer__attributePointer,
-			MetamodelTables.Properties._InstancePointer__value
+			MetamodelTables.Properties._InstancePointer__value,
+			MetamodelTables.Properties._InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification,
+			MetamodelTables.Properties._InstancePointer__SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _LibraryEntry = {
@@ -3209,6 +3221,7 @@ public class MetamodelTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _RangeBound = {
 			MetamodelTables.Properties._RangeBound__boundReferenceValue,
+			MetamodelTables.Properties._RangeBound__boundReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._RangeBound__boundType,
 			MetamodelTables.Properties._RangeBound__expression,
 			MetamodelTables.Properties._RangeBound__RangeConstraint__lowerBound,
@@ -3229,6 +3242,7 @@ public class MetamodelTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _RegExMatcher = {
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
+			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
@@ -3246,6 +3260,7 @@ public class MetamodelTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _SingleReferenceAttributeValueConstraint = {
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
+			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
@@ -3267,7 +3282,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SourceSectionAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._SourceSectionAttribute__valueConstraint,
-			MetamodelTables.Properties._SourceSectionAttribute__InstancePointer__attributePointer
+			MetamodelTables.Properties._SourceSectionAttribute__InstancePointer__attributePointer,
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _SourceSectionClass = {
@@ -3293,6 +3308,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty[] _SubstringMatcher = {
 			MetamodelTables.Properties._CaseSensitiveConstraint__caseSensitive,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValue,
+			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__expression,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint

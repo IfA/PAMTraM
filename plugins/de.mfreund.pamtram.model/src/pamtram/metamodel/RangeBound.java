@@ -19,6 +19,7 @@ import pamtram.ReferenceableElement;
  *   <li>{@link pamtram.metamodel.RangeBound#getBoundReferenceValue <em>Bound Reference Value</em>}</li>
  *   <li>{@link pamtram.metamodel.RangeBound#getBoundType <em>Bound Type</em>}</li>
  *   <li>{@link pamtram.metamodel.RangeBound#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.metamodel.RangeBound#getBoundReferenceValueAdditionalSpecification <em>Bound Reference Value Additional Specification</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getRangeBound()
@@ -98,5 +99,22 @@ public interface RangeBound extends EObject {
 	 * @generated
 	 */
 	void setExpression(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Bound Reference Value Additional Specification</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.metamodel.InstancePointer}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bound Reference Value Additional Specification</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bound Reference Value Additional Specification</em>' containment reference list.
+	 * @see pamtram.metamodel.MetamodelPackage#getRangeBound_BoundReferenceValueAdditionalSpecification()
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeBound!boundReferenceValueAdditionalSpecification'"
+	 * @generated
+	 */
+	EList<InstancePointer> getBoundReferenceValueAdditionalSpecification();
 
 } // RangeBound

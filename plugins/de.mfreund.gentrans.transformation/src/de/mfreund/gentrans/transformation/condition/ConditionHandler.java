@@ -156,14 +156,14 @@ public class ConditionHandler {
 				continue;
 			}
 
-			boolean constraintVal=false; // TODO have to be initialized?!!
+			boolean constraintVal=false; // FIXME have to be initialized?!!
 			try {
 				// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
 				// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
 				// and we need to extract the right reference Value(s) for each constraint
 				
 				if (constraint instanceof SingleReferenceAttributeValueConstraint){
-					String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint); //TODO actually reference Values will be calculated for each loop 
+					String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint); //FIXME actually reference Values will be calculated for each loop 
 					constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
 				} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
 					
@@ -172,7 +172,7 @@ public class ConditionHandler {
 						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getLowerBound()));
 						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getUpperBound()));
 						
-						BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); // TODO Convert List to EList // Check it 
+						BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList);
 						constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,RefValuesAsEList);
 					}  else {
 						// If we are here, some mistake is happened

@@ -67,6 +67,15 @@ public interface PamtramFactory extends EFactory {
 	ConditionModel createConditionModel();
 
 	/**
+	 * Returns a new object of class '<em>Range Bound</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Range Bound</em>'.
+	 * @generated
+	 */
+	RangeBound createRangeBound();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

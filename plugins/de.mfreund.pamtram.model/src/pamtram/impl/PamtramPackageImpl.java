@@ -21,8 +21,10 @@ import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
+import pamtram.RangeBound;
 import pamtram.ReferenceableElement;
 import pamtram.SectionModel;
+import pamtram.SingleReferenceAttributeValueConstraint;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 import pamtram.condition.ConditionPackage;
@@ -109,6 +111,20 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * @generated
 	 */
 	private EClass referenceableElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rangeBoundEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass singleReferenceAttributeValueConstraintEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -523,6 +539,96 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRangeBound() {
+		return rangeBoundEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRangeBound_BoundReferenceValue() {
+		return (EReference)rangeBoundEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRangeBound_BoundType() {
+		return (EAttribute)rangeBoundEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRangeBound_Expression() {
+		return (EAttribute)rangeBoundEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRangeBound_BoundReferenceValueAdditionalSpecification() {
+		return (EReference)rangeBoundEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSingleReferenceAttributeValueConstraint() {
+		return singleReferenceAttributeValueConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSingleReferenceAttributeValueConstraint_ConstraintReferenceValue() {
+		return (EReference)singleReferenceAttributeValueConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSingleReferenceAttributeValueConstraint_Expression() {
+		return (EAttribute)singleReferenceAttributeValueConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification() {
+		return (EReference)singleReferenceAttributeValueConstraintEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String() {
+		return singleReferenceAttributeValueConstraintEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PamtramFactory getPamtramFactory() {
 		return (PamtramFactory)getEFactoryInstance();
 	}
@@ -591,6 +697,18 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(conditionModelEClass, CONDITION_MODEL__CONDITION);
 
 		referenceableElementEClass = createEClass(REFERENCEABLE_ELEMENT);
+
+		rangeBoundEClass = createEClass(RANGE_BOUND);
+		createEReference(rangeBoundEClass, RANGE_BOUND__BOUND_REFERENCE_VALUE);
+		createEAttribute(rangeBoundEClass, RANGE_BOUND__BOUND_TYPE);
+		createEAttribute(rangeBoundEClass, RANGE_BOUND__EXPRESSION);
+		createEReference(rangeBoundEClass, RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+
+		singleReferenceAttributeValueConstraintEClass = createEClass(SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT);
+		createEReference(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE);
+		createEAttribute(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION);
+		createEReference(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+		createEOperation(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING);
 	}
 
 	/**
@@ -698,6 +816,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		targetSectionModelEClass.getEGenericSuperTypes().add(g1);
 		mappingModelEClass.getESuperTypes().add(this.getNamedElement());
 		mappingModelEClass.getESuperTypes().add(this.getDeactivatableElement());
+		singleReferenceAttributeValueConstraintEClass.getESuperTypes().add(theMetamodelPackage.getAttributeValueConstraint());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -764,6 +883,21 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getConditionModel_Condition(), theConditionPackage.getComplexCondition(), null, "condition", null, 0, -1, ConditionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceableElementEClass, ReferenceableElement.class, "ReferenceableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(rangeBoundEClass, RangeBound.class, "RangeBound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRangeBound_BoundReferenceValue(), this.getReferenceableElement(), null, "boundReferenceValue", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRangeBound_BoundType(), theMetamodelPackage.getAttributeValueConstraintType(), "boundType", null, 0, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRangeBound_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRangeBound_BoundReferenceValueAdditionalSpecification(), theMetamodelPackage.getInstancePointer(), null, "boundReferenceValueAdditionalSpecification", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(singleReferenceAttributeValueConstraintEClass, SingleReferenceAttributeValueConstraint.class, "SingleReferenceAttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSingleReferenceAttributeValueConstraint_ConstraintReferenceValue(), this.getReferenceableElement(), null, "constraintReferenceValue", null, 0, -1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSingleReferenceAttributeValueConstraint_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification(), theMetamodelPackage.getInstancePointer(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "attrValue", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "refValue", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

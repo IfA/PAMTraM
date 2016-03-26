@@ -10,9 +10,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import pamtram.RangeBound;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 
 /**

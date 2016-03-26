@@ -220,15 +220,6 @@ public interface MetamodelFactory extends EFactory {
 	RangeConstraint createRangeConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Range Bound</em>'.
-	 * @generated
-	 */
-	RangeBound createRangeBound();
-
-	/**
 	 * Returns a new object of class '<em>Instance Pointer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

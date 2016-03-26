@@ -3,6 +3,7 @@
 package pamtram.metamodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import pamtram.impl.SingleReferenceAttributeValueConstraintImpl;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RegExMatcher;

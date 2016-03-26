@@ -2,6 +2,8 @@
  */
 package pamtram.metamodel;
 
+import pamtram.SingleReferenceAttributeValueConstraint;
+
 
 /**
  * <!-- begin-user-doc -->

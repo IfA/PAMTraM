@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import pamtram.*;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 
@@ -106,6 +107,18 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseReferenceableElement(ReferenceableElement object) {
 				return createReferenceableElementAdapter();
+			}
+			@Override
+			public Adapter caseRangeBound(RangeBound object) {
+				return createRangeBoundAdapter();
+			}
+			@Override
+			public Adapter caseSingleReferenceAttributeValueConstraint(SingleReferenceAttributeValueConstraint object) {
+				return createSingleReferenceAttributeValueConstraintAdapter();
+			}
+			@Override
+			public Adapter caseAttributeValueConstraint(AttributeValueConstraint object) {
+				return createAttributeValueConstraintAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -264,6 +277,48 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReferenceableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.RangeBound <em>Range Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.RangeBound
+	 * @generated
+	 */
+	public Adapter createRangeBoundAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.SingleReferenceAttributeValueConstraint <em>Single Reference Attribute Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.SingleReferenceAttributeValueConstraint
+	 * @generated
+	 */
+	public Adapter createSingleReferenceAttributeValueConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.AttributeValueConstraint <em>Attribute Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.AttributeValueConstraint
+	 * @generated
+	 */
+	public Adapter createAttributeValueConstraintAdapter() {
 		return null;
 	}
 

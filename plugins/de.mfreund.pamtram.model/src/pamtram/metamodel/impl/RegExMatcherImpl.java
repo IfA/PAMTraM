@@ -3,7 +3,6 @@
 package pamtram.metamodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import pamtram.impl.SingleReferenceAttributeValueConstraintImpl;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RegExMatcher;
@@ -14,7 +13,7 @@ import pamtram.metamodel.RegExMatcher;
  *
  * @generated
  */
-public class RegExMatcherImpl extends SingleReferenceAttributeValueConstraintImpl implements
+public class RegExMatcherImpl extends pamtram.metamodel.impl.SingleReferenceAttributeValueConstraintImpl implements
 		RegExMatcher {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

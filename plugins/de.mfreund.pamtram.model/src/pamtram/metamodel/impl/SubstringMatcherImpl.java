@@ -6,7 +6,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import pamtram.impl.SingleReferenceAttributeValueConstraintImpl;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SubstringMatcher;
@@ -23,7 +22,7 @@ import pamtram.metamodel.SubstringMatcher;
  *
  * @generated
  */
-public class SubstringMatcherImpl extends SingleReferenceAttributeValueConstraintImpl implements
+public class SubstringMatcherImpl extends pamtram.metamodel.impl.SingleReferenceAttributeValueConstraintImpl implements
 		SubstringMatcher {
 	/**
 	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.

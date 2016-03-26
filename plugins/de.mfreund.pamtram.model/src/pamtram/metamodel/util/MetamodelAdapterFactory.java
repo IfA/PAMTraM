@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import pamtram.NamedElement;
 import pamtram.ReferenceableElement;
-import pamtram.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
@@ -29,6 +28,7 @@ import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
 import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
@@ -252,16 +252,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createInstancePointerAdapter();
 			}
 			@Override
+			public Adapter caseRangeBound(RangeBound object) {
+				return createRangeBoundAdapter();
+			}
+			@Override
+			public Adapter caseSingleReferenceAttributeValueConstraint(pamtram.metamodel.SingleReferenceAttributeValueConstraint object) {
+				return createSingleReferenceAttributeValueConstraintAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
 			@Override
 			public Adapter caseReferenceableElement(ReferenceableElement object) {
 				return createReferenceableElementAdapter();
-			}
-			@Override
-			public Adapter caseSingleReferenceAttributeValueConstraint(SingleReferenceAttributeValueConstraint object) {
-				return createSingleReferenceAttributeValueConstraintAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -774,13 +778,13 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.SingleReferenceAttributeValueConstraint <em>Single Reference Attribute Value Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint <em>Single Reference Attribute Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.SingleReferenceAttributeValueConstraint
+	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint
 	 * @generated
 	 */
 	public Adapter createSingleReferenceAttributeValueConstraintAdapter() {
@@ -812,6 +816,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstancePointerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.RangeBound <em>Range Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.RangeBound
+	 * @generated
+	 */
+	public Adapter createRangeBoundAdapter() {
 		return null;
 	}
 

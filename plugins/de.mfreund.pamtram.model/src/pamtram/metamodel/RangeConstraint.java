@@ -2,9 +2,6 @@
  */
 package pamtram.metamodel;
 
-import pamtram.RangeBound;
-
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Range Constraint</b></em>'.
@@ -32,13 +29,13 @@ public interface RangeConstraint extends MultipleReferencesAttributeValueConstra
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Upper Bound</em>' containment reference.
-	 * @see #setUpperBound(RangeBound)
+	 * @see #setUpperBound(pamtram.metamodel.RangeBound)
 	 * @see pamtram.metamodel.MetamodelPackage#getRangeConstraint_UpperBound()
 	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeConstraint!upperBound'"
 	 * @generated
 	 */
-	RangeBound getUpperBound();
+	pamtram.metamodel.RangeBound getUpperBound();
 
 	/**
 	 * Sets the value of the '{@link pamtram.metamodel.RangeConstraint#getUpperBound <em>Upper Bound</em>}' containment reference.
@@ -48,7 +45,7 @@ public interface RangeConstraint extends MultipleReferencesAttributeValueConstra
 	 * @see #getUpperBound()
 	 * @generated
 	 */
-	void setUpperBound(RangeBound value);
+	void setUpperBound(pamtram.metamodel.RangeBound value);
 
 	/**
 	 * Returns the value of the '<em><b>Lower Bound</b></em>' containment reference.
@@ -59,13 +56,13 @@ public interface RangeConstraint extends MultipleReferencesAttributeValueConstra
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Lower Bound</em>' containment reference.
-	 * @see #setLowerBound(RangeBound)
+	 * @see #setLowerBound(pamtram.metamodel.RangeBound)
 	 * @see pamtram.metamodel.MetamodelPackage#getRangeConstraint_LowerBound()
 	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeConstraint!lowerBound'"
 	 * @generated
 	 */
-	RangeBound getLowerBound();
+	pamtram.metamodel.RangeBound getLowerBound();
 
 	/**
 	 * Sets the value of the '{@link pamtram.metamodel.RangeConstraint#getLowerBound <em>Lower Bound</em>}' containment reference.
@@ -75,6 +72,6 @@ public interface RangeConstraint extends MultipleReferencesAttributeValueConstra
 	 * @see #getLowerBound()
 	 * @generated
 	 */
-	void setLowerBound(RangeBound value);
+	void setLowerBound(pamtram.metamodel.RangeBound value);
 
 } // RangeConstraint

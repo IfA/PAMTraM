@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.NamedElement;
 import pamtram.ReferenceableElement;
-import pamtram.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
@@ -28,6 +27,7 @@ import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
 import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
@@ -434,6 +434,20 @@ public class MetamodelSwitch<T> extends Switch<T> {
 			case MetamodelPackage.INSTANCE_POINTER: {
 				InstancePointer instancePointer = (InstancePointer)theEObject;
 				T result = caseInstancePointer(instancePointer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.RANGE_BOUND: {
+				RangeBound rangeBound = (RangeBound)theEObject;
+				T result = caseRangeBound(rangeBound);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT: {
+				pamtram.metamodel.SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint = (pamtram.metamodel.SingleReferenceAttributeValueConstraint)theEObject;
+				T result = caseSingleReferenceAttributeValueConstraint(singleReferenceAttributeValueConstraint);
+				if (result == null) result = caseAttributeValueConstraint(singleReferenceAttributeValueConstraint);
+				if (result == null) result = caseNamedElement(singleReferenceAttributeValueConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -997,6 +1011,36 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Range Bound</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Range Bound</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRangeBound(RangeBound object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Single Reference Attribute Value Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Single Reference Attribute Value Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSingleReferenceAttributeValueConstraint(pamtram.metamodel.SingleReferenceAttributeValueConstraint object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1023,21 +1067,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseReferenceableElement(ReferenceableElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Single Reference Attribute Value Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Single Reference Attribute Value Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSingleReferenceAttributeValueConstraint(SingleReferenceAttributeValueConstraint object) {
 		return null;
 	}
 

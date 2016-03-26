@@ -268,7 +268,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = META_MODEL_ELEMENT_OPERATION_COUNT + 4;
+	int CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Cardinality Is Valid</em>' operation.
@@ -277,7 +277,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = META_MODEL_ELEMENT_OPERATION_COUNT + 5;
+	int CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>EClass Matches Parent EReference</em>' operation.
@@ -286,7 +286,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1 = META_MODEL_ELEMENT_OPERATION_COUNT + 6;
+	int CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -458,7 +458,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int SECTION___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Cardinality Is Valid</em>' operation.
@@ -467,7 +467,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int SECTION___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EClass Matches Parent EReference</em>' operation.
@@ -476,7 +476,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1 = CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1;
+	int SECTION___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Extends Only Valid Sections</em>' operation.
@@ -494,7 +494,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1 = CLASS_OPERATION_COUNT + 1;
+	int SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = CLASS_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Container Matches Extend Container</em>' operation.
@@ -503,7 +503,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1 = CLASS_OPERATION_COUNT + 2;
+	int SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP = CLASS_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Section</em>' class.
@@ -657,7 +657,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int SOURCE_SECTION_CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Cardinality Is Valid</em>' operation.
@@ -666,7 +666,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int SOURCE_SECTION_CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EClass Matches Parent EReference</em>' operation.
@@ -675,7 +675,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1 = CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1;
+	int SOURCE_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Source Section Class</em>' class.
@@ -856,7 +856,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = SOURCE_SECTION_CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int SOURCE_SECTION___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Cardinality Is Valid</em>' operation.
@@ -865,7 +865,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = SOURCE_SECTION_CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int SOURCE_SECTION___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EClass Matches Parent EReference</em>' operation.
@@ -874,7 +874,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1 = SOURCE_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1;
+	int SOURCE_SECTION___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Extends Only Valid Sections</em>' operation.
@@ -892,7 +892,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1 = SOURCE_SECTION_CLASS_OPERATION_COUNT + 1;
+	int SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Container Matches Extend Container</em>' operation.
@@ -901,7 +901,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1 = SOURCE_SECTION_CLASS_OPERATION_COUNT + 2;
+	int SOURCE_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Is Referenced By Mapping</em>' operation.
@@ -910,7 +910,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_1 = SOURCE_SECTION_CLASS_OPERATION_COUNT + 3;
+	int SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Source Section</em>' class.
@@ -1064,7 +1064,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION_CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Cardinality Is Valid</em>' operation.
@@ -1073,7 +1073,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION_CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EClass Matches Parent EReference</em>' operation.
@@ -1082,7 +1082,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1 = CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Target Section Class</em>' class.
@@ -1272,7 +1272,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = TARGET_SECTION_CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Cardinality Is Valid</em>' operation.
@@ -1281,7 +1281,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = TARGET_SECTION_CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EClass Matches Parent EReference</em>' operation.
@@ -1290,7 +1290,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1 = TARGET_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Extends Only Valid Sections</em>' operation.
@@ -1308,7 +1308,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1 = TARGET_SECTION_CLASS_OPERATION_COUNT + 1;
+	int TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Container Matches Extend Container</em>' operation.
@@ -1317,7 +1317,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1 = TARGET_SECTION_CLASS_OPERATION_COUNT + 2;
+	int TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Is Referenced By Mapping Hint Group</em>' operation.
@@ -1326,7 +1326,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP_1 = TARGET_SECTION_CLASS_OPERATION_COUNT + 3;
+	int TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Target Section</em>' class.
@@ -2193,7 +2193,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = META_MODEL_ELEMENT_OPERATION_COUNT + 0;
+	int REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Reference</em>' class.
@@ -2283,7 +2283,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1;
+	int CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EReference Is Containment</em>' operation.
@@ -2292,7 +2292,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1 = REFERENCE_OPERATION_COUNT + 0;
+	int CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Containment Reference</em>' class.
@@ -2382,7 +2382,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NON_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1;
+	int NON_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EReference Is Non Containment</em>' operation.
@@ -2391,7 +2391,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1 = REFERENCE_OPERATION_COUNT + 0;
+	int NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Non Containment Reference</em>' class.
@@ -2472,7 +2472,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1;
+	int SOURCE_SECTION_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2562,7 +2562,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2661,7 +2661,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EReference Is Containment</em>' operation.
@@ -2670,7 +2670,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1 = CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2769,7 +2769,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = NON_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = NON_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EReference Is Non Containment</em>' operation.
@@ -2778,7 +2778,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1 = NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2877,7 +2877,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>EReference Is Containment</em>' operation.
@@ -2886,7 +2886,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1 = CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2985,7 +2985,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = SOURCE_SECTION_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1;
+	int META_MODEL_SECTION_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -3003,7 +3003,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_1 = SOURCE_SECTION_REFERENCE_OPERATION_COUNT + 0;
+	int META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Meta Model Section Reference</em>' class.
@@ -3093,7 +3093,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = ATTRIBUTE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Source Section Attribute</em>' class.
@@ -3192,7 +3192,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
+	int ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Actual Attribute</em>' class.
@@ -3250,6 +3250,88 @@ public interface MetamodelPackage extends EPackage {
 	int ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.SingleReferenceAttributeValueConstraintImpl <em>Single Reference Attribute Value Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.SingleReferenceAttributeValueConstraintImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSingleReferenceAttributeValueConstraint()
+	 * @generated
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT = 38;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__NAME = ATTRIBUTE_VALUE_CONSTRAINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE = ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Single Reference Attribute Value Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Single Reference Attribute Value Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT = ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link pamtram.metamodel.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3266,7 +3348,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SENSITIVE_CONSTRAINT__NAME = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__NAME;
+	int CASE_SENSITIVE_CONSTRAINT__NAME = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3275,7 +3357,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SENSITIVE_CONSTRAINT__TYPE = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
+	int CASE_SENSITIVE_CONSTRAINT__TYPE = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
@@ -3284,7 +3366,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE;
+	int CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -3293,7 +3375,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SENSITIVE_CONSTRAINT__EXPRESSION = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION;
+	int CASE_SENSITIVE_CONSTRAINT__EXPRESSION = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
@@ -3302,7 +3384,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -3311,7 +3393,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
+	int CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Case Sensitive Constraint</em>' class.
@@ -3320,7 +3402,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 1;
+	int CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
@@ -3329,7 +3411,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+	int CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The number of operations of the '<em>Case Sensitive Constraint</em>' class.
@@ -3338,7 +3420,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
+	int CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.EqualityMatcherImpl <em>Equality Matcher</em>}' class.
@@ -3721,7 +3803,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__NAME = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__NAME;
+	int REG_EX_MATCHER__NAME = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3730,7 +3812,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__TYPE = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
+	int REG_EX_MATCHER__TYPE = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Reference Value</b></em>' reference list.
@@ -3739,7 +3821,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__CONSTRAINT_REFERENCE_VALUE = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE;
+	int REG_EX_MATCHER__CONSTRAINT_REFERENCE_VALUE = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -3748,7 +3830,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__EXPRESSION = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION;
+	int REG_EX_MATCHER__EXPRESSION = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
@@ -3757,7 +3839,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int REG_EX_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The number of structural features of the '<em>Reg Ex Matcher</em>' class.
@@ -3766,7 +3848,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER_FEATURE_COUNT = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
+	int REG_EX_MATCHER_FEATURE_COUNT = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
@@ -3775,7 +3857,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER___CHECK_CONSTRAINT__STRING_STRING = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+	int REG_EX_MATCHER___CHECK_CONSTRAINT__STRING_STRING = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The number of operations of the '<em>Reg Ex Matcher</em>' class.
@@ -3784,7 +3866,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER_OPERATION_COUNT = PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
+	int REG_EX_MATCHER_OPERATION_COUNT = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.MultipleReferencesAttributeValueConstraintImpl <em>Multiple References Attribute Value Constraint</em>}' class.
@@ -3961,6 +4043,70 @@ public interface MetamodelPackage extends EPackage {
 	int INSTANCE_POINTER_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.RangeBoundImpl <em>Range Bound</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.RangeBoundImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getRangeBound()
+	 * @generated
+	 */
+	int RANGE_BOUND = 37;
+
+	/**
+	 * The feature id for the '<em><b>Bound Reference Value</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_BOUND__BOUND_REFERENCE_VALUE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Bound Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_BOUND__BOUND_TYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_BOUND__EXPRESSION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Bound Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = 3;
+
+	/**
+	 * The number of structural features of the '<em>Range Bound</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_BOUND_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Range Bound</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_BOUND_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.metamodel.FileTypeEnum <em>File Type Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3968,7 +4114,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getFileTypeEnum()
 	 * @generated
 	 */
-	int FILE_TYPE_ENUM = 37;
+	int FILE_TYPE_ENUM = 39;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.AttributeValueConstraintType <em>Attribute Value Constraint Type</em>}' enum.
@@ -3978,7 +4124,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintType()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 38;
+	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 40;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.CardinalityType <em>Cardinality Type</em>}' enum.
@@ -3988,7 +4134,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCardinalityType()
 	 * @generated
 	 */
-	int CARDINALITY_TYPE = 39;
+	int CARDINALITY_TYPE = 41;
 
 
 	/**
@@ -4144,7 +4290,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.Class#containerIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getClass__ContainerIsValid__DiagnosticChain_Map_1();
+	EOperation getClass__ContainerIsValid__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.metamodel.Class#cardinalityIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Cardinality Is Valid</em>}' operation.
@@ -4154,7 +4300,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.Class#cardinalityIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getClass__CardinalityIsValid__DiagnosticChain_Map_1();
+	EOperation getClass__CardinalityIsValid__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.metamodel.Class#eClassMatchesParentEReference(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>EClass Matches Parent EReference</em>}' operation.
@@ -4164,7 +4310,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.Class#eClassMatchesParentEReference(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getClass__EClassMatchesParentEReference__DiagnosticChain_Map_1();
+	EOperation getClass__EClassMatchesParentEReference__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.Section <em>Section</em>}'.
@@ -4216,7 +4362,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.Section#extendsValidSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getSection__ExtendsValidSections__DiagnosticChain_Map_1();
+	EOperation getSection__ExtendsValidSections__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.metamodel.Section#containerMatchesExtendContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Container Matches Extend Container</em>}' operation.
@@ -4226,7 +4372,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.Section#containerMatchesExtendContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getSection__ContainerMatchesExtendContainer__DiagnosticChain_Map_1();
+	EOperation getSection__ContainerMatchesExtendContainer__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSection <em>Source Section</em>}'.
@@ -4257,7 +4403,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.SourceSection#isReferencedByMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getSourceSection__IsReferencedByMapping__DiagnosticChain_Map_1();
+	EOperation getSourceSection__IsReferencedByMapping__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSection <em>Target Section</em>}'.
@@ -4299,7 +4445,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.TargetSection#isReferencedByMappingHintGroup(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map_1();
+	EOperation getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.FileAttribute <em>File Attribute</em>}'.
@@ -4542,7 +4688,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.Reference#eReferenceMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getReference__EReferenceMatchesParentEClass__DiagnosticChain_Map_1();
+	EOperation getReference__EReferenceMatchesParentEClass__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.ContainmentReference <em>Containment Reference</em>}'.
@@ -4573,7 +4719,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.ContainmentReference#eReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getContainmentReference__EReferenceIsContainment__DiagnosticChain_Map_1();
+	EOperation getContainmentReference__EReferenceIsContainment__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.NonContainmentReference <em>Non Containment Reference</em>}'.
@@ -4604,7 +4750,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.NonContainmentReference#eReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getNonContainmentReference__EReferenceIsNonContainment__DiagnosticChain_Map_1();
+	EOperation getNonContainmentReference__EReferenceIsNonContainment__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionReference <em>Source Section Reference</em>}'.
@@ -4705,7 +4851,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.MetaModelSectionReference#valuesMatchReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getMetaModelSectionReference__ValuesMatchReferenceType__DiagnosticChain_Map_1();
+	EOperation getMetaModelSectionReference__ValuesMatchReferenceType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.Attribute <em>Attribute</em>}'.
@@ -4768,7 +4914,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.SourceSectionAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getSourceSectionAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map_1();
+	EOperation getSourceSectionAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionAttribute <em>Target Section Attribute</em>}'.
@@ -4831,7 +4977,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.ActualAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map_1();
+	EOperation getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.VirtualAttribute <em>Virtual Attribute</em>}'.
@@ -5020,6 +5166,113 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getInstancePointer_Value();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.RangeBound <em>Range Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Range Bound</em>'.
+	 * @see pamtram.metamodel.RangeBound
+	 * @generated
+	 */
+	EClass getRangeBound();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.metamodel.RangeBound#getBoundReferenceValue <em>Bound Reference Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Bound Reference Value</em>'.
+	 * @see pamtram.metamodel.RangeBound#getBoundReferenceValue()
+	 * @see #getRangeBound()
+	 * @generated
+	 */
+	EReference getRangeBound_BoundReferenceValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.RangeBound#getBoundType <em>Bound Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bound Type</em>'.
+	 * @see pamtram.metamodel.RangeBound#getBoundType()
+	 * @see #getRangeBound()
+	 * @generated
+	 */
+	EAttribute getRangeBound_BoundType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.RangeBound#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expression</em>'.
+	 * @see pamtram.metamodel.RangeBound#getExpression()
+	 * @see #getRangeBound()
+	 * @generated
+	 */
+	EAttribute getRangeBound_Expression();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.RangeBound#getBoundReferenceValueAdditionalSpecification <em>Bound Reference Value Additional Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Bound Reference Value Additional Specification</em>'.
+	 * @see pamtram.metamodel.RangeBound#getBoundReferenceValueAdditionalSpecification()
+	 * @see #getRangeBound()
+	 * @generated
+	 */
+	EReference getRangeBound_BoundReferenceValueAdditionalSpecification();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint <em>Single Reference Attribute Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Single Reference Attribute Value Constraint</em>'.
+	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint
+	 * @generated
+	 */
+	EClass getSingleReferenceAttributeValueConstraint();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValue <em>Constraint Reference Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Constraint Reference Value</em>'.
+	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValue()
+	 * @see #getSingleReferenceAttributeValueConstraint()
+	 * @generated
+	 */
+	EReference getSingleReferenceAttributeValueConstraint_ConstraintReferenceValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expression</em>'.
+	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#getExpression()
+	 * @see #getSingleReferenceAttributeValueConstraint()
+	 * @generated
+	 */
+	EAttribute getSingleReferenceAttributeValueConstraint_Expression();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Constraint Reference Value Additional Specification</em>'.
+	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValueAdditionalSpecification()
+	 * @see #getSingleReferenceAttributeValueConstraint()
+	 * @generated
+	 */
+	EReference getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#checkConstraint(java.lang.String, java.lang.String) <em>Check Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Check Constraint</em>' operation.
+	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#checkConstraint(java.lang.String, java.lang.String)
+	 * @generated
+	 */
+	EOperation getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String();
+
+	/**
 	 * Returns the meta object for enum '{@link pamtram.metamodel.FileTypeEnum <em>File Type Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5194,7 +5447,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getClass__ContainerIsValid__DiagnosticChain_Map_1();
+		EOperation CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ContainerIsValid__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Cardinality Is Valid</b></em>' operation.
@@ -5202,7 +5455,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getClass__CardinalityIsValid__DiagnosticChain_Map_1();
+		EOperation CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__CardinalityIsValid__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>EClass Matches Parent EReference</b></em>' operation.
@@ -5210,7 +5463,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getClass__EClassMatchesParentEReference__DiagnosticChain_Map_1();
+		EOperation CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__EClassMatchesParentEReference__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SectionImpl <em>Section</em>}' class.
@@ -5252,7 +5505,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getSection__ExtendsValidSections__DiagnosticChain_Map_1();
+		EOperation SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSection__ExtendsValidSections__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Container Matches Extend Container</b></em>' operation.
@@ -5260,7 +5513,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getSection__ContainerMatchesExtendContainer__DiagnosticChain_Map_1();
+		EOperation SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSection__ContainerMatchesExtendContainer__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionImpl <em>Source Section</em>}' class.
@@ -5286,7 +5539,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getSourceSection__IsReferencedByMapping__DiagnosticChain_Map_1();
+		EOperation SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSourceSection__IsReferencedByMapping__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionImpl <em>Target Section</em>}' class.
@@ -5320,7 +5573,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map_1();
+		EOperation TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.FileAttributeImpl <em>File Attribute</em>}' class.
@@ -5522,7 +5775,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getReference__EReferenceMatchesParentEClass__DiagnosticChain_Map_1();
+		EOperation REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReference__EReferenceMatchesParentEClass__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
@@ -5548,7 +5801,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getContainmentReference__EReferenceIsContainment__DiagnosticChain_Map_1();
+		EOperation CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainmentReference__EReferenceIsContainment__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.NonContainmentReferenceImpl <em>Non Containment Reference</em>}' class.
@@ -5574,7 +5827,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getNonContainmentReference__EReferenceIsNonContainment__DiagnosticChain_Map_1();
+		EOperation NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNonContainmentReference__EReferenceIsNonContainment__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionReferenceImpl <em>Source Section Reference</em>}' class.
@@ -5666,7 +5919,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getMetaModelSectionReference__ValuesMatchReferenceType__DiagnosticChain_Map_1();
+		EOperation META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMetaModelSectionReference__ValuesMatchReferenceType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -5718,7 +5971,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getSourceSectionAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map_1();
+		EOperation SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSourceSectionAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
@@ -5770,7 +6023,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map_1();
+		EOperation ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
@@ -5937,6 +6190,90 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute INSTANCE_POINTER__VALUE = eINSTANCE.getInstancePointer_Value();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.RangeBoundImpl <em>Range Bound</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.RangeBoundImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getRangeBound()
+		 * @generated
+		 */
+		EClass RANGE_BOUND = eINSTANCE.getRangeBound();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound Reference Value</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RANGE_BOUND__BOUND_REFERENCE_VALUE = eINSTANCE.getRangeBound_BoundReferenceValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RANGE_BOUND__BOUND_TYPE = eINSTANCE.getRangeBound_BoundType();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RANGE_BOUND__EXPRESSION = eINSTANCE.getRangeBound_Expression();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound Reference Value Additional Specification</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.SingleReferenceAttributeValueConstraintImpl <em>Single Reference Attribute Value Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.SingleReferenceAttributeValueConstraintImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSingleReferenceAttributeValueConstraint()
+		 * @generated
+		 */
+		EClass SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT = eINSTANCE.getSingleReferenceAttributeValueConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint Reference Value</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE = eINSTANCE.getSingleReferenceAttributeValueConstraint_ConstraintReferenceValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION = eINSTANCE.getSingleReferenceAttributeValueConstraint_Expression();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = eINSTANCE.getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>Check Constraint</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = eINSTANCE.getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.FileTypeEnum <em>File Type Enum</em>}' enum.

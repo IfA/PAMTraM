@@ -24,6 +24,7 @@ import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSection;
@@ -104,6 +105,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.REG_EX_MATCHER: return createRegExMatcher();
 			case MetamodelPackage.RANGE_CONSTRAINT: return createRangeConstraint();
 			case MetamodelPackage.INSTANCE_POINTER: return createInstancePointer();
+			case MetamodelPackage.RANGE_BOUND: return createRangeBound();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -375,6 +377,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public InstancePointer createInstancePointer() {
 		InstancePointerImpl instancePointer = new InstancePointerImpl();
 		return instancePointer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RangeBound createRangeBound() {
+		RangeBoundImpl rangeBound = new RangeBoundImpl();
+		return rangeBound;
 	}
 
 	/**

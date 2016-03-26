@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.*;
 import pamtram.metamodel.Attribute;
-import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 
@@ -132,20 +131,6 @@ public class PamtramSwitch<T> extends Switch<T> {
 			case PamtramPackage.REFERENCEABLE_ELEMENT: {
 				ReferenceableElement referenceableElement = (ReferenceableElement)theEObject;
 				T result = caseReferenceableElement(referenceableElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PamtramPackage.RANGE_BOUND: {
-				RangeBound rangeBound = (RangeBound)theEObject;
-				T result = caseRangeBound(rangeBound);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PamtramPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT: {
-				SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint = (SingleReferenceAttributeValueConstraint)theEObject;
-				T result = caseSingleReferenceAttributeValueConstraint(singleReferenceAttributeValueConstraint);
-				if (result == null) result = caseAttributeValueConstraint(singleReferenceAttributeValueConstraint);
-				if (result == null) result = caseNamedElement(singleReferenceAttributeValueConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -300,51 +285,6 @@ public class PamtramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseReferenceableElement(ReferenceableElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Range Bound</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRangeBound(RangeBound object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Single Reference Attribute Value Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Single Reference Attribute Value Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSingleReferenceAttributeValueConstraint(SingleReferenceAttributeValueConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeValueConstraint(AttributeValueConstraint object) {
 		return null;
 	}
 

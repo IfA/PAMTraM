@@ -25,7 +25,11 @@ import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.RangeBound;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
+import de.congrace.exp4j.InvalidCustomFunctionException;
 import de.mfreund.gentrans.transformation.calculation.ExpressionCalculator;
+import de.mfreund.gentrans.transformation.calculation.MaxFunction;
+import de.mfreund.gentrans.transformation.calculation.MinFunction;
+import de.mfreund.gentrans.transformation.calculation.RoundFunction;
 
 /**
  * This class can be used to calculate values of {@link ReferenceableElement}s.
@@ -59,6 +63,21 @@ public class ReferenceableValueCalculator {
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
 	 */
 	private InstancePointerHandler instancePointerHandler;
+	
+	/**
+	 * RoundFunction instance, maybe needed when inside of an expression defined
+	 */
+	private RoundFunction round;
+	
+	/**
+	 * MaxFunction instance, maybe needed when inside of an expression defined
+	 */
+	private MaxFunction max;
+	
+	/**
+	 * MinFunction instance, maybe needed when inside of an expression defined
+	 */
+	private MinFunction min;
 	
 	public ReferenceableValueCalculator(List<FixedValue> fixedVals, Map<GlobalAttribute, String> globalAttrVals, InstancePointerHandler instancePointerHandler, MessageConsoleStream consoleStream) {
 				
@@ -96,6 +115,15 @@ public class ReferenceableValueCalculator {
 				final Calculable calc = new ExpressionBuilder(globalValue.getValue()).build();
 				globalValuesAsDouble.put(globalValue.getKey(), calc.calculate());
 			} catch (final Exception e) {}
+		}
+		
+		// initialize the custom calculator functions
+		try {
+			round = new RoundFunction();
+			max = new MaxFunction();
+			min = new MinFunction();
+		} catch (InvalidCustomFunctionException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -157,7 +185,6 @@ public class ReferenceableValueCalculator {
 			} else {
 				// more types could be supported in the future
 				consoleStream.println("Expression of " + obt.getClass().getName() + " cannot yet supported!");
-				return null;
 			}
 		}
 			
@@ -177,6 +204,7 @@ public class ReferenceableValueCalculator {
 	 */
 	private String calculateReferenceValueWithExpression(String expression, EList<ReferenceableElement> refObts, EList<InstancePointer> instPointObts) {
 		
+		String expResult = "";
 		Map<String,Double> vars = this.globalValuesAsDouble;
 		
 		if(refObts.size()!=instPointObts.size()){
@@ -199,8 +227,24 @@ public class ReferenceableValueCalculator {
 			vars.put(refEleSSA.getName(), Double.valueOf(refValue));
 		}
 		
-		ExpressionCalculator expCalc = new ExpressionCalculator();
-		return expCalc.calculateExpression(expression, vars);
+		// make calculation
+		try{
+			/*expResult = String.valueOf(new ExpressionBuilder(expression)
+				.withCustomFunction(round)
+				.withCustomFunction(max)
+				.withCustomFunction(min)
+				.withVariables(vars).build()
+				.calculate());*/
+			ExpressionCalculator expCalc = new ExpressionCalculator();
+			expResult = expCalc.calculateExpression(expression, vars);
+		} catch (final Exception e) {
+			consoleStream.println("Message:\n" + e.getMessage());
+			return expression;		
+		}
+		
+		
+		
+		return expResult;
 	}
 
 	public void updateMatchedSections(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections) {

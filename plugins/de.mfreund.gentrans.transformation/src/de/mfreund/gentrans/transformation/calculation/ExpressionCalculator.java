@@ -37,6 +37,7 @@ public class ExpressionCalculator {
 	 * MinFunction instance, maybe needed when inside of an expression defined
 	 */
 	private MinFunction min;
+	
 	/**
 	 * The console stream to be used to print messages.
 	 */
@@ -72,10 +73,9 @@ public class ExpressionCalculator {
 				.withVariables(vars).build()
 				.calculate());
 		} catch (final Exception e) {
-		// TODO need we this??
-			expResult = null;
-		// TODO this will lead to a lot of error output if it fails
-		consoleStream.println("Message:\n" + e.getMessage());
+			consoleStream.println("Message:\n" + e.getMessage() + "\n nothing calculated!");
+			return expression;
+		
 		}
 		
 		return expResult;

@@ -3296,13 +3296,22 @@ public interface MetamodelPackage extends EPackage {
 	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Single Reference Attribute Value Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 2;
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
@@ -3367,6 +3376,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_SENSITIVE_CONSTRAINT__EXPRESSION = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -3451,6 +3469,15 @@ public interface MetamodelPackage extends EPackage {
 	int EQUALITY_MATCHER__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
 
 	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+
+	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3531,6 +3558,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBSTRING_MATCHER__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSTRING_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -3615,6 +3651,15 @@ public interface MetamodelPackage extends EPackage {
 	int BEGINNING_MATCHER__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
 
 	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEGINNING_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+
+	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3697,6 +3742,15 @@ public interface MetamodelPackage extends EPackage {
 	int ENDING_MATCHER__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
 
 	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENDING_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+
+	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3777,6 +3831,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int REG_EX_MATCHER__EXPRESSION = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EX_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The number of structural features of the '<em>Reg Ex Matcher</em>' class.
@@ -3971,13 +4034,22 @@ public interface MetamodelPackage extends EPackage {
 	int RANGE_BOUND__EXPRESSION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Bound Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = 3;
+
+	/**
 	 * The number of structural features of the '<em>Range Bound</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANGE_BOUND_FEATURE_COUNT = 3;
+	int RANGE_BOUND_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Range Bound</em>' class.
@@ -5085,6 +5157,17 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getRangeBound_Expression();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.RangeBound#getBoundReferenceValueAdditionalSpecification <em>Bound Reference Value Additional Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Bound Reference Value Additional Specification</em>'.
+	 * @see pamtram.metamodel.RangeBound#getBoundReferenceValueAdditionalSpecification()
+	 * @see #getRangeBound()
+	 * @generated
+	 */
+	EReference getRangeBound_BoundReferenceValueAdditionalSpecification();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint <em>Single Reference Attribute Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5115,6 +5198,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSingleReferenceAttributeValueConstraint_Expression();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Constraint Reference Value Additional Specification</em>'.
+	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValueAdditionalSpecification()
+	 * @see #getSingleReferenceAttributeValueConstraint()
+	 * @generated
+	 */
+	EReference getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#checkConstraint(java.lang.String, java.lang.String) <em>Check Constraint</em>}' operation.
@@ -6088,6 +6182,14 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute RANGE_BOUND__EXPRESSION = eINSTANCE.getRangeBound_Expression();
 
 		/**
+		 * The meta object literal for the '<em><b>Bound Reference Value Additional Specification</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SingleReferenceAttributeValueConstraintImpl <em>Single Reference Attribute Value Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6112,6 +6214,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION = eINSTANCE.getSingleReferenceAttributeValueConstraint_Expression();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = eINSTANCE.getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification();
 
 		/**
 		 * The meta object literal for the '<em><b>Check Constraint</b></em>' operation.

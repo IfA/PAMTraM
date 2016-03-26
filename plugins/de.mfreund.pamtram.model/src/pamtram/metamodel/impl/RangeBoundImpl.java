@@ -5,15 +5,20 @@ package pamtram.metamodel.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.ReferenceableElement;
 
 import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
 
@@ -28,6 +33,7 @@ import pamtram.metamodel.RangeBound;
  *   <li>{@link pamtram.metamodel.impl.RangeBoundImpl#getBoundReferenceValue <em>Bound Reference Value</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.RangeBoundImpl#getBoundType <em>Bound Type</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.RangeBoundImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.RangeBoundImpl#getBoundReferenceValueAdditionalSpecification <em>Bound Reference Value Additional Specification</em>}</li>
  * </ul>
  *
  * @generated
@@ -82,6 +88,16 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 	 * @ordered
 	 */
 	protected String expression = EXPRESSION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getBoundReferenceValueAdditionalSpecification() <em>Bound Reference Value Additional Specification</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBoundReferenceValueAdditionalSpecification()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<InstancePointer> boundReferenceValueAdditionalSpecification;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,6 +177,32 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<InstancePointer> getBoundReferenceValueAdditionalSpecification() {
+		if (boundReferenceValueAdditionalSpecification == null) {
+			boundReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+		}
+		return boundReferenceValueAdditionalSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+				return ((InternalEList<?>)getBoundReferenceValueAdditionalSpecification()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -170,6 +212,8 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 				return getBoundType();
 			case MetamodelPackage.RANGE_BOUND__EXPRESSION:
 				return getExpression();
+			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+				return getBoundReferenceValueAdditionalSpecification();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,6 +237,10 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 			case MetamodelPackage.RANGE_BOUND__EXPRESSION:
 				setExpression((String)newValue);
 				return;
+			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+				getBoundReferenceValueAdditionalSpecification().clear();
+				getBoundReferenceValueAdditionalSpecification().addAll((Collection<? extends InstancePointer>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -214,6 +262,9 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 			case MetamodelPackage.RANGE_BOUND__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
+			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+				getBoundReferenceValueAdditionalSpecification().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -232,6 +283,8 @@ public class RangeBoundImpl extends MinimalEObjectImpl.Container implements Rang
 				return boundType != BOUND_TYPE_EDEFAULT;
 			case MetamodelPackage.RANGE_BOUND__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
+			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+				return boundReferenceValueAdditionalSpecification != null && !boundReferenceValueAdditionalSpecification.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

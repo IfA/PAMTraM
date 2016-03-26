@@ -1336,6 +1336,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRangeBound_BoundReferenceValueAdditionalSpecification() {
+		return (EReference)rangeBoundEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSingleReferenceAttributeValueConstraint() {
 		return singleReferenceAttributeValueConstraintEClass;
 	}
@@ -1356,6 +1365,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EAttribute getSingleReferenceAttributeValueConstraint_Expression() {
 		return (EAttribute)singleReferenceAttributeValueConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification() {
+		return (EReference)singleReferenceAttributeValueConstraintEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1600,10 +1618,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(rangeBoundEClass, RANGE_BOUND__BOUND_REFERENCE_VALUE);
 		createEAttribute(rangeBoundEClass, RANGE_BOUND__BOUND_TYPE);
 		createEAttribute(rangeBoundEClass, RANGE_BOUND__EXPRESSION);
+		createEReference(rangeBoundEClass, RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
 
 		singleReferenceAttributeValueConstraintEClass = createEClass(SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT);
 		createEReference(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE);
 		createEAttribute(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION);
+		createEReference(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
 		createEOperation(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING);
 
 		multipleReferencesAttributeValueConstraintEClass = createEClass(MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT);
@@ -2472,10 +2492,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getRangeBound_BoundReferenceValue(), thePamtramPackage.getReferenceableElement(), null, "boundReferenceValue", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRangeBound_BoundType(), this.getAttributeValueConstraintType(), "boundType", null, 0, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRangeBound_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRangeBound_BoundReferenceValueAdditionalSpecification(), this.getInstancePointer(), null, "boundReferenceValueAdditionalSpecification", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(singleReferenceAttributeValueConstraintEClass, SingleReferenceAttributeValueConstraint.class, "SingleReferenceAttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSingleReferenceAttributeValueConstraint_ConstraintReferenceValue(), thePamtramPackage.getReferenceableElement(), null, "constraintReferenceValue", null, 0, -1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSingleReferenceAttributeValueConstraint_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification(), this.getInstancePointer(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "attrValue", 1, 1, IS_UNIQUE, IS_ORDERED);

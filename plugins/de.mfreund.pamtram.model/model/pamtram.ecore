@@ -164,6 +164,28 @@
         eType="#//condition/ComplexCondition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceableElement" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RangeBound">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValue" upperBound="-1"
+        eType="#//ReferenceableElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundType" eType="#//metamodel/AttributeValueConstraintType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValueAdditionalSpecification"
+        upperBound="-1" eType="#//metamodel/InstancePointer" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeValueConstraint"
+      abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint">
+    <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="refValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValue"
+        upperBound="-1" eType="#//ReferenceableElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValueAdditionalSpecification"
+        upperBound="-1" eType="#//metamodel/InstancePointer" containment="true"/>
+  </eClassifiers>
   <eSubpackages name="metamodel" nsURI="http://mfreund.de/pamtram/metamodel" nsPrefix="metamodel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
@@ -826,9 +848,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="SubstringMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="BeginningMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="EndingMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
-    <eClassifiers xsi:type="ecore:EClass" name="RegExMatcher" eSuperTypes="#//metamodel/SingleReferenceAttributeValueConstraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RegExMatcher" eSuperTypes="#//SingleReferenceAttributeValueConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="CaseSensitiveConstraint" abstract="true"
-        interface="true" eSuperTypes="#//metamodel/SingleReferenceAttributeValueConstraint">
+        interface="true" eSuperTypes="#//SingleReferenceAttributeValueConstraint">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseSensitive" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
@@ -839,34 +861,10 @@
       <eLiterals name="ZERO__INFINITY" value="2"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RangeConstraint" eSuperTypes="#//metamodel/MultipleReferencesAttributeValueConstraint">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//metamodel/RangeBound"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//RangeBound"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//metamodel/RangeBound"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//RangeBound"
           containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="RangeBound">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValue"
-          upperBound="-1" eType="#//ReferenceableElement"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundType" eType="#//metamodel/AttributeValueConstraintType"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral=""/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValueAdditionalSpecification"
-          upperBound="-1" eType="#//metamodel/InstancePointer" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeValueConstraint"
-        abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint">
-      <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="refValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValue"
-          upperBound="-1" eType="#//ReferenceableElement"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral=""/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValueAdditionalSpecification"
-          upperBound="-1" eType="#//metamodel/InstancePointer" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MultipleReferencesAttributeValueConstraint"
         abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint">

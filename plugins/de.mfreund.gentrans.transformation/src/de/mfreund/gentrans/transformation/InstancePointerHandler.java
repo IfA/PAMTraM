@@ -57,7 +57,7 @@ import pamtram.metamodel.SourceSectionClass;
 		if(possiblePointedClasses.size()==1){
 			return possiblePointedClasses.iterator().next();
 		} else {
-			consoleStream.println("InstancePointer result is not clear! The correspond set is of size:" + possiblePointedClasses.size()
+			consoleStream.println("InstancePointer result is not clear! The correspond Set!! is of size:" + possiblePointedClasses.size()
 			+ "\n");
 			return null;
 		}
@@ -77,7 +77,7 @@ import pamtram.metamodel.SourceSectionClass;
 		if(attrList.size()==1){
 			return attrList.iterator().next();
 		} else {
-			consoleStream.println("InstancePointer result is not clear! The correspond set is of size:" + attrList.size()
+			consoleStream.println("InstancePointer result is not clear! The correspond List!! is of size:" + attrList.size()
 			+ "\n");
 			return null;
 		}

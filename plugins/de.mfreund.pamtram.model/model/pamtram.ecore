@@ -839,8 +839,10 @@
       <eLiterals name="ZERO__INFINITY" value="2"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RangeConstraint" eSuperTypes="#//metamodel/MultipleReferencesAttributeValueConstraint">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//metamodel/RangeBound"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//metamodel/RangeBound"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//metamodel/RangeBound"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//metamodel/RangeBound"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RangeBound">
       <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValue"

@@ -183,7 +183,6 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappingType = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_MappingType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MetaModelSectionReference = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_MetaModelSectionReference);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PAMTraM = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_PAMTraM);
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_RangeConstraint = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_RangeConstraint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SectionCondition = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_SectionCondition);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TargetSection = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_TargetSection);
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationLiteralId ELITid_ONE = MetamodelTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
@@ -3282,7 +3281,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SourceSectionAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._SourceSectionAttribute__valueConstraint,
-			MetamodelTables.Properties._SourceSectionAttribute__InstancePointer__attributePointer,
+			MetamodelTables.Properties._SourceSectionAttribute__InstancePointer__attributePointer
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _SourceSectionClass = {

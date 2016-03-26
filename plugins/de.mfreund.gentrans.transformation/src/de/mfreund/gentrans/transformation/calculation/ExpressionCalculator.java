@@ -11,6 +11,7 @@ import de.congrace.exp4j.UnparsableExpressionException;
 import de.mfreund.gentrans.transformation.calculation.MaxFunction;
 import de.mfreund.gentrans.transformation.calculation.MinFunction;
 import de.mfreund.gentrans.transformation.calculation.RoundFunction;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -56,7 +57,7 @@ public class ExpressionCalculator {
 	 * This calculates the value for a given expression, e.g. may be used in {@link AttributeValueConstraint}s or in {@link TargetSectionAttribute}s.
 	 * It represents only the general calculation rule.
 	 * @param expression for which the value have to be calculated or <em>null</em> 
-	 * @param vars contains all {@link GlobalValue}s or {@link GlobalAttribute}s which are interpretable as double values.
+	 * @param vars contains all {@link FixedValue}s or {@link GlobalAttribute}s which are interpretable as double values.
 	 * @return The calculated expression value or <em>null</em> if no value could be calculated.
 	 */
 	public String calculateExpression(String expression, Map<String, Double> vars){

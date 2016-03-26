@@ -129,9 +129,11 @@ public class ConditionHandler {
 	}
 
 	private condResult checkSectionCondition(SectionCondition condition) {
-		if(this.matchedSections.containsKey(condition) == true){
+		
+		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true){
+			
 			return condResult.true_condition;
-		} else if(this.matchedSections.containsKey(condition) == false){
+		} else if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == false){
 			return condResult.false_condition;
 		} else{
 			return condResult.irrelevant_condition;

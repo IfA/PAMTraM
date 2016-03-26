@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -105,11 +106,11 @@ public class ReferenceableValueCalculator {
 	 */
 	public String calculateReferenceValue(EObject obt) {
 		
-		String refValue = null;
+		String refValue = "";
 		
 		//Get first a list of referenced elements and possible InstancePointers
-		EList<ReferenceableElement> refObts = null;
-		EList<InstancePointer> instPointObts = null;
+		EList<ReferenceableElement> refObts = new BasicEList<ReferenceableElement>();
+		EList<InstancePointer> instPointObts = new BasicEList<InstancePointer>();
 		if(obt instanceof SingleReferenceAttributeValueConstraint){
 			refObts = ((SingleReferenceAttributeValueConstraint) obt).getConstraintReferenceValue();
 			instPointObts = ((SingleReferenceAttributeValueConstraint) obt).getConstraintReferenceValueAdditionalSpecification();
@@ -126,6 +127,7 @@ public class ReferenceableValueCalculator {
 		
 		//First, may only one valued referred by one NC-Reference should be used
 		if(refObts.size()==1 && (((RangeBound) obt).getExpression().isEmpty() || ((SingleReferenceAttributeValueConstraint) obt).getExpression().isEmpty())){
+			
 			ReferenceableElement refEle = refObts.get(0);
 			if(refEle instanceof FixedValue){
 				refValue = globalValuesAsString.get(((FixedValue) refEle).getName());

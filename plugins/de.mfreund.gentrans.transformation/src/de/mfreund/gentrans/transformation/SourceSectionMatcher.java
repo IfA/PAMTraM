@@ -237,8 +237,8 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
-		this.instancePointerHandler = new InstancePointerHandler(this.matchedSections);
-		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals,globalAttributeValues, consoleStream);
+		this.instancePointerHandler = new InstancePointerHandler(this.matchedSections,consoleStream);
+		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals, globalAttributeValues, this.instancePointerHandler, consoleStream);
 		this.conditionHandler = new ConditionHandler(this.matchedSections, this.refValueCalculator);
 
 		/*

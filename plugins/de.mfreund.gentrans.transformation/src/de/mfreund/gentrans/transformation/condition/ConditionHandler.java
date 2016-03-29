@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.condition;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,11 +12,15 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.InstancePointerHandler;
 import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
+import pamtram.ReferenceableElement;
 import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
+import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.CondSettingEnum;
 import pamtram.condition.Condition;
@@ -26,6 +31,7 @@ import pamtram.condition.SectionCondition;
 import pamtram.condition.SingleConditionOperator;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
@@ -75,14 +81,19 @@ public class ConditionHandler {
 	 * It will be used for calculating referenceValues that are needed for {@link AttributeCondition}s
 	 */
 	private ReferenceableValueCalculator refValueCalculator;
+	
+	/**
+	 * It will be used for extract a more in detail specified Element which was more than one times matched
+	 */
+	private InstancePointerHandler instancePointerHandler;
 
 	
-	public ConditionHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, ReferenceableValueCalculator refValueCalculator){
+	public ConditionHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, ReferenceableValueCalculator refValueCalculator, InstancePointerHandler instancePointerHandler){
 		this.matchedSections =  matchedSections;
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
 		this.refValueCalculator = refValueCalculator;
-		
+		this.instancePointerHandler = instancePointerHandler;	
 	}
 	
 	/**
@@ -130,9 +141,20 @@ public class ConditionHandler {
 
 	private condResult checkSectionCondition(SectionCondition condition) {
 		
-		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true){
-			
-			return condResult.true_condition;
+		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true){//FIXME
+			EList<EObject> modelClasses = new BasicEList<EObject>();
+			modelClasses.addAll(matchedSections.get(condition.getConditionSectionRef()));
+			if(condition.getAdditionalConditionSpecification().size()!=0){
+				modelClasses = this.instancePointerHandler.getPointedInstanceByList(condition.getAdditionalConditionSpecification().get(0), condition.getConditionSectionRef(), modelClasses);
+			}
+			boolean cardinalityRes = checkCardinality(condition.getValue(),modelClasses.size(), condition.getComparator());
+			if(cardinalityRes == true){
+				return condResult.true_condition;
+			} else if(cardinalityRes == false){
+				return condResult.true_condition;
+			} else{
+				return condResult.irrelevant_condition;
+			}
 		} else if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == false){
 			return condResult.false_condition;
 		} else{
@@ -140,9 +162,69 @@ public class ConditionHandler {
 		}
 	}
 
+	private boolean checkCardinality(int value, int size, ComparatorEnum comparator) {
+		boolean result = true;
+		switch(comparator.getValue()){
+		case ComparatorEnum.EQ_VALUE:
+			if(size == value){
+				result = true;
+			}else{
+				result = false;
+			}
+			break;
+		case ComparatorEnum.GE_VALUE:
+			if(size >= value){
+				result = true;
+			}else{
+				result = false;
+			}
+			break;
+		case ComparatorEnum.GT_VALUE:
+			if(size > value){
+				result = true;
+			}else{
+				result = false;
+			}
+			break;
+		case ComparatorEnum.LE_VALUE:
+			if(size <= value){
+				result = true;
+			}else{
+				result = false;
+			}
+			break;
+		case ComparatorEnum.LT_VALUE:
+			if(size < value){
+				result = true;
+			}else{
+				result = false;
+			}
+			break;
+		default:
+			consoleStream.println("Message:\n ComparatorEnum" + comparator.getLiteral() + "not implemented yet!");
+		}
+		return result;
+	}
+
 	private condResult checkAttributeCondition(AttributeCondition condition) {
 		
-		String srcAttrAsString = ""; //FIXME
+		String srcAttrAsString = ""; //FIXME AttributeValue
+		try{
+			EList<InstancePointer> instancePointerObts = condition.getAdditionalConditionSpecification();
+			Set<EObject> possiblePointedClasses = matchedSections.get(condition.getConditionAttributeRef().eContainer());
+			
+			for(Iterator<EObject> element = possiblePointedClasses.iterator(); element.hasNext();){
+				EObject eClass = element.next();
+				
+				if(!(eClass.eGet((EStructuralFeature) instancePointerObts.get(0).getAttributePointer()).equals(instancePointerObts.get(0).getValue()))){//FIXME General Index for more than InstancePointer
+					element.remove();
+				}
+			}
+		}catch(final Exception e){
+			consoleStream.println("Message:\n For AttributeCondition" + condition.getName() + " the Value could not be extracted!");
+			return condResult.false_condition;
+		}
+		
 		/*
 		 * check AttributeValueConstraints
 		 *
@@ -158,14 +240,14 @@ public class ConditionHandler {
 				continue;
 			}
 
-			boolean constraintVal=false; // FIXME have to be initialized?!!
+			boolean constraintVal=false;
 			try {
 				// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
 				// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
 				// and we need to extract the right reference Value(s) for each constraint
 				
 				if (constraint instanceof SingleReferenceAttributeValueConstraint){
-					String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint); //FIXME actually reference Values will be calculated for each loop 
+					String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint);
 					constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
 				} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
 					

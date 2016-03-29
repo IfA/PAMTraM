@@ -238,7 +238,7 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.constraintsWithErrors = new HashSet<>();
 		this.instancePointerHandler = new InstancePointerHandler(this.matchedSections,consoleStream);
 		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals, globalAttributeValues, this.instancePointerHandler, this.matchedSections, consoleStream);
-		this.conditionHandler = new ConditionHandler(this.matchedSections, this.refValueCalculator);
+		this.conditionHandler = new ConditionHandler(this.matchedSections, this.refValueCalculator, this.instancePointerHandler);
 
 		/*
 		 * initialize the various maps based on the given list of mappings
@@ -329,7 +329,6 @@ public class SourceSectionMatcher extends CancellableElement {
 		/*
 		 * Before returning the selected mapping (respectively its MappingInstanceStorage), we mark the affected elements
 		 * as 'matched' in the containment tree and update the 'matchedSections' map
-		 * and also update the matchedSection-HashMap inside the conditionHandler
 		 */
 		for (final SourceSectionClass c : ret.getSourceModelObjectsMapped().keySet()) {
 

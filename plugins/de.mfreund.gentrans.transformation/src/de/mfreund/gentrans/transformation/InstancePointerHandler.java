@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -40,9 +42,10 @@ import pamtram.metamodel.SourceSectionClass;
 		this.consoleStream =consoleStream;
 	}
 	
-	public EObject getPointedInstanceByMatchedSectionRepo(InstancePointer instancePointerObt, SourceSectionAttribute sourceAttribute){
+	public EList<EObject> getPointedInstanceByMatchedSectionRepo(InstancePointer instancePointerObt, SourceSectionClass sourceClass){
 		
-		Set<EObject> possiblePointedClasses = matchedSections.get(sourceAttribute.eContainer());
+		EList<EObject> possiblePointedClassesAsList = new BasicEList<EObject>();
+		Set<EObject> possiblePointedClasses = matchedSections.get(sourceClass);
 		// alternatively we get the container-Class by the InstancePointer pointed EAttribute
 		//Set<EObject> possiblePointedClasses = matchedSections.get(instancePointerObt.getAttributePointer().eContainer());
 		
@@ -53,18 +56,12 @@ import pamtram.metamodel.SourceSectionClass;
 				element.remove();
 			}
 		}
-		
-		if(possiblePointedClasses.size()==1){
-			return possiblePointedClasses.iterator().next();
-		} else {
-			consoleStream.println("InstancePointer result is not clear! The correspond Set!! is of size:" + possiblePointedClasses.size()
-			+ "\n");
-			return null;
-		}
+		return possiblePointedClassesAsList;
 	}
 		
-	public EObject getPointedInstanceByList(InstancePointer instancePointerObt, SourceSectionAttribute sourceAttribute, ArrayList<EObject> attrList){
+	public EList<EObject> getPointedInstanceByList(InstancePointer instancePointerObt, SourceSectionClass sourceClass, EList<EObject> attrList){
 		
+		EList<EObject> possiblePointedClassesAsList = new BasicEList<EObject>();
 		for(Iterator<EObject> element = attrList.iterator(); element.hasNext();){
 			EObject eAttr = element.next();
 			EObject eClass = eAttr.eContainer();
@@ -73,13 +70,6 @@ import pamtram.metamodel.SourceSectionClass;
 				element.remove();
 			}
 		}
-		
-		if(attrList.size()==1){
-			return attrList.iterator().next();
-		} else {
-			consoleStream.println("InstancePointer result is not clear! The correspond List!! is of size:" + attrList.size()
-			+ "\n");
-			return null;
-		}
+		return possiblePointedClassesAsList;
 	}
 }

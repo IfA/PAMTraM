@@ -202,7 +202,6 @@ public class SourceSectionMatcher extends CancellableElement {
 	 *            A list of {@link Mapping Mappings} that shall be used in the <em>matching</em> process.
 	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
 	 * @param fixedVals Needed for ReferenceableValueCalculator
-	 * @param globalAtts Needed for ReferenceableValueCalculator
 	 * @param attributeValuemodifier The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param consoleStream
@@ -238,7 +237,7 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
 		this.instancePointerHandler = new InstancePointerHandler(this.matchedSections,consoleStream);
-		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals, globalAttributeValues, this.instancePointerHandler, consoleStream);
+		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals, globalAttributeValues, this.instancePointerHandler, this.matchedSections, consoleStream);
 		this.conditionHandler = new ConditionHandler(this.matchedSections, this.refValueCalculator);
 
 		/*
@@ -1224,7 +1223,7 @@ public class SourceSectionMatcher extends CancellableElement {
 							// and we need to extract the right reference Value(s) for each constraint
 							
 							if (constraint instanceof SingleReferenceAttributeValueConstraint){
-								String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint); //TODO actually reference Values will be calculated for each loop 
+								String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint);
 								constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
 							} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
 								

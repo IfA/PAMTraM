@@ -1,7 +1,5 @@
 package de.mfreund.gentrans.transformation;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,11 +23,8 @@ import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.RangeBound;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
-import de.congrace.exp4j.InvalidCustomFunctionException;
 import de.mfreund.gentrans.transformation.calculation.ExpressionCalculator;
-import de.mfreund.gentrans.transformation.calculation.MaxFunction;
-import de.mfreund.gentrans.transformation.calculation.MinFunction;
-import de.mfreund.gentrans.transformation.calculation.RoundFunction;
+
 
 /**
  * This class can be used to calculate values of {@link ReferenceableElement}s.
@@ -57,6 +52,7 @@ public class ReferenceableValueCalculator {
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
+	@SuppressWarnings("unused")
 	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
 	
 	/**
@@ -64,28 +60,16 @@ public class ReferenceableValueCalculator {
 	 */
 	private InstancePointerHandler instancePointerHandler;
 	
-	/**
-	 * RoundFunction instance, maybe needed when inside of an expression defined
-	 */
-	private RoundFunction round;
-	
-	/**
-	 * MaxFunction instance, maybe needed when inside of an expression defined
-	 */
-	private MaxFunction max;
-	
-	/**
-	 * MinFunction instance, maybe needed when inside of an expression defined
-	 */
-	private MinFunction min;
-	
-	public ReferenceableValueCalculator(List<FixedValue> fixedVals, Map<GlobalAttribute, String> globalAttrVals, InstancePointerHandler instancePointerHandler, MessageConsoleStream consoleStream) {
+	public ReferenceableValueCalculator(List<FixedValue> fixedVals, Map<GlobalAttribute, String> globalAttrVals, InstancePointerHandler instancePointerHandler, LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, MessageConsoleStream consoleStream) {
 				
 		// store the message stream
 		this.consoleStream = consoleStream;
 		
 		// store the instance pointer handler
 		this.instancePointerHandler = instancePointerHandler;
+		
+		// store the matchedSection reference
+		this.matchedSections = matchedSections;
 		
 		// find GlobalAttrs that can be mapped to double
 		this.globalValuesAsString = new HashMap<>();
@@ -115,15 +99,6 @@ public class ReferenceableValueCalculator {
 				final Calculable calc = new ExpressionBuilder(globalValue.getValue()).build();
 				globalValuesAsDouble.put(globalValue.getKey(), calc.calculate());
 			} catch (final Exception e) {}
-		}
-		
-		// initialize the custom calculator functions
-		try {
-			round = new RoundFunction();
-			max = new MaxFunction();
-			min = new MinFunction();
-		} catch (InvalidCustomFunctionException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -204,16 +179,16 @@ public class ReferenceableValueCalculator {
 	 ** @param hint A {@link MappingHint} to be used for the calculation (typically, this should be
 	 * 		either an {@link AttributeMapping}, a {@link MappingInstanceSelector} with {@link AttributeMatcher}, or 
 	 * 		<em>null</em> if no hint has been found.
-	 * @param expression An expression to be used to calculate the hint values.
-	 * @param refObts 
-	 * @param instPointObts 
+	 * @param expression An expression to be used to calculate the reference value
+	 * @param refObts A list that contains all referenced {@link SourceSectionAttribute}s by the expression 
+	 * @param instPointObts A list that according to refObts contains the corresponding {@link InstancePointer}s (Note: The order of both list will be considered)
 	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
 	 */
 	private String calculateReferenceValueWithExpression(String expression, EList<ReferenceableElement> refObts, EList<InstancePointer> instPointObts) {
 		
 		String expResult = "";
 		Map<String,Double> vars = this.globalValuesAsDouble;
-		
+		// If there is an OCL-Constraint the following  if-instruction can be discarded
 		if(refObts.size()!=instPointObts.size()){
 			consoleStream.println("Note: Calculating reference value based on an expression but note:"
 					+ "number of Elements not equal to number of InstancePointers");
@@ -225,16 +200,19 @@ public class ReferenceableValueCalculator {
 				// FixedValue or GlobalAttribute already exists in the List
 				break;
 			}
-			InstancePointer instPt = instPointObts.get(i);
-			SourceSectionAttribute refEleSSA = (SourceSectionAttribute) refEle;
-			EObject correspondObjectClass = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPt, refEleSSA);
-			if(correspondObjectClass !=null){
-				// convert Attribute value to String
-				String refValue = refEleSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
-						.convertToString(refEleSSA.getAttribute().getEAttributeType(), correspondObjectClass.eGet((EStructuralFeature) refEle));
-				vars.put(refEleSSA.getName(), Double.valueOf(refValue));
-			} else{
-				consoleStream.println("Message:\n Could not find the reference value for SourceSectionAttribute" + refEleSSA + "and InstancePointer" + instPt);
+			// If there is an OCL-Constraint the following if-instruction can be discarded as some lines above
+			if(instPointObts.size()!=0){
+				InstancePointer instPt = instPointObts.get(i);
+				SourceSectionAttribute refEleSSA = (SourceSectionAttribute) refEle;
+				if(instPt!=null){
+					EObject correspondObjectClass = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPt, refEleSSA);
+					if(correspondObjectClass !=null){
+						// convert Attribute value to String
+						String refValue = refEleSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
+								.convertToString(refEleSSA.getAttribute().getEAttributeType(), correspondObjectClass.eGet((EStructuralFeature) refEle));
+						vars.put(refEleSSA.getName(), Double.valueOf(refValue));
+					}
+				}
 			}
 		}
 		

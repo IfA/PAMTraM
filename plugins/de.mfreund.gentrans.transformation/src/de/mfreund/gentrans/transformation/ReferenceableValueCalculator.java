@@ -134,11 +134,11 @@ public class ReferenceableValueCalculator {
 	 */
 	public String calculateReferenceValue(EObject obt) {
 		
+		//Initialize need variables and get list of referenced elements and modeled InstancePointers
 		String refValue = "",refExpression ="";
-		
-		//Get first a list of referenced elements and possible InstancePointers
 		EList<ReferenceableElement> refObts = new BasicEList<ReferenceableElement>();
 		EList<InstancePointer> instPointObts = new BasicEList<InstancePointer>();
+		
 		if(obt instanceof SingleReferenceAttributeValueConstraint){
 			refObts = ((SingleReferenceAttributeValueConstraint) obt).getConstraintReferenceValue();
 			instPointObts = ((SingleReferenceAttributeValueConstraint) obt).getConstraintReferenceValueAdditionalSpecification();
@@ -153,9 +153,9 @@ public class ReferenceableValueCalculator {
 			return null;
 		}
 		
-		//Now we are start to calculate
+		//Now we are start to calculate (in a certain way)
 		
-		//First, may only one valued referred by one NC-Reference should be used
+		//First, one referenced value shall be used
 		if(refObts.size()==1 &&  (refExpression.isEmpty() || refExpression == "")){
 			
 			ReferenceableElement refEle = refObts.get(0);
@@ -164,12 +164,17 @@ public class ReferenceableValueCalculator {
 			} else if(refEle instanceof GlobalAttribute){
 				refValue = globalValuesAsString.get(((GlobalAttribute) refEle).getName());
 			} else if(refEle instanceof SourceSectionAttribute){//FIXME check me!!
-				SourceSectionAttribute refEleSSA = (SourceSectionAttribute) refEle;
-				EObject correspondObjectClass = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPointObts.get(0), refEleSSA);
-				// convert Attribute value to String
-				refValue = refEleSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
-						.convertToString(refEleSSA.getAttribute().getEAttributeType(), correspondObjectClass.eGet((EStructuralFeature) refObts.get(0)));
-				return refValue;
+				try{
+					SourceSectionAttribute refEleSSA = (SourceSectionAttribute) refEle;
+					EObject correspondObjectClass = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPointObts.get(0), refEleSSA);
+					// convert Attribute value to String
+					refValue = refEleSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
+							.convertToString(refEleSSA.getAttribute().getEAttributeType(), correspondObjectClass.eGet((EStructuralFeature) refObts.get(0)));
+				} catch (final Exception e) {
+					consoleStream.println("Message:\n The reference value represented by an SourceSectionAttribute can be either not calculated because of a missing"
+							+ "InstancePointer or either the SourceSectionAttribute never matched at this moment");
+					refValue="";
+				}
 			} else {
 				// If we are here, some mistake is happened
 				// more types could be supported in the future
@@ -181,9 +186,9 @@ public class ReferenceableValueCalculator {
 		// If first step fails (String of refValue is empty), so secondly we try to interpret the expression
 		if(refValue == "" || refValue == null){
 			if(obt instanceof SingleReferenceAttributeValueConstraint){
-				refValue = calculateReferenceValueWithExpression(((SingleReferenceAttributeValueConstraint) obt).getExpression(), refObts, instPointObts);
+				refValue = calculateReferenceValueWithExpression(refExpression, refObts, instPointObts);
 			} else if (obt instanceof RangeBound){
-				refValue = calculateReferenceValueWithExpression(((RangeBound) obt).getExpression(), refObts, instPointObts);
+				refValue = calculateReferenceValueWithExpression(refExpression, refObts, instPointObts);
 			} else {
 				// more types could be supported in the future
 				consoleStream.println("Expression of " + obt.getClass().getName() + " cannot yet supported!");
@@ -223,24 +228,22 @@ public class ReferenceableValueCalculator {
 			InstancePointer instPt = instPointObts.get(i);
 			SourceSectionAttribute refEleSSA = (SourceSectionAttribute) refEle;
 			EObject correspondObjectClass = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPt, refEleSSA);
-			// convert Attribute value to String
-			String refValue = refEleSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
-					.convertToString(refEleSSA.getAttribute().getEAttributeType(), correspondObjectClass.eGet((EStructuralFeature) refEle));
-			vars.put(refEleSSA.getName(), Double.valueOf(refValue));
+			if(correspondObjectClass !=null){
+				// convert Attribute value to String
+				String refValue = refEleSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
+						.convertToString(refEleSSA.getAttribute().getEAttributeType(), correspondObjectClass.eGet((EStructuralFeature) refEle));
+				vars.put(refEleSSA.getName(), Double.valueOf(refValue));
+			} else{
+				consoleStream.println("Message:\n Could not find the reference value for SourceSectionAttribute" + refEleSSA + "and InstancePointer" + instPt);
+			}
 		}
 		
 		// make calculation
 		try{
-			/*expResult = String.valueOf(new ExpressionBuilder(expression)
-				.withCustomFunction(round)
-				.withCustomFunction(max)
-				.withCustomFunction(min)
-				.withVariables(vars).build()
-				.calculate());*/
 			ExpressionCalculator expCalc = new ExpressionCalculator();
 			expResult = expCalc.calculateExpression(expression, vars);
 		} catch (final Exception e) {
-			consoleStream.println("Message:\n" + e.getMessage());
+			consoleStream.println("Message:\n A reference value couldn't be be calculated. Expression:" + expression + "because of" + e.getMessage());
 			return expression;		
 		}
 		

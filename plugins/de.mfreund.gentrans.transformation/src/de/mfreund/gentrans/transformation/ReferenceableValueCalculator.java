@@ -134,7 +134,7 @@ public class ReferenceableValueCalculator {
 	 */
 	public String calculateReferenceValue(EObject obt) {
 		
-		String refValue = "";
+		String refValue = "",refExpression ="";
 		
 		//Get first a list of referenced elements and possible InstancePointers
 		EList<ReferenceableElement> refObts = new BasicEList<ReferenceableElement>();
@@ -142,9 +142,11 @@ public class ReferenceableValueCalculator {
 		if(obt instanceof SingleReferenceAttributeValueConstraint){
 			refObts = ((SingleReferenceAttributeValueConstraint) obt).getConstraintReferenceValue();
 			instPointObts = ((SingleReferenceAttributeValueConstraint) obt).getConstraintReferenceValueAdditionalSpecification();
+			refExpression = ((SingleReferenceAttributeValueConstraint) obt).getExpression();
 		} else if (obt instanceof RangeBound){
 			refObts = ((RangeBound) obt).getBoundReferenceValue();
 			instPointObts = ((RangeBound) obt).getBoundReferenceValueAdditionalSpecification();
+			refExpression = ((RangeBound) obt).getExpression();
 		} else {
 			// more types could be supported in the future
 			consoleStream.println("AttributeValueConstraint type " + obt.getClass().getName() + " is not yet supported!");
@@ -154,7 +156,7 @@ public class ReferenceableValueCalculator {
 		//Now we are start to calculate
 		
 		//First, may only one valued referred by one NC-Reference should be used
-		if(refObts.size()==1 && (((RangeBound) obt).getExpression().isEmpty() || ((SingleReferenceAttributeValueConstraint) obt).getExpression().isEmpty())){
+		if(refObts.size()==1 &&  (refExpression.isEmpty() || refExpression == "")){
 			
 			ReferenceableElement refEle = refObts.get(0);
 			if(refEle instanceof FixedValue){
@@ -245,10 +247,5 @@ public class ReferenceableValueCalculator {
 		
 		
 		return expResult;
-	}
-
-	public void updateMatchedSections(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections) {
-		this.matchedSections = matchedSections;
-		
 	}
 }

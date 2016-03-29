@@ -339,11 +339,6 @@ public class SourceSectionMatcher extends CancellableElement {
 			}
 			matchedSections.get(c).addAll(ret.getSourceModelObjectsMapped().get(c));
 			containmentTree.markAsMatched(ret.getSourceModelObjectsMapped().get(c));
-			
-			//update ConditionHandler and InstancePointer
-			conditionHandler.updateMatchedSections(matchedSections);
-			instancePointerHandler.updateMatchedSections(matchedSections);
-			refValueCalculator.updateMatchedSections(matchedSections);
 		}
 
 		return ret;

@@ -82,13 +82,4 @@ import pamtram.metamodel.SourceSectionClass;
 			return null;
 		}
 	}
-	
-	/**
-	 * This method does an update of class variable matched sections.
-	 * 
-	 * @param matchedSections A list of a all matched sections
-	 */
-	public void updateMatchedSections(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections){
-		this.matchedSections = matchedSections;
-	}
 }

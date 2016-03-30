@@ -1,6 +1,8 @@
 package de.mfreund.gentrans.transformation.condition;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,6 +15,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.InstancePointerHandler;
@@ -36,6 +39,7 @@ import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 
 
@@ -141,13 +145,13 @@ public class ConditionHandler {
 
 	private condResult checkSectionCondition(SectionCondition condition) {
 		
-		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true){//FIXME
+		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true){//FIXME Check me
 			EList<EObject> modelClasses = new BasicEList<EObject>();
 			modelClasses.addAll(matchedSections.get(condition.getConditionSectionRef()));
 			if(condition.getAdditionalConditionSpecification().size()!=0){
 				modelClasses = this.instancePointerHandler.getPointedInstanceByList(condition.getAdditionalConditionSpecification().get(0), condition.getConditionSectionRef(), modelClasses);
 			}
-			boolean cardinalityRes = checkCardinality(condition.getValue(),modelClasses.size(), condition.getComparator());
+			boolean cardinalityRes = checkCardinality(condition.getValue(), modelClasses.size(), condition.getComparator());
 			if(cardinalityRes == true){
 				return condResult.true_condition;
 			} else if(cardinalityRes == false){
@@ -162,6 +166,125 @@ public class ConditionHandler {
 		}
 	}
 
+	private condResult checkAttributeCondition(AttributeCondition condition) {
+		
+		ArrayList<Object> srcAttrValues = new ArrayList<>();		
+		Set<EObject> possiblePointedClasses = matchedSections.get(condition.getConditionAttributeRef().eContainer());
+		SourceSectionAttribute ssAttr = condition.getConditionAttributeRef();
+		ArrayList<Boolean> attrResults = new ArrayList<>();
+		
+		if(possiblePointedClasses!=null && possiblePointedClasses.size() > 1){
+			// Try to handle InstancePointer
+			try{
+				EList<InstancePointer> instancePointerObts = condition.getAdditionalConditionSpecification();
+				
+				for(Iterator<EObject> element = possiblePointedClasses.iterator(); element.hasNext();){
+					EObject eClass = element.next();
+					
+					if(!(eClass.eGet((EStructuralFeature) instancePointerObts.get(0).getAttributePointer()).equals(instancePointerObts.get(0).getValue()))){//FIXME General Index for more than InstancePointer
+						element.remove();
+					}
+				}
+			}catch(final Exception e){
+				consoleStream.println("Message:\n For AttributeCondition the InstancePointerHandler didn't work or avaiable!");
+			}
+		
+			for(EObject PointedClass : possiblePointedClasses){
+				/*
+				 * As attributes may have a cardinality greater than 1, too, we have to handle
+				 * every attribute value separately.
+				 */
+				srcAttrValues.add(PointedClass.eGet((EStructuralFeature) ssAttr));
+			}
+				
+			/*
+			 * First, we check if all the constraints are satisfied for every attribute value.
+			 */
+			for (Object srcAttrValue : srcAttrValues) {
+			
+				// convert Attribute value to String
+				final String srcAttrAsString = ssAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
+						.convertToString(ssAttr.getAttribute().getEAttributeType(), srcAttrValue);
+				
+				/*
+				 * check AttributeValueConstraints
+				 *
+				 * Inclusions are OR connected
+				 *
+				 * Exclusions are NOR connected
+				 */
+				boolean inclusionMatched = false;
+				boolean containsInclusions = false;
+				for (final AttributeValueConstraint constraint : condition.getValueConstraint()) {
+		
+					if (attributeConditionConstraintsWithErrors.contains(constraint)) {
+						continue;
+					}
+		
+					boolean constraintVal=false;
+					try {
+						// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
+						// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
+						// and we need to extract the right reference Value(s) for each constraint
+						
+						if (constraint instanceof SingleReferenceAttributeValueConstraint){
+							String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint);
+							constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
+						} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
+							
+							if(constraint instanceof RangeConstraint){
+								List<String> srcAttrRefValuesAsList = new ArrayList<String>();
+								srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getLowerBound()));
+								srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getUpperBound()));
+								
+								BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList);
+								constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,RefValuesAsEList);
+							}  else {
+								// If we are here, some mistake is happened
+								// more types could be supported in the future
+								// placeholder for other MultipleReferenceAttributeValueConstraints
+								consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+							}
+						}  else {
+							// If we are here, some mistake is happened
+							// more types could be supported in the future
+							// placeholder for other MultipleReferenceAttributeValueConstraints
+							consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+						}
+					} catch (final Exception e) {
+						attributeConditionConstraintsWithErrors.add(constraint);
+						consoleStream.println("The AttributeCondition'" + constraint.getName() + " could not be evaluated and will be ignored. The following error was supplied:\n"
+								+ e.getLocalizedMessage());
+						continue;
+					}
+		
+					if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+						break;
+					} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
+						containsInclusions = true;
+						if (constraintVal) {
+							inclusionMatched = true;
+						}
+					}
+				}
+				// TODO check me
+				if (!inclusionMatched && containsInclusions) {
+					attrResults.add(false);
+				} else {
+					attrResults.add(true);
+				}
+			}
+		}
+		boolean cardinalityRes = checkCardinality(condition.getValue(), Collections.frequency(attrResults, true), condition.getComparator());
+		if(cardinalityRes == true){
+			return condResult.true_condition;
+		} else if(cardinalityRes == false){
+			return condResult.true_condition;
+		} else{
+			return condResult.irrelevant_condition;
+		}
+	}
+	
 	private boolean checkCardinality(int value, int size, ComparatorEnum comparator) {
 		boolean result = true;
 		switch(comparator.getValue()){
@@ -204,93 +327,6 @@ public class ConditionHandler {
 			consoleStream.println("Message:\n ComparatorEnum" + comparator.getLiteral() + "not implemented yet!");
 		}
 		return result;
-	}
-
-	private condResult checkAttributeCondition(AttributeCondition condition) {
-		
-		String srcAttrAsString = ""; //FIXME AttributeValue
-		try{
-			EList<InstancePointer> instancePointerObts = condition.getAdditionalConditionSpecification();
-			Set<EObject> possiblePointedClasses = matchedSections.get(condition.getConditionAttributeRef().eContainer());
-			
-			for(Iterator<EObject> element = possiblePointedClasses.iterator(); element.hasNext();){
-				EObject eClass = element.next();
-				
-				if(!(eClass.eGet((EStructuralFeature) instancePointerObts.get(0).getAttributePointer()).equals(instancePointerObts.get(0).getValue()))){//FIXME General Index for more than InstancePointer
-					element.remove();
-				}
-			}
-		}catch(final Exception e){
-			consoleStream.println("Message:\n For AttributeCondition" + condition.getName() + " the Value could not be extracted!");
-			return condResult.false_condition;
-		}
-		
-		/*
-		 * check AttributeValueConstraints
-		 *
-		 * Inclusions are OR connected
-		 *
-		 * Exclusions are NOR connected
-		 */
-		boolean inclusionMatched = false;
-		boolean containsInclusions = false;
-		for (final AttributeValueConstraint constraint : condition.getValueConstraint()) {
-
-			if (attributeConditionConstraintsWithErrors.contains(constraint)) {
-				continue;
-			}
-
-			boolean constraintVal=false;
-			try {
-				// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
-				// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
-				// and we need to extract the right reference Value(s) for each constraint
-				
-				if (constraint instanceof SingleReferenceAttributeValueConstraint){
-					String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint);
-					constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
-				} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
-					
-					if(constraint instanceof RangeConstraint){
-						List<String> srcAttrRefValuesAsList = new ArrayList<String>();
-						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getLowerBound()));
-						srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getUpperBound()));
-						
-						BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList);
-						constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,RefValuesAsEList);
-					}  else {
-						// If we are here, some mistake is happened
-						// more types could be supported in the future
-						// placeholder for other MultipleReferenceAttributeValueConstraints
-						consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
-					}
-				}  else {
-					// If we are here, some mistake is happened
-					// more types could be supported in the future
-					// placeholder for other MultipleReferenceAttributeValueConstraints
-					consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
-				}
-			} catch (final Exception e) {
-				attributeConditionConstraintsWithErrors.add(constraint);
-				consoleStream.println("The AttributeCondition'" + constraint.getName() + " could not be evaluated and will be ignored. The following error was supplied:\n"
-						+ e.getLocalizedMessage());
-				continue;
-			}
-
-			if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
-				return condResult.false_condition;
-			} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
-				containsInclusions = true;
-				if (constraintVal) {
-					inclusionMatched = true;
-				}
-			}
-		}
-
-		if (!inclusionMatched && containsInclusions) {
-			return condResult.false_condition;
-		}
-		return condResult.irrelevant_condition;
 	}
 
 	/**

@@ -38,15 +38,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
-
-import pamtram.PamtramPackage;
-import pamtram.contentprovider.ConditionContentProvider;
 import pamtram.contentprovider.IFeatureValidator;
-import pamtram.contentprovider.LibraryEntryContentProvider;
-import pamtram.contentprovider.MappingContentProvider;
-import pamtram.contentprovider.ModifierSetContentProvider;
-import pamtram.contentprovider.SourceSectionContentProvider;
-import pamtram.contentprovider.TargetSectionContentProvider;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;

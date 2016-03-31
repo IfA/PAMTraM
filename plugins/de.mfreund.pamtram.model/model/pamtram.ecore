@@ -924,7 +924,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//condition/SingleConditionOperator"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeCondition" eSuperTypes="#//condition/Condition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" upperBound="-1"
-          eType="#//metamodel/AttributeValueConstraint"/>
+          eType="#//metamodel/AttributeValueConstraint" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionAttributeRef"
           lowerBound="1" eType="#//metamodel/SourceSectionAttribute"/>
     </eClassifiers>

@@ -398,7 +398,7 @@ public class SourceSectionMatcher extends CancellableElement {
 					if (!mappingFailed) {
 						
 						//Simplify Mapping by checking conditions of all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
-						mSimplified = checkConditions(m);
+						mSimplified = checkConditions(m, res);
 
 						/* 
 						 * now, determine the external hint values (the container must be present and valid as this was
@@ -425,10 +425,30 @@ public class SourceSectionMatcher extends CancellableElement {
 	 * Of course, we do it the same way for all conditional {@link MappingHint}s. 
 	 * 
 	 * Note: This process is recursively and a nested procedure which saves time. In case of '<em><b>false</b></em>' other underneath ConditionalElements will be ignored and discarded.
+	 * @param res 
 	 * @param mOld represents the original {@link Mapping} 
 	 * @return The {@link Mapping} representing a simplified of the origin one. There are all ConditionalElements that returned '<em><b>false</b></em>' are extracted.
 	 */
-	private Mapping checkConditions(Mapping definedMapping) {
+	private Mapping checkConditions(Mapping definedMapping, MappingInstanceStorage res) {
+		
+		/*
+		 * For checking Conditions in general the 'matchedSections'-Collection should be considered.
+		 * Also the information from current 'definedMapping' may be used.
+		 *  But at this moment it isn't clear if the 'definedMapping' is applying during the transformation.
+		 *  Therefore, we put the affected elements as temporarily 'matched' inside 'matchedSections' map for being able to check conditions
+		 */
+		LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections = new LinkedHashMap<>();
+		
+		for (final SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()) {
+			if (!tempMatchedSections.containsKey(c)) {
+				tempMatchedSections.put(c, new LinkedHashSet<EObject>());
+			}
+			tempMatchedSections.get(c).addAll(res.getSourceModelObjectsMapped().get(c));
+		}
+		this.instancePointerHandler.addTempSectionMap(tempMatchedSections);
+		this.refValueCalculator.addTempSectionMap(tempMatchedSections);
+		this.conditionHandler.addTempSectionMap(tempMatchedSections);
+
 		
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		if(conditionHandler.checkCondition(definedMapping.getCondition()) == condResult.true_condition && 
@@ -487,6 +507,10 @@ public class SourceSectionMatcher extends CancellableElement {
 		} else {
 				definedMapping = null; //The Condition of a Mapping false, so return null and the Mapping is excluded from transformations
 		}
+		
+		this.instancePointerHandler.clearTempSectionMap();
+		this.refValueCalculator.clearTempSectionMap();
+		this.conditionHandler.clearTempSectionMap();
 		
 		return definedMapping;
 	}

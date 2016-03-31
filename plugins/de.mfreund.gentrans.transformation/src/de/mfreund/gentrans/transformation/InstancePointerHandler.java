@@ -31,21 +31,29 @@ import pamtram.metamodel.SourceSectionClass;
 	 */
 	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
 	
+	 /**
+	 * Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
+	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.		 */
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections;
+	
 	/**
 	 * The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
+	@SuppressWarnings("unused")
 	private final MessageConsoleStream consoleStream;
 	 
 	// Constructor
 	public InstancePointerHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, MessageConsoleStream consoleStream){
 		this.matchedSections = matchedSections;
-		this.consoleStream =consoleStream;
+		this.consoleStream = consoleStream;
+		this.tempMatchedSections = new LinkedHashMap<>();
 	}
 	
 	public EList<EObject> getPointedInstanceByMatchedSectionRepo(InstancePointer instancePointerObt, SourceSectionClass sourceClass){
 		
 		EList<EObject> possiblePointedClassesAsList = new BasicEList<EObject>();
 		Set<EObject> possiblePointedClasses = matchedSections.get(sourceClass);
+		possiblePointedClasses.addAll(tempMatchedSections.get(sourceClass));
 		// alternatively we get the container-Class by the InstancePointer pointed EAttribute
 		//Set<EObject> possiblePointedClasses = matchedSections.get(instancePointerObt.getAttributePointer().eContainer());
 		
@@ -71,5 +79,13 @@ import pamtram.metamodel.SourceSectionClass;
 			}
 		}
 		return possiblePointedClassesAsList;
+	}
+
+	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections) {
+		this.tempMatchedSections = tempMatchedSections;
+	}
+
+	public void clearTempSectionMap() {
+		this.tempMatchedSections.clear();
 	}
 }

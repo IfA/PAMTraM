@@ -72,7 +72,12 @@ public class ConditionHandler {
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections; 
+	
+	/**
+	 * Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
+	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.		 */
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections;
 	
 	/**
 	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be evaluated 
@@ -94,6 +99,7 @@ public class ConditionHandler {
 	
 	public ConditionHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, ReferenceableValueCalculator refValueCalculator, InstancePointerHandler instancePointerHandler){
 		this.matchedSections =  matchedSections;
+		this.tempMatchedSections = new LinkedHashMap<>();
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
 		this.refValueCalculator = refValueCalculator;
@@ -145,9 +151,10 @@ public class ConditionHandler {
 
 	private condResult checkSectionCondition(SectionCondition condition) {
 		
-		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true){//FIXME Check me
+		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true || this.tempMatchedSections.containsKey(condition.getConditionSectionRef()) == true){//FIXME Check me
 			EList<EObject> modelClasses = new BasicEList<EObject>();
 			modelClasses.addAll(matchedSections.get(condition.getConditionSectionRef()));
+			modelClasses.addAll(tempMatchedSections.get(condition.getConditionSectionRef()));
 			if(condition.getAdditionalConditionSpecification().size()!=0){
 				modelClasses = this.instancePointerHandler.getPointedInstanceByList(condition.getAdditionalConditionSpecification().get(0), condition.getConditionSectionRef(), modelClasses);
 			}
@@ -159,7 +166,7 @@ public class ConditionHandler {
 			} else{
 				return condResult.irrelevant_condition;
 			}
-		} else if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == false){
+		} else if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == false && this.tempMatchedSections.containsKey(condition.getConditionSectionRef()) == false){
 			return condResult.false_condition;
 		} else{
 			return condResult.irrelevant_condition;
@@ -170,6 +177,7 @@ public class ConditionHandler {
 		
 		ArrayList<Object> srcAttrValues = new ArrayList<>();		
 		Set<EObject> possiblePointedClasses = matchedSections.get(condition.getConditionAttributeRef().eContainer());
+		possiblePointedClasses.addAll(tempMatchedSections.get(condition.getConditionAttributeRef().eContainer()));
 		SourceSectionAttribute ssAttr = condition.getConditionAttributeRef();
 		ArrayList<Boolean> attrResults = new ArrayList<>();
 		
@@ -267,7 +275,7 @@ public class ConditionHandler {
 						}
 					}
 				}
-				// TODO check me
+
 				if (!inclusionMatched && containsInclusions) {
 					attrResults.add(false);
 				} else {
@@ -443,5 +451,13 @@ public class ConditionHandler {
 		}
 		conditionRepository.put(condition, condTemp);
 		return condTemp;
+	}
+
+	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections) {
+		this.tempMatchedSections = tempMatchedSections;
+	}
+
+	public void clearTempSectionMap() {
+		this.tempMatchedSections.clear();
 	}
 }

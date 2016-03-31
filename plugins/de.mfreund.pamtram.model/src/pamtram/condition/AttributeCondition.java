@@ -36,7 +36,7 @@ public interface AttributeCondition extends Condition {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
 	 * @see pamtram.condition.ConditionPackage#getAttributeCondition_ValueConstraint()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!AttributeCondition!valueConstraint'"
 	 * @generated
 	 */

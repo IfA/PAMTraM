@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -13,8 +14,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
 
@@ -37,7 +38,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  */
 public class AttributeConditionImpl extends ConditionImpl implements AttributeCondition {
 	/**
-	 * The cached value of the '{@link #getValueConstraint() <em>Value Constraint</em>}' reference list.
+	 * The cached value of the '{@link #getValueConstraint() <em>Value Constraint</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValueConstraint()
@@ -82,7 +83,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 */
 	public EList<AttributeValueConstraint> getValueConstraint() {
 		if (valueConstraint == null) {
-			valueConstraint = new EObjectResolvingEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
+			valueConstraint = new EObjectContainmentEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
 		}
 		return valueConstraint;
 	}
@@ -123,6 +124,20 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		conditionAttributeRef = newConditionAttributeRef;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, oldConditionAttributeRef, conditionAttributeRef));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
+				return ((InternalEList<?>)getValueConstraint()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

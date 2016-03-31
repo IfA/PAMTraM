@@ -32,6 +32,7 @@ import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -444,7 +445,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT: {
-				pamtram.metamodel.SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint = (pamtram.metamodel.SingleReferenceAttributeValueConstraint)theEObject;
+				SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint = (SingleReferenceAttributeValueConstraint)theEObject;
 				T result = caseSingleReferenceAttributeValueConstraint(singleReferenceAttributeValueConstraint);
 				if (result == null) result = caseAttributeValueConstraint(singleReferenceAttributeValueConstraint);
 				if (result == null) result = caseNamedElement(singleReferenceAttributeValueConstraint);
@@ -1036,7 +1037,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSingleReferenceAttributeValueConstraint(pamtram.metamodel.SingleReferenceAttributeValueConstraint object) {
+	public T caseSingleReferenceAttributeValueConstraint(SingleReferenceAttributeValueConstraint object) {
 		return null;
 	}
 

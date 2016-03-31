@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 
 /**
@@ -36,7 +37,7 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	 * @generated
 	 * @ordered
 	 */
-	protected pamtram.metamodel.RangeBound upperBound;
+	protected RangeBound upperBound;
 
 	/**
 	 * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' containment reference.
@@ -46,7 +47,7 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	 * @generated
 	 * @ordered
 	 */
-	protected pamtram.metamodel.RangeBound lowerBound;
+	protected RangeBound lowerBound;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,7 +73,7 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.RangeBound getUpperBound() {
+	public RangeBound getUpperBound() {
 		return upperBound;
 	}
 
@@ -81,8 +82,8 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUpperBound(pamtram.metamodel.RangeBound newUpperBound, NotificationChain msgs) {
-		pamtram.metamodel.RangeBound oldUpperBound = upperBound;
+	public NotificationChain basicSetUpperBound(RangeBound newUpperBound, NotificationChain msgs) {
+		RangeBound oldUpperBound = upperBound;
 		upperBound = newUpperBound;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND, oldUpperBound, newUpperBound);
@@ -96,7 +97,7 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUpperBound(pamtram.metamodel.RangeBound newUpperBound) {
+	public void setUpperBound(RangeBound newUpperBound) {
 		if (newUpperBound != upperBound) {
 			NotificationChain msgs = null;
 			if (upperBound != null)
@@ -115,7 +116,7 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.RangeBound getLowerBound() {
+	public RangeBound getLowerBound() {
 		return lowerBound;
 	}
 
@@ -124,8 +125,8 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLowerBound(pamtram.metamodel.RangeBound newLowerBound, NotificationChain msgs) {
-		pamtram.metamodel.RangeBound oldLowerBound = lowerBound;
+	public NotificationChain basicSetLowerBound(RangeBound newLowerBound, NotificationChain msgs) {
+		RangeBound oldLowerBound = lowerBound;
 		lowerBound = newLowerBound;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND, oldLowerBound, newLowerBound);
@@ -139,7 +140,7 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLowerBound(pamtram.metamodel.RangeBound newLowerBound) {
+	public void setLowerBound(RangeBound newLowerBound) {
 		if (newLowerBound != lowerBound) {
 			NotificationChain msgs = null;
 			if (lowerBound != null)
@@ -194,10 +195,10 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
-				setUpperBound((pamtram.metamodel.RangeBound)newValue);
+				setUpperBound((RangeBound)newValue);
 				return;
 			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
-				setLowerBound((pamtram.metamodel.RangeBound)newValue);
+				setLowerBound((RangeBound)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -212,10 +213,10 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
-				setUpperBound((pamtram.metamodel.RangeBound)null);
+				setUpperBound((RangeBound)null);
 				return;
 			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
-				setLowerBound((pamtram.metamodel.RangeBound)null);
+				setLowerBound((RangeBound)null);
 				return;
 		}
 		super.eUnset(featureID);

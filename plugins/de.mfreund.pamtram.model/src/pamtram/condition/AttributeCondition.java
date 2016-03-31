@@ -26,7 +26,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  */
 public interface AttributeCondition extends Condition {
 	/**
-	 * Returns the value of the '<em><b>Value Constraint</b></em>' reference list.
+	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -34,9 +34,10 @@ public interface AttributeCondition extends Condition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Constraint</em>' reference list.
+	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
 	 * @see pamtram.condition.ConditionPackage#getAttributeCondition_ValueConstraint()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!AttributeCondition!valueConstraint'"
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!AttributeCondition!valueConstraint'"
 	 * @generated
 	 */
 	EList<AttributeValueConstraint> getValueConstraint();

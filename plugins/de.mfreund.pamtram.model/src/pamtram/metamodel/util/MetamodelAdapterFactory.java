@@ -33,6 +33,7 @@ import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -256,7 +257,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createRangeBoundAdapter();
 			}
 			@Override
-			public Adapter caseSingleReferenceAttributeValueConstraint(pamtram.metamodel.SingleReferenceAttributeValueConstraint object) {
+			public Adapter caseSingleReferenceAttributeValueConstraint(SingleReferenceAttributeValueConstraint object) {
 				return createSingleReferenceAttributeValueConstraintAdapter();
 			}
 			@Override

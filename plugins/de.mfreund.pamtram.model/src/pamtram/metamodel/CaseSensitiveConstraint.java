@@ -18,7 +18,7 @@ package pamtram.metamodel;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface CaseSensitiveConstraint extends pamtram.metamodel.SingleReferenceAttributeValueConstraint {
+public interface CaseSensitiveConstraint extends SingleReferenceAttributeValueConstraint {
 	/**
 	 * Returns the value of the '<em><b>Case Sensitive</b></em>' attribute.
 	 * The default value is <code>"true"</code>.

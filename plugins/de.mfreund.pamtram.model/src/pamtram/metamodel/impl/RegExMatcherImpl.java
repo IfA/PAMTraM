@@ -13,7 +13,7 @@ import pamtram.metamodel.RegExMatcher;
  *
  * @generated
  */
-public class RegExMatcherImpl extends pamtram.metamodel.impl.SingleReferenceAttributeValueConstraintImpl implements
+public class RegExMatcherImpl extends SingleReferenceAttributeValueConstraintImpl implements
 		RegExMatcher {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

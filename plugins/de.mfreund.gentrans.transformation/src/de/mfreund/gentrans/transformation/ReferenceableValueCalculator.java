@@ -152,7 +152,7 @@ public class ReferenceableValueCalculator {
 					if(correspondObjectClass.size()==1){
 						// convert Attribute value to String
 						refValue = refEleSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
-								.convertToString(refEleSSA.getAttribute().getEAttributeType(), correspondObjectClass.get(0).eGet((EStructuralFeature) refObts.get(0)));
+								.convertToString(refEleSSA.getAttribute().getEAttributeType(), refEleSSA);
 					} else{
 						consoleStream.println("InstancePointerHandler return more than one object!");
 					}
@@ -199,33 +199,30 @@ public class ReferenceableValueCalculator {
 		
 		String expResult = "";
 		Map<String,Double> vars = this.globalValuesAsDouble;
-		// If there is an OCL-Constraint the following  if-instruction can be discarded
-		if(refObts.size()!=instPointObts.size()){
-			consoleStream.println("Note: Calculating reference value based on an expression but note:"
-					+ "number of Elements not equal to number of InstancePointers");
-		}
+		int temp = 0;
+		
 		// Get Attributes and their values and put them into 'vars' List
 		for(int i = 0;  i < refObts.size(); i++){
+			
 			EObject refEle = refObts.get(i);
-			if(!(refEle instanceof SourceSectionAttribute)){
-				// FixedValue or GlobalAttribute already exists in the List
-				break;
-			}
-			// If there is an OCL-Constraint the following if-instruction can be discarded as some lines above
-			if(instPointObts.size()!=0){ //FIXME check me!
-				InstancePointer instPt = instPointObts.get(i);
-				SourceSectionAttribute refEleSSA = (SourceSectionAttribute) refEle;
-				if(instPt!=null){
-					EList<EObject> correspondObjectClass = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPt, (SourceSectionClass) refEleSSA.eContainer());
-					if(correspondObjectClass.size()==1){
-						// convert Attribute value to String
-						String refValue = refEleSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
-								.convertToString(refEleSSA.getAttribute().getEAttributeType(), correspondObjectClass.get(0).eGet((EStructuralFeature) refEle));
-						vars.put(refEleSSA.getName(), Double.valueOf(refValue));
-					} else {
-						consoleStream.println("InstancePointerHandler return more than one object!");
+			if(refEle instanceof SourceSectionAttribute){
+				if(instPointObts.size()!=0){ //FIXME check me!
+					InstancePointer instPt = instPointObts.get(i-temp);
+					SourceSectionAttribute refEleSSA = (SourceSectionAttribute) refEle;
+					if(instPt!=null){
+						EList<EObject> correspondObjectClass = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPt, (SourceSectionClass) refEleSSA.eContainer());
+						if(correspondObjectClass.size()==1){
+							// convert Attribute value to String
+							String refValue = refEleSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
+									.convertToString(refEleSSA.getAttribute().getEAttributeType(), refEleSSA);
+							vars.put(refEleSSA.getName(), Double.valueOf(refValue));
+						} else {
+							consoleStream.println("InstancePointerHandler return more than one object!");
+						}
 					}
 				}
+			} else{
+				++temp;
 			}
 		}
 		

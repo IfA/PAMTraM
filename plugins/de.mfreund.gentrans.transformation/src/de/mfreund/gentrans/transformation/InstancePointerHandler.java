@@ -51,20 +51,29 @@ import pamtram.metamodel.SourceSectionClass;
 	
 	public EList<EObject> getPointedInstanceByMatchedSectionRepo(InstancePointer instancePointerObt, SourceSectionClass sourceClass){
 		
-		EList<EObject> possiblePointedClassesAsList = new BasicEList<EObject>();
-		Set<EObject> possiblePointedClasses = matchedSections.get(sourceClass);
-		possiblePointedClasses.addAll(tempMatchedSections.get(sourceClass));
-		// alternatively we get the container-Class by the InstancePointer pointed EAttribute
-		//Set<EObject> possiblePointedClasses = matchedSections.get(instancePointerObt.getAttributePointer().eContainer());
+		EList<EObject> possiblePointedClasses = new BasicEList<EObject>();
+		if(matchedSections.get(sourceClass) != null){
+			possiblePointedClasses.addAll(matchedSections.get(sourceClass));
+		}
+		if(tempMatchedSections.get(sourceClass) != null){
+			possiblePointedClasses.addAll(tempMatchedSections.get(sourceClass));
+		}
 		
 		for(Iterator<EObject> element = possiblePointedClasses.iterator(); element.hasNext();){
 			EObject eClass = element.next();
 			
-			if(!(eClass.eGet((EStructuralFeature) instancePointerObt.getAttributePointer()).equals(instancePointerObt.getValue()))){
+			SourceSectionAttribute sourceAttr = instancePointerObt.getAttributePointer();
+			Object sourceRefAttr = eClass.eGet(instancePointerObt.getAttributePointer().getAttribute());
+			
+			// convert Attribute value to String
+			final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
+					.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
+			
+			if(sourceRefAttrAsString != instancePointerObt.getValue()){
 				element.remove();
 			}
 		}
-		return possiblePointedClassesAsList;
+		return possiblePointedClasses;
 	}
 		
 	public EList<EObject> getPointedInstanceByList(InstancePointer instancePointerObt, SourceSectionClass sourceClass, EList<EObject> attrList){
@@ -74,7 +83,14 @@ import pamtram.metamodel.SourceSectionClass;
 			EObject eAttr = element.next();
 			EObject eClass = eAttr.eContainer();
 			
-			if(!(eClass.eGet((EStructuralFeature) instancePointerObt.getAttributePointer()).equals(instancePointerObt.getValue()))){
+			SourceSectionAttribute sourceAttr = instancePointerObt.getAttributePointer();
+			Object sourceRefAttr = eClass.eGet(instancePointerObt.getAttributePointer().getAttribute());
+			
+			// convert Attribute value to String
+			final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
+					.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
+			
+			if(sourceRefAttrAsString != instancePointerObt.getValue()){
 				element.remove();
 			}
 		}

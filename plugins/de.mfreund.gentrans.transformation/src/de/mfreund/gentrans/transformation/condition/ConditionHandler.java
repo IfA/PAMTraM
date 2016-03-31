@@ -151,37 +151,52 @@ public class ConditionHandler {
 
 	private condResult checkSectionCondition(SectionCondition condition) {
 		
-		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true || this.tempMatchedSections.containsKey(condition.getConditionSectionRef()) == true){//FIXME Check me
+		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true || this.tempMatchedSections.containsKey(condition.getConditionSectionRef()) == true){
 			EList<EObject> modelClasses = new BasicEList<EObject>();
-			modelClasses.addAll(matchedSections.get(condition.getConditionSectionRef()));
-			modelClasses.addAll(tempMatchedSections.get(condition.getConditionSectionRef()));
+			if(matchedSections.get(condition.getConditionSectionRef()) != null){
+				modelClasses.addAll(matchedSections.get(condition.getConditionSectionRef()));
+			}
+			if(tempMatchedSections.get(condition.getConditionSectionRef()) != null){
+				modelClasses.addAll(tempMatchedSections.get(condition.getConditionSectionRef()));
+			}
+			
 			if(condition.getAdditionalConditionSpecification().size()!=0){
 				modelClasses = this.instancePointerHandler.getPointedInstanceByList(condition.getAdditionalConditionSpecification().get(0), condition.getConditionSectionRef(), modelClasses);
 			}
 			boolean cardinalityRes = checkCardinality(condition.getValue(), modelClasses.size(), condition.getComparator());
 			if(cardinalityRes == true){
+				this.conditionRepository.put(condition, condResult.true_condition);
 				return condResult.true_condition;
 			} else if(cardinalityRes == false){
-				return condResult.true_condition;
+				this.conditionRepository.put(condition, condResult.false_condition);
+				return condResult.false_condition;
 			} else{
+				this.conditionRepository.put(condition, condResult.irrelevant_condition);
 				return condResult.irrelevant_condition;
 			}
 		} else if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == false && this.tempMatchedSections.containsKey(condition.getConditionSectionRef()) == false){
+			this.conditionRepository.put(condition, condResult.false_condition);
 			return condResult.false_condition;
 		} else{
+			this.conditionRepository.put(condition, condResult.irrelevant_condition);
 			return condResult.irrelevant_condition;
 		}
 	}
 
 	private condResult checkAttributeCondition(AttributeCondition condition) {
 		
-		ArrayList<Object> srcAttrValues = new ArrayList<>();		
-		Set<EObject> possiblePointedClasses = matchedSections.get(condition.getConditionAttributeRef().eContainer());
-		possiblePointedClasses.addAll(tempMatchedSections.get(condition.getConditionAttributeRef().eContainer()));
+		ArrayList<Object> srcAttrValues = new ArrayList<>();
+		EList<EObject> possiblePointedClasses = new BasicEList<EObject>();
+		if(matchedSections.get(condition.getConditionAttributeRef().eContainer()) != null){
+			possiblePointedClasses.addAll(matchedSections.get(condition.getConditionAttributeRef().eContainer()));
+		}
+		if(tempMatchedSections.get(condition.getConditionAttributeRef().eContainer()) != null){
+			possiblePointedClasses.addAll(tempMatchedSections.get(condition.getConditionAttributeRef().eContainer()));
+		}
 		SourceSectionAttribute ssAttr = condition.getConditionAttributeRef();
 		ArrayList<Boolean> attrResults = new ArrayList<>();
 		
-		if(possiblePointedClasses!=null && possiblePointedClasses.size() > 1){
+		if(possiblePointedClasses!= null && possiblePointedClasses.size() > 1){
 			// Try to handle InstancePointer
 			try{
 				EList<InstancePointer> instancePointerObts = condition.getAdditionalConditionSpecification();
@@ -189,12 +204,19 @@ public class ConditionHandler {
 				for(Iterator<EObject> element = possiblePointedClasses.iterator(); element.hasNext();){
 					EObject eClass = element.next();
 					
-					if(!(eClass.eGet((EStructuralFeature) instancePointerObts.get(0).getAttributePointer()).equals(instancePointerObts.get(0).getValue()))){//FIXME General Index for more than InstancePointer
+					SourceSectionAttribute sourceAttr = instancePointerObts.get(0).getAttributePointer();
+					Object sourceRefAttr = eClass.eGet(instancePointerObts.get(0).getAttributePointer().getAttribute());
+					
+					// convert Attribute value to String
+					final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
+							.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
+					
+					if(sourceRefAttrAsString != instancePointerObts.get(0).getValue()){
 						element.remove();
 					}
 				}
 			}catch(final Exception e){
-				consoleStream.println("Message:\n For AttributeCondition the InstancePointerHandler didn't work or avaiable!");
+				consoleStream.println("Message:\n For AttributeCondition the InstancePointerHandler didn't work or available!");
 			}
 		
 			for(EObject PointedClass : possiblePointedClasses){
@@ -285,10 +307,13 @@ public class ConditionHandler {
 		}
 		boolean cardinalityRes = checkCardinality(condition.getValue(), Collections.frequency(attrResults, true), condition.getComparator());
 		if(cardinalityRes == true){
+			this.conditionRepository.put(condition, condResult.true_condition);
 			return condResult.true_condition;
 		} else if(cardinalityRes == false){
-			return condResult.true_condition;
+			this.conditionRepository.put(condition, condResult.false_condition);
+			return condResult.false_condition;
 		} else{
+			this.conditionRepository.put(condition, condResult.irrelevant_condition);
 			return condResult.irrelevant_condition;
 		}
 	}

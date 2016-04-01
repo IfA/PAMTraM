@@ -66,20 +66,24 @@ import pamtram.metamodel.SourceSectionClass;
 			EObject eClass = element.next();
 			
 			SourceSectionAttribute sourceAttr = instancePointerObt.getAttributePointer();
-			Object sourceRefAttr = eClass.eGet(instancePointerObt.getAttributePointer().getAttribute());
+			try{
+				Object sourceRefAttr = eClass.eGet(instancePointerObt.getAttributePointer().getAttribute());
 			
-			// convert Attribute value to String
-			final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
-					.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
-			
-			if(sourceRefAttrAsString.equals(instancePointerRefValue)){
-				element.remove();
+				// convert Attribute value to String
+				final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
+						.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
+				
+				if(sourceRefAttrAsString.equals(instancePointerRefValue)){
+					element.remove();
+				}
+			} catch(final Exception e){
+				consoleStream.println("Message:\n InstancePointerHander by Repositories failed because of:" + e.getMessage());
 			}
 		}
 		return possiblePointedClasses;
 	}
 		
-	public EList<EObject> getPointedInstanceByList(InstancePointer instancePointerObt, SourceSectionClass sourceClass, EList<EObject> ClassInstList){
+	public EList<EObject> getPointedInstanceByList(InstancePointer instancePointerObt, EList<EObject> ClassInstList){
 		
 		EList<EObject> possiblePointedClassesAsList = new BasicEList<EObject>();
 		
@@ -90,14 +94,18 @@ import pamtram.metamodel.SourceSectionClass;
 			EObject eClass = element.next();
 			
 			SourceSectionAttribute sourceAttr = instancePointerObt.getAttributePointer();
-			Object sourceRefAttr = eClass.eGet(instancePointerObt.getAttributePointer().getAttribute());
+			try{
+				Object sourceRefAttr = eClass.eGet(instancePointerObt.getAttributePointer().getAttribute());
 			
-			// convert Attribute value to String
-			final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
-					.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
-			
-			if(sourceRefAttrAsString.equals(instancePointerRefValue)){
-				element.remove();
+				// convert Attribute value to String
+				final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
+						.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
+				
+				if(sourceRefAttrAsString.equals(instancePointerRefValue)){
+					element.remove();
+				}
+			} catch(final Exception e){
+				consoleStream.println("Message:\n InstancePointerHander by Repositories failed because of:" + e.getMessage());
 			}
 		}
 		return possiblePointedClassesAsList;

@@ -18,7 +18,10 @@ import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
- * This class will be used to extract special described model objects
+ * This class will be used to get/extract specific model objects supported by model 'InstancePointers'
+ * Note: There are two ways:
+ * 1.) By 'matchedSection'-HashMap we get specific model objects (from global HashMap defined in the SourceSectionMatcher)
+ * 2.) By List we extract specific model objects from a delivered list (so this method can be used everywhere inside generic transformation for minimize the number of specific /concretize model objects
  * 
  * @author gkoltun
  */
@@ -49,59 +52,58 @@ import pamtram.metamodel.SourceSectionClass;
 		this.tempMatchedSections = new LinkedHashMap<>();
 	}
 	
-	public EList<EObject> getPointedInstanceByMatchedSectionRepo(InstancePointer instancePointerObt, SourceSectionClass sourceClass){
+	public EList<EObject> getPointedInstanceByMatchedSectionRepo(InstancePointer instPt, SourceSectionClass sourceClass){
 		
-		EList<EObject> possiblePointedClasses = new BasicEList<EObject>();
+		EList<EObject> correspondEclassInstances = new BasicEList<EObject>();
+		
 		if(matchedSections.get(sourceClass) != null){
-			possiblePointedClasses.addAll(matchedSections.get(sourceClass));
+			correspondEclassInstances.addAll(matchedSections.get(sourceClass));
 		}
 		if(tempMatchedSections.get(sourceClass) != null){
-			possiblePointedClasses.addAll(tempMatchedSections.get(sourceClass));
+			correspondEclassInstances.addAll(tempMatchedSections.get(sourceClass));
 		}
 		
-		String instancePointerRefValue = instancePointerObt.getValue();
+		String instancePointerRefValue = instPt.getValue();
 		
-		for(Iterator<EObject> element = possiblePointedClasses.iterator(); element.hasNext();){
-			
+		for(Iterator<EObject> element = correspondEclassInstances.iterator(); element.hasNext();){
 			EObject eClass = element.next();
 			
-			SourceSectionAttribute sourceAttr = instancePointerObt.getAttributePointer();
+			SourceSectionAttribute sourceAttr = instPt.getAttributePointer();
 			try{
-				Object sourceRefAttr = eClass.eGet(instancePointerObt.getAttributePointer().getAttribute());
+				Object sourceRefAttr = eClass.eGet(instPt.getAttributePointer().getAttribute());
 			
 				// convert Attribute value to String
 				final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
 						.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
 				
-				if(sourceRefAttrAsString.equals(instancePointerRefValue)){
+				if(!(sourceRefAttrAsString.equals(instancePointerRefValue))){
 					element.remove();
 				}
 			} catch(final Exception e){
 				consoleStream.println("Message:\n InstancePointerHander by Repositories failed because of:" + e.getMessage());
 			}
 		}
-		return possiblePointedClasses;
+		return correspondEclassInstances;
 	}
 		
-	public EList<EObject> getPointedInstanceByList(InstancePointer instancePointerObt, EList<EObject> ClassInstList){
+	public EList<EObject> getPointedInstanceByList(InstancePointer instPt, EList<EObject> ClassInstList){
 		
 		EList<EObject> possiblePointedClassesAsList = new BasicEList<EObject>();
 		
-		String instancePointerRefValue = instancePointerObt.getValue();
+		String instancePointerRefValue = instPt.getValue();
 		
 		for(Iterator<EObject> element = ClassInstList.iterator(); element.hasNext();){
-			
 			EObject eClass = element.next();
 			
-			SourceSectionAttribute sourceAttr = instancePointerObt.getAttributePointer();
+			SourceSectionAttribute sourceAttr = instPt.getAttributePointer();
 			try{
-				Object sourceRefAttr = eClass.eGet(instancePointerObt.getAttributePointer().getAttribute());
+				Object sourceRefAttr = eClass.eGet(instPt.getAttributePointer().getAttribute());
 			
 				// convert Attribute value to String
 				final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
 						.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
 				
-				if(sourceRefAttrAsString.equals(instancePointerRefValue)){
+				if(!(sourceRefAttrAsString.equals(instancePointerRefValue))){
 					element.remove();
 				}
 			} catch(final Exception e){

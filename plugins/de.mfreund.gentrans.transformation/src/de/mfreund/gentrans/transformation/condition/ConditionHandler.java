@@ -44,7 +44,7 @@ import pamtram.metamodel.SourceSectionClass;
 
 
 /**
- * This class will be used to calculate conditions and store the result.
+ * This class will be used to evaluate conditions and store their result.
  * 
  * @author gkoltun
  */
@@ -98,6 +98,7 @@ public class ConditionHandler {
 
 	
 	public ConditionHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, ReferenceableValueCalculator refValueCalculator, InstancePointerHandler instancePointerHandler){
+		
 		this.matchedSections =  matchedSections;
 		this.tempMatchedSections = new LinkedHashMap<>();
 		this.conditionRepository = new HashMap<>();
@@ -107,25 +108,24 @@ public class ConditionHandler {
 	}
 	
 	/**
-	 * This is the checkCondition-Method for SingleConditionOperators (e.g. And, Or). 
-	 * It is only for collecting the arguments and calling the right Operator-Method.
-	 * Note: Enum instead of boolean as returned type is needed as some models or model sections that are not matched
-	 * but the condition should not influence the mapping
-	 * 
+	 * This is the general checkCondition-Method. It is only for collecting the arguments and calling the right Operator-Method.
+	 * Note: Enum instead of boolean as return type is needed as 'CondSettingEnum' has the option 'NO_MATCHING_ACCEPTED', so
+	 * the condition shouldn't influence.
 	 * @param complexCondition
 	 * @return The calculated Enum result (true, false, irrelevant)
 	 */
 	public condResult checkCondition(ComplexCondition complexCondition){
 		
 		condResult result = condResult.true_condition;
+		
 		// Note: No modeled condition always returns true
 		if(complexCondition == null){ 
 			return condResult.true_condition;
 		} else {
+			
 			// First, we prove if that condition already have been checked
 			if (conditionRepository.get(complexCondition) != null){
 				result = conditionRepository.get(complexCondition);
-				
 			// Otherwise, we have to calculate the value
 			} else {
 			
@@ -133,11 +133,13 @@ public class ConditionHandler {
 					result = checkConditionMultipleConditionOperator((MultipleConditionOperator) complexCondition);
 				} else if(complexCondition instanceof SingleConditionOperator){
 					result = checkConditionSingleConditionOperator((SingleConditionOperator) complexCondition);
-				// It's only a single condition
 				} else if (complexCondition instanceof Condition){
+					
+					// Before evaluating, check 'DefaultSetting' (may we can break evaluating and save time)
 					if(((Condition) complexCondition).getDefaultSetting() == CondSettingEnum.NO_MATCHING_ACCEPTED){
 						return condResult.irrelevant_condition;
 					}
+					
 					if(complexCondition instanceof AttributeCondition){
 						result = checkAttributeCondition((AttributeCondition) complexCondition);
 					} else if (complexCondition instanceof SectionCondition){
@@ -146,79 +148,90 @@ public class ConditionHandler {
 				}
 			}
 		}
+		
 		return result;
 	}
 
-	private condResult checkSectionCondition(SectionCondition condition) {
+	private condResult checkSectionCondition(SectionCondition sectionCondition) {
 		
-		if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == true || this.tempMatchedSections.containsKey(condition.getConditionSectionRef()) == true){
-			EList<EObject> modelClasses = new BasicEList<EObject>();
-			if(matchedSections.get(condition.getConditionSectionRef()) != null){
-				modelClasses.addAll(matchedSections.get(condition.getConditionSectionRef()));
+		if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == true || this.tempMatchedSections.containsKey(sectionCondition.getConditionSectionRef()) == true){
+			EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
+			
+			if(matchedSections.get(sectionCondition.getConditionSectionRef()) != null){
+				correspondEClassInstances.addAll(matchedSections.get(sectionCondition.getConditionSectionRef()));
 			}
-			if(tempMatchedSections.get(condition.getConditionSectionRef()) != null){
-				modelClasses.addAll(tempMatchedSections.get(condition.getConditionSectionRef()));
+			if(tempMatchedSections.get(sectionCondition.getConditionSectionRef()) != null){
+				correspondEClassInstances.addAll(tempMatchedSections.get(sectionCondition.getConditionSectionRef()));
+			}
+			if(sectionCondition.getAdditionalConditionSpecification().size()!=0){
+				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances);
 			}
 			
-			if(condition.getAdditionalConditionSpecification().size()!=0){
-				modelClasses = this.instancePointerHandler.getPointedInstanceByList(condition.getAdditionalConditionSpecification().get(0), modelClasses);
-			}
-			boolean cardinalityRes = checkCardinality(condition.getValue(), modelClasses.size(), condition.getComparator());
+			// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
+			boolean cardinalityRes = checkCardinality(sectionCondition.getValue(), correspondEClassInstances.size(), sectionCondition.getComparator());
 			if(cardinalityRes == true){
-				this.conditionRepository.put(condition, condResult.true_condition);
+				this.conditionRepository.put(sectionCondition, condResult.true_condition);
 				return condResult.true_condition;
 			} else if(cardinalityRes == false){
-				this.conditionRepository.put(condition, condResult.false_condition);
+				this.conditionRepository.put(sectionCondition, condResult.false_condition);
 				return condResult.false_condition;
 			} else{
-				this.conditionRepository.put(condition, condResult.irrelevant_condition);
+				this.conditionRepository.put(sectionCondition, condResult.irrelevant_condition);
 				return condResult.irrelevant_condition;
 			}
-		} else if(this.matchedSections.containsKey(condition.getConditionSectionRef()) == false && this.tempMatchedSections.containsKey(condition.getConditionSectionRef()) == false){
-			this.conditionRepository.put(condition, condResult.false_condition);
+			
+		} else if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false && this.tempMatchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false){
+			this.conditionRepository.put(sectionCondition, condResult.false_condition);
 			return condResult.false_condition;
 		} else{
-			this.conditionRepository.put(condition, condResult.irrelevant_condition);
+			consoleStream.println("Message:\n check Condition" + sectionCondition.getName() + ". Some logical mistake occurred!");
+			this.conditionRepository.put(sectionCondition, condResult.irrelevant_condition);
 			return condResult.irrelevant_condition;
 		}
 	}
 
-	private condResult checkAttributeCondition(AttributeCondition condition) {
+	private condResult checkAttributeCondition(AttributeCondition attrCondition) {
 		
-		ArrayList<Object> srcAttrValues = new ArrayList<>();
-		EList<EObject> possiblePointedClasses = new BasicEList<EObject>();
-		if(matchedSections.get(condition.getConditionAttributeRef().eContainer()) != null){
-			possiblePointedClasses.addAll(matchedSections.get(condition.getConditionAttributeRef().eContainer()));
-		}
-		if(tempMatchedSections.get(condition.getConditionAttributeRef().eContainer()) != null){
-			possiblePointedClasses.addAll(tempMatchedSections.get(condition.getConditionAttributeRef().eContainer()));
-		}
-		SourceSectionAttribute ssAttr = condition.getConditionAttributeRef();
-		ArrayList<Boolean> attrResults = new ArrayList<>();
+		EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
 		
-		if(possiblePointedClasses!= null && possiblePointedClasses.size() > 1){
-			// Try to handle InstancePointer
+		// As in 'checkSectionCondtion'-method we store the SourceSectionClass correspond to the given SourceSectionAttribute
+		if(matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
+			correspondEClassInstances.addAll(matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()));
+		}
+		if(tempMatchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
+			correspondEClassInstances.addAll(tempMatchedSections.get(attrCondition.getConditionAttributeRef().eContainer()));
+		}
+		
+		SourceSectionAttribute ssAttr = attrCondition.getConditionAttributeRef();
+		
+		if(correspondEClassInstances!= null && correspondEClassInstances.size() > 1){
+			// Try to handle InstancePointer if modeled
 			try{
-				EList<InstancePointer> instancePointerObts = condition.getAdditionalConditionSpecification();
+				EList<InstancePointer> instPointerAsList = attrCondition.getAdditionalConditionSpecification();
 				
-				possiblePointedClasses = this.instancePointerHandler.getPointedInstanceByList(instancePointerObts.get(0), possiblePointedClasses);
-				
+				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(instPointerAsList.get(0), correspondEClassInstances);
+				// At the moment we are able to handle only one modeled 'InstancePointer'
+				//eClassInstances = this.instancePointerHandler.getPointedInstanceByList(instPointerAsList.get(i), eClassInstances);
 			} catch (final Exception e){
 				consoleStream.println("Message:\n For AttributeCondition the InstancePointerHandler didn't work or available!" + e.getMessage());
 			}
 		}
 		
-		for(EObject PointedClass : possiblePointedClasses){
+		ArrayList<Object> srcAttrValues = new ArrayList<>();
+		
+		for(EObject PointedClass : correspondEClassInstances){
 			/*
 			 * As attributes may have a cardinality greater than 1, too, we have to handle
 			 * every attribute value separately.
 			 */
 			srcAttrValues.add(PointedClass.eGet(ssAttr.getAttribute()));
 		}
-			
+		
 		/*
 		 * First, we check if all the constraints are satisfied for every attribute value.
 		 */
+		ArrayList<Boolean> attrBoolResults = new ArrayList<>();
+		
 		for (Object srcAttrValue : srcAttrValues) {
 		
 			// convert Attribute value to String
@@ -234,7 +247,7 @@ public class ConditionHandler {
 			 */
 			boolean inclusionMatched = false;
 			boolean containsInclusions = false;
-			for (final AttributeValueConstraint constraint : condition.getValueConstraint()) {
+			for (final AttributeValueConstraint constraint : attrCondition.getValueConstraint()) {
 	
 				if (attributeConditionConstraintsWithErrors.contains(constraint)) {
 					continue;
@@ -288,57 +301,59 @@ public class ConditionHandler {
 			}
 
 			if (!inclusionMatched && containsInclusions) {
-				attrResults.add(false);
+				attrBoolResults.add(false);
 			} else {
-				attrResults.add(true);
+				attrBoolResults.add(true);
 			}
 		}
-		boolean cardinalityRes = checkCardinality(condition.getValue(), Collections.frequency(attrResults, true), condition.getComparator());
+		
+		// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
+		boolean cardinalityRes = checkCardinality(attrCondition.getValue(), Collections.frequency(attrBoolResults, true), attrCondition.getComparator());
 		if(cardinalityRes == true){
-			this.conditionRepository.put(condition, condResult.true_condition);
+			this.conditionRepository.put(attrCondition, condResult.true_condition);
 			return condResult.true_condition;
 		} else if(cardinalityRes == false){
-			this.conditionRepository.put(condition, condResult.false_condition);
+			this.conditionRepository.put(attrCondition, condResult.false_condition);
 			return condResult.false_condition;
 		} else{
-			this.conditionRepository.put(condition, condResult.irrelevant_condition);
+			this.conditionRepository.put(attrCondition, condResult.irrelevant_condition);
 			return condResult.irrelevant_condition;
 		}
 	}
 	
-	private boolean checkCardinality(int value, int size, ComparatorEnum comparator) {
+	private boolean checkCardinality(int refValue, int isValue, ComparatorEnum comparator) {
 		boolean result = true;
 		switch(comparator.getValue()){
 		case ComparatorEnum.EQ_VALUE:
-			if(size == value){
+			if(isValue == refValue){
 				result = true;
 			}else{
 				result = false;
 			}
 			break;
 		case ComparatorEnum.GE_VALUE:
-			if(size >= value){
+			if(isValue >= refValue){
 				result = true;
 			}else{
 				result = false;
 			}
 			break;
 		case ComparatorEnum.GT_VALUE:
-			if(size > value){
+			if(isValue > refValue){
 				result = true;
 			}else{
 				result = false;
 			}
 			break;
 		case ComparatorEnum.LE_VALUE:
-			if(size <= value){
+			if(isValue <= refValue){
 				result = true;
 			}else{
 				result = false;
 			}
 			break;
 		case ComparatorEnum.LT_VALUE:
-			if(size < value){
+			if(isValue < refValue){
 				result = true;
 			}else{
 				result = false;
@@ -350,20 +365,12 @@ public class ConditionHandler {
 		return result;
 	}
 
-	/**
-	 * This is the checkCondition-Method for SingleConditionOperators (e.g. And, Or). 
-	 * It is only for collecting the arguments and calling the right Operator-Method.
-	 * 
-	 * @param args A list which contain all arguments of that operator
-	 * @return The calculated boolean result
-	 */
 	private condResult checkConditionSingleConditionOperator(SingleConditionOperator condition) {
 
 		if(condition instanceof Not){
 			return checkConditionNot((Not) condition);
-		}  else {
-			// If we are here, some mistake is happened
-			// more types could be supported in the future
+		} else {
+			// If we are here, some mistake is happened, more types could be supported in the future
 			consoleStream.println("SingleConditionOperator type " + condition.getClass().getName() + " is not yet supported!");
 			return condResult.irrelevant_condition;
 		}		
@@ -373,35 +380,29 @@ public class ConditionHandler {
 		
 		condResult condTemp = condResult.irrelevant_condition;
 		// Not Implementation
-		if(condition.getCondPartRef()!=null){
+		if(condition.getCondPartRef() != null){
 			condTemp = checkCondition(condition.getCondPartRef());
-		} else if(condition.getCondPart()!=null){
+		} else if(condition.getCondPart() != null){
 			condTemp = checkCondition(condition.getCondPart());
-		}   else {
-			// If we are here, some mistake is happened
-			// more types could be supported in the future
-			consoleStream.println("Condition Not type " + condition.getClass().getName() + " is not yet supported!");
-			return condResult.irrelevant_condition;
-		}
+		}   
+		
 		// Invert the result and return
 		if(condTemp == condResult.true_condition){
 			condTemp = condResult.false_condition;
 		} else if(condTemp == condResult.false_condition){
 			condTemp = condResult.true_condition;
-		} else if(condTemp == condResult.irrelevant_condition){ // In this case the condition is optional. So it does not influence the ComplexCondition
+		} else if(condTemp == condResult.irrelevant_condition){ // In this case the condition is optional. So it does not influence the ComplexCondition. Therefore, we return true!
 			condTemp = condResult.true_condition;
+		} else {
+			// If we are here, some mistake is happened
+			// more types could be supported in the future
+			consoleStream.println("Condition Enum type " + condTemp + " is not yet supported!");
+			return condResult.irrelevant_condition;
 		}
 		conditionRepository.put(condition, condTemp);
 		return condTemp;
 	}
 
-	/**
-	 * This is the checkCondition-Method for MultipleConditionOperators (e.g. And, Or). 
-	 * It is only for collecting the arguments and calling the right Operator-Method.
-	 * 
-	 * @param args A list which contain all arguments of that operator
-	 * @return The calculated boolean result
-	 */
 	private condResult checkConditionMultipleConditionOperator(MultipleConditionOperator  multipleCondition) {
 		
 		if (multipleCondition instanceof And){
@@ -416,12 +417,7 @@ public class ConditionHandler {
 		}	
 	}
 
-	/**
-	 * This is the checkCondition-Method for the AND-Operator.
-	 * 
-	 * @param args A list which contain all arguments of that operator
-	 * @return The calculated boolean result
-	 */
+
 	private condResult checkConditionAnd(And condition) {
 		
 		//Get and put all arguments in a new list
@@ -429,24 +425,20 @@ public class ConditionHandler {
 		args.addAll(condition.getCondParts());
 		args.addAll(condition.getCondPartsRef());
 		
-		condResult condTemp = condResult.true_condition; //Note that is an And
+		// And Implementation
+		condResult condTemp = condResult.true_condition;
 		
-		for(ComplexCondition arg: args){ // Iterate over all arguments
+		for(ComplexCondition arg: args){
 			condTemp = checkCondition(arg);
 			if(condTemp == condResult.false_condition){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
 			}
 		}
+		
 		conditionRepository.put(condition, condTemp);
 		return condTemp;
 	}
 
-	/**
-	 * This is the checkCondition-Method for the OR-Operator.
-	 * 
-	 * @param args A list which contain all arguments of that operator
-	 * @return The calculated boolean result
-	 */
 	private condResult checkConditionOr(Or condition) {
 		
 		//Get and put all arguments in a new list
@@ -454,14 +446,16 @@ public class ConditionHandler {
 		args.addAll(condition.getCondParts());
 		args.addAll(condition.getCondPartsRef());
 		
+		//Or Implementation
 		condResult condTemp = condResult.false_condition; // Note that is an Or
 		
-		for(ComplexCondition arg: args){ // Iterate over all arguments
+		for(ComplexCondition arg: args){
 			condTemp = checkCondition(arg);
 			if(condTemp == condResult.true_condition){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
 			}
 		}
+		
 		conditionRepository.put(condition, condTemp);
 		return condTemp;
 	}

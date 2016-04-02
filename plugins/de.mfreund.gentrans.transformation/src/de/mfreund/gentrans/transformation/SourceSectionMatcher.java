@@ -399,6 +399,10 @@ public class SourceSectionMatcher extends CancellableElement {
 						
 						//Simplify Mapping by checking conditions of all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
 						mSimplified = checkConditions(m, res);
+						
+						if(mSimplified == null){
+							break;
+						}
 
 						/* 
 						 * now, determine the external hint values (the container must be present and valid as this was

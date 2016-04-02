@@ -14,6 +14,7 @@ import de.mfreund.gentrans.transformation.calculation.RoundFunction;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
 
 /**
@@ -58,7 +59,7 @@ public class ExpressionCalculator {
 	 * This calculates the value for a given expression, e.g. may be used in {@link AttributeValueConstraint}s or in {@link TargetSectionAttribute}s.
 	 * It represents only the general calculation rule.
 	 * @param expression for which the value have to be calculated or <em>null</em> 
-	 * @param vars contains all {@link FixedValue}s or {@link GlobalAttribute}s which are interpretable as double values.
+	 * @param vars contains all {@link FixedValue}s and {@link GlobalAttribute}s and temporarily {@link SourceSectionAttribute}s which are interpretable as double values.
 	 * @return The calculated expression value or <em>null</em> if no value could be calculated.
 	 */
 	public String calculateExpression(String expression, Map<String, Double> vars){
@@ -75,9 +76,7 @@ public class ExpressionCalculator {
 		} catch (final Exception e) {
 			consoleStream.println("Message:\n" + e.getMessage() + "\n nothing calculated!");
 			return expression;
-		
 		}
-		
 		return expResult;
 	}
 }

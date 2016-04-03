@@ -154,6 +154,8 @@ public class ConditionHandler {
 
 	private condResult checkSectionCondition(SectionCondition sectionCondition) {
 		
+		boolean tempConditionRes = false;
+		
 		if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == true || this.tempMatchedSections.containsKey(sectionCondition.getConditionSectionRef()) == true){
 			EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
 			
@@ -162,6 +164,7 @@ public class ConditionHandler {
 			}
 			if(tempMatchedSections.get(sectionCondition.getConditionSectionRef()) != null){
 				correspondEClassInstances.addAll(tempMatchedSections.get(sectionCondition.getConditionSectionRef()));
+				tempConditionRes = true;
 			}
 			if(sectionCondition.getAdditionalConditionSpecification().size()!=0){
 				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances);
@@ -169,29 +172,38 @@ public class ConditionHandler {
 			
 			// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
 			boolean cardinalityRes = checkCardinality(sectionCondition.getValue(), correspondEClassInstances.size(), sectionCondition.getComparator());
+			
+			// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
 			if(cardinalityRes == true){
-				this.conditionRepository.put(sectionCondition, condResult.true_condition);
+				if(tempConditionRes == false){
+					this.conditionRepository.put(sectionCondition, condResult.true_condition);}
 				return condResult.true_condition;
 			} else if(cardinalityRes == false){
-				this.conditionRepository.put(sectionCondition, condResult.false_condition);
+				if(tempConditionRes == false){
+					this.conditionRepository.put(sectionCondition, condResult.false_condition);}
 				return condResult.false_condition;
 			} else{
-				this.conditionRepository.put(sectionCondition, condResult.irrelevant_condition);
+				if(tempConditionRes == false){
+					this.conditionRepository.put(sectionCondition, condResult.irrelevant_condition);}
 				return condResult.irrelevant_condition;
 			}
-			
+		
+		// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
 		} else if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false && this.tempMatchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false){
-			this.conditionRepository.put(sectionCondition, condResult.false_condition);
+			if(tempConditionRes == false){
+				this.conditionRepository.put(sectionCondition, condResult.false_condition);}
 			return condResult.false_condition;
 		} else{
 			consoleStream.println("Message:\n check Condition" + sectionCondition.getName() + ". Some logical mistake occurred!");
-			this.conditionRepository.put(sectionCondition, condResult.irrelevant_condition);
+			if(tempConditionRes == false){
+				this.conditionRepository.put(sectionCondition, condResult.irrelevant_condition);}
 			return condResult.irrelevant_condition;
 		}
 	}
 
 	private condResult checkAttributeCondition(AttributeCondition attrCondition) {
 		
+		boolean tempConditionRes = false;
 		EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
 		
 		// As in 'checkSectionCondtion'-method we store the SourceSectionClass correspond to the given SourceSectionAttribute
@@ -200,6 +212,7 @@ public class ConditionHandler {
 		}
 		if(tempMatchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
 			correspondEClassInstances.addAll(tempMatchedSections.get(attrCondition.getConditionAttributeRef().eContainer()));
+			tempConditionRes = true;
 		}
 		
 		SourceSectionAttribute ssAttr = attrCondition.getConditionAttributeRef();
@@ -309,14 +322,19 @@ public class ConditionHandler {
 		
 		// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
 		boolean cardinalityRes = checkCardinality(attrCondition.getValue(), Collections.frequency(attrBoolResults, true), attrCondition.getComparator());
+		
+		// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
 		if(cardinalityRes == true){
-			this.conditionRepository.put(attrCondition, condResult.true_condition);
+			if(tempConditionRes == false){
+				this.conditionRepository.put(attrCondition, condResult.true_condition);}
 			return condResult.true_condition;
 		} else if(cardinalityRes == false){
-			this.conditionRepository.put(attrCondition, condResult.false_condition);
+			if(tempConditionRes == false){
+				this.conditionRepository.put(attrCondition, condResult.false_condition);}
 			return condResult.false_condition;
 		} else{
-			this.conditionRepository.put(attrCondition, condResult.irrelevant_condition);
+			if(tempConditionRes == false){
+				this.conditionRepository.put(attrCondition, condResult.irrelevant_condition);}
 			return condResult.irrelevant_condition;
 		}
 	}
@@ -399,7 +417,11 @@ public class ConditionHandler {
 			consoleStream.println("Condition Enum type " + condTemp + " is not yet supported!");
 			return condResult.irrelevant_condition;
 		}
-		conditionRepository.put(condition, condTemp);
+		
+		// The following code also saves conditions. Since the result of a condition depends on a current mapping and their referred SourceSection,
+		// this SourceSection may be not matched but considered!
+		//this.conditionRepository.put(condition, condTemp);
+		
 		return condTemp;
 	}
 
@@ -435,7 +457,10 @@ public class ConditionHandler {
 			}
 		}
 		
-		conditionRepository.put(condition, condTemp);
+		// The following code also saves conditions. Since the result of a condition depends on a current mapping and their referred SourceSection,
+		// this SourceSection may be not matched but considered!
+		//this.conditionRepository.put(condition, condTemp);
+		
 		return condTemp;
 	}
 
@@ -456,7 +481,10 @@ public class ConditionHandler {
 			}
 		}
 		
-		conditionRepository.put(condition, condTemp);
+		// The following code also saves conditions. Since the result of a condition depends on a current mapping and their referred SourceSection,
+		// this SourceSection may be not matched but considered!
+		// this.conditionRepository.put(condition, condTemp);
+		
 		return condTemp;
 	}
 

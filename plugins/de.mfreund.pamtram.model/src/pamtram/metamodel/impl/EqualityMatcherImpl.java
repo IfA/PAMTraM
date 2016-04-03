@@ -94,7 +94,19 @@ public class EqualityMatcherImpl extends SingleReferenceAttributeValueConstraint
 			specValue = refValue.toLowerCase();
 			newAttrValue = attrValue.toLowerCase();
 		}
-
+		// Update: EqualityMatcher useful for integer and doubles. The following example '1' versus. '1.0' represents a problem!
+		// Therefore, in case of integer and double, we try to convert twice (to Double and back to String)
+		try{
+			specValue = String.valueOf(Double.valueOf(refValue));
+		}catch(NumberFormatException e){
+			//doesn't work
+		}
+		try{
+			specValue = String.valueOf(Double.valueOf(refValue));
+		}catch(NumberFormatException e){
+			//doesn't work
+		}
+		
 		return (specValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.INCLUSION))
 				|| (!specValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.EXCLUSION));
 	}

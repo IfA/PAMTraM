@@ -287,7 +287,7 @@
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/Not"/>
       <genClasses ecoreClass="pamtram.ecore#//condition/AttributeCondition">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+        <genFeatures children="true" createChild="true" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//condition/AttributeCondition/valueConstraint"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//condition/AttributeCondition/conditionAttributeRef"/>

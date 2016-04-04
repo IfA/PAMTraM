@@ -425,13 +425,13 @@ public class SourceSectionMatcher extends CancellableElement {
 	}
 	
 	/**
-	 * This recursively checks if a conditional {@link Mapping} is succeeded. If not, the whole {@link Mapping} will be discarded.
+	 * This recursively checks if a conditional {@link Mapping} is succeeded. If not, the whole {@link Mapping} will be removed.
 	 * Otherwise all conditional {@link MappingHintGroup} will be checked in the same procedure. 
 	 * Of course, we do it the same way for all conditional {@link MappingHint}s. 
 	 * 
 	 * Note: This process is recursively and a nested procedure which saves time. In case of '<em><b>false</b></em>' other underneath ConditionalElements will be ignored and discarded.
-	 * @param res 
-	 * @param mOld represents the original {@link Mapping} 
+	 * @param res checked Mapping
+	 * @param definedMapping represents the original {@link Mapping} 
 	 * @return The {@link Mapping} representing a simplified of the origin one. There are all ConditionalElements that returned '<em><b>false</b></em>' are extracted.
 	 */
 	private Mapping checkConditions(Mapping definedMapping, MappingInstanceStorage res) {

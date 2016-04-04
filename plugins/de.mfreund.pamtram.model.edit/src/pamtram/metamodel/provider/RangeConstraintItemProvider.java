@@ -9,10 +9,13 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeConstraint;
 
@@ -66,7 +69,7 @@ public class RangeConstraintItemProvider extends MultipleReferencesAttributeValu
 				 MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
 				 true,
 				 false,
-				 true,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -88,10 +91,41 @@ public class RangeConstraintItemProvider extends MultipleReferencesAttributeValu
 				 MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
 				 true,
 				 false,
-				 true,
+				 false,
 				 null,
 				 null,
 				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND);
+			childrenFeatures.add(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -144,6 +178,13 @@ public class RangeConstraintItemProvider extends MultipleReferencesAttributeValu
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(RangeConstraint.class)) {
+			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -157,6 +198,39 @@ public class RangeConstraintItemProvider extends MultipleReferencesAttributeValu
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
+				 MetamodelFactory.eINSTANCE.createRangeBound()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
+				 MetamodelFactory.eINSTANCE.createRangeBound()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND ||
+			childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

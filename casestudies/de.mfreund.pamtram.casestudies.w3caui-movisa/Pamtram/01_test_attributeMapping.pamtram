@@ -26,22 +26,38 @@
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="frequency">
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="test" constraintReferenceValue="//@mappingModel.0/@globalValues.0 //@sourceSectionModel.0/@metaModelSections.0/@attributes.1" expression="tester-platformId">
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="test1" constraintReferenceValue="//@mappingModel.0/@globalValues.0 //@sourceSectionModel.0/@metaModelSections.0/@attributes.1" expression="tester-platformId"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="test2" constraintReferenceValue="//@mappingModel.0/@globalValues.0 //@sourceSectionModel.0/@metaModelSections.0/@attributes.1" expression="tester-platformId">
           <constraintReferenceValueAdditionalSpecification attributePointer="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0" value="Work Station 1"/>
+        </valueConstraint>
+        <valueConstraint xsi:type="metamodel:RangeConstraint" name="test3">
+          <upperBound expression="2.5"/>
+          <lowerBound boundReferenceValue="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1">
+            <boundReferenceValueAdditionalSpecification attributePointer="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0" value="Work Station 1"/>
+          </lowerBound>
+        </valueConstraint>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="test4" constraintReferenceValue="//@mappingModel.0/@globalValues.0"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="test5" constraintReferenceValue="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="test6" constraintReferenceValue="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1">
+          <constraintReferenceValueAdditionalSpecification attributePointer="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0" value="Work Station 3"/>
+        </valueConstraint>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="test7" constraintReferenceValue="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1" expression="0.9*platformId"/>
+        <valueConstraint xsi:type="metamodel:RangeConstraint" name="test8">
+          <upperBound expression="tester+1-platformId"/>
         </valueConstraint>
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/frequency"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
-    <metaModelPackage href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/modbustcp#/"/>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Button">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/modbustcp#//presentation/Button"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Button"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name">
-        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/modbustcp#//NamedMovisaModelElement/Name"/>
+        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name2">
-        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/modbustcp#//CommentedMovisaModelElement/Comment"/>
+        <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
@@ -94,6 +110,6 @@
     <modifierSets name="add one">
       <modifier xsi:type="mapping:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
     </modifierSets>
-    <globalValues name="tester" value="1"/>
+    <globalValues name="tester" value="2.3"/>
   </mappingModel>
 </pamtram:PAMTraM>

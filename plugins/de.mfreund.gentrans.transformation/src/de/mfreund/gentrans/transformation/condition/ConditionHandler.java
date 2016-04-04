@@ -206,6 +206,7 @@ public class ConditionHandler {
 		
 		boolean tempConditionRes = false;
 		EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
+		EList<InstancePointer> instPointersAsList = new BasicEList<InstancePointer>();
 		
 		// As in 'checkSectionCondtion'-method we store the SourceSectionClass correspond to the given SourceSectionAttribute
 		if(matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
@@ -219,15 +220,17 @@ public class ConditionHandler {
 		SourceSectionAttribute ssAttr = attrCondition.getConditionAttributeRef();
 		
 		if(correspondEClassInstances!= null && correspondEClassInstances.size() > 1){
-			// Try to handle InstancePointer if modeled
-			try{
-				EList<InstancePointer> instPointerAsList = attrCondition.getAdditionalConditionSpecification();
-				
-				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(instPointerAsList.get(0), correspondEClassInstances);
-				// At the moment we are able to handle only one modeled 'InstancePointer'
-				//eClassInstances = this.instancePointerHandler.getPointedInstanceByList(instPointerAsList.get(i), eClassInstances);
-			} catch (final Exception e){
-				consoleStream.println("Message:\n For AttributeCondition the InstancePointerHandler didn't work or available!" + e.getMessage());
+			// Try to handle InstancePointer if modeled and to specify the needed EClassInstances
+			instPointersAsList = attrCondition.getAdditionalConditionSpecification();					
+			InstancePointer instPt = null;
+			
+			if(instPointersAsList.size()>0){
+				instPt = instPointersAsList.get(0); //actual we handle only one InstancePointer, so model a clear one!
+			}
+			
+			if(instPt != null){
+				// Note: Here we use getPointedInstanceByLIST - List-Method
+				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(instPt, correspondEClassInstances);
 			}
 		}
 		
@@ -242,7 +245,7 @@ public class ConditionHandler {
 		}
 		
 		/*
-		 * First, we check if all the constraints are satisfied for every attribute value.
+		 * First, we check if all the constraints are satisfied for every attribute value of an AttributeConditon
 		 */
 		ArrayList<Boolean> attrBoolResults = new ArrayList<>();
 		

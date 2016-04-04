@@ -882,6 +882,15 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/OCL/Import">
+      <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+      <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
+    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"
         eSuperTypes="#//NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" eSuperTypes="#//condition/ComplexCondition">
@@ -908,6 +917,12 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MultipleConditionOperator" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="minimalCondParts"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="minimalCondParts" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this condition are not modeled or not referenced !',&#xD;&#xA;&#x9;severity : Integer = 2,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.condParts->size()+self.condPartsRef->size() > 1&#xD;&#xA;}.status"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condParts" upperBound="-1"
           eType="#//condition/ComplexCondition" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condPartsRef" upperBound="-1"
@@ -917,6 +932,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//condition/MultipleConditionOperator"/>
     <eClassifiers xsi:type="ecore:EClass" name="SingleConditionOperator" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="minimalCondParts"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="minimalCondParts" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this condition are not modeled or not referenced !',&#xD;&#xA;&#x9;severity : Integer = 2,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.condPart->size()+self.condPartRef->size() = 1&#xD;&#xA;}.status"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condPart" eType="#//condition/ComplexCondition"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condPartRef" eType="#//condition/ComplexCondition"/>

@@ -36,6 +36,7 @@ import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
@@ -279,11 +280,27 @@ public class ConditionHandler {
 						
 						if(constraint instanceof RangeConstraint){
 							List<String> srcAttrRefValuesAsList = new ArrayList<String>();
-							srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getLowerBound()));
-							srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(((RangeConstraint) constraint).getUpperBound()));
+							RangeBound lowerBound=((RangeConstraint) constraint).getLowerBound(), upperBound = ((RangeConstraint) constraint).getUpperBound();
 							
-							BasicEList<String> RefValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList);
-							constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,RefValuesAsEList);
+							if(lowerBound != null){
+								srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(lowerBound));
+							} else {
+								srcAttrRefValuesAsList.add("null");
+							}
+							
+							if(upperBound != null){
+								srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(upperBound));
+							} else {
+								srcAttrRefValuesAsList.add("null");
+							}
+							
+							BasicEList<String> refValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); 
+							constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString, refValuesAsEList);
+							
+							if(!constraintVal){ // just for debugging!
+								consoleStream.println("Constraint " + constraint.getName() + "of AttributeCondition " + attrCondition.getName() + " is false while the Attribute value " + srcAttrAsString +
+										", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
+							}
 						}  else {
 							// If we are here, some mistake is happened
 							// more types could be supported in the future

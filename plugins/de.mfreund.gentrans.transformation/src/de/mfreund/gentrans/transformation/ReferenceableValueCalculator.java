@@ -163,13 +163,15 @@ public class ReferenceableValueCalculator {
 					}
 					
 					if(correspondEClassInstances.size()==1){
+						Object refValueAttr = correspondEClassInstances.get(0).eGet(refElementAsSSA.getAttribute());
+						
 						// convert Attribute value to String
 						refValue = refElementAsSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
-								.convertToString(refElementAsSSA.getAttribute().getEAttributeType(), refElementAsSSA);
+								.convertToString(refElementAsSSA.getAttribute().getEAttributeType(), refValueAttr);
 					} else{
 						refValue="";
-						consoleStream.println(" Note: The cardinality of the SourceSectionAttribute" + refElementAsSSA.getName() + "is"
-								+ correspondEClassInstances.size() +"! So it cannot be handled. Hint: Create or change the InstancePointer");
+						consoleStream.println(" Note: The cardinality of the SourceSectionAttribute, " + refElementAsSSA.getName() + ", is "
+								+ correspondEClassInstances.size() +"! So it cannot be handled. Hint: Create or change the InstancePointer!");
 					}
 			} else {
 				// If we are here, some mistake is happened
@@ -200,7 +202,8 @@ public class ReferenceableValueCalculator {
 	private String calculateReferenceValueWithExpression(String expression, EList<ReferenceableElement> refElementsAsList, EList<InstancePointer> instPointersAsList) {
 		
 		String expressionResult = "";
-		Map<String,Double> vars = this.globalValuesAsDouble;
+		Map<String,Double> vars = new HashMap<>();
+		vars.putAll(this.globalValuesAsDouble);
 		
 		// Get SourcSectionAttributes and their values and put them into 'vars' List
 		int temp = 0; // Is needed for getting the correspond InstancePointer
@@ -234,9 +237,9 @@ public class ReferenceableValueCalculator {
 							consoleStream.println("Cannot" + refValue + "match to Double. Message:" + e.getMessage());
 						}
 					} else {
-						consoleStream.println(" Note: The cardinality of the SourceSectionAttribute" + refElementAsSSA.getName() + "is"
-								+ correspondEClassInstances.size() +"! So it cannot be handled. Hint: Create or change the InstancePointer."
-										+ "But we try to calculate by 'ExpressionCalculator'");
+						consoleStream.println(" Note: The cardinality of the SourceSectionAttribute, " + refElementAsSSA.getName() + ", is "
+								+ correspondEClassInstances.size() +"! So it cannot be handled. Hint: Create or change the InstancePointer!"
+										+ "\n But we're continue while we still try calculate by 'ExpressionCalculator'!");
 					}
 			} else{//FixedValue or GlobalAttribute, so we need not to handle it
 				++temp;
@@ -248,8 +251,8 @@ public class ReferenceableValueCalculator {
 			ExpressionCalculator expCalc = new ExpressionCalculator();
 			expressionResult = expCalc.calculateExpression(expression, vars);
 		} catch (final Exception e) {
-			consoleStream.println("Message:\n A reference value couldn't be be calculated by the 'ExpressionCalculator'. Expression:" + expression + "because of" + e.getMessage()
-			+ "\n. Original expression will be returned!");
+			consoleStream.println("Message:\n A reference value couldn't be be calculated by the 'ExpressionCalculator'. Expression, " + expression + ", because of " + e.getMessage()
+			+ ".\n Original expression will be returned!");
 			// If it fails, so return the original expression back (maybe it's a simple string, e.g. "Hello World!")
 			return expression;
 		}

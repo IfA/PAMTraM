@@ -2,10 +2,14 @@
  */
 package pamtram.condition.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.List;
+import java.util.Map;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -15,8 +19,22 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
+import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
+import pamtram.condition.ConditionTables;
 import pamtram.condition.MultipleConditionOperator;
 
 /**
@@ -102,6 +120,61 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean minimalCondParts(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv minimalCondParts:
+		 *   let severity : Integer[1] = 2
+		 *   in
+		 *     let
+		 *       status : OclAny[1] = self.condParts->size() +
+		 *       self.condPartsRef->size() > 1
+		 *     in
+		 *       let
+		 *         message : String[?] = if status <> true
+		 *         then 'The required subparts of this condition are not modeled or not referenced !'
+		 *         else null
+		 *         endif
+		 *       in
+		 *         'MultipleConditionOperator::minimalCondParts'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    final /*@NonNull*/ /*@Thrown*/ List<ComplexCondition> condParts = this.getCondParts();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_condParts = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, condParts);
+		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_condParts));
+		    final /*@NonNull*/ /*@Thrown*/ List<ComplexCondition> condPartsRef = this.getCondPartsRef();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_condPartsRef = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, condPartsRef);
+		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size_0 = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_condPartsRef));
+		    final /*@NonNull*/ /*@Thrown*/ IntegerValue sum = ClassUtil.nonNullState((IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0));
+		    final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, sum, ConditionTables.INT_1).booleanValue());
+		    CAUGHT_status = status;
+		}
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
+		}
+		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne) {
+		    message_0 = ConditionTables.STR_The_32_required_32_subparts_32_of_32_this_32_condition_32_are_32_not_32_modeled_32_or_32_not_32_r;
+		}
+		else {
+		    message_0 = null;
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_MultipleConditionOperator_c_c_minimalCondParts, this, null, diagnostics, context, message_0, ConditionTables.INT_2, CAUGHT_status, ConditionTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -180,6 +253,21 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 				return condPartsRef != null && !condPartsRef.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP:
+				return minimalCondParts((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //MultipleConditionOperatorImpl

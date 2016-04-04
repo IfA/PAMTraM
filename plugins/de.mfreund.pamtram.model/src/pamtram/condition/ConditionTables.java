@@ -10,6 +10,7 @@
  *******************************************************************************/
 package pamtram.condition;
 
+import java.lang.String;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
@@ -34,6 +35,8 @@ import org.eclipse.ocl.pivot.internal.library.executor.ExecutorPropertyWithImple
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
 import pamtram.PamtramPackage;
 import pamtram.PamtramTables;
 import pamtram.condition.ConditionPackage;
@@ -82,12 +85,19 @@ public class ConditionTables
     public static final /*@NonNull*/ /*@NonInvalid*/ DataTypeId DATAid_EInt = ConditionTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationId ENUMid_ComparatorEnum = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getEnumerationId("ComparatorEnum");
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationId ENUMid_CondSettingEnum = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getEnumerationId("CondSettingEnum");
+    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
+    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
+    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_2 = ValueUtil.integerValueOf("2");
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MultipleConditionOperator_c_c_minimalCondParts = "MultipleConditionOperator::minimalCondParts";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SingleConditionOperator_c_c_minimalCondParts = "SingleConditionOperator::minimalCondParts";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_required_32_subparts_32_of_32_this_32_condition_32_are_32_not_32_modeled_32_or_32_not_32_r = "The required subparts of this condition are not modeled or not referenced !";
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ConditionalElement = TypeId.BAG.getSpecializedId(ConditionTables.CLSSid_ConditionalElement);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MultipleConditionOperator = TypeId.BAG.getSpecializedId(ConditionTables.CLSSid_MultipleConditionOperator);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SingleConditionOperator = TypeId.BAG.getSpecializedId(ConditionTables.CLSSid_SingleConditionOperator);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeValueConstraint = TypeId.ORDERED_SET.getSpecializedId(ConditionTables.CLSSid_AttributeValueConstraint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ComplexCondition = TypeId.ORDERED_SET.getSpecializedId(ConditionTables.CLSSid_ComplexCondition);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_InstancePointer = TypeId.ORDERED_SET.getSpecializedId(ConditionTables.CLSSid_InstancePointer);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SET_CLSSid_ComplexCondition = TypeId.SET.getSpecializedId(ConditionTables.CLSSid_ComplexCondition);
 
 	/**
 	 *	The type parameters for templated types and operations.

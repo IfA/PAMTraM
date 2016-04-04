@@ -24,6 +24,7 @@ import pamtram.PamtramPackage;
  * <!-- end-user-doc -->
  * @see pamtram.condition.ConditionFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' genlib='http://www.et.tu-dresden.de/ifa/agtele/genlib'"
  * @generated
  */
 public interface ConditionPackage extends EPackage {
@@ -225,13 +226,22 @@ public interface ConditionPackage extends EPackage {
 	int MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Minimal Cond Parts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_CONDITION_OPERATOR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Multiple Condition Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+	int MULTIPLE_CONDITION_OPERATOR_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.AndImpl <em>And</em>}' class.
@@ -278,6 +288,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int AND_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Minimal Cond Parts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -335,6 +354,15 @@ public interface ConditionPackage extends EPackage {
 	int OR_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Minimal Cond Parts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The number of operations of the '<em>Or</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -390,13 +418,22 @@ public interface ConditionPackage extends EPackage {
 	int SINGLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Minimal Cond Parts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_CONDITION_OPERATOR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Single Condition Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+	int SINGLE_CONDITION_OPERATOR_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.
@@ -443,6 +480,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_FEATURE_COUNT = SINGLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Minimal Cond Parts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Not</em>' class.
@@ -762,6 +808,16 @@ public interface ConditionPackage extends EPackage {
 	EReference getMultipleConditionOperator_CondPartsRef();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.condition.MultipleConditionOperator#minimalCondParts(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Minimal Cond Parts</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Minimal Cond Parts</em>' operation.
+	 * @see pamtram.condition.MultipleConditionOperator#minimalCondParts(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMultipleConditionOperator__MinimalCondParts__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -823,6 +879,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSingleConditionOperator_CondPartRef();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.SingleConditionOperator#minimalCondParts(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Minimal Cond Parts</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Minimal Cond Parts</em>' operation.
+	 * @see pamtram.condition.SingleConditionOperator#minimalCondParts(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getSingleConditionOperator__MinimalCondParts__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Not <em>Not</em>}'.
@@ -1009,6 +1075,14 @@ public interface ConditionPackage extends EPackage {
 		EReference MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF = eINSTANCE.getMultipleConditionOperator_CondPartsRef();
 
 		/**
+		 * The meta object literal for the '<em><b>Minimal Cond Parts</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MULTIPLE_CONDITION_OPERATOR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMultipleConditionOperator__MinimalCondParts__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1061,6 +1135,14 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SINGLE_CONDITION_OPERATOR__COND_PART_REF = eINSTANCE.getSingleConditionOperator_CondPartRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Minimal Cond Parts</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SINGLE_CONDITION_OPERATOR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSingleConditionOperator__MinimalCondParts__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.

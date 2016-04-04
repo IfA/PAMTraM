@@ -240,25 +240,43 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 	
 	@Override
 	public boolean checkConstraint(String attrValue, EList<String> refValue) {
-		boolean lowerBoundResult=true,upperBoundResult=true; //Keep True in case no rangeBound were established 
-
+		boolean lowerBoundResult = true, upperBoundResult = true; //Keep True in case no rangeBound were established 
+		String lowerBoundRefValue = refValue.get(0);
+		String upperBoundRefValue = refValue.get(1);
+		
 		// Firstly, check the attrValue corresponding to his lowerBound and secondly, with his upperBound. (Order doesn't matter)
-		if (refValue.get(0) != null){
-			if(this.getLowerBound().getBoundType().equals(AttributeValueConstraintType.INCLUSION)){
-				lowerBoundResult = Double.parseDouble(attrValue) >= Double.parseDouble(this.getLowerBound().getExpression());
-			}
-			else if (this.getLowerBound().getBoundType().equals(AttributeValueConstraintType.EXCLUSION)){
-				lowerBoundResult = Double.parseDouble(attrValue) > Double.parseDouble(this.getLowerBound().getExpression());
-			}
-		}
-		if (refValue.get(1) != null){
-			if(this.getUpperBound().getBoundType().equals(AttributeValueConstraintType.INCLUSION)){
-				upperBoundResult = Double.parseDouble(attrValue) <= Double.parseDouble(this.getUpperBound().getExpression());
-			}
-			else if (this.getUpperBound().getBoundType().equals(AttributeValueConstraintType.EXCLUSION)){
-				upperBoundResult = Double.parseDouble(attrValue) < Double.parseDouble(this.getUpperBound().getExpression());
+		if(lowerBoundRefValue == "null"){
+			lowerBoundResult = true; //Keep True if no rangeBound were modeled 
+		} else {
+			try{
+				if(this.getLowerBound().getBoundType().equals(AttributeValueConstraintType.INCLUSION)){
+					lowerBoundResult = Double.valueOf(attrValue) >= Double.valueOf(lowerBoundRefValue);
+				}
+				else if (this.getLowerBound().getBoundType().equals(AttributeValueConstraintType.EXCLUSION)){
+					lowerBoundResult = Double.valueOf(attrValue) > Double.valueOf(lowerBoundRefValue);
+				}
+			} catch (NumberFormatException e){
+				lowerBoundResult = false;
 			}
 		}
+		
+		if(upperBoundRefValue == "null"){
+			upperBoundResult = true; //Keep True if no rangeBound were modeled 
+		} else {
+			try{
+				if (refValue.get(1) != null){
+					if(this.getUpperBound().getBoundType().equals(AttributeValueConstraintType.INCLUSION)){
+						upperBoundResult = Double.valueOf(attrValue) <= Double.valueOf(upperBoundRefValue);
+					}
+					else if (this.getUpperBound().getBoundType().equals(AttributeValueConstraintType.EXCLUSION)){
+						upperBoundResult = Double.valueOf(attrValue) < Double.valueOf(upperBoundRefValue);
+					}
+				}
+			} catch (NumberFormatException e){
+				upperBoundResult = false;
+			}
+		}
+
 		return lowerBoundResult && upperBoundResult; //Combine the results of each rangeBound (And = &&) 
 	}
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+  <sourceSectionModel name="de.gfai.stgml">
+    <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="source"/>
+  </sourceSectionModel>
+  <targetSectionModel name="Prozessbild">
+    <metaModelPackage href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#/"/>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="target"/>
+  </targetSectionModel>
+  <mappingModel>
+    <mapping name="sourceMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetMMSection="//@targetSectionModel.0/@metaModelSections.0"/>
+    </mapping>
+  </mappingModel>
+</pamtram:PAMTraM>

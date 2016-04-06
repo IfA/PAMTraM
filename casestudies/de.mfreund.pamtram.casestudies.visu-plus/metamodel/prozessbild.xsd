@@ -1,0 +1,3188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xs:schema [
+	<!ENTITY n255 "([0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])">
+	<!ENTITY xy "(-?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9],-?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9])">
+]>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!-- *****************************************************
+	**********************************************************
+	************** definition of simple types ****************
+	********************************************************** 
+	****************************************************** -->
+	<xs:simpleType name="tagName">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="screenName">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="imageFile">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="colorValueType1">
+		<xs:restriction base="xs:unsignedInt">
+			<xs:maxInclusive value="16777215"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="colorValueType2">
+		<xs:annotation>
+			<xs:documentation>color value: number between 0 and 255 for primary
+				colors "rgb(valueRed,valueGreen,valueBlue)" - system color name
+				"syscolor(COLORNAME Syscolor)" - no color "none"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="rgb\(&n255;,&n255;,&n255;\)|syscolor\([A-Z0-9]* SysColor\)|none" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="unsigned31BitInt">
+		<xs:restriction base="xs:unsignedInt">
+			<xs:maxInclusive value="2147483647"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="percent">
+		<xs:restriction base="xs:short">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="options">
+		<xs:annotation>
+			<xs:documentation>different selectable options encoded by a number from 0 to x (in order of the options in the combobox in Visu+ development environment)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:short">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="linejoinType">
+		<xs:annotation>
+			<xs:documentation>linejoin style: round - miter - bevel</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="round" />
+			<xs:enumeration value="miter" />
+			<xs:enumeration value="bevel" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="linecapType">
+		<xs:annotation>
+			<xs:documentation>linecap style: butt - round - square</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="butt">
+			</xs:enumeration>
+			<xs:enumeration value="round" />
+			<xs:enumeration value="square" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="strokeDasharryType">
+		<xs:annotation>
+			<xs:documentation>line style: dashed "2,2" - dotted "1,1" - dash,
+				dot,... "2,1" - dash, dot, dot,... "2,1,1"
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2,2" /> <!-- dashed -->
+			<xs:enumeration value="1,1" /> <!-- dotted -->
+			<xs:enumeration value="2,1" /> <!-- dash, dot, dash, dot,... -->
+			<xs:enumeration value="2,1,1" /> <!-- dash, dot, dot, dash, dot, dot,... -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="hatchType">
+		<xs:annotation>
+			<xs:documentation>hatching style: different styles numbered from 0 to
+				22, for no hatching style leave attribute out</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="hatch\(2[0-2]\)|hatch\(1?[0-9]\)" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="styleType">
+		<xs:annotation>
+			<xs:documentation>orientation of static image: stretched "2" - middle
+				"3" - top-middle "26" - bottom middle "42" - middle-left "74" -
+				top-left "82" - bottom-left "98" - middle-right "138" - top-right
+				""146" - bottom-right "162" - add 4 to value for fixed proportions</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2" /> <!-- stretched -->
+			<xs:enumeration value="3" /> <!-- middle -->
+			<xs:enumeration value="6" /> <!-- stretched, proportions fixed -->
+			<xs:enumeration value="7" /> <!-- middle, proportions fixed -->
+			<xs:enumeration value="26" /> <!-- top-middle -->
+			<xs:enumeration value="30" /> <!-- top-middle, proportions fixed -->
+			<xs:enumeration value="42" /> <!-- bottom-middle -->
+			<xs:enumeration value="46" /> <!-- bottom-middle, proportions fixed -->
+			<xs:enumeration value="74" /> <!-- middle-left -->
+			<xs:enumeration value="78" /> <!-- middle-left, proportions fixed -->
+			<xs:enumeration value="82" /> <!-- top-left -->
+			<xs:enumeration value="86" /> <!-- top-left, proportions fixed -->
+			<xs:enumeration value="98" /> <!-- bottom-left -->
+			<xs:enumeration value="102" /> <!-- bottom-left, proportions fixed -->
+			<xs:enumeration value="138" /> <!-- middle-right -->
+			<xs:enumeration value="142" /> <!-- middle-right, proportions fixed -->
+			<xs:enumeration value="146" /> <!-- top-right -->
+			<xs:enumeration value="150" /> <!-- top-right, proportions fixed -->
+			<xs:enumeration value="162" /> <!-- bottom-right -->
+			<xs:enumeration value="166" /> <!-- bottom-right, proportions fixed -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="accessLevelType">
+		<xs:annotation>
+			<xs:documentation>user acess level: user level 0-8 - admin level
+				"1023" - developer level "1024"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0" />
+			<xs:enumeration value="1" />
+			<xs:enumeration value="2" />
+			<xs:enumeration value="3" />
+			<xs:enumeration value="4" />
+			<xs:enumeration value="5" />
+			<xs:enumeration value="6" />
+			<xs:enumeration value="7" />
+			<xs:enumeration value="8" />
+			<xs:enumeration value="1023" />
+			<xs:enumeration value="1024" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="textAnchorType">
+		<xs:annotation>
+			<xs:documentation>text position</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="middle" />
+			<xs:enumeration value="top" />
+			<xs:enumeration value="bottom" />
+			<xs:enumeration value="start" />
+			<xs:enumeration value="end" />
+			<xs:enumeration value="middle-start" />
+			<xs:enumeration value="middle-end" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="angleType">
+		<xs:annotation>
+			<xs:documentation>angle 0-359°</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedShort">
+			<xs:maxInclusive value="359" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="formatType">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((x.)?x{1,5}|x,(x){2,3}(.(x){1,3})?)?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="signedMillion">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minExclusive value="-1000000" />
+			<xs:maxExclusive value="1000000" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="severalPointsType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(&xy; ?){2,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="twoPointsType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(&xy; ?){2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="objectEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ActiveX" />
+			<xs:enumeration value="AlarmBanner" />
+			<xs:enumeration value="AlarmWnd" />
+			<xs:enumeration value="base" />
+			<xs:enumeration value="Button" />
+			<xs:enumeration value="Chart" />
+			<xs:enumeration value="DLRWnd" />
+			<xs:enumeration value="DundasGauge" />
+			<xs:enumeration value="Edit" />
+			<xs:enumeration value="EmbView" />
+			<xs:enumeration value="Gauge" />
+			<xs:enumeration value="GridBox" />
+			<xs:enumeration value="group" />
+			<xs:enumeration value="HisLogWnd" />
+			<xs:enumeration value="HourSelector" />
+			<xs:enumeration value="IPCamera" />
+			<xs:enumeration value="Listbox" />
+			<xs:enumeration value="OleObj" />
+			<xs:enumeration value="poly" />
+			<xs:enumeration value="RecipeWnd" />
+			<xs:enumeration value="TabObj" />
+			<xs:enumeration value="TraceDBWnd" />
+			<xs:enumeration value="Trend" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="typeEnum">
+		<xs:restriction base="xs:string">
+			<!-- base-objects -->
+			<xs:enumeration value="arc" />
+			<xs:enumeration value="chord" />
+			<xs:enumeration value="ellipse" />
+			<xs:enumeration value="line" />
+			<xs:enumeration value="pie" />
+			<xs:enumeration value="rect" />
+			<xs:enumeration value="rrect" />
+			<!-- Button-objects -->
+			<xs:enumeration value="checked" />
+			<xs:enumeration value="groupbox" />
+			<xs:enumeration value="hotregion" />
+			<xs:enumeration value="normal" />
+			<!-- poly-objects -->
+			<xs:enumeration value="pipe" />
+			<xs:enumeration value="polybezier" />
+			<xs:enumeration value="polygon" />
+			<xs:enumeration value="polyline" />
+			<!-- other objects without subtype -->
+			<xs:enumeration value="" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="groupChildEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ActiveX" />
+			<xs:enumeration value="AlarmBanner" />
+			<xs:enumeration value="AlarmWnd" />
+			<xs:enumeration value="base" />
+			<xs:enumeration value="Button" />
+			<xs:enumeration value="Chart" />
+			<xs:enumeration value="DLRWnd" />
+			<xs:enumeration value="DundasGauge" />
+			<xs:enumeration value="Edit" />
+			<xs:enumeration value="EmbView" />
+			<xs:enumeration value="Gauge" />
+			<xs:enumeration value="GridBox" />
+			<xs:enumeration value="group" />
+			<xs:enumeration value="HisLogWnd" />
+			<xs:enumeration value="HourSelector" />
+			<xs:enumeration value="IPCamera" />
+			<xs:enumeration value="Listbox" />
+			<xs:enumeration value="OleObj" />
+			<xs:enumeration value="poly" />
+			<xs:enumeration value="RecipeWnd" />
+			<xs:enumeration value="TabObj" />
+			<xs:enumeration value="TraceDBWnd" />
+			<xs:enumeration value="Trend" />
+			<xs:enumeration value="arc" />
+			<xs:enumeration value="chord" />
+			<xs:enumeration value="ellipse" />
+			<xs:enumeration value="line" />
+			<xs:enumeration value="pie" />
+			<xs:enumeration value="rect" />
+			<xs:enumeration value="rrect" />
+			<xs:enumeration value="checked" />
+			<xs:enumeration value="groupbox" />
+			<xs:enumeration value="hotregion" />
+			<xs:enumeration value="normal" />
+			<xs:enumeration value="pipe" />
+			<xs:enumeration value="polybezier" />
+			<xs:enumeration value="polygon" />
+			<xs:enumeration value="polyline" />
+			<xs:enumeration value="" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	<!-- *****************************************************
+	**********************************************************
+	************** definition of complex types ***************
+	********************************************************** 
+	****************************************************** -->
+	<xs:complexType name="nxListType">
+		<xs:attribute name="n0" type="xs:string"/>
+		<xs:attribute name="n1" type="xs:string"/>
+		<xs:attribute name="n2" type="xs:string"/>
+		<xs:attribute name="n3" type="xs:string"/>
+		<xs:attribute name="n4" type="xs:string"/>
+		<xs:attribute name="n5" type="xs:string"/>
+		<xs:attribute name="n6" type="xs:string"/>
+		<xs:attribute name="n7" type="xs:string"/>
+		<xs:attribute name="n8" type="xs:string"/>
+		<xs:attribute name="n9" type="xs:string"/>
+		<xs:attribute name="n10" type="xs:string"/>
+		<xs:attribute name="n11" type="xs:string"/>
+		<xs:attribute name="n12" type="xs:string"/>
+		<xs:attribute name="n13" type="xs:string"/>
+		<xs:attribute name="n14" type="xs:string"/>
+		<xs:attribute name="n15" type="xs:string"/>
+		<xs:attribute name="n16" type="xs:string"/>
+		<xs:attribute name="n17" type="xs:string"/>
+		<xs:attribute name="n18" type="xs:string"/>
+		<xs:attribute name="n19" type="xs:string"/>
+		<xs:attribute name="n20" type="xs:string"/>
+		<xs:attribute name="n21" type="xs:string"/>
+		<xs:attribute name="n22" type="xs:string"/>
+		<xs:attribute name="n23" type="xs:string"/>
+		<xs:attribute name="n24" type="xs:string"/>
+		<xs:attribute name="n25" type="xs:string"/>
+		<xs:attribute name="n26" type="xs:string"/>
+		<xs:attribute name="n27" type="xs:string"/>
+		<xs:attribute name="n28" type="xs:string"/>
+		<xs:attribute name="n29" type="xs:string"/>
+		<xs:attribute name="n30" type="xs:string"/>
+		<xs:attribute name="n31" type="xs:string"/>
+		<xs:attribute name="n32" type="xs:string"/>
+		<xs:attribute name="n33" type="xs:string"/>
+		<xs:attribute name="n34" type="xs:string"/>
+		<xs:attribute name="n35" type="xs:string"/>
+		<xs:attribute name="n36" type="xs:string"/>
+		<xs:attribute name="n37" type="xs:string"/>
+		<xs:attribute name="n38" type="xs:string"/>
+		<xs:attribute name="n39" type="xs:string"/>
+		<xs:attribute name="n40" type="xs:string"/>
+		<xs:attribute name="n41" type="xs:string"/>
+		<xs:attribute name="n42" type="xs:string"/>
+		<xs:attribute name="n43" type="xs:string"/>
+		<xs:attribute name="n44" type="xs:string"/>
+		<xs:attribute name="n45" type="xs:string"/>
+		<xs:attribute name="n46" type="xs:string"/>
+		<xs:attribute name="n47" type="xs:string"/>
+		<xs:attribute name="n48" type="xs:string"/>
+		<xs:attribute name="n49" type="xs:string"/>
+		<xs:attribute name="n50" type="xs:string"/>
+		<xs:attribute name="n51" type="xs:string"/>
+		<xs:attribute name="n52" type="xs:string"/>
+		<xs:attribute name="n53" type="xs:string"/>
+		<xs:attribute name="n54" type="xs:string"/>
+		<xs:attribute name="n55" type="xs:string"/>
+		<xs:attribute name="n56" type="xs:string"/>
+		<xs:attribute name="n57" type="xs:string"/>
+		<xs:attribute name="n58" type="xs:string"/>
+		<xs:attribute name="n59" type="xs:string"/>
+		<xs:attribute name="n60" type="xs:string"/>
+		<xs:attribute name="n61" type="xs:string"/>
+		<xs:attribute name="n62" type="xs:string"/>
+		<xs:attribute name="n63" type="xs:string"/>
+		<xs:attribute name="n64" type="xs:string"/>
+		<xs:attribute name="n65" type="xs:string"/>
+		<xs:attribute name="n66" type="xs:string"/>
+		<xs:attribute name="n67" type="xs:string"/>
+		<xs:attribute name="n68" type="xs:string"/>
+		<xs:attribute name="n69" type="xs:string"/>
+		<xs:attribute name="n70" type="xs:string"/>
+		<xs:attribute name="n71" type="xs:string"/>
+		<xs:attribute name="n72" type="xs:string"/>
+		<xs:attribute name="n73" type="xs:string"/>
+		<xs:attribute name="n74" type="xs:string"/>
+		<xs:attribute name="n75" type="xs:string"/>
+		<xs:attribute name="n76" type="xs:string"/>
+		<xs:attribute name="n77" type="xs:string"/>
+		<xs:attribute name="n78" type="xs:string"/>
+		<xs:attribute name="n79" type="xs:string"/>
+		<xs:attribute name="n80" type="xs:string"/>
+		<xs:attribute name="n81" type="xs:string"/>
+		<xs:attribute name="n82" type="xs:string"/>
+		<xs:attribute name="n83" type="xs:string"/>
+		<xs:attribute name="n84" type="xs:string"/>
+		<xs:attribute name="n85" type="xs:string"/>
+		<xs:attribute name="n86" type="xs:string"/>
+		<xs:attribute name="n87" type="xs:string"/>
+		<xs:attribute name="n88" type="xs:string"/>
+		<xs:attribute name="n89" type="xs:string"/>
+		<xs:attribute name="n90" type="xs:string"/>
+		<xs:attribute name="n91" type="xs:string"/>
+		<xs:attribute name="n92" type="xs:string"/>
+		<xs:attribute name="n93" type="xs:string"/>
+		<xs:attribute name="n94" type="xs:string"/>
+		<xs:attribute name="n95" type="xs:string"/>
+		<xs:attribute name="n96" type="xs:string"/>
+		<xs:attribute name="n97" type="xs:string"/>
+		<xs:attribute name="n98" type="xs:string"/>
+		<xs:attribute name="n99" type="xs:string"/>
+		<xs:attribute name="n100" type="xs:string"/>
+		<xs:attribute name="n101" type="xs:string"/>
+		<xs:attribute name="n102" type="xs:string"/>
+		<xs:attribute name="n103" type="xs:string"/>
+		<xs:attribute name="n104" type="xs:string"/>
+		<xs:attribute name="n105" type="xs:string"/>
+		<xs:attribute name="n106" type="xs:string"/>
+		<xs:attribute name="n107" type="xs:string"/>
+		<xs:attribute name="n108" type="xs:string"/>
+		<xs:attribute name="n109" type="xs:string"/>
+		<xs:attribute name="n110" type="xs:string"/>
+		<xs:attribute name="n111" type="xs:string"/>
+		<xs:attribute name="n112" type="xs:string"/>
+		<xs:attribute name="n113" type="xs:string"/>
+		<xs:attribute name="n114" type="xs:string"/>
+		<xs:attribute name="n115" type="xs:string"/>
+		<xs:attribute name="n116" type="xs:string"/>
+		<xs:attribute name="n117" type="xs:string"/>
+		<xs:attribute name="n118" type="xs:string"/>
+		<xs:attribute name="n119" type="xs:string"/>
+		<xs:attribute name="n120" type="xs:string"/>
+		<xs:attribute name="n121" type="xs:string"/>
+		<xs:attribute name="n122" type="xs:string"/>
+		<xs:attribute name="n123" type="xs:string"/>
+		<xs:attribute name="n124" type="xs:string"/>
+		<xs:attribute name="n125" type="xs:string"/>
+		<xs:attribute name="n126" type="xs:string"/>
+		<xs:attribute name="n127" type="xs:string"/>
+		<xs:attribute name="n128" type="xs:string"/>
+		<xs:attribute name="n129" type="xs:string"/>
+		<xs:attribute name="n130" type="xs:string"/>
+		<xs:attribute name="n131" type="xs:string"/>
+		<xs:attribute name="n132" type="xs:string"/>
+		<xs:attribute name="n133" type="xs:string"/>
+		<xs:attribute name="n134" type="xs:string"/>
+		<xs:attribute name="n135" type="xs:string"/>
+		<xs:attribute name="n136" type="xs:string"/>
+		<xs:attribute name="n137" type="xs:string"/>
+		<xs:attribute name="n138" type="xs:string"/>
+		<xs:attribute name="n139" type="xs:string"/>
+		<xs:attribute name="n140" type="xs:string"/>
+		<xs:attribute name="n141" type="xs:string"/>
+		<xs:attribute name="n142" type="xs:string"/>
+		<xs:attribute name="n143" type="xs:string"/>
+		<xs:attribute name="n144" type="xs:string"/>
+		<xs:attribute name="n145" type="xs:string"/>
+		<xs:attribute name="n146" type="xs:string"/>
+		<xs:attribute name="n147" type="xs:string"/>
+		<xs:attribute name="n148" type="xs:string"/>
+		<xs:attribute name="n149" type="xs:string"/>
+		<xs:attribute name="n150" type="xs:string"/>
+		<xs:attribute name="n151" type="xs:string"/>
+		<xs:attribute name="n152" type="xs:string"/>
+		<xs:attribute name="n153" type="xs:string"/>
+		<xs:attribute name="n154" type="xs:string"/>
+		<xs:attribute name="n155" type="xs:string"/>
+		<xs:attribute name="n156" type="xs:string"/>
+		<xs:attribute name="n157" type="xs:string"/>
+		<xs:attribute name="n158" type="xs:string"/>
+		<xs:attribute name="n159" type="xs:string"/>
+		<xs:attribute name="n160" type="xs:string"/>
+		<xs:attribute name="n161" type="xs:string"/>
+		<xs:attribute name="n162" type="xs:string"/>
+		<xs:attribute name="n163" type="xs:string"/>
+		<xs:attribute name="n164" type="xs:string"/>
+		<xs:attribute name="n165" type="xs:string"/>
+		<xs:attribute name="n166" type="xs:string"/>
+		<xs:attribute name="n167" type="xs:string"/>
+		<xs:attribute name="n168" type="xs:string"/>
+		<xs:attribute name="n169" type="xs:string"/>
+		<xs:attribute name="n170" type="xs:string"/>
+		<xs:attribute name="n171" type="xs:string"/>
+		<xs:attribute name="n172" type="xs:string"/>
+		<xs:attribute name="n173" type="xs:string"/>
+		<xs:attribute name="n174" type="xs:string"/>
+		<xs:attribute name="n175" type="xs:string"/>
+		<xs:attribute name="n176" type="xs:string"/>
+		<xs:attribute name="n177" type="xs:string"/>
+		<xs:attribute name="n178" type="xs:string"/>
+		<xs:attribute name="n179" type="xs:string"/>
+		<xs:attribute name="n180" type="xs:string"/>
+		<xs:attribute name="n181" type="xs:string"/>
+		<xs:attribute name="n182" type="xs:string"/>
+		<xs:attribute name="n183" type="xs:string"/>
+		<xs:attribute name="n184" type="xs:string"/>
+		<xs:attribute name="n185" type="xs:string"/>
+		<xs:attribute name="n186" type="xs:string"/>
+		<xs:attribute name="n187" type="xs:string"/>
+		<xs:attribute name="n188" type="xs:string"/>
+		<xs:attribute name="n189" type="xs:string"/>
+		<xs:attribute name="n190" type="xs:string"/>
+		<xs:attribute name="n191" type="xs:string"/>
+		<xs:attribute name="n192" type="xs:string"/>
+		<xs:attribute name="n193" type="xs:string"/>
+		<xs:attribute name="n194" type="xs:string"/>
+		<xs:attribute name="n195" type="xs:string"/>
+		<xs:attribute name="n196" type="xs:string"/>
+		<xs:attribute name="n197" type="xs:string"/>
+		<xs:attribute name="n198" type="xs:string"/>
+		<xs:attribute name="n199" type="xs:string"/>
+		<xs:attribute name="n200" type="xs:string"/>
+		<xs:attribute name="n201" type="xs:string"/>
+		<xs:attribute name="n202" type="xs:string"/>
+		<xs:attribute name="n203" type="xs:string"/>
+		<xs:attribute name="n204" type="xs:string"/>
+		<xs:attribute name="n205" type="xs:string"/>
+		<xs:attribute name="n206" type="xs:string"/>
+		<xs:attribute name="n207" type="xs:string"/>
+		<xs:attribute name="n208" type="xs:string"/>
+		<xs:attribute name="n209" type="xs:string"/>
+		<xs:attribute name="n210" type="xs:string"/>
+		<xs:attribute name="n211" type="xs:string"/>
+		<xs:attribute name="n212" type="xs:string"/>
+		<xs:attribute name="n213" type="xs:string"/>
+		<xs:attribute name="n214" type="xs:string"/>
+		<xs:attribute name="n215" type="xs:string"/>
+		<xs:attribute name="n216" type="xs:string"/>
+		<xs:attribute name="n217" type="xs:string"/>
+		<xs:attribute name="n218" type="xs:string"/>
+		<xs:attribute name="n219" type="xs:string"/>
+		<xs:attribute name="n220" type="xs:string"/>
+		<xs:attribute name="n221" type="xs:string"/>
+		<xs:attribute name="n222" type="xs:string"/>
+		<xs:attribute name="n223" type="xs:string"/>
+		<xs:attribute name="n224" type="xs:string"/>
+		<xs:attribute name="n225" type="xs:string"/>
+		<xs:attribute name="n226" type="xs:string"/>
+		<xs:attribute name="n227" type="xs:string"/>
+		<xs:attribute name="n228" type="xs:string"/>
+		<xs:attribute name="n229" type="xs:string"/>
+		<xs:attribute name="n230" type="xs:string"/>
+		<xs:attribute name="n231" type="xs:string"/>
+		<xs:attribute name="n232" type="xs:string"/>
+		<xs:attribute name="n233" type="xs:string"/>
+		<xs:attribute name="n234" type="xs:string"/>
+		<xs:attribute name="n235" type="xs:string"/>
+		<xs:attribute name="n236" type="xs:string"/>
+		<xs:attribute name="n237" type="xs:string"/>
+		<xs:attribute name="n238" type="xs:string"/>
+		<xs:attribute name="n239" type="xs:string"/>
+		<xs:attribute name="n240" type="xs:string"/>
+		<xs:attribute name="n241" type="xs:string"/>
+		<xs:attribute name="n242" type="xs:string"/>
+		<xs:attribute name="n243" type="xs:string"/>
+		<xs:attribute name="n244" type="xs:string"/>
+		<xs:attribute name="n245" type="xs:string"/>
+		<xs:attribute name="n246" type="xs:string"/>
+		<xs:attribute name="n247" type="xs:string"/>
+		<xs:attribute name="n248" type="xs:string"/>
+		<xs:attribute name="n249" type="xs:string"/>
+		<xs:attribute name="n250" type="xs:string"/>
+		<xs:attribute name="n251" type="xs:string"/>
+		<xs:attribute name="n252" type="xs:string"/>
+		<xs:attribute name="n253" type="xs:string"/>
+		<xs:attribute name="n254" type="xs:string"/>
+		<xs:attribute name="n255" type="xs:string"/>
+		<xs:attribute name="n256" type="xs:string"/>
+		<xs:attribute name="n257" type="xs:string"/>
+		<xs:attribute name="n258" type="xs:string"/>
+		<xs:attribute name="n259" type="xs:string"/>
+		<xs:attribute name="n260" type="xs:string"/>
+		<xs:attribute name="n261" type="xs:string"/>
+		<xs:attribute name="n262" type="xs:string"/>
+		<xs:attribute name="n263" type="xs:string"/>
+		<xs:attribute name="n264" type="xs:string"/>
+		<xs:attribute name="n265" type="xs:string"/>
+		<xs:attribute name="n266" type="xs:string"/>
+		<xs:attribute name="n267" type="xs:string"/>
+		<xs:attribute name="n268" type="xs:string"/>
+		<xs:attribute name="n269" type="xs:string"/>
+		<xs:attribute name="n270" type="xs:string"/>
+		<xs:attribute name="n271" type="xs:string"/>
+		<xs:attribute name="n272" type="xs:string"/>
+		<xs:attribute name="n273" type="xs:string"/>
+		<xs:attribute name="n274" type="xs:string"/>
+		<xs:attribute name="n275" type="xs:string"/>
+		<xs:attribute name="n276" type="xs:string"/>
+		<xs:attribute name="n277" type="xs:string"/>
+		<xs:attribute name="n278" type="xs:string"/>
+		<xs:attribute name="n279" type="xs:string"/>
+		<xs:attribute name="n280" type="xs:string"/>
+		<xs:attribute name="n281" type="xs:string"/>
+		<xs:attribute name="n282" type="xs:string"/>
+		<xs:attribute name="n283" type="xs:string"/>
+		<xs:attribute name="n284" type="xs:string"/>
+		<xs:attribute name="n285" type="xs:string"/>
+		<xs:attribute name="n286" type="xs:string"/>
+		<xs:attribute name="n287" type="xs:string"/>
+		<xs:attribute name="n288" type="xs:string"/>
+		<xs:attribute name="n289" type="xs:string"/>
+		<xs:attribute name="n290" type="xs:string"/>
+		<xs:attribute name="n291" type="xs:string"/>
+		<xs:attribute name="n292" type="xs:string"/>
+		<xs:attribute name="n293" type="xs:string"/>
+		<xs:attribute name="n294" type="xs:string"/>
+		<xs:attribute name="n295" type="xs:string"/>
+		<xs:attribute name="n296" type="xs:string"/>
+		<xs:attribute name="n297" type="xs:string"/>
+		<xs:attribute name="n298" type="xs:string"/>
+		<xs:attribute name="n299" type="xs:string"/>
+	</xs:complexType>
+
+
+
+
+	<!-- *****************************************************
+	********************************************************** 
+	********* General, BackGround, Style, Execution **********
+	********************************************************** 
+	****************************************************** -->
+	
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	++++++++++++++++ definition of attributes ++++++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+	<!-- Allgemein -->
+	<xs:attribute name="ID" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12062</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SizeX" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12146</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SizeY" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12147</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Allgemein - Advanced -->
+	<xs:attribute name="MaxClientDocSizeX" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID13271</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MaxClientDocSizeY" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID13272</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MaxClientPacketSizeX" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID13273</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MaxClientPacketSizeY" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID13274</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="WebClientQuality" type="percent">
+		<xs:annotation>
+			<xs:documentation>ID13307</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="FastTimerFreq" type="unsigned31BitInt">
+		<xs:annotation>
+			<xs:documentation>ID13619</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MaxCounterFast" type="unsigned31BitInt">
+		<xs:annotation>
+			<xs:documentation>ID13621</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SlowTimerFreq" type="unsigned31BitInt">
+		<xs:annotation>
+			<xs:documentation>ID13620</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MaxCounterSlow" type="unsigned31BitInt">
+		<xs:annotation>
+			<xs:documentation>ID13622</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="WaitExpressionsTime" type="unsigned31BitInt">
+		<xs:annotation>
+			<xs:documentation>ID13786</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Stil -->
+	<xs:attribute name="NonDestroyable" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12381</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="FitInWindow" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12382</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ShowSynopticBorder" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13446</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Stil - Advanced -->
+	<xs:attribute name="NumColors">
+		<xs:annotation>
+			<xs:documentation>ID13698</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="EnableScrollBars" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12383</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ShowOnMDITabs" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12467</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SynapsisVisibled" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12789</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="UseAntialiasing" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13297</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="StatObjBack" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13372</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Hintergrund -->
+	<xs:attribute name="BkColor" type="colorValueType1">
+		<xs:annotation>
+			<xs:documentation>ID12156</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="BackImageFile" type="imageFile">
+		<xs:annotation>
+			<xs:documentation>ID12376</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="XBackImage" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12148</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="YBackImage" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12149</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="TimeDeferClosingWnd" type="unsigned31BitInt">
+		<xs:annotation>
+			<xs:documentation>ID13618</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="GradientFill">
+		<xs:annotation>
+			<xs:documentation>ID12377</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="11"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<!-- Hintergrund - Advanced -->
+	<xs:attribute name="GradientColor" type="colorValueType1">
+		<xs:annotation>
+			<xs:documentation>ID12378</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="CXBackImage" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12150</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="CYBackImage" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12151</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="TileBackground" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12379</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SeparateThread" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12788</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ExclusiveWriteAccess" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13566</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Ausführung -->
+	<xs:attribute name="LayerVariable" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID12385</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SynopticPublicSource" type="screenName">
+		<xs:annotation>
+			<xs:documentation>ID12791</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SynopticStyleSource" type="screenName">
+		<xs:annotation>
+			<xs:documentation>ID13212</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Ausführung - Advanced -->
+	<xs:attribute name="GlobalContainerName" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12384</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="StyleSourceBackColor" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13216</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ExecuteSynapse" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12495</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="CyclicSynapseExecution" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12790</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SynMaxInst" type="unsigned31BitInt">
+		<xs:annotation>
+			<xs:documentation>ID13332</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="VisibleObjectsManager" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13367</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	+++++++++++++ definition of simple elements ++++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	+++++++++++++ definition of complex elements +++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+	<xs:element name="General">
+		<xs:annotation>
+			<xs:documentation>general settings for this screen</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="ID"/>
+			<xs:attribute ref="SizeX"/>
+			<xs:attribute ref="SizeY"/>
+			<xs:attribute ref="MaxClientDocSizeX"/>
+			<xs:attribute ref="MaxClientDocSizeY"/>
+			<xs:attribute ref="MaxClientPacketSizeX"/>
+			<xs:attribute ref="MaxClientPacketSizeY"/>
+			<xs:attribute ref="WebClientQuality"/>
+			<xs:attribute ref="XBackImage"/>
+			<xs:attribute ref="YBackImage"/>
+			<xs:attribute ref="CXBackImage"/>
+			<xs:attribute ref="CYBackImage"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BackGround">
+		<xs:annotation>
+			<xs:documentation>background settings for this screen</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="GradientFill"/>
+			<xs:attribute ref="GradientColor"/>
+			<xs:attribute ref="BackImageFile"/>
+			<xs:attribute ref="BkColor"/>
+			<xs:attribute ref="TileBackground"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Style">
+		<xs:annotation>
+			<xs:documentation>style settings for this screen</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="NonDestroyable"/>
+			<xs:attribute ref="GlobalContainerName"/>
+			<xs:attribute ref="FitInWindow"/>
+			<xs:attribute ref="ShowSynopticBorder"/>
+			<xs:attribute ref="StatObjBack"/>
+			<xs:attribute ref="EnableScrollBars"/>
+			<xs:attribute ref="ShowOnMDITabs"/>
+			<xs:attribute ref="SynapsisVisibled"/>
+			<xs:attribute ref="UseAntialiasing"/>
+			<xs:attribute ref="NumColors"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Execution">
+		<xs:annotation>
+			<xs:documentation>execution settings for this screen</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="LayerVariable"/>
+			<xs:attribute ref="ExecuteSynapse"/>
+			<xs:attribute ref="CyclicSynapseExecution"/>
+			<xs:attribute ref="SynopticPublicSource"/>
+			<xs:attribute ref="SynopticStyleSource"/>
+			<xs:attribute ref="StyleSourceBackColor"/>
+			<xs:attribute ref="SynMaxInst"/>
+			<xs:attribute ref="FastTimerFreq"/>
+			<xs:attribute ref="SlowTimerFreq"/>
+			<xs:attribute ref="MaxCounterFast"/>
+			<xs:attribute ref="MaxCounterSlow"/>
+			<xs:attribute ref="SeparateThread"/>
+			<xs:attribute ref="VisibleObjectsManager"/>
+			<xs:attribute ref="WaitExpressionsTime"/>
+			<xs:attribute ref="ExclusiveWriteAccess"/>
+			<xs:attribute ref="TimeDeferClosingWnd"/>
+		</xs:complexType>
+	</xs:element>
+
+
+
+
+	<!-- *****************************************************
+	********************************************************** 
+	******************* ListSynopticDraw *********************
+	********************************************************** 
+	****************************************************** -->
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	++++++++++++++++ definition of attributes ++++++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+	<!-- Stil -->
+	<xs:attribute name="Border">
+		<xs:annotation>
+			<xs:documentation>ID12464</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:minInclusive value="1" />
+				<xs:maxInclusive value="4" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="l3D" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13567</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="p3D" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13568</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="KAR" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13141</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="chFigure" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13312</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="rx" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>x-radius of rounded angles</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ry" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>y-radius of rounded angles</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="rxa" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>x-radius of arc</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="rya" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>y-radius of arc</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ArrowHeight" type="xs:unsignedByte">
+		<xs:annotation>
+			<xs:documentation>ID13065</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Edit-objects -->
+	<xs:attribute name="HasList" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>set true for the object to be a combobox instead of normal editbox</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="edit" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13073</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="promptpad" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13203</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="spin" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13068</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="EditingPassword" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13605</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="HorizSpin" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13070</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="TimeToWait" type="unsigned31BitInt">
+		<xs:annotation>
+			<xs:documentation>ID13067</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SpinSize">
+		<xs:annotation>
+			<xs:documentation>ID13069</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="3" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="SpinWidth" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID13439</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SpinHeight" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID13438</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ShowDisplay" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>show display for edit-object</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="min" type="signedMillion">
+		<xs:annotation>
+			<xs:documentation>ID12560</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="max" type="signedMillion">
+		<xs:annotation>
+			<xs:documentation>ID12561</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ErrorString" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ID13524</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SpinStep" type="signedMillion">
+		<xs:annotation>
+			<xs:documentation>ID13119</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Units" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ID12558</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="fmtscale" type="formatType">
+		<xs:annotation>
+			<xs:documentation>ID12559</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- combobox (special Edit-object) -->
+	<xs:attribute name="ShowControlList" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13051</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ListData">
+		<xs:annotation>
+			<xs:documentation>ID13075</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="((.)+){1}(/|(.)+)*|" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="SortItems" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13317</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="InvertSelection" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13415</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Button-objects -->
+	<xs:attribute name="clickable" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12465</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="RadioCheckSize">
+		<xs:annotation>
+			<xs:documentation>ID13168</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="3" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="CustomRadioCheckSize" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>ID13440</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- TabObj-objects -->
+	<xs:attribute name="FlatTab" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13560</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="bottom" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13072</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ImageList" type="imageFile">
+		<xs:annotation>
+			<xs:documentation>ID13187</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	
+	<!-- Animationen -->
+	<xs:attribute name="Var" type="tagName">
+		<xs:annotation>
+			<xs:documentation>activation variable</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Value" type="signedMillion">
+		<xs:annotation>
+			<xs:documentation>ID12566</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Tol" type="signedMillion">
+		<xs:annotation>
+			<xs:documentation>ID12567</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Con">
+		<xs:annotation>
+			<xs:documentation>ID12568</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="2" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="Blink">
+		<xs:annotation>
+			<xs:documentation>ID13296</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="3" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="inverse" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13078, ID13079</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ValST" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13344</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Format" type="formatType">
+		<xs:annotation>
+			<xs:documentation>ID12638</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="fmtvar" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID13328, ID13326</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="VisA" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13194, ID13195</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="FG" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12643, ID12648</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Allgemein -->
+	<xs:attribute name="Tooltip" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ID12800</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Pos">
+		<xs:annotation>
+			<xs:documentation>ID12396</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="9" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="id" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ID12397</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="GlobalName" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13140</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PubName" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ID12396</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PresSize" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13141</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PresDyn" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12794</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PresCode" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12792</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PresText" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12795</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PresCol" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12796</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PresCom" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13318</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PresVar" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13343</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="StyleSourceBack" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13213</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="StyleSourceFore" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13214</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="StyleSourceFont" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13215</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ShowVarTooltip" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12801</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="X" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>X-position for rotation in px</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Y" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Y-position for rotation in px</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="StatusShowRedSign" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13602</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="StatusChangeEnableState" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13707</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Ebenen -->
+	<xs:attribute name="Layer">
+		<xs:annotation>
+			<xs:documentation>ID12400</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:unsignedShort">
+				<xs:maxInclusive value="32" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="VisibleWC" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13157</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="AvCE" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13536</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ZLV" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12401</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="EZS" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12402</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PSV" type="xs:unsignedShort">
+		<xs:annotation>
+			<xs:documentation>ID12403</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="SwapColor" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13537</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="TabSel" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13535</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="InvCol" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13655</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="FocusRect" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13656</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="HiliteRect" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13657</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Position -->
+	<xs:attribute name="x" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12363</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="y" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12364</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="width" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12365</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="height" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12366</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ox" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>original x-position (at the time of the grouping)</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="oy" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>original y-position (at the time of the grouping)</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="owidth" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>original width (at the time of the grouping)</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="oheight" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>original height (at the time of the grouping)</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Text- und Rahmenfarbe -->
+	<xs:attribute name="stroke" type="colorValueType2">
+		<xs:annotation>
+			<xs:documentation>ID12368</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="stroke-width" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID12388</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="stroke-dasharray" type="strokeDasharryType">
+		<xs:annotation>
+			<xs:documentation>stroke style (e.g. dotted, dashed,...), leave
+				attribute out for normal line</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Hintergrund-Attribute -->
+	<xs:attribute name="hatch" type="hatchType">
+		<xs:annotation>
+			<xs:documentation>ID12390</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="fill" type="colorValueType2">
+		<xs:annotation>
+			<xs:documentation>ID12369, ID12370</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="grad">
+		<xs:annotation>
+			<xs:documentation>ID12386</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="11" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="gcolor" type="colorValueType2">
+		<xs:annotation>
+			<xs:documentation>ID12387</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ImageID" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ID13022</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Style" type="styleType">
+		<xs:annotation>
+			<xs:documentation>ID13319, ID13320</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="XImage" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID13322</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="YImage" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID13323</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="tcolor" type="colorValueType2">
+		<xs:annotation>
+			<xs:documentation>ID13042</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="AlphaLevel" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>ID13225</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Button-objects -->
+	<xs:attribute name="ImageUp" type="imageFile">
+		<xs:annotation>
+			<xs:documentation>ID13237, only for "Button"-objects</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ImageDown" type="imageFile">
+		<xs:annotation>
+			<xs:documentation>ID13238, only for "Button"-objects</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ImageChecked" type="imageFile">
+		<xs:annotation>
+			<xs:documentation>ID13239, only for "Button"-objects</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ImageDisable" type="imageFile">
+		<xs:annotation>
+			<xs:documentation>ID13316, only for "Button"-objects</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="BtnImageOverlap" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13321, only for "Button"-objects</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Zugangsebenen --> <!-- Erläuterung von acr und acw wäre gut -->
+	<xs:attribute name="acr" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>ID12051</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="acw" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>ID12052</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="AccessLevel" type="accessLevelType">
+		<xs:annotation>
+			<xs:documentation>ID12118</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Schriftarten -->
+	<xs:attribute name="AdaptFont" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12241</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="f3D">
+		<xs:annotation>
+			<xs:documentation>ID13010</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="2" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="text-anchor" type="textAnchorType">
+		<xs:annotation>
+			<xs:documentation>ID13011</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="font-family" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ID12392</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="font-size" type="xs:unsignedShort">
+		<xs:annotation>
+			<xs:documentation>font-size in pt</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="font-weight" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>font-weight: standard "400" - bold "700"</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="font-style" type="xs:string" fixed="italic">
+		<xs:annotation>
+			<xs:documentation>set attribute for italic font</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="AntialiasingFont" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13434</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="XOffset" type="xs:unsignedShort">
+		<xs:annotation>
+			<xs:documentation>ID13434</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="YOffset" type="xs:unsignedShort">
+		<xs:annotation>
+			<xs:documentation>ID13434</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Dragging -->
+	<xs:attribute name="Move" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13173</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Resize" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13174</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="XVar" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID13175</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="CXVar" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID13176</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="YVar" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID13177</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="CYVar" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID13178</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MinX" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>ID13179</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MaxX" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>ID13180</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MinCX" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>ID13181</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MaxCX" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>ID13182</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MinY" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>ID13183</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MaxY" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>ID13184</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MinCY" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>ID13185</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MaxCY" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>ID13186</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Ausführung -->
+	<xs:attribute name="ExtFile" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ID12717</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="AutoLoadExtFile" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13302</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="AutoSaveExtFile" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13303</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Button-objects -->
+	<xs:attribute name="CheckVariable" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID12457</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="NumOptBtn" type="xs:unsignedByte">
+		<xs:annotation>
+			<xs:documentation>ID12459</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="MechanicStyle">
+		<xs:annotation>
+			<xs:documentation>ID13204</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="4" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="CentralZero" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13299</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PushStyleEx">
+		<xs:annotation>
+			<xs:documentation>ID12466</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="58" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="PushStyle" type="xs:unsignedByte">
+		<xs:annotation>
+			<xs:documentation>depends on PushStyleEx, automatically set by Visu+</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Impulsive" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>true if button is used as push-button (attribute MechanicStyle="2")</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ImpulsiveTime" type="unsigned31BitInt">
+		<xs:annotation>
+			<xs:documentation>ID13171</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="CommandsOnMouseMove" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13369</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="DisableCommandsOnCheckedState" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID13368</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="VirtualKey">
+		<xs:annotation>
+			<xs:documentation>ID13368, no virtual key "0" - strg "1" - shift "2" - strg+shift "3" - alt "4" - strg+alt "5" - shift+alt "6" - strg+shift+alt "7"</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="7" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="ShowKeyShortcut" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12463</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="EnableShortcut" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>ID12461</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	
+	<!-- Variablen -->
+	<xs:attribute name="DefStruct" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID13171</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="EnableVariable" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID12456</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="StatusVariable" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID12554</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- Edit-objects -->
+	<xs:attribute name="var" type="tagName">
+		<xs:annotation>
+			<xs:documentation>variable whose value is displayed in object for reading and writing</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="DisplayStatistic">
+		<xs:annotation>
+			<xs:documentation>ID13233</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="21" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="varmin" type="tagName">
+		<xs:annotation>
+			<xs:documentation>variable for dynamic minimum limit for writing values in the i/o-object</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="varmax" type="tagName">
+		<xs:annotation>
+			<xs:documentation>variable for dynamic maximum limit for writing values in the i/o-object</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="VariableEditingPassword" type="tagName">
+		<xs:annotation>
+			<xs:documentation>ID13606</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<!-- Sonstige -->
+	<xs:attribute name="stroke-linecap" type="linecapType">
+		<xs:annotation>
+			<xs:documentation>line-cap</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="stroke-linejoin" type="linejoinType">
+		<xs:annotation>
+			<xs:documentation>line-join</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="StateType">
+		<xs:annotation>
+			<xs:documentation>shadow: normal "0" - blurred "16" - deactivated "32"</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:enumeration value="0" />
+				<xs:enumeration value="8" />
+				<xs:enumeration value="16" />
+				<xs:enumeration value="32" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	++++++++++++++++++ definition of groups ++++++++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+	<xs:group name="groupChild">
+		<xs:sequence>
+			<xs:element name="type" minOccurs="1" maxOccurs="2">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="groupChildEnum">
+							<xs:attribute ref="x" />
+							<xs:attribute ref="y" />
+							<xs:attribute ref="width" />
+							<xs:attribute ref="height" />
+		 					<xs:attribute ref="chFigure"/>
+							<xs:attribute ref="rx" />
+							<xs:attribute ref="ry" />
+							<xs:attribute ref="rxa" />
+							<xs:attribute ref="rya" />
+							<xs:attribute ref="ArrowHeight" />
+							<xs:attribute ref="hatch" />
+							<xs:attribute ref="fill" />
+							<xs:attribute ref="stroke-dasharray" />
+							<xs:attribute ref="stroke" />
+							<xs:attribute ref="stroke-width" />
+							<xs:attribute ref="stroke-linecap" />
+							<xs:attribute ref="stroke-linejoin" />
+							<xs:attribute ref="l3D" />
+							<xs:attribute ref="p3D" />
+							<xs:attribute ref="KAR"/>
+							<xs:attribute ref="Border" />
+							<xs:attribute ref="ImageDown" />
+							<xs:attribute ref="ImageUp" />
+							<xs:attribute ref="ImageChecked" />
+							<xs:attribute ref="ImageDisable" />
+							<xs:attribute ref="BtnImageOverlap" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="g" minOccurs="0" maxOccurs="1"/> <!-- nur bei "group"-object -->
+			<xs:element ref="editbox" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Edit"-object -->
+			<xs:element ref="TabObj" minOccurs="0" maxOccurs="1"/> <!-- nur bei "TabObj"-object -->
+			<xs:element ref="style" minOccurs="0" maxOccurs="1"/> <!--  bei "Edit"- und "TabObj"-object -->
+			<xs:element ref="border" minOccurs="0" maxOccurs="1"/> <!--  bei "Edit"- und "TabObj"-object -->
+			<xs:element ref="execution" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Edit"-object -->
+			<xs:element ref="Screens" minOccurs="0" maxOccurs="1"/> <!-- nur bei "TabObj"-object -->
+			<xs:element ref="ExtFill" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="childs" minOccurs="0" maxOccurs="1"> <!-- nur bei "group"-object -->
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded" minOccurs="1">
+						<xs:element name="child">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:group ref="groupChild" minOccurs="1" maxOccurs="1"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="Border" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+			<xs:element ref="Mechanic" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+			<xs:element ref="Commands" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+			<xs:element ref="CommandsWhileDown" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+			<xs:element ref="CommandsOnDown" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+			<xs:element ref="KeyCode" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+			<xs:element ref="Name" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="text" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="Shadow" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="Rotation" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="RunSel" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="ListCommands" minOccurs="0" maxOccurs="1"/>
+			<xs:group ref="animations" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:group>
+	
+	<xs:group name="animations">
+		<xs:sequence>
+			<xs:element ref="Visible" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Transparency" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="BG" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="BGList" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="EG" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="EGList" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="MX" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="MY" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Scale" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Rot" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="SX" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="SY" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="EX" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="EY" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="FC" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="FCList" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="BList" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="BmpList" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="LT" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="RCX" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="RCY" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="CM" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:group>
+	
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	+++++++++++++ definition of simple elements ++++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+	<xs:element name="object" type="objectEnum">
+		<xs:annotation>
+			<xs:documentation>defines the type of graphical object</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="border">
+		<xs:annotation>
+			<xs:documentation>12464, only for "Edit"-object</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Border">
+		<xs:annotation>
+			<xs:documentation>12464, only for "Button"-object</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Screens" type="nxListType">
+		<xs:annotation>
+			<xs:documentation>ID13071</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Commands" type="nxListType">
+		<xs:annotation>
+			<xs:documentation>ID12458</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CommandsWhileDown" type="nxListType">
+		<xs:annotation>
+			<xs:documentation>ID13230</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CommandsOnDown" type="nxListType">
+		<xs:annotation>
+			<xs:documentation>ID13231</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ListCommands" type="nxListType">
+		<xs:annotation>
+			<xs:documentation>ID13242</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	
+	
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	+++++++++++++ definition of complex elements +++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+	<xs:element name="type">
+		<xs:annotation>
+			<xs:documentation>defines subtype (if existing) and general settings of an object</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="typeEnum">
+					<xs:attribute ref="x" />
+					<xs:attribute ref="y" />
+					<xs:attribute ref="width" />
+					<xs:attribute ref="height" />
+ 					<xs:attribute ref="chFigure"/>
+					<xs:attribute ref="rx" />
+					<xs:attribute ref="ry" />
+					<xs:attribute ref="rxa" />
+					<xs:attribute ref="rya" />
+					<xs:attribute ref="ArrowHeight" />
+					<xs:attribute ref="hatch" />
+					<xs:attribute ref="fill" />
+					<xs:attribute ref="stroke-dasharray" />
+					<xs:attribute ref="stroke" />
+					<xs:attribute ref="stroke-width" />
+					<xs:attribute ref="stroke-linecap" />
+					<xs:attribute ref="stroke-linejoin" />
+					<xs:attribute ref="l3D" />
+					<xs:attribute ref="p3D" />
+					<xs:attribute ref="KAR"/>
+					<xs:attribute ref="Border" />
+					<xs:attribute ref="ImageDown" />
+					<xs:attribute ref="ImageUp" />
+					<xs:attribute ref="ImageChecked" />
+					<xs:attribute ref="ImageDisable" />
+					<xs:attribute ref="BtnImageOverlap" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="g">
+		<xs:annotation>
+			<xs:documentation>general settings of an "group"-object (instead of element "type")</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="id" />
+			<xs:attribute ref="x" />
+			<xs:attribute ref="y" />
+			<xs:attribute ref="width" />
+			<xs:attribute ref="height" />
+			<xs:attribute ref="ox" />
+			<xs:attribute ref="oy" />
+			<xs:attribute ref="owidth" />
+			<xs:attribute ref="oheight" />
+			<xs:attribute ref="Border" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="editbox">
+		<xs:annotation>
+			<xs:documentation>general settings of an "Edit"-object (instead of element "type")</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="x" />
+			<xs:attribute ref="y" />
+			<xs:attribute ref="width" />
+			<xs:attribute ref="height" />
+			<xs:attribute ref="hatch" />
+			<xs:attribute ref="fill" />
+			<xs:attribute ref="stroke-dasharray" />
+			<xs:attribute ref="stroke" />
+			<xs:attribute ref="stroke-width" />
+			<xs:attribute ref="stroke-linecap" />
+			<xs:attribute ref="stroke-linejoin" />
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="TabObj">
+		<xs:annotation>
+			<xs:documentation>general settings of an "TabObj"-object (instead of element "type")</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="x" />
+			<xs:attribute ref="y" />
+			<xs:attribute ref="width" />
+			<xs:attribute ref="height" />
+			<xs:attribute ref="hatch" />
+			<xs:attribute ref="fill" />
+			<xs:attribute ref="stroke-dasharray" />
+			<xs:attribute ref="stroke" />
+			<xs:attribute ref="stroke-width" />
+			<xs:attribute ref="stroke-linecap" />
+			<xs:attribute ref="stroke-linejoin" />
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="style">
+		<xs:annotation>
+			<xs:documentation>style settings of an "Edit"- and "TabObj"-object</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="spin" />
+			<xs:attribute ref="edit" />
+			<xs:attribute ref="promptpad" />
+			<xs:attribute ref="fmtscale" />
+			<xs:attribute ref="fmtvar" />
+			<xs:attribute ref="Units" />
+			<xs:attribute ref="SpinSize" />
+			<xs:attribute ref="SpinWidth" />
+			<xs:attribute ref="SpinHeight" />
+			<xs:attribute ref="ShowDisplay" />
+			<xs:attribute ref="TimeToWait" />
+			<xs:attribute ref="HorizSpin" />
+			<xs:attribute ref="EditingPassword" />
+			<xs:attribute ref="HasList" />
+			<xs:attribute ref="ShowControlList" />
+			<xs:attribute ref="ListData" />
+			<xs:attribute ref="SortItems" />
+			<xs:attribute ref="InvertSelection" />
+			<xs:attribute ref="bottom" />
+			<xs:attribute ref="FlatTab" />
+			<xs:attribute ref="ImageList" />
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="execution">
+		<xs:annotation>
+			<xs:documentation>execution settings of an "Edit"-object</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="var" />
+			<xs:attribute ref="varmin" />
+			<xs:attribute ref="varmax" />
+			<xs:attribute ref="min" />
+			<xs:attribute ref="max" />
+			<xs:attribute ref="SpinStep" />
+			<xs:attribute ref="ErrorString" />
+			<xs:attribute ref="DisplayStatistic" />
+			<xs:attribute ref="VariableEditingPassword" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ExtFill">
+		<xs:annotation>
+			<xs:documentation>settings for background color, image, gradual filling,...</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:unsignedByte">
+					<xs:attribute ref="grad" />
+					<xs:attribute ref="gcolor" />
+					<xs:attribute ref="ImageID" />
+					<xs:attribute ref="Style" />
+					<xs:attribute ref="XImage" />
+					<xs:attribute ref="YImage" />
+					<xs:attribute ref="tcolor" />
+					<xs:attribute ref="fill" />
+					<xs:attribute name="points" type="severalPointsType">
+						<xs:annotation>
+							<xs:documentation>points of a "poly"-object</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Mechanic">
+		<xs:annotation>
+			<xs:documentation>Button settings</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="CheckVariable"/>
+					<xs:attribute ref="MechanicStyle"/>
+					<xs:attribute ref="CentralZero"/>
+					<xs:attribute ref="PushStyleEx"/>
+					<xs:attribute ref="PushStyle"/>
+					<xs:attribute ref="clickable"/>
+					<xs:attribute ref="NumOptBtn"/>
+					<xs:attribute ref="RadioCheckSize"/>
+					<xs:attribute ref="CustomRadioCheckSize"/>
+					<xs:attribute ref="Impulsive"/>
+					<xs:attribute ref="ImpulsiveTime"/>
+					<xs:attribute ref="CommandsOnMouseMove"/>
+					<xs:attribute ref="DisableCommandsOnCheckedState"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="KeyCode">
+		<xs:annotation>
+			<xs:documentation>ID12462</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:int">
+					<xs:attribute ref="VirtualKey"/>
+					<xs:attribute ref="ShowKeyShortcut"/>
+					<xs:attribute ref="EnableShortcut"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Name"> <!-- Attribute SPC,SBC unbekannt -->
+		<xs:annotation>
+			<xs:documentation>ID12394</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="Tooltip" />
+					<xs:attribute ref="ShowVarTooltip" />
+					<xs:attribute ref="Layer" />
+					<xs:attribute ref="ZLV" />
+					<xs:attribute ref="EZS" />
+					<xs:attribute ref="PSV" />
+					<xs:attribute ref="DefStruct" />
+					<xs:attribute ref="ExtFile" />
+					<xs:attribute ref="AutoLoadExtFile" />
+					<xs:attribute ref="AutoSaveExtFile" />
+					<xs:attribute ref="PubName" />
+					<xs:attribute ref="PresSize" />
+					<xs:attribute ref="PresDyn" />
+					<xs:attribute ref="PresCode" />
+					<xs:attribute ref="PresText" />
+					<xs:attribute ref="PresCol" />
+					<xs:attribute ref="PresCom" />
+					<xs:attribute ref="PresVar" />
+					<xs:attribute ref="StyleSourceBack" />
+					<xs:attribute ref="StyleSourceFore" />
+					<xs:attribute ref="StyleSourceFont" />
+					<xs:attribute ref="GlobalName" />
+					<xs:attribute ref="InvCol" />
+					<xs:attribute ref="FocusRect" />
+					<xs:attribute ref="HiliteRect" />
+					<xs:attribute ref="AdaptFont" />
+					<xs:attribute ref="AntialiasingFont" />
+					<xs:attribute ref="AlphaLevel" />
+					<xs:attribute name="SPC" type="xs:int" />
+					<xs:attribute name="SBC" type="xs:int" />
+					<xs:attribute ref="acr" />
+					<xs:attribute ref="acw" />
+					<xs:attribute ref="EnableVariable" />
+					<xs:attribute ref="StatusVariable" />
+					<xs:attribute ref="AccessLevel" />
+					<xs:attribute ref="StatusShowRedSign" />
+					<xs:attribute ref="StatusChangeEnableState" />
+					<xs:attribute ref="VisibleWC" />
+					<xs:attribute ref="TabSel" />
+					<xs:attribute ref="AvCE" />
+					<xs:attribute ref="SwapColor" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="text"> <!-- Attribute op,cp,qu,pf unbekannt -->
+		<xs:annotation>
+			<xs:documentation>ID12395</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="font-family" />
+					<xs:attribute ref="font-size" />
+					<xs:attribute ref="text-anchor" />
+					<xs:attribute ref="font-style" />
+					<xs:attribute ref="font-weight" />
+					<xs:attribute name="op" type="xs:int" />
+					<xs:attribute name="cp" type="xs:int" />
+					<xs:attribute name="qu" type="xs:int" />
+					<xs:attribute name="pf" type="xs:int" />
+					<xs:attribute ref="f3D" />
+					<xs:attribute ref="XOffset" />
+					<xs:attribute ref="YOffset" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Shadow">
+		<xs:annotation>
+			<xs:documentation>activate shadow</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute name="OX" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>X-position shadow</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="OY" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Y-position shadow</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute ref="StateType" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Rotation">
+		<xs:annotation>
+			<xs:documentation>ID12861</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="angleType">
+					<xs:attribute ref="Pos" />
+					<xs:attribute ref="X" />
+					<xs:attribute ref="Y" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="RunSel">
+		<xs:annotation>
+			<xs:documentation>Dragging</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Move" type="xs:boolean" />
+			<xs:attribute name="Resize" type="xs:boolean" />
+			<xs:attribute name="XVar" type="tagName" />
+			<xs:attribute name="YVar" type="tagName" />
+			<xs:attribute name="CXVar" type="tagName" />
+			<xs:attribute name="CYVar" type="tagName" />
+			<xs:attribute name="MinX" type="xs:short" />
+			<xs:attribute name="MaxX" type="xs:short" />
+			<xs:attribute name="MinY" type="xs:short" />
+			<xs:attribute name="MaxY" type="xs:short" />
+			<xs:attribute name="MinCX" type="xs:short" />
+			<xs:attribute name="MaxCX" type="xs:short" />
+			<xs:attribute name="MinCY" type="xs:short" />
+			<xs:attribute name="MaxCY" type="xs:short" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DynColor">
+		<xs:complexType>
+			<xs:attribute name="Color" type="colorValueType1">
+				<xs:annotation>
+					<xs:documentation>ID12671</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BlinkColor" type="colorValueType1">
+				<xs:annotation>
+					<xs:documentation>ID12672</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Value" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>ID12666</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Type">
+				<xs:annotation>
+					<xs:documentation>ID12668</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="options">
+						<xs:maxInclusive value="5" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="BlinkTime" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>ID12669</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Text" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ID12670</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute ref="Var">
+				<xs:annotation>
+					<xs:documentation>ID12667</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="dci">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DynColor" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="dbi">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DynBmp">
+					<xs:complexType>
+						<xs:attribute name="Style" type="xs:unsignedInt"></xs:attribute>
+						<xs:attribute name="Value" type="xs:int"></xs:attribute>
+						<xs:attribute name="TranClr" type="colorValueType1"></xs:attribute>
+						<xs:attribute name="Cyclic" type="xs:boolean"></xs:attribute>
+						<xs:attribute name="Slice" type="xs:unsignedInt"></xs:attribute>
+						<xs:attribute name="Var" type="tagName"></xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BmpList" type="nxListType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Visible">
+		<xs:annotation>
+			<xs:documentation>ID12564</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute ref="Con" />
+					<xs:attribute ref="Value" />
+					<xs:attribute ref="Tol" />
+					<xs:attribute ref="Blink" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="Transparency">
+		<xs:annotation>
+			<xs:documentation>ID13227</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="CM">
+		<xs:annotation>
+			<xs:documentation>ID12570</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute name="Low" type="signedMillion">
+						<xs:annotation>
+							<xs:documentation>ID12572</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="signedMillion">
+						<xs:annotation>
+							<xs:documentation>ID12573</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="points" type="twoPointsType">
+						<xs:annotation>
+							<xs:documentation>ID13533, startpoint x1,y1 and endpoint x2,y2 "x1,y1 x2,y2"</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="MX">
+		<xs:annotation>
+			<xs:documentation>ID12575</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute name="Low" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12577</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12578</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="LowO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12579</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="HighO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12580</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute ref="inverse" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="MY">
+		<xs:annotation>
+			<xs:documentation>ID12582</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute name="Low" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12584</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12585</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="LowO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12586</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="HighO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12587</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute ref="inverse" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="SX">
+		<xs:annotation>
+			<xs:documentation>ID12589</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute name="Low" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12591</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12592</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="LowO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12593</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="HighO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12594</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="SY">
+		<xs:annotation>
+			<xs:documentation>ID12596</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute name="Low" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12598</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12599</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="LowO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12600</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="HighO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12601</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="EX">
+		<xs:annotation>
+			<xs:documentation>ID12603</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute name="Low" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12605</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12606</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="LowO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12607</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="HighO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12608</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="EY">
+		<xs:annotation>
+			<xs:documentation>ID12610</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute name="Low" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12612</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12613</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="LowO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12614</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="HighO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12615</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="Scale">
+		<xs:annotation>
+			<xs:documentation>ID12617</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute name="Low" type="signedMillion">
+						<xs:annotation>
+							<xs:documentation>ID12619</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="signedMillion">
+						<xs:annotation>
+							<xs:documentation>ID12620</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="LowO" type="xs:short">
+						<xs:annotation>
+							<xs:documentation>ID12621</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="HighO" type="xs:short">
+						<xs:annotation>
+							<xs:documentation>ID12622</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Type">
+						<xs:annotation>
+							<xs:documentation>type of scaling</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="options">
+								<xs:maxInclusive value="29" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="Rot">
+		<xs:annotation>
+			<xs:documentation>ID12625</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute name="Low" type="xs:short">
+						<xs:annotation>
+							<xs:documentation>ID12627</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="xs:short">
+						<xs:annotation>
+							<xs:documentation>ID12628</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="LowO" type="xs:short">
+						<xs:annotation>
+							<xs:documentation>ID12629</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="HighO" type="xs:short">
+						<xs:annotation>
+							<xs:documentation>ID12630</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="RCX">
+		<xs:annotation>
+			<xs:documentation>ID12631</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="RCY">
+		<xs:annotation>
+			<xs:documentation>ID12632</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="LT">
+		<xs:annotation>
+			<xs:documentation>ID12636</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="ValST" />
+					<xs:attribute ref="Var" />
+					<xs:attribute ref="Format" />
+					<xs:attribute ref="fmtvar" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="BG">
+		<xs:annotation>
+			<xs:documentation>ID12640</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute ref="FG" />
+					<xs:attribute ref="VisA" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="BGList">
+		<xs:annotation>
+			<xs:documentation>ID12642</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="dci" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="EG">
+		<xs:annotation>
+			<xs:documentation>ID12645</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+					<xs:attribute ref="FG" />
+					<xs:attribute ref="VisA" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="EGList">
+		<xs:annotation>
+			<xs:documentation>ID12647</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="dci" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="FC">
+		<xs:annotation>
+			<xs:documentation>ID12650</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute name="Var" type="tagName">
+						<xs:annotation>
+							<xs:documentation>ID12651</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute ref="FG" />
+					<xs:attribute name="VarL" type="tagName">
+						<xs:annotation>
+							<xs:documentation>ID12654</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="VarLL" type="tagName">
+						<xs:annotation>
+							<xs:documentation>ID12660</xs:documentation>
+							</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="VarLH" type="tagName">
+						<xs:annotation>
+							<xs:documentation>ID12661</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Type">
+						<xs:annotation>
+							<xs:documentation>ID12659</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="options">
+								<xs:maxInclusive value="4" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="Low" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12655</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="High" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12656</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="LowO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12657</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="HighO" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>ID12658</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="FCList">
+		<xs:annotation>
+			<xs:documentation>ID12652</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="dci" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="BList">
+		<xs:annotation>
+			<xs:documentation>ID12663</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="Var" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="BmpList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dbi" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	
+	
+	
+	<xs:element name="ListSynopticDraw">
+		<xs:annotation>
+			<xs:documentation>list of graphical objects on this screen</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:element name="child">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="object" minOccurs="1" maxOccurs="1"/>
+							<xs:element ref="type" minOccurs="0" maxOccurs="2"/>
+							<xs:element ref="g" minOccurs="0" maxOccurs="1"/> <!-- nur bei "group"-object -->
+							<xs:element ref="editbox" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Edit"-object -->
+							<xs:element ref="TabObj" minOccurs="0" maxOccurs="1"/> <!-- nur bei "TabObj"-object -->
+							<xs:element ref="style" minOccurs="0" maxOccurs="1"/> <!--  bei "Edit"- und "TabObj"-object -->
+							<xs:element ref="border" minOccurs="0" maxOccurs="1"/> <!--  bei "Edit"- und "TabObj"-object -->
+							<xs:element ref="execution" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Edit"-object -->
+							<xs:element ref="Screens" minOccurs="0" maxOccurs="1"/> <!-- nur bei "TabObj"-object -->
+							<xs:element ref="ExtFill" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="childs" minOccurs="0" maxOccurs="1"> <!-- nur bei "group"-object -->
+								<xs:complexType>
+									<xs:sequence maxOccurs="unbounded" minOccurs="1">
+										<xs:element name="child">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:group ref="groupChild" minOccurs="1" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="Border" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+							<xs:element ref="Mechanic" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+							<xs:element ref="Commands" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+							<xs:element ref="CommandsWhileDown" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+							<xs:element ref="CommandsOnDown" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+							<xs:element ref="KeyCode" minOccurs="0" maxOccurs="1"/> <!-- nur bei "Button"-object -->
+							<xs:element ref="Name" minOccurs="0" maxOccurs="1"/>
+							<xs:element ref="text" minOccurs="0" maxOccurs="1"/>
+							<xs:element ref="Shadow" minOccurs="0" maxOccurs="1"/>
+							<xs:element ref="Rotation" minOccurs="0" maxOccurs="1"/>
+							<xs:element ref="RunSel" minOccurs="0" maxOccurs="1"/>
+							<xs:element ref="ListCommands" minOccurs="0" maxOccurs="1"/>
+							<xs:group ref="animations" minOccurs="0" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+
+	<!-- *****************************************************
+	********************************************************** 
+	********************* VariableList ***********************
+	********************************************************** 
+	****************************************************** -->
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	++++++++++++++++ definition of attributes ++++++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+	<xs:attribute fixed="65535" name="DurationDays" type="xs:unsignedShort">
+		<xs:annotation>
+			<xs:documentation>not defined for local variable</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Type">
+		<xs:annotation>
+			<xs:documentation>ID12080</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="9"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute fixed="1" name="AreaType">
+		<xs:annotation>
+			<xs:documentation>not defined for local variable</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="options">
+				<xs:maxInclusive value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute fixed="0" name="Address" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>not defined for local variable</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute fixed="0" name="Bit" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>not defined for local variable</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="Description" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ID12079</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute fixed="0" name="Shared" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>not defined for local variable</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute fixed="0" name="Retentive" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>not defined for local variable</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	+++++++++++++ definition of simple elements ++++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+	<xs:element fixed="0" name="EnableOPCServer" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>not defined for local variable</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element fixed="0" name="EnableNetworkClient" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>not defined for local variable</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element fixed="0" name="EnableMapRealTimeToDB" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>not defined for local variable</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+	+++++++++++++ definition of complex elements +++++++++++++
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+	<xs:element fixed="0" name="EnableTrace">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:annotation>
+					<xs:documentation>not defined for local variable</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="xs:boolean">
+					<xs:attribute ref="DurationDays"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="Variable">
+		<xs:annotation>
+			<xs:documentation>declaration of a local variable</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="1">
+				<xs:element name="Name">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:annotation>
+								<xs:documentation>ID12078</xs:documentation>
+							</xs:annotation>
+							<xs:extension base="xs:string">
+								<xs:attribute ref="Type" use="required"/>
+								<xs:attribute ref="AreaType"/>
+								<xs:attribute ref="Address"/>
+								<xs:attribute ref="Bit"/>
+								<xs:attribute ref="Description"/>
+								<xs:attribute ref="Shared"/>
+								<xs:attribute ref="Retentive"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="EnableTrace" minOccurs="0"/>
+				<xs:element ref="EnableOPCServer" minOccurs="0"/>
+				<xs:element ref="EnableNetworkClient" minOccurs="0"/>
+				<xs:element ref="EnableMapRealTimeToDB" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="VariableList">
+		<xs:annotation>
+			<xs:documentation>list of local variables of this screen</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="Variable"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+
+	<!-- *****************************************************
+	********************************************************** 
+	********************* root element ***********************
+	********************************************************** 
+	****************************************************** -->
+	
+	<xs:element name="MovResource">
+		<xs:annotation>
+			<xs:documentation>root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="1" minOccurs="0">
+				<xs:element minOccurs="0" ref="General"/>
+				<xs:element minOccurs="0" ref="BackGround"/>
+				<xs:element minOccurs="0" ref="Style"/>
+				<xs:element minOccurs="0" ref="Execution"/>
+				<xs:element minOccurs="0" ref="ListSynopticDraw"/>
+				<xs:element minOccurs="0" ref="VariableList"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

@@ -474,6 +474,8 @@ public class ConditionHandler {
 			condTemp = checkCondition(arg);
 			if(condTemp == condResult.false_condition){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
+			} else if(condTemp == condResult.irrelevant_condition){
+				condTemp = condResult.true_condition;
 			}
 		}
 		
@@ -498,6 +500,8 @@ public class ConditionHandler {
 			condTemp = checkCondition(arg);
 			if(condTemp == condResult.true_condition){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
+			} else if(condTemp == condResult.irrelevant_condition){
+				condTemp =condResult.false_condition;
 			}
 		}
 		

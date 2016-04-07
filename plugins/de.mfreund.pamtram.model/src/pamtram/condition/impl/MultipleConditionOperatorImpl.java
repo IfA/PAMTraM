@@ -4,11 +4,10 @@ package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
@@ -18,20 +17,23 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.SequenceValue;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.ConditionTables;
@@ -120,10 +122,10 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean minimalCondParts(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+	public boolean minimalNumberOfArgs(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
-		 * inv minimalCondParts:
+		 * inv minimalNumberOfArgs:
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
@@ -136,7 +138,7 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'MultipleConditionOperator::minimalCondParts'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'MultipleConditionOperator::minimalNumberOfArgs'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -166,7 +168,96 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_MultipleConditionOperator_c_c_minimalCondParts, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_MultipleConditionOperator_c_c_minimalNumberOfArgs, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean referenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv referenceOnlyConditionsFromConditionModel:
+		 *   let severity : Integer[1] = 4
+		 *   in
+		 *     let
+		 *       status : OclAny[1] = self.condPartsRef.oclContainer()
+		 *       .oclIsTypeOf(ConditionModel)
+		 *     in
+		 *       let
+		 *         message : String[?] = if status <> true
+		 *         then 'It only allowed to reference Condition-Instances that are model inside the ConditionModel!'
+		 *         else null
+		 *         endif
+		 *       in
+		 *         'MultipleConditionOperator::referenceOnlyConditionsFromConditionModel'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    final /*@NonNull*/ /*@Thrown*/ List<ComplexCondition> condPartsRef = this.getCondPartsRef();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_condPartsRef = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, condPartsRef);
+		    /*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(ConditionTables.SEQ_CLSSid_OclElement);
+		    /*@Nullable*/ Iterator<?> ITERATOR__1 = BOXED_condPartsRef.iterator();
+		    /*@NonNull*/ /*@Thrown*/ SequenceValue collect;
+		    while (true) {
+		        if (!ITERATOR__1.hasNext()) {
+		            collect = accumulator;
+		            break;
+		        }
+		        /*@Nullable*/ /*@NonInvalid*/ ComplexCondition _1 = (ComplexCondition)ITERATOR__1.next();
+		        /**
+		         * oclContainer()
+		         */
+		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, _1);
+		        //
+		        if (oclContainer instanceof CollectionValue) {
+		            for (Object value : ((CollectionValue)oclContainer).flatten().getElements()) {
+		                accumulator.add(value);
+		            }
+		        }
+		        else {
+		            accumulator.add(oclContainer);
+		        }
+		    }
+		    /*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(ConditionTables.SEQ_PRIMid_Boolean);
+		    /*@Nullable*/ Iterator<?> ITERATOR__1_0 = collect.iterator();
+		    /*@NonNull*/ /*@Thrown*/ SequenceValue status;
+		    while (true) {
+		        if (!ITERATOR__1_0.hasNext()) {
+		            status = accumulator_0;
+		            break;
+		        }
+		        /*@Nullable*/ /*@NonInvalid*/ Object _1_0 = (Object)ITERATOR__1_0.next();
+		        /**
+		         * oclIsTypeOf(ConditionModel)
+		         */
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(ConditionTables.CLSSid_ConditionModel, null);
+		        final /*@Thrown*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, _1_0, TYP_pamtram_c_c_ConditionModel).booleanValue());
+		        //
+		        accumulator_0.add(oclIsTypeOf);
+		    }
+		    CAUGHT_status = status;
+		}
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
+		}
+		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne) {
+		    message_0 = ConditionTables.STR_It_32_only_32_allowed_32_to_32_reference_32_Condition_m_Instances_32_that_32_are_32_model_32;
+		}
+		else {
+		    message_0 = null;
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_MultipleConditionOperator_c_c_referenceOnlyConditionsFromConditionM, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -264,8 +355,10 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___MINIMAL_COND_PARTS__DIAGNOSTICCHAIN_MAP:
-				return minimalCondParts((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
+				return minimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

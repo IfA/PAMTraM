@@ -155,6 +155,13 @@
         eType="#//mapping/FixedValue" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalElement" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="eitherModelOrReferCondition referenceOnlyConditionsFromConditionModel"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="eitherModelOrReferCondition" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'As this Instance is a ConditionElement and you want to add a condition, you either have to model a condition or reference an already existing one!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.conditionRef->size()+self.condition->size() &lt; 2&#xD;&#xA;}.status"/>
+      <details key="referenceOnlyConditionsFromConditionModel" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'It only allowed to reference Condition-Instances that are model inside the ConditionModel!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.conditionRef.oclContainer().oclIsTypeOf(pamtram::ConditionModel)&#xD;&#xA;}.status"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//condition/ComplexCondition"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionRef" eType="#//condition/ComplexCondition"/>
@@ -918,10 +925,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="MultipleConditionOperator" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="minimalCondParts"/>
+        <details key="constraints" value="minimalNumberOfArgs referenceOnlyConditionsFromConditionModel"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="minimalCondParts" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this condition are not modeled or not referenced !',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.condParts->size()+self.condPartsRef->size() > 1&#xD;&#xA;}.status"/>
+        <details key="minimalNumberOfArgs" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this condition are not modeled or not referenced !',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.condParts->size()+self.condPartsRef->size() > 1&#xD;&#xA;}.status"/>
+        <details key="referenceOnlyConditionsFromConditionModel" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'It only allowed to reference Condition-Instances that are model inside the ConditionModel!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.condPartsRef.oclContainer().oclIsTypeOf(pamtram::ConditionModel)&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condParts" upperBound="-1"
           eType="#//condition/ComplexCondition" containment="true"/>
@@ -933,10 +941,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="SingleConditionOperator" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="minimalCondParts"/>
+        <details key="constraints" value="minimalNumberOfArgs referenceOnlyConditionsFromConditionModel"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="minimalCondParts" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this condition are not modeled or not referenced !',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.condPart->size()+self.condPartRef->size() = 1&#xD;&#xA;}.status"/>
+        <details key="minimalNumberOfArgs" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this condition are not modeled or not referenced !',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.condPart->size()+self.condPartRef->size() = 1&#xD;&#xA;}.status"/>
+        <details key="referenceOnlyConditionsFromConditionModel" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'It only allowed to reference Condition-Instances that are model inside the ConditionModel!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.conditionRef.oclContainer().oclIsTypeOf(pamtram::ConditionModel) or self.conditionRef.oclContainer().oclIsKindOf(pamtram::ConditionalElement)&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condPart" eType="#//condition/ComplexCondition"
           containment="true"/>

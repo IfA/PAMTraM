@@ -87,7 +87,7 @@ public class ConditionTables
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationId ENUMid_CondSettingEnum = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getEnumerationId("CondSettingEnum");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
-    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_2 = ValueUtil.integerValueOf("2");
+    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_4 = ValueUtil.integerValueOf("4");
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MultipleConditionOperator_c_c_minimalCondParts = "MultipleConditionOperator::minimalCondParts";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SingleConditionOperator_c_c_minimalCondParts = "SingleConditionOperator::minimalCondParts";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_required_32_subparts_32_of_32_this_32_condition_32_are_32_not_32_modeled_32_or_32_not_32_r = "The required subparts of this condition are not modeled or not referenced !";

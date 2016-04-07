@@ -10,7 +10,6 @@
  *******************************************************************************/
 package pamtram.metamodel;
 
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import java.lang.String;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.pivot.ParameterTypes;
@@ -83,7 +82,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/metamodel", null, MetamodelPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Orphanage", "orphanage", null);
-    public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib = IdManager.getNsURIPackageId("http://www.et.tu-dresden.de/ifa/agtele/genlib", null, GenLibraryPackage.eINSTANCE);
+    public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib = IdManager.getNsURIPackageId("http://www.et.tu-dresden.de/ifa/agtele/genlib", null, null);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ActualAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ActualAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeCondition = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("AttributeCondition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeMapping = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMapping", 0);

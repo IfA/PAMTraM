@@ -124,7 +124,7 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 		/**
 		 * 
 		 * inv minimalCondParts:
-		 *   let severity : Integer[1] = 2
+		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
 		 *       status : OclAny[1] = self.condParts->size() +
@@ -166,7 +166,7 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_MultipleConditionOperator_c_c_minimalCondParts, this, null, diagnostics, context, message_0, ConditionTables.INT_2, CAUGHT_status, ConditionTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_MultipleConditionOperator_c_c_minimalCondParts, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
 	}
 

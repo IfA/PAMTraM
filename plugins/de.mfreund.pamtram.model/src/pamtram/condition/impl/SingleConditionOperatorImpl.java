@@ -173,7 +173,7 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 		/**
 		 * 
 		 * inv minimalCondParts:
-		 *   let severity : Integer[1] = 2
+		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
 		 *       status : OclAny[1] = self.condPart->size() +
@@ -214,7 +214,7 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_SingleConditionOperator_c_c_minimalCondParts, this, null, diagnostics, context, message_0, ConditionTables.INT_2, CAUGHT_status, ConditionTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_SingleConditionOperator_c_c_minimalCondParts, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
 	}
 

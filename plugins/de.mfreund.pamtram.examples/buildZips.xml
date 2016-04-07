@@ -36,6 +36,7 @@
 		includes="
 			.project,
 			metamodel/aui.xsd.ecore,
+			metamodel/movisa.ecore,
 			Pamtram/w3caui-movisa.pamtram,
 			Source/allgemeinesModell.xmi,
 			Source/Kleinversuchsanlage.xmi,

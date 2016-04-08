@@ -95,7 +95,6 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionModel = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("TargetSectionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
-    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_2 = ValueUtil.integerValueOf("2");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_4 = ValueUtil.integerValueOf("4");
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_As_32_this_32_Instance_32_is_32_a_32_ConditionElement_32_and_32_you_32_want_32_to_32_add_32_a_32_con = "As this Instance is a ConditionElement and you want to add a condition, you either have to model a condition or reference an already existing one!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ConditionalElement_c_c_eitherModelOrReferCondition = "ConditionalElement::eitherModelOrReferCondition";

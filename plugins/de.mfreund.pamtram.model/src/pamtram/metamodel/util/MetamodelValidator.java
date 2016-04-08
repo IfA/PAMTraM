@@ -3,7 +3,6 @@
 package pamtram.metamodel.util;
 
 import java.util.Map;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
@@ -342,10 +341,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(class_, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(class_, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(class_, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_containerIsValid(class_, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_cardinalityIsValid(class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(class_, diagnostics, context);
 		return result;
 	}
 
@@ -380,34 +378,6 @@ public class MetamodelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the variableCardinalityIsValid constraint of '<em>Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateClass_variableCardinalityIsValid(pamtram.metamodel.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "variableCardinalityIsValid", getObjectLabel(class_, context) },
-						 new Object[] { class_ },
-						 context));
-			}
-			return false;
-		}
-		return true;
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -422,10 +392,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(section, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(section, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_containerIsValid(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_cardinalityIsValid(section, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_extendsValidSections(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_containerMatchesExtendContainer(section, diagnostics, context);
 		return result;
@@ -466,10 +435,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSection, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(sourceSection, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_containerIsValid(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_cardinalityIsValid(sourceSection, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_extendsValidSections(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_containerMatchesExtendContainer(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSourceSection_isReferencedByMapping(sourceSection, diagnostics, context);
@@ -501,10 +469,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSection, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(targetSection, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_containerIsValid(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_cardinalityIsValid(targetSection, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_extendsValidSections(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_containerMatchesExtendContainer(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTargetSection_isReferencedByMappingHintGroup(targetSection, diagnostics, context);
@@ -545,10 +512,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(sourceSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_containerIsValid(sourceSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_cardinalityIsValid(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(sourceSectionClass, diagnostics, context);
 		return result;
 	}
 
@@ -567,10 +533,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_containerIsValid(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_cardinalityIsValid(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(targetSectionClass, diagnostics, context);
 		return result;
 	}
 

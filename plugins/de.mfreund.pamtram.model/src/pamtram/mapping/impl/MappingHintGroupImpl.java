@@ -18,10 +18,9 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
-import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -277,8 +276,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = self.conditionRef->size() +
-		 *       self.condition->size() < 2
+		 *       status : OclAny[?] = self.conditionRef->size() = 1 or
+		 *       self.condition->size() = 1
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
@@ -289,16 +288,31 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		 *         'ConditionalElement::eitherModelOrReferCondition'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef = this.getConditionRef();
-		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
-		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition condition = this.getCondition();
-		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet_0 = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, condition));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size_0 = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue sum = ClassUtil.nonNullState((IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0));
-		    final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableLessThanOperation.INSTANCE.evaluate(evaluator, sum, PamtramTables.INT_2).booleanValue());
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
+		    try {
+		        final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef = this.getConditionRef();
+		        final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef));
+		        final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
+		        final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
+		        CAUGHT_eq = eq;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
+		    }
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_0;
+		    try {
+		        final /*@Nullable*/ /*@Thrown*/ ComplexCondition condition = this.getCondition();
+		        final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet_0 = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, condition));
+		        final /*@NonNull*/ /*@Thrown*/ IntegerValue size_0 = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0));
+		        final /*@Thrown*/ boolean eq_0 = size_0.equals(PamtramTables.INT_1);
+		        CAUGHT_eq_0 = eq_0;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@Nullable*/ /*@Thrown*/ Boolean status = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_eq_0);
 		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
@@ -331,8 +345,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = self.conditionRef.oclContainer()
-		 *       .oclIsTypeOf(ConditionModel)
+		 *       status : OclAny[1] = if self.conditionRef->size() = 1
+		 *       then
+		 *         self.conditionRef.oclContainer()
+		 *         .oclIsTypeOf(ConditionModel)
+		 *       else true
+		 *       endif
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
@@ -346,10 +364,20 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(PamtramTables.CLSSid_ConditionModel, null);
-		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef = this.getConditionRef();
-		    final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, conditionRef);
-		    final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_ConditionModel).booleanValue());
+		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef_0 = this.getConditionRef();
+		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef_0));
+		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
+		    final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
+		    /*@Thrown*/ boolean status;
+		    if (eq) {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(PamtramTables.CLSSid_ConditionModel, null);
+		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, conditionRef_0);
+		        final /*@Thrown*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_ConditionModel).booleanValue());
+		        status = oclIsTypeOf;
+		    }
+		    else {
+		        status = ValueUtil.TRUE_VALUE;
+		    }
 		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
@@ -545,8 +573,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
-				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1: return MappingPackage.MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1;
+				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1: return MappingPackage.MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1;
 				default: return -1;
 			}
 		}
@@ -567,9 +595,9 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1:
 				return eitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1:
 				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

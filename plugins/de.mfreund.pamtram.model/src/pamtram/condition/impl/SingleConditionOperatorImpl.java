@@ -228,17 +228,21 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean referenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+	public boolean referenceOnlyConditionsFromConditionModelOrFromConditionalElements(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
-		 * inv referenceOnlyConditionsFromConditionModel:
+		 * inv referenceOnlyConditionsFromConditionModelOrFromConditionalElements:
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[?] = self.condPartRef.oclContainer()
-		 *       .oclIsTypeOf(ConditionModel) or
-		 *       self.condPartRef.oclContainer()
-		 *       .oclIsKindOf(ConditionalElement)
+		 *       status : OclAny[?] = if self.condPartRef->size() = 1
+		 *       then
+		 *         self.condPartRef.oclContainer()
+		 *         .oclIsTypeOf(ConditionModel) or
+		 *         self.condPartRef.oclContainer()
+		 *         .oclIsKindOf(ConditionalElement)
+		 *       else true
+		 *       endif
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
@@ -246,35 +250,44 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'SingleConditionOperator::referenceOnlyConditionsFromConditionModel'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'SingleConditionOperator::referenceOnlyConditionsFromConditionModelOrFromConditionalElements'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_oclIsTypeOf;
-		    try {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel_0 = idResolver.getClass(ConditionTables.CLSSid_ConditionModel, null);
-		        final /*@Nullable*/ /*@Thrown*/ ComplexCondition condPartRef = this.getCondPartRef();
-		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, condPartRef);
-		        final /*@Thrown*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_ConditionModel_0).booleanValue());
-		        CAUGHT_oclIsTypeOf = oclIsTypeOf;
+		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition condPartRef = this.getCondPartRef();
+		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, ConditionTables.SET_CLSSid_ComplexCondition, condPartRef));
+		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
+		    final /*@Thrown*/ boolean eq = size.equals(ConditionTables.INT_1);
+		    /*@Nullable*/ /*@Thrown*/ Boolean status;
+		    if (eq) {
+		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_oclIsTypeOf;
+		        try {
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel_0 = idResolver.getClass(ConditionTables.CLSSid_ConditionModel, null);
+		            final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, condPartRef);
+		            final /*@Thrown*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_ConditionModel_0).booleanValue());
+		            CAUGHT_oclIsTypeOf = oclIsTypeOf;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_oclIsTypeOf = ValueUtil.createInvalidValue(e);
+		        }
+		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_oclIsKindOf;
+		        try {
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionalElement = idResolver.getClass(ConditionTables.CLSSid_ConditionalElement, null);
+		            final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, condPartRef);
+		            final /*@Thrown*/ boolean oclIsKindOf = ClassUtil.nonNullState(OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_ConditionalElement).booleanValue());
+		            CAUGHT_oclIsKindOf = oclIsKindOf;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
+		        }
+		        final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_oclIsTypeOf, CAUGHT_oclIsKindOf);
+		        status = or;
 		    }
-		    catch (Exception e) {
-		        CAUGHT_oclIsTypeOf = ValueUtil.createInvalidValue(e);
+		    else {
+		        status = ValueUtil.TRUE_VALUE;
 		    }
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_oclIsKindOf;
-		    try {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionalElement = idResolver.getClass(ConditionTables.CLSSid_ConditionalElement, null);
-		        final /*@Nullable*/ /*@Thrown*/ ComplexCondition condPartRef_0 = this.getCondPartRef();
-		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, condPartRef_0);
-		        final /*@Thrown*/ boolean oclIsKindOf = ClassUtil.nonNullState(OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_ConditionalElement).booleanValue());
-		        CAUGHT_oclIsKindOf = oclIsKindOf;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@Nullable*/ /*@Thrown*/ Boolean status = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_oclIsTypeOf, CAUGHT_oclIsKindOf);
 		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
@@ -388,10 +401,10 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
+			case ConditionPackage.SINGLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1:
 				return minimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
-				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case ConditionPackage.SINGLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1:
+				return referenceOnlyConditionsFromConditionModelOrFromConditionalElements((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

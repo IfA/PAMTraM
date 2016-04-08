@@ -184,8 +184,12 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = self.condPartsRef.oclContainer()
-		 *       .oclIsTypeOf(ConditionModel)
+		 *       status : OclAny[1] = if self.condPartsRef->size() > 0
+		 *       then
+		 *         self.condPartsRef.oclContainer()
+		 *         .oclIsTypeOf(ConditionModel)
+		 *       else true
+		 *       endif
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
@@ -199,47 +203,56 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    final /*@NonNull*/ /*@Thrown*/ List<ComplexCondition> condPartsRef = this.getCondPartsRef();
-		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_condPartsRef = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, condPartsRef);
-		    /*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(ConditionTables.SEQ_CLSSid_OclElement);
-		    /*@Nullable*/ Iterator<?> ITERATOR__1 = BOXED_condPartsRef.iterator();
-		    /*@NonNull*/ /*@Thrown*/ SequenceValue collect;
-		    while (true) {
-		        if (!ITERATOR__1.hasNext()) {
-		            collect = accumulator;
-		            break;
-		        }
-		        /*@Nullable*/ /*@NonInvalid*/ ComplexCondition _1 = (ComplexCondition)ITERATOR__1.next();
-		        /**
-		         * oclContainer()
-		         */
-		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, _1);
-		        //
-		        if (oclContainer instanceof CollectionValue) {
-		            for (Object value : ((CollectionValue)oclContainer).flatten().getElements()) {
-		                accumulator.add(value);
+		    final /*@NonNull*/ /*@Thrown*/ List<ComplexCondition> condPartsRef_0 = this.getCondPartsRef();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_condPartsRef_0 = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, condPartsRef_0);
+		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_condPartsRef_0));
+		    final /*@Thrown*/ boolean gt = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, size, ConditionTables.INT_0).booleanValue());
+		    /*@NonNull*/ /*@Thrown*/ Object status;
+		    if (gt) {
+		        /*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(ConditionTables.SEQ_CLSSid_OclElement);
+		        /*@Nullable*/ Iterator<?> ITERATOR__1 = BOXED_condPartsRef_0.iterator();
+		        /*@NonNull*/ /*@Thrown*/ SequenceValue collect_0;
+		        while (true) {
+		            if (!ITERATOR__1.hasNext()) {
+		                collect_0 = accumulator;
+		                break;
+		            }
+		            /*@Nullable*/ /*@NonInvalid*/ ComplexCondition _1 = (ComplexCondition)ITERATOR__1.next();
+		            /**
+		             * oclContainer()
+		             */
+		            final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, _1);
+		            //
+		            if (oclContainer instanceof CollectionValue) {
+		                for (Object value : ((CollectionValue)oclContainer).flatten().getElements()) {
+		                    accumulator.add(value);
+		                }
+		            }
+		            else {
+		                accumulator.add(oclContainer);
 		            }
 		        }
-		        else {
-		            accumulator.add(oclContainer);
+		        /*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(ConditionTables.SEQ_PRIMid_Boolean);
+		        /*@Nullable*/ Iterator<?> ITERATOR__1_0 = collect_0.iterator();
+		        /*@NonNull*/ /*@Thrown*/ SequenceValue collect;
+		        while (true) {
+		            if (!ITERATOR__1_0.hasNext()) {
+		                collect = accumulator_0;
+		                break;
+		            }
+		            /*@Nullable*/ /*@NonInvalid*/ Object _1_0 = (Object)ITERATOR__1_0.next();
+		            /**
+		             * oclIsTypeOf(ConditionModel)
+		             */
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(ConditionTables.CLSSid_ConditionModel, null);
+		            final /*@Thrown*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, _1_0, TYP_pamtram_c_c_ConditionModel).booleanValue());
+		            //
+		            accumulator_0.add(oclIsTypeOf);
 		        }
+		        status = collect;
 		    }
-		    /*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(ConditionTables.SEQ_PRIMid_Boolean);
-		    /*@Nullable*/ Iterator<?> ITERATOR__1_0 = collect.iterator();
-		    /*@NonNull*/ /*@Thrown*/ SequenceValue status;
-		    while (true) {
-		        if (!ITERATOR__1_0.hasNext()) {
-		            status = accumulator_0;
-		            break;
-		        }
-		        /*@Nullable*/ /*@NonInvalid*/ Object _1_0 = (Object)ITERATOR__1_0.next();
-		        /**
-		         * oclIsTypeOf(ConditionModel)
-		         */
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(ConditionTables.CLSSid_ConditionModel, null);
-		        final /*@Thrown*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, _1_0, TYP_pamtram_c_c_ConditionModel).booleanValue());
-		        //
-		        accumulator_0.add(oclIsTypeOf);
+		    else {
+		        status = ValueUtil.TRUE_VALUE;
 		    }
 		    CAUGHT_status = status;
 		}
@@ -355,9 +368,9 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
+			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1:
 				return minimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1:
 				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

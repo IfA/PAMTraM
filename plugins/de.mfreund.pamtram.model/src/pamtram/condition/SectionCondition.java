@@ -32,7 +32,8 @@ public interface SectionCondition extends Condition {
 	 * @return the value of the '<em>Condition Section Ref</em>' reference.
 	 * @see #setConditionSectionRef(SourceSectionClass)
 	 * @see pamtram.condition.ConditionPackage#getSectionCondition_ConditionSectionRef()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!SectionCondition!conditionSectionRef'"
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!SectionCondition!conditionSectionRef'"
 	 * @generated
 	 */
 	SourceSectionClass getConditionSectionRef();

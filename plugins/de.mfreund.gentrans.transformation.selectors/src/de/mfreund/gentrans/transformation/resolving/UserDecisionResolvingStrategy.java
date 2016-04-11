@@ -83,7 +83,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 		
 		String dialogMessage = "Please specify a value for the attribute '" + attribute.getName() + "' of the element '" 
-				+ element.toString() + "'...";
+				+ element.eClass().getName() + "'...";
 
 		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage);
 

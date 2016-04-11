@@ -2,7 +2,6 @@ package de.mfreund.gentrans.ui.launching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -218,22 +217,28 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		});
 
 		Button addSourceFileButton = new Button(fileGroup, SWT.NONE);
+		addSourceFileButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		addSourceFileButton.setText("Add...");
 		addSourceFileButton.addSelectionListener(new SelectionListener2() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
+				// Add the selected item
+				//
 				sourceFileList.add(srcFileCombo.getText());
+				sourceFileList.deselectAll();
+				sourceFileList.select(sourceFileList.getItemCount() - 1);
 				updateLaunchConfigurationDialog();
 			}
 		});
 
 		ScrolledComposite scrolledComposite = new ScrolledComposite(fileGroup, SWT.V_SCROLL);
-		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 3));
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 
-		sourceFileList = new List(scrolledComposite, SWT.BORDER);
+		sourceFileList = new List(scrolledComposite, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
 		sourceFileList.addKeyListener(new KeyListener() {
 
 			@Override
@@ -243,13 +248,95 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.keyCode == SWT.DEL && sourceFileList.getSelectionIndex() != -1) {
-					sourceFileList.remove(sourceFileList.getSelectionIndex());
+					
+					// Delete all selected items
+					//
+					int sel = sourceFileList.getSelectionIndex();
+					sourceFileList.remove(sourceFileList.getSelectionIndices());
+					sourceFileList.select(sel > sourceFileList.getItemCount() - 1 ? sourceFileList.getItemCount() - 1 : sel);
 					updateLaunchConfigurationDialog();
 				}
 			}
 		});
 		scrolledComposite.setContent(sourceFileList);
 		scrolledComposite.setMinSize(sourceFileList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		
+		Button delSourceFileButton = new Button(fileGroup, SWT.NONE);
+		delSourceFileButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		delSourceFileButton.setText("Del...");
+		delSourceFileButton.addSelectionListener(new SelectionListener2() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				// Delete all selected items
+				//
+				int sel = sourceFileList.getSelectionIndex();
+				sourceFileList.remove(sourceFileList.getSelectionIndices());
+				sourceFileList.select(sel > sourceFileList.getItemCount() - 1 ? sourceFileList.getItemCount() - 1 : sel);
+				updateLaunchConfigurationDialog();
+			}
+		});
+		
+		Button upSourceFileButton = new Button(fileGroup, SWT.NONE);
+		upSourceFileButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		upSourceFileButton.setText("Up...");
+		upSourceFileButton.addSelectionListener(new SelectionListener2() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				// Move up all selected items
+				//
+				for (int sel : sourceFileList.getSelectionIndices()) {
+					if(sel == 0) {
+						return;
+					}
+					String[] items = sourceFileList.getItems();
+					String prevItem = sourceFileList.getItem(sel - 1);
+					items[sel - 1] = sourceFileList.getItem(sel);
+					items[sel] = prevItem;
+					int[] currentSel = sourceFileList.getSelectionIndices();
+					sourceFileList.setItems(items);
+					sourceFileList.select(currentSel);
+					sourceFileList.deselect(sel);
+					sourceFileList.select(sel - 1);					
+				}
+				
+				updateLaunchConfigurationDialog();
+			}
+		});
+		
+		Button downSourceFileButton = new Button(fileGroup, SWT.NONE);
+		downSourceFileButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		downSourceFileButton.setText("Down...");
+		downSourceFileButton.addSelectionListener(new SelectionListener2() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				// Move down all selected items
+				//
+				int[] selections = sourceFileList.getSelectionIndices();
+				for (int i = selections.length - 1; i >= 0; i--) {
+					int sel = selections[i];
+					if(sel == sourceFileList.getItemCount() - 1) {
+						return;
+					}
+					String[] items = sourceFileList.getItems();
+					String nextItem = sourceFileList.getItem(sel + 1);
+					items[sel + 1] = sourceFileList.getItem(sel);
+					items[sel] = nextItem;
+					int[] currentSel = sourceFileList.getSelectionIndices();
+					sourceFileList.setItems(items);
+					sourceFileList.select(currentSel);
+					sourceFileList.deselect(sel);
+					sourceFileList.select(sel + 1);					
+				}
+				
+				updateLaunchConfigurationDialog();
+			}
+		});
 
 
 		Label separator1 = new Label(fileGroup, SWT.SEPARATOR | SWT.HORIZONTAL);

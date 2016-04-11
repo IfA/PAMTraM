@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE xs:schema [
-	<!ENTITY n255 "([0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])">
-	<!ENTITY xy "(-?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9],-?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9])">
-]>
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
 	<!-- *****************************************************
@@ -35,8 +30,7 @@
 				"syscolor(COLORNAME Syscolor)" - no color "none"</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern
-				value="rgb\(&n255;,&n255;,&n255;\)|syscolor\([A-Z0-9]* SysColor\)|none" />
+			<xs:pattern value="rgb\(([0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\)|syscolor\([A-Z0-9]* SysColor\)|none"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="unsigned31BitInt">
@@ -62,9 +56,9 @@
 			<xs:documentation>linejoin style: round - miter - bevel</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="round" />
-			<xs:enumeration value="miter" />
-			<xs:enumeration value="bevel" />
+			<xs:enumeration value="round"/>
+			<xs:enumeration value="miter"/>
+			<xs:enumeration value="bevel"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="linecapType">
@@ -74,8 +68,8 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="butt">
 			</xs:enumeration>
-			<xs:enumeration value="round" />
-			<xs:enumeration value="square" />
+			<xs:enumeration value="round"/>
+			<xs:enumeration value="square"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="strokeDasharryType">
@@ -85,10 +79,10 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="2,2" /> <!-- dashed -->
-			<xs:enumeration value="1,1" /> <!-- dotted -->
-			<xs:enumeration value="2,1" /> <!-- dash, dot, dash, dot,... -->
-			<xs:enumeration value="2,1,1" /> <!-- dash, dot, dot, dash, dot, dot,... -->
+			<xs:enumeration value="2,2"/> <!-- dashed -->
+			<xs:enumeration value="1,1"/> <!-- dotted -->
+			<xs:enumeration value="2,1"/> <!-- dash, dot, dash, dot,... -->
+			<xs:enumeration value="2,1,1"/> <!-- dash, dot, dot, dash, dot, dot,... -->
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="hatchType">
@@ -97,7 +91,7 @@
 				22, for no hatching style leave attribute out</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern value="hatch\(2[0-2]\)|hatch\(1?[0-9]\)" />
+			<xs:pattern value="hatch\(2[0-2]\)|hatch\(1?[0-9]\)"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="styleType">
@@ -108,26 +102,26 @@
 				""146" - bottom-right "162" - add 4 to value for fixed proportions</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="2" /> <!-- stretched -->
-			<xs:enumeration value="3" /> <!-- middle -->
-			<xs:enumeration value="6" /> <!-- stretched, proportions fixed -->
-			<xs:enumeration value="7" /> <!-- middle, proportions fixed -->
-			<xs:enumeration value="26" /> <!-- top-middle -->
-			<xs:enumeration value="30" /> <!-- top-middle, proportions fixed -->
-			<xs:enumeration value="42" /> <!-- bottom-middle -->
-			<xs:enumeration value="46" /> <!-- bottom-middle, proportions fixed -->
-			<xs:enumeration value="74" /> <!-- middle-left -->
-			<xs:enumeration value="78" /> <!-- middle-left, proportions fixed -->
-			<xs:enumeration value="82" /> <!-- top-left -->
-			<xs:enumeration value="86" /> <!-- top-left, proportions fixed -->
-			<xs:enumeration value="98" /> <!-- bottom-left -->
-			<xs:enumeration value="102" /> <!-- bottom-left, proportions fixed -->
-			<xs:enumeration value="138" /> <!-- middle-right -->
-			<xs:enumeration value="142" /> <!-- middle-right, proportions fixed -->
-			<xs:enumeration value="146" /> <!-- top-right -->
-			<xs:enumeration value="150" /> <!-- top-right, proportions fixed -->
-			<xs:enumeration value="162" /> <!-- bottom-right -->
-			<xs:enumeration value="166" /> <!-- bottom-right, proportions fixed -->
+			<xs:enumeration value="2"/> <!-- stretched -->
+			<xs:enumeration value="3"/> <!-- middle -->
+			<xs:enumeration value="6"/> <!-- stretched, proportions fixed -->
+			<xs:enumeration value="7"/> <!-- middle, proportions fixed -->
+			<xs:enumeration value="26"/> <!-- top-middle -->
+			<xs:enumeration value="30"/> <!-- top-middle, proportions fixed -->
+			<xs:enumeration value="42"/> <!-- bottom-middle -->
+			<xs:enumeration value="46"/> <!-- bottom-middle, proportions fixed -->
+			<xs:enumeration value="74"/> <!-- middle-left -->
+			<xs:enumeration value="78"/> <!-- middle-left, proportions fixed -->
+			<xs:enumeration value="82"/> <!-- top-left -->
+			<xs:enumeration value="86"/> <!-- top-left, proportions fixed -->
+			<xs:enumeration value="98"/> <!-- bottom-left -->
+			<xs:enumeration value="102"/> <!-- bottom-left, proportions fixed -->
+			<xs:enumeration value="138"/> <!-- middle-right -->
+			<xs:enumeration value="142"/> <!-- middle-right, proportions fixed -->
+			<xs:enumeration value="146"/> <!-- top-right -->
+			<xs:enumeration value="150"/> <!-- top-right, proportions fixed -->
+			<xs:enumeration value="162"/> <!-- bottom-right -->
+			<xs:enumeration value="166"/> <!-- bottom-right, proportions fixed -->
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="accessLevelType">
@@ -136,17 +130,17 @@
 				"1023" - developer level "1024"</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="0" />
-			<xs:enumeration value="1" />
-			<xs:enumeration value="2" />
-			<xs:enumeration value="3" />
-			<xs:enumeration value="4" />
-			<xs:enumeration value="5" />
-			<xs:enumeration value="6" />
-			<xs:enumeration value="7" />
-			<xs:enumeration value="8" />
-			<xs:enumeration value="1023" />
-			<xs:enumeration value="1024" />
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="1023"/>
+			<xs:enumeration value="1024"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="textAnchorType">
@@ -154,13 +148,13 @@
 			<xs:documentation>text position</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="middle" />
-			<xs:enumeration value="top" />
-			<xs:enumeration value="bottom" />
-			<xs:enumeration value="start" />
-			<xs:enumeration value="end" />
-			<xs:enumeration value="middle-start" />
-			<xs:enumeration value="middle-end" />
+			<xs:enumeration value="middle"/>
+			<xs:enumeration value="top"/>
+			<xs:enumeration value="bottom"/>
+			<xs:enumeration value="start"/>
+			<xs:enumeration value="end"/>
+			<xs:enumeration value="middle-start"/>
+			<xs:enumeration value="middle-end"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="angleType">
@@ -168,131 +162,131 @@
 			<xs:documentation>angle 0-359°</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:unsignedShort">
-			<xs:maxInclusive value="359" />
+			<xs:maxInclusive value="359"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="formatType">
 		<xs:annotation>
-			<xs:documentation></xs:documentation>
+			<xs:documentation/>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern value="((x.)?x{1,5}|x,(x){2,3}(.(x){1,3})?)?" />
+			<xs:pattern value="((x.)?x{1,5}|x,(x){2,3}(.(x){1,3})?)?"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="signedMillion">
 		<xs:annotation>
-			<xs:documentation></xs:documentation>
+			<xs:documentation/>
 		</xs:annotation>
 		<xs:restriction base="xs:int">
-			<xs:minExclusive value="-1000000" />
-			<xs:maxExclusive value="1000000" />
+			<xs:minExclusive value="-1000000"/>
+			<xs:maxExclusive value="1000000"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="severalPointsType">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="(&xy; ?){2,}"/>
+			<xs:pattern value="((-?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9],-?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]) ?){2,}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="twoPointsType">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="(&xy; ?){2}"/>
+			<xs:pattern value="((-?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9],-?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]) ?){2}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
 	<xs:simpleType name="objectEnum">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="ActiveX" />
-			<xs:enumeration value="AlarmBanner" />
-			<xs:enumeration value="AlarmWnd" />
-			<xs:enumeration value="base" />
-			<xs:enumeration value="Button" />
-			<xs:enumeration value="Chart" />
-			<xs:enumeration value="DLRWnd" />
-			<xs:enumeration value="DundasGauge" />
-			<xs:enumeration value="Edit" />
-			<xs:enumeration value="EmbView" />
-			<xs:enumeration value="Gauge" />
-			<xs:enumeration value="GridBox" />
-			<xs:enumeration value="group" />
-			<xs:enumeration value="HisLogWnd" />
-			<xs:enumeration value="HourSelector" />
-			<xs:enumeration value="IPCamera" />
-			<xs:enumeration value="Listbox" />
-			<xs:enumeration value="OleObj" />
-			<xs:enumeration value="poly" />
-			<xs:enumeration value="RecipeWnd" />
-			<xs:enumeration value="TabObj" />
-			<xs:enumeration value="TraceDBWnd" />
-			<xs:enumeration value="Trend" />
+			<xs:enumeration value="ActiveX"/>
+			<xs:enumeration value="AlarmBanner"/>
+			<xs:enumeration value="AlarmWnd"/>
+			<xs:enumeration value="base"/>
+			<xs:enumeration value="Button"/>
+			<xs:enumeration value="Chart"/>
+			<xs:enumeration value="DLRWnd"/>
+			<xs:enumeration value="DundasGauge"/>
+			<xs:enumeration value="Edit"/>
+			<xs:enumeration value="EmbView"/>
+			<xs:enumeration value="Gauge"/>
+			<xs:enumeration value="GridBox"/>
+			<xs:enumeration value="group"/>
+			<xs:enumeration value="HisLogWnd"/>
+			<xs:enumeration value="HourSelector"/>
+			<xs:enumeration value="IPCamera"/>
+			<xs:enumeration value="Listbox"/>
+			<xs:enumeration value="OleObj"/>
+			<xs:enumeration value="poly"/>
+			<xs:enumeration value="RecipeWnd"/>
+			<xs:enumeration value="TabObj"/>
+			<xs:enumeration value="TraceDBWnd"/>
+			<xs:enumeration value="Trend"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
 	<xs:simpleType name="typeEnum">
 		<xs:restriction base="xs:string">
 			<!-- base-objects -->
-			<xs:enumeration value="arc" />
-			<xs:enumeration value="chord" />
-			<xs:enumeration value="ellipse" />
-			<xs:enumeration value="line" />
-			<xs:enumeration value="pie" />
-			<xs:enumeration value="rect" />
-			<xs:enumeration value="rrect" />
+			<xs:enumeration value="arc"/>
+			<xs:enumeration value="chord"/>
+			<xs:enumeration value="ellipse"/>
+			<xs:enumeration value="line"/>
+			<xs:enumeration value="pie"/>
+			<xs:enumeration value="rect"/>
+			<xs:enumeration value="rrect"/>
 			<!-- Button-objects -->
-			<xs:enumeration value="checked" />
-			<xs:enumeration value="groupbox" />
-			<xs:enumeration value="hotregion" />
-			<xs:enumeration value="normal" />
+			<xs:enumeration value="checked"/>
+			<xs:enumeration value="groupbox"/>
+			<xs:enumeration value="hotregion"/>
+			<xs:enumeration value="normal"/>
 			<!-- poly-objects -->
-			<xs:enumeration value="pipe" />
-			<xs:enumeration value="polybezier" />
-			<xs:enumeration value="polygon" />
-			<xs:enumeration value="polyline" />
+			<xs:enumeration value="pipe"/>
+			<xs:enumeration value="polybezier"/>
+			<xs:enumeration value="polygon"/>
+			<xs:enumeration value="polyline"/>
 			<!-- other objects without subtype -->
-			<xs:enumeration value="" />
+			<xs:enumeration value=""/>
 		</xs:restriction>
 	</xs:simpleType>
 
 	<xs:simpleType name="groupChildEnum">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="ActiveX" />
-			<xs:enumeration value="AlarmBanner" />
-			<xs:enumeration value="AlarmWnd" />
-			<xs:enumeration value="base" />
-			<xs:enumeration value="Button" />
-			<xs:enumeration value="Chart" />
-			<xs:enumeration value="DLRWnd" />
-			<xs:enumeration value="DundasGauge" />
-			<xs:enumeration value="Edit" />
-			<xs:enumeration value="EmbView" />
-			<xs:enumeration value="Gauge" />
-			<xs:enumeration value="GridBox" />
-			<xs:enumeration value="group" />
-			<xs:enumeration value="HisLogWnd" />
-			<xs:enumeration value="HourSelector" />
-			<xs:enumeration value="IPCamera" />
-			<xs:enumeration value="Listbox" />
-			<xs:enumeration value="OleObj" />
-			<xs:enumeration value="poly" />
-			<xs:enumeration value="RecipeWnd" />
-			<xs:enumeration value="TabObj" />
-			<xs:enumeration value="TraceDBWnd" />
-			<xs:enumeration value="Trend" />
-			<xs:enumeration value="arc" />
-			<xs:enumeration value="chord" />
-			<xs:enumeration value="ellipse" />
-			<xs:enumeration value="line" />
-			<xs:enumeration value="pie" />
-			<xs:enumeration value="rect" />
-			<xs:enumeration value="rrect" />
-			<xs:enumeration value="checked" />
-			<xs:enumeration value="groupbox" />
-			<xs:enumeration value="hotregion" />
-			<xs:enumeration value="normal" />
-			<xs:enumeration value="pipe" />
-			<xs:enumeration value="polybezier" />
-			<xs:enumeration value="polygon" />
-			<xs:enumeration value="polyline" />
-			<xs:enumeration value="" />
+			<xs:enumeration value="ActiveX"/>
+			<xs:enumeration value="AlarmBanner"/>
+			<xs:enumeration value="AlarmWnd"/>
+			<xs:enumeration value="base"/>
+			<xs:enumeration value="Button"/>
+			<xs:enumeration value="Chart"/>
+			<xs:enumeration value="DLRWnd"/>
+			<xs:enumeration value="DundasGauge"/>
+			<xs:enumeration value="Edit"/>
+			<xs:enumeration value="EmbView"/>
+			<xs:enumeration value="Gauge"/>
+			<xs:enumeration value="GridBox"/>
+			<xs:enumeration value="group"/>
+			<xs:enumeration value="HisLogWnd"/>
+			<xs:enumeration value="HourSelector"/>
+			<xs:enumeration value="IPCamera"/>
+			<xs:enumeration value="Listbox"/>
+			<xs:enumeration value="OleObj"/>
+			<xs:enumeration value="poly"/>
+			<xs:enumeration value="RecipeWnd"/>
+			<xs:enumeration value="TabObj"/>
+			<xs:enumeration value="TraceDBWnd"/>
+			<xs:enumeration value="Trend"/>
+			<xs:enumeration value="arc"/>
+			<xs:enumeration value="chord"/>
+			<xs:enumeration value="ellipse"/>
+			<xs:enumeration value="line"/>
+			<xs:enumeration value="pie"/>
+			<xs:enumeration value="rect"/>
+			<xs:enumeration value="rrect"/>
+			<xs:enumeration value="checked"/>
+			<xs:enumeration value="groupbox"/>
+			<xs:enumeration value="hotregion"/>
+			<xs:enumeration value="normal"/>
+			<xs:enumeration value="pipe"/>
+			<xs:enumeration value="polybezier"/>
+			<xs:enumeration value="polygon"/>
+			<xs:enumeration value="polyline"/>
+			<xs:enumeration value=""/>
 		</xs:restriction>
 	</xs:simpleType>
 	
@@ -955,8 +949,8 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:minInclusive value="1" />
-				<xs:maxInclusive value="4" />
+				<xs:minInclusive value="1"/>
+				<xs:maxInclusive value="4"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1047,7 +1041,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="3" />
+				<xs:maxInclusive value="3"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1108,7 +1102,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="xs:string">
-				<xs:pattern value="((.)+){1}(/|(.)+)*|" />
+				<xs:pattern value="((.)+){1}(/|(.)+)*|"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1134,7 +1128,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="3" />
+				<xs:maxInclusive value="3"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1182,7 +1176,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="2" />
+				<xs:maxInclusive value="2"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1192,7 +1186,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="3" />
+				<xs:maxInclusive value="3"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1239,7 +1233,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="9" />
+				<xs:maxInclusive value="9"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1341,7 +1335,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="xs:unsignedShort">
-				<xs:maxInclusive value="32" />
+				<xs:maxInclusive value="32"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1473,7 +1467,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="11" />
+				<xs:maxInclusive value="11"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1568,7 +1562,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="2" />
+				<xs:maxInclusive value="2"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1592,7 +1586,7 @@
 			<xs:documentation>font-weight: standard "400" - bold "700"</xs:documentation>
 		</xs:annotation>
 	</xs:attribute>
-	<xs:attribute name="font-style" type="xs:string" fixed="italic">
+	<xs:attribute fixed="italic" name="font-style" type="xs:string">
 		<xs:annotation>
 			<xs:documentation>set attribute for italic font</xs:documentation>
 		</xs:annotation>
@@ -1718,7 +1712,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="4" />
+				<xs:maxInclusive value="4"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1733,7 +1727,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="58" />
+				<xs:maxInclusive value="58"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1768,7 +1762,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="7" />
+				<xs:maxInclusive value="7"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1811,7 +1805,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="options">
-				<xs:maxInclusive value="21" />
+				<xs:maxInclusive value="21"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1848,10 +1842,10 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="xs:int">
-				<xs:enumeration value="0" />
-				<xs:enumeration value="8" />
-				<xs:enumeration value="16" />
-				<xs:enumeration value="32" />
+				<xs:enumeration value="0"/>
+				<xs:enumeration value="8"/>
+				<xs:enumeration value="16"/>
+				<xs:enumeration value="32"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -1863,36 +1857,36 @@
 	
 	<xs:group name="groupChild">
 		<xs:sequence>
-			<xs:element name="type" minOccurs="1" maxOccurs="2">
+			<xs:element maxOccurs="2" minOccurs="1" name="type">
 				<xs:complexType>
 					<xs:simpleContent>
 						<xs:extension base="groupChildEnum">
-							<xs:attribute ref="x" />
-							<xs:attribute ref="y" />
-							<xs:attribute ref="width" />
-							<xs:attribute ref="height" />
+							<xs:attribute ref="x"/>
+							<xs:attribute ref="y"/>
+							<xs:attribute ref="width"/>
+							<xs:attribute ref="height"/>
 		 					<xs:attribute ref="chFigure"/>
-							<xs:attribute ref="rx" />
-							<xs:attribute ref="ry" />
-							<xs:attribute ref="rxa" />
-							<xs:attribute ref="rya" />
-							<xs:attribute ref="ArrowHeight" />
-							<xs:attribute ref="hatch" />
-							<xs:attribute ref="fill" />
-							<xs:attribute ref="stroke-dasharray" />
-							<xs:attribute ref="stroke" />
-							<xs:attribute ref="stroke-width" />
-							<xs:attribute ref="stroke-linecap" />
-							<xs:attribute ref="stroke-linejoin" />
-							<xs:attribute ref="l3D" />
-							<xs:attribute ref="p3D" />
+							<xs:attribute ref="rx"/>
+							<xs:attribute ref="ry"/>
+							<xs:attribute ref="rxa"/>
+							<xs:attribute ref="rya"/>
+							<xs:attribute ref="ArrowHeight"/>
+							<xs:attribute ref="hatch"/>
+							<xs:attribute ref="fill"/>
+							<xs:attribute ref="stroke-dasharray"/>
+							<xs:attribute ref="stroke"/>
+							<xs:attribute ref="stroke-width"/>
+							<xs:attribute ref="stroke-linecap"/>
+							<xs:attribute ref="stroke-linejoin"/>
+							<xs:attribute ref="l3D"/>
+							<xs:attribute ref="p3D"/>
 							<xs:attribute ref="KAR"/>
-							<xs:attribute ref="Border" />
-							<xs:attribute ref="ImageDown" />
-							<xs:attribute ref="ImageUp" />
-							<xs:attribute ref="ImageChecked" />
-							<xs:attribute ref="ImageDisable" />
-							<xs:attribute ref="BtnImageOverlap" />
+							<xs:attribute ref="Border"/>
+							<xs:attribute ref="ImageDown"/>
+							<xs:attribute ref="ImageUp"/>
+							<xs:attribute ref="ImageChecked"/>
+							<xs:attribute ref="ImageDisable"/>
+							<xs:attribute ref="BtnImageOverlap"/>
 						</xs:extension>
 					</xs:simpleContent>
 				</xs:complexType>

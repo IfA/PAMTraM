@@ -188,6 +188,15 @@
       <description>The folder where all projects from the 'AGTele Eclipse Commons' feature will be cloned to.</description>
     </setupTask>
     <setupTask
+        xsi:type="setup:VariableTask"
+        name="eclipse.target.platform"
+        value="None"
+        defaultValue="None"
+        storageURI="scope://Workspace"
+        label="Target Platform">
+      <description>Choose the compatibility level of the target platform</description>
+    </setupTask>
+    <setupTask
         xsi:type="setup:CompoundTask"
         id="clone"
         name="Clone Projects">

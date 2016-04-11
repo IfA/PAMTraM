@@ -239,8 +239,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	
 		// Create the viewer for the source sections.
 		//
-		sourceViewerGroup = new TreeViewerGroup(
-				this, adapterFactory, editor.getEditingDomain(),
+		sourceViewerGroup = new MinimizableTreeViewerGroup(
+				sourceSash, adapterFactory, editor.getEditingDomain(),
 				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections", null, null, true, true
 				);
 		sourceViewer = sourceViewerGroup.getViewer();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel name="Layers">
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
     <metaModelSections xsi:type="metamodel:SourceSection" name="sourceContainer">
@@ -215,14 +215,10 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Input:Double" value="Input:Double"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.2">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.9">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;FunctionButton&quot;">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionButton" value="FunctionButton"/>
-      </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject NavigatorButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject NavigatorButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.9 //@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;NavigatorButton&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -231,18 +227,26 @@
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="send@NavigatorButton">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Logout" type="EXCLUSION" value="Logout"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ALERT" type="EXCLUSION" value="ALERT"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="BACK" type="EXCLUSION" value="BACK"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject AlertButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Button" container="//@sourceSectionModel.0/@metaModelSections.4" abstract="true" extend="//@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;NavigatorButton&quot;">
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionButton" value="FunctionButton"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="NavigatorButton" value="NavigatorButton"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject BackButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;BackButton&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="NavigatorButton" value="NavigatorButton"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="send@NavigatorButton">
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="send@BackButton">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ALERT" value="ALERT"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Back" value="BACK"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="viObject container Rectangle" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -545,13 +549,13 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionInterface" value="FunctionInterface"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Externaldatatype (Ellipse) base" container="//@sourceSectionModel.1/@metaModelSections.12" abstract="true">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Externaldatatype (Ellipse) base" container="//@sourceSectionModel.1/@metaModelSections.13" abstract="true">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Externaldatatype (Rectangle) base" container="//@sourceSectionModel.1/@metaModelSections.10" abstract="true">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Externaldatatype (Rectangle) base" container="//@sourceSectionModel.1/@metaModelSections.11" abstract="true">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Stopper" container="//@sourceSectionModel.1/@metaModelSections.12" extend="//@sourceSectionModel.2/@metaModelSections.3">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Stopper" container="//@sourceSectionModel.1/@metaModelSections.13" extend="//@sourceSectionModel.2/@metaModelSections.3">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -771,7 +775,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == MatFlow" container="//@sourceSectionModel.1/@metaModelSections.10" extend="//@sourceSectionModel.2/@metaModelSections.4">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == MatFlow" container="//@sourceSectionModel.1/@metaModelSections.11" extend="//@sourceSectionModel.2/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -798,7 +802,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Station" container="//@sourceSectionModel.1/@metaModelSections.10" extend="//@sourceSectionModel.2/@metaModelSections.4">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Station" container="//@sourceSectionModel.1/@metaModelSections.11" extend="//@sourceSectionModel.2/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -844,7 +848,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Fork/Merge" container="//@sourceSectionModel.1/@metaModelSections.12" extend="//@sourceSectionModel.2/@metaModelSections.3">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Fork/Merge" container="//@sourceSectionModel.1/@metaModelSections.13" extend="//@sourceSectionModel.2/@metaModelSections.3">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -880,7 +884,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Conveyor (Rect)" container="//@sourceSectionModel.1/@metaModelSections.10" extend="//@sourceSectionModel.2/@metaModelSections.4">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Conveyor (Rect)" container="//@sourceSectionModel.1/@metaModelSections.11" extend="//@sourceSectionModel.2/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -914,7 +918,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Conveyor (Ellipse)" container="//@sourceSectionModel.1/@metaModelSections.12" extend="//@sourceSectionModel.2/@metaModelSections.3">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Conveyor (Ellipse)" container="//@sourceSectionModel.1/@metaModelSections.13" extend="//@sourceSectionModel.2/@metaModelSections.3">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -949,7 +953,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == ClassPath (no Stations)" container="//@sourceSectionModel.1/@metaModelSections.10" extend="//@sourceSectionModel.2/@metaModelSections.4">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == ClassPath (no Stations)" container="//@sourceSectionModel.1/@metaModelSections.11" extend="//@sourceSectionModel.2/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -1349,6 +1353,7 @@
       <attributes xsi:type="metamodel:ActualAttribute" name="object" value="">
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1/object"/>
       </attributes>
+      <attributes xsi:type="metamodel:VirtualAttribute" name="label"/>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel name="Basic2">
@@ -1396,9 +1401,8 @@
     </modifierSets>
     <globalValues name="xyScale" value="10000.0"/>
   </mappingModel>
-  <mappingModel name="new">
-    <mapping name="Viobject_NavigatorButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.8">
-      <condition xsi:type="condition:Condition" attribute="//@sourceSectionModel.1/@metaModelSections.8/@attributes.1" value="BACK"/>
+  <mappingModel name="UIElements2">
+    <mapping name="Viobject ButtonMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.9" abstract="true">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Button" value="Button"/>
@@ -1422,8 +1426,8 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.5/@references.3/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="n0Mapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.7/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="send@NavigatorButton" source="//@sourceSectionModel.1/@metaModelSections.8/@attributes.1" modifier="//@mappingModel.1/@modifierSets.0"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="labelMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
@@ -1431,9 +1435,25 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
+    <mapping name="Viobject_NavigatorButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.8">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="n0Mapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.7/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="send@NavigatorButton" source="//@sourceSectionModel.1/@metaModelSections.8/@attributes.1" modifier="//@mappingModel.1/@modifierSets.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
+    <mapping name="Viobject_BackButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.10">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="n0Mapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.7/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="" value="&lt;CommandType synoptic=&quot;&quot; action=&quot;5&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
     <modifierSets name="NavigationCommand">
       <modifier xsi:type="mapping:StringPrepender" name="NavigationCommandPrepender" string="&lt;CommandType synoptic=&quot;"/>
       <modifier xsi:type="mapping:StringAppender" name="NavigationCommandAppender" string="&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+    </modifierSets>
+    <modifierSets name="BackNavigationCommand">
       <modifier xsi:type="mapping:SubstringReplacer" name="Back" regex=".*BACK.*" replacement="&lt;CommandType synoptic=&quot;&quot; action=&quot;5&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
     </modifierSets>
   </mappingModel>

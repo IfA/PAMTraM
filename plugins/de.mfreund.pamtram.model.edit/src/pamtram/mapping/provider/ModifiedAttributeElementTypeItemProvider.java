@@ -169,38 +169,4 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 		return PamtramEditPlugin.INSTANCE;
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-
-
-		if(collection.size() == 1) {
-			Object value = collection.iterator().next();
-			if(value instanceof Attribute) {
-
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-						MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, value, 0);
-			}
-		}
-
-		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
-		for (Object value : collection) {
-			if(value instanceof AttributeValueModifierSet) {
-				values.add((AttributeValueModifierSet) value);
-			} else {
-				return super.createDragAndDropCommand(domain, owner, location, operations,
-						operation, collection); 
-			}
-		}
-
-		if(values.isEmpty()) {
-			return super.createDragAndDropCommand(domain, owner, location, operations,
-					operation, collection); 
-		} else {
-			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER, values);
-		}
-
-	}
 }

@@ -354,38 +354,4 @@ extends MappingHintItemProvider {
 				 MappingFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-
-
-		if(collection.size() == 1) {
-			Object value = collection.iterator().next();
-			if(value instanceof TargetSectionAttribute) {
-
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-						MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET, value, 0);
-			}
-		}
-
-		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
-		for (Object value : collection) {
-			if(value instanceof AttributeValueModifierSet) {
-				values.add((AttributeValueModifierSet) value);
-			} else {
-				return super.createDragAndDropCommand(domain, owner, location, operations,
-						operation, collection); 
-			}
-		}
-
-		if(values.isEmpty()) {
-			return super.createDragAndDropCommand(domain, owner, location, operations,
-					operation, collection); 
-		} else {
-			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER, values);
-		}
-	}
-
 }

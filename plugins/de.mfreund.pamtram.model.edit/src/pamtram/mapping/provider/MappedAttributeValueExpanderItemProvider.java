@@ -222,28 +222,4 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-		
-		
-		EList<ExpandableHint> values = new BasicEList<ExpandableHint>();
-		for (Object value : collection) {
-			if(value instanceof ExpandableHint) {
-				values.add((ExpandableHint) value);
-			} else {
-				return super.createDragAndDropCommand(domain, owner, location, operations,
-						operation, collection); 
-			}
-		}
-		
-		if(values.isEmpty()) {
-			return super.createDragAndDropCommand(domain, owner, location, operations,
-					operation, collection); 
-		} else {
-			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, values);
-		}
-	}
 }

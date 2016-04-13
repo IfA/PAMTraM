@@ -208,12 +208,4 @@ extends AttributeItemProvider {
 				 MetamodelFactory.eINSTANCE.createRegExMatcher()));
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-		// TODO Auto-generated method stub
-		return super.createDragAndDropCommand(domain, owner, location, operations,
-				operation, collection);
-	}
 }

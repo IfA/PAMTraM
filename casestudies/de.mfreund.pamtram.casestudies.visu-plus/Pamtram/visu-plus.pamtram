@@ -215,14 +215,14 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Input:Double" value="Input:Double"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.9 //@sourceSectionModel.1/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.10 //@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionButton" value="FunctionButton"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject NavigatorButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.9 //@sourceSectionModel.1/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject NavigatorButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.10 //@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;NavigatorButton&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -234,15 +234,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="BACK" type="EXCLUSION" value="BACK"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Button" container="//@sourceSectionModel.0/@metaModelSections.4" abstract="true" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionButton" value="FunctionButton"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="NavigatorButton" value="NavigatorButton"/>
-      </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject BackButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.9">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject BackButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.10">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;BackButton&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -251,6 +243,14 @@
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="send@BackButton">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Back" value="BACK"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Button" container="//@sourceSectionModel.0/@metaModelSections.4" abstract="true" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionButton" value="FunctionButton"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="NavigatorButton" value="NavigatorButton"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="viObject container Rectangle" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -1292,6 +1292,9 @@
           <attributes xsi:type="metamodel:ActualAttribute" name="height">
             <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TypeType1/height"/>
           </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="value" value="">
+            <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TypeType1/value"/>
+          </attributes>
         </value>
       </references>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="mechanic">
@@ -1349,6 +1352,12 @@
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1/extFill"/>
         <value xsi:type="metamodel:TargetSectionClass" name="ExtFillType">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ExtFillType"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="imageID">
+            <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ExtFillType/imageID"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="style">
+            <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ExtFillType/style"/>
+          </attributes>
         </value>
       </references>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="commandsOnDown">
@@ -1411,7 +1420,7 @@
     <globalValues name="xyScale" value="10000.0"/>
   </mappingModel>
   <mappingModel name="UIElements2">
-    <mapping name="Viobject ButtonMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.9" abstract="true">
+    <mapping name="Viobject ButtonMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.10" abstract="true">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Button" value="Button"/>
@@ -1448,7 +1457,7 @@
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping name="Viobject_BackButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.10">
+    <mapping name="Viobject_BackButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.9">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_BackButton" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="n0Mapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.7/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="navigateBack" value="&lt;CommandType synoptic=&quot;&quot; action=&quot;5&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
@@ -1460,6 +1469,39 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="pushStyleExMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="grueneRechteckigeSchaltfl&#xe4;che" value="34"/>
         </mappingHints>
+      </mappingHintGroups>
+    </mapping>
+    <mapping name="viObject container RectangleMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.11">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Buttons" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round( x/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.1" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( ymax/(unitspermeter/xyScale) - y/(unitspermeter/xyScale) - height/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.1" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(width/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.1" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(height/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.1" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Text" target="//@targetSectionModel.0/@metaModelSections.5/@references.2/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.5/@references.3/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.4">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+        </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
     <modifierSets name="NavigationCommand">

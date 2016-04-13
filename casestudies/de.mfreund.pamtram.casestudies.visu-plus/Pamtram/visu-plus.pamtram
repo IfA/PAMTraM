@@ -215,8 +215,12 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Input:Double" value="Input:Double"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.9">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.9 //@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionButton" value="FunctionButton"/>
+      </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="viObject NavigatorButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.9 //@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
@@ -238,7 +242,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="NavigatorButton" value="NavigatorButton"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject BackButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject BackButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.9">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;BackButton&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -1270,7 +1274,7 @@
     <metaModelSections xsi:type="metamodel:TargetSection" name="StyleType1" container="//@targetSectionModel.0/@metaModelSections.0">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//StyleType1"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Child(Buttons)" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Child_Buttons" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="type">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1/type"/>
@@ -1299,6 +1303,9 @@
           </attributes>
           <attributes xsi:type="metamodel:ActualAttribute" name="pushStyleEx">
             <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MechanicType/pushStyleEx"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="clickable">
+            <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MechanicType/clickable"/>
           </attributes>
         </value>
       </references>
@@ -1405,7 +1412,7 @@
   </mappingModel>
   <mappingModel name="UIElements2">
     <mapping name="Viobject ButtonMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.9" abstract="true">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child(Button)" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Button" value="Button"/>
         </mappingHints>
@@ -1435,21 +1442,21 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Viobject_NavigatorButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.8">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child(NavigatorButton)" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_NavigatorButton" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="n0Mapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.7/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="send@NavigatorButton" source="//@sourceSectionModel.1/@metaModelSections.8/@attributes.1" modifier="//@mappingModel.1/@modifierSets.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="Viobject_BackButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.10">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child(BackButton)" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_BackButton" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="n0Mapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.7/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="" value="&lt;CommandType synoptic=&quot;&quot; action=&quot;5&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="navigateBack" value="&lt;CommandType synoptic=&quot;&quot; action=&quot;5&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="viObject FunctionButtonMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.7">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child(FunctionButton)" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_FunctionButton" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="pushStyleExMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="grueneRechteckigeSchaltfl&#xe4;che" value="34"/>
         </mappingHints>

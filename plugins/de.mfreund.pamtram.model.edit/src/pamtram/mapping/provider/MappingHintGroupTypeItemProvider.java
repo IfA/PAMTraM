@@ -364,20 +364,4 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 		return PamtramEditPlugin.INSTANCE;
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-
-		if(collection.size() == 1) {
-			Object value = collection.iterator().next();
-			if(value instanceof TargetSectionClass && value == ((TargetSectionClass) value).getContainingSection()) {
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-						MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, value, 0);
-			}
-		}
-
-		return super.createDragAndDropCommand(domain, owner, location, operations,
-				operation, collection);
-	}
 }

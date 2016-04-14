@@ -121,39 +121,5 @@ public class AttributeMatcherSourceElementItemProvider extends LocalModifiedAttr
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
-	
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-		
-		if(collection.size() == 1) {
-			Object value = collection.iterator().next();
-			if(value instanceof SourceSectionAttribute) {
-		
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-						MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, value, 0);
-			}
-		}
-		
-		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
-		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
-			Object value = iter.next();
-			if(value instanceof AttributeValueModifierSet) {
-				values.add((AttributeValueModifierSet) value);
-			} else {
-				return super.createDragAndDropCommand(domain, owner, location, operations,
-						operation, collection); 
-			}
-		}
-		
-		if(values.isEmpty()) {
-			return super.createDragAndDropCommand(domain, owner, location, operations,
-					operation, collection); 
-		} else {
-			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER, values);
-		}
-	}
 
 }

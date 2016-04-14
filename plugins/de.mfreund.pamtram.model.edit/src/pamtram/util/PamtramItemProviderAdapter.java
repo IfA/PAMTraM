@@ -2,20 +2,37 @@ package pamtram.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.DragAndDropCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ItemProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.xtext.EcoreUtil2;
 
+import de.tud.et.ifa.agtele.emf.edit.CommonItemProviderAdapter;
+import de.tud.et.ifa.agtele.emf.edit.ICommandSelectionStrategy;
+import de.tud.et.ifa.agtele.emf.edit.IDragAndDropProvider;
+import de.tud.et.ifa.agtele.ui.emf.edit.UserChoiceCommandSelectionStrategy;
 import pamtram.NamedElement;
 import pamtram.impl.PamtramPackageImpl;
+import pamtram.mapping.MappingPackage;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.metamodel.SourceSectionClass;
 
 /**
  * This {@link ItemProviderAdapter} adds the ability to define a list of '<em>labelRelatedChildrenFeatures</em>'. Changes
@@ -25,7 +42,7 @@ import pamtram.impl.PamtramPackageImpl;
  * 
  * @author mfreund
  */
-public class PamtramItemProviderAdapter extends ItemProviderAdapter implements INamedElementChildrenChangeNotifier {
+public class PamtramItemProviderAdapter extends CommonItemProviderAdapter implements INamedElementChildrenChangeNotifier, IDragAndDropProvider {
 
 	public PamtramItemProviderAdapter(AdapterFactory adapterFactory) {
 		super(adapterFactory);
@@ -114,5 +131,11 @@ public class PamtramItemProviderAdapter extends ItemProviderAdapter implements I
 			return;
 		}
 	}
+	
+	@Override
+	public ICommandSelectionStrategy getCommandSelectionStrategy() {
+		return new UserChoiceCommandSelectionStrategy();
+	}
+	
 
 }

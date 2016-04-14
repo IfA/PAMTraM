@@ -1705,7 +1705,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
 		// Get the Pamtram instance.
 		for (Resource resource : getEditingDomain().getResourceSet().getResources()) {
-			if(resource.getContents().get(0) instanceof PAMTraM) {
+			if(!resource.getContents().isEmpty() && resource.getContents().get(0) instanceof PAMTraM) {
 				pamtram = (PAMTraM) resource.getContents().get(0);
 				break;
 			}

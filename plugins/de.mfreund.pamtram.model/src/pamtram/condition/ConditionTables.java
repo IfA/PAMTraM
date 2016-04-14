@@ -82,6 +82,7 @@ public class ConditionTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ConditionalElement = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionalElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_InstancePointer = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointer", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MultipleConditionOperator = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("MultipleConditionOperator", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Not = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("Not", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_OclElement = ConditionTables.PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SingleConditionOperator = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("SingleConditionOperator", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionAttribute = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
@@ -96,8 +97,10 @@ public class ConditionTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_It_32_only_32_allowed_32_to_32_reference_32_Condition_m_Instances_32_that_32_are_32_model_32 = "It only allowed to reference Condition-Instances that are model inside the ConditionModel!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MultipleConditionOperator_c_c_minimalNumberOfArgs = "MultipleConditionOperator::minimalNumberOfArgs";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MultipleConditionOperator_c_c_referenceOnlyConditionsFromConditionM = "MultipleConditionOperator::referenceOnlyConditionsFromConditionModel";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Not_c_c_referenceOnlyConditionsFromConditionModelOrFromConditionalE = "Not::referenceOnlyConditionsFromConditionModelOrFromConditionalElements";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Reference_32_only_32_Conditions_32_that_32_placed_32_inside_32_ConditionModel_32_or_32_w = "Reference only Conditions that placed inside ConditionModel or where the Container is Kind of ConditionalElement!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SingleConditionOperator_c_c_minimalNumberOfArgs = "SingleConditionOperator::minimalNumberOfArgs";
-    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SingleConditionOperator_c_c_referenceOnlyConditionsFromConditionMod = "SingleConditionOperator::referenceOnlyConditionsFromConditionModelOrFromConditionalElements";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_required_32_subparts_32_of_32_this_32_Not_m_Condition_32_are_32_not_32_modeled_32_or_32_n = "The required subparts of this Not-Condition are not modeled or not referenced or both done but not allowed!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_required_32_subparts_32_of_32_this_32_condition_32_are_32_not_32_modeled_32_or_32_not_32_r = "The required subparts of this condition are not modeled or not referenced !";
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ConditionalElement = TypeId.BAG.getSpecializedId(ConditionTables.CLSSid_ConditionalElement);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MultipleConditionOperator = TypeId.BAG.getSpecializedId(ConditionTables.CLSSid_MultipleConditionOperator);

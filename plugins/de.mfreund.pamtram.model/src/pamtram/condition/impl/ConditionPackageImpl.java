@@ -369,8 +369,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleConditionOperator__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map() {
-		return singleConditionOperatorEClass.getEOperations().get(1);
+	public EClass getNot() {
+		return notEClass;
 	}
 
 	/**
@@ -378,8 +378,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNot() {
-		return notEClass;
+	public EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map() {
+		return notEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -496,9 +496,9 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEReference(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR__COND_PART);
 		createEReference(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR__COND_PART_REF);
 		createEOperation(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 
 		notEClass = createEClass(NOT);
+		createEOperation(notEClass, NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 
 		attributeConditionEClass = createEClass(ATTRIBUTE_CONDITION);
 		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
@@ -605,7 +605,9 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getSingleConditionOperator__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModelOrFromConditionalElements", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEClass(notEClass, Not.class, "Not", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModelOrFromConditionalElements", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -613,8 +615,6 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(notEClass, Not.class, "Not", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(attributeConditionEClass, AttributeCondition.class, "AttributeCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeCondition_ValueConstraint(), theMetamodelPackage.getAttributeValueConstraint(), null, "valueConstraint", null, 1, -1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -665,7 +665,13 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		  (singleConditionOperatorEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "minimalNumberOfArgs referenceOnlyConditionsFromConditionModelOrFromConditionalElements"
+			 "constraints", "minimalNumberOfArgs"
+		   });	
+		addAnnotation
+		  (notEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "referenceOnlyConditionsFromConditionModelOrFromConditionalElements"
 		   });
 	}
 

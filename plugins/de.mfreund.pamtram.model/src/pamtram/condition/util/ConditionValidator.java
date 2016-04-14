@@ -63,12 +63,12 @@ public class ConditionValidator extends EObjectValidator {
 	public static final int SINGLE_CONDITION_OPERATOR__MINIMAL_NUMBER_OF_ARGS = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Reference Only Conditions From Condition Model Or From Conditional Elements' of 'Single Condition Operator'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Reference Only Conditions From Condition Model Or From Conditional Elements' of 'Not'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SINGLE_CONDITION_OPERATOR__REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS = 4;
+	public static final int NOT__REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -257,7 +257,6 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(singleConditionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(singleConditionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleConditionOperator_minimalNumberOfArgs(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleConditionOperator_referenceOnlyConditionsFromConditionModelOrFromConditionalElements(singleConditionOperator, diagnostics, context);
 		return result;
 	}
 
@@ -269,16 +268,6 @@ public class ConditionValidator extends EObjectValidator {
 	 */
 	public boolean validateSingleConditionOperator_minimalNumberOfArgs(SingleConditionOperator singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return singleConditionOperator.minimalNumberOfArgs(diagnostics, context);
-	}
-
-	/**
-	 * Validates the referenceOnlyConditionsFromConditionModelOrFromConditionalElements constraint of '<em>Single Condition Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSingleConditionOperator_referenceOnlyConditionsFromConditionModelOrFromConditionalElements(SingleConditionOperator singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return singleConditionOperator.referenceOnlyConditionsFromConditionModelOrFromConditionalElements(diagnostics, context);
 	}
 
 	/**
@@ -297,8 +286,18 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleConditionOperator_minimalNumberOfArgs(not, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleConditionOperator_referenceOnlyConditionsFromConditionModelOrFromConditionalElements(not, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNot_referenceOnlyConditionsFromConditionModelOrFromConditionalElements(not, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the referenceOnlyConditionsFromConditionModelOrFromConditionalElements constraint of '<em>Not</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNot_referenceOnlyConditionsFromConditionModelOrFromConditionalElements(Not not, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return not.referenceOnlyConditionsFromConditionModelOrFromConditionalElements(diagnostics, context);
 	}
 
 	/**

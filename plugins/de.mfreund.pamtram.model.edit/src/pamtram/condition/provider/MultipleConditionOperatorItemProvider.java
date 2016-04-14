@@ -3,7 +3,9 @@
 package pamtram.condition.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
@@ -16,9 +18,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.ConditionModel;
+import pamtram.ConditionalElement;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.condition.ConditionPackage;
@@ -62,11 +67,11 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 	 * This adds a property descriptor for the Cond Parts Ref feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addCondPartsRefPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_MultipleConditionOperator_condPartsRef_feature"),
@@ -77,7 +82,24 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 				 true,
 				 null,
 				 null,
-				 null));
+				 null)
+			{				
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+
+					List<Object> choiceOfValues = new ArrayList<Object>();
+					choiceOfValues.add(super.getChoiceOfValues(object));
+					for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
+						EObject choiceValue = (EObject) element.next();
+						
+						if(!(choiceValue.eContainer() instanceof ConditionModel)){
+							element.remove();
+						}
+					}
+					
+					return choiceOfValues;
+				}
+			});
 	}
 
 	/**

@@ -255,6 +255,55 @@
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="viObject container Rectangle" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
+        <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
+        <value xsi:type="metamodel:SourceSection" name="ExternalData == ClassPath (no Stations)" container="//@sourceSectionModel.1/@metaModelSections.11" extend="//@sourceSectionModel.2/@metaModelSections.4">
+          <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
+            <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+            <value xsi:type="metamodel:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
+              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="Name exclusions">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="name" type="EXCLUSION" value="name"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ClassPath" type="EXCLUSION" value="ClassPath"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="typeID" type="EXCLUSION" value="typeID"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSectionClass" name="ExtData ClassPath">
+              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="Name == ClassPath">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ClassPath" value="ClassPath"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="value ClassPath">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSectionClass" name="Extdata name">
+              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="name == &quot;name&quot;">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="name" value="name"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="NameLibElement">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+              </attributes>
+            </value>
+            <value xsi:type="metamodel:SourceSectionClass" name="ExtData typeID">
+              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="Name == typeID">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="typeID" value="typeID"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="value != Station">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="no Station" type="EXCLUSION" value="Station"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+      </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="StructureComponentControl" value="StructureComponentControl"/>
@@ -262,9 +311,6 @@
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="grType == &quot;Rectangle&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Rectangle" value="Rectangle"/>
-      </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="conveyorImageName">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject AlertInterface" container="//@sourceSectionModel.0/@metaModelSections.4">
@@ -1498,6 +1544,12 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="imageIDMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.6/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.1/@attributes.1" modifier="//@mappingModel.1/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.6/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Bild gestreckt" value="2"/>
+        </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
@@ -1510,6 +1562,10 @@
     </modifierSets>
     <modifierSets name="BackNavigationCommand">
       <modifier xsi:type="mapping:SubstringReplacer" name="Back" regex=".*BACK.*" replacement="&lt;CommandType synoptic=&quot;&quot; action=&quot;5&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+    </modifierSets>
+    <modifierSets name="convert to path">
+      <modifier xsi:type="mapping:SubstringReplacer" name="dot to slash" regex="\." replacement="/"/>
+      <modifier xsi:type="mapping:StringAppender" name="append main.png" string="/main.png"/>
     </modifierSets>
   </mappingModel>
   <mappingModel name="Basic" deactivated="true">

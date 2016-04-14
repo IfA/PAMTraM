@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -145,6 +146,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
+import de.tud.et.ifa.agtele.ui.editors.ClonableEditor;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
@@ -165,7 +167,7 @@ import pamtram.util.EPackageHelper.EPackageCheck;
  * @generated NOT
  */
 public class PamtramEditor 
-extends MultiPageEditorPart
+extends ClonableEditor
 implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, IPersistable {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
@@ -1132,7 +1134,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 * @generated
 	 */
 	@Override
-	public EditingDomain getEditingDomain() {
+	public AdapterFactoryEditingDomain getEditingDomain() {
 		return editingDomain;
 	}
 
@@ -2407,5 +2409,85 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		} catch (Exception e) {
 			// do nothing
 		}
+	}
+
+	@Override
+	protected Viewer getCurrentViewer() {
+		return currentViewer;
+	}
+
+	@Override
+	protected List<PropertySheetPage> getPropertySheetPages() {
+		return propertySheetPages;
+	}
+
+	@Override
+	protected ComposedAdapterFactory internalGetAdapterFactory() {
+		return adapterFactory;
+	}
+
+	@Override
+	protected Map<Resource, Diagnostic> getResourceToDiagnosticMap() {
+		return resourceToDiagnosticMap;
+	}
+
+	@Override
+	protected void setUpdateProblemIndication(boolean updateProblemIndication) {
+		this.updateProblemIndication = updateProblemIndication;
+	}
+
+	@Override
+	protected EMFPlugin getPlugin() {
+		return PamtramEditorPlugin.INSTANCE;
+	}
+
+	@Override
+	protected Collection<Resource> getRemovedResources() {
+		return removedResources;
+	}
+
+	@Override
+	protected void setRemovedResources(Collection<Resource> removedResources) {
+		this.removedResources = removedResources;
+	}
+
+	@Override
+	protected Collection<Resource> getChangedResources() {
+		return changedResources;
+	}
+
+	@Override
+	protected void setChangedResources(Collection<Resource> changedResources) {
+		this.changedResources = changedResources;
+	}
+
+	@Override
+	protected Collection<Resource> getSavedResources() {
+		return savedResources;
+	}
+
+	@Override
+	protected void setSavedResources(Collection<Resource> savedResources) {
+		this.savedResources = savedResources;
+	}
+
+	@Override
+	protected void setAdapterFactory(ComposedAdapterFactory adapterFactory) {
+		this.adapterFactory = adapterFactory;
+	}
+
+	@Override
+	protected void setEditingDomain(AdapterFactoryEditingDomain editingDomain) {
+		this.editingDomain = editingDomain;
+	}
+
+	@Override
+	protected IResourceChangeListener getResourceChangeListener() {
+		return resourceChangeListener;
+	}
+
+	@Override
+	protected void setResourceChangeListener(IResourceChangeListener resourceChangeListener) {
+		this.resourceChangeListener = resourceChangeListener;
 	}
 }

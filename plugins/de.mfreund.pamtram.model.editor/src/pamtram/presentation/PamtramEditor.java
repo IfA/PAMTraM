@@ -61,7 +61,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.XMLSave.XMLTypeInfo;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -135,7 +134,6 @@ import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
@@ -1028,7 +1026,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 */
 	public PamtramEditor() {
 		super();
-		initializeEditingDomain();
+		//initializeEditingDomain();
 	}
 
 	/**
@@ -1041,7 +1039,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		// Create an adapter factory that yields item providers.
 		//
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
+		
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new PamtramItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MetamodelItemProviderAdapterFactory());
@@ -2047,7 +2045,8 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			// Refresh the necessary state.
 			//
 			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
-			firePropertyChange(IEditorPart.PROP_DIRTY);
+			//firePropertyChange(IEditorPart.PROP_DIRTY);
+			updateDirtyState();
 		}
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
@@ -2147,12 +2146,13 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 */
 	@Override
 	public void init(IEditorSite site, IEditorInput editorInput) {
+		super.init(site, editorInput);
 		setSite(site);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
 		site.setSelectionProvider(this);
 		site.getPage().addPartListener(partListener);
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
+//		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
 	}
 
 	/**
@@ -2315,16 +2315,16 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void disposeGen() {
 		updateProblemIndication = false;
 
-		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
+//		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
 
 		getSite().getPage().removePartListener(partListener);
 
-		adapterFactory.dispose();
+//		adapterFactory.dispose();
 
 		if (getActionBarContributor().getActiveEditor() == this) {
 			getActionBarContributor().setActiveEditor(null);
@@ -2478,7 +2478,9 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
 	@Override
 	protected void setEditingDomain(AdapterFactoryEditingDomain editingDomain) {
+		this.editingDomain.getCommandStack().removeCommandStackListener(pamtramCommandStackListener);
 		this.editingDomain = editingDomain;
+		this.editingDomain.getCommandStack().addCommandStackListener(pamtramCommandStackListener);
 	}
 
 	@Override

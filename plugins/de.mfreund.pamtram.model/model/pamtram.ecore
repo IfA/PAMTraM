@@ -925,12 +925,16 @@
     <eClassifiers xsi:type="ecore:EClass" name="MultipleConditionOperator" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="minimalNumberOfArgs referenceOnlyConditionsFromConditionModel"/>
+        <details key="constraints" value="minimalNumberOfArgs"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="minimalNumberOfArgs" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this condition are not modeled or not referenced !',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.condParts->size()+self.condPartsRef->size()) > 1&#xD;&#xA;}.status"/>
-        <details key="referenceOnlyConditionsFromConditionModel" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'It only allowed to reference Condition-Instances that are model inside the ConditionModel!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;&#x9;if self.condPartsRef->size() > 0 then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.condPartsRef.oclContainer().oclIsTypeOf(pamtram::ConditionModel) else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
+      <eOperations name="referencesOnlyValidConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="if(this.condPartsRef == null || this.condPartsRef.size() == 0) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;EList&lt;ComplexCondition> conditionRefs = new BasicEList&lt;ComplexCondition>();&#xD;&#xA;conditionRefs.add((ComplexCondition) this.condPartsRef);&#xD;&#xA;for(ComplexCondition condition : conditionRefs){&#xD;&#xA;&#x9;if(!(condition instanceof ConditionModel)){&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return true;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condParts" upperBound="-1"
           eType="#//condition/ComplexCondition" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condPartsRef" upperBound="-1"
@@ -941,10 +945,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="SingleConditionOperator" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="minimalNumberOfArgs"/>
+        <details key="constraints" value="exactlyOneArg"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="minimalNumberOfArgs" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this Not-Condition are not modeled or not referenced or both done but not allowed!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.condPart->size()+self.condPartRef->size()) = 1&#xD;&#xA;}.status"/>
+        <details key="exactlyOneArg" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this Not-Condition are not modeled or not referenced or both done but not allowed!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.condPart->size()+self.condPartRef->size()) = 1&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condPart" eType="#//condition/ComplexCondition"
           containment="true"/>

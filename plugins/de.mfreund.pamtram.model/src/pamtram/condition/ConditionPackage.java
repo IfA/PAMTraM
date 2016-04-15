@@ -226,22 +226,22 @@ public interface ConditionPackage extends EPackage {
 	int MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Minimal Number Of Args</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+	int MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Multiple Condition Operator</em>' class.
@@ -299,6 +299,15 @@ public interface ConditionPackage extends EPackage {
 	int AND_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___REFERENCES_ONLY_VALID_CONDITIONS = MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS;
+
+	/**
 	 * The operation id for the '<em>Minimal Number Of Args</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -306,15 +315,6 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AND___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -372,6 +372,15 @@ public interface ConditionPackage extends EPackage {
 	int OR_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___REFERENCES_ONLY_VALID_CONDITIONS = MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS;
+
+	/**
 	 * The operation id for the '<em>Minimal Number Of Args</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -379,15 +388,6 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Or</em>' class.
@@ -445,13 +445,13 @@ public interface ConditionPackage extends EPackage {
 	int SINGLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Minimal Number Of Args</em>' operation.
+	 * The operation id for the '<em>Exactly One Arg</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+	int SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Single Condition Operator</em>' class.
@@ -509,13 +509,13 @@ public interface ConditionPackage extends EPackage {
 	int NOT_FEATURE_COUNT = SINGLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Minimal Number Of Args</em>' operation.
+	 * The operation id for the '<em>Exactly One Arg</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
+	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -853,6 +853,16 @@ public interface ConditionPackage extends EPackage {
 	EReference getMultipleConditionOperator_CondPartsRef();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.condition.MultipleConditionOperator#referencesOnlyValidConditions() <em>References Only Valid Conditions</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>References Only Valid Conditions</em>' operation.
+	 * @see pamtram.condition.MultipleConditionOperator#referencesOnlyValidConditions()
+	 * @generated
+	 */
+	EOperation getMultipleConditionOperator__ReferencesOnlyValidConditions();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.condition.MultipleConditionOperator#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Minimal Number Of Args</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -861,16 +871,6 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.condition.MultipleConditionOperator#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Reference Only Conditions From Condition Model</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Reference Only Conditions From Condition Model</em>' operation.
-	 * @see pamtram.condition.MultipleConditionOperator#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getMultipleConditionOperator__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getValue <em>Value</em>}'.
@@ -936,14 +936,14 @@ public interface ConditionPackage extends EPackage {
 	EReference getSingleConditionOperator_CondPartRef();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.condition.SingleConditionOperator#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Minimal Number Of Args</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.condition.SingleConditionOperator#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Exactly One Arg</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Minimal Number Of Args</em>' operation.
-	 * @see pamtram.condition.SingleConditionOperator#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Exactly One Arg</em>' operation.
+	 * @see pamtram.condition.SingleConditionOperator#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getSingleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map();
+	EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Not <em>Not</em>}'.
@@ -1150,20 +1150,20 @@ public interface ConditionPackage extends EPackage {
 		EReference MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF = eINSTANCE.getMultipleConditionOperator_CondPartsRef();
 
 		/**
+		 * The meta object literal for the '<em><b>References Only Valid Conditions</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS = eINSTANCE.getMultipleConditionOperator__ReferencesOnlyValidConditions();
+
+		/**
 		 * The meta object literal for the '<em><b>Minimal Number Of Args</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Reference Only Conditions From Condition Model</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MULTIPLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMultipleConditionOperator__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1220,12 +1220,12 @@ public interface ConditionPackage extends EPackage {
 		EReference SINGLE_CONDITION_OPERATOR__COND_PART_REF = eINSTANCE.getSingleConditionOperator_CondPartRef();
 
 		/**
-		 * The meta object literal for the '<em><b>Minimal Number Of Args</b></em>' operation.
+		 * The meta object literal for the '<em><b>Exactly One Arg</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SINGLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSingleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map();
+		EOperation SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.

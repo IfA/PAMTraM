@@ -169,10 +169,10 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean minimalNumberOfArgs(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+	public boolean exactlyOneArg(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
-		 * inv minimalNumberOfArgs:
+		 * inv exactlyOneArg:
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
@@ -185,7 +185,7 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'SingleConditionOperator::minimalNumberOfArgs'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'SingleConditionOperator::exactlyOneArg'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
@@ -214,7 +214,7 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_SingleConditionOperator_c_c_minimalNumberOfArgs, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_SingleConditionOperator_c_c_exactlyOneArg, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -311,8 +311,8 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
-				return minimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case ConditionPackage.SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP:
+				return exactlyOneArg((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -21,7 +21,6 @@ import org.eclipse.ocl.pivot.ids.DataTypeId;
 import org.eclipse.ocl.pivot.ids.EnumerationId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
-import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumerationLiteral;
@@ -70,20 +69,17 @@ public class ConditionTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
-    public static final /*@NonNull*/ /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram = IdManager.getNsURIPackageId("http://mfreund.de/pamtram", null, PamtramPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/condition", null, ConditionPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/metamodel", null, MetamodelPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeValueConstraint = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("AttributeValueConstraint", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Class = ConditionTables.PACKid_$metamodel$.getClassId("Class", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ComplexCondition = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ConditionModel = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ConditionalElement = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionalElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_InstancePointer = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointer", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MultipleConditionOperator = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("MultipleConditionOperator", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Not = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("Not", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_OclElement = ConditionTables.PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SingleConditionOperator = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("SingleConditionOperator", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionAttribute = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionClass = ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
@@ -93,13 +89,10 @@ public class ConditionTables
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_4 = ValueUtil.integerValueOf("4");
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Boolean = TypeId.SEQUENCE.getSpecializedId(TypeId.BOOLEAN);
-    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_It_32_only_32_allowed_32_to_32_reference_32_Condition_m_Instances_32_that_32_are_32_model_32 = "It only allowed to reference Condition-Instances that are model inside the ConditionModel!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MultipleConditionOperator_c_c_minimalNumberOfArgs = "MultipleConditionOperator::minimalNumberOfArgs";
-    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MultipleConditionOperator_c_c_referenceOnlyConditionsFromConditionM = "MultipleConditionOperator::referenceOnlyConditionsFromConditionModel";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Not_c_c_referenceOnlyConditionsFromConditionModelOrFromConditionalE = "Not::referenceOnlyConditionsFromConditionModelOrFromConditionalElements";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Reference_32_only_32_Conditions_32_that_32_placed_32_inside_32_ConditionModel_32_or_32_w = "Reference only Conditions that placed inside ConditionModel or where the Container is Kind of ConditionalElement!";
-    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SingleConditionOperator_c_c_minimalNumberOfArgs = "SingleConditionOperator::minimalNumberOfArgs";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SingleConditionOperator_c_c_exactlyOneArg = "SingleConditionOperator::exactlyOneArg";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_required_32_subparts_32_of_32_this_32_Not_m_Condition_32_are_32_not_32_modeled_32_or_32_n = "The required subparts of this Not-Condition are not modeled or not referenced or both done but not allowed!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_required_32_subparts_32_of_32_this_32_condition_32_are_32_not_32_modeled_32_or_32_not_32_r = "The required subparts of this condition are not modeled or not referenced !";
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ConditionalElement = TypeId.BAG.getSpecializedId(ConditionTables.CLSSid_ConditionalElement);
@@ -108,7 +101,6 @@ public class ConditionTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeValueConstraint = TypeId.ORDERED_SET.getSpecializedId(ConditionTables.CLSSid_AttributeValueConstraint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ComplexCondition = TypeId.ORDERED_SET.getSpecializedId(ConditionTables.CLSSid_ComplexCondition);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_InstancePointer = TypeId.ORDERED_SET.getSpecializedId(ConditionTables.CLSSid_InstancePointer);
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_OclElement = TypeId.SEQUENCE.getSpecializedId(ConditionTables.CLSSid_OclElement);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SET_CLSSid_ComplexCondition = TypeId.SET.getSpecializedId(ConditionTables.CLSSid_ComplexCondition);
 
 	/**
@@ -318,6 +310,9 @@ public class ConditionTables
 		}
 
 		public static final /*@NonNull*/ ExecutorOperation _Condition__checkCondition = new ExecutorOperation("checkCondition", Parameters._ComplexCondition, Types._Condition,
+			0, TemplateParameters.EMPTY_LIST, null);
+
+		public static final /*@NonNull*/ ExecutorOperation _MultipleConditionOperator__referencesOnlyValidConditions = new ExecutorOperation("referencesOnlyValidConditions", Parameters._, Types._MultipleConditionOperator,
 			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _Not__referencesOnlyValidConditions = new ExecutorOperation("referencesOnlyValidConditions", Parameters._, Types._Not,
@@ -550,7 +545,9 @@ public class ConditionTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _And__And = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _And__ComplexCondition = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _And__MultipleConditionOperator = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _And__MultipleConditionOperator = {
+			ConditionTables.Operations._MultipleConditionOperator__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _And__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _And__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -747,7 +744,9 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__MultipleConditionOperator = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__MultipleConditionOperator = {
+			ConditionTables.Operations._MultipleConditionOperator__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__OclAny = {
@@ -802,7 +801,9 @@ public class ConditionTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__Or = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__ComplexCondition = {};
-		private static final /*@NonNull*/ ExecutorOperation[] _Or__MultipleConditionOperator = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _Or__MultipleConditionOperator = {
+			ConditionTables.Operations._MultipleConditionOperator__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,

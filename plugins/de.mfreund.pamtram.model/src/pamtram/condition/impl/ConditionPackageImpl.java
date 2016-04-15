@@ -288,7 +288,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map() {
+	public EOperation getMultipleConditionOperator__ReferencesOnlyValidConditions() {
 		return multipleConditionOperatorEClass.getEOperations().get(0);
 	}
 
@@ -297,7 +297,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultipleConditionOperator__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map() {
+	public EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map() {
 		return multipleConditionOperatorEClass.getEOperations().get(1);
 	}
 
@@ -360,7 +360,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map() {
+	public EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map() {
 		return singleConditionOperatorEClass.getEOperations().get(0);
 	}
 
@@ -494,8 +494,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		multipleConditionOperatorEClass = createEClass(MULTIPLE_CONDITION_OPERATOR);
 		createEReference(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR__COND_PARTS);
 		createEReference(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF);
+		createEOperation(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS);
 		createEOperation(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
 
 		andEClass = createEClass(AND);
 
@@ -504,7 +504,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		singleConditionOperatorEClass = createEClass(SINGLE_CONDITION_OPERATOR);
 		createEReference(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR__COND_PART);
 		createEReference(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR__COND_PART_REF);
-		createEOperation(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP);
 
 		notEClass = createEClass(NOT);
 		createEOperation(notEClass, NOT___REFERENCES_ONLY_VALID_CONDITIONS);
@@ -580,19 +580,12 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEReference(getMultipleConditionOperator_CondParts(), this.getComplexCondition(), null, "condParts", null, 0, -1, MultipleConditionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMultipleConditionOperator_CondPartsRef(), this.getComplexCondition(), null, "condPartsRef", null, 0, -1, MultipleConditionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEOperation(getMultipleConditionOperator__ReferencesOnlyValidConditions(), ecorePackage.getEBoolean(), "referencesOnlyValidConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = initEOperation(getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "minimalNumberOfArgs", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getMultipleConditionOperator__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
@@ -606,7 +599,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEReference(getSingleConditionOperator_CondPart(), this.getComplexCondition(), null, "condPart", null, 0, 1, SingleConditionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSingleConditionOperator_CondPartRef(), this.getComplexCondition(), null, "condPartRef", null, 0, 1, SingleConditionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getSingleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "minimalNumberOfArgs", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "exactlyOneArg", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -671,13 +664,13 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		  (multipleConditionOperatorEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "minimalNumberOfArgs referenceOnlyConditionsFromConditionModel"
+			 "constraints", "minimalNumberOfArgs"
 		   });	
 		addAnnotation
 		  (singleConditionOperatorEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "minimalNumberOfArgs"
+			 "constraints", "exactlyOneArg"
 		   });	
 		addAnnotation
 		  (notEClass, 

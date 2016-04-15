@@ -47,20 +47,12 @@ public class ConditionValidator extends EObjectValidator {
 	public static final int MULTIPLE_CONDITION_OPERATOR__MINIMAL_NUMBER_OF_ARGS = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Reference Only Conditions From Condition Model' of 'Multiple Condition Operator'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Exactly One Arg' of 'Single Condition Operator'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MULTIPLE_CONDITION_OPERATOR__REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 2;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Minimal Number Of Args' of 'Single Condition Operator'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int SINGLE_CONDITION_OPERATOR__MINIMAL_NUMBER_OF_ARGS = 3;
+	public static final int SINGLE_CONDITION_OPERATOR__EXACTLY_ONE_ARG = 2;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Reference Only Conditions From Condition Model Or From Conditional Elements' of 'Not'.
@@ -68,7 +60,7 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int NOT__REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS = 4;
+	public static final int NOT__REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -76,7 +68,7 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -177,7 +169,6 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(multipleConditionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(multipleConditionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMultipleConditionOperator_minimalNumberOfArgs(multipleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultipleConditionOperator_referenceOnlyConditionsFromConditionModel(multipleConditionOperator, diagnostics, context);
 		return result;
 	}
 
@@ -189,16 +180,6 @@ public class ConditionValidator extends EObjectValidator {
 	 */
 	public boolean validateMultipleConditionOperator_minimalNumberOfArgs(MultipleConditionOperator multipleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return multipleConditionOperator.minimalNumberOfArgs(diagnostics, context);
-	}
-
-	/**
-	 * Validates the referenceOnlyConditionsFromConditionModel constraint of '<em>Multiple Condition Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMultipleConditionOperator_referenceOnlyConditionsFromConditionModel(MultipleConditionOperator multipleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return multipleConditionOperator.referenceOnlyConditionsFromConditionModel(diagnostics, context);
 	}
 
 	/**
@@ -217,7 +198,6 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(and, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(and, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMultipleConditionOperator_minimalNumberOfArgs(and, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultipleConditionOperator_referenceOnlyConditionsFromConditionModel(and, diagnostics, context);
 		return result;
 	}
 
@@ -237,7 +217,6 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(or, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(or, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMultipleConditionOperator_minimalNumberOfArgs(or, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultipleConditionOperator_referenceOnlyConditionsFromConditionModel(or, diagnostics, context);
 		return result;
 	}
 
@@ -256,18 +235,18 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(singleConditionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(singleConditionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleConditionOperator_minimalNumberOfArgs(singleConditionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleConditionOperator_exactlyOneArg(singleConditionOperator, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the minimalNumberOfArgs constraint of '<em>Single Condition Operator</em>'.
+	 * Validates the exactlyOneArg constraint of '<em>Single Condition Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleConditionOperator_minimalNumberOfArgs(SingleConditionOperator singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return singleConditionOperator.minimalNumberOfArgs(diagnostics, context);
+	public boolean validateSingleConditionOperator_exactlyOneArg(SingleConditionOperator singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return singleConditionOperator.exactlyOneArg(diagnostics, context);
 	}
 
 	/**
@@ -285,7 +264,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(not, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleConditionOperator_minimalNumberOfArgs(not, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleConditionOperator_exactlyOneArg(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validateNot_referenceOnlyConditionsFromConditionModelOrFromConditionalElements(not, diagnostics, context);
 		return result;
 	}

@@ -956,8 +956,13 @@
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="referenceOnlyConditionsFromConditionModelOrFromConditionalElements"
-            value="Tuple {&#xD;&#xA;&#x9;message : String = 'Reference only Conditions that placed inside ConditionModel or where the Container is Kind of ConditionalElement!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;&#x9;if self.condPartRef->size() = 1 then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.condPartRef.oclContainer().oclIsTypeOf(pamtram::ConditionModel) or self.condPartRef.oclContainer().oclIsKindOf(pamtram::ConditionalElement) else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+            value="Tuple {&#xD;&#xA;&#x9;message : String = 'Reference only Conditions that placed inside ConditionModel or where the Container is Kind of ConditionalElement!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = self.referencesOnlyValidConditions()&#xD;&#xA;}.status"/>
       </eAnnotations>
+      <eOperations name="referencesOnlyValidConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="if(this.condPartRef == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;EObject condPartRefContainer = this.condPartRef.eContainer();&#xD;&#xA;return condPartRefContainer instanceof ConditionModel || condPartRefContainer instanceof ConditionalElement;"/>
+        </eAnnotations>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeCondition" eSuperTypes="#//condition/Condition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" lowerBound="1"

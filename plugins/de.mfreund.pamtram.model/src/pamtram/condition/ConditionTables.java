@@ -295,6 +295,7 @@ public class ConditionTables
 			Fragments.init();
 		}
 
+		public static final /*@NonNull*/ ParameterTypes _ = TypeUtil.createParameterTypes();
 		public static final /*@NonNull*/ ParameterTypes _ComplexCondition = TypeUtil.createParameterTypes(ConditionTables.Types._ComplexCondition);
 
 		static {
@@ -317,6 +318,9 @@ public class ConditionTables
 		}
 
 		public static final /*@NonNull*/ ExecutorOperation _Condition__checkCondition = new ExecutorOperation("checkCondition", Parameters._ComplexCondition, Types._Condition,
+			0, TemplateParameters.EMPTY_LIST, null);
+
+		public static final /*@NonNull*/ ExecutorOperation _Not__referencesOnlyValidConditions = new ExecutorOperation("referencesOnlyValidConditions", Parameters._, Types._Not,
 			0, TemplateParameters.EMPTY_LIST, null);
 
 		static {
@@ -768,7 +772,9 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _Not__Not = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _Not__Not = {
+			ConditionTables.Operations._Not__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _Not__ComplexCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Not__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Not__OclAny = {

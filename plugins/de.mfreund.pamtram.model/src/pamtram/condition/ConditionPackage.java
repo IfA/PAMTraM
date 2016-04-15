@@ -518,13 +518,22 @@ public interface ConditionPackage extends EPackage {
 	int NOT___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___REFERENCES_ONLY_VALID_CONDITIONS = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Reference Only Conditions From Condition Model Or From Conditional Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 0;
+	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Not</em>' class.
@@ -533,7 +542,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_OPERATION_COUNT = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 1;
+	int NOT_OPERATION_COUNT = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.AttributeConditionImpl <em>Attribute Condition</em>}' class.
@@ -947,6 +956,16 @@ public interface ConditionPackage extends EPackage {
 	EClass getNot();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.condition.Not#referencesOnlyValidConditions() <em>References Only Valid Conditions</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>References Only Valid Conditions</em>' operation.
+	 * @see pamtram.condition.Not#referencesOnlyValidConditions()
+	 * @generated
+	 */
+	EOperation getNot__ReferencesOnlyValidConditions();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.condition.Not#referenceOnlyConditionsFromConditionModelOrFromConditionalElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Reference Only Conditions From Condition Model Or From Conditional Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1217,6 +1236,14 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NOT = eINSTANCE.getNot();
+
+		/**
+		 * The meta object literal for the '<em><b>References Only Valid Conditions</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation NOT___REFERENCES_ONLY_VALID_CONDITIONS = eINSTANCE.getNot__ReferencesOnlyValidConditions();
 
 		/**
 		 * The meta object literal for the '<em><b>Reference Only Conditions From Condition Model Or From Conditional Elements</b></em>' operation.

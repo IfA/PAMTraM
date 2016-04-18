@@ -166,7 +166,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionRef" eType="#//condition/ComplexCondition"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConditionModel">
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionModel" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" upperBound="-1"
         eType="#//condition/ComplexCondition" containment="true"/>
   </eClassifiers>

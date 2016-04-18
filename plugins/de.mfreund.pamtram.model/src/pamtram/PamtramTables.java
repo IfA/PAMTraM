@@ -206,6 +206,7 @@ public class PamtramTables
 		}
 
 		private static final /*@NonNull*/ ExecutorFragment _ConditionModel__ConditionModel = new ExecutorFragment(Types._ConditionModel, PamtramTables.Types._ConditionModel);
+		private static final /*@NonNull*/ ExecutorFragment _ConditionModel__NamedElement = new ExecutorFragment(Types._ConditionModel, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _ConditionModel__OclAny = new ExecutorFragment(Types._ConditionModel, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _ConditionModel__OclElement = new ExecutorFragment(Types._ConditionModel, OCLstdlibTables.Types._OclElement);
 
@@ -374,9 +375,10 @@ public class PamtramTables
 		{
 			Fragments._ConditionModel__OclAny /* 0 */,
 			Fragments._ConditionModel__OclElement /* 1 */,
-			Fragments._ConditionModel__ConditionModel /* 2 */
+			Fragments._ConditionModel__NamedElement /* 2 */,
+			Fragments._ConditionModel__ConditionModel /* 3 */
 		};
-		private static final /*@NonNull*/ int[] __ConditionModel = { 1,1,1 };
+		private static final /*@NonNull*/ int[] __ConditionModel = { 1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _ConditionalElement =
 		{
@@ -491,6 +493,7 @@ public class PamtramTables
 		}
 
 		private static final /*@NonNull*/ ExecutorOperation[] _ConditionModel__ConditionModel = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _ConditionModel__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ConditionModel__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -736,6 +739,7 @@ public class PamtramTables
 		 */
 		static {
 			Fragments._ConditionModel__ConditionModel.initOperations(_ConditionModel__ConditionModel);
+			Fragments._ConditionModel__NamedElement.initOperations(_ConditionModel__NamedElement);
 			Fragments._ConditionModel__OclAny.initOperations(_ConditionModel__OclAny);
 			Fragments._ConditionModel__OclElement.initOperations(_ConditionModel__OclElement);
 
@@ -802,6 +806,7 @@ public class PamtramTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _ConditionModel = {
 			PamtramTables.Properties._ConditionModel__condition,
+			PamtramTables.Properties._NamedElement__name,
 			PamtramTables.Properties._ConditionModel__PAMTraM__conditionModel
 		};
 

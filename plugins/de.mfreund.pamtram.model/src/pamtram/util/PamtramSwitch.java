@@ -125,6 +125,7 @@ public class PamtramSwitch<T> extends Switch<T> {
 			case PamtramPackage.CONDITION_MODEL: {
 				ConditionModel conditionModel = (ConditionModel)theEObject;
 				T result = caseConditionModel(conditionModel);
+				if (result == null) result = caseNamedElement(conditionModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

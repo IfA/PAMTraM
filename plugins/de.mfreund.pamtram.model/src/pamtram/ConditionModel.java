@@ -3,9 +3,6 @@
 package pamtram;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
 import pamtram.condition.ComplexCondition;
 
 /**
@@ -24,7 +21,7 @@ import pamtram.condition.ComplexCondition;
  * @model
  * @generated
  */
-public interface ConditionModel extends EObject {
+public interface ConditionModel extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.condition.ComplexCondition}.

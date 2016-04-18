@@ -10,9 +10,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -34,7 +31,7 @@ import pamtram.condition.ComplexCondition;
  *
  * @generated
  */
-public class ConditionModelImpl extends MinimalEObjectImpl.Container implements ConditionModel {
+public class ConditionModelImpl extends NamedElementImpl implements ConditionModel {
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

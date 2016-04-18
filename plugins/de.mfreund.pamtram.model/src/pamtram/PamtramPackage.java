@@ -617,13 +617,22 @@ public interface PamtramPackage extends EPackage {
 	int CONDITION_MODEL = 8;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_MODEL__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_MODEL__CONDITION = 0;
+	int CONDITION_MODEL__CONDITION = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Condition Model</em>' class.
@@ -632,7 +641,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_MODEL_FEATURE_COUNT = 1;
+	int CONDITION_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Condition Model</em>' class.
@@ -641,7 +650,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_MODEL_OPERATION_COUNT = 0;
+	int CONDITION_MODEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.ReferenceableElementImpl <em>Referenceable Element</em>}' class.

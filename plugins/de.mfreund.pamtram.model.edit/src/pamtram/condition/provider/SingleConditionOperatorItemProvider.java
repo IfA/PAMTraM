@@ -5,7 +5,6 @@ package pamtram.condition.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
@@ -19,15 +18,11 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.ConditionModel;
-import pamtram.ConditionalElement;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.SingleConditionOperator;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
-import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.SingleConditionOperator} object.
@@ -70,7 +65,7 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 	 */
 	protected void addCondPartRefPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SingleConditionOperator_condPartRef_feature"),
@@ -81,24 +76,7 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 				 true,
 				 null,
 				 null,
-				 null)
-		{				
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
-
-				List<Object> choiceOfValues = new ArrayList<Object>();
-				choiceOfValues.add(super.getChoiceOfValues(object));
-				/*for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
-					EObject choiceValue = (EObject) element.next();
-					
-					if(!(choiceValue.eContainer() instanceof ConditionModel || choiceValue.eContainer() instanceof ConditionalElement)){
-						element.remove();
-					}
-				}*/
-				
-				return choiceOfValues;
-			}
-		});
+				 null));
 	}
 
 	/**

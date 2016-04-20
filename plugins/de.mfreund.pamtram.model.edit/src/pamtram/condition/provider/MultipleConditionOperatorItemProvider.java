@@ -23,7 +23,6 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.ConditionModel;
-import pamtram.ConditionalElement;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.condition.ConditionPackage;
@@ -71,7 +70,7 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 	 */
 	protected void addCondPartsRefPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_MultipleConditionOperator_condPartsRef_feature"),
@@ -82,24 +81,7 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 				 true,
 				 null,
 				 null,
-				 null)
-			{				
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-
-					List<Object> choiceOfValues = new ArrayList<Object>();
-					choiceOfValues.add(super.getChoiceOfValues(object));
-					for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
-						EObject choiceValue = (EObject) element.next();
-						
-						if(!(choiceValue.eContainer() instanceof ConditionModel)){
-							element.remove();
-						}
-					}
-					
-					return choiceOfValues;
-				}
-			});
+				 null));
 	}
 
 	/**

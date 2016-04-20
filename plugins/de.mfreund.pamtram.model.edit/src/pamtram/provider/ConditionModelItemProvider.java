@@ -8,18 +8,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -28,8 +18,6 @@ import pamtram.PamtramPackage;
 
 import pamtram.condition.ConditionFactory;
 
-import pamtram.util.PamtramItemProviderAdapter;
-
 /**
  * This is the item provider adapter for a {@link pamtram.ConditionModel} object.
  * <!-- begin-user-doc -->
@@ -37,14 +25,7 @@ import pamtram.util.PamtramItemProviderAdapter;
  * @generated
  */
 public class ConditionModelItemProvider 
-	extends PamtramItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource,
-		IItemStyledLabelProvider {
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -130,7 +111,14 @@ public class ConditionModelItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return new StyledString(getString("_UI_ConditionModel_type"));
+		String label = ((ConditionModel)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_ConditionModel_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_ConditionModel_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
 	}	
 
 	/**
@@ -187,17 +175,6 @@ public class ConditionModelItemProvider
 			(createChildParameter
 				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
 				 ConditionFactory.eINSTANCE.createSectionCondition()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

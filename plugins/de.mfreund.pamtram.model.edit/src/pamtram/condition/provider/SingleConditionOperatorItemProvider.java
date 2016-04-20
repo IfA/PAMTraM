@@ -3,7 +3,6 @@
 package pamtram.condition.provider;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.condition.ComplexCondition;
@@ -61,7 +59,7 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 	 * This adds a property descriptor for the Cond Part Ref feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void addCondPartRefPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add

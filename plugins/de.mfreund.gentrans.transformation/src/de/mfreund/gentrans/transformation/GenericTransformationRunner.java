@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -68,7 +69,6 @@ import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.GlobalValue;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
@@ -701,7 +701,7 @@ public class GenericTransformationRunner {
 		 * Create the source section matcher that finds applicable mappings
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(sourceSectionMatcher);
 
 		/*
@@ -783,7 +783,7 @@ public class GenericTransformationRunner {
 	 *
 	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
 	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
-	 * @param globalValues The list of {@link GlobalValue GlobalValues} to use.
+	 * @param globalValues The list of {@link FixedValue GlobalValues} to use.
 	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
 	 * @param attributeValuemodifier An instance of {@link AttributeValueModifierExecutor} to use for applying
 	 * {@link AttributeValueModifierSet AttributeValueModifierSets}.
@@ -791,7 +791,7 @@ public class GenericTransformationRunner {
 	 */
 	private ExpandingResult performExpanding(
 			final MatchingResult matchingResult,
-			final List<GlobalValue> globalValues,
+			final List<FixedValue> globalValues,
 			final IProgressMonitor monitor,
 			final AttributeValueModifierExecutor attributeValuemodifier) {
 
@@ -1683,7 +1683,7 @@ public class GenericTransformationRunner {
 
 
 		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 
 		/*
 		 * now start mapping each one of the references. We automatically start

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -12,14 +13,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.condition.ConditionHandler;
+import de.mfreund.gentrans.transformation.condition.ConditionHandler.condResult;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
+import pamtram.ConditionalElement;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
@@ -33,6 +38,7 @@ import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
@@ -53,7 +59,11 @@ import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetaModelSectionReference;
+import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.RangeBound;
+import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -165,6 +175,24 @@ public class SourceSectionMatcher extends CancellableElement {
 	 * in a {@link RegExMatcher}.
 	 */
 	private final Set<AttributeValueConstraint> constraintsWithErrors;
+	
+	/**
+	 * Since {@link ComplexCondition}s use model informations which may be available not until the runtime of transformation, we define 
+	 * this {@link ConditionHandler} inside the 'gentrans.transformation'-Plugin.
+	 */
+	private final ConditionHandler conditionHandler;
+
+	/**
+	 * It will be used for calculating referenceValues that are needed for {@link AttributeValueConstraint}
+	 */
+	private ReferenceableValueCalculator refValueCalculator;
+	
+	/**
+	 * It will be used for extract a more in detail specified Element which was more than one times matched
+	 */
+	private InstancePointerHandler instancePointerHandler;
+	
+	
 
 	/**
 	 * This constructs an instance.
@@ -174,6 +202,7 @@ public class SourceSectionMatcher extends CancellableElement {
 	 * @param mappingsToChooseFrom
 	 *            A list of {@link Mapping Mappings} that shall be used in the <em>matching</em> process.
 	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
+	 * @param fixedVals Needed for ReferenceableValueCalculator
 	 * @param attributeValuemodifier The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param consoleStream
@@ -182,7 +211,8 @@ public class SourceSectionMatcher extends CancellableElement {
 	public SourceSectionMatcher(
 			ContainmentTree containmentTree, 
 			final List<Mapping> mappingsToChooseFrom,
-			boolean onlyAskOnceOnAmbiguousMappings, 
+			boolean onlyAskOnceOnAmbiguousMappings,
+			final List<FixedValue> fixedVals,
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
 			final MessageConsoleStream consoleStream) {
@@ -207,6 +237,9 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
+		this.instancePointerHandler = new InstancePointerHandler(this.matchedSections,consoleStream);
+		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals, globalAttributeValues, this.instancePointerHandler, this.matchedSections, consoleStream);
+		this.conditionHandler = new ConditionHandler(this.matchedSections, this.refValueCalculator, this.instancePointerHandler);
 
 		/*
 		 * initialize the various maps based on the given list of mappings
@@ -305,7 +338,6 @@ public class SourceSectionMatcher extends CancellableElement {
 			}
 			matchedSections.get(c).addAll(ret.getSourceModelObjectsMapped().get(c));
 			containmentTree.markAsMatched(ret.getSourceModelObjectsMapped().get(c));
-
 		}
 
 		return ret;
@@ -333,7 +365,8 @@ public class SourceSectionMatcher extends CancellableElement {
 		 * Now, iterate over all mappings and find those that are applicable for the current 'element'
 		 */
 		for (final Mapping m : mappingsToChooseFrom) {
-
+			
+			Mapping mSimplified = m;
 			MappingInstanceStorage res;
 
 			/*
@@ -350,7 +383,7 @@ public class SourceSectionMatcher extends CancellableElement {
 				 */
 				boolean mappingFailed = !checkContainer(element, m.getSourceMMSection());
 
-				if (!mappingFailed) {
+				if (!mappingFailed && m != null) {
 
 					// check if the mapping is applicable and determine the (local) hint values
 					res = checkMapping(element, false, mappingHints.get(m), m.getGlobalVariables(),
@@ -364,18 +397,25 @@ public class SourceSectionMatcher extends CancellableElement {
 					mappingFailed = (res == null);
 
 					if (!mappingFailed) {
+						
+						//Simplify Mapping by checking conditions of all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
+						mSimplified = checkConditions(m, res);
+						
+						if(mSimplified == null){
+							break;
+						}
 
 						/* 
 						 * now, determine the external hint values (the container must be present and valid as this was
 						 * already checked earlier); found values are added to the given MappingInstanceStorage
 						 */
-						mappingFailed = determineExternalHintValues(m, res, mappingFailed);
+						mappingFailed = determineExternalHintValues(mSimplified, res, mappingFailed);
 					}
 
 					if (!mappingFailed) {
 						// all checks were successful -> the mapping is applicable
-						res.setMapping(m);
-						mappingData.put(m, res);
+						res.setMapping(mSimplified);
+						mappingData.put(mSimplified, res);
 					}
 				}
 			}
@@ -383,6 +423,103 @@ public class SourceSectionMatcher extends CancellableElement {
 
 		return mappingData;
 	}
+	
+	/**
+	 * This recursively checks if a conditional {@link Mapping} is succeeded. If not, the whole {@link Mapping} will be removed.
+	 * Otherwise all conditional {@link MappingHintGroup} will be checked in the same procedure. 
+	 * Of course, we do it the same way for all conditional {@link MappingHint}s. 
+	 * 
+	 * Note: This process is recursively and a nested procedure which saves time. In case of '<em><b>false</b></em>' other underneath ConditionalElements will be ignored and discarded.
+	 * @param res checked Mapping
+	 * @param definedMapping represents the original {@link Mapping} 
+	 * @return The {@link Mapping} representing a simplified of the origin one. There are all ConditionalElements that returned '<em><b>false</b></em>' are extracted.
+	 */
+	private Mapping checkConditions(Mapping definedMapping, MappingInstanceStorage res) {
+		
+		/*
+		 * For checking Conditions in general the 'matchedSections'-Collection should be considered.
+		 * Also the information from current 'definedMapping' may be used.
+		 *  But at this moment it isn't clear if the 'definedMapping' is applying during the transformation.
+		 *  Therefore, we put the affected elements as temporarily 'matched' inside 'matchedSections' map for being able to check conditions
+		 */
+		LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections = new LinkedHashMap<>();
+		
+		for (final SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()) {
+			if (!tempMatchedSections.containsKey(c)) {
+				tempMatchedSections.put(c, new LinkedHashSet<EObject>());
+			}
+			tempMatchedSections.get(c).addAll(res.getSourceModelObjectsMapped().get(c));
+		}
+		this.instancePointerHandler.addTempSectionMap(tempMatchedSections);
+		this.refValueCalculator.addTempSectionMap(tempMatchedSections);
+		this.conditionHandler.addTempSectionMap(tempMatchedSections);
+
+		
+		// check Conditions of the Mapping (Note: no condition modeled = true)
+		if(conditionHandler.checkCondition(definedMapping.getCondition()) == condResult.true_condition && 
+				conditionHandler.checkCondition(definedMapping.getConditionRef()) == condResult.true_condition) {
+			
+			// Iterate now over all corresponding MappingHintGroups...
+			for (Iterator<MappingHintGroupType> mHintGroupList = definedMapping.getMappingHintGroups().iterator(); mHintGroupList.hasNext();){
+				
+				MappingHintGroupType mHintGroup = mHintGroupList.next();
+				if(mHintGroup instanceof ConditionalElement){
+					
+					if(conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getCondition()) == condResult.false_condition || 
+							conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()) == condResult.false_condition){
+						
+						//returned false, so remove this Element and break the loop
+						definedMapping.getMappingHintGroups().remove(mHintGroup);
+						break;
+					} else {
+						
+						// Iterate now over all corresponding MappingHints
+						for(Iterator<MappingHint> mHintList = mHintGroup.getMappingHints().iterator(); mHintList.hasNext();){
+							
+							MappingHint mHint = mHintList.next();
+							if(mHint instanceof ConditionalElement){
+								
+								if(conditionHandler.checkCondition((mHint).getCondition()) == condResult.false_condition || 
+										conditionHandler.checkCondition((mHint).getConditionRef()) == condResult.false_condition){
+									
+									//returned false, so remove this Element and break the loop
+									mHintGroup.getMappingHints().remove(mHint);
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			// check Condition of corresponding IMPORTED MappingHintGroups
+			for (Iterator<MappingHintGroupImporter> mImportHintGroupList = definedMapping.getImportedMappingHintGroups().iterator(); mImportHintGroupList.hasNext();){
+				
+				MappingHintGroupImporter mImportHintGroup = mImportHintGroupList.next();
+				if(mImportHintGroup instanceof ConditionalElement){
+					
+					//Condition of imported MappingHintGroup false, than remove it
+					if(conditionHandler.checkCondition(mImportHintGroup.getCondition()) == condResult.false_condition ||
+							conditionHandler.checkCondition(mImportHintGroup.getConditionRef()) == condResult.false_condition){
+						
+						mImportHintGroupList.remove();
+						break;
+					}
+				}
+				
+				break;
+			}
+		} else {
+				definedMapping = null; //The Condition of a Mapping false, so return null and the Mapping is excluded from transformations
+		}
+		
+		this.instancePointerHandler.clearTempSectionMap();
+		this.refValueCalculator.clearTempSectionMap();
+		this.conditionHandler.clearTempSectionMap();
+		
+		return definedMapping;
+	}
+	
 
 	/**
 	 * This recursively checks if a {@link Mapping} (respectively its {@link Mapping#getSourceMMSection() sourceMMSection}) is 
@@ -1056,7 +1193,7 @@ public class SourceSectionMatcher extends CancellableElement {
 			final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues,
 			final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues,
 			final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues) {
-
+		
 		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
 
 			/*
@@ -1108,10 +1245,52 @@ public class SourceSectionMatcher extends CancellableElement {
 							continue;
 						}
 
-						boolean constraintVal;
+						boolean constraintVal=false;
 						try {
 							// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
-							constraintVal = constraint.checkConstraint(srcAttrAsString);
+							// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
+							// and we need to extract the right reference Value(s) for each constraint
+							
+							if (constraint instanceof SingleReferenceAttributeValueConstraint){
+								String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint);
+								constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
+							} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
+								
+								if(constraint instanceof RangeConstraint){
+									List<String> srcAttrRefValuesAsList = new ArrayList<String>();
+									RangeBound lowerBound=((RangeConstraint) constraint).getLowerBound(), upperBound = ((RangeConstraint) constraint).getUpperBound();
+									
+									if(lowerBound != null){
+										srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(lowerBound));
+									} else {
+										srcAttrRefValuesAsList.add("null");
+									}
+									
+									if(upperBound != null){
+										srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(upperBound));
+									} else {
+										srcAttrRefValuesAsList.add("null");
+									}
+									
+									BasicEList<String> refValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); 
+									constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString, refValuesAsEList);
+									
+									if(!constraintVal){ // just for debugging!
+										consoleStream.println("Coonstraint " + constraint.getName() + "of AttributeValueConstraint is false while the Attribute value " + srcAttrAsString +
+												", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
+									}
+								}  else {
+									// If we are here, some mistake is happened
+									// more types could be supported in the future
+									// placeholder for other MultipleReferenceAttributeValueConstraints
+									consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+								}
+							}  else {
+								// If we are here, some mistake is happened
+								// more types could be supported in the future
+								// placeholder for other MultipleReferenceAttributeValueConstraints
+								consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+							}
 						} catch (final Exception e) {
 							constraintsWithErrors.add(constraint);
 							consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"

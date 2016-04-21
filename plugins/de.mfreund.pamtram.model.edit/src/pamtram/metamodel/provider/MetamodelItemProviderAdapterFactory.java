@@ -553,6 +553,75 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.RangeConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RangeConstraintItemProvider rangeConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.RangeConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRangeConstraintAdapter() {
+		if (rangeConstraintItemProvider == null) {
+			rangeConstraintItemProvider = new RangeConstraintItemProvider(this);
+		}
+
+		return rangeConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.RangeBound} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RangeBoundItemProvider rangeBoundItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.RangeBound}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRangeBoundAdapter() {
+		if (rangeBoundItemProvider == null) {
+			rangeBoundItemProvider = new RangeBoundItemProvider(this);
+		}
+
+		return rangeBoundItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.InstancePointer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InstancePointerItemProvider instancePointerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.InstancePointer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInstancePointerAdapter() {
+		if (instancePointerItemProvider == null) {
+			instancePointerItemProvider = new InstancePointerItemProvider(this);
+		}
+
+		return instancePointerItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

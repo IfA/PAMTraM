@@ -73,29 +73,6 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.condition.Condition} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConditionItemProvider conditionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.condition.Condition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConditionAdapter() {
-		if (conditionItemProvider == null) {
-			conditionItemProvider = new ConditionItemProvider(this);
-		}
-
-		return conditionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.condition.And} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,6 +139,52 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 		}
 
 		return notItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.condition.AttributeCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeConditionItemProvider attributeConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.condition.AttributeCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeConditionAdapter() {
+		if (attributeConditionItemProvider == null) {
+			attributeConditionItemProvider = new AttributeConditionItemProvider(this);
+		}
+
+		return attributeConditionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.condition.SectionCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SectionConditionItemProvider sectionConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.condition.SectionCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSectionConditionAdapter() {
+		if (sectionConditionItemProvider == null) {
+			sectionConditionItemProvider = new SectionConditionItemProvider(this);
+		}
+
+		return sectionConditionItemProvider;
 	}
 
 	/**
@@ -263,10 +286,11 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (conditionItemProvider != null) conditionItemProvider.dispose();
 		if (andItemProvider != null) andItemProvider.dispose();
 		if (orItemProvider != null) orItemProvider.dispose();
 		if (notItemProvider != null) notItemProvider.dispose();
+		if (attributeConditionItemProvider != null) attributeConditionItemProvider.dispose();
+		if (sectionConditionItemProvider != null) sectionConditionItemProvider.dispose();
 	}
 
 }

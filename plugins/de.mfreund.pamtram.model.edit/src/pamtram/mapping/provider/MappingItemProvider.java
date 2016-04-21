@@ -6,10 +6,13 @@ package pamtram.mapping.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -17,10 +20,13 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PAMTraM;
+import pamtram.PamtramPackage;
+import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.Mapping} object.
@@ -51,9 +57,32 @@ extends MappingTypeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addConditionRefPropertyDescriptor(object);
 			addAbstractPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Condition Ref feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConditionRefPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConditionalElement_conditionRef_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_conditionRef_feature", "_UI_ConditionalElement_type"),
+				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,7 +119,7 @@ extends MappingTypeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING__CONDITION);
+			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES);
@@ -229,23 +258,28 @@ extends MappingTypeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING__CONDITION,
-				 ConditionFactory.eINSTANCE.createCondition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
 				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
 				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
 				 ConditionFactory.eINSTANCE.createNot()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createAttributeCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createSectionCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -266,6 +300,21 @@ extends MappingTypeItemProvider {
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES,
 				 MappingFactory.eINSTANCE.createGlobalAttribute()));
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		if(collection.size() == 1) {
+			Object object = (Object) collection.iterator().next();
+			if(object instanceof ComplexCondition) {
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+						PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF, object, 0);
+			}
+		}
+		
+		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 	}
 
 }

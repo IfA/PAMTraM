@@ -1,39 +1,39 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.condition.provider;
 
 
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.mapping.GlobalValue;
-import pamtram.mapping.MappingPackage;
-import pamtram.provider.NamedElementItemProvider;
-import pamtram.provider.PamtramEditPlugin;
+import pamtram.condition.ConditionPackage;
+import pamtram.condition.SectionCondition;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.metamodel.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.GlobalValue} object.
+ * This is the item provider adapter for a {@link pamtram.condition.SectionCondition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GlobalValueItemProvider extends NamedElementItemProvider {
+public class SectionConditionItemProvider extends ConditionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalValueItemProvider(AdapterFactory adapterFactory) {
+	public SectionConditionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -48,42 +48,42 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addValuePropertyDescriptor(object);
+			addConditionSectionRefPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Value feature.
+	 * This adds a property descriptor for the Condition Section Ref feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValuePropertyDescriptor(Object object) {
+	protected void addConditionSectionRefPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GlobalValue_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalValue_value_feature", "_UI_GlobalValue_type"),
-				 MappingPackage.Literals.GLOBAL_VALUE__VALUE,
+				 getString("_UI_SectionCondition_conditionSectionRef_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SectionCondition_conditionSectionRef_feature", "_UI_SectionCondition_type"),
+				 ConditionPackage.Literals.SECTION_CONDITION__CONDITION_SECTION_REF,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns GlobalValue.gif.
+	 * This returns SectionCondition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GlobalValue"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SectionCondition"));
 	}
 
 	/**
@@ -96,29 +96,24 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-
-
+	
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		GlobalValue gv = ((GlobalValue)object);
-		String label = gv.getName();
-		StyledString styledLabel = new StyledString();
+		String label = ((SectionCondition)object).getName();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_GlobalValue_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_SectionCondition_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_GlobalValue_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_SectionCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
-
-		styledLabel.append(" = \"" + gv.getValue() + "\"", StyledString.Style.COUNTER_STYLER);
-
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -130,12 +125,6 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(GlobalValue.class)) {
-			case MappingPackage.GLOBAL_VALUE__VALUE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -150,16 +139,17 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	
 	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
+	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection) {
+
+		if(collection.size() == 1 && collection.iterator().next() instanceof SourceSectionClass) {
+			return new BasicDragAndDropSetCommand(domain, (EObject) owner, ConditionPackage.Literals.SECTION_CONDITION__CONDITION_SECTION_REF, 
+					collection.iterator().next(), 0);
+		}
+		
+		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 	}
 
 }

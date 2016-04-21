@@ -206,6 +206,11 @@ extends AttributeItemProvider {
 			(createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 MetamodelFactory.eINSTANCE.createRegExMatcher()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				 MetamodelFactory.eINSTANCE.createRangeConstraint()));
 	}
 
 }

@@ -274,6 +274,9 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			sourceSection.setName("source");
 			ssm.getMetaModelSections().add(sourceSection);			
 		}
+		
+		// add a condition model
+		pamtram.getConditionModel().add(pamtramFactory.createConditionModel());
 
 		// add a target section model for every target ePackage
 		EPackage.Registry targetRegistry = targetEPackageSpecificationPage.getRegistry();

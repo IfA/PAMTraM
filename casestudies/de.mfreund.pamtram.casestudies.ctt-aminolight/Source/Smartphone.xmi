@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifa.et.tu.dresden.platform.metamodel:PMbase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ifa.et.tu.dresden.platform.metamodel="http://ifa/et/tu/dresden/platform/metamodel"
+    xsi:schemaLocation="http://ifa/et/tu/dresden/platform/metamodel platform.ecore">
+  <platformCollection
+      platformName="Smartphone"
+      ressources="//@ressourceCollection.0 //@ressourceCollection.1 //@ressourceCollection.2 //@ressourceCollection.3 //@ressourceCollection.0/@subRessources.0"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:MonoSpeakerSystem"
+      mono="//@ressourceCollection.0/@subRessources.0">
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Speaker"
+        ressourceName="SmartphoneSpeaker"/>
+  </ressourceCollection>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Touchscreen"
+      height="1280.0"
+      width="720.0"
+      correspondDisplay="//@ressourceCollection.2"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Display"
+      ressourceName="SmartphoneDisplay"
+      height="1280.0"
+      width="720.0"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:TouchscreenVibrationMotor"
+      correspondingTouchscreen="//@ressourceCollection.1"/>
+</ifa.et.tu.dresden.platform.metamodel:PMbase>

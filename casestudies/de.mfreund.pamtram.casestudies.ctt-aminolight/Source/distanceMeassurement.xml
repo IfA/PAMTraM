@@ -27,12 +27,20 @@
         <ConditionLiteral object="velocity"/>
         <ConditionLiteral value="15"/>
     </ConditionGroup>
+    <ConditionGroup operator="gt">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="0"/>
+    </ConditionGroup>
 </Precondition>
 <Postcondition operator="and">
     <ConditionGroup operator="gt">
         <ConditionLiteral object="velocity"/>
         <ConditionLiteral value="15"/>
-    </ConditionGroup>    
+    </ConditionGroup> 
+    <ConditionGroup operator="lteq">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="0"/>
+    </ConditionGroup>   
 </Postcondition>
 <TemporalOperator name="OrderIndependence"/>
 <Parent name="giveFeedback"/>
@@ -47,11 +55,19 @@
                 <ConditionLiteral object="distance"/>
                 <ConditionLiteral value="12"/>
             </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="201"/>
+            </ConditionGroup>
         </Precondition>
-        <Postcondition operator="and">
+        <Postcondition operator="or">
             <ConditionGroup operator="lteq">
                 <ConditionLiteral object="distance"/>
                 <ConditionLiteral value="12"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="201"/>
             </ConditionGroup>
         </Postcondition>
         <TemporalOperator name="OrderIndependence"/>
@@ -90,17 +106,17 @@
     </Task>
     <Task Identifier="mediumDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
         <Name>mediumDanger</Name>
-        <Type>Alarm2</Type>
+        <Type>Alarm2</Type>        
         <Precondition operator="and">
+        	<ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="3"/>
+            </ConditionGroup>
             <ConditionGroup operator="lteq">
                 <ConditionLiteral object="distance"/>
                 <ConditionLiteral value="8"/>
             </ConditionGroup>
-            <ConditionGroup operator="gt">
-                <ConditionLiteral object="distance"/>
-                <ConditionLiteral value="3"/>
-            </ConditionGroup>
-        </Precondition>
+         </Precondition>
         <Postcondition operator="or">
             <ConditionGroup operator="gt">
                 <ConditionLiteral object="distance"/>
@@ -154,11 +170,19 @@
                 <ConditionLiteral object="distance"/>
                 <ConditionLiteral value="0.2"/>
             </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0"/>
+            </ConditionGroup>
         </Precondition>
         <Postcondition operator="and">
             <ConditionGroup operator="gt">
                 <ConditionLiteral object="distance"/>
                 <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0"/>
             </ConditionGroup>
         </Postcondition>
         <Parent name="parkMode"/>
@@ -175,11 +199,19 @@
         <ConditionLiteral object="velocity"/>
         <ConditionLiteral value="15"/>
     </ConditionGroup>
+    <ConditionGroup operator="lteq">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="200"/>
+    </ConditionGroup>
 </Precondition>
 <Postcondition operator="and">
     <ConditionGroup operator="lteq">
         <ConditionLiteral object="velocity"/>
         <ConditionLiteral value="15"/>
+    </ConditionGroup>
+    <ConditionGroup operator="gt">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="200"/>
     </ConditionGroup>
 </Postcondition>
 <Parent name="giveFeedback"/>
@@ -194,11 +226,19 @@
                 <ConditionLiteral object="distance"/>
                 <ConditionLiteral value="120"/>
             </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="201"/>
+            </ConditionGroup>
         </Precondition>
         <Postcondition operator="and">
             <ConditionGroup operator="lteq">
                 <ConditionLiteral object="distance"/>
                 <ConditionLiteral value="120"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="201"/>
             </ConditionGroup>
         </Postcondition>
         <TemporalOperator name="OrderIndependence"/>
@@ -301,11 +341,19 @@
                 <ConditionLiteral object="distance"/>
                 <ConditionLiteral value="0.2"/>
             </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0"/>
+            </ConditionGroup>
         </Precondition>
         <Postcondition operator="and">
             <ConditionGroup operator="gt">
                 <ConditionLiteral object="distance"/>
                 <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0"/>
             </ConditionGroup>
         </Postcondition>
         <Parent name="ACCMode"/>
@@ -321,7 +369,9 @@
                         <Type>Meassurement</Type>
                         <Parent name="distanceMeassurement"/>
                         <SiblingLeft name="giveFeedback"/>
-                        <Object name="distance" class="Numerical"/>
+                        <Object name="relative velocity" class="Numerical" type="Perceivable"/>
+                        <Object name="ego velocity" class="Numerical" type="Perceivable"/>
+                        <Object name="target velocity" class="Numerical" type="Perceivable"/>
                     </Task>
                 </SubTask>
             </Task>

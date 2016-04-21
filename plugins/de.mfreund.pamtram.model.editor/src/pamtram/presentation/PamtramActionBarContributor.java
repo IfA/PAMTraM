@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -34,24 +35,14 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
-
-import pamtram.PamtramPackage;
-import pamtram.contentprovider.LibraryEntryContentProvider;
-import pamtram.contentprovider.MappingContentProvider;
-import pamtram.contentprovider.ModifierSetContentProvider;
-import pamtram.contentprovider.SourceSectionContentProvider;
-import pamtram.contentprovider.TargetSectionContentProvider;
+import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.impl.MappingFactoryImpl;
-import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.presentation.actions.CutClassAndPasteAsNewSectionAction;
 import pamtram.presentation.actions.GenericConversionCommandAction;
@@ -419,43 +410,15 @@ public class PamtramActionBarContributor
 			return false;
 		}
 		
-		if(!(descriptor instanceof CommandParameter)) {
+		if(!(descriptor instanceof CommandParameter) || 
+				!(((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature)) {
 			return true;
 		}
 		
 		CommandParameter commandParam = (CommandParameter) descriptor;
 		
-		if(provider instanceof SourceSectionContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
-				return false;
-			}
-		} else if(provider instanceof MappingContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
-				return false;
-			}
-		} else if(provider instanceof ModifierSetContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.MAPPING_MODEL__MAPPING) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
-				return false;
-			}
-		} else if(provider instanceof TargetSectionContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
-				return false;
-			}
-		}
-		 else if(provider instanceof LibraryEntryContentProvider) {
-			if(commandParam.getFeature().equals(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-					commandParam.getFeature().equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
-				return false;
-			}
+		if(provider instanceof IFeatureValidator) {
+			return ((IFeatureValidator) provider).isValidFeature((EStructuralFeature) commandParam.getFeature());
 		}
 		
 		return true;

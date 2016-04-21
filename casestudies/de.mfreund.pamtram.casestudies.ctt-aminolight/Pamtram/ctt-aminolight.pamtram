@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel name="it.cnr.isti.giove.ctt">
     <metaModelPackage href="http://giove.isti.cnr.it/ctt#/"/>
     <metaModelSections xsi:type="metamodel:SourceSection" name="RootElement">
@@ -18,8 +18,8 @@
         <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ZERO__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="class">
-            <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Numerical"/>
+            <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
           </attributes>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="ObjectName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
@@ -39,13 +39,13 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="class">
-        <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Numerical"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Decimal"/>
+        <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
-        <attribute href="http://giove.isti.cnr.it/ctt#//Object/type"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Perceivable"/>
+        <attribute href="http://giove.isti.cnr.it/ctt#//Object/type"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
@@ -136,8 +136,8 @@
             </value>
           </references>
           <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreConditionRootOperator">
-            <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="and"/>
+            <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>
       </references>
@@ -145,8 +145,8 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
-        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm0"/>
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Alarm1Task">
@@ -251,8 +251,8 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
-        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm1"/>
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Alarm2Task">
@@ -354,8 +354,8 @@
         </value>
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
-        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm2"/>
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm2TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
@@ -463,8 +463,8 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
-        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm3"/>
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Alarm4Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
@@ -560,8 +560,8 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
-        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm4"/>
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Alarm_ElementTask">
@@ -636,8 +636,8 @@
         </value>
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="GaugeTaskType">
-        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm_Element"/>
+        <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="GaugeTaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
@@ -675,6 +675,12 @@
           </attributes>
         </value>
       </references>
+    </metaModelSections>
+  </sourceSectionModel>
+  <sourceSectionModel>
+    <metaModelPackage href="http://ifa/et/tu/dresden/platform/metamodel#/"/>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="MonoSpeakerSystem">
+      <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//MonoSpeakerSystem"/>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel name="">
@@ -3472,6 +3478,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm_ElementWithoutSoundMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.5">
+      <condition xsi:type="condition:SectionCondition" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GaugeComponent" targetMMSection="//@targetSectionModel.1/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="GaugeNameMapping" target="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.1" modifier="//@mappingModel.2/@modifierSets.2"/>
@@ -4755,6 +4762,5 @@
     <modifierSets name="addLamp">
       <modifier xsi:type="mapping:StringAppender" name="Lamp" string="Lamp"/>
     </modifierSets>
-    <globalValues/>
   </mappingModel>
 </pamtram:PAMTraM>

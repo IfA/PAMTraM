@@ -533,7 +533,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		HashMap<Section, LinkedList<Section>> abstractToConcreteSectionMap = new HashMap<>();
 		Map<EObject, Collection<Setting>> sourceSettings = EcoreUtil.CrossReferencer.find(getSourceSections());
 		for (Section section : getSourceSections()) {
-			if(section.isAbstract()) {
+			if(section.isAbstract() && sourceSettings.containsKey(section)) {
 				LinkedList<Section> concreteSections = new LinkedList<>();
 				for (Setting setting : sourceSettings.get(section)) {
 					if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {

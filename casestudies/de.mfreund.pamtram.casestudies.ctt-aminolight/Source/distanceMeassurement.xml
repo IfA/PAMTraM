@@ -372,6 +372,7 @@
                         <Object name="relative velocity" class="Numerical" type="Perceivable"/>
                         <Object name="ego velocity" class="Numerical" type="Perceivable"/>
                         <Object name="target velocity" class="Numerical" type="Perceivable"/>
+                        <Object name="test" class="Numerical" type="Perceivable"/>
                     </Task>
                 </SubTask>
             </Task>

@@ -80,23 +80,25 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 				 null,
 				 null,
 				 null)
-		{				
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
+			{
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
 
-				List<Object> choiceOfValues = new ArrayList<Object>();
-				choiceOfValues.addAll(super.getChoiceOfValues(object));
-				for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
-					EObject choiceValue = (EObject) element.next();
-					
-					if(!(choiceValue.eContainer() instanceof ConditionModel || choiceValue.eContainer() instanceof ConditionalElement)){
-						element.remove();
+					List<Object> choiceOfValues = new ArrayList<Object>();
+					choiceOfValues.addAll(super.getChoiceOfValues(object));
+					for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
+						EObject choiceValue = (EObject) element.next();
+						if(choiceValue==null){
+							continue;
+						}
+						if(!(choiceValue.eContainer() instanceof ConditionModel || choiceValue.eContainer() instanceof ConditionalElement)){
+							element.remove();
+						}
 					}
+					
+					return choiceOfValues;
 				}
-				
-				return choiceOfValues;
-			}
-		});
+			});
 	}
 
 	/**

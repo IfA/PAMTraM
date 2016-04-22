@@ -89,7 +89,9 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 					choiceOfValues.addAll(super.getChoiceOfValues(object));
 					for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
 						EObject choiceValue = (EObject) element.next();
-						
+						if(choiceValue==null){
+							continue;
+						}
 						if(!(choiceValue.eContainer() instanceof ConditionModel)){
 							element.remove();
 						}

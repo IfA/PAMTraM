@@ -733,44 +733,71 @@ public class SourceSectionMatcher extends CancellableElement {
 			if (h instanceof AttributeMapping) {
 				AttributeMapping attributeMapping = (AttributeMapping) h;
 
-				if (!(attributeMappingsFound.contains(h)) && deepestSourceSectionClassesByAttributeMapping
-						.get(h).contains(srcSection)) {
-					changedRefsAndHints.getHintValues().removeHintValue(attributeMapping); // remove incomplete hint value
-				} else if (deepestSourceSectionClassesByAttributeMapping
-						.get(h).size() > 1) {
-
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues(attributeMapping, srcSection,
-							new LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>());
-					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> val = 
-							changedRefsAndHints.getHintValues().removeHintValue(attributeMapping);
-					changedRefsAndHints.getUnsyncedHintValues().addHintValue(attributeMapping, srcSection, val);
+				// We are at one of the deepest source sections for this hint, so...
+				if(deepestSourceSectionClassesByAttributeMapping.get(h).contains(srcSection)) {
+					
+					if (!(attributeMappingsFound.contains(h))) {
+						
+						// ... remove an incomplete hint value, or...
+						//
+						changedRefsAndHints.getHintValues().removeHintValue(attributeMapping); // remove incomplete hint value
+						
+					} else if (deepestSourceSectionClassesByAttributeMapping.get(h).size() > 1) {
+						
+						// ... create a list of unsynced values as there are other deepest source sections to be handled.
+						//
+						changedRefsAndHints.getUnsyncedHintValues().setHintValues(attributeMapping, srcSection,
+								new LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>());
+						final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> val = 
+								changedRefsAndHints.getHintValues().removeHintValue(attributeMapping);
+						changedRefsAndHints.getUnsyncedHintValues().addHintValue(attributeMapping, srcSection, val);
+					}
 				}
 
 			} else if (h instanceof MappingInstanceSelector) {
 				MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) h;
 
 				if (mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {
-					if (!(attributeMatchersFound.contains(mappingInstanceSelector.getMatcher())) && 
-							deepestSourceSectionClassesByAttributeMatcher.get(mappingInstanceSelector.getMatcher()).contains(srcSection)) {
-						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
-					} else if (deepestSourceSectionClassesByAttributeMatcher.get(((MappingInstanceSelector) h).getMatcher()).size() > 1) {
-
-						changedRefsAndHints.getUnsyncedHintValues().setHintValues(mappingInstanceSelector, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
-						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue(mappingInstanceSelector);
-						changedRefsAndHints.getUnsyncedHintValues().addHintValue(mappingInstanceSelector, srcSection, val);
+					
+					// We are at one of the deepest source sections for this hint, so...
+					if(deepestSourceSectionClassesByAttributeMatcher.get(mappingInstanceSelector.getMatcher()).contains(srcSection)) {
+					
+						if (!(attributeMatchersFound.contains(mappingInstanceSelector.getMatcher()))) {
+							
+							// ... remove an incomplete hint value, or...
+							//
+							changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
+							
+						} else if (deepestSourceSectionClassesByAttributeMatcher.get(((MappingInstanceSelector) h).getMatcher()).size() > 1) {
+	
+							// ... create a list of unsynced values as there are other deepest source sections to be handled.
+							//
+							changedRefsAndHints.getUnsyncedHintValues().setHintValues(mappingInstanceSelector, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
+							final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue(mappingInstanceSelector);
+							changedRefsAndHints.getUnsyncedHintValues().addHintValue(mappingInstanceSelector, srcSection, val);
+						}
 					}
 				}
 			} else if (h instanceof ModelConnectionHint) {
 				ModelConnectionHint modelConnectionHint = (ModelConnectionHint) h;
 
-				if (!(modelConnectionHintsFound.contains(h)) && 
-						deepestSourceSectionClassesByModelConnectionHint.get(h).contains(srcSection)) {
-					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
-				} else if (deepestSourceSectionClassesByModelConnectionHint.get(h).size() > 1) {
-
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues(modelConnectionHint, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
-					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue(modelConnectionHint);
-					changedRefsAndHints.getUnsyncedHintValues().addHintValue(modelConnectionHint, srcSection, val);
+				// We are at one of the deepest source sections for this hint, so...
+				if(deepestSourceSectionClassesByModelConnectionHint.get(h).contains(srcSection)) {
+					
+					if (!(modelConnectionHintsFound.contains(h))) {
+						
+						// ... remove an incomplete hint value, or...
+						//
+						changedRefsAndHints.getHintValues().removeHintValue(h);
+						
+					} else if (deepestSourceSectionClassesByModelConnectionHint.get(h).size() > 1) {
+						
+						// ... create a list of unsynced values as there are other deepest source sections to be handled.
+						//
+						changedRefsAndHints.getUnsyncedHintValues().setHintValues(modelConnectionHint, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
+						final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue(modelConnectionHint);
+						changedRefsAndHints.getUnsyncedHintValues().addHintValue(modelConnectionHint, srcSection, val);
+					}
 				}
 			}
 			
@@ -1442,7 +1469,7 @@ public class SourceSectionMatcher extends CancellableElement {
 
 			final boolean isCommonParent = commonContainerClassOfComplexHints.get(h).equals(srcSection);
 
-			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
+			if (changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().get(h).size() > 1 || isCommonParent) {
 				final Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>> m = 
 						changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().get(h);
 

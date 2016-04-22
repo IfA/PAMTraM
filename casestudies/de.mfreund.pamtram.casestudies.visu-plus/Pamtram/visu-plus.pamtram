@@ -308,11 +308,11 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/stopperVerticalInDirection"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Station" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.10 //@sourceSectionModel.1/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Station" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
-        <value xsi:type="metamodel:SourceSection" name="ExternalData == Station" container="//@sourceSectionModel.1/@metaModelSections.10" extend="//@sourceSectionModel.2/@metaModelSections.4">
+        <value xsi:type="metamodel:SourceSectionClass" name="Externaldatatype">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
           <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -359,6 +359,14 @@
           </references>
         </value>
       </references>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="StructureComponentControl" value="StructureComponentControl"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="grType == &quot;Rectangle&quot;">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Rectangle" value="Rectangle"/>
+      </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <sourceSectionModel name="Extdata">
@@ -1504,7 +1512,7 @@
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="objectID"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="ExtFillType" container="//@targetSectionModel.0/@metaModelSections.5">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ExtFillType" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.5">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ExtFillType"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="imageID">
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ExtFillType/imageID"/>
@@ -1679,7 +1687,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping name="viObject container RectangleMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.10" abstract="true">
+    <mapping name="viObject container RectangleMapping" deactivated="true" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.10" abstract="true">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
@@ -1712,9 +1720,15 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.6/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="strokeWidthMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.5">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="0" value="0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@attributes.4">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>

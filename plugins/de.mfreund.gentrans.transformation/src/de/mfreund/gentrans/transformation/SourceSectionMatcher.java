@@ -402,7 +402,7 @@ public class SourceSectionMatcher extends CancellableElement {
 						mSimplified = checkConditions(m, res);
 						
 						if(mSimplified == null){
-							break;
+							continue;
 						}
 
 						/* 

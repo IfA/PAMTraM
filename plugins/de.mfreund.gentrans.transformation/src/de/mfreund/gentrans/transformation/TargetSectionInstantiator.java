@@ -704,7 +704,7 @@ class TargetSectionInstantiator extends CancellableElement {
 						// even though we already knew we didn't want it to be
 						// part of the targetModel or else we
 						// would get problems with the hintValues
-						if (!markedForDelete.contains(instance)) {
+						if (!markedForDelete.contains(instance) && !childInstances.isEmpty()) {
 
 							if (ref.getEReference().getUpperBound() == 1) {
 								if (childInstances.size() > 1

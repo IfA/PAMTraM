@@ -300,10 +300,6 @@ public class ConditionHandler {
 							BasicEList<String> refValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); 
 							constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString, refValuesAsEList);
 							
-							if(!constraintVal){ // just for debugging!
-								consoleStream.println("Constraint " + constraint.getName() + "of AttributeCondition " + attrCondition.getName() + " is false while the Attribute value " + srcAttrAsString +
-										", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
-							}
 						}  else {
 							// If we are here, some mistake is happened
 							// more types could be supported in the future

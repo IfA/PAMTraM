@@ -360,6 +360,11 @@ public class SourceSectionMatcher extends CancellableElement {
 		 * every mapping). One of the found mappings will be returned in the end.
 		 */
 		final Map<Mapping, MappingInstanceStorage> mappingData = new LinkedHashMap<>();
+		
+		/*
+		 * This list collects removable Mappings because of their conditions
+		 */
+		List<Mapping> removeableMappings = new ArrayList<>();
 
 		/*
 		 * Now, iterate over all mappings and find those that are applicable for the current 'element'
@@ -402,6 +407,8 @@ public class SourceSectionMatcher extends CancellableElement {
 						mSimplified = checkConditions(m, res);
 						
 						if(mSimplified == null){
+							removeableMappings.add(m);
+							//mappingsToChooseFrom.remove(m); // Mapping because of their condition not applicable --> remove it from List
 							continue;
 						}
 
@@ -420,6 +427,7 @@ public class SourceSectionMatcher extends CancellableElement {
 				}
 			}
 		}
+		mappingsToChooseFrom.removeAll(removeableMappings);
 
 		return mappingData;
 	}
@@ -459,6 +467,7 @@ public class SourceSectionMatcher extends CancellableElement {
 		if(conditionHandler.checkCondition(definedMapping.getCondition()) == condResult.true_condition && 
 				conditionHandler.checkCondition(definedMapping.getConditionRef()) == condResult.true_condition) {
 			
+			consoleStream.print(definedMapping.getName() + " is true\n");
 			// Iterate now over all corresponding MappingHintGroups...
 			for (Iterator<MappingHintGroupType> mHintGroupList = definedMapping.getMappingHintGroups().iterator(); mHintGroupList.hasNext();){
 				
@@ -510,6 +519,7 @@ public class SourceSectionMatcher extends CancellableElement {
 				break;
 			}
 		} else {
+				consoleStream.print(definedMapping.getName() + " is false \n");
 				definedMapping = null; //The Condition of a Mapping false, so return null and the Mapping is excluded from transformations
 		}
 		

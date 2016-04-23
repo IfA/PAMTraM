@@ -364,8 +364,7 @@ public class SourceSectionMatcher extends CancellableElement {
 		/*
 		 * Now, iterate over all mappings and find those that are applicable for the current 'element'
 		 */
-		for (final Iterator<Mapping> mappingInstances = mappingsToChooseFrom.iterator(); mappingInstances.hasNext();) {
-			Mapping m = mappingInstances.next();
+		for (final Mapping m : mappingsToChooseFrom) {
 			Mapping mSimplified = m;
 			MappingInstanceStorage res;
 
@@ -401,16 +400,15 @@ public class SourceSectionMatcher extends CancellableElement {
 						//Simplify Mapping by checking conditions of all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
 						mSimplified = checkConditions(m, res);
 						
-						if(mSimplified == null){
-							mappingInstances.remove(); // Mapping because of their condition not applicable --> remove it from List
-							continue;
-						}
+						mappingFailed = (mSimplified == null);
 
 						/* 
 						 * now, determine the external hint values (the container must be present and valid as this was
 						 * already checked earlier); found values are added to the given MappingInstanceStorage
 						 */
-						mappingFailed = determineExternalHintValues(mSimplified, res, mappingFailed);
+						if(!mappingFailed){
+							mappingFailed = determineExternalHintValues(mSimplified, res, mappingFailed);
+						}
 					}
 
 					if (!mappingFailed) {

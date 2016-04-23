@@ -138,7 +138,11 @@ public class ConditionHandler {
 					
 					// Before evaluating, check 'DefaultSetting' (may we can break evaluating and save time)
 					if(((Condition) complexCondition).getDefaultSetting() == CondSettingEnum.NO_MATCHING_ACCEPTED){
-						return condResult.irrelevant_condition;
+						if(complexCondition.eContainer() instanceof ComplexCondition){
+							return condResult.irrelevant_condition;
+						} else{
+							return condResult.true_condition;
+						}
 					}
 					
 					if(complexCondition instanceof AttributeCondition){

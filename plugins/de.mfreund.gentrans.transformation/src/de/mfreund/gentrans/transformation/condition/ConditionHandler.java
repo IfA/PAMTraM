@@ -193,10 +193,8 @@ public class ConditionHandler {
 				return condResult.irrelevant_condition;
 			}
 		
-		// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
+		// return Result of this condition but does NOT!!! store result because it's not matched (may it will be matched later)
 		} else if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false && this.tempMatchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false){
-			if(tempConditionRes == false){
-				this.conditionRepository.put(sectionCondition, condResult.false_condition);}
 			return condResult.false_condition;
 		} else{
 			consoleStream.println("Message:\n check Condition" + sectionCondition.getName() + ". Some logical mistake occurred!");

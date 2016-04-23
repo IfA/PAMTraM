@@ -360,17 +360,12 @@ public class SourceSectionMatcher extends CancellableElement {
 		 * every mapping). One of the found mappings will be returned in the end.
 		 */
 		final Map<Mapping, MappingInstanceStorage> mappingData = new LinkedHashMap<>();
-		
-		/*
-		 * This list collects removable Mappings because of their conditions
-		 */
-		List<Mapping> removeableMappings = new ArrayList<>();
 
 		/*
 		 * Now, iterate over all mappings and find those that are applicable for the current 'element'
 		 */
-		for (final Mapping m : mappingsToChooseFrom) {
-			
+		for (final Iterator<Mapping> mappingInstances = mappingsToChooseFrom.iterator(); mappingInstances.hasNext();) {
+			Mapping m = mappingInstances.next();
 			Mapping mSimplified = m;
 			MappingInstanceStorage res;
 
@@ -407,8 +402,7 @@ public class SourceSectionMatcher extends CancellableElement {
 						mSimplified = checkConditions(m, res);
 						
 						if(mSimplified == null){
-							removeableMappings.add(m);
-							//mappingsToChooseFrom.remove(m); // Mapping because of their condition not applicable --> remove it from List
+							mappingInstances.remove(); // Mapping because of their condition not applicable --> remove it from List
 							continue;
 						}
 
@@ -427,7 +421,6 @@ public class SourceSectionMatcher extends CancellableElement {
 				}
 			}
 		}
-		mappingsToChooseFrom.removeAll(removeableMappings);
 
 		return mappingData;
 	}

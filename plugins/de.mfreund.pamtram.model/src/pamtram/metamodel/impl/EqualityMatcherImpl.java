@@ -85,30 +85,30 @@ public class EqualityMatcherImpl extends SingleReferenceAttributeValueConstraint
 
 	@Override
 	public boolean checkConstraint(String attrValue, String refValue) {
-		String specValue;
 		String newAttrValue;
+		String newRefValue;
 		if (this.caseSensitive) {
-			specValue = refValue;
 			newAttrValue = attrValue;
+			newRefValue = refValue;
 		} else {
-			specValue = refValue.toLowerCase();
 			newAttrValue = attrValue.toLowerCase();
+			newRefValue = refValue.toLowerCase();
 		}
 		// Update: EqualityMatcher useful for integer and doubles. The following example '1' versus. '1.0' represents a problem!
 		// Therefore, in case of integer and double, we try to convert twice (to Double and back to String)
 		try{
-			specValue = String.valueOf(Double.valueOf(refValue));
+			newAttrValue = String.valueOf(Double.valueOf(newAttrValue));
 		}catch(NumberFormatException e){
 			//doesn't work
 		}
 		try{
-			specValue = String.valueOf(Double.valueOf(refValue));
+			newRefValue = String.valueOf(Double.valueOf(newRefValue));
 		}catch(NumberFormatException e){
 			//doesn't work
 		}
 		
-		return (specValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.INCLUSION))
-				|| (!specValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.EXCLUSION));
+		return (newRefValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.INCLUSION))
+				|| (!newRefValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.EXCLUSION));
 	}
 
 	/**

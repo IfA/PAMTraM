@@ -251,9 +251,9 @@ public class ReferenceableValueCalculator {
 			ExpressionCalculator expCalc = new ExpressionCalculator();
 			expressionResult = expCalc.calculateExpression(expression, vars);
 		} catch (final Exception e) {
-			consoleStream.println("Message:\n A reference value couldn't be be calculated by the 'ExpressionCalculator'. Expression, " + expression + ", because of " + e.getMessage()
+			/*consoleStream.println("Message:\n A reference value couldn't be be calculated by the 'ExpressionCalculator'. Expression, " + expression + ", because of " + e.getMessage()
 			+ ".\n Original expression will be returned!");
-			// If it fails, so return the original expression back (maybe it's a simple string, e.g. "Hello World!")
+			// If it fails, so return the original expression back (maybe it's a simple string, e.g. "Hello World!")*/
 			return expression;
 		}
 		return expressionResult;

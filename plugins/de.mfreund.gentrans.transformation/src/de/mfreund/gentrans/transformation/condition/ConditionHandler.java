@@ -138,7 +138,11 @@ public class ConditionHandler {
 					
 					// Before evaluating, check 'DefaultSetting' (may we can break evaluating and save time)
 					if(((Condition) complexCondition).getDefaultSetting() == CondSettingEnum.NO_MATCHING_ACCEPTED){
-						return condResult.irrelevant_condition;
+						if(complexCondition.eContainer() instanceof ComplexCondition){
+							return condResult.irrelevant_condition;
+						} else{
+							return condResult.true_condition;
+						}
 					}
 					
 					if(complexCondition instanceof AttributeCondition){
@@ -189,10 +193,8 @@ public class ConditionHandler {
 				return condResult.irrelevant_condition;
 			}
 		
-		// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
+		// return Result of this condition but does NOT!!! store result because it's not matched (may it will be matched later)
 		} else if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false && this.tempMatchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false){
-			if(tempConditionRes == false){
-				this.conditionRepository.put(sectionCondition, condResult.false_condition);}
 			return condResult.false_condition;
 		} else{
 			consoleStream.println("Message:\n check Condition" + sectionCondition.getName() + ". Some logical mistake occurred!");
@@ -300,10 +302,6 @@ public class ConditionHandler {
 							BasicEList<String> refValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); 
 							constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString, refValuesAsEList);
 							
-							if(!constraintVal){ // just for debugging!
-								consoleStream.println("Constraint " + constraint.getName() + "of AttributeCondition " + attrCondition.getName() + " is false while the Attribute value " + srcAttrAsString +
-										", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
-							}
 						}  else {
 							// If we are here, some mistake is happened
 							// more types could be supported in the future

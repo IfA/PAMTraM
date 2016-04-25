@@ -88,8 +88,6 @@ import pamtram.metamodel.SourceSectionClass;
 		
 	public EList<EObject> getPointedInstanceByList(InstancePointer instPt, EList<EObject> ClassInstList){
 		
-		EList<EObject> possiblePointedClassesAsList = new BasicEList<EObject>();
-		
 		String instancePointerRefValue = instPt.getValue();
 		
 		for(Iterator<EObject> element = ClassInstList.iterator(); element.hasNext();){
@@ -110,7 +108,7 @@ import pamtram.metamodel.SourceSectionClass;
 				consoleStream.println("Message:\n InstancePointerHander by Repositories failed because of:" + e.getMessage());
 			}
 		}
-		return possiblePointedClassesAsList;
+		return ClassInstList;
 	}
 
 	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections) {

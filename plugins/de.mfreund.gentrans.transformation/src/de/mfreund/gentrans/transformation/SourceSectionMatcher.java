@@ -365,7 +365,6 @@ public class SourceSectionMatcher extends CancellableElement {
 		 * Now, iterate over all mappings and find those that are applicable for the current 'element'
 		 */
 		for (final Mapping m : mappingsToChooseFrom) {
-			
 			Mapping mSimplified = m;
 			MappingInstanceStorage res;
 
@@ -401,15 +400,15 @@ public class SourceSectionMatcher extends CancellableElement {
 						//Simplify Mapping by checking conditions of all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
 						mSimplified = checkConditions(m, res);
 						
-						if(mSimplified == null){
-							continue;
-						}
+						mappingFailed = (mSimplified == null);
 
 						/* 
 						 * now, determine the external hint values (the container must be present and valid as this was
 						 * already checked earlier); found values are added to the given MappingInstanceStorage
 						 */
-						mappingFailed = determineExternalHintValues(mSimplified, res, mappingFailed);
+						if(!mappingFailed){
+							mappingFailed = determineExternalHintValues(mSimplified, res, mappingFailed);
+						}
 					}
 
 					if (!mappingFailed) {
@@ -459,6 +458,7 @@ public class SourceSectionMatcher extends CancellableElement {
 		if(conditionHandler.checkCondition(definedMapping.getCondition()) == condResult.true_condition && 
 				conditionHandler.checkCondition(definedMapping.getConditionRef()) == condResult.true_condition) {
 			
+			consoleStream.print(definedMapping.getName() + " is true\n");
 			// Iterate now over all corresponding MappingHintGroups...
 			for (Iterator<MappingHintGroupType> mHintGroupList = definedMapping.getMappingHintGroups().iterator(); mHintGroupList.hasNext();){
 				
@@ -510,6 +510,7 @@ public class SourceSectionMatcher extends CancellableElement {
 				break;
 			}
 		} else {
+				consoleStream.print(definedMapping.getName() + " is false \n");
 				definedMapping = null; //The Condition of a Mapping false, so return null and the Mapping is excluded from transformations
 		}
 		

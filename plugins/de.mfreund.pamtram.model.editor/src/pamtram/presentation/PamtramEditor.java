@@ -1292,7 +1292,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void createModel() {
 		URI resourceURI = EditUIUtil.getURI(getEditorInput(), editingDomain.getResourceSet().getURIConverter());
@@ -1312,7 +1312,12 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		if (diagnostic.getSeverity() != Diagnostic.OK) {
 			resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
 		}
-		editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
+		
+		// Prevent the adapter to be added multiple times in case this method is called more than once
+		//
+		if(!editingDomain.getResourceSet().eAdapters().contains(problemIndicationAdapter)) {
+			editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
+		}
 	}
 
 	/**

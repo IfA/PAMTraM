@@ -2510,9 +2510,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
 	@Override
 	protected void setEditingDomain(AdapterFactoryEditingDomain editingDomain) {
-		this.editingDomain.getCommandStack().removeCommandStackListener(pamtramCommandStackListener);
 		this.editingDomain = editingDomain;
-		this.editingDomain.getCommandStack().addCommandStackListener(pamtramCommandStackListener);
 	}
 
 	@Override

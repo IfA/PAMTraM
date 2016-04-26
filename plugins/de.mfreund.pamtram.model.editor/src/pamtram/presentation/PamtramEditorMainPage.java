@@ -3,8 +3,10 @@ package pamtram.presentation;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -32,6 +34,11 @@ import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
+import pamtram.condition.AttributeCondition;
+import pamtram.condition.ComplexCondition;
+import pamtram.condition.MultipleConditionOperator;
+import pamtram.condition.SectionCondition;
+import pamtram.condition.SingleConditionOperator;
 import pamtram.contentadapter.DeactivationListenerAdapter;
 import pamtram.contentprovider.ConditionContentProvider;
 import pamtram.contentprovider.LibraryEntryContentProvider;
@@ -52,6 +59,7 @@ import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.LocalMappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
@@ -465,6 +473,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					|| item.getData() instanceof MappingHintGroupType
 					|| item.getData() instanceof MappingHintGroupImporter
 					|| item.getData() instanceof GlobalAttribute
+					|| item.getData() instanceof ComplexCondition
 					) {
 	
 				/*
@@ -481,6 +490,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				 * This keeps track of the element in the source viewer that corresponds to the currently selected element.
 				 */
 				Object source = null;
+				
+				/*
+				 * This keeps track of the elements in the condition viewer that correspond to the currently selected elements.
+				 */
+				Set<Object> conditions = new HashSet<>();
 	
 				/*
 				 * This keeps track of the elements in the target viewer that correspond to the currently selected element.
@@ -494,7 +508,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	
 				/*
 				 * If a MappingHintGroup is selected, expand the hint group itself and the parent Mapping.
-				 * Additionally, select corresponding source and target sections.
+				 * Additionally, select corresponding source and target sections and the referenced condition.
 				 */
 				if(item.getData() instanceof MappingHintGroupType){
 					MappingHintGroupType hintGroup = (MappingHintGroupType) item.getData();
@@ -507,6 +521,10 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 						} else {
 							targets.add(target);	
 						}							
+					}
+					if(hintGroup instanceof InstantiableMappingHintGroup && 
+							((InstantiableMappingHintGroup) hintGroup).getConditionRef() != null) {
+						conditions.add(((InstantiableMappingHintGroup) hintGroup).getConditionRef());
 					}
 					expanded.add(mapping);
 					expanded.add(hintGroup);
@@ -530,6 +548,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 							}
 						}
 					}
+					if(hintGroupImporter.getConditionRef() != null) {
+						conditions.add(hintGroupImporter.getConditionRef());
+					}
 					expanded.add(mapping);
 					expanded.add(hintGroupImporter);
 	
@@ -547,25 +568,43 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					}
 					expanded.add(mapping);
 					expanded.add(g);
-	
+					
+					/*
+					 * If a ComplexCondition is selected, expand referenced conditions, sections, and/or attributes.
+					 */
+				} else if(item.getData() instanceof ComplexCondition) {
+					ComplexCondition condition = (ComplexCondition) item.getData();
+					
+					if(condition instanceof SingleConditionOperator && 
+							((SingleConditionOperator) condition).getCondPartRef() != null) {
+						conditions.add(((SingleConditionOperator) condition).getCondPartRef());
+					} else if(condition instanceof MultipleConditionOperator && 
+							((MultipleConditionOperator) condition).getCondPartsRef() != null) {
+						conditions.addAll(((MultipleConditionOperator) condition).getCondPartsRef());
+					} else if(condition instanceof AttributeCondition) {
+						source = ((AttributeCondition) condition).getConditionAttributeRef();
+					} else if(condition instanceof SectionCondition) {
+						source = ((SectionCondition) condition).getConditionSectionRef();
+					}
+					
 					/*
 					 * If a Mapping is selected, expand the mapping itself.
 					 * Additionally, select the source of the mapping and the targets of the hint groups.
 					 */
-				} else {
+				} else if(item.getData() instanceof Mapping){
 					mapping = (Mapping) item.getData();
 					source = mapping.getSourceMMSection();
-	
-					if(mapping != null){
-						expanded.add(mapping);
-						for(MappingHintGroupType group : mapping.getMappingHintGroups()){
-							if(group.getTargetMMSection() != null) {
-								TargetSectionClass target = group.getTargetMMSection();
-								if(target.eContainer() instanceof ContainerParameter) {
-									libraryTargets.add(target);
-								} else {
-									targets.add(target);
-								}
+					if(mapping.getConditionRef() != null) {
+						conditions.add(mapping.getConditionRef());
+					}
+					expanded.add(mapping);
+					for(MappingHintGroupType group : mapping.getMappingHintGroups()){
+						if(group.getTargetMMSection() != null) {
+							TargetSectionClass target = group.getTargetMMSection();
+							if(target.eContainer() instanceof ContainerParameter) {
+								libraryTargets.add(target);
+							} else {
+								targets.add(target);
 							}
 						}
 					}
@@ -589,6 +628,13 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 						newExpansion.add(source);
 						sourceViewer.setExpandedElements(newExpansion.toArray());
 					}
+				}
+				if(conditions.isEmpty()) {
+					conditionViewer.setSelection(
+							new StructuredSelection());
+				} else {
+					conditionViewer.setSelection(
+							new StructuredSelection(conditions.toArray()));
 				}
 				if(targets.isEmpty()) {
 					targetViewer.setSelection(
@@ -658,11 +704,14 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				AttributeMapping mapping = (AttributeMapping) item.getData();
 				Attribute<?, ?, ?, ?> target = mapping.getTarget();
 	
-				List<Attribute<?, ?, ?, ?>> sources = new LinkedList<>();
+				List<Object> sources = new LinkedList<>();
 				for(AttributeMappingSourceInterface c : mapping.getSourceAttributeMappings()){
 					if(c.getSourceAttribute() != null){
 						sources.add(c.getSourceAttribute());
 					}
+				}
+				if(mapping.getConditionRef() != null) {
+					sources.add(mapping.getConditionRef());
 				}
 	
 				setSourceTargetViewerSelections(sources, target);
@@ -674,10 +723,15 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	
 				CardinalityMapping mapping = (CardinalityMapping) item.getData();
 	
-				pamtram.metamodel.Class<?, ?, ?, ?> source = mapping.getSource();
+				List<Object> sources = new LinkedList<>();
+				sources.add(mapping.getSource());
 				pamtram.metamodel.Class<?, ?, ?, ?> target = mapping.getTarget();
+				
+				if(mapping.getConditionRef() != null) {
+					sources.add(mapping.getConditionRef());
+				}
 	
-				setSourceTargetViewerSelections(source, target);
+				setSourceTargetViewerSelections(sources, target);
 	
 				/*
 				 * If a MappingInstanceSelector is selected, select the target reference that it points to.	
@@ -687,8 +741,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				MappingInstanceSelector selector = (MappingInstanceSelector) item.getData();
 	
 				NonContainmentReference<?, ?, ?, ?> reference = selector.getAffectedReference();
-	
-				setSourceTargetViewerSelections(null, reference);
+				
+				setSourceTargetViewerSelections(selector.getConditionRef(), reference);
 	
 				/*
 				 * If an AttributeMatcher is selected, select its source and target attributes.
@@ -737,7 +791,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				for(ModelConnectionHintTargetAttribute a : hint.getTargetAttributes()){
 					targets.add(a.getSource());
 				}
-	
+				
 				setSourceTargetViewerSelections(sources, targets);
 	
 				/*
@@ -778,7 +832,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		 * The method automatically determines if the target element(s) is/are located in the target viewer or in the library target viewer
 		 * and performs the appropriate selection.
 		 * 
-		 * @param source The object(s) to be selected in the source viewer (or null if nothing is to be selected).
+		 * @param source The object(s) to be selected in the source (or condition) viewer (or null if nothing is to be selected).
 		 * 					This may be a single object or an {@link AbstractCollection} of objects.
 		 * @param target The object(s) to be selected in the target (or library target) viewer (or null if nothing is to be selected).
 		 * 					This may be a single object or an {@link AbstractCollection} of objects.
@@ -788,13 +842,22 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 			if(source == null) {
 				sourceViewer.setSelection(
 						new StructuredSelection());
+				conditionViewer.setSelection(
+						new StructuredSelection());
 			} else {
+				/* as the source(s) may either be located in source sections or in conditions,
+				 * we simply set the selection in both viewers (knowing that only one will succeed)  
+				 */
 				if(source instanceof AbstractCollection<?>) {
 					sourceViewer.setSelection(
 							new StructuredSelection(((AbstractCollection<?>) source).toArray()));
+					conditionViewer.setSelection(
+							new StructuredSelection(((AbstractCollection<?>) source).toArray()));
 				} else {
 					sourceViewer.setSelection(
-							new StructuredSelection(source));						
+							new StructuredSelection(source));
+					conditionViewer.setSelection(
+							new StructuredSelection(source));
 				}
 			}
 			if(target == null) {

@@ -4,21 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
+import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.GlobalValue;
+import pamtram.mapping.FixedValue;
 
 /**
  * A content provider for a viewer that displays the {@link MappingModel MappingModels} and the
  * contained {@link AttributeValueModifierSet AttributeValueModifierSets} as well as the
- * {@link GlobalValue GlobalValues}.
+ * {@link FixedValue GlobalValues}.
  * 
  * @author mfreund
  */
-public class ModifierSetContentProvider extends AdapterFactoryContentProvider {
+public class ModifierSetContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
 	public ModifierSetContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
@@ -43,5 +45,18 @@ public class ModifierSetContentProvider extends AdapterFactoryContentProvider {
 			return elements.toArray();
 		}
 		return super.getElements(object);
+	}
+	
+	@Override
+	public boolean isValidFeature(EStructuralFeature feature) {
+
+		if(feature.equals(PamtramPackage.Literals.MAPPING_MODEL__MAPPING) ||
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
+			return false;
+		}
+		
+		return true;
 	}
 }

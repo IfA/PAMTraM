@@ -1705,7 +1705,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
 		// Get the Pamtram instance.
 		for (Resource resource : getEditingDomain().getResourceSet().getResources()) {
-			if(resource.getContents().get(0) instanceof PAMTraM) {
+			if(!resource.getContents().isEmpty() && resource.getContents().get(0) instanceof PAMTraM) {
 				pamtram = (PAMTraM) resource.getContents().get(0);
 				break;
 			}
@@ -1739,15 +1739,42 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		case OK_NOTHING_REGISTERED:
 			return;
 		case OK_PACKAGES_REGISTERED:
-			// if packages have been registered, a new resource set has to be created; otherwise,
-			// proxy resolving does not seem to work correctly; therefore, the editing is re-initialized
-			// and the source model is reloaded
-			initializeEditingDomain();
-			getPamtramFromResourceSet();
-
+			
 			// Reset the diagnostic map so that errors that occurred during the above operations are
 			// not reflected.
 			resourceToDiagnosticMap = backup;
+			
+			/*
+			 * If packages did have to be registered, each reference to these packages inside the loaded pamtram model
+			 * will be represented by an (unresolvable) proxy. Therefore, we unload and reload the pamtram model. As the necessary
+			 * packages are now present in the EPackageRegistry, loading should now complete successfully (all remaining
+			 * proxies can now be successfully resolved if required). 
+			 */
+			
+			// As we do not need the files/resources containing the registered packages any longer (the contained packages are now stored
+			// in the EPackageRegistry), we remove them from the resource set and unload them
+			//
+			for (EPackage ePackage : result.getRegisteredPackages()) {
+				
+				Resource metamodelResource = null;
+				for (Resource resource : editingDomain.getResourceSet().getResources()) {
+					if(resource.getURI() != null && resource.getURI().toString().equals(ePackage.getNsURI())) {
+						metamodelResource = resource;
+						break;
+					}
+				}
+				
+				if(metamodelResource != null) {
+					editingDomain.getResourceSet().getResources().remove(metamodelResource);
+					metamodelResource.unload();
+				}
+			}
+			
+			// Now, reload the pamtram model
+			//
+			pamtram.eResource().unload();
+			getPamtramFromResourceSet();
+			
 			break;
 		case ERROR_METAMODEL_FOLDER_NOT_FOUND:
 		case ERROR_PACKAGE_NOT_FOUND:

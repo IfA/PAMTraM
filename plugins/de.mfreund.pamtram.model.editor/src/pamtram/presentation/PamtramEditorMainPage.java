@@ -33,6 +33,7 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import pamtram.contentadapter.DeactivationListenerAdapter;
+import pamtram.contentprovider.ConditionContentProvider;
 import pamtram.contentprovider.LibraryEntryContentProvider;
 import pamtram.contentprovider.MappingContentProvider;
 import pamtram.contentprovider.ModifierSetContentProvider;
@@ -100,10 +101,25 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	protected TreeViewerGroup sourceViewerGroup;
 
 	/**
+	 * This is the the viewer for the condtions.
+	 */
+	protected TreeViewer conditionViewer = null;
+
+	/**
+	 * This is the group for the condition tree viewer.
+	 */
+	protected Group conditionGroup;
+
+	/**
+	 * The {@link TreeViewerGroup} for the conditions.
+	 */
+	protected TreeViewerGroup conditionViewerGroup;
+
+	/**
 	 * This is the the viewer for the source meta model sections.
 	 */
 	protected TreeViewer sourceViewer = null;
-
+	
 	/**
 	 * This is the group for the mapping tree viewer.
 	 */
@@ -172,6 +188,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	protected DeactivationListenerAdapter deactivationListener;
 
 	/**
+	 * The {@link MinimizableSashForm} containing the {@link #sourceViewerGroup} and the {@link #conditionViewerGroup}.
+	 */
+	protected MinimizableSashForm sourceSash;
+	
+	/**
 	 * The {@link MinimizableSashForm} containing the {@link #mappingViewerGroup} and the {@link #globalElementsViewerGroup}.
 	 */
 	protected MinimizableSashForm mappingSash;
@@ -206,12 +227,20 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 
 	private void createSourceViewer() {
+		
+		sourceSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
+		{
+			GridData data = new GridData();
+			data.verticalAlignment = GridData.FILL;
+			data.grabExcessVerticalSpace = true;
+			data.horizontalAlignment = GridData.FILL;
+			sourceSash.setLayoutData(data);
+		}
 	
 		// Create the viewer for the source sections.
 		//
-	
-		sourceViewerGroup = new TreeViewerGroup(
-				this, adapterFactory, editor.getEditingDomain(),
+		sourceViewerGroup = new MinimizableTreeViewerGroup(
+				sourceSash, adapterFactory, editor.getEditingDomain(),
 				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections", null, null, true, true
 				);
 		sourceViewer = sourceViewerGroup.getViewer();
@@ -222,6 +251,22 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		
 		new AdapterFactoryTreeEditor(sourceViewer.getTree(), adapterFactory);
 		editor.createContextMenuFor(sourceViewer);
+		
+		// Create the viewer for the condtions.
+		//
+	
+		conditionViewerGroup = new MinimizableTreeViewerGroup(
+				sourceSash, adapterFactory, editor.getEditingDomain(),
+				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Conditions", null, null, true, true
+				);
+		conditionViewer = conditionViewerGroup.getViewer();
+		conditionViewer.setContentProvider(new ConditionContentProvider(adapterFactory));
+		conditionViewer.setInput(editor.pamtram);
+		conditionViewer.getTree().addSelectionListener(new SetViewerSelectionListener(editor, conditionViewer));
+		conditionViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, conditionViewer));
+		
+		new AdapterFactoryTreeEditor(conditionViewer.getTree(), adapterFactory);
+		editor.createContextMenuFor(conditionViewer);
 	}
 
 
@@ -821,6 +866,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				editor.currentViewer != null) {
 			if(editor.currentViewer.equals(sourceViewer)) {
 				activeViewer = "SOURCE_VIEWER";
+			} else if(editor.currentViewer.equals(conditionViewer)) {
+				activeViewer = "CONDITION_VIEWER";
 			} else if(editor.currentViewer.equals(mappingViewer)) {
 				activeViewer = "MAPPING_VIEWER";
 			} else if(editor.currentViewer.equals(globalElementsViewer)) {
@@ -848,6 +895,10 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		settings.put("ACTIVE_VIEWER", activeViewer);
 		settings.put("ACTIVE_SELECTION", activeSelection);
 		
+		// Persist the state of the 'sourceSash'
+		//
+		sourceSash.persist(settings.addNewSection("SOURCE_SASH"));
+		
 		// Persist the state of the 'mappingSash'
 		//
 		mappingSash.persist(settings.addNewSection("MAPPING_SASH"));
@@ -859,6 +910,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		// Persist the expanded tree paths of the various tree viewers
 		//
 		sourceViewerGroup.persist(settings.addNewSection("SOURCE_VIEWER"));
+		conditionViewerGroup.persist(settings.addNewSection("CONDITION_VIEWER"));
 		mappingViewerGroup.persist(settings.addNewSection("MAPPING_VIEWER"));
 		globalElementsViewerGroup.persist(settings.addNewSection("GLOBAL_ELEMENTS_VIEWER"));
 		targetViewerGroup.persist(settings.addNewSection("TARGET_VIEWER"));
@@ -877,6 +929,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 			String activeViewer = settings.get("ACTIVE_VIEWER");
 			if(activeViewer.equals("SOURCE_VIEWER")) {
 				editor.setCurrentViewer(sourceViewer);
+			} else if(activeViewer.equals("CONDITION_VIEWER")) {
+				editor.setCurrentViewer(conditionViewer);
 			} else if(activeViewer.equals("MAPPING_VIEWER")) {
 				editor.setCurrentViewer(mappingViewer);
 			} else if(activeViewer.equals("GLOBAL_ELEMENTS_VIEWER")) {
@@ -901,6 +955,12 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 			}
 		}
 		
+		// Restore the state of the 'sourceSash'
+		//
+		if(settings.getSection("SOURCE_SASH") != null) {
+			sourceSash.restore(settings.getSection("SOURCE_SASH"));
+		}
+		
 		// Restore the state of the 'mappingSash'
 		//
 		if(settings.getSection("MAPPING_SASH") != null) {
@@ -917,6 +977,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 		if(settings.getSection("SOURCE_VIEWER") != null) {
 			sourceViewerGroup.restore(settings.getSection("SOURCE_VIEWER"));
+		}
+		if(settings.getSection("CONDITION_VIEWER") != null) {
+			conditionViewerGroup.restore(settings.getSection("CONDITION_VIEWER"));
 		}
 		if(settings.getSection("MAPPING_VIEWER") != null) {
 			mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));

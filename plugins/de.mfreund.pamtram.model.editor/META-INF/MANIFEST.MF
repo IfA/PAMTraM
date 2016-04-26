@@ -5,7 +5,9 @@ Bundle-SymbolicName: de.mfreund.pamtram.model.editor;singleton:=true
 Bundle-Version: 1.5.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: pamtram.presentation.PamtramEditorPlugin$Implementation
-Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Bundle-Vendor: Matthias Freund,
+ Institute of Automation,
+ TU Dresden
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: pamtram.condition.presentation,

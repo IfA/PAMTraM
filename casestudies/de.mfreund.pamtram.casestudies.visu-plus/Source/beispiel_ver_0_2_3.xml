@@ -5381,7 +5381,7 @@
           label="Turn55CNC" send="Turn55CNC" width="9556.62" x="16529.4" y="1400.0">
         <externaldata>
           <extdata name="Class" value="CNC EMCO Turn"/>
-          <extdata name="ClassPath" value="Component.CNC.EMCO.Turn"/>
+          <extdata name="ClassPath" value="Component.CNC.EMCO.Turn.Turn55CNC"/>
           <extdata name="typeID" value="Component"/>
           <extdata name="name" value="Turn55CNC"/>
         </externaldata>
@@ -7072,7 +7072,7 @@
           label="Mill55CNC" send="Mill55CNC" width="15229.2" x="2934.92" y="2437.13">
         <externaldata>
           <extdata name="Class" value="CNC EMCO Mill"/>
-          <extdata name="ClassPath" value="Component.CNC.EMCO.Mill"/>
+          <extdata name="ClassPath" value="Component.CNC.EMCO.Mill.Mill55CNC"/>
           <extdata name="typeID" value="Component"/>
           <extdata name="name" value="Mill55CNC"/>
         </externaldata>
@@ -9586,7 +9586,7 @@
           x="13643.7" y="1400.0">
         <externaldata>
           <extdata name="Class" value="CNC EMCO Mill"/>
-          <extdata name="ClassPath" value="Component.CNC.EMCO.Mill"/>
+          <extdata name="ClassPath" value="Component.CNC.EMCO.Mill.MillAndTurn105MillCNC"/>
           <extdata name="typeID" value="Component"/>
           <extdata name="name" value="MillAndTurn105MillCNC"/>
         </externaldata>
@@ -9596,7 +9596,7 @@
           x="13658.3" y="10972.9">
         <externaldata>
           <extdata name="Class" value="CNC EMCO Turn"/>
-          <extdata name="ClassPath" value="Component.CNC.EMCO.Turn"/>
+          <extdata name="ClassPath" value="Component.CNC.EMCO.Turn.MillAndTurn105TurnCNC"/>
           <extdata name="typeID" value="Component"/>
           <extdata name="name" value="MillAndTurn105TurnCNC"/>
         </externaldata>

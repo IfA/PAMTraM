@@ -156,7 +156,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			throw new UserAbortException();
 		}
 		printMessage(dialog.getSingleSelection(), userDecisionPrefix);
-		return new ArrayList<>(Arrays.asList(choices.get(classNames.indexOf(dialog.getSelection()))));
+		return new ArrayList<>(Arrays.asList(choices.get(classNames.indexOf(dialog.getSingleSelection()))));
 	}
 
 	@Override

@@ -545,7 +545,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		}
 		Map<EObject, Collection<Setting>> targetSettings = EcoreUtil.CrossReferencer.find(getTargetSections());
 		for (Section section : getTargetSections()) {
-			if(section.isAbstract()) {
+			if(section.isAbstract() && sourceSettings.containsKey(section)) {
 				LinkedList<Section> concreteSections = new LinkedList<>();
 				for (Setting setting : targetSettings.get(section)) {
 					if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {

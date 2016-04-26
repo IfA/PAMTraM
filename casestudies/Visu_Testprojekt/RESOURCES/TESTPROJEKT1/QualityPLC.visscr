@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MovResource>
+  <General SizeX="3200" SizeY="1800"/>
+  <BackGround/>
+  <Style/>
+  <Execution/>
+  <ListSynopticDraw>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="1" width="300" x="950" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;NAVTOP&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>NAVTOP</Name>
+      <text font-family="Tahoma" font-size="12" text-anchor="middle">NAVTOP</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="1" width="300" x="1450" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;ALERT&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>ALERT</Name>
+      <text font-family="Tahoma" font-size="12" text-anchor="middle">ALERT</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="1" width="300" x="1950" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;Quality&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>Quality</Name>
+      <text font-family="Tahoma" font-size="12" text-anchor="middle">Quality</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+  </ListSynopticDraw>
+  <VariableList>
+    <Variable>
+      <Name/>
+      <EnableTrace/>
+    </Variable>
+  </VariableList>
+</MovResource>

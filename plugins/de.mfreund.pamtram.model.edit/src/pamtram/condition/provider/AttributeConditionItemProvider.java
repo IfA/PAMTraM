@@ -6,14 +6,9 @@ package pamtram.condition.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
@@ -21,11 +16,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.mapping.commands.BasicDragAndDropAddCommand;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
-import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.AttributeCondition} object.
@@ -236,33 +227,4 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 				 MetamodelFactory.eINSTANCE.createRangeConstraint()));
 	}
 	
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
-			int operation, Collection<?> collection) {
-
-		if(collection.size() == 1 && collection.iterator().next() instanceof SourceSectionAttribute) {
-			
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, ConditionPackage.Literals.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, 
-					collection.iterator().next(), 0);
-		}
-		
-		EList<AttributeValueConstraint> values = new BasicEList<AttributeValueConstraint>();
-		for (Object value : collection) {
-			if(value instanceof AttributeValueConstraint) {
-				values.add((AttributeValueConstraint) value);
-			} else {
-				return super.createDragAndDropCommand(domain, owner, location, operations,
-						operation, collection); 
-			}
-		}
-
-		if(values.isEmpty()) {
-			return super.createDragAndDropCommand(domain, owner, location, operations,
-					operation, collection); 
-		} else {
-			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT, values);
-		}
-	}
-
 }

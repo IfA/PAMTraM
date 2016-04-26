@@ -8,12 +8,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -21,11 +19,9 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
-import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.SingleConditionOperator;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.SingleConditionOperator} object.
@@ -216,16 +212,4 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 				 ConditionFactory.eINSTANCE.createSectionCondition()));
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
-			int operation, Collection<?> collection) {
-
-		if(collection.size() == 1 && collection.iterator().next() instanceof ComplexCondition) {
-			
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART_REF, 
-					collection.iterator().next(), 0);
-		}
-
-		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
-	}
 }

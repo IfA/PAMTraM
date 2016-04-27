@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Display;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
-import de.mfreund.gentrans.transformation.resolving.wizards.GenericItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.NamedElementItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
@@ -147,10 +147,10 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			classNames.add(eClass.getName());
 		}
 
-		final GenericItemSelectorDialogRunner<String> dialog = new GenericItemSelectorDialogRunner<>(
+		final GenericSelectionDialogRunner<String> dialog = new GenericSelectionDialogRunner<String>(
 				"There was more than one target model element that could not be connected to a root element. Therefore "
 						+ "a model root element needs to be created. Please select a fitting class:",
-						classNames, 0);
+						0, false, classNames);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
@@ -177,12 +177,11 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			}
 		}
 
-		final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<>(
+		final GenericSelectionDialogRunner<ModelConnectionPath> dialog = new GenericSelectionDialogRunner<ModelConnectionPath>(
 				"Please choose one of the possible connections for connecting the "
 						+ "instances of the target section '" + section.getName() + "' (EClass: '"
 						+ section.getEClass().getName() + "') to the model root element of the type '" + choices.get(0).getPathRootClass().getName() + "'.",
-						choices,
-						choices.indexOf(chosenPath));
+						choices.indexOf(chosenPath), false, choices);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
@@ -255,14 +254,14 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			ModelConnectionHint modelConnectionHint, 
 			String hintValue) throws Exception {
 
-		final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
+		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<EObjectWrapper>(
 				"The ModelConnectionHint '" + modelConnectionHint.getName() + " (Mapping :" + ((Mapping) (hintGroup.eContainer())).getName() + ", Group: " + hintGroup.getName()
 				+ ")' points to a non-unique Attribute. Please choose under which elements " + 
 				(sectionInstances.size() > 1 ? 
 						"theese " + sectionInstances.size()+ "elements" : 
 							"this " + sectionInstances.size() + "element")
 				+ " should be inserted.\n\n" + "Attribute value: " + hintValue,
-				choices, 0);
+				0, false, choices);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
@@ -292,7 +291,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ ") . Please select a target element for the following source:\n" + sourceElement.toString();
 		}
 
-		final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(dialogMessage, choices, reference.getEReference().isMany(), 0);
+		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<EObjectWrapper>(
+				dialogMessage, 0, reference.getEReference().isMany(), choices);
 
 		Display.getDefault().syncExec(
 				dialog);

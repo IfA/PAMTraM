@@ -37,7 +37,7 @@ import org.eclipse.swt.widgets.Shell;
  *
  *          GenTrans-Dialog for selecting from a list of options.
  */
-public class ItemSelectorDialog extends Dialog {
+public class GenericSelectionDialog extends Dialog {
 
 	private static Point lastLocation;
 	private static Point lastSize;
@@ -71,7 +71,7 @@ public class ItemSelectorDialog extends Dialog {
 	 * @param parent
 	 * @param style
 	 */
-	ItemSelectorDialog(final Shell parent, final String message,
+	GenericSelectionDialog(final Shell parent, final String message,
 			final List<String> listItems, final int standardSelectionIndex) {
 		super(parent, SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
 		setText("SWT Dialog");
@@ -93,7 +93,7 @@ public class ItemSelectorDialog extends Dialog {
 	 * @param parent
 	 * @param style
 	 */
-	ItemSelectorDialog(final Shell parent, final String message,
+	GenericSelectionDialog(final Shell parent, final String message,
 			final List<String> listItems, boolean multiSelectionAllowed, final int standardSelectionIndex) {
 		super(parent, SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
 		setText("SWT Dialog");

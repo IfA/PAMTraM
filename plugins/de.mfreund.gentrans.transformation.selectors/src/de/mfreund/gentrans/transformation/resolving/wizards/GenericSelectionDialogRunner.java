@@ -10,10 +10,10 @@ import org.eclipse.swt.widgets.Shell;
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 
 /**
- * This represents a {@link Runnable} that will spawn an {@link ItemSelectorDialog} that allows a 
+ * This represents a {@link Runnable} that will spawn an {@link GenericSelectionDialog} that allows a 
  * user to select between multiple options during an execution of a {@link GenericTransformationJob generic transformation}.
  * <p />
- * Clients can overwrite the {@link #initializeDialog()} method if a sub-class of {@link ItemSelectorDialog} shall be used
+ * Clients can overwrite the {@link #initializeDialog()} method if a sub-class of {@link GenericSelectionDialog} shall be used
  * as dialog.
  * 
  * @author mfreund
@@ -43,9 +43,9 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	protected List<SelectionType> selection;
 	
 	/**
-	 * The {@link ItemSelectorDialog} that will present the options to the user.
+	 * The {@link GenericSelectionDialog} that will present the options to the user.
 	 */
-	protected ItemSelectorDialog dialog;
+	protected GenericSelectionDialog dialog;
 	
 	/**
 	 * This creates an instance.
@@ -149,7 +149,7 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 */
 	protected void initializeDialog() {
 		
-		dialog = new ItemSelectorDialog(new Shell(), message,
+		dialog = new GenericSelectionDialog(new Shell(), message,
 				getStringRepresentations(), multiSelectionAllowed, standardSelection);
 	}
 

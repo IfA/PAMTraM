@@ -43,6 +43,7 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 import pamtram.ConditionModel;
+import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
@@ -545,7 +546,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		}
 		Map<EObject, Collection<Setting>> targetSettings = EcoreUtil.CrossReferencer.find(getTargetSections());
 		for (Section section : getTargetSections()) {
-			if(section.isAbstract() && sourceSettings.containsKey(section)) {
+			if(section.isAbstract() && targetSettings.containsKey(section)) {
 				LinkedList<Section> concreteSections = new LinkedList<>();
 				for (Setting setting : targetSettings.get(section)) {
 					if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {
@@ -557,7 +558,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		}
 		
 		ArrayList<Mapping> concreteMappings = new ArrayList<>();
-		for (Mapping mapping : getMappings()) {
+		for (Mapping mapping : getActiveMappings()) {
 			if(!mapping.isAbstract()) {
 				concreteMappings.add(mapping);
 			}
@@ -644,6 +645,13 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 						} else {
 							hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();
 						}
+						
+						// We do not need to handle deactivated Mappings/MappingHintGroups
+						//
+						if(hintGroup instanceof DeactivatableElement && ((DeactivatableElement) hintGroup).isDeactivated() ||
+								hintGroup.eContainer() instanceof DeactivatableElement && ((DeactivatableElement) hintGroup.eContainer()).isDeactivated()) {
+							continue;
+						}
 		
 						/* 
 						 * check if the hint group or its parent mapping equals the section that we just added the concrete elements to
@@ -697,6 +705,13 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 						} else {
 							hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();
 						}
+						
+						// We do not need to handle deactivated Mappings/MappingHintGroups
+						//
+						if(hintGroup instanceof DeactivatableElement && ((DeactivatableElement) hintGroup).isDeactivated() ||
+								hintGroup.eContainer() instanceof DeactivatableElement && ((DeactivatableElement) hintGroup.eContainer()).isDeactivated()) {
+							continue;
+						}
 		
 						/* 
 						 * check if the hint group or its parent mapping equals the section that we just added the concrete elements to or
@@ -734,23 +749,30 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		 * Finally, we can copy the abstract hint groups
 		 */
 		
-		// collect all abstract mappings
-		ArrayList<Mapping> abstractMappings = new ArrayList<>();
-		for (Mapping mapping : this.getMappings()) {
-			if(mapping.isAbstract()) {
-				abstractMappings.add(mapping);
-			}
-		}
-		
 		// collect each abstract hint group as well as the concrete hint groups that reference them
 		HashMap<MappingHintGroupType, LinkedList<MappingHintGroupType>> abstractToConcreteHintGroupMap = new HashMap<>();
-		Map<EObject, Collection<Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(getMappings());
+		Map<EObject, Collection<Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(getActiveMappings());
 		for (EObject element : mappingSettings.keySet()) {
 			if(element instanceof MappingHintGroupType && ((Mapping)(element.eContainer())).isAbstract()) {
+				
+				// We do not need to handle deactivated MappingHintGroups
+				//
+				if(element instanceof DeactivatableElement && ((DeactivatableElement) element).isDeactivated() ||
+						element.eContainer() instanceof DeactivatableElement && ((DeactivatableElement) element.eContainer()).isDeactivated()) {
+					continue;
+				}
+				
 				LinkedList<MappingHintGroupType> concreteHintGroups = new LinkedList<>();
 				for (Setting setting : mappingSettings.get(element)) {
 					if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getMappingHintGroupType_Extend())) {
-						concreteHintGroups.add((MappingHintGroupType) setting.getEObject());
+						
+						// only copy hints to activated hint groups
+						if((setting.getEObject() instanceof DeactivatableElement && ((DeactivatableElement) setting.getEObject()).isDeactivated()) ||
+								(setting.getEObject().eContainer() instanceof DeactivatableElement && ((DeactivatableElement) setting.getEObject().eContainer()).isDeactivated())) {
+							continue;
+						} else {							
+							concreteHintGroups.add((MappingHintGroupType) setting.getEObject());
+						}
 					}
 				}
 				abstractToConcreteHintGroupMap.put((MappingHintGroupType) element, concreteHintGroups);

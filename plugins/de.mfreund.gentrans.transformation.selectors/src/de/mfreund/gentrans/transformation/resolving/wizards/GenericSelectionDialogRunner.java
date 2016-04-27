@@ -108,7 +108,7 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 * <p />
 	 * Note: If multiple elements are selected by the user, this will return one (random!) element.
 	 *
-	 * @return selected <AnyType>
+	 * @return The single element selected by the user.
 	 */
 	public SelectionType getSingleSelection() {
 		return (selection == null || selection.isEmpty() ? null : selection.iterator().next());

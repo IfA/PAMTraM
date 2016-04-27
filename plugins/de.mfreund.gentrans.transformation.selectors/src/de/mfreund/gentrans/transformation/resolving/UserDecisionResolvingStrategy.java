@@ -13,7 +13,6 @@ import org.eclipse.swt.widgets.Display;
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
-import de.mfreund.gentrans.transformation.resolving.wizards.NamedElementItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -60,16 +59,22 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	@Override
 	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {
 
-		final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
+		final GenericSelectionDialogRunner<Mapping> dialog = new GenericSelectionDialogRunner<Mapping>(
 				"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element)+ "'", 
-				choices, 
-				0);
+				0, false, choices) {
+			
+			@Override
+			protected String getStringRepresentation(Mapping option) {
+				return option.getName();
+			}
+		};
+		
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
-		printMessage(dialog.getSelection().getName(), userDecisionPrefix);
-		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
+		printMessage(dialog.getSingleSelection().getName(), userDecisionPrefix);
+		return dialog.getSelection();
 	}
 	
 	@Override

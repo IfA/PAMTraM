@@ -1,68 +1,45 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Dialog;
 
 /**
+ * An {@link AbstractDialogRunner} that spawns a {@link ValueSpecificationDialog}.
+ * 
  * @author mfreund
- * @version 1.0 Runner for the {@link ValueSpecificationDialog}.
- *
  */
-public class ValueSpecificationDialogRunner implements Runnable {
-	private final String message;
+public class ValueSpecificationDialogRunner extends AbstractDialogRunner {
 	
 	private String specifiedValue;
 
-	private boolean transformationStopRequested;
-	
-
 	/**
-	 * @param message
+	 * This creates an instance.
+	 * 
+	 * @param message The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
 	 */
 	public ValueSpecificationDialogRunner(final String message) {
-		transformationStopRequested = false;
-		this.message = message;
+		
+		super(message);
 	}
 
 	/**
-	 * Get value after dialog has finished, returns standardSelection if
-	 * dialog not run
-	 * <p />
-	 * Note: If multiple elements are selected by the user, this will return one (random!) element.
+	 * Get the value after the dialog has finished.
 	 *
-	 * @return selected <AnyType>
+	 * @return The value specified by the user.
 	 */
 	public String getSingleValue() {
 		return specifiedValue;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Runnable#run()
-	 */
 	@Override
-	public void run() {
-		final Display display = Display.getDefault();
-		final Shell shell = new Shell(display);
+	protected void initializeDialog() {
 		
-		final ValueSpecificationDialog d = new ValueSpecificationDialog(shell, message);
-		d.open();
-		specifiedValue = d.getValue();
-		transformationStopRequested = d.isTransformationStopRequested();
+		dialog = new ValueSpecificationDialog(message);
 	}
 
-	/**
-	 * @return true if Button "Abort Transformation" was clicked during run()
-	 */
-	public boolean wasTransformationStopRequested() {
-		return transformationStopRequested;
+	@Override
+	protected void evaluateResults() {
+		
+		specifiedValue = ((ValueSpecificationDialog) dialog).getValue();
 	}
 
 }

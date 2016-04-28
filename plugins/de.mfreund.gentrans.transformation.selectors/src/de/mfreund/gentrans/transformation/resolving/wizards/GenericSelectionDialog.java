@@ -1,6 +1,5 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,47 +10,23 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ControlAdapter;
-import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Dialog;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
 /**
- * @author Sascha Steffen
- * @version 1.0
- *
- *          GenTrans-Dialog for selecting from a list of options.
+ * A {@link Dialog} that allows a user to select one or multiple elements from a list of options.
+ * 
+ * @author mfreund
  */
-public class GenericSelectionDialog extends Dialog {
+public class GenericSelectionDialog extends AbstractDialog {
 
-	private static Point lastLocation;
-	private static Point lastSize;
-	private Button abortTransFormationButton;
-	private Button btnAbort;
-	private Composite composite;
-	private Composite composite_1;
-	private Label dialogMessage;
-	private GridData gd_dialogMessage;
-	private GridLayout gridLayout;
-	private final List<String> listItems;
-	private org.eclipse.swt.widgets.List listWidget;
-	private final String message;
-	private Button okButton;
+	protected final List<String> options;
+	protected org.eclipse.swt.widgets.List listWidget;
 
 	protected Object result;
 
@@ -59,94 +34,54 @@ public class GenericSelectionDialog extends Dialog {
 	
 	protected boolean multiSelectionAllowed;
 
-	protected Shell shlPleaseSelectA;
-
-	private final int standardSelectionIndex;
-
-	private boolean transformationStopRequested;
+	protected final int standardSelectionIndex;
 
 	/**
 	 * Create the dialog.
 	 *
-	 * @param parent
-	 * @param style
+	 * @param parent The shell on which the dialog shall be displayed.
+	 * @param message The message that shall be displayed in the dialog.
+	 * @param options The list of options from which the user may select.
+	 * @param standardSelectionIndex The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if
+	 * no option shall be default selected.
 	 */
-	GenericSelectionDialog(final Shell parent, final String message,
-			final List<String> listItems, final int standardSelectionIndex) {
-		super(parent, SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
-		setText("SWT Dialog");
-		this.listItems = listItems;
-		this.message = message;
-		transformationStopRequested = false;
-		// we need to check if the value standardSelection is part of the
-		// selections list
-		this.standardSelectionIndex = standardSelectionIndex >= 0 ? standardSelectionIndex
-				: 0;
-		selectedItems = new HashSet<>();
-		selectedItems.add(this.standardSelectionIndex);
-		multiSelectionAllowed = false;
+	public GenericSelectionDialog(final Shell parent, final String message,
+			final List<String> options, final int standardSelectionIndex) {
+		
+		this(parent, message, options, false, standardSelectionIndex);
+		
 	}
 	
 	/**
 	 * Create the dialog.
 	 *
-	 * @param parent
-	 * @param style
+	 * @param parent The shell on which the dialog shall be displayed.
+	 * @param message The message that shall be displayed in the dialog.
+	 * @param options The list of options from which the user may select.
+	 * @param multiSelectionAllowed Whether multi-selection shall be allowed in the dialog.
+	 * @param standardSelectionIndex The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if
+	 * no option shall be default selected.
 	 */
-	GenericSelectionDialog(final Shell parent, final String message,
-			final List<String> listItems, boolean multiSelectionAllowed, final int standardSelectionIndex) {
-		super(parent, SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
-		setText("SWT Dialog");
-		this.listItems = listItems;
-		this.message = message;
-		transformationStopRequested = false;
+	public GenericSelectionDialog(final Shell parent, final String message,
+			final List<String> options, boolean multiSelectionAllowed, final int standardSelectionIndex) {
+		
+		super(parent, message);
+		
+		this.options = options;
 		// we need to check if the value standardSelection is part of the
 		// selections list
-		this.standardSelectionIndex = standardSelectionIndex >= 0 ? standardSelectionIndex
-				: 0;
+		this.standardSelectionIndex = standardSelectionIndex;
 		selectedItems = new HashSet<>();
-		selectedItems.add(this.standardSelectionIndex);
+		if(standardSelectionIndex >= 0) {
+			selectedItems.add(this.standardSelectionIndex);
+		}
 		this.multiSelectionAllowed = multiSelectionAllowed;
 	}
 
-	/**
-	 * Create contents of the dialog.
-	 */
-	private void createContents() {
-		shlPleaseSelectA = new Shell(getParent(), SWT.DIALOG_TRIM | SWT.RESIZE);
+	@Override
+	protected void createInnerContents(Shell parent) {
 
-		shlPleaseSelectA.setMinimumSize(new Point(300, 350));
-		shlPleaseSelectA.setSize(900, 600);
-		shlPleaseSelectA.setText("Please select..");
-		gridLayout = new GridLayout(1, false);
-		gridLayout.marginHeight = 0;
-		shlPleaseSelectA.setLayout(gridLayout);
-
-		dialogMessage = new Label(shlPleaseSelectA, SWT.WRAP);
-		gd_dialogMessage = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1,
-				1);
-		gd_dialogMessage.widthHint = shlPleaseSelectA.getSize().x - 10;
-		dialogMessage.setLayoutData(gd_dialogMessage);
-		dialogMessage.setText(message);
-		shlPleaseSelectA.redraw();
-
-		shlPleaseSelectA.addControlListener(new ControlAdapter() {
-			@Override
-			public void controlMoved(final ControlEvent e) {
-				lastLocation = shlPleaseSelectA.getLocation();
-			}
-
-			@Override
-			public void controlResized(final ControlEvent e) {
-				gd_dialogMessage.widthHint = shlPleaseSelectA.getClientArea().width
-						- 2 * gridLayout.marginWidth;
-				shlPleaseSelectA.layout(true);
-				listWidget.showSelection();
-				lastSize = shlPleaseSelectA.getSize();
-			}
-		});
-
-		final Group grpPossiblePaths = new Group(shlPleaseSelectA, SWT.NONE);
+		final Group grpPossiblePaths = new Group(parent, SWT.NONE);
 		final GridData gd_possiblePaths = new GridData(SWT.FILL, SWT.FILL,
 				true, true, 1, 1);
 		gd_possiblePaths.minimumHeight = 200;
@@ -170,7 +105,7 @@ public class GenericSelectionDialog extends Dialog {
 		listViewer.addDoubleClickListener(new IDoubleClickListener() {
 			@Override
 			public void doubleClick(final DoubleClickEvent event) {
-				shlPleaseSelectA.dispose();
+				shell.dispose();
 			}
 		});
 		listWidget = listViewer.getList();
@@ -185,81 +120,9 @@ public class GenericSelectionDialog extends Dialog {
 			}
 		});
 
-		listWidget.setItems(listItems.toArray(new String[listItems.size()]));
+		listWidget.setItems(options.toArray(new String[options.size()]));
 		listWidget.setSelection(standardSelectionIndex);
 		listWidget.showSelection();
-
-		composite = new Composite(shlPleaseSelectA, SWT.NONE);
-		final GridLayout gl_composite = new GridLayout(2, true);
-		gl_composite.verticalSpacing = 0;
-		gl_composite.marginWidth = 0;
-		gl_composite.marginHeight = 0;
-		composite.setLayout(gl_composite);
-		final GridData gd_composite = new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 1, 1);
-		gd_composite.widthHint = 564;
-		composite.setLayoutData(gd_composite);
-
-		abortTransFormationButton = new Button(composite, SWT.NONE);
-		abortTransFormationButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(final SelectionEvent e) {
-				selectedItems = new HashSet<>(Arrays.asList(standardSelectionIndex));
-				transformationStopRequested = true;
-				shlPleaseSelectA.dispose();
-			}
-		});
-		final GridData gd_abortTransFormationButton = new GridData(SWT.LEFT,
-				SWT.FILL, false, false, 1, 1);
-		gd_abortTransFormationButton.minimumWidth = 80;
-		gd_abortTransFormationButton.minimumHeight = 35;
-		abortTransFormationButton.setLayoutData(gd_abortTransFormationButton);
-		abortTransFormationButton.setAlignment(SWT.LEFT);
-		abortTransFormationButton.setText("Abort transformation");
-
-		composite_1 = new Composite(composite, SWT.NONE);
-		composite_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true,
-				false, 1, 1));
-		final RowLayout rl_composite_1 = new RowLayout(SWT.HORIZONTAL);
-		rl_composite_1.marginBottom = 0;
-		rl_composite_1.marginLeft = 0;
-		rl_composite_1.marginRight = 0;
-		rl_composite_1.marginTop = 0;
-		rl_composite_1.spacing = 0;
-		rl_composite_1.fill = true;
-		composite_1.setLayout(rl_composite_1);
-
-		okButton = new Button(composite_1, SWT.NONE);
-		okButton.setLayoutData(new RowData(80, 35));
-		okButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(final SelectionEvent e) {
-				shlPleaseSelectA.dispose();
-			}
-		});
-		okButton.setText("OK");
-		okButton.setSelection(true);
-
-		btnAbort = new Button(composite_1, SWT.NONE);
-		btnAbort.setLayoutData(new RowData(80, 35));
-		btnAbort.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(final SelectionEvent e) {
-				selectedItems = new HashSet<>(Arrays.asList(standardSelectionIndex));
-				shlPleaseSelectA.dispose();
-			}
-		});
-		btnAbort.setText("Abort");
-
-		if (lastSize != null) {
-			shlPleaseSelectA.setSize(lastSize);
-		}
-
-		if (lastLocation != null) {
-			shlPleaseSelectA.setLocation(lastLocation);
-		}
-
-		okButton.setFocus();
 	}
 
 	/**
@@ -284,31 +147,6 @@ public class GenericSelectionDialog extends Dialog {
 	public Set<Integer> getSelection() {
 
 		return selectedItems;
-	}
-
-	/**
-	 * @return true if Button "Abort Transformation" was clicked during run()
-	 */
-	public boolean isTransformationStopRequested() {
-		return transformationStopRequested;
-	}
-
-	/**
-	 * Open the dialog.
-	 *
-	 * @return the result
-	 */
-	public Object open() {
-		createContents();
-		shlPleaseSelectA.open();
-		shlPleaseSelectA.layout();
-		final Display display = getParent().getDisplay();
-		while (!shlPleaseSelectA.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-		return result;
 	}
 
 }

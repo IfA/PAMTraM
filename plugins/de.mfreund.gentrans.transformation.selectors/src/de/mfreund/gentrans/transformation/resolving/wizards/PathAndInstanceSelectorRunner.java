@@ -6,14 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.swt.widgets.Dialog;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 /**
- * @author Sascha Steffen
- * @version 1.0
- *
- *          Runner for the PathAndInstanceSelectorDialog
+ * A {@link GenericSelectionDialogRunner} that will spawn a {@link PathAndInstanceSelectorDialog} in order to enable
+ * the user to select between a 'path' as well as an 'instance' to be used.
  *
  */
 public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<String> {
@@ -108,13 +105,13 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 		}
 
 		dialog.open();
-		String path = dialog.getPath();
+		String path = ((PathAndInstanceSelectorDialog) dialog).getPath();
 		selection = Arrays.asList(path);
 		if(!multiSelectionAllowed) {
-			selectedInstances = new HashSet<>(Arrays.asList(d.getSingleInstance()));
+			selectedInstances = new HashSet<>(Arrays.asList(((PathAndInstanceSelectorDialog) dialog).getSingleInstance()));
 		} else {
 			selectedInstances = new HashSet<>();
-			for (String instance : dialog.getInstances()) {
+			for (String instance : ((PathAndInstanceSelectorDialog) dialog).getInstances()) {
 				selectedInstances.add(instance);
 			}
 		}
@@ -125,7 +122,7 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	protected void initializeDialog() {
 		
 		dialog = new PathAndInstanceSelectorDialog(
-				shell, message, options, instances, multiSelectionAllowed);
+				new Shell(), message, options, instances, multiSelectionAllowed);
 	}
 
 }

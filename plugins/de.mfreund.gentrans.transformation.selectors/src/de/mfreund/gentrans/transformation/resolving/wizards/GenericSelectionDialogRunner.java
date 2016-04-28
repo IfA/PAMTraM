@@ -51,8 +51,8 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 * This creates an instance.
 	 * 
 	 * @param message The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
-	 * @param standardSelection The index of the option that shall be default selected in the dialog or '<em>null</em>' if no option shall
-	 * be default selected.
+	 * @param standardSelection The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if
+	 * no option shall be default selected.
 	 * @param multiSelectionAllowed Whether multi-selection shall be allowed in the dialog.
 	 * @param options The options to be presented to the user in the dialog.
 	 */

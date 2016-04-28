@@ -25,27 +25,42 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class GenericSelectionDialog extends AbstractDialog {
 
+	/**
+	 * The list of options that will be presented to the user.
+	 */
 	protected final List<String> options;
+	
+	/**
+	 * The {@link org.eclipse.swt.widgets.List} that will present the {@link #options} to the user.
+	 */
 	protected org.eclipse.swt.widgets.List listWidget;
 
-	protected Object result;
-
+	/**
+	 * The set of indexes representing those of the {@link #options} that have been selected by the user.
+	 */
 	protected Set<Integer> selectedItems;
 	
+	/**
+	 * Whether multi-selection shall be allowed in the dialog.
+	 */
 	protected boolean multiSelectionAllowed;
 
+	/**
+	 * The options that have been selected by the user (this will be a subset of {@link #options}).
+	 */
 	protected final int standardSelectionIndex;
 
 	/**
-	 * Create the dialog.
+	 * Create the dialog without allowing for multi-selection.
+	 * <p />
+	 * Note: This is equal to calling '<em>GenericSelectionDialog(message, options, <b>false</b>, standardSelectionIndex)</em>'.
 	 *
 	 * @param message The message that shall be displayed in the dialog.
 	 * @param options The list of options from which the user may select.
 	 * @param standardSelectionIndex The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if
 	 * no option shall be default selected.
 	 */
-	public GenericSelectionDialog(final String message,
-			final List<String> options, final int standardSelectionIndex) {
+	public GenericSelectionDialog(final String message, final List<String> options, final int standardSelectionIndex) {
 		
 		this(message, options, false, standardSelectionIndex);
 		
@@ -66,8 +81,6 @@ public class GenericSelectionDialog extends AbstractDialog {
 		super(message);
 		
 		this.options = options;
-		// we need to check if the value standardSelection is part of the
-		// selections list
 		this.standardSelectionIndex = standardSelectionIndex;
 		selectedItems = new HashSet<>();
 		if(standardSelectionIndex >= 0) {
@@ -79,16 +92,19 @@ public class GenericSelectionDialog extends AbstractDialog {
 	@Override
 	protected void createInnerContents(Shell parent) {
 
-		final Group grpPossiblePaths = new Group(parent, SWT.NONE);
-		final GridData gd_possiblePaths = new GridData(SWT.FILL, SWT.FILL,
-				true, true, 1, 1);
+		// Create the group that will display the list of options to the user
+		//
+		final Group grpOptions = new Group(parent, SWT.NONE);
+		final GridData gd_possiblePaths = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
 		gd_possiblePaths.minimumHeight = 200;
 		gd_possiblePaths.minimumWidth = 200;
-		grpPossiblePaths.setText("Possible choices");
-		grpPossiblePaths.setLayout(new FillLayout(SWT.HORIZONTAL));
-		grpPossiblePaths.setLayoutData(gd_possiblePaths);
+		grpOptions.setText("Possible choices");
+		grpOptions.setLayout(new FillLayout(SWT.HORIZONTAL));
+		grpOptions.setLayoutData(gd_possiblePaths);
 
-		final ListViewer listViewer = new ListViewer(grpPossiblePaths,
+		// Create the list viewer for the list of options
+		//
+		final ListViewer listViewer = new ListViewer(grpOptions,
 				SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | (multiSelectionAllowed ? SWT.MULTI : 0));
 		listViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			@Override

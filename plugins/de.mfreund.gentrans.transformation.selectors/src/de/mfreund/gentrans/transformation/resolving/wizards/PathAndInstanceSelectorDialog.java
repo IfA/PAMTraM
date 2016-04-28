@@ -20,23 +20,47 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 
 /**
- * @author Sascha Steffen
- * @version 1.0
- *
- *          Dialog for choosing a path and an instance during step 3 of the
- *          GenTrans.
+ * A {@link GenericSelectionDialog} that enables the user to select between a 'path' as well as 
+ * an 'instance' to be used.
+ * <p />
+ * This is used during step 3 and 4 of the generic transformation when multiple possible connection paths/
+ * target sections and corresponding instances exist.
  *
  */
 public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 
-	private final List<List<String>> instances;
-	private org.eclipse.swt.widgets.List instancesList;
+	/**
+	 * For each path in {@link GenericSelectionDialogRunner#options} this list keeps a list of
+	 * instances represent by an identifier.
+	 */
+	protected final List<List<String>> instances;
+	
+	/**
+	 * The {@link org.eclipse.swt.widgets.List} that will present the {@link #instances} to the user.
+	 */
+	protected  org.eclipse.swt.widgets.List instancesList;
+	
+	/**
+	 * The path that has been selected by the user.
+	 */
 	protected String path;
+	
+	/**
+	 * The set of instances that have been selected by the user.
+	 */
 	protected Set<String> selectedInstances;
-	private org.eclipse.swt.widgets.List pathList;
+	
+	/**
+	 * The {@link org.eclipse.swt.widgets.List} that will present the {@link GenericSelectionDialog#options paths} 
+	 * to the user.
+	 */
+	protected org.eclipse.swt.widgets.List pathList;
 
 	/**
-	 * Create the dialog.
+	 * Create the dialog without allowing for multi-selection.
+	 * <p />
+	 * Note: This is equal to calling '<em>PathAndInstanceSelectorDialog(message, paths, instances, 
+	 * <b>false</b>, standardSelectionIndex)</em>'.
 	 * 
 	 * @param message The message that shall be displayed in the dialog.
 	 * @param paths The paths to be presented to the user in the dialog.
@@ -53,10 +77,10 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 	/**
 	 * Create the dialog.
 	 * 
-	 * @param message 
-	 * @param paths 
-	 * @param instances 
-	 * @param multiSelectionAllowed 
+	 * @param message The message that shall be displayed in the dialog.
+	 * @param paths The paths to be presented to the user in the dialog.
+	 * @param instances The instances to be presented to the user (one list of instances for each path).
+	 * @param multiSelectionAllowed Whether multi-selection shall be allowed in the dialog.
 	 */
 	public PathAndInstanceSelectorDialog(final String message, final List<String> paths,
 			final List<List<String>> instances, boolean multiSelectionAllowed) {
@@ -72,6 +96,8 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 	@Override
 	protected void createInnerContents(Shell parent) {
 
+		// Create the sash form that will contain the two lists for paths and instances
+		//
 		final SashForm sashForm = new SashForm(shell, SWT.NONE);
 		final GridData gd_sashForm = new GridData(SWT.FILL, SWT.FILL, true,
 				true, 1, 1);
@@ -79,10 +105,14 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 		gd_sashForm.minimumWidth = 200;
 		sashForm.setLayoutData(gd_sashForm);
 
+		// Create the group that will display the list of paths to the user
+		//
 		final Group grpPossiblePaths = new Group(sashForm, SWT.NONE);
 		grpPossiblePaths.setText("Possible Paths");
 		grpPossiblePaths.setLayout(new FillLayout(SWT.HORIZONTAL));
 
+		// Create the list viewer for the list of paths
+		//
 		final ListViewer pathListViewer = new ListViewer(grpPossiblePaths,
 				SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		pathList = pathListViewer.getList();
@@ -121,10 +151,14 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 					}
 				});
 
+		// Create the group that will display the list of instances to the user
+		//
 		final Group grpPossibleInstances = new Group(sashForm, SWT.NONE);
 		grpPossibleInstances.setText("Possible Instances");
 		grpPossibleInstances.setLayout(new FillLayout(SWT.HORIZONTAL));
 
+		// Create the list viewer for the list of instances
+		//
 		final ListViewer instancesListViewer = new ListViewer(
 				grpPossibleInstances, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | (multiSelectionAllowed ? SWT.MULTI : 0));
 		instancesList = instancesListViewer.getList();
@@ -168,8 +202,10 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 	}
 
 	/**
-	 * Get selected Instance after dialog has finished, return first instance in
-	 * List for first path if dialog aborted / not run / multi-selection allowed
+	 * Get the single selected instance after the dialog has been closed.
+	 * <p />
+	 * Note: This will return the first selected instance in case {@link GenericSelectionDialog#multiSelectionAllowed multi-selection} 
+	 * was allowed and the user selected multiple instances.
 	 * 
 	 * @return selected instance
 	 */
@@ -180,33 +216,23 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 	}
 	
 	/**
-	 * Get selected Instances after dialog has finished, return first instance in
-	 * List for first path if dialog aborted / not run.
+	 * Get the selected instances after the dialog has been closed.
 	 * 
-	 * @return selected instance
+	 * @return The instances that have been selected by the user.
 	 */
 	public Set<String> getInstances() {
 
 		return selectedInstances;
 	}
 
-	protected org.eclipse.swt.widgets.List getInstancesList() {
-		return instancesList;
-	}
-
 	/**
-	 * Get selected Path after dialog has finished, return first path in List if
-	 * dialog aborted / not run
+	 * Get the selected path after the dialog has been closed.
 	 * 
-	 * @return the path
+	 * @return The path that has been selected by the user.
 	 */
 	public String getPath() {
 
 		return path;
-	}
-
-	protected org.eclipse.swt.widgets.List getPathList() {
-		return pathList;
 	}
 
 }

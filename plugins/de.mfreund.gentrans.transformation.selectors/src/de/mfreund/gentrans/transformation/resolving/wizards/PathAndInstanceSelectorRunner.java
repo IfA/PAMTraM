@@ -26,7 +26,10 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	private Set<String> selectedInstances;
 	
 	/**
-	 * This creates an instance.
+	 * This creates an instance without allowing for multi-selection.
+	 * <p />
+	 * Note: This is equal to calling '<em>PathAndInstanceSelectorRunner(message, paths, instances, 
+	 * <b>false</b>)</em>'.
 	 * 
 	 * @param message The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
 	 * @param paths The paths to be presented to the user in the dialog.
@@ -35,10 +38,7 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	public PathAndInstanceSelectorRunner(final String message,
 			final List<String> paths, final List<List<String>> instances) {
 		
-		super(message, 0, false, paths);
-		
-		this.selectedInstances = new HashSet<>();
-		this.instances = instances;
+		this(message, paths, instances, false);
 	}
 	
 	/**

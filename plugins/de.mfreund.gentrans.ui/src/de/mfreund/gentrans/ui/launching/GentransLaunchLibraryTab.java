@@ -26,6 +26,7 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 import de.mfreund.pamtram.properties.PropertySupplier;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
@@ -58,6 +59,9 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		this.context = context;
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Override
 	public void createControl(Composite parent) {
 
@@ -70,6 +74,7 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
 		// a group to host all target related settings
 		Group targetGroup = new Group(comp, SWT.NONE);
+		targetGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		targetGroup.setText("Target");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(targetGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(targetGroup);

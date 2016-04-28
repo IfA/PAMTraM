@@ -39,6 +39,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
@@ -91,6 +92,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// a group to host all project related settings
 		Group projectGroup = new Group(comp, SWT.NONE);
+		projectGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		projectGroup.setText("Project");
 		{
 			GridData gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -186,6 +188,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// a group to host all file related settings
 		Group fileGroup = new Group(comp, SWT.NONE);
+		fileGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		fileGroup.setText("Files");
 		{
 			GridData gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -390,6 +393,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// a group for specific GenTrans settings
 		Group settingsGroup = new Group(comp, SWT.NONE);
+		settingsGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		settingsGroup.setText("Settings");
 		{
 			GridData gd = new GridData(GridData.FILL_HORIZONTAL);

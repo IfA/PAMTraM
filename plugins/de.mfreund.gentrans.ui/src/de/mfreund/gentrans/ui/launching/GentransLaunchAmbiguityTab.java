@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
@@ -63,6 +64,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 		// a group to contain all settings for ambiguity resolving strategies
 		Group ambiguityStrategyGroup = new Group(comp, SWT.NONE);
+		ambiguityStrategyGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		ambiguityStrategyGroup.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
 		ambiguityStrategyGroup.setText("Strategies");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(ambiguityStrategyGroup);

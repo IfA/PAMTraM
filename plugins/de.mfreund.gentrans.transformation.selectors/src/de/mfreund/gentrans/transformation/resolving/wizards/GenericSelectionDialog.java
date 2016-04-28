@@ -39,33 +39,31 @@ public class GenericSelectionDialog extends AbstractDialog {
 	/**
 	 * Create the dialog.
 	 *
-	 * @param parent The shell on which the dialog shall be displayed.
 	 * @param message The message that shall be displayed in the dialog.
 	 * @param options The list of options from which the user may select.
 	 * @param standardSelectionIndex The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if
 	 * no option shall be default selected.
 	 */
-	public GenericSelectionDialog(final Shell parent, final String message,
+	public GenericSelectionDialog(final String message,
 			final List<String> options, final int standardSelectionIndex) {
 		
-		this(parent, message, options, false, standardSelectionIndex);
+		this(message, options, false, standardSelectionIndex);
 		
 	}
 	
 	/**
 	 * Create the dialog.
 	 *
-	 * @param parent The shell on which the dialog shall be displayed.
 	 * @param message The message that shall be displayed in the dialog.
 	 * @param options The list of options from which the user may select.
 	 * @param multiSelectionAllowed Whether multi-selection shall be allowed in the dialog.
 	 * @param standardSelectionIndex The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if
 	 * no option shall be default selected.
 	 */
-	public GenericSelectionDialog(final Shell parent, final String message,
+	public GenericSelectionDialog(final String message,
 			final List<String> options, boolean multiSelectionAllowed, final int standardSelectionIndex) {
 		
-		super(parent, message);
+		super(message);
 		
 		this.options = options;
 		// we need to check if the value standardSelection is part of the

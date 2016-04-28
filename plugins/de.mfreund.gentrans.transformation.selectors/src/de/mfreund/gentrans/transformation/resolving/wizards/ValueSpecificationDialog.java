@@ -20,12 +20,11 @@ public class ValueSpecificationDialog extends AbstractDialog {
 	/**
 	 * Create the dialog.
 	 *
-	 * @param parent The shell on which the dialog shall be displayed.
 	 * @param message The message that shall be displayed in the dialog.
 	 */
-	public ValueSpecificationDialog(final Shell parent, final String message) {
+	public ValueSpecificationDialog(final String message) {
 		
-		super(parent, message);
+		super(message);
 	}
 	
 	@Override

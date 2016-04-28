@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Dialog;
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
-import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**
  * This represents a {@link Runnable} that will spawn an {@link GenericSelectionDialog} that allows a 
@@ -117,8 +116,7 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	@Override
 	protected void initializeDialog() {
 		
-		dialog = new GenericSelectionDialog(UIHelper.getShell(), message,
-				getStringRepresentations(), multiSelectionAllowed, standardSelection);
+		dialog = new GenericSelectionDialog(message, getStringRepresentations(), multiSelectionAllowed, standardSelection);
 	}
 	
 	@Override

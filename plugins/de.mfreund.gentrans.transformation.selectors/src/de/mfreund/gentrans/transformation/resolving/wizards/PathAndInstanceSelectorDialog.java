@@ -38,16 +38,14 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 	/**
 	 * Create the dialog.
 	 * 
-	 * @param parent The shell on which the dialog shall be displayed.
 	 * @param message The message that shall be displayed in the dialog.
 	 * @param paths The paths to be presented to the user in the dialog.
 	 * @param instances The instances to be presented to the user (one list of instances for each path).
 	 */
-	public PathAndInstanceSelectorDialog(final Shell parent,
-			final String message, final List<String> paths,
+	public PathAndInstanceSelectorDialog(final String message, final List<String> paths,
 			final List<List<String>> instances) {
 		
-		this(parent, message, paths, instances, false);
+		this(message, paths, instances, false);
 		
 		
 	}
@@ -55,17 +53,15 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 	/**
 	 * Create the dialog.
 	 * 
-	 * @param parent
 	 * @param message 
 	 * @param paths 
 	 * @param instances 
 	 * @param multiSelectionAllowed 
 	 */
-	public PathAndInstanceSelectorDialog(final Shell parent,
-			final String message, final List<String> paths,
+	public PathAndInstanceSelectorDialog(final String message, final List<String> paths,
 			final List<List<String>> instances, boolean multiSelectionAllowed) {
 		
-		super(parent, message, paths, multiSelectionAllowed, 0);
+		super(message, paths, multiSelectionAllowed, 0);
 		
 		this.instances = instances;
 		

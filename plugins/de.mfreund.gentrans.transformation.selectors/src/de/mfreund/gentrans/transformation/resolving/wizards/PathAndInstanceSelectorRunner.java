@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.swt.widgets.Dialog;
-import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**
  * A {@link GenericSelectionDialogRunner} that will spawn a {@link PathAndInstanceSelectorDialog} in order to enable
@@ -93,8 +92,7 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	@Override
 	protected void initializeDialog() {
 		
-		dialog = new PathAndInstanceSelectorDialog(
-				UIHelper.getShell(), message, options, instances, multiSelectionAllowed);
+		dialog = new PathAndInstanceSelectorDialog(message, options, instances, multiSelectionAllowed);
 	}
 	
 	@Override

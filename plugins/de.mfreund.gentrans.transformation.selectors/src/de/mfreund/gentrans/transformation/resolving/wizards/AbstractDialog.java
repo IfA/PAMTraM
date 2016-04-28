@@ -15,6 +15,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+import de.tud.et.ifa.agtele.ui.util.UIHelper;
+
 /**
  * A customizable {@link Dialog} with a message and two buttons ('<em>OK</em>' and '<em>Abort Transformation</em>'). The
  * dialog will return a result of the type '<em>ResultType</em>'.
@@ -75,12 +77,11 @@ public abstract class AbstractDialog extends Dialog {
 	/**
 	 * Create the dialog.
 	 * 
-	 * @param parent The shell on which the dialog shall be displayed.
 	 * @param message The message that shall be displayed in the dialog.
 	 */
-	public AbstractDialog(final Shell parent, final String message) {
+	public AbstractDialog(final String message) {
 		
-		super(parent, SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
+		super(UIHelper.getShell(), SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
 		
 		setText("SWT Dialog");
 		this.message = message;

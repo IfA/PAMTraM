@@ -1,7 +1,6 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import org.eclipse.swt.widgets.Dialog;
-import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**
  * An {@link AbstractDialogRunner} that spawns a {@link ValueSpecificationDialog}.
@@ -34,7 +33,7 @@ public class ValueSpecificationDialogRunner extends AbstractDialogRunner {
 	@Override
 	protected void initializeDialog() {
 		
-		dialog = new ValueSpecificationDialog(UIHelper.getShell(), message);
+		dialog = new ValueSpecificationDialog(message);
 	}
 
 	@Override

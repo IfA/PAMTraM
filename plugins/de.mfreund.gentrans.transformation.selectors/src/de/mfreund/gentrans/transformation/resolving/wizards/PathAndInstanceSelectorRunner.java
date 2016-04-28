@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.swt.widgets.Dialog;
-import org.eclipse.swt.widgets.Shell;
+import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**
  * A {@link GenericSelectionDialogRunner} that will spawn a {@link PathAndInstanceSelectorDialog} in order to enable
@@ -122,7 +122,7 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	protected void initializeDialog() {
 		
 		dialog = new PathAndInstanceSelectorDialog(
-				new Shell(), message, options, instances, multiSelectionAllowed);
+				UIHelper.getShell(), message, options, instances, multiSelectionAllowed);
 	}
 
 }

@@ -510,7 +510,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="" value=""/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="" expression=""/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicCheckBox" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -564,7 +564,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="" value=""/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="" expression=""/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="RadioButtonGroup" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -716,7 +716,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="" value=""/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="" expression=""/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicRadioButton" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -803,7 +803,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" value=""/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression=""/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicInput" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -945,7 +945,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" value=""/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression=""/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="dynamicOutput" extend="//@sourceSectionModel.1/@metaModelSections.0">
@@ -975,7 +975,7 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" value=""/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression=""/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="guidance" container="//@sourceSectionModel.2/@metaModelSections.14" extend="//@sourceSectionModel.1/@metaModelSections.0">

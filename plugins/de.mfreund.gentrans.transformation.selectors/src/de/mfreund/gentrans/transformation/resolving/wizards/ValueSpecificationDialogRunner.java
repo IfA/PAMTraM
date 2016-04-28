@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import org.eclipse.swt.widgets.Dialog;
-import org.eclipse.swt.widgets.Shell;
+import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**
  * An {@link AbstractDialogRunner} that spawns a {@link ValueSpecificationDialog}.
@@ -31,18 +31,16 @@ public class ValueSpecificationDialogRunner extends AbstractDialogRunner {
 		return specifiedValue;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Runnable#run()
-	 */
 	@Override
-	public void run() {
+	protected void initializeDialog() {
 		
-		final ValueSpecificationDialog d = new ValueSpecificationDialog(new Shell(), message);
-		d.open();
-		specifiedValue = d.getValue();
-		transformationStopRequested = d.isTransformationStopRequested();
+		dialog = new ValueSpecificationDialog(UIHelper.getShell(), message);
+	}
+
+	@Override
+	protected void evaluateResults() {
+		
+		specifiedValue = ((ValueSpecificationDialog) dialog).getValue();
 	}
 
 }

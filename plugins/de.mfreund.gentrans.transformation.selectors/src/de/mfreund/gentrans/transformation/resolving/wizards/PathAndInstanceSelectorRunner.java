@@ -90,21 +90,16 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 		return getSingleSelection();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Runnable#run()
-	 */
 	@Override
-	public void run() {
+	protected void initializeDialog() {
+		
+		dialog = new PathAndInstanceSelectorDialog(
+				UIHelper.getShell(), message, options, instances, multiSelectionAllowed);
+	}
+	
+	@Override
+	protected void evaluateResults() {
 
-		// Create the dialog
-		//
-		if(dialog == null) {
-			initializeDialog();
-		}
-
-		dialog.open();
 		String path = ((PathAndInstanceSelectorDialog) dialog).getPath();
 		selection = Arrays.asList(path);
 		if(!multiSelectionAllowed) {
@@ -115,14 +110,6 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 				selectedInstances.add(instance);
 			}
 		}
-		transformationStopRequested = dialog.isTransformationStopRequested();
-	};
-
-	@Override
-	protected void initializeDialog() {
-		
-		dialog = new PathAndInstanceSelectorDialog(
-				UIHelper.getShell(), message, options, instances, multiSelectionAllowed);
 	}
 
 }

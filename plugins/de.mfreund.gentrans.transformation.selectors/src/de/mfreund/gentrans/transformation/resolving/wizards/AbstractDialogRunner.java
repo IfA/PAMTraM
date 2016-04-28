@@ -11,6 +11,11 @@ import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
  * @author mfreund
  */
 public abstract class AbstractDialogRunner implements Runnable {
+	
+	/**
+	 * The {@link AbstractDialog} that will be presented to the user.
+	 */
+	protected AbstractDialog dialog;
 
 	/**
 	 * The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
@@ -32,6 +37,26 @@ public abstract class AbstractDialogRunner implements Runnable {
 		this.transformationStopRequested = false;
 		this.message = message;
 	}
+	
+	@Override
+	public void run() {
+
+		// Create the dialog
+		//
+		if(dialog == null) {
+			initializeDialog();
+		}
+
+		// Open the dialog
+		//
+		dialog.open();
+
+		// Evaluate the result
+		//
+		evaluateResults();
+		
+		transformationStopRequested = dialog.isTransformationStopRequested();
+	}
 
 	/**
 	 * Whether the user has requested the termination of the transformation.
@@ -42,5 +67,20 @@ public abstract class AbstractDialogRunner implements Runnable {
 	public boolean wasTransformationStopRequested() {
 		return transformationStopRequested;
 	}
+	
+	/**
+	 * Creates and initializes the {@link #dialog} that will be presented to the user.
+	 * <p />
+	 * Note: This is called exactly once as part of the {@link #run()} method before the dialog is opened. 
+	 * Implementations must not {@link AbstractDialog#open() open} the dialog as this is done as part of {@link #run()}.
+	 */
+	protected abstract void initializeDialog();
+	
+	/**
+	 * Evaluate the results after the dialog has been closed.
+	 * <p />
+	 * Note: This is called exactly once as part of the {@link #run()} method after the dialog is closed.
+	 */
+	protected abstract void evaluateResults();
 
 }

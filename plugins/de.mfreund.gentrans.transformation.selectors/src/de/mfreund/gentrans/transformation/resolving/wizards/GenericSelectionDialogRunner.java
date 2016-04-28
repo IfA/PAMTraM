@@ -42,11 +42,6 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	protected List<SelectionType> selection;
 	
 	/**
-	 * The {@link GenericSelectionDialog} that will present the options to the user.
-	 */
-	protected GenericSelectionDialog dialog;
-	
-	/**
 	 * This creates an instance.
 	 * 
 	 * @param message The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
@@ -67,31 +62,7 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 		this.selection = Arrays.asList(options.get(standardSelection));
 	}
 	
-	@Override
-	public void run() {
-
-		// Create the dialog
-		//
-		if(dialog == null) {
-			initializeDialog();
-		}
-
-		// Open the dialog
-		//
-		dialog.open();
-
-		// Evaluate the result
-		//
-		selection = new ArrayList<>();
-		if(multiSelectionAllowed) {
-			for (Integer index : dialog.getSelection()) {
-				selection.add(options.get(index));
-			}
-		} else {
-			selection.add(options.get(dialog.getSingleSelection()));
-		}
-		transformationStopRequested = dialog.isTransformationStopRequested();
-	}
+	
 
 	/**
 	 * Get the options that have been selected by the user after the dialog has finished.
@@ -143,13 +114,24 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 		return optionsAsString;
 	}
 	
-	/**
-	 * Creates and initializes the {@link #dialog} that will be presented to the user.
-	 */
+	@Override
 	protected void initializeDialog() {
 		
 		dialog = new GenericSelectionDialog(UIHelper.getShell(), message,
 				getStringRepresentations(), multiSelectionAllowed, standardSelection);
+	}
+	
+	@Override
+	protected void evaluateResults() {
+		
+		selection = new ArrayList<>();
+		if(multiSelectionAllowed) {
+			for (Integer index : ((GenericSelectionDialog) dialog).getSelection()) {
+				selection.add(options.get(index));
+			}
+		} else {
+			selection.add(options.get(((GenericSelectionDialog) dialog).getSingleSelection()));
+		}
 	}
 
 }

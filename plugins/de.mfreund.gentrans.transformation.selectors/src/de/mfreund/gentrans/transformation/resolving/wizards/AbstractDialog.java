@@ -8,8 +8,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Dialog;
@@ -25,14 +23,39 @@ import org.eclipse.swt.widgets.Shell;
  */
 public abstract class AbstractDialog extends Dialog {
 
+	/**
+	 * This keeps track of the last location where a dialog was situated (possibly after being moved by the user). We use
+	 * this to open each new dialog at the same exact position.
+	 */
 	protected static Point lastLocation;
+	
+	/**
+	 * This keeps track of the last size of a dialog (possibly after being resized by the user). We use
+	 * this to open each new dialog with the same exact size.
+	 */
 	protected static Point lastSize;
-	protected Button okButton, abortTransFormationButton;
-	protected Composite composite;
-	protected Composite composite_1;
+	
+	/**
+	 * This is the {@link Button} that allows the user to confirm his selection.
+	 */
+	protected Button okButton;
+	
+	/**
+	 * This is the {@link Button} that allows the user to abort the transformation.
+	 */
+	protected Button abortTransFormationButton;
+	
+	/**
+	 * This is the {@link Label} that dispalys the {@link #message} to the user and that is placed at the top
+	 * of the dialog.
+	 */
 	protected Label dialogMessage;
-	protected GridData gd_dialogMessage;
-	protected GridLayout gridLayout;
+	
+	/**
+	 * This is the {@link Composite} that holds the {@link #okButton} and the {@link #abortTransFormationButton}
+	 * and that is placed at the bottom of the dialog.
+	 */
+	protected Composite buttonComposite;
 	
 	/**
 	 * The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
@@ -77,13 +100,12 @@ public abstract class AbstractDialog extends Dialog {
 		
 		// Create the message at the top of the dialog
 		//
-		gridLayout = new GridLayout(1, false);
+		final GridLayout gridLayout = new GridLayout(1, false);
 		gridLayout.marginHeight = 0;
 		shell.setLayout(gridLayout);
 
 		dialogMessage = new Label(shell, SWT.WRAP);
-		gd_dialogMessage = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1,
-				1);
+		final GridData gd_dialogMessage = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_dialogMessage.widthHint = shell.getSize().x - 10;
 		dialogMessage.setLayoutData(gd_dialogMessage);
 		dialogMessage.setText(message);
@@ -110,18 +132,16 @@ public abstract class AbstractDialog extends Dialog {
 
 		// Create the buttons at the bottom of the dialog
 		//
-		composite = new Composite(shell, SWT.NONE);
+		buttonComposite = new Composite(shell, SWT.NONE);
 		final GridLayout gl_composite = new GridLayout(2, true);
 		gl_composite.verticalSpacing = 0;
-		gl_composite.marginWidth = 0;
-		gl_composite.marginHeight = 0;
-		composite.setLayout(gl_composite);
+		buttonComposite.setLayout(gl_composite);
 		final GridData gd_composite = new GridData(SWT.FILL, SWT.CENTER, true,
 				false, 1, 1);
 		gd_composite.widthHint = 564;
-		composite.setLayoutData(gd_composite);
+		buttonComposite.setLayoutData(gd_composite);
 
-		abortTransFormationButton = new Button(composite, SWT.NONE);
+		abortTransFormationButton = new Button(buttonComposite, SWT.NONE);
 		abortTransFormationButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
@@ -130,35 +150,28 @@ public abstract class AbstractDialog extends Dialog {
 			}
 		});
 		final GridData gd_abortTransFormationButton = new GridData(SWT.LEFT,
-				SWT.FILL, false, false, 1, 1);
+				SWT.FILL, true, false, 1, 1);
 		gd_abortTransFormationButton.minimumWidth = 80;
 		gd_abortTransFormationButton.minimumHeight = 35;
 		abortTransFormationButton.setLayoutData(gd_abortTransFormationButton);
 		abortTransFormationButton.setAlignment(SWT.LEFT);
 		abortTransFormationButton.setText("Abort transformation");
-
-		composite_1 = new Composite(composite, SWT.NONE);
-		composite_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true,
-				false, 1, 1));
-		final RowLayout rl_composite_1 = new RowLayout(SWT.HORIZONTAL);
-		rl_composite_1.marginBottom = 0;
-		rl_composite_1.marginLeft = 0;
-		rl_composite_1.marginRight = 0;
-		rl_composite_1.marginTop = 0;
-		rl_composite_1.spacing = 0;
-		rl_composite_1.fill = true;
-		composite_1.setLayout(rl_composite_1);
-
-		okButton = new Button(composite_1, SWT.NONE);
-		okButton.setLayoutData(new RowData(80, 35));
-		okButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(final SelectionEvent e) {
-				shell.dispose();
-			}
-		});
-		okButton.setText("OK");
-		okButton.setSelection(true);
+		
+				okButton = new Button(buttonComposite, SWT.NONE);
+				GridData gd_okButton = new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1);
+				gd_okButton.minimumHeight = 35;
+				gd_okButton.minimumWidth = 80;
+				okButton.setLayoutData(gd_okButton);
+				okButton.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(final SelectionEvent e) {
+						shell.dispose();
+					}
+				});
+				okButton.setText("OK");
+				okButton.setSelection(true);
+				
+						okButton.setFocus();
 
 		if (lastSize != null) {
 			shell.setSize(lastSize);
@@ -167,8 +180,6 @@ public abstract class AbstractDialog extends Dialog {
 		if (lastLocation != null) {
 			shell.setLocation(lastLocation);
 		}
-
-		okButton.setFocus();
 	}
 
 	/**

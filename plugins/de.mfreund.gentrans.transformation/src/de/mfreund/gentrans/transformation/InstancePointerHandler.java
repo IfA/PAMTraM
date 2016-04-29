@@ -37,7 +37,7 @@ import pamtram.metamodel.SourceSectionClass;
 	 /**
 	 * Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.		 */
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections;
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection;
 	
 	/**
 	 * The {@link MessageConsoleStream} that shall be used to print messages.
@@ -49,7 +49,7 @@ import pamtram.metamodel.SourceSectionClass;
 	public InstancePointerHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, MessageConsoleStream consoleStream){
 		this.matchedSections = matchedSections;
 		this.consoleStream = consoleStream;
-		this.tempMatchedSections = new LinkedHashMap<>();
+		this.tempMatchedSection = new LinkedHashMap<>();
 	}
 	
 	public EList<EObject> getPointedInstanceByMatchedSectionRepo(InstancePointer instPt, SourceSectionClass sourceClass){
@@ -59,8 +59,8 @@ import pamtram.metamodel.SourceSectionClass;
 		if(matchedSections.get(sourceClass) != null){
 			correspondEclassInstances.addAll(matchedSections.get(sourceClass));
 		}
-		if(tempMatchedSections.get(sourceClass) != null){
-			correspondEclassInstances.addAll(tempMatchedSections.get(sourceClass));
+		if(tempMatchedSection.get(sourceClass) != null){
+			correspondEclassInstances.addAll(tempMatchedSection.get(sourceClass));
 		}
 		
 		String instancePointerRefValue = instPt.getValue();
@@ -111,11 +111,11 @@ import pamtram.metamodel.SourceSectionClass;
 		return ClassInstList;
 	}
 
-	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections) {
-		this.tempMatchedSections = tempMatchedSections;
+	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection) {
+		this.tempMatchedSection = tempMatchedSection;
 	}
 
 	public void clearTempSectionMap() {
-		this.tempMatchedSections.clear();
+		this.tempMatchedSection.clear();
 	}
 }

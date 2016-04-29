@@ -60,7 +60,7 @@ public class ReferenceableValueCalculator {
 	* Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
 	* where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	*/
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections;
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection;
 	
 	/**
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
@@ -78,7 +78,7 @@ public class ReferenceableValueCalculator {
 		// store the 'matchedSections' reference (Note: 'tempMatchedSections' contains matched Sections corresponding to the investigated Mapping
 		// (and also SourceSection) while the 'ReferenceableValueCalculator' can be called
 		this.matchedSections = matchedSections;
-		this.tempMatchedSections = new LinkedHashMap<>();
+		this.tempMatchedSection = new LinkedHashMap<>();
 		
 		// find GlobalAttrs that can be mapped to double
 		this.globalValuesAsString = new HashMap<>();
@@ -259,11 +259,11 @@ public class ReferenceableValueCalculator {
 		return expressionResult;
 	}
 
-	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections) {
-		this.tempMatchedSections = tempMatchedSections;
+	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection) {
+		this.tempMatchedSection = tempMatchedSection;
 	}
 
 	public void clearTempSectionMap() {
-		this.tempMatchedSections.clear();
+		this.tempMatchedSection.clear();
 	}
 }

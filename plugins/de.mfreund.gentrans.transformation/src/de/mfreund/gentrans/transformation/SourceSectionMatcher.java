@@ -398,7 +398,7 @@ public class SourceSectionMatcher extends CancellableElement {
 					if (!mappingFailed) {
 						
 						//Simplify Mapping by checking conditions of all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
-						mSimplified = checkConditions(m, res);
+						mSimplified = checkConditions(element, m, res);
 						
 						mappingFailed = (mSimplified == null);
 
@@ -429,11 +429,12 @@ public class SourceSectionMatcher extends CancellableElement {
 	 * Of course, we do it the same way for all conditional {@link MappingHint}s. 
 	 * 
 	 * Note: This process is recursively and a nested procedure which saves time. In case of '<em><b>false</b></em>' other underneath ConditionalElements will be ignored and discarded.
+	 * @param element 
 	 * @param res checked Mapping
 	 * @param definedMapping represents the original {@link Mapping} 
 	 * @return The {@link Mapping} representing a simplified of the origin one. There are all ConditionalElements that returned '<em><b>false</b></em>' are extracted.
 	 */
-	private Mapping checkConditions(Mapping definedMapping, MappingInstanceStorage res) {
+	private Mapping checkConditions(EObject element, Mapping definedMapping, MappingInstanceStorage res) {
 		
 		/*
 		 * For checking Conditions in general the 'matchedSections'-Collection should be considered.
@@ -441,18 +442,17 @@ public class SourceSectionMatcher extends CancellableElement {
 		 *  But at this moment it isn't clear if the 'definedMapping' is applying during the transformation.
 		 *  Therefore, we put the affected elements as temporarily 'matched' inside 'matchedSections' map for being able to check conditions
 		 */
-		LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections = new LinkedHashMap<>();
+		LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection = new LinkedHashMap<>();
 		
 		for (final SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()) {
-			if (!tempMatchedSections.containsKey(c)) {
-				tempMatchedSections.put(c, new LinkedHashSet<EObject>());
+			if (!tempMatchedSection.containsKey(c)) {
+				tempMatchedSection.put(c, new LinkedHashSet<EObject>());
 			}
-			tempMatchedSections.get(c).addAll(res.getSourceModelObjectsMapped().get(c));
+			tempMatchedSection.get(c).addAll(res.getSourceModelObjectsMapped().get(c));
 		}
-		this.instancePointerHandler.addTempSectionMap(tempMatchedSections);
-		this.refValueCalculator.addTempSectionMap(tempMatchedSections);
-		this.conditionHandler.addTempSectionMap(tempMatchedSections);
-
+		this.instancePointerHandler.addTempSectionMap(tempMatchedSection);
+		this.refValueCalculator.addTempSectionMap(tempMatchedSection);
+		this.conditionHandler.addTempSectionMap(tempMatchedSection);
 		
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		if(conditionHandler.checkCondition(definedMapping.getCondition()) == condResult.true_condition && 

@@ -78,7 +78,7 @@ public class ConditionHandler {
 	/**
 	 * Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.		 */
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections;
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection;
 	
 	/**
 	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be evaluated 
@@ -96,16 +96,15 @@ public class ConditionHandler {
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
 	 */
 	private InstancePointerHandler instancePointerHandler;
-
 	
 	public ConditionHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, ReferenceableValueCalculator refValueCalculator, InstancePointerHandler instancePointerHandler){
 		
 		this.matchedSections =  matchedSections;
-		this.tempMatchedSections = new LinkedHashMap<>();
+		this.tempMatchedSection = new LinkedHashMap<>();
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
 		this.refValueCalculator = refValueCalculator;
-		this.instancePointerHandler = instancePointerHandler;	
+		this.instancePointerHandler = instancePointerHandler;
 	}
 	
 	/**
@@ -161,16 +160,16 @@ public class ConditionHandler {
 		
 		boolean tempConditionRes = false;
 		
-		if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == true || this.tempMatchedSections.containsKey(sectionCondition.getConditionSectionRef()) == true){
+		if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == true || this.tempMatchedSection.containsKey(sectionCondition.getConditionSectionRef()) == true){
 			EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
 			
-			if(matchedSections.get(sectionCondition.getConditionSectionRef()) != null){
+			if(tempMatchedSection.get(sectionCondition.getConditionSectionRef()) != null){
+				correspondEClassInstances.addAll(tempMatchedSection.get(sectionCondition.getConditionSectionRef()));
+				tempConditionRes = true;
+			} else if(matchedSections.get(sectionCondition.getConditionSectionRef()) != null){
 				correspondEClassInstances.addAll(matchedSections.get(sectionCondition.getConditionSectionRef()));
 			}
-			if(tempMatchedSections.get(sectionCondition.getConditionSectionRef()) != null){
-				correspondEClassInstances.addAll(tempMatchedSections.get(sectionCondition.getConditionSectionRef()));
-				tempConditionRes = true;
-			}
+			
 			if(sectionCondition.getAdditionalConditionSpecification().size()!=0){
 				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances);
 			}
@@ -194,7 +193,7 @@ public class ConditionHandler {
 			}
 		
 		// return Result of this condition but does NOT!!! store result because it's not matched (may it will be matched later)
-		} else if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false && this.tempMatchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false){
+		} else if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false && this.tempMatchedSection.containsKey(sectionCondition.getConditionSectionRef()) == false){
 			boolean cardinalityResWhenNotMatched =  checkCardinality(sectionCondition.getValue(), 0, sectionCondition.getComparator());
 			if (cardinalityResWhenNotMatched == true){
 				return condResult.true_condition;
@@ -218,12 +217,12 @@ public class ConditionHandler {
 		EList<InstancePointer> instPointersAsList = new BasicEList<InstancePointer>();
 		
 		// As in 'checkSectionCondtion'-method we store the SourceSectionClass correspond to the given SourceSectionAttribute
-		if(matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
-			correspondEClassInstances.addAll(matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()));
-		}
-		if(tempMatchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
-			correspondEClassInstances.addAll(tempMatchedSections.get(attrCondition.getConditionAttributeRef().eContainer()));
+		
+		if(tempMatchedSection.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
+			correspondEClassInstances.addAll(tempMatchedSection.get(attrCondition.getConditionAttributeRef().eContainer()));
 			tempConditionRes = true;
+		} else if (matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
+			correspondEClassInstances.addAll(matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()));
 		}
 		
 		SourceSectionAttribute ssAttr = attrCondition.getConditionAttributeRef();
@@ -517,11 +516,11 @@ public class ConditionHandler {
 		return condTemp;
 	}
 
-	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSections) {
-		this.tempMatchedSections = tempMatchedSections;
+	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection) {
+		this.tempMatchedSection = tempMatchedSection;
 	}
 
 	public void clearTempSectionMap() {
-		this.tempMatchedSections.clear();
+		this.tempMatchedSection.clear();
 	}
 }

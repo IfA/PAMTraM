@@ -194,13 +194,11 @@ public class ConditionHandler {
 		
 		// return Result of this condition but does NOT!!! store result because it's not matched (may it will be matched later)
 		} else if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false && this.tempMatchedSection.containsKey(sectionCondition.getConditionSectionRef()) == false){
-			boolean cardinalityResWhenNotMatched =  checkCardinality(sectionCondition.getValue(), 0, sectionCondition.getComparator());
-			if (cardinalityResWhenNotMatched == true){
+			// For conditions where the referred Section shouldn't be part of a model
+			if(sectionCondition.getValue() == 0 && sectionCondition.getComparator() == ComparatorEnum.EQ){
 				return condResult.true_condition;
-			} else if (cardinalityResWhenNotMatched == false){
+			} else{
 				return condResult.false_condition;
-			} else{ //Something went wrong
-				return condResult.irrelevant_condition;
 			}
 		} else{
 			consoleStream.println("Message:\n check Condition" + sectionCondition.getName() + ". Some logical mistake occurred!");

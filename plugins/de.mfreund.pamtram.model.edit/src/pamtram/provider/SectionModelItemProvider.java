@@ -5,6 +5,7 @@ package pamtram.provider;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,12 +27,23 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Dialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
@@ -267,11 +279,15 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 					
 					EPackage packageToSet = null;
 					
+					// Open the dialog
+					//
 					if(value.equals(ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE)) {
 						
 						packageToSet = importPackageFromMetaModelFile((SectionModel<?, ?, ?, ?>) object);	
 						
 					} else if(value.equals(ADD_MISSING_E_PACKAGE_FROM_GLOBAL_E_PACKAGE_REGISTRY)) {
+						
+						packageToSet = importPackageFromRegistry();
 						
 					}
 
@@ -288,12 +304,78 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		}
 
 		/**
+		 * This opens a dialog which allows the user to specify an EPackage from the global {@link EPackage.Registry}.
+		 * The selected package will be returned.
+		 * 
+		 * @return The selected {@link EPackage} to be imported.
+		 */
+		protected EPackage importPackageFromRegistry() {
+			
+			class SelectFromRegistryDialog extends Dialog {
+		        
+				EPackage result;
+		                
+		        public SelectFromRegistryDialog () {
+		        	super(UIHelper.getShell(),  SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
+		        	setText("Select EPackage to import");
+		        }
+		        public EPackage open () {
+	        		
+		        	Shell shell = new Shell(getParent(), SWT.DIALOG_TRIM | SWT.RESIZE);
+
+	        		shell.setMinimumSize(new Point(200, 100));
+	        		shell.setSize(600, 100);
+	                shell.setText(getText());
+	                
+	                final GridLayout gridLayout = new GridLayout(2, false);
+	                gridLayout.marginTop = 10;
+	        		shell.setLayout(gridLayout);
+	                
+	                Combo combo = new Combo(shell, SWT.NONE);
+	                combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+	                String[] nsUris = new String[EPackage.Registry.INSTANCE.size()];
+	                nsUris = EPackage.Registry.INSTANCE.keySet().toArray(nsUris);
+	                combo.setItems(nsUris);
+	                
+	                Button button = new Button(shell, SWT.PUSH);
+	                button.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+	                button.setText("OK");
+	                button.addSelectionListener(new SelectionListener2() {
+						
+						@Override
+						public void widgetSelected(SelectionEvent e) {
+							result = EPackage.Registry.INSTANCE.getEPackage(combo.getText());
+							shell.close();
+						}
+					});
+	                
+	                shell.open();
+	                shell.redraw();
+	                shell.layout();
+	                
+	                Display display = getParent().getDisplay();
+	                while (!shell.isDisposed()) {
+	                        if (!display.readAndDispatch()) {
+	                        	display.sleep();
+	                        }
+	                }
+	                return result;
+		        }
+			}
+			
+			return (new SelectFromRegistryDialog()).open();
+			
+		}
+
+		/**
 		 * This opens a dialog which allows the user to specify a meta-model file (XSD or Ecore). If necessary,
 		 * the EPackages contained in the specified file are copied to a new Ecore resource in the 'metamodel'
 		 * folder of the current project. Finally, the root package contained in the meta-model file is
 		 * returned.
 		 * 
-		 * @param sectionModel The {@link SectionModel} to that a new EPackage shall be imported.
+		 * @param sectionModel The {@link SectionModel} to that a new EPackage shall be imported. This will be used
+		 * to determine the current pamtram project and thus the 'metamodel' folder to that the meta-model file
+		 * shall be copied.
 		 * @return The {@link EPackage} to be imported.
 		 */
 		protected EPackage importPackageFromMetaModelFile(SectionModel<?,?,?,?> sectionModel) {

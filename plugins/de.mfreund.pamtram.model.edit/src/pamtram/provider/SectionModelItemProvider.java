@@ -223,21 +223,29 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 * @author mfreund
 	 */
 	private final class MetaModelPackageItemPropertyDescriptor extends ItemPropertyDescriptor {
-		// This keeps track of the fact if a dialog is currently presented to the user to specify an EPackage to add
-		//
+		
+		/**
+		 * This keeps track of the fact if a dialog is currently presented to the user to specify an EPackage to add.
+		 */
 		private boolean isDialogActive = false;
 	
 		private MetaModelPackageItemPropertyDescriptor(AdapterFactory adapterFactory, ResourceLocator resourceLocator,
 				String displayName, String description, EStructuralFeature feature, boolean isSettable,
 				boolean multiLine, boolean sortChoices, Object staticImage, String category, String[] filterFlags) {
+			
 			super(adapterFactory, resourceLocator, displayName, description, feature, isSettable, multiLine,
 					sortChoices, staticImage, category, filterFlags);
 		}
 	
 		@Override
 		public Collection<?> getChoiceOfValues(Object object) {
+			
 			Collection<Object> choices = new ArrayList<>();
+			
+			// This allows the user to import more EPackages
 			choices.add("... add missing EPackage from meta-model file");
+			choices.add("... add missing EPackage from global EPackage registry");
+			
 			choices.addAll(super.getChoiceOfValues(object));
 			return choices;
 		}
@@ -294,7 +302,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 							} catch (Exception e) {
 								newResourceCreated = true;
 								newMetamodelResource = (new ResourceSetImpl()).createResource(newMetamodelResourceURI);
-								newMetamodelResource.getContents().add(AgteleEcoreUtil.getRootEPackage(packages.values().iterator().next()));
+								newMetamodelResource.getContents().addAll(AgteleEcoreUtil.getRootEPackages(packages.values()));
 								newMetamodelResource.save(Collections.EMPTY_MAP);										
 							}
 							

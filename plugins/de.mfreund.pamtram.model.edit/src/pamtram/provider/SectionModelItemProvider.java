@@ -5,7 +5,6 @@ package pamtram.provider;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,7 +27,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -223,24 +221,24 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 * 
 	 * @author mfreund
 	 */
-	private final class MetaModelPackageItemPropertyDescriptor extends ItemPropertyDescriptor {
+	protected final class MetaModelPackageItemPropertyDescriptor extends ItemPropertyDescriptor {
 		
 		/**
 		 * This represents the option that is presented to the user which allows to import packages from the registry.
 		 */
-		private static final String ADD_MISSING_E_PACKAGE_FROM_GLOBAL_E_PACKAGE_REGISTRY = "... add missing EPackage from global EPackage registry";
+		protected static final String ADD_MISSING_E_PACKAGE_FROM_GLOBAL_E_PACKAGE_REGISTRY = "... add missing EPackage from global EPackage registry";
 		
 		/**
 		 * This represents the option that is presented to the user which allows to import packages from a meta-model file.
 		 */
-		private static final String ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE = "... add missing EPackage from meta-model file";
+		protected static final String ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE = "... add missing EPackage from meta-model file";
 		
 		/**
 		 * This keeps track of the fact if a dialog is currently presented to the user to specify an EPackage to add.
 		 */
-		private boolean isDialogActive = false;
+		protected boolean isDialogActive = false;
 	
-		private MetaModelPackageItemPropertyDescriptor(AdapterFactory adapterFactory, ResourceLocator resourceLocator,
+		protected MetaModelPackageItemPropertyDescriptor(AdapterFactory adapterFactory, ResourceLocator resourceLocator,
 				String displayName, String description, EStructuralFeature feature, boolean isSettable,
 				boolean multiLine, boolean sortChoices, Object staticImage, String category, String[] filterFlags) {
 			
@@ -279,7 +277,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 					
 					EPackage packageToSet = null;
 					
-					// Open the dialog
+					// Open the dialog and let the user specify the desired meta-model file / EPackage
 					//
 					if(value.equals(ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE)) {
 						
@@ -291,16 +289,19 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 						
 					}
 
+					// If a valid package has been specified by the user, set it as new property value
+					//
 					if(packageToSet != null) {
 						super.setPropertyValue(object, packageToSet);
 					}
 					
 					isDialogActive = false;
-				}
 					
-			} else {
-				super.setPropertyValue(object, value);
+					return;
+				}
 			}
+			
+			super.setPropertyValue(object, value);
 		}
 
 		/**
@@ -313,16 +314,31 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 			
 			class SelectFromRegistryDialog extends Dialog {
 		        
-				EPackage result;
-		                
+				/**
+				 * The EPackage specified by the user
+				 */
+				private EPackage result;
+
+				/**
+				 * This creates an instance.
+				 */
 		        public SelectFromRegistryDialog () {
 		        	super(UIHelper.getShell(),  SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
 		        	setText("Select EPackage to import");
 		        }
-		        public EPackage open () {
+		        
+		        /**
+		         * This opens the dialog and returns the {@link EPackage} specified by the user when the
+		         * dialog is closed again.
+		         * 
+		         * @return The {@link EPackage} specified by the user or '<em>null</em>' if no valid package
+		         * has been specified.
+		         */
+		        public EPackage open() {
 	        		
+		        	// The shell to on that the dialog will be displayed
+		        	//
 		        	Shell shell = new Shell(getParent(), SWT.DIALOG_TRIM | SWT.RESIZE);
-
 	        		shell.setMinimumSize(new Point(200, 100));
 	        		shell.setSize(600, 100);
 	                shell.setText(getText());
@@ -331,12 +347,16 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	                gridLayout.marginTop = 10;
 	        		shell.setLayout(gridLayout);
 	                
+	        		// The combo box to display the namespace URIs
+	        		//
 	                Combo combo = new Combo(shell, SWT.NONE);
 	                combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 	                String[] nsUris = new String[EPackage.Registry.INSTANCE.size()];
 	                nsUris = EPackage.Registry.INSTANCE.keySet().toArray(nsUris);
 	                combo.setItems(nsUris);
 	                
+	                // The 'OK' button
+	                //
 	                Button button = new Button(shell, SWT.PUSH);
 	                button.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
 	                button.setText("OK");
@@ -350,7 +370,6 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 					});
 	                
 	                shell.open();
-	                shell.redraw();
 	                shell.layout();
 	                
 	                Display display = getParent().getDisplay();
@@ -359,10 +378,16 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	                        	display.sleep();
 	                        }
 	                }
+	                
+	                // The specified EPackage or null in case the dialog was aborted/no valid 
+	                // namespace URI was specified
+	                //
 	                return result;
 		        }
 			}
 			
+			// Open the dialog and return the resulting EPackage
+			//
 			return (new SelectFromRegistryDialog()).open();
 			
 		}
@@ -379,6 +404,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		 * @return The {@link EPackage} to be imported.
 		 */
 		protected EPackage importPackageFromMetaModelFile(SectionModel<?,?,?,?> sectionModel) {
+			
 			FileDialog fileDialog = new FileDialog(UIHelper.getShell(), SWT.OPEN);
 			fileDialog.setText("Select Meta-model File...");
 			

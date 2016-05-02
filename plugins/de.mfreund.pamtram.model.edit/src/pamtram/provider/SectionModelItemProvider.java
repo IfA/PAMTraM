@@ -4,16 +4,12 @@ package pamtram.provider;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -31,18 +27,11 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
-import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
@@ -225,6 +214,16 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	private final class MetaModelPackageItemPropertyDescriptor extends ItemPropertyDescriptor {
 		
 		/**
+		 * This represents the option that is presented to the user which allows to import packages from the registry.
+		 */
+		private static final String ADD_MISSING_E_PACKAGE_FROM_GLOBAL_E_PACKAGE_REGISTRY = "... add missing EPackage from global EPackage registry";
+		
+		/**
+		 * This represents the option that is presented to the user which allows to import packages from a meta-model file.
+		 */
+		private static final String ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE = "... add missing EPackage from meta-model file";
+		
+		/**
 		 * This keeps track of the fact if a dialog is currently presented to the user to specify an EPackage to add.
 		 */
 		private boolean isDialogActive = false;
@@ -243,8 +242,9 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 			Collection<Object> choices = new ArrayList<>();
 			
 			// This allows the user to import more EPackages
-			choices.add("... add missing EPackage from meta-model file");
-			choices.add("... add missing EPackage from global EPackage registry");
+			//
+			choices.add(ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE);
+			choices.add(ADD_MISSING_E_PACKAGE_FROM_GLOBAL_E_PACKAGE_REGISTRY);
 			
 			choices.addAll(super.getChoiceOfValues(object));
 			return choices;
@@ -253,93 +253,121 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		@Override
 		public void setPropertyValue(Object object, Object value) {
 			
-			// The user chose to register a new EPackage
+			// The user chose to add a new EPackage
 			//
 			if(object instanceof SectionModel<?,?,?,?> && value instanceof String && 
-						value.equals("... add missing EPackage from meta-model file")) {
+						(value.equals(ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE) || value.equals(ADD_MISSING_E_PACKAGE_FROM_GLOBAL_E_PACKAGE_REGISTRY))) {
 				
 				// As 'setPropertyValue' might get called multiple times, we make sure that the selection dialog is presented to the user
 				// only once
 				//
 				if(!isDialogActive) {
+					
 					isDialogActive = true;
 					
-					FileDialog fileDialog = new FileDialog(UIHelper.getShell(), SWT.OPEN);
-					fileDialog.setText("Select Meta-model File...");
-					
-					IEditorInput editorInput = UIHelper.getCurrentEditorInput();
-					if(editorInput == null || !(editorInput instanceof FileEditorInput)) {
-						fileDialog.setFilterPath(null);								
-					} else {
-						fileDialog.setFilterPath(new File(((FileEditorInput) editorInput).getURI().getPath()).getParentFile().getParentFile().toString()); 
-					}
-					
-					String[] filterExt = { "*.ecore", "*.xsd"};
-					fileDialog.setFilterExtensions(filterExt);
-					
-					// Wait for the user to specify a file
-					//
-					String selected = fileDialog.open();
-	
-					// Check if there are EPackages specified in the file
-					//
-					HashMap<String, EPackage> packages = EPackageHelper.getEPackages(selected, false, false);
-					
 					EPackage packageToSet = null;
-					boolean newResourceCreated = false;
-					String newMetamodelFileName = "";
-					if(packages != null) {
+					
+					if(value.equals(ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE)) {
 						
-						try {
-							// Copy the contents of the file to the 'metamodel' folder of the current project (if necessary)
-							//
-							Resource pamtramResource = ((EObject) object).eResource();
-							newMetamodelFileName = (selected.endsWith(".ecore") ? new File(selected).getName() : new File(selected).getName() + ".ecore");
-							URI newMetamodelResourceURI = pamtramResource.getURI().trimSegments(2).appendSegment("metamodel").appendSegment(newMetamodelFileName);
-							Resource newMetamodelResource = null;
-							try {
-								newMetamodelResource = (new ResourceSetImpl()).getResource(newMetamodelResourceURI, true);
-							} catch (Exception e) {
-								newResourceCreated = true;
-								newMetamodelResource = (new ResourceSetImpl()).createResource(newMetamodelResourceURI);
-								newMetamodelResource.getContents().addAll(AgteleEcoreUtil.getRootEPackages(packages.values()));
-								newMetamodelResource.save(Collections.EMPTY_MAP);										
-							}
-							
-							// Determine the root package
-							//
-							if(newMetamodelResource != null && newMetamodelResource.getContents().get(0) instanceof EPackage) {
-								packageToSet = (EPackage) newMetamodelResource.getContents().get(0);
-							}
-						} catch(Exception e) {
-							e.printStackTrace();
-						}
+						packageToSet = importPackageFromMetaModelFile((SectionModel<?, ?, ?, ?>) object);	
+						
+					} else if(value.equals(ADD_MISSING_E_PACKAGE_FROM_GLOBAL_E_PACKAGE_REGISTRY)) {
 						
 					}
-					
-					// Set the package
-					//
+
 					if(packageToSet != null) {
 						super.setPropertyValue(object, packageToSet);
-						MessageDialog.openInformation(
-								UIHelper.getShell(),
-								"Import EPackage from meta-model file",
-								"Successfully imported EPackage '" + packageToSet.getName() + "'!" + 
-								(newResourceCreated ? " The meta-model has been copied to the 'metamodel' folder of your project ('" + packageToSet.eResource().getURI().lastSegment() +
-										"." + packageToSet.eResource().getURI().fileExtension() + "')..." : ""));
-					} else {
-						MessageDialog.openError(
-								UIHelper.getShell(),
-								"Import EPackage from meta-model file",
-								"An error occurred while importing an EPackage from the following file: '"
-								+ (new File(selected)).getPath() + "'!");
 					}
+					
 					isDialogActive = false;
 				}
 					
 			} else {
 				super.setPropertyValue(object, value);
 			}
+		}
+
+		/**
+		 * This opens a dialog which allows the user to specify a meta-model file (XSD or Ecore). If necessary,
+		 * the EPackages contained in the specified file are copied to a new Ecore resource in the 'metamodel'
+		 * folder of the current project. Finally, the root package contained in the meta-model file is
+		 * returned.
+		 * 
+		 * @param sectionModel The {@link SectionModel} to that a new EPackage shall be imported.
+		 * @return The {@link EPackage} to be imported.
+		 */
+		protected EPackage importPackageFromMetaModelFile(SectionModel<?,?,?,?> sectionModel) {
+			FileDialog fileDialog = new FileDialog(UIHelper.getShell(), SWT.OPEN);
+			fileDialog.setText("Select Meta-model File...");
+			
+			IEditorInput editorInput = UIHelper.getCurrentEditorInput();
+			if(editorInput == null || !(editorInput instanceof FileEditorInput)) {
+				fileDialog.setFilterPath(null);								
+			} else {
+				fileDialog.setFilterPath(new File(((FileEditorInput) editorInput).getURI().getPath()).getParentFile().getParentFile().toString()); 
+			}
+			
+			String[] filterExt = { "*.ecore", "*.xsd"};
+			fileDialog.setFilterExtensions(filterExt);
+			
+			// Wait for the user to specify a file
+			//
+			String selected = fileDialog.open();
+
+			// Check if there are EPackages specified in the file
+			//
+			HashMap<String, EPackage> packages = EPackageHelper.getEPackages(selected, false, false);
+			
+			EPackage packageToSet = null;
+			boolean newResourceCreated = false;
+			String newMetamodelFileName = "";
+			if(packages != null) {
+				
+				try {
+					// Copy the contents of the file to the 'metamodel' folder of the current project (if necessary)
+					//
+					Resource pamtramResource = ((EObject) sectionModel).eResource();
+					newMetamodelFileName = (selected.endsWith(".ecore") ? new File(selected).getName() : new File(selected).getName() + ".ecore");
+					URI newMetamodelResourceURI = pamtramResource.getURI().trimSegments(2).appendSegment("metamodel").appendSegment(newMetamodelFileName);
+					Resource newMetamodelResource = null;
+					try {
+						newMetamodelResource = (new ResourceSetImpl()).getResource(newMetamodelResourceURI, true);
+					} catch (Exception e) {
+						newResourceCreated = true;
+						newMetamodelResource = (new ResourceSetImpl()).createResource(newMetamodelResourceURI);
+						newMetamodelResource.getContents().addAll(AgteleEcoreUtil.getRootEPackages(packages.values()));
+						newMetamodelResource.save(Collections.EMPTY_MAP);										
+					}
+					
+					// Determine the root package
+					//
+					if(newMetamodelResource != null && newMetamodelResource.getContents().get(0) instanceof EPackage) {
+						packageToSet = (EPackage) newMetamodelResource.getContents().get(0);
+					}
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+			
+			// Set the package
+			//
+			if(packageToSet != null) {
+				MessageDialog.openInformation(
+						UIHelper.getShell(),
+						"Import EPackage from meta-model file",
+						"Successfully imported EPackage '" + packageToSet.getName() + "'!" + 
+						(newResourceCreated ? " The meta-model has been copied to the 'metamodel' folder of your project ('" + 
+						newMetamodelFileName + "')..." : ""));
+			} else {
+				MessageDialog.openError(
+						UIHelper.getShell(),
+						"Import EPackage from meta-model file",
+						"An error occurred while importing an EPackage from the following file: '"
+						+ (new File(selected)).getPath() + "'!");
+			}
+			
+			return packageToSet;
 		}
 	}
 

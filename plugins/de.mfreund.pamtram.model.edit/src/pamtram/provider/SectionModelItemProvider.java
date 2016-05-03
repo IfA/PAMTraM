@@ -7,8 +7,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -424,7 +424,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 
 			// Check if there are EPackages specified in the file
 			//
-			HashMap<String, EPackage> packages = EPackageHelper.getEPackages(selected, false, false);
+			Map<String, EPackage> packages = EPackageHelper.getEPackages(selected, false, false);
 			
 			EPackage packageToSet = null;
 			boolean newResourceCreated = false;

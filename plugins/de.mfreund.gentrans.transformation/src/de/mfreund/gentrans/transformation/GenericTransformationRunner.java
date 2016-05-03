@@ -16,7 +16,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -89,8 +88,8 @@ import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
-import pamtram.util.EPackageHelper;
-import pamtram.util.EPackageHelper.EPackageCheck;
+import pamtram.util.PamtramEPackageHelper;
+import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
 /**
  * Main Class for running the generic transformation for a PAMTraM model.
@@ -1740,7 +1739,7 @@ public class GenericTransformationRunner {
 				.get(0);
 
 		// try to register the ePackages involved in the pamtram model (if not already done)
-		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
+		EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(
 				pamtramModel,
 				ResourcesPlugin.getWorkspace().getRoot().findMember(sourceFilePaths.get(0)).getProject(),
 				EPackage.Registry.INSTANCE);

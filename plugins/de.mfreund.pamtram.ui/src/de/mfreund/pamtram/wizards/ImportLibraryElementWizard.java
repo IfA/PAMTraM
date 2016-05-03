@@ -43,18 +43,18 @@ import pamtram.util.LibraryHelper;
  */
 public class ImportLibraryElementWizard extends Wizard {
 
-	final private ImportLibraryElementWizardMainPage one;
+	private final ImportLibraryElementWizardMainPage one;
 
 	/**
 	 * This is the pamtram instance into that the library elements shall be 
 	 * imported.
 	 */
-	final private PAMTraM pamtram;
+	private final PAMTraM pamtram;
 
 	/**
 	 * This is the editing domain to be used to perform model changes.
 	 */
-	final private EditingDomain editingDomain;
+	private final EditingDomain editingDomain;
 
 	/**
 	 * This constructs an instance of the wizard.
@@ -118,9 +118,9 @@ public class ImportLibraryElementWizard extends Wizard {
 					Mapping mapping = MappingFactory.eINSTANCE.createMapping();
 					ArrayList<MappingHintGroup> mappingHintGroups = new ArrayList<>();
 					ArrayList<MappingHint> mappingHints = new ArrayList<>();
-					for (LibraryParameter parameter : libElement.getParameters()) {
+					for (LibraryParameter<?> parameter : libElement.getParameters()) {
 						// create a mapping hint group for every container parameter
-						if((parameter instanceof ContainerParameter)) {
+						if(parameter instanceof ContainerParameter) {
 							MappingHintGroup hintGroup = MappingFactory.eINSTANCE.createMappingHintGroup();
 							mappingHintGroups.add(hintGroup);
 							// add the mapping hint group to the mapping

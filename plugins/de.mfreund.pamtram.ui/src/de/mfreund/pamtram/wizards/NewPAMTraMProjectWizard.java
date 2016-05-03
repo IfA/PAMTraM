@@ -47,9 +47,6 @@ import de.tud.et.ifa.agtele.resources.ResourceHelper;
  */
 public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExecutableExtension{
 	
-	// the element currently selected (might e.g. be a working set)
-	private IStructuredSelection selection;
-
 	// the project to be created
 	private IProject newProject;
 
@@ -197,7 +194,6 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 				.newProjectDescription(newProjectHandle.getName());
 		description.setLocationURI(location);
 		description.setNatureIds(new String[]{"de.mfreund.pamtram.pamtramNature"});
-		//		description.setBuildConfigs(new String[]{"org.eclipse.wst.common.project.facet.core.builder"});
 
 		// create the new project operation
 		IRunnableWithProgress op = new IRunnableWithProgress() {

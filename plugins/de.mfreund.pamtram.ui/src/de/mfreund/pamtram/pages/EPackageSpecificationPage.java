@@ -29,10 +29,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.List;
 
+import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
-import pamtram.util.EPackageHelper;
-
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -143,7 +142,7 @@ public class EPackageSpecificationPage extends WizardPage {
 				
 				if(!metamodelFilesToNamespaceURIs.containsKey(metamodelFile)) {
 				
-					HashMap<String, EPackage> packages = EPackageHelper.getEPackages(metamodelFile, true, false);
+					Map<String, EPackage> packages = EPackageHelper.getEPackages(metamodelFile, true, false);
 					
 					if(packages == null || packages.isEmpty()) {
 						return;

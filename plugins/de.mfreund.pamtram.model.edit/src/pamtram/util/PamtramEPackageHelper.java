@@ -2,8 +2,8 @@ package pamtram.util;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -19,11 +19,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.PAMTraM;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 
-public class EPackageHelper extends de.tud.et.ifa.agtele.emf.EPackageHelper {
+public interface PamtramEPackageHelper extends EPackageHelper {
 
 	/**
 	 * This determines the various ePackages involved in a PAMTraM model (source, target and context
@@ -120,7 +122,7 @@ public class EPackageHelper extends de.tud.et.ifa.agtele.emf.EPackageHelper {
 			for(IResource res : metamodelFolder.members()) {
 				if(res instanceof IFile && ((IFile) res).getName().endsWith(".ecore")) {
 					try {
-						HashMap<String, EPackage> ePackages = getEPackages(res.getRawLocation().toString(), true, false);
+						Map<String, EPackage> ePackages = EPackageHelper.getEPackages(res.getRawLocation().toString(), true, false);
 						for (String nsUri : ePackages.keySet()) {
 							if(nsUrisToRegister.contains(nsUri)) {
 								// register all ePackages defined in the ecore model

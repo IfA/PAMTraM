@@ -154,8 +154,8 @@ import pamtram.contentadapter.PamtramContentAdapter;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
-import pamtram.util.EPackageHelper;
-import pamtram.util.EPackageHelper.EPackageCheck;
+import pamtram.util.PamtramEPackageHelper;
+import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
 
 /**
@@ -1735,7 +1735,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		Map<Resource, Diagnostic> backup = new HashMap<Resource, Diagnostic>(resourceToDiagnosticMap);
 
 		// try to register the ePackages involved in the pamtram model (if not already done)
-		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
+		EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(
 				pamtram,
 				ResourceUtil.getFile(getEditorInput()).getProject(),
 				EPackage.Registry.INSTANCE);

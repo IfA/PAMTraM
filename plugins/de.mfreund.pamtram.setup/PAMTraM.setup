@@ -65,8 +65,14 @@
         name="org.eclipse.wb.rcp.feature.feature.group"/>
     <requirement
         name="org.eclipse.wb.rcp.doc.user.feature.feature.group"/>
+    <requirement
+        name="org.sonarlint.eclipse.feature.feature.group"/>
+    <requirement
+        name="org.sonarlint.eclipse.jdt.feature.feature.group"/>
     <repository
         url="http://download.eclipse.org/epsilon/updates/"/>
+    <repository
+        url="http://eclipse.sonarlint.org"/>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"

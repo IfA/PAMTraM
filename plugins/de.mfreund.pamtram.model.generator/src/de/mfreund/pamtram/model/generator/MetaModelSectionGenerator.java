@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -175,7 +174,7 @@ public class MetaModelSectionGenerator {
 
 			// add the created reference to the list of references of the current class
 			// and thus complete the metamodel section
-			if(containmentReference.getValue().size() > 0) {
+			if(!containmentReference.getValue().isEmpty()) {
 				((EList<Reference<?, ?, ?, ?>>) section.getReferences()).add(containmentReference);
 			} else {
 				EcoreUtil.remove(containmentReference);;
@@ -232,13 +231,13 @@ public class MetaModelSectionGenerator {
 
 			// link the created metamodel section to the current section
 			if(sectionType == SectionType.SOURCE) {
-				if(((MetaModelSectionReference) nonContainmentReference).getValue().size() > 0) {
+				if(!((MetaModelSectionReference) nonContainmentReference).getValue().isEmpty()) {
 					((EList<Reference<?, ?, ?, ?>>) section.getReferences()).add(nonContainmentReference);
 				} else {
 					EcoreUtil.delete(nonContainmentReference);;
 				}
 			} else {
-				if(((TargetSectionNonContainmentReference) nonContainmentReference).getValue().size() > 0) {
+				if(!((TargetSectionNonContainmentReference) nonContainmentReference).getValue().isEmpty()) {
 					((EList<Reference<?, ?, ?, ?>>) section.getReferences()).add(nonContainmentReference);
 				} else {
 					EcoreUtil.delete(nonContainmentReference);
@@ -392,7 +391,7 @@ public class MetaModelSectionGenerator {
 		for(Attribute<?, ?, ?, ?> att : createdSection.getAttributes()) {
 			if(sectionType == SectionType.SOURCE) {
 				hash = hash + ((SourceSectionAttribute) att).getAttribute().getName();
-				if( ((SourceSectionAttribute) att).getValueConstraint().size() > 0 &&
+				if(!((SourceSectionAttribute) att).getValueConstraint().isEmpty() &&
 						((SourceSectionAttribute) att).getValueConstraint().get(0) instanceof SingleReferenceAttributeValueConstraint){
 					hash = hash +  ((SingleReferenceAttributeValueConstraint) ((SourceSectionAttribute) att).getValueConstraint().get(0)).getExpression();
 				} else {

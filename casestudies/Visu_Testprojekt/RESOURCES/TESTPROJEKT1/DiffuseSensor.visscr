@@ -7,34 +7,52 @@
   <ListSynopticDraw>
     <child>
       <object>Button</object>
-      <type height="100" stroke-width="1" width="341" x="889" y="20"></type>
+      <type height="100" stroke-width="0" width="341" x="889" y="20"></type>
       <ExtFill Style="2"/>
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;NAVTOP&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>NAVTOP</Name>
-      <text font-family="Tahoma" font-size="12" text-anchor="middle">NAVTOP</text>
+      <text font-family="Tahoma" font-size="14" text-anchor="middle">NAVTOP</text>
       <Shadow/>
       <Rotation/>
     </child>
     <child>
       <object>Button</object>
-      <type height="100" stroke-width="1" width="341" x="1430" y="20"></type>
+      <type height="100" stroke-width="0" width="341" x="1430" y="20"></type>
       <ExtFill Style="2"/>
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;ALERT&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>ALERT</Name>
-      <text font-family="Tahoma" font-size="12" text-anchor="middle">ALERT</text>
+      <text font-family="Tahoma" font-size="14" text-anchor="middle">ALERT</text>
       <Shadow/>
       <Rotation/>
     </child>
     <child>
       <object>Button</object>
-      <type height="100" stroke-width="1" width="341" x="1970" y="20"></type>
+      <type height="100" stroke-width="0" width="341" x="1970" y="20"></type>
       <ExtFill Style="2"/>
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;BaseplateMagazine&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>BaseplateMagazine</Name>
-      <text font-family="Tahoma" font-size="12" text-anchor="middle">BaseplateMagazine</text>
+      <text font-family="Tahoma" font-size="14" text-anchor="middle">BaseplateMagazine</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="100" stroke-width="0" width="267" x="2646" y="910"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="LocalHost__PARSIFAL_Devices_CIROS_Model_Objects_DiffuseSensor_Outputs_Detected"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="100" stroke-width="0" width="267" x="2913" y="910"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="14" text-anchor="middle">Part_AV  Werkstrhanden</text>
       <Shadow/>
       <Rotation/>
     </child>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<amino-ui:CUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:am-var="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/AlgorithmModel/Variables" xmlns:amino-ui="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1" xmlns:ani="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/Animation" xmlns:cm="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/ConditionModel" xmlns:df="dfsa" xmlns:pp-ac-assets="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Assets" xmlns:pp-ac-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation/Properties" xmlns:pp-ac-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues" xmlns:pp-ac-sounds="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/AcousticalPresentationProfile/Sounds" xmlns:pp-hap-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties" xmlns:pp-hap-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/PropertyValues" xmlns:pp-hap-vib="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Vibration" xmlns:pp-vis-assets="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets" xmlns:pp-vis-colors="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/ColorDefinition" xmlns:pp-vis-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/Properties" xmlns:pp-vis-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/PropertyValues" xmlns:se="sewef" xmlns:td="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/TextDefinition" name="FAS">
+<amino-ui:CUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:am-var="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/AlgorithmModel/Variables" xmlns:amino-ui="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1" xmlns:ani="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/Animation" xmlns:cm="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/ConditionModel" xmlns:df="dfsa" xmlns:pp-hap-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties" xmlns:pp-hap-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/PropertyValues" xmlns:pp-hap-vib="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Vibration" xmlns:pp-vis-assets="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets" xmlns:pp-vis-colors="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/ColorDefinition" xmlns:pp-vis-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/Properties" xmlns:pp-vis-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/PropertyValues" xmlns:se="sewef" xmlns:td="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/TextDefinition" name="FAS">
   <components xsi:type="amino-ui:simpleContainer" name="relative velocityTextComponent">
     <containedElements name="Staticrelative velocityTextComponent">
       <representation>
@@ -66,31 +66,21 @@
         <val xsi:type="pp-vis-rep-pval:LengthValue" val="40.0"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.1"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:Visibility">
         <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue"/>
       </styleProperty>
     </representation>
     <animationRecord name="parkMode">
-      <animation xsi:type="ani:AnimationGroup" name="parkModeSingleAnimation" StartTrigger="//@SignalCollection/@Signals.25">
+      <animation xsi:type="ani:AnimationGroup" name="parkModeSingleAnimation" StartTrigger="//@SignalCollection/@Signals.5">
         <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@representation/@styleProperty.3">
           <StylePropertyResult xsi:type="pp-vis-rep-props:Visibility">
             <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.5">
-        <animationProperty xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </animationProperty>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@containedElements.0/@representation/@styleProperty.2">
-          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
-            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.1"/>
-          </StylePropertyResult>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.9">
+      <animation xsi:type="ani:AnimationGroup" name="parkModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.9">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </animationProperty>
@@ -100,7 +90,7 @@
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.13">
+      <animation xsi:type="ani:AnimationGroup" name="parkModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.13">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </animationProperty>
@@ -110,13 +100,23 @@
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.17">
+      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.17">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </animationProperty>
         <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@containedElements.0/@representation/@styleProperty.2">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.7"/>
+          </StylePropertyResult>
+        </animationGroup>
+      </animation>
+      <animation xsi:type="ani:AnimationGroup" name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.21">
+        <animationProperty xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </animationProperty>
+        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.3/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
@@ -144,31 +144,21 @@
         <val xsi:type="pp-vis-rep-pval:LengthValue" val="40.0"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.10"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.2"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:Visibility">
         <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue"/>
       </styleProperty>
     </representation>
     <animationRecord name="ACCMode">
-      <animation xsi:type="ani:AnimationGroup" name="ACCModeSingleAnimation" StartTrigger="//@SignalCollection/@Signals.26">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModeSingleAnimation" StartTrigger="//@SignalCollection/@Signals.6">
         <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.4/@representation/@styleProperty.3">
           <StylePropertyResult xsi:type="pp-vis-rep-props:Visibility">
             <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.6">
-        <animationProperty xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </animationProperty>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.4/@containedElements.0/@representation/@styleProperty.2">
-          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
-            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.2"/>
-          </StylePropertyResult>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.10">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.10">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </animationProperty>
@@ -178,7 +168,7 @@
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.14">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.14">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </animationProperty>
@@ -188,13 +178,23 @@
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.18">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.18">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </animationProperty>
         <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.4/@containedElements.0/@representation/@styleProperty.2">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.8"/>
+          </StylePropertyResult>
+        </animationGroup>
+      </animation>
+      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.22">
+        <animationProperty xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </animationProperty>
+        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.4/@containedElements.0/@representation/@styleProperty.2">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.10"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
@@ -219,7 +219,7 @@
         <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue" name="parkMode" val="HIDDEN"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BorderColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.1"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BorderStyle" val="SOLID"/>
       <styleProperty xsi:type="pp-vis-rep-props:BorderWidth">
@@ -227,14 +227,14 @@
       </styleProperty>
     </representation>
     <animationRecord name="parkMode">
-      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.13">
+      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.17">
         <animationGroup xsi:type="ani:StylePropertyAnimation" name="parkModemediumDanger" PropertyToAnimate="//@components.5/@representation/@styleProperty.1">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BorderColor">
-            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.5"/>
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.7"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.13" StopTrigger="//@SignalCollection/@Signals.15">
+      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.17" StopTrigger="//@SignalCollection/@Signals.19">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
         </animationProperty>
@@ -258,14 +258,14 @@
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.17">
+      <animation xsi:type="ani:AnimationGroup" name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.21">
         <animationGroup xsi:type="ani:StylePropertyAnimation" name="parkModehighDanger" PropertyToAnimate="//@components.5/@representation/@styleProperty.1">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BorderColor">
-            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.7"/>
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModehighDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.17" StopTrigger="//@SignalCollection/@Signals.19">
+      <animation xsi:type="ani:AnimationGroup" name="parkModehighDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.21" StopTrigger="//@SignalCollection/@Signals.23">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
         </animationProperty>
@@ -297,7 +297,7 @@
         <val xsi:type="pp-vis-rep-pval:VisibilityPresetValue" name="ACCMode" val="HIDDEN"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BorderColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.10"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.2"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BorderStyle" val="SOLID"/>
       <styleProperty xsi:type="pp-vis-rep-props:BorderWidth">
@@ -305,14 +305,14 @@
       </styleProperty>
     </representation>
     <animationRecord name="ACCMode">
-      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.14">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.18">
         <animationGroup xsi:type="ani:StylePropertyAnimation" name="ACCModemediumDanger" PropertyToAnimate="//@components.6/@representation/@styleProperty.1">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BorderColor">
-            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.6"/>
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.8"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.14" StopTrigger="//@SignalCollection/@Signals.16">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.18" StopTrigger="//@SignalCollection/@Signals.20">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
         </animationProperty>
@@ -336,14 +336,14 @@
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.18">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.22">
         <animationGroup xsi:type="ani:StylePropertyAnimation" name="ACCModehighDanger" PropertyToAnimate="//@components.6/@representation/@styleProperty.1">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BorderColor">
-            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.8"/>
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.10"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.18" StopTrigger="//@SignalCollection/@Signals.20">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDangerInfiniteAnimations" StartTrigger="//@SignalCollection/@Signals.22" StopTrigger="//@SignalCollection/@Signals.24">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountPresetValue"/>
         </animationProperty>
@@ -369,120 +369,6 @@
       </animation>
     </animationRecord>
   </components>
-  <components name="parkModeSound">
-    <representation>
-      <styleProperty xsi:type="pp-ac-rep-props:Sound">
-        <val xsi:type="pp-ac-rep-pval:SoundReferencingValue"/>
-      </styleProperty>
-      <styleProperty xsi:type="pp-ac-rep-props:SoundActive">
-        <val xsi:type="pp-ac-rep-pval:SoundActiveValue" name="parkMode"/>
-      </styleProperty>
-    </representation>
-    <animationRecord name="parkModeSound">
-      <animation xsi:type="ani:AnimationGroup" name="parkModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.5">
-        <animationGroup xsi:type="ani:VariableAnimation" name="parkModenoDanger" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue"/>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.9">
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </animationGroup>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.0"/>
-          </StylePropertyResult>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.13">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.2"/>
-          </StylePropertyResult>
-        </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.17">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.4"/>
-          </StylePropertyResult>
-        </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.21">
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </animationGroup>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.6"/>
-          </StylePropertyResult>
-        </animationGroup>
-      </animation>
-    </animationRecord>
-  </components>
-  <components name="ACCModeSound">
-    <representation>
-      <styleProperty xsi:type="pp-ac-rep-props:Sound">
-        <val xsi:type="pp-ac-rep-pval:SoundReferencingValue"/>
-      </styleProperty>
-      <styleProperty xsi:type="pp-ac-rep-props:SoundActive">
-        <val xsi:type="pp-ac-rep-pval:SoundActiveValue" name="ACCMode"/>
-      </styleProperty>
-    </representation>
-    <animationRecord name="ACCModeSound">
-      <animation xsi:type="ani:AnimationGroup" name="ACCModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.6">
-        <animationGroup xsi:type="ani:VariableAnimation" name="ACCModenoDanger" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue"/>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.10">
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </animationGroup>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.1"/>
-          </StylePropertyResult>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.14">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.3"/>
-          </StylePropertyResult>
-        </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.18">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.5"/>
-          </StylePropertyResult>
-        </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.22">
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
-          <variableResult xsi:type="pp-ac-rep-pval:SoundActiveValue" val="true"/>
-        </animationGroup>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
-          <StylePropertyResult xsi:type="pp-ac-rep-props:Sound">
-            <val xsi:type="pp-ac-rep-pval:SoundReferencingValue" ref="//@sounds/@soundComponents.7"/>
-          </StylePropertyResult>
-        </animationGroup>
-      </animation>
-    </animationRecord>
-  </components>
   <components name="parkModeVibration">
     <representation>
       <styleProperty xsi:type="pp-hap-rep-props:VibrationReference">
@@ -493,43 +379,43 @@
       </styleProperty>
     </representation>
     <animationRecord name="parkModeVibration">
-      <animation xsi:type="ani:AnimationGroup" name="parkModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.5">
-        <animationGroup xsi:type="ani:VariableAnimation" name="parkModenoDanger" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+      <animation xsi:type="ani:AnimationGroup" name="parkModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.9">
+        <animationGroup xsi:type="ani:VariableAnimation" name="parkModenoDanger" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.9">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.0">
+      <animation xsi:type="ani:AnimationGroup" name="parkModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.13">
+        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
           <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
             <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.0"/>
           </StylePropertyResult>
         </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.13">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.0">
+      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.17">
+        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
           <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
             <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.2"/>
           </StylePropertyResult>
         </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.17">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.0">
+      <animation xsi:type="ani:AnimationGroup" name="parkModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.21">
+        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.0">
           <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
             <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.4"/>
           </StylePropertyResult>
         </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.21">
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.9/@representation/@styleProperty.1/@val">
+      <animation xsi:type="ani:AnimationGroup" name="parkModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.25">
+        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.7/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
         </animationGroup>
       </animation>
@@ -545,43 +431,43 @@
       </styleProperty>
     </representation>
     <animationRecord name="ACCModeVibration">
-      <animation xsi:type="ani:AnimationGroup" name="ACCModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.6">
-        <animationGroup xsi:type="ani:VariableAnimation" name="ACCModenoDanger" PropertyToAnimate="//@components.10/@representation/@styleProperty.1/@val">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModenoDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.10">
+        <animationGroup xsi:type="ani:VariableAnimation" name="ACCModenoDanger" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.10">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.10/@representation/@styleProperty.0">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModelowDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.14">
+        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
           <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
             <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.1"/>
           </StylePropertyResult>
         </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.10/@representation/@styleProperty.1/@val">
+        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.14">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.10/@representation/@styleProperty.0">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.18">
+        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
           <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
             <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.3"/>
           </StylePropertyResult>
         </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.10/@representation/@styleProperty.1/@val">
+        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.18">
-        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.10/@representation/@styleProperty.0">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDangerSingleAnimation" StartTrigger="//@SignalCollection/@Signals.22">
+        <animationGroup xsi:type="ani:StylePropertyAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.0">
           <StylePropertyResult xsi:type="pp-hap-rep-props:VibrationReference">
             <val xsi:type="pp-hap-rep-pval:VibrationReferencingValue" ref="//@vibrations/@vibrationComponents.5"/>
           </StylePropertyResult>
         </animationGroup>
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.10/@representation/@styleProperty.1/@val">
+        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue" val="true"/>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.22">
-        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.10/@representation/@styleProperty.1/@val">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModecollisionSingleAnimation" StartTrigger="//@SignalCollection/@Signals.26">
+        <animationGroup xsi:type="ani:VariableAnimation" PropertyToAnimate="//@components.8/@representation/@styleProperty.1/@val">
           <variableResult xsi:type="pp-hap-rep-pval:VibrationActiveValue"/>
         </animationGroup>
       </animation>
@@ -593,10 +479,10 @@
         <val xsi:type="am-var:TextItemReferencingVariable" ref="//@TextDefinitions/@textItem.5" defaultVal="!"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.1"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:TextColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.1"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:FontSize">
         <val xsi:type="pp-vis-rep-pval:FontSizeLenght" val="32.0"/>
@@ -609,23 +495,23 @@
       </styleProperty>
     </representation>
     <animationRecord name="parkModeLamp">
-      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDanger" StartTrigger="//@SignalCollection/@Signals.13">
+      <animation xsi:type="ani:AnimationGroup" name="parkModemediumDanger" StartTrigger="//@SignalCollection/@Signals.17">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </animationProperty>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" name="parkModemediumDanger" PropertyToAnimate="//@components.11/@representation/@styleProperty.1">
+        <animationGroup xsi:type="ani:StylePropertyAnimation" name="parkModemediumDanger" PropertyToAnimate="//@components.9/@representation/@styleProperty.1">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
-            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.5"/>
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.7"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
-      <animation xsi:type="ani:AnimationGroup" name="parkModehighDanger" StartTrigger="//@SignalCollection/@Signals.17">
+      <animation xsi:type="ani:AnimationGroup" name="parkModehighDanger" StartTrigger="//@SignalCollection/@Signals.21">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </animationProperty>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" name="parkModehighDanger" PropertyToAnimate="//@components.11/@representation/@styleProperty.1">
+        <animationGroup xsi:type="ani:StylePropertyAnimation" name="parkModehighDanger" PropertyToAnimate="//@components.9/@representation/@styleProperty.1">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
-            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.7"/>
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.9"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
@@ -637,10 +523,10 @@
         <val xsi:type="am-var:TextItemReferencingVariable" ref="//@TextDefinitions/@textItem.6" defaultVal="!"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:BackgroundColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.10"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.2"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:TextColor">
-        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.10"/>
+        <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.2"/>
       </styleProperty>
       <styleProperty xsi:type="pp-vis-rep-props:FontSize">
         <val xsi:type="pp-vis-rep-pval:FontSizeLenght" val="32.0"/>
@@ -653,54 +539,29 @@
       </styleProperty>
     </representation>
     <animationRecord name="ACCModeLamp">
-      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDanger" StartTrigger="//@SignalCollection/@Signals.14">
+      <animation xsi:type="ani:AnimationGroup" name="ACCModemediumDanger" StartTrigger="//@SignalCollection/@Signals.18">
         <animationProperty xsi:type="se:AnimationIterationCount">
           <val xsi:type="df:AnimationIterationCountInt" val="1"/>
         </animationProperty>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" name="ACCModemediumDanger" PropertyToAnimate="//@components.12/@representation/@styleProperty.1">
-          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
-            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.6"/>
-          </StylePropertyResult>
-        </animationGroup>
-      </animation>
-      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDanger" StartTrigger="//@SignalCollection/@Signals.18">
-        <animationProperty xsi:type="se:AnimationIterationCount">
-          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
-        </animationProperty>
-        <animationGroup xsi:type="ani:StylePropertyAnimation" name="ACCModehighDanger" PropertyToAnimate="//@components.12/@representation/@styleProperty.1">
+        <animationGroup xsi:type="ani:StylePropertyAnimation" name="ACCModemediumDanger" PropertyToAnimate="//@components.10/@representation/@styleProperty.1">
           <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
             <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.8"/>
           </StylePropertyResult>
         </animationGroup>
       </animation>
+      <animation xsi:type="ani:AnimationGroup" name="ACCModehighDanger" StartTrigger="//@SignalCollection/@Signals.22">
+        <animationProperty xsi:type="se:AnimationIterationCount">
+          <val xsi:type="df:AnimationIterationCountInt" val="1"/>
+        </animationProperty>
+        <animationGroup xsi:type="ani:StylePropertyAnimation" name="ACCModehighDanger" PropertyToAnimate="//@components.10/@representation/@styleProperty.1">
+          <StylePropertyResult xsi:type="pp-vis-rep-props:BackgroundColor">
+            <val xsi:type="pp-vis-rep-pval:ColorReferencingPropertyValue" ref="//@colors/@colorItem.10"/>
+          </StylePropertyResult>
+        </animationGroup>
+      </animation>
     </animationRecord>
   </components>
-  <sounds>
-    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="parkModelowDanger" Repeat="true">
-      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="parkModelowDanger" Frequency="440" Rate="1.0"/>
-    </soundComponents>
-    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="ACCModelowDanger" Repeat="true">
-      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="ACCModelowDanger" Frequency="440" Rate="1.0"/>
-    </soundComponents>
-    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="parkModemediumDanger" Repeat="true">
-      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="parkModemediumDanger" Frequency="550" Rate="2.0"/>
-    </soundComponents>
-    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="ACCModemediumDanger" Repeat="true">
-      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="ACCModemediumDanger" Frequency="550" Rate="2.0"/>
-    </soundComponents>
-    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="parkModehighDanger" Repeat="true">
-      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="parkModehighDanger" Frequency="660" Rate="5.0"/>
-    </soundComponents>
-    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="ACCModehighDanger" Repeat="true">
-      <soundItem xsi:type="pp-ac-sounds:GenericSoundItem" name="ACCModehighDanger" Frequency="660" Rate="5.0"/>
-    </soundComponents>
-    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="parkModecollision" Repeat="true">
-      <soundItem xsi:type="pp-ac-sounds:SoundFileItem" name="parkModecollision" ref="//@assets/@asset.0"/>
-    </soundComponents>
-    <soundComponents xsi:type="pp-ac-sounds:SoundItemGroup" name="ACCModecollision" Repeat="true">
-      <soundItem xsi:type="pp-ac-sounds:SoundFileItem" name="ACCModecollision" ref="//@assets/@asset.1"/>
-    </soundComponents>
-  </sounds>
+  <sounds/>
   <vibrations>
     <vibrationComponents xsi:type="pp-hap-vib:VibrationItemGroup" name="parkModelowDanger" Repeat="true">
       <vibrationItem xsi:type="pp-hap-vib:PulsingVibrationItem" name="parkModelowDanger" frequency="1" dutyCycle="0.25"/>
@@ -727,6 +588,10 @@
     <Signals name="relative velocityChange"/>
     <Signals name="ego velocityChange"/>
     <Signals name="target velocityChange"/>
+    <Signals name="parkModeActivateSignal"/>
+    <Signals name="ACCModeActivateSignal"/>
+    <Signals name="parkModeDeactivateSignal"/>
+    <Signals name="ACCModeDeactivateSignal"/>
     <Signals name="parkModenoDangerActivateSignal"/>
     <Signals name="ACCModenoDangerActivateSignal"/>
     <Signals name="parkModenoDangerDeactivateSignal"/>
@@ -747,15 +612,21 @@
     <Signals name="ACCModecollisionActivateSignal"/>
     <Signals name="parkModecollisionDeactivateSignal"/>
     <Signals name="ACCModecollisionDeactivateSignal"/>
-    <Signals name="parkModeActivateSignal"/>
-    <Signals name="ACCModeActivateSignal"/>
-    <Signals name="parkModeDeactivateSignal"/>
-    <Signals name="ACCModeDeactivateSignal"/>
   </SignalCollection>
   <colors>
     <colorItem xsi:type="pp-vis-colors:ColorItem">
       <colorEntry theme="//@colorTheme">
         <value xsi:type="pp-vis-colors:HEXColorValue"/>
+      </colorEntry>
+    </colorItem>
+    <colorItem xsi:type="pp-vis-colors:ColorItem" name="parkMode">
+      <colorEntry theme="//@colorTheme">
+        <value xsi:type="pp-vis-colors:HEXColorValue" val="#9999A1"/>
+      </colorEntry>
+    </colorItem>
+    <colorItem xsi:type="pp-vis-colors:ColorItem" name="ACCMode">
+      <colorEntry theme="//@colorTheme">
+        <value xsi:type="pp-vis-colors:HEXColorValue" val="#9999A1"/>
       </colorEntry>
     </colorItem>
     <colorItem xsi:type="pp-vis-colors:ColorItem" name="parkModenoDanger">
@@ -798,16 +669,6 @@
         <value xsi:type="pp-vis-colors:HEXColorValue" val="#FF6B6B"/>
       </colorEntry>
     </colorItem>
-    <colorItem xsi:type="pp-vis-colors:ColorItem" name="parkMode">
-      <colorEntry theme="//@colorTheme">
-        <value xsi:type="pp-vis-colors:HEXColorValue" val="#9999A1"/>
-      </colorEntry>
-    </colorItem>
-    <colorItem xsi:type="pp-vis-colors:ColorItem" name="ACCMode">
-      <colorEntry theme="//@colorTheme">
-        <value xsi:type="pp-vis-colors:HEXColorValue" val="#9999A1"/>
-      </colorEntry>
-    </colorItem>
   </colors>
   <TextDefinitions>
     <textItem xsi:type="td:TextItem">
@@ -835,167 +696,7 @@
   <language name="defaultLanguage" code="de"/>
   <colorTheme name="defaultColorTheme"/>
   <Conditions>
-    <Condition xsi:type="cm:And" name="parkModenoDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.5">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="12.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="201.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="ACCModenoDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.6">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="120.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="201.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="parkModenoDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.5">
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="12.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="201.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="ACCModenoDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.6">
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="120.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="201.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="parkModelowDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.9">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="8.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="12.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="ACCModelowDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.10">
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="120.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="80.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="parkModelowDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.9">
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="8.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="12.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="ACCModelowDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.10">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="120.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="30.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="parkModemediumDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.13">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="3.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="8.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="ACCModemediumDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.14">
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="80.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="30.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="parkModemediumDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.13">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="8.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="3.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="ACCModemediumDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.14">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="80.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="30.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="parkModehighDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.17">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="0.2"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="3.0"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="ACCModehighDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.18">
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="30.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="0.2"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="parkModehighDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.17">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="3.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="0.2"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="ACCModehighDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.18">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="30.0"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="0.2"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="parkModecollisionPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.21">
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="0.2"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="ACCModecollisionPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.22">
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="0.2"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="parkModecollisionPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.21">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="0.2"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:Or" name="ACCModecollisionPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.22">
-      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue" val="0.2"/>
-      </condtionGroup>
-      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
-        <val xsi:type="cm:FloatValue"/>
-      </condtionGroup>
-    </Condition>
-    <Condition xsi:type="cm:And" name="parkModePrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.25">
+    <Condition xsi:type="cm:And" name="parkModePrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.5">
       <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.1">
         <val xsi:type="cm:FloatValue" val="15.0"/>
       </condtionGroup>
@@ -1003,7 +704,7 @@
         <val xsi:type="cm:FloatValue"/>
       </condtionGroup>
     </Condition>
-    <Condition xsi:type="cm:And" name="ACCModePrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.26">
+    <Condition xsi:type="cm:And" name="ACCModePrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.6">
       <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.1">
         <val xsi:type="cm:FloatValue" val="15.0"/>
       </condtionGroup>
@@ -1011,7 +712,7 @@
         <val xsi:type="cm:FloatValue" val="200.0"/>
       </condtionGroup>
     </Condition>
-    <Condition xsi:type="cm:Or" name="parkModePostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.25">
+    <Condition xsi:type="cm:Or" name="parkModePostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.5">
       <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.1">
         <val xsi:type="cm:FloatValue" val="15.0"/>
       </condtionGroup>
@@ -1019,22 +720,176 @@
         <val xsi:type="cm:FloatValue"/>
       </condtionGroup>
     </Condition>
-    <Condition xsi:type="cm:Or" name="ACCModePostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.26">
+    <Condition xsi:type="cm:Or" name="ACCModePostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.1" ConditionMetSignal="//@SignalCollection/@Signals.6">
       <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.1">
         <val xsi:type="cm:FloatValue" val="15.0"/>
       </condtionGroup>
       <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.1">
         <val xsi:type="cm:FloatValue" val="200.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="parkModenoDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.9">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="12.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="201.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="ACCModenoDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.10">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="120.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="201.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="parkModenoDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.9">
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="12.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="201.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="ACCModenoDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.10">
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="120.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="201.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="parkModelowDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.13">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="8.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="12.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="ACCModelowDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.14">
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="120.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="80.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="parkModelowDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.13">
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="8.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="12.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="ACCModelowDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.14">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="120.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="30.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="parkModemediumDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.17">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="3.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="8.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="ACCModemediumDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.18">
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="80.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="30.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="parkModemediumDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.17">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="8.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="3.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="ACCModemediumDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.18">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="80.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="30.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="parkModehighDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.21">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="0.2"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="3.0"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="ACCModehighDangerPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.22">
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="30.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="0.2"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="parkModehighDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.21">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="3.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="0.2"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="ACCModehighDangerPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.22">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="30.0"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="0.2"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="parkModecollisionPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.25">
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="0.2"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:And" name="ACCModecollisionPrecondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.26">
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="0.2"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="parkModecollisionPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.25">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="0.2"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue"/>
+      </condtionGroup>
+    </Condition>
+    <Condition xsi:type="cm:Or" name="ACCModecollisionPostcondition" CheckConditionTrigger="//@SignalCollection/@Signals.0" ConditionMetSignal="//@SignalCollection/@Signals.26">
+      <condtionGroup xsi:type="cm:Condition" compareType="GT" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue" val="0.2"/>
+      </condtionGroup>
+      <condtionGroup xsi:type="cm:Condition" compareType="LTEQ" ref="//@SignalCollection/@Signals.0">
+        <val xsi:type="cm:FloatValue"/>
       </condtionGroup>
     </Condition>
   </Conditions>
   <assets>
-    <asset xsi:type="pp-ac-assets:Sound" name="parkModecollision">
-      <ref ref="sound/tireSqueling.mp3"/>
-    </asset>
-    <asset xsi:type="pp-ac-assets:Sound" name="ACCModecollision">
-      <ref ref="sound/tireSqueling.mp3"/>
-    </asset>
     <asset xsi:type="pp-vis-assets:Image">
       <comment>parkModecollision</comment>
       <ref ref="img/boom.png"/>

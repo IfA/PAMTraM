@@ -2235,6 +2235,7 @@
       <modifier xsi:type="mapping:SubstringReplacer" name="@ to _" regex="@" replacement="_"/>
       <modifier xsi:type="mapping:SubstringReplacer" name="$ to _" regex="\$" replacement="_"/>
       <modifier xsi:type="mapping:SubstringReplacer" name="# to _" regex="#" replacement="_"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="remove 'LocalHost'" regex="LocalHost" replacement=""/>
       <modifier xsi:type="mapping:SubstringReplacer" name="__ in beginning" regex="^_*" replacement=""/>
     </modifierSets>
     <modifierSets name="delete _number">

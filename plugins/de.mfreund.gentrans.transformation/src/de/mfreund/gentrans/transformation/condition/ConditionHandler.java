@@ -1,11 +1,9 @@
 package de.mfreund.gentrans.transformation.condition;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,13 +12,10 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.InstancePointerHandler;
 import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
-import pamtram.ReferenceableElement;
 import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComparatorEnum;
@@ -270,6 +265,7 @@ public class ConditionHandler {
 			 */
 			boolean inclusionMatched = false;
 			boolean containsInclusions = false;
+			boolean exclusionFailed = false;
 			for (final AttributeValueConstraint constraint : attrCondition.getValueConstraint()) {
 	
 				if (attributeConditionConstraintsWithErrors.contains(constraint)) {
@@ -326,6 +322,7 @@ public class ConditionHandler {
 				}
 	
 				if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+					exclusionFailed = true;
 					break;
 				} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
 					containsInclusions = true;
@@ -335,7 +332,7 @@ public class ConditionHandler {
 				}
 			}
 
-			if (!inclusionMatched && containsInclusions) {
+			if ((!inclusionMatched && containsInclusions) || exclusionFailed) {
 				attrBoolResults.add(false);
 			} else {
 				attrBoolResults.add(true);

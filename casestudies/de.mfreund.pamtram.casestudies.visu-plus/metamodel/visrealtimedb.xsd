@@ -1,0 +1,212 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="RealTimeDB">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="AreaData">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:int" name="NumInput"/>
+                <xs:attribute type="xs:int" name="NumOutput"/>
+                <xs:attribute type="xs:int" name="NumFlag"/>
+                <xs:attribute type="xs:byte" name="UseSharedMemory"/>
+                <xs:attribute type="xs:byte" name="EnableInUseVarMng"/>
+                <xs:attribute type="xs:byte" name="EnableTimeStampNotifying"/>
+                <xs:attribute type="xs:byte" name="UseSharedDynTag"/>
+                <xs:attribute type="xs:byte" name="UseInputImage"/>
+                <xs:attribute type="xs:byte" name="UseOutputImage"/>
+                <xs:attribute type="xs:short" name="PurgeDynTagTimer"/>
+                <xs:attribute type="xs:byte" name="RetWriteDelay"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EnableRetFlags">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:byte">
+                <xs:attribute type="xs:byte" name="RetFlagFrom"/>
+                <xs:attribute type="xs:short" name="RetFlagTo"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EnableRetInput">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:byte">
+                <xs:attribute type="xs:byte" name="RetInputFrom"/>
+                <xs:attribute type="xs:short" name="RetInputTo"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EnableRetOutput">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:byte">
+                <xs:attribute type="xs:byte" name="RetOutputFrom"/>
+                <xs:attribute type="xs:short" name="RetOutputTo"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EnableOPCServer">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:byte">
+                <xs:attribute type="xs:string" name="OPCServerName"/>
+                <xs:attribute type="xs:string" name="OPCServerDescription"/>
+                <xs:attribute type="xs:byte" name="EnableOPCServerAE"/>
+                <xs:attribute type="xs:byte" name="EnableOPCServerDynTag"/>
+                <xs:attribute type="xs:byte" name="OPCServerDebugEvents"/>
+                <xs:attribute type="xs:byte" name="OPCServerAutoShutdown"/>
+                <xs:attribute type="xs:byte" name="OPCServerAutoUnregister"/>
+                <xs:attribute type="xs:byte" name="OPCServerAutoRegister"/>
+                <xs:attribute type="xs:short" name="OPCServerRefreshRate"/>
+                <xs:attribute type="xs:short" name="OPCServerShutdownClientsTimeout"/>
+                <xs:attribute type="xs:byte" name="OPCServerEnableAEAck"/>
+                <xs:attribute type="xs:byte" name="OPCServerThreadingMode"/>
+                <xs:attribute type="xs:string" name="SINGLE_PATH_SEPARATOR"/>
+                <xs:attribute type="xs:string" name="DOUBLE_PATH_SEPARATOR"/>
+                <xs:attribute type="xs:string" name="OPX_PATH_SEPARATOR"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EnableOPXServer">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:byte">
+                <xs:attribute type="xs:string" name="Transport"/>
+                <xs:attribute type="xs:short" name="Port"/>
+                <xs:attribute type="xs:byte" name="AccepterThreads"/>
+                <xs:attribute type="xs:byte" name="MinThreadPool"/>
+                <xs:attribute type="xs:byte" name="MaxThreadPool"/>
+                <xs:attribute type="xs:byte" name="RequestBacklog"/>
+                <xs:attribute type="xs:int" name="RequestTimeout"/>
+                <xs:attribute type="xs:short" name="RequestBuffersize"/>
+                <xs:attribute type="xs:byte" name="KeepAlive"/>
+                <xs:attribute type="xs:string" name="VendorInfo"/>
+                <xs:attribute type="xs:byte" name="EnableSecurity"/>
+                <xs:attribute type="xs:byte" name="MinAccLevel"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EnableNTSecurityOPCServerTag">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:byte">
+                <xs:attribute type="xs:byte" name="OPCServerMinImpersonationLevel"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="szTraceDBSettings">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:byte" name="RecycleDBConnection"/>
+                <xs:attribute type="xs:byte" name="SendAdministrativeAlert"/>
+                <xs:attribute type="xs:byte" name="MaxError"/>
+                <xs:attribute type="xs:byte" name="MaxNumberTrans"/>
+                <xs:attribute type="xs:string" name="Dsn"/>
+                <xs:attribute type="xs:string" name="User"/>
+                <xs:attribute type="xs:string" name="TimeCol"/>
+                <xs:attribute type="xs:string" name="MSecCol"/>
+                <xs:attribute type="xs:string" name="LocalTimeCol"/>
+                <xs:attribute type="xs:string" name="UserCol"/>
+                <xs:attribute type="xs:string" name="ChangerCol"/>
+                <xs:attribute type="xs:string" name="ValueBeforeCol"/>
+                <xs:attribute type="xs:string" name="ValueAfterCol"/>
+                <xs:attribute type="xs:string" name="ValueCol"/>
+                <xs:attribute type="xs:string" name="QualityCol"/>
+                <xs:attribute type="xs:string" name="TimeStampCol"/>
+                <xs:attribute type="xs:string" name="VarNameCol"/>
+                <xs:attribute type="xs:string" name="VarGroupNameCol"/>
+                <xs:attribute type="xs:string" name="VarDescriptionCol"/>
+                <xs:attribute type="xs:short" name="MaxCacheBeforeFlush"/>
+                <xs:attribute type="xs:short" name="DefVarCharPrecision"/>
+                <xs:attribute type="xs:byte" name="UseInMemoryDB"/>
+                <xs:attribute type="xs:byte" name="IMDBSharedTable"/>
+                <xs:attribute type="xs:byte" name="IMDBSaveColumnName"/>
+                <xs:attribute type="xs:byte" name="IMDBExportXMLTable"/>
+                <xs:attribute type="xs:byte" name="IMDBExportCSVTable"/>
+                <xs:attribute type="xs:byte" name="IMDBCryptFile"/>
+                <xs:attribute type="xs:byte" name="SecWriteBehindDelay"/>
+                <xs:attribute type="xs:byte" name="MaxRecordsNumber"/>
+                <xs:attribute type="xs:string" name="cIMDBDelimiter"/>
+                <xs:attribute type="xs:string" name="cIMDBEndOfLine"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RealTimeODBCSettings">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:byte" name="RecycleDBConnection"/>
+                <xs:attribute type="xs:byte" name="SendAdministrativeAlert"/>
+                <xs:attribute type="xs:byte" name="MaxError"/>
+                <xs:attribute type="xs:byte" name="MaxNumberTrans"/>
+                <xs:attribute type="xs:string" name="Dsn"/>
+                <xs:attribute type="xs:string" name="User"/>
+                <xs:attribute type="xs:short" name="DefVarCharPrecision"/>
+                <xs:attribute type="xs:string" name="TableName"/>
+                <xs:attribute type="xs:string" name="NameCol"/>
+                <xs:attribute type="xs:string" name="ValueCol"/>
+                <xs:attribute type="xs:string" name="MinValueCol"/>
+                <xs:attribute type="xs:string" name="MaxValueCol"/>
+                <xs:attribute type="xs:string" name="AveValueCol"/>
+                <xs:attribute type="xs:string" name="TotalTimeCol"/>
+                <xs:attribute type="xs:string" name="LastTimeOnCol"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="VariableList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Variable" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:byte" name="Type" use="optional"/>
+                            <xs:attribute type="xs:byte" name="AreaType" use="optional"/>
+                            <xs:attribute type="xs:byte" name="Address" use="optional"/>
+                            <xs:attribute type="xs:byte" name="Bit" use="optional"/>
+                            <xs:attribute type="xs:byte" name="Shared" use="optional"/>
+                            <xs:attribute type="xs:byte" name="Retentive" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="EnableTrace">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:byte">
+                            <xs:attribute type="xs:int" name="DurationDays" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:byte" name="EnableOPCServer"/>
+                    <xs:element type="xs:byte" name="EnableNetworkClient"/>
+                    <xs:element type="xs:byte" name="EnableMapRealTimeToDB"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="DriverList"/>
+        <xs:element type="xs:string" name="RenamedVariables"/>
+        <xs:element type="xs:string" name="StructureList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

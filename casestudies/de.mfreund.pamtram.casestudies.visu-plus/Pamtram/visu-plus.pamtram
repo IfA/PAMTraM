@@ -1672,8 +1672,152 @@
       </attributes>
     </metaModelSections>
   </targetSectionModel>
+  <targetSectionModel>
+    <metaModelPackage href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#/"/>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="OPCClientEditorType" file="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
+      <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCClientEditorType"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="oPCDAClientData">
+        <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCClientEditorType/oPCDAClientData"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="OPCDAClientDataType">
+          <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAClientDataType"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="poolOPCClientTest" value="5">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAClientDataType/poolOPCClientTest"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="refreshRateDynamicOPC" value="250">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAClientDataType/refreshRateDynamicOPC"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="startupWaitTimeout" value="10000">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAClientDataType/startupWaitTimeout"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="timeoutDynamicOperation" value="1000">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAClientDataType/timeoutDynamicOperation"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="timeoutOPCClientTest" value="5000">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAClientDataType/timeoutOPCClientTest"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="oPCDAList">
+        <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCClientEditorType/oPCDAList"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="OPCDAListType">
+          <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAListType"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="dAServer">
+            <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAListType/dAServer"/>
+            <value xsi:type="metamodel:TargetSectionClass" name="DAServerType">
+              <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//DAServerType"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="node">
+                <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//DAServerType/node"/>
+                <value xsi:type="metamodel:TargetSectionClass" name="NodeType">
+                  <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NodeType"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="classID" value="{AAE5D74F-96E7-4FA3-94C1-6C77181CD1B3}">
+                    <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NodeType/classID"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="reconnectTime" value="10000">
+                    <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NodeType/reconnectTime"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="reReadDynamicItems" value="0">
+                    <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NodeType/reReadDynamicItems"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="server" value="UnifiedAutomation.UaGateway.1">
+                    <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NodeType/server"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="syncOPCDynamicItemsAtStartup" value="0">
+                    <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NodeType/syncOPCDynamicItemsAtStartup"/>
+                  </attributes>
+                </value>
+              </references>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="groupList">
+                <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//DAServerType/groupList"/>
+                <value xsi:type="metamodel:TargetSectionClass" name="GroupListType">
+                  <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//GroupListType"/>
+                  <references xsi:type="metamodel:TargetSectionContainmentReference" name="group">
+                    <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//GroupListType/group"/>
+                    <value xsi:type="metamodel:TargetSectionClass" name="GroupType">
+                      <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//GroupType"/>
+                      <references xsi:type="metamodel:TargetSectionContainmentReference" name="name">
+                        <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//GroupType/name"/>
+                        <value xsi:type="metamodel:TargetSectionClass" name="NameType">
+                          <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType"/>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="active" value="1">
+                            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType/active"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="deadBand" value="0">
+                            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType/deadBand"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="localID" value="0">
+                            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType/localID"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="notInUseDisableGroup" value="0">
+                            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType/notInUseDisableGroup"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="notInUseRefreshRate" value="10000">
+                            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType/notInUseRefreshRate"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="timeBias" value="-60">
+                            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType/timeBias"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="updateRate" value="250">
+                            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType/updateRate"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="value" value="ProcessData">
+                            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType/value"/>
+                          </attributes>
+                        </value>
+                      </references>
+                      <references xsi:type="metamodel:TargetSectionContainmentReference" name="itemList">
+                        <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//GroupType/itemList"/>
+                        <value xsi:type="metamodel:TargetSectionClass" name="ItemListType" container="//@targetSectionModel.1/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0">
+                          <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemListType"/>
+                        </value>
+                      </references>
+                    </value>
+                  </references>
+                </value>
+              </references>
+            </value>
+          </references>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:FileAttribute" value="test.visopcclient" fileType="XML"/>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ItemIDType" container="//@targetSectionModel.1/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0">
+      <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="accessPath" value="">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/accessPath"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="enableRead" value="1">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/enableRead"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="enableWrite" value="1">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/enableWrite"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="reRead" value="0">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/reRead"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="syncDataStartup" value="0">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/syncDataStartup"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="syncWrite" value="1">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/syncWrite"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="value">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/value"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="variable">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/variable"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="vTType" value="0">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/vTType"/>
+      </attributes>
+    </metaModelSections>
+  </targetSectionModel>
   <mappingModel name="Basic">
     <mapping name="sourceContainerMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPCClientEditorType" targetMMSection="//@targetSectionModel.1/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" target="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="testprojekt1.visopcclient" value="testprojekt1.visopcclient"/>
+        </mappingHints>
+      </mappingHintGroups>
       <globalVariables name="xmax" source="//@sourceSectionModel.0/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
       <globalVariables name="xmin" source="//@sourceSectionModel.0/@metaModelSections.0/@references.2/@value.0/@attributes.1"/>
       <globalVariables name="ymax" source="//@sourceSectionModel.0/@metaModelSections.0/@references.2/@value.0/@attributes.2"/>
@@ -2789,10 +2933,34 @@
           <sourceElements xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item CarrierID" targetMMSection="//@targetSectionModel.1/@metaModelSections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.2/@modifierSets.1" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.6">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.7">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.6"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item ProductID" targetMMSection="//@targetSectionModel.1/@metaModelSections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.2/@modifierSets.1" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.6">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.7">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.6"/>
+        </mappingHints>
+      </mappingHintGroups>
     </mapping>
     <modifierSets name="get Number of SignalInterface">
       <modifier xsi:type="mapping:SubstringReplacer" regex="SignalInterface." replacement=""/>
       <modifier xsi:type="mapping:SubstringReplacer" regex="SignalInterface" replacement="0"/>
+    </modifierSets>
+    <modifierSets name="convertCarrierIDBrowsePathToOPCItemValue">
+      <modifier xsi:type="mapping:StringPrepender" name="urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|" string="urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|"/>
+      <modifier xsi:type="mapping:StringAppender" name=".CarrierID@Int" string=".CarrierID@Int"/>
+    </modifierSets>
+    <modifierSets name="convertProductIDBrowsePathToOPCItemValue">
+      <modifier xsi:type="mapping:StringPrepender" name="urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|"/>
+      <modifier xsi:type="mapping:StringAppender" name=".ProductID@Int" string=".ProductID@Int"/>
     </modifierSets>
   </mappingModel>
   <mappingModel name="Signal Displays">

@@ -1671,6 +1671,18 @@
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TypeType1/border"/>
       </attributes>
     </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="LTType">
+      <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//LTType"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="var">
+        <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//LTType/var"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="format">
+        <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//LTType/format"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="value" value="1">
+        <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//LTType/value"/>
+      </attributes>
+    </metaModelSections>
   </targetSectionModel>
   <targetSectionModel>
     <metaModelPackage href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#/"/>
@@ -3548,6 +3560,25 @@
           <sourceElements xsi:type="mapping:FixedValue" name="_l" value="_l"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item" targetMMSection="//@targetSectionModel.1/@metaModelSections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.6">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.7">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.6"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
+        </mappingHints>
+      </mappingHintGroups>
     </mapping>
+    <modifierSets name="convertBrowsePathToOPCItemValue">
+      <modifier xsi:type="mapping:StringPrepender" name="urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|" string="urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|"/>
+    </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

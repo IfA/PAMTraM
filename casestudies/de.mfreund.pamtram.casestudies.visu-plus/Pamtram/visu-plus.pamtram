@@ -1800,7 +1800,7 @@
       <attributes xsi:type="metamodel:ActualAttribute" name="enableRead" value="1">
         <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/enableRead"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="enableWrite" value="1">
+      <attributes xsi:type="metamodel:ActualAttribute" name="enableWrite" value="0">
         <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType/enableWrite"/>
       </attributes>
       <attributes xsi:type="metamodel:ActualAttribute" name="reRead" value="0">
@@ -3579,6 +3579,7 @@
     </mapping>
     <modifierSets name="convertBrowsePathToOPCItemValue">
       <modifier xsi:type="mapping:StringPrepender" name="urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|" string="urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="add missing '$AS.Variables.' if necessary" regex="..LocalHost.#" replacement="..LocalHost.\$AS.Variables.#"/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

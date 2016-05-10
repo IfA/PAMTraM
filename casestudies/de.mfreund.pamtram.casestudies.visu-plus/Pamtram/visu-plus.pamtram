@@ -166,17 +166,17 @@
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="viObject Base with ID" container="//@sourceSectionModel.0/@metaModelSections.4" abstract="true">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="x">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedX">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedX"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="y">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedY">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="width">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="height">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedHeight">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedHeight"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <valueConstraint xsi:type="metamodel:RegExMatcher" name="no empty string" expression=".+"/>
@@ -644,17 +644,17 @@
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="stopperVerticalInDirection">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/stopperVerticalInDirection"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="x">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedX">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedX"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="y">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedY">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="width">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="height">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedHeight">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedHeight"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <valueConstraint xsi:type="metamodel:RegExMatcher" name="no empty string" expression=".+"/>
@@ -716,6 +716,9 @@
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="conveyorImageName">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
       </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="isVertical">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/isVertical"/>
+      </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Conveyor Ellipse" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.1 //@sourceSectionModel.1/@metaModelSections.9">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
@@ -759,6 +762,12 @@
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="conveyorImageName">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedX">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedX"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedY">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject MergingPoint" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.1 //@sourceSectionModel.1/@metaModelSections.9">
@@ -2871,6 +2880,7 @@
     <modifierSets name="delete _number">
       <modifier xsi:type="mapping:SubstringReplacer" name="delete _number" regex="_[0-9]+" replacement=""/>
     </modifierSets>
+    <globalValues name="conveyorWidth" value="168"/>
   </mappingModel>
   <mappingModel name="TransportSystem">
     <mapping name="Viobject Conveyor RectMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.15">
@@ -2904,6 +2914,18 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+          <condition xsi:type="condition:AttributeCondition" name="isVertical" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.15/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="true" caseSensitive="false"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+          <condition xsi:type="condition:AttributeCondition" name="isHorizontal" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.15/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="false" caseSensitive="false"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
@@ -2962,6 +2984,12 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+        </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
@@ -3018,6 +3046,12 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
@@ -3076,6 +3110,12 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(width-width+conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(height-height+conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+        </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
@@ -3125,23 +3165,23 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round(  (x+direction*width*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round(  (x+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*height*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(width/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(height/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
@@ -3216,22 +3256,22 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round(  (x+direction*width*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round(  (x+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*height*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(width/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(height/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
         </mappingHints>
         <modelConnectionMatcher>
@@ -3329,23 +3369,23 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round(  (x+direction*width*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round(  (x+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*height*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(width/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(height/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>

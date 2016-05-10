@@ -400,7 +400,8 @@ public class SourceSectionMatcher extends CancellableElement {
 						//Simplify Mapping by checking conditions of all ConditionalElements (Mapping, MappingHintGroup, MappingHint)
 						mSimplified = checkConditions(element, m, res);
 						
-						mappingFailed = (mSimplified == null);
+//						mappingFailed = (mSimplified == null);
+						mappingFailed = res.isElementWithNegativeCondition(mSimplified);
 
 						/* 
 						 * now, determine the external hint values (the container must be present and valid as this was
@@ -469,7 +470,8 @@ public class SourceSectionMatcher extends CancellableElement {
 							conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()) == condResult.false_condition){
 						
 						//returned false, so remove this Element and break the loop
-						mHintGroupList.remove();
+//						mHintGroupList.remove();
+						res.addElementWithNegativeCondition((ConditionalElement) mHintGroup);
 						continue;
 					} else {
 						
@@ -483,7 +485,8 @@ public class SourceSectionMatcher extends CancellableElement {
 										conditionHandler.checkCondition((mHint).getConditionRef()) == condResult.false_condition){
 									
 									//returned false, so remove this Element and break the loop
-									mHintList.remove();
+//									mHintList.remove();
+									res.addElementWithNegativeCondition((ConditionalElement) mHint);
 									continue;
 								}
 							}
@@ -502,7 +505,8 @@ public class SourceSectionMatcher extends CancellableElement {
 					if(conditionHandler.checkCondition(mImportHintGroup.getCondition()) == condResult.false_condition ||
 							conditionHandler.checkCondition(mImportHintGroup.getConditionRef()) == condResult.false_condition){
 						
-						mImportHintGroupList.remove();
+//						mImportHintGroupList.remove();
+						res.addElementWithNegativeCondition((ConditionalElement) mImportHintGroup);
 						break;
 					}
 				}
@@ -511,7 +515,8 @@ public class SourceSectionMatcher extends CancellableElement {
 			}
 		} else {
 				consoleStream.print(definedMapping.getName() + " is false \n");
-				definedMapping = null; //The Condition of a Mapping false, so return null and the Mapping is excluded from transformations
+				res.addElementWithNegativeCondition(definedMapping);
+//				definedMapping = null; //The Condition of a Mapping false, so return null and the Mapping is excluded from transformations
 		}
 		
 		this.instancePointerHandler.clearTempSectionMap();

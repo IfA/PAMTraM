@@ -55,6 +55,7 @@ import de.mfreund.pamtram.transformation.TransformationFactory;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
+import pamtram.ConditionalElement;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeMapping;
@@ -835,10 +836,8 @@ public class GenericTransformationRunner {
 			/*
 			 * Iterate over all mapping hint group (except inactive and empty ones)
 			 */
-			for (final MappingHintGroupType g : selMap.getMapping()
-					.getActiveMappingHintGroups()) {
-				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup) {
+			for (final MappingHintGroupType g : selMap.getMappingHintGroups()) {
+				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
 
 					/*
 					 * Instantiate the target section.
@@ -846,7 +845,7 @@ public class GenericTransformationRunner {
 					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection = 
 							targetSectionInstantiator.instantiateTargetSectionFirstPass(
 									g.getTargetMMSection(),
-									(MappingHintGroup) g, g.getMappingHints(),
+									(MappingHintGroup) g, selMap.getMappingHints(g),
 									selMap.getHintValues(),
 									selMap.getMapping().getName());
 
@@ -872,13 +871,12 @@ public class GenericTransformationRunner {
 
 			}
 
-			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
+			for (final MappingHintGroupImporter g : selMap.getMappingHintGroupImporters()) {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp != null) {
 
 					// import Hints
-					for (final MappingHint h : expGrp.getMappingHints()) {
+					for (final MappingHint h : selMap.getMappingHints(expGrp)) {
 						selMap.getHintValues().setHintValues(h, null);
 						if (matchingResult.getExportedMappingHints().containsHint(h)) {
 							selMap.getHintValues().addHintValues(h, matchingResult.getExportedMappingHints().getHintValues(h));
@@ -890,7 +888,7 @@ public class GenericTransformationRunner {
 
 						final List<MappingHint> hints = new LinkedList<>();
 						hints.addAll(expGrp.getMappingHints());
-						for (final MappingHintType h : g.getMappingHints()) {
+						for (final MappingHintType h : selMap.getMappingHints(g)) {
 							if (h instanceof MappingHint) {
 								hints.add((MappingHint) h);
 							} else if (h instanceof MappedAttributeValueExpander) {
@@ -1143,6 +1141,10 @@ public class GenericTransformationRunner {
 							if (((MappingHintGroup) g).getModelConnectionMatcher() != null) {// link using matcher
 
 								for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
+									
+									if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
+										continue;
+									}
 
 									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
 										if (isCancelled) {
@@ -1215,8 +1217,12 @@ public class GenericTransformationRunner {
 					 * mapping Instance
 					 */
 					if (i.getContainer() != null) {
-						for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping()
-								.get(m)) {
+						for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
+							
+							if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
+								continue;
+							}
+							
 							final LinkedList<EObjectWrapper> rootInstances = selMap
 									.getInstances(i, g.getTargetMMSection());
 							if (rootInstances.size() > 0) {
@@ -1224,15 +1230,13 @@ public class GenericTransformationRunner {
 
 								// get container instances created by this
 								// mapping instance
-								for (final MappingHintGroupType group : m
-										.getActiveMappingHintGroups()) {
+								for (final MappingHintGroupType group : selMap.getMappingHintGroups()) {
 									if (isCancelled) {
 										return JoiningResult.createJoiningCanceledResult();
 									}
 
 									if (group instanceof MappingHintGroup) {
-										final LinkedList<EObjectWrapper> insts = selMap
-												.getInstances(
+										final LinkedList<EObjectWrapper> insts = selMap.getInstances(
 														(MappingHintGroup) group,
 														i.getContainer());
 										if (insts != null) {
@@ -1332,8 +1336,7 @@ public class GenericTransformationRunner {
 		final double workUnit = 250.0 / matchingResult.getSelectedMappings().size();
 		double accumulatedWork = 0;
 		for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappings()) {
-			for (final MappingHintGroupType g : selMap.getMapping()
-					.getActiveMappingHintGroups()) {
+			for (final MappingHintGroupType g : selMap.getMappingHintGroups()) {
 				if (isCancelled) {
 					return false;
 				}
@@ -1341,12 +1344,13 @@ public class GenericTransformationRunner {
 				if (g.getTargetMMSection() != null
 						&& g instanceof MappingHintGroup) {
 					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
+						
 						targetSectionInstantiator.instantiateTargetSectionSecondPass(
 								g.getTargetMMSection(),
 								selMap.getMapping().getName(),
 								(MappingHintGroup) g,
 								g.getTargetMMSection(),
-								g.getMappingHints(),
+								selMap.getMappingHints(g),
 								selMap.getHintValues(),
 								selMap.getInstancesBySection((MappingHintGroup) g));
 						if (targetSectionInstantiator.isCancelled()) {
@@ -1357,14 +1361,13 @@ public class GenericTransformationRunner {
 				}
 			}
 
-			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
+			for (final MappingHintGroupImporter g : selMap.getMappingHintGroupImporters()) {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp.getTargetMMSection() != null) {
 					if (selMap.getInstancesBySection(g) != null) {
 						final List<MappingHint> hints = new LinkedList<>();
-						hints.addAll(expGrp.getMappingHints());
-						for (final MappingHintType h : g.getMappingHints()) {
+						hints.addAll(selMap.getMappingHints(expGrp));
+						for (final MappingHintType h : selMap.getMappingHints(g)) {
 							if (isCancelled) {
 								return false;
 							}

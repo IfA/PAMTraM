@@ -4,15 +4,26 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 
+import pamtram.ConditionalElement;
+import pamtram.DeactivatableElement;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -59,6 +70,34 @@ class MappingInstanceStorage {
 	 * This contains the hint values that shall be used when instantiating, linking, and expanding the target section(s). 
 	 */
 	private final HintValueStorage hintValues;
+	
+	/**
+	 * This keeps track of those {@link ConditionalElement ConditionalElements} ({@link Mapping}, {@link MappingHintGroup}, or {@link MappingHint})
+	 * for that the checking of the conditions in the {@link SourceSectionMatcher} returned '<em>false</em>' for the current
+	 * {@link #associatedSourceModelElement}.
+	 */
+	private final Set<ConditionalElement> elementsWithNegativeConditions;
+
+	/**
+	 * This contains the still unsynced hint values that are used by the mapping hints.
+	 */
+	private final HintValueStorage unsyncedHintValues;
+
+	/**
+	 * This constructs an instance.
+	 */
+	MappingInstanceStorage() {
+	
+		sourceModelObjetsMapped = new LinkedHashMap<>();
+		mapping = null;
+		associatedSourceModelElement = null;
+		associatedSourceClass = null;
+		instancesBySection = new LinkedHashMap<>();
+		hintValues = new HintValueStorage();
+		elementsWithNegativeConditions = new HashSet<>();
+		unsyncedHintValues = new HintValueStorage();
+	
+	}
 
 	/**
 	 * This is the getter for the {@link #hintValues}.
@@ -68,11 +107,26 @@ class MappingInstanceStorage {
 	public HintValueStorage getHintValues() {
 		return this.hintValues;
 	}
-
+	
 	/**
-	 * This contains the still unsynced hint values that are used by the mapping hints.
+	 * This adds a new {@link ConditionalElement} to the set of {@link #elementsWithNegativeConditions}. This will result
+	 * in the element to be ignored during the steps of the transformation. 
+	 * 
+	 * @param element The {@link ConditionalElement} to be added.
 	 */
-	private final HintValueStorage unsyncedHintValues;
+	public void addElementWithNegativeCondition(ConditionalElement element) {
+		this.elementsWithNegativeConditions.add(element);
+	}
+	
+	/**
+	 * Whether the given {@link ConditionalElement} is part of the {@link #elementsWithNegativeConditions}.
+	 * 
+	 * @param element The {@link ConditionalElement} to be checked.
+	 * @return '<em><b>true</b></em>' if the element is part of the {@link #elementsWithNegativeConditions}; '<em><b>false</b></em>' otherwise
+	 */
+	public boolean isElementWithNegativeCondition(ConditionalElement element) {
+		return this.elementsWithNegativeConditions.contains(element);
+	}
 
 	/**
 	 * This is the getter for the {@link #unsyncedHintValues}.
@@ -81,21 +135,6 @@ class MappingInstanceStorage {
 	 */
 	public HintValueStorage getUnsyncedHintValues() {
 		return this.unsyncedHintValues;
-	}
-
-	/**
-	 * This constructs an instance.
-	 */
-	MappingInstanceStorage() {
-
-		sourceModelObjetsMapped = new LinkedHashMap<>();
-		mapping = null;
-		associatedSourceModelElement = null;
-		associatedSourceClass = null;
-		instancesBySection = new LinkedHashMap<>();
-		hintValues = new HintValueStorage();
-		unsyncedHintValues = new HintValueStorage();
-
 	}
 
 	/**
@@ -154,7 +193,7 @@ class MappingInstanceStorage {
 	 */
 	void addSourceModelObjectsMapped(
 			final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
-		for (final SourceSectionClass key : refs.keySet()) {
+		for(final SourceSectionClass key : refs.keySet()) {
 			if (!sourceModelObjetsMapped.containsKey(key)) {
 				sourceModelObjetsMapped.put(key, new LinkedHashSet<EObject>());
 			}
@@ -245,6 +284,64 @@ class MappingInstanceStorage {
 	 */
 	Mapping getMapping() {
 		return mapping;
+	}
+	
+	/**
+	 * This returns the {@link DeactivatableElement#isDeactivated() active} {@link MappingHintGroupType hint groups} of the 
+	 * {@link #mapping} associated with this. If the hint group is a {@link ConditionalElement} this also checks that
+	 * the condition of the hint groups has not been determined as {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 * 
+	 * @return The list of active and valid {@link MappingHintGroupType hint groups} for this {@link MappingInstanceStorage}.
+	 */
+	List<MappingHintGroupType> getMappingHintGroups() {
+		
+		return this.getMapping().getActiveMappingHintGroups().parallelStream().filter(
+				hg -> !(hg instanceof ConditionalElement) || !isElementWithNegativeCondition((ConditionalElement) hg)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * This returns the {@link DeactivatableElement#isDeactivated() active} {@link MappingHintGroupImporter hint group importers} of the 
+	 * {@link #mapping} associated with this. This also checks that the condition of the hint group importers has not been determined 
+	 * as {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 * 
+	 * @return The list of active and valid {@link MappingHintGroupImporter hint group importers} for this {@link MappingInstanceStorage}.
+	 */
+	List<MappingHintGroupImporter> getMappingHintGroupImporters() {
+		
+		return this.getMapping().getActiveImportedMappingHintGroups().parallelStream().filter(
+				hg -> !isElementWithNegativeCondition(hg)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * This returns the hints for the given {@link MappingHintGroupType hint group} for that the condition has not been determined 
+	 * as {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 * 
+	 * @return The list of valid {@link MappingHint hints} for the given {@link MappingHintGroupType}.
+	 */
+	List<MappingHint> getMappingHints(MappingHintGroupType hintGroup) {
+		
+		if(hintGroup instanceof ConditionalElement && isElementWithNegativeCondition((ConditionalElement) hintGroup)) {
+			return new BasicEList<>();
+		}
+		
+		return hintGroup.getMappingHints().parallelStream().filter(
+				h -> !isElementWithNegativeCondition(h)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * This returns the hints for the given {@link MappingHintGroupImporter hint group importer} for that the condition has not been determined 
+	 * as {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 * 
+	 * @return The list of valid {@link MappingHint hints} for the given {@link MappingHintGroupImporter}.
+	 */
+	List<MappingHintType> getMappingHints(MappingHintGroupImporter hintGroupImporter) {
+		
+		if(isElementWithNegativeCondition((ConditionalElement) hintGroupImporter)) {
+			return new BasicEList<>();
+		}
+		
+		return hintGroupImporter.getMappingHints().parallelStream().filter(
+				h -> !(h instanceof ConditionalElement) || !isElementWithNegativeCondition((ConditionalElement) h)).collect(Collectors.toList());
 	}
 
 	/**

@@ -12,7 +12,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;NAVTOP&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>NAVTOP</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">NAVTOP</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">NAVTOP</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -23,7 +23,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;ALERT&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>ALERT</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">ALERT</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ALERT</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -34,7 +34,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;Mill55Robot&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>Mill55Robot</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Mill55Robot</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Mill55Robot</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -45,7 +45,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;Mill55CNC&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>Mill55CNC</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Mill55CNC</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Mill55CNC</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -56,7 +56,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;MillRobotGripper&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>MillRobotGripper</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">MillRobotGripper</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">MillRobotGripper</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -67,7 +67,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;PalletHolder_1&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>PalletHolder_1</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">PalletHolder_1</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PalletHolder_1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -78,7 +78,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;PalletHolder_2&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>PalletHolder_2</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">PalletHolder_2</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PalletHolder_2</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -89,7 +89,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;PalletHolder_3&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>PalletHolder_3</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">PalletHolder_3</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PalletHolder_3</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -98,9 +98,9 @@
       <type height="100" stroke-width="0" width="300" x="2880" y="980"></type>
       <ExtFill Style="2"/>
       <Mechanic clickable="true"/>
-      <CommandsOnDown n0="&lt;CommandType variable=&quot;LocalHost__AS_Variables__Stat_Mill55_Vis_Functions_StopStation_activate_activate_Bool&quot; SecondVariable=&quot;&quot; action=&quot;0&quot; strobe=&quot;0&quot; value=&quot;1&quot; max=&quot;100.0&quot; min=&quot;0.0&quot; chars=&quot;0&quot; alias=&quot;&quot; pwd=&quot;0&quot;>Variable&lt;/CommandType>"/>
+      <CommandsOnDown n0="&lt;CommandType variable=&quot;AS_Variables__Stat_Mill55_Vis_Functions_StopStation_activate_activate_Bool&quot; SecondVariable=&quot;&quot; action=&quot;0&quot; strobe=&quot;0&quot; value=&quot;1&quot; max=&quot;100.0&quot; min=&quot;0.0&quot; chars=&quot;0&quot; alias=&quot;&quot; pwd=&quot;0&quot;>Variable&lt;/CommandType>"/>
       <Name>StopStation</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">StopStation</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">StopStation</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -109,9 +109,9 @@
       <type height="100" stroke-width="0" width="300" x="2880" y="680"></type>
       <ExtFill Style="2"/>
       <Mechanic clickable="true"/>
-      <CommandsOnDown n0="&lt;CommandType variable=&quot;LocalHost__AS_Variables__Stat_Mill55_Vis_Functions_StartStation_activate_activate_Bool&quot; SecondVariable=&quot;&quot; action=&quot;0&quot; strobe=&quot;0&quot; value=&quot;1&quot; max=&quot;100.0&quot; min=&quot;0.0&quot; chars=&quot;0&quot; alias=&quot;&quot; pwd=&quot;0&quot;>Variable&lt;/CommandType>"/>
+      <CommandsOnDown n0="&lt;CommandType variable=&quot;AS_Variables__Stat_Mill55_Vis_Functions_StartStation_activate_activate_Bool&quot; SecondVariable=&quot;&quot; action=&quot;0&quot; strobe=&quot;0&quot; value=&quot;1&quot; max=&quot;100.0&quot; min=&quot;0.0&quot; chars=&quot;0&quot; alias=&quot;&quot; pwd=&quot;0&quot;>Variable&lt;/CommandType>"/>
       <Name>StartStation</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">StartStation</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">StartStation</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -173,9 +173,9 @@
       <object>Edit</object>
       <editbox height="100" stroke-width="0" width="105" x="20" y="850"/>
       <style edit="false" fmtscale="x.xx" spin="false"/>
-      <execution var="LocalHost__AS_Variables__Stat_Mill55_Vis_Task"/>
+      <execution var="AS_Variables__Stat_Mill55_Vis_Task"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
       <Shadow/>
       <Rotation/>
     </child>
@@ -183,7 +183,7 @@
       <object>base</object>
       <type Border="4" height="100" stroke-width="0" width="105" x="125" y="850"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Task</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Task</text>
       <Shadow/>
       <Rotation/>
     </child>

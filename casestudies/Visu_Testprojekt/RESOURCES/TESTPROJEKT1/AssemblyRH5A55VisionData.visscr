@@ -12,7 +12,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;NAVTOP&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>NAVTOP</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">NAVTOP</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">NAVTOP</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -23,7 +23,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;ALERT&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>ALERT</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">ALERT</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ALERT</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -34,7 +34,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;AssemblyRH5A55&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>AssemblyRH5A55</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">AssemblyRH5A55</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">AssemblyRH5A55</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -42,9 +42,9 @@
       <object>Edit</object>
       <editbox height="100" stroke-width="0" width="105" x="20" y="910"/>
       <style edit="false" fmtscale="x.xx" spin="false"/>
-      <execution var="LocalHost__AS_Variables__Dev_AssemblyRH5A55VisionData_Vis_Task"/>
+      <execution var="AS_Variables__Dev_AssemblyRH5A55VisionData_Vis_Task"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
       <Shadow/>
       <Rotation/>
     </child>
@@ -52,9 +52,9 @@
       <object>Edit</object>
       <editbox height="100" stroke-width="0" width="177" x="2826" y="1300"/>
       <style edit="false" fmtscale="x.xx" spin="false"/>
-      <execution var="LocalHost__PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Ori_Yaw"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Ori_Yaw"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
       <Shadow/>
       <Rotation/>
     </child>
@@ -62,9 +62,9 @@
       <object>Edit</object>
       <editbox height="100" stroke-width="0" width="177" x="2826" y="1170"/>
       <style edit="false" fmtscale="x.xx" spin="false"/>
-      <execution var="LocalHost__PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Ori_Pitch"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Ori_Pitch"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
       <Shadow/>
       <Rotation/>
     </child>
@@ -72,9 +72,9 @@
       <object>Edit</object>
       <editbox height="100" stroke-width="0" width="177" x="2826" y="1040"/>
       <style edit="false" fmtscale="x.xx" spin="false"/>
-      <execution var="LocalHost__PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Orientation"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Orientation"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
       <Shadow/>
       <Rotation/>
     </child>
@@ -82,9 +82,9 @@
       <object>Edit</object>
       <editbox height="100" stroke-width="0" width="177" x="2826" y="910"/>
       <style edit="false" fmtscale="x.xx" spin="false"/>
-      <execution var="LocalHost__PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Pos_z"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Pos_z"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
       <Shadow/>
       <Rotation/>
     </child>
@@ -92,9 +92,9 @@
       <object>Edit</object>
       <editbox height="100" stroke-width="0" width="177" x="2826" y="780"/>
       <style edit="false" fmtscale="x.xx" spin="false"/>
-      <execution var="LocalHost__PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Pos_y"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Pos_y"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
       <Shadow/>
       <Rotation/>
     </child>
@@ -102,19 +102,19 @@
       <object>Edit</object>
       <editbox height="100" stroke-width="0" width="177" x="2826" y="650"/>
       <style edit="false" fmtscale="x.xx" spin="false"/>
-      <execution var="LocalHost__PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Pos_x"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Pos_x"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
       <Shadow/>
       <Rotation/>
     </child>
     <child>
       <object>Edit</object>
       <editbox height="100" stroke-width="0" width="177" x="2826" y="520"/>
-      <style edit="false" fmtscale="x.xx" spin="false"/>
-      <execution var="LocalHost__PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Recognized"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55VisionData_Outputs_Recognized"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle"/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
       <Shadow/>
       <Rotation/>
     </child>
@@ -122,7 +122,7 @@
       <object>base</object>
       <type Border="4" height="100" stroke-width="0" width="105" x="125" y="910"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Task</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Task</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -130,7 +130,7 @@
       <object>base</object>
       <type Border="4" height="100" stroke-width="0" width="177" x="3003" y="1300"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Ori_Yaw.1</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Ori_Yaw.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -138,7 +138,7 @@
       <object>base</object>
       <type Border="4" height="100" stroke-width="0" width="177" x="3003" y="1170"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Ori_Pitch.1</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Ori_Pitch.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -146,7 +146,7 @@
       <object>base</object>
       <type Border="4" height="100" stroke-width="0" width="177" x="3003" y="1040"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Orientation.1</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Orientation.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -154,7 +154,7 @@
       <object>base</object>
       <type Border="4" height="100" stroke-width="0" width="177" x="3003" y="910"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Pos_z.1</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Pos_z.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -162,7 +162,7 @@
       <object>base</object>
       <type Border="4" height="100" stroke-width="0" width="177" x="3003" y="780"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Pos_y.1</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Pos_y.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -170,7 +170,7 @@
       <object>base</object>
       <type Border="4" height="100" stroke-width="0" width="177" x="3003" y="650"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Pos_x.1</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Pos_x.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -178,7 +178,7 @@
       <object>base</object>
       <type Border="4" height="100" stroke-width="0" width="177" x="3003" y="520"/>
       <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">Recognized.1</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Recognized.1</text>
       <Shadow/>
       <Rotation/>
     </child>

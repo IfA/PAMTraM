@@ -12,7 +12,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;NAVTOP&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>NAVTOP</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">NAVTOP</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">NAVTOP</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -23,7 +23,7 @@
       <Mechanic clickable="true"/>
       <CommandsOnDown n0="&lt;CommandType synoptic=&quot;&quot; action=&quot;5&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
       <Name>BACK</Name>
-      <text font-family="Tahoma" font-size="14" text-anchor="middle">BACK</text>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">BACK</text>
       <Shadow/>
       <Rotation/>
     </child>

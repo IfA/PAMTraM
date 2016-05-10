@@ -166,21 +166,49 @@
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="viObject Base with ID" container="//@sourceSectionModel.0/@metaModelSections.4" abstract="true">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="x">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="y">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="width">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="height">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
+        <valueConstraint xsi:type="metamodel:RegExMatcher" name="no empty string" expression=".+"/>
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/id"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="matflow viObject Base" container="//@sourceSectionModel.0/@metaModelSections.4" abstract="true">
+      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedX">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedX"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedY">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="width">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
-      </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="correctedHeight">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedHeight"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="width">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <valueConstraint xsi:type="metamodel:RegExMatcher" name="no empty string" expression=".+"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/id"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="x">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="y">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="height">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="viObject with SignalInterface Base" container="//@sourceSectionModel.0/@metaModelSections.4">
@@ -370,7 +398,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.3 //@sourceSectionModel.1/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.4 //@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionButton" expression="FunctionButton"/>
@@ -474,7 +502,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Station" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Station" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.8">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -526,7 +554,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Assembly" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Assembly" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.8">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -578,7 +606,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Component" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Component" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.8">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -672,8 +700,17 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" expression="true"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/isStopper"/>
       </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="x">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="y">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="height">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
+      </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Conveyor Rect" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.1 //@sourceSectionModel.1/@metaModelSections.8">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Conveyor Rect" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.9">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -720,7 +757,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/isVertical"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Conveyor Ellipse" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.1 //@sourceSectionModel.1/@metaModelSections.9">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Conveyor Ellipse" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.10">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -770,7 +807,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject MergingPoint" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.1 //@sourceSectionModel.1/@metaModelSections.9">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject MergingPoint" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.10">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -814,7 +851,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Fork" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.1 //@sourceSectionModel.1/@metaModelSections.9">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject Fork" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.10">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -1304,7 +1341,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="SignalInterface Stopper" container="//@sourceSectionModel.1/@metaModelSections.14/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="SignalInterface Stopper" container="//@sourceSectionModel.1/@metaModelSections.15/@references.0/@value.0">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
@@ -2387,13 +2424,53 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping name="Viobject_NavigatorButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.5">
+    <mapping name="matflow viObject BaseMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.2" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MatflowTypeType1_id" targetMMSection="//@targetSectionModel.0/@metaModelSections.14">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round( x/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( ymax/(unitspermeter/xyScale) - y/(unitspermeter/xyScale) - height/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(width/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(height/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MatflowChildType1_id" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="objectIDMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+    </mapping>
+    <mapping name="Viobject_NavigatorButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.6">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_NavigatorButton" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Button" value="Button"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="n0Mapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.2/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="send@NavigatorButton" source="//@sourceSectionModel.1/@metaModelSections.5/@attributes.1" modifier="//@mappingModel.1/@modifierSets.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="send@NavigatorButton" source="//@sourceSectionModel.1/@metaModelSections.6/@attributes.1" modifier="//@mappingModel.1/@modifierSets.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
@@ -2467,7 +2544,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping name="Viobject_BackButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.6">
+    <mapping name="Viobject_BackButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.7">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_BackButton" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Button" value="Button"/>
@@ -2547,7 +2624,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping name="viObject FunctionButtonMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.4">
+    <mapping name="viObject FunctionButtonMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.5">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_FunctionButton" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Button" value="Button"/>
@@ -2678,71 +2755,14 @@
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping name="Viobject StationMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.11">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="einpassen-Proportionen beibehalten" value="6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="imageIDMapping" resultModifier="//@mappingModel.1/@modifierSets.4" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.1/@attributes.1" modifier="//@mappingModel.1/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameStation" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.3/@attributes.1" modifier="//@mappingModel.1/@modifierSets.5 //@mappingModel.1/@modifierSets.7"/>
-        </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
-        </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
-        </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-        </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-    </mapping>
-    <mapping name="Viobject AssemblyMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.12">
+    <mapping name="Viobject StationMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.12">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
         <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="einpassen-Proportionen beibehalten" value="6"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="imageIDMapping" resultModifier="//@mappingModel.1/@modifierSets.4" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.1/@attributes.1" modifier="//@mappingModel.1/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameAssembly" source="//@sourceSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.3/@attributes.1" modifier="//@mappingModel.1/@modifierSets.5 //@mappingModel.1/@modifierSets.7"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameStation" source="//@sourceSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.3/@attributes.1" modifier="//@mappingModel.1/@modifierSets.5 //@mappingModel.1/@modifierSets.7"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
@@ -2792,14 +2812,71 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping name="Viobject ComponentMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.13">
+    <mapping name="Viobject AssemblyMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.13">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
         <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="einpassen-Proportionen beibehalten" value="6"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="imageIDMapping" resultModifier="//@mappingModel.1/@modifierSets.4" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel.1/@metaModelSections.13/@references.0/@value.0/@references.0/@value.1/@attributes.1" modifier="//@mappingModel.1/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameComponent" source="//@sourceSectionModel.1/@metaModelSections.13/@references.0/@value.0/@references.0/@value.3/@attributes.1" modifier="//@mappingModel.1/@modifierSets.5 //@mappingModel.1/@modifierSets.7"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameAssembly" source="//@sourceSectionModel.1/@metaModelSections.13/@references.0/@value.0/@references.0/@value.3/@attributes.1" modifier="//@mappingModel.1/@modifierSets.5 //@mappingModel.1/@modifierSets.7"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+    </mapping>
+    <mapping name="Viobject ComponentMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.14">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="einpassen-Proportionen beibehalten" value="6"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="imageIDMapping" resultModifier="//@mappingModel.1/@modifierSets.4" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel.1/@metaModelSections.14/@references.0/@value.0/@references.0/@value.1/@attributes.1" modifier="//@mappingModel.1/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameComponent" source="//@sourceSectionModel.1/@metaModelSections.14/@references.0/@value.0/@references.0/@value.3/@attributes.1" modifier="//@mappingModel.1/@modifierSets.5 //@mappingModel.1/@modifierSets.7"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
@@ -2883,79 +2960,10 @@
     <globalValues name="conveyorWidth" value="168"/>
   </mappingModel>
   <mappingModel name="TransportSystem">
-    <mapping name="Viobject Conveyor RectMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.15">
+    <mapping name="Viobject Conveyor RectMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.16">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
         <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="einpassen" value="2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="imageIDMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Conveyor/" value="Conveyor/"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.0"/>
-        </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
-        </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <condition xsi:type="condition:AttributeCondition" name="isVertical" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.15/@attributes.1">
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="true" caseSensitive="false"/>
-          </condition>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <condition xsi:type="condition:AttributeCondition" name="isHorizontal" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.15/@attributes.1">
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="false" caseSensitive="false"/>
-          </condition>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
-        </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameConveyor" source="//@sourceSectionModel.1/@metaModelSections.15/@references.0/@value.0/@references.0/@value.2/@attributes.1"/>
-        </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-    </mapping>
-    <mapping name="Viobject Conveyor EllipseMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.16">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="einpassen-Proportionen beibehalten" value="6"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="imageIDMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Conveyor/" value="Conveyor/"/>
@@ -2964,14 +2972,14 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
         </mappingHints>
@@ -2980,25 +2988,22 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
+          <condition xsi:type="condition:AttributeCondition" name="isVertical" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.16/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="true" caseSensitive="false"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <condition xsi:type="condition:AttributeCondition" name="isHorizontal" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.16/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="false" caseSensitive="false"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
-        </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
@@ -3007,15 +3012,15 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping name="Viobject MergingPointMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.17">
+    <mapping name="Viobject Conveyor EllipseMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.17">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
         <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="einpassen-Proportionen beibehalten" value="6"/>
@@ -3027,14 +3032,14 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
         </mappingHints>
@@ -3043,42 +3048,33 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
-        </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameMergingPoint" source="//@sourceSectionModel.1/@metaModelSections.17/@references.0/@value.0/@references.0/@value.2/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameConveyor" source="//@sourceSectionModel.1/@metaModelSections.17/@references.0/@value.0/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping name="Viobject ForkMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.18">
+    <mapping name="Viobject MergingPointMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.18">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
         <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="einpassen-Proportionen beibehalten" value="6"/>
@@ -3090,14 +3086,14 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
         </mappingHints>
@@ -3106,38 +3102,83 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="correctedHeight" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameMergingPoint" source="//@sourceSectionModel.1/@metaModelSections.18/@references.0/@value.0/@references.0/@value.2/@attributes.1"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+    </mapping>
+    <mapping name="Viobject ForkMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.19">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetMMSection="//@targetSectionModel.0/@metaModelSections.9">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="styleMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="einpassen-Proportionen beibehalten" value="6"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="imageIDMapping" target="//@targetSectionModel.0/@metaModelSections.9/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Conveyor/" value="Conveyor/"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.19/@attributes.0"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.4">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(width-width+conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(height-height+conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="correctedHeight" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
         </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
-        </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameFork" source="//@sourceSectionModel.1/@metaModelSections.18/@references.0/@value.0/@references.0/@value.2/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameFork" source="//@sourceSectionModel.1/@metaModelSections.19/@references.0/@value.0/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3148,11 +3189,11 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectIDMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </mappingHints>
@@ -3166,31 +3207,31 @@
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.5"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round(  (x+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
@@ -3205,18 +3246,18 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1_empty" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_" value="_"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_e" value="_e"/>
@@ -3224,11 +3265,11 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
@@ -3239,11 +3280,11 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectIDMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_f" value="_f"/>
         </mappingHints>
@@ -3257,31 +3298,31 @@
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round(  (x+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.5"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_f" value="_f"/>
         </modelConnectionMatcher>
@@ -3296,18 +3337,18 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_f" value="_f"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1_full" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_" value="_"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_f" value="_f"/>
@@ -3315,11 +3356,11 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_f" value="_f"/>
         </modelConnectionMatcher>
@@ -3337,11 +3378,11 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_f" value="_f"/>
         </modelConnectionMatcher>
@@ -3352,11 +3393,11 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectIDMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </mappingHints>
@@ -3370,31 +3411,31 @@
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="rect" value="rect"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.5"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round(  (x+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.0"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </modelConnectionMatcher>
@@ -3409,18 +3450,18 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1_product" targetMMSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_" value="_"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_p" value="_p"/>
@@ -3428,11 +3469,11 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </modelConnectionMatcher>
@@ -3450,11 +3491,11 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.14/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </modelConnectionMatcher>
@@ -3525,18 +3566,18 @@
     </modifierSets>
   </mappingModel>
   <mappingModel name="Signal Displays">
-    <mapping name="viObject with SignalInterface BaseMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.2">
+    <mapping name="viObject with SignalInterface BaseMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.3">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChildType1_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Edit" value="Edit"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectIDMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </mappingHints>
         <modelConnectionMatcher>
@@ -3546,26 +3587,26 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="EditboxType_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.6">
         <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round( x / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height) / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round( width/2 / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round( height / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3573,38 +3614,38 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExecutionType1_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.7">
         <mappingHints xsi:type="mapping:AttributeMapping" name="varMapping" target="//@targetSectionModel.0/@metaModelSections.7/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.6"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.6"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="StyleType_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.8">
         <mappingHints xsi:type="mapping:AttributeMapping" name="boolFormatMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.2">
-          <condition xsi:type="condition:AttributeCondition" name="Bool" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+          <condition xsi:type="condition:AttributeCondition" name="Bool" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Bool"/>
           </condition>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="x" value="x"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="integerFormatMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.2">
-          <condition xsi:type="condition:AttributeCondition" name="Integer" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+          <condition xsi:type="condition:AttributeCondition" name="Integer" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Integer"/>
           </condition>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="xxx" value="xxx"/>
@@ -3612,11 +3653,11 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3626,11 +3667,11 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="objectIDMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_l" value="_l"/>
         </mappingHints>
         <modelConnectionMatcher>
@@ -3640,18 +3681,18 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1_label" targetMMSection="//@targetSectionModel.0/@metaModelSections.14">
         <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round( (x+width/2) / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round( (ymax-y-height) / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round( width/2 / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round( height / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="borderMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.7">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="4" value="4"/>
@@ -3659,65 +3700,65 @@
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_l" value="_l"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType_label" targetMMSection="//@targetSectionModel.0/@metaModelSections.13">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.13/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_l" value="_l"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.6"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.6"/>
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="boolTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <condition xsi:type="condition:AttributeCondition" name="Bool" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+          <condition xsi:type="condition:AttributeCondition" name="Bool" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Bool"/>
           </condition>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Bit" value="0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="integerTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <condition xsi:type="condition:AttributeCondition" name="Integer" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+          <condition xsi:type="condition:AttributeCondition" name="Integer" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Integer"/>
           </condition>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="DWord (32 Bit mit VZ)" value="5"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="doubleTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <condition xsi:type="condition:AttributeCondition" name="Double" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+          <condition xsi:type="condition:AttributeCondition" name="Double" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Double"/>
           </condition>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Double (64 Bit doppelte Genauigkeit)" value="8"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="stringAndDefaultTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <condition xsi:type="condition:AttributeCondition" name="String or Unknown" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+          <condition xsi:type="condition:AttributeCondition" name="String or Unknown" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="String"/>
           </condition>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
@@ -3725,13 +3766,13 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ItemGroup" targetMMSection="//@targetSectionModel.1/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.0/@modifierSets.2" target="//@targetSectionModel.1/@metaModelSections.1/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="GroupNameMapping" resultModifier="//@mappingModel.0/@modifierSets.2" target="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="GroupNameMapping" resultModifier="//@mappingModel.0/@modifierSets.2" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>

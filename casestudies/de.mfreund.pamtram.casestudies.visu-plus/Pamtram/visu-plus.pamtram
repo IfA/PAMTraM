@@ -3557,6 +3557,18 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="StyleType_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.8">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="boolFormatMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.2">
+          <condition xsi:type="condition:AttributeCondition" name="Bool" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Bool"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="x" value="x"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="integerFormatMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.2">
+          <condition xsi:type="condition:AttributeCondition" name="Integer" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Integer"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="xxx" value="xxx"/>
+        </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>

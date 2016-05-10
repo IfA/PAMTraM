@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel name="Layers">
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
     <metaModelSections xsi:type="metamodel:SourceSection" name="sourceContainer">
@@ -3646,7 +3646,28 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="boolTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
+          <condition xsi:type="condition:AttributeCondition" name="Bool" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Bool"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Bit" value="0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="integerTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
+          <condition xsi:type="condition:AttributeCondition" name="Integer" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Integer"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="DWord (32 Bit mit VZ)" value="5"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="doubleTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
+          <condition xsi:type="condition:AttributeCondition" name="Double" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Double"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Double (64 Bit doppelte Genauigkeit)" value="8"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="stringAndDefaultTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
+          <condition xsi:type="condition:AttributeCondition" name="String or Unknown" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="String"/>
+          </condition>
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
         </mappingHints>
       </mappingHintGroups>

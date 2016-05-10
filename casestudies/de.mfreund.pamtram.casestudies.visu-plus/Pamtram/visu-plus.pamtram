@@ -1637,7 +1637,7 @@
       <attributes xsi:type="metamodel:ActualAttribute" name="textAnchor" value="middle">
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TextType/textAnchor"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="fontSize" value="14">
+      <attributes xsi:type="metamodel:ActualAttribute" name="fontSize" value="18">
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TextType/fontSize"/>
       </attributes>
       <attributes xsi:type="metamodel:ActualAttribute" name="fontFamily" value="Tahoma">

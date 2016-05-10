@@ -460,7 +460,7 @@ public class SourceSectionMatcher extends CancellableElement {
 			
 			consoleStream.print(definedMapping.getName() + " is true\n");
 			// Iterate now over all corresponding MappingHintGroups...
-			for (Iterator<MappingHintGroupType> mHintGroupList = definedMapping.getMappingHintGroups().iterator(); mHintGroupList.hasNext();){
+			for (Iterator<MappingHintGroupType> mHintGroupList = definedMapping.getActiveMappingHintGroups().iterator(); mHintGroupList.hasNext();){
 				
 				MappingHintGroupType mHintGroup = mHintGroupList.next();
 				if(mHintGroup instanceof ConditionalElement){
@@ -469,8 +469,8 @@ public class SourceSectionMatcher extends CancellableElement {
 							conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()) == condResult.false_condition){
 						
 						//returned false, so remove this Element and break the loop
-						definedMapping.getMappingHintGroups().remove(mHintGroup);
-						break;
+						mHintGroupList.remove();
+						continue;
 					} else {
 						
 						// Iterate now over all corresponding MappingHints
@@ -483,8 +483,8 @@ public class SourceSectionMatcher extends CancellableElement {
 										conditionHandler.checkCondition((mHint).getConditionRef()) == condResult.false_condition){
 									
 									//returned false, so remove this Element and break the loop
-									mHintGroup.getMappingHints().remove(mHint);
-									break;
+									mHintList.remove();
+									continue;
 								}
 							}
 						}
@@ -493,7 +493,7 @@ public class SourceSectionMatcher extends CancellableElement {
 			}
 			
 			// check Condition of corresponding IMPORTED MappingHintGroups
-			for (Iterator<MappingHintGroupImporter> mImportHintGroupList = definedMapping.getImportedMappingHintGroups().iterator(); mImportHintGroupList.hasNext();){
+			for (Iterator<MappingHintGroupImporter> mImportHintGroupList = definedMapping.getActiveImportedMappingHintGroups().iterator(); mImportHintGroupList.hasNext();){
 				
 				MappingHintGroupImporter mImportHintGroup = mImportHintGroupList.next();
 				if(mImportHintGroup instanceof ConditionalElement){

@@ -1,4 +1,5 @@
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xs:element name="RealTimeDB">
     <xs:complexType>
       <xs:sequence>
@@ -6,17 +7,17 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute type="xs:int" name="NumInput"/>
-                <xs:attribute type="xs:int" name="NumOutput"/>
-                <xs:attribute type="xs:int" name="NumFlag"/>
-                <xs:attribute type="xs:byte" name="UseSharedMemory"/>
-                <xs:attribute type="xs:byte" name="EnableInUseVarMng"/>
-                <xs:attribute type="xs:byte" name="EnableTimeStampNotifying"/>
-                <xs:attribute type="xs:byte" name="UseSharedDynTag"/>
-                <xs:attribute type="xs:byte" name="UseInputImage"/>
-                <xs:attribute type="xs:byte" name="UseOutputImage"/>
-                <xs:attribute type="xs:short" name="PurgeDynTagTimer"/>
-                <xs:attribute type="xs:byte" name="RetWriteDelay"/>
+                <xs:attribute name="NumInput" type="xs:int"/>
+                <xs:attribute name="NumOutput" type="xs:int"/>
+                <xs:attribute name="NumFlag" type="xs:int"/>
+                <xs:attribute name="UseSharedMemory" type="xs:byte"/>
+                <xs:attribute name="EnableInUseVarMng" type="xs:byte"/>
+                <xs:attribute name="EnableTimeStampNotifying" type="xs:byte"/>
+                <xs:attribute name="UseSharedDynTag" type="xs:byte"/>
+                <xs:attribute name="UseInputImage" type="xs:byte"/>
+                <xs:attribute name="UseOutputImage" type="xs:byte"/>
+                <xs:attribute name="PurgeDynTagTimer" type="xs:short"/>
+                <xs:attribute name="RetWriteDelay" type="xs:byte"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -25,8 +26,8 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:byte">
-                <xs:attribute type="xs:byte" name="RetFlagFrom"/>
-                <xs:attribute type="xs:short" name="RetFlagTo"/>
+                <xs:attribute name="RetFlagFrom" type="xs:byte"/>
+                <xs:attribute name="RetFlagTo" type="xs:short"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -35,8 +36,8 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:byte">
-                <xs:attribute type="xs:byte" name="RetInputFrom"/>
-                <xs:attribute type="xs:short" name="RetInputTo"/>
+                <xs:attribute name="RetInputFrom" type="xs:byte"/>
+                <xs:attribute name="RetInputTo" type="xs:short"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -45,8 +46,8 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:byte">
-                <xs:attribute type="xs:byte" name="RetOutputFrom"/>
-                <xs:attribute type="xs:short" name="RetOutputTo"/>
+                <xs:attribute name="RetOutputFrom" type="xs:byte"/>
+                <xs:attribute name="RetOutputTo" type="xs:short"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -55,21 +56,21 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:byte">
-                <xs:attribute type="xs:string" name="OPCServerName"/>
-                <xs:attribute type="xs:string" name="OPCServerDescription"/>
-                <xs:attribute type="xs:byte" name="EnableOPCServerAE"/>
-                <xs:attribute type="xs:byte" name="EnableOPCServerDynTag"/>
-                <xs:attribute type="xs:byte" name="OPCServerDebugEvents"/>
-                <xs:attribute type="xs:byte" name="OPCServerAutoShutdown"/>
-                <xs:attribute type="xs:byte" name="OPCServerAutoUnregister"/>
-                <xs:attribute type="xs:byte" name="OPCServerAutoRegister"/>
-                <xs:attribute type="xs:short" name="OPCServerRefreshRate"/>
-                <xs:attribute type="xs:short" name="OPCServerShutdownClientsTimeout"/>
-                <xs:attribute type="xs:byte" name="OPCServerEnableAEAck"/>
-                <xs:attribute type="xs:byte" name="OPCServerThreadingMode"/>
-                <xs:attribute type="xs:string" name="SINGLE_PATH_SEPARATOR"/>
-                <xs:attribute type="xs:string" name="DOUBLE_PATH_SEPARATOR"/>
-                <xs:attribute type="xs:string" name="OPX_PATH_SEPARATOR"/>
+                <xs:attribute name="OPCServerName" type="xs:string"/>
+                <xs:attribute name="OPCServerDescription" type="xs:string"/>
+                <xs:attribute name="EnableOPCServerAE" type="xs:byte"/>
+                <xs:attribute name="EnableOPCServerDynTag" type="xs:byte"/>
+                <xs:attribute name="OPCServerDebugEvents" type="xs:byte"/>
+                <xs:attribute name="OPCServerAutoShutdown" type="xs:byte"/>
+                <xs:attribute name="OPCServerAutoUnregister" type="xs:byte"/>
+                <xs:attribute name="OPCServerAutoRegister" type="xs:byte"/>
+                <xs:attribute name="OPCServerRefreshRate" type="xs:short"/>
+                <xs:attribute name="OPCServerShutdownClientsTimeout" type="xs:short"/>
+                <xs:attribute name="OPCServerEnableAEAck" type="xs:byte"/>
+                <xs:attribute name="OPCServerThreadingMode" type="xs:byte"/>
+                <xs:attribute name="SINGLE_PATH_SEPARATOR" type="xs:string"/>
+                <xs:attribute name="DOUBLE_PATH_SEPARATOR" type="xs:string"/>
+                <xs:attribute name="OPX_PATH_SEPARATOR" type="xs:string"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -78,18 +79,18 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:byte">
-                <xs:attribute type="xs:string" name="Transport"/>
-                <xs:attribute type="xs:short" name="Port"/>
-                <xs:attribute type="xs:byte" name="AccepterThreads"/>
-                <xs:attribute type="xs:byte" name="MinThreadPool"/>
-                <xs:attribute type="xs:byte" name="MaxThreadPool"/>
-                <xs:attribute type="xs:byte" name="RequestBacklog"/>
-                <xs:attribute type="xs:int" name="RequestTimeout"/>
-                <xs:attribute type="xs:short" name="RequestBuffersize"/>
-                <xs:attribute type="xs:byte" name="KeepAlive"/>
-                <xs:attribute type="xs:string" name="VendorInfo"/>
-                <xs:attribute type="xs:byte" name="EnableSecurity"/>
-                <xs:attribute type="xs:byte" name="MinAccLevel"/>
+                <xs:attribute name="Transport" type="xs:string"/>
+                <xs:attribute name="Port" type="xs:short"/>
+                <xs:attribute name="AccepterThreads" type="xs:byte"/>
+                <xs:attribute name="MinThreadPool" type="xs:byte"/>
+                <xs:attribute name="MaxThreadPool" type="xs:byte"/>
+                <xs:attribute name="RequestBacklog" type="xs:byte"/>
+                <xs:attribute name="RequestTimeout" type="xs:int"/>
+                <xs:attribute name="RequestBuffersize" type="xs:short"/>
+                <xs:attribute name="KeepAlive" type="xs:byte"/>
+                <xs:attribute name="VendorInfo" type="xs:string"/>
+                <xs:attribute name="EnableSecurity" type="xs:byte"/>
+                <xs:attribute name="MinAccLevel" type="xs:byte"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -98,7 +99,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:byte">
-                <xs:attribute type="xs:byte" name="OPCServerMinImpersonationLevel"/>
+                <xs:attribute name="OPCServerMinImpersonationLevel" type="xs:byte"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -107,37 +108,37 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute type="xs:byte" name="RecycleDBConnection"/>
-                <xs:attribute type="xs:byte" name="SendAdministrativeAlert"/>
-                <xs:attribute type="xs:byte" name="MaxError"/>
-                <xs:attribute type="xs:byte" name="MaxNumberTrans"/>
-                <xs:attribute type="xs:string" name="Dsn"/>
-                <xs:attribute type="xs:string" name="User"/>
-                <xs:attribute type="xs:string" name="TimeCol"/>
-                <xs:attribute type="xs:string" name="MSecCol"/>
-                <xs:attribute type="xs:string" name="LocalTimeCol"/>
-                <xs:attribute type="xs:string" name="UserCol"/>
-                <xs:attribute type="xs:string" name="ChangerCol"/>
-                <xs:attribute type="xs:string" name="ValueBeforeCol"/>
-                <xs:attribute type="xs:string" name="ValueAfterCol"/>
-                <xs:attribute type="xs:string" name="ValueCol"/>
-                <xs:attribute type="xs:string" name="QualityCol"/>
-                <xs:attribute type="xs:string" name="TimeStampCol"/>
-                <xs:attribute type="xs:string" name="VarNameCol"/>
-                <xs:attribute type="xs:string" name="VarGroupNameCol"/>
-                <xs:attribute type="xs:string" name="VarDescriptionCol"/>
-                <xs:attribute type="xs:short" name="MaxCacheBeforeFlush"/>
-                <xs:attribute type="xs:short" name="DefVarCharPrecision"/>
-                <xs:attribute type="xs:byte" name="UseInMemoryDB"/>
-                <xs:attribute type="xs:byte" name="IMDBSharedTable"/>
-                <xs:attribute type="xs:byte" name="IMDBSaveColumnName"/>
-                <xs:attribute type="xs:byte" name="IMDBExportXMLTable"/>
-                <xs:attribute type="xs:byte" name="IMDBExportCSVTable"/>
-                <xs:attribute type="xs:byte" name="IMDBCryptFile"/>
-                <xs:attribute type="xs:byte" name="SecWriteBehindDelay"/>
-                <xs:attribute type="xs:byte" name="MaxRecordsNumber"/>
-                <xs:attribute type="xs:string" name="cIMDBDelimiter"/>
-                <xs:attribute type="xs:string" name="cIMDBEndOfLine"/>
+                <xs:attribute name="RecycleDBConnection" type="xs:byte"/>
+                <xs:attribute name="SendAdministrativeAlert" type="xs:byte"/>
+                <xs:attribute name="MaxError" type="xs:byte"/>
+                <xs:attribute name="MaxNumberTrans" type="xs:byte"/>
+                <xs:attribute name="Dsn" type="xs:string"/>
+                <xs:attribute name="User" type="xs:string"/>
+                <xs:attribute name="TimeCol" type="xs:string"/>
+                <xs:attribute name="MSecCol" type="xs:string"/>
+                <xs:attribute name="LocalTimeCol" type="xs:string"/>
+                <xs:attribute name="UserCol" type="xs:string"/>
+                <xs:attribute name="ChangerCol" type="xs:string"/>
+                <xs:attribute name="ValueBeforeCol" type="xs:string"/>
+                <xs:attribute name="ValueAfterCol" type="xs:string"/>
+                <xs:attribute name="ValueCol" type="xs:string"/>
+                <xs:attribute name="QualityCol" type="xs:string"/>
+                <xs:attribute name="TimeStampCol" type="xs:string"/>
+                <xs:attribute name="VarNameCol" type="xs:string"/>
+                <xs:attribute name="VarGroupNameCol" type="xs:string"/>
+                <xs:attribute name="VarDescriptionCol" type="xs:string"/>
+                <xs:attribute name="MaxCacheBeforeFlush" type="xs:short"/>
+                <xs:attribute name="DefVarCharPrecision" type="xs:short"/>
+                <xs:attribute name="UseInMemoryDB" type="xs:byte"/>
+                <xs:attribute name="IMDBSharedTable" type="xs:byte"/>
+                <xs:attribute name="IMDBSaveColumnName" type="xs:byte"/>
+                <xs:attribute name="IMDBExportXMLTable" type="xs:byte"/>
+                <xs:attribute name="IMDBExportCSVTable" type="xs:byte"/>
+                <xs:attribute name="IMDBCryptFile" type="xs:byte"/>
+                <xs:attribute name="SecWriteBehindDelay" type="xs:byte"/>
+                <xs:attribute name="MaxRecordsNumber" type="xs:byte"/>
+                <xs:attribute name="cIMDBDelimiter" type="xs:string"/>
+                <xs:attribute name="cIMDBEndOfLine" type="xs:string"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -146,21 +147,21 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute type="xs:byte" name="RecycleDBConnection"/>
-                <xs:attribute type="xs:byte" name="SendAdministrativeAlert"/>
-                <xs:attribute type="xs:byte" name="MaxError"/>
-                <xs:attribute type="xs:byte" name="MaxNumberTrans"/>
-                <xs:attribute type="xs:string" name="Dsn"/>
-                <xs:attribute type="xs:string" name="User"/>
-                <xs:attribute type="xs:short" name="DefVarCharPrecision"/>
-                <xs:attribute type="xs:string" name="TableName"/>
-                <xs:attribute type="xs:string" name="NameCol"/>
-                <xs:attribute type="xs:string" name="ValueCol"/>
-                <xs:attribute type="xs:string" name="MinValueCol"/>
-                <xs:attribute type="xs:string" name="MaxValueCol"/>
-                <xs:attribute type="xs:string" name="AveValueCol"/>
-                <xs:attribute type="xs:string" name="TotalTimeCol"/>
-                <xs:attribute type="xs:string" name="LastTimeOnCol"/>
+                <xs:attribute name="RecycleDBConnection" type="xs:byte"/>
+                <xs:attribute name="SendAdministrativeAlert" type="xs:byte"/>
+                <xs:attribute name="MaxError" type="xs:byte"/>
+                <xs:attribute name="MaxNumberTrans" type="xs:byte"/>
+                <xs:attribute name="Dsn" type="xs:string"/>
+                <xs:attribute name="User" type="xs:string"/>
+                <xs:attribute name="DefVarCharPrecision" type="xs:short"/>
+                <xs:attribute name="TableName" type="xs:string"/>
+                <xs:attribute name="NameCol" type="xs:string"/>
+                <xs:attribute name="ValueCol" type="xs:string"/>
+                <xs:attribute name="MinValueCol" type="xs:string"/>
+                <xs:attribute name="MaxValueCol" type="xs:string"/>
+                <xs:attribute name="AveValueCol" type="xs:string"/>
+                <xs:attribute name="TotalTimeCol" type="xs:string"/>
+                <xs:attribute name="LastTimeOnCol" type="xs:string"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -168,19 +169,19 @@
         <xs:element name="VariableList">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Variable" maxOccurs="unbounded" minOccurs="0">
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="Variable">
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="Name">
                       <xs:complexType>
                         <xs:simpleContent>
                           <xs:extension base="xs:string">
-                            <xs:attribute type="xs:byte" name="Type" use="optional"/>
-                            <xs:attribute type="xs:byte" name="AreaType" use="optional"/>
-                            <xs:attribute type="xs:byte" name="Address" use="optional"/>
-                            <xs:attribute type="xs:byte" name="Bit" use="optional"/>
-                            <xs:attribute type="xs:byte" name="Shared" use="optional"/>
-                            <xs:attribute type="xs:byte" name="Retentive" use="optional"/>
+                            <xs:attribute name="Type" type="xs:int" use="optional"/>
+                            <xs:attribute name="AreaType" type="xs:byte" use="optional"/>
+                            <xs:attribute name="Address" type="xs:byte" use="optional"/>
+                            <xs:attribute name="Bit" type="xs:byte" use="optional"/>
+                            <xs:attribute name="Shared" type="xs:byte" use="optional"/>
+                            <xs:attribute name="Retentive" type="xs:byte" use="optional"/>
                           </xs:extension>
                         </xs:simpleContent>
                       </xs:complexType>
@@ -189,23 +190,23 @@
                       <xs:complexType>
                         <xs:simpleContent>
                           <xs:extension base="xs:byte">
-                            <xs:attribute type="xs:int" name="DurationDays" use="optional"/>
+                            <xs:attribute name="DurationDays" type="xs:int" use="optional"/>
                           </xs:extension>
                         </xs:simpleContent>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element type="xs:byte" name="EnableOPCServer"/>
-                    <xs:element type="xs:byte" name="EnableNetworkClient"/>
-                    <xs:element type="xs:byte" name="EnableMapRealTimeToDB"/>
+                    <xs:element name="EnableOPCServer" type="xs:byte"/>
+                    <xs:element name="EnableNetworkClient" type="xs:byte"/>
+                    <xs:element name="EnableMapRealTimeToDB" type="xs:byte"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element type="xs:string" name="DriverList"/>
-        <xs:element type="xs:string" name="RenamedVariables"/>
-        <xs:element type="xs:string" name="StructureList"/>
+        <xs:element name="DriverList" type="xs:string"/>
+        <xs:element name="RenamedVariables" type="xs:string"/>
+        <xs:element name="StructureList" type="xs:string"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

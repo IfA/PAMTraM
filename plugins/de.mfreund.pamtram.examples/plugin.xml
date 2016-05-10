@@ -30,6 +30,15 @@
             name="Disl -&gt; Movisa"
             project="true">
       </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.visu-plus"
+            name="STGML -&gt; Visu+"
+            project="true">
+      </wizard>
       <category
             id="de.mfreund.pamtram.examples.category"
             name="PAMTraM"
@@ -72,6 +81,18 @@
          <fileToOpen
                editorID="pamtram.presentation.PamtramEditorID"
                location="de.mfreund.pamtram.casestudies.w3caui-movisa/Pamtram/w3caui-movisa.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.visu-plus">
+         <projectDescriptor
+               contentURI="zips/visu-plus.zip"
+               description="This casestudy demonstrates a transformation from &apos;STGML&apos; to &apos;Visu+&apos;."
+               name="de.mfreund.pamtram.casestudies.visu-plus">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.visu-plus/Pamtram/visu-plus.pamtram">
          </fileToOpen>
       </example>
    </extension>

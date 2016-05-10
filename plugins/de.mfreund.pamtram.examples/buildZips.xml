@@ -42,6 +42,18 @@
 			Source/Kleinversuchsanlage.xmi,
 			Target/Kleinversuchsanlage.movisa.xmi,
 			Target/allgemeinesModell.movisa.xmi"/>
+	
+	<!-- The files to include in the 'Visu+' example -->
+	<patternset id="visu-plus.includes"
+			includes="
+				.project,
+				metamodel/stgml.xsd_enhanced.ecore,
+				metamodel/prozessbild.xsd.ecore,
+				metamodel/visopcclient.xsd.ecore,
+				metamodel/visrealtimedb.xsd.ecore,
+				Pamtram/visu-plus.pamtram,
+				Source/beispiel_ver_0_2_3.xml,
+				Target"/>
 
 	
 	<!-- Zip the PAMTraM examples -->
@@ -62,6 +74,12 @@
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.w3caui-movisa.git" property="projectDir"/>
 		<zip destfile="zips/w3caui-movisa.zip" basedir="${projectDir}">
 			<patternset refid="w3caui-movisa.includes"/>
+		</zip>
+		
+		<!-- Visu+ -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.visu-plus" property="projectDir"/>
+		<zip destfile="zips/visu-plus.zip" basedir="${projectDir}">
+			<patternset refid="visu-plus.includes"/>
 		</zip>
 		
 	</target>

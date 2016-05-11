@@ -149,6 +149,97 @@
       <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
     </Variable>
     <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="9">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Msg</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="9">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option1</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="9">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option2</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="9">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option3</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="9">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option4</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="9">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option5</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="9">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option6</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="9">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option7</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="5">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_MsgId</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="5">AS_Variables__Proj_Vis_Visualization_Mailbox_Log_AckId</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="9">AS_Variables__Proj_Vis_Visualization_Mailbox_React_Msg</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="5">AS_Variables__Proj_Vis_Visualization_Mailbox_React_MsgId</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
+      <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="5">AS_Variables__Proj_Vis_Visualization_Mailbox_React_AckId</Name>
+      <EnableTrace DurationDays="65535">0</EnableTrace>
+      <EnableOPCServer>0</EnableOPCServer>
+      <EnableNetworkClient>0</EnableNetworkClient>
+      <EnableMapRealTimeToDB>0</EnableMapRealTimeToDB>
+    </Variable>
+    <Variable>
       <Name Address="0" AreaType="1" Bit="0" Retentive="0" Shared="0" Type="5">MATFLOW_ControlElements_Merge_003_1_CarrierID</Name>
       <EnableTrace DurationDays="65535">0</EnableTrace>
       <EnableOPCServer>0</EnableOPCServer>

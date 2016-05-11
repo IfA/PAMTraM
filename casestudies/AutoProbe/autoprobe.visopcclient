@@ -9,6 +9,77 @@
       <GroupList>
         <Group>
           <Name Active="1" DeadBand="0" LocalID="0" NotInUseDisableGroup="0" NotInUseRefreshRate="10000"
+              TimeBias="-60" UpdateRate="250">Alert</Name>
+          <ItemList>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Msg"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Msg</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option1"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option1</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option2"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option2</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option3"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option3</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option4"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option4</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option5"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option5</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option6"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option6</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_Option7"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option7</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_MsgId"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.MsgId</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="1" ReRead="1" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_AckId"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.AckId</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="1" ReRead="1" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_React_Msg"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.React.Msg</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="1" ReRead="1" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_React_MsgId"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.React.MsgId</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="AS_Variables__Proj_Vis_Visualization_Mailbox_React_AckId"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.React.AckId</ItemID>
+            </Item>
+          </ItemList>
+        </Group>
+        <Group>
+          <Name Active="1" DeadBand="0" LocalID="0" NotInUseDisableGroup="0" NotInUseRefreshRate="10000"
               TimeBias="-60" UpdateRate="250">MATFLOW</Name>
           <ItemList>
             <Item>

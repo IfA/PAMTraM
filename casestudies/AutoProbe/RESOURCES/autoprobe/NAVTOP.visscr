@@ -15,6 +15,19 @@
       <text font-family="Tahoma" font-size="18" text-anchor="middle">ALERT</text>
       <Shadow/>
       <Rotation/>
+      <Visible>false</Visible>
+      <Transparency>false</Transparency>
+      <BG Var="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_MsgId">true</BG>
+      <BGList>
+        <dci>
+          <DynColor BlinkColor="2147483663" BlinkTime="0" Color="2147483663"/>
+        </dci>
+        <dci>
+          <DynColor BlinkColor="2147483663" Color="255" Type="3" Value="1"/>
+        </dci>
+      </BGList>
+      <BList>false</BList>
+      <LT>false</LT>
     </child>
     <child>
       <object>Button</object>

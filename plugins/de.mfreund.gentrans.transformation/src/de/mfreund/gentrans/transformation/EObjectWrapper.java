@@ -159,8 +159,23 @@ public class EObjectWrapper {
 			throws IllegalArgumentException {
 
 		// convert the string representation of the value to the correct data type
-		Object valueObject = attr.getAttribute().getEType().getEPackage()
-				.getEFactoryInstance().createFromString(attr.getAttribute().getEAttributeType(), value);
+		Object valueObject = null;
+		try {
+			valueObject = attr.getAttribute().getEType().getEPackage().getEFactoryInstance().createFromString(attr.getAttribute().getEAttributeType(), value);
+		} catch (Exception e) {
+			
+			// if an integer-based value is represented as boolean (e.g. as it was used by an 'expression'), try to set this instead
+			//
+			if(value.endsWith(".0")) {
+				try {
+					valueObject = attr.getAttribute().getEType().getEPackage().getEFactoryInstance().createFromString(attr.getAttribute().getEAttributeType(), value.replaceFirst(".0$", ""));
+				} catch (Exception e1) {
+					throw e;
+				}
+			} else {
+				throw e;
+			}
+		}
 
 		if(attr.getAttribute().isMany()) {
 			ArrayList<Object> valueObjectList = new ArrayList<>();

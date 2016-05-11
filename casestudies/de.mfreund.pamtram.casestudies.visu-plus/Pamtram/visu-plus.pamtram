@@ -2757,20 +2757,6 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType" targetMMSection="//@targetSectionModel.0/@metaModelSections.13">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping_Text" target="//@targetSectionModel.0/@metaModelSections.13/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-        </mappingHints>
-        <modelConnectionMatcher>
-          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueActivateChannel" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1"/>

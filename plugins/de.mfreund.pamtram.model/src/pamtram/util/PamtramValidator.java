@@ -165,29 +165,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(pamTraM, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(pamTraM, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(pamTraM, diagnostics, context);
-		if (result || diagnostics != null) result &= validatePAMTraM_sourceSectionModelsHaveSameEPackage(pamTraM, diagnostics, context);
-		if (result || diagnostics != null) result &= validatePAMTraM_targetSectionModelsHaveSameEPackage(pamTraM, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the sourceSectionModelsHaveSameEPackage constraint of '<em>PAM Tra M</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validatePAMTraM_sourceSectionModelsHaveSameEPackage(PAMTraM pamTraM, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return pamTraM.sourceSectionModelsHaveSameEPackage(diagnostics, context);
-	}
-
-	/**
-	 * Validates the targetSectionModelsHaveSameEPackage constraint of '<em>PAM Tra M</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validatePAMTraM_targetSectionModelsHaveSameEPackage(PAMTraM pamTraM, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return pamTraM.targetSectionModelsHaveSameEPackage(diagnostics, context);
 	}
 
 	/**

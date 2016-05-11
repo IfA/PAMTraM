@@ -260,31 +260,13 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M___MERGE_EXTENDS = 0;
 
 	/**
-	 * The operation id for the '<em>Source Section Models Have Same EPackage</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
-	 * The operation id for the '<em>Target Section Models Have Same EPackage</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
 	 * The number of operations of the '<em>PAM Tra M</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_OPERATION_COUNT = 3;
+	int PAM_TRA_M_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.
@@ -864,26 +846,6 @@ public interface PamtramPackage extends EPackage {
 	EOperation getPAMTraM__MergeExtends();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.PAMTraM#sourceSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Source Section Models Have Same EPackage</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Source Section Models Have Same EPackage</em>' operation.
-	 * @see pamtram.PAMTraM#sourceSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.PAMTraM#targetSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Target Section Models Have Same EPackage</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Target Section Models Have Same EPackage</em>' operation.
-	 * @see pamtram.PAMTraM#targetSectionModelsHaveSameEPackage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.SectionModel <em>Section Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1246,22 +1208,6 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation PAM_TRA_M___MERGE_EXTENDS = eINSTANCE.getPAMTraM__MergeExtends();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Section Models Have Same EPackage</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Target Section Models Have Same EPackage</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.

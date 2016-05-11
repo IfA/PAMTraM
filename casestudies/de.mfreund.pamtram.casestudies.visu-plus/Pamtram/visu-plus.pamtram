@@ -1880,6 +1880,81 @@
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//LTType/value"/>
       </attributes>
     </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="BackgroundColorAnimation: red blinking">
+      <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BGListType"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="dci">
+        <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BGListType/dci"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="DciType (normal)">
+          <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DciType"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="dynColor">
+            <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DciType/dynColor"/>
+            <value xsi:type="metamodel:TargetSectionClass" name="DynColorType">
+              <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="color 3DFACE SysColor" value="2147483663">
+                <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType/color"/>
+              </attributes>
+              <attributes xsi:type="metamodel:ActualAttribute" name="blinkColor 3DFACE SysColor" value="2147483663">
+                <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType/blinkColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:ActualAttribute" name="blinkTime" value="0">
+                <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType/blinkTime"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+        <value xsi:type="metamodel:TargetSectionClass" name="DciType (red blinking)">
+          <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DciType"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="dynColor">
+            <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DciType/dynColor"/>
+            <value xsi:type="metamodel:TargetSectionClass" name="DynColorType">
+              <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="color Red" value="255">
+                <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType/color"/>
+              </attributes>
+              <attributes xsi:type="metamodel:ActualAttribute" name="blinkColor 3DFACE SysColor" value="2147483663">
+                <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType/blinkColor"/>
+              </attributes>
+              <attributes xsi:type="metamodel:ActualAttribute" name="value" value="1">
+                <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType/value"/>
+              </attributes>
+              <attributes xsi:type="metamodel:ActualAttribute" name="type" value="3">
+                <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType/type"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+      </references>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="BackgroundAnimation based on LogMsgId">
+      <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BGType"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="var" value="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_MsgId">
+        <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BGType/var"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="value" value="1">
+        <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BGType/value"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TransparencyType">
+      <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TransparencyType"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="value" value="0">
+        <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TransparencyType/value"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="BListType">
+      <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BListType"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="value" value="0">
+        <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BListType/value"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="LTType">
+      <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//LTType"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="value" value="0">
+        <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//LTType/value"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="format" value="">
+        <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//LTType/format"/>
+      </attributes>
+    </metaModelSections>
   </targetSectionModel>
   <targetSectionModel>
     <metaModelPackage href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#/"/>
@@ -2748,6 +2823,93 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BGType" targetMMSection="//@targetSectionModel.0/@metaModelSections.17">
+        <condition xsi:type="condition:AttributeCondition" name="AlertButton" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4">
+          <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="ALERT"/>
+        </condition>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BGListType" targetMMSection="//@targetSectionModel.0/@metaModelSections.16">
+        <condition xsi:type="condition:AttributeCondition" name="AlertButton" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4">
+          <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="ALERT"/>
+        </condition>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisibleType" targetMMSection="//@targetSectionModel.0/@metaModelSections.10">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.10/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="0" value="0"/>
+        </mappingHints>
+        <condition xsi:type="condition:AttributeCondition" name="AlertButton" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4">
+          <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="ALERT"/>
+        </condition>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TransparencyType" targetMMSection="//@targetSectionModel.0/@metaModelSections.18">
+        <condition xsi:type="condition:AttributeCondition" name="AlertButton" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4">
+          <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="ALERT"/>
+        </condition>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BListType" targetMMSection="//@targetSectionModel.0/@metaModelSections.19">
+        <condition xsi:type="condition:AttributeCondition" name="AlertButton" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4">
+          <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="ALERT"/>
+        </condition>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="LTType" targetMMSection="//@targetSectionModel.0/@metaModelSections.20">
+        <condition xsi:type="condition:AttributeCondition" name="AlertButton" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4">
+          <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="ALERT"/>
+        </condition>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
     </mapping>
     <mapping name="Viobject_BackButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.7">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_BackButton" targetMMSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
@@ -3148,8 +3310,8 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="stringAndDefaultTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.10"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChildType1_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
@@ -3201,17 +3363,8 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="StyleType_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.8">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="boolFormatMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.2">
-          <condition xsi:type="condition:AttributeCondition" name="Bool" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Bool"/>
-          </condition>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="formatMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="x" value="x"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="integerFormatMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.2">
-          <condition xsi:type="condition:AttributeCondition" name="Integer" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
-            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Integer"/>
-          </condition>
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="xxx" value="xxx"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="spinMapping" expression="0" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.8"/>
@@ -3319,6 +3472,10 @@
     <modifierSets name="AlertInterface -> getEditFromBrowsePath">
       <modifier xsi:type="mapping:SubstringReplacer" name="1" regex=".*Mailbox.(React.Msg$|React.MsgId$|Log.AckId$)" replacement="1"/>
       <modifier xsi:type="mapping:SubstringReplacer" name="0" regex=".*Mailbox.*" replacement="0"/>
+    </modifierSets>
+    <modifierSets name="AlertInterface -> getVariableTypeFromBrowsePath">
+      <modifier xsi:type="mapping:SubstringReplacer" name="DWord (32 Bit mit VZ)" regex=".*Id$" replacement="5"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="String (nullterminiert)" regex=".*Mailbox.*" replacement="9"/>
     </modifierSets>
     <globalValues name="conveyorWidth" value="168"/>
   </mappingModel>

@@ -2338,18 +2338,18 @@
   <mappingModel name="Basic">
     <mapping name="sourceContainerMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPCClientEditorType" targetMMSection="//@targetSectionModel.1/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" target="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="testprojekt1.visopcclient" value="testprojekt1.visopcclient"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" resultModifier="//@mappingModel.0/@modifierSets.3" target="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name=".visopcclient" value=".visopcclient"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RealTimeDBType" targetMMSection="//@targetSectionModel.2/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="testprojekt1.visrealtimedb" value="testprojekt1.visrealtimedb"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" resultModifier="//@mappingModel.0/@modifierSets.3" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name=".visrealtimedb" value=".visrealtimedb"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ProjectSettingsType" targetMMSection="//@targetSectionModel.3/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" target="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="testprojekt1.visprj" value="testprojekt1.visprj"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" resultModifier="//@mappingModel.0/@modifierSets.3" target="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name=".visprj" value=".visprj"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ProjectExecutionType" targetMMSection="//@targetSectionModel.3/@metaModelSections.1">
@@ -2366,8 +2366,8 @@
     <mapping name="LayerMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.4">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MovResource" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="Mapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="RESOURCES/TESTPROJEKT1/" value="RESOURCES/TESTPROJEKT1/"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="layerName + .visscr" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="RESOURCES/" value="RESOURCES/"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="projectName + / + layerName + .visscr" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.1/@modifierSets.5 //@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="layerName" target="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
@@ -2391,6 +2391,9 @@
       <modifier xsi:type="mapping:SubstringReplacer" name="AS" regex=".+\$AS.+" replacement="AS"/>
       <modifier xsi:type="mapping:SubstringReplacer" name="PARSIFAL" regex=".+\$PARSIFAL\.Devices\.CIROS\.Model\.Objects\.([^.]+)\..+" replacement="PARSIFAL.$1"/>
       <modifier xsi:type="mapping:SubstringReplacer" name="Stat" regex=".+#Stat.+" replacement="Stat"/>
+    </modifierSets>
+    <modifierSets name="preprendProjectName">
+      <modifier xsi:type="mapping:StringPrepender" name="autoprobe" string="autoprobe"/>
     </modifierSets>
     <globalValues name="xyScale" value="10000.0"/>
   </mappingModel>

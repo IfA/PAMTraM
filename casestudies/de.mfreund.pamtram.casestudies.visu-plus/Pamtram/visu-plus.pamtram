@@ -2295,6 +2295,46 @@
       </attributes>
     </metaModelSections>
   </targetSectionModel>
+  <targetSectionModel>
+    <metaModelPackage href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#/"/>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ProjectSettingsType" file="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
+      <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//ProjectSettingsType"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="platforms">
+        <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//ProjectSettingsType/platforms"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="PlatformsType">
+          <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//PlatformsType"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="targetWin32" value="1">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//PlatformsType/targetWin32"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="targetWinCE" value="0">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//PlatformsType/targetWinCE"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="targetWin32Client" value="0">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//PlatformsType/targetWin32Client"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="targetWinCEClient" value="0">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//PlatformsType/targetWinCEClient"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="targetJ2SEClient" value="0">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//PlatformsType/targetJ2SEClient"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="targetJMSEClient" value="0">
+            <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//PlatformsType/targetJMSEClient"/>
+          </attributes>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:FileAttribute" value="test.visprj" fileType="XML"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="build" value="1106">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//ProjectSettingsType/build"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ProjectExecutionType" container="//@targetSectionModel.3/@metaModelSections.0">
+      <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//ProjectExecutionType"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="startupSynoptic">
+        <attribute href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//ProjectExecutionType/startupSynoptic"/>
+      </attributes>
+    </metaModelSections>
+  </targetSectionModel>
   <mappingModel name="Basic">
     <mapping name="sourceContainerMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPCClientEditorType" targetMMSection="//@targetSectionModel.1/@metaModelSections.0">
@@ -2305,6 +2345,16 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RealTimeDBType" targetMMSection="//@targetSectionModel.2/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.3">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="testprojekt1.visrealtimedb" value="testprojekt1.visrealtimedb"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ProjectSettingsType" targetMMSection="//@targetSectionModel.3/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" target="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="testprojekt1.visprj" value="testprojekt1.visprj"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ProjectExecutionType" targetMMSection="//@targetSectionModel.3/@metaModelSections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="startupSynopticMapping" target="//@targetSectionModel.3/@metaModelSections.1/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="target (mainPanelName)" source="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.3/@value.0/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <globalVariables name="xmax" source="//@sourceSectionModel.0/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>

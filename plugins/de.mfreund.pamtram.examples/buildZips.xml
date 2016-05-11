@@ -53,7 +53,7 @@
 				metamodel/visrealtimedb.xsd.ecore,
 				Pamtram/visu-plus.pamtram,
 				Source/beispiel_ver_0_2_3.xml,
-				Target"/>
+				Target/**,"/>
 
 	
 	<!-- Zip the PAMTraM examples -->

@@ -481,6 +481,157 @@
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject AlertInterface" container="//@sourceSectionModel.0/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="externalData">
+        <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="ExternalData">
+          <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
+            <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+            <value xsi:type="metamodel:SourceSectionClass" name="Externaldataelement">
+              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+              <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
+                <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
+                <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;Hardware&quot;">
+                  <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Hardware" expression="Hardware"/>
+                    <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="valueOPCUA">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="OPCUA" expression="OPCUA"/>
+                    <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+                  </attributes>
+                </value>
+                <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;Signals&quot;">
+                  <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                  <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
+                    <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
+                    <value xsi:type="metamodel:SourceSectionClass" name="Unknown Signal Type" cardinality="ZERO__INFINITY">
+                      <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                      <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
+                        <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
+                        <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
+                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                          <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
+                            <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
+                            <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
+                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                              <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                              </attributes>
+                              <attributes xsi:type="metamodel:SourceSectionAttribute" name="valueBrowsePath">
+                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+                              </attributes>
+                            </value>
+                            <value xsi:type="metamodel:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFINITY">
+                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                            </value>
+                          </references>
+                          <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="DataItems" expression="DataItems"/>
+                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                          </attributes>
+                        </value>
+                        <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;Type&quot;">
+                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                          <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Type" expression="Type"/>
+                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:SourceSectionAttribute" name="value exclude known Types">
+                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Integer" type="EXCLUSION" expression="Integer"/>
+                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Double" type="EXCLUSION" expression="Double"/>
+                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Bool" type="EXCLUSION" expression="Bool"/>
+                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="String" type="EXCLUSION" expression="String"/>
+                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+                          </attributes>
+                        </value>
+                        <value xsi:type="metamodel:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFINITY">
+                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                        </value>
+                      </references>
+                    </value>
+                    <value xsi:type="metamodel:SourceSectionClass" name="Signal" cardinality="ONE__INFINITY">
+                      <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                      <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
+                        <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
+                        <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
+                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                          <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
+                            <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
+                            <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
+                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                              <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                              </attributes>
+                              <attributes xsi:type="metamodel:SourceSectionAttribute" name="valueBrowsePath">
+                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+                              </attributes>
+                            </value>
+                            <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;Access&quot;">
+                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                              <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Access" expression="Access"/>
+                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                              </attributes>
+                              <attributes xsi:type="metamodel:SourceSectionAttribute" name="access r/w">
+                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+                              </attributes>
+                            </value>
+                            <value xsi:type="metamodel:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
+                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                            </value>
+                          </references>
+                          <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="DataItems" expression="DataItems"/>
+                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                          </attributes>
+                        </value>
+                        <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;Type&quot;">
+                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                          <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Type" expression="Type"/>
+                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
+                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+                          </attributes>
+                        </value>
+                        <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;name&quot;">
+                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                          <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="name" expression="name"/>
+                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:SourceSectionAttribute" name="signalName">
+                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+                          </attributes>
+                        </value>
+                        <value xsi:type="metamodel:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
+                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                        </value>
+                      </references>
+                    </value>
+                  </references>
+                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Signals" expression="Signals"/>
+                    <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                  </attributes>
+                </value>
+                <value xsi:type="metamodel:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
+                  <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+                </value>
+              </references>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="name = &quot;AlertInterface&quot;">
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="AlertInterface" expression="AlertInterface"/>
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+      </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;AlertInterface&quot;">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="AlertInterface" expression="AlertInterface"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -1563,7 +1714,7 @@
     <metaModelSections xsi:type="metamodel:TargetSection" name="StyleType1" container="//@targetSectionModel.0/@metaModelSections.0">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//StyleType1"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="ChildType1" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ChildType1" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="shadow">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1/shadow"/>
@@ -1591,7 +1742,7 @@
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="objectID"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="EditboxType">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="EditboxType" cardinality="ONE__INFINITY">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//EditboxType"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="x" value="">
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//EditboxType/x"/>
@@ -1612,13 +1763,13 @@
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//EditboxType/stroke"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="ExecutionType1">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ExecutionType1" cardinality="ONE__INFINITY">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ExecutionType1"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="var">
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ExecutionType1/var"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="StyleType">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="StyleType" cardinality="ONE__INFINITY">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//StyleType"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="spin" value="0">
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//StyleType/spin"/>
@@ -1675,7 +1826,7 @@
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MechanicType/clickable"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="TextType" container="//@targetSectionModel.0/@metaModelSections.5">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextType" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.5">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TextType"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="value">
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TextType/value"/>
@@ -1690,7 +1841,7 @@
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TextType/fontFamily"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="TypeType1" container="//@targetSectionModel.0/@metaModelSections.5">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TypeType1" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.5">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TypeType1"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="x" value="">
         <attribute href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//TypeType1/x"/>
@@ -1840,7 +1991,7 @@
       </references>
       <attributes xsi:type="metamodel:VirtualAttribute" name="GroupName" unique="true"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="ItemType">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ItemType" cardinality="ONE__INFINITY">
       <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemType"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="itemID">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemType/itemID"/>
@@ -2243,7 +2394,7 @@
       </attributes>
       <attributes xsi:type="metamodel:FileAttribute" value="test.visrealtimedb" fileType="XML"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="VariableType" container="//@targetSectionModel.2/@metaModelSections.0/@references.9/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VariableType" cardinality="ONE__INFINITY" container="//@targetSectionModel.2/@metaModelSections.0/@references.9/@value.0">
       <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//VariableType"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="name">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//VariableType/name"/>
@@ -2975,277 +3126,148 @@
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogAckId" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogAckId" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.AckId"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.3/@modifierSets.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogAckId" value="LogAckId"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogAckId" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogAckId" value="LogAckId"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="DWord (32 Bit mit VZ)" value="5"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogMsg" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogMsg" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Msg"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogMsg" value="LogMsg"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogMsg" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogMsg" value="LogMsg"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogMsgId" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogMsgId" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.MsgId"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogMsgId" value="LogMsgId"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogMsgId" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogMsgId" value="LogMsgId"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="DWord (32 Bit mit VZ)" value="5"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogOption1" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption1" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option1"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption1" value="LogOption1"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogOption1" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption1" value="LogOption1"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogOption2" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption2" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption2" value="LogOption2"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogOption2" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption2" value="LogOption2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogOption3" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption3" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option3"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption3" value="LogOption3"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogOption3" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption3" value="LogOption3"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogOption4" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption4" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option4"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption4" value="LogOption4"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogOption4" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption4" value="LogOption4"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogOption5" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption5" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option5"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption5" value="LogOption5"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogOption5" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption5" value="LogOption5"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogOption6" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption6" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption6" value="LogOption6"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogOption6" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption6" value="LogOption6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item LogOption7" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption7" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option7"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption7" value="LogOption7"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable LogOption7" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="LogOption7" value="LogOption7"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item ReactAckId" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="ReactAckId" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.React.AckId"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="ReactAckId" value="ReactAckId"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable ReactAckId" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="ReactAckId" value="ReactAckId"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="DWord (32 Bit mit VZ)" value="5"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item ReactMsg" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="ReactMsg" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.React.Msg"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="ReactMsg" value="ReactMsg"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.6"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="reReadMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="1" value="1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.9"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="enableWriteMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="1" value="1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.9"/>
         </mappingHints>
         <modelConnectionMatcher name="Alert">
           <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable ReactMsg" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="ReactMsg" value="ReactMsg"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="stringAndDefaultTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="String (nullterminiert)" value="9"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item ReactMsgId" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.3/@modifierSets.0" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="ReactMsgId" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.React.MsgId"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChildType1_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Edit" value="Edit"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="variableMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.7">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="ReactMsgId" value="ReactMsgId"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="objectIDMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="reReadMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="1" value="1"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="enableWriteMapping" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="1" value="1"/>
-        </mappingHints>
-        <modelConnectionMatcher name="Alert">
-          <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:FixedValue" name="Alert" value="Alert"/>
+        <modelConnectionMatcher>
+          <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable ReactMsgId" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" resultModifier="//@mappingModel.1/@modifierSets.6" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.6">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="ReactMsgId" value="ReactMsgId"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="EditboxType_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.6">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round( x / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="x" value="3000"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="typeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="DWord (32 Bit mit VZ)" value="5"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round((2000+500*itemNumber) / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="itemNumber" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.8"/>
         </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round( width / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="width" value="10000"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round( height / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="height" value="500"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.13">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="fontSizeMapping" expression="18+valueBrowsePath-valueBrowsePath" target="//@targetSectionModel.0/@metaModelSections.13/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.8"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExecutionType1_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="varMapping" target="//@targetSectionModel.0/@metaModelSections.7/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.6"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="StyleType_edit" targetMMSection="//@targetSectionModel.0/@metaModelSections.8">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="boolFormatMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.2">
+          <condition xsi:type="condition:AttributeCondition" name="Bool" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Bool"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="x" value="x"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="integerFormatMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.2">
+          <condition xsi:type="condition:AttributeCondition" name="Integer" conditionAttributeRef="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@attributes.1">
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Integer"/>
+          </condition>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="xxx" value="xxx"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="spinMapping" expression="0" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.8"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="editMapping" target="//@targetSectionModel.0/@metaModelSections.8/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.9"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChildType1_label" targetMMSection="//@targetSectionModel.0/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="objectMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="base" value="base"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="objectIDMapping" target="//@targetSectionModel.0/@metaModelSections.5/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="_label" value="_label"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType_label" targetMMSection="//@targetSectionModel.0/@metaModelSections.13">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valueMapping" target="//@targetSectionModel.0/@metaModelSections.13/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="signalName" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.2/@attributes.1"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:FixedValue" name="_label" value="_label"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1_label" targetMMSection="//@targetSectionModel.0/@metaModelSections.14">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xMapping" expression="round( x / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="x" value="1000"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="yMapping" expression="round((2000+500*itemNumber) / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="itemNumber" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.1/@modifierSets.8"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="widthMapping" expression="round( width / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="width" value="2000"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="heightMapping" expression="round( height / (unitspermeter/xyScale) )" resultModifier="//@mappingModel.0/@modifierSets.0" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.3">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="height" value="500"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="borderMapping" target="//@targetSectionModel.0/@metaModelSections.14/@attributes.7">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="4" value="4"/>
+        </mappingHints>
+        <modelConnectionMatcher>
+          <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:FixedValue" name="_label" value="_label"/>
+        </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
     <modifierSets name="NavigationCommand">
@@ -3278,6 +3300,25 @@
     </modifierSets>
     <modifierSets name="delete _number">
       <modifier xsi:type="mapping:SubstringReplacer" name="delete _number" regex="_[0-9]+" replacement=""/>
+    </modifierSets>
+    <modifierSets name="AlertInterface -> getItemNumberFromBrowsePath">
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.MsgId -> 0" regex=".+Log.MsgId$" replacement="0"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.Msg -> 1" regex=".+Log.Msg$" replacement="1"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.Option1 -> 2" regex=".+Log.Option1$" replacement="2"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.Option2 -> 3" regex=".+Log.Option2$" replacement="3"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.Option3 -> 4" regex=".+Log.Option3$" replacement="4"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.Option4 -> 5" regex=".+Log.Option4$" replacement="5"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.Option5 -> 6" regex=".+Log.Option5$" replacement="6"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.Option6 -> 7" regex=".+Log.Option6$" replacement="7"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.Option7 -> 8" regex=".+Log.Option7$" replacement="8"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Log.AckId -> 9" regex=".+Log.AckId$" replacement="9"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="React.MsgId -> 10" regex=".+React.MsgId$" replacement="10"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="React.Msg -> 11" regex=".+React.Msg$" replacement="11"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="React.AckId -> 12" regex=".+React.AckId$" replacement="12"/>
+    </modifierSets>
+    <modifierSets name="AlertInterface -> getEditFromBrowsePath">
+      <modifier xsi:type="mapping:SubstringReplacer" name="1" regex=".*Mailbox.(React.Msg$|React.MsgId$|Log.AckId$)" replacement="1"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="0" regex=".*Mailbox.*" replacement="0"/>
     </modifierSets>
     <globalValues name="conveyorWidth" value="168"/>
   </mappingModel>

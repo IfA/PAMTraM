@@ -2365,8 +2365,9 @@
     </mapping>
     <mapping name="LayerMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.4">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MovResource" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Mapping" resultModifier="//@mappingModel.0/@modifierSets.1" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Mapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="RESOURCES/TESTPROJEKT1/" value="RESOURCES/TESTPROJEKT1/"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="layerName + .visscr" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="layerName" target="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>

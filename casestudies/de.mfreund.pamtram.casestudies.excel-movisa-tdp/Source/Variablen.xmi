@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ecoreModel:Variablen xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecoreModel="http://www.et.tu-dresden.de/ifa" Autor="Matthias Freund" Anzahl_der_Arbeitsblaetter="1">
+<ecoreModel:Variablen xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecoreModel="http://www.et.tu-dresden.de/ifa/excel" Autor="Matthias Freund" Anzahl_der_Arbeitsblaetter="1">
   <MBTCP>
     <MBTCP_Tabelle0 Variablenname="Auto_Durchfl_FL" Datentyp="BOOL" Adresse="001008" Kommentar="Automatikbetrieb_Durchflussregelung_EinAus_ueber_FactoryLink" AccessMode="rw"/>
     <MBTCP_Tabelle0 Variablenname="Auto_Fuellst_FL" Datentyp="BOOL" Adresse="001009" Kommentar="Automatikbetrieb_Fuellstandsregelung_EinAus_ueber_FactoryLink" AccessMode="rw"/>

@@ -74,11 +74,19 @@
 		includes="
 			.project,
 			w3caui-movisa.launch,
+			w3caui-movisa-context-Kleinversuchsanlage01-withMappingConditions.launch,
+			w3caui-movisa-context-Kleinversuchsanlage02-withMappingConditions.launch,
 			metamodel/aui.xsd.ecore,
 			metamodel/movisa.ecore,
+			metamodel/platform_metamodel.ecore,
 			Pamtram/w3caui-movisa.pamtram,
+			Pamtram/w3caui-movisa01.pamtram,
+			Pamtram/w3caui-movisa02.pamtram,
 			Source/allgemeinesModell.xmi,
 			Source/Kleinversuchsanlage.xmi,
+			Source/PMbase1.xmi,
+			Source/PMbase2.xmi,
+			Source/PMbase3.xmi,
 			Target/Kleinversuchsanlage.movisa.xmi,
 			Target/allgemeinesModell.movisa.xmi"/>
 	

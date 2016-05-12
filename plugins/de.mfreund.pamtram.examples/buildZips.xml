@@ -21,6 +21,22 @@
 				Source/beispiel_ver_0_2_3.xml,
 				Target/out.movisa.xmi"/>
 	
+	<!-- The files to include in the 'ctt-aminolight' example -->
+	<patternset id="ctt-aminolight.includes"
+			includes="
+				.project,
+				de.mfreund.pamtram.casestudies.ctt-aminolight.launch,
+				metamodel/AMINO-UI.ecore,
+				metamodel/ctt.xsd.ecore,
+				metamodel/platform.ecore,
+				Pamtram/ctt-aminolight.pamtram,
+				Source/distanceMeassurement.xml,
+				Source/Smartphone.xmi,
+				Source/SmartphoneWithoutSound.xmi,
+				Source/SmartphoneWithoutSoundAndVibration.xmi,
+				Source/SmartphoneWithoutVibration.xmi,
+				Target"/>
+	
 	<!-- The files to include in the 'disl-movisa' example -->
 	<patternset id="disl-movisa.includes"
 			includes="
@@ -30,6 +46,28 @@
 				Pamtram/Disl2Movisa.pamtram,
 				Source/usecase_simple.xmi,
 				Target/out.movisa.xmi"/>
+	
+	<!-- The files to include in the 'excel-movisa-tdp' example -->
+	<patternset id="excel-movisa-tdp.includes"
+			includes="
+				.project,
+				excel-movisa-tdp.launch,
+				metamodel/mbtcp-variablen.xlsx,
+				metamodel/movisa.ecore,
+				metamodel/Variablen.ecore,
+				Pamtram/excel-movisa-tdp.pamtram,
+				Source/Variablen.xmi,
+				Target"/>
+	
+	<!-- The files to include in the 'Visu+' example -->
+	<patternset id="visu-plus.includes"
+			includes="
+				.project,
+				visu-plus.launch,
+				metamodel/**,
+				Pamtram/visu-plus.pamtram,
+				Source/beispiel_ver_0_2_3.xml,
+				Target/IMAGES/**"/>
 	
 	<!-- The files to include in the 'w3caui-movisa' example -->
 	<patternset id="w3caui-movisa.includes"
@@ -44,19 +82,6 @@
 			Target/Kleinversuchsanlage.movisa.xmi,
 			Target/allgemeinesModell.movisa.xmi"/>
 	
-	<!-- The files to include in the 'Visu+' example -->
-	<patternset id="visu-plus.includes"
-			includes="
-				.project,
-				visu-plus.launch,
-				metamodel/stgml.xsd_enhanced.ecore,
-				metamodel/prozessbild.xsd.ecore,
-				metamodel/visopcclient.xsd.ecore,
-				metamodel/visrealtimedb.xsd.ecore,
-				Pamtram/visu-plus.pamtram,
-				Source/beispiel_ver_0_2_3.xml,
-				Target/**,"/>
-
 	
 	<!-- Zip the PAMTraM examples -->
 	<target name="zip.examples" depends="init">
@@ -66,16 +91,22 @@
 			<patternset refid="autoprobe.includes"/>
 		</zip>
 		
+		<!-- CTT-Aminolight -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.ctt-aminolight" property="projectDir"/>
+		<zip destfile="zips/ctt-aminolight.zip" basedir="${projectDir}">
+			<patternset refid="ctt-aminolight.includes"/>
+		</zip>
+		
 		<!-- Disl-Movisa -->
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.disl-movisa" property="projectDir"/>
 		<zip destfile="zips/disl-movisa.zip" basedir="${projectDir}">
 			<patternset refid="disl-movisa.includes"/>
 		</zip>
 		
-		<!-- W3CAUI-Movisa -->
-		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.w3caui-movisa.git" property="projectDir"/>
-		<zip destfile="zips/w3caui-movisa.zip" basedir="${projectDir}">
-			<patternset refid="w3caui-movisa.includes"/>
+		<!-- Excel-Movisa-TDP -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.excel-movisa-tdp" property="projectDir"/>
+		<zip destfile="zips/excel-movisa-tdp.zip" basedir="${projectDir}">
+			<patternset refid="excel-movisa-tdp.includes"/>
 		</zip>
 		
 		<!-- Visu+ -->
@@ -84,9 +115,15 @@
 			<patternset refid="visu-plus.includes"/>
 		</zip>
 		
+		<!-- W3CAUI-Movisa -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.w3caui-movisa" property="projectDir"/>
+		<zip destfile="zips/w3caui-movisa.zip" basedir="${projectDir}">
+			<patternset refid="w3caui-movisa.includes"/>
+		</zip>
+		
 	</target>
 
-	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.ocl.examples.">
+	<target name="clean" depends="init" description="Delete the old zip files.">
 		<delete>
 			<fileset dir="zips" includes="*.zip"/>
 		</delete>

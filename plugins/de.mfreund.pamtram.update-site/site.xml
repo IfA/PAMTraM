@@ -6,7 +6,7 @@
    <feature url="features/de.tud.et.ifa.agtele.eclipse.commons.feature_0.1.0.qualifier.jar" id="de.tud.et.ifa.agtele.eclipse.commons.feature" version="0.1.0.qualifier">
       <category name="de.mfreund.pamtram.category.pamtram"/>
    </feature>
-   <feature url="features/de.mfreund.pamtram.feature_1.5.0.qualifier.jar" id="de.mfreund.pamtram.feature" version="1.5.0.qualifier">
+   <feature url="features/de.mfreund.pamtram.feature_1.6.0.qualifier.jar" id="de.mfreund.pamtram.feature" version="1.6.0.qualifier">
       <category name="de.mfreund.pamtram.category.pamtram"/>
    </feature>
    <category-def name="de.mfreund.pamtram.category.pamtram" label="PAMTraM"/>

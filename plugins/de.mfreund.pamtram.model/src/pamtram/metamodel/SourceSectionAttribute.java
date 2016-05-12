@@ -6,6 +6,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
+import pamtram.ReferenceableElement;
 
 
 /**
@@ -17,15 +18,32 @@ import org.eclipse.emf.ecore.EAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.SourceSectionAttribute#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link pamtram.metamodel.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.metamodel.SourceSectionAttribute#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getSourceSectionAttribute()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
-public interface SourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
+public interface SourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ReferenceableElement {
+	/**
+	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Value Constraint</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
+	 * @see pamtram.metamodel.MetamodelPackage#getSourceSectionAttribute_ValueConstraint()
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SourceSectionAttribute!valueConstraint'"
+	 * @generated
+	 */
+	EList<AttributeValueConstraint> getValueConstraint();
+
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -52,23 +70,6 @@ public interface SourceSectionAttribute extends Attribute<SourceSection, SourceS
 	 * @generated
 	 */
 	void setAttribute(EAttribute value);
-
-	/**
-	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Value Constraint</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
-	 * @see pamtram.metamodel.MetamodelPackage#getSourceSectionAttribute_ValueConstraint()
-	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SourceSectionAttribute!valueConstraint'"
-	 * @generated
-	 */
-	EList<AttributeValueConstraint> getValueConstraint();
 
 	/**
 	 * <!-- begin-user-doc -->

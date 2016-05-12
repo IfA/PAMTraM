@@ -2,6 +2,8 @@
  */
 package pamtram.mapping;
 
+import pamtram.ConditionalElement;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,5 +15,5 @@ package pamtram.mapping;
  * @model abstract="true"
  * @generated
  */
-public interface MappingHint extends MappingHintType {
+public interface MappingHint extends MappingHintType, ConditionalElement {
 } // MappingHint

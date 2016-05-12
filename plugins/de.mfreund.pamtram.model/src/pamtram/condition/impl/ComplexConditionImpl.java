@@ -3,10 +3,9 @@
 package pamtram.condition.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
+import pamtram.impl.NamedElementImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +14,7 @@ import pamtram.condition.ConditionPackage;
  *
  * @generated
  */
-public abstract class ComplexConditionImpl extends MinimalEObjectImpl.Container implements ComplexCondition {
+public abstract class ComplexConditionImpl extends NamedElementImpl implements ComplexCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

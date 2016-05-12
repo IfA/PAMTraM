@@ -58,6 +58,15 @@ public interface PamtramFactory extends EFactory {
 	MappingModel createMappingModel();
 
 	/**
+	 * Returns a new object of class '<em>Condition Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Condition Model</em>'.
+	 * @generated
+	 */
+	ConditionModel createConditionModel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -2,7 +2,8 @@
  */
 package pamtram.condition;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.EList;
+import pamtram.metamodel.InstancePointer;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,42 +14,33 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.Condition#getAttribute <em>Attribute</em>}</li>
- *   <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getAdditionalConditionSpecification <em>Additional Condition Specification</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getDefaultSetting <em>Default Setting</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getCondition()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Condition extends ComplexCondition {
 	/**
-	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
+	 * Returns the value of the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.metamodel.InstancePointer}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Attribute</em>' reference isn't clear,
+	 * If the meaning of the '<em>Additional Condition Specification</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attribute</em>' reference.
-	 * @see #setAttribute(EObject)
-	 * @see pamtram.condition.ConditionPackage#getCondition_Attribute()
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!attribute'"
+	 * @return the value of the '<em>Additional Condition Specification</em>' containment reference list.
+	 * @see pamtram.condition.ConditionPackage#getCondition_AdditionalConditionSpecification()
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!additionalConditionSpecification'"
 	 * @generated
 	 */
-	EObject getAttribute();
-
-	/**
-	 * Sets the value of the '{@link pamtram.condition.Condition#getAttribute <em>Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Attribute</em>' reference.
-	 * @see #getAttribute()
-	 * @generated
-	 */
-	void setAttribute(EObject value);
+	EList<InstancePointer> getAdditionalConditionSpecification();
 
 	/**
 	 * Returns the value of the '<em><b>Comparator</b></em>' attribute.
@@ -80,7 +72,46 @@ public interface Condition extends ComplexCondition {
 	void setComparator(ComparatorEnum value);
 
 	/**
+	 * Returns the value of the '<em><b>Default Setting</b></em>' attribute.
+	 * The literals are from the enumeration {@link pamtram.condition.CondSettingEnum}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Setting</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Setting</em>' attribute.
+	 * @see pamtram.condition.CondSettingEnum
+	 * @see #setDefaultSetting(CondSettingEnum)
+	 * @see pamtram.condition.ConditionPackage#getCondition_DefaultSetting()
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!defaultSetting'"
+	 * @generated
+	 */
+	CondSettingEnum getDefaultSetting();
+
+	/**
+	 * Sets the value of the '{@link pamtram.condition.Condition#getDefaultSetting <em>Default Setting</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Setting</em>' attribute.
+	 * @see pamtram.condition.CondSettingEnum
+	 * @see #getDefaultSetting()
+	 * @generated
+	 */
+	void setDefaultSetting(CondSettingEnum value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!checkCondition(http://mfreund.de/pamtram/condition!ComplexCondition)'"
+	 * @generated
+	 */
+	boolean checkCondition(ComplexCondition condition);
+
+	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
@@ -88,12 +119,13 @@ public interface Condition extends ComplexCondition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(String)
+	 * @see #setValue(int)
 	 * @see pamtram.condition.ConditionPackage#getCondition_Value()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!value'"
+	 * @model default="1"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!value'"
 	 * @generated
 	 */
-	String getValue();
+	int getValue();
 
 	/**
 	 * Sets the value of the '{@link pamtram.condition.Condition#getValue <em>Value</em>}' attribute.
@@ -103,6 +135,6 @@ public interface Condition extends ComplexCondition {
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(String value);
+	void setValue(int value);
 
 } // Condition

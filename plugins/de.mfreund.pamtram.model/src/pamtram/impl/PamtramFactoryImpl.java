@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import pamtram.*;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
@@ -62,6 +63,7 @@ public class PamtramFactoryImpl extends EFactoryImpl implements PamtramFactory {
 			case PamtramPackage.SOURCE_SECTION_MODEL: return createSourceSectionModel();
 			case PamtramPackage.TARGET_SECTION_MODEL: return createTargetSectionModel();
 			case PamtramPackage.MAPPING_MODEL: return createMappingModel();
+			case PamtramPackage.CONDITION_MODEL: return createConditionModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -105,6 +107,16 @@ public class PamtramFactoryImpl extends EFactoryImpl implements PamtramFactory {
 	public MappingModel createMappingModel() {
 		MappingModelImpl mappingModel = new MappingModelImpl();
 		return mappingModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionModel createConditionModel() {
+		ConditionModelImpl conditionModel = new ConditionModelImpl();
+		return conditionModel;
 	}
 
 	/**

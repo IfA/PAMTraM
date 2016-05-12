@@ -19,7 +19,7 @@ import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.GlobalValue;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 
 /**
@@ -87,7 +87,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GlobalValue> globalValues;
+	protected EList<FixedValue> globalValues;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,9 +161,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 * @generated
 	 */
 	@Override
-	public EList<GlobalValue> getGlobalValues() {
+	public EList<FixedValue> getGlobalValues() {
 		if (globalValues == null) {
-			globalValues = new EObjectContainmentEList<GlobalValue>(GlobalValue.class, this, PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES);
+			globalValues = new EObjectContainmentEList<FixedValue>(FixedValue.class, this, PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES);
 		}
 		return globalValues;
 	}
@@ -247,7 +247,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 				return;
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
 				getGlobalValues().clear();
-				getGlobalValues().addAll((Collection<? extends GlobalValue>)newValue);
+				getGlobalValues().addAll((Collection<? extends FixedValue>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

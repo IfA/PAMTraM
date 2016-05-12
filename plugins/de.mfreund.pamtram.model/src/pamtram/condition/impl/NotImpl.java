@@ -2,40 +2,34 @@
  */
 package pamtram.condition.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
-import pamtram.condition.ComplexCondition;
+import pamtram.ConditionModel;
+import pamtram.ConditionalElement;
 import pamtram.condition.ConditionPackage;
+import pamtram.condition.ConditionTables;
 import pamtram.condition.Not;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Not</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link pamtram.condition.impl.NotImpl#getCondition <em>Condition</em>}</li>
- * </ul>
  *
  * @generated
  */
-public class NotImpl extends ComplexConditionImpl implements Not {
-	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCondition()
-	 * @generated
-	 * @ordered
-	 */
-	protected ComplexCondition condition;
-
+public class NotImpl extends SingleConditionOperatorImpl implements Not {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,8 +54,13 @@ public class NotImpl extends ComplexConditionImpl implements Not {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition getCondition() {
-		return condition;
+	public boolean referencesOnlyValidConditions() {
+		if(this.condPartRef == null) {
+			return true;
+		}
+		
+		EObject condPartRefContainer = this.condPartRef.eContainer();
+		return condPartRefContainer instanceof ConditionModel || condPartRefContainer instanceof ConditionalElement;
 	}
 
 	/**
@@ -69,61 +68,44 @@ public class NotImpl extends ComplexConditionImpl implements Not {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondition(ComplexCondition newCondition, NotificationChain msgs) {
-		ComplexCondition oldCondition = condition;
-		condition = newCondition;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConditionPackage.NOT__CONDITION, oldCondition, newCondition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public boolean referenceOnlyConditionsFromConditionModelOrFromConditionalElements(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv referenceOnlyConditionsFromConditionModelOrFromConditionalElements:
+		 *   let severity : Integer[1] = 4
+		 *   in
+		 *     let status : OclAny[?] = self.referencesOnlyValidConditions()
+		 *     in
+		 *       let
+		 *         message : String[?] = if status <> true
+		 *         then 'Reference only Conditions that placed inside ConditionModel or where the Container is Kind of ConditionalElement!'
+		 *         else null
+		 *         endif
+		 *       in
+		 *         'Not::referenceOnlyConditionsFromConditionModelOrFromConditionalElements'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    final /*@Thrown*/ boolean status = this.referencesOnlyValidConditions();
+		    CAUGHT_status = status;
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCondition(ComplexCondition newCondition) {
-		if (newCondition != condition) {
-			NotificationChain msgs = null;
-			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConditionPackage.NOT__CONDITION, null, msgs);
-			if (newCondition != null)
-				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConditionPackage.NOT__CONDITION, null, msgs);
-			msgs = basicSetCondition(newCondition, msgs);
-			if (msgs != null) msgs.dispatch();
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.NOT__CONDITION, newCondition, newCondition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ConditionPackage.NOT__CONDITION:
-				return basicSetCondition(null, msgs);
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ConditionPackage.NOT__CONDITION:
-				return getCondition();
+		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne) {
+		    message_0 = ConditionTables.STR_Reference_32_only_32_Conditions_32_that_32_placed_32_inside_32_ConditionModel_32_or_32_w;
 		}
-		return super.eGet(featureID, resolve, coreType);
+		else {
+		    message_0 = null;
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, ConditionTables.STR_Not_c_c_referenceOnlyConditionsFromConditionModelOrFromConditionalE, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
 	}
 
 	/**
@@ -132,42 +114,15 @@ public class NotImpl extends ComplexConditionImpl implements Not {
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ConditionPackage.NOT__CONDITION:
-				setCondition((ComplexCondition)newValue);
-				return;
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ConditionPackage.NOT___REFERENCES_ONLY_VALID_CONDITIONS:
+				return referencesOnlyValidConditions();
+			case ConditionPackage.NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP:
+				return referenceOnlyConditionsFromConditionModelOrFromConditionalElements((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ConditionPackage.NOT__CONDITION:
-				setCondition((ComplexCondition)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ConditionPackage.NOT__CONDITION:
-				return condition != null;
-		}
-		return super.eIsSet(featureID);
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //NotImpl

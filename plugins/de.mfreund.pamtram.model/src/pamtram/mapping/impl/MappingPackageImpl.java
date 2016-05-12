@@ -38,7 +38,6 @@ import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.GlobalValue;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.LocalMappedAttributeValueExpander;
@@ -455,13 +454,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	private EClass matchToUpperCaseConverterEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass globalValueEClass = null;
-
-	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -559,7 +551,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMapping_Condition() {
+	public EReference getMapping_MappingHintGroups() {
 		return (EReference)mappingEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -568,7 +560,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMapping_MappingHintGroups() {
+	public EReference getMapping_ImportedMappingHintGroups() {
 		return (EReference)mappingEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -577,7 +569,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMapping_ImportedMappingHintGroups() {
+	public EReference getMapping_GlobalVariables() {
 		return (EReference)mappingEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -586,17 +578,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMapping_GlobalVariables() {
-		return (EReference)mappingEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getMapping_Abstract() {
-		return (EAttribute)mappingEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)mappingEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1648,24 +1631,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGlobalValue() {
-		return globalValueEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getGlobalValue_Value() {
-		return (EAttribute)globalValueEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public MappingFactory getMappingFactory() {
 		return (MappingFactory)getEFactoryInstance();
 	}
@@ -1693,7 +1658,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingTypeEClass, MAPPING_TYPE__SOURCE_MM_SECTION);
 
 		mappingEClass = createEClass(MAPPING);
-		createEReference(mappingEClass, MAPPING__CONDITION);
 		createEReference(mappingEClass, MAPPING__MAPPING_HINT_GROUPS);
 		createEReference(mappingEClass, MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
 		createEReference(mappingEClass, MAPPING__GLOBAL_VARIABLES);
@@ -1863,9 +1827,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		matchToUpperCaseConverterEClass = createEClass(MATCH_TO_UPPER_CASE_CONVERTER);
 		createEAttribute(matchToUpperCaseConverterEClass, MATCH_TO_UPPER_CASE_CONVERTER__REGEX);
-
-		globalValueEClass = createEClass(GLOBAL_VALUE);
-		createEAttribute(globalValueEClass, GLOBAL_VALUE__VALUE);
 	}
 
 	/**
@@ -1894,7 +1855,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
-		ConditionPackage theConditionPackage = (ConditionPackage)EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter modifiedAttributeElementTypeEClass_S = addETypeParameter(modifiedAttributeElementTypeEClass, "S");
@@ -2036,13 +1996,16 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		mappingTypeEClass.getESuperTypes().add(thePamtramPackage.getDeactivatableElement());
 		mappingEClass.getESuperTypes().add(this.getMappingType());
+		mappingEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		mappingHintGroupTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		instantiableMappingHintGroupEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		instantiableMappingHintGroupEClass.getESuperTypes().add(thePamtramPackage.getDeactivatableElement());
+		instantiableMappingHintGroupEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		mappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());
 		mappingHintGroupEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
 		mappingHintBaseTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		mappingHintEClass.getESuperTypes().add(this.getMappingHintType());
+		mappingHintEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		attributeMappingEClass.getESuperTypes().add(this.getMappingHint());
 		attributeMappingEClass.getESuperTypes().add(this.getExpressionHint());
 		attributeMappingEClass.getESuperTypes().add(this.getModifiableHint());
@@ -2143,7 +2106,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		fixedValueEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
 		fixedValueEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
 		fixedValueEClass.getESuperTypes().add(this.getModelConnectionHintSourceInterface());
+		fixedValueEClass.getESuperTypes().add(thePamtramPackage.getReferenceableElement());
 		globalAttributeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		globalAttributeEClass.getESuperTypes().add(thePamtramPackage.getReferenceableElement());
 		globalAttributeImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
@@ -2213,14 +2178,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		externalMappedAttributeValueAppenderEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
 		matchToLowerCaseConverterEClass.getESuperTypes().add(this.getAttributeValueModifier());
 		matchToUpperCaseConverterEClass.getESuperTypes().add(this.getAttributeValueModifier());
-		globalValueEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingTypeEClass, MappingType.class, "MappingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingType_SourceMMSection(), theMetamodelPackage.getSourceSection(), null, "sourceMMSection", null, 1, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMapping_Condition(), theConditionPackage.getComplexCondition(), null, "condition", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMapping_MappingHintGroups(), this.getMappingHintGroupType(), null, "mappingHintGroups", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMapping_ImportedMappingHintGroups(), this.getMappingHintGroupImporter(), null, "importedMappingHintGroups", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMapping_GlobalVariables(), this.getGlobalAttribute(), null, "globalVariables", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2526,9 +2489,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(matchToUpperCaseConverterEClass, MatchToUpperCaseConverter.class, "MatchToUpperCaseConverter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMatchToUpperCaseConverter_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, MatchToUpperCaseConverter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(globalValueEClass, GlobalValue.class, "GlobalValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getGlobalValue_Value(), ecorePackage.getEDouble(), "value", null, 1, 1, GlobalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

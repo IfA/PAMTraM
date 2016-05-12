@@ -18,11 +18,14 @@ import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.FileAttribute;
+import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.FileTypeEnum;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.RangeBound;
+import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -100,6 +103,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.BEGINNING_MATCHER: return createBeginningMatcher();
 			case MetamodelPackage.ENDING_MATCHER: return createEndingMatcher();
 			case MetamodelPackage.REG_EX_MATCHER: return createRegExMatcher();
+			case MetamodelPackage.RANGE_CONSTRAINT: return createRangeConstraint();
+			case MetamodelPackage.INSTANCE_POINTER: return createInstancePointer();
+			case MetamodelPackage.RANGE_BOUND: return createRangeBound();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -351,6 +357,36 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public RegExMatcher createRegExMatcher() {
 		RegExMatcherImpl regExMatcher = new RegExMatcherImpl();
 		return regExMatcher;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RangeConstraint createRangeConstraint() {
+		RangeConstraintImpl rangeConstraint = new RangeConstraintImpl();
+		return rangeConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstancePointer createInstancePointer() {
+		InstancePointerImpl instancePointer = new InstancePointerImpl();
+		return instancePointer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RangeBound createRangeBound() {
+		RangeBoundImpl rangeBound = new RangeBoundImpl();
+		return rangeBound;
 	}
 
 	/**

@@ -2,7 +2,6 @@
  */
 package pamtram.metamodel;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Reg Ex Matcher</b></em>'.
@@ -13,5 +12,5 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface RegExMatcher extends AttributeValueConstraint {
+public interface RegExMatcher extends SingleReferenceAttributeValueConstraint {
 } // RegExMatcher

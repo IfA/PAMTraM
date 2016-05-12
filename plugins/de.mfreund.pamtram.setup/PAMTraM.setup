@@ -65,8 +65,14 @@
         name="org.eclipse.wb.rcp.feature.feature.group"/>
     <requirement
         name="org.eclipse.wb.rcp.doc.user.feature.feature.group"/>
+    <requirement
+        name="org.sonarlint.eclipse.feature.feature.group"/>
+    <requirement
+        name="org.sonarlint.eclipse.jdt.feature.feature.group"/>
     <repository
         url="http://download.eclipse.org/epsilon/updates/"/>
+    <repository
+        url="http://eclipse.sonarlint.org"/>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"
@@ -188,6 +194,15 @@
       <description>The folder where all projects from the 'AGTele Eclipse Commons' feature will be cloned to.</description>
     </setupTask>
     <setupTask
+        xsi:type="setup:VariableTask"
+        name="eclipse.target.platform"
+        value="None"
+        defaultValue="None"
+        storageURI="scope://Workspace"
+        label="Target Platform">
+      <description>Choose the compatibility level of the target platform</description>
+    </setupTask>
+    <setupTask
         xsi:type="setup:CompoundTask"
         id="clone"
         name="Clone Projects">
@@ -247,6 +262,27 @@
           location="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.w3caui-movisa.git"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.w3caui-movisa.git">
         <description>Clone the 'de.mfreund.pamtram.casestudies.w3caui-movisa.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.casestudies.visu-plus"
+          location="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.visu-plus.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.visu-plus.git">
+        <description>Clone the 'de.mfreund.pamtram.casestudies.visu-plus.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.casestudies.ctt-aminolight"
+          location="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.ctt-aminolight.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.ctt-aminolight.git">
+        <description>Clone the 'de.mfreund.pamtram.casestudies.ctt-aminolight.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.casestudies.excel-movisa-tdp"
+          location="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.excel-movisa-tdp.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.excel-movisa-tdp.git">
+        <description>Clone the 'de.mfreund.pamtram.casestudies.excel-movisa-tdp.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
@@ -427,6 +463,24 @@
           id="import.pamtram.casestudies.w3caui-movisa">
         <sourceLocator
             rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.w3caui-movisa.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.casestudies.visu-plus">
+        <sourceLocator
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.visu-plus.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.casestudies.ctt-aminolight">
+        <sourceLocator
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.ctt-aminolight.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.casestudies.excel-movisa-tdp">
+        <sourceLocator
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.excel-movisa-tdp.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"

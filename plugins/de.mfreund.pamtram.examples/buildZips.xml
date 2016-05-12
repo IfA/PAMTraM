@@ -25,7 +25,7 @@
 	<patternset id="ctt-aminolight.includes"
 			includes="
 				.project,
-				de.mfreund.pamtram.casestudies.ctt-aminolight.launch,
+				ctt-aminolight.launch,
 				metamodel/AMINO-UI.ecore,
 				metamodel/ctt.xsd.ecore,
 				metamodel/platform.ecore,

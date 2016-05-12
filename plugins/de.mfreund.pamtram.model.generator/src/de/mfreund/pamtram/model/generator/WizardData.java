@@ -12,6 +12,11 @@ import pamtram.SectionModel;
 import pamtram.metamodel.Section;
 import pamtram.presentation.PamtramEditor;
 
+/**
+ * This POJO incorporates all necessary data that is collected in the course of the {@link GeneratorWizard}.
+ * 
+ * @author mfreund
+ */
 public class WizardData {
 
 	private Resource targetModelResource;

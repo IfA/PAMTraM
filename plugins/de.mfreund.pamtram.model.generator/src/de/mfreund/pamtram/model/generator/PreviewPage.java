@@ -21,7 +21,6 @@ import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -33,67 +32,55 @@ import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerContentProvider;
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerLabelProvider;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.PAMTraM;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 
+/**
+ * This {@link WizardPage} will display a preview of a generated source or target {@link Section} that
+ * will get inserted into a pamtram model.
+ * 
+ * @author mfreund
+ */
 public class PreviewPage extends WizardPage {
 
-	private final class ResultPageTreeViewerSelectionListener implements
-	SelectionListener {
-		private final Tree tree;
-
-		private ResultPageTreeViewerSelectionListener(Tree tree) {
-			this.tree = tree;
-		}
-
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			TreeItem item = (TreeItem) e.item;
-
-			List<Attribute<?, ?, ?, ?>> lines = new ArrayList<>();
-
-			if(item.getData() instanceof pamtram.metamodel.Class) {
-				// populate the attribute view
-				lines.addAll(
-						((pamtram.metamodel.Class<?, ?, ?, ?>)item.getData()).getAttributes());
-			}
-
-			propertiesViewer.setInput(lines);
-
-			// set the 'checked' states of the attributes
-			for(Attribute<?, ?, ?, ?> att : lines) {
-				// the attribute has been shown before -> reuse last setting
-				if(!elementsToExclude.contains(att)) {
-					propertiesViewer.setChecked(att, true);
-					// the attribute has not been shown before -> calculate the setting by the value
-				} else {
-					//	attributesToInclude.put(att, !(att.getValue() == null)); TODO
-					//	propertiesViewer.setChecked(att, !(att.getValue() == null)); TODO
-				}
-			}
-
-		}
-
-		@Override
-		public void widgetDefaultSelected(SelectionEvent e) {}
-	}
-
-	private Composite container;
-	private ContainerCheckedTreeViewer viewer;
-	private CheckboxTableViewer propertiesViewer;
-	private WizardData wizardData;
-	private ArrayList<MetaModelElement<?, ?, ?, ?>> elementsToExclude = new ArrayList<>();
+	/**
+	 * The {@link WizardData} that stores all relevant information gathered in the course of the wizard.
+	 */
+	protected WizardData wizardData;
+	
+	/**
+	 * The {@link ContainerCheckedTreeViewer} that will display the preview of the generated section
+	 * in a tree view.
+	 */
+	protected ContainerCheckedTreeViewer viewer;
+	
+	/**
+	 * The {@link CheckboxTableViewer} that will display the preview of the attributes of the element
+	 * currently selected in the {@link #viewer}.
+	 */
+	protected CheckboxTableViewer propertiesViewer;
+	
+	/**
+	 * This keeps track of those {@link MetaModelElement MetaModelElements} that have been unchecked by
+	 * the user (either in the {@link #viewer} or in the {@link #propertiesViewer} and that thus will not be 
+	 * included in the section that will finally be added to the pamtram model.
+	 */
+	protected ArrayList<MetaModelElement<?, ?, ?, ?>> elementsToExclude = new ArrayList<>();
 
 	/**
 	 * This is the one adapter factory used for providing views of the model.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 */
 	protected ComposedAdapterFactory adapterFactory;
 
+	/**
+	 * This creates an instance.
+	 * 
+	 * @param wizardData The {@link WizardData} that stores all relevant information gathered in the course of the wizard.
+	 */
 	public PreviewPage(WizardData wizardData) {
 		super("Preview");
 		setTitle("Preview");
@@ -130,16 +117,9 @@ public class PreviewPage extends WizardPage {
 			getWizard().getContainer().updateButtons();
 
 			if(wizardData.getCreatedEObjects() != null) {				
-				viewer.setInput(
-						//						wizardData.getCreatedEObjects());
-						//ClassTreeItem.createClassTreeItems(wizardData.getCreatedEObjects()));
-						wizardData.getCreatedEObjects().toArray());
+				viewer.setInput(wizardData.getCreatedEObjects().toArray());
 				// expand the tree so that the tree item map can be generated
 				viewer.expandAll();
-				// create a map of the items in the tree that is later used for jumping to these items
-				/*for(TreeItem item : viewer.getTree().getItems()) {
-					populateTreeItemMap(item);					
-				}*/
 				for (pamtram.metamodel.Class<?, ?, ?, ?> clazz : wizardData.getCreatedEObjects()) {
 					viewer.setSubtreeChecked(clazz, true);
 				}
@@ -176,7 +156,7 @@ public class PreviewPage extends WizardPage {
 		GridData gd;
 
 		// container to host the file selector
-		container = new Composite(parent, SWT.NONE);
+		Composite container = new Composite(parent, SWT.NONE);
 
 		// define a grid layout
 		gl = new GridLayout(2, false);
@@ -214,8 +194,6 @@ public class PreviewPage extends WizardPage {
 			}
 		});
 		viewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-		//viewer.setContentProvider(new ResultPageTreeViewerContentProvider());
-		//viewer.setLabelProvider(new ResultPageTreeViewerLabelProvider(wizardData.getBundle()));
 
 		viewer.addCheckStateListener(new ICheckStateListener() {
 			@Override
@@ -242,7 +220,7 @@ public class PreviewPage extends WizardPage {
 
 		// add a selection listener that - if a non-containment reference is selected
 		// jumps to the referenced item in the tree
-		tree.addSelectionListener(new ResultPageTreeViewerSelectionListener(tree));
+		tree.addSelectionListener(new ResultPageTreeViewerSelectionListener());
 
 		// define layout for the tree viewer
 		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
@@ -292,7 +270,7 @@ public class PreviewPage extends WizardPage {
 		int[] bounds = { 100, 150};
 
 		// first column is for the property name
-		TableViewerColumn col = createTableViewerColumn(titles[0], bounds[0], 0);
+		TableViewerColumn col = createTableViewerColumn(titles[0], bounds[0]);
 		col.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
@@ -302,18 +280,18 @@ public class PreviewPage extends WizardPage {
 		});
 
 		// second column is for the property value
-		col = createTableViewerColumn(titles[1], bounds[1], 1);
+		col = createTableViewerColumn(titles[1], bounds[1]);
 		col.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				Object[] line = (Object[]) element;
+//				Object[] line = (Object[]) element;
 				// return ((pamtram.metamodel.Attribute) line[0]).getValue(); TODO
 				return ""; //TODO
 			}
 		});
 	}
 
-	private TableViewerColumn createTableViewerColumn(String title, int bound, final int colNumber) {
+	private TableViewerColumn createTableViewerColumn(String title, int bound) {
 		final TableViewerColumn viewerColumn = new TableViewerColumn(propertiesViewer,
 				SWT.NONE);
 		final TableColumn column = viewerColumn.getColumn();
@@ -324,7 +302,45 @@ public class PreviewPage extends WizardPage {
 		return viewerColumn;
 	}
 
-	public ArrayList<MetaModelElement<?, ?, ?, ?>> getElementsToExclude() {
+	public List<MetaModelElement<?, ?, ?, ?>> getElementsToExclude() {
 		return this.elementsToExclude;
+	}
+
+	/**
+	 * A {@link SelectionListener2 SelectionListener} that will update the {@link PreviewPage#propertiesViewer} 
+	 * based on the selection in the {@link PreviewPage#viewer}. 
+	 * @author Matthias
+	 *
+	 */
+	private final class ResultPageTreeViewerSelectionListener implements SelectionListener2 {
+	
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			
+			TreeItem item = (TreeItem) e.item;
+	
+			List<Attribute<?, ?, ?, ?>> lines = new ArrayList<>();
+	
+			if(item.getData() instanceof pamtram.metamodel.Class) {
+				
+				// populate the attribute view
+				lines.addAll(((pamtram.metamodel.Class<?, ?, ?, ?>)item.getData()).getAttributes());
+			}
+	
+			propertiesViewer.setInput(lines);
+	
+			// set the 'checked' states of the attributes
+			for(Attribute<?, ?, ?, ?> att : lines) {
+				// the attribute has been shown before -> reuse last setting
+				if(!elementsToExclude.contains(att)) {
+					propertiesViewer.setChecked(att, true);
+					// the attribute has not been shown before -> calculate the setting by the value
+				} else {
+					//	attributesToInclude.put(att, !(att.getValue() == null)); TODO
+					//	propertiesViewer.setChecked(att, !(att.getValue() == null)); TODO
+				}
+			}
+	
+		}
 	}
 }

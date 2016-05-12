@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -25,6 +24,7 @@ import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.TargetSection;
@@ -174,7 +174,7 @@ public class MetaModelSectionGenerator {
 
 			// add the created reference to the list of references of the current class
 			// and thus complete the metamodel section
-			if(containmentReference.getValue().size() > 0) {
+			if(!containmentReference.getValue().isEmpty()) {
 				((EList<Reference<?, ?, ?, ?>>) section.getReferences()).add(containmentReference);
 			} else {
 				EcoreUtil.remove(containmentReference);;
@@ -231,13 +231,13 @@ public class MetaModelSectionGenerator {
 
 			// link the created metamodel section to the current section
 			if(sectionType == SectionType.SOURCE) {
-				if(((MetaModelSectionReference) nonContainmentReference).getValue().size() > 0) {
+				if(!((MetaModelSectionReference) nonContainmentReference).getValue().isEmpty()) {
 					((EList<Reference<?, ?, ?, ?>>) section.getReferences()).add(nonContainmentReference);
 				} else {
 					EcoreUtil.delete(nonContainmentReference);;
 				}
 			} else {
-				if(((TargetSectionNonContainmentReference) nonContainmentReference).getValue().size() > 0) {
+				if(!((TargetSectionNonContainmentReference) nonContainmentReference).getValue().isEmpty()) {
 					((EList<Reference<?, ?, ?, ?>>) section.getReferences()).add(nonContainmentReference);
 				} else {
 					EcoreUtil.delete(nonContainmentReference);
@@ -277,7 +277,7 @@ public class MetaModelSectionGenerator {
 					attValConstraint.setCaseSensitive(true);
 					attValConstraint.setName(eAttribute.getName() + "_Constraint");
 					attValConstraint.setType(AttributeValueConstraintType.INCLUSION);
-					attValConstraint.setValue(attributeValue.toString());
+					attValConstraint.setExpression(attributeValue.toString());
 					((SourceSectionAttribute) attribute).getValueConstraint().add(attValConstraint);
 				} else {
 					((ActualAttribute) attribute).setValue(attributeValue.toString());
@@ -391,8 +391,9 @@ public class MetaModelSectionGenerator {
 		for(Attribute<?, ?, ?, ?> att : createdSection.getAttributes()) {
 			if(sectionType == SectionType.SOURCE) {
 				hash = hash + ((SourceSectionAttribute) att).getAttribute().getName();
-				if( ((SourceSectionAttribute) att).getValueConstraint().size() > 0){
-					hash = hash +  ((SourceSectionAttribute) att).getValueConstraint().get(0).getValue();
+				if(!((SourceSectionAttribute) att).getValueConstraint().isEmpty() &&
+						((SourceSectionAttribute) att).getValueConstraint().get(0) instanceof SingleReferenceAttributeValueConstraint){
+					hash = hash +  ((SingleReferenceAttributeValueConstraint) ((SourceSectionAttribute) att).getValueConstraint().get(0)).getExpression();
 				} else {
 					hash = hash + "noValue";
 				}

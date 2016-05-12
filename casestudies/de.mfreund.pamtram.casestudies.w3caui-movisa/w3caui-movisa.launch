@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
+<booleanAttribute key="enableHistory" value="false"/>
+<booleanAttribute key="enableUser" value="true"/>
+<booleanAttribute key="handleExpanding" value="false"/>
+<intAttribute key="maxPathLength" value="-1"/>
+<stringAttribute key="pamtramFile" value="w3caui-movisa.pamtram"/>
+<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.w3caui-movisa"/>
+<booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
+<listAttribute key="srcFiles">
+<listEntry value="Kleinversuchsanlage.xmi"/>
+</listAttribute>
+<booleanAttribute key="storeTransformation" value="false"/>
+<stringAttribute key="targetFile" value="out.xmi"/>
+<stringAttribute key="targetLibBundle" value="de.tud.et.ifa.agtele.genlibrary.movisalibrary"/>
+<stringAttribute key="targetLibContext" value="de.tud.et.ifa.agtele.genlibrary.movisalibrary.processor.impl.MovisaLibraryContext"/>
+<stringAttribute key="targetLibParser" value=""/>
+<stringAttribute key="targetLibPath" value="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources.git\lib"/>
+<stringAttribute key="transformationModel" value=""/>
+</launchConfiguration>

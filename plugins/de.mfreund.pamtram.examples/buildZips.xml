@@ -41,7 +41,7 @@
 	<patternset id="disl-movisa.includes"
 			includes="
 				.project,
-				de.mfreund.pamtram.casestudies.disl-movisa.launch,
+				disl-movisa.launch,
 				metamodel/disl.ecore,
 				Pamtram/Disl2Movisa.pamtram,
 				Source/usecase_simple.xmi,

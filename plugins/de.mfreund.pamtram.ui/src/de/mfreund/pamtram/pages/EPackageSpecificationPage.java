@@ -1,6 +1,7 @@
 package de.mfreund.pamtram.pages;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,6 +12,8 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.jface.fieldassist.AutoCompleteField;
+import org.eclipse.jface.fieldassist.ComboContentAdapter;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -26,10 +29,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.List;
 
+import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
-import pamtram.util.EPackageHelper;
-
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -73,6 +75,11 @@ public class EPackageSpecificationPage extends WizardPage {
 	 * This combo allows the user to specify a namespace URI.
 	 */
 	private Combo combo;
+
+	/**
+	 * This is responsible for the auto-completion in the {@link #combo}.
+	 */
+	private AutoCompleteField comboAutocompleteField;
 
 	/**
 	 * This keeps track of the selected meta-model files.
@@ -135,7 +142,7 @@ public class EPackageSpecificationPage extends WizardPage {
 				
 				if(!metamodelFilesToNamespaceURIs.containsKey(metamodelFile)) {
 				
-					HashMap<String, EPackage> packages = EPackageHelper.getEPackages(metamodelFile, true, false);
+					Map<String, EPackage> packages = EPackageHelper.getEPackages(metamodelFile, true, false);
 					
 					if(packages == null || packages.isEmpty()) {
 						return;
@@ -207,6 +214,8 @@ public class EPackageSpecificationPage extends WizardPage {
 		
 		combo = new Combo(grpSpecifyEpackages, SWT.NONE);
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		// realize auto-completion for the combo viewer
+		comboAutocompleteField = new AutoCompleteField(combo, new ComboContentAdapter(), combo.getItems());
 		
 		Button btnAdd = new Button(grpSpecifyEpackages, SWT.NONE);
 		btnAdd.setText("Add...");
@@ -283,12 +292,17 @@ public class EPackageSpecificationPage extends WizardPage {
 	 */
 	private void updateCombo() {
 		combo.removeAll();
-		for (String nsUri : registry.keySet()) {
-			combo.add(nsUri);
-		}
+		
+		String[] entries = new String[registry.size()];
+		registry.keySet().toArray(entries);
+		Arrays.sort(entries);
+		combo.setItems(entries);
+		
 		if(combo.getItemCount() == 1) {
 			combo.select(0);
 		}
+		comboAutocompleteField.setProposals(combo.getItems());
+		
 		getWizard().getContainer().updateButtons();
 	}
 	

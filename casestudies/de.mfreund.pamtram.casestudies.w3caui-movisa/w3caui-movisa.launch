@@ -5,9 +5,8 @@
 <booleanAttribute key="handleExpanding" value="false"/>
 <intAttribute key="maxPathLength" value="-1"/>
 <stringAttribute key="pamtramFile" value="w3caui-movisa.pamtram"/>
-<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.w3caui-movisa.git"/>
+<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.w3caui-movisa"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
-<stringAttribute key="srcFile" value="09_attributeMappingWithFixedValue.xmi"/>
 <listAttribute key="srcFiles">
 <listEntry value="Kleinversuchsanlage.xmi"/>
 </listAttribute>

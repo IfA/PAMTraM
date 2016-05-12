@@ -8,7 +8,7 @@
 <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
 </listAttribute>
 <stringAttribute key="pamtramFile" value="w3caui-movisa02.pamtram"/>
-<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.gkoltun-diploma.context-conditions"/>
+<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.w3caui-movisa"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
 <listAttribute key="srcFiles">
 <listEntry value="PMbase2.xmi"/>

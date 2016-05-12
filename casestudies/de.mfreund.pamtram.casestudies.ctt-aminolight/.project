@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>pamtram.ctt-aminolight</name>
+	<name>de.mfreund.pamtram.casestudies.ctt-aminolight</name>
 	<comment></comment>
 	<projects>
 		<project>de.tud.et.ifa.agtele.amino-ui.metamodel.light</project>
 	</projects>
 	<buildSpec>
+		<buildCommand>
+			<name>org.sonarlint.eclipse.core.sonarlintBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>de.mfreund.pamtram.pamtramNature</nature>

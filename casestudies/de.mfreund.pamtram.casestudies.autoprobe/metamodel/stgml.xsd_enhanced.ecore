@@ -1400,7 +1400,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double" changeable="false"
         volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="if not(self.isStopper or self.isFork or self.isMergingPoint or (self.isConveyor = true and self.grtype = 'Ellipse')) = true then&#xD;&#xA;&#x9;self.y else&#xD;&#xA;&#x9;self.incomingConveyors->union(self.outgoingConveyors)->union(self.passingConveyors)->iterate(c , ret : Real = self.height | if c.isVertical = true then ret else c.height endif)&#xD;&#xA;endif"/>
+        <details key="derivation" value="if not(self.isStopper or self.isFork or self.isMergingPoint or (self.isConveyor = true and self.grtype = 'Ellipse')) = true then&#xD;&#xA;&#x9;self.height else&#xD;&#xA;&#x9;self.incomingConveyors->union(self.outgoingConveyors)->union(self.passingConveyors)->iterate(c , ret : Real = self.height | if c.isVertical = true then ret else c.height endif)&#xD;&#xA;endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stopperHorizontalInDirection"

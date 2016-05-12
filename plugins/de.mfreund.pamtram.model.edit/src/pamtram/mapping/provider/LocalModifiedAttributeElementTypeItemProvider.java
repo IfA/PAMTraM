@@ -27,6 +27,7 @@ import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.MetaModelSectionReference;
+import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
@@ -183,6 +184,11 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 				Set<Class> scanned=new HashSet<>();
 				List<Class> sectionsToScan=new ArrayList<>();
 				sectionsToScan.add(relevantClass);
+				
+				// also regard abstract sections that this extends
+				if(relevantClass instanceof Section) {
+					sectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getExtend()); 
+				}
 
 				while(sectionsToScan.size() > 0){
 					Class classToScan=sectionsToScan.remove(0);

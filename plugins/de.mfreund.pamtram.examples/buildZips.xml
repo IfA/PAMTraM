@@ -35,6 +35,7 @@
 	<patternset id="w3caui-movisa.includes"
 		includes="
 			.project,
+			w3caui-movisa.launch,
 			metamodel/aui.xsd.ecore,
 			metamodel/movisa.ecore,
 			Pamtram/w3caui-movisa.pamtram,
@@ -47,6 +48,7 @@
 	<patternset id="visu-plus.includes"
 			includes="
 				.project,
+				visu-plus.launch,
 				metamodel/stgml.xsd_enhanced.ecore,
 				metamodel/prozessbild.xsd.ecore,
 				metamodel/visopcclient.xsd.ecore,

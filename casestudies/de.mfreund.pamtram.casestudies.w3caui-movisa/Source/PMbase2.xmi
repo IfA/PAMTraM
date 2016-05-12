@@ -3,8 +3,7 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ifa.et.tu.dresden.platform.metamodel="http://ifa/et/tu/dresden/platform/metamodel"
-    xsi:schemaLocation="http://ifa/et/tu/dresden/platform/metamodel platform_metamodel.ecore">
+    xmlns:ifa.et.tu.dresden.platform.metamodel="http://ifa/et/tu/dresden/platform/metamodel">
   <platformCollection
       platformName="Nokia Lumia 930 Smartphone"
       platformId="1"
@@ -12,7 +11,12 @@
   <ressourceCollection
       xsi:type="ifa.et.tu.dresden.platform.metamodel:Touchscreen"/>
   <ressourceCollection
-      xsi:type="ifa.et.tu.dresden.platform.metamodel:Display"/>
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Display"
+      ressourceName="Lumia930"
+      xPixel="1680"
+      yPixel="1050"
+      height="100.0"
+      width="60.0"/>
   <ressourceCollection
       xsi:type="ifa.et.tu.dresden.platform.metamodel:Speaker">
     <genericProperty

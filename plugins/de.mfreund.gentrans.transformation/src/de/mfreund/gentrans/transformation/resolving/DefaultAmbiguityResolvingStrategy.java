@@ -13,11 +13,13 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import pamtram.PAMTraM;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
@@ -48,10 +50,21 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 			return new ArrayList<>(Arrays.asList(choices.get(0)));
 		}
 	}
-
+	
 	@Override
-	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices, List<EObjectWrapper> element,
-			MappingHintGroupType hintGroup, ModelConnectionHint modelConnectionHint, String hintValue) {
+	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
+			EObject element) {
+
+		if(choices == null || choices.size() == 0) {
+			return new ArrayList<>();
+		} else {
+			return new ArrayList<>(Arrays.asList(choices.get(0)));
+		}
+	}
+	
+	@Override
+	public List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
+			InstantiableMappingHintGroup mappingHintGroup) throws Exception {
 
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
@@ -61,9 +74,8 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	}
 
 	@Override
-	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
-			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
-			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) {
+	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices, List<EObjectWrapper> element,
+			MappingHintGroupType hintGroup, ModelConnectionHint modelConnectionHint, String hintValue) {
 
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
@@ -110,6 +122,22 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	}
 
 	@Override
+	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
+			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
+			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) {
+	
+		if(choices == null || choices.size() == 0) {
+			return new ArrayList<>();
+		} else {
+			if(reference.getEReference().isMany()) {
+				return choices;
+			} else {
+				return new ArrayList<>(Arrays.asList(choices.get(0)));				
+			}
+		}
+	}
+
+	@Override
 	public HashMap<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
 			HashMap<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
 			MappingHintGroupType hintGroup) throws Exception {
@@ -119,9 +147,13 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 		} else {
 			HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
 			Entry<TargetSectionClass, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
-			ArrayList<EObjectWrapper> eObjectList = new ArrayList<>();
-			eObjectList.add(firstEntry.getValue().get(0));
-			ret.put(firstEntry.getKey(), eObjectList);
+			if(reference.getEReference().isMany()) {
+				ret.put(firstEntry.getKey(), firstEntry.getValue());
+			} else {
+				ArrayList<EObjectWrapper> eObjectList = new ArrayList<>();
+				eObjectList.add(firstEntry.getValue().get(0));
+				ret.put(firstEntry.getKey(), eObjectList);				
+			}
 			return ret;
 		}
 	}

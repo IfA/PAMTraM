@@ -55,6 +55,7 @@ import de.mfreund.pamtram.transformation.TransformationFactory;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
+import pamtram.ConditionalElement;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeMapping;
@@ -68,7 +69,6 @@ import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.GlobalValue;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
@@ -89,8 +89,8 @@ import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
-import pamtram.util.EPackageHelper;
-import pamtram.util.EPackageHelper.EPackageCheck;
+import pamtram.util.PamtramEPackageHelper;
+import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
 /**
  * Main Class for running the generic transformation for a PAMTraM model.
@@ -701,7 +701,7 @@ public class GenericTransformationRunner {
 		 * Create the source section matcher that finds applicable mappings
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(sourceSectionMatcher);
 
 		/*
@@ -783,7 +783,7 @@ public class GenericTransformationRunner {
 	 *
 	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
 	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
-	 * @param globalValues The list of {@link GlobalValue GlobalValues} to use.
+	 * @param globalValues The list of {@link FixedValue GlobalValues} to use.
 	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
 	 * @param attributeValuemodifier An instance of {@link AttributeValueModifierExecutor} to use for applying
 	 * {@link AttributeValueModifierSet AttributeValueModifierSets}.
@@ -791,7 +791,7 @@ public class GenericTransformationRunner {
 	 */
 	private ExpandingResult performExpanding(
 			final MatchingResult matchingResult,
-			final List<GlobalValue> globalValues,
+			final List<FixedValue> globalValues,
 			final IProgressMonitor monitor,
 			final AttributeValueModifierExecutor attributeValuemodifier) {
 
@@ -836,10 +836,8 @@ public class GenericTransformationRunner {
 			/*
 			 * Iterate over all mapping hint group (except inactive and empty ones)
 			 */
-			for (final MappingHintGroupType g : selMap.getMapping()
-					.getActiveMappingHintGroups()) {
-				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup) {
+			for (final MappingHintGroupType g : selMap.getMappingHintGroups()) {
+				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
 
 					/*
 					 * Instantiate the target section.
@@ -847,7 +845,7 @@ public class GenericTransformationRunner {
 					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection = 
 							targetSectionInstantiator.instantiateTargetSectionFirstPass(
 									g.getTargetMMSection(),
-									(MappingHintGroup) g, g.getMappingHints(),
+									(MappingHintGroup) g, selMap.getMappingHints(g),
 									selMap.getHintValues(),
 									selMap.getMapping().getName());
 
@@ -873,13 +871,12 @@ public class GenericTransformationRunner {
 
 			}
 
-			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
+			for (final MappingHintGroupImporter g : selMap.getMappingHintGroupImporters()) {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp != null) {
 
 					// import Hints
-					for (final MappingHint h : expGrp.getMappingHints()) {
+					for (final MappingHint h : selMap.getMappingHints(expGrp)) {
 						selMap.getHintValues().setHintValues(h, null);
 						if (matchingResult.getExportedMappingHints().containsHint(h)) {
 							selMap.getHintValues().addHintValues(h, matchingResult.getExportedMappingHints().getHintValues(h));
@@ -891,7 +888,7 @@ public class GenericTransformationRunner {
 
 						final List<MappingHint> hints = new LinkedList<>();
 						hints.addAll(expGrp.getMappingHints());
-						for (final MappingHintType h : g.getMappingHints()) {
+						for (final MappingHintType h : selMap.getMappingHints(g)) {
 							if (h instanceof MappingHint) {
 								hints.add((MappingHint) h);
 							} else if (h instanceof MappedAttributeValueExpander) {
@@ -1144,6 +1141,10 @@ public class GenericTransformationRunner {
 							if (((MappingHintGroup) g).getModelConnectionMatcher() != null) {// link using matcher
 
 								for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
+									
+									if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
+										continue;
+									}
 
 									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
 										if (isCancelled) {
@@ -1216,8 +1217,12 @@ public class GenericTransformationRunner {
 					 * mapping Instance
 					 */
 					if (i.getContainer() != null) {
-						for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping()
-								.get(m)) {
+						for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
+							
+							if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
+								continue;
+							}
+							
 							final LinkedList<EObjectWrapper> rootInstances = selMap
 									.getInstances(i, g.getTargetMMSection());
 							if (rootInstances.size() > 0) {
@@ -1225,15 +1230,13 @@ public class GenericTransformationRunner {
 
 								// get container instances created by this
 								// mapping instance
-								for (final MappingHintGroupType group : m
-										.getActiveMappingHintGroups()) {
+								for (final MappingHintGroupType group : selMap.getMappingHintGroups()) {
 									if (isCancelled) {
 										return JoiningResult.createJoiningCanceledResult();
 									}
 
 									if (group instanceof MappingHintGroup) {
-										final LinkedList<EObjectWrapper> insts = selMap
-												.getInstances(
+										final LinkedList<EObjectWrapper> insts = selMap.getInstances(
 														(MappingHintGroup) group,
 														i.getContainer());
 										if (insts != null) {
@@ -1333,8 +1336,7 @@ public class GenericTransformationRunner {
 		final double workUnit = 250.0 / matchingResult.getSelectedMappings().size();
 		double accumulatedWork = 0;
 		for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappings()) {
-			for (final MappingHintGroupType g : selMap.getMapping()
-					.getActiveMappingHintGroups()) {
+			for (final MappingHintGroupType g : selMap.getMappingHintGroups()) {
 				if (isCancelled) {
 					return false;
 				}
@@ -1342,12 +1344,13 @@ public class GenericTransformationRunner {
 				if (g.getTargetMMSection() != null
 						&& g instanceof MappingHintGroup) {
 					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
+						
 						targetSectionInstantiator.instantiateTargetSectionSecondPass(
 								g.getTargetMMSection(),
 								selMap.getMapping().getName(),
 								(MappingHintGroup) g,
 								g.getTargetMMSection(),
-								g.getMappingHints(),
+								selMap.getMappingHints(g),
 								selMap.getHintValues(),
 								selMap.getInstancesBySection((MappingHintGroup) g));
 						if (targetSectionInstantiator.isCancelled()) {
@@ -1358,14 +1361,13 @@ public class GenericTransformationRunner {
 				}
 			}
 
-			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
+			for (final MappingHintGroupImporter g : selMap.getMappingHintGroupImporters()) {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp.getTargetMMSection() != null) {
 					if (selMap.getInstancesBySection(g) != null) {
 						final List<MappingHint> hints = new LinkedList<>();
-						hints.addAll(expGrp.getMappingHints());
-						for (final MappingHintType h : g.getMappingHints()) {
+						hints.addAll(selMap.getMappingHints(expGrp));
+						for (final MappingHintType h : selMap.getMappingHints(g)) {
 							if (isCancelled) {
 								return false;
 							}
@@ -1432,7 +1434,7 @@ public class GenericTransformationRunner {
 			final SourceSectionMatcher sourceSectionMapper,
 			final LinkedList<MappingInstanceStorage> selectedMappings) {
 
-		consoleStream.println("Getting hint values of exported HintHroups, checking MappingHintImporters, adding GlobalVariables and FixedValues to hints");
+		consoleStream.println("Getting hint values of exported HintGroups, checking MappingHintImporters, adding GlobalVariables and FixedValues to hints");
 		//		final AttributeMappingHintValueMap exportedAttributeMappingHints = new AttributeMappingHintValueMap();
 		//		final CardinalityMappingHintValueMap exportedCardinalityMappingHints = new CardinalityMappingHintValueMap();
 		//		final MappingInstanceSelectorHintValueMap exportedMappingInstanceSelectors= new MappingInstanceSelectorHintValueMap();
@@ -1683,7 +1685,7 @@ public class GenericTransformationRunner {
 
 
 		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 
 		/*
 		 * now start mapping each one of the references. We automatically start
@@ -1740,7 +1742,7 @@ public class GenericTransformationRunner {
 				.get(0);
 
 		// try to register the ePackages involved in the pamtram model (if not already done)
-		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
+		EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(
 				pamtramModel,
 				ResourcesPlugin.getWorkspace().getRoot().findMember(sourceFilePaths.get(0)).getProject(),
 				EPackage.Registry.INSTANCE);

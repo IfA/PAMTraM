@@ -446,6 +446,7 @@ public final class ModelConnectionPath {
 	 * @returns unLinkedInstances A list of objects that could not be connected (possibly because the capacity of the path was not large
 	 * enough).
 	 */
+	@SuppressWarnings("unchecked")
 	private List<EObjectWrapper> instantiateMissingPath(
 			final LinkedList<EObject> invertedPath,
 			final EObject rootObject,
@@ -459,6 +460,9 @@ public final class ModelConnectionPath {
 		Object targetInst = rootObject.eGet(ref);
 
 		if (pathCopy.size() > 1) {
+
+			// Connect to a single-valued reference 
+			//
 			if (ref.getUpperBound() == 1) {// only one target instance allowed,
 				// check if it exists
 				if (targetInst == null) {
@@ -476,6 +480,8 @@ public final class ModelConnectionPath {
 						(EObject) targetInst, objectsToConnect);
 				return objectsToConnect;
 
+				// Connect to a multi-valued reference with 'upperBound == -1'
+				//
 			} else if (ref.getUpperBound() < 0) {
 
 				/*
@@ -485,7 +491,6 @@ public final class ModelConnectionPath {
 				final LinkedList<EObject> newTarget = new LinkedList<>();
 				final List<EObject> targetInstL = new LinkedList<>(); 
 				if (targetInst != null) {
-					@SuppressWarnings("unchecked")
 					final EList<EObject> castedList = (EList<EObject>) targetInst;
 					targetInstL.addAll(castedList);
 				}
@@ -509,15 +514,57 @@ public final class ModelConnectionPath {
 
 				return objectsToConnect;
 
-			} else {// cardinality less than infinity
-				// TODO
-				System.out.println("Owei, owei");
-				// addToTargetModelRoot(instancesAtEnd);
-				return new LinkedList<>();
+			} else {
+
+				// There is enough place to connect all objects
+				//
+				if((ref.getUpperBound() > 1 && (ref.getUpperBound() - (targetInst == null ? 0 : ((EList<EObject>) targetInst).size())) >= objectsToConnect.size())) {
+
+					/*
+					 * it is absolutely necessary to copy targetInst, since targetInst will be cleared by
+					 * eSet before new elements are added
+					 */
+					final LinkedList<EObject> newTarget = new LinkedList<>();
+					final List<EObject> targetInstL = new LinkedList<>(); 
+					if (targetInst != null) {
+						final EList<EObject> castedList = (EList<EObject>) targetInst;
+						targetInstL.addAll(castedList);
+					}
+
+					final EClass classToCreate = (EClass) pathCopy.get(0);
+
+					while (objectsToConnect.size() > 0) {
+						final EObject instance = classToCreate.getEPackage()
+								.getEFactoryInstance().create(classToCreate);
+						// instance.~description="Class '" + newSelf.first.name +
+						// "' (created to link targetSection):"; TODO seee above
+						targetInstL.add(instance);
+						newTarget.clear();// shouldn't be neccesssary because eSet will clear this
+						newTarget.addAll(targetInstL);
+						targetSectionRegistry.addClassInstance(newTarget.getLast());
+						rootObject.eSet(ref, newTarget);
+
+						objectsToConnect = instantiateMissingPath(pathCopy, instance,
+								objectsToConnect);
+					}
+
+					return objectsToConnect;
+
+					// This should never happen
+					//
+				} else {
+					// TODO
+					System.out.println("Owei, owei");
+					// addToTargetModelRoot(instancesAtEnd);
+					return new LinkedList<>();
+				}
 
 			}
 
 		} else {// at End
+
+			// Connect to a single-valued reference 
+			//
 			if (ref.getUpperBound() == 1) {
 				if (targetInst != null) {
 					System.out.println("Big mistake"); // this shouldn't happen
@@ -530,14 +577,16 @@ public final class ModelConnectionPath {
 					return objectsToConnect;
 
 				}
-			} else if (ref.getUpperBound() < 0) {
+
+				// Connect to a multi-valued reference with 'upperBound == -1'
+				//
+			} else if (ref.getUpperBound() < 0) { 
 				final LinkedList<EObject> newTarget = new LinkedList<>();// it
 				/*
 				 * is absolutely neccessary to copy targetInst, since targetInst
 				 * will be cleared by eSet before new elements are added
 				 */
 				if (targetInst != null) {
-					@SuppressWarnings("unchecked")
 					final EList<EObject> targetInstL = (EList<EObject>) targetInst;
 					newTarget.addAll(targetInstL);
 				}
@@ -547,12 +596,40 @@ public final class ModelConnectionPath {
 
 				rootObject.eSet(ref, newTarget);
 				return new LinkedList<>();
-			} else {// cardinality less than infinity
-				// TODO
-				System.out.println("owei, owei");
-				// addToTargetModelRoot(instancesAtEnd);
-				return new LinkedList<>();
+
+				// Connect to a multi-valued refernce with 'upperBound != -1'
+				//
+			} else {
+
+				// There is enough place to connect all objects
+				//
+				if((ref.getUpperBound() > 1 && (ref.getUpperBound() - (targetInst == null ? 0 : ((EList<EObject>) targetInst).size())) >= objectsToConnect.size())) {
+					final LinkedList<EObject> newTarget = new LinkedList<>();// it
+					/*
+					 * is absolutely neccessary to copy targetInst, since targetInst
+					 * will be cleared by eSet before new elements are added
+					 */
+					if (targetInst != null) {
+						final EList<EObject> targetInstL = (EList<EObject>) targetInst;
+						newTarget.addAll(targetInstL);
+					}
+					for (final EObjectWrapper inst : objectsToConnect) {
+						newTarget.add(inst.getEObject());
+					}
+
+					rootObject.eSet(ref, newTarget);
+					return new LinkedList<>();
+
+					// This should never happen
+					//
+				} else {
+					// TODO
+					System.out.println("owei, owei");
+					// addToTargetModelRoot(instancesAtEnd);
+					return new LinkedList<>();
+				}
 			}
+
 		}
 
 	}

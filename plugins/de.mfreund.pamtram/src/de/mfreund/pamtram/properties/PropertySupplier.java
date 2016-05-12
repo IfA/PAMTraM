@@ -11,13 +11,17 @@ import org.eclipse.core.runtime.QualifiedName;
  * 
  * @author mfreund
  */
-public class PropertySupplier {
+public abstract class PropertySupplier {
 
 	/**
 	 * This property is used to specify the path to the folder that contains the target library 
 	 * to be used for this project.
 	 */
 	public static final String PROP_LIBRARY_TARGET_PATH = "LIBRARY-TARGET-PATH";
+	
+	/**
+	 * This represents the default value for the {@link #PROP_LIBRARY_TARGET_PATH} property.
+	 */
 	public static final String DEFAULT_LIBRARY_TARGET_PATH = "";
 	
 	/**
@@ -25,19 +29,34 @@ public class PropertySupplier {
 	 * and LibraryPathParser that is used to instantiate target library entries.
 	 */
 	public static final String PROP_LIBRARY_TARGET_BUNDLE = "LIBRARY-TARGET-BUNDLE";
+	
+	/**
+	 * This represents the default value for the {@link #DEFAULT_LIBRARY_TARGET_BUNDLE} property.
+	 */
 	public static final String DEFAULT_LIBRARY_TARGET_BUNDLE = "";
+	
 	/**
 	 * This property is used to specify the concrete LibraryContext
 	 * that is used to instantiate target library entries.
 	 */
 	public static final String PROP_LIBRARY_TARGET_CONTEXT = "LIBRARY-TARGET-CONTEXT";
+	
+	/**
+	 * This represents the default value for the {@link #DEFAULT_LIBRARY_TARGET_CONTEXT} property.
+	 */
 	public static final String DEFAULT_LIBRARY_TARGET_CONTEXT = "";
+	
 	/**
 	 * This property is used to specify the concrete LibraryPathParser 
 	 * that is used to parser classpaths of the target library.
 	 */
 	public static final String PROP_LIBRARY_TARGET_PARSER = "LIBRARY-TARGET-PARSER";
+	
+	/**
+	 * This represents the default value for the {@link #DEFAULT_LIBRARY_TARGET_PARSER} property.
+	 */
 	public static final String DEFAULT_LIBRARY_TARGET_PARSER = "";
+	
 	/*
 	 * More properties can be defined here...
 	 */
@@ -48,6 +67,11 @@ public class PropertySupplier {
 	 * This is the id of the bundle that identifies the properties.
 	 */
 	public static final String PROPERTY_QUALIFIER = "de.mfreund.pamtram";
+	
+	/**
+	 * Create an instance. This should not be necessary as we only declare static fields and methods.
+	 */
+	private PropertySupplier() {}
 	
 	/**
 	 * This returns the value of the persistent property identified by the given <b>propertyName</b> 

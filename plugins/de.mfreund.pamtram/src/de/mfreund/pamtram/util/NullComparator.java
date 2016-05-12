@@ -5,8 +5,8 @@ package de.mfreund.pamtram.util;
  * 
  * @author mfreund
  */
-public class NullComparator {
-
+public interface NullComparator {
+	
 	/**
 	 * This compares two objects that may be '<em>null</em>'.
 	 * 

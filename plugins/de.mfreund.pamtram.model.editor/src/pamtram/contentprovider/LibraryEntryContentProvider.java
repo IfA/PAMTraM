@@ -1,9 +1,11 @@
 package pamtram.contentprovider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
 import pamtram.PAMTraM;
+import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
 import pamtram.metamodel.LibraryEntry;
 
@@ -13,7 +15,7 @@ import pamtram.metamodel.LibraryEntry;
  * 
  * @author mfreund
  */
-public class LibraryEntryContentProvider extends AdapterFactoryContentProvider {
+public class LibraryEntryContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
 	public LibraryEntryContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
@@ -35,5 +37,18 @@ public class LibraryEntryContentProvider extends AdapterFactoryContentProvider {
 			return ((TargetSectionModel) object).getLibraryElements().toArray();
 		}
 		return super.getElements(object);
+	}
+	
+	@Override
+	public boolean isValidFeature(EStructuralFeature feature) {
+
+		if(feature.equals(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS) ||
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
+			return false;
+		}
+		
+		return true;
 	}
 }

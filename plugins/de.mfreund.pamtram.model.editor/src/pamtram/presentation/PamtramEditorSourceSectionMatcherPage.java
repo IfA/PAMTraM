@@ -159,8 +159,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		// Create the viewer for the source sections.
 		//
 		sourceViewerGroup = new TreeViewerGroup(
-				this, adapterFactory, editor.getEditingDomain(), "Source Sections"
-				);
+				this, adapterFactory, editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), 
+				"Source Sections");
 		sourceViewer = sourceViewerGroup.getViewer();
 		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram);
@@ -179,8 +179,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		// Create the viewer for the source sections.
 		//
 		mappingViewerGroup = new TreeViewerGroup(
-				this, adapterFactory, editor.getEditingDomain(), "Mappings"
-				);
+				this, adapterFactory, editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), 
+				"Mappings");
 		mappingViewer = mappingViewerGroup.getViewer();
 
 		mappingViewer.setContentProvider(new MappingContentProvider(adapterFactory));

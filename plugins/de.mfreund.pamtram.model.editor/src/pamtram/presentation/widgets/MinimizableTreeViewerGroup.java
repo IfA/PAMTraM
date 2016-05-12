@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -43,14 +44,14 @@ public class MinimizableTreeViewerGroup extends TreeViewerGroup implements IMini
 	private int minimizedHeight;
 	
 	public MinimizableTreeViewerGroup(MinimizableSashForm parent, ComposedAdapterFactory adapterFactory,
-			EditingDomain editingDomain, String groupText) {
-		super(parent, adapterFactory, editingDomain, groupText);
+			EditingDomain editingDomain, IDialogSettings dialogSettings, String groupText) {
+		super(parent, adapterFactory, editingDomain, dialogSettings, groupText);
 	}
 	
 	public MinimizableTreeViewerGroup(MinimizableSashForm parent, ComposedAdapterFactory adapterFactory,
-			EditingDomain editingDomain, String groupText, ArrayList<Image> images,
+			EditingDomain editingDomain, IDialogSettings dialogSettings, String groupText, ArrayList<Image> images,
 			ArrayList<SelectionListener> listeners, boolean displayCollapseAll, boolean displayAdd) {
-		super(parent, adapterFactory, editingDomain, groupText, images, listeners, displayCollapseAll, displayAdd);
+		super(parent, adapterFactory, editingDomain, dialogSettings, groupText, images, listeners, displayCollapseAll, displayAdd);
 	}
 
 	@Override

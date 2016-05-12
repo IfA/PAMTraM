@@ -59,10 +59,11 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 
 			if(n.getEventType() == Notification.ADD) {
 
-				if(ref.getEReference() != null) {
+				pamtram.metamodel.Class<?,?,?,?> clazz = (Class<?, ?, ?, ?>) n.getNewValue();
+				
+				if(ref.getEReference() != null && clazz.getEClass() == null) {
 					// set the type of the reference as default value for the eClass reference
-					((pamtram.metamodel.Class<?,?,?,?>) n.getNewValue()).
-					setEClass(ref.getEReference().getEReferenceType());
+					clazz.setEClass(ref.getEReference().getEReferenceType());
 				}
 			}
 		} 

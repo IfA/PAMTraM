@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -60,7 +61,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.XMLSave.XMLTypeInfo;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -134,7 +134,6 @@ import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
@@ -145,6 +144,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
+import de.tud.et.ifa.agtele.ui.editors.ClonableEditor;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
@@ -154,8 +154,8 @@ import pamtram.contentadapter.PamtramContentAdapter;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
-import pamtram.util.EPackageHelper;
-import pamtram.util.EPackageHelper.EPackageCheck;
+import pamtram.util.PamtramEPackageHelper;
+import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
 
 /**
@@ -165,7 +165,7 @@ import pamtram.util.EPackageHelper.EPackageCheck;
  * @generated NOT
  */
 public class PamtramEditor 
-extends MultiPageEditorPart
+extends ClonableEditor
 implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, IPersistable {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
@@ -1026,7 +1026,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 */
 	public PamtramEditor() {
 		super();
-		initializeEditingDomain();
+		//initializeEditingDomain();
 	}
 
 	/**
@@ -1039,7 +1039,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		// Create an adapter factory that yields item providers.
 		//
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
+		
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new PamtramItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MetamodelItemProviderAdapterFactory());
@@ -1132,7 +1132,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 * @generated
 	 */
 	@Override
-	public EditingDomain getEditingDomain() {
+	public AdapterFactoryEditingDomain getEditingDomain() {
 		return editingDomain;
 	}
 
@@ -1292,7 +1292,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void createModel() {
 		URI resourceURI = EditUIUtil.getURI(getEditorInput(), editingDomain.getResourceSet().getURIConverter());
@@ -1312,7 +1312,12 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		if (diagnostic.getSeverity() != Diagnostic.OK) {
 			resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
 		}
-		editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
+		
+		// Prevent the adapter to be added multiple times in case this method is called more than once
+		//
+		if(!editingDomain.getResourceSet().eAdapters().contains(problemIndicationAdapter)) {
+			editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
+		}
 	}
 
 	/**
@@ -1705,7 +1710,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
 		// Get the Pamtram instance.
 		for (Resource resource : getEditingDomain().getResourceSet().getResources()) {
-			if(resource.getContents().get(0) instanceof PAMTraM) {
+			if(!resource.getContents().isEmpty() && resource.getContents().get(0) instanceof PAMTraM) {
 				pamtram = (PAMTraM) resource.getContents().get(0);
 				break;
 			}
@@ -1730,7 +1735,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		Map<Resource, Diagnostic> backup = new HashMap<Resource, Diagnostic>(resourceToDiagnosticMap);
 
 		// try to register the ePackages involved in the pamtram model (if not already done)
-		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
+		EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(
 				pamtram,
 				ResourceUtil.getFile(getEditorInput()).getProject(),
 				EPackage.Registry.INSTANCE);
@@ -1739,15 +1744,42 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		case OK_NOTHING_REGISTERED:
 			return;
 		case OK_PACKAGES_REGISTERED:
-			// if packages have been registered, a new resource set has to be created; otherwise,
-			// proxy resolving does not seem to work correctly; therefore, the editing is re-initialized
-			// and the source model is reloaded
-			initializeEditingDomain();
-			getPamtramFromResourceSet();
-
+			
 			// Reset the diagnostic map so that errors that occurred during the above operations are
 			// not reflected.
 			resourceToDiagnosticMap = backup;
+			
+			/*
+			 * If packages did have to be registered, each reference to these packages inside the loaded pamtram model
+			 * will be represented by an (unresolvable) proxy. Therefore, we unload and reload the pamtram model. As the necessary
+			 * packages are now present in the EPackageRegistry, loading should now complete successfully (all remaining
+			 * proxies can now be successfully resolved if required). 
+			 */
+			
+			// As we do not need the files/resources containing the registered packages any longer (the contained packages are now stored
+			// in the EPackageRegistry), we remove them from the resource set and unload them
+			//
+			for (EPackage ePackage : result.getRegisteredPackages()) {
+				
+				Resource metamodelResource = null;
+				for (Resource resource : editingDomain.getResourceSet().getResources()) {
+					if(resource.getURI() != null && resource.getURI().toString().equals(ePackage.getNsURI())) {
+						metamodelResource = resource;
+						break;
+					}
+				}
+				
+				if(metamodelResource != null) {
+					editingDomain.getResourceSet().getResources().remove(metamodelResource);
+					metamodelResource.unload();
+				}
+			}
+			
+			// Now, reload the pamtram model
+			//
+			pamtram.eResource().unload();
+			getPamtramFromResourceSet();
+			
 			break;
 		case ERROR_METAMODEL_FOLDER_NOT_FOUND:
 		case ERROR_PACKAGE_NOT_FOUND:
@@ -2045,7 +2077,8 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			// Refresh the necessary state.
 			//
 			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
-			firePropertyChange(IEditorPart.PROP_DIRTY);
+			//firePropertyChange(IEditorPart.PROP_DIRTY);
+			updateDirtyState();
 		}
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
@@ -2145,12 +2178,13 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 */
 	@Override
 	public void init(IEditorSite site, IEditorInput editorInput) {
+		super.init(site, editorInput);
 		setSite(site);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
 		site.setSelectionProvider(this);
 		site.getPage().addPartListener(partListener);
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
+//		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
 	}
 
 	/**
@@ -2313,16 +2347,16 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void disposeGen() {
 		updateProblemIndication = false;
 
-		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
+//		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
 
 		getSite().getPage().removePartListener(partListener);
 
-		adapterFactory.dispose();
+//		adapterFactory.dispose();
 
 		if (getActionBarContributor().getActiveEditor() == this) {
 			getActionBarContributor().setActiveEditor(null);
@@ -2407,5 +2441,85 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		} catch (Exception e) {
 			// do nothing
 		}
+	}
+
+	@Override
+	protected Viewer getCurrentViewer() {
+		return currentViewer;
+	}
+
+	@Override
+	protected List<PropertySheetPage> getPropertySheetPages() {
+		return propertySheetPages;
+	}
+
+	@Override
+	protected ComposedAdapterFactory internalGetAdapterFactory() {
+		return adapterFactory;
+	}
+
+	@Override
+	protected Map<Resource, Diagnostic> getResourceToDiagnosticMap() {
+		return resourceToDiagnosticMap;
+	}
+
+	@Override
+	protected void setUpdateProblemIndication(boolean updateProblemIndication) {
+		this.updateProblemIndication = updateProblemIndication;
+	}
+
+	@Override
+	protected EMFPlugin getPlugin() {
+		return PamtramEditorPlugin.INSTANCE;
+	}
+
+	@Override
+	protected Collection<Resource> getRemovedResources() {
+		return removedResources;
+	}
+
+	@Override
+	protected void setRemovedResources(Collection<Resource> removedResources) {
+		this.removedResources = removedResources;
+	}
+
+	@Override
+	protected Collection<Resource> getChangedResources() {
+		return changedResources;
+	}
+
+	@Override
+	protected void setChangedResources(Collection<Resource> changedResources) {
+		this.changedResources = changedResources;
+	}
+
+	@Override
+	protected Collection<Resource> getSavedResources() {
+		return savedResources;
+	}
+
+	@Override
+	protected void setSavedResources(Collection<Resource> savedResources) {
+		this.savedResources = savedResources;
+	}
+
+	@Override
+	protected void setAdapterFactory(ComposedAdapterFactory adapterFactory) {
+		this.adapterFactory = adapterFactory;
+	}
+
+	@Override
+	protected void setEditingDomain(AdapterFactoryEditingDomain editingDomain) {
+		this.editingDomain = editingDomain;
+	}
+
+	@Override
+	protected IResourceChangeListener getResourceChangeListener() {
+		return resourceChangeListener;
+	}
+
+	@Override
+	protected void setResourceChangeListener(IResourceChangeListener resourceChangeListener) {
+		this.resourceChangeListener = resourceChangeListener;
 	}
 }

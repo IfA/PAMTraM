@@ -1,77 +1,113 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Dialog;
 
 /**
- * @author Sascha Steffen
- * @version 1.0
- *
- *          Runner for the PathAndInstanceSelectorDialog
+ * A {@link GenericSelectionDialogRunner} that will spawn a {@link PathAndInstanceSelectorDialog} in order to enable
+ * the user to select between a 'path' as well as an 'instance' to be used.
  *
  */
-public class PathAndInstanceSelectorRunner implements Runnable {
-	private final List<List<String>> instances;
-	private String path, instance;
-	private final String message;
-	private final List<String> paths;
-
-	private boolean transformationStopRequested;
-
+public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<String> {
+	
 	/**
-	 * @param message
-	 * @param paths
-	 * @param instances
+	 * For each path in {@link GenericSelectionDialogRunner#options} this list keeps a list of
+	 * instances represent by an identifier.
+	 */
+	private final List<List<String>> instances;
+	
+	/**
+	 * The instances that have been selected by the user (this will be a subset of {@link #instances}).
+	 */	
+	private Set<String> selectedInstances;
+	
+	/**
+	 * This creates an instance without allowing for multi-selection.
+	 * <p />
+	 * Note: This is equal to calling '<em>PathAndInstanceSelectorRunner(message, paths, instances, 
+	 * <b>false</b>)</em>'.
+	 * 
+	 * @param message The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
+	 * @param paths The paths to be presented to the user in the dialog.
+	 * @param instances The instances to be presented to the user (one list of instances for each path).
 	 */
 	public PathAndInstanceSelectorRunner(final String message,
 			final List<String> paths, final List<List<String>> instances) {
-		path = "";
-		instance = "";
-		transformationStopRequested = false;
-		this.paths = paths;
+		
+		this(message, paths, instances, false);
+	}
+	
+	/**
+	 * This creates an instance.
+	 * 
+	 * @param message The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
+	 * @param paths The paths to be presented to the user in the dialog.
+	 * @param instances The instances to be presented to the user (one list of instances for each path).
+	 * @param multiSelectionAllowed Whether multi-selection shall be allowed in the dialog.
+	 */
+	public PathAndInstanceSelectorRunner(final String message,
+			final List<String> paths, final List<List<String>> instances, boolean multiSelectionAllowed) {
+		
+		super(message, 0, multiSelectionAllowed, paths);
+		
+		this.selectedInstances = new HashSet<>();
 		this.instances = instances;
-		this.message = message;
 	}
 
 	/**
+	 * Get selected instance after run() was called.
+	 * <p />
+	 * Note: If multiple elements are selected by the user, this will return one (random!) element.
+	 * 
 	 * @return selected Instance after run() was called
 	 */
-	public String getInstance() {
-		return instance;
+	public String getSingleInstance() {
+		return (selectedInstances == null || selectedInstances.isEmpty() ? null : selectedInstances.iterator().next());
+	}
+	
+	/**
+	 * Get selected instances after run() was called.
+	 * 
+	 * @return selected Instances after run() was called
+	 */
+	public Set<String> getInstances() {
+		return selectedInstances;
 	}
 
 	/**
-	 * @return selected Path after run() was called
+	 * The single selected path after the dialog has finished.
+	 * <p />
+	 * Note: This convenience method just forwards to {@link GenericSelectionDialogRunner#getSingleSelection()}.
+	 * 
+	 * @return The single selected path after the dialog has finished.
 	 */
 	public String getPath() {
-		return path;
+		return getSingleSelection();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Runnable#run()
-	 */
 	@Override
-	public void run() {
-		final Display display = Display.getDefault();
-		final Shell shell = new Shell(display);
-		final PathAndInstanceSelectorDialog d = new PathAndInstanceSelectorDialog(
-				shell, message, paths, instances);
+	protected void initializeDialog() {
+		
+		dialog = new PathAndInstanceSelectorDialog(message, options, instances, multiSelectionAllowed);
+	}
+	
+	@Override
+	protected void evaluateResults() {
 
-		d.open();
-		path = d.getPath();
-		instance = d.getInstance();
-		transformationStopRequested = d.isTransformationStopRequested();
-	};
-
-	/**
-	 * @return true if Button "Abort Transformation" was clicked during run()
-	 */
-	public boolean wasTransformationStopRequested() {
-		return transformationStopRequested;
-	};
+		String path = ((PathAndInstanceSelectorDialog) dialog).getPath();
+		selection = Arrays.asList(path);
+		if(!multiSelectionAllowed) {
+			selectedInstances = new HashSet<>(Arrays.asList(((PathAndInstanceSelectorDialog) dialog).getSingleInstance()));
+		} else {
+			selectedInstances = new HashSet<>();
+			for (String instance : ((PathAndInstanceSelectorDialog) dialog).getInstances()) {
+				selectedInstances.add(instance);
+			}
+		}
+	}
 
 }

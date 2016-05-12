@@ -304,23 +304,4 @@ extends MatcherItemProvider {
 				 MappingFactory.eINSTANCE.createAttributeMatcherExternalSourceElement()));
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-
-
-		if(collection.size() == 1) {
-			Object value = collection.iterator().next();
-			if(value instanceof TargetSectionAttribute) {
-
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-						MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE, value, 0);
-			}
-		}
-
-		return super.createDragAndDropCommand(domain, owner, location, operations,
-				operation, collection); 
-	}
-
 }

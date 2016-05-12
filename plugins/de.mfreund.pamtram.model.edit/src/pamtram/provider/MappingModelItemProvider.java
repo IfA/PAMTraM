@@ -133,7 +133,7 @@ public class MappingModelItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
@@ -201,7 +201,7 @@ public class MappingModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES,
-				 MappingFactory.eINSTANCE.createGlobalValue()));
+				 MappingFactory.eINSTANCE.createFixedValue()));
 	}
 
 }

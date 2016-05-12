@@ -168,27 +168,4 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-
-		EList<SourceSectionClass> values = new BasicEList<SourceSectionClass>();
-		for (Object value : collection) {
-			if(value instanceof SourceSectionClass) {
-				values.add((SourceSectionClass) value);
-			} else {
-				return super.createDragAndDropCommand(domain, owner, location, operations,
-						operation, collection); 
-			}
-		}
-
-		if(values.isEmpty()) {
-			return super.createDragAndDropCommand(domain, owner, location, operations,
-					operation, collection); 
-		} else {
-			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE, values);
-		}
-	}
 }

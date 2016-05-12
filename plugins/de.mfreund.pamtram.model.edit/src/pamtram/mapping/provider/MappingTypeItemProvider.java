@@ -176,21 +176,4 @@ public class MappingTypeItemProvider
 		return PamtramEditPlugin.INSTANCE;
 	}
 
-
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-		
-		if(collection.size() == 1) {
-			Object value = collection.iterator().next();
-			if(value instanceof SourceSectionClass && value == ((SourceSectionClass) value).getContainingSection()) {
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-						MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION, value, 0);
-			}
-		}
-		
-		return super.createDragAndDropCommand(domain, owner, location, operations,
-				operation, collection);
-	}
 }

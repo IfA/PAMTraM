@@ -105,17 +105,22 @@ public class FixedValueItemProvider extends NamedElementItemProvider {
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((FixedValue)object).getName();
-    	StyledString styledLabel = new StyledString();
+		
+		FixedValue fixedValue = ((FixedValue)object);
+		String label = fixedValue.getName();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_FixedValue_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
 			styledLabel.append(getString("_UI_FixedValue_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
+
+		styledLabel.append(" = \"" + fixedValue.getValue() + "\"", StyledString.Style.COUNTER_STYLER);
+
 		return styledLabel;
 	}
 

@@ -25,8 +25,6 @@ import pamtram.TargetSectionModel;
 import pamtram.mapping.commands.DeleteLibraryEntryCommand;
 import pamtram.mapping.commands.ReplacingDragAndDropAddCommand;
 import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 

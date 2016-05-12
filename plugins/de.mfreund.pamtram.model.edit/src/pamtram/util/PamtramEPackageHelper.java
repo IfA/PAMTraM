@@ -2,8 +2,8 @@ package pamtram.util;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -19,11 +19,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.PAMTraM;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 
-public class EPackageHelper extends de.tud.et.ifa.agtele.emf.EPackageHelper {
+public interface PamtramEPackageHelper extends EPackageHelper {
 
 	/**
 	 * This determines the various ePackages involved in a PAMTraM model (source, target and context
@@ -115,19 +117,25 @@ public class EPackageHelper extends de.tud.et.ifa.agtele.emf.EPackageHelper {
 			return EPackageCheck.ERROR_METAMODEL_FOLDER_NOT_FOUND;
 		}
 		try {
+			HashSet<EPackage> registeredPackages = new HashSet<>();
+			HashSet<String> usedMetamodelFiles = new HashSet<>();
 			for(IResource res : metamodelFolder.members()) {
 				if(res instanceof IFile && ((IFile) res).getName().endsWith(".ecore")) {
 					try {
-						HashMap<String, EPackage> ePackages = getEPackages(res.getRawLocation().toString(), true, false);
+						Map<String, EPackage> ePackages = EPackageHelper.getEPackages(res.getRawLocation().toString(), true, false);
 						for (String nsUri : ePackages.keySet()) {
 							if(nsUrisToRegister.contains(nsUri)) {
 								// register all ePackages defined in the ecore model
 								for (String nsUriToRegister : ePackages.keySet()) {
-									registry.put(nsUriToRegister, ePackages.get(nsUriToRegister));		
+									registry.put(nsUriToRegister, ePackages.get(nsUriToRegister));
 									nsUrisToRegister.remove(nsUriToRegister);
+									
+									usedMetamodelFiles.add(res.getRawLocation().toString());
+									registeredPackages.add(ePackages.get(nsUriToRegister));
 								}
 								if(nsUrisToRegister.isEmpty()) {
-									return EPackageCheck.OK_PACKAGES_REGISTERED;
+									return EPackageCheck.OK_PACKAGES_REGISTERED.
+											withRegisteredPackages(registeredPackages);
 								}
 							}
 						}
@@ -143,7 +151,36 @@ public class EPackageHelper extends de.tud.et.ifa.agtele.emf.EPackageHelper {
 		return EPackageCheck.ERROR_PACKAGE_NOT_FOUND;
 	}
 
+	/**
+	 * This describes the result of checking references packages involved in a pamtram model.
+	 * 
+	 * @author mfreund
+	 */
 	public enum EPackageCheck {
 		OK_NOTHING_REGISTERED, OK_PACKAGES_REGISTERED, ERROR_PACKAGE_NOT_FOUND, ERROR_PAMTRAM_NOT_FOUND, ERROR_METAMODEL_FOLDER_NOT_FOUND;
+		
+		/**
+		 * This stores the set of {@link EPackage EPackages} that have been registered during an 'EPackageCheck'.
+		 */
+		private HashSet<EPackage> registeredPackages;
+
+		/**
+		 * This is the getter for the the {@link #registeredPackages}.
+		 * @return The set of {@link EPackage EPackages} that have been registered during an 'EPackageCheck'.
+		 */
+		public HashSet<EPackage> getRegisteredPackages() {
+			return registeredPackages == null ? new HashSet<>() : registeredPackages;
+		}
+		
+		/**
+		 * This sets the set of {@link #registeredPackages} for this instance of 'EPackageCheck'.
+		 * @param registeredPackages The set of {@link EPackage EPackages} to set as {@link #registeredPackages}.
+		 * @return The instance of {@link EPackageCheck} after setting the registered packages.
+		 */
+		public EPackageCheck withRegisteredPackages(HashSet<EPackage> registeredPackages) {
+			this.registeredPackages = registeredPackages;
+			return this;
+		}
+
 	}
 }

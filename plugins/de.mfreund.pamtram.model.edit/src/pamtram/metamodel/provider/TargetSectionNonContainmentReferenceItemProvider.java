@@ -167,28 +167,4 @@ extends NonContainmentReferenceItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-
-		EList<TargetSectionClass> values = new BasicEList<TargetSectionClass>();
-		for (Object value : collection) {
-			if(value instanceof TargetSectionClass) {
-				values.add((TargetSectionClass) value);
-			} else {
-				return super.createDragAndDropCommand(domain, owner, location, operations,
-						operation, collection); 
-			}
-		}
-
-		if(values.isEmpty()) {
-			return super.createDragAndDropCommand(domain, owner, location, operations,
-					operation, collection); 
-		} else {
-			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, values);
-		}
-	}
-
 }

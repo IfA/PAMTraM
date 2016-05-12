@@ -206,14 +206,11 @@ extends AttributeItemProvider {
 			(createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 MetamodelFactory.eINSTANCE.createRegExMatcher()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				 MetamodelFactory.eINSTANCE.createRangeConstraint()));
 	}
 
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-		// TODO Auto-generated method stub
-		return super.createDragAndDropCommand(domain, owner, location, operations,
-				operation, collection);
-	}
 }

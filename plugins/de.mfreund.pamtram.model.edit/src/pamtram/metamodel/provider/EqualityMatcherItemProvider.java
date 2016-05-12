@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -18,8 +17,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.provider.NamedElementItemProvider;
-import pamtram.provider.PamtramEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.EqualityMatcher} object.
@@ -28,7 +25,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class EqualityMatcherItemProvider
-extends NamedElementItemProvider {
+extends SingleReferenceAttributeValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -50,55 +47,9 @@ extends NamedElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTypePropertyDescriptor(object);
-			addValuePropertyDescriptor(object);
 			addCaseSensitivePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeValueConstraint_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeValueConstraint_type_feature", "_UI_AttributeValueConstraint_type"),
-				 MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT__TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeValueConstraint_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeValueConstraint_value_feature", "_UI_AttributeValueConstraint_type"),
-				 MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT__VALUE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -161,7 +112,7 @@ extends NamedElementItemProvider {
 	public Object getStyledText(Object object) {
 
 		String label = ((EqualityMatcher)object).getName();
-		String value = ((EqualityMatcher)object).getValue();
+		String value = ((EqualityMatcher)object).getExpression();
 
 		StyledString styledLabel = new StyledString();
 
@@ -186,8 +137,6 @@ extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(EqualityMatcher.class)) {
-			case MetamodelPackage.EQUALITY_MATCHER__TYPE:
-			case MetamodelPackage.EQUALITY_MATCHER__VALUE:
 			case MetamodelPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -205,17 +154,6 @@ extends NamedElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

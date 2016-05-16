@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation.matching;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -44,6 +45,17 @@ public class MatchedSectionDescriptor {
 	 * represented by this descriptor.
 	 */
 	private List<AttributeValueConstraint> attributeValueConstraints;
+
+	/**
+	 * This constructs an instance.
+	 */
+	public MatchedSectionDescriptor() {
+
+		this.sourceModelObjetsMapped = new LinkedHashMap<>();
+		this.associatedSourceModelElement = null;
+		this.associatedSourceSectionClass = null;
+		this.attributeValueConstraints = new ArrayList<>();
+	}
 
 	/**
 	 * This sets the {@link #associatedSourceSectionClass}.
@@ -156,9 +168,9 @@ public class MatchedSectionDescriptor {
 	 * Add matched source model elements from another
 	 * {@link MatchedSectionDescriptor}.
 	 *
-	 * @param The
-	 *            {@link MatchedSectionDescriptor} from that matched elements
-	 *            shall be added.
+	 * @param otherDescriptor
+	 *            The {@link MatchedSectionDescriptor} from that matched
+	 *            elements shall be added.
 	 */
 	public void add(final MatchedSectionDescriptor otherDescriptor) {
 

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -129,7 +130,7 @@ public class GenericTransformationRunner {
 	 *  File path relative to that all target models will be created.
 	 */
 	private final String targetBasePath;
-	
+
 	/**
 	 * File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
 	 * target model is that target model to which all contents will be added that are not associated with a special model
@@ -490,13 +491,13 @@ public class GenericTransformationRunner {
 		if(pamtramModel == null && !loadPamtramModel(resourceSet)) {
 			return;
 		}
-		
+
 		// validate the pamtram model
 		Diagnostic diag = Diagnostician.INSTANCE.validate(pamtramModel);
 		if(diag.getSeverity() == Diagnostic.ERROR) {
 			final AtomicBoolean result = new AtomicBoolean();
 			Display.getDefault().syncExec(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					result.set(ErrorDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), 
@@ -555,12 +556,12 @@ public class GenericTransformationRunner {
 		this.transformationModel.setEndDate(new Date());
 
 		if (transformationResult != null && transformationResult.getOverallResult() && !isCancelled) {
-			
+
 			/*
 			 * create the target models
 			 */
 			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().saveTargetModels();
-			
+
 			final long endTime = System.nanoTime();
 			writePamtramMessage("Transformation done. Time: "
 					+ Math.ceil((endTime - startTime) / 100000000L) / 10.0 + "s");
@@ -700,78 +701,102 @@ public class GenericTransformationRunner {
 		/*
 		 * Create the source section matcher that finds applicable mappings
 		 */
-		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
-		objectsToCancel.add(sourceSectionMatcher);
+		// final SourceSectionMatcher sourceSectionMatcher = new
+		// SourceSectionMatcher(
+		// containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings,
+		// pamtramModel.getGlobalValues(), attributeValueModifier,
+		// ambiguityResolvingStrategy, consoleStream);
+		final de.mfreund.gentrans.transformation.matching.SourceSectionMatcher sourceSectionMatcher = new de.mfreund.gentrans.transformation.matching.SourceSectionMatcher(
+				containmentTree, pamtramModel.getSourceSections(), consoleStream);
+		// objectsToCancel.add(sourceSectionMatcher);
 
-		/*
-		 * Now start matching each of the elements in the containment tree. We automatically start
-		 * at the root element.
-		 */
-		writePamtramMessage("Selecting Mappings for source model elements");
+		sourceSectionMatcher.matchSections();
 
-		final int numSrcModelElements = containmentTree.getNumberOfElements();
-		final double workUnit = 250.0 / numSrcModelElements;
-		double accumulatedWork = 0;
+		return MatchingResult.createMatchingCanceledResult();
 
-		/*
-		 * When iterating through the containment tree, 'getNumberOfAvailableElements()' will decrease over the time
-		 * until every element has either been matched or marked as 'unmatched'.
-		 */
-		while (containmentTree.getNumberOfAvailableElements() > 0 && !isCancelled) {
-
-			final MappingInstanceStorage selectedMapping = 
-					sourceSectionMatcher.findMappingForNextElement();
-
-			if (sourceSectionMatcher.isCancelled()) {
-				writePamtramMessage("Transformation aborted.");
-				return MatchingResult.createMatchingCanceledResult();
-			}
-
-			// store the selected mapping
-			if (selectedMapping != null) {
-				selectedMappings.add(selectedMapping);
-				if (!selectedMappingsByMapping.containsKey(selectedMapping.getMapping())) {
-					selectedMappingsByMapping.put(selectedMapping.getMapping(),
-							new LinkedList<MappingInstanceStorage>());
-				}
-				selectedMappingsByMapping.get(selectedMapping.getMapping()).add(selectedMapping);
-
-			}
-
-			// update the progress bar in the monitor
-			accumulatedWork += workUnit
-					* (containmentTree.getNumberOfAvailableElements());
-			if (accumulatedWork >= 1) {
-				monitor.worked((int) Math.floor(accumulatedWork));
-				accumulatedWork -= Math.floor(accumulatedWork);
-			}
-		}
-
-		if (isCancelled) {
-			return MatchingResult.createMatchingCanceledResult();
-		}
-
-		consoleStream.println("Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
-		consoleStream.println("\t\tMatched Elements:\t" + containmentTree.getNumberOfMatchedElements());
-		consoleStream.println("\t\tUnmatched Elements:\t" + containmentTree.getNumberOfUnmatchedElements());
-
-		/*
-		 * Now write MappingHint values of Hints of ExportedMappingHintGroups to
-		 * a separate storage, and remove the values from the
-		 * MappingInstanceStorages.
-		 * 
-		 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
-		 */
-		exportedMappingHints = handleGlobalVarsAndExportedMappings(
-				sourceSectionMatcher, selectedMappings);
-		globalAttributeValues =  sourceSectionMatcher.getGlobalAttributeValues();
-
-		if (isCancelled) {
-			return MatchingResult.createMatchingCanceledResult();
-		}
-
-		return MatchingResult.createMatchingCompletedResult(selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalAttributeValues);
+		// /*
+		// * Now start matching each of the elements in the containment tree. We
+		// automatically start
+		// * at the root element.
+		// */
+		// writePamtramMessage("Selecting Mappings for source model elements");
+		//
+		// final int numSrcModelElements =
+		// containmentTree.getNumberOfElements();
+		// final double workUnit = 250.0 / numSrcModelElements;
+		// double accumulatedWork = 0;
+		//
+		// /*
+		// * When iterating through the containment tree,
+		// 'getNumberOfAvailableElements()' will decrease over the time
+		// * until every element has either been matched or marked as
+		// 'unmatched'.
+		// */
+		// while (containmentTree.getNumberOfAvailableElements() > 0 &&
+		// !isCancelled) {
+		//
+		// final MappingInstanceStorage selectedMapping =
+		// sourceSectionMatcher.findMappingForNextElement();
+		//
+		// if (sourceSectionMatcher.isCancelled()) {
+		// writePamtramMessage("Transformation aborted.");
+		// return MatchingResult.createMatchingCanceledResult();
+		// }
+		//
+		// // store the selected mapping
+		// if (selectedMapping != null) {
+		// selectedMappings.add(selectedMapping);
+		// if
+		// (!selectedMappingsByMapping.containsKey(selectedMapping.getMapping()))
+		// {
+		// selectedMappingsByMapping.put(selectedMapping.getMapping(),
+		// new LinkedList<MappingInstanceStorage>());
+		// }
+		// selectedMappingsByMapping.get(selectedMapping.getMapping()).add(selectedMapping);
+		//
+		// }
+		//
+		// // update the progress bar in the monitor
+		// accumulatedWork += workUnit
+		// * (containmentTree.getNumberOfAvailableElements());
+		// if (accumulatedWork >= 1) {
+		// monitor.worked((int) Math.floor(accumulatedWork));
+		// accumulatedWork -= Math.floor(accumulatedWork);
+		// }
+		// }
+		//
+		// if (isCancelled) {
+		// return MatchingResult.createMatchingCanceledResult();
+		// }
+		//
+		// consoleStream.println("Summary:\tAvailable Elements:\t" +
+		// containmentTree.getNumberOfElements());
+		// consoleStream.println("\t\tMatched Elements:\t" +
+		// containmentTree.getNumberOfMatchedElements());
+		// consoleStream.println("\t\tUnmatched Elements:\t" +
+		// containmentTree.getNumberOfUnmatchedElements());
+		//
+		// /*
+		// * Now write MappingHint values of Hints of ExportedMappingHintGroups
+		// to
+		// * a separate storage, and remove the values from the
+		// * MappingInstanceStorages.
+		// *
+		// * Also add values of GlobalVariables to ComplexAttributeMapping's
+		// Hints
+		// */
+		// exportedMappingHints = handleGlobalVarsAndExportedMappings(
+		// sourceSectionMatcher, selectedMappings);
+		// globalAttributeValues =
+		// sourceSectionMatcher.getGlobalAttributeValues();
+		//
+		// if (isCancelled) {
+		// return MatchingResult.createMatchingCanceledResult();
+		// }
+		//
+		// return MatchingResult.createMatchingCompletedResult(selectedMappings,
+		// selectedMappingsByMapping, exportedMappingHints,
+		// globalAttributeValues);
 
 	}
 
@@ -1095,7 +1120,7 @@ public class GenericTransformationRunner {
 
 		writePamtramMessage("Joining targetModelSections");
 		monitor.subTask("Joining targetModelSections");
-		
+
 		/*
 		 * The TargetModelRegistry that will be returned at the end as part of the 'JoiningResult'.
 		 */
@@ -1120,7 +1145,7 @@ public class GenericTransformationRunner {
 
 				if (g.getTargetMMSection() != null // targetSection
 						&& g instanceof MappingHintGroup) { 
-					
+
 					/*
 					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
 					 */
@@ -1141,7 +1166,7 @@ public class GenericTransformationRunner {
 							if (((MappingHintGroup) g).getModelConnectionMatcher() != null) {// link using matcher
 
 								for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
-									
+
 									if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
 										continue;
 									}
@@ -1201,7 +1226,7 @@ public class GenericTransformationRunner {
 			for (final MappingHintGroupImporter i : m.getActiveImportedMappingHintGroups()) {
 				final ExportedMappingHintGroup g = i.getHintGroup();
 				if (g.getTargetMMSection() != null) {
-					
+
 					/*
 					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
 					 */
@@ -1210,7 +1235,7 @@ public class GenericTransformationRunner {
 								expandingResult.getTargetSectionRegistry().getPamtramClassInstances(g.getTargetMMSection()).get(i));
 						continue;
 					}
-					
+
 					/*
 					 * ImportedMAppingHintGroups with containers specified will
 					 * be linked to a section that was created by the same
@@ -1218,11 +1243,11 @@ public class GenericTransformationRunner {
 					 */
 					if (i.getContainer() != null) {
 						for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
-							
+
 							if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
 								continue;
 							}
-							
+
 							final LinkedList<EObjectWrapper> rootInstances = selMap
 									.getInstances(i, g.getTargetMMSection());
 							if (rootInstances.size() > 0) {
@@ -1237,8 +1262,8 @@ public class GenericTransformationRunner {
 
 									if (group instanceof MappingHintGroup) {
 										final LinkedList<EObjectWrapper> insts = selMap.getInstances(
-														(MappingHintGroup) group,
-														i.getContainer());
+												(MappingHintGroup) group,
+												i.getContainer());
 										if (insts != null) {
 											containerInstances.addAll(insts);
 										}
@@ -1344,7 +1369,7 @@ public class GenericTransformationRunner {
 				if (g.getTargetMMSection() != null
 						&& g instanceof MappingHintGroup) {
 					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
-						
+
 						targetSectionInstantiator.instantiateTargetSectionSecondPass(
 								g.getTargetMMSection(),
 								selMap.getMapping().getName(),
@@ -2245,7 +2270,7 @@ public class GenericTransformationRunner {
 				return new ExpandingResult(attributeValueRegistry, targetSectionRegistry); 
 			}
 		}
-		
+
 		/**
 		 * This class encapsulates the various results of the <em>joining</em> process during a generic transformation:
 		 * <br />
@@ -2257,13 +2282,13 @@ public class GenericTransformationRunner {
 		 * 
 		 */
 		static class JoiningResult {
-			
+
 			/**
 			 * This describes the status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
 			 * canceled, '<em><b>false</b></em>' otherwise.
 			 */
 			private final boolean canceled;
-			
+
 			/**
 			 * This is the getter for the {@link #canceled}.
 			 * @return The status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
@@ -2277,7 +2302,7 @@ public class GenericTransformationRunner {
 			 * The {@link TargetModelRegistry} representing the target models to be created.
 			 */
 			private TargetModelRegistry targetModelRegistry;
-			
+
 			/**
 			 * This is the getter for the {@link #targetModelRegistry}.
 			 * @return The {@link TargetModelRegistry} representing the target models to be created.
@@ -2285,7 +2310,7 @@ public class GenericTransformationRunner {
 			TargetModelRegistry getTargetModelRegistry() {
 				return targetModelRegistry;
 			}
-			
+
 			/**
 			 * This constructs an instance.
 			 * 
@@ -2299,7 +2324,7 @@ public class GenericTransformationRunner {
 				this.canceled = canceled;
 				this.targetModelRegistry = targetModelRegistry;
 			}
-			
+
 			/**
 			 * This constructs an instance for a joining process that has been canceled.
 			 * @return An instance of {@link JoiningResult} indicating that the joining was canceled.
@@ -2436,7 +2461,7 @@ public class GenericTransformationRunner {
 			}
 		}
 	}
-	
+
 	/**
 	 * A {@link MessageDialog} that informs about an error and asks the user whether he wants to 
 	 * continue or to abort.
@@ -2448,7 +2473,7 @@ public class GenericTransformationRunner {
 		private ErrorDialog(Shell parentShell, String dialogMessage) {
 			super(parentShell, "Error", null, dialogMessage, MessageDialog.ERROR , new String[]{"Continue", "Abort"}, 0);
 		}
-		
+
 		/**
 		 * This creates and opens a dialog.
 		 * 

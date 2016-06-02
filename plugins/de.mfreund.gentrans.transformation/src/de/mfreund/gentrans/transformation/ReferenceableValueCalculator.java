@@ -67,8 +67,30 @@ public class ReferenceableValueCalculator {
 	 */
 	private InstancePointerHandler instancePointerHandler;
 	
+	/**
+	 * This creates an instance that can only handled {@link FixedValue FixedValues} but no {@link GlobalAttribute GlobalAttributes}
+	 * or referenced {@link SourceSectionAttribute SourceSectionAttributes}.
+	 * <p />
+	 * This should be used during the 'matching' phase where these latter information are not yet present.
+	 * 
+	 * @param fixedVals The list of {@link FixedValue FixedValues} to take into account.
+	 * @param consoleStream
+	 */
+	public ReferenceableValueCalculator(List<FixedValue> fixedVals, MessageConsoleStream consoleStream) {
+		this(fixedVals, null, null, new LinkedHashMap<>(), consoleStream);
+	}
+	
+	/**
+	 * This creates an isntance.
+	 * 
+	 * @param fixedVals
+	 * @param globalAttrVals
+	 * @param instancePointerHandler
+	 * @param matchedSections
+	 * @param consoleStream
+	 */
 	public ReferenceableValueCalculator(List<FixedValue> fixedVals, Map<GlobalAttribute, String> globalAttrVals, InstancePointerHandler instancePointerHandler, LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, MessageConsoleStream consoleStream) {
-				
+		
 		// store the message stream
 		this.consoleStream = consoleStream;
 		
@@ -82,8 +104,10 @@ public class ReferenceableValueCalculator {
 		
 		// find GlobalAttrs that can be mapped to double
 		this.globalValuesAsString = new HashMap<>();
-		for (final GlobalAttribute g : globalAttrVals.keySet()) {
-			globalValuesAsString.put(g.getName(), globalAttrVals.get(g));
+		if(globalAttrVals != null) {
+			for (final GlobalAttribute g : globalAttrVals.keySet()) {
+				globalValuesAsString.put(g.getName(), globalAttrVals.get(g));
+			}
 		}
 
 		/*
@@ -150,29 +174,30 @@ public class ReferenceableValueCalculator {
 			} else if(refElement instanceof GlobalAttribute){
 				refValue = globalValuesAsString.get(((GlobalAttribute) refElement).getName());
 			} else if(refElement instanceof SourceSectionAttribute){
-					SourceSectionAttribute refElementAsSSA = (SourceSectionAttribute) refElement;
-					EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
+				
+				SourceSectionAttribute refElementAsSSA = (SourceSectionAttribute) refElement;
+				EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
+				
+				InstancePointer instPt = null;
+				if(!instPointersAsList.isEmpty()){
+					instPt = instPointersAsList.get(0); //actual we handle only one InstancePointer, so model a clear one!
+				}
+				
+				if(instPt != null){
+					correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPt, (SourceSectionClass) refElementAsSSA.eContainer());
+				}
+				
+				if(correspondEClassInstances.size()==1){
+					Object refValueAttr = correspondEClassInstances.get(0).eGet(refElementAsSSA.getAttribute());
 					
-					InstancePointer instPt = null;
-					if(instPointersAsList.size()>0){
-						instPt = instPointersAsList.get(0); //actual we handle only one InstancePointer, so model a clear one!
-					}
-					
-					if(instPt != null){
-						correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPt, (SourceSectionClass) refElementAsSSA.eContainer());
-					}
-					
-					if(correspondEClassInstances.size()==1){
-						Object refValueAttr = correspondEClassInstances.get(0).eGet(refElementAsSSA.getAttribute());
-						
-						// convert Attribute value to String
-						refValue = refElementAsSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
-								.convertToString(refElementAsSSA.getAttribute().getEAttributeType(), refValueAttr);
-					} else{
-						refValue="";
-						consoleStream.println(" Note: The cardinality of the SourceSectionAttribute, " + refElementAsSSA.getName() + ", is "
-								+ correspondEClassInstances.size() +"! So it cannot be handled. Hint: Create or change the InstancePointer!");
-					}
+					// convert Attribute value to String
+					refValue = refElementAsSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
+							.convertToString(refElementAsSSA.getAttribute().getEAttributeType(), refValueAttr);
+				} else{
+					refValue="";
+					consoleStream.println(" Note: The cardinality of the SourceSectionAttribute, " + refElementAsSSA.getName() + ", is "
+							+ correspondEClassInstances.size() +"! So it cannot be handled. Hint: Create or change the InstancePointer!");
+				}
 			} else {
 				// If we are here, some mistake is happened
 				consoleStream.println("ReferenceableElement type " + refElement.getClass().getName() + " is not yet supported!");

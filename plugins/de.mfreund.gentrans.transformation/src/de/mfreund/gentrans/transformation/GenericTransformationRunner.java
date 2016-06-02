@@ -48,6 +48,7 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
+import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -703,7 +704,7 @@ public class GenericTransformationRunner {
 
 		// Select the SourceSections that we want to match.
 		// TODO only use sections that are either referenced by active mappings or by conditions
-		// contained in active hint groups
+		// contained in active hint groups?
 		List<SourceSection> activeSourceSections = pamtramModel.getSourceSections().parallelStream().
 				filter(s -> !s.isAbstract()).collect(Collectors.toList());
 
@@ -719,9 +720,7 @@ public class GenericTransformationRunner {
 				containmentTree, new BasicEList<>(activeSourceSections), consoleStream);
 		// objectsToCancel.add(sourceSectionMatcher);
 
-		sourceSectionMatcher.matchSections();
-
-		return MatchingResult.createMatchingCanceledResult();
+		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 
 		// /*
 		// * Now start matching each of the elements in the containment tree. We
@@ -778,12 +777,15 @@ public class GenericTransformationRunner {
 		// return MatchingResult.createMatchingCanceledResult();
 		// }
 		//
-		// consoleStream.println("Summary:\tAvailable Elements:\t" +
-		// containmentTree.getNumberOfElements());
-		// consoleStream.println("\t\tMatched Elements:\t" +
-		// containmentTree.getNumberOfMatchedElements());
-		// consoleStream.println("\t\tUnmatched Elements:\t" +
-		// containmentTree.getNumberOfUnmatchedElements());
+		consoleStream.println("Summary:\tAvailable Elements:\t" +
+		containmentTree.getNumberOfElements());
+		consoleStream.println("\t\tMatched Elements:\t" +
+		containmentTree.getNumberOfMatchedElements());
+		consoleStream.println("\t\tUnmatched Elements:\t" +
+		containmentTree.getNumberOfUnmatchedElements());
+
+		return MatchingResult.createMatchingCanceledResult();
+		
 		//
 		// /*
 		// * Now write MappingHint values of Hints of ExportedMappingHintGroups

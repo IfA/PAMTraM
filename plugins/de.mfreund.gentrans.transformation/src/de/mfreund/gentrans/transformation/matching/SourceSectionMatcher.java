@@ -1,7 +1,6 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -135,7 +134,7 @@ public class SourceSectionMatcher {
 		Map<SourceSection, List<MatchedSectionDescriptor>> result = new HashMap<>();
 
 		while (containmentTree.getNumberOfAvailableElements() > 0) {
-
+			
 			EObject element = containmentTree.getNextElementForMatching();
 			
 			Map<SourceSection, MatchedSectionDescriptor> matches = findApplicableSections(element);
@@ -149,12 +148,35 @@ public class SourceSectionMatcher {
 				
 				descriptors.add(entry.getValue());
 				
+				/*
+				 * Before returning the matched sections, we mark the affected elements
+				 * as 'matched' in the containment tree and update the 'matchedSections' map
+				 */
+				updateMatchedElements(entry.getValue());
+				
 				result.put(entry.getKey(), descriptors);
 			}
 
 		}
 
 		return result;
+	}
+
+	/**
+	 * Update the {@link #matchedSections} and mark matched elements in the 
+	 * {@link ContainmentTree#markAsMatched(Set) containmentTree} based on the given '<em>descriptor</em>'.
+	 * 
+	 * @param descriptor The {@link MatchedSectionDescriptor} describing the matched elements.
+	 */
+	private void updateMatchedElements(MatchedSectionDescriptor descriptor) {
+		for (final SourceSectionClass c : descriptor.getSourceModelObjectsMapped().keySet()) {
+
+			if (!matchedSections.containsKey(c)) {
+				matchedSections.put(c, new LinkedHashSet<EObject>());
+			}
+			matchedSections.get(c).addAll(descriptor.getSourceModelObjectsMapped().get(c));
+			containmentTree.markAsMatched(descriptor.getSourceModelObjectsMapped().get(c));
+		}
 	}
 
 	/**

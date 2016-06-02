@@ -235,7 +235,7 @@ public class SourceSectionMatcher {
 		while (currentClass.getContainer() != null) {
 
 			if (currentElement.eContainer() != null) {
-				return false;
+				return true;
 			}
 
 			currentElement = currentElement.eContainer();

@@ -36,7 +36,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @author Sascha Steffen
  * @version 1.0
  */
-class MappingInstanceStorage {
+public class MappingInstanceStorage {
 
 	/**
 	 * The source model Objects, referenced by containment References, that were
@@ -86,7 +86,7 @@ class MappingInstanceStorage {
 	/**
 	 * This constructs an instance.
 	 */
-	MappingInstanceStorage() {
+	public MappingInstanceStorage() {
 	
 		sourceModelObjetsMapped = new LinkedHashMap<>();
 		mapping = null;
@@ -143,7 +143,7 @@ class MappingInstanceStorage {
 	 *
 	 * @param newRefsAndHints
 	 */
-	void add(final MappingInstanceStorage newRefsAndHints) {
+	public void add(final MappingInstanceStorage newRefsAndHints) {
 		// combine refs
 		addSourceModelObjectsMapped(newRefsAndHints
 				.getSourceModelObjectsMapped());
@@ -163,7 +163,7 @@ class MappingInstanceStorage {
 	 * @param section
 	 * @param insts
 	 */
-	void addInstances(final InstantiableMappingHintGroup grp,
+	public void addInstances(final InstantiableMappingHintGroup grp,
 			final TargetSectionClass section,
 			final Collection<EObjectWrapper> insts) {
 		generateInstancesCollectionsIfNeeded(grp, section);
@@ -176,7 +176,7 @@ class MappingInstanceStorage {
 	 * @param srcModelElement
 	 * @param srcSectionClass
 	 */
-	void addSourceModelObjectMapped(final EObject srcModelElement,
+	public void addSourceModelObjectMapped(final EObject srcModelElement,
 			final SourceSectionClass srcSectionClass) {
 		if (!sourceModelObjetsMapped.containsKey(srcModelElement)) {
 			sourceModelObjetsMapped.put(srcSectionClass,
@@ -191,7 +191,7 @@ class MappingInstanceStorage {
 	 *
 	 * @param refs
 	 */
-	void addSourceModelObjectsMapped(
+	public void addSourceModelObjectsMapped(
 			final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
 		for(final SourceSectionClass key : refs.keySet()) {
 			if (!sourceModelObjetsMapped.containsKey(key)) {
@@ -207,7 +207,7 @@ class MappingInstanceStorage {
 	 * @param object
 	 * @return true - if EObject is registered
 	 */
-	boolean containsSourceModelObjectMapped(final EObject object) {
+	public boolean containsSourceModelObjectMapped(final EObject object) {
 		return sourceModelObjetsMapped.values().contains(object);
 	}
 
@@ -236,14 +236,14 @@ class MappingInstanceStorage {
 	/**
 	 * @return associated SourceSectionClass
 	 */
-	SourceSectionClass getAssociatedSourceClass() {
+	public SourceSectionClass getAssociatedSourceClass() {
 		return associatedSourceClass;
 	}
 
 	/**
 	 * @return associated source Model element
 	 */
-	EObject getAssociatedSourceModelElement() {
+	public EObject getAssociatedSourceModelElement() {
 		return associatedSourceModelElement;
 	}
 
@@ -255,7 +255,7 @@ class MappingInstanceStorage {
 	 * @param section
 	 * @return
 	 */
-	LinkedList<EObjectWrapper> getInstances(
+	public LinkedList<EObjectWrapper> getInstances(
 			final InstantiableMappingHintGroup group,
 			final TargetSectionClass section) {
 		if (instancesBySection.containsKey(group)) {
@@ -274,7 +274,7 @@ class MappingInstanceStorage {
 	 * @return generated target section instances associated with the
 	 *         MappingHintGroup
 	 */
-	LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> getInstancesBySection(
+	public LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> getInstancesBySection(
 			final InstantiableMappingHintGroup group) {
 		return instancesBySection.get(group);
 	}
@@ -282,7 +282,7 @@ class MappingInstanceStorage {
 	/**
 	 * @return associated Mapping
 	 */
-	Mapping getMapping() {
+	public Mapping getMapping() {
 		return mapping;
 	}
 	
@@ -293,7 +293,7 @@ class MappingInstanceStorage {
 	 * 
 	 * @return The list of active and valid {@link MappingHintGroupType hint groups} for this {@link MappingInstanceStorage}.
 	 */
-	List<MappingHintGroupType> getMappingHintGroups() {
+	public List<MappingHintGroupType> getMappingHintGroups() {
 		
 		return this.getMapping().getActiveMappingHintGroups().parallelStream().filter(
 				hg -> !(hg instanceof ConditionalElement) || !isElementWithNegativeCondition((ConditionalElement) hg)).collect(Collectors.toList());
@@ -306,7 +306,7 @@ class MappingInstanceStorage {
 	 * 
 	 * @return The list of active and valid {@link MappingHintGroupImporter hint group importers} for this {@link MappingInstanceStorage}.
 	 */
-	List<MappingHintGroupImporter> getMappingHintGroupImporters() {
+	public List<MappingHintGroupImporter> getMappingHintGroupImporters() {
 		
 		return this.getMapping().getActiveImportedMappingHintGroups().parallelStream().filter(
 				hg -> !isElementWithNegativeCondition(hg)).collect(Collectors.toList());
@@ -318,7 +318,7 @@ class MappingInstanceStorage {
 	 * 
 	 * @return The list of valid {@link MappingHint hints} for the given {@link MappingHintGroupType}.
 	 */
-	List<MappingHint> getMappingHints(MappingHintGroupType hintGroup) {
+	public List<MappingHint> getMappingHints(MappingHintGroupType hintGroup) {
 		
 		if(hintGroup instanceof ConditionalElement && isElementWithNegativeCondition((ConditionalElement) hintGroup)) {
 			return new BasicEList<>();
@@ -334,7 +334,7 @@ class MappingInstanceStorage {
 	 * 
 	 * @return The list of valid {@link MappingHint hints} for the given {@link MappingHintGroupImporter}.
 	 */
-	List<MappingHintType> getMappingHints(MappingHintGroupImporter hintGroupImporter) {
+	public List<MappingHintType> getMappingHints(MappingHintGroupImporter hintGroupImporter) {
 		
 		if(isElementWithNegativeCondition((ConditionalElement) hintGroupImporter)) {
 			return new BasicEList<>();
@@ -347,7 +347,7 @@ class MappingInstanceStorage {
 	/**
 	 * @return map of the source model Objects mapped
 	 */
-	final LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
+	public final LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
 		return sourceModelObjetsMapped;
 	}
 
@@ -355,7 +355,7 @@ class MappingInstanceStorage {
 	 * @param associatedSourceClass
 	 * @param associatedSourceModelElement
 	 */
-	void setAssociatedSourceElement(
+	public void setAssociatedSourceElement(
 			final SourceSectionClass associatedSourceClass,
 			final EObject associatedSourceModelElement) {
 		this.associatedSourceModelElement = associatedSourceModelElement;
@@ -367,7 +367,7 @@ class MappingInstanceStorage {
 	 *
 	 * @param mapping
 	 */
-	void setMapping(final Mapping mapping) {
+	public void setMapping(final Mapping mapping) {
 		this.mapping = mapping;
 	}
 
@@ -376,7 +376,7 @@ class MappingInstanceStorage {
 	 *
 	 * @param refs
 	 */
-	void setSourceModelObjectsMapped(
+	public void setSourceModelObjectsMapped(
 			final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
 		sourceModelObjetsMapped = refs;
 	}

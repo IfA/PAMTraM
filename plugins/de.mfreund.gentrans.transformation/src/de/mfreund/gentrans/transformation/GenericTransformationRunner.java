@@ -11,11 +11,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -86,6 +88,7 @@ import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSection;
@@ -698,6 +701,12 @@ public class GenericTransformationRunner {
 		monitor.subTask("Selecting Mappings for source model elements");
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
+		// Select the SourceSections that we want to match.
+		// TODO only use sections that are either referenced by active mappings or by conditions
+		// contained in active hint groups
+		List<SourceSection> activeSourceSections = pamtramModel.getSourceSections().parallelStream().
+				filter(s -> !s.isAbstract()).collect(Collectors.toList());
+
 		/*
 		 * Create the source section matcher that finds applicable mappings
 		 */
@@ -707,7 +716,7 @@ public class GenericTransformationRunner {
 		// pamtramModel.getGlobalValues(), attributeValueModifier,
 		// ambiguityResolvingStrategy, consoleStream);
 		final de.mfreund.gentrans.transformation.matching.SourceSectionMatcher sourceSectionMatcher = new de.mfreund.gentrans.transformation.matching.SourceSectionMatcher(
-				containmentTree, pamtramModel.getSourceSections(), consoleStream);
+				containmentTree, new BasicEList<>(activeSourceSections), consoleStream);
 		// objectsToCancel.add(sourceSectionMatcher);
 
 		sourceSectionMatcher.matchSections();

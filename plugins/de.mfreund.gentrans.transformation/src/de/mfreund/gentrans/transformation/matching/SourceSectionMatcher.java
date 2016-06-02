@@ -138,13 +138,14 @@ public class SourceSectionMatcher {
 
 			EObject element = containmentTree.getNextElementForMatching();
 			
-			Map<SourceSection, MatchedSectionDescriptor> matchedSections = findApplicableSections(element);
+			Map<SourceSection, MatchedSectionDescriptor> matches = findApplicableSections(element);
 			
 			// Store the descriptors in the result map
-			for (Entry<SourceSection, MatchedSectionDescriptor> entry : matchedSections.entrySet()) {
+			//
+			for (Entry<SourceSection, MatchedSectionDescriptor> entry : matches.entrySet()) {
 				
 				List<MatchedSectionDescriptor> descriptors = 
-						result.containsKey(entry.getKey()) ? result.get(entry.getKey()) : new ArrayList<MatchedSectionDescriptor>();
+						result.containsKey(entry.getKey()) ? result.get(entry.getKey()) : new ArrayList<>();
 				
 				descriptors.add(entry.getValue());
 				

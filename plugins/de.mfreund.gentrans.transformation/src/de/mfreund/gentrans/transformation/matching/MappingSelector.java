@@ -1,0 +1,172 @@
+package de.mfreund.gentrans.transformation.matching;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.eclipse.ui.console.MessageConsoleStream;
+
+import de.mfreund.gentrans.transformation.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.util.CancellableElement;
+import pamtram.mapping.Mapping;
+import pamtram.metamodel.SourceSection;
+
+/**
+ * This class can be used to select suitable mappings for a list of {@link MatchedSectionDescriptor matched sections}.
+ * <p />
+ * Occurring ambiguities will be resolved.
+ * 
+ * @author mfreund
+ */
+public class MappingSelector extends CancellableElement {
+	
+	/** 
+	 * A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found
+	 * for every {@link SourceSection}.
+	 */
+	final private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
+	
+	/**
+	 * The list of {@link Mapping Mappings} that shall be considered.
+	 */
+	final private List<Mapping> mappings;
+	
+	/**
+	 * If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
+	 */
+	private boolean onlyAskOnceOnAmbiguousMappings;
+
+	/**
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation.
+	 */
+	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
+	
+	/**
+	 * The {@link MessageConsoleStream} that shall be used to print messages.
+	 */
+	private final MessageConsoleStream consoleStream;
+
+	/**
+	 * This creates an instance.
+	 * 
+	 * @param matchedSections A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found
+	 * for every {@link SourceSection}.
+	 * @param mappings The list of {@link Mapping Mappings} that shall be considered.
+	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a 
+	 * per-element basis.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
+	 * @param consoleStream
+	 *           The {@link MessageConsoleStream} that shall be used to print messages.
+	 */
+	public MappingSelector(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings, 
+			boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, MessageConsoleStream consoleStream) {
+		
+		this.matchedSections = matchedSections;
+		this.mappings = mappings;
+		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
+		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+		this.consoleStream = consoleStream;
+	}
+	
+	/**
+	 * For each {@link MatchedSectionDescriptor} represented in the {@link #matchedSections}, this selects a
+	 * suitable mapping.
+	 * 
+	 * @return The selected mappings in the form of a {@link MappingInstanceStorage} for each {@link MatchedSectionDescriptor}.
+	 */
+	public Map<Mapping, List<MappingInstanceStorage>> selectMappings() {
+		
+		// Select a mapping for each matched section and each descriptor instance
+		//
+		List<MappingInstanceStorage> mappingInstances = matchedSections.entrySet().parallelStream().map(e -> selectMapping(e.getKey(), e.getValue())).
+			flatMap(l -> l.stream()).collect(Collectors.toList());
+		
+		// Sort determined mapping instances by mapping and return them
+		//
+		Map<Mapping, List<MappingInstanceStorage>> ret = new HashMap<>();
+		for (MappingInstanceStorage mappingInstance : mappingInstances) {
+			if(!ret.containsKey(mappingInstance.getMapping())) {
+				ret.put(mappingInstance.getMapping(), new ArrayList<>());
+			}
+			ret.get(mappingInstance.getMapping()).add(mappingInstance);
+		}
+		return ret;
+	}
+	
+	private List<MappingInstanceStorage> selectMapping(SourceSection matchedSection, List<MatchedSectionDescriptor> descriptors) {
+		
+		// The mappings with suitable 'sourceMMSections'
+		Set<Mapping> applicableMappings = 
+				this.mappings.parallelStream().filter(m -> matchedSection.equals(m.getSourceMMSection())).collect(Collectors.toSet());
+		
+		List<MappingInstanceStorage> ret = new ArrayList<>();
+
+		switch (applicableMappings.size()) {
+		case 0:
+			// no applicable mapping was found
+			return new ArrayList<>();
+		case 1:
+			// create a MappingInstanceStorage for each descriptor
+			descriptors.parallelStream().forEach(d -> ret.add(createMappingInstanceStorage(d, applicableMappings.iterator().next())));
+			break;
+		default:
+			
+				/*
+				 * Consult the specified resolving strategy to resolve the ambiguity.				
+				 */
+				//TODO maybe we need to allow to also select multiple mappings 
+				try {
+					if(onlyAskOnceOnAmbiguousMappings) {
+						consoleStream.println("[Ambiguity] Resolve matching ambiguity...");
+						List<Mapping> resolved = ambiguityResolvingStrategy.matchingSelectMapping(
+								new ArrayList<>(applicableMappings), descriptors.iterator().next().getAssociatedSourceModelElement());
+						consoleStream.println("[Ambiguity] ...finished.\n");
+					
+						// create a MappingInstanceStorage for each descriptor
+						descriptors.parallelStream().forEach(d -> ret.add(createMappingInstanceStorage(d, resolved.iterator().next())));
+					} else {
+						
+						for (MatchedSectionDescriptor descriptor : descriptors) {
+							consoleStream.println("[Ambiguity] Resolve matching ambiguity...");
+							List<Mapping> resolved = ambiguityResolvingStrategy.matchingSelectMapping(
+									new ArrayList<>(applicableMappings), descriptor.getAssociatedSourceModelElement());
+							consoleStream.println("[Ambiguity] ...finished.\n");
+						
+							// create a MappingInstanceStorage for each descriptor
+							descriptors.parallelStream().forEach(d -> ret.add(createMappingInstanceStorage(d, resolved.iterator().next())));
+						}
+					}			
+				} catch (Exception e) {
+					consoleStream.println(e.getMessage());
+					canceled = true;
+					return new ArrayList<>();
+				}
+				
+		}
+		
+		return ret;
+	}
+	
+	/**
+	 * This creates a {@link MappingInstanceStorage} for the given {@link MatchedSectionDescriptor descriptor}.
+	 * 
+	 * @param descriptor The {@link MatchedSectionDescriptor} for that the {@link MappingInstanceStorage} shall be created.
+	 * @param mapping The {@link Mapping} that the MappingInstanceStorage shall represent.
+	 * @return The created {@link MappingInstanceStorage}.
+	 */
+	private MappingInstanceStorage createMappingInstanceStorage(MatchedSectionDescriptor descriptor, Mapping mapping) {
+		
+		MappingInstanceStorage ret = new MappingInstanceStorage();
+		ret.setMapping(mapping);
+		ret.setAssociatedSourceElement(descriptor.getAssociatedSourceSectionClass(), descriptor.getAssociatedSourceModelElement());
+		ret.setSourceModelObjectsMapped(descriptor.getSourceModelObjectsMapped());
+		return ret;
+	}
+}

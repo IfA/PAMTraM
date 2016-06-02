@@ -48,6 +48,7 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
+import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
@@ -690,7 +691,7 @@ public class GenericTransformationRunner {
 			IProgressMonitor monitor) {
 
 		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<>();
-		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<>();
+		Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<>();
 		HintValueStorage exportedMappingHints;
 		Map<GlobalAttribute, String> globalAttributeValues;
 
@@ -709,7 +710,7 @@ public class GenericTransformationRunner {
 				filter(s -> !s.isAbstract()).collect(Collectors.toList());
 
 		/*
-		 * Create the source section matcher that finds applicable mappings
+		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
 		// final SourceSectionMatcher sourceSectionMatcher = new
 		// SourceSectionMatcher(
@@ -721,6 +722,14 @@ public class GenericTransformationRunner {
 		// objectsToCancel.add(sourceSectionMatcher);
 
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
+		
+		/*
+		 * Create the MappingSelector that finds applicable mappings
+		 */
+		final MappingSelector mappingSelector = new MappingSelector(
+				matchingResult, suitableMappings, onlyAskOnceOnAmbiguousMappings, ambiguityResolvingStrategy, consoleStream);
+		
+		selectedMappingsByMapping = mappingSelector.selectMappings();
 
 		// /*
 		// * Now start matching each of the elements in the containment tree. We
@@ -2122,14 +2131,14 @@ public class GenericTransformationRunner {
 			 * This the map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 			 * process associated with the {@link Mapping} that they represent.
 			 */
-			private final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping;
+			private final Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping;
 
 			/**
 			 * This is the getter for the {@link #selectedMappingsByMapping}.
 			 * @return The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 			 * process associated with the {@link Mapping} that they represent. 
 			 */
-			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> getSelectedMappingsByMapping() {
+			Map<Mapping, List<MappingInstanceStorage>> getSelectedMappingsByMapping() {
 				return selectedMappingsByMapping;
 			}
 
@@ -2177,7 +2186,7 @@ public class GenericTransformationRunner {
 			private MatchingResult(
 					boolean canceled,
 					LinkedList<MappingInstanceStorage> selectedMappings, 
-					LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
+					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping,
 					HintValueStorage exportedMappingHints,
 					Map<GlobalAttribute, String> globalAttributeValues) {
 				this.canceled = canceled;
@@ -2208,7 +2217,7 @@ public class GenericTransformationRunner {
 			 */
 			public static MatchingResult createMatchingCompletedResult(
 					LinkedList<MappingInstanceStorage> selectedMappings, 
-					LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
+					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping,
 					HintValueStorage exportedMappingHints,
 					Map<GlobalAttribute, String> globalAttributeValues) {
 				return new MatchingResult(false, selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalAttributeValues);

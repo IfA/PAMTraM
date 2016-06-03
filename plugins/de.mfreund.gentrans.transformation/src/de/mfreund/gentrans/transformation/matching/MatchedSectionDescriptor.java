@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -45,6 +46,14 @@ public class MatchedSectionDescriptor {
 	 * represented by this descriptor.
 	 */
 	private List<AttributeValueConstraint> attributeValueConstraints;
+
+	/**
+	 * This keeps track of the {@link MatchedSectionDescriptor} that represents the 
+	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 * <p />
+	 * This can be used to determine 'external hint values'.
+	 */
+	private MatchedSectionDescriptor containerDescriptor;
 
 	/**
 	 * This constructs an instance.
@@ -103,6 +112,19 @@ public class MatchedSectionDescriptor {
 	 */
 	final LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
 		return this.sourceModelObjetsMapped;
+	}
+	
+	/**
+	 * This returns the list of {@link EObject matched elements} represented by this descriptor.
+	 * <p />
+	 * In contrast to {@link #getSourceModelObjectsMapped()}, this does not sort the matched elements by 
+	 * the {@link SourceSectionClass} they represent.
+	 * 
+	 * @return The list of {@link EObject matched elements} represented by this descriptor. 
+	 */
+	public Set<EObject> getSourceModelObjectFlat() {
+		return this.sourceModelObjetsMapped.entrySet().parallelStream().map(e -> e.getValue()).
+				flatMap(l -> l.stream()).collect(Collectors.toSet());
 	}
 
 	/**
@@ -177,6 +199,25 @@ public class MatchedSectionDescriptor {
 		// combine matched elements
 		this.addSourceModelObjectsMapped(otherDescriptor.getSourceModelObjectsMapped());
 
+	}
+
+	/**
+	 * This returns the {@link #containerDescriptor}.
+	 * 
+	 * @return The {@link MatchedSectionDescriptor} that represents the 
+	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 */
+	public MatchedSectionDescriptor getContainerDescriptor() {
+		return containerDescriptor;
+	}
+
+	/**
+	 * Set the {@link #containerDescriptor}.
+	 * @param containerDescriptor tThe {@link MatchedSectionDescriptor} that represents the 
+	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 */
+	public void setContainerDescriptor(MatchedSectionDescriptor containerDescriptor) {
+		this.containerDescriptor = containerDescriptor;
 	}
 
 }

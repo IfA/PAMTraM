@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -81,19 +82,37 @@ public class MappingSelector extends CancellableElement {
 	 */
 	public Map<Mapping, List<MappingInstanceStorage>> selectMappings() {
 		
+		//TODO check conditions
+		
 		// Select a mapping for each matched section and each descriptor instance
 		//
-		List<MappingInstanceStorage> mappingInstances = matchedSections.entrySet().parallelStream().map(e -> selectMapping(e.getKey(), e.getValue())).
-			flatMap(l -> l.stream()).collect(Collectors.toList());
+//		List<MappingInstanceStorage> mappingInstances = matchedSections.entrySet().stream().map(e -> selectMapping(e.getKey(), e.getValue())).
+//			flatMap(l -> l.stream()).collect(Collectors.toList());
+		
+		List<MappingInstanceStorage> mappingInstances = new ArrayList<>();
+		for (Entry<SourceSection, List<MatchedSectionDescriptor>> entry : matchedSections.entrySet()) {
+			List<MappingInstanceStorage> instances = selectMapping(entry.getKey(), entry.getValue());
+			if(instances == null || instances.isEmpty()) {
+				System.out.println("ohoh");
+			}
+			mappingInstances.addAll(instances);
+		}
 		
 		// Sort determined mapping instances by mapping and return them
 		//
 		Map<Mapping, List<MappingInstanceStorage>> ret = new HashMap<>();
 		for (MappingInstanceStorage mappingInstance : mappingInstances) {
-			if(!ret.containsKey(mappingInstance.getMapping())) {
-				ret.put(mappingInstance.getMapping(), new ArrayList<>());
+			
+			if(mappingInstance == null) {
+				System.out.println("ohoh");
 			}
-			ret.get(mappingInstance.getMapping()).add(mappingInstance);
+			
+			Mapping mapping = mappingInstance.getMapping();
+			
+			if(!ret.containsKey(mapping)) {
+				ret.put(mapping, new ArrayList<>());
+			}
+			ret.get(mapping).add(mappingInstance);
 		}
 		return ret;
 	}
@@ -190,6 +209,7 @@ public class MappingSelector extends CancellableElement {
 		ret.setMapping(mapping);
 		ret.setAssociatedSourceElement(descriptor.getAssociatedSourceSectionClass(), descriptor.getAssociatedSourceModelElement());
 		ret.setSourceModelObjectsMapped(descriptor.getSourceModelObjectsMapped());
+		ret.setContainerDescriptor(descriptor.getContainerDescriptor());
 		return ret;
 	}
 }

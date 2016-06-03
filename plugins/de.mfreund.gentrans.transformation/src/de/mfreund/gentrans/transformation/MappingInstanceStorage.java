@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -82,6 +83,14 @@ public class MappingInstanceStorage {
 	 * This contains the still unsynced hint values that are used by the mapping hints.
 	 */
 	private final HintValueStorage unsyncedHintValues;
+	
+	/**
+	 * This keeps track of the {@link MatchedSectionDescriptor} that represents the 
+	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 * <p />
+	 * This can be used to determine 'external hint values'.
+	 */
+	private MatchedSectionDescriptor containerDescriptor;
 
 	/**
 	 * This constructs an instance.
@@ -379,6 +388,25 @@ public class MappingInstanceStorage {
 	public void setSourceModelObjectsMapped(
 			final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
 		sourceModelObjetsMapped = refs;
+	}
+
+	/**
+	 * This returns the {@link #containerDescriptor}.
+	 * 
+	 * @return The {@link MatchedSectionDescriptor} that represents the 
+	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 */
+	public MatchedSectionDescriptor getContainerDescriptor() {
+		return containerDescriptor;
+	}
+
+	/**
+	 * Set the {@link #containerDescriptor}.
+	 * @param containerDescriptor tThe {@link MatchedSectionDescriptor} that represents the 
+	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 */
+	public void setContainerDescriptor(MatchedSectionDescriptor containerDescriptor) {
+		this.containerDescriptor = containerDescriptor;
 	}
 
 }

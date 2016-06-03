@@ -48,6 +48,7 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
+import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
@@ -728,8 +729,16 @@ public class GenericTransformationRunner {
 		 */
 		final MappingSelector mappingSelector = new MappingSelector(
 				matchingResult, suitableMappings, onlyAskOnceOnAmbiguousMappings, ambiguityResolvingStrategy, consoleStream);
-		
 		selectedMappingsByMapping = mappingSelector.selectMappings();
+		
+		/*
+		 * Calculate mapping hints 
+		 */
+		final HintValueExtractor hintValueExtractor = new HintValueExtractor(
+				selectedMappingsByMapping.values().stream().flatMap(l -> l.stream()).collect(Collectors.toList()), 
+				attributeValueModifier, consoleStream);
+		hintValueExtractor.extractHintValues();
+		
 
 		// /*
 		// * Now start matching each of the elements in the containment tree. We

@@ -49,7 +49,7 @@ public class AttributeValueModifierExecutor {
 	 * @param modifierSets The modifiers that shall be applied to the given '<em>value</em>'.
 	 * @return The modified string (after application of the {@link AttributeValueModifier AttributeValueModifiers}.
 	 */
-	String applyAttributeValueModifiers(final String value,
+	public String applyAttributeValueModifiers(final String value,
 			final EList<AttributeValueModifierSet> modifierSets) {
 		String retVal = value;
 		for (final AttributeValueModifierSet set : modifierSets) {

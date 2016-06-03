@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -93,6 +94,8 @@ public class SourceSectionMatcher {
 	 */
 	private ReferenceableValueCalculator refValueCalculator;
 
+	private Map<SourceSection, List<MatchedSectionDescriptor>> sections2Descriptors;
+
 	/**
 	 * This creates an instance.
 	 * 
@@ -129,9 +132,7 @@ public class SourceSectionMatcher {
 	 */
 	public Map<SourceSection, List<MatchedSectionDescriptor>> matchSections() {
 
-		// This will be returned in the end
-		//
-		Map<SourceSection, List<MatchedSectionDescriptor>> result = new HashMap<>();
+		sections2Descriptors = new HashMap<>();
 
 		while (containmentTree.getNumberOfAvailableElements() > 0) {
 			
@@ -143,10 +144,14 @@ public class SourceSectionMatcher {
 			//
 			for (Entry<SourceSection, MatchedSectionDescriptor> entry : matches.entrySet()) {
 				
-				List<MatchedSectionDescriptor> descriptors = 
-						result.containsKey(entry.getKey()) ? result.get(entry.getKey()) : new ArrayList<>();
+				SourceSection source = entry.getKey();
+				MatchedSectionDescriptor descriptor = entry.getValue();
 				
-				descriptors.add(entry.getValue());
+				/*
+				 * Register the created descriptor in the 'sections2Descriptors' map that will be 
+				 * returned in the end
+				 */
+				registerDescriptor(source, descriptor);
 				
 				/*
 				 * Before returning the matched sections, we mark the affected elements
@@ -154,12 +159,25 @@ public class SourceSectionMatcher {
 				 */
 				updateMatchedElements(entry.getValue());
 				
-				result.put(entry.getKey(), descriptors);
 			}
 
 		}
 
-		return result;
+		return sections2Descriptors;
+	}
+
+	/**
+	 * Add the given <em>descriptor</em> to the {@link #sections2Descriptors} map.
+	 * 
+	 * @param sourceSection The {@link SourceSection} that the given <em>descriptor</em> represents.
+	 * @param descriptor The {@link MatchedSectionDescriptor} to add.
+	 */
+	private void registerDescriptor(SourceSection sourceSection, MatchedSectionDescriptor descriptor) {
+		List<MatchedSectionDescriptor> descriptors = 
+				sections2Descriptors.containsKey(sourceSection) ? sections2Descriptors.get(sourceSection) : new ArrayList<>();
+		
+		descriptors.add(descriptor);
+		sections2Descriptors.put(sourceSection, descriptors);
 	}
 
 	/**
@@ -176,6 +194,23 @@ public class SourceSectionMatcher {
 			}
 			matchedSections.get(c).addAll(descriptor.getSourceModelObjectsMapped().get(c));
 			containmentTree.markAsMatched(descriptor.getSourceModelObjectsMapped().get(c));
+		}
+	}
+	
+	/**
+	 * Update the {@link #matchedContainers} and mark matched elements in the 
+	 * {@link ContainmentTree#markAsMatched(Set) containmentTree} based on the given '<em>descriptor</em>'.
+	 * 
+	 * @param containerDescriptor The {@link MatchedSectionDescriptor} describing the matched container elements.
+	 */
+	private void updateMatchedContainers(MatchedSectionDescriptor containerDescriptor) {
+		for (final SourceSectionClass c : containerDescriptor.getSourceModelObjectsMapped().keySet()) {
+
+			if (!matchedContainers.containsKey(c)) {
+				matchedContainers.put(c, new LinkedHashSet<EObject>());
+			}
+			matchedContainers.get(c).addAll(containerDescriptor.getSourceModelObjectsMapped().get(c));
+			containmentTree.markAsMatched(containerDescriptor.getSourceModelObjectsMapped().get(c));
 		}
 	}
 
@@ -232,6 +267,20 @@ public class SourceSectionMatcher {
 
 				if (failed) {
 					continue;
+				}
+				
+				// set the associated container descriptor
+				//
+				if(section.getContainer() != null) {
+					
+					assert sections2Descriptors.containsKey(section.getContainer().getContainingSection());
+					
+					Set<MatchedSectionDescriptor> containerDescriptors = sections2Descriptors.get(section.getContainer().getContainingSection()).parallelStream().
+							filter(d -> d.getSourceModelObjectFlat().contains(element.eContainer())).collect(Collectors.toSet());
+					
+					assert containerDescriptors.size() == 1;
+					
+					descriptor.setContainerDescriptor(containerDescriptors.iterator().next());
 				}
 
 				// all checks were successful -> the section is applicable
@@ -325,14 +374,19 @@ public class SourceSectionMatcher {
 				if (containerDescriptor == null) {
 					return false;
 				}
-
-				for (final SourceSectionClass c : containerDescriptor.getSourceModelObjectsMapped().keySet()) {
-					if (!matchedContainers.containsKey(c)) {
-						matchedContainers.put(c, new LinkedHashSet<EObject>());
-					}
-					matchedContainers.get(c).addAll(containerDescriptor.getSourceModelObjectsMapped().get(c));
-				}
-
+				
+				/*
+				 * Register the created container descriptor in the 'sections2Descriptors' map that will be 
+				 * returned in the end
+				 */
+				registerDescriptor(container.getKey(), containerDescriptor);
+				
+				/*
+				 * Before returning the matched sections, we mark the affected elements
+				 * as 'matched' in the containment tree and update the 'matchedSections' map
+				 */
+				updateMatchedContainers(containerDescriptor);
+				
 			}
 		}
 

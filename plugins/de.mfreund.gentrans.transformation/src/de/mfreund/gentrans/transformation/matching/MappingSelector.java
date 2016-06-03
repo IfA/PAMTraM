@@ -2,8 +2,6 @@ package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,12 +28,12 @@ public class MappingSelector extends CancellableElement {
 	 * A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found
 	 * for every {@link SourceSection}.
 	 */
-	final private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
+	private final Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 	
 	/**
 	 * The list of {@link Mapping Mappings} that shall be considered.
 	 */
-	final private List<Mapping> mappings;
+	private final List<Mapping> mappings;
 	
 	/**
 	 * If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
@@ -100,6 +98,18 @@ public class MappingSelector extends CancellableElement {
 		return ret;
 	}
 	
+	/**
+	 * For the given {@link SourceSection} and the list of associated {@link MatchedSectionDescriptor MatchedSectionDescriptor}
+	 * select a mapping.
+	 * <p />
+	 * Note: The {@link #onlyAskOnceOnAmbiguousMappings} setting is taken into account during this step.
+	 * 
+	 * @param matchedSection The {@link SourceSection} for that a mapping shall be selected.
+	 * @param descriptors The list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that are associated with the
+	 * <em>matchedSection</em>.
+	 * @return A list of {@link MappingInstanceStorage MappingInstanceStorages} (one for each of the given <em>descriptors</em>).
+	 * Note: The {@link MappingInstanceStorage MappingInstanceStorages} do not yet contain any calculated hint values.
+	 */
 	private List<MappingInstanceStorage> selectMapping(SourceSection matchedSection, List<MatchedSectionDescriptor> descriptors) {
 		
 		// The mappings with suitable 'sourceMMSections'
@@ -124,20 +134,15 @@ public class MappingSelector extends CancellableElement {
 				//TODO maybe we need to allow to also select multiple mappings 
 				try {
 					if(onlyAskOnceOnAmbiguousMappings) {
-						consoleStream.println("[Ambiguity] Resolve matching ambiguity...");
-						List<Mapping> resolved = ambiguityResolvingStrategy.matchingSelectMapping(
-								new ArrayList<>(applicableMappings), descriptors.iterator().next().getAssociatedSourceModelElement());
-						consoleStream.println("[Ambiguity] ...finished.\n");
+						MatchedSectionDescriptor descriptor = descriptors.iterator().next();
+						List<Mapping> resolved = selectMappingForDescriptor(descriptor, applicableMappings);
 					
 						// create a MappingInstanceStorage for each descriptor
 						descriptors.parallelStream().forEach(d -> ret.add(createMappingInstanceStorage(d, resolved.iterator().next())));
 					} else {
 						
 						for (MatchedSectionDescriptor descriptor : descriptors) {
-							consoleStream.println("[Ambiguity] Resolve matching ambiguity...");
-							List<Mapping> resolved = ambiguityResolvingStrategy.matchingSelectMapping(
-									new ArrayList<>(applicableMappings), descriptor.getAssociatedSourceModelElement());
-							consoleStream.println("[Ambiguity] ...finished.\n");
+							List<Mapping> resolved = selectMappingForDescriptor(descriptor, applicableMappings);
 						
 							// create a MappingInstanceStorage for each descriptor
 							descriptors.parallelStream().forEach(d -> ret.add(createMappingInstanceStorage(d, resolved.iterator().next())));
@@ -152,6 +157,24 @@ public class MappingSelector extends CancellableElement {
 		}
 		
 		return ret;
+	}
+
+	/**
+	 * Determine one or multiple mappings to be applied for the given {@link MatchedSectionDescriptor} based
+	 * on the specified {@link #ambiguityResolvingStrategy}.
+	 * 
+	 * @param descriptor The {@link MatchedSectionDescriptor} for that the mappings to be applied are determined.
+	 * @param applicableMappings The list of applicable {@link Mapping Mappings} that shall be taken into account.
+	 * @return
+	 * @throws Exception
+	 */
+	private List<Mapping> selectMappingForDescriptor(MatchedSectionDescriptor descriptor,
+			Set<Mapping> applicableMappings) throws Exception {
+		consoleStream.println("[Ambiguity] Resolve matching ambiguity...");
+		List<Mapping> resolved = ambiguityResolvingStrategy.matchingSelectMapping(
+				new ArrayList<>(applicableMappings), descriptor.getAssociatedSourceModelElement());
+		consoleStream.println("[Ambiguity] ...finished.\n");
+		return resolved;
 	}
 	
 	/**

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -86,26 +85,13 @@ public class MappingSelector extends CancellableElement {
 		
 		// Select a mapping for each matched section and each descriptor instance
 		//
-//		List<MappingInstanceStorage> mappingInstances = matchedSections.entrySet().stream().map(e -> selectMapping(e.getKey(), e.getValue())).
-//			flatMap(l -> l.stream()).collect(Collectors.toList());
-		
-		List<MappingInstanceStorage> mappingInstances = new ArrayList<>();
-		for (Entry<SourceSection, List<MatchedSectionDescriptor>> entry : matchedSections.entrySet()) {
-			List<MappingInstanceStorage> instances = selectMapping(entry.getKey(), entry.getValue());
-			if(instances == null || instances.isEmpty()) {
-				System.out.println("ohoh");
-			}
-			mappingInstances.addAll(instances);
-		}
+		List<MappingInstanceStorage> mappingInstances = matchedSections.entrySet().parallelStream().map(e -> selectMapping(e.getKey(), e.getValue())).
+			flatMap(l -> l.stream()).collect(Collectors.toList());
 		
 		// Sort determined mapping instances by mapping and return them
 		//
 		Map<Mapping, List<MappingInstanceStorage>> ret = new HashMap<>();
 		for (MappingInstanceStorage mappingInstance : mappingInstances) {
-			
-			if(mappingInstance == null) {
-				System.out.println("ohoh");
-			}
 			
 			Mapping mapping = mappingInstance.getMapping();
 			
@@ -143,35 +129,37 @@ public class MappingSelector extends CancellableElement {
 			return new ArrayList<>();
 		case 1:
 			// create a MappingInstanceStorage for each descriptor
-			descriptors.parallelStream().forEach(d -> ret.add(createMappingInstanceStorage(d, applicableMappings.iterator().next())));
+			Mapping mapping = applicableMappings.iterator().next();
+			ret.addAll(descriptors.parallelStream().map(d -> createMappingInstanceStorage(d, mapping)).collect(Collectors.toList()));
 			break;
 		default:
 			
-				/*
-				 * Consult the specified resolving strategy to resolve the ambiguity.				
-				 */
-				//TODO maybe we need to allow to also select multiple mappings 
-				try {
-					if(onlyAskOnceOnAmbiguousMappings) {
-						MatchedSectionDescriptor descriptor = descriptors.iterator().next();
+			/*
+			 * Consult the specified resolving strategy to resolve the ambiguity.				
+			 */
+			//TODO maybe we need to allow to also select multiple mappings 
+			try {
+				if(onlyAskOnceOnAmbiguousMappings) {
+					MatchedSectionDescriptor descriptor = descriptors.iterator().next();
+					List<Mapping> resolved = selectMappingForDescriptor(descriptor, applicableMappings);
+				
+					// create a MappingInstanceStorage for each descriptor
+					Mapping resolvedMapping = resolved.iterator().next();
+					ret.addAll(descriptors.parallelStream().map(d -> createMappingInstanceStorage(d, resolvedMapping)).collect(Collectors.toList()));
+				} else {
+					
+					for (MatchedSectionDescriptor descriptor : descriptors) {
 						List<Mapping> resolved = selectMappingForDescriptor(descriptor, applicableMappings);
 					
 						// create a MappingInstanceStorage for each descriptor
-						descriptors.parallelStream().forEach(d -> ret.add(createMappingInstanceStorage(d, resolved.iterator().next())));
-					} else {
-						
-						for (MatchedSectionDescriptor descriptor : descriptors) {
-							List<Mapping> resolved = selectMappingForDescriptor(descriptor, applicableMappings);
-						
-							// create a MappingInstanceStorage for each descriptor
-							descriptors.parallelStream().forEach(d -> ret.add(createMappingInstanceStorage(d, resolved.iterator().next())));
-						}
-					}			
-				} catch (Exception e) {
-					consoleStream.println(e.getMessage());
-					canceled = true;
-					return new ArrayList<>();
-				}
+						ret.add(createMappingInstanceStorage(descriptor, resolved.iterator().next()));
+					}
+				}			
+			} catch (Exception e) {
+				consoleStream.println(e.getMessage());
+				canceled = true;
+				return new ArrayList<>();
+			}
 				
 		}
 		

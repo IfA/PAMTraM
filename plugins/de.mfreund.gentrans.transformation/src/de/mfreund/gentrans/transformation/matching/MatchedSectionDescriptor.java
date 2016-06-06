@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.MappingInstanceStorage;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionClass;
@@ -54,6 +55,12 @@ public class MatchedSectionDescriptor {
 	 * This can be used to determine 'external hint values'.
 	 */
 	private MatchedSectionDescriptor containerDescriptor;
+	
+	/**
+	 * This keeps track of the {@link MappingInstanceStorage} that has been associated with this
+	 * descriptor.
+	 */
+	private MappingInstanceStorage associatedMappingInstance;
 
 	/**
 	 * This constructs an instance.
@@ -110,7 +117,7 @@ public class MatchedSectionDescriptor {
 	 * 
 	 * @return map of the source model Objects mapped
 	 */
-	final LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
+	public LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
 		return this.sourceModelObjetsMapped;
 	}
 	
@@ -218,6 +225,26 @@ public class MatchedSectionDescriptor {
 	 */
 	public void setContainerDescriptor(MatchedSectionDescriptor containerDescriptor) {
 		this.containerDescriptor = containerDescriptor;
+	}
+
+	/**
+	 * This is the getter for the {@link #associatedMappingInstance}.
+	 * 
+	 * @return The {@link MappingInstanceStorage} that has been associated with this
+	 * descriptor.
+	 */
+	public MappingInstanceStorage getAssociatedMappingInstance() {
+		return associatedMappingInstance;
+	}
+
+	/**
+	 * This is the setter for the {@link #associatedMappingInstance}.
+	 * 
+	 * @param associatedMappingInstance The {@link MappingInstanceStorage} to be associated with this
+	 * descriptor.
+	 */
+	public void setAssociatedMappingInstance(MappingInstanceStorage associatedMappingInstance) {
+		this.associatedMappingInstance = associatedMappingInstance;
 	}
 
 }

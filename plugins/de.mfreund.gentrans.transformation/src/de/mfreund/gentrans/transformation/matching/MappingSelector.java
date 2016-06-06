@@ -193,11 +193,8 @@ public class MappingSelector extends CancellableElement {
 	 */
 	private MappingInstanceStorage createMappingInstanceStorage(MatchedSectionDescriptor descriptor, Mapping mapping) {
 		
-		MappingInstanceStorage ret = new MappingInstanceStorage();
+		MappingInstanceStorage ret = new MappingInstanceStorage(descriptor);
 		ret.setMapping(mapping);
-		ret.setAssociatedSourceElement(descriptor.getAssociatedSourceSectionClass(), descriptor.getAssociatedSourceModelElement());
-		ret.setSourceModelObjectsMapped(descriptor.getSourceModelObjectsMapped());
-		ret.setContainerDescriptor(descriptor.getContainerDescriptor());
 		return ret;
 	}
 }

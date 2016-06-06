@@ -43,6 +43,7 @@ public class MappingInstanceStorage {
 	 * The source model Objects, referenced by containment References, that were
 	 * mapped by this mapping instance.
 	 */
+	@Deprecated
 	private LinkedHashMap<SourceSectionClass, Set<EObject>> sourceModelObjetsMapped;
 
 	/**
@@ -54,12 +55,14 @@ public class MappingInstanceStorage {
 	 * The EObject associated to the root Class of the soureceMMSection of the
 	 * mapping.
 	 */
+	@Deprecated
 	private EObject associatedSourceModelElement;
 
 	/**
 	 * The SourceSectionClass associated to the root Class of the soureceMMSection
 	 * of the mapping.
 	 */
+	@Deprecated
 	private SourceSectionClass associatedSourceClass;
 
 	/**
@@ -85,19 +88,37 @@ public class MappingInstanceStorage {
 	private final HintValueStorage unsyncedHintValues;
 	
 	/**
-	 * This keeps track of the {@link MatchedSectionDescriptor} that represents the 
-	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
-	 * <p />
-	 * This can be used to determine 'external hint values'.
+	 * This keeps track of the {@link MatchedSectionDescriptor} that this mapping instance is associated with.
 	 */
-	private MatchedSectionDescriptor containerDescriptor;
-
+	private MatchedSectionDescriptor matchedSectionDescriptor;
+	
 	/**
 	 * This constructs an instance.
 	 */
+	@Deprecated
 	public MappingInstanceStorage() {
 	
 		sourceModelObjetsMapped = new LinkedHashMap<>();
+		mapping = null;
+		associatedSourceModelElement = null;
+		associatedSourceClass = null;
+		instancesBySection = new LinkedHashMap<>();
+		hintValues = new HintValueStorage();
+		elementsWithNegativeConditions = new HashSet<>();
+		unsyncedHintValues = new HintValueStorage();
+	
+	}
+	
+	/**
+	 * This constructs an instance based on a given {@link MatchedSectionDescriptor}.
+	 * 
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} that this is associated with.
+	 */
+	public MappingInstanceStorage(MatchedSectionDescriptor matchedSectionDescriptor) {
+
+		this.matchedSectionDescriptor = matchedSectionDescriptor;
+		this.matchedSectionDescriptor.setAssociatedMappingInstance(this);
+		//sourceModelObjetsMapped = new LinkedHashMap<>();
 		mapping = null;
 		associatedSourceModelElement = null;
 		associatedSourceClass = null;
@@ -156,6 +177,7 @@ public class MappingInstanceStorage {
 		// combine refs
 		addSourceModelObjectsMapped(newRefsAndHints
 				.getSourceModelObjectsMapped());
+		this.matchedSectionDescriptor.add(newRefsAndHints.getMatchedSectionDescriptor());
 
 		// combine hints
 		hintValues.addHintValues(newRefsAndHints.getHintValues());
@@ -185,6 +207,7 @@ public class MappingInstanceStorage {
 	 * @param srcModelElement
 	 * @param srcSectionClass
 	 */
+	@Deprecated
 	public void addSourceModelObjectMapped(final EObject srcModelElement,
 			final SourceSectionClass srcSectionClass) {
 		if (!sourceModelObjetsMapped.containsKey(srcModelElement)) {
@@ -200,6 +223,7 @@ public class MappingInstanceStorage {
 	 *
 	 * @param refs
 	 */
+	@Deprecated
 	public void addSourceModelObjectsMapped(
 			final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
 		for(final SourceSectionClass key : refs.keySet()) {
@@ -217,7 +241,8 @@ public class MappingInstanceStorage {
 	 * @return true - if EObject is registered
 	 */
 	public boolean containsSourceModelObjectMapped(final EObject object) {
-		return sourceModelObjetsMapped.values().contains(object);
+//		return sourceModelObjetsMapped.values().contains(object);
+		return this.matchedSectionDescriptor.getSourceModelObjectFlat().contains(object);
 	}
 
 	/**
@@ -246,14 +271,16 @@ public class MappingInstanceStorage {
 	 * @return associated SourceSectionClass
 	 */
 	public SourceSectionClass getAssociatedSourceClass() {
-		return associatedSourceClass;
+//		return associatedSourceClass;
+		return this.matchedSectionDescriptor.getAssociatedSourceSectionClass();
 	}
 
 	/**
 	 * @return associated source Model element
 	 */
 	public EObject getAssociatedSourceModelElement() {
-		return associatedSourceModelElement;
+//		return associatedSourceModelElement;
+		return this.matchedSectionDescriptor.getAssociatedSourceModelElement();
 	}
 
 	/**
@@ -356,14 +383,16 @@ public class MappingInstanceStorage {
 	/**
 	 * @return map of the source model Objects mapped
 	 */
-	public final LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
-		return sourceModelObjetsMapped;
+	public LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
+//		return sourceModelObjetsMapped;
+		return matchedSectionDescriptor.getSourceModelObjectsMapped();
 	}
 
 	/**
 	 * @param associatedSourceClass
 	 * @param associatedSourceModelElement
 	 */
+	@Deprecated
 	public void setAssociatedSourceElement(
 			final SourceSectionClass associatedSourceClass,
 			final EObject associatedSourceModelElement) {
@@ -385,28 +414,39 @@ public class MappingInstanceStorage {
 	 *
 	 * @param refs
 	 */
+	@Deprecated
 	public void setSourceModelObjectsMapped(
 			final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
 		sourceModelObjetsMapped = refs;
 	}
-
+	
 	/**
-	 * This returns the {@link #containerDescriptor}.
+	 * This returns the {@link #matchedSectionDescriptor}.
 	 * 
-	 * @return The {@link MatchedSectionDescriptor} that represents the 
-	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 * @return The {@link MatchedSectionDescriptor} that this is associated with.
 	 */
-	public MatchedSectionDescriptor getContainerDescriptor() {
-		return containerDescriptor;
+	public MatchedSectionDescriptor getMatchedSectionDescriptor() {
+		return matchedSectionDescriptor;
 	}
 
 	/**
-	 * Set the {@link #containerDescriptor}.
-	 * @param containerDescriptor tThe {@link MatchedSectionDescriptor} that represents the 
-	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 * This returns the '<em>containerInstance</em>', i.e. the {@link MappingInstanceStorage} that represents the 
+	 * {@link EObject#eContainer()} of the {@link #getAssociatedSourceModelElement()}.
+	 * <p />
+	 * This can be used to determine 'external hint values'.
+	 * 
+	 * @return The {@link MappingInstanceStorage} that represents the 
+	 * {@link EObject#eContainer()} of the {@link #getAssociatedSourceModelElement()} or '<em><b>null</b></em>' if
+	 * the associated {@link #matchedSectionDescriptor} has no associated {@link MatchedSectionDescriptor#getContainerDescriptor()
+	 * containerDescriptor}.
 	 */
-	public void setContainerDescriptor(MatchedSectionDescriptor containerDescriptor) {
-		this.containerDescriptor = containerDescriptor;
+	public MappingInstanceStorage getContainerInstance() {
+		
+		if(this.matchedSectionDescriptor.getContainerDescriptor() != null) {
+			return this.matchedSectionDescriptor.getContainerDescriptor().getAssociatedMappingInstance();
+		}
+		
+		return null;
 	}
 
 }

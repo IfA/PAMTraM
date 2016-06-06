@@ -197,7 +197,9 @@ public class HintValueExtractor extends CancellableElement {
 		
 		// Store the hint value in the mappingInstance
 		//
-		mappingInstance.getHintValues().addHintValue(hint, hintValue);
+		if(hintValue != null) {			
+			mappingInstance.getHintValues().addHintValue(hint, hintValue);
+		}
 	}
 
 	/**
@@ -205,7 +207,7 @@ public class HintValueExtractor extends CancellableElement {
 	 * 
 	 * @param attributeMapping The {@link AttributeMapping} for that the hint values shall be extracted.
 	 * @param mappingInstance The {@link MappingInstanceStorage} for that the hint values shall be extracted.
-	 * @return The extracted hint value.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
 	private Map<AttributeMappingSourceInterface, AttributeValueRepresentation> extractHintValue(AttributeMapping attributeMapping, MappingInstanceStorage mappingInstance) {
@@ -235,7 +237,7 @@ public class HintValueExtractor extends CancellableElement {
 			}
 		}
 		
-		return hintValue;
+		return hintValue.isEmpty() ? null : hintValue;
 	}
 	
 	/**
@@ -243,7 +245,7 @@ public class HintValueExtractor extends CancellableElement {
 	 * 
 	 * @param attributeMatcher The {@link AttributeMatcher} for that the hint values shall be extracted.
 	 * @param mappingInstance The {@link MappingInstanceStorage} for that the hint values shall be extracted.
-	 * @return The extracted hint value.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
 	private Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> extractHintValue(AttributeMatcher attributeMatcher, MappingInstanceStorage mappingInstance) {
@@ -274,7 +276,7 @@ public class HintValueExtractor extends CancellableElement {
 			
 		}
 		
-		return hintValue;
+		return hintValue.isEmpty() ? null : hintValue;
 	}
 	
 	/**
@@ -282,7 +284,7 @@ public class HintValueExtractor extends CancellableElement {
 	 * 
 	 * @param modelConnectionHint The {@link ModelConnectionHint} for that the hint values shall be extracted.
 	 * @param mappingInstance The {@link MappingInstanceStorage} for that the hint values shall be extracted.
-	 * @return The extracted hint value.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
 	private Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> extractHintValue(ModelConnectionHint modelConnectionHint, MappingInstanceStorage mappingInstance) {
@@ -312,7 +314,7 @@ public class HintValueExtractor extends CancellableElement {
 			}
 		}
 		
-		return hintValue;
+		return hintValue.isEmpty() ? null : hintValue;
 	}
 	
 	/**
@@ -320,7 +322,7 @@ public class HintValueExtractor extends CancellableElement {
 	 * 
 	 * @param cardinalityMapping The {@link CardinalityMapping} for that the hint values shall be extracted.
 	 * @param mappingInstance The {@link MappingInstanceStorage} for that the hint values shall be extracted.
-	 * @return The extracted hint value.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
 	private Integer extractHintValue(CardinalityMapping cardinalityMapping, MappingInstanceStorage mappingInstance) {
 		

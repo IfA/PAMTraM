@@ -933,13 +933,13 @@ public class GenericTransformationRunner {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp != null) {
 
-					// import Hints
-					for (final MappingHint h : selMap.getMappingHints(expGrp)) {
-						selMap.getHintValues().setHintValues(h, null);
-						if (matchingResult.getExportedMappingHints().containsHint(h)) {
-							selMap.getHintValues().addHintValues(h, matchingResult.getExportedMappingHints().getHintValues(h));
-						}
-					}
+//					// import Hints
+//					for (final MappingHint h : selMap.getMappingHints(expGrp)) {
+//						selMap.getHintValues().setHintValues(h, null);
+//						if (matchingResult.getExportedMappingHints().containsHint(h)) {
+//							selMap.getHintValues().addHintValues(h, matchingResult.getExportedMappingHints().getHintValues(h));
+//						}
+//					}
 
 					// start instantiating
 					if (expGrp.getTargetMMSection() != null) {

@@ -24,7 +24,6 @@ import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
 import pamtram.metamodel.RangeBound;
@@ -639,10 +638,10 @@ public class SourceSectionMatcher {
 				}
 
 				// success: combine references
-				if (refByClassMap
-						.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof ContainmentReference) {
+//				if (refByClassMap
+//						.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof ContainmentReference) {
 					descriptor.add(childDescriptor);
-				}
+//				}
 
 			} else {// unbounded or unspecified
 				// cast refTarget to EList
@@ -737,11 +736,11 @@ public class SourceSectionMatcher {
 						}
 
 						// remember mapping
-						if (refByClassMap.get(
-								srcSectionResult.getAssociatedSourceSectionClass()) instanceof ContainmentReference) {
+//						if (refByClassMap.get(
+//								srcSectionResult.getAssociatedSourceSectionClass()) instanceof ContainmentReference) {
 							descriptor.add(srcSectionResult);
 
-						}
+//						}
 
 						allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
 						// remove srcModel element from possibility lists of
@@ -783,12 +782,12 @@ public class SourceSectionMatcher {
 							srcSectionResult = possibleSrcModelElementsVC.get(smallestKey).getFirst();
 						}
 						// remember mapping
-						if (refByClassMap
-								.get(srcSectionResult
-										.getAssociatedSourceSectionClass()) instanceof ContainmentReference) {
+//						if (refByClassMap
+//								.get(srcSectionResult
+//										.getAssociatedSourceSectionClass()) instanceof ContainmentReference) {
 							descriptor.add(srcSectionResult);
 
-						}
+//						}
 
 						allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
 

@@ -782,8 +782,8 @@ public class SourceSectionMatcher {
 							 * Register the created child descriptor in the 'sections2Descriptors' map that will be 
 							 * returned in the end
 							 */
-							if(refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSection) {
-								registerDescriptor((SourceSection) refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()), srcSectionResult);						
+							if(srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
+								registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(), srcSectionResult);						
 							}
 						}
 

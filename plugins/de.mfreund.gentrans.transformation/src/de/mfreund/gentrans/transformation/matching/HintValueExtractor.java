@@ -80,6 +80,15 @@ public class HintValueExtractor extends CancellableElement {
 	private final Map<GlobalAttribute, String> globalAttributeValues;
 	
 	/**
+	 * This is the getter for the {@link #globalAttributeValues}.
+	 * 
+	 * @return The registry for values of {@link GlobalAttribute GlobalAttributes}.
+	 */
+	public Map<GlobalAttribute, String> getGlobalAttributeValues() {
+		return this.globalAttributeValues;
+	}
+	
+	/**
 	 * This creates an instance for a given list of {@link MappingInstanceStorage mappingInstances}.
 	 * <p />
 	 * Note: The extracted hint values are stored in the given <em>mappingInstances</em>. 

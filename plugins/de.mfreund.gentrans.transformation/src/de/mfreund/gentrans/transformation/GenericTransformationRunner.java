@@ -802,7 +802,7 @@ public class GenericTransformationRunner {
 		consoleStream.println("\t\tUnmatched Elements:\t" +
 		containmentTree.getNumberOfUnmatchedElements());
 
-		return MatchingResult.createMatchingCanceledResult();
+//		return MatchingResult.createMatchingCanceledResult();
 		
 		//
 		// /*
@@ -823,9 +823,13 @@ public class GenericTransformationRunner {
 		// return MatchingResult.createMatchingCanceledResult();
 		// }
 		//
-		// return MatchingResult.createMatchingCompletedResult(selectedMappings,
-		// selectedMappingsByMapping, exportedMappingHints,
-		// globalAttributeValues);
+		
+		selectedMappings = new LinkedList<>(
+				selectedMappingsByMapping.entrySet().parallelStream().flatMap(e -> e.getValue().stream()).collect(Collectors.toList()));
+		
+		return MatchingResult.createMatchingCompletedResult(selectedMappings,
+				 selectedMappingsByMapping, new HintValueStorage(),
+				 hintValueExtractor.getGlobalAttributeValues());
 
 	}
 

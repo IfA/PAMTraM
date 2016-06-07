@@ -24,6 +24,7 @@ import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.FixedValue;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingHint;
@@ -73,6 +74,12 @@ public class HintValueExtractor extends CancellableElement {
 	private Map<ExportedMappingHintGroup, MappingInstanceStorage> exportedHintGroups;
 	
 	/**
+	 * Registry for values of {@link GlobalAttribute GlobalAttributes}. Only the latest value found is
+	 * saved (GlobalAttributes really only make sense for elements that appear only once in the source model).
+	 */
+	private final Map<GlobalAttribute, String> globalAttributeValues;
+	
+	/**
 	 * This creates an instance for a given list of {@link MappingInstanceStorage mappingInstances}.
 	 * <p />
 	 * Note: The extracted hint values are stored in the given <em>mappingInstances</em>. 
@@ -88,12 +95,16 @@ public class HintValueExtractor extends CancellableElement {
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
 		this.consoleStream = consoleStream;
 		this.exportedHintGroups = new HashMap<>();
+		this.globalAttributeValues = new HashMap<>();
 	}
 
 	/**
 	 * This extracts the hint values and stores them in the {@link #mappingInstances}.
 	 */
 	public void extractHintValues() {
+		
+		// First, we extract values for global attributes
+		mappingInstances.parallelStream().forEach(this::extractGlobalAttributeValues);
 		
 		// In a first step, we extract the hints of 'normal' and exported hint groups.
 		//
@@ -115,6 +126,68 @@ public class HintValueExtractor extends CancellableElement {
 		// hint values of exported hint groups that have been calculated before)
 		//
 		mappingInstances.parallelStream().forEach(this::extractImportedHintValues);
+	}
+	
+	/**
+	 * This extracts the values of global attributes for the given {@link MappingInstanceStorage}.
+	 * <p />
+	 * Note: The extracted values are stored in {@link #globalAttributeValues}.
+	 * 
+	 * @param mappingInstance The {@link MappingInstanceStorage} for that the values of global attributes shall be extracted.
+	 */
+	private void extractGlobalAttributeValues(MappingInstanceStorage mappingInstance) {
+		
+		// First, we collect all global attributes
+		//
+		mappingInstance.getMapping().getGlobalVariables().parallelStream().forEach(
+				g -> extractGlobalAttributeValue(g, mappingInstance));
+	}
+	
+	/**
+	 * This extracts and returns the value for the given {@link GlobalAttribute} from the source elements represented
+	 * by the given <em>mappingInstance</em>.
+	 * 
+	 * @param globalAttribute The {@link GlobalAttribute} for that the value shall be extracted.
+	 * @param mappingInstance The {@link MappingInstanceStorage} representing the source model elements from that values shall be extracted.
+	 */
+	private void extractGlobalAttributeValue(GlobalAttribute globalAttribute, MappingInstanceStorage mappingInstance) {
+		
+		Set<EObject> sourceElements = mappingInstance.getSourceModelObjectsMapped().get(globalAttribute.getSource().eContainer());
+		
+		if(sourceElements == null) {
+			consoleStream.println("Value of global attribute '" + globalAttribute.getName() + "' not found!");
+			return;
+		} else if(sourceElements.size() > 1) {
+			consoleStream.println("Multiple source elements found for global attribute '" + globalAttribute.getName() + "'."
+					+ " This is not supported. Only the first element is used!");
+		}
+		
+		EObject sourceElement = sourceElements.iterator().next();
+		
+		EAttribute sourceAttribute = globalAttribute.getSource().getAttribute();
+		
+		/*
+		 * Attributes may have a cardinality greater than 1.
+		 */
+		Object srcAttrValue;
+		if(sourceAttribute.isMany()) {
+			consoleStream.println("Multiple source values found for global attribute '" + globalAttribute.getName() + "'."
+					+ " This is not supported. Only the first element is used!");
+			srcAttrValue = ((Collection<?>) sourceElement.eGet(sourceAttribute)).iterator().next();
+		} else {
+			srcAttrValue = sourceElement.eGet(sourceAttribute);
+		}
+		
+		// convert Attribute value to String
+		final String srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
+				.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
+		
+		final String valCopy = attributeValueModifierExecutor
+				.applyAttributeValueModifiers(srcAttrAsString, globalAttribute.getModifier());
+		
+		// Store the found value
+		//
+		globalAttributeValues.put(globalAttribute, valCopy);		
 	}
 	
 	/**
@@ -384,8 +457,8 @@ public class HintValueExtractor extends CancellableElement {
 	private AttributeValueRepresentation extractHintValue(GlobalAttributeImporter globaleAttributeImporter,
 			MappingInstanceStorage mappingInstance) {
 		
-		//TODO 
-		return null;
+		return globalAttributeValues.containsKey(globaleAttributeImporter.getGlobalAttribute()) ?
+				new AttributeValueRepresentation(null, globalAttributeValues.get(globaleAttributeImporter.getGlobalAttribute())) : null;
 	}
 	
 	/**

@@ -14,6 +14,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.mfreund.gentrans.transformation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.maps.HintValueMap;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
@@ -25,6 +26,7 @@ import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -61,6 +63,13 @@ public class HintValueExtractor extends CancellableElement {
 	 */
 	private final MessageConsoleStream consoleStream;
 	
+	/**
+	 * This keeps track of the {@link MappingInstanceStorage MappingInstanceStorages} representing
+	 * {@link ExportedMappingHintGroup ExportedMappingHintGroups}.
+	 * <p/>
+	 * This is used during {@link #extractImportedHintValues(MappingInstanceStorage)} to import hint values
+	 * for {@link MappingHintGroupImporter MappingHintGroupImporters}.
+	 */
 	private Map<ExportedMappingHintGroup, MappingInstanceStorage> exportedHintGroups;
 	
 	/**
@@ -131,24 +140,13 @@ public class HintValueExtractor extends CancellableElement {
 		// Now, we need to initialize the corresponding maps to store hint values
 		// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a sequential stream).
 		//
-		mappingHints.stream().forEach(hint -> {
-			if (hint instanceof AttributeMapping) {
-				mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, true);
-			} else if (hint instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
-					mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, true);
-				}
-			} else if (hint instanceof ModelConnectionHint) {
-				mappingInstance.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) hint, true);
-			}
-
-		});
+		mappingHints.stream().forEach(hint -> initializeHintValueMap(hint, mappingInstance));
 		
 		// Now, we can extract the hint values for each hint
 		//
 		mappingHints.parallelStream().forEach(h -> extractHintValue(h, mappingInstance));
 	}
-	
+
 	/**
 	 * This extracts the hint values of {@link MappingHintGroupImporter MappingHintGroupImporters} for 
 	 * the given {@link MappingInstanceStorage}.
@@ -159,11 +157,26 @@ public class HintValueExtractor extends CancellableElement {
 	 */
 	private void extractImportedHintValues(MappingInstanceStorage mappingInstance) {
 		
-		// TODO
 		for (MappingHintGroupImporter hintGroupImporter : mappingInstance.getMappingHintGroupImporters()) {
 			
-			MappingInstanceStorage exported = exportedHintGroups.get(hintGroupImporter.getHintGroup());
-			System.out.println(exported);
+			// First, we copy all imported hint values
+			//
+			ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
+			MappingInstanceStorage exported = exportedHintGroups.get(exportedHintGroup);
+			
+			for (MappingHint hint : exportedHintGroup.getMappingHints()) {
+				initializeHintValueMap(hint, mappingInstance);
+				mappingInstance.getHintValues().addHintValues(hint, exported.getHintValues().getHintValues(hint));
+			}
+			
+			// Now, we need to initialize the corresponding maps to store values for own hints
+			// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a sequential stream).
+			//
+			hintGroupImporter.getMappingHints().stream().forEach(hint -> initializeHintValueMap(hint, mappingInstance));
+			
+			// Now, we can extract the hint values for each own hint
+			//
+			hintGroupImporter.getMappingHints().parallelStream().forEach(h -> extractHintValue(h, mappingInstance));
 		}
 		
 	}
@@ -201,8 +214,7 @@ public class HintValueExtractor extends CancellableElement {
 			
 		} else if(hint instanceof MappedAttributeValueExpander) {
 			
-			//TODO
-			hintValue = null;
+			hintValue = extractHintValue((MappedAttributeValueExpander) hint, mappingInstance);
 			
 		} else {
 			
@@ -357,7 +369,7 @@ public class HintValueExtractor extends CancellableElement {
 	private AttributeValueRepresentation extractHintValue(FixedValue fixedValue,
 			MappingInstanceStorage mappingInstance) {
 		
-		//TODO two different FixedValues are currently not supported (both get added to the 'null' attribute
+		//FIXME two different FixedValues are currently not supported (both get added to the 'null' attribute
 		return new AttributeValueRepresentation(null, fixedValue.getValue()); 
 	}
 	
@@ -374,6 +386,29 @@ public class HintValueExtractor extends CancellableElement {
 		
 		//TODO 
 		return null;
+	}
+	
+	/**
+	 * This extracts and returns the hint value for the given {@link MappedAttributeValueExpander}.
+	 * 
+	 * @param mappedAttributeValueExpander The {@link MappedAttributeValueExpander} for that the hint values shall be extracted.
+	 * @param mappingInstance The {@link MappingInstanceStorage} for that the hint values shall be extracted.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
+	 */
+	@SuppressWarnings("unchecked")
+	private String extractHintValue(MappedAttributeValueExpander mappedAttributeValueExpander, MappingInstanceStorage mappingInstance) {
+		
+		if(mappedAttributeValueExpander.getSourceAttribute().getAttribute().isMany()) {
+			//FIXME Currently, we do not support many-valued attributes
+			throw new RuntimeException("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
+		}
+		
+		// Extract the hint value
+		//
+		AttributeValueRepresentation attributeValueRepresentation = 
+				extractHintValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) mappedAttributeValueExpander, mappingInstance);
+		
+		return attributeValueRepresentation == null ? null : attributeValueRepresentation.getNextValue();
 	}
 
 	/**
@@ -446,6 +481,25 @@ public class HintValueExtractor extends CancellableElement {
 		}
 		
 		return hintValue;
+	}
+
+	/**
+	 * For a given {@link MappingHintBaseType hint}, this {@link HintValueMap#init(EObject, boolean) initializes} the 
+	 * {@link HintValueMap} in the given {@link MappingInstanceStorage}.
+	 * 
+	 * @param hint The {@link MappingHintBaseType} for that the map shall be initialized.
+	 * @param mappingInstance The {@link MappingInstanceStorage} in that the hint value map shall be initialized.
+	 */
+	private void initializeHintValueMap(MappingHintBaseType hint, MappingInstanceStorage mappingInstance) {
+		if (hint instanceof AttributeMapping) {
+			mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, true);
+		} else if (hint instanceof MappingInstanceSelector) {
+			if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
+				mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, true);
+			}
+		} else if (hint instanceof ModelConnectionHint) {
+			mappingInstance.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) hint, true);
+		}
 	}
 
 }

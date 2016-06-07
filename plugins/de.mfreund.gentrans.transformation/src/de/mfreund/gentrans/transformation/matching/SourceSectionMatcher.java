@@ -638,10 +638,16 @@ public class SourceSectionMatcher {
 				}
 
 				// success: combine references
-//				if (refByClassMap
-//						.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof ContainmentReference) {
-					descriptor.add(childDescriptor);
-//				}
+				descriptor.add(childDescriptor);
+				if (refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
+					/*
+					 * Register the created child descriptor in the 'sections2Descriptors' map that will be 
+					 * returned in the end
+					 */
+					if(childDescriptor.getAssociatedSourceSectionClass() instanceof SourceSection) {
+						registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor);						
+					}
+				}
 
 			} else {// unbounded or unspecified
 				// cast refTarget to EList
@@ -736,11 +742,16 @@ public class SourceSectionMatcher {
 						}
 
 						// remember mapping
-//						if (refByClassMap.get(
-//								srcSectionResult.getAssociatedSourceSectionClass()) instanceof ContainmentReference) {
-							descriptor.add(srcSectionResult);
-
-//						}
+						descriptor.add(srcSectionResult);
+						if (refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
+							/*
+							 * Register the created child descriptor in the 'sections2Descriptors' map that will be 
+							 * returned in the end
+							 */
+							if(refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSection) {
+								registerDescriptor((SourceSection) refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()), srcSectionResult);						
+							}
+						}
 
 						allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
 						// remove srcModel element from possibility lists of
@@ -782,12 +793,16 @@ public class SourceSectionMatcher {
 							srcSectionResult = possibleSrcModelElementsVC.get(smallestKey).getFirst();
 						}
 						// remember mapping
-//						if (refByClassMap
-//								.get(srcSectionResult
-//										.getAssociatedSourceSectionClass()) instanceof ContainmentReference) {
-							descriptor.add(srcSectionResult);
-
-//						}
+						descriptor.add(srcSectionResult);
+						if (refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
+							/*
+							 * Register the created child descriptor in the 'sections2Descriptors' map that will be 
+							 * returned in the end
+							 */
+							if(srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
+								registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(), srcSectionResult);						
+							}
+						}
 
 						allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
 

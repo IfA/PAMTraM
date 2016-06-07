@@ -270,17 +270,7 @@ public class SourceSectionMatcher {
 				
 				// set the associated container descriptor
 				//
-				if(section.getContainer() != null) {
-					
-					assert sections2Descriptors.containsKey(section.getContainer().getContainingSection());
-					
-					Set<MatchedSectionDescriptor> containerDescriptors = sections2Descriptors.get(section.getContainer().getContainingSection()).parallelStream().
-							filter(d -> d.getSourceModelObjectFlat().contains(element.eContainer())).collect(Collectors.toSet());
-					
-					assert containerDescriptors.size() == 1;
-					
-					descriptor.setContainerDescriptor(containerDescriptors.iterator().next());
-				}
+				setContainerDescriptor(descriptor);
 
 				// all checks were successful -> the section is applicable
 				//
@@ -289,6 +279,46 @@ public class SourceSectionMatcher {
 		}
 
 		return mappingData;
+	}
+
+	/**
+	 * For a given {@link MatchedSectionDescriptor}, this extracts the 
+	 * associated '<em>container descriptor</em>' from the {@link #sections2Descriptors} map and 
+	 * {@link MatchedSectionDescriptor#setContainerDescriptor(MatchedSectionDescriptor) sets} it in the 
+	 * descriptor.
+	 * 
+	 * @param descriptor The {@link MatchedSectionDescriptor} for that the container shall be determined and set.
+	 * @return '<em><b>true</b></em>' if either the given '<em>descriptor</em>' does not represent a SourceSection but a SourceSectionClass,
+	 * if the {@link SourceSection} represented by the given '<em>descriptor</em>' does not specify a {@link SourceSection#getContainer() container}, 
+	 * if the container descriptor has already been set, or if the 
+	 * container descriptor was set successfully; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean setContainerDescriptor(MatchedSectionDescriptor descriptor) {
+		
+		if(!(descriptor.getAssociatedSourceSectionClass() instanceof SourceSection)){
+			return true;
+		}
+		
+		EObject element = descriptor.getAssociatedSourceModelElement();
+		
+		SourceSection section = (SourceSection) descriptor.getAssociatedSourceSectionClass();
+		
+		if(section.getContainer() == null || descriptor.getContainerDescriptor() != null) {
+			return true;
+		}
+			
+		if(!sections2Descriptors.containsKey(section.getContainer().getContainingSection())) {
+			return false;
+		}
+			
+		Set<MatchedSectionDescriptor> containerDescriptors = sections2Descriptors.get(section.getContainer().getContainingSection()).parallelStream().
+				filter(d -> d.getSourceModelObjectFlat().contains(element.eContainer())).collect(Collectors.toSet());
+			
+		assert containerDescriptors.size() == 1;
+			
+		descriptor.setContainerDescriptor(containerDescriptors.iterator().next());
+		
+		return true;
 	}
 
 	/**
@@ -483,6 +513,10 @@ public class SourceSectionMatcher {
 		if (!referencesOk) {
 			return null;
 		}
+		
+		// set the associated container descriptor
+		//
+		descriptor.setContainerDescriptor(parentDescriptor);
 
 		return descriptor;
 

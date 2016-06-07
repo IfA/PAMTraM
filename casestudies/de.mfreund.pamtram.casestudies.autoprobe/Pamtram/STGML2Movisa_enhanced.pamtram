@@ -315,7 +315,7 @@
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-        <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;RoleDefinition&quot;">
+        <value xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;RoleDefinition&quot;" cardinality="ONE__INFINITY">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>

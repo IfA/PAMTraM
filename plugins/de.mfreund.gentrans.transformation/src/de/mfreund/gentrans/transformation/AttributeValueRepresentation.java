@@ -44,6 +44,15 @@ public class AttributeValueRepresentation {
 		this.attribute = attribute;
 		this.attributeValues.add(value != null ? value : "");
 	}
+	
+	/**
+	 * This is the getter for the {@link #attribute}.
+	 * 
+	 * @return The {@link SourceSectionAttribute} that this represents.
+	 */
+	public SourceSectionAttribute getAttribute() {
+		return this.attribute;
+	}
 
 	/**
 	 * This adds a value to the list of values that the

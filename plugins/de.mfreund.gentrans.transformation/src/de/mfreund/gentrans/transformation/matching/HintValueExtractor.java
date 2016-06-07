@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -303,11 +304,8 @@ public class HintValueExtractor extends CancellableElement {
 			consoleStream.println("Unsupported type of MappingHint found: '" + hint.eClass().getName() + "'!");
 		}
 		
-		// Store the hint value in the mappingInstance
-		//
-		if(hintValue != null) {			
-			mappingInstance.getHintValues().addHintValue(hint, hintValue);
-		}
+		storeHintValueConsolidated(hintValue, hint, mappingInstance);		
+		
 	}
 
 	/**
@@ -581,6 +579,55 @@ public class HintValueExtractor extends CancellableElement {
 			}
 		} else if (hint instanceof ModelConnectionHint) {
 			mappingInstance.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) hint, false);
+		}
+	}
+
+	/**
+	 * This stores the given '<em>hintValue</em>' produced by the given {@link MappingHintBaseType} in the given {@link MappingInstanceStorage}.
+	 * <p />
+	 * Note: If the '<em>hintValue</em>' represents a 'complex', attribute-based hint (i.e. one that is composed of multiple source elements like
+	 * e.g. an 'AttributeMapping), it is consolidated first. By 'consolidated', we mean that, if one or more of the
+	 * source elements returned {@link AttributeValueRepresentation#isMany() multiple values}, multiple distinct hint values are created.  
+	 * 
+	 * @param hintValue The object representing the hint value. The type of this is dependent on the concrete {@link MappingHintBaseType}
+	 * represented by the given '<em>hint</em>'.
+	 * @param hint The {@link MappingHintBaseType hint} that produced the value. 
+	 * @param mappingInstance The {@link MappingInstanceStorage} where the hint value shall be stored.
+	 */
+	@SuppressWarnings("unchecked")
+	private void storeHintValueConsolidated(Object hintValue, MappingHintBaseType hint, MappingInstanceStorage mappingInstance) {
+		
+		/*
+		 * If we deal with a 'complex' hint (one that is composed of multiple source elements) and one or more of the
+		 * source elements returned multiple values, we need to 'consolidate' the hint values, i.e. create multiple
+		 * distinct hint values.  
+		 */
+		if(hintValue instanceof Map<?, ?>) {
+			HashMap<EObject, AttributeValueRepresentation> hintValueMap = (HashMap<EObject, AttributeValueRepresentation>) hintValue;
+			
+			int maxNumberOfValues = hintValueMap.values().parallelStream().mapToInt(v -> v.getValues().size()).max().getAsInt();
+			
+			for (AttributeValueRepresentation valueRepresentation : hintValueMap.values()) {
+				if(maxNumberOfValues % valueRepresentation.getValues().size() > 0) {
+					consoleStream.println("The source elements of the mapping hint '" + hint.getName() + "' produced an "
+							+ "inconsistent number of hint values. They are thus skipped...");
+					return;
+				}
+			}
+	
+			for (int i = 0; i < maxNumberOfValues; i++) {
+				HashMap<EObject, AttributeValueRepresentation> newHintValueMap = (HashMap<EObject, AttributeValueRepresentation>) hintValueMap.clone();
+				for (Entry<EObject, AttributeValueRepresentation> entry : hintValueMap.entrySet()) {
+					newHintValueMap.put(entry.getKey(), new AttributeValueRepresentation(entry.getValue().getAttribute(), entry.getValue().getNextValue()));
+				}
+				mappingInstance.getHintValues().addHintValue(hint, newHintValueMap);
+			}
+			
+		/*
+		 * Otherwise, we can simply store the single hint value in the mapping instance.
+		 */
+		} else if(hintValue != null) {			
+				mappingInstance.getHintValues().addHintValue(hint, hintValue);
 		}
 	}
 

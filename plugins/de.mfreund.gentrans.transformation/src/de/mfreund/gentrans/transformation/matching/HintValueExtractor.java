@@ -574,13 +574,13 @@ public class HintValueExtractor extends CancellableElement {
 	 */
 	private void initializeHintValueMap(MappingHintBaseType hint, MappingInstanceStorage mappingInstance) {
 		if (hint instanceof AttributeMapping) {
-			mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, true);
+			mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, false);
 		} else if (hint instanceof MappingInstanceSelector) {
 			if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
-				mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, true);
+				mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, false);
 			}
 		} else if (hint instanceof ModelConnectionHint) {
-			mappingInstance.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) hint, true);
+			mappingInstance.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) hint, false);
 		}
 	}
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -53,14 +52,14 @@ public class ConditionHandler {
 	/**
 	 * Enum for possible results of a condition
 	 */
-	public enum condResult{
-		true_condition, false_condition, irrelevant_condition
+	public enum CondResult{
+		TRUE, FALSE, IRRELEVANT
 	}
 	
 	/**
 	 * Registry for values of checked conditions
 	 */
-	private final Map<ComplexCondition, condResult> conditionRepository;
+	private final Map<ComplexCondition, CondResult> conditionRepository;
 	
 	/**
 	 * The console stream to be used to print messages.
@@ -72,16 +71,6 @@ public class ConditionHandler {
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections; 
-	
-	/**
-	 * The list of {@link FixedValue global values} to be considered.
-	 */
-	private List<FixedValue> globalValues;
-
-	/**
-	 * Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
-	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.		 */
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection;
 	
 	/**
 	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be evaluated 
@@ -100,11 +89,16 @@ public class ConditionHandler {
 	 */
 	private InstancePointerHandler instancePointerHandler;
 
+	/**
+	 * This creates an instance.
+	 * 
+	 * @param matchedSections The map of {@link SourceSection SourceSections} and associated {@link MatchedSectionDescriptor 
+	 * MatchedSectionDescriptors} that result from the matching process.
+	 * @param globalValues The list of {@link FixedValue global values} that are defined in the pamtram model.
+	 */
 	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<FixedValue> globalValues){
 		
 		this.matchedSections =  matchedSections;
-		this.globalValues = globalValues;
-		this.tempMatchedSection = new LinkedHashMap<>();
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
 		this.instancePointerHandler = new InstancePointerHandler(matchedSections, consoleStream);
@@ -118,13 +112,13 @@ public class ConditionHandler {
 	 * @param complexCondition
 	 * @return The calculated Enum result (true, false, irrelevant)
 	 */
-	public condResult checkCondition(ComplexCondition complexCondition){
+	public CondResult checkCondition(ComplexCondition complexCondition){
 		
-		condResult result = condResult.true_condition;
+		CondResult result = CondResult.TRUE;
 		
 		// Note: No modeled condition always returns true
 		if(complexCondition == null){ 
-			return condResult.true_condition;
+			return CondResult.TRUE;
 		} else {
 			
 			// First, we prove if that condition already have been checked
@@ -142,9 +136,9 @@ public class ConditionHandler {
 					// Before evaluating, check 'DefaultSetting' (may we can break evaluating and save time)
 					if(((Condition) complexCondition).getDefaultSetting() == CondSettingEnum.NO_MATCHING_ACCEPTED){
 						if(complexCondition.eContainer() instanceof ComplexCondition){
-							return condResult.irrelevant_condition;
+							return CondResult.IRRELEVANT;
 						} else{
-							return condResult.true_condition;
+							return CondResult.TRUE;
 						}
 					}
 					
@@ -160,7 +154,7 @@ public class ConditionHandler {
 		return result;
 	}
 
-	private condResult checkSectionCondition(SectionCondition sectionCondition) {
+	private CondResult checkSectionCondition(SectionCondition sectionCondition) {
 		
 		boolean tempConditionRes = false;
 		
@@ -172,13 +166,6 @@ public class ConditionHandler {
 				correspondEClassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(sectionCondition.getConditionSectionRef()));
 			}
 			
-//			if(tempMatchedSection.get(sectionCondition.getConditionSectionRef()) != null){
-//				correspondEClassInstances.addAll(tempMatchedSection.get(sectionCondition.getConditionSectionRef()));
-//				tempConditionRes = true;
-//			} else if(matchedSections.get(sectionCondition.getConditionSectionRef()) != null){
-//				correspondEClassInstances.addAll(matchedSections.get(sectionCondition.getConditionSectionRef()));
-//			}
-			
 			if(!sectionCondition.getAdditionalConditionSpecification().isEmpty()){
 				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances);
 			}
@@ -189,30 +176,30 @@ public class ConditionHandler {
 			// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
 			if(cardinalityRes == true){
 				if(tempConditionRes == false){
-					this.conditionRepository.put(sectionCondition, condResult.true_condition);}
-				return condResult.true_condition;
+					this.conditionRepository.put(sectionCondition, CondResult.TRUE);}
+				return CondResult.TRUE;
 			} else if(cardinalityRes == false){
 				if(tempConditionRes == false){
-					this.conditionRepository.put(sectionCondition, condResult.false_condition);}
-				return condResult.false_condition;
+					this.conditionRepository.put(sectionCondition, CondResult.FALSE);}
+				return CondResult.FALSE;
 			} else{
 				if(tempConditionRes == false){
-					this.conditionRepository.put(sectionCondition, condResult.irrelevant_condition);}
-				return condResult.irrelevant_condition;
+					this.conditionRepository.put(sectionCondition, CondResult.IRRELEVANT);}
+				return CondResult.IRRELEVANT;
 			}
 		
 		// return Result of this condition but does NOT!!! store result because it's not matched (may it will be matched later)
 		} else {
 			// For conditions where the referred Section shouldn't be part of a model
 			if(sectionCondition.getValue() == 0 && sectionCondition.getComparator() == ComparatorEnum.EQ){
-				return condResult.true_condition;
+				return CondResult.TRUE;
 			} else{
-				return condResult.false_condition;
+				return CondResult.FALSE;
 			}
 		}
 	}
 
-	private condResult checkAttributeCondition(AttributeCondition attrCondition) {
+	private CondResult checkAttributeCondition(AttributeCondition attrCondition) {
 		
 		boolean tempConditionRes = false;
 		EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
@@ -223,13 +210,6 @@ public class ConditionHandler {
 		for (MatchedSectionDescriptor descriptor : this.matchedSections.get(attrCondition.getConditionAttributeRef().getContainingSection())) {
 			correspondEClassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(attrCondition.getConditionAttributeRef().getContainingSection()));
 		}
-		
-//		if(tempMatchedSection.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
-//			correspondEClassInstances.addAll(tempMatchedSection.get(attrCondition.getConditionAttributeRef().eContainer()));
-//			tempConditionRes = true;
-//		} else if (matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
-//			correspondEClassInstances.addAll(matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()));
-//		}
 		
 		SourceSectionAttribute ssAttr = attrCondition.getConditionAttributeRef();
 		
@@ -358,16 +338,16 @@ public class ConditionHandler {
 		// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
 		if(cardinalityRes == true){
 			if(tempConditionRes == false){
-				this.conditionRepository.put(attrCondition, condResult.true_condition);}
-			return condResult.true_condition;
+				this.conditionRepository.put(attrCondition, CondResult.TRUE);}
+			return CondResult.TRUE;
 		} else if(cardinalityRes == false){
 			if(tempConditionRes == false){
-				this.conditionRepository.put(attrCondition, condResult.false_condition);}
-			return condResult.false_condition;
+				this.conditionRepository.put(attrCondition, CondResult.FALSE);}
+			return CondResult.FALSE;
 		} else{
 			if(tempConditionRes == false){
-				this.conditionRepository.put(attrCondition, condResult.irrelevant_condition);}
-			return condResult.irrelevant_condition;
+				this.conditionRepository.put(attrCondition, CondResult.IRRELEVANT);}
+			return CondResult.IRRELEVANT;
 		}
 	}
 	
@@ -415,20 +395,20 @@ public class ConditionHandler {
 		return result;
 	}
 
-	private condResult checkConditionSingleConditionOperator(SingleConditionOperator condition) {
+	private CondResult checkConditionSingleConditionOperator(SingleConditionOperator condition) {
 
 		if(condition instanceof Not){
 			return checkConditionNot((Not) condition);
 		} else {
 			// If we are here, some mistake is happened, more types could be supported in the future
 			consoleStream.println("SingleConditionOperator type " + condition.getClass().getName() + " is not yet supported!");
-			return condResult.irrelevant_condition;
+			return CondResult.IRRELEVANT;
 		}		
 	}
 
-	private condResult checkConditionNot(Not condition) {
+	private CondResult checkConditionNot(Not condition) {
 		
-		condResult condTemp = condResult.irrelevant_condition;
+		CondResult condTemp = CondResult.IRRELEVANT;
 		// Not Implementation
 		if(condition.getCondPartRef() != null){
 			condTemp = checkCondition(condition.getCondPartRef());
@@ -437,17 +417,17 @@ public class ConditionHandler {
 		}   
 		
 		// Invert the result and return
-		if(condTemp == condResult.true_condition){
-			condTemp = condResult.false_condition;
-		} else if(condTemp == condResult.false_condition){
-			condTemp = condResult.true_condition;
-		} else if(condTemp == condResult.irrelevant_condition){ // In this case the condition is optional. So it does not influence the ComplexCondition. Therefore, we return true!
-			condTemp = condResult.true_condition;
+		if(condTemp == CondResult.TRUE){
+			condTemp = CondResult.FALSE;
+		} else if(condTemp == CondResult.FALSE){
+			condTemp = CondResult.TRUE;
+		} else if(condTemp == CondResult.IRRELEVANT){ // In this case the condition is optional. So it does not influence the ComplexCondition. Therefore, we return true!
+			condTemp = CondResult.TRUE;
 		} else {
 			// If we are here, some mistake is happened
 			// more types could be supported in the future
 			consoleStream.println("Condition Enum type " + condTemp + " is not yet supported!");
-			return condResult.irrelevant_condition;
+			return CondResult.IRRELEVANT;
 		}
 		
 		// The following code also saves conditions. Since the result of a condition depends on a current mapping and their referred SourceSection,
@@ -457,7 +437,7 @@ public class ConditionHandler {
 		return condTemp;
 	}
 
-	private condResult checkConditionMultipleConditionOperator(MultipleConditionOperator  multipleCondition) {
+	private CondResult checkConditionMultipleConditionOperator(MultipleConditionOperator  multipleCondition) {
 		
 		if (multipleCondition instanceof And){
 			return checkConditionAnd((And) multipleCondition);
@@ -467,12 +447,12 @@ public class ConditionHandler {
 			// If we are here, some mistake is happened
 			// more types could be supported in the future
 			consoleStream.println("MultipleCondition type " + multipleCondition.getClass().getName() + " is not yet supported!");
-			return condResult.irrelevant_condition;
+			return CondResult.IRRELEVANT;
 		}	
 	}
 
 
-	private condResult checkConditionAnd(And condition) {
+	private CondResult checkConditionAnd(And condition) {
 		
 		//Get and put all arguments in a new list
 		EList<ComplexCondition> args = new BasicEList<ComplexCondition>(); 
@@ -480,14 +460,14 @@ public class ConditionHandler {
 		args.addAll(condition.getCondPartsRef());
 		
 		// And Implementation
-		condResult condTemp = condResult.true_condition;
+		CondResult condTemp = CondResult.TRUE;
 		
 		for(ComplexCondition arg: args){
 			condTemp = checkCondition(arg);
-			if(condTemp == condResult.false_condition){// In order to save some time we break the loop after one argument returned false (And-Operator)
+			if(condTemp == CondResult.FALSE){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
-			} else if(condTemp == condResult.irrelevant_condition){
-				condTemp = condResult.true_condition;
+			} else if(condTemp == CondResult.IRRELEVANT){
+				condTemp = CondResult.TRUE;
 			}
 		}
 		
@@ -498,7 +478,7 @@ public class ConditionHandler {
 		return condTemp;
 	}
 
-	private condResult checkConditionOr(Or condition) {
+	private CondResult checkConditionOr(Or condition) {
 		
 		//Get and put all arguments in a new list
 		EList<ComplexCondition> args = new BasicEList<ComplexCondition>(); 
@@ -506,14 +486,14 @@ public class ConditionHandler {
 		args.addAll(condition.getCondPartsRef());
 		
 		//Or Implementation
-		condResult condTemp = condResult.false_condition; // Note that is an Or
+		CondResult condTemp = CondResult.FALSE; // Note that is an Or
 		
 		for(ComplexCondition arg: args){
 			condTemp = checkCondition(arg);
-			if(condTemp == condResult.true_condition){// In order to save some time we break the loop after one argument returned false (And-Operator)
+			if(condTemp == CondResult.TRUE){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
-			} else if(condTemp == condResult.irrelevant_condition){
-				condTemp =condResult.false_condition;
+			} else if(condTemp == CondResult.IRRELEVANT){
+				condTemp =CondResult.FALSE;
 			}
 		}
 		
@@ -524,11 +504,4 @@ public class ConditionHandler {
 		return condTemp;
 	}
 
-	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection) {
-		this.tempMatchedSection = tempMatchedSection;
-	}
-
-	public void clearTempSectionMap() {
-		this.tempMatchedSection.clear();
-	}
 }

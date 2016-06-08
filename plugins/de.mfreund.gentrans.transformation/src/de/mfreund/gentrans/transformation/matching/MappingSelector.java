@@ -17,7 +17,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
-import de.mfreund.gentrans.transformation.condition.ConditionHandler.condResult;
+import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.ConditionalElement;
@@ -195,7 +195,7 @@ public class MappingSelector extends CancellableElement {
 
 		// Check conditions of hint groups and hints for the selected MappingInstanceStorages
 		//
-		ret.parallelStream().forEach(this::checkConditions);
+		ret.parallelStream().forEach(this::determineElementsWithNegativeConditions);
 		
 		return ret;
 	}
@@ -254,8 +254,8 @@ public class MappingSelector extends CancellableElement {
 		
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		//TODO the descriptor should be involved in the checking of the condition
-		if(conditionHandler.checkCondition(mapping.getCondition()) == condResult.true_condition && 
-				conditionHandler.checkCondition(mapping.getConditionRef()) == condResult.true_condition) {
+		if(conditionHandler.checkCondition(mapping.getCondition()) == CondResult.TRUE && 
+				conditionHandler.checkCondition(mapping.getConditionRef()) == CondResult.TRUE) {
 			return true;
 		} else {
 			return false;
@@ -269,53 +269,66 @@ public class MappingSelector extends CancellableElement {
 	 * have been evaluated as <em>negative</em> are {@link MappingInstanceStorage#addElementWithNegativeCondition(ConditionalElement) 
 	 * stored} in the <em>mappingInstance</em>.
 	 * 
-	 * @param mappingInstace The {@link MappingInstanceStorage} representing the ConditionalElements to be checked.
+	 * @param mappingInstance The {@link MappingInstanceStorage} representing the ConditionalElements to be checked.
 	 */
-	private void checkConditions(MappingInstanceStorage mappingInstace) {
+	private void determineElementsWithNegativeConditions(MappingInstanceStorage mappingInstance) {
 		
-		// Iterate now over all corresponding MappingHintGroups...
-		for (Iterator<MappingHintGroupType> mHintGroupList = mappingInstace.getMapping().getActiveMappingHintGroups().iterator(); mHintGroupList.hasNext();){
+		// check conditions of all corresponding MappingHintGroups...
+		mappingInstance.getMapping().getActiveMappingHintGroups().parallelStream().filter(hg -> hg instanceof ConditionalElement).forEach(hg -> {
 			
-			MappingHintGroupType mHintGroup = mHintGroupList.next();
-			if(mHintGroup instanceof ConditionalElement){
+			boolean result = checkCondition((ConditionalElement) hg, mappingInstance);
+			
+			if(result) {
 				
-				if(conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getCondition()) == condResult.false_condition || 
-						conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()) == condResult.false_condition){
-					
-					//returned false, so remove this Element and break the loop
-					mappingInstace.addElementWithNegativeCondition((ConditionalElement) mHintGroup);
-					continue;
-				} else {
-					
-					// Iterate now over all corresponding MappingHints
-					for(Iterator<MappingHint> mHintList = mHintGroup.getMappingHints().iterator(); mHintList.hasNext();){
-						
-						MappingHint mHint = mHintList.next();
-						if(conditionHandler.checkCondition((mHint).getCondition()) == condResult.false_condition || 
-								conditionHandler.checkCondition((mHint).getConditionRef()) == condResult.false_condition){
-							
-							//returned false, so remove this Element and break the loop
-							mappingInstace.addElementWithNegativeCondition((ConditionalElement) mHint);
-						}
-					}
-				}
+				// Iterate now over all corresponding MappingHints
+				hg.getMappingHints().parallelStream().forEach(
+						m -> checkCondition(m, mappingInstance));
 			}
-		}
+		});
 		
 		// check Condition of corresponding IMPORTED MappingHintGroups
-		for (Iterator<MappingHintGroupImporter> mImportHintGroupList = mappingInstace.getMapping().getActiveImportedMappingHintGroups().iterator(); mImportHintGroupList.hasNext();){
+		mappingInstance.getMapping().getActiveImportedMappingHintGroups().parallelStream().forEach(
+				hg -> checkCondition(hg, mappingInstance));
 			
-			MappingHintGroupImporter mImportHintGroup = mImportHintGroupList.next();
-				
-			//Condition of imported MappingHintGroup false, than remove it
-			if(conditionHandler.checkCondition(mImportHintGroup.getCondition()) == condResult.false_condition ||
-					conditionHandler.checkCondition(mImportHintGroup.getConditionRef()) == condResult.false_condition){
-				
-				mappingInstace.addElementWithNegativeCondition((ConditionalElement) mImportHintGroup);
-			}
+	}
+
+	/**
+	 * Checks the condition of the given {@link ConditionalElement}. If the condition evaluates to {@link CondResult#FALSE},
+	 * the element is {@link MappingInstanceStorage#addElementWithNegativeCondition(ConditionalElement) marked as negative}
+	 * in the given {@link MappingInstanceStorage}.
+	 * 
+	 * @param conditionalElement The {@link ConditionalElement} to check.
+	 * @param mappingInstance The {@link MappingInstanceStorage} associated with the given <em>conditionalElement</em>.
+	 * @return '<em><b>true</b></em>' if the condition was evaluated to {@link CondResult#TRUE}; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean checkCondition(ConditionalElement conditionalElement, MappingInstanceStorage mappingInstance) {
+		
+		boolean result = checkCondition(conditionalElement);
+		
+		if(!result) {
 			
+			mappingInstance.addElementWithNegativeCondition(conditionalElement);
 		}
+		
+		return result;
+	}
+	
+	/**
+	 * Checks the condition of the given {@link ConditionalElement}.
+	 * 
+	 * @param conditionalElement The {@link ConditionalElement} to check.
+	 * @return '<em><b>true</b></em>' if the condition was evaluated to {@link CondResult#TRUE}; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean checkCondition(ConditionalElement conditionalElement) {
+		if(conditionHandler.checkCondition(conditionalElement.getCondition()) == CondResult.FALSE || 
+				conditionHandler.checkCondition(conditionalElement.getConditionRef()) == CondResult.FALSE){
 			
+			return false;
+		} else {
+			
+			return true;
+		}
+		
 	}
 
 	/**

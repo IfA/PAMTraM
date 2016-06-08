@@ -882,7 +882,7 @@ public class SourceSectionMatcher {
 	 * @param descriptor
 	 *            The {@link MatchedSectionDescriptor} for the current matching
 	 *            process.
-	 * @return '<em></b>true</b></em>' if all attributes are present, '
+	 * @return '<em></b>true</b></em>' if all attributes are present and satisfy the modeled constraints, '
 	 *         <em><b>false</b></em>' otherwise
 	 */
 	private boolean checkAttributes(final EObject srcModelObject,
@@ -900,7 +900,7 @@ public class SourceSectionMatcher {
 				 * This is not a problem unless any mappings point here or AttributeValueConstraints were modeled.
 				 * Unset mapping hint values are handled elsewhere. Here we only need to check for matchers.
 				 */
-				if (at.getValueConstraint().size() > 0) {
+				if (!at.getValueConstraint().isEmpty()) {
 					return false;
 				}
 			} else {
@@ -921,90 +921,7 @@ public class SourceSectionMatcher {
 				 */
 				for (Object srcAttrValue : srcAttrValues) {
 
-					// convert Attribute value to String
-					final String srcAttrAsString = at.getAttribute().getEType().getEPackage().getEFactoryInstance()
-							.convertToString(at.getAttribute().getEAttributeType(), srcAttrValue);
-					/*
-					 * check AttributeValueConstraints
-					 *
-					 * Inclusions are OR connected
-					 *
-					 * Exclusions are NOR connected
-					 */
-					boolean inclusionMatched = false;
-					boolean containsInclusions = false;
-					for (final AttributeValueConstraint constraint : at.getValueConstraint()) {
-
-						if (constraintsWithErrors.contains(constraint)) {
-							continue;
-						}
-
-						boolean constraintVal=false;
-						try {
-							// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
-							// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
-							// and we need to extract the right reference Value(s) for each constraint
-							
-							if (constraint instanceof SingleReferenceAttributeValueConstraint){
-								String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint);
-								constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
-							} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
-								
-								if(constraint instanceof RangeConstraint){
-									List<String> srcAttrRefValuesAsList = new ArrayList<String>();
-									RangeBound lowerBound=((RangeConstraint) constraint).getLowerBound(), upperBound = ((RangeConstraint) constraint).getUpperBound();
-									
-									if(lowerBound != null){
-										srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(lowerBound));
-									} else {
-										srcAttrRefValuesAsList.add("null");
-									}
-									
-									if(upperBound != null){
-										srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(upperBound));
-									} else {
-										srcAttrRefValuesAsList.add("null");
-									}
-									
-									BasicEList<String> refValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); 
-									constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString, refValuesAsEList);
-									
-									if(!constraintVal){ // just for debugging!
-										consoleStream.println("Coonstraint " + constraint.getName() + "of AttributeValueConstraint is false while the Attribute value " + srcAttrAsString +
-												", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
-									}
-								}  else {
-									// If we are here, some mistake is happened
-									// more types could be supported in the future
-									// placeholder for other MultipleReferenceAttributeValueConstraints
-									consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
-								}
-							}  else {
-								// If we are here, some mistake is happened
-								// more types could be supported in the future
-								// placeholder for other MultipleReferenceAttributeValueConstraints
-								consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
-							}
-						} catch (final Exception e) {
-							constraintsWithErrors.add(constraint);
-							consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
-									+ at.getName() + " (Class: " + at.getOwningClass().getName() + ", Section: " + at.getContainingSection().getName()
-									+ ")' could not be evaluated and will be ignored. The following error was supplied:\n"
-									+ e.getLocalizedMessage());
-							continue;
-						}
-
-						if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
-							return false;
-						} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
-							containsInclusions = true;
-							if (constraintVal) {
-								inclusionMatched = true;
-							}
-						}
-					}
-
-					if (!inclusionMatched && containsInclusions) {
+					if(!checkAttributeValueConstraints(at, srcAttrValue)) {
 						return false;
 					}
 				}
@@ -1012,6 +929,132 @@ public class SourceSectionMatcher {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Check the given {@link Object attribute value} against the {@link AttributeValueConstraint AttributeValueConstraints}
+	 * modeled for the given {@link SourceSectionAttribute attribute}.
+	 * 
+	 * @param attribute The {@link SourceSectionAttribute} for that the constraints shall be checked.
+	 * @param value The attribute value to be checked against the constraints.
+	 * @return '<em><b>true</b></em>' if the value satisfies all modeled constraints; '<em><b>false</b></em>' if at least
+	 * one constraint could not be satisfied.
+	 */
+	private boolean checkAttributeValueConstraints(final SourceSectionAttribute attribute, Object value) {
+		
+		// convert Attribute value to String
+		final String srcAttrAsString = attribute.getAttribute().getEType().getEPackage().getEFactoryInstance()
+				.convertToString(attribute.getAttribute().getEAttributeType(), value);
+		
+		/*
+		 * check AttributeValueConstraints
+		 *
+		 * Inclusions are OR connected
+		 *
+		 * Exclusions are NOR connected
+		 */
+		boolean inclusionMatched = false;
+		boolean containsInclusions = false;
+		
+		List<AttributeValueConstraint> validConstraints = attribute.getValueConstraint().parallelStream().filter(
+				c -> !constraintsWithErrors.contains(c)).collect(Collectors.toList());
+		
+		// Check each constraint
+		//
+		for (final AttributeValueConstraint constraint : validConstraints) {
+
+			try {
+				
+				boolean constraintVal = checkAttributeValueConstraint(srcAttrAsString, constraint);
+				
+				if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+					return false;
+				} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
+					containsInclusions = true;
+					if (constraintVal) {
+						inclusionMatched = true;
+					}
+				}
+				
+			} catch (final Exception e) {
+				constraintsWithErrors.add(constraint);
+				consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
+						+ attribute.getName() + " (Class: " + attribute.getOwningClass().getName() + ", Section: " + attribute.getContainingSection().getName()
+						+ ")' could not be evaluated and will be ignored. The following error was supplied:\n"
+						+ e.getLocalizedMessage());
+			}
+
+		}
+
+		// If we arrive at this point, the constraint is valid unless there is an unmatched 'inclusion'
+		//
+		return !(!inclusionMatched && containsInclusions);
+	}
+
+	/**
+	 * Check the given {@link Object attribute value} against the {@link AttributeValueConstraint AttributeValueConstraints}
+	 * modeled for the given {@link SourceSectionAttribute attribute}.
+	 * 
+	 * @param attribute The {@link SourceSectionAttribute} for that the constraints shall be checked.
+	 * @param value The 
+	 * 
+	 * @param attributeValueAsString A String representation of the attribute value to be checked against the given <em>constraint</em>.
+	 * @param constraint The {@link AttributeValueConstraint} that the given <em>attributeValueAsString</em> shall be checked against.
+	 * @return '<em><b>true</b></em>' if the value satisfies the constraint; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean checkAttributeValueConstraint(final String attributeValueAsString,
+			final AttributeValueConstraint constraint) {
+		
+		boolean constraintVal = false;
+		
+		// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
+		// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
+		// and we need to extract the right reference Value(s) for each constraint
+		
+		if (constraint instanceof SingleReferenceAttributeValueConstraint){
+			String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint);
+			constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(attributeValueAsString,srcAttrRefValAsString);
+		} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
+			
+			if(constraint instanceof RangeConstraint){
+				List<String> srcAttrRefValuesAsList = new ArrayList<>();
+				RangeBound lowerBound= ((RangeConstraint) constraint).getLowerBound();
+				RangeBound upperBound = ((RangeConstraint) constraint).getUpperBound();
+				
+				
+				if(lowerBound != null){
+					srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(lowerBound));
+				} else {
+					srcAttrRefValuesAsList.add("null");
+				}
+				
+				if(upperBound != null){
+					srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(upperBound));
+				} else {
+					srcAttrRefValuesAsList.add("null");
+				}
+				
+				BasicEList<String> refValuesAsEList = new BasicEList<>(srcAttrRefValuesAsList); 
+				constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(attributeValueAsString, refValuesAsEList);
+				
+				if(!constraintVal){ // just for debugging!
+					consoleStream.println("Coonstraint " + constraint.getName() + "of AttributeValueConstraint is false while the Attribute value " + attributeValueAsString +
+							", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
+				}
+			}  else {
+				// If we are here, some mistake is happened
+				// more types could be supported in the future
+				// placeholder for other MultipleReferenceAttributeValueConstraints
+				consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+			}
+		}  else {
+			// If we are here, some mistake is happened
+			// more types could be supported in the future
+			// placeholder for other MultipleReferenceAttributeValueConstraints
+			consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+		}
+		
+		return constraintVal;
 	}
 
 	/**

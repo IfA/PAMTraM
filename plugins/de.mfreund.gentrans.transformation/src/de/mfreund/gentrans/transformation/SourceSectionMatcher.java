@@ -77,6 +77,7 @@ import pamtram.metamodel.SourceSectionReference;
  * @author mfreund
  * @version 2.0
  */
+@Deprecated
 public class SourceSectionMatcher extends CancellableElement {
 
 	/**

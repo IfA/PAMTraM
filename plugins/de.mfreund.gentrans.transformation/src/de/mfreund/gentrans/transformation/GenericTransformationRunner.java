@@ -48,6 +48,7 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
+import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
@@ -691,16 +692,14 @@ public class GenericTransformationRunner {
 			AttributeValueModifierExecutor attributeValueModifier, 
 			IProgressMonitor monitor) {
 
-		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<>();
-		Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<>();
-		HintValueStorage exportedMappingHints;
-		Map<GlobalAttribute, String> globalAttributeValues;
+		LinkedList<MappingInstanceStorage> selectedMappings;
+		Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping;
 
 		/*
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched
 		 * and unmatched elements.
 		 */
-		writePamtramMessage("Analyzing source model");
+		writePamtramMessage("Matching SourceSections");
 		monitor.subTask("Selecting Mappings for source model elements");
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
@@ -713,16 +712,13 @@ public class GenericTransformationRunner {
 		/*
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
-		// final SourceSectionMatcher sourceSectionMatcher = new
-		// SourceSectionMatcher(
-		// containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings,
-		// pamtramModel.getGlobalValues(), attributeValueModifier,
-		// ambiguityResolvingStrategy, consoleStream);
-		final de.mfreund.gentrans.transformation.matching.SourceSectionMatcher sourceSectionMatcher = new de.mfreund.gentrans.transformation.matching.SourceSectionMatcher(
+		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
 				containmentTree, new BasicEList<>(activeSourceSections), consoleStream);
 		// objectsToCancel.add(sourceSectionMatcher);
 
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
+		
+		writePamtramMessage("Select Mappings for Matched Sections");
 		
 		/*
 		 * Create the MappingSelector that finds applicable mappings
@@ -730,6 +726,8 @@ public class GenericTransformationRunner {
 		final MappingSelector mappingSelector = new MappingSelector(matchingResult, suitableMappings, pamtramModel.getGlobalValues(), 
 				onlyAskOnceOnAmbiguousMappings, ambiguityResolvingStrategy, consoleStream);
 		selectedMappingsByMapping = mappingSelector.selectMappings();
+		
+		writePamtramMessage("Extract Hint Values");
 		
 		/*
 		 * Calculate mapping hints 
@@ -739,62 +737,6 @@ public class GenericTransformationRunner {
 				attributeValueModifier, consoleStream);
 		hintValueExtractor.extractHintValues();
 		
-
-		// /*
-		// * Now start matching each of the elements in the containment tree. We
-		// automatically start
-		// * at the root element.
-		// */
-		// writePamtramMessage("Selecting Mappings for source model elements");
-		//
-		// final int numSrcModelElements =
-		// containmentTree.getNumberOfElements();
-		// final double workUnit = 250.0 / numSrcModelElements;
-		// double accumulatedWork = 0;
-		//
-		// /*
-		// * When iterating through the containment tree,
-		// 'getNumberOfAvailableElements()' will decrease over the time
-		// * until every element has either been matched or marked as
-		// 'unmatched'.
-		// */
-		// while (containmentTree.getNumberOfAvailableElements() > 0 &&
-		// !isCancelled) {
-		//
-		// final MappingInstanceStorage selectedMapping =
-		// sourceSectionMatcher.findMappingForNextElement();
-		//
-		// if (sourceSectionMatcher.isCancelled()) {
-		// writePamtramMessage("Transformation aborted.");
-		// return MatchingResult.createMatchingCanceledResult();
-		// }
-		//
-		// // store the selected mapping
-		// if (selectedMapping != null) {
-		// selectedMappings.add(selectedMapping);
-		// if
-		// (!selectedMappingsByMapping.containsKey(selectedMapping.getMapping()))
-		// {
-		// selectedMappingsByMapping.put(selectedMapping.getMapping(),
-		// new LinkedList<MappingInstanceStorage>());
-		// }
-		// selectedMappingsByMapping.get(selectedMapping.getMapping()).add(selectedMapping);
-		//
-		// }
-		//
-		// // update the progress bar in the monitor
-		// accumulatedWork += workUnit
-		// * (containmentTree.getNumberOfAvailableElements());
-		// if (accumulatedWork >= 1) {
-		// monitor.worked((int) Math.floor(accumulatedWork));
-		// accumulatedWork -= Math.floor(accumulatedWork);
-		// }
-		// }
-		//
-		// if (isCancelled) {
-		// return MatchingResult.createMatchingCanceledResult();
-		// }
-		//
 		consoleStream.println("Summary:\tAvailable Elements:\t" +
 		containmentTree.getNumberOfElements());
 		consoleStream.println("\t\tMatched Elements:\t" +
@@ -802,28 +744,6 @@ public class GenericTransformationRunner {
 		consoleStream.println("\t\tUnmatched Elements:\t" +
 		containmentTree.getNumberOfUnmatchedElements());
 
-//		return MatchingResult.createMatchingCanceledResult();
-		
-		//
-		// /*
-		// * Now write MappingHint values of Hints of ExportedMappingHintGroups
-		// to
-		// * a separate storage, and remove the values from the
-		// * MappingInstanceStorages.
-		// *
-		// * Also add values of GlobalVariables to ComplexAttributeMapping's
-		// Hints
-		// */
-		// exportedMappingHints = handleGlobalVarsAndExportedMappings(
-		// sourceSectionMatcher, selectedMappings);
-		// globalAttributeValues =
-		// sourceSectionMatcher.getGlobalAttributeValues();
-		//
-		// if (isCancelled) {
-		// return MatchingResult.createMatchingCanceledResult();
-		// }
-		//
-		
 		selectedMappings = new LinkedList<>(
 				selectedMappingsByMapping.entrySet().parallelStream().flatMap(e -> e.getValue().stream()).collect(Collectors.toList()));
 		
@@ -1489,7 +1409,7 @@ public class GenericTransformationRunner {
 	 * @return
 	 */
 	private HintValueStorage handleGlobalVarsAndExportedMappings(
-			final SourceSectionMatcher sourceSectionMapper,
+			final de.mfreund.gentrans.transformation.SourceSectionMatcher sourceSectionMapper,
 			final LinkedList<MappingInstanceStorage> selectedMappings) {
 
 		consoleStream.println("Getting hint values of exported HintGroups, checking MappingHintImporters, adding GlobalVariables and FixedValues to hints");
@@ -1742,7 +1662,7 @@ public class GenericTransformationRunner {
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
 
-		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
+		final de.mfreund.gentrans.transformation.SourceSectionMatcher sourceSectionMapper = new de.mfreund.gentrans.transformation.SourceSectionMatcher(
 				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 
 		/*

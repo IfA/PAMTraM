@@ -11,6 +11,7 @@ import pamtram.metamodel.SourceSectionClass;
  * @author Sascha Steffen
  * @version 1.0
  */
+@Deprecated
 class SourceSectionMappingResultsMap extends
 LinkedHashMap<SourceSectionClass, LinkedList<MappingInstanceStorage>> {
 

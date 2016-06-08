@@ -156,6 +156,7 @@ public class MappingSelector extends CancellableElement {
 			switch (entry.getKey().size()) {
 			case 0:
 				// no applicable mapping was found
+				break;
 			case 1:
 				// create a MappingInstanceStorage for each descriptor
 				Mapping mapping = entry.getKey().iterator().next();

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -19,8 +20,12 @@ import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.condResult;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
+import pamtram.ConditionalElement;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.metamodel.SourceSection;
 
 /**
@@ -188,6 +193,9 @@ public class MappingSelector extends CancellableElement {
 			}
 		}
 
+		// Check conditions of hint groups and hints for the selected MappingInstanceStorages
+		//
+		ret.parallelStream().forEach(this::checkConditions);
 		
 		return ret;
 	}
@@ -245,70 +253,70 @@ public class MappingSelector extends CancellableElement {
 	private boolean checkConditions(Mapping mapping, MatchedSectionDescriptor descriptor) {
 		
 		// check Conditions of the Mapping (Note: no condition modeled = true)
+		//TODO the descriptor should be involved in the checking of the condition
 		if(conditionHandler.checkCondition(mapping.getCondition()) == condResult.true_condition && 
 				conditionHandler.checkCondition(mapping.getConditionRef()) == condResult.true_condition) {
-			
 			return true;
-	//			// Iterate now over all corresponding MappingHintGroups...
-	//			for (Iterator<MappingHintGroupType> mHintGroupList = mapping.getActiveMappingHintGroups().iterator(); mHintGroupList.hasNext();){
-	//				
-	//				MappingHintGroupType mHintGroup = mHintGroupList.next();
-	//				if(mHintGroup instanceof ConditionalElement){
-	//					
-	//					if(conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getCondition()) == condResult.false_condition || 
-	//							conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()) == condResult.false_condition){
-	//						
-	//						//returned false, so remove this Element and break the loop
-	////						mHintGroupList.remove();
-	//						res.addElementWithNegativeCondition((ConditionalElement) mHintGroup);
-	//						continue;
-	//					} else {
-	//						
-	//						// Iterate now over all corresponding MappingHints
-	//						for(Iterator<MappingHint> mHintList = mHintGroup.getMappingHints().iterator(); mHintList.hasNext();){
-	//							
-	//							MappingHint mHint = mHintList.next();
-	//							if(mHint instanceof ConditionalElement){
-	//								
-	//								if(conditionHandler.checkCondition((mHint).getCondition()) == condResult.false_condition || 
-	//										conditionHandler.checkCondition((mHint).getConditionRef()) == condResult.false_condition){
-	//									
-	//									//returned false, so remove this Element and break the loop
-	////									mHintList.remove();
-	//									res.addElementWithNegativeCondition((ConditionalElement) mHint);
-	//									continue;
-	//								}
-	//							}
-	//						}
-	//					}
-	//				}
-	//			}
-	//			
-	//			// check Condition of corresponding IMPORTED MappingHintGroups
-	//			for (Iterator<MappingHintGroupImporter> mImportHintGroupList = mapping.getActiveImportedMappingHintGroups().iterator(); mImportHintGroupList.hasNext();){
-	//				
-	//				MappingHintGroupImporter mImportHintGroup = mImportHintGroupList.next();
-	//				if(mImportHintGroup instanceof ConditionalElement){
-	//					
-	//					//Condition of imported MappingHintGroup false, than remove it
-	//					if(conditionHandler.checkCondition(mImportHintGroup.getCondition()) == condResult.false_condition ||
-	//							conditionHandler.checkCondition(mImportHintGroup.getConditionRef()) == condResult.false_condition){
-	//						
-	////						mImportHintGroupList.remove();
-	//						res.addElementWithNegativeCondition((ConditionalElement) mImportHintGroup);
-	//						break;
-	//					}
-	//				}
-	//				
-	//				break;
-	//			}
-			} else {
-	//				res.addElementWithNegativeCondition(definedMapping);
-	//				definedMapping = null; //The Condition of a Mapping false, so return null and the Mapping is excluded from transformations
-					return false;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	/**
+	 * This evaluates the conditions of the {@link ConditionalElement ConditionalElements} contained in
+	 * the mapping represented by the given {@link MappingInstanceStorage}. Elements with conditions that
+	 * have been evaluated as <em>negative</em> are {@link MappingInstanceStorage#addElementWithNegativeCondition(ConditionalElement) 
+	 * stored} in the <em>mappingInstance</em>.
+	 * 
+	 * @param mappingInstace The {@link MappingInstanceStorage} representing the ConditionalElements to be checked.
+	 */
+	private void checkConditions(MappingInstanceStorage mappingInstace) {
+		
+		// Iterate now over all corresponding MappingHintGroups...
+		for (Iterator<MappingHintGroupType> mHintGroupList = mappingInstace.getMapping().getActiveMappingHintGroups().iterator(); mHintGroupList.hasNext();){
+			
+			MappingHintGroupType mHintGroup = mHintGroupList.next();
+			if(mHintGroup instanceof ConditionalElement){
+				
+				if(conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getCondition()) == condResult.false_condition || 
+						conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()) == condResult.false_condition){
+					
+					//returned false, so remove this Element and break the loop
+					mappingInstace.addElementWithNegativeCondition((ConditionalElement) mHintGroup);
+					continue;
+				} else {
+					
+					// Iterate now over all corresponding MappingHints
+					for(Iterator<MappingHint> mHintList = mHintGroup.getMappingHints().iterator(); mHintList.hasNext();){
+						
+						MappingHint mHint = mHintList.next();
+						if(conditionHandler.checkCondition((mHint).getCondition()) == condResult.false_condition || 
+								conditionHandler.checkCondition((mHint).getConditionRef()) == condResult.false_condition){
+							
+							//returned false, so remove this Element and break the loop
+							mappingInstace.addElementWithNegativeCondition((ConditionalElement) mHint);
+						}
+					}
+				}
+			}
+		}
+		
+		// check Condition of corresponding IMPORTED MappingHintGroups
+		for (Iterator<MappingHintGroupImporter> mImportHintGroupList = mappingInstace.getMapping().getActiveImportedMappingHintGroups().iterator(); mImportHintGroupList.hasNext();){
+			
+			MappingHintGroupImporter mImportHintGroup = mImportHintGroupList.next();
+				
+			//Condition of imported MappingHintGroup false, than remove it
+			if(conditionHandler.checkCondition(mImportHintGroup.getCondition()) == condResult.false_condition ||
+					conditionHandler.checkCondition(mImportHintGroup.getConditionRef()) == condResult.false_condition){
+				
+				mappingInstace.addElementWithNegativeCondition((ConditionalElement) mImportHintGroup);
 			}
 			
 		}
+			
+	}
 
 	/**
 	 * Determine one or multiple mappings to be applied for the given {@link MatchedSectionDescriptor} based

@@ -237,9 +237,12 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
-		this.instancePointerHandler = new InstancePointerHandler(this.matchedSections,consoleStream);
-		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals, globalAttributeValues, this.instancePointerHandler, this.matchedSections, consoleStream);
-		this.conditionHandler = new ConditionHandler(this.matchedSections, this.refValueCalculator, this.instancePointerHandler);
+//		this.instancePointerHandler = new InstancePointerHandler(this.matchedSections,consoleStream);
+//		this.refValueCalculator = new ReferenceableValueCalculator(fixedVals, globalAttributeValues, this.instancePointerHandler, this.matchedSections, consoleStream);
+//		this.conditionHandler = new ConditionHandler(this.matchedSections, this.refValueCalculator, this.instancePointerHandler);
+		this.instancePointerHandler = null;
+		this.refValueCalculator = null;
+		this.conditionHandler = null;
 
 		/*
 		 * initialize the various maps based on the given list of mappings

@@ -17,6 +17,7 @@ import pamtram.ReferenceableElement;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.AttributeValueConstraint;
@@ -25,6 +26,7 @@ import pamtram.metamodel.RangeBound;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.calculation.ExpressionCalculator;
+import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 
 
 /**
@@ -53,13 +55,13 @@ public class ReferenceableValueCalculator {
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	@SuppressWarnings("unused")
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
+	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 	
 	/**
 	* Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
 	* where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	*/
+	@Deprecated
 	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection;
 	
 	/**
@@ -77,19 +79,18 @@ public class ReferenceableValueCalculator {
 	 * @param consoleStream
 	 */
 	public ReferenceableValueCalculator(List<FixedValue> fixedVals, MessageConsoleStream consoleStream) {
-		this(fixedVals, null, null, new LinkedHashMap<>(), consoleStream);
+		this(fixedVals, null, new LinkedHashMap<>(), consoleStream);
 	}
 	
 	/**
 	 * This creates an isntance.
 	 * 
 	 * @param fixedVals
-	 * @param globalAttrVals
 	 * @param instancePointerHandler
 	 * @param matchedSections
 	 * @param consoleStream
 	 */
-	public ReferenceableValueCalculator(List<FixedValue> fixedVals, Map<GlobalAttribute, String> globalAttrVals, InstancePointerHandler instancePointerHandler, LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, MessageConsoleStream consoleStream) {
+	public ReferenceableValueCalculator(List<FixedValue> fixedVals, InstancePointerHandler instancePointerHandler, Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, MessageConsoleStream consoleStream) {
 		
 		// store the message stream
 		this.consoleStream = consoleStream;
@@ -104,11 +105,11 @@ public class ReferenceableValueCalculator {
 		
 		// find GlobalAttrs that can be mapped to double
 		this.globalValuesAsString = new HashMap<>();
-		if(globalAttrVals != null) {
-			for (final GlobalAttribute g : globalAttrVals.keySet()) {
-				globalValuesAsString.put(g.getName(), globalAttrVals.get(g));
-			}
-		}
+//		if(globalAttrVals != null) {
+//			for (final GlobalAttribute g : globalAttrVals.keySet()) {
+//				globalValuesAsString.put(g.getName(), globalAttrVals.get(g));
+//			}
+//		}
 
 		/*
 		 * add global values (named as 'FixedValue' in the metamodel)
@@ -284,10 +285,12 @@ public class ReferenceableValueCalculator {
 		return expressionResult;
 	}
 
+	@Deprecated
 	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection) {
 		this.tempMatchedSection = tempMatchedSection;
 	}
 
+	@Deprecated
 	public void clearTempSectionMap() {
 		this.tempMatchedSection.clear();
 	}

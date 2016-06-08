@@ -16,6 +16,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.InstancePointerHandler;
 import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComparatorEnum;
@@ -27,6 +28,7 @@ import pamtram.condition.Not;
 import pamtram.condition.Or;
 import pamtram.condition.SectionCondition;
 import pamtram.condition.SingleConditionOperator;
+import pamtram.mapping.FixedValue;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
@@ -35,6 +37,7 @@ import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -68,8 +71,13 @@ public class ConditionHandler {
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections; 
+	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections; 
 	
+	/**
+	 * The list of {@link FixedValue global values} to be considered.
+	 */
+	private List<FixedValue> globalValues;
+
 	/**
 	 * Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.		 */
@@ -91,15 +99,16 @@ public class ConditionHandler {
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
 	 */
 	private InstancePointerHandler instancePointerHandler;
-	
-	public ConditionHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, ReferenceableValueCalculator refValueCalculator, InstancePointerHandler instancePointerHandler){
+
+	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<FixedValue> globalValues){
 		
 		this.matchedSections =  matchedSections;
+		this.globalValues = globalValues;
 		this.tempMatchedSection = new LinkedHashMap<>();
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
-		this.refValueCalculator = refValueCalculator;
-		this.instancePointerHandler = instancePointerHandler;
+		this.instancePointerHandler = new InstancePointerHandler(matchedSections, consoleStream);
+		this.refValueCalculator = new ReferenceableValueCalculator(globalValues, this.instancePointerHandler, this.matchedSections, consoleStream);
 	}
 	
 	/**
@@ -155,17 +164,22 @@ public class ConditionHandler {
 		
 		boolean tempConditionRes = false;
 		
-		if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == true || this.tempMatchedSection.containsKey(sectionCondition.getConditionSectionRef()) == true){
-			EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
+		if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef().getContainingSection())){
 			
-			if(tempMatchedSection.get(sectionCondition.getConditionSectionRef()) != null){
-				correspondEClassInstances.addAll(tempMatchedSection.get(sectionCondition.getConditionSectionRef()));
-				tempConditionRes = true;
-			} else if(matchedSections.get(sectionCondition.getConditionSectionRef()) != null){
-				correspondEClassInstances.addAll(matchedSections.get(sectionCondition.getConditionSectionRef()));
+			EList<EObject> correspondEClassInstances = new BasicEList<>();
+			
+			for (MatchedSectionDescriptor descriptor : this.matchedSections.get(sectionCondition.getConditionSectionRef().getContainingSection())) {
+				correspondEClassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(sectionCondition.getConditionSectionRef()));
 			}
 			
-			if(sectionCondition.getAdditionalConditionSpecification().size()!=0){
+//			if(tempMatchedSection.get(sectionCondition.getConditionSectionRef()) != null){
+//				correspondEClassInstances.addAll(tempMatchedSection.get(sectionCondition.getConditionSectionRef()));
+//				tempConditionRes = true;
+//			} else if(matchedSections.get(sectionCondition.getConditionSectionRef()) != null){
+//				correspondEClassInstances.addAll(matchedSections.get(sectionCondition.getConditionSectionRef()));
+//			}
+			
+			if(!sectionCondition.getAdditionalConditionSpecification().isEmpty()){
 				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances);
 			}
 			
@@ -188,18 +202,13 @@ public class ConditionHandler {
 			}
 		
 		// return Result of this condition but does NOT!!! store result because it's not matched (may it will be matched later)
-		} else if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef()) == false && this.tempMatchedSection.containsKey(sectionCondition.getConditionSectionRef()) == false){
+		} else {
 			// For conditions where the referred Section shouldn't be part of a model
 			if(sectionCondition.getValue() == 0 && sectionCondition.getComparator() == ComparatorEnum.EQ){
 				return condResult.true_condition;
 			} else{
 				return condResult.false_condition;
 			}
-		} else{
-			consoleStream.println("Message:\n check Condition" + sectionCondition.getName() + ". Some logical mistake occurred!");
-			if(tempConditionRes == false){
-				this.conditionRepository.put(sectionCondition, condResult.irrelevant_condition);}
-			return condResult.irrelevant_condition;
 		}
 	}
 
@@ -211,12 +220,16 @@ public class ConditionHandler {
 		
 		// As in 'checkSectionCondtion'-method we store the SourceSectionClass correspond to the given SourceSectionAttribute
 		
-		if(tempMatchedSection.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
-			correspondEClassInstances.addAll(tempMatchedSection.get(attrCondition.getConditionAttributeRef().eContainer()));
-			tempConditionRes = true;
-		} else if (matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
-			correspondEClassInstances.addAll(matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()));
+		for (MatchedSectionDescriptor descriptor : this.matchedSections.get(attrCondition.getConditionAttributeRef().getContainingSection())) {
+			correspondEClassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(attrCondition.getConditionAttributeRef().getContainingSection()));
 		}
+		
+//		if(tempMatchedSection.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
+//			correspondEClassInstances.addAll(tempMatchedSection.get(attrCondition.getConditionAttributeRef().eContainer()));
+//			tempConditionRes = true;
+//		} else if (matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()) != null){
+//			correspondEClassInstances.addAll(matchedSections.get(attrCondition.getConditionAttributeRef().eContainer()));
+//		}
 		
 		SourceSectionAttribute ssAttr = attrCondition.getConditionAttributeRef();
 		

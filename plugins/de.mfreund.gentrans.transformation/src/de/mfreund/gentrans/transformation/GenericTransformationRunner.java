@@ -727,8 +727,8 @@ public class GenericTransformationRunner {
 		/*
 		 * Create the MappingSelector that finds applicable mappings
 		 */
-		final MappingSelector mappingSelector = new MappingSelector(
-				matchingResult, suitableMappings, onlyAskOnceOnAmbiguousMappings, ambiguityResolvingStrategy, consoleStream);
+		final MappingSelector mappingSelector = new MappingSelector(matchingResult, suitableMappings, pamtramModel.getGlobalValues(), 
+				onlyAskOnceOnAmbiguousMappings, ambiguityResolvingStrategy, consoleStream);
 		selectedMappingsByMapping = mappingSelector.selectMappings();
 		
 		/*

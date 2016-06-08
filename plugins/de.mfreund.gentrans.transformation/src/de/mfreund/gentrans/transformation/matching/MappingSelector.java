@@ -1,17 +1,25 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.condition.ConditionHandler;
+import de.mfreund.gentrans.transformation.condition.ConditionHandler.condResult;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.SourceSection;
 
@@ -47,6 +55,11 @@ public class MappingSelector extends CancellableElement {
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 	
 	/**
+	 * The {@link ConditionHandler} that is used to evaluate conditions.
+	 */
+	private ConditionHandler conditionHandler;
+	
+	/**
 	 * The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	private final MessageConsoleStream consoleStream;
@@ -57,6 +70,7 @@ public class MappingSelector extends CancellableElement {
 	 * @param matchedSections A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found
 	 * for every {@link SourceSection}.
 	 * @param mappings The list of {@link Mapping Mappings} that shall be considered.
+	 * @param globalValues The list of {@link FixedValue global values} defined in the pamtram model.
 	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a 
 	 * per-element basis.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
@@ -64,12 +78,13 @@ public class MappingSelector extends CancellableElement {
 	 *           The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	public MappingSelector(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings, 
-			boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, MessageConsoleStream consoleStream) {
+			EList<FixedValue> globalValues, boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, MessageConsoleStream consoleStream) {
 		
 		this.matchedSections = matchedSections;
 		this.mappings = mappings;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+		this.conditionHandler = new ConditionHandler(matchedSections, globalValues);
 		this.consoleStream = consoleStream;
 	}
 	
@@ -80,8 +95,6 @@ public class MappingSelector extends CancellableElement {
 	 * @return The selected mappings in the form of a {@link MappingInstanceStorage} for each {@link MatchedSectionDescriptor}.
 	 */
 	public Map<Mapping, List<MappingInstanceStorage>> selectMappings() {
-		
-		//TODO check conditions
 		
 		// Select a mapping for each matched section and each descriptor instance
 		//
@@ -117,54 +130,185 @@ public class MappingSelector extends CancellableElement {
 	 */
 	private List<MappingInstanceStorage> selectMapping(SourceSection matchedSection, List<MatchedSectionDescriptor> descriptors) {
 		
+		// This will be returned in the end
+		//
+		List<MappingInstanceStorage> ret = new ArrayList<>();
+		
 		// The mappings with suitable 'sourceMMSections'
+		//
 		Set<Mapping> applicableMappings = 
 				this.mappings.parallelStream().filter(m -> matchedSection.equals(m.getSourceMMSection())).collect(Collectors.toSet());
-		
-		List<MappingInstanceStorage> ret = new ArrayList<>();
 
-		switch (applicableMappings.size()) {
-		case 0:
-			// no applicable mapping was found
-			return new ArrayList<>();
-		case 1:
-			// create a MappingInstanceStorage for each descriptor
-			Mapping mapping = applicableMappings.iterator().next();
-			ret.addAll(descriptors.parallelStream().map(d -> createMappingInstanceStorage(d, mapping)).collect(Collectors.toList()));
-			break;
-		default:
+		// Filter mappings and descriptors by the applicability of conditions
+		//
+		Map<Set<Mapping>, Set<MatchedSectionDescriptor>> applicableMappingsToDescriptors = checkConditions(applicableMappings,
+				descriptors);
+		
+		// Select mappings to be instantiated and create 'MappingInstanceStorages'
+		//
+		for (Entry<Set<Mapping>, Set<MatchedSectionDescriptor>> entry : applicableMappingsToDescriptors.entrySet()) {
 			
-			/*
-			 * Consult the specified resolving strategy to resolve the ambiguity.				
-			 */
-			//TODO maybe we need to allow to also select multiple mappings 
-			try {
-				if(onlyAskOnceOnAmbiguousMappings) {
-					MatchedSectionDescriptor descriptor = descriptors.iterator().next();
-					List<Mapping> resolved = selectMappingForDescriptor(descriptor, applicableMappings);
+			switch (entry.getKey().size()) {
+			case 0:
+				// no applicable mapping was found
+			case 1:
+				// create a MappingInstanceStorage for each descriptor
+				Mapping mapping = entry.getKey().iterator().next();
+				ret.addAll(entry.getValue().parallelStream().map(d -> createMappingInstanceStorage(d, mapping)).collect(Collectors.toList()));
+				break;
+			default:
 				
-					// create a MappingInstanceStorage for each descriptor
-					Mapping resolvedMapping = resolved.iterator().next();
-					ret.addAll(descriptors.parallelStream().map(d -> createMappingInstanceStorage(d, resolvedMapping)).collect(Collectors.toList()));
-				} else {
-					
-					for (MatchedSectionDescriptor descriptor : descriptors) {
-						List<Mapping> resolved = selectMappingForDescriptor(descriptor, applicableMappings);
-					
+				/*
+				 * Consult the specified resolving strategy to resolve the ambiguity.				
+				 */
+				//TODO maybe we need to allow to also select multiple mappings 
+				try {
+					if(onlyAskOnceOnAmbiguousMappings) {
+						MatchedSectionDescriptor descriptor = entry.getValue().iterator().next();
+						List<Mapping> resolved = selectMappingForDescriptor(descriptor, entry.getKey());
+						
 						// create a MappingInstanceStorage for each descriptor
-						ret.add(createMappingInstanceStorage(descriptor, resolved.iterator().next()));
-					}
-				}			
-			} catch (Exception e) {
-				consoleStream.println(e.getMessage());
-				canceled = true;
-				return new ArrayList<>();
-			}
+						Mapping resolvedMapping = resolved.iterator().next();
+						ret.addAll( entry.getValue().parallelStream().map(d -> createMappingInstanceStorage(d, resolvedMapping)).collect(Collectors.toList()));
+					} else {
+						
+						for (MatchedSectionDescriptor descriptor :  entry.getValue()) {
+							List<Mapping> resolved = selectMappingForDescriptor(descriptor, entry.getKey());
+							
+							// create a MappingInstanceStorage for each descriptor
+							ret.add(createMappingInstanceStorage(descriptor, resolved.iterator().next()));
+						}
+					}			
+				} catch (Exception e) {
+					consoleStream.println(e.getMessage());
+					canceled = true;
+					return new ArrayList<>();
+				}
 				
+			}
 		}
+
 		
 		return ret;
 	}
+
+	/**
+	 * This filters mappings and descriptors by the applicability of conditions.
+	 * <p />
+	 * As the applicability of a mapping may be dependent on the concrete {@link MatchedSectionDescriptor},
+	 * a list of <em>descriptors</em> needs to be passed as well. The result of this will be a 
+	 * map relating sets of applicable mappings to sets of descriptors. 
+	 * 
+	 * @param applicableMappings The list of {@link Mapping Mappings} for that the conditions shall be checked.
+	 * @param descriptors The list of {@link MatchedSectionDescriptor MatchedSectionDescriptor} to be used during the check.
+	 * 
+	 * @return A map relating sets of applicable mappings to sets of descriptors for that the applicable mappings are valid.
+	 */
+	private Map<Set<Mapping>, Set<MatchedSectionDescriptor>> checkConditions(Set<Mapping> applicableMappings,
+			List<MatchedSectionDescriptor> descriptors) {
+		
+		// The map that will be returned in the end
+		//
+		Map<Set<Mapping>, Set<MatchedSectionDescriptor>> applicableMappingsToDescriptors = new HashMap<>();
+		
+		// Check conditions
+		//
+		for (MatchedSectionDescriptor descriptor : descriptors) {
+			
+			// The subset of the given 'applicableMappings' that is applicable for the current 'descriptor'
+			//
+			Set<Mapping> localApplicableMappings = applicableMappings.parallelStream().filter(
+					m -> checkConditions(m, descriptor)).collect(Collectors.toSet());
+			
+			// Check if there are already descriptors for that the same set of mappings are applicable
+			//
+			Optional<Entry<Set<Mapping>, Set<MatchedSectionDescriptor>>> existing = applicableMappingsToDescriptors.entrySet().stream().filter(
+					entry -> entry.getKey().size() == localApplicableMappings.size() && entry.getKey().containsAll(localApplicableMappings)).findFirst();
+
+			if(existing.isPresent()) {
+				existing.get().getValue().add(descriptor);				
+			} else {
+				applicableMappingsToDescriptors.put(localApplicableMappings, new HashSet<>(Arrays.asList(descriptor)));				
+			}
+		}
+		
+		return applicableMappingsToDescriptors;
+	}
+
+	/**
+	 * This checks if a conditional {@link Mapping} is applicable for the given {@link MatchedSectionDescriptor}.
+	 * 
+	 * @param mapping The {@link Mapping} to be checked for applicability.
+	 * @param descriptor The {@link MatchedSectionDescriptor} for that the applicability shall be checked.
+	 * @return '<em><b>true</b></em>' if the mapping is applicable; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean checkConditions(Mapping mapping, MatchedSectionDescriptor descriptor) {
+		
+		// check Conditions of the Mapping (Note: no condition modeled = true)
+		if(conditionHandler.checkCondition(mapping.getCondition()) == condResult.true_condition && 
+				conditionHandler.checkCondition(mapping.getConditionRef()) == condResult.true_condition) {
+			
+			return true;
+	//			// Iterate now over all corresponding MappingHintGroups...
+	//			for (Iterator<MappingHintGroupType> mHintGroupList = mapping.getActiveMappingHintGroups().iterator(); mHintGroupList.hasNext();){
+	//				
+	//				MappingHintGroupType mHintGroup = mHintGroupList.next();
+	//				if(mHintGroup instanceof ConditionalElement){
+	//					
+	//					if(conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getCondition()) == condResult.false_condition || 
+	//							conditionHandler.checkCondition(((ConditionalElement) mHintGroup).getConditionRef()) == condResult.false_condition){
+	//						
+	//						//returned false, so remove this Element and break the loop
+	////						mHintGroupList.remove();
+	//						res.addElementWithNegativeCondition((ConditionalElement) mHintGroup);
+	//						continue;
+	//					} else {
+	//						
+	//						// Iterate now over all corresponding MappingHints
+	//						for(Iterator<MappingHint> mHintList = mHintGroup.getMappingHints().iterator(); mHintList.hasNext();){
+	//							
+	//							MappingHint mHint = mHintList.next();
+	//							if(mHint instanceof ConditionalElement){
+	//								
+	//								if(conditionHandler.checkCondition((mHint).getCondition()) == condResult.false_condition || 
+	//										conditionHandler.checkCondition((mHint).getConditionRef()) == condResult.false_condition){
+	//									
+	//									//returned false, so remove this Element and break the loop
+	////									mHintList.remove();
+	//									res.addElementWithNegativeCondition((ConditionalElement) mHint);
+	//									continue;
+	//								}
+	//							}
+	//						}
+	//					}
+	//				}
+	//			}
+	//			
+	//			// check Condition of corresponding IMPORTED MappingHintGroups
+	//			for (Iterator<MappingHintGroupImporter> mImportHintGroupList = mapping.getActiveImportedMappingHintGroups().iterator(); mImportHintGroupList.hasNext();){
+	//				
+	//				MappingHintGroupImporter mImportHintGroup = mImportHintGroupList.next();
+	//				if(mImportHintGroup instanceof ConditionalElement){
+	//					
+	//					//Condition of imported MappingHintGroup false, than remove it
+	//					if(conditionHandler.checkCondition(mImportHintGroup.getCondition()) == condResult.false_condition ||
+	//							conditionHandler.checkCondition(mImportHintGroup.getConditionRef()) == condResult.false_condition){
+	//						
+	////						mImportHintGroupList.remove();
+	//						res.addElementWithNegativeCondition((ConditionalElement) mImportHintGroup);
+	//						break;
+	//					}
+	//				}
+	//				
+	//				break;
+	//			}
+			} else {
+	//				res.addElementWithNegativeCondition(definedMapping);
+	//				definedMapping = null; //The Condition of a Mapping false, so return null and the Mapping is excluded from transformations
+					return false;
+			}
+			
+		}
 
 	/**
 	 * Determine one or multiple mappings to be applied for the given {@link MatchedSectionDescriptor} based

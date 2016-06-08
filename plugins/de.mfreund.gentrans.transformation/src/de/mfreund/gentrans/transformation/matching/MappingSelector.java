@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,15 +22,14 @@ import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.ConditionalElement;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
 import pamtram.metamodel.SourceSection;
 
 /**
- * This class can be used to select suitable mappings for a list of {@link MatchedSectionDescriptor matched sections}.
+ * This class can be used to {@link #selectMappings() select suitable mappings} for a list of 
+ * {@link MatchedSectionDescriptor matched sections}.
  * <p />
- * Occurring ambiguities will be resolved.
+ * Conditions will be evaluated and occurring ambiguities will be resolved during the process of 
+ * {@link #selectMappings()}.
  * 
  * @author mfreund
  */
@@ -175,7 +173,7 @@ public class MappingSelector extends CancellableElement {
 						
 						// create a MappingInstanceStorage for each descriptor
 						Mapping resolvedMapping = resolved.iterator().next();
-						ret.addAll( entry.getValue().parallelStream().map(d -> createMappingInstanceStorage(d, resolvedMapping)).collect(Collectors.toList()));
+						ret.addAll(entry.getValue().parallelStream().map(d -> createMappingInstanceStorage(d, resolvedMapping)).collect(Collectors.toList()));
 					} else {
 						
 						for (MatchedSectionDescriptor descriptor :  entry.getValue()) {

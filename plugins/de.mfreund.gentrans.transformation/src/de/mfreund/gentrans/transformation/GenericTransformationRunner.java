@@ -1408,6 +1408,7 @@ public class GenericTransformationRunner {
 	 * @param selectedMappings
 	 * @return
 	 */
+	@Deprecated
 	private HintValueStorage handleGlobalVarsAndExportedMappings(
 			final de.mfreund.gentrans.transformation.SourceSectionMatcher sourceSectionMapper,
 			final LinkedList<MappingInstanceStorage> selectedMappings) {

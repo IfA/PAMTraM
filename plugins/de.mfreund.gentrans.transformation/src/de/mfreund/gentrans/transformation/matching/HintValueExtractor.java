@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -43,7 +44,8 @@ import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
 /**
- * This class can be used to extract hint values from the source elements.
+ * This class can be used to extract hint values and values of {@link GlobalAttribute GlobalAttributes}
+ * from source model elements for a given list of {@link MappingInstanceStorage mapping instances}.
  * 
  * @author mfreund
  */
@@ -81,15 +83,6 @@ public class HintValueExtractor extends CancellableElement {
 	private final Map<GlobalAttribute, String> globalAttributeValues;
 	
 	/**
-	 * This is the getter for the {@link #globalAttributeValues}.
-	 * 
-	 * @return The registry for values of {@link GlobalAttribute GlobalAttributes}.
-	 */
-	public Map<GlobalAttribute, String> getGlobalAttributeValues() {
-		return this.globalAttributeValues;
-	}
-	
-	/**
 	 * This creates an instance for a given list of {@link MappingInstanceStorage mappingInstances}.
 	 * <p />
 	 * Note: The extracted hint values are stored in the given <em>mappingInstances</em>. 
@@ -106,6 +99,15 @@ public class HintValueExtractor extends CancellableElement {
 		this.consoleStream = consoleStream;
 		this.exportedHintGroups = new HashMap<>();
 		this.globalAttributeValues = new HashMap<>();
+	}
+
+	/**
+	 * This is the getter for the {@link #globalAttributeValues}.
+	 * 
+	 * @return The registry for values of {@link GlobalAttribute GlobalAttributes}.
+	 */
+	public Map<GlobalAttribute, String> getGlobalAttributeValues() {
+		return this.globalAttributeValues;
 	}
 
 	/**
@@ -335,7 +337,8 @@ public class HintValueExtractor extends CancellableElement {
 			} else if(attributeMappingSourceInterface instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = extractHintValue((GlobalAttributeImporter) attributeMappingSourceInterface, mappingInstance); 
 			} else {
-				consoleStream.println("Unsupported type of source element for an AttributeMapping found: '" + attributeMappingSourceInterface.eClass().getName() + "'!");
+				consoleStream.println("Unsupported type of source element for an AttributeMapping found: '" + 
+						attributeMappingSourceInterface.eClass().getName() + "'!");
 			}
 			
 			if(attributeValueRepresentation != null) {					
@@ -373,7 +376,8 @@ public class HintValueExtractor extends CancellableElement {
 			} else if(attributeMatcherSourceInterface instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = extractHintValue((GlobalAttributeImporter) attributeMatcherSourceInterface, mappingInstance); 
 			} else {
-				consoleStream.println("Unsupported type of source element for an AttributeMapping found: '" + attributeMatcherSourceInterface.eClass().getName() + "'!");
+				consoleStream.println("Unsupported type of source element for an AttributeMatcher found: '" + 
+						attributeMatcherSourceInterface.eClass().getName() + "'!");
 			}
 			
 			if(attributeValueRepresentation != null) {					
@@ -412,7 +416,8 @@ public class HintValueExtractor extends CancellableElement {
 			} else if(modelConnectionHintSourceInterface instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = extractHintValue((GlobalAttributeImporter) modelConnectionHintSourceInterface, mappingInstance); 
 			} else {
-				consoleStream.println("Unsupported type of source element for an AttributeMapping found: '" + modelConnectionHintSourceInterface.eClass().getName() + "'!");
+				consoleStream.println("Unsupported type of source element for a ModelConnectionHint found: '" + 
+						modelConnectionHintSourceInterface.eClass().getName() + "'!");
 			}
 			
 			if(attributeValueRepresentation != null) {					
@@ -480,7 +485,8 @@ public class HintValueExtractor extends CancellableElement {
 		
 		if(mappedAttributeValueExpander.getSourceAttribute().getAttribute().isMany()) {
 			//FIXME Currently, we do not support many-valued attributes
-			throw new RuntimeException("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
+			consoleStream.println("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
+			return null;
 		}
 		
 		// Extract the hint value
@@ -527,36 +533,35 @@ public class HintValueExtractor extends CancellableElement {
 			return null;
 		}
 		
-		for (EObject sourceElement : sourceElements) {
+		EAttribute sourceAttribute = mappingHintSourceElement.getSource().getAttribute();
+		
+		// Collect all values of the attribute in all source elements
+		//
+		List<Object> srcAttrValues;
+		if(sourceAttribute.isMany()) {
+			srcAttrValues = sourceElements.parallelStream().flatMap(
+					e -> ((Collection<?>) e.eGet(sourceAttribute)).parallelStream()).collect(Collectors.toList());
+		} else {
+			srcAttrValues = sourceElements.parallelStream().map(
+					e -> e.eGet(sourceAttribute)).collect(Collectors.toList());
+		}
+		
+		// Extract a hint value for each retrieved value
+		//
+		for (Object srcAttrValue : srcAttrValues) {
 			
-			EAttribute sourceAttribute = mappingHintSourceElement.getSource().getAttribute();
+			// convert Attribute value to String
+			final String srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
+					.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
 			
-			/*
-			 * As attributes may have a cardinality greater than 1, too, we have to handle
-			 * every attribute value separately.
-			 */
-			ArrayList<Object> srcAttrValues = new ArrayList<>();
-			if(sourceAttribute.isMany()) {
-				srcAttrValues.addAll((Collection<?>) sourceElement.eGet(sourceAttribute));
+			final String valCopy = attributeValueModifierExecutor
+					.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifier());
+			
+			// create a new AttributeValueRepresentation or update the existing one
+			if(hintValue == null) {
+				hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
 			} else {
-				srcAttrValues.add(sourceElement.eGet(sourceAttribute));
-			}
-			
-			for (Object srcAttrValue : srcAttrValues) {
-				
-				// convert Attribute value to String
-				final String srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
-						.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
-				
-				final String valCopy = attributeValueModifierExecutor
-						.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifier());
-				
-				// create a new AttributeValueRepresentation or update the existing one
-				if(hintValue == null) {
-					hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
-				} else {
-					hintValue.addValue(valCopy);
-				}
+				hintValue.addValue(valCopy);
 			}
 		}
 		

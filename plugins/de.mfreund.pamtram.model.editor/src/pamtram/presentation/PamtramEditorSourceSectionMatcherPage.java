@@ -2,7 +2,7 @@ package pamtram.presentation;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
@@ -128,7 +128,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	 * This is the list of matched sections that is determined when the user
 	 * selects a source model.
 	 */
-	protected LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
+	protected Map<SourceSectionClass, Set<EObject>> matchedSections;
 
 	public PamtramEditorSourceSectionMatcherPage(
 			Composite parent, 
@@ -307,7 +307,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 				GenericTransformationRunner.createInstanceFromSourceModels(
 						new ArrayList<EObject>(contents), editor.pamtram, targetBasePath, defaultTargetModel, null, new UserDecisionResolvingStrategy());
 
-		matchedSections = tr.mapSections();
+		matchedSections = tr.matchSourceSections();
 
 		if(matchedSections == null) {
 			return;

@@ -1,9 +1,11 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
@@ -16,6 +18,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -36,70 +39,80 @@ public class TargetSectionRegistry extends CancellableElement {
 	/**
 	 * Map of instantiated EObjects, sorted by TargetSectionClass
 	 */
-	private final LinkedHashMap<EClass, LinkedList<EObjectWrapper>> targetClassInstanceRegistry;
+	private final Map<EClass, List<EObjectWrapper>> targetClassInstanceRegistry;
 
 	/**
 	 * Map of instantiated EObjects, sorted by TargetSectionClass and
 	 * MappingHintGroup
 	 */
-	private final LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectWrapper>>> targetClassInstanceByHintGroupRegistry;
+	private final Map<TargetSectionClass, Map<InstantiableMappingHintGroup, List<EObjectWrapper>>> targetClassInstanceByHintGroupRegistry;
+	
 	/**
 	 * Child classes for each class (if there are any)
 	 */
-	private final LinkedHashMap<EClass, LinkedHashSet<EClass>> childClassesRegistry;
+	private final Map<EClass, Set<EClass>> childClassesRegistry;
+	
 	/**
 	 * Possible Paths, sorted by target MetaModel class
 	 */
-	private final LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> possiblePathsRegistry;
+	private final Map<EClass, Set<ModelConnectionPath>> possiblePathsRegistry;
+	
 	/**
 	 * Possible connections from a start class to a specific target class
 	 */
-	private final LinkedHashMap<EClass, LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>> possibleConnectionsRegistry;
+	private final Map<EClass, Map<EClass, Set<ModelConnectionPath>>> possibleConnectionsRegistry;
 
 	/**
 	 * List of references to a Class
 	 */
-	private final LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry;
+	private final Map<EClass, Set<EReference>> targetClassReferencesRegistry;
 
 	/**
 	 * Source classes that are the starting point of a specific reference
 	 */
-	private final LinkedHashMap<EReference, LinkedHashSet<EClass>> containmentReferenceSourcesRegistry;
+	private final Map<EReference, Set<EClass>> containmentReferenceSourcesRegistry;
+	
 	/**
 	 * Message output stream
 	 */
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * Constructor
+	 * This creates an instance.
 	 *
-	 * @param consoleStream
-	 * @param attrValRegistry
+	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param attrValRegistry The {@link AttributeValueRegistry} that keeps track of already used 
+	 * values for target attributes.
 	 */
 	TargetSectionRegistry(final MessageConsoleStream consoleStream,
 			final AttributeValueRegistry attrValRegistry,
 			final EPackage targetMetaModel) {
+		
 		this.consoleStream = consoleStream;
-		targetClassInstanceRegistry = new LinkedHashMap<>();
-		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<>();
-		childClassesRegistry = new LinkedHashMap<>();
-		possiblePathsRegistry = new LinkedHashMap<>();
-		possibleConnectionsRegistry = new LinkedHashMap<>();
-		targetClassReferencesRegistry = new LinkedHashMap<>(); // ==refsToThis
-		containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
+		this.targetClassInstanceRegistry = new LinkedHashMap<>();
+		this.targetClassInstanceByHintGroupRegistry = new LinkedHashMap<>();
+		this.childClassesRegistry = new LinkedHashMap<>();
+		this.possiblePathsRegistry = new LinkedHashMap<>();
+		this.possibleConnectionsRegistry = new LinkedHashMap<>();
+		this.targetClassReferencesRegistry = new LinkedHashMap<>(); // ==refsToThis
+		this.containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
 		this.attrValRegistry = attrValRegistry;
-		canceled = false;
+		this.canceled = false;
+		
 		analyseTargetMetaModel(targetMetaModel);
 	}
 
 	/**
-	 * Register the instance of a Class
-	 * <p>
-	 * Used when linking target model sections
+	 * Register a new instance.
+	 * <p />
+	 * Note: Normally, {@link #addClassInstance(EObjectWrapper, InstantiableMappingHintGroup, TargetSectionClass)} should
+	 * be used instead. This should only be used when elements have been created not based on a concrete hint group
+	 * but, e.g. as missing element of a model connection path. 
 	 *
-	 * @param instance
+	 * @param instance The {@link EObject} to register.
 	 */
 	void addClassInstance(final EObject instance) {
+		
 		final EClass eClass = instance.eClass();
 
 		if (!targetClassInstanceRegistry.containsKey(eClass)) {
@@ -112,15 +125,18 @@ public class TargetSectionRegistry extends CancellableElement {
 	}
 
 	/**
-	 * Register the instance of a Class
+	 * Register a new instance.
 	 *
-	 * @param instance
-	 * @param group
-	 * @param targetSection
+	 * @param instance The {@link EObjectWrapper} representing the new instance to add (this needs
+	 * to be instance of the given {@link TargetSectionClass}).
+	 * @param mappingHintGroup The {@link InstantiableMappingHintGroup} that was responsible for creating the new instance.
+	 * @param targetSectionClass The {@link TargetSectionClass} representing the new instance (this needs to be one
+	 * of the classes defined by the {@link TargetSection} referenced by the given {@link InstantiableMappingHintGroup}).
 	 */
 	void addClassInstance(final EObjectWrapper instance,
-			final InstantiableMappingHintGroup group,
-			final TargetSectionClass targetSection) {
+			final InstantiableMappingHintGroup mappingHintGroup,
+			final TargetSectionClass targetSectionClass) {
+		
 		final EClass eClass = instance.getEObject().eClass();
 
 		if (!targetClassInstanceRegistry.containsKey(eClass)) {
@@ -129,42 +145,82 @@ public class TargetSectionRegistry extends CancellableElement {
 		}
 		targetClassInstanceRegistry.get(eClass).add(instance);
 
-		if (!targetClassInstanceByHintGroupRegistry.containsKey(targetSection)) {
-			targetClassInstanceByHintGroupRegistry
-			.put(targetSection,
-					new LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectWrapper>>());
+		if (!targetClassInstanceByHintGroupRegistry.containsKey(targetSectionClass)) {
+			targetClassInstanceByHintGroupRegistry.put(targetSectionClass,
+					new HashMap<InstantiableMappingHintGroup, List<EObjectWrapper>>());
 		}
 
-		if (!targetClassInstanceByHintGroupRegistry.get(targetSection)
-				.containsKey(group)) {
-			targetClassInstanceByHintGroupRegistry.get(targetSection).put(
-					group, new LinkedList<EObjectWrapper>());
+		if (!targetClassInstanceByHintGroupRegistry.get(targetSectionClass)
+				.containsKey(mappingHintGroup)) {
+			targetClassInstanceByHintGroupRegistry.get(targetSectionClass).put(
+					mappingHintGroup, new LinkedList<EObjectWrapper>());
 		}
 
-		targetClassInstanceByHintGroupRegistry.get(targetSection).get(group)
-		.add(instance);
+		targetClassInstanceByHintGroupRegistry.get(targetSectionClass).get(mappingHintGroup).add(instance);
 
 	}
 
 	/**
-	 * @param path
-	 * @param elementClass
-	 * @param containerClass
+	 * Register a new {@link ModelConnectionPath} in the {@link #possibleConnectionsRegistry}.
+	 * <p />
+	 * Note: Use {@link #addConnection(ModelConnectionPath)} instead as the two additional parameters are redundant
+	 * (they can be extracted from the given <em>path</em>.
+	 * 
+	 * @param path The {@link ModelConnectionPath} to register.
+	 * @param elementClass The {@link EClass} at the beginning of the <em>path</em> (lower in the containment hierarchy).
+	 * @param containerClass The {@link EClass} at the end of the <em>path</em> (higher in the containment hierarchy).
 	 */
+	@Deprecated
 	void addConnection(final ModelConnectionPath path,
 			final EClass elementClass, final EClass containerClass) {
+		
 		if (!possibleConnectionsRegistry.containsKey(elementClass)) {
-			possibleConnectionsRegistry
-			.put(elementClass,
-					new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>());
+			possibleConnectionsRegistry.put(elementClass,
+					new LinkedHashMap<EClass, Set<ModelConnectionPath>>());
 		}
+		
 		if (!possibleConnectionsRegistry.get(elementClass).containsKey(
 				containerClass)) {
 			possibleConnectionsRegistry.get(elementClass).put(containerClass,
 					new LinkedHashSet<ModelConnectionPath>());
 		}
-		possibleConnectionsRegistry.get(elementClass).get(containerClass)
-		.add(path);
+		
+		possibleConnectionsRegistry.get(elementClass).get(containerClass).add(path);
+	}
+	
+	/**
+	 * Register a new {@link ModelConnectionPath} in the {@link #possibleConnectionsRegistry}.
+	 * 
+	 * @param path The {@link ModelConnectionPath} to register.
+	 * @param elementClass The {@link EClass} at the beginning of the <em>path</em> (lower in the containment hierarchy).
+	 * @param containerClass The {@link EClass} at the end of the <em>path</em> (higher in the containment hierarchy).
+	 */
+	void addConnection(final ModelConnectionPath path) {
+		
+		if(!(path.getPathElements().getFirst() instanceof EClass) || 
+				!((EClass) path.getPathElements().getLast() instanceof EClass)) {
+			throw new RuntimeException("Internal Error: Found a ModelConnectionPath that does not start/or end at an "
+					+ "EClass!");
+		}
+		
+		// The EClass at the beginning of the path> (lower in the containment hierarchy).
+		EClass elementClass = (EClass) path.getPathElements().getFirst();
+		
+		// The EClass at the end of the path (higher in the containment hierarchy).
+		EClass containerClass = (EClass) path.getPathElements().getLast();
+		
+		if (!possibleConnectionsRegistry.containsKey(elementClass)) {
+			possibleConnectionsRegistry.put(elementClass,
+					new LinkedHashMap<EClass, Set<ModelConnectionPath>>());
+		}
+		
+		if (!possibleConnectionsRegistry.get(elementClass).containsKey(
+				containerClass)) {
+			possibleConnectionsRegistry.get(elementClass).put(containerClass,
+					new LinkedHashSet<ModelConnectionPath>());
+		}
+		
+		possibleConnectionsRegistry.get(elementClass).get(containerClass).add(path);
 	}
 
 	/**
@@ -252,7 +308,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param eClass
 	 * @return CHilClasses of a SuperClass
 	 */
-	LinkedHashSet<EClass> getChildClasses(final EClass eClass) {
+	Set<EClass> getChildClasses(final EClass eClass) {
 
 		return childClassesRegistry.containsKey(eClass) ? childClassesRegistry
 				.get(eClass) : new LinkedHashSet<EClass>();
@@ -301,7 +357,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param eClass
 	 * @return Set of classes that contain references to eClass
 	 */
-	LinkedHashSet<EReference> getClassReferences(final EClass eClass) {
+	Set<EReference> getClassReferences(final EClass eClass) {
 
 		return targetClassReferencesRegistry.containsKey(eClass) ? targetClassReferencesRegistry
 				.get(eClass) : new LinkedHashSet<EReference>();
@@ -326,7 +382,7 @@ public class TargetSectionRegistry extends CancellableElement {
 
 		if (!possibleConnectionsRegistry.containsKey(eClass)) {
 			possibleConnectionsRegistry.put(eClass,
-					new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>());
+					new LinkedHashMap<EClass, Set<ModelConnectionPath>>());
 		}
 		if (!possibleConnectionsRegistry.get(eClass).containsKey(
 				containerClass)) {
@@ -352,14 +408,14 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param c
 	 * @return instances of a specific MappingHintgroup
 	 */
-	public LinkedList<EObjectWrapper> getFlattenedPamtramClassInstances(
+	public List<EObjectWrapper> getFlattenedPamtramClassInstances(
 			final TargetSectionClass c) {
 		final LinkedList<EObjectWrapper> flat = new LinkedList<>();
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return flat;
 		}
 
-		for (final LinkedList<EObjectWrapper> l : targetClassInstanceByHintGroupRegistry
+		for (final List<EObjectWrapper> l : targetClassInstanceByHintGroupRegistry
 				.get(c).values()) {
 			flat.addAll(l);
 		}
@@ -379,7 +435,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param c
 	 * @return instance map of all MappingHintGroups
 	 */
-	public LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectWrapper>> getPamtramClassInstances(
+	public Map<InstantiableMappingHintGroup, List<EObjectWrapper>> getPamtramClassInstances(
 			final TargetSectionClass c) {
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return new LinkedHashMap<>();
@@ -399,7 +455,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @return Possible paths to connect target Model sections, for a specific
 	 *         Class of the target model
 	 */
-	public LinkedHashSet<ModelConnectionPath> getPaths(final EClass eClass,
+	public Set<ModelConnectionPath> getPaths(final EClass eClass,
 			final int maxPathLength) {
 
 		if (!possiblePathsRegistry.containsKey(eClass)) {
@@ -419,9 +475,9 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @return Set of classes that are the starting point of a specific
 	 *         containment reference
 	 */
-	public LinkedHashSet<EClass> getReferenceSources(final EReference ref) {
+	public Set<EClass> getReferenceSources(final EReference ref) {
 		return containmentReferenceSourcesRegistry.containsKey(ref) ? containmentReferenceSourcesRegistry
-				.get(ref) : new LinkedHashSet<EClass>();
+				.get(ref) : new LinkedHashSet<>();
 
 	}
 
@@ -429,11 +485,11 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param eClass
 	 * @return All instances of the specified metamodel Class
 	 */
-	public LinkedList<EObjectWrapper> getTargetClassInstances(
+	public List<EObjectWrapper> getTargetClassInstances(
 			final EClass eClass) {
 
 		return targetClassInstanceRegistry.containsKey(eClass) ? targetClassInstanceRegistry
-				.get(eClass) : new LinkedList<EObjectWrapper>();
+				.get(eClass) : new LinkedList<>();
 	}
 
 }

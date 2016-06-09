@@ -157,7 +157,7 @@ public class LibraryEntryInstantiator {
 				 * delete the created root instance (represented by the 'transformationHelpder) and use its 
 				 * container as parameter for the library entry.
 				 */
-				LinkedList<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).get(mappingGroup);
+				List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).get(mappingGroup);
 				//				rootInstances.remove(transformationHelper);
 				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(transformationHelper.getEObject().eContainer());
 				EcoreUtil.delete(transformationHelper.getEObject());

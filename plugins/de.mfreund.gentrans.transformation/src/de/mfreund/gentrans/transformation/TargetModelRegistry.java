@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -15,14 +16,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.ui.console.MessageConsoleStream;
 import pamtram.metamodel.FileAttribute;
@@ -49,17 +48,8 @@ public class TargetModelRegistry {
 	 * For example, a target model represented by the path ('path/to/the/target.model') will be created at the location
 	 * '${basePath}/path/to/the/target.model').
 	 */
-	private final HashMap<String, ArrayList<EObject>> targetModels;
+	private final Map<String, List<EObject>> targetModels;
 	
-	/**
-	 * This is the getter for the {@link #targetModels}.
-	 * 
-	 * @return The map representing the target models to be created.
-	 */
-	public HashMap<String, ArrayList<EObject>> getTargetModels() {
-		return targetModels;
-	}
-
 	/**
 	 * The {@link #basePath} relative to that all the resources for the {@link #targetModels} will be created. 
 	 * <p />
@@ -105,13 +95,23 @@ public class TargetModelRegistry {
 	}
 	
 	/**
+	 * This is the getter for the {@link #targetModels}.
+	 * 
+	 * @return The map representing the target models to be created.
+	 */
+	public Map<String, List<EObject>> getTargetModels() {
+		return targetModels;
+	}
+
+	/**
 	 * This can be used to check if any content has been added to this TargetModelRegistry.
+	 * 
 	 * @return '<em><b>true</b></em>' if the {@link #targetModels} does contain only empty lists of values,
 	 * '<em><b>false</b></em>' otherwise (if there is at least one target model for that at least one
 	 * element has been specified as content).
 	 */
 	public boolean isEmpty() {
-		for (Entry<String, ArrayList<EObject>> targetModel : targetModels.entrySet()) {
+		for (Entry<String, List<EObject>> targetModel : targetModels.entrySet()) {
 			if(targetModel.getValue().isEmpty()) {
 				continue;
 			} else {
@@ -207,7 +207,7 @@ public class TargetModelRegistry {
 		// the URI of the target resource
 		final URI targetFileUri = URI.createPlatformResourceURI(basePath + Path.SEPARATOR + path, true);
 		
-		Resource resource = null;
+		Resource resource;
 		
 		/*
 		 * try to retrieve an existing resource
@@ -258,7 +258,7 @@ public class TargetModelRegistry {
 
 		boolean ret = true;
 		
-		for (Entry<String, ArrayList<EObject>> entry : targetModels.entrySet()) {
+		for (Entry<String, List<EObject>> entry : targetModels.entrySet()) {
 			
 			// the URI of the target resource
 			final URI targetFileUri = URI.createPlatformResourceURI(basePath + Path.SEPARATOR + entry.getKey(), true);
@@ -319,7 +319,7 @@ public class TargetModelRegistry {
 					/*
 					 * Save the resource.
 					 */
-					resource.save(Collections.EMPTY_MAP);
+					resource.save(Collections.emptyMap());
 					consoleStream.println("Target model resource '" + entry.getKey() + "' successfully saved.");
 				}
 				

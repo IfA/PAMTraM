@@ -335,7 +335,7 @@ public class TargetSectionConnector extends CancellableElement {
 			final TargetSection section, final String mappingName,
 			final MappingHintGroupType mappingGroup, 
 			final Set<EClass> containerClasses,
-			final LinkedList<EObjectWrapper> containerInstances) {
+			final List<EObjectWrapper> containerInstances) {
 
 		// nothing to connect
 		if (rootInstances == null || rootInstances.isEmpty()) {
@@ -440,14 +440,14 @@ public class TargetSectionConnector extends CancellableElement {
 			// select instance of path end to associate elements to
 			EObjectWrapper inst;
 			if (restrictContainer) {
-				inst = containerInstances.getFirst();
+				inst = containerInstances.iterator().next();
 			} else if (!rootInstances.contains(targetSectionRegistry
 					.getTargetClassInstances(
 							modelConnectionPath.getPathRootClass())
-					.getFirst())) {
+					.iterator().next())) {
 				inst = targetSectionRegistry.getTargetClassInstances(
 						modelConnectionPath.getPathRootClass())
-						.getFirst();
+						.iterator().next();
 			} else {
 				consoleStream.println("Could not find a path that leads to the container specified for targetSection '"
 						+ section.getName() + "'");
@@ -586,7 +586,7 @@ public class TargetSectionConnector extends CancellableElement {
 
 		// now search for target attributes
 
-		final LinkedHashMap<ModelConnectionHintTargetAttribute, LinkedList<EObjectWrapper>> containerInstancesByTargetAttribute = 
+		final Map<ModelConnectionHintTargetAttribute, List<EObjectWrapper>> containerInstancesByTargetAttribute = 
 				new LinkedHashMap<>();
 
 		for (final ModelConnectionHintTargetAttribute targetAttr : connectionHint

@@ -870,7 +870,7 @@ class TargetSectionInstantiator extends CancellableElement {
 											.getMatcher();
 									hintFound = true;
 									// now search for target attributes
-									final LinkedList<EObjectWrapper> targetInstances = targetSectionRegistry
+									final List<EObjectWrapper> targetInstances = targetSectionRegistry
 											.getFlattenedPamtramClassInstances(matcher
 													.getTargetAttribute()
 													.getOwningClass());
@@ -1035,7 +1035,7 @@ class TargetSectionInstantiator extends CancellableElement {
 											 * select potential instances
 											 * globally
 											 */
-											final LinkedList<EObjectWrapper> insts = targetSectionRegistry
+											final List<EObjectWrapper> insts = targetSectionRegistry
 													.getFlattenedPamtramClassInstances(matcherTargetClass);
 
 											EObjectWrapper targetInstance = null;
@@ -1358,7 +1358,7 @@ class TargetSectionInstantiator extends CancellableElement {
 										+ " (Section: "
 										+ v.getContainingSection().getName()
 										+ ")";
-								final LinkedList<EObjectWrapper> insts = targetSectionRegistry
+								final List<EObjectWrapper> insts = targetSectionRegistry
 										.getFlattenedPamtramClassInstances(v);
 
 								if (insts.size() > 0) {

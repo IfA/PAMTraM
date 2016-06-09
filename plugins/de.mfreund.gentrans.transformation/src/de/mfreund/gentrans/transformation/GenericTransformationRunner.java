@@ -1138,7 +1138,7 @@ public class GenericTransformationRunner {
 								}
 							} else {// link using container attribute or nothing
 
-								final LinkedList<EObjectWrapper> containerInstances = expandingResult.getTargetSectionRegistry()
+								final List<EObjectWrapper> containerInstances = expandingResult.getTargetSectionRegistry()
 										.getFlattenedPamtramClassInstances(section
 												.getContainer());
 
@@ -1146,7 +1146,7 @@ public class GenericTransformationRunner {
 								 * fetch ALL instances created by the MH-Group in question => less user input and possibly shorter
 								 * processing time
 								 */
-								final LinkedList<EObjectWrapper> rootInstances = expandingResult.getTargetSectionRegistry()
+								final List<EObjectWrapper> rootInstances = expandingResult.getTargetSectionRegistry()
 										.getPamtramClassInstances(section).get(g);
 
 								/*
@@ -1236,7 +1236,7 @@ public class GenericTransformationRunner {
 						// (target section container == global instance search)
 					} else {
 						final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
-						final LinkedList<EObjectWrapper> rootInstances = expandingResult.getTargetSectionRegistry()
+						final List<EObjectWrapper> rootInstances = expandingResult.getTargetSectionRegistry()
 								.getPamtramClassInstances(
 										g.getTargetMMSection()).get(i);
 						final Set<EClass> containerClasses = new HashSet<>();
@@ -1567,7 +1567,7 @@ public class GenericTransformationRunner {
 			}
 		}
 		this.transformationModel.getSourceModels().addAll(sourceModels); // add source models
-		for (ArrayList<EObject> targetModelElements : // add target models
+		for (List<EObject> targetModelElements : // add target models
 			transformationResult.getJoiningResult().getTargetModelRegistry().getTargetModels().values()) {
 			this.transformationModel.getTargetModels().addAll(targetModelElements);
 		}

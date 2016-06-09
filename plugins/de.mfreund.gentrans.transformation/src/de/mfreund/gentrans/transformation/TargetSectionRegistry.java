@@ -129,7 +129,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 */
 	public TargetSectionRegistry(final MessageConsoleStream consoleStream,
 			final AttributeValueRegistry attrValRegistry,
-			final List<EPackage> targetMetaModels) {
+			final Set<EPackage> targetMetaModels) {
 		
 		this(consoleStream, attrValRegistry);
 		

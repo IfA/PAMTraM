@@ -777,7 +777,7 @@ public class GenericTransformationRunner {
 		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
 				consoleStream,
 				attrValueRegistry, 
-				pamtramModel.getTargetSectionModel().parallelStream().map(m -> m.getMetaModelPackage()).collect(Collectors.toList()));
+				pamtramModel.getTargetSectionModel().parallelStream().map(m -> m.getMetaModelPackage()).collect(Collectors.toSet()));
 		objectsToCancel.add(targetSectionRegistry);
 
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");

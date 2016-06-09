@@ -1,6 +1,5 @@
 package de.mfreund.gentrans.transformation.library;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -10,8 +9,6 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.mfreund.gentrans.transformation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.HintValueStorage;
-import de.mfreund.gentrans.transformation.TargetModelRegistry;
-import de.mfreund.gentrans.transformation.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.TargetSectionRegistry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ParameterDescription;
@@ -41,15 +38,7 @@ public class LibraryEntryInstantiator {
 	/**
 	 * The {@link LibraryEntry} to be instantiated.
 	 */
-	final private LibraryEntry libraryEntry;
-
-	/**
-	 * This is the public getter for the {@link #libraryEntry}.
-	 * @return The {@link #libraryEntry}.
-	 */
-	public LibraryEntry getLibraryEntry() {
-		return libraryEntry;
-	}
+	private LibraryEntry libraryEntry;
 
 	/**
 	 * This is the {@link EObjectWrapper} that wraps the concrete root instance
@@ -60,18 +49,18 @@ public class LibraryEntryInstantiator {
 	/**
 	 * The {@link InstantiableMappingHintGroup} associated with the library entry.
 	 */
-	final private InstantiableMappingHintGroup mappingGroup;
+	private InstantiableMappingHintGroup mappingGroup;
 
 	/**
 	 * A list of {@link MappingHint}s that are part of the {@link #mappingGroup}.
 	 */
-	final private List<MappingHint> mappingHints;
+	private List<MappingHint> mappingHints;
 
 	/**
 	 * A map of {@link MappingHintType}s and associated {@link Object}s that represent 
 	 * hint values to be used during the instantiation.
 	 */
-	final private HintValueStorage hintValues;
+	private HintValueStorage hintValues;
 
 	/**
 	 * The {@link MessageConsoleStream} that is used to print messages.
@@ -97,6 +86,7 @@ public class LibraryEntryInstantiator {
 			List<MappingHint> mappingHints,
 			HintValueStorage hintValues,
 			final MessageConsoleStream consoleStream) {
+		
 		this.libraryEntry = libraryEntry;
 		this.transformationHelper = transformationHelper;
 		this.mappingGroup = mappingGroup;
@@ -106,17 +96,26 @@ public class LibraryEntryInstantiator {
 	}
 
 	/**
+	 * This is the public getter for the {@link #libraryEntry}.
+	 * @return The {@link #libraryEntry}.
+	 */
+	public LibraryEntry getLibraryEntry() {
+		
+		return libraryEntry;
+	}
+
+	/**
 	 * This instantiates the {@link #libraryEntry} in a given target model.
 	 * 
 	 * @param manager The {@link GenLibraryManager} that proxies calls to the {@link LibraryPlugin}.  
-	 * @param targetModelRegistry The {@link TargetModelRegistry} representing the target models in which the {@link #libraryEntry} shall be instantiated.
 	 * @param calculator The calculator that can be used to calculate attribute values.
-	 * @param targetSectionConnector The {@link TargetSectionConnector} that can be used to connect the library entries.
 	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that has registered the target sections.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
 	@SuppressWarnings("unchecked")
-	public boolean instantiate(GenLibraryManager manager, TargetModelRegistry targetModelRegistry, AttributeValueCalculator calculator, TargetSectionConnector targetSectionConnector,
+	public boolean instantiate(
+			GenLibraryManager manager, 
+			AttributeValueCalculator calculator, 
 			TargetSectionRegistry targetSectionRegistry) {
 
 		EObject targetModel = EcoreUtil.getRootContainer(transformationHelper.getEObject());
@@ -126,7 +125,8 @@ public class LibraryEntryInstantiator {
 		 */
 		//TODO may, support for this should be added to the genlibrary
 		if(targetModel.equals(transformationHelper.getEObject())) {
-			consoleStream.println("Internal Error: Could not instantiate library entry for element '" + transformationHelper.getEObject().toString() + "' as the element has no"
+			consoleStream.println("Internal Error: Could not instantiate library entry for element '" 
+					+ transformationHelper.getEObject().toString() + "' as the element has no"
 					+ "container. This is currently not supported by the 'genlibrary'.");
 		}
 		
@@ -134,8 +134,10 @@ public class LibraryEntryInstantiator {
 		 * Now, we prepare the parameters.
 		 */
 		for (LibraryParameter<?> param : libraryEntry.getParameters()) {
+			
 			if(param instanceof AttributeParameter) {
-				AttributeParameter attParam = ((AttributeParameter) param);
+				
+				AttributeParameter attParam = (AttributeParameter) param;
 
 				/*
 				 * we do not have to do anything as the new value for the parameters has already been set by the TargetSectionInstantiator;
@@ -157,10 +159,14 @@ public class LibraryEntryInstantiator {
 				 * delete the created root instance (represented by the 'transformationHelpder) and use its 
 				 * container as parameter for the library entry.
 				 */
-				List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).get(mappingGroup);
-				//				rootInstances.remove(transformationHelper);
-				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(transformationHelper.getEObject().eContainer());
+				List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(
+						((MappingHintGroup) mappingGroup).getTargetMMSection()).get(mappingGroup);
+				
+				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(
+						transformationHelper.getEObject().eContainer());
+				
 				EcoreUtil.delete(transformationHelper.getEObject());
+				
 				targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).put(mappingGroup, rootInstances);				
 
 			} else if (param instanceof ExternalReferenceParameter) {
@@ -189,8 +195,11 @@ public class LibraryEntryInstantiator {
 
 		// Determine the attribute mapping responsible for the 'Path' attribute
 		for (MappingHint mappingHint : mappingHints) {
-			if(mappingHint instanceof AttributeMapping && ((AttributeMapping) mappingHint).getTarget().getName().equals("Classpath") &&
+			
+			if(mappingHint instanceof AttributeMapping && 
+					"Classpath".equals(((AttributeMapping) mappingHint).getTarget().getName()) &&
 					((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry) {
+				
 				AttributeMapping pathMapping = (AttributeMapping) mappingHint;
 				newPath = calculator.calculateAttributeValue(this.libraryEntry.getPath(), pathMapping, this.hintValues.getHintValues(pathMapping));
 				break;
@@ -219,8 +228,11 @@ public class LibraryEntryInstantiator {
 		 */
 		String id = this.libraryEntry.getId().getValue();
 		for (MappingHint mappingHint : mappingHints) {
-			if(mappingHint instanceof AttributeMapping && ((AttributeMapping) mappingHint).getTarget().getName().equals("ID") &&
+			
+			if(mappingHint instanceof AttributeMapping && 
+					"ID".equals(((AttributeMapping) mappingHint).getTarget().getName()) &&
 					((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry) {
+				
 				AttributeMapping idMapping = (AttributeMapping) mappingHint;
 				id = calculator.calculateAttributeValue(this.libraryEntry.getId(), idMapping, this.hintValues.getHintValues(idMapping));
 				break;
@@ -290,6 +302,7 @@ public class LibraryEntryInstantiator {
 							newParams.getContainerParameters().get(j).setContainer(oldParams.getContainerParameters().get(j).getContainer());
 						}
 					}
+					
 					if(!equal) {
 						newEntry = null;
 						continue;
@@ -299,6 +312,7 @@ public class LibraryEntryInstantiator {
 				// check (and replace) attribute parameters
 				if(oldParams.getAttributeParameters().size() == newParams.getAttributeParameters().size()) {
 					boolean equal = true;
+					
 					for (int j = 0; j < oldParams.getAttributeParameters().size(); j++) {
 						if(!oldParams.getAttributeParameters().get(j).eClass().equals(newParams.getAttributeParameters().get(j).eClass())) {
 							equal = false;
@@ -308,6 +322,7 @@ public class LibraryEntryInstantiator {
 						}
 					}
 					if(!equal) {
+						
 						newEntry = null;
 						continue;
 					}
@@ -325,6 +340,7 @@ public class LibraryEntryInstantiator {
 						}
 					}
 					if(!equal) {
+						
 						newEntry = null;
 						continue;
 					}

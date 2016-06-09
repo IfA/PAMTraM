@@ -1531,8 +1531,7 @@ class TargetSectionInstantiator extends CancellableElement {
 		 */
 		for (LibraryEntryInstantiator libraryEntryInstantiator : libEntryInstantiators) {
 			if(!libraryEntryInstantiator.instantiate(
-					manager, targetModelRegistry, calculator, 
-					transformationRunner.getTargetSectionConnector(),
+					manager, calculator, 
 					targetSectionRegistry)) {
 				consoleStream.println("Failed to instantiate library entry '" + 
 						libraryEntryInstantiator.getLibraryEntry().getPath().getValue() + "'!");

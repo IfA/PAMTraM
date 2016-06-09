@@ -671,8 +671,9 @@ public class GenericTransformationRunner {
 
 	/**
 	 * This performs the '<em>matching</em>' step of the transformation. Therefore, it iterates through the
-	 * given '<em>sourceModel</em>' and tries to apply the given '<em>suitableMappings</em>'. During this process,
-	 * the hint values for the various {@link MappingHint MappingHints} are calculated as well. 
+	 * given list of '<em>sourceModels</em>', {@link SourceSectionMatcher#matchSections() matches SourceSections},
+	 * {@link MappingSelector#selectMappings() selects mappings} and {@link HintValueExtractor#extractHintValues()
+	 * extracts hint values}. 
 	 *  
 	 * @param sourceModels The list of {@link EObject EObjects} representing/containing the source model to be matched. 
 	 * @param suitableMappings A list of {@link Mapping Mappings} that shall be used for the matching process.

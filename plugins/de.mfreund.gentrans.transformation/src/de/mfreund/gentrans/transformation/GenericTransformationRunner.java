@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -1634,7 +1635,7 @@ public class GenericTransformationRunner {
 	 * @return A map containing the mapped sections.
 	 */
 	@Deprecated
-	public  LinkedHashMap<SourceSectionClass, Set<EObject>> mapSections() {
+	public Map<SourceSectionClass, Set<EObject>> matchSourceSections() {
 
 		if(pamtramModel == null || sourceModels == null || sourceModels.isEmpty()) {
 			return null;
@@ -1672,7 +1673,7 @@ public class GenericTransformationRunner {
 		List<MatchedSectionDescriptor> descriptors = 
 				matchingResult.values().parallelStream().flatMap(e -> e.parallelStream()).collect(Collectors.toList());
 		
-		 LinkedHashMap<SourceSectionClass, Set<EObject>> matchedClasses = new LinkedHashMap<>();
+		Map<SourceSectionClass, Set<EObject>> matchedClasses = new HashMap<>();
 		
 		descriptors.stream().forEach(d -> {
 			d.getSourceModelObjectsMapped().entrySet().stream().forEach(e -> {

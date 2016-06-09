@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.matching;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -6,29 +6,24 @@ import java.util.LinkedList;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
- * Extended Map with some helper functions used when mapping the source model.
+ * Extended Map with some helper functions used when matching the source model.
  *
- * @author Sascha Steffen
- * @version 1.0
+ * @author mfreund
  */
-class SourceSectionMappingResultsMap extends
-LinkedHashMap<SourceSectionClass, LinkedList<MappingInstanceStorage>> {
+class SourceSectionMatchingResultsMap extends LinkedHashMap<SourceSectionClass, LinkedList<MatchedSectionDescriptor>> {
 
-	private static final long serialVersionUID = 7525832913063032464L;
 
 	/**
-	 * Constructor
+	 * 
 	 */
-	SourceSectionMappingResultsMap() {
-		super();
-	}
+	private static final long serialVersionUID = -5790045415437517507L;
 
 	/**
 	 * Finds the Smallest of the stored lists
 	 *
 	 * @return key for List value with smallest size
 	 */
-	SourceSectionClass getKeyForValueWithSmallestCollectionSize() {
+	public SourceSectionClass getKeyForValueWithSmallestCollectionSize() {
 		SourceSectionClass keyForSmallest = null;
 		int smallestSize = -1;
 		for (final SourceSectionClass key : keySet()) {
@@ -41,18 +36,18 @@ LinkedHashMap<SourceSectionClass, LinkedList<MappingInstanceStorage>> {
 	}
 
 	/**
-	 * Remove the specified MAppingInstancestorage from the lists
+	 * Remove the specified {@link MatchedSectionDescriptor} from the lists
 	 *
-	 * @param srcSectionResult
+	 * @param descriptor
 	 */
-	void removeResultsForElement(final MappingInstanceStorage srcSectionResult) {
+	public void removeResultsForElement(final MatchedSectionDescriptor descriptor) {
 		for (final SourceSectionClass key : keySet()) // remove srcModel element
 			// from possibility
 			// lists of MMSections
 		{
-			for (final MappingInstanceStorage s : get(key)) {
+			for (final MatchedSectionDescriptor s : get(key)) {
 				if (s.getAssociatedSourceModelElement().equals(
-						srcSectionResult.getAssociatedSourceModelElement())) {
+						descriptor.getAssociatedSourceModelElement())) {
 					get(key).remove(s);
 					break;
 				}

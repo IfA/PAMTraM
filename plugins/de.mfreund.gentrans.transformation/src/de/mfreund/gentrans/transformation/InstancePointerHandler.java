@@ -1,19 +1,17 @@
 package de.mfreund.gentrans.transformation;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -22,100 +20,84 @@ import pamtram.metamodel.SourceSectionClass;
  * Note: There are two ways:
  * 1.) By 'matchedSection'-HashMap we get specific model objects (from global HashMap defined in the SourceSectionMatcher)
  * 2.) By List we extract specific model objects from a delivered list (so this method can be used everywhere inside generic transformation for minimize the number of specific /concretize model objects
- * 
- * @author gkoltun
  */
- 
  public class InstancePointerHandler{
 	 
 	 /**
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
-	
-	 /**
-	 * Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
-	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.		 */
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection;
+	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 	
 	/**
 	 * The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
-	@SuppressWarnings("unused")
 	private final MessageConsoleStream consoleStream;
 	 
-	// Constructor
-	public InstancePointerHandler(LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, MessageConsoleStream consoleStream){
+	/**
+	 * This creates an instance.
+	 * 
+	 * @param matchedSections A map relating {@link SourceSection SourceSections} and lists of {@link MatchedSectionDescriptor 
+	 * MatchedSectionDescriptors} that have been create for each SourceSection during the <em>matching</em> process.
+	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 */
+	public InstancePointerHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, MessageConsoleStream consoleStream){
 		this.matchedSections = matchedSections;
 		this.consoleStream = consoleStream;
-		this.tempMatchedSection = new LinkedHashMap<>();
 	}
 	
-	public EList<EObject> getPointedInstanceByMatchedSectionRepo(InstancePointer instPt, SourceSectionClass sourceClass){
+	/**
+	 * From the given {@link SourceSectionClass}, this first retrieves all instances from the {@link #matchedSections} and then
+	 * filters and returns those that satisfy the given {@link InstancePointer}.
+	 * 
+	 * @param instancePointer The {@link InstancePointer} to evaluate.
+	 * @param sourceSectionClass The {@link SourceSectionClass} for that instances shall be retrieved and filtered.
+	 * @return The subset of <em>instanceList</em> determined based on the given {@link SourceSectionClass} that satisfy 
+	 * the given <em>instancePointer</em>.
+	 */
+	public List<EObject> getPointedInstanceBySourceSectionClass(InstancePointer instancePointer, SourceSectionClass sourceSectionClass){
 		
-		EList<EObject> correspondEclassInstances = new BasicEList<EObject>();
+		EList<EObject> correspondEclassInstances = new BasicEList<>();
 		
-		if(matchedSections.get(sourceClass) != null){
-			correspondEclassInstances.addAll(matchedSections.get(sourceClass));
+		if(matchedSections.get(sourceSectionClass.getContainingSection()) != null) {
+			matchedSections.get(sourceSectionClass.getContainingSection()).stream().forEach(descriptor -> 
+				correspondEclassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
 		}
-		if(tempMatchedSection.get(sourceClass) != null){
-			correspondEclassInstances.addAll(tempMatchedSection.get(sourceClass));
-		}
 		
-		String instancePointerRefValue = instPt.getValue();
+		return getPointedInstanceByInstanceList(instancePointer, correspondEclassInstances);
 		
-		for(Iterator<EObject> element = correspondEclassInstances.iterator(); element.hasNext();){
-			EObject eClass = element.next();
-			
-			SourceSectionAttribute sourceAttr = instPt.getAttributePointer();
-			try{
-				Object sourceRefAttr = eClass.eGet(instPt.getAttributePointer().getAttribute());
-			
-				// convert Attribute value to String
-				final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
-						.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
-				
-				if(!(sourceRefAttrAsString.equals(instancePointerRefValue))){
-					element.remove();
-				}
-			} catch(final Exception e){
-				consoleStream.println("Message:\n InstancePointerHander by Repositories failed because of:" + e.getMessage());
-			}
-		}
-		return correspondEclassInstances;
 	}
 		
-	public EList<EObject> getPointedInstanceByList(InstancePointer instPt, EList<EObject> ClassInstList){
+	/**
+	 * From the given list of {@link EObject elements}, this filters and returns those that satisfy the given
+	 * {@link InstancePointer}.
+	 * 
+	 * @param instancePointer The {@link InstancePointer} to evaluate.
+	 * @param instanceList The list of {@link EObject elements} to check.
+	 * @return The subset of the given <em>instanceList</em> that satisfy the given <em>instancePointer</em>.
+	 */
+	public List<EObject> getPointedInstanceByInstanceList(InstancePointer instancePointer, List<EObject> instanceList){
 		
-		String instancePointerRefValue = instPt.getValue();
+		String instancePointerRefValue = instancePointer.getValue();
+		SourceSectionAttribute sourceAttr = instancePointer.getAttributePointer();
 		
-		for(Iterator<EObject> element = ClassInstList.iterator(); element.hasNext();){
-			EObject eClass = element.next();
+		return instanceList.parallelStream().filter(element -> {
+	
+			Object sourceRefAttr = element.eGet(instancePointer.getAttributePointer().getAttribute());
 			
-			SourceSectionAttribute sourceAttr = instPt.getAttributePointer();
 			try{
-				Object sourceRefAttr = eClass.eGet(instPt.getAttributePointer().getAttribute());
-			
 				// convert Attribute value to String
-				final String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
+				String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
 						.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
+				return sourceRefAttrAsString.equals(instancePointerRefValue);
 				
-				if(!(sourceRefAttrAsString.equals(instancePointerRefValue))){
-					element.remove();
-				}
 			} catch(final Exception e){
-				consoleStream.println("Message:\n InstancePointerHander by Repositories failed because of:" + e.getMessage());
+				consoleStream.println("Message:\n InstancePointerHander failed because of:" + e.getMessage());
+				return false;
 			}
-		}
-		return ClassInstList;
+			
+		}).collect(Collectors.toList());
+		
 	}
 
-	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection) {
-		this.tempMatchedSection = tempMatchedSection;
-	}
-
-	public void clearTempSectionMap() {
-		this.tempMatchedSection.clear();
-	}
 }

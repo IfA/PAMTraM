@@ -1,16 +1,13 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.ReferenceableElement;
@@ -49,47 +46,48 @@ public class ReferenceableValueCalculator {
 	 */
 	private MessageConsoleStream consoleStream;
 
-	 /**
-	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
-	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
-	 */
-	@SuppressWarnings("unused")
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
-	
-	/**
-	* Registry for <em>source model objects</em> that have TEMPORARILY been matched. The matched objects are stored in a map
-	* where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
-	*/
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection;
-	
 	/**
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
 	 */
 	private InstancePointerHandler instancePointerHandler;
 	
-	public ReferenceableValueCalculator(List<FixedValue> fixedVals, Map<GlobalAttribute, String> globalAttrVals, InstancePointerHandler instancePointerHandler, LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections, MessageConsoleStream consoleStream) {
-				
+	/**
+	 * This creates an instance that can only handled {@link FixedValue FixedValues} but no {@link GlobalAttribute GlobalAttributes}
+	 * or referenced {@link SourceSectionAttribute SourceSectionAttributes}.
+	 * <p />
+	 * This should be used during the 'matching' phase where these latter information are not yet present.
+	 * 
+	 * @param fixedVals The list of {@link FixedValue FixedValues} to take into account.
+	 * @param consoleStream
+	 */
+	public ReferenceableValueCalculator(List<FixedValue> fixedVals, MessageConsoleStream consoleStream) {
+		this(fixedVals, null, consoleStream);
+	}
+	
+	/**
+	 * This creates an instance.
+	 * 
+	 * @param globalValues The list of {@link FixedValue FixedValues} that can be used during the calculation of a value.
+	 * @param instancePointerHandler The {@link InstancePointerHandler} that is used to evaluate {@link InstancePointer InstancePointers}
+	 * that have been modeled.
+	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 */
+	public ReferenceableValueCalculator(List<FixedValue> globalValues, InstancePointerHandler instancePointerHandler, 
+			MessageConsoleStream consoleStream) {
+		
 		// store the message stream
 		this.consoleStream = consoleStream;
 		
 		// store the 'InstancePointerHandler'
 		this.instancePointerHandler = instancePointerHandler;
 		
-		// store the 'matchedSections' reference (Note: 'tempMatchedSections' contains matched Sections corresponding to the investigated Mapping
-		// (and also SourceSection) while the 'ReferenceableValueCalculator' can be called
-		this.matchedSections = matchedSections;
-		this.tempMatchedSection = new LinkedHashMap<>();
-		
 		// find GlobalAttrs that can be mapped to double
 		this.globalValuesAsString = new HashMap<>();
-		for (final GlobalAttribute g : globalAttrVals.keySet()) {
-			globalValuesAsString.put(g.getName(), globalAttrVals.get(g));
-		}
 
 		/*
 		 * add global values (named as 'FixedValue' in the metamodel)
 		 */
-		for (final FixedValue val : fixedVals) {
+		for (final FixedValue val : globalValues) {
 			if (val.getName() != null) {
 				globalValuesAsString.put(val.getName(), val.getValue());
 			}
@@ -112,16 +110,19 @@ public class ReferenceableValueCalculator {
 	}
 	
 	/**
-	 * General structure for calculating a reference value (mostly for {@link AttributeValueConstraint}s)
-	 * @param rootObj This is the root element which contains all needed information (e.g. references) (mostly an instance of {@link AttributeValueConstraint}-child)
+	 * General structure for calculating a reference value (mostly for {@link AttributeValueConstraint}s).
+	 * 
+	 * @param rootObj This is the root element which contains all needed information (e.g. references) 
+	 * (mostly an instance of {@link AttributeValueConstraint}-child)
 	 * @return The calculated attribute value or <em>""</em> if no value could be calculated.
 	 */
 	public String calculateReferenceValue(EObject rootObj) {
 		
 		//Initialize needed variables and get list of referenced elements and modeled InstancePointers
-		String refValue = "", refExpression ="";
-		EList<ReferenceableElement> refElementsAsList = new BasicEList<ReferenceableElement>();
-		EList<InstancePointer> instPointersAsList = new BasicEList<InstancePointer>();
+		String refValue; 
+		String refExpression;
+		EList<ReferenceableElement> refElementsAsList;
+		EList<InstancePointer> instPointersAsList;
 		
 		// Fill variables and lists
 		if(rootObj instanceof SingleReferenceAttributeValueConstraint){
@@ -150,36 +151,37 @@ public class ReferenceableValueCalculator {
 			} else if(refElement instanceof GlobalAttribute){
 				refValue = globalValuesAsString.get(((GlobalAttribute) refElement).getName());
 			} else if(refElement instanceof SourceSectionAttribute){
-					SourceSectionAttribute refElementAsSSA = (SourceSectionAttribute) refElement;
-					EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
+				
+				SourceSectionAttribute refElementAsSSA = (SourceSectionAttribute) refElement;
+				List<EObject> correspondEClassInstances = new BasicEList<>();
+				
+				InstancePointer instPt = null;
+				if(!instPointersAsList.isEmpty()){
+					instPt = instPointersAsList.get(0); //actual we handle only one InstancePointer, so model a clear one!
+				}
+				
+				if(instPt != null){
+					correspondEClassInstances = this.instancePointerHandler.getPointedInstanceBySourceSectionClass(instPt, (SourceSectionClass) refElementAsSSA.eContainer());
+				}
+				
+				if(correspondEClassInstances.size()==1){
+					Object refValueAttr = correspondEClassInstances.get(0).eGet(refElementAsSSA.getAttribute());
 					
-					InstancePointer instPt = null;
-					if(instPointersAsList.size()>0){
-						instPt = instPointersAsList.get(0); //actual we handle only one InstancePointer, so model a clear one!
-					}
-					
-					if(instPt != null){
-						correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPt, (SourceSectionClass) refElementAsSSA.eContainer());
-					}
-					
-					if(correspondEClassInstances.size()==1){
-						Object refValueAttr = correspondEClassInstances.get(0).eGet(refElementAsSSA.getAttribute());
-						
-						// convert Attribute value to String
-						refValue = refElementAsSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
-								.convertToString(refElementAsSSA.getAttribute().getEAttributeType(), refValueAttr);
-					} else{
-						refValue="";
-						consoleStream.println(" Note: The cardinality of the SourceSectionAttribute, " + refElementAsSSA.getName() + ", is "
-								+ correspondEClassInstances.size() +"! So it cannot be handled. Hint: Create or change the InstancePointer!");
-					}
+					// convert Attribute value to String
+					refValue = refElementAsSSA.getAttribute().getEType().getEPackage().getEFactoryInstance()
+							.convertToString(refElementAsSSA.getAttribute().getEAttributeType(), refValueAttr);
+				} else{
+					refValue="";
+					consoleStream.println(" Note: The cardinality of the SourceSectionAttribute, " + refElementAsSSA.getName() + ", is "
+							+ correspondEClassInstances.size() +"! So it cannot be handled. Hint: Create or change the InstancePointer!");
+				}
 			} else {
 				// If we are here, some mistake is happened
 				consoleStream.println("ReferenceableElement type " + refElement.getClass().getName() + " is not yet supported!");
 				return null; // "" keep running the application (in this case YOU may have to do some changes here?!)
 			}
 			
-			if(!(refValue.isEmpty()||refValue == ""||refValue == null)){
+			if(!(refValue.isEmpty() || refValue == "" || refValue == null)){
 				return refValue;
 			}
 		} 
@@ -193,6 +195,7 @@ public class ReferenceableValueCalculator {
 
 	/**
 	 * This calculates an attribute value based on an expression.
+	 * 
 	 * @param expression An expression to be used to calculate the reference value
 	 * @param refElementsAsList A list that contains all referenced {@link SourceSectionAttribute}s by the expression (Note: 'ReferenceableValueCalculator' 
 	 * already knows {@link FixedVaue}s and {@link GlobalAttribute}s)
@@ -201,7 +204,7 @@ public class ReferenceableValueCalculator {
 	 */
 	private String calculateReferenceValueWithExpression(String expression, EList<ReferenceableElement> refElementsAsList, EList<InstancePointer> instPointersAsList) {
 		
-		String expressionResult = "";
+		String expressionResult;
 		Map<String,Double> vars = new HashMap<>();
 		vars.putAll(this.globalValuesAsDouble);
 		
@@ -213,15 +216,15 @@ public class ReferenceableValueCalculator {
 			
 			if(refElement instanceof SourceSectionAttribute){
 					SourceSectionAttribute refElementAsSSA = (SourceSectionAttribute) refElement;
-					EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
+					List<EObject> correspondEClassInstances = new BasicEList<>();
 					
 					InstancePointer instPt = null;					
-					if(instPointersAsList.size()>0){
+					if(!instPointersAsList.isEmpty()){
 						instPt = instPointersAsList.get(i-temp);
 					}
 					
 					if(instPt!=null){
-						correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByMatchedSectionRepo(instPt, (SourceSectionClass) refElementAsSSA.eContainer());
+						correspondEClassInstances = this.instancePointerHandler.getPointedInstanceBySourceSectionClass(instPt, (SourceSectionClass) refElementAsSSA.eContainer());
 					}
 					
 					if(correspondEClassInstances.size()==1){	
@@ -257,13 +260,5 @@ public class ReferenceableValueCalculator {
 			return expression;
 		}
 		return expressionResult;
-	}
-
-	public void addTempSectionMap(LinkedHashMap<SourceSectionClass, Set<EObject>> tempMatchedSection) {
-		this.tempMatchedSection = tempMatchedSection;
-	}
-
-	public void clearTempSectionMap() {
-		this.tempMatchedSection.clear();
 	}
 }

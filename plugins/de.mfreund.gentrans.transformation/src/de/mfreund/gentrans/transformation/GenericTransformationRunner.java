@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -11,10 +12,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -45,6 +49,10 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
+import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
+import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
+import de.mfreund.gentrans.transformation.matching.MappingSelector;
+import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -63,29 +71,24 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
@@ -129,7 +132,7 @@ public class GenericTransformationRunner {
 	 *  File path relative to that all target models will be created.
 	 */
 	private final String targetBasePath;
-	
+
 	/**
 	 * File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
 	 * target model is that target model to which all contents will be added that are not associated with a special model
@@ -490,13 +493,13 @@ public class GenericTransformationRunner {
 		if(pamtramModel == null && !loadPamtramModel(resourceSet)) {
 			return;
 		}
-		
+
 		// validate the pamtram model
 		Diagnostic diag = Diagnostician.INSTANCE.validate(pamtramModel);
 		if(diag.getSeverity() == Diagnostic.ERROR) {
 			final AtomicBoolean result = new AtomicBoolean();
 			Display.getDefault().syncExec(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					result.set(ErrorDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), 
@@ -555,12 +558,12 @@ public class GenericTransformationRunner {
 		this.transformationModel.setEndDate(new Date());
 
 		if (transformationResult != null && transformationResult.getOverallResult() && !isCancelled) {
-			
+
 			/*
 			 * create the target models
 			 */
 			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().saveTargetModels();
-			
+
 			final long endTime = System.nanoTime();
 			writePamtramMessage("Transformation done. Time: "
 					+ Math.ceil((endTime - startTime) / 100000000L) / 10.0 + "s");
@@ -668,8 +671,9 @@ public class GenericTransformationRunner {
 
 	/**
 	 * This performs the '<em>matching</em>' step of the transformation. Therefore, it iterates through the
-	 * given '<em>sourceModel</em>' and tries to apply the given '<em>suitableMappings</em>'. During this process,
-	 * the hint values for the various {@link MappingHint MappingHints} are calculated as well. 
+	 * given list of '<em>sourceModels</em>', {@link SourceSectionMatcher#matchSections() matches SourceSections},
+	 * {@link MappingSelector#selectMappings() selects mappings} and {@link HintValueExtractor#extractHintValues()
+	 * extracts hint values}. 
 	 *  
 	 * @param sourceModels The list of {@link EObject EObjects} representing/containing the source model to be matched. 
 	 * @param suitableMappings A list of {@link Mapping Mappings} that shall be used for the matching process.
@@ -684,94 +688,62 @@ public class GenericTransformationRunner {
 			AttributeValueModifierExecutor attributeValueModifier, 
 			IProgressMonitor monitor) {
 
-		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<>();
-		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<>();
-		HintValueStorage exportedMappingHints;
-		Map<GlobalAttribute, String> globalAttributeValues;
+		LinkedList<MappingInstanceStorage> selectedMappings;
+		Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping;
 
 		/*
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched
 		 * and unmatched elements.
 		 */
-		writePamtramMessage("Analyzing source model");
+		writePamtramMessage("Matching SourceSections");
 		monitor.subTask("Selecting Mappings for source model elements");
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
+		// Select the SourceSections that we want to match.
+		// contained in active hint groups?
+		List<SourceSection> activeSourceSections = pamtramModel.getSourceSections().parallelStream().
+				filter(s -> !s.isAbstract()).collect(Collectors.toList());
+
 		/*
-		 * Create the source section matcher that finds applicable mappings
+		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
-		objectsToCancel.add(sourceSectionMatcher);
+				containmentTree, new BasicEList<>(activeSourceSections), consoleStream);
 
+		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
+		
+		writePamtramMessage("Select Mappings for Matched Sections");
+		
 		/*
-		 * Now start matching each of the elements in the containment tree. We automatically start
-		 * at the root element.
+		 * Create the MappingSelector that finds applicable mappings
 		 */
-		writePamtramMessage("Selecting Mappings for source model elements");
-
-		final int numSrcModelElements = containmentTree.getNumberOfElements();
-		final double workUnit = 250.0 / numSrcModelElements;
-		double accumulatedWork = 0;
-
+		final MappingSelector mappingSelector = new MappingSelector(matchingResult, suitableMappings, pamtramModel.getGlobalValues(), 
+				onlyAskOnceOnAmbiguousMappings, ambiguityResolvingStrategy, consoleStream);
+		selectedMappingsByMapping = mappingSelector.selectMappings();
+		
+		writePamtramMessage("Extract Hint Values");
+		
 		/*
-		 * When iterating through the containment tree, 'getNumberOfAvailableElements()' will decrease over the time
-		 * until every element has either been matched or marked as 'unmatched'.
+		 * Calculate mapping hints 
 		 */
-		while (containmentTree.getNumberOfAvailableElements() > 0 && !isCancelled) {
+		final HintValueExtractor hintValueExtractor = new HintValueExtractor(
+				selectedMappingsByMapping.values().stream().flatMap(l -> l.stream()).collect(Collectors.toList()), 
+				attributeValueModifier, consoleStream);
+		hintValueExtractor.extractHintValues();
+		
+		consoleStream.println("Summary:\tAvailable Elements:\t" +
+		containmentTree.getNumberOfElements());
+		consoleStream.println("\t\tMatched Elements:\t" +
+		containmentTree.getNumberOfMatchedElements());
+		consoleStream.println("\t\tUnmatched Elements:\t" +
+		containmentTree.getNumberOfUnmatchedElements());
 
-			final MappingInstanceStorage selectedMapping = 
-					sourceSectionMatcher.findMappingForNextElement();
-
-			if (sourceSectionMatcher.isCancelled()) {
-				writePamtramMessage("Transformation aborted.");
-				return MatchingResult.createMatchingCanceledResult();
-			}
-
-			// store the selected mapping
-			if (selectedMapping != null) {
-				selectedMappings.add(selectedMapping);
-				if (!selectedMappingsByMapping.containsKey(selectedMapping.getMapping())) {
-					selectedMappingsByMapping.put(selectedMapping.getMapping(),
-							new LinkedList<MappingInstanceStorage>());
-				}
-				selectedMappingsByMapping.get(selectedMapping.getMapping()).add(selectedMapping);
-
-			}
-
-			// update the progress bar in the monitor
-			accumulatedWork += workUnit
-					* (containmentTree.getNumberOfAvailableElements());
-			if (accumulatedWork >= 1) {
-				monitor.worked((int) Math.floor(accumulatedWork));
-				accumulatedWork -= Math.floor(accumulatedWork);
-			}
-		}
-
-		if (isCancelled) {
-			return MatchingResult.createMatchingCanceledResult();
-		}
-
-		consoleStream.println("Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
-		consoleStream.println("\t\tMatched Elements:\t" + containmentTree.getNumberOfMatchedElements());
-		consoleStream.println("\t\tUnmatched Elements:\t" + containmentTree.getNumberOfUnmatchedElements());
-
-		/*
-		 * Now write MappingHint values of Hints of ExportedMappingHintGroups to
-		 * a separate storage, and remove the values from the
-		 * MappingInstanceStorages.
-		 * 
-		 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
-		 */
-		exportedMappingHints = handleGlobalVarsAndExportedMappings(
-				sourceSectionMatcher, selectedMappings);
-		globalAttributeValues =  sourceSectionMatcher.getGlobalAttributeValues();
-
-		if (isCancelled) {
-			return MatchingResult.createMatchingCanceledResult();
-		}
-
-		return MatchingResult.createMatchingCompletedResult(selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalAttributeValues);
+		selectedMappings = new LinkedList<>(
+				selectedMappingsByMapping.entrySet().parallelStream().flatMap(e -> e.getValue().stream()).collect(Collectors.toList()));
+		
+		return MatchingResult.createMatchingCompletedResult(selectedMappings,
+				 selectedMappingsByMapping, new HintValueStorage(),
+				 hintValueExtractor.getGlobalAttributeValues());
 
 	}
 
@@ -875,13 +847,13 @@ public class GenericTransformationRunner {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp != null) {
 
-					// import Hints
-					for (final MappingHint h : selMap.getMappingHints(expGrp)) {
-						selMap.getHintValues().setHintValues(h, null);
-						if (matchingResult.getExportedMappingHints().containsHint(h)) {
-							selMap.getHintValues().addHintValues(h, matchingResult.getExportedMappingHints().getHintValues(h));
-						}
-					}
+//					// import Hints
+//					for (final MappingHint h : selMap.getMappingHints(expGrp)) {
+//						selMap.getHintValues().setHintValues(h, null);
+//						if (matchingResult.getExportedMappingHints().containsHint(h)) {
+//							selMap.getHintValues().addHintValues(h, matchingResult.getExportedMappingHints().getHintValues(h));
+//						}
+//					}
 
 					// start instantiating
 					if (expGrp.getTargetMMSection() != null) {
@@ -1095,7 +1067,7 @@ public class GenericTransformationRunner {
 
 		writePamtramMessage("Joining targetModelSections");
 		monitor.subTask("Joining targetModelSections");
-		
+
 		/*
 		 * The TargetModelRegistry that will be returned at the end as part of the 'JoiningResult'.
 		 */
@@ -1120,7 +1092,7 @@ public class GenericTransformationRunner {
 
 				if (g.getTargetMMSection() != null // targetSection
 						&& g instanceof MappingHintGroup) { 
-					
+
 					/*
 					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
 					 */
@@ -1141,7 +1113,7 @@ public class GenericTransformationRunner {
 							if (((MappingHintGroup) g).getModelConnectionMatcher() != null) {// link using matcher
 
 								for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
-									
+
 									if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
 										continue;
 									}
@@ -1201,7 +1173,7 @@ public class GenericTransformationRunner {
 			for (final MappingHintGroupImporter i : m.getActiveImportedMappingHintGroups()) {
 				final ExportedMappingHintGroup g = i.getHintGroup();
 				if (g.getTargetMMSection() != null) {
-					
+
 					/*
 					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
 					 */
@@ -1210,7 +1182,7 @@ public class GenericTransformationRunner {
 								expandingResult.getTargetSectionRegistry().getPamtramClassInstances(g.getTargetMMSection()).get(i));
 						continue;
 					}
-					
+
 					/*
 					 * ImportedMAppingHintGroups with containers specified will
 					 * be linked to a section that was created by the same
@@ -1218,13 +1190,13 @@ public class GenericTransformationRunner {
 					 */
 					if (i.getContainer() != null) {
 						for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
-							
+
 							if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
 								continue;
 							}
+
+							final List<EObjectWrapper> rootInstances = selMap.getInstances(i, g.getTargetMMSection());
 							
-							final LinkedList<EObjectWrapper> rootInstances = selMap
-									.getInstances(i, g.getTargetMMSection());
 							if (rootInstances.size() > 0) {
 								final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
 
@@ -1236,9 +1208,9 @@ public class GenericTransformationRunner {
 									}
 
 									if (group instanceof MappingHintGroup) {
-										final LinkedList<EObjectWrapper> insts = selMap.getInstances(
-														(MappingHintGroup) group,
-														i.getContainer());
+										final List<EObjectWrapper> insts = selMap.getInstances(
+												(MappingHintGroup) group,
+												i.getContainer());
 										if (insts != null) {
 											containerInstances.addAll(insts);
 										}
@@ -1344,7 +1316,7 @@ public class GenericTransformationRunner {
 				if (g.getTargetMMSection() != null
 						&& g instanceof MappingHintGroup) {
 					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
-						
+
 						targetSectionInstantiator.instantiateTargetSectionSecondPass(
 								g.getTargetMMSection(),
 								selMap.getMapping().getName(),
@@ -1421,232 +1393,6 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * Write MappingHint values of Hints of ExportedMappingHintGroups to a
-	 * separate storage, and remove the values from the MappingInstanceStorages.
-	 *
-	 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
-	 *
-	 * @param sourceSectionMapper
-	 * @param selectedMappings
-	 * @return
-	 */
-	private HintValueStorage handleGlobalVarsAndExportedMappings(
-			final SourceSectionMatcher sourceSectionMapper,
-			final LinkedList<MappingInstanceStorage> selectedMappings) {
-
-		consoleStream.println("Getting hint values of exported HintGroups, checking MappingHintImporters, adding GlobalVariables and FixedValues to hints");
-		//		final AttributeMappingHintValueMap exportedAttributeMappingHints = new AttributeMappingHintValueMap();
-		//		final CardinalityMappingHintValueMap exportedCardinalityMappingHints = new CardinalityMappingHintValueMap();
-		//		final MappingInstanceSelectorHintValueMap exportedMappingInstanceSelectors= new MappingInstanceSelectorHintValueMap();
-		final HintValueStorage exportedHintValues = new HintValueStorage();
-
-		for (final MappingInstanceStorage selMap : selectedMappings) {
-
-			/*
-			 * First, we collect the hints from all HintGroups. 
-			 */
-			ArrayList<MappingHintBaseType> mappingHints = new ArrayList<>();
-			for (final MappingHintGroupType g : selMap.getMapping()
-					.getActiveMappingHintGroups()) {
-
-				if (g instanceof ExportedMappingHintGroup) {
-					for (final MappingHint h : g.getMappingHints()) {
-						/*
-						 * this works because the SourceSectionMapper guarantees
-						 * that a key exists for each MappingHint of the Mapping
-						 */
-						Object exportedHint = selMap.getHintValues().removeHint(h);
-						exportedHintValues.addHintValues(h, exportedHint);
-					}
-				}
-
-				mappingHints.addAll(g.getMappingHints());
-				if (g instanceof MappingHintGroup) {
-					mappingHints.add(((MappingHintGroup) g).getModelConnectionMatcher());
-
-				}
-			}
-			for (final MappingHintGroupImporter ig : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
-
-				mappingHints.addAll(ig.getMappingHints());
-			}
-
-
-			/*
-			 * Now, we add the hint values for GlobalVariables and FixedValues for all collected hints.
-			 */
-			for (final MappingHintBaseType h : mappingHints) {
-
-				if (h instanceof AttributeMapping) {
-					for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
-							.getSourceAttributeMappings()) {
-
-						SourceSectionAttribute att = null;
-						String val = null;
-
-						if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
-								((GlobalAttributeImporter) i).getGlobalAttribute())) {									
-							att = i.getSourceAttribute();
-							val = sourceSectionMapper.getGlobalAttributeValues().get(
-									((GlobalAttributeImporter) i).getGlobalAttribute());
-
-						} else if (i instanceof FixedValue) {
-							val = ((FixedValue) i).getValue();
-
-						} else {
-							continue;
-
-						}
-
-						/*
-						 * If there does not yet exists any hint value for this AttributeMapping (e.g., if no 
-						 * (External)AttributeMappingSourceElement exists for this hint), we need to initialize the
-						 * map of hint values manually.
-						 */
-						if(selMap.getHintValues().getHintValues((AttributeMapping) h).isEmpty()) {
-							selMap.getHintValues().getAttributeMappingHintValues().addHintValue(
-									(AttributeMapping) h, new LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>());
-						}
-
-						for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) h)) {
-							m.put(i, new AttributeValueRepresentation(att, val));
-						}
-					}
-				} else if (h instanceof MappingInstanceSelector) {
-					if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-						final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
-								.getMatcher();
-						for (final AttributeMatcherSourceInterface i : m.getSourceAttributes()) {
-
-							SourceSectionAttribute att = null;
-							String val = null;
-
-							if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
-									((GlobalAttributeImporter) i)
-									.getGlobalAttribute())) {
-								att = i.getSourceAttribute();
-								val = sourceSectionMapper.getGlobalAttributeValues().get(
-										((GlobalAttributeImporter) i).getGlobalAttribute());
-
-							} else if (i instanceof FixedValue) {
-								val = ((FixedValue) i).getValue();
-
-							} else {
-								continue;
-
-							}
-
-							/*
-							 * If there does not yet exists any hint value for this MappingInstanceSelector (e.g., if no 
-							 * (External)AttributeMatcherSourceElement exists for this hint), we need to initialize the
-							 * map of hint values manually.
-							 */
-							if(selMap.getHintValues().getHintValues((MappingInstanceSelector) h).isEmpty()) {
-								selMap.getHintValues().getMappingInstanceSelectorHintValues().addHintValue(
-										(MappingInstanceSelector) h, new LinkedHashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation>());
-							}
-
-							for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((MappingInstanceSelector) h)) {
-								o.put(i, new AttributeValueRepresentation(att, val));
-							}
-						}
-					}
-				} else if (h instanceof ModelConnectionHint) {
-					for (final ModelConnectionHintSourceInterface i : ((ModelConnectionHint) h)
-							.getSourceElements()) {
-
-						SourceSectionAttribute att = null;
-						String val = null;
-
-						if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
-								((GlobalAttributeImporter) i).getGlobalAttribute())) {
-
-							att = i.getSourceAttribute();
-							val = sourceSectionMapper.getGlobalAttributeValues().get(
-									((GlobalAttributeImporter) i).getGlobalAttribute());
-
-						} else if (i instanceof FixedValue) {
-							val = ((FixedValue) i).getValue();
-
-						} else {
-							continue;
-
-						}
-
-						/*
-						 * If there does not yet exists any hint value for this ModelConnectionHint (e.g., if no 
-						 * (External)ModelConnectionHintSourceElement exists for this hint), we need to initialize the
-						 * map of hint values manually.
-						 */
-						if(selMap.getHintValues().getHintValues((ModelConnectionHint) h).isEmpty()) {
-							selMap.getHintValues().getModelConnectionHintValues().addHintValue(
-									(ModelConnectionHint) h, new LinkedHashMap<ModelConnectionHintSourceInterface, AttributeValueRepresentation>());
-						}
-
-						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((ModelConnectionHint) h)) {
-							o.put(i, new AttributeValueRepresentation(att, val));
-						}
-					}
-				}
-			}
-
-			/*
-			 * additional MappingHints for HintImporters are necessary but must
-			 * be restricted to a cardinality of 0..1
-			 */
-			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
-				for (final MappingHintType h : g.getMappingHints()) {
-					if (h instanceof AttributeMapping && selMap.getHintValues().getHintValues((AttributeMapping) h).size() > 1) {
-						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
-								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
-						/*
-						 * TODO OCL? (possible? => Even sections with card. type
-						 * of ONE can have more than one hint value if they are
-						 * part of a vc-section. However, we cannot restrict the
-						 * parent sections to non-vc, argh...can we?)
-						 */
-						selMap.getHintValues().setHintValues((AttributeMapping) h, null);
-					} else if (h instanceof MappingInstanceSelector && selMap.getHintValues().getHintValues((MappingInstanceSelector) h).size() > 1) {
-						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
-								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
-						/*
-						 * TODO OCL? (possible? => Even sections with card. type
-						 * of ONE can have more than one hint value if they are
-						 * part of a vc-section. However, we cannot restrict the
-						 * parent sections to non-vc, argh...can we?)
-						 */
-						selMap.getHintValues().setHintValues((MappingInstanceSelector) h, null);
-					} else if (h instanceof CardinalityMapping && selMap.getHintValues().getHintValues((CardinalityMapping) h).size() > 1) {
-						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
-								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
-						/*
-						 * TODO OCL? (possible? => Even sections with card. type
-						 * of ONE can have more than one hint value if they are
-						 * part of a vc-section. However, we cannot restrict the
-						 * parent sections to non-vc, argh...can we?)
-						 */
-						selMap.getHintValues().setHintValues((CardinalityMapping) h, null);
-					} else if (h instanceof MappedAttributeValueExpander && selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).size() > 1) {
-						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
-								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
-						/*
-						 * TODO OCL? (possible? => Even sections with card. type
-						 * of ONE can have more than one hint value if they are
-						 * part of a vc-section. However, we cannot restrict the
-						 * parent sections to non-vc, argh...can we?)
-						 */
-						selMap.getHintValues().setHintValues((MappedAttributeValueExpander) h, null);
-					}
-				}
-			}
-		}
-
-		return exportedHintValues;
-	}
-
-	/**
 	 * This is a temporary method that is called by the 'source section matcher
 	 * page' in order to get the matched sections for a sample source model.
 	 * Therefore, it performs half a transformation and then returns the matched
@@ -1657,25 +1403,19 @@ public class GenericTransformationRunner {
 	 * @return A map containing the mapped sections.
 	 */
 	@Deprecated
-	public LinkedHashMap<SourceSectionClass, Set<EObject>> mapSections() {
+	public Map<SourceSectionClass, Set<EObject>> matchSourceSections() {
 
 		if(pamtramModel == null || sourceModels == null || sourceModels.isEmpty()) {
 			return null;
 		}
+		
+		writePamtramMessage("Matching SourceSections");
 
-		// find active mappings and resolve ambiguities as far as possible without user
-		// input
-		final List<Mapping> suitableMappings = pamtramModel.getActiveMappings();// TODO apply context Model
-
-		// generate storage objects and generators
-		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
-				consoleStream);
-
-
-		/*
-		 * create a list of all the containment references in the source model
+		/* 
+		 * Before we can use the PAMTraM model, we need merge all extended HintGroups or Sections;
+		 * that way, we get a 'clean' model (without any extensions) that we can handle in a normal way
 		 */
-		writePamtramMessage("Analysing srcModel containment references");
+		pamtramModel.mergeExtends();
 
 		/*
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched
@@ -1683,37 +1423,40 @@ public class GenericTransformationRunner {
 		 */
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
-
-		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
+		// Select the SourceSections that we want to match.
+		// contained in active hint groups?
+		List<SourceSection> activeSourceSections = pamtramModel.getSourceSections().parallelStream().
+				filter(s -> !s.isAbstract()).collect(Collectors.toList());
 
 		/*
-		 * now start mapping each one of the references. We automatically start
-		 * at the sourceModel root node
+		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
-		writePamtramMessage("Selecting Mappings for source model elements");
+		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
+				containmentTree, new BasicEList<>(activeSourceSections), consoleStream);
 
-		final int numSrcModelElements = containmentTree.getNumberOfElements();
-		int unmapped = 0;
-		while (containmentTree.getNumberOfAvailableElements() > 0) {
-			// find mapping
-			// remove(0) automatically selects element highest in the hierarchy
-			// we currently try to map
+		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 
-			final MappingInstanceStorage selectedMapping = sourceSectionMapper.findMappingForNextElement();
-			if (sourceSectionMapper.isCancelled()) {
-				writePamtramMessage("Transformation aborted.");
-				return null;
-			}
-			if (selectedMapping == null) {
-				unmapped++;
-			}
-
-		}
-		consoleStream.println("Used srcModel elements: "
-				+ (numSrcModelElements - unmapped));
-
-		return sourceSectionMapper.getMatchedSections();
+		// Retrieve the list of all created MatchedSectionDescriptors
+		//
+		List<MatchedSectionDescriptor> descriptors = 
+				matchingResult.values().parallelStream().flatMap(e -> e.parallelStream()).collect(Collectors.toList());
+		
+		Map<SourceSectionClass, Set<EObject>> matchedClasses = new HashMap<>();
+		
+		descriptors.stream().forEach(d -> {
+			d.getSourceModelObjectsMapped().entrySet().stream().forEach(e -> {
+				
+				if(matchedClasses.containsKey(e.getKey())) {
+					matchedClasses.get(e.getKey()).addAll(e.getValue());
+				} else {
+					matchedClasses.put(e.getKey(), e.getValue());
+				}
+			});
+		});
+		
+		writePamtramMessage("Complete");
+		
+		return matchedClasses;
 
 	}
 
@@ -2086,14 +1829,14 @@ public class GenericTransformationRunner {
 			 * This the map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 			 * process associated with the {@link Mapping} that they represent.
 			 */
-			private final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping;
+			private final Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping;
 
 			/**
 			 * This is the getter for the {@link #selectedMappingsByMapping}.
 			 * @return The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 			 * process associated with the {@link Mapping} that they represent. 
 			 */
-			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> getSelectedMappingsByMapping() {
+			Map<Mapping, List<MappingInstanceStorage>> getSelectedMappingsByMapping() {
 				return selectedMappingsByMapping;
 			}
 
@@ -2141,7 +1884,7 @@ public class GenericTransformationRunner {
 			private MatchingResult(
 					boolean canceled,
 					LinkedList<MappingInstanceStorage> selectedMappings, 
-					LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
+					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping,
 					HintValueStorage exportedMappingHints,
 					Map<GlobalAttribute, String> globalAttributeValues) {
 				this.canceled = canceled;
@@ -2172,7 +1915,7 @@ public class GenericTransformationRunner {
 			 */
 			public static MatchingResult createMatchingCompletedResult(
 					LinkedList<MappingInstanceStorage> selectedMappings, 
-					LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
+					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping,
 					HintValueStorage exportedMappingHints,
 					Map<GlobalAttribute, String> globalAttributeValues) {
 				return new MatchingResult(false, selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalAttributeValues);
@@ -2245,7 +1988,7 @@ public class GenericTransformationRunner {
 				return new ExpandingResult(attributeValueRegistry, targetSectionRegistry); 
 			}
 		}
-		
+
 		/**
 		 * This class encapsulates the various results of the <em>joining</em> process during a generic transformation:
 		 * <br />
@@ -2257,13 +2000,13 @@ public class GenericTransformationRunner {
 		 * 
 		 */
 		static class JoiningResult {
-			
+
 			/**
 			 * This describes the status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
 			 * canceled, '<em><b>false</b></em>' otherwise.
 			 */
 			private final boolean canceled;
-			
+
 			/**
 			 * This is the getter for the {@link #canceled}.
 			 * @return The status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
@@ -2277,7 +2020,7 @@ public class GenericTransformationRunner {
 			 * The {@link TargetModelRegistry} representing the target models to be created.
 			 */
 			private TargetModelRegistry targetModelRegistry;
-			
+
 			/**
 			 * This is the getter for the {@link #targetModelRegistry}.
 			 * @return The {@link TargetModelRegistry} representing the target models to be created.
@@ -2285,7 +2028,7 @@ public class GenericTransformationRunner {
 			TargetModelRegistry getTargetModelRegistry() {
 				return targetModelRegistry;
 			}
-			
+
 			/**
 			 * This constructs an instance.
 			 * 
@@ -2299,7 +2042,7 @@ public class GenericTransformationRunner {
 				this.canceled = canceled;
 				this.targetModelRegistry = targetModelRegistry;
 			}
-			
+
 			/**
 			 * This constructs an instance for a joining process that has been canceled.
 			 * @return An instance of {@link JoiningResult} indicating that the joining was canceled.
@@ -2436,7 +2179,7 @@ public class GenericTransformationRunner {
 			}
 		}
 	}
-	
+
 	/**
 	 * A {@link MessageDialog} that informs about an error and asks the user whether he wants to 
 	 * continue or to abort.
@@ -2448,7 +2191,7 @@ public class GenericTransformationRunner {
 		private ErrorDialog(Shell parentShell, String dialogMessage) {
 			super(parentShell, "Error", null, dialogMessage, MessageDialog.ERROR , new String[]{"Continue", "Abort"}, 0);
 		}
-		
+
 		/**
 		 * This creates and opens a dialog.
 		 * 

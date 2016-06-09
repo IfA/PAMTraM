@@ -102,7 +102,7 @@ public class ConditionHandler {
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
 		this.instancePointerHandler = new InstancePointerHandler(matchedSections, consoleStream);
-		this.refValueCalculator = new ReferenceableValueCalculator(globalValues, this.instancePointerHandler, this.matchedSections, consoleStream);
+		this.refValueCalculator = new ReferenceableValueCalculator(globalValues, this.instancePointerHandler, consoleStream);
 	}
 	
 	/**
@@ -160,14 +160,14 @@ public class ConditionHandler {
 		
 		if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef().getContainingSection())){
 			
-			EList<EObject> correspondEClassInstances = new BasicEList<>();
+			List<EObject> correspondEClassInstances = new BasicEList<>();
 			
 			for (MatchedSectionDescriptor descriptor : this.matchedSections.get(sectionCondition.getConditionSectionRef().getContainingSection())) {
 				correspondEClassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(sectionCondition.getConditionSectionRef()));
 			}
 			
 			if(!sectionCondition.getAdditionalConditionSpecification().isEmpty()){
-				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances);
+				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances);
 			}
 			
 			// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
@@ -202,8 +202,8 @@ public class ConditionHandler {
 	private CondResult checkAttributeCondition(AttributeCondition attrCondition) {
 		
 		boolean tempConditionRes = false;
-		EList<EObject> correspondEClassInstances = new BasicEList<EObject>();
-		EList<InstancePointer> instPointersAsList = new BasicEList<InstancePointer>();
+		List<EObject> correspondEClassInstances = new BasicEList<>();
+		List<InstancePointer> instPointersAsList;
 		
 		// As in 'checkSectionCondtion'-method we store the SourceSectionClass correspond to the given SourceSectionAttribute
 		
@@ -218,13 +218,13 @@ public class ConditionHandler {
 			instPointersAsList = attrCondition.getAdditionalConditionSpecification();					
 			InstancePointer instPt = null;
 			
-			if(instPointersAsList.size()>0){
+			if(!instPointersAsList.isEmpty()){
 				instPt = instPointersAsList.get(0); //actual we handle only one InstancePointer, so model a clear one!
 			}
 			
 			if(instPt != null){
 				// Note: Here we use getPointedInstanceByLIST - List-Method
-				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByList(instPt, correspondEClassInstances);
+				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(instPt, correspondEClassInstances);
 			}
 		}
 		

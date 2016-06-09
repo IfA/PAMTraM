@@ -704,7 +704,6 @@ public class GenericTransformationRunner {
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
 		// Select the SourceSections that we want to match.
-		// TODO only use sections that are either referenced by active mappings or by conditions
 		// contained in active hint groups?
 		List<SourceSection> activeSourceSections = pamtramModel.getSourceSections().parallelStream().
 				filter(s -> !s.isAbstract()).collect(Collectors.toList());
@@ -714,7 +713,6 @@ public class GenericTransformationRunner {
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
 				containmentTree, new BasicEList<>(activeSourceSections), consoleStream);
-		// objectsToCancel.add(sourceSectionMatcher);
 
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 		
@@ -1636,25 +1634,19 @@ public class GenericTransformationRunner {
 	 * @return A map containing the mapped sections.
 	 */
 	@Deprecated
-	public LinkedHashMap<SourceSectionClass, Set<EObject>> mapSections() {
+	public  LinkedHashMap<SourceSectionClass, Set<EObject>> mapSections() {
 
 		if(pamtramModel == null || sourceModels == null || sourceModels.isEmpty()) {
 			return null;
 		}
+		
+		writePamtramMessage("Matching SourceSections");
 
-		// find active mappings and resolve ambiguities as far as possible without user
-		// input
-		final List<Mapping> suitableMappings = pamtramModel.getActiveMappings();// TODO apply context Model
-
-		// generate storage objects and generators
-		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
-				consoleStream);
-
-
-		/*
-		 * create a list of all the containment references in the source model
+		/* 
+		 * Before we can use the PAMTraM model, we need merge all extended HintGroups or Sections;
+		 * that way, we get a 'clean' model (without any extensions) that we can handle in a normal way
 		 */
-		writePamtramMessage("Analysing srcModel containment references");
+		pamtramModel.mergeExtends();
 
 		/*
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched
@@ -1662,37 +1654,40 @@ public class GenericTransformationRunner {
 		 */
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
-
-		final de.mfreund.gentrans.transformation.SourceSectionMatcher sourceSectionMapper = new de.mfreund.gentrans.transformation.SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, pamtramModel.getGlobalValues(), attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
+		// Select the SourceSections that we want to match.
+		// contained in active hint groups?
+		List<SourceSection> activeSourceSections = pamtramModel.getSourceSections().parallelStream().
+				filter(s -> !s.isAbstract()).collect(Collectors.toList());
 
 		/*
-		 * now start mapping each one of the references. We automatically start
-		 * at the sourceModel root node
+		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
-		writePamtramMessage("Selecting Mappings for source model elements");
+		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
+				containmentTree, new BasicEList<>(activeSourceSections), consoleStream);
 
-		final int numSrcModelElements = containmentTree.getNumberOfElements();
-		int unmapped = 0;
-		while (containmentTree.getNumberOfAvailableElements() > 0) {
-			// find mapping
-			// remove(0) automatically selects element highest in the hierarchy
-			// we currently try to map
+		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 
-			final MappingInstanceStorage selectedMapping = sourceSectionMapper.findMappingForNextElement();
-			if (sourceSectionMapper.isCancelled()) {
-				writePamtramMessage("Transformation aborted.");
-				return null;
-			}
-			if (selectedMapping == null) {
-				unmapped++;
-			}
-
-		}
-		consoleStream.println("Used srcModel elements: "
-				+ (numSrcModelElements - unmapped));
-
-		return sourceSectionMapper.getMatchedSections();
+		// Retrieve the list of all created MatchedSectionDescriptors
+		//
+		List<MatchedSectionDescriptor> descriptors = 
+				matchingResult.values().parallelStream().flatMap(e -> e.parallelStream()).collect(Collectors.toList());
+		
+		 LinkedHashMap<SourceSectionClass, Set<EObject>> matchedClasses = new LinkedHashMap<>();
+		
+		descriptors.stream().forEach(d -> {
+			d.getSourceModelObjectsMapped().entrySet().stream().forEach(e -> {
+				
+				if(matchedClasses.containsKey(e.getKey())) {
+					matchedClasses.get(e.getKey()).addAll(e.getValue());
+				} else {
+					matchedClasses.put(e.getKey(), e.getValue());
+				}
+			});
+		});
+		
+		writePamtramMessage("Complete");
+		
+		return matchedClasses;
 
 	}
 

@@ -828,7 +828,7 @@ class TargetSectionInstantiator extends CancellableElement {
 			final TargetSectionClass groupTargetSection,
 			final List<MappingHint> hints,
 			final HintValueStorage hintValues,
-			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection) {
+			final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection) {
 		/*
 		 * only go on if any instances of this section were created
 		 */
@@ -1024,7 +1024,7 @@ class TargetSectionInstantiator extends CancellableElement {
 											// select any of the targetInstances
 											// available for the reference
 											// target
-											final LinkedList<EObjectWrapper> instancesToConsider = instancesBySection
+											final List<EObjectWrapper> instancesToConsider = instancesBySection
 													.get(targetSectionClass);
 
 											final TargetSectionClass matcherTargetClass = ((ClassMatcher) hSel
@@ -1183,7 +1183,7 @@ class TargetSectionInstantiator extends CancellableElement {
 									.get(targetSectionClass));
 
 							// get root instances of groups targetMMSection
-							final LinkedList<EObjectWrapper> rootInstances = instancesBySection
+							final List<EObjectWrapper> rootInstances = instancesBySection
 									.get(groupTargetSection);
 
 							// get target instances for the reference
@@ -1469,7 +1469,7 @@ class TargetSectionInstantiator extends CancellableElement {
 			final TargetSectionClass groupTargetSection,
 			final List<MappingHint> hints,
 			final HintValueStorage hintValues,
-			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection) {
+			final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection) {
 
 		for (final TargetSectionReference ref : targetSectionClass
 				.getReferences()) {

@@ -1194,8 +1194,8 @@ public class GenericTransformationRunner {
 								continue;
 							}
 
-							final LinkedList<EObjectWrapper> rootInstances = selMap
-									.getInstances(i, g.getTargetMMSection());
+							final List<EObjectWrapper> rootInstances = selMap.getInstances(i, g.getTargetMMSection());
+							
 							if (rootInstances.size() > 0) {
 								final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
 
@@ -1207,7 +1207,7 @@ public class GenericTransformationRunner {
 									}
 
 									if (group instanceof MappingHintGroup) {
-										final LinkedList<EObjectWrapper> insts = selMap.getInstances(
+										final List<EObjectWrapper> insts = selMap.getInstances(
 												(MappingHintGroup) group,
 												i.getContainer());
 										if (insts != null) {

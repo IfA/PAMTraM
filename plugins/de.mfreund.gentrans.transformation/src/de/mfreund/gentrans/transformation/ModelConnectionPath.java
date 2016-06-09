@@ -95,8 +95,7 @@ public final class ModelConnectionPath {
 						next.getRight(), elementClass, registry, true);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
-				registry.addConnection(newSelf, elementClass, (EClass) next
-						.getRight().getFirst());
+				registry.addConnection(newSelf);
 			} else {
 				// check for inherited types
 				for (final EClass c : registry.getChildClasses(next.getLeft())) {
@@ -159,7 +158,7 @@ public final class ModelConnectionPath {
 						next.getRight(), next.getLeft(), registry, false);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
-				registry.addPath(newSelf, (EClass) next.getRight().getFirst()); // first class
+				registry.addPath(newSelf); // first class
 
 			} else {
 				// check for inherited types

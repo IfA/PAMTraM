@@ -76,10 +76,10 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * Message output stream
 	 */
 	private final MessageConsoleStream consoleStream;
-
+	
 	/**
 	 * This creates an instance.
-	 *
+	 * 
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
 	 * @param attrValRegistry The {@link AttributeValueRegistry} that keeps track of already used 
 	 * values for target attributes.
@@ -98,10 +98,10 @@ public class TargetSectionRegistry extends CancellableElement {
 		this.containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
 		this.attrValRegistry = attrValRegistry;
 		this.canceled = false;
-		
+
 		analyseTargetMetaModel(targetMetaModel);
 	}
-
+	
 	/**
 	 * Register a new instance.
 	 * <p />
@@ -111,7 +111,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 *
 	 * @param instance The {@link EObject} to register.
 	 */
-	void addClassInstance(final EObject instance) {
+	public void addClassInstance(final EObject instance) {
 		
 		final EClass eClass = instance.eClass();
 
@@ -133,7 +133,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param targetSectionClass The {@link TargetSectionClass} representing the new instance (this needs to be one
 	 * of the classes defined by the {@link TargetSection} referenced by the given {@link InstantiableMappingHintGroup}).
 	 */
-	void addClassInstance(final EObjectWrapper instance,
+	public void addClassInstance(final EObjectWrapper instance,
 			final InstantiableMappingHintGroup mappingHintGroup,
 			final TargetSectionClass targetSectionClass) {
 		
@@ -162,48 +162,12 @@ public class TargetSectionRegistry extends CancellableElement {
 
 	/**
 	 * Register a new {@link ModelConnectionPath} in the {@link #possibleConnectionsRegistry}.
-	 * <p />
-	 * Note: Use {@link #addConnection(ModelConnectionPath)} instead as the two additional parameters are redundant
-	 * (they can be extracted from the given <em>path</em>.
 	 * 
 	 * @param path The {@link ModelConnectionPath} to register.
-	 * @param elementClass The {@link EClass} at the beginning of the <em>path</em> (lower in the containment hierarchy).
-	 * @param containerClass The {@link EClass} at the end of the <em>path</em> (higher in the containment hierarchy).
 	 */
-	@Deprecated
-	void addConnection(final ModelConnectionPath path,
-			final EClass elementClass, final EClass containerClass) {
+	public void addConnection(final ModelConnectionPath path) {
 		
-		if (!possibleConnectionsRegistry.containsKey(elementClass)) {
-			possibleConnectionsRegistry.put(elementClass,
-					new LinkedHashMap<EClass, Set<ModelConnectionPath>>());
-		}
-		
-		if (!possibleConnectionsRegistry.get(elementClass).containsKey(
-				containerClass)) {
-			possibleConnectionsRegistry.get(elementClass).put(containerClass,
-					new LinkedHashSet<ModelConnectionPath>());
-		}
-		
-		possibleConnectionsRegistry.get(elementClass).get(containerClass).add(path);
-	}
-	
-	/**
-	 * Register a new {@link ModelConnectionPath} in the {@link #possibleConnectionsRegistry}.
-	 * 
-	 * @param path The {@link ModelConnectionPath} to register.
-	 * @param elementClass The {@link EClass} at the beginning of the <em>path</em> (lower in the containment hierarchy).
-	 * @param containerClass The {@link EClass} at the end of the <em>path</em> (higher in the containment hierarchy).
-	 */
-	void addConnection(final ModelConnectionPath path) {
-		
-		if(!(path.getPathElements().getFirst() instanceof EClass) || 
-				!((EClass) path.getPathElements().getLast() instanceof EClass)) {
-			throw new RuntimeException("Internal Error: Found a ModelConnectionPath that does not start/or end at an "
-					+ "EClass!");
-		}
-		
-		// The EClass at the beginning of the path> (lower in the containment hierarchy).
+		// The EClass at the beginning of the path (lower in the containment hierarchy).
 		EClass elementClass = (EClass) path.getPathElements().getFirst();
 		
 		// The EClass at the end of the path (higher in the containment hierarchy).
@@ -224,14 +188,15 @@ public class TargetSectionRegistry extends CancellableElement {
 	}
 
 	/**
-	 * Add new Path to registry
+	 * Register a new {@link ModelConnectionPath} in the {@link #possiblePathsRegistry}.
 	 *
-	 * @param modelConnectionPath
-	 * @param eClass
+	 * @param modelConnectionPath The {@link ModelConnectionPath} to register.
 	 */
-	void addPath(final ModelConnectionPath modelConnectionPath,
-			final EClass eClass) {
+	public void addPath(final ModelConnectionPath modelConnectionPath) {
 
+		// The EClass at the beginning of the path (lower in the containment hierarchy).
+		EClass eClass = (EClass) modelConnectionPath.getPathElements().getFirst();
+		
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass,
 					new LinkedHashSet<ModelConnectionPath>());
@@ -241,20 +206,24 @@ public class TargetSectionRegistry extends CancellableElement {
 	}
 
 	/**
-	 * Build various lists that describe structural features of the target
-	 * MetaModel
+	 * Build various maps that describe structural features of the given <em>targetMetaModel</em>.
+	 * <p />
+	 * This fills the {@link #childClassesRegistry}, the {@link #containmentReferenceSourcesRegistry}, and
+	 * the {@link #targetClassReferencesRegistry}.
 	 *
-	 * @param targetMetaModel
+	 * @param targetMetaModel The {@link EPackage} representing the target meta-model to be analyzed.
 	 */
 	private void analyseTargetMetaModel(final EPackage targetMetaModel) {
-		// Map targetMetaModel classes
+		
+		consoleStream.println();
+		consoleStream.println("Analyzing target meta-model '" + targetMetaModel.getName() + "'.");
 
-		consoleStream.println("Mapping targetMetaModel classes");
+		// Map targetMetaModel classes
+		consoleStream.println("\tMapping targetMetaModel classes");
 		final LinkedList<EClass> classesToAnalyse = getClasses(targetMetaModel);
 
 		// map supertypes
-		consoleStream
-		.println("Mapping targetMetaModel inheritance and containment relationships");
+		consoleStream.println("\tMapping targetMetaModel inheritance and containment relationships");
 		for (final EClass e : classesToAnalyse) {
 			for (final EClass s : e.getEAllSuperTypes()) {
 				childClassesRegistry.get(s).add(e);
@@ -262,8 +231,7 @@ public class TargetSectionRegistry extends CancellableElement {
 		}
 
 		// register references that lead to a certain class for each class
-		consoleStream
-		.println("Mapping targetMetaModel containment relationships");
+		consoleStream.println("\tMapping targetMetaModel containment relationships");
 		for (final EClass e : classesToAnalyse) {
 			for (final EReference c : e.getEAllContainments()) {
 				if (targetClassReferencesRegistry.containsKey(c
@@ -300,7 +268,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 *
 	 * @return AttributeValueRegistry
 	 */
-	AttributeValueRegistry getAttrValRegistry() {
+	public AttributeValueRegistry getAttrValRegistry() {
 		return attrValRegistry;
 	}
 
@@ -308,7 +276,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param eClass
 	 * @return CHilClasses of a SuperClass
 	 */
-	Set<EClass> getChildClasses(final EClass eClass) {
+	public Set<EClass> getChildClasses(final EClass eClass) {
 
 		return childClassesRegistry.containsKey(eClass) ? childClassesRegistry
 				.get(eClass) : new LinkedHashSet<EClass>();
@@ -357,7 +325,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param eClass
 	 * @return Set of classes that contain references to eClass
 	 */
-	Set<EReference> getClassReferences(final EClass eClass) {
+	public Set<EReference> getClassReferences(final EClass eClass) {
 
 		return targetClassReferencesRegistry.containsKey(eClass) ? targetClassReferencesRegistry
 				.get(eClass) : new LinkedHashSet<EReference>();
@@ -376,7 +344,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param maxPathLength
 	 * @return
 	 */
-	LinkedList<ModelConnectionPath> getConnections(
+	public LinkedList<ModelConnectionPath> getConnections(
 			final EClass eClass, final EClass containerClass,
 			final int maxPathLength) {
 
@@ -428,6 +396,7 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @return all the MetaModelClasse we don't ignore
 	 */
 	public Set<EClass> getMetaModelClasses() {
+		
 		return childClassesRegistry.keySet();
 	}
 

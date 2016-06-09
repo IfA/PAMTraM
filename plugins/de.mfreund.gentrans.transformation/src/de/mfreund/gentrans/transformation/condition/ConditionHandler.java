@@ -208,7 +208,7 @@ public class ConditionHandler {
 		// As in 'checkSectionCondtion'-method we store the SourceSectionClass correspond to the given SourceSectionAttribute
 		
 		for (MatchedSectionDescriptor descriptor : this.matchedSections.get(attrCondition.getConditionAttributeRef().getContainingSection())) {
-			correspondEClassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(attrCondition.getConditionAttributeRef().getContainingSection()));
+			correspondEClassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(attrCondition.getConditionAttributeRef().eContainer()));
 		}
 		
 		SourceSectionAttribute ssAttr = attrCondition.getConditionAttributeRef();

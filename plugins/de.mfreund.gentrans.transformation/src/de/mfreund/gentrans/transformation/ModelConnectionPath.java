@@ -38,15 +38,6 @@ public final class ModelConnectionPath {
 	private LinkedList<EObject> pathElements;
 
 	/**
-	 * This is the getter for the list of {@link #pathElements}.
-	 * 
-	 * @return The elements forming this path. 
-	 */
-	public LinkedList<EObject> getPathElements() {
-		return this.pathElements;
-	}
-
-	/**
 	 * The registry of created target section instances that this ModelConnectionPath is associated with. Instances of
 	 * ModelConnectionPath that are created e.g. by {@link #findPathsFromContainerToClassToConnect(TargetSectionRegistry, EClass, EClass, int)}
 	 * are added to this registry.
@@ -55,6 +46,43 @@ public final class ModelConnectionPath {
 	 * the newly created EObjects (representing EClasses) will be added to this TargetSectionRegistry.
 	 */
 	private final TargetSectionRegistry targetSectionRegistry;
+
+	/**
+	 * Private Constructor to be used when spawning new Paths during path
+	 * search. Clones the path and appends new element.
+	 *
+	 * @param pathElements The existing elements of the connection path (EObjects representing
+	 * {@link EClass EClasses} and {@link EReference EReferences} in alternating order.
+	 * @param newElement The new element for the connection path (an EObject that represents either
+	 * an {@link EClass} or an {@link EReference} depending on the last element of '<em>pathElements</em>'.
+	 * @param targetSectionRegistry The registry of created target section instances that this ModelConnectionPath is 
+	 * associated with.
+	 * @param reverse '<em>true</em>' means that the path specified by '<em>pathElements</em>' + '<em>newElement</em>'
+	 * denotes a path in inverse order (bottom-up instead of top-down). In this case, the order of the elements will be 
+	 * inverted to create a regular (top-down) path. 
+	 */
+	private ModelConnectionPath(final LinkedList<EObject> pathElements,
+			final EObject newElement,
+			final TargetSectionRegistry targetSectionRegistry,
+			final boolean reverse) {
+	
+		this.pathElements = new LinkedList<>();
+		this.pathElements.addAll(pathElements);
+		this.pathElements.add(newElement);
+		if (reverse) {
+			this.pathElements = getInvertedPathElementList();
+		}
+		this.targetSectionRegistry = targetSectionRegistry;
+	}
+
+	/**
+	 * This is the getter for the list of {@link #pathElements}.
+	 * 
+	 * @return The elements forming this path. 
+	 */
+	public LinkedList<EObject> getPathElements() {
+		return this.pathElements;
+	}
 
 	/**
 	 * This tries to determine a connection path betwenn a given '<em>container EClass</em>' (higher in the containment hierarchy)
@@ -81,14 +109,14 @@ public final class ModelConnectionPath {
 		pathStack.add(new Pair<>(containerClass, new LinkedList<EObject>()));
 
 		// iterate as long as every possible connection path has been found
-		while (pathStack.size() > 0 && !registry.isCancelled()) {
+		while (!pathStack.isEmpty() && !registry.isCancelled()) {
 
 			final Pair<EClass, LinkedList<EObject>> next = pathStack.iterator().next();
 
 			pathStack.remove(next);
 
 			// a possible connection path has been found
-			if (next.getLeft().equals(elementClass) && next.getRight().size() > 0) {
+			if (next.getLeft().equals(elementClass) && !next.getRight().isEmpty()) {
 
 				// add copy of path to possiblePaths
 				final ModelConnectionPath newSelf = new ModelConnectionPath(
@@ -103,8 +131,8 @@ public final class ModelConnectionPath {
 							.getRight()));
 				}
 
-				if (maxPathLength < 0
-						|| next.getRight().size() / 2 - 1 < maxPathLength) {
+				if (maxPathLength < 0 || next.getRight().size() / 2 - 1 < maxPathLength) {
+					
 					// detect loop
 					if (!next.getRight().contains(next.getLeft())
 							&& !next.getLeft().isAbstract()) {
@@ -145,14 +173,14 @@ public final class ModelConnectionPath {
 		pathStack.add(new Pair<>(pathStartClass,
 				new LinkedList<EObject>()));
 
-		while (pathStack.size() > 0 && !registry.isCancelled()) {
+		while (!pathStack.isEmpty() && !registry.isCancelled()) {
 			final Pair<EClass, LinkedList<EObject>> next = pathStack.iterator()
 					.next();
 			pathStack.remove(next);
 
 			// check if path to this MM-Class found
-			if (registry.getTargetClassInstances(next.getLeft()).size() > 0
-					&& next.getRight().size() > 0) {
+			if (!registry.getTargetClassInstances(next.getLeft()).isEmpty() && !next.getRight().isEmpty()) {
+				
 				// add copy of path to possiblePaths
 				final ModelConnectionPath newSelf = new ModelConnectionPath(
 						next.getRight(), next.getLeft(), registry, false);
@@ -167,8 +195,8 @@ public final class ModelConnectionPath {
 							.getRight()));
 				}
 
-				if (maxPathLength < 0
-						|| next.getRight().size() / 2 - 1 < maxPathLength) {
+				if (maxPathLength < 0 || next.getRight().size() / 2 - 1 < maxPathLength) {
+					
 					// detect loop
 					if (!next.getRight().contains(next.getLeft())
 							&& !next.getLeft().isAbstract()) {
@@ -209,83 +237,23 @@ public final class ModelConnectionPath {
 	public static List<ModelConnectionPath> findPathsWithMinimumCapacity(
 			final List<ModelConnectionPath> paths,
 			final EObject startInstance, final int minimumCapacity) {
-		final LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<>();
+		
+		final List<ModelConnectionPath> pathsToConsider = new LinkedList<>();
+		
 		for (final ModelConnectionPath p : paths) {
-			if (startInstance != null) {
-				if (!p.leadsToRootType(startInstance.eClass())) {
-					// only consider paths with the right start instance type
-					continue;
-				}
+			
+			if (startInstance != null && !p.leadsToRootType(startInstance.eClass())) {
+				// only consider paths with the right start instance type
+				continue;
 			}
 
 			final int capacity = p.getCapacity(startInstance);
-			if (capacity != 0) {
-				if (minimumCapacity != -1 && capacity >= minimumCapacity
-						|| capacity == -1) {
-					pathsToConsider.add(p);
-				}
+			if (capacity != 0 && (minimumCapacity != -1 && capacity >= minimumCapacity || capacity == -1)) {
+				pathsToConsider.add(p);
 			}
 		}
+		
 		return pathsToConsider;
-	}
-
-	/**
-	 * Private Constructor to be used when spawning new Paths during path
-	 * search. Clones the path and appends new element.
-	 *
-	 * @param pathElements The existing elements of the connection path (EObjects representing
-	 * {@link EClass EClasses} and {@link EReference EReferences} in alternating order.
-	 * @param newElement The new element for the connection path (an EObject that represents either
-	 * an {@link EClass} or an {@link EReference} depending on the last element of '<em>pathElements</em>'.
-	 * @param targetSectionRegistry The registry of created target section instances that this ModelConnectionPath is 
-	 * associated with.
-	 * @param reverse '<em>true</em>' means that the path specified by '<em>pathElements</em>' + '<em>newElement</em>'
-	 * denotes a path in inverse order (bottom-up instead of top-down). In this case, the order of the elements will be 
-	 * inverted to create a regular (top-down) path. 
-	 */
-	private ModelConnectionPath(final LinkedList<EObject> pathElements,
-			final EObject newElement,
-			final TargetSectionRegistry targetSectionRegistry,
-			final boolean reverse) {
-
-		this.pathElements = new LinkedList<>();
-		this.pathElements.addAll(pathElements);
-		this.pathElements.add(newElement);
-		if (reverse) {
-			this.pathElements = getInvertedPathElementList();
-		}
-		this.targetSectionRegistry = targetSectionRegistry;
-	}
-
-	/**
-	 * Private Constructor to be used when spawning new Paths during path
-	 * search. Simply clones the path.
-	 *
-	 * @param pathElements The existing elements of the connection path (EObjects representing
-	 * {@link EClass EClasses} and {@link EReference EReferences} in alternating order.
-	 * @param targetSectionRegistry The registry of created target section instances that this ModelConnectionPath is 
-	 * associated with.
-	 */
-	private ModelConnectionPath(final LinkedList<EObject> pathElements,
-			final TargetSectionRegistry targetSectionRegistry) {
-
-		this.pathElements = new LinkedList<>();
-		this.pathElements.addAll(pathElements);
-		this.targetSectionRegistry = targetSectionRegistry;
-
-	}
-
-	/**
-	 * Private Constructor to be used to create an empty path.
-	 *
-	 * @param targetSectionRegistry The registry of created target section instances that this ModelConnectionPath is 
-	 * associated with.
-	 */
-	private ModelConnectionPath(
-			final TargetSectionRegistry targetSectionRegistry) {
-		pathElements = new LinkedList<>();
-		this.targetSectionRegistry = targetSectionRegistry;
-
 	}
 
 	/**
@@ -297,6 +265,7 @@ public final class ModelConnectionPath {
 	 */
 	@Override
 	public boolean equals(final Object obj) {
+		
 		if (obj instanceof ModelConnectionPath) {
 			return ((ModelConnectionPath) obj).pathElements.equals(pathElements);
 		} else {
@@ -377,6 +346,7 @@ public final class ModelConnectionPath {
 	 * @return The inverted list of path elements.
 	 */
 	private LinkedList<EObject> getInvertedPathElementList() {
+		
 		final LinkedList<EObject> inverted = new LinkedList<>();
 		final ListIterator<EObject> it = pathElements.listIterator(pathElements.size());
 
@@ -427,8 +397,7 @@ public final class ModelConnectionPath {
 			final EObject rootObject,
 			final Collection<EObjectWrapper> objectsToConnect) {
 
-		return instantiateMissingPath(getInvertedPathElementList(),
-				rootObject, new LinkedList<>(objectsToConnect));
+		return instantiateMissingPath(getInvertedPathElementList(), rootObject, new LinkedList<>(objectsToConnect));
 	}
 
 	/**
@@ -496,19 +465,17 @@ public final class ModelConnectionPath {
 
 				final EClass classToCreate = (EClass) pathCopy.get(0);
 
-				while (objectsToConnect.size() > 0) {
+				while (!objectsToConnect.isEmpty()) {
+					
 					final EObject instance = classToCreate.getEPackage()
 							.getEFactoryInstance().create(classToCreate);
-					// instance.~description="Class '" + newSelf.first.name +
-					// "' (created to link targetSection):"; TODO seee above
 					targetInstL.add(instance);
 					newTarget.clear();// shouldn't be neccesssary because eSet will clear this
 					newTarget.addAll(targetInstL);
 					targetSectionRegistry.addClassInstance(newTarget.getLast());
 					rootObject.eSet(ref, newTarget);
 
-					objectsToConnect = instantiateMissingPath(pathCopy, instance,
-							objectsToConnect);
+					objectsToConnect = instantiateMissingPath(pathCopy, instance, objectsToConnect);
 				}
 
 				return objectsToConnect;
@@ -517,7 +484,7 @@ public final class ModelConnectionPath {
 
 				// There is enough place to connect all objects
 				//
-				if((ref.getUpperBound() > 1 && (ref.getUpperBound() - (targetInst == null ? 0 : ((EList<EObject>) targetInst).size())) >= objectsToConnect.size())) {
+				if(ref.getUpperBound() > 1 && (ref.getUpperBound() - (targetInst == null ? 0 : ((EList<EObject>) targetInst).size())) >= objectsToConnect.size()) {
 
 					/*
 					 * it is absolutely necessary to copy targetInst, since targetInst will be cleared by
@@ -532,11 +499,10 @@ public final class ModelConnectionPath {
 
 					final EClass classToCreate = (EClass) pathCopy.get(0);
 
-					while (objectsToConnect.size() > 0) {
-						final EObject instance = classToCreate.getEPackage()
-								.getEFactoryInstance().create(classToCreate);
-						// instance.~description="Class '" + newSelf.first.name +
-						// "' (created to link targetSection):"; TODO seee above
+					while (!objectsToConnect.isEmpty()) {
+						
+						final EObject instance = classToCreate.getEPackage().getEFactoryInstance().create(classToCreate);
+						
 						targetInstL.add(instance);
 						newTarget.clear();// shouldn't be neccesssary because eSet will clear this
 						newTarget.addAll(targetInstL);
@@ -602,7 +568,8 @@ public final class ModelConnectionPath {
 
 				// There is enough place to connect all objects
 				//
-				if((ref.getUpperBound() > 1 && (ref.getUpperBound() - (targetInst == null ? 0 : ((EList<EObject>) targetInst).size())) >= objectsToConnect.size())) {
+				if(ref.getUpperBound() > 1 && (ref.getUpperBound() - (targetInst == null ? 0 : ((EList<EObject>) targetInst).size())) >= objectsToConnect.size()) {
+					
 					final LinkedList<EObject> newTarget = new LinkedList<>();// it
 					/*
 					 * is absolutely neccessary to copy targetInst, since targetInst
@@ -637,30 +604,21 @@ public final class ModelConnectionPath {
 	 * This can be used to check if this path leads to the given {@link EClass} 'root' (if 'root' denotes
 	 * the container class of this path).
 	 * 
-	 * @param root
-	 * @return true if path leads to the specified class
+	 * @param root The {@link EClass} that shall be checked as root of this path.
+	 * @return '<em><b>true</b></em>' if this path leads to the specified EClass.
 	 */
 	boolean leadsToRootType(final EClass root) {
-		if (pathElements.size() > 0) {
-			if (pathElements.getLast() instanceof EClass) {
-
-				return ((EClass) pathElements.getLast()).equals(root);
-
-			} else {
-				return false;
-			}
-
-		} else {
-			return false;
-		}
+		
+		return !pathElements.isEmpty() && ((EClass) pathElements.getLast()).equals(root);
 	}
 
 	/**
-	 * This return the number of elements in the path / length of the path.
+	 * This return the number of elements in the path, i.e. length of the path.
 	 * 
 	 * @return The number of elements in the path.
 	 */
 	public int size() {
+		
 		return pathElements.size();
 	}
 
@@ -671,27 +629,30 @@ public final class ModelConnectionPath {
 	 */
 	@Override
 	public String toString() {
-		String path = "";
+		
+		StringBuilder stringBuilder = new StringBuilder();
 
 		final ListIterator<EObject> it = pathElements.listIterator(pathElements.size());
 
 		while (it.hasPrevious()) {
+			
 			final EObject prev = it.previous();
 			if (prev instanceof EClass) {
-				path += ((EClass) prev).getName();
+				
+				stringBuilder.append(((EClass) prev).getName());
+				
 			} else if (prev instanceof EReference) {
+				
 				// RegEx copied from:
 				// https://stackoverflow.com/questions/1097901/regular-expression-split-string-by-capital-letter-but-ignore-tla
-				path += "..."
-						+ ((EReference) prev)
-						.getName()
-						.replaceAll(
-								"((?<=\\p{Ll})\\p{Lu}|\\p{Lu}(?=\\p{Ll}))",
-								" $1").toLowerCase().trim() + "...";
+				stringBuilder.
+					append("...").
+					append(((EReference) prev).getName().replaceAll("((?<=\\p{Ll})\\p{Lu}|\\p{Lu}(?=\\p{Ll}))", " $1").toLowerCase().trim()).
+					append("...");
 			}
 		}
 
-		return path;
+		return stringBuilder.toString();
 	}
 
 }

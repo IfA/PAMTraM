@@ -71,30 +71,24 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
@@ -1395,233 +1389,6 @@ public class GenericTransformationRunner {
 		writePamtramMessage("Instantiating libraryEntries for selected mappings.");
 		monitor.subTask("Instantiating libraryEntries for selected mappings.");
 		return targetSectionInstantiator.instantiateLibraryEntries(targetModelRegistry, targetLibraryContextDescriptor);
-	}
-
-	/**
-	 * Write MappingHint values of Hints of ExportedMappingHintGroups to a
-	 * separate storage, and remove the values from the MappingInstanceStorages.
-	 *
-	 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
-	 *
-	 * @param sourceSectionMapper
-	 * @param selectedMappings
-	 * @return
-	 */
-	@Deprecated
-	private HintValueStorage handleGlobalVarsAndExportedMappings(
-			final de.mfreund.gentrans.transformation.SourceSectionMatcher sourceSectionMapper,
-			final LinkedList<MappingInstanceStorage> selectedMappings) {
-
-		consoleStream.println("Getting hint values of exported HintGroups, checking MappingHintImporters, adding GlobalVariables and FixedValues to hints");
-		//		final AttributeMappingHintValueMap exportedAttributeMappingHints = new AttributeMappingHintValueMap();
-		//		final CardinalityMappingHintValueMap exportedCardinalityMappingHints = new CardinalityMappingHintValueMap();
-		//		final MappingInstanceSelectorHintValueMap exportedMappingInstanceSelectors= new MappingInstanceSelectorHintValueMap();
-		final HintValueStorage exportedHintValues = new HintValueStorage();
-
-		for (final MappingInstanceStorage selMap : selectedMappings) {
-
-			/*
-			 * First, we collect the hints from all HintGroups. 
-			 */
-			ArrayList<MappingHintBaseType> mappingHints = new ArrayList<>();
-			for (final MappingHintGroupType g : selMap.getMapping()
-					.getActiveMappingHintGroups()) {
-
-				if (g instanceof ExportedMappingHintGroup) {
-					for (final MappingHint h : g.getMappingHints()) {
-						/*
-						 * this works because the SourceSectionMapper guarantees
-						 * that a key exists for each MappingHint of the Mapping
-						 */
-						Object exportedHint = selMap.getHintValues().removeHint(h);
-						exportedHintValues.addHintValues(h, exportedHint);
-					}
-				}
-
-				mappingHints.addAll(g.getMappingHints());
-				if (g instanceof MappingHintGroup) {
-					mappingHints.add(((MappingHintGroup) g).getModelConnectionMatcher());
-
-				}
-			}
-			for (final MappingHintGroupImporter ig : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
-
-				mappingHints.addAll(ig.getMappingHints());
-			}
-
-
-			/*
-			 * Now, we add the hint values for GlobalVariables and FixedValues for all collected hints.
-			 */
-			for (final MappingHintBaseType h : mappingHints) {
-
-				if (h instanceof AttributeMapping) {
-					for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
-							.getSourceAttributeMappings()) {
-
-						SourceSectionAttribute att = null;
-						String val = null;
-
-						if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
-								((GlobalAttributeImporter) i).getGlobalAttribute())) {									
-							att = i.getSourceAttribute();
-							val = sourceSectionMapper.getGlobalAttributeValues().get(
-									((GlobalAttributeImporter) i).getGlobalAttribute());
-
-						} else if (i instanceof FixedValue) {
-							val = ((FixedValue) i).getValue();
-
-						} else {
-							continue;
-
-						}
-
-						/*
-						 * If there does not yet exists any hint value for this AttributeMapping (e.g., if no 
-						 * (External)AttributeMappingSourceElement exists for this hint), we need to initialize the
-						 * map of hint values manually.
-						 */
-						if(selMap.getHintValues().getHintValues((AttributeMapping) h).isEmpty()) {
-							selMap.getHintValues().getAttributeMappingHintValues().addHintValue(
-									(AttributeMapping) h, new LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>());
-						}
-
-						for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) h)) {
-							m.put(i, new AttributeValueRepresentation(att, val));
-						}
-					}
-				} else if (h instanceof MappingInstanceSelector) {
-					if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-						final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
-								.getMatcher();
-						for (final AttributeMatcherSourceInterface i : m.getSourceAttributes()) {
-
-							SourceSectionAttribute att = null;
-							String val = null;
-
-							if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
-									((GlobalAttributeImporter) i)
-									.getGlobalAttribute())) {
-								att = i.getSourceAttribute();
-								val = sourceSectionMapper.getGlobalAttributeValues().get(
-										((GlobalAttributeImporter) i).getGlobalAttribute());
-
-							} else if (i instanceof FixedValue) {
-								val = ((FixedValue) i).getValue();
-
-							} else {
-								continue;
-
-							}
-
-							/*
-							 * If there does not yet exists any hint value for this MappingInstanceSelector (e.g., if no 
-							 * (External)AttributeMatcherSourceElement exists for this hint), we need to initialize the
-							 * map of hint values manually.
-							 */
-							if(selMap.getHintValues().getHintValues((MappingInstanceSelector) h).isEmpty()) {
-								selMap.getHintValues().getMappingInstanceSelectorHintValues().addHintValue(
-										(MappingInstanceSelector) h, new LinkedHashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation>());
-							}
-
-							for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((MappingInstanceSelector) h)) {
-								o.put(i, new AttributeValueRepresentation(att, val));
-							}
-						}
-					}
-				} else if (h instanceof ModelConnectionHint) {
-					for (final ModelConnectionHintSourceInterface i : ((ModelConnectionHint) h)
-							.getSourceElements()) {
-
-						SourceSectionAttribute att = null;
-						String val = null;
-
-						if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
-								((GlobalAttributeImporter) i).getGlobalAttribute())) {
-
-							att = i.getSourceAttribute();
-							val = sourceSectionMapper.getGlobalAttributeValues().get(
-									((GlobalAttributeImporter) i).getGlobalAttribute());
-
-						} else if (i instanceof FixedValue) {
-							val = ((FixedValue) i).getValue();
-
-						} else {
-							continue;
-
-						}
-
-						/*
-						 * If there does not yet exists any hint value for this ModelConnectionHint (e.g., if no 
-						 * (External)ModelConnectionHintSourceElement exists for this hint), we need to initialize the
-						 * map of hint values manually.
-						 */
-						if(selMap.getHintValues().getHintValues((ModelConnectionHint) h).isEmpty()) {
-							selMap.getHintValues().getModelConnectionHintValues().addHintValue(
-									(ModelConnectionHint) h, new LinkedHashMap<ModelConnectionHintSourceInterface, AttributeValueRepresentation>());
-						}
-
-						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((ModelConnectionHint) h)) {
-							o.put(i, new AttributeValueRepresentation(att, val));
-						}
-					}
-				}
-			}
-
-			/*
-			 * additional MappingHints for HintImporters are necessary but must
-			 * be restricted to a cardinality of 0..1
-			 */
-			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
-				for (final MappingHintType h : g.getMappingHints()) {
-					if (h instanceof AttributeMapping && selMap.getHintValues().getHintValues((AttributeMapping) h).size() > 1) {
-						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
-								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
-						/*
-						 * TODO OCL? (possible? => Even sections with card. type
-						 * of ONE can have more than one hint value if they are
-						 * part of a vc-section. However, we cannot restrict the
-						 * parent sections to non-vc, argh...can we?)
-						 */
-						selMap.getHintValues().setHintValues((AttributeMapping) h, null);
-					} else if (h instanceof MappingInstanceSelector && selMap.getHintValues().getHintValues((MappingInstanceSelector) h).size() > 1) {
-						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
-								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
-						/*
-						 * TODO OCL? (possible? => Even sections with card. type
-						 * of ONE can have more than one hint value if they are
-						 * part of a vc-section. However, we cannot restrict the
-						 * parent sections to non-vc, argh...can we?)
-						 */
-						selMap.getHintValues().setHintValues((MappingInstanceSelector) h, null);
-					} else if (h instanceof CardinalityMapping && selMap.getHintValues().getHintValues((CardinalityMapping) h).size() > 1) {
-						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
-								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
-						/*
-						 * TODO OCL? (possible? => Even sections with card. type
-						 * of ONE can have more than one hint value if they are
-						 * part of a vc-section. However, we cannot restrict the
-						 * parent sections to non-vc, argh...can we?)
-						 */
-						selMap.getHintValues().setHintValues((CardinalityMapping) h, null);
-					} else if (h instanceof MappedAttributeValueExpander && selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).size() > 1) {
-						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
-								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
-						/*
-						 * TODO OCL? (possible? => Even sections with card. type
-						 * of ONE can have more than one hint value if they are
-						 * part of a vc-section. However, we cannot restrict the
-						 * parent sections to non-vc, argh...can we?)
-						 */
-						selMap.getHintValues().setHintValues((MappedAttributeValueExpander) h, null);
-					}
-				}
-			}
-		}
-
-		return exportedHintValues;
 	}
 
 	/**

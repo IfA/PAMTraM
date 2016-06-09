@@ -84,9 +84,8 @@ public class TargetSectionRegistry extends CancellableElement {
 	 * @param attrValRegistry The {@link AttributeValueRegistry} that keeps track of already used 
 	 * values for target attributes.
 	 */
-	TargetSectionRegistry(final MessageConsoleStream consoleStream,
-			final AttributeValueRegistry attrValRegistry,
-			final EPackage targetMetaModel) {
+	private TargetSectionRegistry(final MessageConsoleStream consoleStream,
+			final AttributeValueRegistry attrValRegistry) {
 		
 		this.consoleStream = consoleStream;
 		this.targetClassInstanceRegistry = new LinkedHashMap<>();
@@ -98,10 +97,43 @@ public class TargetSectionRegistry extends CancellableElement {
 		this.containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
 		this.attrValRegistry = attrValRegistry;
 		this.canceled = false;
+	}
 
+	/**
+	 * This creates an instance for a single target meta-model.
+	 *
+	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param attrValRegistry The {@link AttributeValueRegistry} that keeps track of already used 
+	 * values for target attributes.
+	 * @param targetMetaModel The {@link EPackage} representing the target meta-model.
+	 */
+	public TargetSectionRegistry(final MessageConsoleStream consoleStream,
+			final AttributeValueRegistry attrValRegistry,
+			final EPackage targetMetaModel) {
+		
+		this(consoleStream, attrValRegistry);
+		
 		analyseTargetMetaModel(targetMetaModel);
 	}
 	
+
+	/**
+	 * This creates an instance for multiple target meta-models.
+	 *
+	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param attrValRegistry The {@link AttributeValueRegistry} that keeps track of already used 
+	 * values for target attributes.
+	 * @param targetMetaModels The list of {@link EPackage EPackages} representing the target meta-models.
+	 */
+	public TargetSectionRegistry(final MessageConsoleStream consoleStream,
+			final AttributeValueRegistry attrValRegistry,
+			final List<EPackage> targetMetaModels) {
+		
+		this(consoleStream, attrValRegistry);
+		
+		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
+	}
+
 	/**
 	 * Register a new instance.
 	 * <p />

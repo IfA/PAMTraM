@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.ui,
  de.mfreund.pamtram.model.edit;bundle-version="1.6.0",
  org.eclipse.ui.ide,
  org.eclipse.emf.ecore,
- de.mfreund.pamtram.transformation.model;bundle-version="1.0.2"
+ de.mfreund.pamtram.transformation.model;bundle-version="1.0.2",
+ de.tud.et.ifa.agtele.eclipse.commons
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.common.util,

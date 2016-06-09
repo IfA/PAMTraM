@@ -18,7 +18,7 @@ import de.mfreund.gentrans.transformation.util.Pair;
  * this holds a list that of EObjects that alternately represent an {@link EClass} and an {@link EReference} and that form the path
  * <b>upward</b> in the containment hierarchy. Additionally, a bunch of methods that are provided that allow handling this List.
  *
- * Objects of this class can only be instantiated by the static methods {@link #findPathsWithMinimumCapacity(LinkedList, EObject, int) 
+ * Objects of this class can only be instantiated by the static methods {@link #findPathsWithMinimumCapacity(List, EObject, int) 
  * findPathsWithMinimumCapacity(...)}, {@link #findPathsFromContainerToClassToConnect(TargetSectionRegistry, EClass, EClass, int) 
  * findPathsFromContainerToClassToConnect(...)}, and {@link #findPathsToInstances(TargetSectionRegistry, EClass, int) 
  * findPathsToInstances(...)} for finding paths.
@@ -206,8 +206,8 @@ public final class ModelConnectionPath {
 	 * @param minimumCapacity The minimumCapacity that has to be satisfied by the paths.
 	 * @return The subset of the given paths that satisfies the minimumCapacity.
 	 */
-	public static LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
-			final LinkedList<ModelConnectionPath> paths,
+	public static List<ModelConnectionPath> findPathsWithMinimumCapacity(
+			final List<ModelConnectionPath> paths,
 			final EObject startInstance, final int minimumCapacity) {
 		final LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<>();
 		for (final ModelConnectionPath p : paths) {

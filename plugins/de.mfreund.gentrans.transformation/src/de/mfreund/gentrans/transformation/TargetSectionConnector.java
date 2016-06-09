@@ -259,7 +259,7 @@ public class TargetSectionConnector extends CancellableElement {
 					 * element. This might lead to us asking a lot of questions
 					 * to the user.
 					 */
-					final LinkedList<ModelConnectionPath> pathSet = targetSectionRegistry
+					final List<ModelConnectionPath> pathSet = targetSectionRegistry
 							.getConnections(c, rootClass, maxPathLength);
 					if (pathSet.size() < 1) {
 						addToTargetModelRoot(unlinkeableElements.get(c).get(
@@ -358,7 +358,7 @@ public class TargetSectionConnector extends CancellableElement {
 		/*
 		 * A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 		 */
-		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<>();
+		List<ModelConnectionPath> pathsToConsider = new LinkedList<>();
 		if (restrictContainer) {
 			for (final EClass c : containerClasses) {
 				pathsToConsider.addAll(
@@ -745,7 +745,7 @@ public class TargetSectionConnector extends CancellableElement {
 			/*
 			 * A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 			 */
-			LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<>();
+			List<ModelConnectionPath> pathsToConsider = new LinkedList<>();
 			if (otherPathsNeeded) {
 				/*
 				 * Find all possible paths to concider that satisfy the minimum capacity.

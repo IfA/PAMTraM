@@ -449,8 +449,162 @@ class TargetSectionInstantiator extends CancellableElement {
 		 * we don't need to reference the EObjects, since their order
 		 * doesn't change while we are using this
 		 */
-		final List<EObjectWrapper> markedForDelete = instantiateTargetSectionAttributes(targetSectionClass, mappingGroup, mappingHints, hintValues,
-				sectionAttributeValues, cardinality, instances);
+		final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
+		final LinkedList<EObjectWrapper> markedForDelete = new LinkedList<>();
+
+		EList<TargetSectionAttribute> attributes = targetSectionClass.getAttributes();
+
+		if(targetSectionClass.isLibraryEntry()) {
+			// the metamodelsection is a library entry, thus there must not be any attributes as direct children of it
+			assert attributes.isEmpty();
+			attributes = new BasicEList<>();
+			// however, we want to perform the calculation of the values affected by AttributeParameters
+			LibraryEntry libEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+
+			for (LibraryParameter<?> parameter : libEntry.getParameters()) {
+				if(parameter instanceof AttributeParameter) {
+					attributes.add(((AttributeParameter) parameter).getAttribute());
+				}
+			}
+		}
+
+		for (final TargetSectionAttribute attr : attributes) {
+			attributeValues.put(attr, new LinkedList<String>());
+
+			MappingHint hintFound = null;
+			// look for an attribute mapping
+			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
+
+			for (final MappingHint hint : mappingHints) {
+				if (hint instanceof AttributeMapping) {
+					if (((AttributeMapping) hint).getTarget().equals(attr)) {
+
+						hintFound = hint;
+						if (hintValues.getHintValues((AttributeMapping) hint).size() == 1) {
+							attrHintValues = new LinkedList<>();
+							for (int i = 0; i < cardinality; i++) {
+								attrHintValues.add(hintValues.getHintValues((AttributeMapping) hint).getFirst());
+							}
+							break;
+							// cardinality okay?
+						} else if (hintValues.getHintValues((AttributeMapping) hint).size() >= cardinality) {
+							attrHintValues = hintValues.getHintValues((AttributeMapping) hint);
+							break;
+						} else {
+							consoleStream.println("Cardinality mismatch (expected: " + cardinality + ", got :"
+									+ hintValues.getHintValues((AttributeMapping) hint).size() + "): " + hint.getName()
+									+ " for Mapping " + ((Mapping) mappingGroup.eContainer()).getName() + " (Group: " + mappingGroup.getName()
+									+ ") Maybe check Cardinality of Metamodel section?");
+							return null;
+						}
+					}
+				}
+			}
+			// create attribute values
+			for(int i=0; i<instances.size(); i++) {
+				EObjectWrapper instance = instances.get(i);
+				String attrValue = calculator.calculateAttributeValue(attr, hintFound, attrHintValues);
+				
+				if(attrValue == null) {
+					/*
+					 * Consult the specified resolving strategy to resolve the ambiguity.				
+					 */
+					try {
+						consoleStream.println("[Ambiguity] Resolve expanding ambiguity...");
+						List<String> resolved = ambiguityResolvingStrategy.expandingSelectAttributeValue(Arrays.asList((String) null), attr, instance.getEObject());
+						consoleStream.println("[Ambiguity] ...finished.\n");
+						attrValue = resolved.get(0);
+					} catch (Exception e) {
+						consoleStream.println(e.getMessage());
+						canceled = true;
+						return null;
+					}
+				}
+
+				// Check if value is unique and was already used, mark
+				// instance for deletion if necessary
+				boolean attrValUsedInSection = false;
+				if (!sectionAttributeValues.containsKey(targetSectionClass
+						.getEClass())) {
+					sectionAttributeValues.put(
+							targetSectionClass.getEClass(),
+							new HashMap<EAttribute, Set<String>>());
+				}
+				final Map<EAttribute, Set<String>> secAttrValsForEClass = sectionAttributeValues
+						.get(targetSectionClass.getEClass());
+				if (attr instanceof ActualAttribute) {
+					final EAttribute eAttr = ((ActualAttribute) attr)
+							.getAttribute();
+					if (!secAttrValsForEClass.containsKey(eAttr)) {
+						secAttrValsForEClass.put(eAttr,
+								new HashSet<String>());
+					} else {
+						attrValUsedInSection = secAttrValsForEClass.get(
+								eAttr).contains(attrValue);
+					}
+					secAttrValsForEClass.get(eAttr).add(attrValue);
+				}
+				if (attr.isUnique()
+						&& (instance.attributeValueExists(attr, attrValue)
+								|| attributeValues.get(attr).contains(
+										attrValue) || attrValUsedInSection)) {
+					/*
+					 * we can only delete this at the end, or else the
+					 * attributeHint values won't fit anymore
+					 */
+					markedForDelete.add(instance);
+				}
+				// save attr value in Map
+				attributeValues.get(attr).add(attrValue);
+
+			}
+		}
+
+		/*
+		 * Now that we know which instances will be deleted we set (and
+		 * register) the actual attribute values of the instances that will
+		 * not get deleted
+		 */
+		for (final EObjectWrapper instance : instances) {
+			final boolean noDelete = !markedForDelete.contains(instance);
+			for (final TargetSectionAttribute attr : attributeValues
+					.keySet()) {
+				if (noDelete) {
+					final String setValue = attributeValues.get(attr).remove(0);
+					try {
+
+						// finally, we can set the value of the attribute
+						if(!targetSectionClass.isLibraryEntry()) {
+							/*
+							 * setting an Attribute causes the value to be saved
+							 * in the attribute value registry
+							 */
+							instance.setAttributeValue(attr, setValue);
+						} else {
+							/* 
+							 * for library entries, we cannot simply set the value as the attribute we are handling is not part of the targetSectionClass;
+							 * instead we want to specify the value as 'new value' for the affected AttributeParameter
+							 */
+							LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(instance).getLibraryEntry();
+							LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+							AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(attr.eContainer()));
+							@SuppressWarnings("unchecked")
+							AbstractAttributeParameter<EObject> originalParam = (AbstractAttributeParameter<EObject>) attrParam.getOriginalParameter();
+							originalParam.setNewValue(setValue);
+						}
+
+
+					} catch (final IllegalArgumentException e) {
+						consoleStream.println("Could not set Attribute " + attr.getName() + " of target section Class "
+								+ targetSectionClass.getName() + " in target section " + targetSectionClass.getContainingSection()
+								.getName() + ".\nThe problematic value was: '" + setValue + "'.");
+					}
+				} else {
+					attributeValues.get(attr).remove(0);
+				}
+			}
+
+		}
 
 		// recursively create containment references
 		for (final TargetSectionReference ref : targetSectionClass

@@ -788,7 +788,7 @@ public class GenericTransformationRunner {
 		targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,
 				matchingResult.getGlobalAttributeValues(),
-				attributeValuemodifier, globalValues, consoleStream, this, ambiguityResolvingStrategy);
+				attributeValuemodifier, globalValues, consoleStream, ambiguityResolvingStrategy);
 		objectsToCancel.add(targetSectionInstantiator);
 
 		/*
@@ -811,12 +811,11 @@ public class GenericTransformationRunner {
 					/*
 					 * Instantiate the target section.
 					 */
-					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection = 
+					final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
 							targetSectionInstantiator.instantiateTargetSectionFirstPass(
 									g.getTargetMMSection(),
 									(MappingHintGroup) g, selMap.getMappingHints(g),
-									selMap.getHintValues(),
-									selMap.getMapping().getName());
+									selMap.getHintValues());
 
 					if (instancesBySection == null) {
 						if (g.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
@@ -1007,11 +1006,10 @@ public class GenericTransformationRunner {
 								// ImportedMappingHints
 							}
 						}
-						final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection = 
+						final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
 								targetSectionInstantiator.instantiateTargetSectionFirstPass(
 										expGrp.getTargetMMSection(), g, hints,
-										selMap.getHintValues(),
-										selMap.getMapping().getName());
+										selMap.getHintValues());
 						if (instancesBySection == null) {
 							if (expGrp.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
 								consoleStream.println("Error instantiating target section '" + expGrp.getTargetMMSection()

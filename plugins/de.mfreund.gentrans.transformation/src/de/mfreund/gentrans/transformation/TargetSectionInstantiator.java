@@ -10,11 +10,9 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -71,7 +69,7 @@ import pamtram.util.GenLibraryManager;
  * @author mfreund
  */
 class TargetSectionInstantiator extends CancellableElement {
-	
+
 	private static final String RESOLVE_EXPANDING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
 
 	private static final String RESOLVE_EXPANDING_AMBIGUITY_STARTED = "[Ambiguity] Resolve expanding ambiguity...";
@@ -87,12 +85,12 @@ class TargetSectionInstantiator extends CancellableElement {
 	 * target section registry used when instantiating classes
 	 */
 	private final TargetSectionRegistry targetSectionRegistry;
-	
+
 	/**
 	 * used when setting attribute values
 	 */
 	private final AttributeValueRegistry attributeValueRegistry;
-	
+
 	/**
 	 * used to write console output
 	 */
@@ -145,7 +143,7 @@ class TargetSectionInstantiator extends CancellableElement {
 			final List<FixedValue> globalVals,
 			final MessageConsoleStream consoleStream,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
-		
+
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.attributeValueRegistry = attributeValueRegistry;
 		this.consoleStream = consoleStream;
@@ -156,22 +154,22 @@ class TargetSectionInstantiator extends CancellableElement {
 		this.libEntryInstantiatorMap = new HashMap<>();
 
 		Map<String, String> globalValues = new HashMap<>();
-		
+
 		// add GlobalAttributes
 		globalValues.putAll(globalVarValues.entrySet().stream().collect(
-				Collectors.toMap(e -> (String) e.getKey().getName(), e -> e.getValue())));
-		
+				Collectors.toMap(e -> e.getKey().getName(), e -> e.getValue())));
+
 		// add GlobalValues
 		//
 		globalValues.putAll(globalVals.stream().filter(g -> g.getName() != null).collect(
 				Collectors.toMap(FixedValue::getName, FixedValue::getValue)));
-		
+
 		/*
 		 * only use global values that represent doubles
 		 */
 		Map<String, Double> globalDoubleValues = new HashMap<>();
 		globalValues.entrySet().stream().forEach(globalValueEntry -> {
-			
+
 			try {
 				/*
 				 * We make use of the ExpressionBuilder as 'String.valueOf(double)' doesn't support
@@ -211,40 +209,40 @@ class TargetSectionInstantiator extends CancellableElement {
 			final Collection<MappingHint> hints,
 			final HintValueStorage hintValues,
 			final AttributeMapping oldSelectedHint) {
-		
+
 		AttributeMapping selectedHint = oldSelectedHint;
-		
+
 		// check attributes
 		for (final TargetSectionAttribute attr : targetSectionClass.getAttributes()) {
-			
+
 			for (final MappingHint hint : hints) {
 				if (hint instanceof AttributeMapping && ((AttributeMapping) hint).getTarget().equals(attr)) {
-	
+
 					if (selectedHint == null || hintValues.getHintValues((AttributeMapping) hint).isEmpty()) {
-						
+
 						if (hintValues.getHintValues((AttributeMapping) hint).isEmpty()) {
 							return null;// there needs to be at least one
 							// value for each attributeHint
 						} else {
 							selectedHint = (AttributeMapping) hint;
 						}
-						
+
 					} else if (hintValues.getHintValues((AttributeMapping) hint).size() > hintValues.getHintValues(selectedHint).size()) {
-						
+
 						selectedHint = (AttributeMapping) hint;
 					}
 				}
 			}
 		}
-	
+
 		// check references
 		for (final TargetSectionReference ref : targetSectionClass.getReferences()) {
-			
+
 			for (final TargetSectionClass val : ref.getValuesGeneric()) {
 				if (val.getCardinality().equals(CardinalityType.ONE)) {
-					
+
 					final AttributeMapping hint = searchAttributeMapping(val, hints, hintValues, selectedHint);
-					
+
 					if (hint == null && selectedHint != null) {
 						return null;
 					} else {
@@ -253,7 +251,7 @@ class TargetSectionInstantiator extends CancellableElement {
 				}
 			}
 		}
-	
+
 		return selectedHint;
 	}
 
@@ -269,10 +267,10 @@ class TargetSectionInstantiator extends CancellableElement {
 	private void addValueToReference(
 			final TargetSectionNonContainmentReference ref,
 			final EObject target, final EObject source) {
-		
+
 		if (ref.getEReference().getUpperBound() == 1) {
 			if (source.eIsSet(ref.getEReference())) {
-				
+
 				consoleStream.println("More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
 						+ ref.getName()
 						+ "' in the target section '"
@@ -282,9 +280,9 @@ class TargetSectionInstantiator extends CancellableElement {
 			} else {
 				source.eSet(ref.getEReference(), target);
 			}
-			
+
 		} else {
-			
+
 			@SuppressWarnings("unchecked")
 			final EList<EObject> oldRefs = (EList<EObject>) source.eGet(ref.getEReference());
 			final LinkedList<EObject> newRefs = new LinkedList<>();
@@ -296,7 +294,7 @@ class TargetSectionInstantiator extends CancellableElement {
 
 		}
 	}
-	
+
 	/**
 	 * This creates a link from the given {@link EObject source element} to the given list of {@link EObject target elements}
 	 * via the non-containment reference specified by the given {@link TargetSectionNonContainmentReference}.
@@ -309,22 +307,22 @@ class TargetSectionInstantiator extends CancellableElement {
 	private void addValuesToReference(
 			final TargetSectionNonContainmentReference ref,
 			final List<EObject> targets, final EObject source) {
-		
+
 		if (ref.getEReference().getUpperBound() == 1) {
 			if(targets.size() > 1) {
-				
+
 				consoleStream.println("More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
 						+ ref.getName()
 						+ "' in the target section '"
 						+ ref.getContainingSection()
 						+ "Please check your mapping model.");
 			} else {
-				
+
 				addValueToReference(ref, targets.get(0), source);
 			}
-			
+
 		} else {
-			
+
 			@SuppressWarnings("unchecked")
 			final EList<EObject> oldRefs = (EList<EObject>) source.eGet(ref.getEReference());
 			final LinkedList<EObject> newRefs = new LinkedList<>();
@@ -360,23 +358,23 @@ class TargetSectionInstantiator extends CancellableElement {
 			final InstantiableMappingHintGroup mappingGroup,
 			final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues) {
-	
+
 		// This will be filled as we iterate through the TargetSection and will be returned in the end
 		//
 		final Map<TargetSectionClass, List<EObjectWrapper>> instBySection = new LinkedHashMap<>();
-		
+
 		/*
 		 * Now, perform the first-run instantiation.
 		 */
 		if (instantiateTargetSectionFirstPass(targetSection, mappingGroup,
 				mappingHints, hintValues, instBySection,
 				new HashMap<EClass, Map<EAttribute, Set<String>>>()) != null) {
-			
+
 			return instBySection;
 		} else {
 			return null;
 		}
-	
+
 	}
 
 	/**
@@ -412,19 +410,19 @@ class TargetSectionInstantiator extends CancellableElement {
 		// Determine the cardinality based on Attribute- and CardinalityMappings
 		//
 		int cardinality = determineCardinality(targetSectionClass, mappingGroup, mappingHints, hintValues);
-		
+
 		// Cardinality == 0
 		//
 		if(cardinality == 0) {
-			
+
 			if(!targetSectionClass.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
-				
+
 				consoleStream.println("TargetMMSection class '"
 						+ targetSectionClass.getName()
 						+ "' has a cardinality of at least 1 specified, but no suitable mappingHint was found.");
-				
+
 				return null;
-				
+
 			} else {
 				/*
 				 * return empty Sequence or else this will fail
@@ -432,179 +430,22 @@ class TargetSectionInstantiator extends CancellableElement {
 				return new LinkedList<>();
 			}
 		}
-		
+
 		// Cardinality > 0
 		//
-				
+
 		// instantiate self(s)
 		//
 		final List<EObjectWrapper> instances = IntStream.range(0, cardinality).mapToObj(
 				i -> instantiateTargetSectionClass(targetSectionClass, mappingGroup, mappingHints, hintValues)).collect(Collectors.toList());
-		
+
 		/*
 		 * create attributes
 		 */
-
-		/*
-		 * we don't need to reference the EObjects, since their order
-		 * doesn't change while we are using this
-		 */
-		final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
-		final LinkedList<EObjectWrapper> markedForDelete = new LinkedList<>();
-
-		EList<TargetSectionAttribute> attributes = targetSectionClass.getAttributes();
-
-		if(targetSectionClass.isLibraryEntry()) {
-			// the metamodelsection is a library entry, thus there must not be any attributes as direct children of it
-			assert attributes.isEmpty();
-			attributes = new BasicEList<>();
-			// however, we want to perform the calculation of the values affected by AttributeParameters
-			LibraryEntry libEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-
-			for (LibraryParameter<?> parameter : libEntry.getParameters()) {
-				if(parameter instanceof AttributeParameter) {
-					attributes.add(((AttributeParameter) parameter).getAttribute());
-				}
-			}
-		}
-
-		for (final TargetSectionAttribute attr : attributes) {
-			attributeValues.put(attr, new LinkedList<String>());
-
-			MappingHint hintFound = null;
-			// look for an attribute mapping
-			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
-
-			for (final MappingHint hint : mappingHints) {
-				if (hint instanceof AttributeMapping) {
-					if (((AttributeMapping) hint).getTarget().equals(attr)) {
-
-						hintFound = hint;
-						if (hintValues.getHintValues((AttributeMapping) hint).size() == 1) {
-							attrHintValues = new LinkedList<>();
-							for (int i = 0; i < cardinality; i++) {
-								attrHintValues.add(hintValues.getHintValues((AttributeMapping) hint).getFirst());
-							}
-							break;
-							// cardinality okay?
-						} else if (hintValues.getHintValues((AttributeMapping) hint).size() >= cardinality) {
-							attrHintValues = hintValues.getHintValues((AttributeMapping) hint);
-							break;
-						} else {
-							consoleStream.println("Cardinality mismatch (expected: " + cardinality + ", got :"
-									+ hintValues.getHintValues((AttributeMapping) hint).size() + "): " + hint.getName()
-									+ " for Mapping " + ((Mapping) mappingGroup.eContainer()).getName() + " (Group: " + mappingGroup.getName()
-									+ ") Maybe check Cardinality of Metamodel section?");
-							return null;
-						}
-					}
-				}
-			}
-			// create attribute values
-			for(int i=0; i<instances.size(); i++) {
-				EObjectWrapper instance = instances.get(i);
-				String attrValue = calculator.calculateAttributeValue(attr, hintFound, attrHintValues);
-				
-				if(attrValue == null) {
-					/*
-					 * Consult the specified resolving strategy to resolve the ambiguity.				
-					 */
-					try {
-						consoleStream.println("[Ambiguity] Resolve expanding ambiguity...");
-						List<String> resolved = ambiguityResolvingStrategy.expandingSelectAttributeValue(Arrays.asList((String) null), attr, instance.getEObject());
-						consoleStream.println("[Ambiguity] ...finished.\n");
-						attrValue = resolved.get(0);
-					} catch (Exception e) {
-						consoleStream.println(e.getMessage());
-						canceled = true;
-						return null;
-					}
-				}
-
-				// Check if value is unique and was already used, mark
-				// instance for deletion if necessary
-				boolean attrValUsedInSection = false;
-				if (!sectionAttributeValues.containsKey(targetSectionClass
-						.getEClass())) {
-					sectionAttributeValues.put(
-							targetSectionClass.getEClass(),
-							new HashMap<EAttribute, Set<String>>());
-				}
-				final Map<EAttribute, Set<String>> secAttrValsForEClass = sectionAttributeValues
-						.get(targetSectionClass.getEClass());
-				if (attr instanceof ActualAttribute) {
-					final EAttribute eAttr = ((ActualAttribute) attr)
-							.getAttribute();
-					if (!secAttrValsForEClass.containsKey(eAttr)) {
-						secAttrValsForEClass.put(eAttr,
-								new HashSet<String>());
-					} else {
-						attrValUsedInSection = secAttrValsForEClass.get(
-								eAttr).contains(attrValue);
-					}
-					secAttrValsForEClass.get(eAttr).add(attrValue);
-				}
-				if (attr.isUnique()
-						&& (instance.attributeValueExists(attr, attrValue)
-								|| attributeValues.get(attr).contains(
-										attrValue) || attrValUsedInSection)) {
-					/*
-					 * we can only delete this at the end, or else the
-					 * attributeHint values won't fit anymore
-					 */
-					markedForDelete.add(instance);
-				}
-				// save attr value in Map
-				attributeValues.get(attr).add(attrValue);
-
-			}
-		}
-
-		/*
-		 * Now that we know which instances will be deleted we set (and
-		 * register) the actual attribute values of the instances that will
-		 * not get deleted
-		 */
-		for (final EObjectWrapper instance : instances) {
-			final boolean noDelete = !markedForDelete.contains(instance);
-			for (final TargetSectionAttribute attr : attributeValues
-					.keySet()) {
-				if (noDelete) {
-					final String setValue = attributeValues.get(attr).remove(0);
-					try {
-
-						// finally, we can set the value of the attribute
-						if(!targetSectionClass.isLibraryEntry()) {
-							/*
-							 * setting an Attribute causes the value to be saved
-							 * in the attribute value registry
-							 */
-							instance.setAttributeValue(attr, setValue);
-						} else {
-							/* 
-							 * for library entries, we cannot simply set the value as the attribute we are handling is not part of the targetSectionClass;
-							 * instead we want to specify the value as 'new value' for the affected AttributeParameter
-							 */
-							LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(instance).getLibraryEntry();
-							LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-							AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(attr.eContainer()));
-							@SuppressWarnings("unchecked")
-							AbstractAttributeParameter<EObject> originalParam = (AbstractAttributeParameter<EObject>) attrParam.getOriginalParameter();
-							originalParam.setNewValue(setValue);
-						}
+		final List<EObjectWrapper> markedForDelete = instantiateTargetSectionAttributes(targetSectionClass,
+				mappingGroup, mappingHints, hintValues, sectionAttributeValues, cardinality, instances);
 
 
-					} catch (final IllegalArgumentException e) {
-						consoleStream.println("Could not set Attribute " + attr.getName() + " of target section Class "
-								+ targetSectionClass.getName() + " in target section " + targetSectionClass.getContainingSection()
-								.getName() + ".\nThe problematic value was: '" + setValue + "'.");
-					}
-				} else {
-					attributeValues.get(attr).remove(0);
-				}
-			}
-
-		}
 
 		// recursively create containment references
 		for (final TargetSectionReference ref : targetSectionClass
@@ -708,90 +549,81 @@ class TargetSectionInstantiator extends CancellableElement {
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues, final Map<EClass, Map<EAttribute, Set<String>>> sectionAttributeValues,
 			int cardinality, final List<EObjectWrapper> instances) {
-		
-		if(instances.size() != cardinality) {
-			System.out.println();
-		}
-		
-		// This keeps track of the instances that need to be deleted due to duplicate attribute values
+
+		// This keeps track of the instances that need to be deleted due to
+		// duplicate attribute values
 		// that should be unique; We will return this in the end
 		//
 		List<EObjectWrapper> markedForDelete = new ArrayList<>();
-		
-		// Collect the attributes to instantiate based on the type of the TargetSectionClass
-		//
-		List<TargetSectionAttribute> attributes = new ArrayList<>();
-		if(!targetSectionClass.isLibraryEntry()) {
-			
-			attributes.addAll(targetSectionClass.getAttributes());
-			
-		} else {
-			
+
+		/*
+		 * we don't need to reference the EObjects, since their order doesn't
+		 * change while we are using this
+		 */
+		final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
+
+		EList<TargetSectionAttribute> attributes = targetSectionClass.getAttributes();
+
+		if (targetSectionClass.isLibraryEntry()) {
+			// the metamodelsection is a library entry, thus there must not be
+			// any attributes as direct children of it
+			assert attributes.isEmpty();
+			attributes = new BasicEList<>();
 			// however, we want to perform the calculation of the values affected by AttributeParameters
 			LibraryEntry libEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
 
-			attributes.addAll(libEntry.getParameters().stream().filter(p -> p instanceof AttributeParameter).map(
-					p -> ((AttributeParameter) p).getAttribute()).collect(Collectors.toList()));
-			
-		}
-
-		final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
-		for (final TargetSectionAttribute attr : attributes) {
-			
-			attributeValues.put(attr, new LinkedList<String>());
-
-			List<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
-			
-			// Find an AttributeMapping for the TargetSectionAttribute
-			//
-			Optional<MappingHint> hintFound = mappingHints.parallelStream().filter(
-					h -> h instanceof AttributeMapping && ((AttributeMapping) h).getTarget().equals(attr)).findFirst();
-			
-			// If an AttributeMapping was found, get the corresponding hint values from the HintValueStorage
-			//
-			if(hintFound.isPresent()) {
-				
-				AttributeMapping attributeMapping = (AttributeMapping) hintFound.get();
-				
-				// One hint value found
-				if (hintValues.getHintValues(attributeMapping).size() == 1) {
-					
-					attrHintValues = IntStream.range(0, cardinality).mapToObj(
-							i -> hintValues.getHintValues(attributeMapping).getFirst()).collect(Collectors.toList());
-					
-				// Multiple hint values found -> need to be consistent with the cardinality
-				} else if (hintValues.getHintValues(attributeMapping).size() >= cardinality) {
-					
-					attrHintValues = hintValues.getHintValues(attributeMapping);
-					
-				} else {
-					
-					consoleStream.println("Cardinality mismatch (expected: " + cardinality + ", got :"
-							+ hintValues.getHintValues(attributeMapping).size() + "): " + attributeMapping.getName()
-							+ " for Mapping " + ((Mapping) mappingGroup.eContainer()).getName() + " (Group: " + mappingGroup.getName()
-							+ ") Maybe check Cardinality of Metamodel section?");
-					return null;
+			for (LibraryParameter<?> parameter : libEntry.getParameters()) {
+				if (parameter instanceof AttributeParameter) {
+					attributes.add(((AttributeParameter) parameter).getAttribute());
 				}
 			}
-		
-			
+		}
+
+		for (final TargetSectionAttribute attr : attributes) {
+			attributeValues.put(attr, new LinkedList<String>());
+
+			MappingHint hintFound = null;
+			// look for an attribute mapping
+			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
+
+			for (final MappingHint hint : mappingHints) {
+				if (hint instanceof AttributeMapping) {
+					if (((AttributeMapping) hint).getTarget().equals(attr)) {
+
+						hintFound = hint;
+						if (hintValues.getHintValues((AttributeMapping) hint).size() == 1) {
+							attrHintValues = new LinkedList<>();
+							for (int i = 0; i < cardinality; i++) {
+								attrHintValues.add(hintValues.getHintValues((AttributeMapping) hint).getFirst());
+							}
+							break;
+							// cardinality okay?
+						} else if (hintValues.getHintValues((AttributeMapping) hint).size() >= cardinality) {
+							attrHintValues = hintValues.getHintValues((AttributeMapping) hint);
+							break;
+						} else {
+							consoleStream.println("Cardinality mismatch (expected: " + cardinality + ", got :"
+									+ hintValues.getHintValues((AttributeMapping) hint).size() + "): " + hint.getName()
+									+ " for Mapping " + ((Mapping) mappingGroup.eContainer()).getName() + " (Group: "
+									+ mappingGroup.getName() + ") Maybe check Cardinality of Metamodel section?");
+							return null;
+						}
+					}
+				}
+			}
 			// create attribute values
-			//
 			for(int i=0; i<instances.size(); i++) {
-				
 				EObjectWrapper instance = instances.get(i);
-				
-				String attrValue = calculator.calculateAttributeValue(
-						attr, hintFound.isPresent() ? hintFound.get() : null, attrHintValues);
-				
+				String attrValue = calculator.calculateAttributeValue(attr, hintFound, attrHintValues);
+
 				if(attrValue == null) {
 					/*
 					 * Consult the specified resolving strategy to resolve the ambiguity.				
 					 */
 					try {
-						consoleStream.println(RESOLVE_EXPANDING_AMBIGUITY_STARTED);
+						consoleStream.println("[Ambiguity] Resolve expanding ambiguity...");
 						List<String> resolved = ambiguityResolvingStrategy.expandingSelectAttributeValue(Arrays.asList((String) null), attr, instance.getEObject());
-						consoleStream.println(RESOLVE_EXPANDING_AMBIGUITY_FINISHED);
+						consoleStream.println("[Ambiguity] ...finished.\n");
 						attrValue = resolved.get(0);
 					} catch (Exception e) {
 						consoleStream.println(e.getMessage());
@@ -803,25 +635,19 @@ class TargetSectionInstantiator extends CancellableElement {
 				// Check if value is unique and was already used, mark
 				// instance for deletion if necessary
 				boolean attrValUsedInSection = false;
-				
 				if (!sectionAttributeValues.containsKey(targetSectionClass.getEClass())) {
-					
 					sectionAttributeValues.put(
 							targetSectionClass.getEClass(),
 							new HashMap<EAttribute, Set<String>>());
 				}
-				
-				final Map<EAttribute, Set<String>> secAttrValsForEClass = sectionAttributeValues.get(targetSectionClass.getEClass());
-				
+				final Map<EAttribute, Set<String>> secAttrValsForEClass = sectionAttributeValues
+						.get(targetSectionClass.getEClass());
 				if (attr instanceof ActualAttribute) {
-					
 					final EAttribute eAttr = ((ActualAttribute) attr)
 							.getAttribute();
 					if (!secAttrValsForEClass.containsKey(eAttr)) {
-						
-						secAttrValsForEClass.put(eAttr,new HashSet<String>());
+						secAttrValsForEClass.put(eAttr, new HashSet<String>());
 					} else {
-						
 						attrValUsedInSection = secAttrValsForEClass.get(eAttr).contains(attrValue);
 					}
 					secAttrValsForEClass.get(eAttr).add(attrValue);
@@ -886,7 +712,7 @@ class TargetSectionInstantiator extends CancellableElement {
 			}
 
 		}
-		
+
 		return markedForDelete;
 	}
 
@@ -908,41 +734,41 @@ class TargetSectionInstantiator extends CancellableElement {
 	private int determineCardinality(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues) {
-		
+
 		// This will be returned in the end. We start by assuming a cardinality of '1'.
 		//
 		int cardinality = 1;
-		
+
 		boolean attrMappingExists = false;
 		int cardHintValue = 1;
 		boolean cardMappingExists = false;
-		
+
 		/*
 		 * check for CardinalityHint
 		 */
-		
+
 		// check AttributeMappings
 		//
 		if(mappingHints.parallelStream().anyMatch(h -> h instanceof AttributeMapping)) {
 			attrMappingExists = true;			
 		}
-		
+
 		// check CardinalityMappings
 		//
 		List<CardinalityMapping> cardinalityMappings = mappingHints.stream().
 				filter(h -> h instanceof CardinalityMapping && ((CardinalityMapping) h).getTarget().equals(targetSectionClass)).
 				map(h -> (CardinalityMapping) h).
 				collect(Collectors.toList());
-		
+
 		for (CardinalityMapping cardinalityMapping : cardinalityMappings) {
-			
+
 			if (hintValues.getCardinalityMappingHintValues().containsKey(cardinalityMapping) && 
 					!hintValues.getHintValues(cardinalityMapping).isEmpty()) {
-					
+
 				final Integer val = hintValues.removeHintValue(cardinalityMapping);
 				cardHintValue = val.intValue();
 				cardMappingExists = true;
-				
+
 			}
 		}
 
@@ -954,20 +780,20 @@ class TargetSectionInstantiator extends CancellableElement {
 			// check for attribute hint
 			boolean hintFound = false;
 			if (mappingGroup instanceof MappingHintGroup) {
-				
+
 				final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
-				
+
 				if (mhGrp.getModelConnectionMatcher() != null && mhGrp.getTargetMMSection().equals(targetSectionClass)) {
-						
+
 					hintFound = true;
 					cardinality = hintValues.getHintValues(mhGrp.getModelConnectionMatcher()).size();
 				}
 			}
 
 			final AttributeMapping hint = searchAttributeMapping(targetSectionClass,mappingHints, hintValues, null);
-			
+
 			if (hint != null) {// there was an AttributeHint....
-				
+
 				int hintCardinality = hintValues.getHintValues(hint).size();
 
 				/*
@@ -980,7 +806,7 @@ class TargetSectionInstantiator extends CancellableElement {
 
 					for(AttributeValueRepresentation rep : x.values()) {
 						if(rep.isMany()) {
-						
+
 							if(multiValuedAttributeCardinality == 1) {
 								multiValuedAttributeCardinality = rep.getValues().size();
 							} else if(multiValuedAttributeCardinality != rep.getValues().size()) {
@@ -995,35 +821,35 @@ class TargetSectionInstantiator extends CancellableElement {
 				 * Check if there are contradictory cardinalities...
 				 */
 				if(hintCardinality > 1 && multiValuedAttributeCardinality > 1) {
-					
+
 					throw new RuntimeException("Failed to determine an unambiguous cardinality for hint " + hint.getName());
-					
+
 				} else if(multiValuedAttributeCardinality > 1) {
 					hintCardinality = multiValuedAttributeCardinality;
 				}
 
 				if (hintCardinality > cardinality) {
-					
+
 					cardinality = hintCardinality;
 				}
-				
+
 			} else {// no AttributeHint found
-				
+
 				// mc hint found....only go on if there were no attrMappings
 				//
 				if (hintFound && attrMappingExists) { 
 
 					cardinality = 0;
 				}
-				
+
 				// no modelConnaectionHint or AttributeMapping found
 				// or cardinality is still 1
 				// last chance
 				if (cardinality <= 1) {
-					
+
 					if(cardMappingExists) {
 						cardinality = cardHintValue;
-						
+
 					} else {
 						/*
 						 * Consult the specified resolving strategy to resolve the ambiguity.				
@@ -1038,7 +864,7 @@ class TargetSectionInstantiator extends CancellableElement {
 								cardinality = targetSectionClass.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0;									
 							}
 						} catch (Exception e) {
-							
+
 							consoleStream.println(e.getMessage());
 							canceled = true;
 							return 0;
@@ -1048,7 +874,7 @@ class TargetSectionInstantiator extends CancellableElement {
 
 			}
 		}
-		
+
 		return cardinality;
 	}
 
@@ -1072,21 +898,21 @@ class TargetSectionInstantiator extends CancellableElement {
 	private EObjectWrapper instantiateTargetSectionClass(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues) {
-		
+
 		// create the eObject
 		final EObject inst = targetSectionClass.getEClass().getEPackage()
 				.getEFactoryInstance()
 				.create(targetSectionClass.getEClass());
-		
+
 		// create an EObjectTransformationHelper that wraps the eObject and more stuff
 		EObjectWrapper instTransformationHelper = new EObjectWrapper(inst, attributeValueRegistry);
-		
+
 		/*
 		 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator'
 		 * that will insert the real library entry at the end.
 		 */
 		if(targetSectionClass.isLibraryEntry()) {
-	
+
 			/*
 			 * As LibraryEntries may get inserted multiple times, we need to create a self-contained copy
 			 * of the library entry
@@ -1096,14 +922,14 @@ class TargetSectionInstantiator extends CancellableElement {
 			originals.add(originallibEntry);
 			originals.add(originallibEntry.getOriginalLibraryEntry());
 			LibraryEntry clonedLibEntry = (LibraryEntry) EcoreUtil.copyAll(originals).iterator().next();
-			
+
 			LibraryEntryInstantiator instLibraryEntryInstantiator = new LibraryEntryInstantiator(
 					clonedLibEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, consoleStream);
-			
+
 			libEntryInstantiators.add(instLibraryEntryInstantiator);
 			libEntryInstantiatorMap.put(instTransformationHelper, instLibraryEntryInstantiator);
 		}
-		
+
 		return instTransformationHelper;
 	}
 
@@ -1186,7 +1012,7 @@ class TargetSectionInstantiator extends CancellableElement {
 											new LinkedList<>();
 									int numberOfInstancesToCreate = 0;
 									if (hintValues.getHintValues((MappingInstanceSelector) h).size() == 1) {
-										
+
 										// one hint value but multiple instances -> clone the single hint value for each instance
 										final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hintVal = hintValues.getHintValues((MappingInstanceSelector) h).getFirst();
 										for (int i = 0; i < instancesToConsider.size(); i++) {
@@ -1194,18 +1020,18 @@ class TargetSectionInstantiator extends CancellableElement {
 										}
 										numberOfInstancesToCreate = newHintValues.size();
 									} else if (instancesToConsider.size() == hintValues.getHintValues((MappingInstanceSelector) h).size()) {
-										
+
 										// multiple hint values and the same amount of instances -> each hint value is used for one instance
 										newHintValues = hintValues.getHintValues((MappingInstanceSelector) h);
 										numberOfInstancesToCreate = newHintValues.size();
 									} else if(((MappingInstanceSelector) h).getAffectedReference().getEReference().isMany() &&
 											hintValues.getHintValues((MappingInstanceSelector) h).size() % instancesToConsider.size() == 0) {
-										
+
 										// a multiple of hint values for each instance -> use multiple hint values for each instance
 										newHintValues = hintValues.getHintValues((MappingInstanceSelector) h);
 										numberOfInstancesToCreate = instancesToConsider.size();
 									} else {
-										
+
 										consoleStream.println("There was a size mismatch while trying to set a non-containment reference, using the Hint "
 												+ h.getName() + ". There where " + instancesToConsider.size() + " instances to be connected but "
 												+ hintValues.getHintValues((MappingInstanceSelector) h).size() + " MappingHint values. The output below"
@@ -1215,20 +1041,20 @@ class TargetSectionInstantiator extends CancellableElement {
 
 									// how many target instances are to be set as value of the non-containment reference of each instance
 									final int targetsPerInstance = newHintValues.size() / numberOfInstancesToCreate;
-									
+
 									for (int i=0; i<numberOfInstancesToCreate; i++) {
-										
+
 										final EObjectWrapper srcInst = instancesToConsider.remove(0);
-										
+
 										for (int j=0; j < targetsPerInstance; j++) {
-											
+
 											String attrValStr = null;
 											if (hSel.getMatcher() instanceof AttributeMatcher) {
 												attrValStr = calculator.calculateAttributeValue(null, hSel,
 														newHintValues);
 											}
 											final List<EObjectWrapper> fittingVals = new LinkedList<>();
-											
+
 											for (final EObjectWrapper targetInst : targetInstances) {
 												// get Attribute value
 												final String targetValStr = targetInst
@@ -1247,13 +1073,13 @@ class TargetSectionInstantiator extends CancellableElement {
 											List<EObject> targetInst = new ArrayList<>();
 											if (fittingVals.size() == 1) {
 												targetInst.add(fittingVals.get(0).getEObject());
-												
+
 											} else if (fittingVals.size() > 1) {
-												
+
 												if (canceled) {
 													return;
 												}
-												
+
 												/*
 												 * Consult the specified resolving strategy to resolve the ambiguity.				
 												 */
@@ -1274,15 +1100,15 @@ class TargetSectionInstantiator extends CancellableElement {
 													cancel();
 													return;
 												}
-												
+
 											} else {
 												consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName
 														+ ", Group: " + group.getName() + " ) has an AttributeMatcher that picked up the value '"
 														+ attrValStr + "' to be matched to the "
 														+ "TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
-												
+
 											}
-											
+
 											// finally, we can set the value of the reference
 											if(!targetSectionClass.isLibraryEntry()) {
 												addValuesToReference(ref, targetInst, srcInst.getEObject());
@@ -1300,7 +1126,7 @@ class TargetSectionInstantiator extends CancellableElement {
 												originalParam.setTarget(targetInst.get(0));
 											}
 										}
-										
+
 									}
 
 									/*

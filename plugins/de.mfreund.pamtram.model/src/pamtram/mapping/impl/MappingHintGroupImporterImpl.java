@@ -4,8 +4,8 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SetValue;
+
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
@@ -42,6 +42,7 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -166,6 +167,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDeactivated() {
 		return deactivated;
 	}
@@ -175,11 +177,13 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeactivated(boolean newDeactivated) {
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED, oldDeactivated, deactivated));
+		}
 	}
 
 	/**
@@ -187,6 +191,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getCondition() {
 		return condition;
 	}
@@ -201,7 +206,11 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		condition = newCondition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION, oldCondition, newCondition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -211,18 +220,24 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCondition(ComplexCondition newCondition) {
 		if (newCondition != condition) {
 			NotificationChain msgs = null;
-			if (condition != null)
+			if (condition != null) {
 				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION, null, msgs);
-			if (newCondition != null)
+			}
+			if (newCondition != null) {
 				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION, null, msgs);
+			}
 			msgs = basicSetCondition(newCondition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION, newCondition, newCondition));
+		}
 	}
 
 	/**
@@ -230,13 +245,15 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getConditionRef() {
 		if (conditionRef != null && conditionRef.eIsProxy()) {
 			InternalEObject oldConditionRef = (InternalEObject)conditionRef;
 			conditionRef = (ComplexCondition)eResolveProxy(oldConditionRef);
 			if (conditionRef != oldConditionRef) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF, oldConditionRef, conditionRef));
+				}
 			}
 		}
 		return conditionRef;
@@ -256,11 +273,13 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConditionRef(ComplexCondition newConditionRef) {
 		ComplexCondition oldConditionRef = conditionRef;
 		conditionRef = newConditionRef;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF, oldConditionRef, conditionRef));
+		}
 	}
 
 	/**
@@ -268,13 +287,15 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExportedMappingHintGroup getHintGroup() {
 		if (hintGroup != null && hintGroup.eIsProxy()) {
 			InternalEObject oldHintGroup = (InternalEObject)hintGroup;
 			hintGroup = (ExportedMappingHintGroup)eResolveProxy(oldHintGroup);
 			if (hintGroup != oldHintGroup) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP, oldHintGroup, hintGroup));
+				}
 			}
 		}
 		return hintGroup;
@@ -294,11 +315,13 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHintGroup(ExportedMappingHintGroup newHintGroup) {
 		ExportedMappingHintGroup oldHintGroup = hintGroup;
 		hintGroup = newHintGroup;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP, oldHintGroup, hintGroup));
+		}
 	}
 
 	/**
@@ -306,13 +329,15 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TargetSectionClass getContainer() {
 		if (container != null && container.eIsProxy()) {
 			InternalEObject oldContainer = (InternalEObject)container;
 			container = (TargetSectionClass)eResolveProxy(oldContainer);
 			if (container != oldContainer) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER, oldContainer, container));
+				}
 			}
 		}
 		return container;
@@ -332,13 +357,15 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainer(TargetSectionClass newContainer) {
 		TargetSectionClass oldContainer = container;
 		container = newContainer;
 		boolean oldContainerESet = containerESet;
 		containerESet = true;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER, oldContainer, container, !oldContainerESet));
+		}
 	}
 
 	/**
@@ -346,13 +373,15 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetContainer() {
 		TargetSectionClass oldContainer = container;
 		boolean oldContainerESet = containerESet;
 		container = null;
 		containerESet = false;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.UNSET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER, oldContainer, null, oldContainerESet));
+		}
 	}
 
 	/**
@@ -360,6 +389,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetContainer() {
 		return containerESet;
 	}
@@ -369,6 +399,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MappingHintType> getMappingHints() {
 		if (mappingHints == null) {
 			mappingHints = new EObjectContainmentEList.Unsettable<MappingHintType>(MappingHintType.class, this, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
@@ -381,8 +412,11 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetMappingHints() {
-		if (mappingHints != null) ((InternalEList.Unsettable<?>)mappingHints).unset();
+		if (mappingHints != null) {
+			((InternalEList.Unsettable<?>)mappingHints).unset();
+		}
 	}
 
 	/**
@@ -390,6 +424,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetMappingHints() {
 		return mappingHints != null && ((InternalEList.Unsettable<?>)mappingHints).isSet();
 	}
@@ -399,6 +434,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -420,29 +456,29 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef = this.getConditionRef();
-		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
-		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition condition = this.getCondition();
-		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet_0 = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, condition));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size_0 = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue sum = ClassUtil.nonNullState((IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0));
-		    final /*@Thrown*/ boolean status = sum.equals(PamtramTables.INT_1);
-		    CAUGHT_status = status;
+			final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef = this.getConditionRef();
+			final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef));
+			final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
+			final /*@Nullable*/ /*@Thrown*/ ComplexCondition condition = this.getCondition();
+			final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet_0 = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, condition));
+			final /*@NonNull*/ /*@Thrown*/ IntegerValue size_0 = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0));
+			final /*@NonNull*/ /*@Thrown*/ IntegerValue sum = ClassUtil.nonNullState((IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0));
+			final /*@Thrown*/ boolean status = sum.equals(PamtramTables.INT_1);
+			CAUGHT_status = status;
 		}
 		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+			CAUGHT_status = ValueUtil.createInvalidValue(e);
 		}
 		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
+			throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
-		    message_0 = PamtramTables.STR_As_32_this_32_Instance_32_is_32_a_32_ConditionElement_32_and_32_you_32_want_32_to_32_add_32_a_32_con;
+			message_0 = PamtramTables.STR_As_32_this_32_Instance_32_is_32_a_32_ConditionElement_32_and_32_you_32_want_32_to_32_add_32_a_32_con;
 		}
 		else {
-		    message_0 = null;
+			message_0 = null;
 		}
 		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PamtramTables.STR_ConditionalElement_c_c_eitherModelOrReferCondition, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
@@ -453,6 +489,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean referenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -479,35 +516,35 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef_0 = this.getConditionRef();
-		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef_0));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
-		    final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
-		    /*@Thrown*/ boolean status;
-		    if (eq) {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(PamtramTables.CLSSid_ConditionModel, null);
-		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, conditionRef_0);
-		        final /*@Thrown*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_ConditionModel).booleanValue());
-		        status = oclIsTypeOf;
-		    }
-		    else {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    CAUGHT_status = status;
+			final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef_0 = this.getConditionRef();
+			final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef_0));
+			final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
+			final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
+			/*@Thrown*/ boolean status;
+			if (eq) {
+				final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(PamtramTables.CLSSid_ConditionModel, null);
+				final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, conditionRef_0);
+				final /*@Thrown*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_ConditionModel).booleanValue());
+				status = oclIsTypeOf;
+			}
+			else {
+				status = ValueUtil.TRUE_VALUE;
+			}
+			CAUGHT_status = status;
 		}
 		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+			CAUGHT_status = ValueUtil.createInvalidValue(e);
 		}
 		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
+			throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
-		    message_0 = PamtramTables.STR_It_32_only_32_allowed_32_to_32_reference_32_Condition_m_Instances_32_that_32_are_32_model_32;
+			message_0 = PamtramTables.STR_It_32_only_32_allowed_32_to_32_reference_32_Condition_m_Instances_32_that_32_are_32_model_32;
 		}
 		else {
-		    message_0 = null;
+			message_0 = null;
 		}
 		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PamtramTables.STR_ConditionalElement_c_c_referenceOnlyConditionsFromConditionModel, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
@@ -521,10 +558,10 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
-				return basicSetCondition(null, msgs);
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
-				return ((InternalEList<?>)getMappingHints()).basicRemove(otherEnd, msgs);
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+			return basicSetCondition(null, msgs);
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+			return ((InternalEList<?>)getMappingHints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -537,21 +574,27 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
-				return isDeactivated();
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
-				return getCondition();
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
-				if (resolve) return getConditionRef();
-				return basicGetConditionRef();
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
-				if (resolve) return getHintGroup();
-				return basicGetHintGroup();
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
-				if (resolve) return getContainer();
-				return basicGetContainer();
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
-				return getMappingHints();
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+			return isDeactivated();
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+			return getCondition();
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
+			if (resolve) {
+				return getConditionRef();
+			}
+			return basicGetConditionRef();
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
+			if (resolve) {
+				return getHintGroup();
+			}
+			return basicGetHintGroup();
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
+			if (resolve) {
+				return getContainer();
+			}
+			return basicGetContainer();
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+			return getMappingHints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -565,25 +608,25 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
-				setDeactivated((Boolean)newValue);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
-				setCondition((ComplexCondition)newValue);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
-				setConditionRef((ComplexCondition)newValue);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
-				setHintGroup((ExportedMappingHintGroup)newValue);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
-				setContainer((TargetSectionClass)newValue);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
-				getMappingHints().clear();
-				getMappingHints().addAll((Collection<? extends MappingHintType>)newValue);
-				return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+			setDeactivated((Boolean)newValue);
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+			setCondition((ComplexCondition)newValue);
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
+			setConditionRef((ComplexCondition)newValue);
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
+			setHintGroup((ExportedMappingHintGroup)newValue);
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
+			setContainer((TargetSectionClass)newValue);
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+			getMappingHints().clear();
+			getMappingHints().addAll((Collection<? extends MappingHintType>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -596,24 +639,24 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
-				setDeactivated(DEACTIVATED_EDEFAULT);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
-				setCondition((ComplexCondition)null);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
-				setConditionRef((ComplexCondition)null);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
-				setHintGroup((ExportedMappingHintGroup)null);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
-				unsetContainer();
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
-				unsetMappingHints();
-				return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+			setDeactivated(DEACTIVATED_EDEFAULT);
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+			setCondition((ComplexCondition)null);
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
+			setConditionRef((ComplexCondition)null);
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
+			setHintGroup((ExportedMappingHintGroup)null);
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
+			unsetContainer();
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+			unsetMappingHints();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -626,18 +669,18 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
-				return deactivated != DEACTIVATED_EDEFAULT;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
-				return condition != null;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
-				return conditionRef != null;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
-				return hintGroup != null;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
-				return isSetContainer();
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
-				return isSetMappingHints();
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+			return deactivated != DEACTIVATED_EDEFAULT;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
+			return condition != null;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
+			return conditionRef != null;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
+			return hintGroup != null;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
+			return isSetContainer();
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+			return isSetMappingHints();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -651,20 +694,20 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == DeactivatableElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED: return PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED;
-				default: return -1;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED: return PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED;
+			default: return -1;
 			}
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION;
-				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF;
-				default: return -1;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF;
+			default: return -1;
 			}
 		}
 		if (baseClass == InstantiableMappingHintGroup.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+			default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -679,20 +722,20 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == DeactivatableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED;
-				default: return -1;
+			case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED;
+			default: return -1;
 			}
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION;
-				case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF;
-				default: return -1;
+			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION;
+			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF;
+			default: return -1;
 			}
 		}
 		if (baseClass == InstantiableMappingHintGroup.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+			default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -707,19 +750,19 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == DeactivatableElement.class) {
 			switch (baseOperationID) {
-				default: return -1;
+			default: return -1;
 			}
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
-				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
-				default: return -1;
+			case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+			case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+			default: return -1;
 			}
 		}
 		if (baseClass == InstantiableMappingHintGroup.class) {
 			switch (baseOperationID) {
-				default: return -1;
+			default: return -1;
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -734,10 +777,10 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
-				return eitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
-				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
+			return eitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+			return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -749,13 +792,20 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (deactivated: ");
 		result.append(deactivated);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public TargetSection getTargetMMSectionGeneric() {
+		return this.getHintGroup() == null ? null : this.getHintGroup().getTargetMMSection();
 	}
 
 } //MappingHintGroupImporterImpl

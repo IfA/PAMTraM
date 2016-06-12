@@ -5,6 +5,7 @@ package pamtram.mapping;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
+import pamtram.metamodel.TargetSection;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,4 +18,6 @@ import pamtram.NamedElement;
  * @generated
  */
 public interface InstantiableMappingHintGroup extends NamedElement, DeactivatableElement, ConditionalElement {
+
+	public TargetSection getTargetMMSectionGeneric();
 } // InstantiableMappingHintGroup

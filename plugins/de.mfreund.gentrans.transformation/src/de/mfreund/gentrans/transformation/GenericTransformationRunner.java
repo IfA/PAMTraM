@@ -49,10 +49,10 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
-import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -1314,9 +1314,7 @@ public class GenericTransformationRunner {
 
 						targetSectionInstantiator.instantiateTargetSectionSecondPass(
 								g.getTargetMMSection(),
-								selMap.getMapping().getName(),
 								(MappingHintGroup) g,
-								g.getTargetMMSection(),
 								selMap.getMappingHints(g),
 								selMap.getHintValues(),
 								selMap.getInstancesBySection((MappingHintGroup) g));
@@ -1347,9 +1345,7 @@ public class GenericTransformationRunner {
 
 						targetSectionInstantiator.instantiateTargetSectionSecondPass(
 								expGrp.getTargetMMSection(), 
-								selMap.getMapping().getName(), 
 								g, 
-								expGrp.getTargetMMSection(), 
 								hints, 
 								selMap.getHintValues(), 
 								selMap.getInstancesBySection(g));

@@ -26,6 +26,8 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Class;
+import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSectionClass;
@@ -151,16 +153,18 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 					} else if(parent instanceof MappingHintGroupImporter){
 						mapping=(Mapping)((MappingHintGroupImporter) parent).eContainer();
 						break;
-					}else {
+					} else if(parent instanceof Mapping) {
+						mapping = (Mapping) parent;
+						break;
+					} else {
 						parent=parent.eContainer();
 					}
 				}
 
-				/*
-				 * If we operate on an ModelConnectionHintTarget, we need to scan the container of the target section.
-				 * Otherwise, we need to scan the source section for suitable attributes.
-				 */
 				Class relevantClass = null;
+
+				// If we operate on an ModelConnectionHintTarget, we need to scan the container of the target section.
+				//
 				if(object instanceof ModelConnectionHintTargetAttribute) {
 					if(parent instanceof MappingHintGroupType && ((MappingHintGroupType) parent).getTargetMMSection() != null) {
 						relevantClass = ((MappingHintGroupType) parent).getTargetMMSection().getContainer();
@@ -170,6 +174,9 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 							return super.getChoiceOfValues(object);
 						}
 					}
+					
+				// Otherwise, we need to scan the source section for suitable attributes.
+				//
 				} else {
 					relevantClass = mapping.getSourceMMSection();
 				}

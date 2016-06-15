@@ -141,7 +141,10 @@ public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAt
 					} else if(parent instanceof MappingHintGroupImporter){
 						mapping=(Mapping)((MappingHintGroupImporter) parent).eContainer();
 						break;
-					}else {
+					} else if(parent instanceof Mapping) {
+						mapping = (Mapping) parent;
+						break;
+					} else {
 						parent=parent.eContainer();
 					}
 				}

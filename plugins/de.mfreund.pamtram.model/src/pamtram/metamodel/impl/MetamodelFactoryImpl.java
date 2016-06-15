@@ -19,6 +19,8 @@ import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.FileTypeEnum;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelSectionReference;
@@ -105,6 +107,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.REG_EX_MATCHER: return createRegExMatcher();
 			case MetamodelPackage.RANGE_CONSTRAINT: return createRangeConstraint();
 			case MetamodelPackage.INSTANCE_POINTER: return createInstancePointer();
+			case MetamodelPackage.INSTANCE_POINTER_SOURCE_ELEMENT: return createInstancePointerSourceElement();
+			case MetamodelPackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: return createInstancePointerExternalSourceElement();
 			case MetamodelPackage.RANGE_BOUND: return createRangeBound();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -377,6 +381,26 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public InstancePointer createInstancePointer() {
 		InstancePointerImpl instancePointer = new InstancePointerImpl();
 		return instancePointer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstancePointerSourceElement createInstancePointerSourceElement() {
+		InstancePointerSourceElementImpl instancePointerSourceElement = new InstancePointerSourceElementImpl();
+		return instancePointerSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstancePointerExternalSourceElement createInstancePointerExternalSourceElement() {
+		InstancePointerExternalSourceElementImpl instancePointerExternalSourceElement = new InstancePointerExternalSourceElementImpl();
+		return instancePointerExternalSourceElement;
 	}
 
 	/**

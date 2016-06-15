@@ -45,6 +45,7 @@ import pamtram.PamtramPackage;
 import pamtram.PamtramTables;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.MappingTables;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
 
@@ -106,6 +107,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_FileAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("FileAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_GlobalAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_InstancePointer = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointer", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_InstancePointerSourceInterface = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointerSourceInterface", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry = MetamodelTables.PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib.getClassId("LibraryEntry", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry_0 = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("LibraryEntry", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryParameter = MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("LibraryParameter", 0);
@@ -190,6 +192,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EAttribute = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_EAttribute);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EReference = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_EReference);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_InstancePointer = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_InstancePointer);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_InstancePointerSourceInterface = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_InstancePointerSourceInterface);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_LibraryParameter = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_LibraryParameter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHintGroupType = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_MappingHintGroupType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingType = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_MappingType);
@@ -281,6 +284,9 @@ public class MetamodelTables
 		public static final /*@NonNull*/ EcoreExecutorType _FileAttribute = new EcoreExecutorType(MetamodelPackage.Literals.FILE_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorEnumeration _FileTypeEnum = new EcoreExecutorEnumeration(MetamodelPackage.Literals.FILE_TYPE_ENUM, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _InstancePointer = new EcoreExecutorType(MetamodelPackage.Literals.INSTANCE_POINTER, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _InstancePointerExternalSourceElement = new EcoreExecutorType(MetamodelPackage.Literals.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _InstancePointerSourceElement = new EcoreExecutorType(MetamodelPackage.Literals.INSTANCE_POINTER_SOURCE_ELEMENT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _InstancePointerSourceInterface = new EcoreExecutorType(MetamodelPackage.Literals.INSTANCE_POINTER_SOURCE_INTERFACE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LibraryEntry = new EcoreExecutorType(MetamodelPackage.Literals.LIBRARY_ENTRY, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LibraryParameter = new EcoreExecutorType(MetamodelPackage.Literals.LIBRARY_PARAMETER, PACKAGE, 0, TypeParameters._LibraryParameter_ParameterType);
 		public static final /*@NonNull*/ EcoreExecutorType _MetaModelElement = new EcoreExecutorType(MetamodelPackage.Literals.META_MODEL_ELEMENT, PACKAGE, 0, TypeParameters._MetaModelElement_S, TypeParameters._MetaModelElement_C, TypeParameters._MetaModelElement_R, TypeParameters._MetaModelElement_A);
@@ -325,6 +331,9 @@ public class MetamodelTables
 			_FileAttribute,
 			_FileTypeEnum,
 			_InstancePointer,
+			_InstancePointerExternalSourceElement,
+			_InstancePointerSourceElement,
+			_InstancePointerSourceInterface,
 			_LibraryEntry,
 			_LibraryParameter,
 			_MetaModelElement,
@@ -510,9 +519,35 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__Type = new ExecutorFragment(Types._FileTypeEnum, PivotTables.Types._Type);
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__Visitable = new ExecutorFragment(Types._FileTypeEnum, PivotTables.Types._Visitable);
 
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__ExpressionHint = new ExecutorFragment(Types._InstancePointer, MappingTables.Types._ExpressionHint);
 		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__InstancePointer = new ExecutorFragment(Types._InstancePointer, MetamodelTables.Types._InstancePointer);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__ModifiableHint = new ExecutorFragment(Types._InstancePointer, MappingTables.Types._ModifiableHint);
 		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__OclAny = new ExecutorFragment(Types._InstancePointer, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _InstancePointer__OclElement = new ExecutorFragment(Types._InstancePointer, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerExternalSourceElement__ExternalModifiedAttributeElementType = new ExecutorFragment(Types._InstancePointerExternalSourceElement, MappingTables.Types._ExternalModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerExternalSourceElement__InstancePointerExternalSourceElement = new ExecutorFragment(Types._InstancePointerExternalSourceElement, MetamodelTables.Types._InstancePointerExternalSourceElement);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerExternalSourceElement__InstancePointerSourceInterface = new ExecutorFragment(Types._InstancePointerExternalSourceElement, MetamodelTables.Types._InstancePointerSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerExternalSourceElement__MappingHintSourceInterface = new ExecutorFragment(Types._InstancePointerExternalSourceElement, MappingTables.Types._MappingHintSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerExternalSourceElement__ModifiedAttributeElementType = new ExecutorFragment(Types._InstancePointerExternalSourceElement, MappingTables.Types._ModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerExternalSourceElement__NamedElement = new ExecutorFragment(Types._InstancePointerExternalSourceElement, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerExternalSourceElement__OclAny = new ExecutorFragment(Types._InstancePointerExternalSourceElement, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerExternalSourceElement__OclElement = new ExecutorFragment(Types._InstancePointerExternalSourceElement, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceElement__InstancePointerSourceElement = new ExecutorFragment(Types._InstancePointerSourceElement, MetamodelTables.Types._InstancePointerSourceElement);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceElement__InstancePointerSourceInterface = new ExecutorFragment(Types._InstancePointerSourceElement, MetamodelTables.Types._InstancePointerSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceElement__LocalModifiedAttributeElementType = new ExecutorFragment(Types._InstancePointerSourceElement, MappingTables.Types._LocalModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceElement__MappingHintSourceInterface = new ExecutorFragment(Types._InstancePointerSourceElement, MappingTables.Types._MappingHintSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceElement__ModifiedAttributeElementType = new ExecutorFragment(Types._InstancePointerSourceElement, MappingTables.Types._ModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceElement__NamedElement = new ExecutorFragment(Types._InstancePointerSourceElement, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceElement__OclAny = new ExecutorFragment(Types._InstancePointerSourceElement, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceElement__OclElement = new ExecutorFragment(Types._InstancePointerSourceElement, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceInterface__InstancePointerSourceInterface = new ExecutorFragment(Types._InstancePointerSourceInterface, MetamodelTables.Types._InstancePointerSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceInterface__MappingHintSourceInterface = new ExecutorFragment(Types._InstancePointerSourceInterface, MappingTables.Types._MappingHintSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceInterface__NamedElement = new ExecutorFragment(Types._InstancePointerSourceInterface, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceInterface__OclAny = new ExecutorFragment(Types._InstancePointerSourceInterface, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _InstancePointerSourceInterface__OclElement = new ExecutorFragment(Types._InstancePointerSourceInterface, OCLstdlibTables.Types._OclElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _LibraryEntry__LibraryEntry = new ExecutorFragment(Types._LibraryEntry, MetamodelTables.Types._LibraryEntry);
 		private static final /*@NonNull*/ ExecutorFragment _LibraryEntry__OclAny = new ExecutorFragment(Types._LibraryEntry, OCLstdlibTables.Types._OclAny);
@@ -812,9 +847,12 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _FileAttribute__TargetSection__file = new ExecutorPropertyWithImplementation("TargetSection", Types._FileAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.TARGET_SECTION__FILE));
 
 		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__attributePointer = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER, Types._InstancePointer, 0);
-		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__value = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__VALUE, Types._InstancePointer, 1);
-		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("RangeBound", Types._InstancePointer, 2, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
-		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("SingleReferenceAttributeValueConstraint", Types._InstancePointer, 3, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__sourceAttributes = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES, Types._InstancePointer, 1);
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__value = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__VALUE, Types._InstancePointer, 2);
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("RangeBound", Types._InstancePointer, 3, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("SingleReferenceAttributeValueConstraint", Types._InstancePointer, 4, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
+
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointerSourceInterface__InstancePointer__sourceAttributes = new ExecutorPropertyWithImplementation("InstancePointer", Types._InstancePointerSourceInterface, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES));
 
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__id = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ID, Types._LibraryEntry, 0);
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__libraryFile = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE, Types._LibraryEntry, 1);
@@ -1090,9 +1128,47 @@ public class MetamodelTables
 		{
 			Fragments._InstancePointer__OclAny /* 0 */,
 			Fragments._InstancePointer__OclElement /* 1 */,
-			Fragments._InstancePointer__InstancePointer /* 2 */
+			Fragments._InstancePointer__ExpressionHint /* 2 */,
+			Fragments._InstancePointer__ModifiableHint /* 2 */,
+			Fragments._InstancePointer__InstancePointer /* 3 */
 		};
-		private static final /*@NonNull*/ int[] __InstancePointer = { 1,1,1 };
+		private static final /*@NonNull*/ int[] __InstancePointer = { 1,1,2,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment[] _InstancePointerExternalSourceElement =
+		{
+			Fragments._InstancePointerExternalSourceElement__OclAny /* 0 */,
+			Fragments._InstancePointerExternalSourceElement__OclElement /* 1 */,
+			Fragments._InstancePointerExternalSourceElement__NamedElement /* 2 */,
+			Fragments._InstancePointerExternalSourceElement__MappingHintSourceInterface /* 3 */,
+			Fragments._InstancePointerExternalSourceElement__ModifiedAttributeElementType /* 3 */,
+			Fragments._InstancePointerExternalSourceElement__ExternalModifiedAttributeElementType /* 4 */,
+			Fragments._InstancePointerExternalSourceElement__InstancePointerSourceInterface /* 4 */,
+			Fragments._InstancePointerExternalSourceElement__InstancePointerExternalSourceElement /* 5 */
+		};
+		private static final /*@NonNull*/ int[] __InstancePointerExternalSourceElement = { 1,1,1,2,2,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment[] _InstancePointerSourceElement =
+		{
+			Fragments._InstancePointerSourceElement__OclAny /* 0 */,
+			Fragments._InstancePointerSourceElement__OclElement /* 1 */,
+			Fragments._InstancePointerSourceElement__NamedElement /* 2 */,
+			Fragments._InstancePointerSourceElement__MappingHintSourceInterface /* 3 */,
+			Fragments._InstancePointerSourceElement__ModifiedAttributeElementType /* 3 */,
+			Fragments._InstancePointerSourceElement__InstancePointerSourceInterface /* 4 */,
+			Fragments._InstancePointerSourceElement__LocalModifiedAttributeElementType /* 4 */,
+			Fragments._InstancePointerSourceElement__InstancePointerSourceElement /* 5 */
+		};
+		private static final /*@NonNull*/ int[] __InstancePointerSourceElement = { 1,1,1,2,2,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment[] _InstancePointerSourceInterface =
+		{
+			Fragments._InstancePointerSourceInterface__OclAny /* 0 */,
+			Fragments._InstancePointerSourceInterface__OclElement /* 1 */,
+			Fragments._InstancePointerSourceInterface__NamedElement /* 2 */,
+			Fragments._InstancePointerSourceInterface__MappingHintSourceInterface /* 3 */,
+			Fragments._InstancePointerSourceInterface__InstancePointerSourceInterface /* 4 */
+		};
+		private static final /*@NonNull*/ int[] __InstancePointerSourceInterface = { 1,1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _LibraryEntry =
 		{
@@ -1391,6 +1467,9 @@ public class MetamodelTables
 			Types._FileAttribute.initFragments(_FileAttribute, __FileAttribute);
 			Types._FileTypeEnum.initFragments(_FileTypeEnum, __FileTypeEnum);
 			Types._InstancePointer.initFragments(_InstancePointer, __InstancePointer);
+			Types._InstancePointerExternalSourceElement.initFragments(_InstancePointerExternalSourceElement, __InstancePointerExternalSourceElement);
+			Types._InstancePointerSourceElement.initFragments(_InstancePointerSourceElement, __InstancePointerSourceElement);
+			Types._InstancePointerSourceInterface.initFragments(_InstancePointerSourceInterface, __InstancePointerSourceInterface);
 			Types._LibraryEntry.initFragments(_LibraryEntry, __LibraryEntry);
 			Types._LibraryParameter.initFragments(_LibraryParameter, __LibraryParameter);
 			Types._MetaModelElement.initFragments(_MetaModelElement, __MetaModelElement);
@@ -1947,6 +2026,8 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorOperation[] _FileTypeEnum__Visitable = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__InstancePointer = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__ExpressionHint = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__ModifiableHint = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -1964,6 +2045,97 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointer__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__InstancePointerExternalSourceElement = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__ExternalModifiedAttributeElementType = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__InstancePointerSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__MappingHintSourceInterface = {
+			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__InstancePointerSourceElement = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__InstancePointerSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__LocalModifiedAttributeElementType = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__MappingHintSourceInterface = {
+			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceInterface__InstancePointerSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceInterface__MappingHintSourceInterface = {
+			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceInterface__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceInterface__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceInterface__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
@@ -2880,9 +3052,35 @@ public class MetamodelTables
 			Fragments._FileTypeEnum__Type.initOperations(_FileTypeEnum__Type);
 			Fragments._FileTypeEnum__Visitable.initOperations(_FileTypeEnum__Visitable);
 
+			Fragments._InstancePointer__ExpressionHint.initOperations(_InstancePointer__ExpressionHint);
 			Fragments._InstancePointer__InstancePointer.initOperations(_InstancePointer__InstancePointer);
+			Fragments._InstancePointer__ModifiableHint.initOperations(_InstancePointer__ModifiableHint);
 			Fragments._InstancePointer__OclAny.initOperations(_InstancePointer__OclAny);
 			Fragments._InstancePointer__OclElement.initOperations(_InstancePointer__OclElement);
+
+			Fragments._InstancePointerExternalSourceElement__ExternalModifiedAttributeElementType.initOperations(_InstancePointerExternalSourceElement__ExternalModifiedAttributeElementType);
+			Fragments._InstancePointerExternalSourceElement__InstancePointerExternalSourceElement.initOperations(_InstancePointerExternalSourceElement__InstancePointerExternalSourceElement);
+			Fragments._InstancePointerExternalSourceElement__InstancePointerSourceInterface.initOperations(_InstancePointerExternalSourceElement__InstancePointerSourceInterface);
+			Fragments._InstancePointerExternalSourceElement__MappingHintSourceInterface.initOperations(_InstancePointerExternalSourceElement__MappingHintSourceInterface);
+			Fragments._InstancePointerExternalSourceElement__ModifiedAttributeElementType.initOperations(_InstancePointerExternalSourceElement__ModifiedAttributeElementType);
+			Fragments._InstancePointerExternalSourceElement__NamedElement.initOperations(_InstancePointerExternalSourceElement__NamedElement);
+			Fragments._InstancePointerExternalSourceElement__OclAny.initOperations(_InstancePointerExternalSourceElement__OclAny);
+			Fragments._InstancePointerExternalSourceElement__OclElement.initOperations(_InstancePointerExternalSourceElement__OclElement);
+
+			Fragments._InstancePointerSourceElement__InstancePointerSourceElement.initOperations(_InstancePointerSourceElement__InstancePointerSourceElement);
+			Fragments._InstancePointerSourceElement__InstancePointerSourceInterface.initOperations(_InstancePointerSourceElement__InstancePointerSourceInterface);
+			Fragments._InstancePointerSourceElement__LocalModifiedAttributeElementType.initOperations(_InstancePointerSourceElement__LocalModifiedAttributeElementType);
+			Fragments._InstancePointerSourceElement__MappingHintSourceInterface.initOperations(_InstancePointerSourceElement__MappingHintSourceInterface);
+			Fragments._InstancePointerSourceElement__ModifiedAttributeElementType.initOperations(_InstancePointerSourceElement__ModifiedAttributeElementType);
+			Fragments._InstancePointerSourceElement__NamedElement.initOperations(_InstancePointerSourceElement__NamedElement);
+			Fragments._InstancePointerSourceElement__OclAny.initOperations(_InstancePointerSourceElement__OclAny);
+			Fragments._InstancePointerSourceElement__OclElement.initOperations(_InstancePointerSourceElement__OclElement);
+
+			Fragments._InstancePointerSourceInterface__InstancePointerSourceInterface.initOperations(_InstancePointerSourceInterface__InstancePointerSourceInterface);
+			Fragments._InstancePointerSourceInterface__MappingHintSourceInterface.initOperations(_InstancePointerSourceInterface__MappingHintSourceInterface);
+			Fragments._InstancePointerSourceInterface__NamedElement.initOperations(_InstancePointerSourceInterface__NamedElement);
+			Fragments._InstancePointerSourceInterface__OclAny.initOperations(_InstancePointerSourceInterface__OclAny);
+			Fragments._InstancePointerSourceInterface__OclElement.initOperations(_InstancePointerSourceInterface__OclElement);
 
 			Fragments._LibraryEntry__LibraryEntry.initOperations(_LibraryEntry__LibraryEntry);
 			Fragments._LibraryEntry__OclAny.initOperations(_LibraryEntry__OclAny);
@@ -3181,9 +3379,22 @@ public class MetamodelTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _InstancePointer = {
 			MetamodelTables.Properties._InstancePointer__attributePointer,
+			MetamodelTables.Properties._InstancePointer__sourceAttributes,
 			MetamodelTables.Properties._InstancePointer__value,
 			MetamodelTables.Properties._InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._InstancePointer__SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty[] _InstancePointerExternalSourceElement = {
+			MetamodelTables.Properties._InstancePointerSourceInterface__InstancePointer__sourceAttributes
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty[] _InstancePointerSourceElement = {
+			MetamodelTables.Properties._InstancePointerSourceInterface__InstancePointer__sourceAttributes
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty[] _InstancePointerSourceInterface = {
+			MetamodelTables.Properties._InstancePointerSourceInterface__InstancePointer__sourceAttributes
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _LibraryEntry = {
@@ -3387,6 +3598,9 @@ public class MetamodelTables
 			Fragments._FileAttribute__FileAttribute.initProperties(_FileAttribute);
 			Fragments._FileTypeEnum__FileTypeEnum.initProperties(_FileTypeEnum);
 			Fragments._InstancePointer__InstancePointer.initProperties(_InstancePointer);
+			Fragments._InstancePointerExternalSourceElement__InstancePointerExternalSourceElement.initProperties(_InstancePointerExternalSourceElement);
+			Fragments._InstancePointerSourceElement__InstancePointerSourceElement.initProperties(_InstancePointerSourceElement);
+			Fragments._InstancePointerSourceInterface__InstancePointerSourceInterface.initProperties(_InstancePointerSourceInterface);
 			Fragments._LibraryEntry__LibraryEntry.initProperties(_LibraryEntry);
 			Fragments._LibraryParameter__LibraryParameter.initProperties(_LibraryParameter);
 			Fragments._MetaModelElement__MetaModelElement.initProperties(_MetaModelElement);

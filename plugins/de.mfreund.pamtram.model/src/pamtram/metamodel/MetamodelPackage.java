@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import pamtram.PamtramPackage;
+import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -3257,7 +3258,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSingleReferenceAttributeValueConstraint()
 	 * @generated
 	 */
-	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT = 38;
+	int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT = 41;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4007,13 +4008,31 @@ public interface MetamodelPackage extends EPackage {
 	int INSTANCE_POINTER = 36;
 
 	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER__EXPRESSION = MappingPackage.EXPRESSION_HINT__EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER__RESULT_MODIFIER = MappingPackage.EXPRESSION_HINT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Attribute Pointer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER__ATTRIBUTE_POINTER = 0;
+	int INSTANCE_POINTER__ATTRIBUTE_POINTER = MappingPackage.EXPRESSION_HINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4022,7 +4041,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER__VALUE = 1;
+	int INSTANCE_POINTER__VALUE = MappingPackage.EXPRESSION_HINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Source Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER__SOURCE_ATTRIBUTES = MappingPackage.EXPRESSION_HINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Instance Pointer</em>' class.
@@ -4031,7 +4059,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER_FEATURE_COUNT = 2;
+	int INSTANCE_POINTER_FEATURE_COUNT = MappingPackage.EXPRESSION_HINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Instance Pointer</em>' class.
@@ -4040,7 +4068,217 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER_OPERATION_COUNT = 0;
+	int INSTANCE_POINTER_OPERATION_COUNT = MappingPackage.EXPRESSION_HINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.metamodel.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.InstancePointerSourceInterface
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getInstancePointerSourceInterface()
+	 * @generated
+	 */
+	int INSTANCE_POINTER_SOURCE_INTERFACE = 37;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_INTERFACE__NAME = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Instance Pointer Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_INTERFACE_FEATURE_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
+
+	/**
+	 * The number of operations of the '<em>Instance Pointer Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_INTERFACE_OPERATION_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.InstancePointerSourceElementImpl <em>Instance Pointer Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.InstancePointerSourceElementImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getInstancePointerSourceElement()
+	 * @generated
+	 */
+	int INSTANCE_POINTER_SOURCE_ELEMENT = 38;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_ELEMENT__NAME = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_ELEMENT__SOURCE = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_ELEMENT__MODIFIER = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+
+	/**
+	 * The number of structural features of the '<em>Instance Pointer Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_ELEMENT_FEATURE_COUNT = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Instance Pointer Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_SOURCE_ELEMENT_OPERATION_COUNT = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.InstancePointerExternalSourceElementImpl <em>Instance Pointer External Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.InstancePointerExternalSourceElementImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getInstancePointerExternalSourceElement()
+	 * @generated
+	 */
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT = 39;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT__NAME = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT__SOURCE = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT__MODIFIER = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+
+	/**
+	 * The number of structural features of the '<em>Instance Pointer External Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Instance Pointer External Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.RangeBoundImpl <em>Range Bound</em>}' class.
@@ -4050,7 +4288,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getRangeBound()
 	 * @generated
 	 */
-	int RANGE_BOUND = 37;
+	int RANGE_BOUND = 40;
 
 	/**
 	 * The feature id for the '<em><b>Bound Reference Value</b></em>' reference list.
@@ -4114,7 +4352,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getFileTypeEnum()
 	 * @generated
 	 */
-	int FILE_TYPE_ENUM = 39;
+	int FILE_TYPE_ENUM = 42;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.AttributeValueConstraintType <em>Attribute Value Constraint Type</em>}' enum.
@@ -4124,7 +4362,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintType()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 40;
+	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 43;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.CardinalityType <em>Cardinality Type</em>}' enum.
@@ -4134,7 +4372,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCardinalityType()
 	 * @generated
 	 */
-	int CARDINALITY_TYPE = 41;
+	int CARDINALITY_TYPE = 44;
 
 
 	/**
@@ -5166,6 +5404,47 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getInstancePointer_Value();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.InstancePointer#getSourceAttributes <em>Source Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Source Attributes</em>'.
+	 * @see pamtram.metamodel.InstancePointer#getSourceAttributes()
+	 * @see #getInstancePointer()
+	 * @generated
+	 */
+	EReference getInstancePointer_SourceAttributes();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Instance Pointer Source Interface</em>'.
+	 * @see pamtram.metamodel.InstancePointerSourceInterface
+	 * @generated
+	 */
+	EClass getInstancePointerSourceInterface();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.InstancePointerSourceElement <em>Instance Pointer Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Instance Pointer Source Element</em>'.
+	 * @see pamtram.metamodel.InstancePointerSourceElement
+	 * @generated
+	 */
+	EClass getInstancePointerSourceElement();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.InstancePointerExternalSourceElement <em>Instance Pointer External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Instance Pointer External Source Element</em>'.
+	 * @see pamtram.metamodel.InstancePointerExternalSourceElement
+	 * @generated
+	 */
+	EClass getInstancePointerExternalSourceElement();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.RangeBound <em>Range Bound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6190,6 +6469,44 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute INSTANCE_POINTER__VALUE = eINSTANCE.getInstancePointer_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_POINTER__SOURCE_ATTRIBUTES = eINSTANCE.getInstancePointer_SourceAttributes();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.InstancePointerSourceInterface
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getInstancePointerSourceInterface()
+		 * @generated
+		 */
+		EClass INSTANCE_POINTER_SOURCE_INTERFACE = eINSTANCE.getInstancePointerSourceInterface();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.InstancePointerSourceElementImpl <em>Instance Pointer Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.InstancePointerSourceElementImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getInstancePointerSourceElement()
+		 * @generated
+		 */
+		EClass INSTANCE_POINTER_SOURCE_ELEMENT = eINSTANCE.getInstancePointerSourceElement();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.InstancePointerExternalSourceElementImpl <em>Instance Pointer External Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.InstancePointerExternalSourceElementImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getInstancePointerExternalSourceElement()
+		 * @generated
+		 */
+		EClass INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getInstancePointerExternalSourceElement();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.RangeBoundImpl <em>Range Bound</em>}' class.

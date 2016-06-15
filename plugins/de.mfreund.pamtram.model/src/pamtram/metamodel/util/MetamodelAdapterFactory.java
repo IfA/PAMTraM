@@ -8,6 +8,12 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import pamtram.NamedElement;
 import pamtram.ReferenceableElement;
+import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExternalModifiedAttributeElementType;
+import pamtram.mapping.LocalModifiedAttributeElementType;
+import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
@@ -21,6 +27,9 @@ import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
+import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
@@ -253,6 +262,18 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createInstancePointerAdapter();
 			}
 			@Override
+			public Adapter caseInstancePointerSourceInterface(InstancePointerSourceInterface object) {
+				return createInstancePointerSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseInstancePointerSourceElement(InstancePointerSourceElement object) {
+				return createInstancePointerSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseInstancePointerExternalSourceElement(InstancePointerExternalSourceElement object) {
+				return createInstancePointerExternalSourceElementAdapter();
+			}
+			@Override
 			public Adapter caseRangeBound(RangeBound object) {
 				return createRangeBoundAdapter();
 			}
@@ -267,6 +288,30 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseReferenceableElement(ReferenceableElement object) {
 				return createReferenceableElementAdapter();
+			}
+			@Override
+			public Adapter caseExpressionHint(ExpressionHint object) {
+				return createExpressionHintAdapter();
+			}
+			@Override
+			public Adapter caseModifiableHint(ModifiableHint object) {
+				return createModifiableHintAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
+				return createMappingHintSourceInterfaceAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
+				return createModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
+				return createLocalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+				return createExternalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -821,6 +866,48 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.InstancePointerSourceInterface
+	 * @generated
+	 */
+	public Adapter createInstancePointerSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.InstancePointerSourceElement <em>Instance Pointer Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.InstancePointerSourceElement
+	 * @generated
+	 */
+	public Adapter createInstancePointerSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.InstancePointerExternalSourceElement <em>Instance Pointer External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.InstancePointerExternalSourceElement
+	 * @generated
+	 */
+	public Adapter createInstancePointerExternalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.RangeBound <em>Range Bound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -859,6 +946,90 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReferenceableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionHint <em>Expression Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExpressionHint
+	 * @generated
+	 */
+	public Adapter createExpressionHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiableHint <em>Modifiable Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ModifiableHint
+	 * @generated
+	 */
+	public Adapter createModifiableHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHintSourceInterface
+	 * @generated
+	 */
+	public Adapter createMappingHintSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiedAttributeElementType <em>Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.LocalModifiedAttributeElementType <em>Local Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.LocalModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createLocalModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalModifiedAttributeElementType <em>External Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExternalModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createExternalModifiedAttributeElementTypeAdapter() {
 		return null;
 	}
 

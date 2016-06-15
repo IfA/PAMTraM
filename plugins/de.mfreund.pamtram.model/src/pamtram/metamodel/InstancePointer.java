@@ -2,7 +2,9 @@
  */
 package pamtram.metamodel;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.EList;
+import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ModifiableHint;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,13 +17,14 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link pamtram.metamodel.InstancePointer#getAttributePointer <em>Attribute Pointer</em>}</li>
  *   <li>{@link pamtram.metamodel.InstancePointer#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.metamodel.InstancePointer#getSourceAttributes <em>Source Attributes</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getInstancePointer()
  * @model
  * @generated
  */
-public interface InstancePointer extends EObject {
+public interface InstancePointer extends ExpressionHint, ModifiableHint {
 	/**
 	 * Returns the value of the '<em><b>Attribute Pointer</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -74,5 +77,22 @@ public interface InstancePointer extends EObject {
 	 * @generated
 	 */
 	void setValue(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Source Attributes</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.metamodel.InstancePointerSourceInterface}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Attributes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Attributes</em>' containment reference list.
+	 * @see pamtram.metamodel.MetamodelPackage#getInstancePointer_SourceAttributes()
+	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!InstancePointer!sourceAttributes'"
+	 * @generated
+	 */
+	EList<InstancePointerSourceInterface> getSourceAttributes();
 
 } // InstancePointer

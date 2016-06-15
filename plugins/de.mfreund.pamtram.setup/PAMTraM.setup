@@ -34,14 +34,6 @@
     <requirement
         name="org.eclipse.wst.xml_ui.feature.feature.group"/>
     <requirement
-        name="org.eclipse.epsilon.core.feature.feature.group"/>
-    <requirement
-        name="org.eclipse.epsilon.core.dt.feature.feature.group"/>
-    <requirement
-        name="org.eclipse.epsilon.emf.dt.feature.feature.group"/>
-    <requirement
-        name="org.eclipse.epsilon.emf.feature.feature.group"/>
-    <requirement
         name="org.eclipse.ocl.examples.feature.group"
         versionRange="6.0.1"/>
     <requirement

@@ -161,7 +161,8 @@ public class ReferenceableValueCalculator {
 				}
 				
 				if(instPt != null){
-					correspondEClassInstances = this.instancePointerHandler.getPointedInstanceBySourceSectionClass(instPt, (SourceSectionClass) refElementAsSSA.eContainer());
+					//FIXME We need the corresponding MatchedSectionDescriptor here!
+					correspondEClassInstances = this.instancePointerHandler.getPointedInstanceBySourceSectionClass(instPt, (SourceSectionClass) refElementAsSSA.eContainer(), null);
 				}
 				
 				if(correspondEClassInstances.size()==1){
@@ -224,7 +225,8 @@ public class ReferenceableValueCalculator {
 					}
 					
 					if(instPt!=null){
-						correspondEClassInstances = this.instancePointerHandler.getPointedInstanceBySourceSectionClass(instPt, (SourceSectionClass) refElementAsSSA.eContainer());
+						//FIXME We need the corresponding MatchedSectionDescriptor here!
+						correspondEClassInstances = this.instancePointerHandler.getPointedInstanceBySourceSectionClass(instPt, (SourceSectionClass) refElementAsSSA.eContainer(), null);
 					}
 					
 					if(correspondEClassInstances.size()==1){	

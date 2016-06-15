@@ -914,7 +914,9 @@
       <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"
-        eSuperTypes="#//NamedElement"/>
+        eSuperTypes="#//NamedElement">
+      <eOperations name="isLocalCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" eSuperTypes="#//condition/ComplexCondition">
       <eOperations name="checkCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="condition" eType="#//condition/ComplexCondition"/>

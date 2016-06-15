@@ -3,6 +3,7 @@
 package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -289,6 +290,17 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 				return minimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+	
+	@Override
+	public boolean isLocalCondition() {
+		
+		List<ComplexCondition> subConditions = new ArrayList<>();
+		
+		subConditions.addAll(getCondParts());
+		subConditions.addAll(getCondPartsRef());
+		
+		return subConditions.parallelStream().filter(c -> c.isLocalCondition()).findAny().isPresent();
 	}
 
 } //MultipleConditionOperatorImpl

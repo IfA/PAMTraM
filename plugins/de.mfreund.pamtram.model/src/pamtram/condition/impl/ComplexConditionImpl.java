@@ -2,6 +2,8 @@
  */
 package pamtram.condition.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
@@ -32,6 +34,29 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	@Override
 	protected EClass eStaticClass() {
 		return ConditionPackage.Literals.COMPLEX_CONDITION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isLocalCondition() {
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!ComplexCondition!isLocalCondition()
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ConditionPackage.COMPLEX_CONDITION___IS_LOCAL_CONDITION:
+				return isLocalCondition();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ComplexConditionImpl

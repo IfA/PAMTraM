@@ -216,6 +216,15 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getComplexCondition__IsLocalCondition() {
+		return complexConditionEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCondition() {
 		return conditionEClass;
 	}
@@ -483,6 +492,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Create classes and their features
 		complexConditionEClass = createEClass(COMPLEX_CONDITION);
+		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_LOCAL_CONDITION);
 
 		conditionEClass = createEClass(CONDITION);
 		createEReference(conditionEClass, CONDITION__ADDITIONAL_CONDITION_SPECIFICATION);
@@ -566,6 +576,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(complexConditionEClass, ComplexCondition.class, "ComplexCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEOperation(getComplexCondition__IsLocalCondition(), ecorePackage.getEBoolean(), "isLocalCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(conditionEClass, Condition.class, "Condition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCondition_AdditionalConditionSpecification(), theMetamodelPackage.getInstancePointer(), null, "additionalConditionSpecification", null, 0, -1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -3,6 +3,8 @@
 package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -315,6 +317,18 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 				return exactlyOneArg((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+	
+	@Override
+	public boolean isLocalCondition() {
+		
+		ComplexCondition subCondition = getCondPart();
+		
+		if(subCondition == null) {
+			subCondition = getCondPartRef();
+		}
+		
+		return subCondition == null ? false : subCondition.isLocalCondition();
 	}
 
 } //SingleConditionOperatorImpl

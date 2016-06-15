@@ -18,14 +18,6 @@
    </license>
 
    <includes
-         id="org.eclipse.epsilon.core.dt.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.epsilon.emf.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.xsd"
          version="0.0.0"/>
 
@@ -43,14 +35,6 @@
 
    <includes
          id="org.eclipse.ocl.examples"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.epsilon.core.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.epsilon.emf.dt.feature"
          version="0.0.0"/>
 
    <requires>
@@ -91,7 +75,6 @@
       <import plugin="org.eclipse.jdt.core" version="3.9.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.expressions" version="3.4.500" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide" version="3.9.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.epsilon.common.dt" version="0.9.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.compare" version="3.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.console" version="3.6.100" match="greaterOrEqual"/>

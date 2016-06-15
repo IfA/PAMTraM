@@ -9,7 +9,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.matching.InstancePointerValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
+import pamtram.mapping.Mapping;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -30,6 +32,11 @@ import pamtram.metamodel.SourceSectionClass;
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 	
 	/**
+	 * The {@link InstancePointerValueExtractor} that is used to extract target values for InstancePointers.
+	 */
+	private InstancePointerValueExtractor valueExtractor;
+	
+	/**
 	 * The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	private final MessageConsoleStream consoleStream;
@@ -42,8 +49,11 @@ import pamtram.metamodel.SourceSectionClass;
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	public InstancePointerHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, MessageConsoleStream consoleStream){
+		
 		this.matchedSections = matchedSections;
+		this.valueExtractor = new InstancePointerValueExtractor(AttributeValueModifierExecutor.getInstance(), consoleStream);
 		this.consoleStream = consoleStream;
+		
 	}
 	
 	/**
@@ -52,10 +62,12 @@ import pamtram.metamodel.SourceSectionClass;
 	 * 
 	 * @param instancePointer The {@link InstancePointer} to evaluate.
 	 * @param sourceSectionClass The {@link SourceSectionClass} for that instances shall be retrieved and filtered.
+	 * @param matchedSectionDescriptor the {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated.
 	 * @return The subset of <em>instanceList</em> determined based on the given {@link SourceSectionClass} that satisfy 
 	 * the given <em>instancePointer</em>.
 	 */
-	public List<EObject> getPointedInstanceBySourceSectionClass(InstancePointer instancePointer, SourceSectionClass sourceSectionClass){
+	public List<EObject> getPointedInstanceBySourceSectionClass(InstancePointer instancePointer, 
+			SourceSectionClass sourceSectionClass, MatchedSectionDescriptor matchedSectionDescriptor){
 		
 		EList<EObject> correspondEclassInstances = new BasicEList<>();
 		
@@ -64,7 +76,7 @@ import pamtram.metamodel.SourceSectionClass;
 				correspondEclassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
 		}
 		
-		return getPointedInstanceByInstanceList(instancePointer, correspondEclassInstances);
+		return getPointedInstanceByInstanceList(instancePointer, correspondEclassInstances, matchedSectionDescriptor);
 		
 	}
 		
@@ -74,11 +86,20 @@ import pamtram.metamodel.SourceSectionClass;
 	 * 
 	 * @param instancePointer The {@link InstancePointer} to evaluate.
 	 * @param instanceList The list of {@link EObject elements} to check.
+	 * @param matchedSectionDescriptor the {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated.
 	 * @return The subset of the given <em>instanceList</em> that satisfy the given <em>instancePointer</em>.
 	 */
-	public List<EObject> getPointedInstanceByInstanceList(InstancePointer instancePointer, List<EObject> instanceList){
+	public List<EObject> getPointedInstanceByInstanceList(InstancePointer instancePointer, List<EObject> instanceList, 
+			MatchedSectionDescriptor matchedSectionDescriptor){
 		
-		String instancePointerRefValue = instancePointer.getValue();
+		EObject container = instancePointer.eContainer();
+		
+		while(!(container instanceof Mapping)) {
+			container = container.eContainer();
+		}
+		
+		String instancePointerRefValue = valueExtractor.extractRequiredTargetValue(instancePointer, matchedSectionDescriptor);
+		
 		SourceSectionAttribute sourceAttr = instancePointer.getAttributePointer();
 		
 		return instanceList.parallelStream().filter(element -> {

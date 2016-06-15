@@ -613,8 +613,8 @@ public class GenericTransformationRunner {
 		TransformationResult transformationResult = new TransformationResult();
 
 		// generate storage objects and generators
-		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
-				consoleStream);
+		final AttributeValueModifierExecutor attributeValueModifier =
+				AttributeValueModifierExecutor.init(consoleStream);
 
 		/*
 		 * Perform the 'matching' step of the transformation

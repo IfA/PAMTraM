@@ -622,6 +622,52 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.InstancePointerSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InstancePointerSourceElementItemProvider instancePointerSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.InstancePointerSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInstancePointerSourceElementAdapter() {
+		if (instancePointerSourceElementItemProvider == null) {
+			instancePointerSourceElementItemProvider = new InstancePointerSourceElementItemProvider(this);
+		}
+
+		return instancePointerSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.InstancePointerExternalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InstancePointerExternalSourceElementItemProvider instancePointerExternalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.InstancePointerExternalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInstancePointerExternalSourceElementAdapter() {
+		if (instancePointerExternalSourceElementItemProvider == null) {
+			instancePointerExternalSourceElementItemProvider = new InstancePointerExternalSourceElementItemProvider(this);
+		}
+
+		return instancePointerExternalSourceElementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

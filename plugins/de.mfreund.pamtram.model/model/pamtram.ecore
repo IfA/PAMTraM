@@ -851,10 +851,32 @@
         <eParameters name="refValue" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer">
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer" eSuperTypes="#//mapping/ExpressionHint #//mapping/ModifiableHint">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributePointer" lowerBound="1"
           eType="#//metamodel/SourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributes" lowerBound="1"
+          upperBound="-1" eType="#//metamodel/InstancePointerSourceInterface" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointerSourceInterface" abstract="true"
+        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointerSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//metamodel/InstancePointerSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointerExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//metamodel/InstancePointerSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RangeBound">
       <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValue"

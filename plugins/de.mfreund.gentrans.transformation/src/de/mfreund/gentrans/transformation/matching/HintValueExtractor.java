@@ -1,14 +1,12 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
@@ -70,13 +68,15 @@ public class HintValueExtractor extends ValueExtractor {
 	 * 
 	 * @param mappingInstances The list of {@link MappingInstanceStorage MappingInstanceStorages}
 	 * for that the hint values shall be extracted.
+	 * @param globalAttributes The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
+	 * {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
 	 * @param attributeValueModifierExecutor The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
-	public HintValueExtractor(List<MappingInstanceStorage> mappingInstances, 
+	public HintValueExtractor(List<MappingInstanceStorage> mappingInstances, Map<GlobalAttribute, String> globalAttributes,
 			AttributeValueModifierExecutor attributeValueModifierExecutor, MessageConsoleStream consoleStream) {
 
-		super(attributeValueModifierExecutor, consoleStream);
+		super(globalAttributes, attributeValueModifierExecutor, consoleStream);
 		
 		this.mappingInstances = mappingInstances;
 		this.exportedHintGroups = new HashMap<>();
@@ -86,9 +86,6 @@ public class HintValueExtractor extends ValueExtractor {
 	 * This extracts the hint values and stores them in the {@link #mappingInstances}.
 	 */
 	public void extractHintValues() {
-		
-		// First, we extract values for global attributes
-		mappingInstances.parallelStream().forEach(this::extractGlobalAttributeValues);
 		
 		// In a first step, we extract the hints of 'normal' and exported hint groups.
 		//
@@ -110,68 +107,6 @@ public class HintValueExtractor extends ValueExtractor {
 		// hint values of exported hint groups that have been calculated before)
 		//
 		mappingInstances.parallelStream().forEach(this::extractImportedHintValues);
-	}
-	
-	/**
-	 * This extracts the values of global attributes for the given {@link MappingInstanceStorage}.
-	 * <p />
-	 * Note: The extracted values are stored in {@link #globalAttributeValues}.
-	 * 
-	 * @param mappingInstance The {@link MappingInstanceStorage} for that the values of global attributes shall be extracted.
-	 */
-	private void extractGlobalAttributeValues(MappingInstanceStorage mappingInstance) {
-		
-		// First, we collect all global attributes
-		//
-		mappingInstance.getMapping().getGlobalVariables().parallelStream().forEach(
-				g -> extractGlobalAttributeValue(g, mappingInstance));
-	}
-	
-	/**
-	 * This extracts and returns the value for the given {@link GlobalAttribute} from the source elements represented
-	 * by the given <em>mappingInstance</em>.
-	 * 
-	 * @param globalAttribute The {@link GlobalAttribute} for that the value shall be extracted.
-	 * @param mappingInstance The {@link MappingInstanceStorage} representing the source model elements from that values shall be extracted.
-	 */
-	private void extractGlobalAttributeValue(GlobalAttribute globalAttribute, MappingInstanceStorage mappingInstance) {
-		
-		Set<EObject> sourceElements = mappingInstance.getSourceModelObjectsMapped().get(globalAttribute.getSource().eContainer());
-		
-		if(sourceElements == null) {
-			consoleStream.println("Value of global attribute '" + globalAttribute.getName() + "' not found!");
-			return;
-		} else if(sourceElements.size() > 1) {
-			consoleStream.println("Multiple source elements found for global attribute '" + globalAttribute.getName() + "'."
-					+ " This is not supported. Only the first element is used!");
-		}
-		
-		EObject sourceElement = sourceElements.iterator().next();
-		
-		EAttribute sourceAttribute = globalAttribute.getSource().getAttribute();
-		
-		/*
-		 * Attributes may have a cardinality greater than 1.
-		 */
-		Object srcAttrValue;
-		if(sourceAttribute.isMany()) {
-			consoleStream.println("Multiple source values found for global attribute '" + globalAttribute.getName() + "'."
-					+ " This is not supported. Only the first element is used!");
-			srcAttrValue = ((Collection<?>) sourceElement.eGet(sourceAttribute)).iterator().next();
-		} else {
-			srcAttrValue = sourceElement.eGet(sourceAttribute);
-		}
-		
-		// convert Attribute value to String
-		final String srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
-				.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
-		
-		final String valCopy = attributeValueModifierExecutor
-				.applyAttributeValueModifiers(srcAttrAsString, globalAttribute.getModifier());
-		
-		// Store the found value
-		//
-		globalAttributeValues.put(globalAttribute, valCopy);		
 	}
 	
 	/**

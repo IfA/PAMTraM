@@ -21,6 +21,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.ContainmentTree;
 import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
@@ -117,7 +118,7 @@ public class SourceSectionMatcher {
 		this.matchedSections = new HashMap<>();
 		this.matchedContainers = new HashMap<>();
 		this.constraintsWithErrors = new HashSet<>();
-		this.refValueCalculator = new ReferenceableValueCalculator(new ArrayList<>(), consoleStream);
+		this.refValueCalculator = new ReferenceableValueCalculator(new GlobalValueMap(new HashMap<>(), new HashMap<>()), consoleStream);
 	}
 
 	/**

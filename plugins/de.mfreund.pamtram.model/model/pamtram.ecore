@@ -925,7 +925,12 @@
       <eOperations name="isLocalCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eOperations name="isMappingCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="return this.eContainer() instanceof Mapping;"/>
+          <details key="body" value="return getRootCondition().eContainer() instanceof Mapping;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="isConditionModelCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return getRootCondition().eContainer() instanceof ConditionModel;"/>
         </eAnnotations>
       </eOperations>
     </eClassifiers>

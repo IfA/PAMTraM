@@ -309,10 +309,12 @@ public class ConditionTables
 			Parameters.init();
 		}
 
-		public static final /*@NonNull*/ ExecutorOperation _ComplexCondition__isLocalCondition = new ExecutorOperation("isLocalCondition", Parameters._, Types._ComplexCondition,
+		public static final /*@NonNull*/ ExecutorOperation _ComplexCondition__isConditionModelCondition = new ExecutorOperation("isConditionModelCondition", Parameters._, Types._ComplexCondition,
 			0, TemplateParameters.EMPTY_LIST, null);
-		public static final /*@NonNull*/ ExecutorOperation _ComplexCondition__isMappingCondition = new ExecutorOperation("isMappingCondition", Parameters._, Types._ComplexCondition,
+		public static final /*@NonNull*/ ExecutorOperation _ComplexCondition__isLocalCondition = new ExecutorOperation("isLocalCondition", Parameters._, Types._ComplexCondition,
 			1, TemplateParameters.EMPTY_LIST, null);
+		public static final /*@NonNull*/ ExecutorOperation _ComplexCondition__isMappingCondition = new ExecutorOperation("isMappingCondition", Parameters._, Types._ComplexCondition,
+			2, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _Condition__checkCondition = new ExecutorOperation("checkCondition", Parameters._ComplexCondition, Types._Condition,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -550,6 +552,7 @@ public class ConditionTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _And__And = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _And__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};
@@ -581,6 +584,7 @@ public class ConditionTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeCondition__AttributeCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeCondition__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};
@@ -658,6 +662,7 @@ public class ConditionTables
 		private static final /*@NonNull*/ ExecutorOperation[] _ComparatorEnum__Visitable = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _ComplexCondition__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};
@@ -735,6 +740,7 @@ public class ConditionTables
 			ConditionTables.Operations._Condition__checkCondition /* checkCondition(ComplexCondition[?]) */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _Condition__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};
@@ -765,6 +771,7 @@ public class ConditionTables
 			ConditionTables.Operations._MultipleConditionOperator__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _MultipleConditionOperator__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};
@@ -795,6 +802,7 @@ public class ConditionTables
 			ConditionTables.Operations._Not__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _Not__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};
@@ -824,6 +832,7 @@ public class ConditionTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__Or = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _Or__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};
@@ -855,6 +864,7 @@ public class ConditionTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _SectionCondition__SectionCondition = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SectionCondition__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};
@@ -886,6 +896,7 @@ public class ConditionTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _SingleConditionOperator__SingleConditionOperator = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SingleConditionOperator__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};

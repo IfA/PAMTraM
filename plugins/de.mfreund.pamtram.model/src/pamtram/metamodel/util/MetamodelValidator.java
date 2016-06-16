@@ -188,12 +188,20 @@ public class MetamodelValidator extends EObjectValidator {
 	public static final int ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 13;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'No Modified Attribute Element Types In Condition Model Conditions' of 'Instance Pointer'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int INSTANCE_POINTER__NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS = 14;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'No Global Attribute Importer In Mapping Conditions' of 'Instance Pointer'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int INSTANCE_POINTER__NO_GLOBAL_ATTRIBUTE_IMPORTER_IN_MAPPING_CONDITIONS = 14;
+	public static final int INSTANCE_POINTER__NO_GLOBAL_ATTRIBUTE_IMPORTER_IN_MAPPING_CONDITIONS = 15;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -201,7 +209,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 14;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 15;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -1045,6 +1053,7 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instancePointer, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instancePointer, diagnostics, context);
 		if (result || diagnostics != null) result &= validateInstancePointer_noGlobalAttributeImporterInMappingConditions(instancePointer, diagnostics, context);
+		if (result || diagnostics != null) result &= validateInstancePointer_noModifiedAttributeElementTypesInConditionModelConditions(instancePointer, diagnostics, context);
 		return result;
 	}
 
@@ -1056,6 +1065,16 @@ public class MetamodelValidator extends EObjectValidator {
 	 */
 	public boolean validateInstancePointer_noGlobalAttributeImporterInMappingConditions(InstancePointer instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return instancePointer.noGlobalAttributeImporterInMappingConditions(diagnostics, context);
+	}
+
+	/**
+	 * Validates the noModifiedAttributeElementTypesInConditionModelConditions constraint of '<em>Instance Pointer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateInstancePointer_noModifiedAttributeElementTypesInConditionModelConditions(InstancePointer instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return instancePointer.noModifiedAttributeElementTypesInConditionModelConditions(diagnostics, context);
 	}
 
 	/**

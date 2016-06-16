@@ -5,6 +5,9 @@ package pamtram.condition.impl;
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+
+import pamtram.ConditionModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
@@ -52,7 +55,33 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	 * @generated
 	 */
 	public boolean isMappingCondition() {
-		return this.eContainer() instanceof Mapping;
+		return getRootCondition().eContainer() instanceof Mapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isConditionModelCondition() {
+		return getRootCondition().eContainer() instanceof ConditionModel;
+	}
+	
+	/**
+	 * This iterates upward in the containment hierarchy and determines the <em>root condition</em> of this,
+	 * i.e. the condition for that {@link #eContainer()} returns anything but a {@link ComplexCondition}.
+	 * 
+	 * @return The <em>root condition</em>.
+	 */
+	private ComplexCondition getRootCondition() {
+		
+		ComplexCondition parentCondition = this;
+		
+		while(parentCondition.eContainer() instanceof ComplexCondition) {
+			parentCondition = (ComplexCondition) parentCondition.eContainer();
+		}
+		
+		return parentCondition;
 	}
 
 	/**
@@ -67,6 +96,8 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 				return isLocalCondition();
 			case ConditionPackage.COMPLEX_CONDITION___IS_MAPPING_CONDITION:
 				return isMappingCondition();
+			case ConditionPackage.COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION:
+				return isConditionModelCondition();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

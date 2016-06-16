@@ -118,6 +118,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MappingInstanceSelector = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappingInstanceSelector", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MappingType = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappingType", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MetaModelSectionReference = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("MetaModelSectionReference", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ModifiedAttributeElementType = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModifiedAttributeElementType", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_NonContainmentReference = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("NonContainmentReference", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_OclElement = MetamodelTables.PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_PAMTraM = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("PAMTraM", 0);
@@ -153,7 +154,9 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ContainmentReference_c_c_eReferenceIsContainment = "ContainmentReference::eReferenceIsContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_GlobalAttributeImporters_32_are_32_not_32_allowed_32_as_32_part_32_of_32_MappingCondi = "GlobalAttributeImporters are not allowed as part of MappingConditions!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_InstancePointer_c_c_noGlobalAttributeImporterInMappingConditions = "InstancePointer::noGlobalAttributeImporterInMappingConditions";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_InstancePointer_c_c_noModifiedAttributeElementTypesInConditionModel = "InstancePointer::noModifiedAttributeElementTypesInConditionModelConditions";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MetaModelSectionReference_c_c_valuesMatchReferenceType = "MetaModelSectionReference::valuesMatchReferenceType";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ModifiedAttributeElementTypes_32_are_32_not_32_allowed_32_as_32_part_32_of_32_Conditi = "ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_NonContainmentReference_c_c_eReferenceIsNonContainment = "NonContainmentReference::eReferenceIsNonContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Reference_c_c_eReferenceMatchesParentEClass = "Reference::eReferenceMatchesParentEClass";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Section_c_c_containerMatchesExtendContainer = "Section::containerMatchesExtendContainer";

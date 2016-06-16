@@ -15,6 +15,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.InstancePointerHandler;
 import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
@@ -28,6 +29,7 @@ import pamtram.condition.Or;
 import pamtram.condition.SectionCondition;
 import pamtram.condition.SingleConditionOperator;
 import pamtram.mapping.FixedValue;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
@@ -94,14 +96,15 @@ public class ConditionHandler {
 	 * 
 	 * @param matchedSections The map of {@link SourceSection SourceSections} and associated {@link MatchedSectionDescriptor 
 	 * MatchedSectionDescriptors} that result from the matching process.
-	 * @param globalValues The list of {@link FixedValue global values} that are defined in the pamtram model.
+	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
+	 * defined in the PAMTraM model.
 	 */
-	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<FixedValue> globalValues){
+	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, GlobalValueMap globalValues){
 		
 		this.matchedSections =  matchedSections;
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
-		this.instancePointerHandler = new InstancePointerHandler(matchedSections, consoleStream);
+		this.instancePointerHandler = new InstancePointerHandler(matchedSections, globalValues, consoleStream);
 		this.refValueCalculator = new ReferenceableValueCalculator(globalValues, this.instancePointerHandler, consoleStream);
 	}
 	

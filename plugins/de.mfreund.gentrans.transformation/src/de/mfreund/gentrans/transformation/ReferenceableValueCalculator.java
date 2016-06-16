@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import pamtram.NamedElement;
 import pamtram.ReferenceableElement;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
@@ -19,9 +21,8 @@ import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.RangeBound;
-import de.congrace.exp4j.Calculable;
-import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.calculation.ExpressionCalculator;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 
 
 /**
@@ -34,12 +35,12 @@ public class ReferenceableValueCalculator {
 	/**
 	 * Registry for global values
 	 */
-	private final Map<String, String> globalValuesAsString;
+	private final GlobalValueMap globalValues;
 	
 	/**
 	 * Registry for global values that are doubles
 	 */
-	private final Map<String, Double> globalValuesAsDouble;
+	private final Map<NamedElement, Double> globalValuesAsDouble;
 	
 	/**
 	 * The console stream to be used to print messages.
@@ -52,27 +53,29 @@ public class ReferenceableValueCalculator {
 	private InstancePointerHandler instancePointerHandler;
 	
 	/**
-	 * This creates an instance that can only handled {@link FixedValue FixedValues} but no {@link GlobalAttribute GlobalAttributes}
-	 * or referenced {@link SourceSectionAttribute SourceSectionAttributes}.
+	 * This creates an instance that can only handled {@link FixedValue FixedValues} but no referenced 
+	 * {@link SourceSectionAttribute SourceSectionAttributes}.
 	 * <p />
 	 * This should be used during the 'matching' phase where these latter information are not yet present.
 	 * 
-	 * @param fixedVals The list of {@link FixedValue FixedValues} to take into account.
+	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
+	 * defined in the PAMTraM model.
 	 * @param consoleStream
 	 */
-	public ReferenceableValueCalculator(List<FixedValue> fixedVals, MessageConsoleStream consoleStream) {
-		this(fixedVals, null, consoleStream);
+	public ReferenceableValueCalculator(GlobalValueMap globalValues, MessageConsoleStream consoleStream) {
+		this(globalValues, null, consoleStream);
 	}
 	
 	/**
 	 * This creates an instance.
 	 * 
-	 * @param globalValues The list of {@link FixedValue FixedValues} that can be used during the calculation of a value.
+	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
+	 * defined in the PAMTraM model.
 	 * @param instancePointerHandler The {@link InstancePointerHandler} that is used to evaluate {@link InstancePointer InstancePointers}
 	 * that have been modeled.
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
-	public ReferenceableValueCalculator(List<FixedValue> globalValues, InstancePointerHandler instancePointerHandler, 
+	public ReferenceableValueCalculator(GlobalValueMap globalValues, InstancePointerHandler instancePointerHandler, 
 			MessageConsoleStream consoleStream) {
 		
 		// store the message stream
@@ -81,32 +84,13 @@ public class ReferenceableValueCalculator {
 		// store the 'InstancePointerHandler'
 		this.instancePointerHandler = instancePointerHandler;
 		
-		// find GlobalAttrs that can be mapped to double
-		this.globalValuesAsString = new HashMap<>();
-
-		/*
-		 * add global values (named as 'FixedValue' in the metamodel)
-		 */
-		for (final FixedValue val : globalValues) {
-			if (val.getName() != null) {
-				globalValuesAsString.put(val.getName(), val.getValue());
-			}
-		}
+		// store the 'GlobalValues'
+		this.globalValues = globalValues;
 		
 		/*
 		 * only use global values that represent doubles
 		 */
-		this.globalValuesAsDouble = new HashMap<>();
-		for (Entry<String, String> globalValue : globalValuesAsString.entrySet()) {
-			try {
-				/*
-				 * We make use of the ExpressionBuilder as 'String.valueOf(double)' doesn't support
-				 * scientific notation, like: 0.42e2 == 4200e-2 == 42
-				 */
-				final Calculable calc = new ExpressionBuilder(globalValue.getValue()).build();
-				globalValuesAsDouble.put(globalValue.getKey(), calc.calculate());
-			} catch (final Exception e) {}
-		}
+		this.globalValuesAsDouble = globalValues.getGlobalValuesAsDouble();
 	}
 	
 	/**
@@ -147,9 +131,9 @@ public class ReferenceableValueCalculator {
 			ReferenceableElement refElement = refElementsAsList.get(0);
 			
 			if(refElement instanceof FixedValue){
-				refValue = globalValuesAsString.get(((FixedValue) refElement).getName());
+				refValue = globalValues.get((FixedValue) refElement);
 			} else if(refElement instanceof GlobalAttribute){
-				refValue = globalValuesAsString.get(((GlobalAttribute) refElement).getName());
+				refValue = globalValues.get((GlobalAttribute) refElement);
 			} else if(refElement instanceof SourceSectionAttribute){
 				
 				SourceSectionAttribute refElementAsSSA = (SourceSectionAttribute) refElement;
@@ -207,7 +191,8 @@ public class ReferenceableValueCalculator {
 		
 		String expressionResult;
 		Map<String,Double> vars = new HashMap<>();
-		vars.putAll(this.globalValuesAsDouble);
+		vars.putAll(this.globalValuesAsDouble.entrySet().parallelStream().collect(
+				Collectors.toMap(e -> e.getKey().getName(), Entry::getValue)));
 		
 		// Get SourcSectionAttributes and their values and put them into 'vars' List
 		int temp = 0; // Is needed for getting the correspond InstancePointer

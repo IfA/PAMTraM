@@ -9,8 +9,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.InstancePointerValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
+import pamtram.mapping.FixedValue;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.SourceSection;
@@ -40,18 +43,22 @@ import pamtram.metamodel.SourceSectionClass;
 	 * The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	private final MessageConsoleStream consoleStream;
-	 
+
 	/**
 	 * This creates an instance.
 	 * 
 	 * @param matchedSections A map relating {@link SourceSection SourceSections} and lists of {@link MatchedSectionDescriptor 
 	 * MatchedSectionDescriptors} that have been create for each SourceSection during the <em>matching</em> process.
+	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
+	 * defined in the PAMTraM model.
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
-	public InstancePointerHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, MessageConsoleStream consoleStream){
+	public InstancePointerHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, 
+			GlobalValueMap globalValues, MessageConsoleStream consoleStream){
 		
 		this.matchedSections = matchedSections;
-		this.valueExtractor = new InstancePointerValueExtractor(AttributeValueModifierExecutor.getInstance(), consoleStream);
+		this.valueExtractor = new InstancePointerValueExtractor(
+				globalValues.getGlobalAttributes(), AttributeValueModifierExecutor.getInstance(), consoleStream);
 		this.consoleStream = consoleStream;
 		
 	}

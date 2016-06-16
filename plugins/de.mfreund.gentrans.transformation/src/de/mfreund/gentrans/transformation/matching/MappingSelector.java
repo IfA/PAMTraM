@@ -11,16 +11,17 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.ConditionalElement;
 import pamtram.mapping.FixedValue;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.SourceSection;
 
@@ -73,7 +74,8 @@ public class MappingSelector extends CancellableElement {
 	 * @param matchedSections A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found
 	 * for every {@link SourceSection}.
 	 * @param mappings The list of {@link Mapping Mappings} that shall be considered.
-	 * @param globalValues The list of {@link FixedValue global values} defined in the pamtram model.
+	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
+	 * defined in the PAMTraM model.
 	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a 
 	 * per-element basis.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
@@ -81,7 +83,7 @@ public class MappingSelector extends CancellableElement {
 	 *           The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	public MappingSelector(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings, 
-			EList<FixedValue> globalValues, boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, MessageConsoleStream consoleStream) {
+			GlobalValueMap globalValues, boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, MessageConsoleStream consoleStream) {
 		
 		this.matchedSections = matchedSections;
 		this.mappings = mappings;

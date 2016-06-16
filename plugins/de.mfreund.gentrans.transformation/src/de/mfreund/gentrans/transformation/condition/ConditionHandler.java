@@ -15,6 +15,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.InstancePointerHandler;
 import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
@@ -28,6 +29,7 @@ import pamtram.condition.Or;
 import pamtram.condition.SectionCondition;
 import pamtram.condition.SingleConditionOperator;
 import pamtram.mapping.FixedValue;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
@@ -94,14 +96,15 @@ public class ConditionHandler {
 	 * 
 	 * @param matchedSections The map of {@link SourceSection SourceSections} and associated {@link MatchedSectionDescriptor 
 	 * MatchedSectionDescriptors} that result from the matching process.
-	 * @param globalValues The list of {@link FixedValue global values} that are defined in the pamtram model.
+	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
+	 * defined in the PAMTraM model.
 	 */
-	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<FixedValue> globalValues){
+	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, GlobalValueMap globalValues){
 		
 		this.matchedSections =  matchedSections;
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
-		this.instancePointerHandler = new InstancePointerHandler(matchedSections, consoleStream);
+		this.instancePointerHandler = new InstancePointerHandler(matchedSections, globalValues, consoleStream);
 		this.refValueCalculator = new ReferenceableValueCalculator(globalValues, this.instancePointerHandler, consoleStream);
 	}
 	
@@ -109,10 +112,12 @@ public class ConditionHandler {
 	 * This is the general checkCondition-Method. It is only for collecting the arguments and calling the right Operator-Method.
 	 * Note: Enum instead of boolean as return type is needed as 'CondSettingEnum' has the option 'NO_MATCHING_ACCEPTED', so
 	 * the condition shouldn't influence.
-	 * @param complexCondition
+	 * 
+	 * @param complexCondition The {@link ComplexCondition} to check.
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the condition shall be checked.
 	 * @return The calculated Enum result (true, false, irrelevant)
 	 */
-	public CondResult checkCondition(ComplexCondition complexCondition){
+	public CondResult checkCondition(ComplexCondition complexCondition, MatchedSectionDescriptor matchedSectionDescriptor){
 		
 		CondResult result = CondResult.TRUE;
 		
@@ -121,16 +126,19 @@ public class ConditionHandler {
 			return CondResult.TRUE;
 		} else {
 			
-			// First, we prove if that condition already have been checked
-			if (conditionRepository.get(complexCondition) != null){
+			// First, we check if that condition already has been checked. In case we are dealing with a 'global'
+			// condition, we may reuse this result.
+			//
+			if (conditionRepository.get(complexCondition) != null && !complexCondition.isLocalCondition()){
 				result = conditionRepository.get(complexCondition);
+				
 			// Otherwise, we have to calculate the value
 			} else {
 			
 				if(complexCondition instanceof MultipleConditionOperator){
-					result = checkConditionMultipleConditionOperator((MultipleConditionOperator) complexCondition);
+					result = checkConditionMultipleConditionOperator((MultipleConditionOperator) complexCondition, matchedSectionDescriptor);
 				} else if(complexCondition instanceof SingleConditionOperator){
-					result = checkConditionSingleConditionOperator((SingleConditionOperator) complexCondition);
+					result = checkConditionSingleConditionOperator((SingleConditionOperator) complexCondition, matchedSectionDescriptor);
 				} else if (complexCondition instanceof Condition){
 					
 					// Before evaluating, check 'DefaultSetting' (may we can break evaluating and save time)
@@ -143,9 +151,9 @@ public class ConditionHandler {
 					}
 					
 					if(complexCondition instanceof AttributeCondition){
-						result = checkAttributeCondition((AttributeCondition) complexCondition);
+						result = checkAttributeCondition((AttributeCondition) complexCondition, matchedSectionDescriptor);
 					} else if (complexCondition instanceof SectionCondition){
-						result = checkSectionCondition((SectionCondition) complexCondition);
+						result = checkSectionCondition((SectionCondition) complexCondition, matchedSectionDescriptor);
 					}
 				}
 			}
@@ -154,7 +162,7 @@ public class ConditionHandler {
 		return result;
 	}
 
-	private CondResult checkSectionCondition(SectionCondition sectionCondition) {
+	private CondResult checkSectionCondition(SectionCondition sectionCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
 		boolean tempConditionRes = false;
 		
@@ -167,7 +175,7 @@ public class ConditionHandler {
 			}
 			
 			if(!sectionCondition.getAdditionalConditionSpecification().isEmpty()){
-				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances);
+				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances, matchedSectionDescriptor);
 			}
 			
 			// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
@@ -176,15 +184,15 @@ public class ConditionHandler {
 			// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
 			if(cardinalityRes == true){
 				if(tempConditionRes == false){
-					this.conditionRepository.put(sectionCondition, CondResult.TRUE);}
+					storeConditionResult(sectionCondition, CondResult.TRUE);}
 				return CondResult.TRUE;
 			} else if(cardinalityRes == false){
 				if(tempConditionRes == false){
-					this.conditionRepository.put(sectionCondition, CondResult.FALSE);}
+					storeConditionResult(sectionCondition, CondResult.FALSE);}
 				return CondResult.FALSE;
 			} else{
 				if(tempConditionRes == false){
-					this.conditionRepository.put(sectionCondition, CondResult.IRRELEVANT);}
+					storeConditionResult(sectionCondition, CondResult.IRRELEVANT);}
 				return CondResult.IRRELEVANT;
 			}
 		
@@ -199,7 +207,7 @@ public class ConditionHandler {
 		}
 	}
 
-	private CondResult checkAttributeCondition(AttributeCondition attrCondition) {
+	private CondResult checkAttributeCondition(AttributeCondition attrCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
 		boolean tempConditionRes = false;
 		List<EObject> correspondEClassInstances = new BasicEList<>();
@@ -224,7 +232,7 @@ public class ConditionHandler {
 			
 			if(instPt != null){
 				// Note: Here we use getPointedInstanceByLIST - List-Method
-				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(instPt, correspondEClassInstances);
+				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(instPt, correspondEClassInstances, matchedSectionDescriptor);
 			}
 		}
 		
@@ -338,16 +346,31 @@ public class ConditionHandler {
 		// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
 		if(cardinalityRes == true){
 			if(tempConditionRes == false){
-				this.conditionRepository.put(attrCondition, CondResult.TRUE);}
+				storeConditionResult(attrCondition, CondResult.TRUE);}
 			return CondResult.TRUE;
 		} else if(cardinalityRes == false){
 			if(tempConditionRes == false){
-				this.conditionRepository.put(attrCondition, CondResult.FALSE);}
+				storeConditionResult(attrCondition, CondResult.FALSE);}
 			return CondResult.FALSE;
 		} else{
 			if(tempConditionRes == false){
-				this.conditionRepository.put(attrCondition, CondResult.IRRELEVANT);}
+				storeConditionResult(attrCondition, CondResult.IRRELEVANT);}
 			return CondResult.IRRELEVANT;
+		}
+	}
+	
+	/**
+	 * Store the given {@link CondResult} for the given {@link ComplexCondition} in the {@link #conditionRepository}.
+	 * <p />
+	 * Note: Result will only be stored in case of {@link ComplexCondition#isLocalCondition() global} conditions.
+	 * @param condition
+	 * @param result
+	 */
+	private void storeConditionResult(ComplexCondition condition, CondResult result) {
+		
+		// only store results for 'global' conditions
+		if(!condition.isLocalCondition()) {
+			this.conditionRepository.put(condition, result);
 		}
 	}
 	
@@ -395,10 +418,10 @@ public class ConditionHandler {
 		return result;
 	}
 
-	private CondResult checkConditionSingleConditionOperator(SingleConditionOperator condition) {
+	private CondResult checkConditionSingleConditionOperator(SingleConditionOperator condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		if(condition instanceof Not){
-			return checkConditionNot((Not) condition);
+			return checkConditionNot((Not) condition, matchedSectionDescriptor);
 		} else {
 			// If we are here, some mistake is happened, more types could be supported in the future
 			consoleStream.println("SingleConditionOperator type " + condition.getClass().getName() + " is not yet supported!");
@@ -406,14 +429,14 @@ public class ConditionHandler {
 		}		
 	}
 
-	private CondResult checkConditionNot(Not condition) {
+	private CondResult checkConditionNot(Not condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
 		CondResult condTemp = CondResult.IRRELEVANT;
 		// Not Implementation
 		if(condition.getCondPartRef() != null){
-			condTemp = checkCondition(condition.getCondPartRef());
+			condTemp = checkCondition(condition.getCondPartRef(), matchedSectionDescriptor);
 		} else if(condition.getCondPart() != null){
-			condTemp = checkCondition(condition.getCondPart());
+			condTemp = checkCondition(condition.getCondPart(), matchedSectionDescriptor);
 		}   
 		
 		// Invert the result and return
@@ -437,12 +460,12 @@ public class ConditionHandler {
 		return condTemp;
 	}
 
-	private CondResult checkConditionMultipleConditionOperator(MultipleConditionOperator  multipleCondition) {
+	private CondResult checkConditionMultipleConditionOperator(MultipleConditionOperator  multipleCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
 		if (multipleCondition instanceof And){
-			return checkConditionAnd((And) multipleCondition);
+			return checkConditionAnd((And) multipleCondition, matchedSectionDescriptor);
 		} else if(multipleCondition instanceof Or){
-			return checkConditionOr((Or) multipleCondition);
+			return checkConditionOr((Or) multipleCondition, matchedSectionDescriptor);
 		} else {
 			// If we are here, some mistake is happened
 			// more types could be supported in the future
@@ -452,7 +475,7 @@ public class ConditionHandler {
 	}
 
 
-	private CondResult checkConditionAnd(And condition) {
+	private CondResult checkConditionAnd(And condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
 		//Get and put all arguments in a new list
 		EList<ComplexCondition> args = new BasicEList<ComplexCondition>(); 
@@ -463,7 +486,7 @@ public class ConditionHandler {
 		CondResult condTemp = CondResult.TRUE;
 		
 		for(ComplexCondition arg: args){
-			condTemp = checkCondition(arg);
+			condTemp = checkCondition(arg, matchedSectionDescriptor);
 			if(condTemp == CondResult.FALSE){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
 			} else if(condTemp == CondResult.IRRELEVANT){
@@ -478,7 +501,7 @@ public class ConditionHandler {
 		return condTemp;
 	}
 
-	private CondResult checkConditionOr(Or condition) {
+	private CondResult checkConditionOr(Or condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
 		//Get and put all arguments in a new list
 		EList<ComplexCondition> args = new BasicEList<ComplexCondition>(); 
@@ -489,7 +512,7 @@ public class ConditionHandler {
 		CondResult condTemp = CondResult.FALSE; // Note that is an Or
 		
 		for(ComplexCondition arg: args){
-			condTemp = checkCondition(arg);
+			condTemp = checkCondition(arg, matchedSectionDescriptor);
 			if(condTemp == CondResult.TRUE){// In order to save some time we break the loop after one argument returned false (And-Operator)
 				break;
 			} else if(condTemp == CondResult.IRRELEVANT){

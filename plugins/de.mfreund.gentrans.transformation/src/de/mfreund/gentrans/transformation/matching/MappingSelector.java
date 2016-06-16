@@ -11,16 +11,17 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.ConditionalElement;
 import pamtram.mapping.FixedValue;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.SourceSection;
 
@@ -73,7 +74,8 @@ public class MappingSelector extends CancellableElement {
 	 * @param matchedSections A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found
 	 * for every {@link SourceSection}.
 	 * @param mappings The list of {@link Mapping Mappings} that shall be considered.
-	 * @param globalValues The list of {@link FixedValue global values} defined in the pamtram model.
+	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
+	 * defined in the PAMTraM model.
 	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a 
 	 * per-element basis.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
@@ -81,7 +83,7 @@ public class MappingSelector extends CancellableElement {
 	 *           The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	public MappingSelector(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings, 
-			EList<FixedValue> globalValues, boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, MessageConsoleStream consoleStream) {
+			GlobalValueMap globalValues, boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, MessageConsoleStream consoleStream) {
 		
 		this.matchedSections = matchedSections;
 		this.mappings = mappings;
@@ -252,9 +254,8 @@ public class MappingSelector extends CancellableElement {
 	private boolean checkConditions(Mapping mapping, MatchedSectionDescriptor descriptor) {
 		
 		// check Conditions of the Mapping (Note: no condition modeled = true)
-		//TODO the descriptor should be involved in the checking of the condition
-		if(conditionHandler.checkCondition(mapping.getCondition()) == CondResult.TRUE && 
-				conditionHandler.checkCondition(mapping.getConditionRef()) == CondResult.TRUE) {
+		if(conditionHandler.checkCondition(mapping.getCondition(), descriptor) == CondResult.TRUE && 
+				conditionHandler.checkCondition(mapping.getConditionRef(), descriptor) == CondResult.TRUE) {
 			return true;
 		} else {
 			return false;
@@ -302,7 +303,7 @@ public class MappingSelector extends CancellableElement {
 	 */
 	private boolean checkCondition(ConditionalElement conditionalElement, MappingInstanceStorage mappingInstance) {
 		
-		boolean result = checkCondition(conditionalElement);
+		boolean result = checkCondition(conditionalElement, mappingInstance.getMatchedSectionDescriptor());
 		
 		if(!result) {
 			
@@ -318,9 +319,9 @@ public class MappingSelector extends CancellableElement {
 	 * @param conditionalElement The {@link ConditionalElement} to check.
 	 * @return '<em><b>true</b></em>' if the condition was evaluated to {@link CondResult#TRUE}; '<em><b>false</b></em>' otherwise.
 	 */
-	private boolean checkCondition(ConditionalElement conditionalElement) {
-		if(conditionHandler.checkCondition(conditionalElement.getCondition()) == CondResult.FALSE || 
-				conditionHandler.checkCondition(conditionalElement.getConditionRef()) == CondResult.FALSE){
+	private boolean checkCondition(ConditionalElement conditionalElement, MatchedSectionDescriptor descriptor) {
+		if(conditionHandler.checkCondition(conditionalElement.getCondition(), descriptor) == CondResult.FALSE || 
+				conditionHandler.checkCondition(conditionalElement.getConditionRef(), descriptor) == CondResult.FALSE){
 			
 			return false;
 		} else {

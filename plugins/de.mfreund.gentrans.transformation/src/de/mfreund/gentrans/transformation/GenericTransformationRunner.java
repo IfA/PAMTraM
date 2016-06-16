@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -49,6 +50,8 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
+import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
@@ -613,8 +616,8 @@ public class GenericTransformationRunner {
 		TransformationResult transformationResult = new TransformationResult();
 
 		// generate storage objects and generators
-		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
-				consoleStream);
+		final AttributeValueModifierExecutor attributeValueModifier =
+				AttributeValueModifierExecutor.init(consoleStream);
 
 		/*
 		 * Perform the 'matching' step of the transformation
@@ -712,14 +715,32 @@ public class GenericTransformationRunner {
 
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 		
+		writePamtramMessage("Extract Values of Global Attributes");
+		
+		/*
+		 * Create the GlobalAttributeValueExtractor that extracts values of GlobalAttributes
+		 */
+		GlobalAttributeValueExtractor globalAttributeValueExtractor = new GlobalAttributeValueExtractor(attributeValueModifier, consoleStream);
+		Map<GlobalAttribute, String> globalAttributeValues = 
+				globalAttributeValueExtractor.extractGlobalAttributeValues(matchingResult, suitableMappings);
+		
+		// Collect the values of FixedValues and GlobalAttributes in a common map that will be passed to consumers
+		//
+		GlobalValueMap globalValues = new GlobalValueMap(
+				pamtramModel.getGlobalValues().parallelStream().collect(Collectors.toMap(Function.identity(), FixedValue::getValue)), 
+				globalAttributeValues);
+		
 		writePamtramMessage("Select Mappings for Matched Sections");
 		
 		/*
 		 * Create the MappingSelector that finds applicable mappings
 		 */
-		final MappingSelector mappingSelector = new MappingSelector(matchingResult, suitableMappings, pamtramModel.getGlobalValues(), 
+		final MappingSelector mappingSelector = new MappingSelector(matchingResult, suitableMappings, globalValues, 
 				onlyAskOnceOnAmbiguousMappings, ambiguityResolvingStrategy, consoleStream);
+		
 		selectedMappingsByMapping = mappingSelector.selectMappings();
+		List<MappingInstanceStorage> mappingInstances = 
+				selectedMappingsByMapping.values().stream().flatMap(l -> l.stream()).collect(Collectors.toList());
 		
 		writePamtramMessage("Extract Hint Values");
 		
@@ -727,7 +748,8 @@ public class GenericTransformationRunner {
 		 * Calculate mapping hints 
 		 */
 		final HintValueExtractor hintValueExtractor = new HintValueExtractor(
-				selectedMappingsByMapping.values().stream().flatMap(l -> l.stream()).collect(Collectors.toList()), 
+				mappingInstances,
+				globalValues.getGlobalAttributes(), 
 				attributeValueModifier, consoleStream);
 		hintValueExtractor.extractHintValues();
 		

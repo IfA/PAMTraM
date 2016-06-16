@@ -26,8 +26,6 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Class;
-import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSectionClass;

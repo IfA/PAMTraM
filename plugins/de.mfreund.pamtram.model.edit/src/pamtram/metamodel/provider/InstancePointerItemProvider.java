@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.mapping.provider.ExpressionHintItemProvider;
@@ -243,6 +244,16 @@ public class InstancePointerItemProvider
 			(createChildParameter
 				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
 				 MetamodelFactory.eINSTANCE.createInstancePointerExternalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+				 MappingFactory.eINSTANCE.createFixedValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 	}
 
 	/**

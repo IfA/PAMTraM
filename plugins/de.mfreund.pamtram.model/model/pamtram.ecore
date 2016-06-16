@@ -853,10 +853,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstancePointer" eSuperTypes="#//mapping/ExpressionHint #//mapping/ModifiableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="noGlobalAttributeImporterInMappingConditions noModifiedAttributeElementTypesInConditionModelConditions"/>
+        <details key="constraints" value="noModifiedAttributeElementTypesInConditionModelConditions"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="noGlobalAttributeImporterInMappingConditions" value="Tuple {&#xD;&#xA;&#x9;message : String = 'GlobalAttributeImporters are not allowed as part of MappingConditions!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.oclContainer().oclIsKindOf(pamtram::condition::ComplexCondition) and self.oclContainer().oclAsType(pamtram::condition::ComplexCondition).isMappingCondition() then&#xD;&#xA;&#x9;&#x9;&#x9;not self.sourceAttributes->exists(self.oclIsTypeOf(pamtram::mapping::GlobalAttributeImporter)) else&#xD;&#xA;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
         <details key="noModifiedAttributeElementTypesInConditionModelConditions" value="Tuple {&#xD;&#xA;&#x9;message : String = 'ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.oclContainer().oclIsKindOf(pamtram::condition::ComplexCondition) and self.oclContainer().oclAsType(pamtram::condition::ComplexCondition).isConditionModelCondition() then&#xD;&#xA;&#x9;&#x9;&#x9;not self.sourceAttributes->exists(self.oclIsTypeOf(pamtram::mapping::ModifiedAttributeElementType)) else&#xD;&#xA;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributePointer" lowerBound="1"

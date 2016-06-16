@@ -1,12 +1,14 @@
 package de.mfreund.gentrans.transformation.condition;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -124,37 +126,36 @@ public class ConditionHandler {
 		// Note: No modeled condition always returns true
 		if(complexCondition == null){ 
 			return CondResult.TRUE;
+		}
+			
+		// First, we check if that condition already has been checked. In case we are dealing with a 'global'
+		// condition, we may reuse this result.
+		//
+		if (conditionRepository.get(complexCondition) != null && !complexCondition.isLocalCondition()){
+			result = conditionRepository.get(complexCondition);
+			
+		// Otherwise, we have to calculate the value
 		} else {
-			
-			// First, we check if that condition already has been checked. In case we are dealing with a 'global'
-			// condition, we may reuse this result.
-			//
-			if (conditionRepository.get(complexCondition) != null && !complexCondition.isLocalCondition()){
-				result = conditionRepository.get(complexCondition);
+		
+			if(complexCondition instanceof MultipleConditionOperator){
+				result = checkConditionMultipleConditionOperator((MultipleConditionOperator) complexCondition, matchedSectionDescriptor);
+			} else if(complexCondition instanceof SingleConditionOperator){
+				result = checkConditionSingleConditionOperator((SingleConditionOperator) complexCondition, matchedSectionDescriptor);
+			} else if (complexCondition instanceof Condition){
 				
-			// Otherwise, we have to calculate the value
-			} else {
-			
-				if(complexCondition instanceof MultipleConditionOperator){
-					result = checkConditionMultipleConditionOperator((MultipleConditionOperator) complexCondition, matchedSectionDescriptor);
-				} else if(complexCondition instanceof SingleConditionOperator){
-					result = checkConditionSingleConditionOperator((SingleConditionOperator) complexCondition, matchedSectionDescriptor);
-				} else if (complexCondition instanceof Condition){
-					
-					// Before evaluating, check 'DefaultSetting' (may we can break evaluating and save time)
-					if(((Condition) complexCondition).getDefaultSetting() == CondSettingEnum.NO_MATCHING_ACCEPTED){
-						if(complexCondition.eContainer() instanceof ComplexCondition){
-							return CondResult.IRRELEVANT;
-						} else{
-							return CondResult.TRUE;
-						}
+				// Before evaluating, check 'DefaultSetting' (may we can break evaluating and save time)
+				if(((Condition) complexCondition).getDefaultSetting() == CondSettingEnum.NO_MATCHING_ACCEPTED){
+					if(complexCondition.eContainer() instanceof ComplexCondition){
+						return CondResult.IRRELEVANT;
+					} else{
+						return CondResult.TRUE;
 					}
-					
-					if(complexCondition instanceof AttributeCondition){
-						result = checkAttributeCondition((AttributeCondition) complexCondition, matchedSectionDescriptor);
-					} else if (complexCondition instanceof SectionCondition){
-						result = checkSectionCondition((SectionCondition) complexCondition, matchedSectionDescriptor);
-					}
+				}
+				
+				if(complexCondition instanceof AttributeCondition){
+					result = checkAttributeCondition((AttributeCondition) complexCondition, matchedSectionDescriptor);
+				} else if (complexCondition instanceof SectionCondition){
+					result = checkSectionCondition((SectionCondition) complexCondition, matchedSectionDescriptor);
 				}
 			}
 		}
@@ -168,11 +169,35 @@ public class ConditionHandler {
 		
 		if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef().getContainingSection())){
 			
-			List<EObject> correspondEClassInstances = new BasicEList<>();
+			// The SourceSection holding the attribute that the AttributeCondition is based on
+			//
+			SourceSection affectedSection = sectionCondition.getConditionSectionRef().getContainingSection();
 			
-			for (MatchedSectionDescriptor descriptor : this.matchedSections.get(sectionCondition.getConditionSectionRef().getContainingSection())) {
-				correspondEClassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(sectionCondition.getConditionSectionRef()));
+			List<MatchedSectionDescriptor> descriptorsToConsider;
+			
+			if(sectionCondition.isLocalCondition() || !sectionCondition.getAdditionalConditionSpecification().isEmpty() ) {
+				
+				// In case of a 'local' condition without any InstancePointers specified, 
+				// we only consider the given 'matchedSectionDescriptor'.
+				//
+				descriptorsToConsider = Arrays.asList(matchedSectionDescriptor);
+				
+			} else {
+				
+				// In case of a 'global' condition or if an InstancePointer has been specified, we 
+				// have to consider all 'descriptors' for the SourceSection  under consideration
+				//
+				descriptorsToConsider = this.matchedSections.get(affectedSection);
 			}
+			
+			List<EObject> correspondEClassInstances;
+			
+			// Collect all instances for the selected MatchedSectionDescriptors
+			//
+			correspondEClassInstances = descriptorsToConsider.parallelStream()
+					.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection).stream())
+					.collect(Collectors.toList());
+			
 			
 			if(!sectionCondition.getAdditionalConditionSpecification().isEmpty()){
 				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances, matchedSectionDescriptor);
@@ -210,14 +235,37 @@ public class ConditionHandler {
 	private CondResult checkAttributeCondition(AttributeCondition attrCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
 		boolean tempConditionRes = false;
-		List<EObject> correspondEClassInstances = new BasicEList<>();
 		List<InstancePointer> instPointersAsList;
 		
-		// As in 'checkSectionCondtion'-method we store the SourceSectionClass correspond to the given SourceSectionAttribute
+		// The SourceSection holding the attribute that the AttributeCondition is based on
+		//
+		SourceSection affectedSection = attrCondition.getConditionAttributeRef().getContainingSection();
 		
-		for (MatchedSectionDescriptor descriptor : this.matchedSections.get(attrCondition.getConditionAttributeRef().getContainingSection())) {
-			correspondEClassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(attrCondition.getConditionAttributeRef().eContainer()));
+		List<MatchedSectionDescriptor> descriptorsToConsider;
+		
+		if(attrCondition.isLocalCondition() || !attrCondition.getAdditionalConditionSpecification().isEmpty() ) {
+			
+			// In case of a 'local' condition without any InstancePointers specified, 
+			// we only consider the given 'matchedSectionDescriptor'.
+			//
+			descriptorsToConsider = Arrays.asList(matchedSectionDescriptor);
+			
+		} else {
+			
+			// In case of a 'global' condition or if an InstancePointer has been specified, we 
+			// have to consider all 'descriptors' for the SourceSection  under consideration
+			//
+			descriptorsToConsider = this.matchedSections.get(affectedSection);
 		}
+		
+		List<EObject> correspondEClassInstances;
+		
+		// Collect all instances for the selected MatchedSectionDescriptors
+		//
+		correspondEClassInstances = descriptorsToConsider.parallelStream()
+				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection).stream())
+				.collect(Collectors.toList());
+		
 		
 		SourceSectionAttribute ssAttr = attrCondition.getConditionAttributeRef();
 		

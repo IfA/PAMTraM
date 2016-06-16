@@ -851,10 +851,38 @@
         <eParameters name="refValue" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer">
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer" eSuperTypes="#//mapping/ExpressionHint #//mapping/ModifiableHint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="noModifiedAttributeElementTypesInConditionModelConditions"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="noModifiedAttributeElementTypesInConditionModelConditions" value="Tuple {&#xD;&#xA;&#x9;message : String = 'ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.oclContainer().oclIsKindOf(pamtram::condition::ComplexCondition) and self.oclContainer().oclAsType(pamtram::condition::ComplexCondition).isConditionModelCondition() then&#xD;&#xA;&#x9;&#x9;&#x9;not self.sourceAttributes->exists(self.oclIsTypeOf(pamtram::mapping::ModifiedAttributeElementType)) else&#xD;&#xA;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributePointer" lowerBound="1"
           eType="#//metamodel/SourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributes" lowerBound="1"
+          upperBound="-1" eType="#//metamodel/InstancePointerSourceInterface" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointerSourceInterface" abstract="true"
+        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointerSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//metamodel/InstancePointerSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointerExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//metamodel/InstancePointerSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RangeBound">
       <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValue"
@@ -892,7 +920,19 @@
       <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"
-        eSuperTypes="#//NamedElement"/>
+        eSuperTypes="#//NamedElement">
+      <eOperations name="isLocalCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eOperations name="isMappingCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return getRootCondition().eContainer() instanceof Mapping;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="isConditionModelCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return getRootCondition().eContainer() instanceof ConditionModel;"/>
+        </eAnnotations>
+      </eOperations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" eSuperTypes="#//condition/ComplexCondition">
       <eOperations name="checkCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="condition" eType="#//condition/ComplexCondition"/>
@@ -1199,6 +1239,11 @@
           <details key="body" value="EObject ret = this.eContainer;&#xD;&#xA;while(!(ret instanceof MappingHintGroupType || ret instanceof InstantiableMappingHintGroup)) {&#xD;&#xA;&#x9;ret = ret.eContainer();&#xD;&#xA;&#x9;if(ret instanceof PAMTraM) {&#xD;&#xA;&#x9;&#x9;// something went wrong&#xD;&#xA;&#x9;&#x9;return null;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return (NamedElement) ret;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getMapping" unique="false" lowerBound="1" eType="#//mapping/Mapping">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="EObject ret = this.eContainer;&#xD;&#xA;while(!(ret instanceof Mapping)) {&#xD;&#xA;&#x9;ret = ret.eContainer();&#xD;&#xA;&#x9;if(ret instanceof PAMTraM) {&#xD;&#xA;&#x9;&#x9;// something went wrong&#xD;&#xA;&#x9;&#x9;return null;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return (Mapping) ret;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1">
         <eGenericType eTypeParameter="#//mapping/ModifiedAttributeElementType/A"/>
       </eStructuralFeatures>
@@ -1211,7 +1256,7 @@
         <details key="constraints" value="sourceAttributeMatchesSectionOrContainedSection"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="sourceAttributeMatchesSectionOrContainedSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not referenced by the source section of the parent hint group \'' + self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.name + '\' or in one of its extended sections/sub-sections!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;let sourceMMSection = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection in&#xD;&#xA;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = sourceMMSection or &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSection).isReferencedBy(sourceMMSection, null) or sourceMMSection.oclAsType(pamtram::metamodel::Section).extend->exists(e | e = self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::Section)) or &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;sourceMMSection.oclAsType(pamtram::metamodel::Section).extend->exists(e | self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::Section).isReferencedBy(e.oclAsType(pamtram::metamodel::Section), null))&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+        <details key="sourceAttributeMatchesSectionOrContainedSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not referenced by the source section of the parent mapping \'' + self.getMapping().sourceMMSection.name + '\' or in one of its extended sections/sub-sections!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.getMapping().oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let sourceMMSection = self.getMapping().sourceMMSection in&#xD;&#xA;&#x9;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = sourceMMSection or &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSection).isReferencedBy(sourceMMSection, null) or sourceMMSection.oclAsType(pamtram::metamodel::Section).extend->exists(e | e = self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::Section)) or &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sourceMMSection.oclAsType(pamtram::metamodel::Section).extend->exists(e | self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::Section).isReferencedBy(e.oclAsType(pamtram::metamodel::Section), null))&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//metamodel/Section">
@@ -1340,7 +1385,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//ReferenceableElement">
+    <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//metamodel/InstancePointerSourceInterface #//ReferenceableElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -1356,7 +1401,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//metamodel/InstancePointerSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
           eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>
@@ -1383,7 +1428,7 @@
         <details key="constraints" value="sourceAttributeMatchesContainerSection"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="sourceAttributeMatchesContainerSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not part of a container section of the source section of the parent hint group \'' + self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.name + '\'!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;let sourceMMSection = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection in&#xD;&#xA;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSection).isContainerFor(sourceMMSection.oclAsType(pamtram::metamodel::SourceSection))&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+        <details key="sourceAttributeMatchesContainerSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not part of a container section of the source section of the parent mapping \'' + self.getMapping().sourceMMSection.name + '\'!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.getMapping().oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let sourceMMSection = self.getMapping().sourceMMSection in&#xD;&#xA;&#x9;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSection).isContainerFor(sourceMMSection.oclAsType(pamtram::metamodel::SourceSection))&#xD;&#xA;&#x9;&#x9;&#x9;endif&#x9;&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//metamodel/Section">

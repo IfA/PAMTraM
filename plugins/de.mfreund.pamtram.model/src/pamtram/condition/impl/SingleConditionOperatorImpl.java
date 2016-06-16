@@ -316,5 +316,17 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 		}
 		return super.eInvoke(operationID, arguments);
 	}
+	
+	@Override
+	public boolean isLocalCondition() {
+		
+		ComplexCondition subCondition = getCondPart();
+		
+		if(subCondition == null) {
+			subCondition = getCondPartRef();
+		}
+		
+		return subCondition == null ? false : subCondition.isLocalCondition();
+	}
 
 } //SingleConditionOperatorImpl

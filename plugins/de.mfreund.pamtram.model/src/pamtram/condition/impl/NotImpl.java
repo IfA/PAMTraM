@@ -15,7 +15,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
-
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.condition.ConditionPackage;

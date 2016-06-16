@@ -89,13 +89,40 @@ public interface ConditionPackage extends EPackage {
 	int COMPLEX_CONDITION_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_CONDITION___IS_LOCAL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_CONDITION___IS_MAPPING_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Complex Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.
@@ -162,6 +189,33 @@ public interface ConditionPackage extends EPackage {
 	int CONDITION_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -224,6 +278,33 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -299,6 +380,33 @@ public interface ConditionPackage extends EPackage {
 	int AND_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___IS_LOCAL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___IS_MAPPING_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___IS_CONDITION_MODEL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -370,6 +478,33 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int OR_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___IS_LOCAL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___IS_MAPPING_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___IS_CONDITION_MODEL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -445,6 +580,33 @@ public interface ConditionPackage extends EPackage {
 	int SINGLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Exactly One Arg</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -507,6 +669,33 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_FEATURE_COUNT = SINGLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___IS_LOCAL_CONDITION = SINGLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___IS_MAPPING_CONDITION = SINGLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___IS_CONDITION_MODEL_CONDITION = SINGLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Exactly One Arg</em>' operation.
@@ -627,6 +816,33 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___IS_MAPPING_CONDITION = CONDITION___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___IS_CONDITION_MODEL_CONDITION = CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -718,6 +934,33 @@ public interface ConditionPackage extends EPackage {
 	int SECTION_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION_CONDITION___IS_MAPPING_CONDITION = CONDITION___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION_CONDITION___IS_CONDITION_MODEL_CONDITION = CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -766,6 +1009,36 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getComplexCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isLocalCondition() <em>Is Local Condition</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Local Condition</em>' operation.
+	 * @see pamtram.condition.ComplexCondition#isLocalCondition()
+	 * @generated
+	 */
+	EOperation getComplexCondition__IsLocalCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isMappingCondition() <em>Is Mapping Condition</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Mapping Condition</em>' operation.
+	 * @see pamtram.condition.ComplexCondition#isMappingCondition()
+	 * @generated
+	 */
+	EOperation getComplexCondition__IsMappingCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isConditionModelCondition() <em>Is Condition Model Condition</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Condition Model Condition</em>' operation.
+	 * @see pamtram.condition.ComplexCondition#isConditionModelCondition()
+	 * @generated
+	 */
+	EOperation getComplexCondition__IsConditionModelCondition();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Condition <em>Condition</em>}'.
@@ -1080,6 +1353,30 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COMPLEX_CONDITION = eINSTANCE.getComplexCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Local Condition</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_CONDITION___IS_LOCAL_CONDITION = eINSTANCE.getComplexCondition__IsLocalCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Mapping Condition</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_CONDITION___IS_MAPPING_CONDITION = eINSTANCE.getComplexCondition__IsMappingCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Condition Model Condition</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION = eINSTANCE.getComplexCondition__IsConditionModelCondition();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.

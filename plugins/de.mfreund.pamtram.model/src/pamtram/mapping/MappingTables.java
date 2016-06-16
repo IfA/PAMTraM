@@ -41,6 +41,7 @@ import pamtram.PamtramTables;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.MetamodelTables;
 
 /**
  * MappingTables provides the dispatch tables for the mapping for use by the OCL dispatcher.
@@ -161,11 +162,11 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_type_32_of_32_the_32_class_32_containing_32_the_32_target_32_attribute_32_o_39 = "The type of the class containing the target attribute (\'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_type_32_of_32_the_32_parent_32_hint_32_group_39_s_32_target_32_section_32_o_39 = "The type of the parent hint group\'s target section (\'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__33 = "!";
-    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_a_32_container_32_section_32_of_32_the_32_source_32_section_32_of_32_th = "\' is not part of a container section of the source section of the parent hint group \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_a_32_container_32_section_32_of_32_the_32_source_32_section_32_of_32_th = "\' is not part of a container section of the source section of the parent mapping \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_the_32_source_32_section_32_referenced_32_by_32_parent_32_mapping = "\' is not part of the source section referenced by parent mapping \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr = "\' is not part of the target section referenced by parent hint group ";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr_0 = "\' is not part of the target section referenced by parent hint group \'";
-    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_referenced_32_by_32_the_32_source_32_section_32_of_32_the_32_parent_32_hint_32_gro = "\' is not referenced by the source section of the parent hint group \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_referenced_32_by_32_the_32_source_32_section_32_of_32_the_32_parent_32_mapping_32 = "\' is not referenced by the source section of the parent mapping \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_or_32_in_32_one_32_of_32_its_32_extended_32_sections_s_sub_m_sections_33 = "\' or in one of its extended sections/sub-sections!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_33 = "\'!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_e_32_cannot_32_be_32_connected_32_to_32_o_contained_32_in_e_32_the_32_type_32_of_32_the_32_class_32_c = "\') cannot be connected to (contained in) the type of the class containing the target attribute (\'";
@@ -530,6 +531,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__AttributeMappingSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._AttributeMappingSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__AttributeMatcherSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._AttributeMatcherSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__FixedValue = new ExecutorFragment(Types._FixedValue, MappingTables.Types._FixedValue);
+		private static final /*@NonNull*/ ExecutorFragment _FixedValue__InstancePointerSourceInterface = new ExecutorFragment(Types._FixedValue, MetamodelTables.Types._InstancePointerSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__MappingHintSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._MappingHintSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__ModelConnectionHintSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._ModelConnectionHintSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__NamedElement = new ExecutorFragment(Types._FixedValue, PamtramTables.Types._NamedElement);
@@ -546,6 +548,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__AttributeMappingSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._AttributeMappingSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__AttributeMatcherSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._AttributeMatcherSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__GlobalAttributeImporter = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._GlobalAttributeImporter);
+		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__InstancePointerSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MetamodelTables.Types._InstancePointerSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__MappingHintSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._MappingHintSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__ModelConnectionHintSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._ModelConnectionHintSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__NamedElement = new ExecutorFragment(Types._GlobalAttributeImporter, PamtramTables.Types._NamedElement);
@@ -843,8 +846,10 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorOperation _ModelConnectionHint__getSourceAttributes = new ExecutorOperation("getSourceAttributes", Parameters._, Types._ModelConnectionHint,
 			2, TemplateParameters.EMPTY_LIST, null);
 
-		public static final /*@NonNull*/ ExecutorOperation _ModifiedAttributeElementType__getMappingHintGroup = new ExecutorOperation("getMappingHintGroup", Parameters._, Types._ModifiedAttributeElementType,
+		public static final /*@NonNull*/ ExecutorOperation _ModifiedAttributeElementType__getMapping = new ExecutorOperation("getMapping", Parameters._, Types._ModifiedAttributeElementType,
 			0, TemplateParameters.EMPTY_LIST, null);
+		public static final /*@NonNull*/ ExecutorOperation _ModifiedAttributeElementType__getMappingHintGroup = new ExecutorOperation("getMappingHintGroup", Parameters._, Types._ModifiedAttributeElementType,
+			1, TemplateParameters.EMPTY_LIST, null);
 
 		static {
 			Init.initEnd();
@@ -1207,10 +1212,11 @@ public class MappingTables
 			Fragments._FixedValue__MappingHintSourceInterface /* 3 */,
 			Fragments._FixedValue__AttributeMappingSourceInterface /* 4 */,
 			Fragments._FixedValue__AttributeMatcherSourceInterface /* 4 */,
+			Fragments._FixedValue__InstancePointerSourceInterface /* 4 */,
 			Fragments._FixedValue__ModelConnectionHintSourceInterface /* 4 */,
 			Fragments._FixedValue__FixedValue /* 5 */
 		};
-		private static final /*@NonNull*/ int[] __FixedValue = { 1,1,2,1,3,1 };
+		private static final /*@NonNull*/ int[] __FixedValue = { 1,1,2,1,4,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _GlobalAttribute =
 		{
@@ -1230,10 +1236,11 @@ public class MappingTables
 			Fragments._GlobalAttributeImporter__MappingHintSourceInterface /* 3 */,
 			Fragments._GlobalAttributeImporter__AttributeMappingSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__AttributeMatcherSourceInterface /* 4 */,
+			Fragments._GlobalAttributeImporter__InstancePointerSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__ModelConnectionHintSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__GlobalAttributeImporter /* 5 */
 		};
-		private static final /*@NonNull*/ int[] __GlobalAttributeImporter = { 1,1,1,1,3,1 };
+		private static final /*@NonNull*/ int[] __GlobalAttributeImporter = { 1,1,1,1,4,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _HintImporterMappingHint =
 		{
@@ -1693,6 +1700,7 @@ public class MappingTables
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMappingExternalSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMappingExternalSourceElement__NamedElement = {};
@@ -1725,6 +1733,7 @@ public class MappingTables
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMappingSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMappingSourceElement__NamedElement = {};
@@ -1814,6 +1823,7 @@ public class MappingTables
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMatcherExternalSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMatcherExternalSourceElement__NamedElement = {};
@@ -1846,6 +1856,7 @@ public class MappingTables
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMatcherSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _AttributeMatcherSourceElement__NamedElement = {};
@@ -2082,6 +2093,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValueAppender__MappingHintBaseType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValueAppender__MappingHintType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValueAppender__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValueAppender__NamedElement = {};
@@ -2117,6 +2129,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValueExpander__MappingHintBaseType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValueExpander__MappingHintType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValueExpander__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValueExpander__NamedElement = {};
@@ -2153,6 +2166,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValuePrepender__MappingHintBaseType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValuePrepender__MappingHintType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValuePrepender__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalMappedAttributeValuePrepender__NamedElement = {};
@@ -2180,6 +2194,7 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalModifiedAttributeElementType__ExternalModifiedAttributeElementType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalModifiedAttributeElementType__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ExternalModifiedAttributeElementType__NamedElement = {};
@@ -2208,6 +2223,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation[] _FixedValue__FixedValue = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _FixedValue__AttributeMappingSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _FixedValue__AttributeMatcherSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _FixedValue__InstancePointerSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _FixedValue__MappingHintSourceInterface = {
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
@@ -2264,6 +2280,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttributeImporter__GlobalAttributeImporter = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttributeImporter__AttributeMappingSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttributeImporter__AttributeMatcherSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttributeImporter__InstancePointerSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _GlobalAttributeImporter__MappingHintSourceInterface = {
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
@@ -2353,6 +2370,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation[] _LocalMappedAttributeValueExpander__MappingHintBaseType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _LocalMappedAttributeValueExpander__MappingHintType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _LocalMappedAttributeValueExpander__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _LocalMappedAttributeValueExpander__NamedElement = {};
@@ -2380,6 +2398,7 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _LocalModifiedAttributeElementType__LocalModifiedAttributeElementType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _LocalModifiedAttributeElementType__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _LocalModifiedAttributeElementType__NamedElement = {};
@@ -2416,6 +2435,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation[] _MappedAttributeValueAppender__MappingHintBaseType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappedAttributeValueAppender__MappingHintType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappedAttributeValueAppender__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappedAttributeValueAppender__NamedElement = {};
@@ -2482,6 +2502,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation[] _MappedAttributeValuePrepender__MappingHintBaseType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappedAttributeValuePrepender__MappingHintType = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappedAttributeValuePrepender__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappedAttributeValuePrepender__NamedElement = {};
@@ -2884,6 +2905,7 @@ public class MappingTables
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ModelConnectionHintExternalSourceElement__ModelConnectionHintSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ModelConnectionHintExternalSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ModelConnectionHintExternalSourceElement__NamedElement = {};
@@ -2916,6 +2938,7 @@ public class MappingTables
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ModelConnectionHintSourceElement__ModelConnectionHintSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ModelConnectionHintSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ModelConnectionHintSourceElement__NamedElement = {};
@@ -2970,6 +2993,7 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorOperation[] _ModelConnectionHintTargetAttribute__ModelConnectionHintTargetAttribute = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _ModelConnectionHintTargetAttribute__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ModelConnectionHintTargetAttribute__NamedElement = {};
@@ -3019,6 +3043,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _ModifiedAttributeElementType__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _ModifiedAttributeElementType__NamedElement = {};
@@ -3306,6 +3331,7 @@ public class MappingTables
 			Fragments._FixedValue__AttributeMappingSourceInterface.initOperations(_FixedValue__AttributeMappingSourceInterface);
 			Fragments._FixedValue__AttributeMatcherSourceInterface.initOperations(_FixedValue__AttributeMatcherSourceInterface);
 			Fragments._FixedValue__FixedValue.initOperations(_FixedValue__FixedValue);
+			Fragments._FixedValue__InstancePointerSourceInterface.initOperations(_FixedValue__InstancePointerSourceInterface);
 			Fragments._FixedValue__MappingHintSourceInterface.initOperations(_FixedValue__MappingHintSourceInterface);
 			Fragments._FixedValue__ModelConnectionHintSourceInterface.initOperations(_FixedValue__ModelConnectionHintSourceInterface);
 			Fragments._FixedValue__NamedElement.initOperations(_FixedValue__NamedElement);
@@ -3322,6 +3348,7 @@ public class MappingTables
 			Fragments._GlobalAttributeImporter__AttributeMappingSourceInterface.initOperations(_GlobalAttributeImporter__AttributeMappingSourceInterface);
 			Fragments._GlobalAttributeImporter__AttributeMatcherSourceInterface.initOperations(_GlobalAttributeImporter__AttributeMatcherSourceInterface);
 			Fragments._GlobalAttributeImporter__GlobalAttributeImporter.initOperations(_GlobalAttributeImporter__GlobalAttributeImporter);
+			Fragments._GlobalAttributeImporter__InstancePointerSourceInterface.initOperations(_GlobalAttributeImporter__InstancePointerSourceInterface);
 			Fragments._GlobalAttributeImporter__MappingHintSourceInterface.initOperations(_GlobalAttributeImporter__MappingHintSourceInterface);
 			Fragments._GlobalAttributeImporter__ModelConnectionHintSourceInterface.initOperations(_GlobalAttributeImporter__ModelConnectionHintSourceInterface);
 			Fragments._GlobalAttributeImporter__NamedElement.initOperations(_GlobalAttributeImporter__NamedElement);

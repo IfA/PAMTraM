@@ -5,13 +5,16 @@ package pamtram.condition.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.SectionCondition;
-
+import pamtram.mapping.Mapping;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
@@ -152,6 +155,38 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 				return conditionSectionRef != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	@Override
+	public boolean isLocalCondition() {
+		
+		if(getConditionSectionRef() == null) {
+			return false;
+		}
+		
+		// The SourceSection that the condition references
+		//
+		SourceSection referencedSection = getConditionSectionRef().getContainingSection();
+		
+		EObject container = this;
+		
+		while(!(container instanceof Mapping)) {
+			container = container.eContainer();
+		}
+		
+		// The SourceSection of the Mapping that contains the condition
+		//
+		SourceSection localSection = ((Mapping) container).getSourceMMSection();
+		
+		if(referencedSection.equals(localSection)) {
+			return true;
+		}
+		
+		// A condition is also 'local' if an InstancePointer with local or external SourceAttributes exist
+		//
+		return getAdditionalConditionSpecification().parallelStream().flatMap(
+				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
+						s -> s instanceof InstancePointerSourceElement || s instanceof InstancePointerExternalSourceElement)).findAny().isPresent();
 	}
 
 } //SectionConditionImpl

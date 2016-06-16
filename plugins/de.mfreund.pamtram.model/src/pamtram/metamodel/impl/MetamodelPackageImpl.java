@@ -34,6 +34,9 @@ import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
+import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.FileTypeEnum;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
@@ -329,6 +332,27 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass instancePointerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass instancePointerSourceInterfaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass instancePointerSourceElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass instancePointerExternalSourceElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1345,6 +1369,51 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getInstancePointer_SourceAttributes() {
+		return (EReference)instancePointerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getInstancePointer__NoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map() {
+		return instancePointerEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInstancePointerSourceInterface() {
+		return instancePointerSourceInterfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInstancePointerSourceElement() {
+		return instancePointerSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInstancePointerExternalSourceElement() {
+		return instancePointerExternalSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRangeBound() {
 		return rangeBoundEClass;
 	}
@@ -1620,6 +1689,14 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		instancePointerEClass = createEClass(INSTANCE_POINTER);
 		createEReference(instancePointerEClass, INSTANCE_POINTER__ATTRIBUTE_POINTER);
 		createEAttribute(instancePointerEClass, INSTANCE_POINTER__VALUE);
+		createEReference(instancePointerEClass, INSTANCE_POINTER__SOURCE_ATTRIBUTES);
+		createEOperation(instancePointerEClass, INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP);
+
+		instancePointerSourceInterfaceEClass = createEClass(INSTANCE_POINTER_SOURCE_INTERFACE);
+
+		instancePointerSourceElementEClass = createEClass(INSTANCE_POINTER_SOURCE_ELEMENT);
+
+		instancePointerExternalSourceElementEClass = createEClass(INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT);
 
 		rangeBoundEClass = createEClass(RANGE_BOUND);
 		createEReference(rangeBoundEClass, RANGE_BOUND__BOUND_REFERENCE_VALUE);
@@ -2200,6 +2277,33 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		caseSensitiveConstraintEClass.getESuperTypes().add(this.getSingleReferenceAttributeValueConstraint());
 		rangeConstraintEClass.getESuperTypes().add(this.getMultipleReferencesAttributeValueConstraint());
 		multipleReferencesAttributeValueConstraintEClass.getESuperTypes().add(this.getAttributeValueConstraint());
+		instancePointerEClass.getESuperTypes().add(theMappingPackage.getExpressionHint());
+		instancePointerEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
+		instancePointerSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
+		g1 = createEGenericType(theMappingPackage.getLocalModifiedAttributeElementType());
+		g2 = createEGenericType(this.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		instancePointerSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getInstancePointerSourceInterface());
+		instancePointerSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theMappingPackage.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(this.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		instancePointerExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getInstancePointerSourceInterface());
+		instancePointerExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		singleReferenceAttributeValueConstraintEClass.getESuperTypes().add(this.getAttributeValueConstraint());
 
 		// Initialize classes, features, and operations; add parameters
@@ -2497,6 +2601,22 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(instancePointerEClass, InstancePointer.class, "InstancePointer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInstancePointer_AttributePointer(), this.getSourceSectionAttribute(), null, "attributePointer", null, 1, 1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInstancePointer_Value(), ecorePackage.getEString(), "value", null, 0, 1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstancePointer_SourceAttributes(), this.getInstancePointerSourceInterface(), null, "sourceAttributes", null, 1, -1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getInstancePointer__NoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "noModifiedAttributeElementTypesInConditionModelConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(instancePointerSourceInterfaceEClass, InstancePointerSourceInterface.class, "InstancePointerSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(instancePointerSourceElementEClass, InstancePointerSourceElement.class, "InstancePointerSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(instancePointerExternalSourceElementEClass, InstancePointerExternalSourceElement.class, "InstancePointerExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(rangeBoundEClass, RangeBound.class, "RangeBound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRangeBound_BoundReferenceValue(), thePamtramPackage.getReferenceableElement(), null, "boundReferenceValue", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2606,6 +2726,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   source, 
 		   new String[] {
 			 "constraints", "attributeMatchesParentEClass"
+		   });	
+		addAnnotation
+		  (instancePointerEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "noModifiedAttributeElementTypesInConditionModelConditions"
 		   });
 	}
 

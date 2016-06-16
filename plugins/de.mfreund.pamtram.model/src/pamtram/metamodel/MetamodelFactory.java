@@ -229,6 +229,24 @@ public interface MetamodelFactory extends EFactory {
 	InstancePointer createInstancePointer();
 
 	/**
+	 * Returns a new object of class '<em>Instance Pointer Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Pointer Source Element</em>'.
+	 * @generated
+	 */
+	InstancePointerSourceElement createInstancePointerSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Instance Pointer External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Pointer External Source Element</em>'.
+	 * @generated
+	 */
+	InstancePointerExternalSourceElement createInstancePointerExternalSourceElement();
+
+	/**
 	 * Returns a new object of class '<em>Range Bound</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

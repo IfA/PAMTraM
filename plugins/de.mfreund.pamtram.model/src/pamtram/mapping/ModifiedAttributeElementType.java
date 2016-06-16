@@ -80,4 +80,13 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 */
 	NamedElement getMappingHintGroup();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EObject ret = this.eContainer;\r\nwhile(!(ret instanceof Mapping)) {\r\n\tret = ret.eContainer();\r\n\tif(ret instanceof PAMTraM) {\r\n\t\t// something went wrong\r\n\t\treturn null;\r\n\t}\r\n}\r\nreturn (Mapping) ret;'"
+	 * @generated
+	 */
+	Mapping getMapping();
+
 } // ModifiedAttributeElementType

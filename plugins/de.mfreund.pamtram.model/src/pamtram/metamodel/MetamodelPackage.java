@@ -4071,22 +4071,13 @@ public interface MetamodelPackage extends EPackage {
 	int INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = MappingPackage.EXPRESSION_HINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>No Global Attribute Importer In Mapping Conditions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_POINTER___NO_GLOBAL_ATTRIBUTE_IMPORTER_IN_MAPPING_CONDITIONS__DIAGNOSTICCHAIN_MAP = MappingPackage.EXPRESSION_HINT_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Instance Pointer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER_OPERATION_COUNT = MappingPackage.EXPRESSION_HINT_OPERATION_COUNT + 2;
+	int INSTANCE_POINTER_OPERATION_COUNT = MappingPackage.EXPRESSION_HINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}' class.
@@ -5461,16 +5452,6 @@ public interface MetamodelPackage extends EPackage {
 	EOperation getInstancePointer__NoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.InstancePointer#noGlobalAttributeImporterInMappingConditions(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Global Attribute Importer In Mapping Conditions</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>No Global Attribute Importer In Mapping Conditions</em>' operation.
-	 * @see pamtram.metamodel.InstancePointer#noGlobalAttributeImporterInMappingConditions(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getInstancePointer__NoGlobalAttributeImporterInMappingConditions__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6541,14 +6522,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getInstancePointer__NoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>No Global Attribute Importer In Mapping Conditions</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation INSTANCE_POINTER___NO_GLOBAL_ATTRIBUTE_IMPORTER_IN_MAPPING_CONDITIONS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getInstancePointer__NoGlobalAttributeImporterInMappingConditions__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}' class.

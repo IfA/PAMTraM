@@ -1387,15 +1387,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getInstancePointer__NoGlobalAttributeImporterInMappingConditions__DiagnosticChain_Map() {
-		return instancePointerEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getInstancePointerSourceInterface() {
 		return instancePointerSourceInterfaceEClass;
 	}
@@ -1700,7 +1691,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEAttribute(instancePointerEClass, INSTANCE_POINTER__VALUE);
 		createEReference(instancePointerEClass, INSTANCE_POINTER__SOURCE_ATTRIBUTES);
 		createEOperation(instancePointerEClass, INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(instancePointerEClass, INSTANCE_POINTER___NO_GLOBAL_ATTRIBUTE_IMPORTER_IN_MAPPING_CONDITIONS__DIAGNOSTICCHAIN_MAP);
 
 		instancePointerSourceInterfaceEClass = createEClass(INSTANCE_POINTER_SOURCE_INTERFACE);
 
@@ -2622,15 +2612,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getInstancePointer__NoGlobalAttributeImporterInMappingConditions__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "noGlobalAttributeImporterInMappingConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(instancePointerSourceInterfaceEClass, InstancePointerSourceInterface.class, "InstancePointerSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(instancePointerSourceElementEClass, InstancePointerSourceElement.class, "InstancePointerSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2750,7 +2731,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		  (instancePointerEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "noGlobalAttributeImporterInMappingConditions noModifiedAttributeElementTypesInConditionModelConditions"
+			 "constraints", "noModifiedAttributeElementTypesInConditionModelConditions"
 		   });
 	}
 

@@ -107,7 +107,6 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ExternalReferenceParameter = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ExternalReferenceParameter", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_FileAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("FileAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_GlobalAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttribute", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_GlobalAttributeImporter = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttributeImporter", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_InstancePointer = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointer", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_InstancePointerSourceInterface = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointerSourceInterface", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry = MetamodelTables.PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib.getClassId("LibraryEntry", 0);
@@ -152,8 +151,6 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Class_c_c_containerIsValid = "Class::containerIsValid";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Class_c_c_eClassMatchesParentEReference = "Class::eClassMatchesParentEReference";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ContainmentReference_c_c_eReferenceIsContainment = "ContainmentReference::eReferenceIsContainment";
-    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_GlobalAttributeImporters_32_are_32_not_32_allowed_32_as_32_part_32_of_32_MappingCondi = "GlobalAttributeImporters are not allowed as part of MappingConditions!";
-    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_InstancePointer_c_c_noGlobalAttributeImporterInMappingConditions = "InstancePointer::noGlobalAttributeImporterInMappingConditions";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_InstancePointer_c_c_noModifiedAttributeElementTypesInConditionModel = "InstancePointer::noModifiedAttributeElementTypesInConditionModelConditions";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MetaModelSectionReference_c_c_valuesMatchReferenceType = "MetaModelSectionReference::valuesMatchReferenceType";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ModifiedAttributeElementTypes_32_are_32_not_32_allowed_32_as_32_part_32_of_32_Conditi = "ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!";

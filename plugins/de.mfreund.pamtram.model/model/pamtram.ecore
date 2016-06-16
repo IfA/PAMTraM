@@ -1364,7 +1364,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//ReferenceableElement">
+    <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//metamodel/InstancePointerSourceInterface #//ReferenceableElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -1380,7 +1380,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//metamodel/InstancePointerSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
           eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>

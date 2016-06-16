@@ -262,15 +262,10 @@ public class InstancePointerItemProvider
 				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
 						MappingFactory.eINSTANCE.createFixedValue()));
 		
-		// GlobalAttributeImporters are not allowed in MappingConditions
-		//
-		if(parentCondition == null || !parentCondition.isMappingCondition()) {
-		
-			newChildDescriptors.add
-				(createChildParameter
-					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
-					 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
-		}
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 	}
 
 	/**

@@ -20,6 +20,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import pamtram.condition.ComplexCondition;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
@@ -229,31 +231,46 @@ public class InstancePointerItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
+		ComplexCondition parentCondition = null;
+		if(((EObject) object).eContainer() instanceof ComplexCondition) {
+			parentCondition = ((ComplexCondition) ((EObject) object).eContainer()).getRootCondition();
+		}
+		
+		// ModifiedAttributeType children are not allowed in ConditionModelConditions
+		//
+		if(parentCondition == null || !parentCondition.isConditionModelCondition()) {
+			
+			newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createInstancePointerSourceElement()));
+					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+							MetamodelFactory.eINSTANCE.createInstancePointerSourceElement()));
+			
+			newChildDescriptors.add
+			(createChildParameter
+					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+							MetamodelFactory.eINSTANCE.createInstancePointerExternalSourceElement()));
+		}
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createInstancePointerExternalSourceElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createFixedValue()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+						MappingFactory.eINSTANCE.createFixedValue()));
+		
+		// GlobalAttributeImporters are not allowed in MappingConditions
+		//
+		if(parentCondition == null || !parentCondition.isMappingCondition()) {
+		
+			newChildDescriptors.add
+				(createChildParameter
+					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+					 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+		}
 	}
 
 	/**

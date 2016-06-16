@@ -3,8 +3,6 @@
 package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -313,7 +311,7 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP:
+			case ConditionPackage.SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_4:
 				return exactlyOneArg((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

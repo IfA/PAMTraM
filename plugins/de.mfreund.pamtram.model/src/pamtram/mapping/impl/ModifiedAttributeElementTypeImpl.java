@@ -18,6 +18,7 @@ import pamtram.PAMTraM;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiedAttributeElementType;
@@ -165,6 +166,23 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mapping getMapping() {
+		EObject ret = this.eContainer;
+		while(!(ret instanceof Mapping)) {
+			ret = ret.eContainer();
+			if(ret instanceof PAMTraM) {
+				// something went wrong
+				return null;
+			}
+		}
+		return (Mapping) ret;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * TODO update the name of the ModifiedAttributeElementType based on the modifiers it contains
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -245,6 +263,8 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 		switch (operationID) {
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP:
 				return getMappingHintGroup();
+			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING:
+				return getMapping();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
+import pamtram.mapping.Mapping;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,11 +51,22 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isMappingCondition() {
+		return this.eContainer() instanceof Mapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case ConditionPackage.COMPLEX_CONDITION___IS_LOCAL_CONDITION:
 				return isLocalCondition();
+			case ConditionPackage.COMPLEX_CONDITION___IS_MAPPING_CONDITION:
+				return isMappingCondition();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

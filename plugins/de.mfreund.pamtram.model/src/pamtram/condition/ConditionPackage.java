@@ -98,13 +98,22 @@ public interface ConditionPackage extends EPackage {
 	int COMPLEX_CONDITION___IS_LOCAL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_CONDITION___IS_MAPPING_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Complex Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.
@@ -180,6 +189,15 @@ public interface ConditionPackage extends EPackage {
 	int CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -253,6 +271,15 @@ public interface ConditionPackage extends EPackage {
 	int MULTIPLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
+
+	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -268,7 +295,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+	int MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_4 = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Multiple Condition Operator</em>' class.
@@ -335,6 +362,15 @@ public interface ConditionPackage extends EPackage {
 	int AND___IS_LOCAL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___IS_MAPPING_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION;
+
+	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -350,7 +386,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
+	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_4 = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_4;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -417,6 +453,15 @@ public interface ConditionPackage extends EPackage {
 	int OR___IS_LOCAL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___IS_MAPPING_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION;
+
+	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -432,7 +477,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
+	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_4 = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_4;
 
 	/**
 	 * The number of operations of the '<em>Or</em>' class.
@@ -499,13 +544,22 @@ public interface ConditionPackage extends EPackage {
 	int SINGLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Exactly One Arg</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+	int SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_4 = COMPLEX_CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Single Condition Operator</em>' class.
@@ -572,13 +626,22 @@ public interface ConditionPackage extends EPackage {
 	int NOT___IS_LOCAL_CONDITION = SINGLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___IS_MAPPING_CONDITION = SINGLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Exactly One Arg</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP;
+	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_4 = SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_4;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -596,7 +659,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 1;
+	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_4 = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Not</em>' class.
@@ -699,6 +762,15 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___IS_MAPPING_CONDITION = CONDITION___IS_MAPPING_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -799,6 +871,15 @@ public interface ConditionPackage extends EPackage {
 	int SECTION_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION_CONDITION___IS_MAPPING_CONDITION = CONDITION___IS_MAPPING_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -857,6 +938,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getComplexCondition__IsLocalCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isMappingCondition() <em>Is Mapping Condition</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Mapping Condition</em>' operation.
+	 * @see pamtram.condition.ComplexCondition#isMappingCondition()
+	 * @generated
+	 */
+	EOperation getComplexCondition__IsMappingCondition();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Condition <em>Condition</em>}'.
@@ -961,7 +1052,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.MultipleConditionOperator#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map();
+	EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_4();
 
 	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getValue <em>Value</em>}'.
@@ -1034,7 +1125,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.SingleConditionOperator#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map();
+	EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_4();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Not <em>Not</em>}'.
@@ -1064,7 +1155,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.Not#referenceOnlyConditionsFromConditionModelOrFromConditionalElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
+	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_4();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.AttributeCondition <em>Attribute Condition</em>}'.
@@ -1181,6 +1272,14 @@ public interface ConditionPackage extends EPackage {
 		EOperation COMPLEX_CONDITION___IS_LOCAL_CONDITION = eINSTANCE.getComplexCondition__IsLocalCondition();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Mapping Condition</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_CONDITION___IS_MAPPING_CONDITION = eINSTANCE.getComplexCondition__IsMappingCondition();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1262,7 +1361,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map();
+		EOperation MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_4 = eINSTANCE.getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_4();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1324,7 +1423,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map();
+		EOperation SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_4 = eINSTANCE.getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_4();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.
@@ -1350,7 +1449,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
+		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_4 = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_4();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.AttributeConditionImpl <em>Attribute Condition</em>}' class.

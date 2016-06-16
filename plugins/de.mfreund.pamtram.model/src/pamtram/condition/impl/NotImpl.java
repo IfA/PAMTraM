@@ -15,7 +15,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
-
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.condition.ConditionPackage;
@@ -119,7 +118,7 @@ public class NotImpl extends SingleConditionOperatorImpl implements Not {
 		switch (operationID) {
 			case ConditionPackage.NOT___REFERENCES_ONLY_VALID_CONDITIONS:
 				return referencesOnlyValidConditions();
-			case ConditionPackage.NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP:
+			case ConditionPackage.NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_4:
 				return referenceOnlyConditionsFromConditionModelOrFromConditionalElements((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

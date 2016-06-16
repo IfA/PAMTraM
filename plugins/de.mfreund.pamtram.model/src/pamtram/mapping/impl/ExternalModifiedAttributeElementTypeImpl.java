@@ -11,7 +11,6 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
@@ -20,7 +19,6 @@ import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
-import pamtram.NamedElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
@@ -73,9 +71,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		 *   in
 		 *     let
 		 *       status : OclAny[1] = let
-		 *         sourceMMSection : metamodel::SourceSection[1] = self.getMappingHintGroup()
-		 *         .oclContainer()
-		 *         .oclAsType(Mapping).sourceMMSection
+		 *         sourceMMSection : metamodel::SourceSection[1] = self.getMapping().sourceMMSection
 		 *       in
 		 *         if
 		 *           self.source.oclType() = OclVoid or
@@ -92,10 +88,8 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		 *       let
 		 *         message : String[?] = if status <> true
 		 *         then 'The source attribute \'' +
-		 *           self.source.oclAsType(metamodel::Attribute(S, C, R, A)).name + '\' is not part of a container section of the source section of the parent hint group \'' +
-		 *           self.getMappingHintGroup()
-		 *           .oclContainer()
-		 *           .oclAsType(Mapping).sourceMMSection.name + '\'!'
+		 *           self.source.oclAsType(metamodel::Attribute(S, C, R, A)).name + '\' is not part of a container section of the source section of the parent mapping \'' +
+		 *           self.getMapping().sourceMMSection.name + '\'!'
 		 *         else null
 		 *         endif
 		 *       in
@@ -107,11 +101,8 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		try {
 		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_sourceMMSection;
 		    try {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_Mapping_0 = idResolver.getClass(MappingTables.CLSSid_Mapping, null);
-		        final /*@NonNull*/ /*@Thrown*/ NamedElement getMappingHintGroup = ((ModifiedAttributeElementType)this).getMappingHintGroup();
-		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, getMappingHintGroup);
-		        final /*@NonNull*/ /*@Thrown*/ Mapping oclAsType = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_mapping_c_c_Mapping_0));
-		        final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection = oclAsType.getSourceMMSection();
+		        final /*@NonNull*/ /*@Thrown*/ Mapping getMapping = ((ModifiedAttributeElementType)this).getMapping();
+		        final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection = getMapping.getSourceMMSection();
 		        CAUGHT_sourceMMSection = sourceMMSection;
 		    }
 		    catch (Exception e) {
@@ -153,14 +144,14 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSection_1 = idResolver.getClass(MappingTables.CLSSid_SourceSection, null);
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute_0 = idResolver.getClass(MappingTables.CLSSid_SourceSectionAttribute, null);
 		        final /*@NonNull*/ /*@Thrown*/ Object source_0 = this.getSource();
-		        final /*@NonNull*/ /*@Thrown*/ SourceSectionAttribute oclAsType_0 = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_0, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute_0));
-		        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)oclAsType_0).getContainingSection();
-		        final /*@NonNull*/ /*@Thrown*/ SourceSection oclAsType_1 = ClassUtil.nonNullState((SourceSection)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection, TYP_pamtram_c_c_metamodel_c_c_SourceSection_1));
+		        final /*@NonNull*/ /*@Thrown*/ SourceSectionAttribute oclAsType = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_0, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute_0));
+		        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)oclAsType).getContainingSection();
+		        final /*@NonNull*/ /*@Thrown*/ SourceSection oclAsType_0 = ClassUtil.nonNullState((SourceSection)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection, TYP_pamtram_c_c_metamodel_c_c_SourceSection_1));
 		        if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
 		            throw (InvalidValueException)CAUGHT_sourceMMSection;
 		        }
-		        final /*@NonNull*/ /*@Thrown*/ SourceSection oclAsType_2 = ClassUtil.nonNullState((SourceSection)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_sourceMMSection, TYP_pamtram_c_c_metamodel_c_c_SourceSection_1));
-		        final /*@Thrown*/ boolean isContainerFor = ((pamtram.metamodel.Class)oclAsType_1).isContainerFor((pamtram.metamodel.Class)oclAsType_2);
+		        final /*@NonNull*/ /*@Thrown*/ SourceSection oclAsType_1 = ClassUtil.nonNullState((SourceSection)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_sourceMMSection, TYP_pamtram_c_c_metamodel_c_c_SourceSection_1));
+		        final /*@Thrown*/ boolean isContainerFor = ((pamtram.metamodel.Class)oclAsType_0).isContainerFor((pamtram.metamodel.Class)oclAsType_1);
 		        symbol_0 = isContainerFor;
 		    }
 		    CAUGHT_symbol_0 = symbol_0;
@@ -174,17 +165,14 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		final /*@Thrown*/ boolean ne = CAUGHT_symbol_0 == Boolean.FALSE;
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_Mapping_1 = idResolver.getClass(MappingTables.CLSSid_Mapping, null);
 		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Attribute_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Attribute, null);
 		    final /*@NonNull*/ /*@Thrown*/ Object source_1 = this.getSource();
-		    final /*@NonNull*/ /*@Thrown*/ Attribute oclAsType_3 = ClassUtil.nonNullState((Attribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_1, TYP_pamtram_c_c_metamodel_c_c_Attribute_o_S_44_C_44_R_44_A_e_0));
-		    final /*@Nullable*/ /*@Thrown*/ String name = oclAsType_3.getName();
+		    final /*@NonNull*/ /*@Thrown*/ Attribute oclAsType_2 = ClassUtil.nonNullState((Attribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_1, TYP_pamtram_c_c_metamodel_c_c_Attribute_o_S_44_C_44_R_44_A_e_0));
+		    final /*@Nullable*/ /*@Thrown*/ String name = oclAsType_2.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_source_32_attribute_32_39, name));
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_part_32_of_32_a_32_container_32_section_32_of_32_the_32_source_32_section_32_of_32_th));
-		    final /*@NonNull*/ /*@Thrown*/ NamedElement getMappingHintGroup_0 = ((ModifiedAttributeElementType)this).getMappingHintGroup();
-		    final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, getMappingHintGroup_0);
-		    final /*@NonNull*/ /*@Thrown*/ Mapping oclAsType_4 = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_Mapping_1));
-		    final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection_0 = oclAsType_4.getSourceMMSection();
+		    final /*@NonNull*/ /*@Thrown*/ Mapping getMapping_0 = ((ModifiedAttributeElementType)this).getMapping();
+		    final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection_0 = getMapping_0.getSourceMMSection();
 		    final /*@Nullable*/ /*@Thrown*/ String name_0 = sourceMMSection_0.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_1 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_0, name_0));
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_2 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__39_33));
@@ -206,7 +194,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_4:
 				return sourceAttributeMatchesContainerSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

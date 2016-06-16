@@ -2,10 +2,15 @@
  */
 package pamtram.metamodel.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -14,6 +19,22 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import pamtram.condition.ComplexCondition;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
@@ -21,6 +42,7 @@ import pamtram.mapping.impl.ExpressionHintImpl;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.MetamodelTables;
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -196,6 +218,128 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean noGlobalAttributeImporterInMappingConditions(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv noGlobalAttributeImporterInMappingConditions:
+		 *   let severity : Integer[1] = 4
+		 *   in
+		 *     let
+		 *       status : OclAny[?] = if
+		 *         self.oclContainer()
+		 *         .oclIsKindOf(condition::ComplexCondition) and
+		 *         self.oclContainer()
+		 *         .oclAsType(condition::ComplexCondition)
+		 *         .isMappingCondition()
+		 *       then
+		 *         self.sourceAttributes->exists(
+		 *           self.oclIsTypeOf(mapping::GlobalAttributeImporter))
+		 *       else true
+		 *       endif
+		 *     in
+		 *       let
+		 *         message : String[?] = if status <> true
+		 *         then 'GlobalAttributeImporters are not allowed as part of MappingConditions!'
+		 *         else null
+		 *         endif
+		 *       in
+		 *         'InstancePointer::noGlobalAttributeImporterInMappingConditions'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_oclIsKindOf;
+		    try {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_condition_c_c_ComplexCondition = idResolver.getClass(MetamodelTables.CLSSid_ComplexCondition, null);
+		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		        final /*@Thrown*/ boolean oclIsKindOf = ClassUtil.nonNullState(OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_condition_c_c_ComplexCondition).booleanValue());
+		        CAUGHT_oclIsKindOf = oclIsKindOf;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
+		    }
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_isMappingCondition;
+		    try {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_condition_c_c_ComplexCondition_0 = idResolver.getClass(MetamodelTables.CLSSid_ComplexCondition, null);
+		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		        final /*@NonNull*/ /*@Thrown*/ ComplexCondition oclAsType = ClassUtil.nonNullState((ComplexCondition)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_condition_c_c_ComplexCondition_0));
+		        final /*@Thrown*/ boolean isMappingCondition = oclAsType.isMappingCondition();
+		        CAUGHT_isMappingCondition = isMappingCondition;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_isMappingCondition = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@Nullable*/ /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_oclIsKindOf, CAUGHT_isMappingCondition);
+		    if (and == null) {
+		        throw new InvalidValueException("Null if condition");
+		    }
+		    /*@Thrown*/ boolean status;
+		    if (and) {
+		        final /*@NonNull*/ /*@Thrown*/ List<InstancePointerSourceInterface> sourceAttributes = this.getSourceAttributes();
+		        final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_sourceAttributes = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_InstancePointerSourceInterface, sourceAttributes);
+		        /*@Nullable*/ /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+		        /*@Nullable*/ Iterator<?> ITERATOR__1 = BOXED_sourceAttributes.iterator();
+		        /*@Thrown*/ boolean exists;
+		        while (true) {
+		            if (!ITERATOR__1.hasNext()) {
+		                if (accumulator == ValueUtil.FALSE_VALUE) {
+		                    exists = ValueUtil.FALSE_VALUE;
+		                }
+		                else {
+		                    throw (InvalidValueException)accumulator;
+		                }
+		                break;
+		            }
+		            /*@Nullable*/ /*@NonInvalid*/ InstancePointerSourceInterface _1 = (InstancePointerSourceInterface)ITERATOR__1.next();
+		            /**
+		             * 
+		             * self.oclIsTypeOf(mapping::GlobalAttributeImporter)
+		             */
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_GlobalAttributeImporter = idResolver.getClass(MetamodelTables.CLSSid_GlobalAttributeImporter, null);
+		            final /*@NonInvalid*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, this, TYP_pamtram_c_c_mapping_c_c_GlobalAttributeImporter).booleanValue());
+		            //
+		            if (oclIsTypeOf == ValueUtil.TRUE_VALUE) {					// Normal successful body evaluation result
+		                exists = ValueUtil.TRUE_VALUE;
+		                break;														// Stop immediately 
+		            }
+		            else if (oclIsTypeOf == ValueUtil.FALSE_VALUE) {				// Normal unsuccessful body evaluation result
+		                ;															// Carry on
+		            }
+		            else {															// Impossible badly typed result
+		                accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+		            }
+		        }
+		        status = exists;
+		    }
+		    else {
+		        status = ValueUtil.TRUE_VALUE;
+		    }
+		    CAUGHT_status = status;
+		}
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
+		}
+		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne) {
+		    message_0 = MetamodelTables.STR_GlobalAttributeImporters_32_are_32_not_32_allowed_32_as_32_part_32_of_32_MappingCondi;
+		}
+		else {
+		    message_0 = null;
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_InstancePointer_c_c_noGlobalAttributeImporterInMappingConditions, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -327,6 +471,21 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MetamodelPackage.INSTANCE_POINTER___NO_GLOBAL_ATTRIBUTE_IMPORTER_IN_MAPPING_CONDITIONS__DIAGNOSTICCHAIN_MAP_3:
+				return noGlobalAttributeImporterInMappingConditions((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

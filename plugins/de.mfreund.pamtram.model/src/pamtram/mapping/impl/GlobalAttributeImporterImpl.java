@@ -16,6 +16,7 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -193,6 +194,11 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 			}
 		}
 		if (baseClass == ModelConnectionHintSourceInterface.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == InstancePointerSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

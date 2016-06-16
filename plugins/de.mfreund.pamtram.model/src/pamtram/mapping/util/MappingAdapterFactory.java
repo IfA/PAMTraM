@@ -12,6 +12,7 @@ import pamtram.NamedElement;
 import pamtram.ReferenceableElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 
@@ -294,6 +295,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseConditionalElement(ConditionalElement object) {
 				return createConditionalElementAdapter();
+			}
+			@Override
+			public Adapter caseInstancePointerSourceInterface(InstancePointerSourceInterface object) {
+				return createInstancePointerSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseReferenceableElement(ReferenceableElement object) {
@@ -1100,6 +1105,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConditionalElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.InstancePointerSourceInterface
+	 * @generated
+	 */
+	public Adapter createInstancePointerSourceInterfaceAdapter() {
 		return null;
 	}
 

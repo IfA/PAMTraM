@@ -95,6 +95,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Class = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Class", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ClassMatcher = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ClassMatcher", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Class_0 = MetamodelTables.PACKid_$metamodel$.getClassId("Class", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ComplexCondition = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Condition = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("Condition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ContainerParameter = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ContainerParameter", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ContainmentReference = MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("ContainmentReference", 0);
@@ -106,6 +107,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ExternalReferenceParameter = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ExternalReferenceParameter", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_FileAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("FileAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_GlobalAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttribute", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_GlobalAttributeImporter = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttributeImporter", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_InstancePointer = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointer", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_InstancePointerSourceInterface = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointerSourceInterface", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry = MetamodelTables.PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib.getClassId("LibraryEntry", 0);
@@ -149,6 +151,8 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Class_c_c_containerIsValid = "Class::containerIsValid";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Class_c_c_eClassMatchesParentEReference = "Class::eClassMatchesParentEReference";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ContainmentReference_c_c_eReferenceIsContainment = "ContainmentReference::eReferenceIsContainment";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_GlobalAttributeImporters_32_are_32_not_32_allowed_32_as_32_part_32_of_32_MappingCondi = "GlobalAttributeImporters are not allowed as part of MappingConditions!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_InstancePointer_c_c_noGlobalAttributeImporterInMappingConditions = "InstancePointer::noGlobalAttributeImporterInMappingConditions";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MetaModelSectionReference_c_c_valuesMatchReferenceType = "MetaModelSectionReference::valuesMatchReferenceType";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_NonContainmentReference_c_c_eReferenceIsNonContainment = "NonContainmentReference::eReferenceIsNonContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Reference_c_c_eReferenceMatchesParentEClass = "Reference::eReferenceMatchesParentEClass";
@@ -2057,6 +2061,7 @@ public class MetamodelTables
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerExternalSourceElement__NamedElement = {};
@@ -2089,6 +2094,7 @@ public class MetamodelTables
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
 			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _InstancePointerSourceElement__NamedElement = {};

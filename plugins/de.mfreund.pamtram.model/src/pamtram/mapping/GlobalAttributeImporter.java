@@ -3,6 +3,7 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
+import pamtram.metamodel.InstancePointerSourceInterface;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ import pamtram.NamedElement;
  * @model
  * @generated
  */
-public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ModelConnectionHintSourceInterface {
+public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ModelConnectionHintSourceInterface, InstancePointerSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Global Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

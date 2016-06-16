@@ -5,8 +5,6 @@ package pamtram.condition.impl;
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-
 import pamtram.ConditionModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
@@ -73,7 +71,8 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	 * 
 	 * @return The <em>root condition</em>.
 	 */
-	private ComplexCondition getRootCondition() {
+	@Override
+	public ComplexCondition getRootCondition() {
 		
 		ComplexCondition parentCondition = this;
 		

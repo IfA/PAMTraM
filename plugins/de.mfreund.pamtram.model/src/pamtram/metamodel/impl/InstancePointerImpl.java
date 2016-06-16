@@ -25,6 +25,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
@@ -232,7 +233,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		 *         .oclAsType(condition::ComplexCondition)
 		 *         .isConditionModelCondition()
 		 *       then
-		 *         self.sourceAttributes->exists(
+		 *         not self.sourceAttributes->exists(
 		 *           self.oclIsTypeOf(mapping::ModifiedAttributeElementType(S, C, R, A)))
 		 *       else true
 		 *       endif
@@ -247,7 +248,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
 		try {
 		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		    try {
@@ -274,7 +275,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		    if (and == null) {
 		        throw new InvalidValueException("Null if condition");
 		    }
-		    /*@Thrown*/ boolean status;
+		    /*@Nullable*/ /*@Thrown*/ Boolean status;
 		    if (and) {
 		        final /*@NonNull*/ /*@Thrown*/ List<InstancePointerSourceInterface> sourceAttributes = this.getSourceAttributes();
 		        final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_sourceAttributes = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_InstancePointerSourceInterface, sourceAttributes);
@@ -310,7 +311,8 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		                accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
 		            }
 		        }
-		        status = exists;
+		        final /*@Nullable*/ /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(exists);
+		        status = not;
 		    }
 		    else {
 		        status = ValueUtil.TRUE_VALUE;
@@ -604,9 +606,9 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP_2:
 				return noModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.INSTANCE_POINTER___NO_GLOBAL_ATTRIBUTE_IMPORTER_IN_MAPPING_CONDITIONS__DIAGNOSTICCHAIN_MAP_4:
+			case MetamodelPackage.INSTANCE_POINTER___NO_GLOBAL_ATTRIBUTE_IMPORTER_IN_MAPPING_CONDITIONS__DIAGNOSTICCHAIN_MAP_6:
 				return noGlobalAttributeImporterInMappingConditions((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

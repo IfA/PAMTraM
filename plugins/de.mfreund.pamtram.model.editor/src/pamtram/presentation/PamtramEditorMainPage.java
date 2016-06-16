@@ -72,6 +72,7 @@ import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.ContainerParameter;
+import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -691,7 +692,18 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				 */
 			}  else if(item.getData() instanceof GlobalAttributeImporter){
 				GlobalAttributeImporter importer = (GlobalAttributeImporter) item.getData();
-				Attribute<?, ?, ?, ?> target = ((AttributeMapping) importer.eContainer()).getTarget();
+				Attribute<?, ?, ?, ?> target = null;
+				if(importer.eContainer() instanceof AttributeMapping) {
+					target = ((AttributeMapping) importer.eContainer()).getTarget();
+				} else if(importer.eContainer() instanceof AttributeMatcher) {
+					target = ((AttributeMatcher) importer.eContainer()).getTargetAttribute();
+				} else if(importer.eContainer() instanceof ModelConnectionHint) {
+					if(!((ModelConnectionHint) importer.eContainer()).getTargetAttributes().isEmpty()) {
+						target = ((ModelConnectionHint) importer.eContainer()).getTargetAttributes().get(0).getSource();						
+					}
+				} else if(importer.eContainer() instanceof InstancePointer) {
+					target = ((InstancePointer) importer.eContainer()).getAttributePointer();
+				}
 				Attribute<?, ?, ?, ?> source = importer.getSourceAttribute();
 	
 				setSourceTargetViewerSelections(source, target);

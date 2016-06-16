@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -21,7 +21,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
-
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -213,16 +213,26 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
+		if(!(object instanceof EObject)) {
+			return;
+		}
+		
+		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of 
+		// Conditions
+		//
+		if(!(((EObject) object).eContainer() instanceof SourceSectionAttribute)) {
+			
+			newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
-				 MetamodelFactory.eINSTANCE.createInstancePointer()));
+					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
+							MetamodelFactory.eINSTANCE.createInstancePointer()));
+		}
 	}
 
 	/**

@@ -149,7 +149,7 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.genlibrary"
         name="clone.origin.genlibrary"
-        defaultValue="G:\projects\movisa\library"
+        defaultValue="G:\projects\genlibrary\common"
         label="Genlibrary clone origin">
       <description>The URL where all projects related to the 'genlibrary' will be cloned from.</description>
     </setupTask>

@@ -5,26 +5,35 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import pamtram.mapping.provider.LocalModifiedAttributeElementTypeItemProvider;
+
+import pamtram.metamodel.InstancePointerSourceElement;
+
+import pamtram.provider.PamtramEditPlugin;
+
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.SourceSectionClass} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.InstancePointerSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SourceSectionClassItemProvider
-extends ClassItemProvider {
+public class InstancePointerSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionClassItemProvider(AdapterFactory adapterFactory) {
+	public InstancePointerSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -44,13 +53,14 @@ extends ClassItemProvider {
 	}
 
 	/**
-	 * This returns SourceSectionClass.gif.
+	 * This returns InstancePointerSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return super.getImage(object);
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstancePointerSourceElement"));
 	}
 
 	/**
@@ -63,17 +73,24 @@ extends ClassItemProvider {
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-
+	
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return super.getStyledText(object);
-	}
+		String label = ((InstancePointerSourceElement)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_InstancePointerSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_InstancePointerSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -98,6 +115,17 @@ extends ClassItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

@@ -234,7 +234,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.gentrans.main"
           name="clone.location.gentrans.main"
-          value="${clone.location}\de.mfreund.gentrans${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.gentrans${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location GenTrans project">
         <description></description>
@@ -243,7 +243,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.gentrans.transformation"
           name="clone.location.gentrans.transformation"
-          value="${clone.location}\de.mfreund.gentrans.transformation${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.gentrans.transformation${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location GenTrans transformation project">
         <description></description>
@@ -252,7 +252,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.gentrans.transformation.selectors"
           name="clone.location.gentrans.transformation.selectors"
-          value="${clone.location}\de.mfreund.gentrans.transformation.selectors${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.gentrans.transformation.selectors${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location GenTrans transformation.selectors project">
         <description></description>
@@ -261,7 +261,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.gentrans.transformation.history"
           name="clone.location.gentrans.transformation.history"
-          value="${clone.location}\de.mfreund.gentrans.transformation.history${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.gentrans.transformation.history${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location GenTrans transformation.history project">
         <description></description>
@@ -270,7 +270,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.gentrans.ui"
           name="clone.location.gentrans.ui"
-          value="${clone.location}\de.mfreund.gentrans.ui${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.gentrans.ui${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location GenTrans ui project">
         <description></description>
@@ -279,7 +279,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.casestudies.autoprobe"
           name="clone.location.pamtram.casestudies.autoprobe"
-          value="${clone.location}\de.mfreund.pamtram.casestudies.autoprobe${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.autoprobe${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.casestudies.autoprobe project">
         <description></description>
@@ -288,7 +288,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.casestudies.disl-movisa"
           name="clone.location.pamtram.casestudies.disl-movisa"
-          value="${clone.location}\de.mfreund.pamtram.casestudies.disl-movisa${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.disl-movisa${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.casestudies.disl-movisa project">
         <description></description>
@@ -297,7 +297,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.casestudies.w3caui-movisa"
           name="clone.location.pamtram.casestudies.w3caui-movisa"
-          value="${clone.location}\de.mfreund.pamtram.casestudies.w3caui-movisa${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.w3caui-movisa${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.casestudies.w3caui-movisa project">
         <description></description>
@@ -306,7 +306,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.casestudies.visu-plus"
           name="clone.location.pamtram.casestudies.visu-plus"
-          value="${clone.location}\de.mfreund.pamtram.casestudies.visu-plus${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.visu-plus${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.casestudies.visu-plus project">
         <description></description>
@@ -315,7 +315,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.casestudies.ctt-aminolight"
           name="clone.location.pamtram.casestudies.ctt-aminolight"
-          value="${clone.location}\de.mfreund.pamtram.casestudies.ctt-aminolight${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.ctt-aminolight${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.casestudies.ctt-aminolight project">
         <description></description>
@@ -324,7 +324,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.casestudies.excel-movisa-tdp"
           name="clone.location.pamtram.casestudies.excel-movisa-tdp"
-          value="${clone.location}\de.mfreund.pamtram.casestudies.excel-movisa-tdp${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.excel-movisa-tdp${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.casestudies.excel-movisa-tdp project">
         <description></description>
@@ -333,7 +333,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.examples"
           name="clone.location.pamtram.examples"
-          value="${clone.location}\de.mfreund.pamtram.examples${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.examples${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.examples project">
         <description></description>
@@ -342,7 +342,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.documentation"
           name="clone.location.pamtram.documentation"
-          value="${clone.location}\de.mfreund.pamtram.documentation${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.documentation${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.documentation project">
         <description></description>
@@ -351,7 +351,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.feature"
           name="clone.location.pamtram.feature"
-          value="${clone.location}\de.mfreund.pamtram.feature${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.feature${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.feature project">
         <description></description>
@@ -360,7 +360,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.main"
           name="clone.location.pamtram.main"
-          value="${clone.location}\de.mfreund.pamtram${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram project">
         <description></description>
@@ -369,7 +369,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.model"
           name="clone.location.pamtram.model"
-          value="${clone.location}\de.mfreund.pamtram.model${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.model${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.model project">
         <description></description>
@@ -378,7 +378,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.model.edit"
           name="clone.location.pamtram.model.edit"
-          value="${clone.location}\de.mfreund.pamtram.model.edit${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.model.edit${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.model.edit project">
         <description></description>
@@ -387,7 +387,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.model.editor"
           name="clone.location.pamtram.model.editor"
-          value="${clone.location}\de.mfreund.pamtram.model.editor${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.model.editor${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.model.editor project">
         <description></description>
@@ -396,7 +396,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.model.generator"
           name="clone.location.pamtram.model.generator"
-          value="${clone.location}\de.mfreund.pamtram.model.generator${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.model.generator${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.model.generator project">
         <description></description>
@@ -405,7 +405,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.transformation.model"
           name="clone.location.pamtram.transformation.model"
-          value="${clone.location}\de.mfreund.pamtram.transformation.model${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.transformation.model${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.transformation.model project">
         <description></description>
@@ -414,7 +414,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.setup"
           name="clone.location.pamtram.setup"
-          value="${clone.location}\de.mfreund.pamtram.setup${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.setup${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.setup project">
         <description></description>
@@ -423,7 +423,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.ui"
           name="clone.location.pamtram.ui"
-          value="${clone.location}\de.mfreund.pamtram.ui${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.ui${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.ui project">
         <description></description>
@@ -432,7 +432,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.update-site"
           name="clone.location.pamtram.update-site"
-          value="${clone.location}\de.mfreund.pamtram.update-site${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.update-site${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location pamtram.update-site project">
         <description></description>

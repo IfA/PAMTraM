@@ -15,7 +15,7 @@
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-Doomph.redirection.setups"
-      value="=https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/setup/PAMTraM.setup->${clone.location.pamtram|uri}/de.mfreund.pamtram.setup.git/de.mfreund.pamtram.setup/PAMTraM.setup"
+      value="=https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/setup/PAMTraM.setup->${clone.location.pamtram.setup|uri}/de.mfreund.pamtram.setup/PAMTraM.setup"
       vm="true"/>
   <setupTask
       xsi:type="setup:EclipseIniTask"

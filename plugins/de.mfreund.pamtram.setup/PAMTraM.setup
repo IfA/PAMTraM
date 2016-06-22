@@ -136,7 +136,7 @@
         value="true"/>
     <description>This sets a bunch of preferences.</description>
   </setupTask>
-  <stream name="master">
+  <stream name="develop">
     <setupTask
         xsi:type="setup:VariableTask"
         id="clone.origin.pamtram"
@@ -874,7 +874,8 @@
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.documentation"
           location="${clone.location.pamtram.documentation}"
-          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.documentation.git">
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.documentation.git"
+          checkoutBranch="master">
         <description>Clone the 'de.mfreund.pamtram.documentation.git' repository.</description>
       </setupTask>
       <setupTask

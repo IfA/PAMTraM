@@ -503,6 +503,30 @@
           location="${clone.location.gentrans.main}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.git"
           pushURI="">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.gentrans.git' repository.</description>
       </setupTask>
       <setupTask
@@ -510,6 +534,30 @@
           id="clone.gentrans.transformation"
           location="${clone.location.gentrans.transformation}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.transformation.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.gentrans.transformation.git' repository.</description>
       </setupTask>
       <setupTask
@@ -517,6 +565,30 @@
           id="clone.gentrans.transformation.selectors"
           location="${clone.location.gentrans.transformation.selectors}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.transformation.selectors.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.gentrans.transformation.selectors.git' repository.</description>
       </setupTask>
       <setupTask
@@ -524,6 +596,30 @@
           id="clone.gentrans.transformation.resolving.history"
           location="${clone.location.gentrans.transformation.history}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.transformation.resolving.history.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.gentrans.transformation.resolving.history.git' repository.</description>
       </setupTask>
       <setupTask
@@ -531,6 +627,30 @@
           id="clone.gentrans.ui"
           location="${clone.location.gentrans.ui}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.ui.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.gentrans.ui.git' repository.</description>
       </setupTask>
       <setupTask
@@ -538,6 +658,30 @@
           id="clone.pamtram.casestudies.autoprobe"
           location="${clone.location.pamtram.casestudies.autoprobe}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.autoprobe.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.casestudies.autoprobe.git' repository.</description>
       </setupTask>
       <setupTask
@@ -545,6 +689,30 @@
           id="clone.pamtram.casestudies.disl-movisa"
           location="${clone.location.pamtram.casestudies.disl-movisa}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.disl-movisa.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.casestudies.disl-movisa.git' repository.</description>
       </setupTask>
       <setupTask
@@ -552,6 +720,30 @@
           id="clone.pamtram.casestudies.w3caui-movisa"
           location="${clone.location.pamtram.casestudies.w3caui-movisa}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.w3caui-movisa.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.casestudies.w3caui-movisa.git' repository.</description>
       </setupTask>
       <setupTask
@@ -559,6 +751,30 @@
           id="clone.pamtram.casestudies.visu-plus"
           location="${clone.location.pamtram.casestudies.visu-plus}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.visu-plus.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.casestudies.visu-plus.git' repository.</description>
       </setupTask>
       <setupTask
@@ -566,6 +782,30 @@
           id="clone.pamtram.casestudies.ctt-aminolight"
           location="${clone.location.pamtram.casestudies.ctt-aminolight}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.ctt-aminolight.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.casestudies.ctt-aminolight.git' repository.</description>
       </setupTask>
       <setupTask
@@ -573,6 +813,30 @@
           id="clone.pamtram.casestudies.excel-movisa-tdp"
           location="${clone.location.pamtram.casestudies.excel-movisa-tdp}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.excel-movisa-tdp.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.casestudies.excel-movisa-tdp.git' repository.</description>
       </setupTask>
       <setupTask
@@ -580,6 +844,30 @@
           id="clone.pamtram.examples"
           location="${clone.location.pamtram.examples}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.examples.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.examples.git' repository.</description>
       </setupTask>
       <setupTask
@@ -594,6 +882,30 @@
           id="clone.pamtram.feature"
           location="${clone.location.pamtram.feature}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.feature.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.feature.git' repository.</description>
       </setupTask>
       <setupTask
@@ -601,6 +913,30 @@
           id="clone.pamtram"
           location="${clone.location.pamtram.main}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.git' repository.</description>
       </setupTask>
       <setupTask
@@ -608,6 +944,30 @@
           id="clone.pamtram.model"
           location="${clone.location.pamtram.model}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.model.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.model.git' repository.</description>
       </setupTask>
       <setupTask
@@ -615,6 +975,30 @@
           id="clone.pamtram.model.edit"
           location="${clone.location.pamtram.model.edit}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.model.edit.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.model.edit.git' repository.</description>
       </setupTask>
       <setupTask
@@ -622,6 +1006,30 @@
           id="clone.pamtram.model.editor"
           location="${clone.location.pamtram.model.editor}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.model.editor.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.model.editor.git' repository.</description>
       </setupTask>
       <setupTask
@@ -629,6 +1037,30 @@
           id="clone.pamtram.model.generator"
           location="${clone.location.pamtram.model.generator}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.model.generator.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.model.generator.git' repository.</description>
       </setupTask>
       <setupTask
@@ -636,6 +1068,30 @@
           id="clone.pamtram.transformation.model"
           location="${clone.location.pamtram.transformation.model}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.transformation.model.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.transformation.model.git' repository.</description>
       </setupTask>
       <setupTask
@@ -643,6 +1099,30 @@
           id="clone.pamtram.setup"
           location="${clone.location.pamtram.setup}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.setup.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.setup.git' repository.</description>
       </setupTask>
       <setupTask
@@ -650,6 +1130,30 @@
           id="clone.pamtram.ui"
           location="${clone.location.pamtram.ui}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.ui.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.ui.git' repository.</description>
       </setupTask>
       <setupTask
@@ -657,6 +1161,30 @@
           id="clone.pamtram.update-site"
           location="${clone.location.pamtram.update-site}"
           remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.update-site.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.update-site.git' repository.</description>
       </setupTask>
       <setupTask
@@ -664,6 +1192,30 @@
           id="clone.genlibrary"
           location="${clone.location.genlibrary.main}"
           remoteURI="${clone.origin.genlibrary}\de.tud.et.ifa.agtele.genlibrary.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.git' repository.</description>
       </setupTask>
       <setupTask
@@ -671,6 +1223,30 @@
           id="clone.genlibrary.edit"
           location="${clone.location.genlibrary.edit}"
           remoteURI="${clone.origin.genlibrary}\de.tud.et.ifa.agtele.genlibrary.edit.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.edit.git' repository.</description>
       </setupTask>
       <setupTask
@@ -678,6 +1254,30 @@
           id="clone.genlibrary.ui"
           location="${clone.location.genlibrary.ui}"
           remoteURI="${clone.origin.genlibrary}\de.tud.et.ifa.agtele.genlibrary.ui.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.ui.git' repository.</description>
       </setupTask>
       <setupTask
@@ -685,6 +1285,30 @@
           id="clone.commons"
           location="${clone.location.commons.main}"
           remoteURI="${clone.origin.commons}\de.tud.et.ifa.agtele.eclipse.commons.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.git' repository.</description>
       </setupTask>
       <setupTask
@@ -692,6 +1316,30 @@
           id="clone.commons.ui"
           location="${clone.location.commons.ui}"
           remoteURI="${clone.origin.commons}\de.tud.et.ifa.agtele.eclipse.commons.ui.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.ui.git' repository.</description>
       </setupTask>
       <setupTask
@@ -699,6 +1347,30 @@
           id="clone.commons.feature"
           location="${clone.location.commons.feature}"
           remoteURI="${clone.origin.commons}\de.tud.et.ifa.agtele.eclipse.commons.feature.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.feature.git' repository.</description>
       </setupTask>
       <description>Clone all necessary git repositories.</description>

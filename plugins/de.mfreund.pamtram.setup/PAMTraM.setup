@@ -129,7 +129,7 @@
     <setupTask
         xsi:type="setup:PreferenceTask"
         key="/instance/org.eclipse.egit.ui/remote_connection_timeout"
-        value="60"/>
+        value="120"/>
     <setupTask
         xsi:type="setup:PreferenceTask"
         key="/instance/org.eclipse.egit.ui/resourcehistory_show_all_branches"

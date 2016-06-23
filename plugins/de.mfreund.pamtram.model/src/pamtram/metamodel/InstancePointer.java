@@ -23,7 +23,7 @@ import pamtram.mapping.ModifiableHint;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getInstancePointer()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='noModifiedAttributeElementTypesInConditionModelConditions'"
  * @generated
  */
 public interface InstancePointer extends ExpressionHint, ModifiableHint {

@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -491,7 +492,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		 *   in
 		 *     let
 		 *       status : OclAny[1] = self.conditionRef->size() +
-		 *       self.condition->size() = 1
+		 *       self.condition->size() <= 1
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
@@ -511,7 +512,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, condition);
 		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
 		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
-		    final /*@Thrown*/ boolean status = sum.equals(PamtramTables.INT_1);
+		    final /*@Thrown*/ boolean status = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, sum, PamtramTables.INT_1).booleanValue();
 		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
@@ -773,8 +774,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_16: return MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_16;
-				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_16: return MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_16;
+				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_17: return MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_17;
+				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_17: return MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_17;
 				default: return -1;
 			}
 		}
@@ -794,13 +795,13 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getActiveMappingHintGroups();
 			case MappingPackage.MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS:
 				return getActiveImportedMappingHintGroups();
-			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_16:
+			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_17:
 				return containsHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_16:
+			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_17:
 				return containsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_16:
+			case MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_17:
 				return eitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_16:
+			case MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_17:
 				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -21,6 +21,7 @@ import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -180,7 +181,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		 *   in
 		 *     let
 		 *       status : OclAny[1] = self.conditionRef->size() +
-		 *       self.condition->size() = 1
+		 *       self.condition->size() <= 1
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
@@ -200,7 +201,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, condition);
 		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
 		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
-		    final /*@Thrown*/ boolean status = sum.equals(PamtramTables.INT_1);
+		    final /*@Thrown*/ boolean status = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, sum, PamtramTables.INT_1).booleanValue();
 		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
@@ -412,8 +413,8 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_16: return MappingPackage.MAPPING_HINT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_16;
-				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_16: return MappingPackage.MAPPING_HINT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_16;
+				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_17: return MappingPackage.MAPPING_HINT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_17;
+				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_17: return MappingPackage.MAPPING_HINT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_17;
 				default: return -1;
 			}
 		}
@@ -429,9 +430,9 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MAPPING_HINT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_16:
+			case MappingPackage.MAPPING_HINT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_17:
 				return eitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING_HINT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_16:
+			case MappingPackage.MAPPING_HINT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_17:
 				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

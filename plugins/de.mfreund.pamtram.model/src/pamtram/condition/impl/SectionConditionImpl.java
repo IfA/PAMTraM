@@ -12,8 +12,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.SectionCondition;
 import pamtram.mapping.Mapping;
-import pamtram.metamodel.InstancePointerExternalSourceElement;
-import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -186,7 +184,9 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 		//
 		return getAdditionalConditionSpecification().parallelStream().flatMap(
 				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
-						s -> s instanceof InstancePointerSourceElement || s instanceof InstancePointerExternalSourceElement)).findAny().isPresent();
+						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
+						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+				).findAny().isPresent();
 	}
 
 } //SectionConditionImpl

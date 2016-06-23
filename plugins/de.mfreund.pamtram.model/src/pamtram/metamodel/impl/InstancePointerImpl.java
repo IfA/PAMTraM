@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -246,41 +246,41 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		 *       in
 		 *         'InstancePointer::noModifiedAttributeElementTypesInConditionModelConditions'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
 		try {
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_oclIsKindOf;
+		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_oclIsKindOf;
 		    try {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_condition_c_c_ComplexCondition = idResolver.getClass(MetamodelTables.CLSSid_ComplexCondition, null);
-		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		        final /*@Thrown*/ boolean oclIsKindOf = ClassUtil.nonNullState(OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_condition_c_c_ComplexCondition).booleanValue());
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_condition_c_c_ComplexCondition = idResolver.getClass(MetamodelTables.CLSSid_ComplexCondition, null);
+		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
+		        final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_condition_c_c_ComplexCondition).booleanValue();
 		        CAUGHT_oclIsKindOf = oclIsKindOf;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
 		    }
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_isConditionModelCondition;
+		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_isConditionModelCondition;
 		    try {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_condition_c_c_ComplexCondition_0 = idResolver.getClass(MetamodelTables.CLSSid_ComplexCondition, null);
-		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		        final /*@NonNull*/ /*@Thrown*/ ComplexCondition oclAsType = ClassUtil.nonNullState((ComplexCondition)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_condition_c_c_ComplexCondition_0));
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_condition_c_c_ComplexCondition_0 = idResolver.getClass(MetamodelTables.CLSSid_ComplexCondition, null);
+		        final /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
+		        final /*@Thrown*/ ComplexCondition oclAsType = ClassUtil.nonNullState((ComplexCondition)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_condition_c_c_ComplexCondition_0));
 		        final /*@Thrown*/ boolean isConditionModelCondition = oclAsType.isConditionModelCondition();
 		        CAUGHT_isConditionModelCondition = isConditionModelCondition;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_isConditionModelCondition = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@Nullable*/ /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_oclIsKindOf, CAUGHT_isConditionModelCondition);
+		    final /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_oclIsKindOf, CAUGHT_isConditionModelCondition);
 		    if (and == null) {
 		        throw new InvalidValueException("Null if condition");
 		    }
-		    /*@Nullable*/ /*@Thrown*/ Boolean status;
+		    /*@Thrown*/ Boolean status;
 		    if (and) {
-		        final /*@NonNull*/ /*@Thrown*/ List<InstancePointerSourceInterface> sourceAttributes = this.getSourceAttributes();
-		        final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_sourceAttributes = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_InstancePointerSourceInterface, sourceAttributes);
-		        /*@Nullable*/ /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-		        /*@Nullable*/ Iterator<?> ITERATOR__1 = BOXED_sourceAttributes.iterator();
+		        final /*@Thrown*/ List<InstancePointerSourceInterface> sourceAttributes = this.getSourceAttributes();
+		        final /*@Thrown*/ OrderedSetValue BOXED_sourceAttributes = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_InstancePointerSourceInterface, sourceAttributes);
+		        /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+		        /*@NonNull*/ Iterator<Object> ITERATOR__1 = BOXED_sourceAttributes.iterator();
 		        /*@Thrown*/ boolean exists;
 		        while (true) {
 		            if (!ITERATOR__1.hasNext()) {
@@ -292,13 +292,13 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		                }
 		                break;
 		            }
-		            /*@Nullable*/ /*@NonInvalid*/ InstancePointerSourceInterface _1 = (InstancePointerSourceInterface)ITERATOR__1.next();
+		            /*@NonInvalid*/ InstancePointerSourceInterface _1 = (InstancePointerSourceInterface)ITERATOR__1.next();
 		            /**
 		             * 
 		             * self.oclIsTypeOf(mapping::ModifiedAttributeElementType(S, C, R, A))
 		             */
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_ModifiedAttributeElementType_o_S_44_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_ModifiedAttributeElementType, null);
-		            final /*@NonInvalid*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, this, TYP_pamtram_c_c_mapping_c_c_ModifiedAttributeElementType_o_S_44_C_44_R_44_A_e).booleanValue());
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_ModifiedAttributeElementType_o_S_44_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_ModifiedAttributeElementType, null);
+		            final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(executor, this, TYP_pamtram_c_c_mapping_c_c_ModifiedAttributeElementType_o_S_44_C_44_R_44_A_e).booleanValue();
 		            //
 		            if (oclIsTypeOf == ValueUtil.TRUE_VALUE) {					// Normal successful body evaluation result
 		                exists = ValueUtil.TRUE_VALUE;
@@ -311,7 +311,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		                accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
 		            }
 		        }
-		        final /*@Nullable*/ /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(exists);
+		        final /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(exists);
 		        status = not;
 		    }
 		    else {
@@ -326,14 +326,14 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		/*@NonInvalid*/ String message_0;
 		if (ne) {
 		    message_0 = MetamodelTables.STR_ModifiedAttributeElementTypes_32_are_32_not_32_allowed_32_as_32_part_32_of_32_Conditi;
 		}
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_InstancePointer_c_c_noModifiedAttributeElementTypesInConditionModel, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_InstancePointer_c_c_noModifiedAttributeElementTypesInConditionModel, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -484,7 +484,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP_17:
 				return noModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -169,6 +169,9 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 		EObject container = this;
 		
 		while(!(container instanceof Mapping)) {
+			if(container == null) {
+				return false;
+			}
 			container = container.eContainer();
 		}
 		

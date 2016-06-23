@@ -23,8 +23,6 @@ import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
-import pamtram.condition.CondSettingEnum;
-import pamtram.condition.Condition;
 import pamtram.condition.MultipleConditionOperator;
 import pamtram.condition.Not;
 import pamtram.condition.Or;
@@ -121,7 +119,6 @@ public class ConditionHandler {
 	 */
 	public CondResult checkCondition(ComplexCondition complexCondition, MatchedSectionDescriptor matchedSectionDescriptor){
 		
-		CondResult result = CondResult.TRUE;
 		
 		// Note: No modeled condition always returns true
 		if(complexCondition == null){ 
@@ -132,109 +129,117 @@ public class ConditionHandler {
 		// condition, we may reuse this result.
 		//
 		if (conditionRepository.get(complexCondition) != null && !complexCondition.isLocalCondition()){
-			result = conditionRepository.get(complexCondition);
+			return conditionRepository.get(complexCondition);
+		}
 			
 		// Otherwise, we have to calculate the value
-		} else {
+		CondResult result;
 		
-			if(complexCondition instanceof MultipleConditionOperator){
-				result = checkConditionMultipleConditionOperator((MultipleConditionOperator) complexCondition, matchedSectionDescriptor);
-			} else if(complexCondition instanceof SingleConditionOperator){
-				result = checkConditionSingleConditionOperator((SingleConditionOperator) complexCondition, matchedSectionDescriptor);
-			} else if (complexCondition instanceof Condition){
+		if(complexCondition instanceof MultipleConditionOperator){
+			
+			result = checkConditionMultipleConditionOperator((MultipleConditionOperator) complexCondition, matchedSectionDescriptor);
+			
+		} else if(complexCondition instanceof SingleConditionOperator){
+			
+			result = checkConditionSingleConditionOperator((SingleConditionOperator) complexCondition, matchedSectionDescriptor);
+			
+		} else if(complexCondition instanceof AttributeCondition){
 				
-				// Before evaluating, check 'DefaultSetting' (may we can break evaluating and save time)
-				if(((Condition) complexCondition).getDefaultSetting() == CondSettingEnum.NO_MATCHING_ACCEPTED){
-					if(complexCondition.eContainer() instanceof ComplexCondition){
-						return CondResult.IRRELEVANT;
-					} else{
-						return CondResult.TRUE;
-					}
-				}
+			result = checkAttributeCondition((AttributeCondition) complexCondition, matchedSectionDescriptor);
 				
-				if(complexCondition instanceof AttributeCondition){
-					result = checkAttributeCondition((AttributeCondition) complexCondition, matchedSectionDescriptor);
-				} else if (complexCondition instanceof SectionCondition){
-					result = checkSectionCondition((SectionCondition) complexCondition, matchedSectionDescriptor);
-				}
-			}
+		} else if (complexCondition instanceof SectionCondition){
+			
+			result = checkSectionCondition((SectionCondition) complexCondition, matchedSectionDescriptor);
+			
+		} else {
+			
+			consoleStream.println("Condition '" + complexCondition.getName() + "' is of an unsupported type: '" + 
+					complexCondition.eClass().getName() + "'. Return 'FALSE' by default!");
+			result = CondResult.FALSE;
+			
 		}
 		
 		return result;
 	}
 
+	/**
+	 * Check the given {@link SectionCondition} for the given {@link MatchedSectionDescriptor}.
+	 * 
+	 * @param sectionCondition The {@link SectionCondition} to check.
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the given condition shall be checked.
+	 * @return The {@link CondResult result} of the check.
+	 */
 	private CondResult checkSectionCondition(SectionCondition sectionCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
-		boolean tempConditionRes = false;
-		
-		if(this.matchedSections.containsKey(sectionCondition.getConditionSectionRef().getContainingSection())){
+		// The Section referenced by the SectionCondition was not matched in the source model
+		//
+		if(!this.matchedSections.containsKey(sectionCondition.getConditionSectionRef().getContainingSection())){
 			
-			// The SourceSection holding the attribute that the AttributeCondition is based on
-			//
-			SourceSection affectedSection = sectionCondition.getConditionSectionRef().getContainingSection();
-			
-			List<MatchedSectionDescriptor> descriptorsToConsider;
-			
-			if(sectionCondition.isLocalCondition() || !sectionCondition.getAdditionalConditionSpecification().isEmpty() ) {
-				
-				// In case of a 'local' condition without any InstancePointers specified, 
-				// we only consider the given 'matchedSectionDescriptor'.
-				//
-				descriptorsToConsider = Arrays.asList(matchedSectionDescriptor);
-				
-			} else {
-				
-				// In case of a 'global' condition or if an InstancePointer has been specified, we 
-				// have to consider all 'descriptors' for the SourceSection  under consideration
-				//
-				descriptorsToConsider = this.matchedSections.get(affectedSection);
-			}
-			
-			List<EObject> correspondEClassInstances;
-			
-			// Collect all instances for the selected MatchedSectionDescriptors
-			//
-			correspondEClassInstances = descriptorsToConsider.parallelStream()
-					.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection).stream())
-					.collect(Collectors.toList());
-			
-			
-			if(!sectionCondition.getAdditionalConditionSpecification().isEmpty()){
-				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances, matchedSectionDescriptor);
-			}
-			
-			// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
-			boolean cardinalityRes = checkCardinality(sectionCondition.getValue(), correspondEClassInstances.size(), sectionCondition.getComparator());
-			
-			// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
-			if(cardinalityRes == true){
-				if(tempConditionRes == false){
-					storeConditionResult(sectionCondition, CondResult.TRUE);}
-				return CondResult.TRUE;
-			} else if(cardinalityRes == false){
-				if(tempConditionRes == false){
-					storeConditionResult(sectionCondition, CondResult.FALSE);}
-				return CondResult.FALSE;
-			} else{
-				if(tempConditionRes == false){
-					storeConditionResult(sectionCondition, CondResult.IRRELEVANT);}
-				return CondResult.IRRELEVANT;
-			}
-		
-		// return Result of this condition but does NOT!!! store result because it's not matched (may it will be matched later)
-		} else {
 			// For conditions where the referred Section shouldn't be part of a model
 			if(sectionCondition.getValue() == 0 && sectionCondition.getComparator() == ComparatorEnum.EQ){
+				
 				return CondResult.TRUE;
+				
 			} else{
+				
 				return CondResult.FALSE;
 			}
 		}
+			
+		// The SourceSection holding the attribute that the AttributeCondition is based on
+		//
+		SourceSection affectedSection = sectionCondition.getConditionSectionRef().getContainingSection();
+		
+		List<MatchedSectionDescriptor> descriptorsToConsider;
+		
+		if(sectionCondition.isLocalCondition() && sectionCondition.getAdditionalConditionSpecification().isEmpty()) {
+			
+			// In case of a 'local' condition without any InstancePointers specified, 
+			// we only consider the given 'matchedSectionDescriptor'.
+			//
+			descriptorsToConsider = Arrays.asList(matchedSectionDescriptor);
+			
+		} else {
+			
+			// In case of a 'global' condition or if an InstancePointer has been specified, we 
+			// have to consider all 'descriptors' for the SourceSection  under consideration
+			//
+			descriptorsToConsider = this.matchedSections.get(affectedSection);
+		}
+		
+		List<EObject> correspondEClassInstances;
+		
+		// Collect all instances for the selected MatchedSectionDescriptors
+		//
+		correspondEClassInstances = descriptorsToConsider.parallelStream()
+				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection).stream())
+				.collect(Collectors.toList());
+		
+		
+		if(!sectionCondition.getAdditionalConditionSpecification().isEmpty()){
+			correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(
+					sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances, matchedSectionDescriptor);
+		}
+		
+		// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
+		boolean cardinalityRes = checkCardinality(sectionCondition.getValue(), correspondEClassInstances.size(), sectionCondition.getComparator());
+		
+		// store and return the result 
+		CondResult result = cardinalityRes ? CondResult.TRUE : CondResult.FALSE;
+		storeConditionResult(sectionCondition, result);
+		return result;
+			
 	}
 
+	/**
+	 * Check the given {@link AttributeCondition} for the given {@link MatchedSectionDescriptor}.
+	 * 
+	 * @param attrCondition The {@link AttributeCondition} to check.
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the given condition shall be checked.
+	 * @return The {@link CondResult result} of the check.
+	 */
 	private CondResult checkAttributeCondition(AttributeCondition attrCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
-		boolean tempConditionRes = false;
 		List<InstancePointer> instPointersAsList;
 		
 		// The SourceSection holding the attribute that the AttributeCondition is based on
@@ -243,7 +248,7 @@ public class ConditionHandler {
 		
 		List<MatchedSectionDescriptor> descriptorsToConsider;
 		
-		if(attrCondition.isLocalCondition() || !attrCondition.getAdditionalConditionSpecification().isEmpty() ) {
+		if(attrCondition.isLocalCondition() && attrCondition.getAdditionalConditionSpecification().isEmpty()) {
 			
 			// In case of a 'local' condition without any InstancePointers specified, 
 			// we only consider the given 'matchedSectionDescriptor'.
@@ -392,19 +397,18 @@ public class ConditionHandler {
 		boolean cardinalityRes = checkCardinality(attrCondition.getValue(), Collections.frequency(attrBoolResults, true), attrCondition.getComparator());
 		
 		// return Result of this condition (and store result if its referred model objects already were marked as 'matched'
-		if(cardinalityRes == true){
-			if(tempConditionRes == false){
-				storeConditionResult(attrCondition, CondResult.TRUE);}
+		if(cardinalityRes){
+			
+			storeConditionResult(attrCondition, CondResult.TRUE);
 			return CondResult.TRUE;
-		} else if(cardinalityRes == false){
-			if(tempConditionRes == false){
-				storeConditionResult(attrCondition, CondResult.FALSE);}
+			
+		} else {
+			
+			storeConditionResult(attrCondition, CondResult.FALSE);
 			return CondResult.FALSE;
-		} else{
-			if(tempConditionRes == false){
-				storeConditionResult(attrCondition, CondResult.IRRELEVANT);}
-			return CondResult.IRRELEVANT;
+			
 		}
+		
 	}
 	
 	/**

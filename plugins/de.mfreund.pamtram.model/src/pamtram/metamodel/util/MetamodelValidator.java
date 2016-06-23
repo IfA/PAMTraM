@@ -107,20 +107,20 @@ public class MetamodelValidator extends EObjectValidator {
 	public static final int CLASS__ECLASS_MATCHES_PARENT_EREFERENCE = 3;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Container Matches Extend Container' of 'Section'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER = 4;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Extends Valid Sections' of 'Section'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SECTION__EXTENDS_VALID_SECTIONS = 4;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Container Matches Extend Container' of 'Section'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int SECTION__CONTAINER_MATCHES_EXTEND_CONTAINER = 5;
+	public static final int SECTION__EXTENDS_VALID_SECTIONS = 5;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Referenced By Mapping' of 'Source Section'.
@@ -422,8 +422,8 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateClass_containerIsValid(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_cardinalityIsValid(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(section, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSection_validateContainerMatchesExtendContainer(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_extendsValidSections(section, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSection_containerMatchesExtendContainer(section, diagnostics, context);
 		return result;
 	}
 
@@ -438,13 +438,13 @@ public class MetamodelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the containerMatchesExtendContainer constraint of '<em>Section</em>'.
+	 * Validates the validateContainerMatchesExtendContainer constraint of '<em>Section</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSection_containerMatchesExtendContainer(Section<?, ?, ?, ?> section, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return section.containerMatchesExtendContainer(diagnostics, context);
+	public boolean validateSection_validateContainerMatchesExtendContainer(Section<?, ?, ?, ?> section, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return section.validateContainerMatchesExtendContainer(diagnostics, context);
 	}
 
 	/**
@@ -465,8 +465,8 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateClass_containerIsValid(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_cardinalityIsValid(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(sourceSection, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSection_validateContainerMatchesExtendContainer(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_extendsValidSections(sourceSection, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSection_containerMatchesExtendContainer(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSourceSection_isReferencedByMapping(sourceSection, diagnostics, context);
 		return result;
 	}
@@ -499,8 +499,8 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateClass_containerIsValid(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_cardinalityIsValid(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(targetSection, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSection_validateContainerMatchesExtendContainer(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_extendsValidSections(targetSection, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSection_containerMatchesExtendContainer(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTargetSection_isReferencedByMappingHintGroup(targetSection, diagnostics, context);
 		return result;
 	}
@@ -1047,7 +1047,7 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(instancePointerSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instancePointerSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= mappingValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(instancePointerSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= mappingValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(instancePointerSourceElement, diagnostics, context);
 		return result;
 	}
 

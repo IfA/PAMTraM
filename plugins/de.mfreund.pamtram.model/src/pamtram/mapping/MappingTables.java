@@ -84,7 +84,6 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ExternalModifiedAttributeElementType = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ExternalModifiedAttributeElementType", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_GlobalAttribute = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_GlobalAttributeImporter = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttributeImporter", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_LocalModifiedAttributeElementType = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("LocalModifiedAttributeElementType", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappedAttributeValueExpander = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappedAttributeValueExpander", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Mapping = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("Mapping", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappingHint = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappingHint", 0);
@@ -95,7 +94,6 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappingInstanceSelector = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappingInstanceSelector", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappingModel = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("MappingModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Matcher = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("Matcher", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MetaModelElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("MetaModelElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModelConnectionHint = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModelConnectionHint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModelConnectionHintExternalSourceElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModelConnectionHintExternalSourceElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModelConnectionHintSourceElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModelConnectionHintSourceElement", 0);
@@ -134,7 +132,6 @@ public class MappingTables
     public static final /*@NonInvalid*/ java.lang.String STR_ExternalModifiedAttributeElementType_c_c_sourceAttributeMatchesCont = "ExternalModifiedAttributeElementType::sourceAttributeMatchesContainerSection";
     public static final /*@NonInvalid*/ java.lang.String STR_GlobalAttribute_c_c_sourceAttributeHasUpperBoundOne = "GlobalAttribute::sourceAttributeHasUpperBoundOne";
     public static final /*@NonInvalid*/ java.lang.String STR_Global_32_attributes_32_may_32_only_32_be_32_defined_32_for_32_attributes_32_that_32_have_32_a = "Global attributes may only be defined for attributes that have an upper bound of 1!";
-    public static final /*@NonInvalid*/ java.lang.String STR_LocalModifiedAttributeElementType_c_c_sourceAttributeMatchesSection = "LocalModifiedAttributeElementType::sourceAttributeMatchesSectionOrContainedSection";
     public static final /*@NonInvalid*/ java.lang.String STR_MappingInstanceSelector_c_c_affectedReferenceIsNonContainment = "MappingInstanceSelector::affectedReferenceIsNonContainment";
     public static final /*@NonInvalid*/ java.lang.String STR_MappingInstanceSelector_c_c_affectedReferenceMatchesSection = "MappingInstanceSelector::affectedReferenceMatchesSection";
     public static final /*@NonInvalid*/ java.lang.String STR_Mapping_c_c_containsDeactivatedHintGroups = "Mapping::containsDeactivatedHintGroups";
@@ -155,8 +152,6 @@ public class MappingTables
     public static final /*@NonInvalid*/ java.lang.String STR__39_32_is_32_not_32_part_32_of_32_the_32_source_32_section_32_referenced_32_by_32_parent_32_mapping = "\' is not part of the source section referenced by parent mapping \'";
     public static final /*@NonInvalid*/ java.lang.String STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr = "\' is not part of the target section referenced by parent hint group ";
     public static final /*@NonInvalid*/ java.lang.String STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr_0 = "\' is not part of the target section referenced by parent hint group \'";
-    public static final /*@NonInvalid*/ java.lang.String STR__39_32_is_32_not_32_referenced_32_by_32_the_32_source_32_section_32_of_32_the_32_parent_32_mapping_32 = "\' is not referenced by the source section of the parent mapping \'";
-    public static final /*@NonInvalid*/ java.lang.String STR__39_32_or_32_in_32_one_32_of_32_its_32_extended_32_sections_s_sub_m_sections_33 = "\' or in one of its extended sections/sub-sections!";
     public static final /*@NonInvalid*/ java.lang.String STR__39_33 = "\'!";
     public static final /*@NonInvalid*/ java.lang.String STR__39_e_32_cannot_32_be_32_connected_32_to_32_o_contained_32_in_e_32_the_32_type_32_of_32_the_32_class_32_c = "\') cannot be connected to (contained in) the type of the class containing the target attribute (\'";
     public static final /*@NonInvalid*/ java.lang.String STR__39_e_32_is_32_not_32_allowed_32_by_32_the_32_affected_32_reference_32_of_32_the_32_parent_32_mappin = "\') is not allowed by the affected reference of the parent mapping instance selector that ";

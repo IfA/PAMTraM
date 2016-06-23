@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -215,36 +216,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public EList<SourceSection> getSourceSections() {
-		/**
-		 * self.sourceSectionModel->collect(s | s.metaModelSections)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@Thrown*/ List<SourceSectionModel> sourceSectionModel = this.getSourceSectionModel();
-		final /*@Thrown*/ OrderedSetValue BOXED_sourceSectionModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_SourceSectionModel, sourceSectionModel);
-		/*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_TMPLid_);
-		/*@NonNull*/ Iterator<Object> ITERATOR_s = BOXED_sourceSectionModel.iterator();
-		/*@Thrown*/ SequenceValue collect;
-		while (true) {
-		    if (!ITERATOR_s.hasNext()) {
-		        collect = accumulator;
-		        break;
-		    }
-		    /*@NonInvalid*/ SourceSectionModel s = (SourceSectionModel)ITERATOR_s.next();
-		    /**
-		     * s.metaModelSections
-		     */
-		    final /*@Thrown*/ List<Object> metaModelSections = s.getMetaModelSections();
-		    final /*@Thrown*/ OrderedSetValue BOXED_metaModelSections = idResolver.createOrderedSetOfAll(PamtramTables.ORD_TMPLid_, metaModelSections);
-		    //
-		    for (Object value : BOXED_metaModelSections.flatten().getElements()) {
-		        accumulator.add(value);
-		    }
-		}
-		final /*@Thrown*/ List<Object> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Object.class, collect);
-		return (EList<Object>)ECORE_collect;
+		return new BasicEList<>(this.getSourceSectionModel().parallelStream().flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList()));
 	}
 
 	/**
@@ -253,36 +226,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public EList<TargetSection> getTargetSections() {
-		/**
-		 * self.targetSectionModel->collect(s | s.metaModelSections)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@Thrown*/ List<TargetSectionModel> targetSectionModel = this.getTargetSectionModel();
-		final /*@Thrown*/ OrderedSetValue BOXED_targetSectionModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_TargetSectionModel, targetSectionModel);
-		/*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_TMPLid_);
-		/*@NonNull*/ Iterator<Object> ITERATOR_s = BOXED_targetSectionModel.iterator();
-		/*@Thrown*/ SequenceValue collect;
-		while (true) {
-		    if (!ITERATOR_s.hasNext()) {
-		        collect = accumulator;
-		        break;
-		    }
-		    /*@NonInvalid*/ TargetSectionModel s = (TargetSectionModel)ITERATOR_s.next();
-		    /**
-		     * s.metaModelSections
-		     */
-		    final /*@Thrown*/ List<Object> metaModelSections = s.getMetaModelSections();
-		    final /*@Thrown*/ OrderedSetValue BOXED_metaModelSections = idResolver.createOrderedSetOfAll(PamtramTables.ORD_TMPLid_, metaModelSections);
-		    //
-		    for (Object value : BOXED_metaModelSections.flatten().getElements()) {
-		        accumulator.add(value);
-		    }
-		}
-		final /*@Thrown*/ List<Object> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Object.class, collect);
-		return (EList<Object>)ECORE_collect;
+		return new BasicEList<>(this.getTargetSectionModel().parallelStream().flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList()));
 	}
 
 	/**
@@ -291,7 +236,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public EList<Mapping> getMappings() {
 		/**
 		 * self.mappingModel->collect(s | s.mapping)

@@ -20,8 +20,6 @@ import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.InstancePointerExternalSourceElement;
-import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 

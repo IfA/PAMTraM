@@ -494,8 +494,8 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1: return MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1;
-				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1: return MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1;
+				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_16: return MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_16;
+				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_16: return MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_16;
 				default: return -1;
 			}
 		}
@@ -511,9 +511,9 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1:
+			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_16:
 				return eitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1:
+			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_16:
 				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

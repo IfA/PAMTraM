@@ -3,20 +3,20 @@
 package pamtram.mapping.util;
 
 import java.util.Map;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 
 import pamtram.mapping.*;
+import pamtram.util.PamtramValidator;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
  * @see pamtram.mapping.MappingPackage
- * @generated NOT
+ * @generated not
  */
 public class MappingValidator extends OCLinEcoreEObjectValidator {
 	/**
@@ -126,12 +126,12 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	public static final int ATTRIBUTE_MATCHER__TARGET_MATCHES_AFFECTED_REFERENCE_TYPE = 11;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Attribute Matches Section Or Contained Section' of 'Local Modified Attribute Element Type'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Section Or Contained Section' of 'Local Modified Attribute Element Type'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 12;
+	public static final int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 12;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Matches Possible Container Type' of 'Model Connection Hint Target Attribute'.
@@ -174,6 +174,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
 	/**
+	 * The cached base package validator.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PamtramValidator pamtramValidator;
+
+	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -181,6 +189,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public MappingValidator() {
 		super();
+		pamtramValidator = PamtramValidator.INSTANCE;
 	}
 
 	/**
@@ -338,6 +347,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMapping_containsHintGroups(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMapping_containsDeactivatedHintGroups(mapping, diagnostics, context);
 		return result;
@@ -378,7 +389,18 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInstantiableMappingHintGroup(InstantiableMappingHintGroup instantiableMappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(instantiableMappingHintGroup, diagnostics, context);
+		if (!validate_NoCircularContainment(instantiableMappingHintGroup, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instantiableMappingHintGroup, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -387,7 +409,18 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintGroup(MappingHintGroup mappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHintGroup, diagnostics, context);
+		if (!validate_NoCircularContainment(mappingHintGroup, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -405,7 +438,18 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHint(MappingHint mappingHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHint, diagnostics, context);
+		if (!validate_NoCircularContainment(mappingHint, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -441,6 +485,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(attributeMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(attributeMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateAttributeMapping_targetAttributeMatchesSection(attributeMapping, diagnostics, context);
 		return result;
 	}
@@ -470,6 +516,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
@@ -543,6 +591,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(mappingInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
 		return result;
@@ -621,7 +671,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(attributeMatcherSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMatcherSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMatcherSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -721,18 +771,18 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(localModifiedAttributeElementType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(localModifiedAttributeElementType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the sourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Modified Attribute Element Type</em>'.
+	 * Validates the validateSourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Modified Attribute Element Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return localModifiedAttributeElementType.sourceAttributeMatchesSectionOrContainedSection(diagnostics, context);
+	public boolean validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return localModifiedAttributeElementType.validateSourceAttributeMatchesSectionOrContainedSection(diagnostics, context);
 	}
 
 	/**
@@ -741,7 +791,18 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintGroupImporter(MappingHintGroupImporter mappingHintGroupImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHintGroupImporter, diagnostics, context);
+		if (!validate_NoCircularContainment(mappingHintGroupImporter, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroupImporter, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -777,7 +838,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(attributeMappingSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMappingSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -796,7 +857,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(modelConnectionHintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelConnectionHintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelConnectionHintSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(modelConnectionHintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(modelConnectionHintSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -871,7 +932,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(localMappedAttributeValueExpander, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(localMappedAttributeValueExpander, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localMappedAttributeValueExpander, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
 		return result;
 	}
 
@@ -890,7 +951,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(mappedAttributeValuePrepender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappedAttributeValuePrepender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappedAttributeValuePrepender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
 		return result;
 	}
 
@@ -909,7 +970,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(mappedAttributeValueAppender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappedAttributeValueAppender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappedAttributeValueAppender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
 		return result;
 	}
 

@@ -34,8 +34,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSections" upperBound="-1"
         eType="#//metamodel/SourceSection" changeable="false" volatile="true" transient="true"
         derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.sourceSectionModel->collect(s | s.metaModelSections)"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="return new BasicEList&lt;>(this.getSourceSectionModel().parallelStream().flatMap(s -> s.getMetaModelSections().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetSections" upperBound="-1"

@@ -31,6 +31,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -1050,7 +1051,18 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
 		// Create the command stack that will notify this editor as commands are executed.
 		//
-		BasicCommandStack commandStack = new BasicCommandStack();
+		BasicCommandStack commandStack =
+				new BasicCommandStack() {
+					@Override
+					public void execute(Command command) {
+						// Cancel live validation before executing a command that will trigger a new round of validation.
+						//
+						if (!(command instanceof AbstractCommand.NonDirtying)) {
+							DiagnosticDecorator.Styled.cancel(editingDomain);
+						}
+						super.execute(command);
+					}
+				};
 
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		//

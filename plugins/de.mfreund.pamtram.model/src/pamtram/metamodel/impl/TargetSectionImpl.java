@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -162,32 +162,31 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		 * mapping::MappingHintGroupType.allInstances()
 		 * ->select(mhg | self = mhg.targetMMSection)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MetamodelTables.CLSSid_MappingHintGroupType, null);
-		final /*@NonNull*/ /*@NonInvalid*/ SetValue allInstances = ClassUtil.nonNullState(ClassifierAllInstancesOperation.INSTANCE.evaluate(evaluator, MetamodelTables.SET_CLSSid_MappingHintGroupType, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		/*@NonNull*/ /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(MetamodelTables.SET_CLSSid_MappingHintGroupType);
-		/*@NonNull*/ Iterator<?> ITERATOR_mhg = allInstances.iterator();
-		/*@NonNull*/ /*@Thrown*/ SetValue select;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MetamodelTables.CLSSid_MappingHintGroupType, null);
+		final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, MetamodelTables.SET_CLSSid_MappingHintGroupType, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0);
+		/*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(MetamodelTables.SET_CLSSid_MappingHintGroupType);
+		/*@NonNull*/ Iterator<Object> ITERATOR_mhg = allInstances.iterator();
+		/*@Thrown*/ SetValue select;
 		while (true) {
 		    if (!ITERATOR_mhg.hasNext()) {
 		        select = accumulator;
 		        break;
 		    }
-		    /*@NonNull*/ /*@NonInvalid*/ MappingHintGroupType mhg = (MappingHintGroupType)ITERATOR_mhg.next();
+		    /*@NonInvalid*/ MappingHintGroupType mhg = (MappingHintGroupType)ITERATOR_mhg.next();
 		    /**
 		     * self = mhg.targetMMSection
 		     */
-		    final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetMMSection();
+		    final /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetMMSection();
 		    final /*@Thrown*/ boolean eq = this.equals(targetMMSection);
 		    //
 		    if (eq == ValueUtil.TRUE_VALUE) {
 		        accumulator.add(mhg);
 		    }
 		}
-		final List<MappingHintGroupType> UNBOXED_select = select.asEcoreObjects(idResolver, pamtram.mapping.MappingHintGroupType.class);
-		assert UNBOXED_select != null;
-		return (EList<MappingHintGroupType>)UNBOXED_select;
+		final /*@Thrown*/ List<MappingHintGroupType> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(MappingHintGroupType.class, select);
+		return (EList<MappingHintGroupType>)ECORE_select;
 	}
 
 	/**
@@ -249,14 +248,14 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		 *       in
 		 *         'TargetSection::isReferencedByMappingHintGroup'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@NonNull*/ /*@Thrown*/ List<MappingHintGroupType> referencingMappingHintGroups = this.getReferencingMappingHintGroups();
-		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_referencingMappingHintGroups = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_MappingHintGroupType, referencingMappingHintGroups);
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_referencingMappingHintGroups));
-		    final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, size, MetamodelTables.INT_0).booleanValue());
+		    final /*@Thrown*/ List<MappingHintGroupType> referencingMappingHintGroups = this.getReferencingMappingHintGroups();
+		    final /*@Thrown*/ OrderedSetValue BOXED_referencingMappingHintGroups = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_MappingHintGroupType, referencingMappingHintGroups);
+		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_referencingMappingHintGroups);
+		    final /*@Thrown*/ boolean status = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, size, MetamodelTables.INT_0).booleanValue();
 		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
@@ -266,14 +265,14 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		/*@NonInvalid*/ String message_0;
 		if (ne) {
 		    message_0 = MetamodelTables.STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_hint_32_group_32_and_32_will_32_not_32_be_32;
 		}
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_TargetSection_c_c_isReferencedByMappingHintGroup, this, null, diagnostics, context, message_0, MetamodelTables.INT_2, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_TargetSection_c_c_isReferencedByMappingHintGroup, this, null, diagnostics, context, message_0, MetamodelTables.INT_2, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -320,8 +319,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		 *       in
 		 *         'Section::extendsValidSections'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
 		    final /*@Thrown*/ boolean status = this.extendsOnlyValidSections();
 		    CAUGHT_status = status;
@@ -333,14 +332,14 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		/*@NonInvalid*/ String message_0;
 		if (ne) {
 		    message_0 = MetamodelTables.STR_The_32_section_32_extends_32_a_32_section_32_that_32_is_32_either_32_not_32_abstract_32_or_32_tha;
 		}
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Section_c_c_extendsValidSections, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_Section_c_c_extendsValidSections, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -376,26 +375,26 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		 *       in
 		 *         'Section::containerMatchesExtendContainer'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
 		try {
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Class, null);
-		    final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, this, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e));
-		    final /*@Nullable*/ /*@Thrown*/ Object container = oclAsType.getContainer();
-		    final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, container));
+		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
+		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Class, null);
+		    final /*@Thrown*/ pamtram.metamodel.Class oclAsType = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, this, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e));
+		    final /*@Thrown*/ Object container = oclAsType.getContainer();
+		    final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, container);
 		    final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
-		    /*@Nullable*/ /*@Thrown*/ Boolean status;
+		    /*@Thrown*/ Boolean status;
 		    if (eq) {
 		        status = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        final /*@NonNull*/ /*@Thrown*/ List<? extends Object> extend = this.getExtend();
-		        final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_TMPLid__1, extend);
-		        /*@Nullable*/ /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-		        /*@Nullable*/ Iterator<?> ITERATOR_e_0 = BOXED_extend.iterator();
-		        /*@Nullable*/ /*@Thrown*/ Boolean forAll;
+		        final /*@Thrown*/ List<Object> extend = this.getExtend();
+		        final /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_TMPLid__1, extend);
+		        /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
+		        /*@NonNull*/ Iterator<Object> ITERATOR_e_0 = BOXED_extend.iterator();
+		        /*@Thrown*/ Boolean forAll;
 		        while (true) {
 		            if (!ITERATOR_e_0.hasNext()) {
 		                if (accumulator == null) {
@@ -409,7 +408,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		                }
 		                break;
 		            }
-		            /*@Nullable*/ /*@NonInvalid*/ Object e_0 = (Object)ITERATOR_e_0.next();
+		            /*@NonInvalid*/ Object e_0 = (Object)ITERATOR_e_0.next();
 		            /**
 		             * 
 		             * e.oclAsType(Class(S, C, R, A))
@@ -417,30 +416,30 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		             * e.oclAsType(Class(S, C, R, A)).container =
 		             * self.oclAsType(Class(S, C, R, A)).container
 		             */
-		            /*@Nullable*/ /*@Caught*/ Object CAUGHT_or;
+		            /*@Caught*/ /*@Nullable*/ Object CAUGHT_or;
 		            try {
-		                /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_0;
+		                /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_0;
 		                try {
-		                    final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_0 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, e_0, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e));
-		                    final /*@Nullable*/ /*@Thrown*/ Object container_0 = oclAsType_0.getContainer();
-		                    final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, container_0));
+		                    final /*@Thrown*/ pamtram.metamodel.Class oclAsType_0 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, e_0, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e));
+		                    final /*@Thrown*/ Object container_0 = oclAsType_0.getContainer();
+		                    final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, container_0);
 		                    final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_0.getTypeId();
 		                    CAUGHT_eq_0 = eq_0;
 		                }
 		                catch (Exception e) {
 		                    CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
 		                }
-		                /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_1;
+		                /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_1;
 		                try {
-		                    final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_1 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, e_0, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e));
-		                    final /*@Nullable*/ /*@Thrown*/ Object container_1 = oclAsType_1.getContainer();
+		                    final /*@Thrown*/ pamtram.metamodel.Class oclAsType_1 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, e_0, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e));
+		                    final /*@Thrown*/ Object container_1 = oclAsType_1.getContainer();
 		                    final /*@Thrown*/ boolean eq_1 = (container_1 != null) ? container_1.equals(container) : (container == null);
 		                    CAUGHT_eq_1 = eq_1;
 		                }
 		                catch (Exception e) {
 		                    CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
 		                }
-		                final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_0, CAUGHT_eq_1);
+		                final /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_0, CAUGHT_eq_1);
 		                CAUGHT_or = or;
 		            }
 		            catch (Exception e) {
@@ -477,14 +476,14 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		/*@NonInvalid*/ String message_0;
 		if (ne) {
 		    message_0 = MetamodelTables.STR_The_32_section_32_extends_32_a_32_section_32_that_32_specifies_32_a_32_different_32_contain;
 		}
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Section_c_c_containerMatchesExtendContainer, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_Section_c_c_containerMatchesExtendContainer, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -617,8 +616,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
 				case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS: return MetamodelPackage.TARGET_SECTION___EXTENDS_ONLY_VALID_SECTIONS;
-				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
-				case MetamodelPackage.SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
+				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1: return MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1;
+				case MetamodelPackage.SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1: return MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1;
 				default: return -1;
 			}
 		}
@@ -634,13 +633,13 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP_1:
 				return isReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case MetamodelPackage.TARGET_SECTION___EXTENDS_ONLY_VALID_SECTIONS:
 				return extendsOnlyValidSections();
-			case MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1:
 				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.TARGET_SECTION___CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP_1:
 				return containerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

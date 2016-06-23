@@ -184,7 +184,9 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 		//
 		return getAdditionalConditionSpecification().parallelStream().flatMap(
 				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
-						s -> s instanceof InstancePointerSourceElement || s instanceof InstancePointerExternalSourceElement)).findAny().isPresent();
+						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
+						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+				).findAny().isPresent();
 	}
 
 } //SectionConditionImpl

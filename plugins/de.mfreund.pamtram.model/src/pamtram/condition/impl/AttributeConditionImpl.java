@@ -20,6 +20,8 @@ import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 
@@ -241,7 +243,9 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		//
 		return getAdditionalConditionSpecification().parallelStream().flatMap(
 				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
-						s -> s instanceof InstancePointerSourceElement || s instanceof InstancePointerExternalSourceElement)).findAny().isPresent();
+						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
+						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+				).findAny().isPresent();
 	}
 
 } //AttributeConditionImpl

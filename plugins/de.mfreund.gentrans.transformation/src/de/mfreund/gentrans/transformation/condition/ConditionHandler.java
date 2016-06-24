@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
@@ -23,6 +24,7 @@ import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
+import pamtram.condition.Condition;
 import pamtram.condition.MultipleConditionOperator;
 import pamtram.condition.Not;
 import pamtram.condition.Or;
@@ -39,7 +41,6 @@ import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 
 
@@ -52,10 +53,15 @@ import pamtram.metamodel.SourceSectionClass;
 public class ConditionHandler {
 
 	/**
+	 * A String that is reused whenever something goes wrong.
+	 */
+	private static final String RETURNING_TRUE_AS_DEFAULT = "Returning 'TRUE' as default.";
+
+	/**
 	 * Enum for possible results of a condition
 	 */
 	public enum CondResult{
-		TRUE, FALSE, IRRELEVANT
+		TRUE, FALSE
 	}
 	
 	/**
@@ -109,13 +115,12 @@ public class ConditionHandler {
 	}
 	
 	/**
-	 * This is the general checkCondition-Method. It is only for collecting the arguments and calling the right Operator-Method.
-	 * Note: Enum instead of boolean as return type is needed as 'CondSettingEnum' has the option 'NO_MATCHING_ACCEPTED', so
-	 * the condition shouldn't influence.
+	 * This is the general checkCondition method. Based on the type of condition to be evaluated, it will forward to the
+	 * specific checking methods (e.g. {@link #checkConditionAnd(And, MatchedSectionDescriptor)}).
 	 * 
 	 * @param complexCondition The {@link ComplexCondition} to check.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the condition shall be checked.
-	 * @return The calculated Enum result (true, false, irrelevant)
+	 * @return The calculated {@link CondResult} (true, false).
 	 */
 	public CondResult checkCondition(ComplexCondition complexCondition, MatchedSectionDescriptor matchedSectionDescriptor){
 		
@@ -186,40 +191,10 @@ public class ConditionHandler {
 			}
 		}
 			
-		// The SourceSection holding the attribute that the AttributeCondition is based on
-		//
-		SourceSection affectedSection = sectionCondition.getConditionSectionRef().getContainingSection();
-		
-		List<MatchedSectionDescriptor> descriptorsToConsider;
-		
-		if(sectionCondition.isLocalCondition() && sectionCondition.getAdditionalConditionSpecification().isEmpty()) {
-			
-			// In case of a 'local' condition without any InstancePointers specified, 
-			// we only consider the given 'matchedSectionDescriptor'.
-			//
-			descriptorsToConsider = Arrays.asList(matchedSectionDescriptor);
-			
-		} else {
-			
-			// In case of a 'global' condition or if an InstancePointer has been specified, we 
-			// have to consider all 'descriptors' for the SourceSection  under consideration
-			//
-			descriptorsToConsider = this.matchedSections.get(affectedSection);
-		}
-		
-		List<EObject> correspondEClassInstances;
-		
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
-		correspondEClassInstances = descriptorsToConsider.parallelStream()
-				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection).stream())
-				.collect(Collectors.toList());
-		
-		
-		if(!sectionCondition.getAdditionalConditionSpecification().isEmpty()){
-			correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(
-					sectionCondition.getAdditionalConditionSpecification().get(0), correspondEClassInstances, matchedSectionDescriptor);
-		}
+		List<EObject> correspondEClassInstances = getInstancesToConsider(sectionCondition,
+				matchedSectionDescriptor);
 		
 		// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
 		boolean cardinalityRes = checkCardinality(sectionCondition.getValue(), correspondEClassInstances.size(), sectionCondition.getComparator());
@@ -240,64 +215,23 @@ public class ConditionHandler {
 	 */
 	private CondResult checkAttributeCondition(AttributeCondition attrCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
-		List<InstancePointer> instPointersAsList;
-		
-		// The SourceSection holding the attribute that the AttributeCondition is based on
-		//
-		SourceSection affectedSection = attrCondition.getConditionAttributeRef().getContainingSection();
-		
-		List<MatchedSectionDescriptor> descriptorsToConsider;
-		
-		if(attrCondition.isLocalCondition() && attrCondition.getAdditionalConditionSpecification().isEmpty()) {
-			
-			// In case of a 'local' condition without any InstancePointers specified, 
-			// we only consider the given 'matchedSectionDescriptor'.
-			//
-			descriptorsToConsider = Arrays.asList(matchedSectionDescriptor);
-			
-		} else {
-			
-			// In case of a 'global' condition or if an InstancePointer has been specified, we 
-			// have to consider all 'descriptors' for the SourceSection  under consideration
-			//
-			descriptorsToConsider = this.matchedSections.get(affectedSection);
-		}
-		
-		List<EObject> correspondEClassInstances;
 		
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
-		correspondEClassInstances = descriptorsToConsider.parallelStream()
-				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection).stream())
-				.collect(Collectors.toList());
+		List<EObject> correspondEClassInstances = getInstancesToConsider(attrCondition, matchedSectionDescriptor);
 		
-		
-		SourceSectionAttribute ssAttr = attrCondition.getConditionAttributeRef();
-		
-		if(correspondEClassInstances!= null && correspondEClassInstances.size() > 1){
-			// Try to handle InstancePointer if modeled and to specify the needed EClassInstances
-			instPointersAsList = attrCondition.getAdditionalConditionSpecification();					
-			InstancePointer instPt = null;
-			
-			if(!instPointersAsList.isEmpty()){
-				instPt = instPointersAsList.get(0); //actual we handle only one InstancePointer, so model a clear one!
-			}
-			
-			if(instPt != null){
-				// Note: Here we use getPointedInstanceByLIST - List-Method
-				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(instPt, correspondEClassInstances, matchedSectionDescriptor);
-			}
+		if(attrCondition.getConditionAttributeRef() == null) {
+			consoleStream.println("No attribute modeled for AttributeCondition '" + attrCondition.getName() + "'."
+					+ "Evaluating to 'TRUE' by default.");
+			return CondResult.TRUE;
 		}
 		
-		ArrayList<Object> srcAttrValues = new ArrayList<>();
+		EAttribute attribute = attrCondition.getConditionAttributeRef().getAttribute();
 		
-		for(EObject PointedClass : correspondEClassInstances){
-			/*
-			 * As attributes may have a cardinality greater than 1, too, we have to handle
-			 * every attribute value separately.
-			 */
-			srcAttrValues.add(PointedClass.eGet(ssAttr.getAttribute()));
-		}
+		// Collect the values of the referenced EAttribute for each instance
+		//
+		List<Object> srcAttrValues = correspondEClassInstances.parallelStream().map(
+				instance -> instance.eGet(attribute)).collect(Collectors.toList());
 		
 		/*
 		 * First, we check if all the constraints are satisfied for every attribute value of an AttributeConditon
@@ -307,8 +241,8 @@ public class ConditionHandler {
 		for (Object srcAttrValue : srcAttrValues) {
 		
 			// convert Attribute value to String
-			final String srcAttrAsString = ssAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
-					.convertToString(ssAttr.getAttribute().getEAttributeType(), srcAttrValue);
+			final String srcAttrAsString = attribute.getEType().getEPackage().getEFactoryInstance()
+					.convertToString(attribute.getEAttributeType(), srcAttrValue);
 			
 			/*
 			 * check AttributeValueConstraints
@@ -338,8 +272,10 @@ public class ConditionHandler {
 					} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
 						
 						if(constraint instanceof RangeConstraint){
-							List<String> srcAttrRefValuesAsList = new ArrayList<String>();
-							RangeBound lowerBound=((RangeConstraint) constraint).getLowerBound(), upperBound = ((RangeConstraint) constraint).getUpperBound();
+							
+							List<String> srcAttrRefValuesAsList = new ArrayList<>();
+							RangeBound lowerBound = ((RangeConstraint) constraint).getLowerBound();
+							RangeBound upperBound = ((RangeConstraint) constraint).getUpperBound();
 							
 							if(lowerBound != null){
 								srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(lowerBound));
@@ -353,15 +289,18 @@ public class ConditionHandler {
 								srcAttrRefValuesAsList.add("null");
 							}
 							
-							BasicEList<String> refValuesAsEList = new BasicEList<String>(srcAttrRefValuesAsList); 
+							BasicEList<String> refValuesAsEList = new BasicEList<>(srcAttrRefValuesAsList); 
 							constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString, refValuesAsEList);
 							
 						}  else {
+						
 							// If we are here, some mistake is happened
 							// more types could be supported in the future
 							// placeholder for other MultipleReferenceAttributeValueConstraints
 							consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+							
 						}
+						
 					}  else {
 						// If we are here, some mistake is happened
 						// more types could be supported in the future
@@ -369,16 +308,21 @@ public class ConditionHandler {
 						consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
 					}
 				} catch (final Exception e) {
+					
 					attributeConditionConstraintsWithErrors.add(constraint);
 					consoleStream.println("The AttributeCondition'" + constraint.getName() + " could not be evaluated and will be ignored. The following error was supplied:\n"
 							+ e.getLocalizedMessage());
 					continue;
+					
 				}
 	
 				if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+					
 					exclusionFailed = true;
 					break;
+					
 				} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
+					
 					containsInclusions = true;
 					if (constraintVal) {
 						inclusionMatched = true;
@@ -388,8 +332,10 @@ public class ConditionHandler {
 
 			if ((!inclusionMatched && containsInclusions) || exclusionFailed) {
 				attrBoolResults.add(false);
+				
 			} else {
 				attrBoolResults.add(true);
+				
 			}
 		}
 		
@@ -412,11 +358,82 @@ public class ConditionHandler {
 	}
 	
 	/**
+	 * This collects and returns the list of {@link EObject EObjects} that
+	 * need to be considered during the evaluation of the given {@link Condition} for the given
+	 * {@link MatchedSectionDescriptor}.
+	 * <p />
+	 * Depending on whether the condition is a {@link Condition#isLocalCondition() local} condition
+	 * and on the presence of {@link InstancePointer InstancePointers}, 
+	 * only the elements represented by the given <em>matchedSectionDescriptor</em> or the elements
+	 * represented by all suitable descriptors stored in the {@link #matchedSections} need to be considered.
+	 * 
+	 * @param condition The {@link Condition} to be checked.
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} that the condition
+	 * shall be checked for.
+	 * @return The list of {@link EObject elements of the source model} that need to be 
+	 * considered when checking the condition.
+	 */
+	private List<EObject> getInstancesToConsider(Condition condition,
+			MatchedSectionDescriptor matchedSectionDescriptor) {
+		
+		// The SourceSection holding the attribute that the AttributeCondition is based on
+		//
+		SourceSection affectedSection;
+		
+		if(condition instanceof SectionCondition) {
+			affectedSection = ((SectionCondition) condition).getConditionSectionRef().getContainingSection();
+		} else if(condition instanceof AttributeCondition) {
+			affectedSection = ((AttributeCondition) condition).getConditionAttributeRef().getContainingSection();
+		} else {
+			consoleStream.println("Unknown condition type '" + condition.eClass().getName() + "' found!");
+			return new ArrayList<>();
+		}
+		
+		List<MatchedSectionDescriptor> descriptorsToConsider;
+		
+		if(condition.isLocalCondition() && condition.getAdditionalConditionSpecification().isEmpty()) {
+			
+			// In case of a 'local' condition without any InstancePointers specified, 
+			// we only consider the given 'matchedSectionDescriptor'.
+			//
+			descriptorsToConsider = Arrays.asList(matchedSectionDescriptor);
+			
+		} else {
+			
+			// In case of a 'global' condition or if an InstancePointer has been specified, we 
+			// have to consider all 'descriptors' for the SourceSection  under consideration
+			//
+			descriptorsToConsider = this.matchedSections.get(affectedSection);
+		}
+		
+		// Collect all instances for the selected MatchedSectionDescriptors
+		//
+		List<EObject> correspondEClassInstances = descriptorsToConsider.parallelStream()
+				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection).stream())
+				.collect(Collectors.toList());
+		
+		// Reduce the list of instances based on modeled InstancePointers
+		//
+		if(!correspondEClassInstances.isEmpty() && !condition.getAdditionalConditionSpecification().isEmpty()){
+			
+			for (InstancePointer instancePointer : condition.getAdditionalConditionSpecification()) {
+				
+				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(
+						instancePointer, correspondEClassInstances, matchedSectionDescriptor);
+			}
+			
+		}
+		
+		return correspondEClassInstances;
+	}
+
+	/**
 	 * Store the given {@link CondResult} for the given {@link ComplexCondition} in the {@link #conditionRepository}.
 	 * <p />
 	 * Note: Result will only be stored in case of {@link ComplexCondition#isLocalCondition() global} conditions.
-	 * @param condition
-	 * @param result
+	 * 
+	 * @param condition The {@link ComplexCondition} for that the result shall be stored.
+	 * @param result The {@link CondResult} to be stored in the {@link #conditionRepository}.
 	 */
 	private void storeConditionResult(ComplexCondition condition, CondResult result) {
 		
@@ -426,64 +443,77 @@ public class ConditionHandler {
 		}
 	}
 	
+	/**
+	 * Check the determined <em>isValue</em> cardinality against the required <em>refValue</em>
+	 * cardinality while taking the given {@link ComparatorEnum} into account.
+	 * 
+	 * @param refValue The required cardinality.
+	 * @param isValue The determined (actual) cardinality.
+	 * @param comparator The {@link ComparatorEnum} describing how to compare the two cardinalities.
+	 * @return '<em><b>true</b></em>' if the check succeeded, '<em><b>false</b></em>' otherwise.
+	 */
 	private boolean checkCardinality(int refValue, int isValue, ComparatorEnum comparator) {
-		boolean result = true;
+		
 		switch(comparator.getValue()){
 		case ComparatorEnum.EQ_VALUE:
-			if(isValue == refValue){
-				result = true;
-			}else{
-				result = false;
-			}
-			break;
+			
+			return isValue == refValue;
+			
 		case ComparatorEnum.GE_VALUE:
-			if(isValue >= refValue){
-				result = true;
-			}else{
-				result = false;
-			}
-			break;
+			
+			return isValue >= refValue;
+			
 		case ComparatorEnum.GT_VALUE:
-			if(isValue > refValue){
-				result = true;
-			}else{
-				result = false;
-			}
-			break;
+
+			return isValue > refValue;
+			
 		case ComparatorEnum.LE_VALUE:
-			if(isValue <= refValue){
-				result = true;
-			}else{
-				result = false;
-			}
-			break;
+
+			return isValue <= refValue;
+			
 		case ComparatorEnum.LT_VALUE:
-			if(isValue < refValue){
-				result = true;
-			}else{
-				result = false;
-			}
-			break;
+
+			return isValue < refValue;
+			
 		default:
-			consoleStream.println("Message:\n ComparatorEnum" + comparator.getLiteral() + "not implemented yet!");
+			consoleStream.println("Message:\n ComparatorEnum" + comparator.getLiteral() + "not implemented yet!"
+					+ RETURNING_TRUE_AS_DEFAULT);
+			return true;
 		}
-		return result;
 	}
 
+	/**
+	 * This is the general checkCondition method for {@link SingleConditionOperator SingleConditionOperators}. 
+	 * Based on the type of condition to be evaluated, it will forward to the
+	 * specific checking methods.
+	 * 
+	 * @param condition The {@link SingleConditionOperator} to check.
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 * @return The calculated {@link CondResult} (true, false).
+	 */
 	private CondResult checkConditionSingleConditionOperator(SingleConditionOperator condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		if(condition instanceof Not){
 			return checkConditionNot((Not) condition, matchedSectionDescriptor);
 		} else {
 			// If we are here, some mistake is happened, more types could be supported in the future
-			consoleStream.println("SingleConditionOperator type " + condition.getClass().getName() + " is not yet supported!");
-			return CondResult.IRRELEVANT;
+			consoleStream.println("SingleConditionOperator type " + condition.getClass().getName() + " is not yet supported!"
+					+ RETURNING_TRUE_AS_DEFAULT);
+			return CondResult.TRUE;
 		}		
 	}
 
+	/**
+	 * This checks the given {@link Not} condition for the given {@link MatchedSectionDescriptor}.
+	 * 
+	 * @param condition The {@link Not} condition to check.
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 * @return The calculated {@link CondResult} (true, false).
+	 */
 	private CondResult checkConditionNot(Not condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
-		CondResult condTemp = CondResult.IRRELEVANT;
+		CondResult condTemp = CondResult.TRUE;
+		
 		// Not Implementation
 		if(condition.getCondPartRef() != null){
 			condTemp = checkCondition(condition.getCondPartRef(), matchedSectionDescriptor);
@@ -494,89 +524,98 @@ public class ConditionHandler {
 		// Invert the result and return
 		if(condTemp == CondResult.TRUE){
 			condTemp = CondResult.FALSE;
+			
 		} else if(condTemp == CondResult.FALSE){
 			condTemp = CondResult.TRUE;
-		} else if(condTemp == CondResult.IRRELEVANT){ // In this case the condition is optional. So it does not influence the ComplexCondition. Therefore, we return true!
-			condTemp = CondResult.TRUE;
+			
 		} else {
+			
 			// If we are here, some mistake is happened
 			// more types could be supported in the future
-			consoleStream.println("Condition Enum type " + condTemp + " is not yet supported!");
-			return CondResult.IRRELEVANT;
+			consoleStream.println("Condition Enum type " + condTemp + " is not yet supported!"
+					+ RETURNING_TRUE_AS_DEFAULT);
+			return CondResult.TRUE;
 		}
-		
-		// The following code also saves conditions. Since the result of a condition depends on a current mapping and their referred SourceSection,
-		// this SourceSection may be not matched but considered!
-		//this.conditionRepository.put(condition, condTemp);
 		
 		return condTemp;
 	}
 
-	private CondResult checkConditionMultipleConditionOperator(MultipleConditionOperator  multipleCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
+	/**
+	 * This is the general checkCondition method for {@link MultipleConditionOperator MultipleConditionOperators}. 
+	 * Based on the type of condition to be evaluated, it will forward to the
+	 * specific checking methods.
+	 * 
+	 * @param condition The {@link MultipleConditionOperator} to check.
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 * @return The calculated {@link CondResult} (true, false).
+	 */
+	private CondResult checkConditionMultipleConditionOperator(MultipleConditionOperator condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
-		if (multipleCondition instanceof And){
-			return checkConditionAnd((And) multipleCondition, matchedSectionDescriptor);
-		} else if(multipleCondition instanceof Or){
-			return checkConditionOr((Or) multipleCondition, matchedSectionDescriptor);
+		if (condition instanceof And){
+			return checkConditionAnd((And) condition, matchedSectionDescriptor);
+			
+		} else if(condition instanceof Or){
+			return checkConditionOr((Or) condition, matchedSectionDescriptor);
+			
 		} else {
 			// If we are here, some mistake is happened
 			// more types could be supported in the future
-			consoleStream.println("MultipleCondition type " + multipleCondition.getClass().getName() + " is not yet supported!");
-			return CondResult.IRRELEVANT;
+			consoleStream.println("MultipleCondition type " + condition.getClass().getName() + " is not yet supported!"
+					+ RETURNING_TRUE_AS_DEFAULT);
+			return CondResult.TRUE;
 		}	
 	}
 
-
+	/**
+	 * This checks the given {@link And} condition for the given {@link MatchedSectionDescriptor}.
+	 * 
+	 * @param condition The {@link And} condition to check.
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 * @return The calculated {@link CondResult} (true, false).
+	 */
 	private CondResult checkConditionAnd(And condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
 		//Get and put all arguments in a new list
-		EList<ComplexCondition> args = new BasicEList<ComplexCondition>(); 
+		EList<ComplexCondition> args = new BasicEList<>(); 
 		args.addAll(condition.getCondParts());
 		args.addAll(condition.getCondPartsRef());
 		
-		// And Implementation
-		CondResult condTemp = CondResult.TRUE;
-		
 		for(ComplexCondition arg: args){
-			condTemp = checkCondition(arg, matchedSectionDescriptor);
-			if(condTemp == CondResult.FALSE){// In order to save some time we break the loop after one argument returned false (And-Operator)
-				break;
-			} else if(condTemp == CondResult.IRRELEVANT){
-				condTemp = CondResult.TRUE;
+			
+			// In order to save some time we break the loop after one argument returned false (And-Operator)
+			//
+			if(checkCondition(arg, matchedSectionDescriptor) == CondResult.FALSE){
+				return CondResult.FALSE;
 			}
 		}
 		
-		// The following code also saves conditions. Since the result of a condition depends on a current mapping and their referred SourceSection,
-		// this SourceSection may be not matched but considered!
-		//this.conditionRepository.put(condition, condTemp);
-		
-		return condTemp;
+		return CondResult.TRUE;
 	}
 
+	/**
+	 * This checks the given {@link Or} condition for the given {@link MatchedSectionDescriptor}.
+	 * 
+	 * @param condition The {@link Or} condition to check.
+	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 * @return The calculated {@link CondResult} (true, false).
+	 */
 	private CondResult checkConditionOr(Or condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 		
 		//Get and put all arguments in a new list
-		EList<ComplexCondition> args = new BasicEList<ComplexCondition>(); 
+		EList<ComplexCondition> args = new BasicEList<>(); 
 		args.addAll(condition.getCondParts());
 		args.addAll(condition.getCondPartsRef());
 		
-		//Or Implementation
-		CondResult condTemp = CondResult.FALSE; // Note that is an Or
-		
 		for(ComplexCondition arg: args){
-			condTemp = checkCondition(arg, matchedSectionDescriptor);
-			if(condTemp == CondResult.TRUE){// In order to save some time we break the loop after one argument returned false (And-Operator)
-				break;
-			} else if(condTemp == CondResult.IRRELEVANT){
-				condTemp =CondResult.FALSE;
+			
+			// In order to save some time we break the loop after one argument returned false (And-Operator)
+			//
+			if(checkCondition(arg, matchedSectionDescriptor) == CondResult.TRUE){
+				return CondResult.TRUE;
 			}
 		}
 		
-		// The following code also saves conditions. Since the result of a condition depends on a current mapping and their referred SourceSection,
-		// this SourceSection may be not matched but considered!
-		// this.conditionRepository.put(condition, condTemp);
-		
-		return condTemp;
+		return CondResult.FALSE;
 	}
 
 }

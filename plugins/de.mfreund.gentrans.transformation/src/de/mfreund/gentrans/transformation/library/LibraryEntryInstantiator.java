@@ -1,6 +1,8 @@
 package de.mfreund.gentrans.transformation.library;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -23,6 +25,7 @@ import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
+import pamtram.metamodel.VirtualAttribute;
 import pamtram.util.GenLibraryManager;
 
 /**
@@ -112,7 +115,6 @@ public class LibraryEntryInstantiator {
 	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that has registered the target sections.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	@SuppressWarnings("unchecked")
 	public boolean instantiate(
 			GenLibraryManager manager, 
 			AttributeValueCalculator calculator, 
@@ -133,6 +135,135 @@ public class LibraryEntryInstantiator {
 		/*
 		 * Now, we prepare the parameters.
 		 */
+		boolean prepareParametersResult = prepareParameters(targetSectionRegistry);
+		
+		if(!prepareParametersResult) {
+			return false;
+		}
+
+		/*
+		 * Now, we check if a more specific library entry may be used. This is the case if there was an attribute
+		 * mapping for the virtual 'Classpath' attribute that produced a more specific classpath.
+		 */
+		String resultingPath = determineResultingClasspath(calculator);
+
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntryToInsert = 
+				this.libraryEntry.getOriginalLibraryEntry();
+
+		// we may import a more specialized library entry
+		//
+		if(!resultingPath.equals(this.libraryEntry.getPath().getValue())) {
+
+			// Check if there is an actual LibraryEntry for the determined classpath or
+			// move upwards in the classpath hierarchy until an entry is found.
+			//
+			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry moreSpecificEntry = 
+					getMoreSpecificEntry(libraryEntry, this.libraryEntry.getPath().getValue(), resultingPath, manager);
+			
+			if(moreSpecificEntry != null) {
+				libEntryToInsert = moreSpecificEntry;
+			}
+			
+			// Finally, we can set the final, resulting classpath that we are going to use
+			// (This has been stored in the libraryEntry by #getMoreSpecificEntry).
+			//
+			resultingPath = libraryEntry.getPath().getValue();
+
+		}
+
+		/*
+		 * Before inserting the library entry, we check if the user provided a custom 'id' that will among others
+		 * affect the names of the elements to be created.
+		 */
+		String id = determineID(calculator);
+			
+		if(id != null && !id.isEmpty()) {
+			libEntryToInsert.getParameterDescription().setID(id);
+		}
+
+		/*
+		 * Finally, insert the library entry into the target model as all parameters have been filled out
+		 */
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertedEntry = 
+				manager.insertIntoTargetModel(targetModel, libEntryToInsert, resultingPath);
+
+		/*
+		 * Now, we update the eObject wrapped by the 'transformationHelper' so this will point to the right element if any
+		 * further algorithms try to evaluate this.
+		 */
+		transformationHelper.setEObject(insertedEntry.getParameterDescription().getContainerParameters().get(0).getSource());
+
+		return true;
+	}
+
+	/**
+	 * This checks if the user provided a custom 'id' that will among others
+	 * affect the names of the elements to be created.
+	 * 
+	 * @param calculator The {@link AttributeValueCalculator} that shall be used to calculate the
+	 * value of the 'id' attribute.
+	 * @return The calculated id or the specified {@link VirtualAttribute#getValue() value} if there was 
+	 * no {@link AttributeMapping} for the 'id' attribute. Returns '<em><b>null</b></em>' if an
+	 * AttributeMapping was found but no value could be calculated.
+	 */
+	private String determineID(AttributeValueCalculator calculator) {
+		
+		Optional<AttributeMapping> idMapping = mappingHints.parallelStream()
+				.filter(mappingHint -> mappingHint instanceof AttributeMapping && 
+						"ID".equals(((AttributeMapping) mappingHint).getTarget().getName()) &&
+						((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry)
+				.map(mappingHint -> (AttributeMapping) mappingHint)
+				.findAny();
+		
+		return idMapping.isPresent() 
+				? calculator.calculateAttributeValue(
+						this.libraryEntry.getId(), idMapping.get(), this.hintValues.getHintValues(idMapping.get()))
+				: this.libraryEntry.getId().getValue();
+						
+	}
+
+	/**
+	 * Check if a more specific library entry may be used. This is the case if there is an 
+ 	 * {@link AttributeMapping} for the {@link VirtualAttribute virtual} 'classpath' attribute 
+ 	 * that produces a more specific classpath.
+	 * 
+	 * @param calculator The {@link AttributeValueCalculator} that shall be used to calculate the
+	 * value of the 'classpath' attribute.
+	 * @return The calculated (more specific) value or the original classpath if there was no {@link AttributeMapping}
+	 * for the 'classpath' attribute.
+	 */
+	private String determineResultingClasspath(AttributeValueCalculator calculator) {
+		// Determine the attribute mapping responsible for the 'Path' attribute
+		//
+		Optional<AttributeMapping> pathMapping = mappingHints.parallelStream()
+				.filter(mappingHint -> mappingHint instanceof AttributeMapping && 
+					"Classpath".equals(((AttributeMapping) mappingHint).getTarget().getName()) &&
+					((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry)
+				.map(mappingHint -> (AttributeMapping) mappingHint)
+				.findAny();
+		
+		// If there is such a mapping, calculate the more specific classpath; otherwise, use the original 
+		//classpath as denoted in the library entry imported into the pamtram model
+		//
+		return pathMapping.isPresent() 
+				? calculator.calculateAttributeValue(
+						this.libraryEntry.getPath(), pathMapping.get(), this.hintValues.getHintValues(pathMapping.get()))
+				: this.libraryEntry.getPath().getValue();
+	}
+
+	/**
+	 * This prepares the {@link LibraryParameter parameters} defined by the {@link #libraryEntry}.
+	 * <p />
+	 * This means that the new values for the parameters are set, e.g. the {@link AbstractContainerParameter#setContainer(Object)
+	 * container} for a ContainerParameter.
+	 * 
+	 * @param targetSectionRegistry The {@link TargetSectionRegistry} keeping track of created elements.
+	 * This is used to retrieve containers for {@link ContainerParameter ContainerParameters} and targets for 
+	 * {@link ExternalReferenceParameter ExternalReferenceParameters}.
+	 * @return '<em><b>true</b></em>' if everything went well; '<em><b>false</b></em>' if an error occurred.
+	 */
+	@SuppressWarnings("unchecked")
+	private boolean prepareParameters(TargetSectionRegistry targetSectionRegistry) {
 		for (LibraryParameter<?> param : libraryEntry.getParameters()) {
 			
 			if(param instanceof AttributeParameter) {
@@ -184,76 +315,7 @@ public class LibraryEntryInstantiator {
 				}
 			}
 		}
-
-		/*
-		 * Now, we check if a more specific library entry may be used. This is the case if there was an attribute
-		 * mapping for the virtual 'Classpath' attribute that produced a more specific classpath.
-		 */
-
-		// This is the original classpath as denoted in the library entry imported into the pamtram model
-		String newPath = this.libraryEntry.getPath().getValue();
-
-		// Determine the attribute mapping responsible for the 'Path' attribute
-		for (MappingHint mappingHint : mappingHints) {
-			
-			if(mappingHint instanceof AttributeMapping && 
-					"Classpath".equals(((AttributeMapping) mappingHint).getTarget().getName()) &&
-					((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry) {
-				
-				AttributeMapping pathMapping = (AttributeMapping) mappingHint;
-				newPath = calculator.calculateAttributeValue(this.libraryEntry.getPath(), pathMapping, this.hintValues.getHintValues(pathMapping));
-				break;
-			}
-
-		}
-
-		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntryToInsert = this.libraryEntry.getOriginalLibraryEntry();
-
-		// we may import a more specialized library entry
-		if(!newPath.equals(this.libraryEntry.getPath().getValue())) {
-
-			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry moreSpecificEntry = 
-					getMoreSpecificEntry(libraryEntry, this.libraryEntry.getPath().getValue(), newPath, manager);
-			if(moreSpecificEntry != null) {
-				libEntryToInsert = moreSpecificEntry;
-			}
-			// finally, we can set the final, resulting classpath that we are going to use
-			newPath = libraryEntry.getPath().getValue();
-
-		}
-
-		/*
-		 * Before inserting the library entry, we check if the user provided a custom 'id' that will among others
-		 * affect the names of the elements to be created.
-		 */
-		String id = this.libraryEntry.getId().getValue();
-		for (MappingHint mappingHint : mappingHints) {
-			
-			if(mappingHint instanceof AttributeMapping && 
-					"ID".equals(((AttributeMapping) mappingHint).getTarget().getName()) &&
-					((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry) {
-				
-				AttributeMapping idMapping = (AttributeMapping) mappingHint;
-				id = calculator.calculateAttributeValue(this.libraryEntry.getId(), idMapping, this.hintValues.getHintValues(idMapping));
-				break;
-			}
-		}
-		if(id != null && !id.isEmpty()) {
-			libEntryToInsert.getParameterDescription().setID(id);
-		}
-
-		/*
-		 * Finally, insert the library entry into the target model as all parameters have been filled out
-		 */
-		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertedEntry = 
-				manager.insertIntoTargetModel(targetModel, libEntryToInsert, newPath);
-
-		/*
-		 * Now, we update the eObject wrapped by the 'transformationHelper' so this will point to the right element if any
-		 * further algorithms try to evaluate this.
-		 */
-		transformationHelper.setEObject(insertedEntry.getParameterDescription().getContainerParameters().get(0).getSource());
-
+		
 		return true;
 	}
 
@@ -274,93 +336,124 @@ public class LibraryEntryInstantiator {
 	 */
 	private de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getMoreSpecificEntry(LibraryEntry oldEntry, String oldPath, String newPath, GenLibraryManager manager) {
 
-		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry newEntry = null;
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry newEntry;
 
 		/*
-		 * Now, we move up in the classpath until we find a library entry that has matching paramters.
+		 * Now, we move up in the classpath until we find a library entry that has matching parameters.
 		 */
 		String[] newPathSegments = newPath.replaceAll("^" + oldPath + ".", "").split("\\.");
 		String resultPath = newPath;
 
 		int i = newPathSegments.length - 1;
 		do {
+			
 			newEntry = manager.getLibraryEntry(resultPath, false);
+			
+			// An entry for the given path has been found. Now, we need to check if the parameters
+			// match.
+			//
 			if(newEntry != null) {
 
 				ParameterDescription oldParams = oldEntry.getOriginalLibraryEntry().getParameterDescription();
 				ParameterDescription newParams = newEntry.getParameterDescription();
-
-				//TODO up to now, we just compare the types of the existing parameters; maybe there is a way to get a better comparison result???
-				// check (and replace) container parameters
-				if(oldParams.getContainerParameters().size() == newParams.getContainerParameters().size()) {
-					boolean equal = true;
-					for (int j = 0; j < oldParams.getContainerParameters().size(); j++) {
-						if(!oldParams.getContainerParameters().get(j).eClass().equals(newParams.getContainerParameters().get(j).eClass())) {
-							equal = false;
-							break;
-						} else {
-							newParams.getContainerParameters().get(j).setContainer(oldParams.getContainerParameters().get(j).getContainer());
-						}
-					}
+				
+				boolean parametersMatch = checkParameters(oldParams, newParams);
+				
+				if(parametersMatch) {
 					
-					if(!equal) {
-						newEntry = null;
-						continue;
-					}
+					updateParameters(oldParams, newParams);
+					break;
 				}
-
-				// check (and replace) attribute parameters
-				if(oldParams.getAttributeParameters().size() == newParams.getAttributeParameters().size()) {
-					boolean equal = true;
-					
-					for (int j = 0; j < oldParams.getAttributeParameters().size(); j++) {
-						if(!oldParams.getAttributeParameters().get(j).eClass().equals(newParams.getAttributeParameters().get(j).eClass())) {
-							equal = false;
-							break;
-						} else {
-							newParams.getAttributeParameters().get(j).setNewValue(oldParams.getAttributeParameters().get(j).getNewValue());
-						}
-					}
-					if(!equal) {
-						
-						newEntry = null;
-						continue;
-					}
-				}
-
-				// check (and replace) external reference parameters
-				if(oldParams.getExternalReferenceParameters().size() == newParams.getExternalReferenceParameters().size()) {
-					boolean equal = true;
-					for (int j = 0; j < oldParams.getExternalReferenceParameters().size(); j++) {
-						if(!oldParams.getExternalReferenceParameters().get(j).eClass().equals(newParams.getExternalReferenceParameters().get(j).eClass())) {
-							equal = false;
-							break;
-						} else {
-							newParams.getExternalReferenceParameters().get(j).setTarget(oldParams.getExternalReferenceParameters().get(j).getTarget());
-						}
-					}
-					if(!equal) {
-						
-						newEntry = null;
-						continue;
-					}
-				}
-
-				//TODO check resource parameters
-
-				break;
-			} else {
-				resultPath = resultPath.replaceAll("." + newPathSegments[i] + "$", "");
+				
 			}
+			
+			// Move upward in the inheritance hierarchy of the classpath
+			//
+			resultPath = resultPath.replaceAll("." + newPathSegments[i] + "$", "");
+			
 		} while (--i >= 0);
 
 		if(newEntry == null) {
 			return null;
 		}
-
+		
 		// we update the resulting path
 		oldEntry.getPath().setValue(resultPath);
 		return newEntry;
 
+	}
+	
+	/**
+	 * Compare the two given {@link ParameterDescription ParameterDescriptions} and -- if they are <em>equal</em> --
+	 * copy the values of the <em>oldParams</em> to the </em>newParams</em> so that they can be used to instantiate
+	 * a library entry. 
+	 * <p />
+	 * In order to determine if the two descriptions are <em>equal</em>, we currently compare the numbers and types of
+	 * parameters.
+	 * 
+	 * @param oldParams The {@link ParameterDescription} representing the <em>old</em> entry.
+	 * @param newParams The {@link ParameterDescription} representing the <em>new</em> entry that shall replace the
+	 * old entry if possible.
+	 * @return '<em><b>true</b></em>' if the new {@link ParameterDescription} is a valid replacement for the old one.
+	 */
+	private boolean checkParameters(ParameterDescription oldParams, ParameterDescription newParams) {
+		
+		//TODO up to now, we just compare the types of the existing parameters; maybe there is a way to get a better comparison result???
+		//TODO check resource parameters
+		
+		// First, only check if the numbers of parameters match
+		//
+		if(oldParams.getContainerParameters().size() != newParams.getContainerParameters().size() ||
+				oldParams.getAttributeParameters().size() != newParams.getAttributeParameters().size() ||
+				oldParams.getExternalReferenceParameters().size() != newParams.getExternalReferenceParameters().size()) {
+			
+			return false;
+		}
+		
+		// Now, check if the types match
+		//
+		if(!IntStream.range(0, oldParams.getContainerParameters().size()).parallel().allMatch(
+				i -> oldParams.getContainerParameters().get(i).eClass().equals(newParams.getContainerParameters().get(i).eClass()))) {
+			return false;
+		}
+		
+		if(!IntStream.range(0, oldParams.getAttributeParameters().size()).parallel().allMatch(
+				i -> oldParams.getAttributeParameters().get(i).eClass().equals(newParams.getAttributeParameters().get(i).eClass()))) {
+			return false;
+		}
+		
+		if(!IntStream.range(0, oldParams.getExternalReferenceParameters().size()).parallel().allMatch(
+				i -> oldParams.getExternalReferenceParameters().get(i).eClass().equals(newParams.getExternalReferenceParameters().get(i).eClass()))) {
+			return false;
+		}
+			
+		return true;
+	}
+
+	/**
+	 * Copy the values of the <em>oldParams</em> to the </em>newParams</em> so that they can be used to instantiate
+	 * a library entry. 
+	 * <p />
+	 * Note: Before this is called, {@link #checkParameters(ParameterDescription, ParameterDescription)} should be
+	 * called in order to ensure that both given {@link ParameterDescription ParameterDescriptions} <em>match</em>.
+	 * 
+	 * @param oldParams The {@link ParameterDescription} representing the <em>old</em> entry from that the 
+	 * parameter values are copied to the <em>new</em> entry.
+	 * @param newParams The {@link ParameterDescription} representing the <em>new</em> entry that shall replace the
+	 * old entry.
+	 */
+	private void updateParameters(ParameterDescription oldParams, ParameterDescription newParams) {
+		
+		// Parameters match -> now, we can replace the parameter values
+		//
+		IntStream.range(0, oldParams.getContainerParameters().size()).parallel().forEach(
+				i -> newParams.getContainerParameters().get(i).setContainer(oldParams.getContainerParameters().get(i).getContainer()));
+		
+		IntStream.range(0, oldParams.getAttributeParameters().size()).parallel().forEach(
+				i -> newParams.getAttributeParameters().get(i).setNewValue(oldParams.getAttributeParameters().get(i).getNewValue()));
+
+		IntStream.range(0, oldParams.getExternalReferenceParameters().size()).parallel().forEach(
+				i -> newParams.getExternalReferenceParameters().get(i).setTarget(oldParams.getExternalReferenceParameters().get(i).getTarget()));
+			
 	}
 }

@@ -37,7 +37,8 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, MessageConsoleStream messageStream)
+			throws Exception {
 		super.init(pamtramModel, sourceModels, messageStream);
 	}
 
@@ -50,7 +51,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 			return new ArrayList<>(Arrays.asList(choices.get(0)));
 		}
 	}
-	
+
 	@Override
 	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
 			EObject element) {
@@ -61,7 +62,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 			return new ArrayList<>(Arrays.asList(choices.get(0)));
 		}
 	}
-	
+
 	@Override
 	public List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
 			InstantiableMappingHintGroup mappingHintGroup) throws Exception {
@@ -125,7 +126,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
 			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) {
-	
+
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
 		} else {

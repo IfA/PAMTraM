@@ -20,9 +20,9 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
@@ -59,7 +59,8 @@ public interface IAmbiguityResolvingStrategy {
 	 * @param messageStream A {@link MessageConsoleStream} that can be used to print messages.
 	 * @throws Exception If an error occurs during the initialization of the strategy.
 	 */
-	public default void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+	public default void init(PAMTraM pamtramModel, List<EObject> sourceModels, MessageConsoleStream messageStream)
+			throws Exception {
 		return;
 	}
 
@@ -83,7 +84,7 @@ public interface IAmbiguityResolvingStrategy {
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * Resolve ambiguities that arise when specifying an attribute value for a given 'element' in the '<em>expanding</em>'
 	 * step of the transformation. This method is called when no {@link AttributeMapping} was specified (resp. the specified
@@ -97,14 +98,14 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
 	public default List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute, EObject element) throws Exception {
-		
+
 		List<String> ret = new ArrayList<>();
 		if(choices != null) {
 			ret.addAll(choices);			
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * Resolve ambiguities that arise when specifying the cardinality for a given 'targetSectionClass' in the '<em>expanding</em>'
 	 * step of the transformation. This method is called when no hint values from an {@link AttributeMapping} or {@link CardinalityMapping} could be used to determine the cardinality.
@@ -117,7 +118,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
 	public default List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass, InstantiableMappingHintGroup mappingHintGroup) throws Exception {
-		
+
 		List<Integer> ret = new ArrayList<>();
 		if(choices != null) {
 			ret.addAll(choices);			

@@ -67,7 +67,8 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	 * @throws Exception 
 	 */
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, MessageConsoleStream messageStream)
+			throws Exception {
 
 		super.init(pamtramModel, sourceModels, messageStream);
 
@@ -101,11 +102,11 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 		return ret;
 	}
-	
+
 	@Override
 	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
 			EObject element) throws Exception {
-		
+
 		List<String> ret = new ArrayList<>();
 		if(choices != null) {
 			ret.addAll(choices);			
@@ -126,7 +127,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 		return ret;
 	}
-	
+
 	@Override
 	public List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
 			InstantiableMappingHintGroup mappingHintGroup) throws Exception {

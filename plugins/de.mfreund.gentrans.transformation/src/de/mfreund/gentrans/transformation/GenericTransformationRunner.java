@@ -125,12 +125,12 @@ public class GenericTransformationRunner {
 	/**
 	 * File paths of the source models to be transformed
 	 */
-	private final ArrayList<String> sourceFilePaths;
+	private final List<String> sourceFilePaths;
 
 	/**
 	 * The source models to be transformed
 	 */
-	private ArrayList<EObject> sourceModels;
+	private List<EObject> sourceModels;
 
 	/**
 	 * File path to the transformation model
@@ -155,11 +155,6 @@ public class GenericTransformationRunner {
 	private final String defaultTargetModel;
 
 	/**
-	 * The target model resource where the result of the transformation shall be stored
-	 */
-	private XMIResource targetModel;
-
-	/**
 	 * The {@link Transformation} where the context of this generic transformation including
 	 * the associated source, target and pamtram model(s) as well as all {@link TransformationMapping TransformationMappings}
 	 * are stored. This will be returned at the end of the generic transformation and could e.g. be used to reason
@@ -174,24 +169,6 @@ public class GenericTransformationRunner {
 	private String transformationModelPath;
 
 	/**
-	 * This is the getter for the {@link #transformationModelPath}.
-	 * 
-	 * @return The path where the {@link #transformationModel} will be stored after the transformation.
-	 */
-	public String getTransformationModelPath() {
-		return transformationModelPath;
-	}
-
-	/**
-	 * This is the setter for the {@link #transformationModelPath}.
-	 * 
-	 * @param transformationModelPath The path where the {@link #transformationModel} shall be stored after the transformation.
-	 */
-	public void setTransformationModelPath(String transformationModelPath) {
-		this.transformationModelPath = transformationModelPath;
-	}
-
-	/**
 	 * A {@link MessageConsoleStream message output stream} (Console view) that can be used to print messages to the user
 	 */
 	private final MessageConsoleStream consoleStream;
@@ -203,48 +180,12 @@ public class GenericTransformationRunner {
 	private int maxPathLength;
 
 	/**
-	 * This is the getter for the {@link #maxPathLength} setting.
-	 * @return The maximum length for connection paths in the 'joining' step.
-	 */
-	public int getMaxPathLength() {
-		return maxPathLength;
-	}
-
-	/**
-	 * This is the setter for the {@link #maxPathLength} setting.
-	 * @param maxPathLength The maximum length for connection paths in the 'joining' step (value must 
-	 * be larger or equal to '-1').
-	 */
-	public void setMaxPathLength(final int maxPathLength) {
-		this.maxPathLength = maxPathLength >= 0 ? maxPathLength : -1;
-	}
-
-	/**
 	 * Determines whether the user should be asked every time an ambiguous
 	 * mapping was detected, or if we should reuse user decisions
 	 *
 	 */
 	//TODO this should probably be moved to the 'UserDecisionStrategy'
 	private boolean onlyAskOnceOnAmbiguousMappings;
-
-	/**
-	 * This is the getter for the {@link #onlyAskOnceOnAmbiguousMappings} setting.
-	 * @return '<em><b>true</b></em>' if the user should be asked every time an ambiguous mapping was detected,
-	 * '<em><b>false</b></em>' otherwise.
-	 */
-	public boolean isOnlyAskOnceOnAmbiguousMappings() {
-		return onlyAskOnceOnAmbiguousMappings;
-	}
-
-	/**
-	 * This is the setter for the {@link #onlyAskOnceOnAmbiguousMappings} setting.
-	 * @param onlyAskOnceOnAmbiguousMappings '<em><b>true</b></em>' if the user should be asked every time 
-	 * an ambiguous mapping was detected, '<em><b>false</b></em>' otherwise.
-	 */
-	public void setOnlyAskOnceOnAmbiguousMappings(
-			final boolean onlyAskOnceOnAmbiguousMappings) {
-		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
-	}
 
 	/**
 	 * This keeps track of whether the user requested an early termination of the transformation
@@ -269,14 +210,6 @@ public class GenericTransformationRunner {
 	private TargetSectionInstantiator targetSectionInstantiator;
 
 	/**
-	 * This is the Getter for the {@link #targetSectionInstantiator}.
-	 * @return The {@link #targetSectionInstantiator} used by the transformation runner.
-	 */
-	public TargetSectionInstantiator getTargetSectionInstantiator() {
-		return targetSectionInstantiator;
-	}
-
-	/**
 	 * This is the {@link TargetSectionConnector} that can be used to connect target sections that
 	 * have been created with the help of the {@link #targetSectionInstantiator}.
 	 */
@@ -286,6 +219,68 @@ public class GenericTransformationRunner {
 	 * This describes the result of the transformation (after calling {@link #runTransformation(IProgressMonitor)}). 
 	 */
 	private TransformationResult transformationResult;
+
+	/**
+	 * This is the getter for the {@link #transformationModelPath}.
+	 * 
+	 * @return The path where the {@link #transformationModel} will be stored after the transformation.
+	 */
+	public String getTransformationModelPath() {
+		return transformationModelPath;
+	}
+
+	/**
+	 * This is the setter for the {@link #transformationModelPath}.
+	 * 
+	 * @param transformationModelPath The path where the {@link #transformationModel} shall be stored after the transformation.
+	 */
+	public void setTransformationModelPath(String transformationModelPath) {
+		this.transformationModelPath = transformationModelPath;
+	}
+
+	/**
+	 * This is the getter for the {@link #maxPathLength} setting.
+	 * @return The maximum length for connection paths in the 'joining' step.
+	 */
+	public int getMaxPathLength() {
+		return maxPathLength;
+	}
+
+	/**
+	 * This is the setter for the {@link #maxPathLength} setting.
+	 * @param maxPathLength The maximum length for connection paths in the 'joining' step (value must 
+	 * be larger or equal to '-1').
+	 */
+	public void setMaxPathLength(final int maxPathLength) {
+		this.maxPathLength = maxPathLength >= 0 ? maxPathLength : -1;
+	}
+
+	/**
+	 * This is the getter for the {@link #onlyAskOnceOnAmbiguousMappings} setting.
+	 * @return '<em><b>true</b></em>' if the user should be asked every time an ambiguous mapping was detected,
+	 * '<em><b>false</b></em>' otherwise.
+	 */
+	public boolean isOnlyAskOnceOnAmbiguousMappings() {
+		return onlyAskOnceOnAmbiguousMappings;
+	}
+
+	/**
+	 * This is the setter for the {@link #onlyAskOnceOnAmbiguousMappings} setting.
+	 * @param onlyAskOnceOnAmbiguousMappings '<em><b>true</b></em>' if the user should be asked every time 
+	 * an ambiguous mapping was detected, '<em><b>false</b></em>' otherwise.
+	 */
+	public void setOnlyAskOnceOnAmbiguousMappings(
+			final boolean onlyAskOnceOnAmbiguousMappings) {
+		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
+	}
+
+	/**
+	 * This is the Getter for the {@link #targetSectionInstantiator}.
+	 * @return The {@link #targetSectionInstantiator} used by the transformation runner.
+	 */
+	public TargetSectionInstantiator getTargetSectionInstantiator() {
+		return targetSectionInstantiator;
+	}
 
 	/**
 	 * This is the Getter for the {@link #targetSectionConnector}.
@@ -323,7 +318,7 @@ public class GenericTransformationRunner {
 	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
 	 */
 	private GenericTransformationRunner(
-			final ArrayList<String> sourceFilePaths,
+			final List<String> sourceFilePaths,
 			final String pamtramPath, 
 			final String targetBasePath, 
 			final String defaultTargetModel,
@@ -332,7 +327,7 @@ public class GenericTransformationRunner {
 			boolean onlyAskOnceOnAmbiguousMappings, 
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
-		super();
+
 		isCancelled = false;
 		this.sourceModels = new ArrayList<>();
 		this.sourceFilePaths = sourceFilePaths;
@@ -355,11 +350,41 @@ public class GenericTransformationRunner {
 		 * make sure that all ambiguities are resolved completely by requiring an instance of
 		 * 'DefaultAmbiguityResolvingStrategy' to be participating in the resolving process
 		 */
+		initializeAmbiguityResolvingStrategy(ambiguityResolvingStrategy);
+
+		consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
+		objectsToCancel = new LinkedList<>();
+		// brings the console view to the front
+		showConsole();
+	}
+
+	/**
+	 * This initializes the {@link #ambiguityResolvingStrategy}.
+	 * <p />
+	 * Based on the given <em>ambiguityResolvingStrategy</em>, the resulting
+	 * strategy is created so that an instance of the
+	 * {@link DefaultAmbiguityResolvingStrategy} is included in the strategy --
+	 * if necessary, a {@link ComposedAmbiguityResolvingStrategy} is created for
+	 * this.
+	 * 
+	 * @param ambiguityResolvingStrategy
+	 *            The {@link IAmbiguityResolvingStrategy} based on that the
+	 *            {@link #ambiguityResolvingStrategy} shall be initialized. If
+	 *            this is '<em>null</em>', the strategy will be initialized with
+	 *            an instance of {@link DefaultAmbiguityResolvingStrategy}.
+	 */
+	private void initializeAmbiguityResolvingStrategy(final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
+
 		if(ambiguityResolvingStrategy == null) {
+
 			this.ambiguityResolvingStrategy = new DefaultAmbiguityResolvingStrategy();
+
 		} else if(ambiguityResolvingStrategy instanceof DefaultAmbiguityResolvingStrategy) {
+
 			this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+
 		} else if(ambiguityResolvingStrategy instanceof ComposedAmbiguityResolvingStrategy) {
+
 			boolean containsDefaultStrategy = false;
 			for (IAmbiguityResolvingStrategy strategy : ((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy).getComposedStrategies()) {
 				if(strategy instanceof DefaultAmbiguityResolvingStrategy) {
@@ -371,17 +396,15 @@ public class GenericTransformationRunner {
 				((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy).addStrategy(new DefaultAmbiguityResolvingStrategy());
 			}
 			this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+
 		} else {
+
 			ArrayList<IAmbiguityResolvingStrategy> composed = new ArrayList<>();
 			composed.add(ambiguityResolvingStrategy);
 			composed.add(new DefaultAmbiguityResolvingStrategy());
 			this.ambiguityResolvingStrategy = new ComposedAmbiguityResolvingStrategy(composed);
-		}
 
-		consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
-		objectsToCancel = new LinkedList<>();
-		// brings the console view to the front
-		showConsole();
+		}
 	}
 
 	/**
@@ -405,7 +428,7 @@ public class GenericTransformationRunner {
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
-			final ArrayList<String> sourceFilePaths,
+			final List<String> sourceFilePaths,
 			final String pamtramPath,
 			final String targetBasePath, 
 			final String defaultTargetModel,
@@ -436,7 +459,7 @@ public class GenericTransformationRunner {
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
-			final ArrayList<String> sourceFilePaths,
+			final List<String> sourceFilePaths,
 			final PAMTraM pamtramModel, 
 			final String targetBasePath, 
 			final String defaultTargetModel,
@@ -470,7 +493,7 @@ public class GenericTransformationRunner {
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
 	public static GenericTransformationRunner createInstanceFromSourceModels(
-			final ArrayList<EObject> sourceModels,
+			final List<EObject> sourceModels,
 			final PAMTraM pamtramModel, 
 			final String targetBasePath, 
 			final String defaultTargetModel,
@@ -512,14 +535,13 @@ public class GenericTransformationRunner {
 		Diagnostic diag = Diagnostician.INSTANCE.validate(pamtramModel);
 		if(diag.getSeverity() == Diagnostic.ERROR) {
 			final AtomicBoolean result = new AtomicBoolean();
-			Display.getDefault().syncExec(new Runnable() {
 
-				@Override
-				public void run() {
-					result.set(ErrorDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), 
-							"Errors exist in the specified PAMTraM model. Continue anyway?"));
-				}
+			Display.getDefault().syncExec(() -> {
+
+				result.set(ErrorDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), 
+						"Errors exist in the specified PAMTraM model. Continue anyway?"));
 			});
+
 			if(!result.get()) {
 				return;
 			}
@@ -560,7 +582,7 @@ public class GenericTransformationRunner {
 			 * try to execute all active mappings (this includes the 4 resp. 5 main steps of
 			 * the transformation
 			 */
-			transformationResult = executeMappings(targetModel, sourceModels, pamtramModel, suitableMappings,
+			transformationResult = executeMappings(sourceModels, pamtramModel, suitableMappings,
 					monitorWrapper); 			
 		} catch (RuntimeException e) {
 			consoleStream.println(e.getMessage());
@@ -600,16 +622,13 @@ public class GenericTransformationRunner {
 	 */
 	public void cancel() {
 		isCancelled = true;
-		for (final ICancellable l : objectsToCancel) {
-			l.cancel();
-		}
+		objectsToCancel.parallelStream().forEach(ICancellable::cancel);
 	}
 
 	/**
 	 * This performs the actual execution of the transformation. In the course of this method,
 	 * the four main steps of the transformation get executed.
 	 * 
-	 * @param targetModel The {@link XMIResource target model resource} where the result of the transformation shall be stored
 	 * @param sourceModels The list of {@link EObject source models} to be transformed.
 	 * @param pamtramModel The {@link PAMTraM} instance that describes the transformation.
 	 * @param suitableMappings A list of {@link Mapping Mappings} that may be used in the transformation. This needs to match
@@ -617,7 +636,7 @@ public class GenericTransformationRunner {
 	 * @param monitor The {@link IProgressMonitor monitor} that shall be used to visualize the progress of the transformation.
 	 * @return '<em><b>true</b></em>' if the transformation was performed successfully, '<em><b>false</b></em>' otherwise
 	 */
-	private TransformationResult executeMappings(final XMIResource targetModel, final ArrayList<EObject> sourceModels,
+	private TransformationResult executeMappings(final List<EObject> sourceModels,
 			final PAMTraM pamtramModel, final List<Mapping> suitableMappings,
 			final IProgressMonitor monitor) {
 
@@ -697,7 +716,7 @@ public class GenericTransformationRunner {
 	 * @return A {@link MatchingResult} that contains the various results of the matching.
 	 */
 	private MatchingResult performMatching(
-			ArrayList<EObject> sourceModels, 
+			List<EObject> sourceModels, 
 			List<Mapping> suitableMappings, 
 			AttributeValueModifierExecutor attributeValueModifier, 
 			IProgressMonitor monitor) {
@@ -725,36 +744,36 @@ public class GenericTransformationRunner {
 				containmentTree, new BasicEList<>(activeSourceSections), consoleStream);
 
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
-		
+
 		writePamtramMessage("Extract Values of Global Attributes");
-		
+
 		/*
 		 * Create the GlobalAttributeValueExtractor that extracts values of GlobalAttributes
 		 */
 		GlobalAttributeValueExtractor globalAttributeValueExtractor = new GlobalAttributeValueExtractor(attributeValueModifier, consoleStream);
 		Map<GlobalAttribute, String> globalAttributeValues = 
 				globalAttributeValueExtractor.extractGlobalAttributeValues(matchingResult, suitableMappings);
-		
+
 		// Collect the values of FixedValues and GlobalAttributes in a common map that will be passed to consumers
 		//
 		GlobalValueMap globalValues = new GlobalValueMap(
 				pamtramModel.getGlobalValues().parallelStream().collect(Collectors.toMap(Function.identity(), FixedValue::getValue)), 
 				globalAttributeValues);
-		
+
 		writePamtramMessage("Select Mappings for Matched Sections");
-		
+
 		/*
 		 * Create the MappingSelector that finds applicable mappings
 		 */
 		final MappingSelector mappingSelector = new MappingSelector(matchingResult, suitableMappings, globalValues, 
 				onlyAskOnceOnAmbiguousMappings, ambiguityResolvingStrategy, consoleStream);
-		
+
 		selectedMappingsByMapping = mappingSelector.selectMappings();
 		List<MappingInstanceStorage> mappingInstances = 
 				selectedMappingsByMapping.values().stream().flatMap(l -> l.stream()).collect(Collectors.toList());
-		
+
 		writePamtramMessage("Extract Hint Values");
-		
+
 		/*
 		 * Calculate mapping hints 
 		 */
@@ -763,20 +782,20 @@ public class GenericTransformationRunner {
 				globalValues.getGlobalAttributes(), 
 				attributeValueModifier, consoleStream);
 		hintValueExtractor.extractHintValues();
-		
+
 		consoleStream.println("Summary:\tAvailable Elements:\t" +
-		containmentTree.getNumberOfElements());
+				containmentTree.getNumberOfElements());
 		consoleStream.println("\t\tMatched Elements:\t" +
-		containmentTree.getNumberOfMatchedElements());
+				containmentTree.getNumberOfMatchedElements());
 		consoleStream.println("\t\tUnmatched Elements:\t" +
-		containmentTree.getNumberOfUnmatchedElements());
+				containmentTree.getNumberOfUnmatchedElements());
 
 		selectedMappings = new LinkedList<>(
 				selectedMappingsByMapping.entrySet().parallelStream().flatMap(e -> e.getValue().stream()).collect(Collectors.toList()));
-		
+
 		return MatchingResult.createMatchingCompletedResult(selectedMappings,
-				 selectedMappingsByMapping, new HintValueStorage(),
-				 hintValueExtractor.getGlobalAttributeValues());
+				selectedMappingsByMapping, new HintValueStorage(),
+				hintValueExtractor.getGlobalAttributeValues());
 
 	}
 
@@ -836,227 +855,18 @@ public class GenericTransformationRunner {
 		for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappings()) {
 
 			/*
-			 * Iterate over all mapping hint group (except inactive and empty ones)
+			 * Iterate over all mapping hint groups and expand them
 			 */
-			for (final MappingHintGroupType g : selMap.getMappingHintGroups()) {
-				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
+			selMap.getMappingHintGroups().stream()
+			.filter(g -> g.getTargetMMSection() != null && g instanceof MappingHintGroup)
+			.map(g -> (MappingHintGroup) g).forEach(g -> expandTargetSectionInstance(selMap, g));
 
-					/*
-					 * Instantiate the target section.
-					 */
-					final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
-							targetSectionInstantiator.instantiateTargetSectionFirstPass(
-									g.getTargetMMSection(),
-									(MappingHintGroup) g, selMap.getMappingHints(g),
-									selMap.getHintValues());
-
-					if (instancesBySection == null) {
-						if (g.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-							consoleStream
-							.println("Error instantiating target section '"
-									+ g.getTargetMMSection().getName()
-									+ "' using mapping rule '"
-									+ selMap.getMapping().getName()
-									+ "'");
-						}
-					} else {
-						for (final TargetSectionClass section : instancesBySection.keySet()) {
-							/*
-							 * Store the created instance(s).
-							 */
-							selMap.addInstances((MappingHintGroup) g, section,
-									instancesBySection.get(section));
-						}
-					}
-				}
-
-			}
-
-			for (final MappingHintGroupImporter g : selMap.getMappingHintGroupImporters()) {
-				final ExportedMappingHintGroup expGrp = g.getHintGroup();
-				if (expGrp != null) {
-
-//					// import Hints
-//					for (final MappingHint h : selMap.getMappingHints(expGrp)) {
-//						selMap.getHintValues().setHintValues(h, null);
-//						if (matchingResult.getExportedMappingHints().containsHint(h)) {
-//							selMap.getHintValues().addHintValues(h, matchingResult.getExportedMappingHints().getHintValues(h));
-//						}
-//					}
-
-					// start instantiating
-					if (expGrp.getTargetMMSection() != null) {
-
-						final List<MappingHint> hints = new LinkedList<>();
-						hints.addAll(expGrp.getMappingHints());
-						for (final MappingHintType h : selMap.getMappingHints(g)) {
-							if (h instanceof MappingHint) {
-								hints.add((MappingHint) h);
-							} else if (h instanceof MappedAttributeValueExpander) {
-								if (selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).size() == 1) {
-									final String hintVal = selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).getFirst();
-									/*
-									 * of course this works only because the
-									 * only other option is the Appender
-									 */
-									final boolean prepend = h instanceof MappedAttributeValuePrepender
-											|| h instanceof ExternalMappedAttributeValuePrepender;
-
-									for (final MappingHint realHint : g
-											.getHintGroup().getMappingHints()) {
-										if (realHint instanceof AttributeMapping) {
-											if (((MappedAttributeValueExpander) h)
-													.getHintsToExpand()
-													.contains(realHint)) {
-												if (realHint instanceof AttributeMapping && 
-														((AttributeMapping) realHint).getExpression() == null ||
-														((AttributeMapping) realHint).getExpression().isEmpty()) {// ComplexAttributeMapping
-
-													final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> vals = new LinkedList<>();
-													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
-															.getSourceAttributeMappings();
-
-													if (sources.size() > 0) {
-														// determine the one of possibly multiple source elements of the
-														// attribute mapping to be expanded
-														AttributeMappingSourceInterface element;
-														if (prepend) {
-															element = sources
-																	.get(0);
-														} else {
-															element = sources
-																	.get(sources
-																			.size() - 1);
-														}
-
-														for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) realHint)) {
-
-															/*
-															 *  create a deep-cloned copy of the map holding the source elements and values 
-															 *  of complex attribute mapping that we are expanding; this is necessary because the map will
-															 *  change in the course of this function but the changes shall not be propagated to future
-															 *  calls of this function
-															 */
-
-															final LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation> clonedMap = 
-																	new LinkedHashMap<>();
-															for (AttributeMappingSourceInterface key : m.keySet()) {
-																clonedMap.put(key, 
-																		(AttributeValueRepresentation) m.get(key).clone());
-															}
-
-															// expand either the first or last value source element and let all other
-															// values untouched
-															if (clonedMap.containsKey(element)) {
-																AttributeValueRepresentation rep = clonedMap.get(element);
-																if (prepend) {
-																	rep.addPrefix(hintVal);
-																} else {
-																	rep.addSuffix(hintVal);
-																}
-																clonedMap.put(element, rep);
-															}
-
-															// add the new map to the list holding all hint values
-															vals.add(clonedMap);
-														}
-
-														// update the hint value list for the real hint
-														selMap.getHintValues().setHintValues((AttributeMapping) realHint, vals);
-													}
-												} else if (realHint instanceof AttributeMapping) {// CalculatorMapping
-													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
-															.getSourceAttributeMappings();
-													if (sources.size() > 0) {
-														try {
-															final Calculable calc = new ExpressionBuilder(hintVal).build();
-															final double variableVal = calc.calculate();
-															/*
-															 * parseDouble
-															 * doesn't support
-															 * Scientific
-															 * notation, like:
-															 * 0.42e2 == 4200e-2
-															 * == 42,
-															 */
-															for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) realHint)) {
-																//TODO check if this works
-																m.put(sources.get(0), new AttributeValueRepresentation(((MappedAttributeValueExpander) h).getSourceAttribute(), Double.toString(variableVal)));
-															}
-														} catch (final Exception e) {
-															consoleStream.println("Couldn't convert variable " + ((MappedAttributeValueExpander) h).getSourceAttribute().getName()
-																	+ " of " + h.getClass().getName() + " " + h.getName()
-																	+ " from String to double. The problematic source element's attribute value was: " + hintVal);
-														}
-													}
-												}// TODO add any remaining
-												// hintValue changes here
-
-											}
-										} else if (realHint instanceof MappingInstanceSelector) {
-											if (((MappingInstanceSelector) realHint)
-													.getMatcher() instanceof AttributeMatcher) {
-												final AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) realHint)
-														.getMatcher();
-
-												if (((MappedAttributeValueExpander) h)
-														.getHintsToExpand()
-														.contains(matcher)) {
-													if (matcher instanceof AttributeMatcher) {// ComplexAttributeMatcher
-														final List<AttributeMatcherSourceInterface> sources = matcher
-																.getSourceAttributes();
-														if (sources.size() > 0) {
-															AttributeMatcherSourceInterface element;
-															if (prepend) {
-																element = sources.get(0);
-															} else {
-																element = sources.get(sources.size() - 1);
-															}
-
-															for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((MappingInstanceSelector) realHint)) {
-																if (m.containsKey(element)) {
-																	if (prepend) {
-																		AttributeValueRepresentation preprended = m.get(element);
-																		preprended.addPrefix(hintVal);
-																		m.put(element, preprended);
-																	} else {
-																		AttributeValueRepresentation appended = m.get(element);
-																		appended.addSuffix(hintVal);
-																		m.put(element, appended);
-																	}
-																}
-															}
-														}
-													}// TODO add any remaining
-													// hitValue changes here
-
-												}
-											}
-										}
-									}
-								} // else TODO maybe add something here when we
-								// know how to handle/control cardinality of
-								// ImportedMappingHints
-							}
-						}
-						final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
-								targetSectionInstantiator.instantiateTargetSectionFirstPass(
-										expGrp.getTargetMMSection(), g, hints,
-										selMap.getHintValues());
-						if (instancesBySection == null) {
-							if (expGrp.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-								consoleStream.println("Error instantiating target section '" + expGrp.getTargetMMSection()
-								.getName() + "' using mapping rule '" + selMap.getMapping().getName() + "'");
-							}
-						} else {
-							for (final TargetSectionClass section : instancesBySection.keySet()) {
-								selMap.addInstances(g, section, instancesBySection.get(section));
-							}
-						}
-					}
-
-				}
-			}
+			/*
+			 * Iterate over all imported mapping hint groups and expand them
+			 */
+			selMap.getMappingHintGroupImporters().stream()
+			.filter(g -> g.getHintGroup() != null && g.getHintGroup().getTargetMMSection() != null)
+			.forEach(g -> expandTargetSectionInstance(selMap, g));
 
 			accumulatedWork += workUnit;
 			if (accumulatedWork >= 1) {
@@ -1066,6 +876,302 @@ public class GenericTransformationRunner {
 		}
 
 		return ExpandingResult.createExpandingResult(attrValueRegistry, targetSectionRegistry);
+	}
+
+	/**
+	 * This expands the given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
+	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
+	 * <p />
+	 * Created {@link EObjectWrapper instances} are
+	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * registered} in the given <em>mappingInstance</em>.
+	 * 
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to expand.
+	 * @param hintGroup
+	 *            The {@link MappingHintGroup} that lead to the instantiation of
+	 *            the given <em>mappingInstance</em>.
+	 */
+	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
+			MappingHintGroup hintGroup) {
+
+		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
+				targetSectionInstantiator.instantiateTargetSectionFirstPass(
+						hintGroup.getTargetMMSection(),
+						hintGroup, mappingInstance.getMappingHints(hintGroup),
+						mappingInstance.getHintValues());
+
+		if (instancesBySection == null) {
+			if (hintGroup.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
+
+				consoleStream
+				.println("Error instantiating target section '"
+						+ hintGroup.getTargetMMSection().getName()
+						+ "' using mapping rule '"
+						+ mappingInstance.getMapping().getName()
+						+ "'");
+			}
+		} else {
+			for (final TargetSectionClass section : instancesBySection.keySet()) {
+				/*
+				 * Store the created instance(s).
+				 */
+				mappingInstance.addInstances(hintGroup, section,
+						instancesBySection.get(section));
+			}
+		}
+	}
+
+	/**
+	 * This expands the given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
+	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
+	 * <p />
+	 * Created {@link EObjectWrapper instances} are
+	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * registered} in the given <em>mappingInstance</em>.
+	 * 
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to expand.
+	 * @param mappingHintGroupImporter
+	 *            The {@link MappingHintGroupImporter} that lead to the
+	 *            instantiation of the given <em>mappingInstance</em>.
+	 */
+	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
+			MappingHintGroupImporter mappingHintGroupImporter) {
+
+		final List<MappingHint> hints = getMappingHints(mappingInstance, mappingHintGroupImporter);
+
+		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = targetSectionInstantiator
+				.instantiateTargetSectionFirstPass(mappingHintGroupImporter.getHintGroup().getTargetMMSection(), mappingHintGroupImporter, hints,
+						mappingInstance.getHintValues());
+
+		if (instancesBySection == null) {
+			if (mappingHintGroupImporter.getHintGroup().getTargetMMSection()
+					.getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
+				consoleStream.println(
+						"Error instantiating target section '"
+								+ mappingHintGroupImporter.getHintGroup().getTargetMMSection().getName()
+								+ "' using mapping rule '" + mappingInstance.getMapping().getName() + "'");
+			}
+		} else {
+			for (final TargetSectionClass section : instancesBySection.keySet()) {
+				mappingInstance.addInstances(mappingHintGroupImporter, section, instancesBySection.get(section));
+			}
+		}
+	}
+
+	/**
+	 * For the given {@link MappingHintGroupImporter}, this collects the
+	 * <em>local</em> hints as well as the imported hints from the referenced
+	 * {@link ExportedMappingHintGroup} for the given
+	 * {@link MappingInstanceStorage mapping instance}.
+	 * <p />
+	 * Values for imported hints are also prepared. By <em>preparing</em>, we
+	 * mean that values for {@link MappedAttributeValueExpander
+	 * MappedAttributeValueExpanders} are calculated and stored in the mapping
+	 * instance. TODO Maybe, this might/should already be done during the
+	 * extracting of hint values in the <em>matching</em> phase.
+	 *
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage} for that imported hints
+	 *            shall be returned.
+	 * @param hintGroupImporter
+	 *            The {@link MappingHintGroupImporter} to handle.
+	 * @return The imported {@link MappingHint MappingHints}.
+	 */
+	private List<MappingHint> getMappingHints(final MappingInstanceStorage mappingInstance,
+			final MappingHintGroupImporter hintGroupImporter) {
+
+		final ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
+
+		final List<MappingHint> hints = new LinkedList<>();
+
+		hints.addAll(exportedHintGroup.getMappingHints());
+
+		for (final MappingHintType h : mappingInstance.getMappingHints(hintGroupImporter)) {
+			if (h instanceof MappingHint) {
+				hints.add((MappingHint) h);
+			} else if (h instanceof MappedAttributeValueExpander) {
+				if (mappingInstance.getHintValues().getHintValues((MappedAttributeValueExpander) h).size() == 1) {
+					final String hintVal = mappingInstance.getHintValues()
+							.getHintValues((MappedAttributeValueExpander) h).getFirst();
+					/*
+					 * of course this works only because the only
+					 * other option is the Appender
+					 */
+					final boolean prepend = h instanceof MappedAttributeValuePrepender
+							|| h instanceof ExternalMappedAttributeValuePrepender;
+
+					for (final MappingHint realHint : hintGroupImporter.getHintGroup().getMappingHints()) {
+						if (realHint instanceof AttributeMapping) {
+							if (((MappedAttributeValueExpander) h).getHintsToExpand().contains(realHint)) {
+								if (realHint instanceof AttributeMapping
+										&& ((AttributeMapping) realHint).getExpression() == null
+										|| ((AttributeMapping) realHint).getExpression().isEmpty()) {// ComplexAttributeMapping
+
+									final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> vals = new LinkedList<>();
+									final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
+											.getSourceAttributeMappings();
+
+									if (!sources.isEmpty()) {
+										// determine the one of
+										// possibly multiple source
+										// elements of the
+										// attribute mapping to be
+										// expanded
+										AttributeMappingSourceInterface element;
+										if (prepend) {
+											element = sources.get(0);
+										} else {
+											element = sources.get(sources.size() - 1);
+										}
+
+										for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : mappingInstance
+												.getHintValues()
+												.getHintValues((AttributeMapping) realHint)) {
+
+											/*
+											 * create a deep-cloned
+											 * copy of the map
+											 * holding the source
+											 * elements and values
+											 * of complex attribute
+											 * mapping that we are
+											 * expanding; this is
+											 * necessary because the
+											 * map will change in
+											 * the course of this
+											 * function but the
+											 * changes shall not be
+											 * propagated to future
+											 * calls of this
+											 * function
+											 */
+
+											final LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation> clonedMap = new LinkedHashMap<>();
+											for (AttributeMappingSourceInterface key : m.keySet()) {
+												clonedMap.put(key,
+														(AttributeValueRepresentation) m.get(key).clone());
+											}
+
+											// expand either the
+											// first or last value
+											// source element and
+											// let all other
+											// values untouched
+											if (clonedMap.containsKey(element)) {
+												AttributeValueRepresentation rep = clonedMap.get(element);
+												if (prepend) {
+													rep.addPrefix(hintVal);
+												} else {
+													rep.addSuffix(hintVal);
+												}
+												clonedMap.put(element, rep);
+											}
+
+											// add the new map to
+											// the list holding all
+											// hint values
+											vals.add(clonedMap);
+										}
+
+										// update the hint value
+										// list for the real hint
+										mappingInstance.getHintValues().setHintValues((AttributeMapping) realHint,
+												vals);
+									}
+								} else if (realHint instanceof AttributeMapping) {// CalculatorMapping
+									final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
+											.getSourceAttributeMappings();
+									if (sources.size() > 0) {
+										try {
+											final Calculable calc = new ExpressionBuilder(hintVal).build();
+											final double variableVal = calc.calculate();
+											/*
+											 * parseDouble doesn't
+											 * support Scientific
+											 * notation, like:
+											 * 0.42e2 == 4200e-2 ==
+											 * 42,
+											 */
+											for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : mappingInstance
+													.getHintValues()
+													.getHintValues((AttributeMapping) realHint)) {
+												// TODO check if
+												// this works
+												m.put(sources.get(0),
+														new AttributeValueRepresentation(
+																((MappedAttributeValueExpander) h)
+																.getSourceAttribute(),
+																Double.toString(variableVal)));
+											}
+										} catch (final Exception e) {
+											consoleStream.println("Couldn't convert variable "
+													+ ((MappedAttributeValueExpander) h)
+													.getSourceAttribute().getName()
+													+ " of " + h.getClass().getName() + " " + h.getName()
+													+ " from String to double. The problematic source element's attribute value was: "
+													+ hintVal);
+										}
+									}
+								} // TODO add any remaining
+								// hintValue changes here
+
+							}
+						} else if (realHint instanceof MappingInstanceSelector) {
+							if (((MappingInstanceSelector) realHint)
+									.getMatcher() instanceof AttributeMatcher) {
+								final AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) realHint)
+										.getMatcher();
+
+								if (((MappedAttributeValueExpander) h).getHintsToExpand()
+										.contains(matcher)) {
+									if (matcher instanceof AttributeMatcher) {// ComplexAttributeMatcher
+										final List<AttributeMatcherSourceInterface> sources = matcher
+												.getSourceAttributes();
+										if (sources.size() > 0) {
+											AttributeMatcherSourceInterface element;
+											if (prepend) {
+												element = sources.get(0);
+											} else {
+												element = sources.get(sources.size() - 1);
+											}
+
+											for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> m : mappingInstance
+													.getHintValues()
+													.getHintValues((MappingInstanceSelector) realHint)) {
+												if (m.containsKey(element)) {
+													if (prepend) {
+														AttributeValueRepresentation preprended = m
+																.get(element);
+														preprended.addPrefix(hintVal);
+														m.put(element, preprended);
+													} else {
+														AttributeValueRepresentation appended = m
+																.get(element);
+														appended.addSuffix(hintVal);
+														m.put(element, appended);
+													}
+												}
+											}
+										}
+									} // TODO add any remaining
+									// hitValue changes here
+
+								}
+							}
+						}
+					}
+				} // else TODO maybe add something here when we
+				// know how to handle/control cardinality of
+				// ImportedMappingHints
+			}
+		}
+		return hints;
 	}
 
 	/**
@@ -1224,7 +1330,7 @@ public class GenericTransformationRunner {
 							}
 
 							final List<EObjectWrapper> rootInstances = selMap.getInstances(i, g.getTargetMMSection());
-							
+
 							if (rootInstances.size() > 0) {
 								final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
 
@@ -1432,7 +1538,7 @@ public class GenericTransformationRunner {
 		if(pamtramModel == null || sourceModels == null || sourceModels.isEmpty()) {
 			return null;
 		}
-		
+
 		writePamtramMessage("Matching SourceSections");
 
 		/* 
@@ -1464,12 +1570,12 @@ public class GenericTransformationRunner {
 		//
 		List<MatchedSectionDescriptor> descriptors = 
 				matchingResult.values().parallelStream().flatMap(e -> e.parallelStream()).collect(Collectors.toList());
-		
+
 		Map<SourceSectionClass, Set<EObject>> matchedClasses = new HashMap<>();
-		
+
 		descriptors.stream().forEach(d -> {
 			d.getSourceModelObjectsMapped().entrySet().stream().forEach(e -> {
-				
+
 				if(matchedClasses.containsKey(e.getKey())) {
 					matchedClasses.get(e.getKey()).addAll(e.getValue());
 				} else {
@@ -1477,9 +1583,9 @@ public class GenericTransformationRunner {
 				}
 			});
 		});
-		
+
 		writePamtramMessage("Complete");
-		
+
 		return matchedClasses;
 
 	}

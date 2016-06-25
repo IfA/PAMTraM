@@ -1,6 +1,6 @@
 package de.mfreund.gentrans.transformation.resolving;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
@@ -22,7 +22,7 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	/**
 	 * This keeps track of the list of {@link EObject sourceModels} that serve as input to the current transformation.
 	 */
-	protected ArrayList<EObject> sourceModels;
+	protected List<EObject> sourceModels;
 
 	/**
 	 * This keeps track of the {@link MessageConsoleStream} that can be used to print messages. Messages can be written
@@ -31,7 +31,8 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	private MessageConsoleStream messageStream;
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, MessageConsoleStream messageStream)
+			throws Exception {
 
 		this.messageStream = messageStream;
 

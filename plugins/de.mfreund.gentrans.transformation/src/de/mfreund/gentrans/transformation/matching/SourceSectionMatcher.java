@@ -19,9 +19,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.ContainmentTree;
-import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
+import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;

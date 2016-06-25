@@ -1,8 +1,9 @@
-package de.mfreund.gentrans.transformation.matching;
+package de.mfreund.gentrans.transformation.maps;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
@@ -10,7 +11,8 @@ import pamtram.metamodel.SourceSectionClass;
  *
  * @author mfreund
  */
-class SourceSectionMatchingResultsMap extends LinkedHashMap<SourceSectionClass, LinkedList<MatchedSectionDescriptor>> {
+public class SourceSectionMatchingResultsMap
+		extends LinkedHashMap<SourceSectionClass, LinkedList<MatchedSectionDescriptor>> {
 
 
 	/**

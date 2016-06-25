@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
+import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import pamtram.metamodel.SourceSectionClass;
 
 /**

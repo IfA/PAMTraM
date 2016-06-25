@@ -1,16 +1,15 @@
-package de.mfreund.gentrans.transformation.matching;
+package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.MappingInstanceStorage;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionClass;
@@ -55,7 +54,7 @@ public class MatchedSectionDescriptor {
 	 * This can be used to determine 'external hint values'.
 	 */
 	private MatchedSectionDescriptor containerDescriptor;
-	
+
 	/**
 	 * This keeps track of the {@link MappingInstanceStorage} that has been associated with this
 	 * descriptor.
@@ -120,7 +119,7 @@ public class MatchedSectionDescriptor {
 	public LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
 		return this.sourceModelObjetsMapped;
 	}
-	
+
 	/**
 	 * This returns the list of {@link EObject matched elements} represented by this descriptor.
 	 * <p />
@@ -143,7 +142,7 @@ public class MatchedSectionDescriptor {
 	 *            The {@link SourceSectionClass} that the <em>element</em> is
 	 *            associated with.
 	 */
-	void addSourceModelObjectMapped(final EObject element, final SourceSectionClass srcSectionClass) {
+	public void addSourceModelObjectMapped(final EObject element, final SourceSectionClass srcSectionClass) {
 		if (!sourceModelObjetsMapped.containsKey(srcSectionClass)) {
 			sourceModelObjetsMapped.put(srcSectionClass, new LinkedHashSet<EObject>());
 		}
@@ -159,7 +158,7 @@ public class MatchedSectionDescriptor {
 	 *            SourceSectionClasses} and associated {@link EObject elements}
 	 *            to be marked as 'mapped' for this descriptor
 	 */
-	void addSourceModelObjectsMapped(final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
+	public void addSourceModelObjectsMapped(final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
 		for (final Entry<SourceSectionClass, Set<EObject>> entry : refs.entrySet()) {
 			if (!sourceModelObjetsMapped.containsKey(entry.getKey())) {
 				sourceModelObjetsMapped.put(entry.getKey(), new LinkedHashSet<EObject>());
@@ -177,7 +176,7 @@ public class MatchedSectionDescriptor {
 	 * @return '<em><b>true</b></em>' if the <em>element</em> has been mapped, '
 	 *         <em><b>false</b></em>' otherwise.
 	 */
-	boolean containsSourceModelObjectMapped(final EObject element) {
+	public boolean containsSourceModelObjectMapped(final EObject element) {
 		return sourceModelObjetsMapped.values().parallelStream().anyMatch(s -> s.contains(element));
 	}
 

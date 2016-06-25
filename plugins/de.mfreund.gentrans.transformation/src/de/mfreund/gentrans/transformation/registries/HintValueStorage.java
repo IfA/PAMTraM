@@ -1,10 +1,11 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.registries;
 
 import java.util.LinkedList;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.CardinalityMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValueMap;

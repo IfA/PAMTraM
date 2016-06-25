@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.util.Pair;
 
 /**
@@ -65,7 +66,7 @@ public final class ModelConnectionPath {
 			final EObject newElement,
 			final TargetSectionRegistry targetSectionRegistry,
 			final boolean reverse) {
-	
+
 		this.pathElements = new LinkedList<>();
 		this.pathElements.addAll(pathElements);
 		this.pathElements.add(newElement);
@@ -132,7 +133,7 @@ public final class ModelConnectionPath {
 				}
 
 				if (maxPathLength < 0 || next.getRight().size() / 2 - 1 < maxPathLength) {
-					
+
 					// detect loop
 					if (!next.getRight().contains(next.getLeft())
 							&& !next.getLeft().isAbstract()) {
@@ -180,7 +181,7 @@ public final class ModelConnectionPath {
 
 			// check if path to this MM-Class found
 			if (!registry.getTargetClassInstances(next.getLeft()).isEmpty() && !next.getRight().isEmpty()) {
-				
+
 				// add copy of path to possiblePaths
 				final ModelConnectionPath newSelf = new ModelConnectionPath(
 						next.getRight(), next.getLeft(), registry, false);
@@ -196,7 +197,7 @@ public final class ModelConnectionPath {
 				}
 
 				if (maxPathLength < 0 || next.getRight().size() / 2 - 1 < maxPathLength) {
-					
+
 					// detect loop
 					if (!next.getRight().contains(next.getLeft())
 							&& !next.getLeft().isAbstract()) {
@@ -237,11 +238,11 @@ public final class ModelConnectionPath {
 	public static List<ModelConnectionPath> findPathsWithMinimumCapacity(
 			final List<ModelConnectionPath> paths,
 			final EObject startInstance, final int minimumCapacity) {
-		
+
 		final List<ModelConnectionPath> pathsToConsider = new LinkedList<>();
-		
+
 		for (final ModelConnectionPath p : paths) {
-			
+
 			if (startInstance != null && !p.leadsToRootType(startInstance.eClass())) {
 				// only consider paths with the right start instance type
 				continue;
@@ -252,7 +253,7 @@ public final class ModelConnectionPath {
 				pathsToConsider.add(p);
 			}
 		}
-		
+
 		return pathsToConsider;
 	}
 
@@ -265,7 +266,7 @@ public final class ModelConnectionPath {
 	 */
 	@Override
 	public boolean equals(final Object obj) {
-		
+
 		if (obj instanceof ModelConnectionPath) {
 			return ((ModelConnectionPath) obj).pathElements.equals(pathElements);
 		} else {
@@ -346,7 +347,7 @@ public final class ModelConnectionPath {
 	 * @return The inverted list of path elements.
 	 */
 	private LinkedList<EObject> getInvertedPathElementList() {
-		
+
 		final LinkedList<EObject> inverted = new LinkedList<>();
 		final ListIterator<EObject> it = pathElements.listIterator(pathElements.size());
 
@@ -466,7 +467,7 @@ public final class ModelConnectionPath {
 				final EClass classToCreate = (EClass) pathCopy.get(0);
 
 				while (!objectsToConnect.isEmpty()) {
-					
+
 					final EObject instance = classToCreate.getEPackage()
 							.getEFactoryInstance().create(classToCreate);
 					targetInstL.add(instance);
@@ -500,9 +501,9 @@ public final class ModelConnectionPath {
 					final EClass classToCreate = (EClass) pathCopy.get(0);
 
 					while (!objectsToConnect.isEmpty()) {
-						
+
 						final EObject instance = classToCreate.getEPackage().getEFactoryInstance().create(classToCreate);
-						
+
 						targetInstL.add(instance);
 						newTarget.clear();// shouldn't be neccesssary because eSet will clear this
 						newTarget.addAll(targetInstL);
@@ -569,7 +570,7 @@ public final class ModelConnectionPath {
 				// There is enough place to connect all objects
 				//
 				if(ref.getUpperBound() > 1 && (ref.getUpperBound() - (targetInst == null ? 0 : ((EList<EObject>) targetInst).size())) >= objectsToConnect.size()) {
-					
+
 					final LinkedList<EObject> newTarget = new LinkedList<>();// it
 					/*
 					 * is absolutely neccessary to copy targetInst, since targetInst
@@ -607,8 +608,8 @@ public final class ModelConnectionPath {
 	 * @param root The {@link EClass} that shall be checked as root of this path.
 	 * @return '<em><b>true</b></em>' if this path leads to the specified EClass.
 	 */
-	boolean leadsToRootType(final EClass root) {
-		
+	public boolean leadsToRootType(final EClass root) {
+
 		return !pathElements.isEmpty() && ((EClass) pathElements.getLast()).equals(root);
 	}
 
@@ -618,7 +619,7 @@ public final class ModelConnectionPath {
 	 * @return The number of elements in the path.
 	 */
 	public int size() {
-		
+
 		return pathElements.size();
 	}
 
@@ -629,26 +630,26 @@ public final class ModelConnectionPath {
 	 */
 	@Override
 	public String toString() {
-		
+
 		StringBuilder stringBuilder = new StringBuilder();
 
 		final ListIterator<EObject> it = pathElements.listIterator(pathElements.size());
 
 		while (it.hasPrevious()) {
-			
+
 			final EObject prev = it.previous();
 			if (prev instanceof EClass) {
-				
+
 				stringBuilder.append(((EClass) prev).getName());
-				
+
 			} else if (prev instanceof EReference) {
-				
+
 				// RegEx copied from:
 				// https://stackoverflow.com/questions/1097901/regular-expression-split-string-by-capital-letter-but-ignore-tla
 				stringBuilder.
-					append("...").
-					append(((EReference) prev).getName().replaceAll("((?<=\\p{Ll})\\p{Lu}|\\p{Lu}(?=\\p{Ll}))", " $1").toLowerCase().trim()).
-					append("...");
+				append("...").
+				append(((EReference) prev).getName().replaceAll("((?<=\\p{Ll})\\p{Lu}|\\p{Lu}(?=\\p{Ll}))", " $1").toLowerCase().trim()).
+				append("...");
 			}
 		}
 

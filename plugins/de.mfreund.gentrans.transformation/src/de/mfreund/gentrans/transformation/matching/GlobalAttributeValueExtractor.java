@@ -13,8 +13,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.AttributeValueModifierExecutor;
-import de.mfreund.gentrans.transformation.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.SourceSection;

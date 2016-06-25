@@ -4,8 +4,9 @@ import java.util.Map;
 
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.AttributeValueModifierExecutor;
-import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;

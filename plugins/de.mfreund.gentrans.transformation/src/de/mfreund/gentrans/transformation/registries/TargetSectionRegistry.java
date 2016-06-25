@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.registries;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.mapping.InstantiableMappingHintGroup;

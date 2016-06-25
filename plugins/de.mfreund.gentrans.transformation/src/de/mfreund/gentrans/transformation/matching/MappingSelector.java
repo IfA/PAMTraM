@@ -13,9 +13,10 @@ import java.util.stream.Collectors;
 
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;

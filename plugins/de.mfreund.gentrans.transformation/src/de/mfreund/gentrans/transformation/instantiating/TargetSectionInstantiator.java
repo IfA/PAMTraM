@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.instantiating;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +26,16 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
+import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
+import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
+import de.mfreund.gentrans.transformation.registries.HintValueStorage;
+import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
+import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
@@ -68,7 +77,7 @@ import pamtram.util.GenLibraryManager;
  *
  * @author mfreund
  */
-class TargetSectionInstantiator extends CancellableElement {
+public class TargetSectionInstantiator extends CancellableElement {
 
 	private static final String RESOLVE_EXPANDING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
 

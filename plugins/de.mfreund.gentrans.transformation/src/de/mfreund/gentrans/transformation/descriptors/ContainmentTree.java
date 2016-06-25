@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

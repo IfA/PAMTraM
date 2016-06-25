@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -14,8 +15,6 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModifiableHint;
 import pamtram.metamodel.TargetSectionAttribute;
-
-import de.mfreund.gentrans.transformation.calculation.ExpressionCalculator;
 
 /**
  * This class can be used to calculate values of {@link TargetSectionAttribute}s.

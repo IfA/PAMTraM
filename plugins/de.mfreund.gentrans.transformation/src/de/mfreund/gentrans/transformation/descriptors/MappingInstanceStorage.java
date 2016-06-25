@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
-import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.registries.HintValueStorage;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.mapping.InstantiableMappingHintGroup;

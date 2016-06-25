@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.HashSet;
 import java.util.Set;

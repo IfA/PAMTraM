@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.FileTypeEnum;
@@ -50,7 +51,7 @@ public class EObjectWrapper {
 	 * in a separate map.
 	 */
 	private final LinkedHashMap<VirtualAttribute, String> virtualAttributeValues;
-	
+
 	/**
 	 * This creates an instance that wraps the given 'eObject'.
 	 *
@@ -116,7 +117,7 @@ public class EObjectWrapper {
 	 * @return '<em><b>true</b><em>' if the given 'value' has been registered before for the given 'attr', '<em><b>false</b></em>'
 	 * otherwise.
 	 */
-	boolean attributeValueExists(final TargetSectionAttribute attr,
+	public boolean attributeValueExists(final TargetSectionAttribute attr,
 			final String value) {
 
 		return attrValRegistry.attributeValueExists(attr, value,eObject.eClass());
@@ -133,7 +134,7 @@ public class EObjectWrapper {
 	 * @param value A String representation of the value to be set.
 	 * @throws IllegalArgumentException
 	 */
-	void setAttributeValue(final TargetSectionAttribute attr,
+	public void setAttributeValue(final TargetSectionAttribute attr,
 			final String value) {
 		if (attr instanceof ActualAttribute) {
 			setAttributeValue((ActualAttribute) attr, value);
@@ -163,7 +164,7 @@ public class EObjectWrapper {
 		try {
 			valueObject = attr.getAttribute().getEType().getEPackage().getEFactoryInstance().createFromString(attr.getAttribute().getEAttributeType(), value);
 		} catch (Exception e) {
-			
+
 			// if an integer-based value is represented as boolean (e.g. as it was used by an 'expression'), try to set this instead
 			//
 			if(value.endsWith(".0")) {
@@ -279,7 +280,7 @@ public class EObjectWrapper {
 
 		return returnString;
 	}
-	
+
 	/**
 	 * If this represents a {@link TargetSection}, return the value of the {@link FileAttribute} associated
 	 * with this via the {@link TargetSection#getFile() file} reference.
@@ -295,7 +296,7 @@ public class EObjectWrapper {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * If this represents a {@link TargetSection}, return the {@link FileAttribute#getFileType() fileType} of the 
 	 * {@link FileAttribute} associated with this via the {@link TargetSection#getFile() file} reference.

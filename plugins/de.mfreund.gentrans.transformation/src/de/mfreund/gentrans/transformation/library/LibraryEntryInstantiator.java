@@ -8,10 +8,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.EObjectWrapper;
-import de.mfreund.gentrans.transformation.HintValueStorage;
-import de.mfreund.gentrans.transformation.TargetSectionRegistry;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.registries.HintValueStorage;
+import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ParameterDescription;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;

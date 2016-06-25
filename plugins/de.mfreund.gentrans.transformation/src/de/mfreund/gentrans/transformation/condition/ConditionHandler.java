@@ -16,10 +16,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.InstancePointerHandler;
-import de.mfreund.gentrans.transformation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
-import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import pamtram.condition.And;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComparatorEnum;

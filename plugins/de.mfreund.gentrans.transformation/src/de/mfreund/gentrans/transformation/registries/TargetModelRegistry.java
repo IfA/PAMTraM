@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.registries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.ui.console.MessageConsoleStream;
+
+import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.FileTypeEnum;
 

@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.condition;
 
 import java.util.List;
 import java.util.Map;
@@ -9,9 +9,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.InstancePointerValueExtractor;
-import de.mfreund.gentrans.transformation.matching.MatchedSectionDescriptor;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;

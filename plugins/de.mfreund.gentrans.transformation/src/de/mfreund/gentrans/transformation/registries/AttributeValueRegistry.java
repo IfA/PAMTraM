@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.registries;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;

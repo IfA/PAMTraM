@@ -11,8 +11,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.AttributeValueModifierExecutor;
-import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.FixedValue;

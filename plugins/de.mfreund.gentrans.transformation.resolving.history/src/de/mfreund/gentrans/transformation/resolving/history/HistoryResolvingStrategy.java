@@ -42,8 +42,8 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.EObjectWrapper;
-import de.mfreund.gentrans.transformation.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
@@ -129,13 +129,15 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * @param transformationModelPath The path to the {@link Transformation TransformationModel} to be used to 
 	 * consult previous resolving results.
 	 */
-	public  HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies, String transformationModelPath) {
+	public HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies,
+			String transformationModelPath) {
 		this(composedStrategies);
 		this.transformationModelPath = transformationModelPath;
 	}
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, MessageConsoleStream messageStream)
+			throws Exception {
 
 		super.init(pamtramModel, sourceModels, messageStream);
 

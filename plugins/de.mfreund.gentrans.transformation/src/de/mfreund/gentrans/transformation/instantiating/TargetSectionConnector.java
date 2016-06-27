@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation.instantiating;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,12 +20,17 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
+import pamtram.ConditionalElement;
+import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
@@ -124,6 +130,263 @@ public class TargetSectionConnector extends CancellableElement {
 		this.maxPathLength = maxPathLength;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.unlinkeableElements = new LinkedHashMap<>();
+	}
+
+	/**
+	 * Join the {@link TargetSection} instances created by the hint groups of the given 
+	 * {@link MappingHintGroupType}.
+	 * 
+	 * @param mapping The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
+	 * @param mappingInstances The list of {@link MappingInstanceStorage instances} created based on
+	 * the given {@link Mapping}.
+	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that keeps track of instantiated sections.
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully; 
+	 * '<em><b>false</b></em>' otherwise
+	 */
+	public boolean joinTargetSections(final Mapping mapping, final List<MappingInstanceStorage> mappingInstances,
+			final TargetSectionRegistry targetSectionRegistry) {
+		
+		// Join 'local' hint groups
+		//
+		if(!mapping.getActiveMappingHintGroups().stream()
+				.filter(g -> g.getTargetMMSection() != null && g instanceof MappingHintGroup)
+				.allMatch(g -> joinTargetSection(g, mapping, mappingInstances, targetSectionRegistry))) {
+			
+			return false;
+		}
+		
+		// Join 'imported' hint groups
+		//
+		if(!mapping.getActiveImportedMappingHintGroups().stream()
+				.filter(i -> i.getHintGroup() != null && i.getHintGroup().getTargetMMSection() != null)
+				.allMatch(i -> joinTargetSection(i, mapping, mappingInstances, targetSectionRegistry))) {
+			
+			return false;
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Join the {@link TargetSection} instances created by the given {@link MappingHintGroupType}.
+	 * @param hintGroup The {@link MappingHintGroupType} responsible for the creation of the {@link TargetSection
+	 * TargetSections} to join.
+	 * @param mapping The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
+	 * to join.
+	 * @param mappingInstances The list of {@link MappingInstanceStorage instances} created based on
+	 * the given {@link Mapping}.
+	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that keeps track of instantiated sections.
+	 * 
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully; 
+	 * '<em><b>false</b></em>' otherwise
+	 */
+	private boolean joinTargetSection(final MappingHintGroupType hintGroup, final Mapping mapping,
+			 final List<MappingInstanceStorage> mappingInstances, final TargetSectionRegistry targetSectionRegistry) {
+		
+		// The TargetSection of which we want to joing created instances
+		//
+		final TargetSection section = hintGroup.getTargetMMSection();
+	
+		if(section.getFile() != null) {
+			
+			// do not join sections for that a 'file' is specified, those are simply added as root elements to that file
+			//
+			addToTargetModelRoot(
+					targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetMMSection()).get(hintGroup));
+			return true;
+			
+		}
+		
+		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty() ||
+				targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
+			
+			// nothing to do
+			//
+			return true;
+		}
+			
+		if (((MappingHintGroup) hintGroup).getModelConnectionMatcher() != null) {// link using matcher
+	
+			for (final MappingInstanceStorage selMap : mappingInstances) {
+	
+				if(hintGroup instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) hintGroup)) {
+					continue;
+				}
+				
+				if (selMap.getInstances((MappingHintGroup) hintGroup, section) != null) {
+					
+					if (isCancelled()) {
+						return false;
+					}
+	
+					linkToTargetModelUsingModelConnectionHint(
+							new LinkedList<>(selMap.getInstances((MappingHintGroup) hintGroup, section)),
+							section,
+							mapping.getName(),
+							hintGroup,
+							((MappingHintGroup) hintGroup).getModelConnectionMatcher(),
+							selMap.getHintValues().getHintValues(((MappingHintGroup) hintGroup).getModelConnectionMatcher()));
+					if (isCancelled()) {
+						
+						return false;
+					}
+				}
+			}
+		} else {// link using container attribute or nothing
+	
+			final List<EObjectWrapper> containerInstances = targetSectionRegistry
+					.getFlattenedPamtramClassInstances(section
+							.getContainer());
+	
+			/*
+			 * fetch ALL instances created by the MH-Group in question => less user input and possibly shorter
+			 * processing time
+			 */
+			final List<EObjectWrapper> rootInstances = targetSectionRegistry
+					.getPamtramClassInstances(section).get(hintGroup);
+	
+			/*
+			 * do not want the root instances to contain
+			 * themselves
+			 */
+			containerInstances.removeAll(rootInstances);// we
+	
+			linkToTargetModelNoConnectionHint(
+					rootInstances, section,
+					mapping.getName(), hintGroup,
+					section.getContainer() != null ? new HashSet<>(Arrays.asList(section.getContainer().getEClass())) : null,
+							containerInstances);
+			if (isCancelled()) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Join the {@link TargetSection} instances created by the given {@link MappingHintGroupType}.
+	 * @param hintGroupImporter The {@link MappingHintGroupImporter} responsible for the creation of the {@link TargetSection
+	 * TargetSections} to join.
+	 * @param mapping The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
+	 * to join.
+	 * @param mappingInstances The list of {@link MappingInstanceStorage instances} created based on
+	 * the given {@link Mapping}.
+	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that keeps track of instantiated sections.
+	 * 
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully; 
+	 * '<em><b>false</b></em>' otherwise
+	 */
+	private boolean joinTargetSection(final MappingHintGroupImporter hintGroupImporter, final Mapping mapping,
+			final List<MappingInstanceStorage> mappingInstances, final TargetSectionRegistry targetSectionRegistry) {
+		
+		final ExportedMappingHintGroup g = hintGroupImporter.getHintGroup();
+		
+		// The TargetSection of which we want to joing created instances
+		//
+		final TargetSection section = g.getTargetMMSection();
+	
+		if(section.getFile() != null) {
+			
+			// do not join sections for that a 'file' is specified, those are simply added as root elements to that file
+			//
+			addToTargetModelRoot(
+					targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
+			return true;
+			
+		}
+		
+		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty() ||
+				targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
+			
+			// nothing to do
+			//
+			return true;
+		}
+		
+		/*
+		 * ImportedMAppingHintGroups with containers specified will
+		 * be linked to a section that was created by the same
+		 * mapping Instance
+		 */
+		if (hintGroupImporter.getContainer() != null) {
+			for (final MappingInstanceStorage selMap : mappingInstances) {
+	
+				if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
+					continue;
+				}
+	
+				final List<EObjectWrapper> rootInstances = selMap.getInstances(hintGroupImporter, g.getTargetMMSection());
+	
+				if (!rootInstances.isEmpty()) {
+					final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
+	
+					// get container instances created by this
+					// mapping instance
+					for (final MappingHintGroupType group : selMap.getMappingHintGroups()) {
+						
+						if (isCancelled()) {
+							return false;
+						}
+	
+						if (group instanceof MappingHintGroup) {
+							final List<EObjectWrapper> insts = selMap.getInstances(
+									(MappingHintGroup) group,
+									hintGroupImporter.getContainer());
+							if (insts != null) {
+								containerInstances.addAll(insts);
+							}
+	
+						}
+					}
+					// link
+					linkToTargetModelNoConnectionHint(
+							rootInstances,
+							g.getTargetMMSection(),
+							mapping.getName(), g,
+							new HashSet<>(Arrays.asList(hintGroupImporter.getContainer().getEClass())),
+							containerInstances);
+					
+					if (isCancelled()) {
+						return false;
+					}
+				}
+			}
+	
+			// use container attribute of targetSection if one is
+			// specified
+			// (target section container == global instance search)
+		} else {
+			final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
+			final List<EObjectWrapper> rootInstances = targetSectionRegistry
+					.getPamtramClassInstances(
+							g.getTargetMMSection()).get(hintGroupImporter);
+			final Set<EClass> containerClasses = new HashSet<>();
+			if (g.getTargetMMSection().getContainer() != null) {
+				containerClasses.add(g.getTargetMMSection()
+						.getContainer().getEClass());
+				containerInstances.addAll(targetSectionRegistry
+						.getFlattenedPamtramClassInstances(g
+								.getTargetMMSection()
+								.getContainer()));
+	
+			}
+	
+			if (rootInstances != null && !rootInstances.isEmpty()) {
+				// link
+				linkToTargetModelNoConnectionHint(
+						rootInstances,
+						g.getTargetMMSection(),
+						mapping.getName(), g,
+						containerClasses,
+						containerInstances);
+				if (isCancelled()) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
 	}
 
 	/**

@@ -1,11 +1,9 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +20,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -74,7 +71,6 @@ import de.mfreund.pamtram.transformation.TransformationFactory;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
-import pamtram.ConditionalElement;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeValueModifierSet;
@@ -92,7 +88,6 @@ import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.TargetSection;
 import pamtram.util.PamtramEPackageHelper;
 import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
@@ -831,16 +826,10 @@ public class GenericTransformationRunner {
 		objectsToCancel.add(targetSectionInstantiator);
 
 
-		/*
-		 * Iterate over all selected mapping instances
-		 */
-		matchingResult.getSelectedMappings().stream().forEach(selMap -> {
-
-			// Expand the instance
-			//
-			targetSectionInstantiator.expandTargetSectionInstance(selMap);
-
-		});
+		// Iterate over all selected mapping instances and expand them
+		//
+		matchingResult.getSelectedMappings().stream().forEach(
+				targetSectionInstantiator::expandTargetSectionInstance);
 		
 		// Used to update the monitor.
 		//
@@ -890,203 +879,28 @@ public class GenericTransformationRunner {
 				attributeValueModifier, targetModelRegistry, maxPathLength,
 				ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(targetSectionConnector);
-		final double workUnit = 250.0 / suitableMappings.size();
-		double accumulatedWork = 0;
 
 		/*
 		 * Connect all target sections
 		 */
-		for (final Mapping m : suitableMappings) {
-			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
-
-				if (g.getTargetMMSection() != null // targetSection
-						&& g instanceof MappingHintGroup) { 
-
-					/*
-					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
-					 */
-					if(g.getTargetMMSection().getFile() != null) {
-						targetSectionConnector.addToTargetModelRoot(
-								expandingResult.getTargetSectionRegistry().getPamtramClassInstances(g.getTargetMMSection()).get(g));
-						continue;
-					}
-
-					// exists?
-					final TargetSection section = g.getTargetMMSection();
-					if (expandingResult.getTargetSectionRegistry().getPamtramClassInstances(section)
-							.keySet().size() > 0) {// instances of section
-						// exist?
-						if (expandingResult.getTargetSectionRegistry().getPamtramClassInstances(
-								section).get(g) != null) {// ..also of specific group
-
-							if (((MappingHintGroup) g).getModelConnectionMatcher() != null) {// link using matcher
-
-								for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
-
-									if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
-										continue;
-									}
-
-									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
-										if (isCancelled) {
-											return JoiningResult.createJoiningCanceledResult();
-										}
-
-										targetSectionConnector.linkToTargetModelUsingModelConnectionHint(
-												new LinkedList<>(selMap.getInstances((MappingHintGroup) g, section)),
-												section,
-												m.getName(),
-												g,
-												((MappingHintGroup) g).getModelConnectionMatcher(),
-												selMap.getHintValues().getHintValues(((MappingHintGroup) g).getModelConnectionMatcher()));
-										if (targetSectionConnector.isCancelled()) {
-											writePamtramMessage("Transformation aborted.");
-											return JoiningResult.createJoiningCanceledResult();
-										}
-									}
-								}
-							} else {// link using container attribute or nothing
-
-								final List<EObjectWrapper> containerInstances = expandingResult.getTargetSectionRegistry()
-										.getFlattenedPamtramClassInstances(section
-												.getContainer());
-
-								/*
-								 * fetch ALL instances created by the MH-Group in question => less user input and possibly shorter
-								 * processing time
-								 */
-								final List<EObjectWrapper> rootInstances = expandingResult.getTargetSectionRegistry()
-										.getPamtramClassInstances(section).get(g);
-
-								/*
-								 * do not want the root instances to contain
-								 * themselves
-								 */
-								containerInstances.removeAll(rootInstances);// we
-
-								targetSectionConnector.linkToTargetModelNoConnectionHint(
-										rootInstances, section,
-										m.getName(), g,
-										section.getContainer() != null ? new HashSet<>(Arrays.asList(section.getContainer().getEClass())) : null,
-												containerInstances);
-								if (targetSectionConnector.isCancelled()) {
-									writePamtramMessage("Transformation aborted.");
-									return JoiningResult.createJoiningCanceledResult();
-								}
-							}
-						}
-					}
-				}
-			}
-
-			for (final MappingHintGroupImporter i : m.getActiveImportedMappingHintGroups()) {
-				final ExportedMappingHintGroup g = i.getHintGroup();
-				if (g.getTargetMMSection() != null) {
-
-					/*
-					 * do not join sections for that a 'file' is specified, those are simply added as root elements to that file
-					 */
-					if(g.getTargetMMSection().getFile() != null) {
-						targetSectionConnector.addToTargetModelRoot(
-								expandingResult.getTargetSectionRegistry().getPamtramClassInstances(g.getTargetMMSection()).get(i));
-						continue;
-					}
-
-					/*
-					 * ImportedMAppingHintGroups with containers specified will
-					 * be linked to a section that was created by the same
-					 * mapping Instance
-					 */
-					if (i.getContainer() != null) {
-						for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
-
-							if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
-								continue;
-							}
-
-							final List<EObjectWrapper> rootInstances = selMap.getInstances(i, g.getTargetMMSection());
-
-							if (rootInstances.size() > 0) {
-								final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
-
-								// get container instances created by this
-								// mapping instance
-								for (final MappingHintGroupType group : selMap.getMappingHintGroups()) {
-									if (isCancelled) {
-										return JoiningResult.createJoiningCanceledResult();
-									}
-
-									if (group instanceof MappingHintGroup) {
-										final List<EObjectWrapper> insts = selMap.getInstances(
-												(MappingHintGroup) group,
-												i.getContainer());
-										if (insts != null) {
-											containerInstances.addAll(insts);
-										}
-
-									}
-								}
-								// link
-								targetSectionConnector.linkToTargetModelNoConnectionHint(
-										rootInstances,
-										g.getTargetMMSection(),
-										m.getName(), g,
-										new HashSet<>(Arrays.asList(i.getContainer().getEClass())),
-										containerInstances);
-								if (targetSectionConnector.isCancelled()) {
-									writePamtramMessage("Transformation aborted.");
-									return JoiningResult.createJoiningCanceledResult();
-								}
-							}
-						}
-
-						// use container attribute of targetSection if one is
-						// specified
-						// (target section container == global instance search)
-					} else {
-						final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
-						final List<EObjectWrapper> rootInstances = expandingResult.getTargetSectionRegistry()
-								.getPamtramClassInstances(
-										g.getTargetMMSection()).get(i);
-						final Set<EClass> containerClasses = new HashSet<>();
-						if (g.getTargetMMSection().getContainer() != null) {
-							containerClasses.add(g.getTargetMMSection()
-									.getContainer().getEClass());
-							containerInstances.addAll(expandingResult.getTargetSectionRegistry()
-									.getFlattenedPamtramClassInstances(g
-											.getTargetMMSection()
-											.getContainer()));
-
-						}
-
-						if (rootInstances != null) {
-							if (rootInstances.size() > 0) {
-								// link
-								targetSectionConnector.linkToTargetModelNoConnectionHint(
-										rootInstances,
-										g.getTargetMMSection(),
-										m.getName(), g,
-										containerClasses,
-										containerInstances);
-								if (targetSectionConnector.isCancelled()) {
-									writePamtramMessage("Transformation aborted.");
-									return JoiningResult.createJoiningCanceledResult();
-								}
-							}
-						}
-					}
-
-				}
-			}
-
-			accumulatedWork += workUnit;
-			if (accumulatedWork >= 1) {
-				monitor.worked((int) Math.floor(accumulatedWork));
-				accumulatedWork -= Math.floor(accumulatedWork);
-			}
+		boolean joiningResult = suitableMappings.stream().allMatch(
+				m -> targetSectionConnector.joinTargetSections(m, matchingResult.getSelectedMappingsByMapping().get(m), expandingResult.getTargetSectionRegistry()));
+		
+		if(!joiningResult) {
+			writePamtramMessage("Transformation aborted.");
+			return JoiningResult.createJoiningCanceledResult();
 		}
 
+		// Finally, combine the Sections that are still unlinked with the 
+		// Root element of a TargetModel
+		//
 		targetSectionConnector.combineUnlinkedSectionsWithTargetModelRoot();
+		
+		// Used to update the monitor.
+		//
+		monitor.worked(250);
+		
+		
 		if (targetSectionConnector.isCancelled()) {
 			writePamtramMessage("Transformation aborted.");
 			return JoiningResult.createJoiningCanceledResult();
@@ -1583,7 +1397,7 @@ public class GenericTransformationRunner {
 	 * 
 	 * @author mfreund
 	 */
-	static class TransformationResult {
+	public static class TransformationResult {
 
 		/**
 		 * This class encapsulates the various results of the <em>matching</em> process during a generic transformation:

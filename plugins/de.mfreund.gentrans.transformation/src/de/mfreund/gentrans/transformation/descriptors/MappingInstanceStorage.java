@@ -5,12 +5,14 @@ package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -49,7 +51,7 @@ public class MappingInstanceStorage {
 	/**
 	 * Generated EObjects sorted by TargetSectionCLass
 	 */
-	private final Map<InstantiableMappingHintGroup, Map<TargetSectionClass, List<EObjectWrapper>>> instancesBySection;
+	private final ConcurrentHashMap<InstantiableMappingHintGroup, ConcurrentHashMap<TargetSectionClass, List<EObjectWrapper>>> instancesBySection;
 
 	/**
 	 * This contains the hint values that shall be used when instantiating, linking, and expanding the target section(s). 
@@ -79,7 +81,7 @@ public class MappingInstanceStorage {
 		this.matchedSectionDescriptor = matchedSectionDescriptor;
 		this.matchedSectionDescriptor.setAssociatedMappingInstance(this);
 		this.mapping = null;
-		this.instancesBySection = new LinkedHashMap<>();
+		this.instancesBySection = new ConcurrentHashMap<>();
 		this.hintValues = new HintValueStorage();
 		this.elementsWithNegativeConditions = new HashSet<>();
 	
@@ -144,11 +146,11 @@ public class MappingInstanceStorage {
 			final Collection<EObjectWrapper> instances) {
 		
 		if (!instancesBySection.containsKey(mappingHintGroup)) {
-			instancesBySection.put(mappingHintGroup, new HashMap<TargetSectionClass, List<EObjectWrapper>>());
+			instancesBySection.put(mappingHintGroup, new ConcurrentHashMap<TargetSectionClass, List<EObjectWrapper>>());
 		}
 
 		if (!instancesBySection.get(mappingHintGroup).containsKey(targetSectionClass)) {
-			instancesBySection.get(mappingHintGroup).put(targetSectionClass, new ArrayList<EObjectWrapper>());
+			instancesBySection.get(mappingHintGroup).put(targetSectionClass, Collections.synchronizedList(new ArrayList<EObjectWrapper>()));
 		}
 		
 		instancesBySection.get(mappingHintGroup).get(targetSectionClass).addAll(instances);

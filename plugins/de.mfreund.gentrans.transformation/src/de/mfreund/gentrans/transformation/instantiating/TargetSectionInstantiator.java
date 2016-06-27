@@ -193,6 +193,123 @@ public class TargetSectionInstantiator extends CancellableElement {
 
 		consoleStream.println("...parsing done!");
 	}
+	
+	/**
+	 * This expands the {@link TargetSection TargetSections} represented by the
+	 * <em>hintGroups</em> of the given {@link MappingInstanceStorage}.
+	 * <p />
+	 * Created {@link EObjectWrapper instances} are
+	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * registered} in the given <em>mappingInstance</em>.
+	 * 
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to expand.
+	 */
+	public void expandTargetSectionInstance(MappingInstanceStorage mappingInstance) {
+		
+		/*
+		 * Iterate over all mapping hint groups and expand them
+		 */
+		// TODO check if we can parallelize this
+		mappingInstance.getMappingHintGroups().stream()
+		.filter(g -> g.getTargetMMSection() != null && g instanceof MappingHintGroup)
+		.map(g -> (MappingHintGroup) g).forEach(g -> expandTargetSectionInstance(mappingInstance, g));
+
+		/*
+		 * Iterate over all imported mapping hint groups and expand them
+		 */
+		// TODO check if we can parallelize this
+		mappingInstance.getMappingHintGroupImporters().stream()
+		.filter(g -> g.getHintGroup() != null && g.getHintGroup().getTargetMMSection() != null)
+		.forEach(g -> expandTargetSectionInstance(mappingInstance, g));
+		
+	}
+
+	/**
+	 * This expands the given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
+	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
+	 * <p />
+	 * Created {@link EObjectWrapper instances} are
+	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * registered} in the given <em>mappingInstance</em>.
+	 * 
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to expand.
+	 * @param hintGroup
+	 *            The {@link MappingHintGroup} that lead to the instantiation of
+	 *            the given <em>mappingInstance</em>.
+	 */
+	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
+			MappingHintGroup hintGroup) {
+	
+		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
+				instantiateTargetSectionFirstPass(
+						hintGroup.getTargetMMSection(),
+						hintGroup, mappingInstance.getMappingHints(hintGroup),
+						mappingInstance.getHintValues());
+	
+		if (instancesBySection == null) {
+			if (hintGroup.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
+	
+				consoleStream
+				.println("Error instantiating target section '"
+						+ hintGroup.getTargetMMSection().getName()
+						+ "' using mapping rule '"
+						+ mappingInstance.getMapping().getName()
+						+ "'");
+			}
+		} else {
+	
+			// Register the created instance
+			//
+			instancesBySection.entrySet().stream().forEach(
+					entry -> mappingInstance.addInstances(hintGroup, entry.getKey(), entry.getValue()));
+		}
+	}
+
+	/**
+	 * This expands the given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
+	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
+	 * <p />
+	 * Created {@link EObjectWrapper instances} are
+	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * registered} in the given <em>mappingInstance</em>.
+	 * 
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to expand.
+	 * @param mappingHintGroupImporter
+	 *            The {@link MappingHintGroupImporter} that lead to the
+	 *            instantiation of the given <em>mappingInstance</em>.
+	 */
+	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
+			MappingHintGroupImporter mappingHintGroupImporter) {
+	
+		final List<MappingHint> hints = getMappingHints(mappingInstance, mappingHintGroupImporter);
+	
+		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
+				instantiateTargetSectionFirstPass(mappingHintGroupImporter.getHintGroup().getTargetMMSection(), mappingHintGroupImporter, hints,
+						mappingInstance.getHintValues());
+	
+		if (instancesBySection == null) {
+			if (mappingHintGroupImporter.getHintGroup().getTargetMMSection()
+					.getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
+				consoleStream.println(
+						"Error instantiating target section '"
+								+ mappingHintGroupImporter.getHintGroup().getTargetMMSection().getName()
+								+ "' using mapping rule '" + mappingInstance.getMapping().getName() + "'");
+			}
+		} else {
+			
+			// Register the created instance
+			//
+			instancesBySection.entrySet().stream().forEach(
+					entry -> mappingInstance.addInstances(mappingHintGroupImporter, entry.getKey(), entry.getValue()));
+		}
+	}
 
 	/**
 	 * From the given list of {@link MappingHint MappingHints} and the
@@ -370,7 +487,7 @@ public class TargetSectionInstantiator extends CancellableElement {
 	 * @return A map relating created {@link EObjectWrapper instances} to the
 	 *         {@link TargetSectionClass} based on which they have been created.
 	 */
-	public Map<TargetSectionClass, List<EObjectWrapper>> instantiateTargetSectionFirstPass(
+	private Map<TargetSectionClass, List<EObjectWrapper>> instantiateTargetSectionFirstPass(
 			final TargetSection targetSection,
 			final InstantiableMappingHintGroup mappingGroup,
 			final List<MappingHint> mappingHints,
@@ -1849,6 +1966,32 @@ public class TargetSectionInstantiator extends CancellableElement {
 
 		return successful;
 
+	}
+
+	/**
+	 * For the given {@link MappingHintGroupImporter}, this collects the
+	 * <em>local</em> hints as well as the imported hints from the referenced
+	 * {@link ExportedMappingHintGroup} for the given
+	 * {@link MappingInstanceStorage mapping instance}.
+	 *
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage} for that imported hints
+	 *            shall be returned.
+	 * @param hintGroupImporter
+	 *            The {@link MappingHintGroupImporter} to handle.
+	 * @return The imported {@link MappingHint MappingHints}.
+	 */
+	private List<MappingHint> getMappingHints(final MappingInstanceStorage mappingInstance,
+			final MappingHintGroupImporter hintGroupImporter) {
+	
+		final ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
+	
+		final List<MappingHint> hints = mappingInstance.getMappingHints(hintGroupImporter).parallelStream().filter(
+				hint -> hint instanceof MappingHint).map(hint -> (MappingHint) hint).collect(Collectors.toList());
+	
+		hints.addAll(exportedHintGroup.getMappingHints());
+		
+		return hints;
 	}
 
 }

@@ -1,7 +1,9 @@
 package de.mfreund.gentrans.transformation.registries;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -92,6 +94,34 @@ public class HintValueStorage {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
 	}
+	
+	/**
+	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * <p />
+	 * This should be used over {@link #getHintValues(EObject)} when the returned values will, e.g.,
+	 * be added to another HintValueStorage in order to prevent concurrent usages of the same value.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned. The concrete type of this needs to be one of 
+	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 * {@link MappingInstanceSelector}, or {@link ModelConnectionHint}.
+	 * @return A cloned copy of the stored values for the given hint. The concrete return type is in line with the type of the <em>hint</em> according to
+	 * the concrete implementation of the {@link HintValueMap} type.
+	 */
+	public Object getHintValuesCloned(EObject hint) {
+		if(hint instanceof AttributeMapping) {
+			return getHintValuesCloned((AttributeMapping) hint);
+		} else if(hint instanceof CardinalityMapping) {
+			return getHintValuesCloned((CardinalityMapping) hint);
+		} else if(hint instanceof MappedAttributeValueExpander) {
+			return getHintValues((MappedAttributeValueExpander) hint);
+		} else if(hint instanceof MappingInstanceSelector) {
+			return getHintValuesCloned((MappingInstanceSelector) hint);
+		} else if(hint instanceof ModelConnectionHint) {
+			return getHintValuesCloned((ModelConnectionHint) hint);
+		} else {
+			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
+		}
+	}
 
 	/**
 	 * @return the {@link #attributeMappingHintValues}
@@ -108,6 +138,26 @@ public class HintValueStorage {
 	 */
 	public LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> getHintValues(AttributeMapping hint) {
 		return attributeMappingHintValues.getHintValues(hint);
+	}
+	
+	/**
+	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * <p />
+	 * This should be used over {@link #getHintValues(EObject)} when the returned values will, e.g.,
+	 * be added to another HintValueStorage in order to prevent concurrent usages of the same value.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned.
+	 * @return A cloned copy of the stored values for the given hint.
+	 */
+	public LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> getHintValuesCloned(AttributeMapping hint) {
+		
+		return new LinkedList<>(attributeMappingHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
+			Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+			for (AttributeMappingSourceInterface key : oldHintValue.keySet()) {
+				newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
+			}
+			return newHintValue;
+		}).collect(Collectors.toList()));
 	}
 
 	/**
@@ -128,6 +178,18 @@ public class HintValueStorage {
 		return cardinalityMappingHintValues.getHintValues(hint);
 	}
 
+
+	/**
+	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned.
+	 * @return A cloned copy of the stored values for the given hint.
+	 */
+	public LinkedList<Integer> getHintValuesCloned(CardinalityMapping hint) {
+		return new LinkedList<>(cardinalityMappingHintValues.getHintValues(hint).parallelStream().map(
+				oldHintValue -> new Integer(oldHintValue)).collect(Collectors.toList()));
+	}
+	
 	/**
 	 * @return the {@link #mappedAttributeValueExpanderHintValues}
 	 */
@@ -163,6 +225,23 @@ public class HintValueStorage {
 	}
 
 	/**
+	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned.
+	 * @return A cloned copy of the list of stored values for the given hint.
+	 */
+	public LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> getHintValuesCloned(MappingInstanceSelector hint) {
+		return new LinkedList<>(mappingInstanceSelectorHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
+			Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+			for (AttributeMatcherSourceInterface key : oldHintValue.keySet()) {
+				newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
+			}
+			return newHintValue;
+		}).collect(Collectors.toList()));
+	}
+
+
+	/**
 	 * @return the {@link #modelConnectionHintValues}
 	 */
 	public ModelConnectionHintValueMap getModelConnectionHintValues() {
@@ -177,6 +256,22 @@ public class HintValueStorage {
 	 */
 	public LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> getHintValues(ModelConnectionHint hint) {
 		return modelConnectionHintValues.getHintValues(hint);
+	}
+	
+	/**
+	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned.
+	 * @return A cloned copy of the list of stored values for the given hint.
+	 */
+	public LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> getHintValuesCloned(ModelConnectionHint hint) {
+		return new LinkedList<>(modelConnectionHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
+			Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+			for (ModelConnectionHintSourceInterface key : oldHintValue.keySet()) {
+				newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
+			}
+			return newHintValue;
+		}).collect(Collectors.toList()));
 	}
 
 	/**

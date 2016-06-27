@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
@@ -29,7 +28,6 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
-import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -157,21 +155,23 @@ public class HintValueExtractor extends ValueExtractor {
 		for (MappingHintGroupImporter hintGroupImporter : mappingInstance.getMappingHintGroupImporters()) {
 
 			// First, we copy all imported hint values
+			// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a sequential stream).
 			//
 			ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
 			MappingInstanceStorage exported = exportedHintGroups.get(exportedHintGroup);
 
-			for (MappingHint hint : exportedHintGroup.getMappingHints()) {
+			exportedHintGroup.getMappingHints().stream().forEach(hint -> {
 				initializeHintValueMap(hint, mappingInstance);
-				mappingInstance.getHintValues().addHintValues(hint, exported.getHintValues().getHintValues(hint));
-			}
+				mappingInstance.getHintValues().addHintValues(hint, exported.getHintValues().getHintValuesCloned(hint));
+			});
 
 			// Now, we need to initialize the corresponding maps to store values for own hints
 			// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a sequential stream).
 			//
 			hintGroupImporter.getMappingHints().stream().forEach(hint -> initializeHintValueMap(hint, mappingInstance));
 
-			// Now, we can extract the hint values for each own hint
+			// Now, we can extract the hint values for each own hint.
+			// (Note: MappedAttributeValueExpanders that change existing values of imported hints are also handled here).
 			//
 			hintGroupImporter.getMappingHints().parallelStream().forEach(h -> extractHintValue(h, mappingInstance));
 		}
@@ -535,11 +535,7 @@ public class HintValueExtractor extends ValueExtractor {
 					.get(attributeMapping.getSourceAttributeMappings().size() - 1);
 		}
 
-		// TODO clone the Map
-
-		for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> existingValue : mappingInstance
-				.getHintValues().getHintValues(attributeMapping)) {
-
+		mappingInstance.getHintValues().getHintValues(attributeMapping).parallelStream().forEach(existingValue -> {
 
 			if (existingValue.containsKey(element)) {
 				if (prepend) {
@@ -548,7 +544,7 @@ public class HintValueExtractor extends ValueExtractor {
 					existingValue.get(element).addSuffix(hintValue);
 				}
 			}
-		}
+		});
 	}
 
 	/**
@@ -578,8 +574,8 @@ public class HintValueExtractor extends ValueExtractor {
 			element = attributeMatcher.getSourceAttributes().get(attributeMatcher.getSourceAttributes().size() - 1);
 		}
 
-		for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> existingValue : mappingInstance
-				.getHintValues().getHintValues((MappingInstanceSelector) attributeMatcher.eContainer())) {
+		mappingInstance.getHintValues().getHintValues((MappingInstanceSelector) attributeMatcher.eContainer()).parallelStream()
+			.forEach(existingValue -> {
 
 			if (existingValue.containsKey(element)) {
 				if (prepend) {
@@ -588,7 +584,7 @@ public class HintValueExtractor extends ValueExtractor {
 					existingValue.get(element).addSuffix(hintValue);
 				}
 			}
-		}
+		});
 	}
 
 }

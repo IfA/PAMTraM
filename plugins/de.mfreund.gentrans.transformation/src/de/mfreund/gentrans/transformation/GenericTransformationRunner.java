@@ -82,7 +82,6 @@ import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
@@ -959,12 +958,6 @@ public class GenericTransformationRunner {
 	 * <em>local</em> hints as well as the imported hints from the referenced
 	 * {@link ExportedMappingHintGroup} for the given
 	 * {@link MappingInstanceStorage mapping instance}.
-	 * <p />
-	 * Values for imported hints are also prepared. By <em>preparing</em>, we
-	 * mean that values for {@link MappedAttributeValueExpander
-	 * MappedAttributeValueExpanders} are calculated and stored in the mapping
-	 * instance. TODO Maybe, this might/should already be done during the
-	 * extracting of hint values in the <em>matching</em> phase.
 	 *
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage} for that imported hints
@@ -978,208 +971,11 @@ public class GenericTransformationRunner {
 
 		final ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
 
-		final List<MappingHint> hints = new LinkedList<>();
+		final List<MappingHint> hints = mappingInstance.getMappingHints(hintGroupImporter).parallelStream().filter(
+				hint -> hint instanceof MappingHint).map(hint -> (MappingHint) hint).collect(Collectors.toList());
 
 		hints.addAll(exportedHintGroup.getMappingHints());
-
-		// for (final MappingHintType h :
-		// mappingInstance.getMappingHints(hintGroupImporter)) {
-		// if (h instanceof MappingHint) {
-		// hints.add((MappingHint) h);
-		// } else if (h instanceof MappedAttributeValueExpander) {
-		// if
-		// (mappingInstance.getHintValues().getHintValues((MappedAttributeValueExpander)
-		// h).size() == 1) {
-		// final String hintVal = mappingInstance.getHintValues()
-		// .getHintValues((MappedAttributeValueExpander) h).getFirst();
-		// /*
-		// * of course this works only because the only
-		// * other option is the Appender
-		// */
-		// final boolean prepend = h instanceof
-		// MappedAttributeValuePrepender
-		// || h instanceof ExternalMappedAttributeValuePrepender;
-		//
-		// for (final MappingHint realHint :
-		// hintGroupImporter.getHintGroup().getMappingHints()) {
-		// if (realHint instanceof AttributeMapping) {
-		// if (((MappedAttributeValueExpander)
-		// h).getHintsToExpand().contains(realHint)) {
-		// if (realHint instanceof AttributeMapping
-		// && ((AttributeMapping) realHint).getExpression() == null
-		// || ((AttributeMapping) realHint).getExpression().isEmpty()) {//
-		// ComplexAttributeMapping
-		//
-		// final LinkedList<Map<AttributeMappingSourceInterface,
-		// AttributeValueRepresentation>> vals = new LinkedList<>();
-		// final List<AttributeMappingSourceInterface> sources =
-		// ((AttributeMapping) realHint)
-		// .getSourceAttributeMappings();
-		//
-		// if (!sources.isEmpty()) {
-		// // determine the one of
-		// // possibly multiple source
-		// // elements of the
-		// // attribute mapping to be
-		// // expanded
-		// AttributeMappingSourceInterface element;
-		// if (prepend) {
-		// element = sources.get(0);
-		// } else {
-		// element = sources.get(sources.size() - 1);
-		// }
-		//
-		// for (final Map<AttributeMappingSourceInterface,
-		// AttributeValueRepresentation> m : mappingInstance
-		// .getHintValues()
-		// .getHintValues((AttributeMapping) realHint)) {
-		//
-		// /*
-		// * create a deep-cloned
-		// * copy of the map
-		// * holding the source
-		// * elements and values
-		// * of complex attribute
-		// * mapping that we are
-		// * expanding; this is
-		// * necessary because the
-		// * map will change in
-		// * the course of this
-		// * function but the
-		// * changes shall not be
-		// * propagated to future
-		// * calls of this
-		// * function
-		// */
-		//
-		// final LinkedHashMap<AttributeMappingSourceInterface,
-		// AttributeValueRepresentation> clonedMap = new LinkedHashMap<>();
-		// for (AttributeMappingSourceInterface key : m.keySet()) {
-		// clonedMap.put(key,
-		// (AttributeValueRepresentation) m.get(key).clone());
-		// }
-		//
-		// // expand either the
-		// // first or last value
-		// // source element and
-		// // let all other
-		// // values untouched
-		// if (clonedMap.containsKey(element)) {
-		// AttributeValueRepresentation rep = clonedMap.get(element);
-		// if (prepend) {
-		// rep.addPrefix(hintVal);
-		// } else {
-		// rep.addSuffix(hintVal);
-		// }
-		// clonedMap.put(element, rep);
-		// }
-		//
-		// // add the new map to
-		// // the list holding all
-		// // hint values
-		// vals.add(clonedMap);
-		// }
-		//
-		// // update the hint value
-		// // list for the real hint
-		// mappingInstance.getHintValues().setHintValues((AttributeMapping)
-		// realHint,
-		// vals);
-		// }
-		// } else if (realHint instanceof AttributeMapping) {//
-		// CalculatorMapping
-		// final List<AttributeMappingSourceInterface> sources =
-		// ((AttributeMapping) realHint)
-		// .getSourceAttributeMappings();
-		// if (sources.size() > 0) {
-		// try {
-		// final Calculable calc = new ExpressionBuilder(hintVal).build();
-		// final double variableVal = calc.calculate();
-		// /*
-		// * parseDouble doesn't
-		// * support Scientific
-		// * notation, like:
-		// * 0.42e2 == 4200e-2 ==
-		// * 42,
-		// */
-		// for (final Map<AttributeMappingSourceInterface,
-		// AttributeValueRepresentation> m : mappingInstance
-		// .getHintValues()
-		// .getHintValues((AttributeMapping) realHint)) {
-		// // TODO check if
-		// // this works
-		// m.put(sources.get(0),
-		// new AttributeValueRepresentation(
-		// ((MappedAttributeValueExpander) h)
-		// .getSourceAttribute(),
-		// Double.toString(variableVal)));
-		// }
-		// } catch (final Exception e) {
-		// consoleStream.println("Couldn't convert variable "
-		// + ((MappedAttributeValueExpander) h)
-		// .getSourceAttribute().getName()
-		// + " of " + h.getClass().getName() + " " + h.getName()
-		// + " from String to double. The problematic source element's
-		// attribute value was: "
-		// + hintVal);
-		// }
-		// }
-		// } // TODO add any remaining
-		// // hintValue changes here
-		//
-		// }
-		// } else if (realHint instanceof MappingInstanceSelector) {
-		// if (((MappingInstanceSelector) realHint)
-		// .getMatcher() instanceof AttributeMatcher) {
-		// final AttributeMatcher matcher = (AttributeMatcher)
-		// ((MappingInstanceSelector) realHint)
-		// .getMatcher();
-		//
-		// if (((MappedAttributeValueExpander) h).getHintsToExpand()
-		// .contains(matcher)) {
-		// if (matcher instanceof AttributeMatcher) {//
-		// ComplexAttributeMatcher
-		// final List<AttributeMatcherSourceInterface> sources = matcher
-		// .getSourceAttributes();
-		// if (sources.size() > 0) {
-		// AttributeMatcherSourceInterface element;
-		// if (prepend) {
-		// element = sources.get(0);
-		// } else {
-		// element = sources.get(sources.size() - 1);
-		// }
-		//
-		// for (final Map<AttributeMatcherSourceInterface,
-		// AttributeValueRepresentation> m : mappingInstance
-		// .getHintValues()
-		// .getHintValues((MappingInstanceSelector) realHint)) {
-		// if (m.containsKey(element)) {
-		// if (prepend) {
-		// AttributeValueRepresentation preprended = m
-		// .get(element);
-		// preprended.addPrefix(hintVal);
-		// m.put(element, preprended);
-		// } else {
-		// AttributeValueRepresentation appended = m
-		// .get(element);
-		// appended.addSuffix(hintVal);
-		// m.put(element, appended);
-		// }
-		// }
-		// }
-		// }
-		// } // TODO add any remaining
-		// // hitValue changes here
-		//
-		// }
-		// }
-		// }
-		// }
-		// } // else TODO maybe add something here when we
-		// // know how to handle/control cardinality of
-		// // ImportedMappingHints
-		// }
-		// }
+		
 		return hints;
 	}
 

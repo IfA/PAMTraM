@@ -56,6 +56,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeParameter;
@@ -1183,6 +1184,124 @@ public class TargetSectionInstantiator extends CancellableElement {
 	}
 
 	/**
+	 * This links the {@link TargetSection TargetSections} represented by the
+	 * <em>hintGroups</em> of the given {@link MappingInstanceStorage}.
+	 * 
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to link.
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully; 
+	 * '<em><b>false</b></em>' otherwise
+	 */
+	public boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance) {
+		
+		
+		// Link 'local' hint groups
+		//
+		if(!mappingInstance.getMappingHintGroups().stream()
+				.allMatch(g -> linkTargetSectionInstance(mappingInstance, g))) {
+			
+			return false;
+		}
+		
+		// Link 'imported' hint groups
+		//
+		if(!mappingInstance.getMappingHintGroupImporters().stream()
+				.allMatch(g -> linkTargetSectionInstance(mappingInstance, g))) {
+			
+			return false;
+		}
+		
+		return true;
+	}
+
+	/**
+	 * This links given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
+	 * {@link TargetSectionInstantiator#instantiateTargetSectionSecondPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)}.
+	 * 
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to link.
+	 * @param hintGroupImporter
+	 *            The {@link MappingHintGroupImporter} that lead to the
+	 *            instantiation of the given <em>mappingInstance</em>.
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully; 
+	 * '<em><b>false</b></em>' otherwise
+	 */
+	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance, 
+			final MappingHintGroupImporter hintGroupImporter) {
+		
+		final ExportedMappingHintGroup expGrp = hintGroupImporter.getHintGroup();
+		if (expGrp.getTargetMMSection() != null) {
+			if (mappingInstance.getInstancesBySection(hintGroupImporter) != null) {
+				final List<MappingHint> hints = new LinkedList<>();
+				hints.addAll(mappingInstance.getMappingHints(expGrp));
+				for (final MappingHintType h : mappingInstance.getMappingHints(hintGroupImporter)) {
+					
+					if (isCancelled()) {
+						return false;
+					}
+	
+					if (h instanceof MappingHint) {
+						hints.add((MappingHint) h);
+					}// TODO else if ...??-> should have already been
+					// done during 1st pass
+				}
+	
+				instantiateTargetSectionSecondPass(
+						expGrp.getTargetMMSection(), 
+						hintGroupImporter, 
+						hints, 
+						mappingInstance.getHintValues(), 
+						mappingInstance.getInstancesBySection(hintGroupImporter));
+				
+				if (isCancelled()) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
+
+	/**
+	 * This links given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
+	 * {@link TargetSectionInstantiator#instantiateTargetSectionSecondPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)}.
+	 * 
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to link.
+	 * @param hintGroup
+	 *            The {@link MappingHintGroupType} that lead to the
+	 *            instantiation of the given <em>mappingInstance</em>.
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully; 
+	 * '<em><b>false</b></em>' otherwise
+	 */
+	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance, 
+			final MappingHintGroupType hintGroup) {
+		
+		if (hintGroup.getTargetMMSection() != null && hintGroup instanceof MappingHintGroup) {
+			
+			if (mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup) != null) {
+	
+				instantiateTargetSectionSecondPass(
+						hintGroup.getTargetMMSection(),
+						(MappingHintGroup) hintGroup,
+						mappingInstance.getMappingHints(hintGroup),
+						mappingInstance.getHintValues(),
+						mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup));
+				
+				if (isCancelled()) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
+
+	/**
 	 * Instantiate the given {@link TargetSection} using the specified
 	 * {@link HintValueStorage hint values}.
 	 * <p />
@@ -1206,7 +1325,7 @@ public class TargetSectionInstantiator extends CancellableElement {
 	 *            The registry for {@link EObjectWrapper instances} created
 	 *            during the first pass of the instantiation.
 	 */
-	public void instantiateTargetSectionSecondPass(
+	private void instantiateTargetSectionSecondPass(
 			final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup,
 			final List<MappingHint> mappingHints,

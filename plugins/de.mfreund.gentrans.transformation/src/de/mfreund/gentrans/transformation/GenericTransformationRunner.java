@@ -74,16 +74,12 @@ import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingHintType;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.SourceSection;
@@ -98,6 +94,8 @@ import pamtram.util.PamtramEPackageHelper.EPackageCheck;
  * @version 1.0
  */
 public class GenericTransformationRunner {
+
+	private static final String TRANSFORMATION_ABORTED_MESSAGE = "Transformation aborted.";
 
 	/**
 	 * This keeps track of objects that need to be canceled when the user requests an early termination of the transformation.
@@ -887,7 +885,7 @@ public class GenericTransformationRunner {
 				m -> targetSectionConnector.joinTargetSections(m, matchingResult.getSelectedMappingsByMapping().get(m), expandingResult.getTargetSectionRegistry()));
 		
 		if(!joiningResult) {
-			writePamtramMessage("Transformation aborted.");
+			writePamtramMessage(TRANSFORMATION_ABORTED_MESSAGE);
 			return JoiningResult.createJoiningCanceledResult();
 		}
 
@@ -902,7 +900,7 @@ public class GenericTransformationRunner {
 		
 		
 		if (targetSectionConnector.isCancelled()) {
-			writePamtramMessage("Transformation aborted.");
+			writePamtramMessage(TRANSFORMATION_ABORTED_MESSAGE);
 			return JoiningResult.createJoiningCanceledResult();
 		} else {
 			return JoiningResult.createJoiningCompletedResult(targetModelRegistry);
@@ -928,69 +926,20 @@ public class GenericTransformationRunner {
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
 		monitor.subTask("Instantiating targetModelSections for selected mappings. Second pass");
 
-		final double workUnit = 250.0 / matchingResult.getSelectedMappings().size();
-		double accumulatedWork = 0;
-		for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappings()) {
-			for (final MappingHintGroupType g : selMap.getMappingHintGroups()) {
-				if (isCancelled) {
-					return false;
-				}
-
-				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup) {
-					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
-
-						targetSectionInstantiator.instantiateTargetSectionSecondPass(
-								g.getTargetMMSection(),
-								(MappingHintGroup) g,
-								selMap.getMappingHints(g),
-								selMap.getHintValues(),
-								selMap.getInstancesBySection((MappingHintGroup) g));
-						if (targetSectionInstantiator.isCancelled()) {
-							writePamtramMessage("Transformation aborted.");
-							return false;
-						}
-					}
-				}
-			}
-
-			for (final MappingHintGroupImporter g : selMap.getMappingHintGroupImporters()) {
-				final ExportedMappingHintGroup expGrp = g.getHintGroup();
-				if (expGrp.getTargetMMSection() != null) {
-					if (selMap.getInstancesBySection(g) != null) {
-						final List<MappingHint> hints = new LinkedList<>();
-						hints.addAll(selMap.getMappingHints(expGrp));
-						for (final MappingHintType h : selMap.getMappingHints(g)) {
-							if (isCancelled) {
-								return false;
-							}
-
-							if (h instanceof MappingHint) {
-								hints.add((MappingHint) h);
-							}// TODO else if ...??-> should have already been
-							// done during 1st pass
-						}
-
-						targetSectionInstantiator.instantiateTargetSectionSecondPass(
-								expGrp.getTargetMMSection(), 
-								g, 
-								hints, 
-								selMap.getHintValues(), 
-								selMap.getInstancesBySection(g));
-						if (targetSectionInstantiator.isCancelled()) {
-							writePamtramMessage("Transformation aborted.");
-							return false;
-						}
-					}
-				}
-			}
-
-			accumulatedWork += workUnit;
-			if (accumulatedWork >= 1) {
-				monitor.worked((int) Math.floor(accumulatedWork));
-				accumulatedWork -= Math.floor(accumulatedWork);
-			}
+		/*
+		 * Link all target sections
+		 */
+		boolean linkingResult = matchingResult.getSelectedMappings().stream().allMatch(
+				targetSectionInstantiator::linkTargetSectionInstance);
+		
+		if(!linkingResult) {
+			writePamtramMessage(TRANSFORMATION_ABORTED_MESSAGE);
+			return false;
 		}
+		
+		// Used to update the monitor.
+		//
+		monitor.worked(250);
 
 		return true;
 	}

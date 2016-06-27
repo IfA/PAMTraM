@@ -19,7 +19,7 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
-import de.mfreund.gentrans.transformation.util.CancellableElement;
+import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
@@ -35,7 +35,7 @@ import pamtram.metamodel.SourceSection;
  * 
  * @author mfreund
  */
-public class MappingSelector extends CancellableElement {
+public class MappingSelector extends CancelableElement {
 	
 	/** 
 	 * A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found

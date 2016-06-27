@@ -25,7 +25,7 @@ import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.registries.HintValueStorage;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
-import de.mfreund.gentrans.transformation.util.CancellableElement;
+import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import pamtram.NamedElement;
 import pamtram.mapping.AttributeMatcher;
@@ -57,7 +57,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @author mfreund
  */
-public class TargetSectionLinker extends CancellableElement {
+public class TargetSectionLinker extends CancelableElement {
 
 	private static final String RESOLVE_LINKING_AMBIGUITY_STARTED = "[Ambiguity] Resolve linking ambiguity...";
 	private static final String RESOLVE_LINKING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
@@ -181,7 +181,7 @@ public class TargetSectionLinker extends CancellableElement {
 				hints.addAll(mappingInstance.getMappingHints(expGrp));
 				for (final MappingHintType h : mappingInstance.getMappingHints(hintGroupImporter)) {
 					
-					if (isCancelled()) {
+					if (isCanceled()) {
 						return false;
 					}
 	
@@ -198,7 +198,7 @@ public class TargetSectionLinker extends CancellableElement {
 						mappingInstance.getHintValues(), 
 						mappingInstance.getInstancesBySection(hintGroupImporter));
 				
-				if (isCancelled()) {
+				if (isCanceled()) {
 					return false;
 				}
 			}
@@ -235,7 +235,7 @@ public class TargetSectionLinker extends CancellableElement {
 						mappingInstance.getHintValues(),
 						mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup));
 				
-				if (isCancelled()) {
+				if (isCanceled()) {
 					return false;
 				}
 			}

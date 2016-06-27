@@ -14,7 +14,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.util.CancellableElement;
+import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
@@ -32,7 +32,7 @@ import pamtram.metamodel.SourceSectionReference;
  * @author mfreund
  *
  */
-public abstract class ValueExtractor extends CancellableElement {
+public abstract class ValueExtractor extends CancelableElement {
 
 	/**
 	 * The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.

@@ -32,7 +32,7 @@ import de.mfreund.gentrans.transformation.registries.HintValueStorage;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
-import de.mfreund.gentrans.transformation.util.CancellableElement;
+import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import pamtram.NamedElement;
@@ -63,7 +63,7 @@ import pamtram.util.GenLibraryManager;
  *
  * @author mfreund
  */
-public class TargetSectionInstantiator extends CancellableElement {
+public class TargetSectionInstantiator extends CancelableElement {
 
 	private static final String RESOLVE_EXPANDING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
 

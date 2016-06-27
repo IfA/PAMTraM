@@ -110,7 +110,7 @@ public final class ModelConnectionPath {
 		pathStack.add(new Pair<>(containerClass, new LinkedList<EObject>()));
 
 		// iterate as long as every possible connection path has been found
-		while (!pathStack.isEmpty() && !registry.isCancelled()) {
+		while (!pathStack.isEmpty() && !registry.isCanceled()) {
 
 			final Pair<EClass, LinkedList<EObject>> next = pathStack.iterator().next();
 
@@ -174,7 +174,7 @@ public final class ModelConnectionPath {
 		pathStack.add(new Pair<>(pathStartClass,
 				new LinkedList<EObject>()));
 
-		while (!pathStack.isEmpty() && !registry.isCancelled()) {
+		while (!pathStack.isEmpty() && !registry.isCanceled()) {
 			final Pair<EClass, LinkedList<EObject>> next = pathStack.iterator()
 					.next();
 			pathStack.remove(next);

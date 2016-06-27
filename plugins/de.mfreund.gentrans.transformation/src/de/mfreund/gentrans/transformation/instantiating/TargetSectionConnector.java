@@ -25,7 +25,7 @@ import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
-import de.mfreund.gentrans.transformation.util.CancellableElement;
+import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -44,7 +44,7 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * @author mfreund
  */
-public class TargetSectionConnector extends CancellableElement {
+public class TargetSectionConnector extends CancelableElement {
 
 	private static final String RESOLVE_JOINING_AMBIGUITY_ENDED = "[Ambiguity] ...finished.\n";
 
@@ -215,7 +215,7 @@ public class TargetSectionConnector extends CancellableElement {
 				
 				if (selMap.getInstances((MappingHintGroup) hintGroup, section) != null) {
 					
-					if (isCancelled()) {
+					if (isCanceled()) {
 						return false;
 					}
 	
@@ -226,7 +226,7 @@ public class TargetSectionConnector extends CancellableElement {
 							hintGroup,
 							((MappingHintGroup) hintGroup).getModelConnectionMatcher(),
 							selMap.getHintValues().getHintValues(((MappingHintGroup) hintGroup).getModelConnectionMatcher()));
-					if (isCancelled()) {
+					if (isCanceled()) {
 						
 						return false;
 					}
@@ -256,7 +256,7 @@ public class TargetSectionConnector extends CancellableElement {
 					mapping.getName(), hintGroup,
 					section.getContainer() != null ? new HashSet<>(Arrays.asList(section.getContainer().getEClass())) : null,
 							containerInstances);
-			if (isCancelled()) {
+			if (isCanceled()) {
 				return false;
 			}
 		}
@@ -325,7 +325,7 @@ public class TargetSectionConnector extends CancellableElement {
 					// mapping instance
 					for (final MappingHintGroupType group : selMap.getMappingHintGroups()) {
 						
-						if (isCancelled()) {
+						if (isCanceled()) {
 							return false;
 						}
 	
@@ -347,7 +347,7 @@ public class TargetSectionConnector extends CancellableElement {
 							new HashSet<>(Arrays.asList(hintGroupImporter.getContainer().getEClass())),
 							containerInstances);
 					
-					if (isCancelled()) {
+					if (isCanceled()) {
 						return false;
 					}
 				}
@@ -380,7 +380,7 @@ public class TargetSectionConnector extends CancellableElement {
 						mapping.getName(), g,
 						containerClasses,
 						containerInstances);
-				if (isCancelled()) {
+				if (isCanceled()) {
 					return false;
 				}
 			}
@@ -971,7 +971,7 @@ public class TargetSectionConnector extends CancellableElement {
 		final LinkedHashMap<EObjectWrapper, LinkedHashSet<EObjectWrapper>> rootInstancesByContainer = new LinkedHashMap<>();
 		for (final Entry<String, LinkedHashSet<EObjectWrapper>> hintValEntry : rootInstancesByHintVal.entrySet()) {
 
-			if (isCancelled()) {
+			if (isCanceled()) {
 				return;
 			}
 

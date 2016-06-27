@@ -19,7 +19,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
-import de.mfreund.gentrans.transformation.util.CancellableElement;
+import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.metamodel.TargetSection;
@@ -33,7 +33,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @version 1.0
  *
  */
-public class TargetSectionRegistry extends CancellableElement {
+public class TargetSectionRegistry extends CancelableElement {
 
 	/**
 	 * Attribute value registry, needed when applying model connection hints

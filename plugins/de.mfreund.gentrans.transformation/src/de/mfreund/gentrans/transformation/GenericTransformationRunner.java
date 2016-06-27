@@ -66,7 +66,8 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
-import de.mfreund.gentrans.transformation.util.ICancellable;
+import de.mfreund.gentrans.transformation.util.CancelableElement;
+import de.mfreund.gentrans.transformation.util.ICancelable;
 import de.mfreund.gentrans.transformation.util.MonitorWrapper;
 import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationFactory;
@@ -95,14 +96,14 @@ import pamtram.util.PamtramEPackageHelper.EPackageCheck;
  * @author Sascha Steffen, Matthias Freund
  * @version 1.0
  */
-public class GenericTransformationRunner {
+public class GenericTransformationRunner extends CancelableElement {
 
 	private static final String TRANSFORMATION_ABORTED_MESSAGE = "Transformation aborted.";
 
 	/**
 	 * This keeps track of objects that need to be canceled when the user requests an early termination of the transformation.
 	 */
-	private final List<ICancellable> objectsToCancel;
+	private final List<ICancelable> objectsToCancel;
 
 	/**
 	 * File paths of the source models to be transformed
@@ -168,11 +169,6 @@ public class GenericTransformationRunner {
 	 */
 	//TODO this should probably be moved to the 'UserDecisionStrategy'
 	private boolean onlyAskOnceOnAmbiguousMappings;
-
-	/**
-	 * This keeps track of whether the user requested an early termination of the transformation
-	 */
-	private boolean isCancelled;
 
 	/**
 	 * This keeps track of the {@link LibraryContextDescriptor descriptor for the target library context} to 
@@ -315,7 +311,7 @@ public class GenericTransformationRunner {
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
-		isCancelled = false;
+		super();
 		this.sourceModels = new ArrayList<>();
 		this.sourceFilePaths = sourceFilePaths;
 		this.pamtramPath = pamtramPath;
@@ -580,7 +576,7 @@ public class GenericTransformationRunner {
 		// set the end date (before storing)
 		this.transformationModel.setEndDate(new Date());
 
-		if (transformationResult != null && transformationResult.getOverallResult() && !isCancelled) {
+		if (transformationResult != null && transformationResult.getOverallResult() && !isCanceled()) {
 
 			/*
 			 * create the target models
@@ -607,9 +603,10 @@ public class GenericTransformationRunner {
 	/**
 	 * This cancels any running (or future) transformation.
 	 */
+	@Override
 	public void cancel() {
-		isCancelled = true;
-		objectsToCancel.parallelStream().forEach(ICancellable::cancel);
+		super.cancel();
+		objectsToCancel.parallelStream().forEach(ICancelable::cancel);
 	}
 
 	/**
@@ -905,7 +902,7 @@ public class GenericTransformationRunner {
 		monitor.worked(250);
 		
 		
-		if (targetSectionConnector.isCancelled()) {
+		if (targetSectionConnector.isCanceled()) {
 			writePamtramMessage(TRANSFORMATION_ABORTED_MESSAGE);
 			return JoiningResult.createJoiningCanceledResult();
 		} else {

@@ -52,6 +52,8 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.instantiating.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.instantiating.TargetSectionInstantiator;
+import de.mfreund.gentrans.transformation.instantiating.TargetSectionLinker;
+import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
@@ -194,6 +196,11 @@ public class GenericTransformationRunner {
 	 * have been created with the help of the {@link #targetSectionInstantiator}.
 	 */
 	private TargetSectionConnector targetSectionConnector;
+	
+	/**
+	 * This is the {@link TargetSectionLinker} that can be used to link target sections.
+	 */
+	private TargetSectionLinker targetSectionLinker;
 
 	/**
 	 * This describes the result of the transformation (after calling {@link #runTransformation(IProgressMonitor)}). 
@@ -661,8 +668,7 @@ public class GenericTransformationRunner {
 		/*
 		 * Perform the 'linking' step of the transformation
 		 */
-		boolean linkingResult = performLinking(matchingResult,
-				targetSectionInstantiator, monitor);
+		boolean linkingResult = performLinking(matchingResult, expandingResult, attributeValueModifier, monitor);
 		transformationResult.setLinkingResult(linkingResult);
 
 		if(!linkingResult) {
@@ -775,7 +781,7 @@ public class GenericTransformationRunner {
 
 		return MatchingResult.createMatchingCompletedResult(selectedMappings,
 				selectedMappingsByMapping, new HintValueStorage(),
-				hintValueExtractor.getGlobalAttributeValues());
+				globalValues);
 
 	}
 
@@ -819,8 +825,8 @@ public class GenericTransformationRunner {
 		 */
 		targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,
-				matchingResult.getGlobalAttributeValues(),
-				attributeValuemodifier, globalValues, consoleStream, ambiguityResolvingStrategy);
+				matchingResult.getGlobalValues().getGlobalValuesAsDouble(),
+				attributeValuemodifier, consoleStream, ambiguityResolvingStrategy);
 		objectsToCancel.add(targetSectionInstantiator);
 
 
@@ -833,7 +839,7 @@ public class GenericTransformationRunner {
 		//
 		monitor.worked(250);
 
-		return ExpandingResult.createExpandingResult(attrValueRegistry, targetSectionRegistry);
+		return ExpandingResult.createExpandingResult(attrValueRegistry, targetSectionRegistry, targetSectionInstantiator.getLibEntryInstantiatorMap());
 	}
 
 	/**
@@ -914,23 +920,34 @@ public class GenericTransformationRunner {
 	 *
 	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
 	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
-	 * @param targetSectionInstantiator The {@link TargetSectionInstantiator} that was used to expand the target sections.
+	 * @param expandingResult The {@link TargetSectionInstantiator} that was used to expand the target sections.
+	 * @param attributeValueModifier 
 	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
 	 * @return '<em><b>true</b></em>' if everything went well, '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean performLinking(
 			final MatchingResult matchingResult,
-			final TargetSectionInstantiator targetSectionInstantiator,
-			final IProgressMonitor monitor) {
+			final ExpandingResult expandingResult,
+			AttributeValueModifierExecutor attributeValueModifier, final IProgressMonitor monitor) {
 
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
 		monitor.subTask("Instantiating targetModelSections for selected mappings. Second pass");
 
 		/*
+		 * Initialize the TargetSectionLinker
+		 */
+		targetSectionLinker = new TargetSectionLinker(
+				expandingResult.getTargetSectionRegistry(),
+				matchingResult.getGlobalValues().getGlobalValuesAsDouble(), 
+				expandingResult.getLibEntryInstantiatorMap(),
+				attributeValueModifier, consoleStream, ambiguityResolvingStrategy);
+		objectsToCancel.add(targetSectionLinker);
+		
+		/*
 		 * Link all target sections
 		 */
 		boolean linkingResult = matchingResult.getSelectedMappings().stream().allMatch(
-				targetSectionInstantiator::linkTargetSectionInstance);
+				targetSectionLinker::linkTargetSectionInstance);
 		
 		if(!linkingResult) {
 			writePamtramMessage(TRANSFORMATION_ABORTED_MESSAGE);
@@ -1382,14 +1399,14 @@ public class GenericTransformationRunner {
 			 * This is the list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 			 * process.
 			 */
-			private final LinkedList<MappingInstanceStorage> selectedMappings;
+			private final List<MappingInstanceStorage> selectedMappings;
 
 			/**
 			 * This is the getter for the {@link #selectedMappings}.
 			 * @return The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 			 * process.
 			 */
-			LinkedList<MappingInstanceStorage> getSelectedMappings() {
+			List<MappingInstanceStorage> getSelectedMappings() {
 				return this.selectedMappings;
 			}
 
@@ -1425,17 +1442,17 @@ public class GenericTransformationRunner {
 			 * This is the map of values for global attributes associated with the {@link GlobalAttribute} that
 			 * they represent.
 			 */
-			private final Map<GlobalAttribute, String> globalAttributeValues;
+			private final GlobalValueMap globalValues;
 
 			/**
 			 * This is the getter for the {@link #globalAttributeValues}.
 			 * @return The map of values for global attributes associated with the {@link GlobalAttribute} that
 			 * they represent.
 			 */
-			Map<GlobalAttribute, String> getGlobalAttributeValues() {
-				return globalAttributeValues;
+			GlobalValueMap getGlobalValues() {
+				return globalValues;
 			}
-
+			
 			/**
 			 * This constructs an instance.
 			 * 
@@ -1446,20 +1463,21 @@ public class GenericTransformationRunner {
 			 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 			 * process associated with the {@link Mapping} that they represent. 
 			 * @param exportedMappingHints The {@link HintValueStorage} containing values for exported mapping hints.
+			 * @param libEntryInstantiatorMap2 
 			 * @param globalAttributeValues The map of values for global attributes associated with the {@link GlobalAttribute} that
 			 * they represent.
 			 */
 			private MatchingResult(
 					boolean canceled,
-					LinkedList<MappingInstanceStorage> selectedMappings, 
+					List<MappingInstanceStorage> selectedMappings, 
 					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping,
 					HintValueStorage exportedMappingHints,
-					Map<GlobalAttribute, String> globalAttributeValues) {
+					GlobalValueMap globalValues) {
 				this.canceled = canceled;
 				this.selectedMappings = selectedMappings;
 				this.selectedMappingsByMapping = selectedMappingsByMapping;
 				this.exportedMappingHints = exportedMappingHints;
-				this.globalAttributeValues = globalAttributeValues;
+				this.globalValues = globalValues;
 			}
 
 			/**
@@ -1477,16 +1495,16 @@ public class GenericTransformationRunner {
 			 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 			 * process associated with the {@link Mapping} that they represent. 
 			 * @param exportedMappingHints The {@link HintValueStorage} containing values for exported mapping hints.
-			 * @param globalAttributeValues The map of values for global attributes associated with the {@link GlobalAttribute} that
-			 * they represent.
+			 * @param globalValues The values of {@link GlobalAttribute GlobalAttributes} and {@link FixedValue FixedValues}.
 			 * @return An instance of {@link MatchingResult} indicating that the matching has completed successfully.
 			 */
 			public static MatchingResult createMatchingCompletedResult(
-					LinkedList<MappingInstanceStorage> selectedMappings, 
+					List<MappingInstanceStorage> selectedMappings, 
 					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping,
 					HintValueStorage exportedMappingHints,
-					Map<GlobalAttribute, String> globalAttributeValues) {
-				return new MatchingResult(false, selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalAttributeValues);
+					GlobalValueMap globalValues) {
+				
+				return new MatchingResult(false, selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalValues);
 			}
 		}
 
@@ -1519,6 +1537,7 @@ public class GenericTransformationRunner {
 			 * A {@link TargetSectionRegistry} containing/representing created target sections.
 			 */
 			private final TargetSectionRegistry targetSectionRegistry;
+			private final Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
 
 			/**
 			 * This is the getter for the {@link #targetSectionRegistry}.
@@ -1529,17 +1548,12 @@ public class GenericTransformationRunner {
 			}
 
 			/**
-			 * This constructs an instance for an expanding process.
+			 * This is the getter for the {@link #libEntryInstantiatorMap}.
 			 * 
-			 * @param attributeValueRegistry The {@link AttributeValueRegistry} containing registered attribute values.
-			 * @param targetSectionRegistry The {@link TargetSectionRegistry} containing/representing created target sections.
+			 * @return
 			 */
-			private ExpandingResult(
-					AttributeValueRegistry attributeValueRegistry, 
-					TargetSectionRegistry targetSectionRegistry) {
-
-				this.attributeValueRegistry = attributeValueRegistry;
-				this.targetSectionRegistry = targetSectionRegistry;
+			Map<EObjectWrapper, LibraryEntryInstantiator> getLibEntryInstantiatorMap() {
+				return libEntryInstantiatorMap;
 			}
 
 			/**
@@ -1547,13 +1561,32 @@ public class GenericTransformationRunner {
 			 * 
 			 * @param attributeValueRegistry The {@link AttributeValueRegistry} containing registered attribute values.
 			 * @param targetSectionRegistry The {@link TargetSectionRegistry} containing/representing created target sections.
+			 */
+			private ExpandingResult(
+					AttributeValueRegistry attributeValueRegistry, 
+					TargetSectionRegistry targetSectionRegistry,
+					Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap) {
+
+				this.attributeValueRegistry = attributeValueRegistry;
+				this.targetSectionRegistry = targetSectionRegistry;
+				this.libEntryInstantiatorMap = libEntryInstantiatorMap;
+			}
+
+			/**
+			 * This constructs an instance for an expanding process.
+			 * 
+			 * @param attributeValueRegistry The {@link AttributeValueRegistry} containing registered attribute values.
+			 * @param targetSectionRegistry The {@link TargetSectionRegistry} containing/representing created target sections.
+			 * @param libEntryInstantiatorMap The temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) and
+			 * their corresponding {@link LibraryEntryInstantiator}
 			 * @return An instance of {@link ExpandingResult}.
 			 */
 			public static ExpandingResult createExpandingResult(
 					AttributeValueRegistry attributeValueRegistry, 
-					TargetSectionRegistry targetSectionRegistry) {
+					TargetSectionRegistry targetSectionRegistry,
+					Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap) {
 
-				return new ExpandingResult(attributeValueRegistry, targetSectionRegistry); 
+				return new ExpandingResult(attributeValueRegistry, targetSectionRegistry, libEntryInstantiatorMap); 
 			}
 		}
 

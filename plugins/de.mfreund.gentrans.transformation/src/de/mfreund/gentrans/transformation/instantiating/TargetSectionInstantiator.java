@@ -29,11 +29,9 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
 import de.mfreund.gentrans.transformation.registries.HintValueStorage;
-import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
-import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import pamtram.NamedElement;
 import pamtram.mapping.AttributeMapping;
@@ -55,7 +53,6 @@ import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
-import pamtram.util.GenLibraryManager;
 
 /**
  * Class for instantiating target model sections using the hints supplied by
@@ -90,12 +87,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * used to write console output
 	 */
 	private final MessageConsoleStream consoleStream;
-
-	/**
-	 * List of {@link LibraryEntryInstantiator}s that are to be used at the end of the
-	 * transformation.
-	 */
-	private List<LibraryEntryInstantiator> libEntryInstantiators;
 
 	/**
 	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) to
@@ -143,7 +134,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.canceled = false;
 		this.wrongCardinalityContainmentRefs = new HashSet<>();
-		this.libEntryInstantiators = new ArrayList<>();
 		this.libEntryInstantiatorMap = new HashMap<>();
 
 		Map<String, Double> globalDoubleValues = globalValues.entrySet().parallelStream().collect(
@@ -705,7 +695,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 			LibraryEntryInstantiator instLibraryEntryInstantiator = new LibraryEntryInstantiator(
 					clonedLibEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, consoleStream);
 
-			libEntryInstantiators.add(instLibraryEntryInstantiator);
 			libEntryInstantiatorMap.put(instTransformationHelper, instLibraryEntryInstantiator);
 		}
 
@@ -1060,61 +1049,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Instantiate all library entry-based target sections that have been collected
-	 * during {@link #instantiateTargetSectionFirstPass}.
-	 * 
-	 * @param targetModelRegistry The {@link TargetModelRegistry} representing the target models into that the library entries are 
-	 * to be instantiated.
-	 * @param targetLibraryContextDescriptor
-	 * 			  The descriptor for the target library context to be used during the transformation.
-	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
-	 */
-	public boolean instantiateLibraryEntries(
-			TargetModelRegistry targetModelRegistry, LibraryContextDescriptor targetLibraryContextDescriptor) {
-
-		if(libEntryInstantiators.isEmpty()) { // nothing to be done
-			return true;
-		}
-
-		if(targetLibraryContextDescriptor.getLibraryContextClass() == null) {
-			consoleStream.println("Could not instantiate library entries as no target"
-					+ " library context class has been specified!");
-			return false;
-		}
-
-		/*
-		 * Create a GenLibraryManager that proxies calls to the LibraryPlugin. 
-		 */
-		GenLibraryManager manager;
-		try {
-			manager = new GenLibraryManager(
-					targetLibraryContextDescriptor);
-		} catch (InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-			consoleStream.println("Error while instantiatiating library context/parser!");
-			return false;
-		}
-
-		boolean successful = true;
-		/*
-		 * Iterate over all stored instantiators and instantiate the associated library entry
-		 * in the given target model.
-		 */
-		for (LibraryEntryInstantiator libraryEntryInstantiator : libEntryInstantiators) {
-			if(!libraryEntryInstantiator.instantiate(
-					manager, calculator, 
-					targetSectionRegistry)) {
-				consoleStream.println("Failed to instantiate library entry '" + 
-						libraryEntryInstantiator.getLibraryEntry().getPath().getValue() + "'!");
-				successful = false;
-			}
-		}
-
-		return successful;
-
 	}
 
 	/**

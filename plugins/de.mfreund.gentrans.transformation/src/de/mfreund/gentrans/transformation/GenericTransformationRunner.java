@@ -45,6 +45,7 @@ import org.eclipse.ui.progress.UIJob;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
@@ -87,6 +88,7 @@ import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.util.GenLibraryManager;
 import pamtram.util.PamtramEPackageHelper;
 import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
@@ -678,7 +680,10 @@ public class GenericTransformationRunner extends CancelableElement {
 		if(joiningResult.getTargetModelRegistry().isEmpty()) {
 			consoleStream.println("Something seems to be wrong! Target model is empty!");
 		} else {
-			boolean libEntryExpandingResult = performInstantiatingLibraryEntries(joiningResult.getTargetModelRegistry(), monitor);
+			boolean libEntryExpandingResult = performInstantiatingLibraryEntries(
+					matchingResult,
+					expandingResult,
+					attributeValueModifier, monitor);
 			transformationResult.setLibEntryExpandingResult(libEntryExpandingResult);
 		}
 		return transformationResult;
@@ -967,11 +972,57 @@ public class GenericTransformationRunner extends CancelableElement {
 	 * @param monitor 
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	private boolean performInstantiatingLibraryEntries(TargetModelRegistry targetModelRegistry, IProgressMonitor monitor) {
+	private boolean performInstantiatingLibraryEntries(MatchingResult matchingResult, ExpandingResult expandingResult, AttributeValueModifierExecutor attributeValueModifier, IProgressMonitor monitor) {
 
 		writePamtramMessage("Instantiating libraryEntries for selected mappings.");
 		monitor.subTask("Instantiating libraryEntries for selected mappings.");
-		return targetSectionInstantiator.instantiateLibraryEntries(targetModelRegistry, targetLibraryContextDescriptor);
+		
+		if(expandingResult.getLibEntryInstantiatorMap().isEmpty()) { // nothing to be done
+			return true;
+		}
+
+		if(targetLibraryContextDescriptor.getLibraryContextClass() == null) {
+			consoleStream.println("Could not instantiate library entries as no target"
+					+ " library context class has been specified!");
+			return false;
+		}
+
+		/*
+		 * Create a GenLibraryManager that proxies calls to the LibraryPlugin. 
+		 */
+		GenLibraryManager manager;
+		try {
+			manager = new GenLibraryManager(
+					targetLibraryContextDescriptor);
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+			consoleStream.println("Error while instantiatiating library context/parser!");
+			return false;
+		}
+
+		List<LibraryEntryInstantiator> libEntryInstantiators = expandingResult.getLibEntryInstantiatorMap().entrySet().parallelStream()
+				.map(e -> e.getValue()).collect(Collectors.toList());
+		Map<String, Double> globalDoubleValues = matchingResult.getGlobalValues().getGlobalValuesAsDouble().entrySet().parallelStream().collect(
+				Collectors.toMap(e -> e.getKey().getName(), e -> e.getValue()));
+
+		AttributeValueCalculator calculator = new AttributeValueCalculator(globalDoubleValues, attributeValueModifier, consoleStream);
+		
+		/*
+		 * Iterate over all stored instantiators and instantiate the associated library entry
+		 * in the given target model.
+		 */
+		return libEntryInstantiators.stream().allMatch(libraryEntryInstantiator ->{
+			
+			boolean successful = libraryEntryInstantiator.instantiate(
+					manager, calculator, 
+					expandingResult.getTargetSectionRegistry());
+			if(!successful) {
+				consoleStream.println("Failed to instantiate library entry '" + 
+						libraryEntryInstantiator.getLibraryEntry().getPath().getValue() + "'!");
+			}
+			return successful;
+		});
+		
 	}
 
 	/**

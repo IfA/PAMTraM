@@ -11,7 +11,6 @@ import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentati
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.CardinalityMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValueMap;
-import de.mfreund.gentrans.transformation.maps.MappedAttributeValueExpanderHintValueMap;
 import de.mfreund.gentrans.transformation.maps.MappingInstanceSelectorHintValueMap;
 import de.mfreund.gentrans.transformation.maps.ModelConnectionHintValueMap;
 import pamtram.mapping.AttributeMapping;
@@ -43,11 +42,6 @@ public class HintValueStorage {
 	private final CardinalityMappingHintValueMap cardinalityMappingHintValues;
 
 	/**
-	 * This keeps track of hint values for {@link MappedAttributeValueExpander MappedAttributeValueExpanders}.
-	 */
-	private final MappedAttributeValueExpanderHintValueMap mappedAttributeValueExpanderHintValues;
-
-	/**
 	 * This keeps track of hint values for {@link MappingInstanceSelector MappingInstanceSelectors}.
 	 */
 	private final MappingInstanceSelectorHintValueMap mappingInstanceSelectorHintValues;
@@ -64,7 +58,6 @@ public class HintValueStorage {
 
 		attributeMappingHintValues = new AttributeMappingHintValueMap();
 		cardinalityMappingHintValues = new CardinalityMappingHintValueMap();
-		mappedAttributeValueExpanderHintValues = new MappedAttributeValueExpanderHintValueMap();
 		mappingInstanceSelectorHintValues = new MappingInstanceSelectorHintValueMap();
 		modelConnectionHintValues = new ModelConnectionHintValueMap();
 	}
@@ -84,8 +77,6 @@ public class HintValueStorage {
 			return getHintValues((AttributeMapping) hint);
 		} else if(hint instanceof CardinalityMapping) {
 			return getHintValues((CardinalityMapping) hint);
-		} else if(hint instanceof MappedAttributeValueExpander) {
-			return getHintValues((MappedAttributeValueExpander) hint);
 		} else if(hint instanceof MappingInstanceSelector) {
 			return getHintValues((MappingInstanceSelector) hint);
 		} else if(hint instanceof ModelConnectionHint) {
@@ -112,8 +103,6 @@ public class HintValueStorage {
 			return getHintValuesCloned((AttributeMapping) hint);
 		} else if(hint instanceof CardinalityMapping) {
 			return getHintValuesCloned((CardinalityMapping) hint);
-		} else if(hint instanceof MappedAttributeValueExpander) {
-			return getHintValues((MappedAttributeValueExpander) hint);
 		} else if(hint instanceof MappingInstanceSelector) {
 			return getHintValuesCloned((MappingInstanceSelector) hint);
 		} else if(hint instanceof ModelConnectionHint) {
@@ -190,23 +179,6 @@ public class HintValueStorage {
 				oldHintValue -> new Integer(oldHintValue)).collect(Collectors.toList()));
 	}
 	
-	/**
-	 * @return the {@link #mappedAttributeValueExpanderHintValues}
-	 */
-	public MappedAttributeValueExpanderHintValueMap getMappedAttributeValueExpanderHintValues() {
-		return mappedAttributeValueExpanderHintValues;
-	}
-
-	/**
-	 * This returns the list of stored values for the given hint.
-	 * 
-	 * @param hint The hint for which the stored values shall be returned.
-	 * @return The stored values for the given hint.
-	 */
-	public LinkedList<String> getHintValues(MappedAttributeValueExpander hint) {
-		return mappedAttributeValueExpanderHintValues.getHintValues(hint);
-	}
-
 	/**
 	 * @return the {@link #mappingInstanceSelectorHintValues}
 	 */
@@ -324,16 +296,6 @@ public class HintValueStorage {
 	/**
 	 * This adds a hint value to the storage.
 	 * 
-	 * @param hint The {@link MappedAttributeValueExpander} for that the value shall be added.
-	 * @param value The value to be added.
-	 */
-	public void addHintValue(MappedAttributeValueExpander hint, String value) {
-		mappedAttributeValueExpanderHintValues.addHintValue(hint, value);
-	}
-
-	/**
-	 * This adds a hint value to the storage.
-	 * 
 	 * @param hint The {@link MappingInstanceSelector} for that the value shall be added.
 	 * @param value The value to be added.
 	 */
@@ -376,17 +338,6 @@ public class HintValueStorage {
 	/**
 	 * This adds a hint value to the storage.
 	 * 
-	 * @param hint The {@link MappedAttributeValueExpander} for that the value shall be added.
-	 * @param clazz The {@link SourceSectionClass} for that the value shall be added.
-	 * @param value The value to be added.
-	 */
-	public void addHintValue(MappedAttributeValueExpander hint, SourceSectionClass clazz, String value) {
-		mappedAttributeValueExpanderHintValues.addHintValue(hint, clazz, value);
-	}
-
-	/**
-	 * This adds a hint value to the storage.
-	 * 
 	 * @param hint The {@link MappingInstanceSelector} for that the value shall be added.
 	 * @param clazz The {@link SourceSectionClass} for that the value shall be added.
 	 * @param value The value to be added.
@@ -416,7 +367,6 @@ public class HintValueStorage {
 		// copy the various maps
 		this.getAttributeMappingHintValues().addHintValues(hintValuesToAdd.getAttributeMappingHintValues());
 		this.getCardinalityMappingHintValues().addHintValues(hintValuesToAdd.getCardinalityMappingHintValues());
-		this.getMappedAttributeValueExpanderHintValues().addHintValues(hintValuesToAdd.getMappedAttributeValueExpanderHintValues());
 		this.getMappingInstanceSelectorHintValues().addHintValues(hintValuesToAdd.getMappingInstanceSelectorHintValues());
 		this.getModelConnectionHintValues().addHintValues(hintValuesToAdd.getModelConnectionHintValues());
 	}
@@ -466,16 +416,6 @@ public class HintValueStorage {
 	 */
 	public void addHintValues(CardinalityMapping hint, LinkedList<Integer> values) {
 		cardinalityMappingHintValues.addHintValues(hint, values);
-	}
-
-	/**
-	 * This adds a list of hint value to the storage.
-	 * 
-	 * @param hint The {@link MappedAttributeValueExpander} for that the value shall be added.
-	 * @param values The values to be added.
-	 */
-	public void addHintValues(MappedAttributeValueExpander hint, LinkedList<String> values) {
-		mappedAttributeValueExpanderHintValues.addHintValues(hint, values);
 	}
 
 	/**
@@ -548,16 +488,6 @@ public class HintValueStorage {
 	/**
 	 * This sets the list of stored hint values for the given hint.
 	 * 
-	 * @param hint The {@link MappedAttributeValueExpander} for that the values shall be set.
-	 * @param values The values to be set.
-	 */
-	public void setHintValues(MappedAttributeValueExpander hint, LinkedList<String> values) {
-		mappedAttributeValueExpanderHintValues.setHintValues(hint, values);
-	}
-
-	/**
-	 * This sets the list of stored hint values for the given hint.
-	 * 
 	 * @param hint The {@link MappingInstanceSelector} for that the values shall be set.
 	 * @param values The values to be set.
 	 */
@@ -600,17 +530,6 @@ public class HintValueStorage {
 	/**
 	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
 	 * 
-	 * @param hint The {@link MappedAttributeValueExpander} for that the values shall be set.
-	 * @param clazz The {@link SourceSectionClass} for that the values shall be set.
-	 * @param values The values to be set.
-	 */
-	public void setHintValues(MappedAttributeValueExpander hint, SourceSectionClass clazz, LinkedList<String> values) {
-		mappedAttributeValueExpanderHintValues.setHintValues(hint, clazz, values);
-	}
-
-	/**
-	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
-	 * 
 	 * @param hint The {@link MappingInstanceSelector} for that the values shall be set.
 	 * @param clazz The {@link SourceSectionClass} for that the values shall be set.
 	 * @param values The values to be set.
@@ -645,8 +564,6 @@ public class HintValueStorage {
 			return getAttributeMappingHintValues().remove(hint).get(null);
 		} else if(hint instanceof CardinalityMapping) {
 			return getCardinalityMappingHintValues().remove(hint).get(null);
-		} else if(hint instanceof MappedAttributeValueExpander) {
-			return getMappedAttributeValueExpanderHintValues().remove(hint).get(null);
 		} else if(hint instanceof MappingInstanceSelector) {
 			return getMappingInstanceSelectorHintValues().remove(hint).get(null);
 		} else if(hint instanceof ModelConnectionHint) {
@@ -708,16 +625,6 @@ public class HintValueStorage {
 	 * @param hint The hint for which the first hint value shall be retrieved and removed.
 	 * @return The removed hint value.
 	 */
-	public String removeHintValue(MappedAttributeValueExpander hint) {
-		return mappedAttributeValueExpanderHintValues.removeHintValue(hint);
-	}
-
-	/**
-	 *This retrieves and removes the first hint value stored for a given hint.
-	 * 
-	 * @param hint The hint for which the first hint value shall be retrieved and removed.
-	 * @return The removed hint value.
-	 */
 	public Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> removeHintValue(MappingInstanceSelector hint) {
 		return mappingInstanceSelectorHintValues.removeHintValue(hint);
 	}
@@ -746,8 +653,6 @@ public class HintValueStorage {
 			return getAttributeMappingHintValues().containsKey(hint);
 		} else if(hint instanceof CardinalityMapping) {
 			return getCardinalityMappingHintValues().containsKey(hint);
-		} else if(hint instanceof MappedAttributeValueExpander) {
-			return getMappedAttributeValueExpanderHintValues().containsKey(hint);
 		} else if(hint instanceof MappingInstanceSelector) {
 			return getMappingInstanceSelectorHintValues().containsKey(hint);
 		} else if(hint instanceof ModelConnectionHint) {

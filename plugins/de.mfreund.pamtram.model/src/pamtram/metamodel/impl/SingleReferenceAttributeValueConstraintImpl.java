@@ -6,12 +6,17 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -23,6 +28,7 @@ import pamtram.impl.NamedElementImpl;
 
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
@@ -30,6 +36,8 @@ import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.util.MetamodelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -230,6 +238,36 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if(this.getSourceElements().isEmpty()
+						|| !(((EObject) this).eContainer() instanceof SourceSectionAttribute)) {
+			return true;
+		}
+		
+		boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue);
+		
+		if (!result && diagnostics != null) {
+			
+			String errorMessage = "This AttributeValueConstraint must only"
+					+ " contain FixedValues as source elements as it is modeled as part of a SourceSection!'";
+			
+			diagnostics.add
+				(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					 MetamodelValidator.DIAGNOSTIC_SOURCE,
+					 MetamodelValidator.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,
+					 errorMessage,
+					 new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
+			}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -397,6 +435,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 		switch (operationID) {
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING:
 				return checkConstraint((String)arguments.get(0), (String)arguments.get(1));
+			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
+				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

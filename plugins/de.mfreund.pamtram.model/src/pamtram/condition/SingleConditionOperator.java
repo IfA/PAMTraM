@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  * @see pamtram.condition.ConditionPackage#getSingleConditionOperator()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='exactlyOneArg'"
  * @generated
  */
 public interface SingleConditionOperator extends ComplexCondition {

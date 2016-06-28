@@ -2,14 +2,20 @@
  */
 package pamtram.metamodel.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -17,6 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.impl.ExpressionHintImpl;
@@ -25,6 +32,8 @@ import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
+import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.util.MetamodelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -174,6 +183,36 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if(this.getSourceElements().isEmpty()
+						|| !(((EObject) this).eContainer() instanceof SourceSectionAttribute)) {
+			return true;
+		}
+		
+		boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue);
+		
+		if (!result && diagnostics != null) {
+			
+			String errorMessage = "This AttributeValueConstraint must only"
+					+ " contain FixedValues as source elements as it is modeled as part of a SourceSection!'";
+			
+			diagnostics.add
+				(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					 MetamodelValidator.DIAGNOSTIC_SOURCE,
+					 MetamodelValidator.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,
+					 errorMessage,
+					 new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
+			}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -307,6 +346,20 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MetamodelPackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
+				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

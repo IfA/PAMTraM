@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @see pamtram.metamodel.MetamodelPackage#getClass_()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eClassMatchesParentEReference variableCardinalityIsValid containerIsValid'"
  * @generated
  */
 public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElement<S, C, R, A> {

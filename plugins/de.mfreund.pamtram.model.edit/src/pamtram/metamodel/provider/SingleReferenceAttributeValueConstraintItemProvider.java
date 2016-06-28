@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
@@ -54,8 +54,8 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 			super.getPropertyDescriptors(object);
 
 			addTypePropertyDescriptor(object);
-			addConstraintReferenceValuePropertyDescriptor(object);
 			addExpressionPropertyDescriptor(object);
+			addResultModifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -83,28 +83,6 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	}
 
 	/**
-	 * This adds a property descriptor for the Constraint Reference Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConstraintReferenceValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SingleReferenceAttributeValueConstraint_constraintReferenceValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceAttributeValueConstraint_constraintReferenceValue_feature", "_UI_SingleReferenceAttributeValueConstraint_type"),
-				 MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Expression feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -115,13 +93,35 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SingleReferenceAttributeValueConstraint_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceAttributeValueConstraint_expression_feature", "_UI_SingleReferenceAttributeValueConstraint_type"),
-				 MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION,
+				 getString("_UI_ExpressionHint_expression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
+				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Result Modifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResultModifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModifiableHint_resultModifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -139,6 +139,7 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -202,6 +203,7 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

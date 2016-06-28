@@ -4,12 +4,15 @@
 package de.mfreund.gentrans.transformation.handler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.Job;
 
+import de.mfreund.gentrans.transformation.BaseTransformationConfiguration;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
+import de.mfreund.gentrans.transformation.GenericTransformationRunnerFactory;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
@@ -48,20 +51,34 @@ public class GenericTransformationJob extends Job {
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
 	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
 	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
+	 * @param maxPathLength 
+	 * @param rememberAmbiguousMappingChoice 
 	 */
 	public GenericTransformationJob(final String jobName,
 			final String sourceFilePath, final String pamtramPath,
 			final String targetBasePath, 
 			final String defaultTargetModel, final String transformationModelPath,
 			final LibraryContextDescriptor targetLibraryContextDescriptor,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, int maxPathLength, boolean rememberAmbiguousMappingChoice) {
 
 		super(jobName);
 		ArrayList<String> sourceFilePaths = new ArrayList<>();
 		sourceFilePaths.add(sourceFilePath);
-		genTransRunner = GenericTransformationRunner.createInstanceFromSourcePaths(sourceFilePaths,
-				pamtramPath, targetBasePath, defaultTargetModel, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
-		genTransRunner.setTransformationModelPath(transformationModelPath);
+		
+		BaseTransformationConfiguration baseConfig = new BaseTransformationConfiguration()
+				.withAmbiguityResolvingStrategy(ambiguityResolvingStrategy)
+				.withDefaultTargetModel(defaultTargetModel)
+				.withTransformationModelPath(transformationModelPath)
+				.withMaxPathLength(maxPathLength)
+				.withOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice)
+				.withTargetLibraryContextDescriptor(targetLibraryContextDescriptor);
+		
+		genTransRunner = GenericTransformationRunnerFactory.eINSTANCE.createInstanceFromSourcePaths(
+				sourceFilePaths,
+				pamtramPath, 
+				targetBasePath, 
+				baseConfig);
+		
 		setPriority(Job.BUILD);
 
 	}
@@ -86,17 +103,37 @@ public class GenericTransformationJob extends Job {
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
 	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
 	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
+	 * @param maxPathLength  Maximum length for connection paths in the 'joining' step;
+	 * If this is set to less than zero 0, it means that the maximum length is unbounded.
+	 * @param rememberAmbiguousMappingChoice Determines whether the user should be asked every time an ambiguous
+	 * mapping was detected, or if we should reuse user decisions.
 	 */
 	public GenericTransformationJob(final String jobName,
-			final ArrayList<String> sourceFilePaths, final String pamtramPath,
-			final String targetBasePath, 
-			final String defaultTargetModel, final String transformationModelPath, 
-			final LibraryContextDescriptor targetLibraryContextDescriptor,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
+			List<String> sourceFilePaths,
+			String pamtramPath,
+			String targetBasePath, 
+			String defaultTargetModel,
+			String transformationModelPath, 
+			LibraryContextDescriptor targetLibraryContextDescriptor,
+			IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
+			int maxPathLength,
+			boolean rememberAmbiguousMappingChoice) {
+		
 		super(jobName);
-		genTransRunner = GenericTransformationRunner.createInstanceFromSourcePaths(sourceFilePaths,
-				pamtramPath, targetBasePath, defaultTargetModel, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
-		genTransRunner.setTransformationModelPath(transformationModelPath);
+		
+		BaseTransformationConfiguration baseConfig = new BaseTransformationConfiguration()
+				.withAmbiguityResolvingStrategy(ambiguityResolvingStrategy)
+				.withDefaultTargetModel(defaultTargetModel)
+				.withTransformationModelPath(transformationModelPath)
+				.withMaxPathLength(maxPathLength)
+				.withOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice)
+				.withTargetLibraryContextDescriptor(targetLibraryContextDescriptor);
+		
+		genTransRunner = GenericTransformationRunnerFactory.eINSTANCE.createInstanceFromSourcePaths(
+				sourceFilePaths,
+				pamtramPath, 
+				targetBasePath, 
+				baseConfig);
 		setPriority(Job.BUILD);
 	}
 

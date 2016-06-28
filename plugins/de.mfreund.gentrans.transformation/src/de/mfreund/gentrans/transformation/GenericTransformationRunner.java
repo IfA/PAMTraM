@@ -1,6 +1,5 @@
 package de.mfreund.gentrans.transformation;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,34 +12,22 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.console.ConsolePlugin;
-import org.eclipse.ui.console.IConsole;
-import org.eclipse.ui.console.IConsoleManager;
-import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
-import org.eclipse.ui.progress.UIJob;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
@@ -64,7 +51,6 @@ import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
 import de.mfreund.gentrans.transformation.registries.HintValueStorage;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
-import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
@@ -89,8 +75,6 @@ import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.util.GenLibraryManager;
-import pamtram.util.PamtramEPackageHelper;
-import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
 /**
  * Main Class for running the generic transformation for a PAMTraM model.
@@ -108,19 +92,9 @@ public class GenericTransformationRunner extends CancelableElement {
 	private final List<ICancelable> objectsToCancel;
 
 	/**
-	 * File paths of the source models to be transformed
-	 */
-	private final List<String> sourceFilePaths;
-
-	/**
 	 * The source models to be transformed
 	 */
 	private List<EObject> sourceModels;
-
-	/**
-	 * File path to the transformation model
-	 */
-	private final String pamtramPath;
 
 	/**
 	 * The transformation model
@@ -206,123 +180,24 @@ public class GenericTransformationRunner extends CancelableElement {
 	private TransformationResult transformationResult;
 
 	/**
-	 * This is the getter for the {@link #transformationModelPath}.
+	 * This creates an instance based on the given {@link TransformationConfiguration}.
 	 * 
-	 * @return The path where the {@link #transformationModel} will be stored after the transformation.
+	 * @param config The {@link TransformationConfiguration} specifying all parameters
+	 * necessary for the execution of the transformation.
 	 */
-	public String getTransformationModelPath() {
-		return transformationModelPath;
-	}
-
-	/**
-	 * This is the setter for the {@link #transformationModelPath}.
-	 * 
-	 * @param transformationModelPath The path where the {@link #transformationModel} shall be stored after the transformation.
-	 */
-	public void setTransformationModelPath(String transformationModelPath) {
-		this.transformationModelPath = transformationModelPath;
-	}
-
-	/**
-	 * This is the getter for the {@link #maxPathLength} setting.
-	 * @return The maximum length for connection paths in the 'joining' step.
-	 */
-	public int getMaxPathLength() {
-		return maxPathLength;
-	}
-
-	/**
-	 * This is the setter for the {@link #maxPathLength} setting.
-	 * @param maxPathLength The maximum length for connection paths in the 'joining' step (value must 
-	 * be larger or equal to '-1').
-	 */
-	public void setMaxPathLength(final int maxPathLength) {
-		this.maxPathLength = maxPathLength >= 0 ? maxPathLength : -1;
-	}
-
-	/**
-	 * This is the getter for the {@link #onlyAskOnceOnAmbiguousMappings} setting.
-	 * @return '<em><b>true</b></em>' if the user should be asked every time an ambiguous mapping was detected,
-	 * '<em><b>false</b></em>' otherwise.
-	 */
-	public boolean isOnlyAskOnceOnAmbiguousMappings() {
-		return onlyAskOnceOnAmbiguousMappings;
-	}
-
-	/**
-	 * This is the setter for the {@link #onlyAskOnceOnAmbiguousMappings} setting.
-	 * @param onlyAskOnceOnAmbiguousMappings '<em><b>true</b></em>' if the user should be asked every time 
-	 * an ambiguous mapping was detected, '<em><b>false</b></em>' otherwise.
-	 */
-	public void setOnlyAskOnceOnAmbiguousMappings(
-			final boolean onlyAskOnceOnAmbiguousMappings) {
-		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
-	}
-
-	/**
-	 * This is the Getter for the {@link #targetSectionInstantiator}.
-	 * @return The {@link #targetSectionInstantiator} used by the transformation runner.
-	 */
-	public TargetSectionInstantiator getTargetSectionInstantiator() {
-		return targetSectionInstantiator;
-	}
-
-	/**
-	 * This is the Getter for the {@link #targetSectionConnector}.
-	 * @return The {@link #targetSectionConnector} used by the transformation runner.
-	 */
-	public TargetSectionConnector getTargetSectionConnector() {
-		return targetSectionConnector;
-	}
-
-	/**
-	 * Private constructor that is called from all other constructors.
-	 * 
-	 * @param sourceFilePaths
-	 *            List of file paths of the source models
-	 * @param pamtramPath
-	 *            Path to the transformation model
-	 * @param targetBasePath
-	 *            File path relative to that all target models will be created.
-	 * @param defaultTargetModel
-	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
-	 * target model is that target model to which all contents will be added that are not associated with a special model
-	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
-	 * @param transformationModelPath
-	 * 				This is the file path where an instance of {@link Transformation} that contains information
-	 * about the execution will be stored after the transformation.
-	 * If this is set to '<em>null</em>', the transformation model will not be stored.
-	 * @param maxPathLength
-	 * 			  Maximum length of connection paths between target sections.
-	 * @param onlyAskOnceOnAmbiguousMappings
-	 * 			  Whether ambiguities shall only be resolved once or for every instance.
-	 * @param targetLibraryContextDescriptor
-	 * 			  The descriptor for the target library context to be used during the transformation.
-	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
-	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
-	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
-	 */
-	private GenericTransformationRunner(
-			final List<String> sourceFilePaths,
-			final String pamtramPath, 
-			final String targetBasePath, 
-			final String defaultTargetModel,
-			final String transformationModelPath,
-			int maxPathLength,
-			boolean onlyAskOnceOnAmbiguousMappings, 
-			LibraryContextDescriptor targetLibraryContextDescriptor,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
-
+	GenericTransformationRunner(TransformationConfiguration config) {
+		
 		super();
-		this.sourceModels = new ArrayList<>();
-		this.sourceFilePaths = sourceFilePaths;
-		this.pamtramPath = pamtramPath;
-		this.targetBasePath = targetBasePath;
-		this.defaultTargetModel = (defaultTargetModel == null ? "out.xmi" : defaultTargetModel);
-		this.setTransformationModelPath(transformationModelPath);
-		this.maxPathLength = maxPathLength;
-		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
-		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
+		this.consoleStream = config.getConsoleStream();
+		this.pamtramModel = config.getPamtramModel();
+		this.sourceModels = config.getSourceModels();
+		this.targetBasePath = config.getTargetBasePath();
+		this.defaultTargetModel = config.getDefaultTargetModel();
+		this.transformationModelPath = config.getTransformationModelPath();
+		this.maxPathLength = config.getMaxPathLength();
+		this.onlyAskOnceOnAmbiguousMappings = config.isOnlyAskOnceOnAmbiguousMappings();
+		this.targetLibraryContextDescriptor = config.getTargetLibraryContextDescriptor();
+		this.ambiguityResolvingStrategy = config.getAmbiguityResolvingStrategy();
 		this.transformationResult = null;
 
 		/*
@@ -331,166 +206,9 @@ public class GenericTransformationRunner extends CancelableElement {
 		this.transformationModel = TransformationFactory.eINSTANCE.createTransformation();
 		this.transformationModel.setId(Integer.toString(hashCode()));
 
-		/* 
-		 * make sure that all ambiguities are resolved completely by requiring an instance of
-		 * 'DefaultAmbiguityResolvingStrategy' to be participating in the resolving process
-		 */
-		initializeAmbiguityResolvingStrategy(ambiguityResolvingStrategy);
-
-		consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
 		objectsToCancel = new LinkedList<>();
-		// brings the console view to the front
-		showConsole();
 	}
 
-	/**
-	 * This initializes the {@link #ambiguityResolvingStrategy}.
-	 * <p />
-	 * Based on the given <em>ambiguityResolvingStrategy</em>, the resulting
-	 * strategy is created so that an instance of the
-	 * {@link DefaultAmbiguityResolvingStrategy} is included in the strategy --
-	 * if necessary, a {@link ComposedAmbiguityResolvingStrategy} is created for
-	 * this.
-	 * 
-	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} based on that the
-	 *            {@link #ambiguityResolvingStrategy} shall be initialized. If
-	 *            this is '<em>null</em>', the strategy will be initialized with
-	 *            an instance of {@link DefaultAmbiguityResolvingStrategy}.
-	 */
-	private void initializeAmbiguityResolvingStrategy(final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
-
-		if(ambiguityResolvingStrategy == null) {
-
-			this.ambiguityResolvingStrategy = new DefaultAmbiguityResolvingStrategy();
-
-		} else if(ambiguityResolvingStrategy instanceof DefaultAmbiguityResolvingStrategy) {
-
-			this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
-
-		} else if(ambiguityResolvingStrategy instanceof ComposedAmbiguityResolvingStrategy) {
-
-			boolean containsDefaultStrategy = false;
-			for (IAmbiguityResolvingStrategy strategy : ((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy).getComposedStrategies()) {
-				if(strategy instanceof DefaultAmbiguityResolvingStrategy) {
-					containsDefaultStrategy = true;
-					break;
-				}
-			};
-			if(!containsDefaultStrategy) {
-				((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy).addStrategy(new DefaultAmbiguityResolvingStrategy());
-			}
-			this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
-
-		} else {
-
-			ArrayList<IAmbiguityResolvingStrategy> composed = new ArrayList<>();
-			composed.add(ambiguityResolvingStrategy);
-			composed.add(new DefaultAmbiguityResolvingStrategy());
-			this.ambiguityResolvingStrategy = new ComposedAmbiguityResolvingStrategy(composed);
-
-		}
-	}
-
-	/**
-	 * This constructs an instance. 
-	 *
-	 * @param sourceFilePaths
-	 *            List of file paths of the source models
-	 * @param pamtramPath
-	 *            Path to the transformation model
-	 * @param targetBasePath
-	 *            File path relative to that all target models will be created.
-	 * @param defaultTargetModel
-	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
-	 * target model is that target model to which all contents will be added that are not associated with a special model
-	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
-	 * @param targetLibraryContextDescriptor
-	 * 			  The descriptor for the target library context to be used during the transformation.
-	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
-	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
-	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
-	 * @return An instance of {@link GenericTransformationRunner}.
-	 */
-	public static GenericTransformationRunner createInstanceFromSourcePaths(
-			final List<String> sourceFilePaths,
-			final String pamtramPath,
-			final String targetBasePath, 
-			final String defaultTargetModel,
-			LibraryContextDescriptor targetLibraryContextDescriptor,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
-
-		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetBasePath, defaultTargetModel, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
-	}
-
-	/**
-	 * This constructs an instance.
-	 *
-	 * @param sourceFilePaths
-	 *             List of file paths of the source models
-	 * @param pamtramModel
-	 *            The transformation model
-	 * @param targetBasePath
-	 *            File path relative to that all target models will be created.
-	 * @param defaultTargetModel
-	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
-	 * target model is that target model to which all contents will be added that are not associated with a special model
-	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
-	 * @param targetLibraryContextDescriptor
-	 * 			  The descriptor for the target library context to be used during the transformation.
-	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
-	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
-	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
-	 * @return An instance of {@link GenericTransformationRunner}.
-	 */
-	public static GenericTransformationRunner createInstanceFromSourcePaths(
-			final List<String> sourceFilePaths,
-			final PAMTraM pamtramModel, 
-			final String targetBasePath, 
-			final String defaultTargetModel,
-			LibraryContextDescriptor targetLibraryContextDescriptor,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
-
-		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(sourceFilePaths, null, targetBasePath, defaultTargetModel, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
-		instance.pamtramModel = pamtramModel;
-		return instance;
-	}
-
-	/**
-	 * This constructs an instance.
-	 *
-	 * @param sourceModels
-	 *            The list of source models
-	 * @param pamtramModel
-	 *            The transformation model
-	 * @param targetBasePath
-	 *            File path relative to that all target models will be created.
-	 * @param defaultTargetModel
-	 * 			   File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default 
-	 * target model is that target model to which all contents will be added that are not associated with a special model
-	 * via the {@link FileAttribute}. If this is '<em>null</em>', '<em>out.xmi</em>' will be used as default value.
-	 * @param targetLibraryContextDescriptor
-	 * 			  The descriptor for the target library context to be used during the transformation.
-	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
-	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
-	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
-	 * @return An instance of {@link GenericTransformationRunner}.
-	 */
-	public static GenericTransformationRunner createInstanceFromSourceModels(
-			final List<EObject> sourceModels,
-			final PAMTraM pamtramModel, 
-			final String targetBasePath, 
-			final String defaultTargetModel,
-			LibraryContextDescriptor targetLibraryContextDescriptor,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
-
-		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(null, null, targetBasePath, defaultTargetModel, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
-		instance.pamtramModel = pamtramModel;
-		instance.sourceModels = sourceModels;
-		return instance;
-	}
 
 	/**
 	 * This performs the actual generic transformation. It loads all necessary models, executes the mappings defined
@@ -508,14 +226,6 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		monitorWrapper.beginTask("GenTrans", 1000);
 
-		// Create a resource set.
-		ResourceSet resourceSet = new ResourceSetImpl();
-
-		// load the mapping model
-		if(pamtramModel == null && !loadPamtramModel(resourceSet)) {
-			return;
-		}
-
 		// validate the pamtram model
 		Diagnostic diag = Diagnostician.INSTANCE.validate(pamtramModel);
 		if(diag.getSeverity() == Diagnostic.ERROR) {
@@ -531,9 +241,6 @@ public class GenericTransformationRunner extends CancelableElement {
 				return;
 			}
 		}
-
-		// load the source model
-		loadSourceModel(resourceSet);
 
 		// set the start date (after loading all models)
 		this.transformationModel.setStartDate(new Date());
@@ -1094,86 +801,6 @@ public class GenericTransformationRunner extends CancelableElement {
 	}
 
 	/**
-	 * This loads the pamtram model from an XMI file. If necessary, additional {@link EPackage EPackages} that are
-	 * referenced in the model are registered so that no errors occur during the transformation.
-	 * 
-	 * @param rs The resource set to be used to load the resource.
-	 * @return '<em><b>true</b></em>' if the model was loaded successfully, '<em><b>false</b></em>' otherwise.
-	 */
-	private boolean loadPamtramModel(ResourceSet rs) {
-
-		ResourceSet resourceSet = rs;
-
-		// the URI of the pamtram resource
-		final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
-
-		// load the pamtram model
-		XMIResource pamtramResource = 
-				(XMIResource) resourceSet.getResource(pamtramUri, true);
-		if(!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
-			writePamtramMessage("The pamtram file does not seem to contain a pamtram instance. Aborting...");
-			return false;
-		}
-		pamtramModel = (PAMTraM) pamtramResource.getContents()
-				.get(0);
-
-		// try to register the ePackages involved in the pamtram model (if not already done)
-		EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(
-				pamtramModel,
-				ResourcesPlugin.getWorkspace().getRoot().findMember(sourceFilePaths.get(0)).getProject(),
-				EPackage.Registry.INSTANCE);
-		switch (result) {
-		case ERROR_PACKAGE_NOT_FOUND:
-			writePamtramMessage("One or more EPackages are not loaded correctly. Aborting...");
-			return false;
-		case ERROR_METAMODEL_FOLDER_NOT_FOUND:
-		case ERROR_PAMTRAM_NOT_FOUND:
-			writePamtramMessage("Internal error during EPackage check. Aborting...");
-			return false;
-		case OK_PACKAGES_REGISTERED:
-			// if packages have been registered, a new resource set has to be created; otherwise,
-			// proxy resolving does not seem to work correctly
-			resourceSet = new ResourceSetImpl();
-			pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
-					true);
-			pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
-			break;
-		case OK_NOTHING_REGISTERED:
-		default:
-			break;
-		}
-
-		return true;
-	}
-
-	/**
-	 * This loads the source models from XMI or XML files.
-	 * 
-	 * @param rs The resource set to be used to load the resource.
-	 */
-	private void loadSourceModel(ResourceSet resourceSet) {
-
-		for (String sourceFilePath : sourceFilePaths) {
-
-			// the URI of the source resource
-			final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
-
-			if(sourceFilePath.endsWith(".xml")) {
-				// add file extension to registry
-				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-						"xml", new GenericXMLResourceFactoryImpl());
-			}
-
-			// try to load source model
-			Resource sourceResource = 
-					resourceSet.getResource(sourceUri, true);
-
-			sourceModels.add(sourceResource.getContents().get(0));
-
-		}
-	}
-
-	/**
 	 * This populates the contents of the {@link #transformationModel} and stores it to the path denoted by 
 	 * {@link #transformationModelPath}.
 	 * <p/>
@@ -1339,53 +966,6 @@ public class GenericTransformationRunner extends CancelableElement {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Find an existing output console for the transformation or create a new one. 
-	 * Copied from: @see <a href="http://wiki.eclipse.org/FAQ_How_do_I_write_to_the_console_from_a_plug-in%3F"
-	 * >Eclipse FAQ</a>
-	 *
-	 * @param consoleName The name of the console to be returned.
-	 * @return A {@link MessageConsole} object with the given '<em>consoleName</em>'. 
-	 */
-	private MessageConsole findConsole(final String consoleName) {
-		final ConsolePlugin plugin = ConsolePlugin.getDefault();
-		final IConsoleManager conMan = plugin.getConsoleManager();
-		final IConsole[] existing = conMan.getConsoles();
-		for (final IConsole element : existing) {
-			if (consoleName.equals(element.getName())) {
-				return (MessageConsole) element;
-			}
-		}
-		// no console found, so create a new one
-		final MessageConsole myConsole = new MessageConsole(consoleName, null);
-		conMan.addConsoles(new IConsole[] { myConsole });
-		return myConsole;
-	}
-
-	/**
-	 * Brings the console view to the foreground. If the view is closed, it will
-	 * be opened.
-	 */
-	private void showConsole() {
-		// as the transformation runs in a non-UI thread, we have to use
-		// a UIJob to find the console viw
-		final UIJob job = new UIJob("Show Console View") {
-			@Override
-			public IStatus runInUIThread(final IProgressMonitor monitor) {
-				try {
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage()
-					.showView("org.eclipse.ui.console.ConsoleView");
-				} catch (final PartInitException e) {
-					e.printStackTrace();
-					return Status.CANCEL_STATUS;
-				}
-				return Status.OK_STATUS;
-			}
-		};
-		job.schedule();
 	}
 
 	/**

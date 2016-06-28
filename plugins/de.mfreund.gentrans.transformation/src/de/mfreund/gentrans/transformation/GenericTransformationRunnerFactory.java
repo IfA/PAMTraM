@@ -1,8 +1,9 @@
 package de.mfreund.gentrans.transformation;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -186,7 +187,8 @@ public class GenericTransformationRunnerFactory {
 
 	private MessageConsoleStream initializeLogger() {
 
-		MessageConsoleStream consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
+		MessageConsoleStream consoleStream = findConsole(
+				"de.mfreund.gentrans.transformation " + DateFormat.getDateTimeInstance().format(new Date())).newMessageStream();
 		// brings the console view to the front
 		showConsole();
 		

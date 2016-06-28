@@ -163,7 +163,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" upperBound="-1"
         eType="#//condition/ComplexCondition" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReferenceableElement" abstract="true"/>
   <eSubpackages name="metamodel" nsURI="http://mfreund.de/pamtram/metamodel" nsPrefix="metamodel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
@@ -799,7 +798,6 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//ReferenceableElement"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
@@ -895,29 +893,43 @@
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//metamodel/InstancePointerSourceInterface"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="RangeBound">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValue"
-          upperBound="-1" eType="#//ReferenceableElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RangeBound" eSuperTypes="#//mapping/ExpressionHint #//mapping/ModifiableHint">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundType" eType="#//metamodel/AttributeValueConstraintType"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral=""/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValueAdditionalSpecification"
           upperBound="-1" eType="#//metamodel/InstancePointer" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
+          eType="#//metamodel/AttributeValueConstraintSourceInterface" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeValueConstraint"
-        abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint">
+        abstract="true" eSuperTypes="#//metamodel/AttributeValueConstraint #//mapping/ExpressionHint #//mapping/ModifiableHint">
       <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="refValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValue"
-          upperBound="-1" eType="#//ReferenceableElement"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral=""/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValueAdditionalSpecification"
           upperBound="-1" eType="#//metamodel/InstancePointer" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
+          eType="#//metamodel/AttributeValueConstraintSourceInterface" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeValueConstraintSourceInterface"
+        abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeValueConstraintSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//metamodel/AttributeValueConstraintSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeValueConstraintExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//metamodel/AttributeValueConstraintSourceInterface"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">
@@ -1406,11 +1418,11 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//metamodel/InstancePointerSourceInterface #//ReferenceableElement">
+    <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//metamodel/InstancePointerSourceInterface #//metamodel/AttributeValueConstraintSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttribute" eSuperTypes="#//NamedElement #//ReferenceableElement">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttribute" eSuperTypes="#//NamedElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeHasUpperBoundOne"/>
       </eAnnotations>
@@ -1422,7 +1434,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//metamodel/InstancePointerSourceInterface">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ModelConnectionHintSourceInterface #//metamodel/InstancePointerSourceInterface #//metamodel/AttributeValueConstraintSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
           eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>

@@ -21,7 +21,6 @@ import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.RangeBound;
-import de.mfreund.gentrans.transformation.condition.InstancePointerHandler;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 
 

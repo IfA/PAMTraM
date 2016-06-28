@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.calculation.InstancePointerHandler;
 import de.mfreund.gentrans.transformation.calculation.ReferenceableValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;

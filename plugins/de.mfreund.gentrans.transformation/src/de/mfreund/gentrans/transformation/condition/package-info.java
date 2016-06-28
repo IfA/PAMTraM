@@ -1,5 +1,6 @@
 /**
- * Provides classes that are related to handling conditions
+ * Provides classes that are related to the evaluation of conditions
+ * during a transformation.
  *  
  * @author gkoltun
  */

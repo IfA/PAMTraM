@@ -38,8 +38,9 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
+import de.mfreund.gentrans.transformation.BaseTransformationConfiguration;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
-import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
+import de.mfreund.gentrans.transformation.GenericTransformationRunnerFactory;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
@@ -303,9 +304,16 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		String defaultTargetModel = "temp.xmi";
 
 		// Create a transformation runner and use it to get the matching source sections
+		//
+		BaseTransformationConfiguration baseConfig = new BaseTransformationConfiguration()
+				.withDefaultTargetModel(defaultTargetModel);
+		
 		GenericTransformationRunner tr = 
-				GenericTransformationRunner.createInstanceFromSourceModels(
-						new ArrayList<EObject>(contents), editor.pamtram, targetBasePath, defaultTargetModel, null, new UserDecisionResolvingStrategy());
+				GenericTransformationRunnerFactory.eINSTANCE.createInstanceFromSourceModels(
+						new ArrayList<EObject>(contents), 
+						editor.pamtram, 
+						targetBasePath, 
+						baseConfig);
 
 		matchedSections = tr.matchSourceSections();
 

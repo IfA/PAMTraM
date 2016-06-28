@@ -22,7 +22,7 @@ import pamtram.metamodel.TargetSectionClass;
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getCardinalityMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot'"
+ * @model
  * @generated
  */
 public interface CardinalityMapping extends MappingHint {

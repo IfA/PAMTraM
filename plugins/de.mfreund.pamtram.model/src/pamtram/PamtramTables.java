@@ -74,8 +74,6 @@ public class PamtramTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappingModel = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("MappingModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_OclElement = pamtram.PamtramTables.PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_PAMTraM = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("PAMTraM", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_RangeBound = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("RangeBound", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SingleReferenceAttributeValueConstraint = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SingleReferenceAttributeValueConstraint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSection = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSection", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSectionModel = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("SourceSectionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSection = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSection", 0);
@@ -87,8 +85,6 @@ public class PamtramTables
     public static final /*@NonInvalid*/ java.lang.String STR_ConditionalElement_c_c_eitherModelOrReferCondition = "ConditionalElement::eitherModelOrReferCondition";
     public static final /*@NonInvalid*/ java.lang.String STR_ConditionalElement_c_c_referenceOnlyConditionsFromConditionModel = "ConditionalElement::referenceOnlyConditionsFromConditionModel";
     public static final /*@NonInvalid*/ java.lang.String STR_It_32_only_32_allowed_32_to_32_reference_32_Condition_m_Instances_32_that_32_are_32_model_32 = "It only allowed to reference Condition-Instances that are model inside the ConditionModel!";
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_RangeBound = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.PamtramTables.CLSSid_RangeBound);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_SingleReferenceAttributeValueConstraint = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.PamtramTables.CLSSid_SingleReferenceAttributeValueConstraint);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_AttributeValueModifierSet = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_AttributeValueModifierSet);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_ComplexCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ConditionModel = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_ConditionModel);
@@ -145,7 +141,6 @@ public class PamtramTables
 		public static final /*@NonNull*/ EcoreExecutorType _MappingModel = new EcoreExecutorType(PamtramPackage.Literals.MAPPING_MODEL, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _NamedElement = new EcoreExecutorType(PamtramPackage.Literals.NAMED_ELEMENT, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _PAMTraM = new EcoreExecutorType(PamtramPackage.Literals.PAM_TRA_M, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ReferenceableElement = new EcoreExecutorType(PamtramPackage.Literals.REFERENCEABLE_ELEMENT, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _SectionModel = new EcoreExecutorType(PamtramPackage.Literals.SECTION_MODEL, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._SectionModel_S, TypeParameters._SectionModel_C, TypeParameters._SectionModel_R, TypeParameters._SectionModel_A);
 		public static final /*@NonNull*/ EcoreExecutorType _SourceSectionModel = new EcoreExecutorType(PamtramPackage.Literals.SOURCE_SECTION_MODEL, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _TargetSectionModel = new EcoreExecutorType(PamtramPackage.Literals.TARGET_SECTION_MODEL, PACKAGE, 0);
@@ -157,7 +152,6 @@ public class PamtramTables
 			_MappingModel,
 			_NamedElement,
 			_PAMTraM,
-			_ReferenceableElement,
 			_SectionModel,
 			_SourceSectionModel,
 			_TargetSectionModel
@@ -212,10 +206,6 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorFragment _PAMTraM__OclAny = new ExecutorFragment(Types._PAMTraM, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _PAMTraM__OclElement = new ExecutorFragment(Types._PAMTraM, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _PAMTraM__PAMTraM = new ExecutorFragment(Types._PAMTraM, PamtramTables.Types._PAMTraM);
-
-		private static final /*@NonNull*/ ExecutorFragment _ReferenceableElement__OclAny = new ExecutorFragment(Types._ReferenceableElement, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _ReferenceableElement__OclElement = new ExecutorFragment(Types._ReferenceableElement, OCLstdlibTables.Types._OclElement);
-		private static final /*@NonNull*/ ExecutorFragment _ReferenceableElement__ReferenceableElement = new ExecutorFragment(Types._ReferenceableElement, PamtramTables.Types._ReferenceableElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _SectionModel__NamedElement = new ExecutorFragment(Types._SectionModel, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _SectionModel__OclAny = new ExecutorFragment(Types._SectionModel, OCLstdlibTables.Types._OclAny);
@@ -402,14 +392,6 @@ public class PamtramTables
 		};
 		private static final int /*@NonNull*/ [] __PAMTraM = { 1,1,1 };
 
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ReferenceableElement =
-		{
-			Fragments._ReferenceableElement__OclAny /* 0 */,
-			Fragments._ReferenceableElement__OclElement /* 1 */,
-			Fragments._ReferenceableElement__ReferenceableElement /* 2 */
-		};
-		private static final int /*@NonNull*/ [] __ReferenceableElement = { 1,1,1 };
-
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _SectionModel =
 		{
 			Fragments._SectionModel__OclAny /* 0 */,
@@ -449,7 +431,6 @@ public class PamtramTables
 			Types._MappingModel.initFragments(_MappingModel, __MappingModel);
 			Types._NamedElement.initFragments(_NamedElement, __NamedElement);
 			Types._PAMTraM.initFragments(_PAMTraM, __PAMTraM);
-			Types._ReferenceableElement.initFragments(_ReferenceableElement, __ReferenceableElement);
 			Types._SectionModel.initFragments(_SectionModel, __SectionModel);
 			Types._SourceSectionModel.initFragments(_SourceSectionModel, __SourceSectionModel);
 			Types._TargetSectionModel.initFragments(_TargetSectionModel, __TargetSectionModel);
@@ -647,34 +628,6 @@ public class PamtramTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ReferenceableElement__ReferenceableElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ReferenceableElement__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ReferenceableElement__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SectionModel__SectionModel = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SectionModel__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SectionModel__OclAny = {
@@ -795,10 +748,6 @@ public class PamtramTables
 			Fragments._PAMTraM__OclElement.initOperations(_PAMTraM__OclElement);
 			Fragments._PAMTraM__PAMTraM.initOperations(_PAMTraM__PAMTraM);
 
-			Fragments._ReferenceableElement__OclAny.initOperations(_ReferenceableElement__OclAny);
-			Fragments._ReferenceableElement__OclElement.initOperations(_ReferenceableElement__OclElement);
-			Fragments._ReferenceableElement__ReferenceableElement.initOperations(_ReferenceableElement__ReferenceableElement);
-
 			Fragments._SectionModel__NamedElement.initOperations(_SectionModel__NamedElement);
 			Fragments._SectionModel__OclAny.initOperations(_SectionModel__OclAny);
 			Fragments._SectionModel__OclElement.initOperations(_SectionModel__OclElement);
@@ -876,8 +825,6 @@ public class PamtramTables
 			PamtramTables.Properties._PAMTraM__targetSections
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ReferenceableElement = {};
-
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SectionModel = {
 			PamtramTables.Properties._SectionModel__metaModelPackage,
 			PamtramTables.Properties._SectionModel__metaModelSections,
@@ -909,7 +856,6 @@ public class PamtramTables
 			Fragments._MappingModel__MappingModel.initProperties(_MappingModel);
 			Fragments._NamedElement__NamedElement.initProperties(_NamedElement);
 			Fragments._PAMTraM__PAMTraM.initProperties(_PAMTraM);
-			Fragments._ReferenceableElement__ReferenceableElement.initProperties(_ReferenceableElement);
 			Fragments._SectionModel__SectionModel.initProperties(_SectionModel);
 			Fragments._SourceSectionModel__SourceSectionModel.initProperties(_SourceSectionModel);
 			Fragments._TargetSectionModel__TargetSectionModel.initProperties(_TargetSectionModel);

@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeParameter;
+import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
+import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
@@ -110,6 +112,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.INSTANCE_POINTER_SOURCE_ELEMENT: return createInstancePointerSourceElement();
 			case MetamodelPackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: return createInstancePointerExternalSourceElement();
 			case MetamodelPackage.RANGE_BOUND: return createRangeBound();
+			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_ELEMENT: return createAttributeValueConstraintSourceElement();
+			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createAttributeValueConstraintExternalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -411,6 +415,26 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public RangeBound createRangeBound() {
 		RangeBoundImpl rangeBound = new RangeBoundImpl();
 		return rangeBound;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeValueConstraintSourceElement createAttributeValueConstraintSourceElement() {
+		AttributeValueConstraintSourceElementImpl attributeValueConstraintSourceElement = new AttributeValueConstraintSourceElementImpl();
+		return attributeValueConstraintSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeValueConstraintExternalSourceElement createAttributeValueConstraintExternalSourceElement() {
+		AttributeValueConstraintExternalSourceElementImpl attributeValueConstraintExternalSourceElement = new AttributeValueConstraintExternalSourceElementImpl();
+		return attributeValueConstraintExternalSourceElement;
 	}
 
 	/**

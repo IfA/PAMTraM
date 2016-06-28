@@ -9,9 +9,9 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
-import pamtram.ReferenceableElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
@@ -301,8 +301,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createInstancePointerSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseReferenceableElement(ReferenceableElement object) {
-				return createReferenceableElementAdapter();
+			public Adapter caseAttributeValueConstraintSourceInterface(AttributeValueConstraintSourceInterface object) {
+				return createAttributeValueConstraintSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1123,16 +1123,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.ReferenceableElement <em>Referenceable Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.AttributeValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.ReferenceableElement
+	 * @see pamtram.metamodel.AttributeValueConstraintSourceInterface
 	 * @generated
 	 */
-	public Adapter createReferenceableElementAdapter() {
+	public Adapter createAttributeValueConstraintSourceInterfaceAdapter() {
 		return null;
 	}
 

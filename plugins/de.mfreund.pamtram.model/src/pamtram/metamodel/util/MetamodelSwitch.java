@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.NamedElement;
-import pamtram.ReferenceableElement;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.LocalModifiedAttributeElementType;
@@ -17,6 +16,9 @@ import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
+import pamtram.metamodel.AttributeValueConstraintSourceElement;
+import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CaseSensitiveConstraint;
 import pamtram.metamodel.ContainerParameter;
@@ -324,7 +326,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				SourceSectionAttribute sourceSectionAttribute = (SourceSectionAttribute)theEObject;
 				T result = caseSourceSectionAttribute(sourceSectionAttribute);
 				if (result == null) result = caseAttribute(sourceSectionAttribute);
-				if (result == null) result = caseReferenceableElement(sourceSectionAttribute);
 				if (result == null) result = caseMetaModelElement(sourceSectionAttribute);
 				if (result == null) result = caseNamedElement(sourceSectionAttribute);
 				if (result == null) result = defaultCase(theEObject);
@@ -365,6 +366,8 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCaseSensitiveConstraint(equalityMatcher);
 				if (result == null) result = caseSingleReferenceAttributeValueConstraint(equalityMatcher);
 				if (result == null) result = caseAttributeValueConstraint(equalityMatcher);
+				if (result == null) result = caseExpressionHint(equalityMatcher);
+				if (result == null) result = caseModifiableHint(equalityMatcher);
 				if (result == null) result = caseNamedElement(equalityMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -382,6 +385,8 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCaseSensitiveConstraint(substringMatcher);
 				if (result == null) result = caseSingleReferenceAttributeValueConstraint(substringMatcher);
 				if (result == null) result = caseAttributeValueConstraint(substringMatcher);
+				if (result == null) result = caseExpressionHint(substringMatcher);
+				if (result == null) result = caseModifiableHint(substringMatcher);
 				if (result == null) result = caseNamedElement(substringMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -392,6 +397,8 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCaseSensitiveConstraint(beginningMatcher);
 				if (result == null) result = caseSingleReferenceAttributeValueConstraint(beginningMatcher);
 				if (result == null) result = caseAttributeValueConstraint(beginningMatcher);
+				if (result == null) result = caseExpressionHint(beginningMatcher);
+				if (result == null) result = caseModifiableHint(beginningMatcher);
 				if (result == null) result = caseNamedElement(beginningMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -402,6 +409,8 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCaseSensitiveConstraint(endingMatcher);
 				if (result == null) result = caseSingleReferenceAttributeValueConstraint(endingMatcher);
 				if (result == null) result = caseAttributeValueConstraint(endingMatcher);
+				if (result == null) result = caseExpressionHint(endingMatcher);
+				if (result == null) result = caseModifiableHint(endingMatcher);
 				if (result == null) result = caseNamedElement(endingMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -411,6 +420,8 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				T result = caseRegExMatcher(regExMatcher);
 				if (result == null) result = caseSingleReferenceAttributeValueConstraint(regExMatcher);
 				if (result == null) result = caseAttributeValueConstraint(regExMatcher);
+				if (result == null) result = caseExpressionHint(regExMatcher);
+				if (result == null) result = caseModifiableHint(regExMatcher);
 				if (result == null) result = caseNamedElement(regExMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -420,6 +431,8 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				T result = caseCaseSensitiveConstraint(caseSensitiveConstraint);
 				if (result == null) result = caseSingleReferenceAttributeValueConstraint(caseSensitiveConstraint);
 				if (result == null) result = caseAttributeValueConstraint(caseSensitiveConstraint);
+				if (result == null) result = caseExpressionHint(caseSensitiveConstraint);
+				if (result == null) result = caseModifiableHint(caseSensitiveConstraint);
 				if (result == null) result = caseNamedElement(caseSensitiveConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -482,6 +495,8 @@ public class MetamodelSwitch<T> extends Switch<T> {
 			case MetamodelPackage.RANGE_BOUND: {
 				RangeBound rangeBound = (RangeBound)theEObject;
 				T result = caseRangeBound(rangeBound);
+				if (result == null) result = caseExpressionHint(rangeBound);
+				if (result == null) result = caseModifiableHint(rangeBound);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -489,7 +504,39 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint = (SingleReferenceAttributeValueConstraint)theEObject;
 				T result = caseSingleReferenceAttributeValueConstraint(singleReferenceAttributeValueConstraint);
 				if (result == null) result = caseAttributeValueConstraint(singleReferenceAttributeValueConstraint);
+				if (result == null) result = caseExpressionHint(singleReferenceAttributeValueConstraint);
+				if (result == null) result = caseModifiableHint(singleReferenceAttributeValueConstraint);
 				if (result == null) result = caseNamedElement(singleReferenceAttributeValueConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_INTERFACE: {
+				AttributeValueConstraintSourceInterface attributeValueConstraintSourceInterface = (AttributeValueConstraintSourceInterface)theEObject;
+				T result = caseAttributeValueConstraintSourceInterface(attributeValueConstraintSourceInterface);
+				if (result == null) result = caseMappingHintSourceInterface(attributeValueConstraintSourceInterface);
+				if (result == null) result = caseNamedElement(attributeValueConstraintSourceInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_ELEMENT: {
+				AttributeValueConstraintSourceElement attributeValueConstraintSourceElement = (AttributeValueConstraintSourceElement)theEObject;
+				T result = caseAttributeValueConstraintSourceElement(attributeValueConstraintSourceElement);
+				if (result == null) result = caseLocalModifiedAttributeElementType(attributeValueConstraintSourceElement);
+				if (result == null) result = caseAttributeValueConstraintSourceInterface(attributeValueConstraintSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeValueConstraintSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(attributeValueConstraintSourceElement);
+				if (result == null) result = caseNamedElement(attributeValueConstraintSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: {
+				AttributeValueConstraintExternalSourceElement attributeValueConstraintExternalSourceElement = (AttributeValueConstraintExternalSourceElement)theEObject;
+				T result = caseAttributeValueConstraintExternalSourceElement(attributeValueConstraintExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(attributeValueConstraintExternalSourceElement);
+				if (result == null) result = caseAttributeValueConstraintSourceInterface(attributeValueConstraintExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeValueConstraintExternalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(attributeValueConstraintExternalSourceElement);
+				if (result == null) result = caseNamedElement(attributeValueConstraintExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1128,6 +1175,51 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Constraint Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Constraint Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeValueConstraintSourceInterface(AttributeValueConstraintSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Constraint Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Constraint Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeValueConstraintSourceElement(AttributeValueConstraintSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Constraint External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Constraint External Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeValueConstraintExternalSourceElement(AttributeValueConstraintExternalSourceElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1139,21 +1231,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Referenceable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Referenceable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReferenceableElement(ReferenceableElement object) {
 		return null;
 	}
 

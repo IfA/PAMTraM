@@ -8,8 +8,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import pamtram.ReferenceableElement;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcherSourceInterface;
@@ -17,6 +15,7 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.SourceSectionAttribute;
 
@@ -197,7 +196,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 				default: return -1;
 			}
 		}
-		if (baseClass == ReferenceableElement.class) {
+		if (baseClass == AttributeValueConstraintSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

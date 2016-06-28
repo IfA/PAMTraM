@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  *
  * @see pamtram.condition.ConditionPackage#getNot()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='referenceOnlyConditionsFromConditionModelOrFromConditionalElements'"
+ * @model
  * @generated
  */
 public interface Not extends SingleConditionOperator {

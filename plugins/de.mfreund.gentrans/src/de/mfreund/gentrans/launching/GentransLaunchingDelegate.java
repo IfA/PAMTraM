@@ -128,10 +128,17 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// Create and run the transformation job
 		//
 		GenericTransformationJob job = new GenericTransformationJob(
-				"GenTrans", sourceFiles, pamtramFile, targetBasePath, defaultTargetModel, transformationFile, targetLibraryContextDescriptor, resolvingStrategy);
-		job.getGenTransRunner().setMaxPathLength(maxPathLength);
-		job.getGenTransRunner().setOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice);
-
+				"GenTrans", 
+				sourceFiles, 
+				pamtramFile, 
+				targetBasePath, 
+				defaultTargetModel, 
+				transformationFile, 
+				targetLibraryContextDescriptor, 
+				resolvingStrategy,
+				maxPathLength,
+				rememberAmbiguousMappingChoice);
+		
 		job.setUser(true);
 		job.schedule();
 

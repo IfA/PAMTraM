@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.registries;
+package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.CardinalityMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValueMap;

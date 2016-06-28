@@ -57,6 +57,35 @@ public class BaseTransformationConfiguration {
 	 * resolve ambiguities that arise during the execution of the transformation.
 	 */
 	protected IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
+	
+	/**
+	 * This creates an instance and initializes all parameters with default values.
+	 * <p />
+	 * Note: These can be changed by means of the various <em>with...</em> methods.
+	 */
+	public BaseTransformationConfiguration() {
+		
+		// Initialize all parameters with default values.
+		//
+		withDefaultTargetModel(null);
+		withTransformationModelPath(null);
+		withMaxPathLength(-1);
+		withOnlyAskOnceOnAmbiguousMappings(true);
+		withTargetLibraryContextDescriptor(null);
+		withAmbiguityResolvingStrategy(null);
+
+	}
+
+	/**
+	 * Check if all parameters have been initialized with meaningful values.
+	 * 
+	 * @return '<em><b>true</b></em>' if all parameters have been initialized with 
+	 * meaningful values; '<em><b>false</b></em>' otherwise.
+	 */
+	public boolean validate() {
+		
+		return defaultTargetModel != null && ambiguityResolvingStrategy != null;
+	}
 
 	/**
 	 * Set the {@link #defaultTargetModel}.

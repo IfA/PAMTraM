@@ -5,7 +5,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
@@ -65,6 +64,10 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, 
 			String targetBasePath, MessageConsoleStream consoleStream){
 		
+		// Initialize all optional parameters with default values
+		//
+		super();
+		
 		// Initialize the mandatory parameters
 		//
 		this.sourceModels = sourceModels;
@@ -72,14 +75,6 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		this.targetBasePath = targetBasePath;
 		this.consoleStream = consoleStream;
 		
-		// Initialize all optional parameters with default values
-		//
-		this.defaultTargetModel = "out.xmi";
-		this.transformationModelPath = null;
-		this.maxPathLength = 0;
-		this.onlyAskOnceOnAmbiguousMappings = true;
-		this.targetLibraryContextDescriptor = null;
-		this.ambiguityResolvingStrategy = new DefaultAmbiguityResolvingStrategy();
 	}
 	
 	/**
@@ -101,14 +96,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, 
 			String targetBasePath, MessageConsoleStream consoleStream, BaseTransformationConfiguration baseConfig){
 		
-		// Initialize the mandatory parameters
-		//
-		this.sourceModels = sourceModels;
-		this.pamtramModel = pamtramModel;
-		this.targetBasePath = targetBasePath;
-		this.consoleStream = consoleStream;
-		
-		// Initialize all optional parameters with default values
+		// Initialize all optional parameters with the values specified in the given
+		// BaseTransformationConfiguraiton
 		//
 		this.defaultTargetModel = baseConfig.getDefaultTargetModel();
 		this.transformationModelPath = baseConfig.getTransformationModelPath();
@@ -116,6 +105,48 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		this.onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
 		this.targetLibraryContextDescriptor = baseConfig.getTargetLibraryContextDescriptor();
 		this.ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
+		
+		// Initialize the mandatory parameters
+		//
+		this.sourceModels = sourceModels;
+		this.pamtramModel = pamtramModel;
+		this.targetBasePath = targetBasePath;
+		this.consoleStream = consoleStream;
+	}
+	
+	/**
+	 * Check if all parameters have been initialized with meaningful values.
+	 * 
+	 * @return '<em><b>true</b></em>' if all parameters have been initialized with 
+	 * meaningful values; '<em><b>false</b></em>' otherwise.
+	 */
+	@Override
+	public boolean validate() {
+		
+		if(!super.validate()) {
+			return false;
+		}
+		
+		if(consoleStream == null) {
+			return false;
+		}
+		
+		if(sourceModels == null || sourceModels.isEmpty()) {
+			consoleStream.println("No source models have been specified!");
+			return false;
+		}
+		
+		if(pamtramModel == null) {
+			consoleStream.println("No PAMTraM model has been specified!");
+			return false;
+		}
+		
+		if(targetBasePath == null || targetBasePath.isEmpty()) {
+			consoleStream.println("No target base path has been specified!");
+			return false;
+		}
+		
+		return true;
 	}
 	
 	@Override

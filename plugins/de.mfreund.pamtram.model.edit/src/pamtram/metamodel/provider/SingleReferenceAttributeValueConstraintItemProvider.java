@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
@@ -219,6 +220,7 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		if(!(object instanceof EObject)) {
@@ -235,6 +237,32 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
 							MetamodelFactory.eINSTANCE.createInstancePointer()));
 		}
+
+		// Do not allow to add local/external source attributes or GlobalAttributeImporters below 
+		// SourceSectionAttributes as these are only supported as part of Conditions
+		//
+		if(!(((EObject) object).eContainer() instanceof SourceSectionAttribute)) {
+			
+			newChildDescriptors.add
+			(createChildParameter
+					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+							MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
+			
+			newChildDescriptors.add
+			(createChildParameter
+					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+							MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+			
+			newChildDescriptors.add
+			(createChildParameter
+					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+		}
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createFixedValue()));
 	}
 
 	/**

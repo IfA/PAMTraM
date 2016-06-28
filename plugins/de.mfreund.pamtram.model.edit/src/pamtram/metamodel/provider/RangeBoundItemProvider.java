@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -24,7 +24,7 @@ import pamtram.mapping.provider.ExpressionHintItemProvider;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
-
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
@@ -205,36 +205,53 @@ public class RangeBoundItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+		
+		if(!(object instanceof EObject)) {
+			return;
+		}
+		
+		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of 
+		// Conditions
+		//
+		if(!(((EObject) object).eContainer() instanceof SourceSectionAttribute)) {
 
-		newChildDescriptors.add
+			newChildDescriptors.add
+				(createChildParameter
+					(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
+					 MetamodelFactory.eINSTANCE.createInstancePointer()));
+		}
+		
+		// Do not allow to add local/external source attributes or GlobalAttributeImporters below 
+		// SourceSectionAttributes as these are only supported as part of Conditions
+		//
+		if(!(((EObject) object).eContainer() instanceof SourceSectionAttribute)) {
+			
+			newChildDescriptors.add
+				(createChildParameter
+					(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+					 MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
+	
+			newChildDescriptors.add
+				(createChildParameter
+					(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+					 MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+			
+			newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
-				 MetamodelFactory.eINSTANCE.createInstancePointer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-				 MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-				 MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+					(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+		}
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createFixedValue()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 	}
 
 	/**

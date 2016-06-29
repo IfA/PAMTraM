@@ -567,7 +567,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 */
 		targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,
-				matchingResult.getGlobalValues().getGlobalValuesAsDouble(),
+				matchingResult.getGlobalValues().getAsDouble(),
 				attributeValuemodifier, transformationConfig.getConsoleStream(), transformationConfig.getAmbiguityResolvingStrategy());
 		objectsToCancel.add(targetSectionInstantiator);
 
@@ -681,7 +681,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 */
 		targetSectionLinker = new TargetSectionLinker(
 				expandingResult.getTargetSectionRegistry(),
-				matchingResult.getGlobalValues().getGlobalValuesAsDouble(), 
+				matchingResult.getGlobalValues().getAsDouble(), 
 				expandingResult.getLibEntryInstantiatorMap(),
 				attributeValueModifier, transformationConfig.getConsoleStream(), transformationConfig.getAmbiguityResolvingStrategy());
 		objectsToCancel.add(targetSectionLinker);

@@ -6,8 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
-
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
@@ -78,14 +76,14 @@ public class AttributeValueCalculator {
 	 * apply {@link AttributeValueModifierSet AttributeValueModifierSets}.
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages to the user.
 	 */
-	public AttributeValueCalculator(GlobalValueMap globalValues, AttributeValueModifierExecutor attributeValuemodifier, MessageConsoleStream consoleStream) {
+	public AttributeValueCalculator(GlobalValueMap globalValues, AttributeValueModifierExecutor attributeValuemodifier, 
+			MessageConsoleStream consoleStream) {
 		
 		// store the attribute value modifier
 		this.attributeValuemodifier = attributeValuemodifier;
 		
 		// store the global var value doubles
-		this.globalVarValueDoubles = globalValues.getGlobalValuesAsDouble().entrySet().parallelStream().collect(
-				Collectors.toMap(e -> e.getKey().getName(), e -> e.getValue()));
+		this.globalVarValueDoubles = globalValues.getAsDoubleByString();
 		
 		// store the message stream
 		this.consoleStream = consoleStream;

@@ -22,16 +22,23 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import pamtram.condition.AttributeCondition;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.FixedValue;
+import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.impl.ExpressionHintImpl;
+import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
+import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.util.MetamodelValidator;
 
@@ -213,6 +220,51 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isLocalConstraint() {
+		
+		if(this.eContainer().eContainer() instanceof SourceSectionAttribute) {
+			return true;
+		}
+		
+		if(!(this.eContainer().eContainer() instanceof AttributeCondition)) {
+			throw new UnsupportedOperationException();
+		}
+		
+		EObject container = this;
+		
+		while(!(container instanceof Mapping)) {
+			if(container == null) {
+				return false;
+			}
+			container = container.eContainer();
+		}
+		
+		// The SourceSection of the Mapping that contains the constraint
+		//
+		SourceSection localSection = ((Mapping) container).getSourceMMSection();
+		
+		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
+				(s instanceof AttributeValueConstraintSourceElement &&
+				((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
+				(s instanceof AttributeValueConstraintExternalSourceElement &&
+						((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
+			return true;
+		}
+		
+		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
+		//
+		return getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(
+				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
+						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
+						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+				).findAny().isPresent();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -358,6 +410,8 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 		switch (operationID) {
 			case MetamodelPackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MetamodelPackage.RANGE_BOUND___IS_LOCAL_CONSTRAINT:
+				return isLocalConstraint();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

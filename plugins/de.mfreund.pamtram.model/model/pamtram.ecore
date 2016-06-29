@@ -909,6 +909,7 @@
           </eGenericType>
         </eParameters>
       </eOperations>
+      <eOperations name="isLocalConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundType" eType="#//metamodel/AttributeValueConstraintType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="boundReferenceValueAdditionalSpecification"
           upperBound="-1" eType="#//metamodel/InstancePointer" containment="true"/>
@@ -936,6 +937,7 @@
           </eGenericType>
         </eParameters>
       </eOperations>
+      <eOperations name="isLocalConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValueAdditionalSpecification"
           upperBound="-1" eType="#//metamodel/InstancePointer" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"

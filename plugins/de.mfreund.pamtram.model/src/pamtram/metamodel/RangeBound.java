@@ -98,4 +98,13 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 	 */
 	boolean validateOnlyFixedValuesInSourceSections(DiagnosticChain diagnostics, Map<?, ?> context);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeBound!isLocalConstraint()'"
+	 * @generated
+	 */
+	boolean isLocalConstraint();
+
 } // RangeBound

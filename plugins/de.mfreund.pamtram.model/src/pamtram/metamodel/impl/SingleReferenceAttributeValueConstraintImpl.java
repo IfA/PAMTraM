@@ -24,18 +24,26 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import pamtram.condition.AttributeCondition;
 import pamtram.impl.NamedElementImpl;
 
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.FixedValue;
+import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.LocalModifiedAttributeElementType;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
+import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
+import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.util.MetamodelValidator;
 
@@ -266,6 +274,51 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isLocalConstraint() {
+
+		if(this.eContainer() instanceof SourceSectionAttribute) {
+			return true;
+		}
+		
+		if(!(this.eContainer() instanceof AttributeCondition)) {
+			throw new UnsupportedOperationException();
+		}
+		
+		EObject container = this;
+		
+		while(!(container instanceof Mapping)) {
+			if(container == null) {
+				return false;
+			}
+			container = container.eContainer();
+		}
+		
+		// The SourceSection of the Mapping that contains the constraint
+		//
+		SourceSection localSection = ((Mapping) container).getSourceMMSection();
+		
+		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
+				(s instanceof AttributeValueConstraintSourceElement &&
+				((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
+				(s instanceof AttributeValueConstraintExternalSourceElement &&
+						((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
+			return true;
+		}
+		
+		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
+		//
+		return getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(
+				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
+						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
+						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+				).findAny().isPresent();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -437,6 +490,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 				return checkConstraint((String)arguments.get(0), (String)arguments.get(1));
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
+				return isLocalConstraint();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

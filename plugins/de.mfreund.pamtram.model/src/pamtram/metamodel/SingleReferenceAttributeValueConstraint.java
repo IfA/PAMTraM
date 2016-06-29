@@ -78,4 +78,13 @@ public interface SingleReferenceAttributeValueConstraint extends AttributeValueC
 	 */
 	boolean validateOnlyFixedValuesInSourceSections(DiagnosticChain diagnostics, Map<?, ?> context);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceAttributeValueConstraint!isLocalConstraint()'"
+	 * @generated
+	 */
+	boolean isLocalConstraint();
+
 } // SingleReferenceAttributeValueConstraint

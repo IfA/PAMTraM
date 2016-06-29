@@ -8,9 +8,9 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
-import pamtram.ReferenceableElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
@@ -416,7 +416,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMatcherSourceInterface(fixedValue);
 				if (result == null) result = caseModelConnectionHintSourceInterface(fixedValue);
 				if (result == null) result = caseInstancePointerSourceInterface(fixedValue);
-				if (result == null) result = caseReferenceableElement(fixedValue);
+				if (result == null) result = caseAttributeValueConstraintSourceInterface(fixedValue);
 				if (result == null) result = caseMappingHintSourceInterface(fixedValue);
 				if (result == null) result = caseNamedElement(fixedValue);
 				if (result == null) result = defaultCase(theEObject);
@@ -426,7 +426,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				GlobalAttribute globalAttribute = (GlobalAttribute)theEObject;
 				T result = caseGlobalAttribute(globalAttribute);
 				if (result == null) result = caseNamedElement(globalAttribute);
-				if (result == null) result = caseReferenceableElement(globalAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -437,6 +436,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMatcherSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseModelConnectionHintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseInstancePointerSourceInterface(globalAttributeImporter);
+				if (result == null) result = caseAttributeValueConstraintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseMappingHintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseNamedElement(globalAttributeImporter);
 				if (result == null) result = defaultCase(theEObject);
@@ -1429,17 +1429,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Referenceable Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Constraint Source Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Referenceable Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Constraint Source Interface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseReferenceableElement(ReferenceableElement object) {
+	public T caseAttributeValueConstraintSourceInterface(AttributeValueConstraintSourceInterface object) {
 		return null;
 	}
 

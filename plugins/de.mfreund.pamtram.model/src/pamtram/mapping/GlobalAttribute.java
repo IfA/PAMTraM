@@ -7,7 +7,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
-import pamtram.ReferenceableElement;
 import pamtram.metamodel.SourceSectionAttribute;
 
 
@@ -28,7 +27,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeHasUpperBoundOne'"
  * @generated
  */
-public interface GlobalAttribute extends NamedElement, ReferenceableElement {
+public interface GlobalAttribute extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.

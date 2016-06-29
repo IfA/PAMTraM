@@ -15,6 +15,9 @@ import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
+import pamtram.metamodel.AttributeValueConstraintSourceElement;
+import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
@@ -196,12 +199,28 @@ public class MetamodelValidator extends EObjectValidator {
 	public static final int INSTANCE_POINTER__NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS = 14;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values In Source Sections' of 'Range Bound'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS = 15;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values In Source Sections' of 'Single Reference Attribute Value Constraint'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS = 16;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 14;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 16;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -334,6 +353,12 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateRangeBound((RangeBound)value, diagnostics, context);
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT:
 				return validateSingleReferenceAttributeValueConstraint((SingleReferenceAttributeValueConstraint)value, diagnostics, context);
+			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_INTERFACE:
+				return validateAttributeValueConstraintSourceInterface((AttributeValueConstraintSourceInterface)value, diagnostics, context);
+			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_ELEMENT:
+				return validateAttributeValueConstraintSourceElement((AttributeValueConstraintSourceElement)value, diagnostics, context);
+			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT:
+				return validateAttributeValueConstraintExternalSourceElement((AttributeValueConstraintExternalSourceElement)value, diagnostics, context);
 			case MetamodelPackage.FILE_TYPE_ENUM:
 				return validateFileTypeEnum((FileTypeEnum)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
@@ -985,7 +1010,18 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateEqualityMatcher(EqualityMatcher equalityMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(equalityMatcher, diagnostics, context);
+		if (!validate_NoCircularContainment(equalityMatcher, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(equalityMatcher, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1003,7 +1039,18 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSubstringMatcher(SubstringMatcher substringMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(substringMatcher, diagnostics, context);
+		if (!validate_NoCircularContainment(substringMatcher, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(substringMatcher, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1012,7 +1059,18 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateBeginningMatcher(BeginningMatcher beginningMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(beginningMatcher, diagnostics, context);
+		if (!validate_NoCircularContainment(beginningMatcher, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(beginningMatcher, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1021,7 +1079,18 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateEndingMatcher(EndingMatcher endingMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(endingMatcher, diagnostics, context);
+		if (!validate_NoCircularContainment(endingMatcher, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(endingMatcher, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1030,7 +1099,18 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateRegExMatcher(RegExMatcher regExMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(regExMatcher, diagnostics, context);
+		if (!validate_NoCircularContainment(regExMatcher, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(regExMatcher, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1039,7 +1119,18 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCaseSensitiveConstraint(CaseSensitiveConstraint caseSensitiveConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(caseSensitiveConstraint, diagnostics, context);
+		if (!validate_NoCircularContainment(caseSensitiveConstraint, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(caseSensitiveConstraint, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1143,7 +1234,56 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateRangeBound(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(rangeBound, diagnostics, context);
+		if (!validate_NoCircularContainment(rangeBound, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRangeBound_onlyFixedValuesInSourceSections(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRangeBound_validateOnlyFixedValuesInSourceSections(rangeBound, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the onlyFixedValuesInSourceSections constraint of '<em>Range Bound</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRangeBound_onlyFixedValuesInSourceSections(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "onlyFixedValuesInSourceSections", getObjectLabel(rangeBound, context) },
+						 new Object[] { rangeBound },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateOnlyFixedValuesInSourceSections constraint of '<em>Range Bound</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRangeBound_validateOnlyFixedValuesInSourceSections(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return rangeBound.validateOnlyFixedValuesInSourceSections(diagnostics, context);
 	}
 
 	/**
@@ -1152,7 +1292,104 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSingleReferenceAttributeValueConstraint(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (!validate_NoCircularContainment(singleReferenceAttributeValueConstraint, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(singleReferenceAttributeValueConstraint, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the onlyFixedValuesInSourceSections constraint of '<em>Single Reference Attribute Value Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "onlyFixedValuesInSourceSections", getObjectLabel(singleReferenceAttributeValueConstraint, context) },
+						 new Object[] { singleReferenceAttributeValueConstraint },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateOnlyFixedValuesInSourceSections constraint of '<em>Single Reference Attribute Value Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return singleReferenceAttributeValueConstraint.validateOnlyFixedValuesInSourceSections(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeValueConstraintSourceInterface(AttributeValueConstraintSourceInterface attributeValueConstraintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(attributeValueConstraintSourceInterface, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeValueConstraintSourceElement(AttributeValueConstraintSourceElement attributeValueConstraintSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(attributeValueConstraintSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeValueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeValueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeValueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeValueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeValueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeValueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeValueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeValueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= mappingValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeValueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= mappingValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeValueConstraintSourceElement, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeValueConstraintExternalSourceElement(AttributeValueConstraintExternalSourceElement attributeValueConstraintExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(attributeValueConstraintExternalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeValueConstraintExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeValueConstraintExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeValueConstraintExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeValueConstraintExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeValueConstraintExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeValueConstraintExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeValueConstraintExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeValueConstraintExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= mappingValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeValueConstraintExternalSourceElement, diagnostics, context);
+		return result;
 	}
 
 	/**

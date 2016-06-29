@@ -6,7 +6,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
-import pamtram.ReferenceableElement;
 
 
 /**
@@ -26,7 +25,7 @@ import pamtram.ReferenceableElement;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
-public interface SourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ReferenceableElement {
+public interface SourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 	/**
 	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraint}.

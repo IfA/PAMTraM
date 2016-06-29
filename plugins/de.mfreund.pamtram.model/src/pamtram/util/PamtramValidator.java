@@ -125,8 +125,6 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 				return validateConditionalElement((ConditionalElement)value, diagnostics, context);
 			case PamtramPackage.CONDITION_MODEL:
 				return validateConditionModel((ConditionModel)value, diagnostics, context);
-			case PamtramPackage.REFERENCEABLE_ELEMENT:
-				return validateReferenceableElement((ReferenceableElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -242,15 +240,6 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateConditionModel(ConditionModel conditionModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(conditionModel, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateReferenceableElement(ReferenceableElement referenceableElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(referenceableElement, diagnostics, context);
 	}
 
 	/**

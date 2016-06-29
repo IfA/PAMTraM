@@ -1,9 +1,12 @@
 package de.mfreund.gentrans.transformation.matching;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
@@ -27,28 +30,46 @@ import pamtram.metamodel.SourceSectionReference;
 public class InstancePointerValueExtractor extends ValueExtractor {
 
 	/**
+	 * The {@link AttributeValueCalculator} to be used calculate target values. 
+	 */
+	private AttributeValueCalculator attributeValueCalculator;
+
+	/**
 	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 * 
 	 * @param globalAttributeValues The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
 	 * {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
+	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
+	 * resulting values.
 	 * @param attributeValueModifierExecutor The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	public InstancePointerValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, MessageConsoleStream consoleStream) {
+			AttributeValueCalculator attributeValueCalculator, 
+			AttributeValueModifierExecutor attributeValueModifierExecutor, 
+			MessageConsoleStream consoleStream) {
 		
 		super(globalAttributeValues, attributeValueModifierExecutor, consoleStream);
+		
+		this.attributeValueCalculator = attributeValueCalculator;
 	}
 
 	/**
 	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 * 
+	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
+	 * resulting values.
 	 * @param attributeValueModifierExecutor The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
-	public InstancePointerValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor, MessageConsoleStream consoleStream) {
+	public InstancePointerValueExtractor(
+			AttributeValueCalculator attributeValueCalculator,
+			AttributeValueModifierExecutor attributeValueModifierExecutor, 
+			MessageConsoleStream consoleStream) {
 		
 		super(attributeValueModifierExecutor, consoleStream);
+		
+		this.attributeValueCalculator = attributeValueCalculator;
 	}
 	
 	/**
@@ -64,9 +85,9 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 	public String extractRequiredTargetValue(InstancePointer instancePointer, 
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 		
-		// This is used to assemble the parts of the target value
+		// Collect the value parts
 		//
-		StringBuilder valueBuilder = new StringBuilder();
+		Map<InstancePointerSourceInterface, AttributeValueRepresentation> valueParts = new HashMap<>();
 		
 		// Extract the value part based on its type
 		//
@@ -92,13 +113,18 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 							"' of an InstancePointer! This is currently not supported and only the first found value will be used!'");
 				}
 				
-				valueBuilder.append(attributeValueRepresentation.getNextValue());
+				valueParts.put(instancePointerSourceInterface, attributeValueRepresentation);
 			}
 		}
 		
-		return instancePointer.getResultModifier().isEmpty() 
-				? valueBuilder.toString()
-				: attributeValueModifierExecutor.applyAttributeValueModifiers(valueBuilder.toString(), instancePointer.getResultModifier());
+		// Assemble the target value based on the value parts and a potential expression
+		//
+		String expression = instancePointer.getExpression();
+		if(expression == null || expression.isEmpty()) {
+			return attributeValueCalculator.calculateValueWithoutExpression(new ArrayList<>(instancePointer.getSourceAttributes()), valueParts, instancePointer.getResultModifier());
+		} else {
+			return attributeValueCalculator.calculateValueWithExpression(valueParts, expression, instancePointer.getResultModifier());
+		}
 		
 	}
 

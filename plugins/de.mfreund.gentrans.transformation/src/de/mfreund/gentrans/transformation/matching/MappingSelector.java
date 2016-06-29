@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
@@ -80,17 +81,20 @@ public class MappingSelector extends CancelableElement {
 	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a 
 	 * per-element basis.
 	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
+	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
+	 * resulting values.
 	 * @param consoleStream
 	 *           The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	public MappingSelector(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings, 
-			GlobalValueMap globalValues, boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, MessageConsoleStream consoleStream) {
+			GlobalValueMap globalValues, boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
+			AttributeValueCalculator attributeValueCalculator, MessageConsoleStream consoleStream) {
 		
 		this.matchedSections = matchedSections;
 		this.mappings = mappings;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
-		this.conditionHandler = new ConditionHandler(matchedSections, globalValues);
+		this.conditionHandler = new ConditionHandler(matchedSections, globalValues, attributeValueCalculator);
 		this.consoleStream = consoleStream;
 	}
 	

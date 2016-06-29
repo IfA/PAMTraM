@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.condition;
+package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.InstancePointerValueExtractor;
@@ -52,14 +51,16 @@ import pamtram.metamodel.SourceSectionClass;
 	 * MatchedSectionDescriptors} that have been create for each SourceSection during the <em>matching</em> process.
 	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
 	 * defined in the PAMTraM model.
+	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
+	 * resulting values.
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	public InstancePointerHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, 
-			GlobalValueMap globalValues, MessageConsoleStream consoleStream){
+			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator, MessageConsoleStream consoleStream){
 		
 		this.matchedSections = matchedSections;
 		this.valueExtractor = new InstancePointerValueExtractor(
-				globalValues.getGlobalAttributes(), AttributeValueModifierExecutor.getInstance(), consoleStream);
+				globalValues.getGlobalAttributes(), attributeValueCalculator, AttributeValueModifierExecutor.getInstance(), consoleStream);
 		this.consoleStream = consoleStream;
 		
 	}

@@ -44,8 +44,13 @@ public class ExpressionCalculator {
 	/**
 	 * This creates an instance and initializes the {@link #round}, {@link #max}, and {@link #min}
 	 * functions.
+	 * 
+	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print 
+	 * messages to the user.
 	 */
-	public ExpressionCalculator() {
+	public ExpressionCalculator(MessageConsoleStream consoleStream) {
+		
+		this.consoleStream = consoleStream;
 		
 		// initialize the custom calculator functions
 		try {
@@ -54,6 +59,7 @@ public class ExpressionCalculator {
 			min = new MinFunction();
 		} catch (InvalidCustomFunctionException e) {
 			e.printStackTrace();
+			consoleStream.println("Internal Error: Failed to initialize ExpressionCalculator!");
 		}
 	}
 	

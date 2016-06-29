@@ -19,11 +19,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.calculation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
+import pamtram.MappingModel;
+import pamtram.mapping.FixedValue;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
@@ -91,10 +95,10 @@ public class SourceSectionMatcher {
 	private final Set<AttributeValueConstraint> constraintsWithErrors;
 
 	/**
-	 * This {@link ReferenceableValueCalculator} will be used for calculating
+	 * This {@link AttributeValueConstraintReferenceValueCalculator} will be used for calculating
 	 * referenceValues that are needed for {@link AttributeValueConstraint}
 	 */
-	private ReferenceableValueCalculator refValueCalculator;
+	private AttributeValueConstraintReferenceValueCalculator refValueCalculator;
 
 	private Map<SourceSection, List<MatchedSectionDescriptor>> sections2Descriptors;
 
@@ -107,12 +111,14 @@ public class SourceSectionMatcher {
 	 * @param sourceSections
 	 *            The list of {@link SourceSection SourceSections} that the '
 	 *            <em>containmentTree</em>' shall be matched against.
+	 * @param globalValues The list of {@link MappingModel#getGlobalValues() global values} modeled in the
+	 * 				PAMTraM instance.
 	 * @param consoleStream
 	 *            The {@link MessageConsoleStream} that shall be used to print
 	 *            messages.
 	 */
 	public SourceSectionMatcher(ContainmentTree containmentTree, EList<SourceSection> sourceSections,
-			MessageConsoleStream consoleStream) {
+			Map<FixedValue, String> globalValues, MessageConsoleStream consoleStream) {
 
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
@@ -120,7 +126,11 @@ public class SourceSectionMatcher {
 		this.matchedSections = new HashMap<>();
 		this.matchedContainers = new HashMap<>();
 		this.constraintsWithErrors = new HashSet<>();
-		this.refValueCalculator = new ReferenceableValueCalculator(new GlobalValueMap(new HashMap<>(), new HashMap<>()), consoleStream);
+		GlobalValueMap globalValueMap = new GlobalValueMap(globalValues, new HashMap<>());
+		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(
+				globalValueMap,
+				new AttributeValueCalculator(globalValueMap, AttributeValueModifierExecutor.getInstance(), consoleStream),
+				consoleStream);
 	}
 
 	/**

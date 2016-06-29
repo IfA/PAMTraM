@@ -2,6 +2,8 @@ package de.mfreund.gentrans.transformation.maps;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import pamtram.NamedElement;
@@ -31,6 +33,11 @@ public class GlobalValueMap {
 	 * This keeps track of both {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttributes}.
 	 */
 	private Map<NamedElement, String> globalValues;
+	
+	/**
+	 * This keeps track of a those of the {@link #globalValues} that can be parsed as double.
+	 */
+	private Map<NamedElement, Double> globalValuesAsDouble;
 	
 	/**
 	 * This creates an instance.
@@ -96,7 +103,7 @@ public class GlobalValueMap {
 	}
 	
 	/**
-	 * This returns the values of the {@link #globalValues} as {@link Double} values that can be used in calculation.
+	 * This returns the values of the {@link #globalValues} as {@link Double} values that can be used in calculations.
 	 * <p />
 	 * Therefore, it tries to parse a <em>double</em> value for each of the {@link #globalValues}. Values that cannot
 	 * be parsed as <em>double</em> are ignored.
@@ -104,29 +111,47 @@ public class GlobalValueMap {
 	 * @return The values of both {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttributes} represented 
 	 * as <em>double</em>.
 	 */
-	public Map<NamedElement, Double> getGlobalValuesAsDouble() {
+	public Map<NamedElement, Double> getAsDouble() {
 		
-		Map<NamedElement, Double> ret = new HashMap<>();
+		if(this.globalValuesAsDouble == null) {
 			
-		this.globalValues.entrySet().stream().forEach(globalValue -> {
-			
-			try {
+			// If this is called the first time, we need to parse the double values first
+			//
+			this.globalValuesAsDouble = new HashMap<>();
+			this.globalValues.entrySet().stream().forEach(globalValue -> {
 				
-				/*
-				 * We make use of the ExpressionBuilder as 'String.valueOf(double)' doesn't support
-				 * scientific notation, like: 0.42e2 == 4200e-2 == 42
-				 */
-				final Calculable calc = new ExpressionBuilder(globalValue.getValue()).build();
-				ret.put(globalValue.getKey(), calc.calculate());
+				try {
+					
+					/*
+					 * We make use of the ExpressionBuilder as 'String.valueOf(double)' doesn't support
+					 * scientific notation, like: 0.42e2 == 4200e-2 == 42
+					 */
+					final Calculable calc = new ExpressionBuilder(globalValue.getValue()).build();
+					this.globalValuesAsDouble.put(globalValue.getKey(), calc.calculate());
+					
+				} catch (final Exception e) {}
 				
-			} catch (final Exception e) {}
-			
-		});
+			});
+		}
 		
-		return ret;
+		
+		return this.globalValuesAsDouble;
 	}
 	
-	
+	/**
+	 * This returns the values of the {@link #globalValues} as {@link Double} values that can be used in calculations.
+	 * Thereby, the {@link NamedElement#getName() names} of the respective elements are used as key in
+	 * the returned map.
+	 * 
+	 * @see #getAsDouble()
+	 * 
+	 * @return The values of both {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttributes} represented 
+	 * as <em>double</em>.
+	 */
+	public Map<String, Double> getAsDoubleByString() {
+		return getAsDouble().entrySet().parallelStream().collect(
+				Collectors.toMap(e -> e.getKey().getName(), e -> e.getValue()));
+	}
 	
 
 }

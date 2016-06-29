@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -244,6 +245,27 @@ public class MatchedSectionDescriptor {
 	 */
 	public void setAssociatedMappingInstance(MappingInstanceStorage associatedMappingInstance) {
 		this.associatedMappingInstance = associatedMappingInstance;
+	}
+	
+	/**
+	 * From the given list of {@link MatchedSectionDescriptor descriptors}, select the one that  
+	 * {@link MatchedSectionDescriptor#sourceModelObjetsMapped represents} the given
+	 * {@link EObject}.
+	 *  
+	 * @param element The {@link EObject} for that the corresponding {@link MatchedSectionDescriptor} 
+	 * shall be returned.
+	 * @param descriptorsToConsider The list of {@link MatchedSectionDescriptor MatchedSectionDescriptors}
+	 * in that shall be considered.
+	 * @return The {@link MatchedSectionDescriptor} representing the given <em>element</em> (one of the
+	 * list of <em>descriptorsToConsider</em> or '<em>null</em>' if the element is not represented by
+	 * any of the given descriptors.
+	 */
+	public static MatchedSectionDescriptor getDescriptorForElement(EObject element, List<MatchedSectionDescriptor> descriptorsToConsider) {
+		
+		Optional<MatchedSectionDescriptor> descriptor = 
+				descriptorsToConsider.parallelStream().filter(d -> d.getSourceModelObjectFlat().contains(element)).findAny();
+		
+		return descriptor.isPresent() ? descriptor.get() : null;
 	}
 
 }

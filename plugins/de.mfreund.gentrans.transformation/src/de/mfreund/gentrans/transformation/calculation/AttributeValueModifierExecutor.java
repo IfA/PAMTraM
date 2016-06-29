@@ -1,9 +1,9 @@
 package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeValueModifier;
@@ -95,7 +95,7 @@ public class AttributeValueModifierExecutor {
 	 * @return The modified string (after application of the {@link AttributeValueModifier AttributeValueModifiers}.
 	 */
 	public String applyAttributeValueModifiers(final String value,
-			final EList<AttributeValueModifierSet> modifierSets) {
+			final List<AttributeValueModifierSet> modifierSets) {
 		String retVal = value;
 		for (final AttributeValueModifierSet set : modifierSets) {
 			for (final AttributeValueModifier m : set.getModifier()) {

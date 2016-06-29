@@ -271,7 +271,7 @@ public class AttributeValueCalculator {
 
 		// Calculate the value
 		//
-		ExpressionCalculator expCalc = new ExpressionCalculator();
+		ExpressionCalculator expCalc = new ExpressionCalculator(consoleStream);
 		String attrValue = expCalc.calculateExpression(expression, vars);
 		
 		// Apply the result modifiers

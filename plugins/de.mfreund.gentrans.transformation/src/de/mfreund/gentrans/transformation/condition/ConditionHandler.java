@@ -17,7 +17,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.calculation.InstancePointerHandler;
-import de.mfreund.gentrans.transformation.calculation.ReferenceableValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.condition.And;
@@ -90,7 +91,7 @@ public class ConditionHandler {
 	/**
 	 * It will be used for calculating referenceValues that are needed for {@link AttributeCondition}s
 	 */
-	private ReferenceableValueCalculator refValueCalculator;
+	private AttributeValueConstraintReferenceValueCalculator refValueCalculator;
 	
 	/**
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
@@ -104,14 +105,18 @@ public class ConditionHandler {
 	 * MatchedSectionDescriptors} that result from the matching process.
 	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
 	 * defined in the PAMTraM model.
+	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
+	 * resulting values.
 	 */
-	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, GlobalValueMap globalValues){
+	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
+			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator){
 		
 		this.matchedSections =  matchedSections;
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
-		this.instancePointerHandler = new InstancePointerHandler(matchedSections, globalValues, consoleStream);
-		this.refValueCalculator = new ReferenceableValueCalculator(globalValues, this.instancePointerHandler, consoleStream);
+		this.instancePointerHandler = new InstancePointerHandler(matchedSections, globalValues, attributeValueCalculator, consoleStream);
+		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(
+				matchedSections, globalValues, this.instancePointerHandler, attributeValueCalculator, consoleStream);
 	}
 	
 	/**
@@ -267,7 +272,7 @@ public class ConditionHandler {
 					// and we need to extract the right reference Value(s) for each constraint
 					
 					if (constraint instanceof SingleReferenceAttributeValueConstraint){
-						String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint);
+						String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint, matchedSectionDescriptor);
 						constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
 					} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
 						
@@ -278,13 +283,13 @@ public class ConditionHandler {
 							RangeBound upperBound = ((RangeConstraint) constraint).getUpperBound();
 							
 							if(lowerBound != null){
-								srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(lowerBound));
+								srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(lowerBound, matchedSectionDescriptor));
 							} else {
 								srcAttrRefValuesAsList.add("null");
 							}
 							
 							if(upperBound != null){
-								srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(upperBound));
+								srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(upperBound, matchedSectionDescriptor));
 							} else {
 								srcAttrRefValuesAsList.add("null");
 							}

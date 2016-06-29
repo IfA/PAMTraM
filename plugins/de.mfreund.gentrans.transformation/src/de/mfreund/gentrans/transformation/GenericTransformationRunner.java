@@ -219,11 +219,16 @@ public class GenericTransformationRunner extends CancelableElement {
 		List<SourceSection> activeSourceSections = transformationConfig.getPamtramModel().getSourceSections().parallelStream().
 				filter(s -> !s.isAbstract()).collect(Collectors.toList());
 	
+		// Collect the global values modeled in the PAMTraM instance
+		//
+		Map<FixedValue, String> globalFixedValues = transformationConfig.getPamtramModel().getGlobalValues().parallelStream().collect(
+				Collectors.toMap(Function.identity(), FixedValue::getValue));
+		
 		/*
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, new BasicEList<>(activeSourceSections), transformationConfig.getConsoleStream());
+				containmentTree, new BasicEList<>(activeSourceSections), globalFixedValues, transformationConfig.getConsoleStream());
 	
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 	
@@ -451,11 +456,16 @@ public class GenericTransformationRunner extends CancelableElement {
 		List<SourceSection> activeSourceSections = transformationConfig.getPamtramModel().getSourceSections().parallelStream().
 				filter(s -> !s.isAbstract()).collect(Collectors.toList());
 
+		// Collect the global values modeled in the PAMTraM instance
+		//
+		Map<FixedValue, String> globalFixedValues = transformationConfig.getPamtramModel().getGlobalValues().parallelStream().collect(
+				Collectors.toMap(Function.identity(), FixedValue::getValue));
+				
 		/*
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, new BasicEList<>(activeSourceSections), transformationConfig.getConsoleStream());
+				containmentTree, new BasicEList<>(activeSourceSections), globalFixedValues, transformationConfig.getConsoleStream());
 
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 
@@ -472,18 +482,20 @@ public class GenericTransformationRunner extends CancelableElement {
 		// Collect the values of FixedValues and GlobalAttributes in a common map that will be passed to consumers
 		//
 		GlobalValueMap globalValues = new GlobalValueMap(
-				transformationConfig.getPamtramModel().getGlobalValues().parallelStream().collect(
-						Collectors.toMap(Function.identity(), FixedValue::getValue)), 
+				globalFixedValues, 
 				globalAttributeValues);
 
 		writePamtramMessage("Select Mappings for Matched Sections");
+		
+		AttributeValueCalculator calculator = new AttributeValueCalculator(
+				globalValues, attributeValueModifier, transformationConfig.getConsoleStream());
 
 		/*
 		 * Create the MappingSelector that finds applicable mappings
 		 */
 		final MappingSelector mappingSelector = new MappingSelector(matchingResult, suitableMappings, globalValues, 
 				transformationConfig.isOnlyAskOnceOnAmbiguousMappings(), transformationConfig.getAmbiguityResolvingStrategy(), 
-				transformationConfig.getConsoleStream());
+				calculator, transformationConfig.getConsoleStream());
 
 		selectedMappingsByMapping = mappingSelector.selectMappings();
 		List<MappingInstanceStorage> mappingInstances = 
@@ -731,10 +743,8 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		List<LibraryEntryInstantiator> libEntryInstantiators = expandingResult.getLibEntryInstantiatorMap().entrySet().parallelStream()
 				.map(e -> e.getValue()).collect(Collectors.toList());
-		Map<String, Double> globalDoubleValues = matchingResult.getGlobalValues().getGlobalValuesAsDouble().entrySet().parallelStream().collect(
-				Collectors.toMap(e -> e.getKey().getName(), e -> e.getValue()));
-
-		AttributeValueCalculator calculator = new AttributeValueCalculator(globalDoubleValues, attributeValueModifier, transformationConfig.getConsoleStream());
+		AttributeValueCalculator calculator = new AttributeValueCalculator(
+				matchingResult.getGlobalValues(), attributeValueModifier, transformationConfig.getConsoleStream());
 		
 		/*
 		 * Iterate over all stored instantiators and instantiate the associated library entry

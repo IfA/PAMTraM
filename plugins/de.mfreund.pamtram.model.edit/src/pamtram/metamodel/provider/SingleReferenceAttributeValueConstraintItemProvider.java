@@ -25,6 +25,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.AttributeCondition;
+import pamtram.condition.ComplexCondition;
+import pamtram.condition.ConditionPackage;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
@@ -236,12 +238,10 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 			return;
 		}
 		
-		EObject constraint = (EObject) object;
-		
 		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of 
-		// Conditions
-		//
-		if(!(constraint.eContainer() instanceof SourceSectionAttribute)) {
+				// Conditions
+				//
+				if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
 			
 			newChildDescriptors.add
 			(createChildParameter
@@ -252,13 +252,13 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 		// Do not allow to add local/external source attributes or GlobalAttributeImporters below 
 		// SourceSectionAttributes as these are only supported as part of Conditions
 		//
-		if(!(constraint.eContainer() instanceof SourceSectionAttribute)) {
+		if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
 			
 			// Do not allow to add local/external source attributes below 
 			// AttributeConditions that are located inside a ConditionModel
 			//
-			if(!(constraint.eContainer() instanceof AttributeCondition) ||
-					!((AttributeCondition) constraint.eContainer()).isConditionModelCondition()) {
+			ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object, ConditionPackage.eINSTANCE.getComplexCondition());
+			if(condition == null || !condition.isConditionModelCondition()) {
 				
 				newChildDescriptors.add
 				(createChildParameter

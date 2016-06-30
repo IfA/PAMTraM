@@ -2,6 +2,7 @@
  */
 package pamtram.metamodel.impl;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
@@ -24,6 +25,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.condition.AttributeCondition;
+import pamtram.condition.ComplexCondition;
+import pamtram.condition.ConditionPackage;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
@@ -36,6 +39,8 @@ import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.SourceSection;
@@ -191,8 +196,8 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 */
 	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if(this.getSourceElements().isEmpty()
-						|| !(((EObject) this).eContainer() instanceof SourceSectionAttribute)) {
+		if(this.getSourceElements().isEmpty() || 
+				!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
 			return true;
 		}
 		
@@ -220,8 +225,43 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLocalConstraint() {
+	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if(this.getSourceElements().isEmpty() || 
+				!AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition())) {
+			return true;
+		}
 		
+		ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition());
+		
+		if(!condition.isConditionModelCondition()) {
+			return true;
+		}
+		
+		boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter);
+		
+		if (!result && diagnostics != null) {
+			
+			String errorMessage = "This AttributeValueConstraint must only"
+					+ " contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!'";
+			
+			diagnostics.add
+				(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					 MetamodelValidator.DIAGNOSTIC_SOURCE,
+					 MetamodelValidator.RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
+					 errorMessage,
+					 new Object [] { this,  MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS }));
+			}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isLocalConstraint() {
 		if(this.eContainer().eContainer() instanceof SourceSectionAttribute) {
 			return true;
 		}
@@ -255,8 +295,8 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 		//
 		return getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(
 				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
-						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
-						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+						s -> s instanceof InstancePointerSourceElement || 
+						s instanceof InstancePointerExternalSourceElement)
 				).findAny().isPresent();
 	}
 
@@ -410,6 +450,8 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 		switch (operationID) {
 			case MetamodelPackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MetamodelPackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+				return validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MetamodelPackage.RANGE_BOUND___IS_LOCAL_CONSTRAINT:
 				return isLocalConstraint();
 		}

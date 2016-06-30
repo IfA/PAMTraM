@@ -25,14 +25,16 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.AttributeCondition;
+import pamtram.condition.ComplexCondition;
+import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
 
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
@@ -41,6 +43,8 @@ import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
@@ -247,8 +251,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 */
 	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if(this.getSourceElements().isEmpty()
-						|| !(((EObject) this).eContainer() instanceof SourceSectionAttribute)) {
+		if(this.getSourceElements().isEmpty() || 
+				!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
 			return true;
 		}
 		
@@ -274,10 +278,45 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
+	 */
+	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if(this.getSourceElements().isEmpty() || 
+				!AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition())) {
+			return true;
+		}
+		
+		ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition());
+		
+		if(!condition.isConditionModelCondition()) {
+			return true;
+		}
+		
+		boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter);
+		
+		if (!result && diagnostics != null) {
+			
+			String errorMessage = "This AttributeValueConstraint must only"
+					+ " contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!'";
+			
+			diagnostics.add
+				(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					 MetamodelValidator.DIAGNOSTIC_SOURCE,
+					 MetamodelValidator.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
+					 errorMessage,
+					 new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
+			}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public boolean isLocalConstraint() {
-
 		if(this.eContainer() instanceof SourceSectionAttribute) {
 			return true;
 		}
@@ -311,8 +350,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 		//
 		return getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(
 				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
-						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
-						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+						s -> s instanceof InstancePointerSourceElement || 
+						s instanceof InstancePointerExternalSourceElement)
 				).findAny().isPresent();
 	}
 
@@ -490,6 +529,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 				return checkConstraint((String)arguments.get(0), (String)arguments.get(1));
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+				return validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
 				return isLocalConstraint();
 		}

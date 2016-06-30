@@ -5,11 +5,14 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
+
+import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.RegExMatcher;
 
 /**
@@ -71,17 +74,26 @@ public class RegExMatcherItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
+		initializeLabelRelatedChildrenFeatureNotifications(object);
+
 		String label = ((RegExMatcher)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_RegExMatcher_type"), StyledString.Style.QUALIFIER_STYLER); 
+		String value = ((RegExMatcher)object).getExpression();
+
+		StyledString styledLabel = new StyledString();
+		styledLabel.append(getString("_UI_RegExMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
+
+		if(value != null && !value.isEmpty()) {
+			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_RegExMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			
+			List<String> sources = ((RegExMatcher)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
+
 		return styledLabel;
 	}
 

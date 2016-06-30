@@ -5,22 +5,34 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.condition.AttributeCondition;
+import pamtram.condition.ComplexCondition;
+import pamtram.condition.ConditionPackage;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.provider.ExpressionHintItemProvider;
+import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
@@ -163,17 +175,25 @@ public class RangeBoundItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((RangeBound)object).getExpression();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER); 
+		initializeLabelRelatedChildrenFeatureNotifications(object);
+
+		String value = ((RangeBound)object).getExpression();
+
+		StyledString styledLabel = new StyledString();
+		styledLabel.append(getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
+
+		if(value != null && !value.isEmpty()) {
+			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			
+			List<String> sources = ((RangeBound)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
+
 		return styledLabel;
 	}	
 
@@ -219,7 +239,7 @@ public class RangeBoundItemProvider
 		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of 
 		// Conditions
 		//
-		if(!(((EObject) object).eContainer() instanceof SourceSectionAttribute)) {
+		if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
 
 			newChildDescriptors.add
 				(createChildParameter
@@ -230,17 +250,24 @@ public class RangeBoundItemProvider
 		// Do not allow to add local/external source attributes or GlobalAttributeImporters below 
 		// SourceSectionAttributes as these are only supported as part of Conditions
 		//
-		if(!(((EObject) object).eContainer() instanceof SourceSectionAttribute)) {
+		if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
 			
-			newChildDescriptors.add
-				(createChildParameter
-					(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-					 MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
-	
-			newChildDescriptors.add
-				(createChildParameter
-					(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-					 MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+			// Do not allow to add local/external source attributes below 
+			// AttributeConditions that are located inside a ConditionModel
+			//
+			ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object, ConditionPackage.eINSTANCE.getComplexCondition());
+			if(condition == null || !condition.isConditionModelCondition()) {
+			
+				newChildDescriptors.add
+					(createChildParameter
+						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+						 MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
+		
+				newChildDescriptors.add
+					(createChildParameter
+						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+						 MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+			}
 			
 			newChildDescriptors.add
 			(createChildParameter
@@ -263,6 +290,27 @@ public class RangeBoundItemProvider
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
+	}
+	
+	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+			Collection<?> collection, int index) {
+		
+		if(feature.equals(MetamodelPackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
+				!AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping()) && !collection.parallelStream().allMatch(s -> s instanceof FixedValue)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.createAddCommand(domain, owner, feature, collection, index);
+	}
+	
+	@Override
+	public AbstractCommand createDragAndDropCommand(EditingDomain domain, Collection<EObject> collection,
+			EObject parent, EReference ref) {
+		if(ref.equals(MetamodelPackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
+				!AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping()) && !collection.parallelStream().allMatch(s -> s instanceof FixedValue)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.createDragAndDropCommand(domain, collection, parent, ref);
 	}
 
 }

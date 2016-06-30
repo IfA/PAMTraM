@@ -3,6 +3,8 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,6 +32,7 @@ import pamtram.condition.ConditionPackage;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
@@ -168,6 +171,18 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 
 		return super.getChildFeature(object, child);
 	}
+	
+	@Override
+	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
+		
+		/*
+		 * we do not need to add the 'expression' feature here as notifications for this attribute are already generated
+		 * automatically as its 'Notify' property in the genmodel is set to 'true'
+		 */
+		return Arrays.asList(
+				MetamodelPackage.eINSTANCE.getSingleReferenceAttributeValueConstraint_SourceElements());
+		
+	}
 
 	/**
 	 * This returns the label text for the adapted class.
@@ -205,8 +220,7 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SingleReferenceAttributeValueConstraint.class)) {
@@ -220,6 +234,14 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 				return;
 		}
 		super.notifyChanged(notification);
+	}
+	
+	@Override
+	public void notifyChanged(Notification notification) {
+
+		handleLabelRelatedChildrenFeatureChangeNotification(notification);
+
+		notifyChangedGen(notification);
 	}
 
 	/**

@@ -3,8 +3,10 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -14,6 +16,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.mapping.AttributeMappingSourceInterface;
+import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelPackage;
@@ -110,16 +114,20 @@ extends SingleReferenceAttributeValueConstraintItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
+		
+		initializeLabelRelatedChildrenFeatureNotifications(object);
 
 		String label = ((EqualityMatcher)object).getName();
 		String value = ((EqualityMatcher)object).getExpression();
 
 		StyledString styledLabel = new StyledString();
 
-		if(value != null) {
+		if(value != null && !value.isEmpty()) {
 			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
 		} else {
-			styledLabel.append(label == null || label.length() == 0 ? "" : label);
+			
+			List<String> sources = ((EqualityMatcher)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
 
 		return styledLabel;

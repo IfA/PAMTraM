@@ -5,6 +5,7 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
@@ -31,6 +32,7 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.provider.ExpressionHintItemProvider;
+import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
@@ -173,17 +175,25 @@ public class RangeBoundItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((RangeBound)object).getExpression();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER); 
+		initializeLabelRelatedChildrenFeatureNotifications(object);
+
+		String value = ((RangeBound)object).getExpression();
+
+		StyledString styledLabel = new StyledString();
+		styledLabel.append(getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
+
+		if(value != null && !value.isEmpty()) {
+			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			
+			List<String> sources = ((RangeBound)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
+
 		return styledLabel;
 	}	
 

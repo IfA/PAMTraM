@@ -93,11 +93,25 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGlobalAttribute(GlobalAttribute newGlobalAttribute) {
+	public void setGlobalAttributeGen(GlobalAttribute newGlobalAttribute) {
 		GlobalAttribute oldGlobalAttribute = globalAttribute;
 		globalAttribute = newGlobalAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, oldGlobalAttribute, globalAttribute));
+	}
+	
+	
+	/**
+	 * Before setting the {@link newGlobalAttribute}, update the name.
+	 */
+	@Override
+	public void setGlobalAttribute(GlobalAttribute newGlobalAttribute) {
+		setNameDerived(globalAttribute, newGlobalAttribute, null, null);
+		setGlobalAttributeGen(newGlobalAttribute);
+	}
+	
+	public void setValue(String newValue) {
+		
 	}
 
 	/**

@@ -207,12 +207,28 @@ public class MetamodelValidator extends EObjectValidator {
 	public static final int RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS = 15;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values Or Global Attributes In Condition Model' of 'Range Bound'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL = 16;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values In Source Sections' of 'Single Reference Attribute Value Constraint'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS = 16;
+	public static final int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS = 17;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values Or Global Attributes In Condition Model' of 'Single Reference Attribute Value Constraint'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL = 18;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -220,7 +236,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 16;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 18;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -1020,7 +1036,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(equalityMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(equalityMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(equalityMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(equalityMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(equalityMatcher, diagnostics, context);
 		return result;
 	}
 
@@ -1049,7 +1067,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(substringMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(substringMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(substringMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(substringMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(substringMatcher, diagnostics, context);
 		return result;
 	}
 
@@ -1069,7 +1089,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(beginningMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(beginningMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(beginningMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(beginningMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(beginningMatcher, diagnostics, context);
 		return result;
 	}
 
@@ -1089,7 +1111,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(endingMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(endingMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(endingMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(endingMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(endingMatcher, diagnostics, context);
 		return result;
 	}
 
@@ -1109,7 +1133,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(regExMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(regExMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(regExMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(regExMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(regExMatcher, diagnostics, context);
 		return result;
 	}
 
@@ -1129,7 +1155,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(caseSensitiveConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(caseSensitiveConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(caseSensitiveConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(caseSensitiveConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(caseSensitiveConstraint, diagnostics, context);
 		return result;
 	}
 
@@ -1244,7 +1272,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(rangeBound, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(rangeBound, diagnostics, context);
 		if (result || diagnostics != null) result &= validateRangeBound_onlyFixedValuesInSourceSections(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRangeBound_onlyFixedValuesOrGlobalAttributesInConditionModel(rangeBound, diagnostics, context);
 		if (result || diagnostics != null) result &= validateRangeBound_validateOnlyFixedValuesInSourceSections(rangeBound, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRangeBound_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(rangeBound, diagnostics, context);
 		return result;
 	}
 
@@ -1277,6 +1307,34 @@ public class MetamodelValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the onlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Range Bound</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRangeBound_onlyFixedValuesOrGlobalAttributesInConditionModel(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "onlyFixedValuesOrGlobalAttributesInConditionModel", getObjectLabel(rangeBound, context) },
+						 new Object[] { rangeBound },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Validates the validateOnlyFixedValuesInSourceSections constraint of '<em>Range Bound</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1284,6 +1342,16 @@ public class MetamodelValidator extends EObjectValidator {
 	 */
 	public boolean validateRangeBound_validateOnlyFixedValuesInSourceSections(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return rangeBound.validateOnlyFixedValuesInSourceSections(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateOnlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Range Bound</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRangeBound_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return rangeBound.validateOnlyFixedValuesOrGlobalAttributesInConditionModel(diagnostics, context);
 	}
 
 	/**
@@ -1302,7 +1370,9 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(singleReferenceAttributeValueConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(singleReferenceAttributeValueConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(singleReferenceAttributeValueConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(singleReferenceAttributeValueConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(singleReferenceAttributeValueConstraint, diagnostics, context);
 		return result;
 	}
 
@@ -1335,6 +1405,34 @@ public class MetamodelValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the onlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Single Reference Attribute Value Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "onlyFixedValuesOrGlobalAttributesInConditionModel", getObjectLabel(singleReferenceAttributeValueConstraint, context) },
+						 new Object[] { singleReferenceAttributeValueConstraint },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Validates the validateOnlyFixedValuesInSourceSections constraint of '<em>Single Reference Attribute Value Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1342,6 +1440,16 @@ public class MetamodelValidator extends EObjectValidator {
 	 */
 	public boolean validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return singleReferenceAttributeValueConstraint.validateOnlyFixedValuesInSourceSections(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateOnlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Single Reference Attribute Value Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return singleReferenceAttributeValueConstraint.validateOnlyFixedValuesOrGlobalAttributesInConditionModel(diagnostics, context);
 	}
 
 	/**

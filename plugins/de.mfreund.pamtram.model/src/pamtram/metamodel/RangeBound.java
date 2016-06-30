@@ -23,7 +23,7 @@ import pamtram.mapping.ModifiableHint;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getRangeBound()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyFixedValuesInSourceSections'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel'"
  * @generated
  */
 public interface RangeBound extends ExpressionHint, ModifiableHint {
@@ -101,8 +101,16 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.getSourceElements().isEmpty()\r\n\t\t\t\t|| !(((<%org.eclipse.emf.ecore.EObject%>) this).eContainer().eContainer() instanceof <%pamtram.condition.AttributeCondition%>)) {\r\n\treturn true;\r\n}\r\n\r\nAttributeCondition condition = (AttributeCondition) ((EObject) this).eContainer().eContainer();\r\n\r\nif(!condition.isConditionModelCondition()) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof <%pamtram.mapping.FixedValue%> || s instanceof <%pamtram.mapping.GlobalAttributeImporter%>);\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"This AttributeValueConstraint must only\"\r\n\t\t\t+ \" contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!\'\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t MetamodelValidator.RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this,  <%pamtram.metamodel.MetamodelPackage%>.Literals.RANGE_BOUND__SOURCE_ELEMENTS }));\r\n\t}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeBound!isLocalConstraint()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.eContainer().eContainer() instanceof <%pamtram.metamodel.SourceSectionAttribute%>) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\t\r\n\t\tif(!(this.eContainer().eContainer() instanceof <%pamtram.condition.AttributeCondition%>)) {\r\n\t\t\tthrow new UnsupportedOperationException();\r\n\t\t}\r\n\t\t\r\n\t\t<%org.eclipse.emf.ecore.EObject%> container = this;\r\n\t\t\r\n\t\twhile(!(container instanceof <%pamtram.mapping.Mapping%>)) {\r\n\t\t\tif(container == null) {\r\n\t\t\t\treturn false;\r\n\t\t\t}\r\n\t\t\tcontainer = container.eContainer();\r\n\t\t}\r\n\t\t\r\n\t\t// The SourceSection of the Mapping that contains the constraint\r\n\t\t//\r\n\t\t<%pamtram.metamodel.SourceSection%> localSection = ((Mapping) container).getSourceMMSection();\r\n\t\t\r\n\t\tif(getSourceElements().parallelStream().allMatch(s -> s instanceof <%pamtram.mapping.FixedValue%> || s instanceof <%pamtram.mapping.GlobalAttributeImporter%> ||\r\n\t\t\t\t(s instanceof <%pamtram.metamodel.AttributeValueConstraintSourceElement%> &&\r\n\t\t\t\t((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||\r\n\t\t\t\t(s instanceof <%pamtram.metamodel.AttributeValueConstraintExternalSourceElement%> &&\r\n\t\t\t\t\t\t((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\t\r\n\t\t// A constraint is also \'local\' if an InstancePointer with local or external SourceAttributes exist\r\n\t\t//\r\n\t\treturn getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(\r\n\t\t\t\tinstancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(\r\n\t\t\t\t\t\ts -> s instanceof <%pamtram.metamodel.InstancePointerSourceElement%> || \r\n\t\t\t\t\t\ts instanceof <%pamtram.metamodel.InstancePointerExternalSourceElement%>)\r\n\t\t\t\t).findAny().isPresent();'"
 	 * @generated
 	 */
 	boolean isLocalConstraint();

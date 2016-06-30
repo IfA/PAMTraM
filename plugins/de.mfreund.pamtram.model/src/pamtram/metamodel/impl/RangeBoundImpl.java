@@ -36,6 +36,8 @@ import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.SourceSection;
@@ -220,44 +222,79 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLocalConstraint() {
-		
-		if(this.eContainer().eContainer() instanceof SourceSectionAttribute) {
+	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if(this.getSourceElements().isEmpty()
+						|| !(((EObject) this).eContainer().eContainer() instanceof AttributeCondition)) {
 			return true;
 		}
 		
-		if(!(this.eContainer().eContainer() instanceof AttributeCondition)) {
-			throw new UnsupportedOperationException();
+		AttributeCondition condition = (AttributeCondition) ((EObject) this).eContainer().eContainer();
+		
+		if(!condition.isConditionModelCondition()) {
+			return true;
 		}
 		
-		EObject container = this;
+		boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter);
 		
-		while(!(container instanceof Mapping)) {
-			if(container == null) {
-				return false;
+		if (!result && diagnostics != null) {
+			
+			String errorMessage = "This AttributeValueConstraint must only"
+					+ " contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!'";
+			
+			diagnostics.add
+				(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					 MetamodelValidator.DIAGNOSTIC_SOURCE,
+					 MetamodelValidator.RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
+					 errorMessage,
+					 new Object [] { this,  MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS }));
 			}
-			container = container.eContainer();
-		}
 		
-		// The SourceSection of the Mapping that contains the constraint
-		//
-		SourceSection localSection = ((Mapping) container).getSourceMMSection();
-		
-		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
-				(s instanceof AttributeValueConstraintSourceElement &&
-				((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
-				(s instanceof AttributeValueConstraintExternalSourceElement &&
-						((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
-			return true;
-		}
-		
-		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
-		//
-		return getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(
-				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
-						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
-						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
-				).findAny().isPresent();
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isLocalConstraint() {
+		if(this.eContainer().eContainer() instanceof SourceSectionAttribute) {
+					return true;
+				}
+				
+				if(!(this.eContainer().eContainer() instanceof AttributeCondition)) {
+					throw new UnsupportedOperationException();
+				}
+				
+				EObject container = this;
+				
+				while(!(container instanceof Mapping)) {
+					if(container == null) {
+						return false;
+					}
+					container = container.eContainer();
+				}
+				
+				// The SourceSection of the Mapping that contains the constraint
+				//
+				SourceSection localSection = ((Mapping) container).getSourceMMSection();
+				
+				if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
+						(s instanceof AttributeValueConstraintSourceElement &&
+						((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
+						(s instanceof AttributeValueConstraintExternalSourceElement &&
+								((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
+					return true;
+				}
+				
+				// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
+				//
+				return getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(
+						instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
+								s -> s instanceof InstancePointerSourceElement || 
+								s instanceof InstancePointerExternalSourceElement)
+						).findAny().isPresent();
 	}
 
 	/**
@@ -410,6 +447,8 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 		switch (operationID) {
 			case MetamodelPackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MetamodelPackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+				return validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MetamodelPackage.RANGE_BOUND___IS_LOCAL_CONSTRAINT:
 				return isLocalConstraint();
 		}

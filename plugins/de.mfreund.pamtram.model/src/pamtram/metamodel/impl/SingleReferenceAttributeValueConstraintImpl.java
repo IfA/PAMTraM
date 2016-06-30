@@ -32,7 +32,6 @@ import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
@@ -274,6 +273,42 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if(this.getSourceElements().isEmpty()
+						|| !(((EObject) this).eContainer() instanceof AttributeCondition)) {
+			return true;
+		}
+		
+		AttributeCondition condition = (AttributeCondition) ((EObject) this).eContainer();
+		
+		if(!condition.isConditionModelCondition()) {
+			return true;
+		}
+		
+		boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter);
+		
+		if (!result && diagnostics != null) {
+			
+			String errorMessage = "This AttributeValueConstraint must only"
+					+ " contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!'";
+			
+			diagnostics.add
+				(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					 MetamodelValidator.DIAGNOSTIC_SOURCE,
+					 MetamodelValidator.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
+					 errorMessage,
+					 new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
+			}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public boolean isLocalConstraint() {
@@ -490,6 +525,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 				return checkConstraint((String)arguments.get(0), (String)arguments.get(1));
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+				return validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
 				return isLocalConstraint();
 		}

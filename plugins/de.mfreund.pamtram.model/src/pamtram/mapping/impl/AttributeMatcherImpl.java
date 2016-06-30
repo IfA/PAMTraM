@@ -567,7 +567,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 				return getLocalSourceElements();
 			case MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
-			case MappingPackage.ATTRIBUTE_MATCHER___TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.ATTRIBUTE_MATCHER___TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_3:
 				return targetMatchesAffectedReferenceType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

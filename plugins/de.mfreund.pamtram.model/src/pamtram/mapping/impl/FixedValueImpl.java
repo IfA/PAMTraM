@@ -87,14 +87,22 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setValue(String newValue) {
+	public void setValueGen(String newValue) {
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FIXED_VALUE__VALUE, oldValue, value));
 	}
-
+	
+	/**
+	 * Before setting the {@link newValue}, update the name.
+	 */
+	@Override
+	public void setValue(String newValue) {
+		setNameDerived(value, newValue, null, null);
+		setValueGen(newValue);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -21,7 +21,9 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.ComplexCondition;
+import pamtram.condition.ConditionPackage;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
@@ -236,15 +238,17 @@ public class InstancePointerItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		ComplexCondition parentCondition = null;
-		if(((EObject) object).eContainer() instanceof ComplexCondition) {
-			parentCondition = ((ComplexCondition) ((EObject) object).eContainer()).getRootCondition();
+		
+		ComplexCondition parentCondition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object, 
+				ConditionPackage.eINSTANCE.getComplexCondition());
+		
+		if(parentCondition != null) {
+			parentCondition = parentCondition.getRootCondition();
 		}
 		
-		// ModifiedAttributeType children are not allowed in ConditionModelConditions
+		// ModifiedAttributeType children only allowed in conditions that are no ConditionModelConditions
 		//
-		if(parentCondition == null || !parentCondition.isConditionModelCondition()) {
+		if(parentCondition != null && !parentCondition.isConditionModelCondition()) {
 			
 			newChildDescriptors.add
 			(createChildParameter

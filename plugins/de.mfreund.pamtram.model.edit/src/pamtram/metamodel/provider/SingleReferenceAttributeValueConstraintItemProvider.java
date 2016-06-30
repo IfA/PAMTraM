@@ -17,6 +17,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import pamtram.condition.AttributeCondition;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.MetamodelFactory;
@@ -227,10 +229,12 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 			return;
 		}
 		
+		EObject constraint = (EObject) object;
+		
 		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of 
 		// Conditions
 		//
-		if(!(((EObject) object).eContainer() instanceof SourceSectionAttribute)) {
+		if(!(constraint.eContainer() instanceof SourceSectionAttribute)) {
 			
 			newChildDescriptors.add
 			(createChildParameter
@@ -241,17 +245,25 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 		// Do not allow to add local/external source attributes or GlobalAttributeImporters below 
 		// SourceSectionAttributes as these are only supported as part of Conditions
 		//
-		if(!(((EObject) object).eContainer() instanceof SourceSectionAttribute)) {
+		if(!(constraint.eContainer() instanceof SourceSectionAttribute)) {
 			
-			newChildDescriptors.add
-			(createChildParameter
-					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
-							MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
-			
-			newChildDescriptors.add
-			(createChildParameter
-					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
-							MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+			// Do not allow to add local/external source attributes below 
+			// AttributeConditions that are located inside a ConditionModel
+			//
+			if(!(constraint.eContainer() instanceof AttributeCondition) ||
+					!((AttributeCondition) constraint.eContainer()).isConditionModelCondition()) {
+				
+				newChildDescriptors.add
+				(createChildParameter
+						(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+								MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
+				
+				newChildDescriptors.add
+				(createChildParameter
+						(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+								MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+				
+			}
 			
 			newChildDescriptors.add
 			(createChildParameter

@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.condition.AttributeCondition;
+import pamtram.condition.ComplexCondition;
+import pamtram.condition.ConditionPackage;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
@@ -224,12 +226,12 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 */
 	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if(this.getSourceElements().isEmpty()
-						|| !(((EObject) this).eContainer().eContainer() instanceof AttributeCondition)) {
+		if(this.getSourceElements().isEmpty() || 
+				!AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition())) {
 			return true;
 		}
 		
-		AttributeCondition condition = (AttributeCondition) ((EObject) this).eContainer().eContainer();
+		ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition());
 		
 		if(!condition.isConditionModelCondition()) {
 			return true;
@@ -261,41 +263,41 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 */
 	public boolean isLocalConstraint() {
 		if(this.eContainer().eContainer() instanceof SourceSectionAttribute) {
-					return true;
-				}
-				
-				if(!(this.eContainer().eContainer() instanceof AttributeCondition)) {
-					throw new UnsupportedOperationException();
-				}
-				
-				EObject container = this;
-				
-				while(!(container instanceof Mapping)) {
-					if(container == null) {
-						return false;
-					}
-					container = container.eContainer();
-				}
-				
-				// The SourceSection of the Mapping that contains the constraint
-				//
-				SourceSection localSection = ((Mapping) container).getSourceMMSection();
-				
-				if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
-						(s instanceof AttributeValueConstraintSourceElement &&
-						((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
-						(s instanceof AttributeValueConstraintExternalSourceElement &&
-								((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
-					return true;
-				}
-				
-				// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
-				//
-				return getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(
-						instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
-								s -> s instanceof InstancePointerSourceElement || 
-								s instanceof InstancePointerExternalSourceElement)
-						).findAny().isPresent();
+			return true;
+		}
+		
+		if(!(this.eContainer().eContainer() instanceof AttributeCondition)) {
+			throw new UnsupportedOperationException();
+		}
+		
+		EObject container = this;
+		
+		while(!(container instanceof Mapping)) {
+			if(container == null) {
+				return false;
+			}
+			container = container.eContainer();
+		}
+		
+		// The SourceSection of the Mapping that contains the constraint
+		//
+		SourceSection localSection = ((Mapping) container).getSourceMMSection();
+		
+		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
+				(s instanceof AttributeValueConstraintSourceElement &&
+				((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
+				(s instanceof AttributeValueConstraintExternalSourceElement &&
+						((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
+			return true;
+		}
+		
+		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
+		//
+		return getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(
+				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
+						s -> s instanceof InstancePointerSourceElement || 
+						s instanceof InstancePointerExternalSourceElement)
+				).findAny().isPresent();
 	}
 
 	/**

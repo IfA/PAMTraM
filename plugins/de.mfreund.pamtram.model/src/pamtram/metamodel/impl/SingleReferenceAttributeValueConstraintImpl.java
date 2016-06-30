@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.AttributeCondition;
+import pamtram.condition.ComplexCondition;
+import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
 
 import pamtram.mapping.AttributeValueModifierSet;
@@ -41,6 +43,8 @@ import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
@@ -277,12 +281,12 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 */
 	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if(this.getSourceElements().isEmpty()
-						|| !(((EObject) this).eContainer() instanceof AttributeCondition)) {
+		if(this.getSourceElements().isEmpty() || 
+				!AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition())) {
 			return true;
 		}
 		
-		AttributeCondition condition = (AttributeCondition) ((EObject) this).eContainer();
+		ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition());
 		
 		if(!condition.isConditionModelCondition()) {
 			return true;
@@ -310,10 +314,9 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isLocalConstraint() {
-
 		if(this.eContainer() instanceof SourceSectionAttribute) {
 			return true;
 		}
@@ -347,8 +350,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 		//
 		return getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(
 				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
-						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
-						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+						s -> s instanceof InstancePointerSourceElement || 
+						s instanceof InstancePointerExternalSourceElement)
 				).findAny().isPresent();
 	}
 

@@ -2,6 +2,7 @@
  */
 package pamtram.metamodel.impl;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
@@ -193,8 +194,8 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 */
 	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if(this.getSourceElements().isEmpty()
-						|| !(((EObject) this).eContainer() instanceof SourceSectionAttribute)) {
+		if(this.getSourceElements().isEmpty() || 
+				!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
 			return true;
 		}
 		

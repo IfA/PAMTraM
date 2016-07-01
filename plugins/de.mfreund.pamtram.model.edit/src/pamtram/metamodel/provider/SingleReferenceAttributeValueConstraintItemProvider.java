@@ -3,21 +3,36 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.condition.AttributeCondition;
+import pamtram.condition.ComplexCondition;
+import pamtram.condition.ConditionPackage;
+import pamtram.mapping.FixedValue;
+import pamtram.mapping.MappingFactory;
+import pamtram.mapping.MappingPackage;
+import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
@@ -54,8 +69,8 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 			super.getPropertyDescriptors(object);
 
 			addTypePropertyDescriptor(object);
-			addConstraintReferenceValuePropertyDescriptor(object);
 			addExpressionPropertyDescriptor(object);
+			addResultModifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -83,28 +98,6 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	}
 
 	/**
-	 * This adds a property descriptor for the Constraint Reference Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConstraintReferenceValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SingleReferenceAttributeValueConstraint_constraintReferenceValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceAttributeValueConstraint_constraintReferenceValue_feature", "_UI_SingleReferenceAttributeValueConstraint_type"),
-				 MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Expression feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -115,13 +108,35 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SingleReferenceAttributeValueConstraint_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceAttributeValueConstraint_expression_feature", "_UI_SingleReferenceAttributeValueConstraint_type"),
-				 MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION,
+				 getString("_UI_ExpressionHint_expression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
+				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Result Modifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResultModifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModifiableHint_resultModifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -139,6 +154,7 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -154,6 +170,18 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
+	}
+	
+	@Override
+	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
+		
+		/*
+		 * we do not need to add the 'expression' feature here as notifications for this attribute are already generated
+		 * automatically as its 'Notify' property in the genmodel is set to 'true'
+		 */
+		return Arrays.asList(
+				MetamodelPackage.eINSTANCE.getSingleReferenceAttributeValueConstraint_SourceElements());
+		
 	}
 
 	/**
@@ -192,8 +220,7 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SingleReferenceAttributeValueConstraint.class)) {
@@ -202,10 +229,19 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
+	}
+	
+	@Override
+	public void notifyChanged(Notification notification) {
+
+		handleLabelRelatedChildrenFeatureChangeNotification(notification);
+
+		notifyChangedGen(notification);
 	}
 
 	/**
@@ -217,6 +253,7 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		if(!(object instanceof EObject)) {
@@ -224,15 +261,49 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 		}
 		
 		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of 
-		// Conditions
-		//
-		if(!(((EObject) object).eContainer() instanceof SourceSectionAttribute)) {
+				// Conditions
+				//
+				if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
 			
 			newChildDescriptors.add
 			(createChildParameter
 					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
 							MetamodelFactory.eINSTANCE.createInstancePointer()));
 		}
+
+		// Do not allow to add local/external source attributes or GlobalAttributeImporters below 
+		// SourceSectionAttributes as these are only supported as part of Conditions
+		//
+		if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
+			
+			// Do not allow to add local/external source attributes below 
+			// AttributeConditions that are located inside a ConditionModel
+			//
+			ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object, ConditionPackage.eINSTANCE.getComplexCondition());
+			if(condition == null || !condition.isConditionModelCondition()) {
+				
+				newChildDescriptors.add
+				(createChildParameter
+						(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+								MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
+				
+				newChildDescriptors.add
+				(createChildParameter
+						(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+								MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+				
+			}
+			
+			newChildDescriptors.add
+			(createChildParameter
+					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+		}
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createFixedValue()));
 	}
 
 	/**
@@ -244,6 +315,27 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
+	}
+	
+	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+			Collection<?> collection, int index) {
+		
+		if(feature.equals(MetamodelPackage.eINSTANCE.getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification()) &&
+				!AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping()) && !collection.parallelStream().allMatch(s -> s instanceof FixedValue)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.createAddCommand(domain, owner, feature, collection, index);
+	}
+	
+	@Override
+	public AbstractCommand createDragAndDropCommand(EditingDomain domain, Collection<EObject> collection,
+			EObject parent, EReference ref) {
+		if(ref.equals(MetamodelPackage.eINSTANCE.getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification()) &&
+				!AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping()) && !collection.parallelStream().allMatch(s -> s instanceof FixedValue)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.createDragAndDropCommand(domain, collection, parent, ref);
 	}
 
 }

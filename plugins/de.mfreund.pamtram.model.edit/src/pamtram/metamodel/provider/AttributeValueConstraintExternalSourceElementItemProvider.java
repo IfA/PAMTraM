@@ -5,31 +5,35 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.metamodel.EqualityMatcher;
-import pamtram.metamodel.RegExMatcher;
+import pamtram.mapping.provider.ExternalModifiedAttributeElementTypeItemProvider;
+
+import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
+
+import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.RegExMatcher} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.AttributeValueConstraintExternalSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RegExMatcherItemProvider
-	extends SingleReferenceAttributeValueConstraintItemProvider {
+public class AttributeValueConstraintExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RegExMatcherItemProvider(AdapterFactory adapterFactory) {
+	public AttributeValueConstraintExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -49,14 +53,14 @@ public class RegExMatcherItemProvider
 	}
 
 	/**
-	 * This returns RegExMatcher.gif.
+	 * This returns AttributeValueConstraintExternalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RegExMatcher"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeValueConstraintExternalSourceElement"));
 	}
 
 	/**
@@ -69,33 +73,24 @@ public class RegExMatcherItemProvider
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-
+	
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		initializeLabelRelatedChildrenFeatureNotifications(object);
-
-		String label = ((RegExMatcher)object).getName();
-		String value = ((RegExMatcher)object).getExpression();
-
-		StyledString styledLabel = new StyledString();
-		styledLabel.append(getString("_UI_RegExMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
-
-		if(value != null && !value.isEmpty()) {
-			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
+		String label = ((AttributeValueConstraintExternalSourceElement)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_AttributeValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			
-			List<String> sources = ((RegExMatcher)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
-			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
+			styledLabel.append(getString("_UI_AttributeValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
-
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -120,6 +115,17 @@ public class RegExMatcherItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

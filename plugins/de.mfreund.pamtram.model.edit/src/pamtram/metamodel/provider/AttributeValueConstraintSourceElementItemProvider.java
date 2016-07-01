@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.provider;
+package pamtram.metamodel.provider;
 
 
 import java.util.Collection;
@@ -11,39 +11,29 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.util.PamtramItemProviderAdapter;
+import pamtram.mapping.provider.LocalModifiedAttributeElementTypeItemProvider;
+
+import pamtram.metamodel.AttributeValueConstraintSourceElement;
+
+import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.ReferenceableElement} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.AttributeValueConstraintSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReferenceableElementItemProvider 
-	extends PamtramItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource,
-		IItemStyledLabelProvider {
+public class AttributeValueConstraintSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceableElementItemProvider(AdapterFactory adapterFactory) {
+	public AttributeValueConstraintSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -63,14 +53,14 @@ public class ReferenceableElementItemProvider
 	}
 
 	/**
-	 * This returns ReferenceableElement.gif.
+	 * This returns AttributeValueConstraintSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceableElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeValueConstraintSourceElement"));
 	}
 
 	/**
@@ -92,7 +82,14 @@ public class ReferenceableElementItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return new StyledString(getString("_UI_ReferenceableElement_type"));
+		String label = ((AttributeValueConstraintSourceElement)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_AttributeValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_AttributeValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
 	}	
 
 	/**

@@ -599,6 +599,52 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.AttributeValueConstraintSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeValueConstraintSourceElementItemProvider attributeValueConstraintSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.AttributeValueConstraintSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeValueConstraintSourceElementAdapter() {
+		if (attributeValueConstraintSourceElementItemProvider == null) {
+			attributeValueConstraintSourceElementItemProvider = new AttributeValueConstraintSourceElementItemProvider(this);
+		}
+
+		return attributeValueConstraintSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.AttributeValueConstraintExternalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeValueConstraintExternalSourceElementItemProvider attributeValueConstraintExternalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.AttributeValueConstraintExternalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeValueConstraintExternalSourceElementAdapter() {
+		if (attributeValueConstraintExternalSourceElementItemProvider == null) {
+			attributeValueConstraintExternalSourceElementItemProvider = new AttributeValueConstraintExternalSourceElementItemProvider(this);
+		}
+
+		return attributeValueConstraintExternalSourceElementItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.InstancePointer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

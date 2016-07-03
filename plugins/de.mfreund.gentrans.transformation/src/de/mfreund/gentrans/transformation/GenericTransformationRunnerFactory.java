@@ -202,6 +202,7 @@ public class GenericTransformationRunnerFactory {
 		//
 		Logger logger = Logger
 				.getLogger("de.mfreund.gentrans.transformation " + DateFormat.getDateTimeInstance().format(new Date()));
+		logger.setLevel(Level.ALL);
 
 		// Do not log messages to the console of the development platform
 		//

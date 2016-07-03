@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import org.eclipse.ui.console.MessageConsoleStream;
+import java.util.logging.Logger;
 
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
@@ -27,68 +27,74 @@ import pamtram.metamodel.TargetSectionAttribute;
  * @author gkoltun (modifier)
  */
 public class AttributeValueCalculator {
-	
+
 	/**
 	 * used for modifying attribute values
 	 */
 	private final AttributeValueModifierExecutor attributeValuemodifier;
-	
+
 	/**
 	 * Registry for values of global Variables that can be mapped to double
 	 */
 	private final Map<String, Double> globalVarValueDoubles;
 
 	/**
-	 * The console stream to be used to print messages.
+	 * The {@link Logger} to be used to print messages.
 	 */
-	private MessageConsoleStream consoleStream;
-	
+	private Logger logger;
+
 	/**
 	 * This creates an instance.
 	 * <p />
 	 * Note: This has been deprecated. Use {@link #AttributeValueCalculator(GlobalValueMap, 
-	 * AttributeValueModifierExecutor, MessageConsoleStream)} instead.
+	 * AttributeValueModifierExecutor, Logger)} instead.
 	 * 
 	 * @deprecated
 	 * @param globalVarValueDoubles
 	 * @param attributeValuemodifier
-	 * @param consoleStream
+	 * @param logger
 	 */
 	@Deprecated
-	public AttributeValueCalculator(Map<String, Double> globalVarValueDoubles, AttributeValueModifierExecutor attributeValuemodifier, MessageConsoleStream consoleStream) {
-		
+	public AttributeValueCalculator(Map<String, Double> globalVarValueDoubles, AttributeValueModifierExecutor attributeValuemodifier, Logger logger) {
+
 		// store the attribute value modifier
 		this.attributeValuemodifier = attributeValuemodifier;
-		
+
 		// store the global var value doubles
 		this.globalVarValueDoubles = globalVarValueDoubles;
-		
+
 		// store the message stream
-		this.consoleStream = consoleStream;
+		this.logger = logger;
 	}
-	
+
 	/**
 	 * This creates an instance.
 	 * 
-	 * @param globalValues The {@link GlobalValueMap} providing values of {@link GlobalAttribute GlobalAttributes}
-	 * and {@link FixedValue FixedValues} that can be used in calculations.
-	 * @param attributeValuemodifier The {@link AttributeValueModifierExecutor} that shall be used to 
-	 * apply {@link AttributeValueModifierSet AttributeValueModifierSets}.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages to the user.
+	 * @param globalValues
+	 *            The {@link GlobalValueMap} providing values of
+	 *            {@link GlobalAttribute GlobalAttributes} and {@link FixedValue
+	 *            FixedValues} that can be used in calculations.
+	 * @param attributeValuemodifier
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            to apply {@link AttributeValueModifierSet
+	 *            AttributeValueModifierSets}.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages to the
+	 *            user.
 	 */
 	public AttributeValueCalculator(GlobalValueMap globalValues, AttributeValueModifierExecutor attributeValuemodifier, 
-			MessageConsoleStream consoleStream) {
-		
+			Logger logger) {
+
 		// store the attribute value modifier
 		this.attributeValuemodifier = attributeValuemodifier;
-		
+
 		// store the global var value doubles
 		this.globalVarValueDoubles = globalValues.getAsDoubleByString();
-		
+
 		// store the message stream
-		this.consoleStream = consoleStream;
+		this.logger = logger;
 	}
-	
+
 	/**
 	 * This calculates the value of a {@link TargetSectionAttribute} for a given
 	 * {@link MappingHint} and a list of hint values.
@@ -121,21 +127,21 @@ public class AttributeValueCalculator {
 			} else if(hint instanceof MappingInstanceSelector && ((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
 				expression = ((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getExpression();
 			}
-			
+
 			List<AttributeValueModifierSet> resultModifiers = new ArrayList<>();
 			if(hint instanceof AttributeMapping) {
 				resultModifiers.addAll(((AttributeMapping) hint).getResultModifier());
 			} else if(hint instanceof MappingInstanceSelector) {
 				resultModifiers.addAll(((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getResultModifier());
 			}
-			
+
 			// calculate the value based on the hint values and a possible expression
 			if(expression.isEmpty()) {
 				attrValue = calculateAttributeValueWithoutExpression(hint, attrHintValues, resultModifiers);
 			} else {
 				attrValue = calculateAttributeValueWithExpression(hint, attrHintValues, expression, resultModifiers);
 			}
-					
+
 		}
 		// only use value of target section if no hint value
 		// present
@@ -145,7 +151,7 @@ public class AttributeValueCalculator {
 		}
 		return attrValue;
 	}
-	
+
 	/**
 	 * This calculates an attribute value based on a list of given hint values.
 	 ** @param hint A {@link MappingHint} to be used for the calculation (typically, this should be
@@ -157,7 +163,7 @@ public class AttributeValueCalculator {
 	 */
 	private String calculateAttributeValueWithoutExpression(MappingHint hint, Map<?, AttributeValueRepresentation> hintValues, 
 			List<AttributeValueModifierSet> resultModifiers) {
-		
+
 		// Collect the source elements that determine the order in which the hint
 		// values will get appended
 		//
@@ -167,7 +173,7 @@ public class AttributeValueCalculator {
 		} else if(hint instanceof MappingInstanceSelector) {
 			sourceElements.addAll(((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getSourceAttributes());
 		}
-		
+
 		return calculateValueWithoutExpression(sourceElements, hintValues, resultModifiers);
 	}
 
@@ -183,14 +189,14 @@ public class AttributeValueCalculator {
 	 */
 	private String calculateAttributeValueWithExpression(MappingHint hint, Map<?, AttributeValueRepresentation> attrHintValues, String expression,
 			List<AttributeValueModifierSet> resultModifiers) {
-		
+
 		if(hint instanceof AttributeMapping && !((AttributeMapping) hint).getSourceAttributeMappings().isEmpty()
 				&& attrHintValues.isEmpty()) {
-			consoleStream.println("Error calculating the expression for hint '" + hint.getName() + "'."
+			logger.severe("Error calculating the expression for hint '" + hint.getName() + "'."
 					+ "No hint values have been passed.");
 			return null;
 		}
-		
+
 		return calculateValueWithExpression(attrHintValues, expression, resultModifiers);
 	}
 
@@ -211,19 +217,20 @@ public class AttributeValueCalculator {
 	 */
 	public String calculateValueWithoutExpression(List<Object> sourceElements,
 			Map<?, AttributeValueRepresentation> valueParts, List<AttributeValueModifierSet> resultModifiers) {
-		
+
 		StringBuilder attrValueBuilder = new StringBuilder();
-		
+
 		for (Object srcElement : sourceElements) {
 			if (valueParts.containsKey(srcElement)) {
 				attrValueBuilder.append(valueParts.get(srcElement).getNextValue());
 			} else {
-				consoleStream.println("SourceValue not found for element '" + 
+				logger.warning("SourceValue not found for element '"
+						+ 
 						(srcElement instanceof NamedElement ? ((NamedElement) srcElement).getName() : srcElement) + 
 						"'.");
 			}
 		}
-		
+
 		return attributeValuemodifier.applyAttributeValueModifiers(
 				attrValueBuilder.toString(), resultModifiers);
 	}
@@ -248,32 +255,32 @@ public class AttributeValueCalculator {
 		if(valueParts.isEmpty()) {
 			return expression;
 		}
-		
+
 		final Map<String, Double> vars = new HashMap<>();
-		
+
 		// Add global variables
 		//
 		vars.putAll(globalVarValueDoubles);
-		
+
 		// Add local variables (as double)
 		//
 		for (Entry<?, AttributeValueRepresentation> entry : valueParts.entrySet()) {
 			if(entry.getKey() instanceof NamedElement) {
-				
+
 				String value = entry.getValue().getNextValue();
 				try {
 					vars.put(((NamedElement) entry.getKey()).getName(), Double.valueOf(value));
 				} catch (NumberFormatException e) {
-					consoleStream.println("Error parsing double of value '" + value + "'.");
+					logger.warning("Error parsing double of value '" + value + "'.");
 				}					
 			}
 		}
 
 		// Calculate the value
 		//
-		ExpressionCalculator expCalc = new ExpressionCalculator(consoleStream);
+		ExpressionCalculator expCalc = new ExpressionCalculator(logger);
 		String attrValue = expCalc.calculateExpression(expression, vars);
-		
+
 		// Apply the result modifiers
 		return attributeValuemodifier.applyAttributeValueModifiers(
 				attrValue, resultModifiers);

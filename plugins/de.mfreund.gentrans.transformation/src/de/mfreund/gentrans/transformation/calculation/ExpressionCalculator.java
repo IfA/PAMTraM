@@ -1,14 +1,10 @@
 package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.Map;
-
-import org.eclipse.ui.console.MessageConsoleStream;
+import java.util.logging.Logger;
 
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
-import de.mfreund.gentrans.transformation.calculation.MaxFunction;
-import de.mfreund.gentrans.transformation.calculation.MinFunction;
-import de.mfreund.gentrans.transformation.calculation.RoundFunction;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.metamodel.AttributeValueConstraint;
@@ -20,38 +16,39 @@ import pamtram.metamodel.TargetSectionAttribute;
  * 
  */
 public class ExpressionCalculator {
-	
+
 	/**
 	 * {@link RoundFunction} instance, maybe needed when inside of an expression defined
 	 */
 	private RoundFunction round;
-	
+
 	/**
 	 * {@link MaxFunction} instance, maybe needed when inside of an expression defined
 	 */
 	private MaxFunction max;
-	
+
 	/**
 	 * {@link MinFunction} instance, maybe needed when inside of an expression defined
 	 */
 	private MinFunction min;
-	
+
 	/**
-	 * The {@link MessageConsoleStream} to be used to print messages.
+	 * The {@link Logger} to be used to print messages.
 	 */
-	private MessageConsoleStream consoleStream;
-	
+	private Logger logger;
+
 	/**
-	 * This creates an instance and initializes the {@link #round}, {@link #max}, and {@link #min}
-	 * functions.
+	 * This creates an instance and initializes the {@link #round},
+	 * {@link #max}, and {@link #min} functions.
 	 * 
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print 
-	 * messages to the user.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages to the
+	 *            user.
 	 */
-	public ExpressionCalculator(MessageConsoleStream consoleStream) {
-		
-		this.consoleStream = consoleStream;
-		
+	public ExpressionCalculator(Logger logger) {
+
+		this.logger = logger;
+
 		// initialize the custom calculator functions
 		try {
 			round = new RoundFunction();
@@ -59,10 +56,10 @@ public class ExpressionCalculator {
 			min = new MinFunction();
 		} catch (InvalidCustomFunctionException e) {
 			e.printStackTrace();
-			consoleStream.println("Internal Error: Failed to initialize ExpressionCalculator!");
+			logger.severe("Internal Error: Failed to initialize ExpressionCalculator!");
 		}
 	}
-	
+
 	/**
 	 * This calculates the value for a given expression, e.g. may be used in {@link AttributeValueConstraint}s or in {@link TargetSectionAttribute}s.
 	 * It represents only the general calculation rule.
@@ -73,23 +70,23 @@ public class ExpressionCalculator {
 	 * @return The calculated expression value or <em>null</em> if no value could be calculated.
 	 */
 	public String calculateExpression(String expression, Map<String, Double> vars){
-	
+
 		try{
 			// make calculation
 			//
 			return String.valueOf(new ExpressionBuilder(expression)
-				.withCustomFunction(round)
-				.withCustomFunction(max)
-				.withCustomFunction(min)
-				.withVariables(vars)
-				.build()
-				.calculate());
-			
+					.withCustomFunction(round)
+					.withCustomFunction(max)
+					.withCustomFunction(min)
+					.withVariables(vars)
+					.build()
+					.calculate());
+
 		} catch (final Exception e) {
-			
-			consoleStream.println("Message:\n" + e.getMessage() + "\n nothing calculated!");
+
+			logger.warning("Message:\n" + e.getMessage() + "\n nothing calculated!");
 			return expression;
-			
+
 		}
 	}
 }

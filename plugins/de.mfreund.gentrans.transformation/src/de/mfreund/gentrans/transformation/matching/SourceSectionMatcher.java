@@ -10,19 +10,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 import java.util.Set;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
@@ -66,9 +67,9 @@ public class SourceSectionMatcher {
 	private EList<SourceSection> sourceSections;
 
 	/**
-	 * The {@link MessageConsoleStream} that shall be used to print messages.
+	 * The {@link Logger} that shall be used to print messages.
 	 */
-	private MessageConsoleStream consoleStream;
+	private Logger logger;
 
 	/**
 	 * Registry for <em>source model elements</em> that have already been
@@ -111,26 +112,26 @@ public class SourceSectionMatcher {
 	 * @param sourceSections
 	 *            The list of {@link SourceSection SourceSections} that the '
 	 *            <em>containmentTree</em>' shall be matched against.
-	 * @param globalValues The list of {@link MappingModel#getGlobalValues() global values} modeled in the
-	 * 				PAMTraM instance.
-	 * @param consoleStream
-	 *            The {@link MessageConsoleStream} that shall be used to print
-	 *            messages.
+	 * @param globalValues
+	 *            The list of {@link MappingModel#getGlobalValues() global
+	 *            values} modeled in the PAMTraM instance.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public SourceSectionMatcher(ContainmentTree containmentTree, EList<SourceSection> sourceSections,
-			Map<FixedValue, String> globalValues, MessageConsoleStream consoleStream) {
+			Map<FixedValue, String> globalValues, Logger logger) {
 
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
-		this.consoleStream = consoleStream;
+		this.logger = logger;
 		this.matchedSections = new HashMap<>();
 		this.matchedContainers = new HashMap<>();
 		this.constraintsWithErrors = new HashSet<>();
 		GlobalValueMap globalValueMap = new GlobalValueMap(globalValues, new HashMap<>());
 		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(
 				globalValueMap,
-				new AttributeValueCalculator(globalValueMap, AttributeValueModifierExecutor.getInstance(), consoleStream),
-				consoleStream);
+				new AttributeValueCalculator(globalValueMap, AttributeValueModifierExecutor.getInstance(), logger),
+				logger);
 	}
 
 	/**
@@ -147,30 +148,30 @@ public class SourceSectionMatcher {
 		sections2Descriptors = new HashMap<>();
 
 		while (containmentTree.getNumberOfAvailableElements() > 0) {
-			
+
 			EObject element = containmentTree.getNextElementForMatching();
-			
+
 			Map<SourceSection, MatchedSectionDescriptor> matches = findApplicableSections(element);
-			
+
 			// Store the descriptors in the result map
 			//
 			for (Entry<SourceSection, MatchedSectionDescriptor> entry : matches.entrySet()) {
-				
+
 				SourceSection source = entry.getKey();
 				MatchedSectionDescriptor descriptor = entry.getValue();
-				
+
 				/*
 				 * Register the created descriptor in the 'sections2Descriptors' map that will be 
 				 * returned in the end
 				 */
 				registerDescriptor(source, descriptor);
-				
+
 				/*
 				 * Before returning the matched sections, we mark the affected elements
 				 * as 'matched' in the containment tree and update the 'matchedSections' map
 				 */
 				updateMatchedElements(entry.getValue());
-				
+
 			}
 
 		}
@@ -187,9 +188,9 @@ public class SourceSectionMatcher {
 	private void registerDescriptor(SourceSection sourceSection, MatchedSectionDescriptor descriptor) {
 		List<MatchedSectionDescriptor> descriptors = 
 				sections2Descriptors.containsKey(sourceSection) ? sections2Descriptors.get(sourceSection) : new ArrayList<>();
-		
-		descriptors.add(descriptor);
-		sections2Descriptors.put(sourceSection, descriptors);
+
+				descriptors.add(descriptor);
+				sections2Descriptors.put(sourceSection, descriptors);
 	}
 
 	/**
@@ -208,7 +209,7 @@ public class SourceSectionMatcher {
 			containmentTree.markAsMatched(descriptor.getSourceModelObjectsMapped().get(c));
 		}
 	}
-	
+
 	/**
 	 * Update the {@link #matchedContainers} and mark matched elements in the 
 	 * {@link ContainmentTree#markAsMatched(Set) containmentTree} based on the given '<em>descriptor</em>'.
@@ -280,7 +281,7 @@ public class SourceSectionMatcher {
 				if (failed) {
 					continue;
 				}
-				
+
 				// set the associated container descriptor
 				//
 				setContainerDescriptor(descriptor);
@@ -307,30 +308,30 @@ public class SourceSectionMatcher {
 	 * container descriptor was set successfully; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean setContainerDescriptor(MatchedSectionDescriptor descriptor) {
-		
+
 		if(!(descriptor.getAssociatedSourceSectionClass() instanceof SourceSection)){
 			return true;
 		}
-		
+
 		EObject element = descriptor.getAssociatedSourceModelElement();
-		
+
 		SourceSection section = (SourceSection) descriptor.getAssociatedSourceSectionClass();
-		
+
 		if(section.getContainer() == null || descriptor.getContainerDescriptor() != null) {
 			return true;
 		}
-			
+
 		if(!sections2Descriptors.containsKey(section.getContainer().getContainingSection())) {
 			return false;
 		}
-			
+
 		Set<MatchedSectionDescriptor> containerDescriptors = sections2Descriptors.get(section.getContainer().getContainingSection()).parallelStream().
 				filter(d -> d.getSourceModelObjectFlat().contains(element.eContainer())).collect(Collectors.toSet());
-			
+
 		assert containerDescriptors.size() == 1;
-			
+
 		descriptor.setContainerDescriptor(containerDescriptors.iterator().next());
-		
+
 		return true;
 	}
 
@@ -416,19 +417,19 @@ public class SourceSectionMatcher {
 				if (containerDescriptor == null) {
 					return false;
 				}
-				
+
 				/*
 				 * Register the created container descriptor in the 'sections2Descriptors' map that will be 
 				 * returned in the end
 				 */
 				registerDescriptor(container.getKey(), containerDescriptor);
-				
+
 				/*
 				 * Before returning the matched sections, we mark the affected elements
 				 * as 'matched' in the containment tree and update the 'matchedSections' map
 				 */
 				updateMatchedContainers(containerDescriptor);
-				
+
 			}
 		}
 
@@ -526,7 +527,7 @@ public class SourceSectionMatcher {
 		if (!referencesOk) {
 			return null;
 		}
-		
+
 		// set the associated container descriptor
 		//
 		descriptor.setContainerDescriptor(parentDescriptor);
@@ -657,7 +658,7 @@ public class SourceSectionMatcher {
 					if (!c.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
 						if (nonZeroCardSectionFound) {
 							// modeling error
-							consoleStream.println("Modeling error in source section: '"
+							logger.severe("Modeling error in source section: '"
 									+ srcSection.getContainer().getName() + "', subsection: '" + srcSection.getName()
 									+ "'. The Reference '" + refByClassMap.get(c)
 									+ "' points to a metamodel reference, that can only hold one value but in the source section "
@@ -872,7 +873,7 @@ public class SourceSectionMatcher {
 				// check if all refTargets where mapped
 				refTargetL.removeAll(allElementsMapped);
 				if (!refTargetL.isEmpty()) {
-					consoleStream.println("Not everything could be mapped");
+					logger.warning("Not everything could be mapped");
 					return false;
 				}
 			}
@@ -954,11 +955,11 @@ public class SourceSectionMatcher {
 	 * one constraint could not be satisfied.
 	 */
 	private boolean checkAttributeValueConstraints(final SourceSectionAttribute attribute, Object value) {
-		
+
 		// convert Attribute value to String
 		final String srcAttrAsString = attribute.getAttribute().getEType().getEPackage().getEFactoryInstance()
 				.convertToString(attribute.getAttribute().getEAttributeType(), value);
-		
+
 		/*
 		 * check AttributeValueConstraints
 		 *
@@ -968,18 +969,18 @@ public class SourceSectionMatcher {
 		 */
 		boolean inclusionMatched = false;
 		boolean containsInclusions = false;
-		
+
 		List<AttributeValueConstraint> validConstraints = attribute.getValueConstraint().parallelStream().filter(
 				c -> !constraintsWithErrors.contains(c)).collect(Collectors.toList());
-		
+
 		// Check each constraint
 		//
 		for (final AttributeValueConstraint constraint : validConstraints) {
 
 			try {
-				
+
 				boolean constraintVal = checkAttributeValueConstraint(srcAttrAsString, constraint);
-				
+
 				if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
 					return false;
 				} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
@@ -988,10 +989,10 @@ public class SourceSectionMatcher {
 						inclusionMatched = true;
 					}
 				}
-				
+
 			} catch (final Exception e) {
 				constraintsWithErrors.add(constraint);
-				consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
+				logger.warning("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
 						+ attribute.getName() + " (Class: " + attribute.getOwningClass().getName() + ", Section: " + attribute.getContainingSection().getName()
 						+ ")' could not be evaluated and will be ignored. The following error was supplied:\n"
 						+ e.getLocalizedMessage());
@@ -1017,56 +1018,59 @@ public class SourceSectionMatcher {
 	 */
 	private boolean checkAttributeValueConstraint(final String attributeValueAsString,
 			final AttributeValueConstraint constraint) {
-		
+
 		boolean constraintVal = false;
-		
+
 		// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
 		// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
 		// and we need to extract the right reference Value(s) for each constraint
-		
+
 		if (constraint instanceof SingleReferenceAttributeValueConstraint){
 			String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint);
 			constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(attributeValueAsString,srcAttrRefValAsString);
 		} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
-			
+
 			if(constraint instanceof RangeConstraint){
 				List<String> srcAttrRefValuesAsList = new ArrayList<>();
 				RangeBound lowerBound= ((RangeConstraint) constraint).getLowerBound();
 				RangeBound upperBound = ((RangeConstraint) constraint).getUpperBound();
-				
-				
+
+
 				if(lowerBound != null){
 					srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(lowerBound));
 				} else {
 					srcAttrRefValuesAsList.add("null");
 				}
-				
+
 				if(upperBound != null){
 					srcAttrRefValuesAsList.add(refValueCalculator.calculateReferenceValue(upperBound));
 				} else {
 					srcAttrRefValuesAsList.add("null");
 				}
-				
+
 				BasicEList<String> refValuesAsEList = new BasicEList<>(srcAttrRefValuesAsList); 
 				constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(attributeValueAsString, refValuesAsEList);
-				
+
 				if(!constraintVal){ // just for debugging!
-					consoleStream.println("Coonstraint " + constraint.getName() + "of AttributeValueConstraint is false while the Attribute value " + attributeValueAsString +
-							", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
+					logger.info("Coonstraint " + constraint.getName()
+					+ "of AttributeValueConstraint is false while the Attribute value " + attributeValueAsString
+					+
+					", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
 				}
 			}  else {
 				// If we are here, some mistake is happened
 				// more types could be supported in the future
 				// placeholder for other MultipleReferenceAttributeValueConstraints
-				consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+				logger.severe(
+						"ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
 			}
 		}  else {
 			// If we are here, some mistake is happened
 			// more types could be supported in the future
 			// placeholder for other MultipleReferenceAttributeValueConstraints
-			consoleStream.println("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+			logger.severe("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
 		}
-		
+
 		return constraintVal;
 	}
 

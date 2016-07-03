@@ -1,9 +1,9 @@
 package de.mfreund.gentrans.transformation.resolving;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.PAMTraM;
 
@@ -25,16 +25,17 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	protected List<EObject> sourceModels;
 
 	/**
-	 * This keeps track of the {@link MessageConsoleStream} that can be used to print messages. Messages can be written
-	 * via {@link #printMessage(String)} or {@link #printMessage(String, String)}.
+	 * This keeps track of the {@link Logger} that can be used to print
+	 * messages. Messages can be written via {@link #printMessage(String)} or
+	 * {@link #printMessage(String, String)}.
 	 */
-	private MessageConsoleStream messageStream;
+	private Logger logger;
 
 	@Override
-	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, MessageConsoleStream messageStream)
+	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
 			throws Exception {
 
-		this.messageStream = messageStream;
+		this.logger = logger;
 
 		printMessage("Initializing strategy '" + this.getClass().getSimpleName() + "'...");
 
@@ -43,29 +44,34 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	}
 
 	/**
-	 * This prints a message to the {@link #messageStream}.
+	 * This prints a message to the {@link #logger}.
 	 * <p/>
-	 * Note: If '<em>messageStream</em>' is '<em>null</em>' a call of this method will do nothing.
+	 * Note: If '<em>messageStream</em>' is '<em>null</em>' a call of this
+	 * method will do nothing.
 	 * 
-	 * @param message The message to print.
+	 * @param message
+	 *            The message to print.
 	 */
 	protected void printMessage(String message) {
-		if(messageStream != null) {
-			messageStream.println(message);
+		if (logger != null) {
+			logger.fine(message);
 		}
 	}
 
 	/**
-	 * This prints a prefixed message to the {@link #messageStream}. The message will be formatted as follows: <br />
+	 * This prints a prefixed message to the {@link #logger}. The message will
+	 * be formatted as follows: <br />
 	 * "[prefix] message".
 	 * <p/>
-	 * Note: If '<em>messageStream</em>' is '<em>null</em>' a call of this method will do nothing.
+	 * Note: If '<em>messageStream</em>' is '<em>null</em>' a call of this
+	 * method will do nothing.
 	 * 
-	 * @param message The message to print.
+	 * @param message
+	 *            The message to print.
 	 */
 	protected void printMessage(String message, String prefix) {
-		if(messageStream != null) {
-			messageStream.println("[" + prefix + "]" + message);
+		if (logger != null) {
+			logger.fine("[" + prefix + "]" + message);
 		}
 	}
 }

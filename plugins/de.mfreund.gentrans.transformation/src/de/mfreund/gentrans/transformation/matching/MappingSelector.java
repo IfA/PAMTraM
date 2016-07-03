@@ -9,9 +9,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
-
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
@@ -37,18 +36,18 @@ import pamtram.metamodel.SourceSection;
  * @author mfreund
  */
 public class MappingSelector extends CancelableElement {
-	
+
 	/** 
 	 * A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found
 	 * for every {@link SourceSection}.
 	 */
 	private final Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
-	
+
 	/**
 	 * The list of {@link Mapping Mappings} that shall be considered.
 	 */
 	private final List<Mapping> mappings;
-	
+
 	/**
 	 * If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
 	 */
@@ -59,45 +58,53 @@ public class MappingSelector extends CancelableElement {
 	 * resolve ambiguities that arise during the execution of the transformation.
 	 */
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
-	
+
 	/**
 	 * The {@link ConditionHandler} that is used to evaluate conditions.
 	 */
 	private ConditionHandler conditionHandler;
-	
+
 	/**
-	 * The {@link MessageConsoleStream} that shall be used to print messages.
+	 * The {@link Logger} that shall be used to print messages.
 	 */
-	private final MessageConsoleStream consoleStream;
+	private final Logger logger;
 
 	/**
 	 * This creates an instance.
 	 * 
-	 * @param matchedSections A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found
-	 * for every {@link SourceSection}.
-	 * @param mappings The list of {@link Mapping Mappings} that shall be considered.
-	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
-	 * defined in the PAMTraM model.
-	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a 
-	 * per-element basis.
-	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
-	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
-	 * resulting values.
-	 * @param consoleStream
-	 *           The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param matchedSections
+	 *            A map representing the {@link MatchedSectionDescriptor
+	 *            MatchedSectionDescriptors} found for every
+	 *            {@link SourceSection}.
+	 * @param mappings
+	 *            The list of {@link Mapping Mappings} that shall be considered.
+	 * @param globalValues
+	 *            The <em>global values</em> (values of {@link FixedValue
+	 *            FixedValues} and {@link GlobalAttribute GlobalAttribute})
+	 *            defined in the PAMTraM model.
+	 * @param onlyAskOnceOnAmbiguousMappings
+	 *            If ambiguous {@link Mapping Mappings} should be resolved only
+	 *            once or on a per-element basis.
+	 * @param ambiguityResolvingStrategy
+	 *            The {@link IAmbiguityResolvingStrategy} to be used.
+	 * @param attributeValueCalculator
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public MappingSelector(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings, 
 			GlobalValueMap globalValues, boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
-			AttributeValueCalculator attributeValueCalculator, MessageConsoleStream consoleStream) {
-		
+			AttributeValueCalculator attributeValueCalculator, Logger logger) {
+
 		this.matchedSections = matchedSections;
 		this.mappings = mappings;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.conditionHandler = new ConditionHandler(matchedSections, globalValues, attributeValueCalculator);
-		this.consoleStream = consoleStream;
+		this.logger = logger;
 	}
-	
+
 	/**
 	 * For each {@link MatchedSectionDescriptor} represented in the {@link #matchedSections}, this selects a
 	 * suitable mapping.
@@ -105,19 +112,19 @@ public class MappingSelector extends CancelableElement {
 	 * @return The selected mappings in the form of a {@link MappingInstanceStorage} for each {@link MatchedSectionDescriptor}.
 	 */
 	public Map<Mapping, List<MappingInstanceStorage>> selectMappings() {
-		
+
 		// Select a mapping for each matched section and each descriptor instance
 		//
 		List<MappingInstanceStorage> mappingInstances = matchedSections.entrySet().parallelStream().map(e -> selectMapping(e.getKey(), e.getValue())).
-			flatMap(l -> l.stream()).collect(Collectors.toList());
-		
+				flatMap(l -> l.stream()).collect(Collectors.toList());
+
 		// Sort determined mapping instances by mapping and return them
 		//
 		Map<Mapping, List<MappingInstanceStorage>> ret = new HashMap<>();
 		for (MappingInstanceStorage mappingInstance : mappingInstances) {
-			
+
 			Mapping mapping = mappingInstance.getMapping();
-			
+
 			if(!ret.containsKey(mapping)) {
 				ret.put(mapping, new ArrayList<>());
 			}
@@ -125,7 +132,7 @@ public class MappingSelector extends CancelableElement {
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * For the given {@link SourceSection} and the list of associated {@link MatchedSectionDescriptor MatchedSectionDescriptor}
 	 * select a mapping.
@@ -139,11 +146,11 @@ public class MappingSelector extends CancelableElement {
 	 * Note: The {@link MappingInstanceStorage MappingInstanceStorages} do not yet contain any calculated hint values.
 	 */
 	private List<MappingInstanceStorage> selectMapping(SourceSection matchedSection, List<MatchedSectionDescriptor> descriptors) {
-		
+
 		// This will be returned in the end
 		//
 		List<MappingInstanceStorage> ret = new ArrayList<>();
-		
+
 		// The mappings with suitable 'sourceMMSections'
 		//
 		Set<Mapping> applicableMappings = 
@@ -153,11 +160,11 @@ public class MappingSelector extends CancelableElement {
 		//
 		Map<Set<Mapping>, Set<MatchedSectionDescriptor>> applicableMappingsToDescriptors = checkConditions(applicableMappings,
 				descriptors);
-		
+
 		// Select mappings to be instantiated and create 'MappingInstanceStorages'
 		//
 		for (Entry<Set<Mapping>, Set<MatchedSectionDescriptor>> entry : applicableMappingsToDescriptors.entrySet()) {
-			
+
 			switch (entry.getKey().size()) {
 			case 0:
 				// no applicable mapping was found
@@ -168,7 +175,7 @@ public class MappingSelector extends CancelableElement {
 				ret.addAll(entry.getValue().parallelStream().map(d -> createMappingInstanceStorage(d, mapping)).collect(Collectors.toList()));
 				break;
 			default:
-				
+
 				/*
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
@@ -177,32 +184,32 @@ public class MappingSelector extends CancelableElement {
 					if(onlyAskOnceOnAmbiguousMappings) {
 						MatchedSectionDescriptor descriptor = entry.getValue().iterator().next();
 						List<Mapping> resolved = selectMappingForDescriptor(descriptor, entry.getKey());
-						
+
 						// create a MappingInstanceStorage for each descriptor
 						Mapping resolvedMapping = resolved.iterator().next();
 						ret.addAll(entry.getValue().parallelStream().map(d -> createMappingInstanceStorage(d, resolvedMapping)).collect(Collectors.toList()));
 					} else {
-						
+
 						for (MatchedSectionDescriptor descriptor :  entry.getValue()) {
 							List<Mapping> resolved = selectMappingForDescriptor(descriptor, entry.getKey());
-							
+
 							// create a MappingInstanceStorage for each descriptor
 							ret.add(createMappingInstanceStorage(descriptor, resolved.iterator().next()));
 						}
 					}			
 				} catch (Exception e) {
-					consoleStream.println(e.getMessage());
+					logger.severe(e.getMessage());
 					canceled = true;
 					return new ArrayList<>();
 				}
-				
+
 			}
 		}
 
 		// Check conditions of hint groups and hints for the selected MappingInstanceStorages
 		//
 		ret.parallelStream().forEach(this::determineElementsWithNegativeConditions);
-		
+
 		return ret;
 	}
 
@@ -220,20 +227,20 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private Map<Set<Mapping>, Set<MatchedSectionDescriptor>> checkConditions(Set<Mapping> applicableMappings,
 			List<MatchedSectionDescriptor> descriptors) {
-		
+
 		// The map that will be returned in the end
 		//
 		Map<Set<Mapping>, Set<MatchedSectionDescriptor>> applicableMappingsToDescriptors = new HashMap<>();
-		
+
 		// Check conditions
 		//
 		for (MatchedSectionDescriptor descriptor : descriptors) {
-			
+
 			// The subset of the given 'applicableMappings' that is applicable for the current 'descriptor'
 			//
 			Set<Mapping> localApplicableMappings = applicableMappings.parallelStream().filter(
 					m -> checkConditions(m, descriptor)).collect(Collectors.toSet());
-			
+
 			// Check if there are already descriptors for that the same set of mappings are applicable
 			//
 			Optional<Entry<Set<Mapping>, Set<MatchedSectionDescriptor>>> existing = applicableMappingsToDescriptors.entrySet().stream().filter(
@@ -245,7 +252,7 @@ public class MappingSelector extends CancelableElement {
 				applicableMappingsToDescriptors.put(localApplicableMappings, new HashSet<>(Arrays.asList(descriptor)));				
 			}
 		}
-		
+
 		return applicableMappingsToDescriptors;
 	}
 
@@ -257,7 +264,7 @@ public class MappingSelector extends CancelableElement {
 	 * @return '<em><b>true</b></em>' if the mapping is applicable; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean checkConditions(Mapping mapping, MatchedSectionDescriptor descriptor) {
-		
+
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		if(conditionHandler.checkCondition(mapping.getCondition(), descriptor) == CondResult.TRUE && 
 				conditionHandler.checkCondition(mapping.getConditionRef(), descriptor) == CondResult.TRUE) {
@@ -265,9 +272,9 @@ public class MappingSelector extends CancelableElement {
 		} else {
 			return false;
 		}
-		
+
 	}
-	
+
 	/**
 	 * This evaluates the conditions of the {@link ConditionalElement ConditionalElements} contained in
 	 * the mapping represented by the given {@link MappingInstanceStorage}. Elements with conditions that
@@ -277,24 +284,24 @@ public class MappingSelector extends CancelableElement {
 	 * @param mappingInstance The {@link MappingInstanceStorage} representing the ConditionalElements to be checked.
 	 */
 	private void determineElementsWithNegativeConditions(MappingInstanceStorage mappingInstance) {
-		
+
 		// check conditions of all corresponding MappingHintGroups...
 		mappingInstance.getMapping().getActiveMappingHintGroups().parallelStream().filter(hg -> hg instanceof ConditionalElement).forEach(hg -> {
-			
+
 			boolean result = checkCondition((ConditionalElement) hg, mappingInstance);
-			
+
 			if(result) {
-				
+
 				// Iterate now over all corresponding MappingHints
 				hg.getMappingHints().parallelStream().forEach(
 						m -> checkCondition(m, mappingInstance));
 			}
 		});
-		
+
 		// check Condition of corresponding IMPORTED MappingHintGroups
 		mappingInstance.getMapping().getActiveImportedMappingHintGroups().parallelStream().forEach(
 				hg -> checkCondition(hg, mappingInstance));
-			
+
 	}
 
 	/**
@@ -307,17 +314,17 @@ public class MappingSelector extends CancelableElement {
 	 * @return '<em><b>true</b></em>' if the condition was evaluated to {@link CondResult#TRUE}; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean checkCondition(ConditionalElement conditionalElement, MappingInstanceStorage mappingInstance) {
-		
+
 		boolean result = checkCondition(conditionalElement, mappingInstance.getMatchedSectionDescriptor());
-		
+
 		if(!result) {
-			
+
 			mappingInstance.addElementWithNegativeCondition(conditionalElement);
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * Checks the condition of the given {@link ConditionalElement}.
 	 * 
@@ -327,13 +334,13 @@ public class MappingSelector extends CancelableElement {
 	private boolean checkCondition(ConditionalElement conditionalElement, MatchedSectionDescriptor descriptor) {
 		if(conditionHandler.checkCondition(conditionalElement.getCondition(), descriptor) == CondResult.FALSE || 
 				conditionHandler.checkCondition(conditionalElement.getConditionRef(), descriptor) == CondResult.FALSE){
-			
+
 			return false;
 		} else {
-			
+
 			return true;
 		}
-		
+
 	}
 
 	/**
@@ -347,13 +354,13 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private List<Mapping> selectMappingForDescriptor(MatchedSectionDescriptor descriptor,
 			Set<Mapping> applicableMappings) throws Exception {
-		consoleStream.println("[Ambiguity] Resolve matching ambiguity...");
+		logger.fine("[Ambiguity] Resolve matching ambiguity...");
 		List<Mapping> resolved = ambiguityResolvingStrategy.matchingSelectMapping(
 				new ArrayList<>(applicableMappings), descriptor.getAssociatedSourceModelElement());
-		consoleStream.println("[Ambiguity] ...finished.\n");
+		logger.fine("[Ambiguity] ...finished.\n");
 		return resolved;
 	}
-	
+
 	/**
 	 * This creates a {@link MappingInstanceStorage} for the given {@link MatchedSectionDescriptor descriptor}.
 	 * 
@@ -362,7 +369,7 @@ public class MappingSelector extends CancelableElement {
 	 * @return The created {@link MappingInstanceStorage}.
 	 */
 	private MappingInstanceStorage createMappingInstanceStorage(MatchedSectionDescriptor descriptor, Mapping mapping) {
-		
+
 		MappingInstanceStorage ret = new MappingInstanceStorage(descriptor);
 		ret.setMapping(mapping);
 		return ret;

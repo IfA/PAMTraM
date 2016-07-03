@@ -1,5 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.logging.Level;
+
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
@@ -26,45 +28,54 @@ public class BaseTransformationConfiguration {
 	 * via the {@link FileAttribute}.
 	 */
 	protected String defaultTargetModel;
-	
+
 	/**
 	 * This is the file path where the {@link #transformationModel} will be stored after the transformation.
 	 * It needs to be in the form 'project-name/path'.
 	 * If this is set to '<em>null</em>', the transformation model will not be stored.
 	 */
 	protected String transformationModelPath;
-	
+
 	/**
 	 * Maximum length for connection paths in the 'joining' step. '<em>0</em>' means that only direct
 	 * connections are allowed; '<em>-1</em>' means that the maximum length is unbounded.
 	 */
 	protected int maxPathLength;
-	
+
 	/**
 	 * Determines whether the user should be asked every time an ambiguous
 	 * mapping was detected, or if the first user decision shall be stored and reused.
 	 */
 	protected boolean onlyAskOnceOnAmbiguousMappings;
-	
+
 	/**
 	 * The {@link LibraryContextDescriptor descriptor for the target library context} to 
 	 * be used for the instantiation of {@link LibraryEntry LibraryEntries}.
 	 */
 	protected LibraryContextDescriptor targetLibraryContextDescriptor;
-	
+
 	/**
 	 * The {@link IAmbiguityResolvingStrategy} that shall be used to 
 	 * resolve ambiguities that arise during the execution of the transformation.
 	 */
 	protected IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
-	
+
 	/**
-	 * This creates an instance and initializes all parameters with default values.
+	 * The minimum {@link Level} a logged messages must represent to be printed
+	 * to the user. Use {@link Level#ALL} to ensure logging of all messages and
+	 * {@link Level#OFF} to prevent any logging.
+	 */
+	protected Level logLevel;
+
+	/**
+	 * This creates an instance and initializes all parameters with default
+	 * values.
 	 * <p />
-	 * Note: These can be changed by means of the various <em>with...</em> methods.
+	 * Note: These can be changed by means of the various <em>with...</em>
+	 * methods.
 	 */
 	public BaseTransformationConfiguration() {
-		
+
 		// Initialize all parameters with default values.
 		//
 		withDefaultTargetModel(null);
@@ -73,7 +84,7 @@ public class BaseTransformationConfiguration {
 		withOnlyAskOnceOnAmbiguousMappings(true);
 		withTargetLibraryContextDescriptor(null);
 		withAmbiguityResolvingStrategy(null);
-
+		withLogLevel(null);
 	}
 
 	/**
@@ -83,7 +94,7 @@ public class BaseTransformationConfiguration {
 	 * meaningful values; '<em><b>false</b></em>' otherwise.
 	 */
 	public boolean validate() {
-		
+
 		return defaultTargetModel != null && ambiguityResolvingStrategy != null;
 	}
 
@@ -166,6 +177,21 @@ public class BaseTransformationConfiguration {
 	public BaseTransformationConfiguration withAmbiguityResolvingStrategy(IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy == null 
 				? new DefaultAmbiguityResolvingStrategy() : ambiguityResolvingStrategy;
+				return this;
+	}
+
+	/**
+	 * Set the {@link #logLevel}.
+	 * <p />
+	 * Note: If this is '<em>null</em>', {@link Level#ALL} will be used.
+	 * 
+	 * @param logLevel
+	 *            The {@link #logLevel} to set.
+	 * @return The {@link BaseTransformationConfiguration} after setting the
+	 *         {@link #logLevel}.
+	 */
+	public BaseTransformationConfiguration withLogLevel(Level logLevel) {
+		this.logLevel = logLevel == null ? Level.ALL : logLevel;
 		return this;
 	}
 
@@ -221,6 +247,15 @@ public class BaseTransformationConfiguration {
 	 */
 	public IAmbiguityResolvingStrategy getAmbiguityResolvingStrategy() {
 		return ambiguityResolvingStrategy;
+	}
+
+	/**
+	 * The getter for the {@link #logLevel}.
+	 * 
+	 * @return the logLevel
+	 */
+	public Level getLogLevel() {
+		return logLevel;
 	}
 
 }

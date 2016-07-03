@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,7 +20,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
@@ -84,9 +84,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private final AttributeValueRegistry attributeValueRegistry;
 
 	/**
-	 * used to write console output
+	 * The {@link Logger} that shall be used to print messages.
 	 */
-	private final MessageConsoleStream consoleStream;
+	private final Logger logger;
 
 	/**
 	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) to
@@ -114,23 +114,25 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 *            used when setting attribute values
 	 * @param globalValues
 	 *            Registry for values of global Variables
-	 * @param attributeValuemodifier An instance of the {@link AttributeValueModifierExecutor}.
-	 * @param consoleStream
-	 *            used to write console output
-	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used
-	 * to resolve occurring ambiguities.
+	 * @param attributeValuemodifier
+	 *            An instance of the {@link AttributeValueModifierExecutor}.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
+	 * @param ambiguityResolvingStrategy
+	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to
+	 *            resolve occurring ambiguities.
 	 */
 	public TargetSectionInstantiator(
 			final TargetSectionRegistry targetSectionRegistry,
 			final AttributeValueRegistry attributeValueRegistry,
 			final Map<NamedElement, Double> globalValues,
 			final AttributeValueModifierExecutor attributeValuemodifier,
-			final MessageConsoleStream consoleStream,
+			final Logger logger,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.attributeValueRegistry = attributeValueRegistry;
-		this.consoleStream = consoleStream;
+		this.logger = logger;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.canceled = false;
 		this.wrongCardinalityContainmentRefs = new HashSet<>();
@@ -139,11 +141,11 @@ public class TargetSectionInstantiator extends CancelableElement {
 		Map<String, Double> globalDoubleValues = globalValues.entrySet().parallelStream().collect(
 				Collectors.toMap(e -> e.getKey().getName(), e -> e.getValue()));
 
-		calculator = new AttributeValueCalculator(globalDoubleValues, attributeValuemodifier, consoleStream);
+		calculator = new AttributeValueCalculator(globalDoubleValues, attributeValuemodifier, logger);
 
-		consoleStream.println("...parsing done!");
+		logger.fine("...parsing done!");
 	}
-	
+
 	/**
 	 * This expands the {@link TargetSection TargetSections} represented by the
 	 * <em>hintGroups</em> of the given {@link MappingInstanceStorage}.
@@ -156,7 +158,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 *            The {@link MappingInstanceStorage mapping instance} to expand.
 	 */
 	public void expandTargetSectionInstance(MappingInstanceStorage mappingInstance) {
-		
+
 		/*
 		 * Iterate over all mapping hint groups and expand them
 		 */
@@ -172,7 +174,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		mappingInstance.getMappingHintGroupImporters().stream()
 		.filter(g -> g.getHintGroup() != null && g.getHintGroup().getTargetMMSection() != null)
 		.forEach(g -> expandTargetSectionInstance(mappingInstance, g));
-		
+
 	}
 
 	/**
@@ -193,25 +195,25 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 */
 	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			MappingHintGroup hintGroup) {
-	
+
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
 				instantiateTargetSectionFirstPass(
 						hintGroup.getTargetMMSection(),
 						hintGroup, mappingInstance.getMappingHints(hintGroup),
 						mappingInstance.getHintValues());
-	
+
 		if (instancesBySection == null) {
 			if (hintGroup.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-	
-				consoleStream
-				.println("Error instantiating target section '"
+
+				logger
+				.severe("Error instantiating target section '"
 						+ hintGroup.getTargetMMSection().getName()
 						+ "' using mapping rule '"
 						+ mappingInstance.getMapping().getName()
 						+ "'");
 			}
 		} else {
-	
+
 			// Register the created instance
 			//
 			instancesBySection.entrySet().stream().forEach(
@@ -237,23 +239,23 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 */
 	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			MappingHintGroupImporter mappingHintGroupImporter) {
-	
+
 		final List<MappingHint> hints = getMappingHints(mappingInstance, mappingHintGroupImporter);
-	
+
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
 				instantiateTargetSectionFirstPass(mappingHintGroupImporter.getHintGroup().getTargetMMSection(), mappingHintGroupImporter, hints,
 						mappingInstance.getHintValues());
-	
+
 		if (instancesBySection == null) {
 			if (mappingHintGroupImporter.getHintGroup().getTargetMMSection()
 					.getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-				consoleStream.println(
+				logger.severe(
 						"Error instantiating target section '"
 								+ mappingHintGroupImporter.getHintGroup().getTargetMMSection().getName()
 								+ "' using mapping rule '" + mappingInstance.getMapping().getName() + "'");
 			}
 		} else {
-			
+
 			// Register the created instance
 			//
 			instancesBySection.entrySet().stream().forEach(
@@ -421,7 +423,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			if(!targetSectionClass.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
 
-				consoleStream.println("TargetMMSection class '"
+				logger.severe("TargetMMSection class '"
 						+ targetSectionClass.getName()
 						+ "' has a cardinality of at least 1 specified, but no suitable mappingHint was found.");
 
@@ -624,9 +626,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 						 * Consult the specified resolving strategy to resolve the ambiguity.				
 						 */
 						try {
-							consoleStream.println(RESOLVE_EXPANDING_AMBIGUITY_STARTED);
+							logger.fine(RESOLVE_EXPANDING_AMBIGUITY_STARTED);
 							List<Integer> resolved = ambiguityResolvingStrategy.expandingSelectCardinality(Arrays.asList((Integer) null), targetSectionClass, mappingGroup);
-							consoleStream.println(RESOLVE_EXPANDING_AMBIGUITY_FINISHED);
+							logger.fine(RESOLVE_EXPANDING_AMBIGUITY_FINISHED);
 							if(resolved.get(0) != null) {
 								cardinality = resolved.get(0);
 							} else {
@@ -634,7 +636,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 							}
 						} catch (Exception e) {
 
-							consoleStream.println(e.getMessage());
+							logger.severe(e.getMessage());
 							canceled = true;
 							return 0;
 						}
@@ -693,7 +695,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 			LibraryEntry clonedLibEntry = (LibraryEntry) EcoreUtil.copyAll(originals).iterator().next();
 
 			LibraryEntryInstantiator instLibraryEntryInstantiator = new LibraryEntryInstantiator(
-					clonedLibEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, consoleStream);
+					clonedLibEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, logger);
 
 			libEntryInstantiatorMap.put(instTransformationHelper, instLibraryEntryInstantiator);
 		}
@@ -789,7 +791,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 							// Less hint values found than instance -> This
 							// should not happen
 							//
-							consoleStream.println("Cardinality mismatch (expected: " + cardinality + ", got :"
+							logger.severe("Cardinality mismatch (expected: " + cardinality + ", got :"
 									+ hintValues.getHintValues((AttributeMapping) hint).size() + "): " + hint.getName()
 									+ " for Mapping " + ((Mapping) mappingGroup.eContainer()).getName() + " (Group: "
 									+ mappingGroup.getName() + ") Maybe check Cardinality of Metamodel section?");
@@ -812,12 +814,12 @@ public class TargetSectionInstantiator extends CancelableElement {
 					 * Consult the specified resolving strategy to resolve the ambiguity.				
 					 */
 					try {
-						consoleStream.println("[Ambiguity] Resolve expanding ambiguity...");
+						logger.fine("[Ambiguity] Resolve expanding ambiguity...");
 						List<String> resolved = ambiguityResolvingStrategy.expandingSelectAttributeValue(Arrays.asList((String) null), attr, instance.getEObject());
-						consoleStream.println("[Ambiguity] ...finished.\n");
+						logger.fine("[Ambiguity] ...finished.\n");
 						attrValue = resolved.get(0);
 					} catch (Exception e) {
-						consoleStream.println(e.getMessage());
+						logger.severe(e.getMessage());
 						canceled = true;
 						return null;
 					}
@@ -907,7 +909,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 
 					} catch (final IllegalArgumentException e) {
-						consoleStream.println("Could not set Attribute " + attr.getName() + " of target section Class "
+						logger.severe("Could not set Attribute " + attr.getName() + " of target section Class "
 								+ targetSectionClass.getName() + " in target section " + targetSectionClass.getContainingSection()
 								.getName() + ".\nThe problematic value was: '" + setValue + "'.");
 					}
@@ -998,7 +1000,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 					} else {
 
-						consoleStream.println("NoChildren");
+						logger.warning("NoChildren");
 						return false;
 					}
 				}
@@ -1016,7 +1018,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 							wrongCardinalityContainmentRefs.add(ref);
 
-							consoleStream.println("More than one value was supposed to be connected to the "
+							logger.severe("More than one value was supposed to be connected to the "
 									+ "TargetSectionContainmentReference '"
 									+ ref.getName()
 									+ "' in the target section '"
@@ -1066,17 +1068,17 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 */
 	private List<MappingHint> getMappingHints(final MappingInstanceStorage mappingInstance,
 			final MappingHintGroupImporter hintGroupImporter) {
-	
+
 		final ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
-	
+
 		final List<MappingHint> hints = mappingInstance.getMappingHints(hintGroupImporter).parallelStream().filter(
 				hint -> hint instanceof MappingHint).map(hint -> (MappingHint) hint).collect(Collectors.toList());
-	
+
 		hints.addAll(exportedHintGroup.getMappingHints());
-		
+
 		return hints;
 	}
-	
+
 	/**
 	 * This is the getter for the {@link #libEntryInstantiatorMap}.
 	 * 

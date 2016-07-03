@@ -5,28 +5,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
+import de.mfreund.gentrans.transformation.matching.AttributeValueConstraintValueExtractor;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.RangeBound;
-import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
-import de.mfreund.gentrans.transformation.matching.AttributeValueConstraintValueExtractor;
+import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionReference;
 
 
 /**
@@ -44,9 +45,9 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 
 	/**
-	 * The console stream to be used to print messages.
+	 * The {@link Logger} to be used to print messages.
 	 */
-	private MessageConsoleStream consoleStream;
+	private Logger consoleStream;
 
 	/**
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
@@ -59,22 +60,28 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	private AttributeValueConstraintValueExtractor valueExtractor;
 
 	/**
-	 * This creates an instance that can only handled {@link FixedValue FixedValues} but no referenced 
-	 * {@link SourceSectionAttribute SourceSectionAttributes}.
+	 * This creates an instance that can only handled {@link FixedValue
+	 * FixedValues} but no referenced {@link SourceSectionAttribute
+	 * SourceSectionAttributes}.
 	 * <p />
-	 * This should be used during the 'matching' phase where these latter information are not yet present.
+	 * This should be used during the 'matching' phase where these latter
+	 * information are not yet present.
 	 * 
-	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
-	 * defined in the PAMTraM model.
-	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
-	 * resulting values.
-	 * @param consoleStream
+	 * @param globalValues
+	 *            The <em>global values</em> (values of {@link FixedValue
+	 *            FixedValues} and {@link GlobalAttribute GlobalAttribute})
+	 *            defined in the PAMTraM model.
+	 * @param attributeValueCalculator
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public AttributeValueConstraintReferenceValueCalculator(GlobalValueMap globalValues, 
-			AttributeValueCalculator attributeValueCalculator, MessageConsoleStream consoleStream) {
-		this(new HashMap<>(), globalValues, null, attributeValueCalculator, consoleStream);
+			AttributeValueCalculator attributeValueCalculator, Logger logger) {
+		this(new HashMap<>(), globalValues, null, attributeValueCalculator, logger);
 	}
-	
+
 	/**
 	 * This creates an instance.
 	 * 
@@ -86,30 +93,30 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 * that have been modeled.
 	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
 	 * resulting values.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param logger The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	public AttributeValueConstraintReferenceValueCalculator(
 			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
 			GlobalValueMap globalValues, 
 			InstancePointerHandler instancePointerHandler, 
 			AttributeValueCalculator attributeValueCalculator,
-			MessageConsoleStream consoleStream) {
-		
+			Logger logger) {
+
 		// store the matched sections
 		this.matchedSections = matchedSections;
-		
+
 		// store the message stream
-		this.consoleStream = consoleStream;
-		
+		this.consoleStream = logger;
+
 		// store the 'InstancePointerHandler'
 		this.instancePointerHandler = instancePointerHandler;
-		
+
 		// create a value extractor
 		this.valueExtractor = new AttributeValueConstraintValueExtractor(
 				globalValues.getGlobalAttributes(), attributeValueCalculator, AttributeValueModifierExecutor.getInstance(), consoleStream);
-		
+
 	}
-	
+
 	/**
 	 * General structure for calculating a reference value (mostly for {@link AttributeValueConstraint}s).
 	 * 
@@ -119,16 +126,16 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 * @return The calculated attribute value or <em>""</em> if no value could be calculated.
 	 */
 	public String calculateReferenceValue(EObject rootObj, MatchedSectionDescriptor matchedSectionDescriptor) {
-		
+
 		String refValue;
-		
+
 		List<InstancePointer> instPointersAsList;
 		List<AttributeValueConstraintSourceInterface> sourceElements;
-		
+
 		// The MatchedSectionDescriptor that shall be used to retrieve the values for the various source elements
 		//
 		MatchedSectionDescriptor descriptorToEvaluate;
-		
+
 		// Fill variables and lists
 		if(rootObj instanceof SingleReferenceAttributeValueConstraint){
 			sourceElements = ((SingleReferenceAttributeValueConstraint) rootObj).getSourceElements();
@@ -142,14 +149,15 @@ public class AttributeValueConstraintReferenceValueCalculator {
 					((RangeBound) rootObj).isLocalConstraint(), matchedSectionDescriptor);
 		} else {
 			// more types could be supported in the future
-			consoleStream.println("AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
+			consoleStream
+			.severe("AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
 			return null; // "" keep running the application (in this case YOU may have to do some changes here?!)
 		}
-		
+
 		if(descriptorToEvaluate == null) {
 			return null;
 		}
-		
+
 		if(rootObj instanceof SingleReferenceAttributeValueConstraint){
 			refValue = valueExtractor.extractRequiredTargetValue(
 					(SingleReferenceAttributeValueConstraint) rootObj, descriptorToEvaluate);
@@ -157,10 +165,10 @@ public class AttributeValueConstraintReferenceValueCalculator {
 			refValue = valueExtractor.extractRequiredTargetValue(
 					(RangeBound) rootObj, descriptorToEvaluate);
 		}
-		
+
 		return refValue;
 	}
-	
+
 	/**
 	 * General structure for calculating a reference value (mostly for {@link AttributeValueConstraint}s).
 	 * 
@@ -169,16 +177,16 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 * @return The calculated attribute value or <em>""</em> if no value could be calculated.
 	 */
 	public String calculateReferenceValue(EObject rootObj) {
-		
+
 		String refValue;
-		
+
 		List<InstancePointer> instPointersAsList;
 		List<AttributeValueConstraintSourceInterface> sourceElements;
-		
+
 		// The MatchedSectionDescriptor that shall be used to retrieve the values for the various source elements
 		//
 		MatchedSectionDescriptor descriptorToEvaluate;
-		
+
 		// Fill variables and lists
 		if(rootObj instanceof SingleReferenceAttributeValueConstraint){
 			sourceElements = ((SingleReferenceAttributeValueConstraint) rootObj).getSourceElements();
@@ -192,10 +200,11 @@ public class AttributeValueConstraintReferenceValueCalculator {
 					((RangeBound) rootObj).isLocalConstraint(), null);
 		} else {
 			// more types could be supported in the future
-			consoleStream.println("AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
+			consoleStream
+			.severe("AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
 			return null; // "" keep running the application (in this case YOU may have to do some changes here?!)
 		}
-		
+
 		if(rootObj instanceof SingleReferenceAttributeValueConstraint){
 			refValue = valueExtractor.extractRequiredTargetValue(
 					(SingleReferenceAttributeValueConstraint) rootObj, descriptorToEvaluate);
@@ -203,10 +212,10 @@ public class AttributeValueConstraintReferenceValueCalculator {
 			refValue = valueExtractor.extractRequiredTargetValue(
 					(RangeBound) rootObj, descriptorToEvaluate);
 		}
-		
+
 		return refValue;
 	}
-		
+
 	/**
 	 * This collects and returns the list of {@link EObject EObjects} that
 	 * need to be considered during the evaluation of the given {@link EObject attributeValueConstraint} for the given
@@ -228,73 +237,74 @@ public class AttributeValueConstraintReferenceValueCalculator {
 			List<InstancePointer> instancePointers,
 			boolean isLocalConstraint,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
-		
+
 		List<MatchedSectionDescriptor> descriptorsToConsider;
 		Optional<SourceSection> affectedSection;
-		
+
 		if(isLocalConstraint && instancePointers.isEmpty()) {
-			
+
 			// In case of a 'local' constraint without any InstancePointers specified, 
 			// we only consider the given 'matchedSectionDescriptor'.
 			//
 			return matchedSectionDescriptor;
-			
+
 		} else {
-			
+
 			// In case of a 'global' constraint or if an InstancePointer has been specified, we 
 			// have to consider all 'descriptors' for the SourceSection  under consideration
 			//
 			affectedSection = sourceElements.parallelStream()
 					.filter(s -> s instanceof AttributeValueConstraintSourceElement || s instanceof AttributeValueConstraintExternalSourceElement)
 					.map(s -> ((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) s).getSource().getContainingSection()).findAny();
-			
+
 			if(!affectedSection.isPresent()) {
 				return matchedSectionDescriptor;
 			}
-			
+
 			descriptorsToConsider = this.matchedSections.get(affectedSection.get());
 		}
-		
+
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = descriptorsToConsider.parallelStream()
 				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection.get()).stream())
 				.collect(Collectors.toList());
-		
+
 		// Reduce the list of instances based on modeled InstancePointers
 		//
 		if(!correspondEClassInstances.isEmpty() && !instancePointers.isEmpty()){
-			
+
 			for (InstancePointer instancePointer : instancePointers) {
-				
+
 				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(
 						instancePointer, correspondEClassInstances, matchedSectionDescriptor);
 			}
-			
+
 		}
 
 		if(correspondEClassInstances.isEmpty()) {
 			return null;
-			
+
 		} else if(correspondEClassInstances.size() > 1) {
-			
+
 			// Multiple instances found -> check if all are represented by the same MatchedSectionDescriptor
 			//
 			Set<MatchedSectionDescriptor> result = correspondEClassInstances.parallelStream().map(
 					e -> MatchedSectionDescriptor.getDescriptorForElement(e, descriptorsToConsider)).filter(d -> d != null).collect(Collectors.toSet());
-			
+
 			if(result.isEmpty()) {
 				return null;
 			} else if(result.size() > 1) {
-				consoleStream.println("Internal Error: Multiple source descriptors found during evaluation of an " +
+				consoleStream.severe("Internal Error: Multiple source descriptors found during evaluation of an "
+						+
 						"AttributeValueConstraint! This should not happen in valid models.");
 				return null;
 			} else {
 				return result.iterator().next();
 			}
-			
+
 		} else {
-			
+
 			return MatchedSectionDescriptor.getDescriptorForElement(correspondEClassInstances.get(0), descriptorsToConsider);
 		}
 	}

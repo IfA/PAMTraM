@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
@@ -39,41 +39,51 @@ public abstract class ValueExtractor extends CancelableElement {
 	 */
 	protected final AttributeValueModifierExecutor attributeValueModifierExecutor;
 	/**
-	 * The {@link MessageConsoleStream} that shall be used to print messages.
+	 * The {@link Logger} that shall be used to print messages.
 	 */
-	protected final MessageConsoleStream consoleStream;
-	
+	protected final Logger logger;
+
 	/**
 	 * Registry for values of {@link GlobalAttribute GlobalAttributes}.
 	 */
 	protected final Map<GlobalAttribute, String> globalAttributeValues;
 
 	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of
+	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 * 
-	 * @param attributeValueModifierExecutor The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param attributeValueModifierExecutor
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	public ValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor, MessageConsoleStream consoleStream) {
+	public ValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
 
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
-		this.consoleStream = consoleStream;
+		this.logger = logger;
 		this.globalAttributeValues = new HashMap<>();
 	}
-	
+
 	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of
+	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 * 
-	 * @param globalAttributeValues The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
-	 * {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
-	 * @param attributeValueModifierExecutor The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param globalAttributeValues
+	 *            The values of {@link GlobalAttribute GlobalAttributes} that
+	 *            shall be used by
+	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
+	 * @param attributeValueModifierExecutor
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public ValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, MessageConsoleStream consoleStream) {
+			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
 
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
-		this.consoleStream = consoleStream;
+		this.logger = logger;
 		this.globalAttributeValues = globalAttributeValues;
 	}
 
@@ -95,7 +105,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(FixedValue fixedValue, MatchedSectionDescriptor matchedSectionDescriptor) {
-		
+
 		//FIXME two different FixedValues are currently not supported (both get added to the 'null' attribute
 		return new AttributeValueRepresentation(null, fixedValue.getValue()); 
 	}
@@ -109,7 +119,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(GlobalAttributeImporter globaleAttributeImporter, MatchedSectionDescriptor matchedSectionDescriptor) {
-		
+
 		return globalAttributeValues.containsKey(globaleAttributeImporter.getGlobalAttribute()) ?
 				new AttributeValueRepresentation(null, globalAttributeValues.get(globaleAttributeImporter.getGlobalAttribute())) : null;
 	}
@@ -123,11 +133,11 @@ public abstract class ValueExtractor extends CancelableElement {
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement, MatchedSectionDescriptor matchedSectionDescriptor) {
-		
+
 		AttributeValueRepresentation hintValue = null;
-		
+
 		MatchedSectionDescriptor sourceDescriptor = matchedSectionDescriptor;
-		
+
 		// In case we are dealing with an external source element, we first need to determine the correct
 		// 'container descriptor' that represents the source element
 		//
@@ -140,16 +150,16 @@ public abstract class ValueExtractor extends CancelableElement {
 				}
 			}
 		}
-		
+
 		Set<EObject> sourceElements = sourceDescriptor.getSourceModelObjectsMapped().get(mappingHintSourceElement.getSource().eContainer());
-		
+
 		if(sourceElements == null) {
-			consoleStream.println("Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
+			logger.warning("Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
 			return null;
 		}
-		
+
 		EAttribute sourceAttribute = mappingHintSourceElement.getSource().getAttribute();
-		
+
 		// Collect all values of the attribute in all source elements
 		//
 		List<Object> srcAttrValues;
@@ -160,18 +170,18 @@ public abstract class ValueExtractor extends CancelableElement {
 			srcAttrValues = sourceElements.parallelStream().map(
 					e -> e.eGet(sourceAttribute)).collect(Collectors.toList());
 		}
-		
+
 		// Extract a hint value for each retrieved value
 		//
 		for (Object srcAttrValue : srcAttrValues) {
-			
+
 			// convert Attribute value to String
 			final String srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
 					.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
-			
+
 			final String valCopy = attributeValueModifierExecutor
 					.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifier());
-			
+
 			// create a new AttributeValueRepresentation or update the existing one
 			if(hintValue == null) {
 				hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
@@ -179,7 +189,7 @@ public abstract class ValueExtractor extends CancelableElement {
 				hintValue.addValue(valCopy);
 			}
 		}
-		
+
 		return hintValue;
 	}
 

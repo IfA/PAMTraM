@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -54,12 +54,18 @@ public interface IAmbiguityResolvingStrategy {
 	/**
 	 * Initialize the strategy.
 	 * 
-	 * @param pamtramModel The {@link PAMTraM} instance that the current transformation operates on.
-	 * @param sourceModels The list of {@link EObject sourceModels} that serve as input to the current transformation.
-	 * @param messageStream A {@link MessageConsoleStream} that can be used to print messages.
-	 * @throws Exception If an error occurs during the initialization of the strategy.
+	 * @param pamtramModel
+	 *            The {@link PAMTraM} instance that the current transformation
+	 *            operates on.
+	 * @param sourceModels
+	 *            The list of {@link EObject sourceModels} that serve as input
+	 *            to the current transformation.
+	 * @param logger
+	 *            A {@link Logger} that can be used to print messages.
+	 * @throws Exception
+	 *             If an error occurs during the initialization of the strategy.
 	 */
-	public default void init(PAMTraM pamtramModel, List<EObject> sourceModels, MessageConsoleStream messageStream)
+	public default void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
 			throws Exception {
 		return;
 	}

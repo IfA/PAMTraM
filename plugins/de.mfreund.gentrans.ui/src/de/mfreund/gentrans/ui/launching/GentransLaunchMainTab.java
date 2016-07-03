@@ -2,6 +2,8 @@ package de.mfreund.gentrans.ui.launching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
+
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -37,9 +39,9 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
@@ -57,7 +59,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 	// combo boxes to select the project, the source file, the pamtram file and the
 	// target file
-	private Combo projectCombo, srcFileCombo, pamtramFileCombo, targetFileCombo;
+	private Combo projectCombo, srcFileCombo, pamtramFileCombo, targetFileCombo, logLevelCombo;
 
 	//spinner to set max path length
 	private Spinner pathLengthSpinner;
@@ -226,7 +228,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+
 				// Add the selected item
 				//
 				sourceFileList.add(srcFileCombo.getText());
@@ -251,7 +253,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.keyCode == SWT.DEL && sourceFileList.getSelectionIndex() != -1) {
-					
+
 					// Delete all selected items
 					//
 					int sel = sourceFileList.getSelectionIndex();
@@ -263,7 +265,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		});
 		scrolledComposite.setContent(sourceFileList);
 		scrolledComposite.setMinSize(sourceFileList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		
+
 		Button delSourceFileButton = new Button(fileGroup, SWT.NONE);
 		delSourceFileButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		delSourceFileButton.setText("Del...");
@@ -271,7 +273,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+
 				// Delete all selected items
 				//
 				int sel = sourceFileList.getSelectionIndex();
@@ -280,7 +282,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 				updateLaunchConfigurationDialog();
 			}
 		});
-		
+
 		Button upSourceFileButton = new Button(fileGroup, SWT.NONE);
 		upSourceFileButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		upSourceFileButton.setText("Up...");
@@ -288,7 +290,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+
 				// Move up all selected items
 				//
 				for (int sel : sourceFileList.getSelectionIndices()) {
@@ -305,11 +307,11 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 					sourceFileList.deselect(sel);
 					sourceFileList.select(sel - 1);					
 				}
-				
+
 				updateLaunchConfigurationDialog();
 			}
 		});
-		
+
 		Button downSourceFileButton = new Button(fileGroup, SWT.NONE);
 		downSourceFileButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		downSourceFileButton.setText("Down...");
@@ -317,7 +319,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+
 				// Move down all selected items
 				//
 				int[] selections = sourceFileList.getSelectionIndices();
@@ -336,7 +338,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 					sourceFileList.deselect(sel);
 					sourceFileList.select(sel + 1);					
 				}
-				
+
 				updateLaunchConfigurationDialog();
 			}
 		});
@@ -406,6 +408,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// create a spinner for path setting
 		pathLengthSpinner= new Spinner(settingsGroup, SWT.BORDER);
+		pathLengthSpinner.setLayoutData(new GridData());
 		pathLengthSpinner.setMinimum(-1);
 		pathLengthSpinner.setMaximum(Integer.MAX_VALUE);
 		pathLengthSpinner.addSelectionListener(new SelectionAdapter() {
@@ -417,6 +420,11 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		Label pathLengthLabel=new Label(settingsGroup, SWT.NONE);
 		pathLengthLabel.setText("max. length for model connection paths (0 = direct connection only, -1 = unbounded)");
+		{
+			GridData gd = new GridData();
+			gd.grabExcessHorizontalSpace = true;
+			pathLengthLabel.setLayoutData(gd);
+		}
 
 		//create CHeckBox for ambiguous mappings setting
 		onlyAskOnceForAmbiguousMappings=new Button(settingsGroup,SWT.CHECK);
@@ -439,6 +447,30 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		createTransformationModel.setToolTipText("Whether a TransformationModel shall be created in the folder 'Pamtram/transformation' for every executed transformation. This trace model can be used for further reasoning about the executed transformation...");
 		createTransformationModel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		createTransformationModel.setText("Create transformation model");
+
+		// Create a combo box to select the log level
+		//
+		logLevelCombo = new Combo(settingsGroup, SWT.DROP_DOWN | SWT.BORDER);
+		logLevelCombo.setEnabled(true);
+		logLevelCombo.setLayoutData(new GridData());
+		logLevelCombo.setItems("OFF", "SEVERE", "WARNING", "INFO", "ALL");
+		logLevelCombo.select(3);
+		logLevelCombo.addModifyListener(new ModifyListener() {
+
+			@Override
+			public void modifyText(ModifyEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+		});
+
+		Label logLevelLabel = new Label(settingsGroup, SWT.NONE);
+		logLevelLabel.setText("Select the verbosity of the log.");
+		{
+			GridData gd = new GridData();
+			gd.grabExcessHorizontalSpace = true;
+			logLevelLabel.setLayoutData(gd);
+		}
+
 		initDataBindings();
 
 	}
@@ -481,6 +513,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			pathLengthSpinner.setSelection(configuration.getAttribute("maxPathLength", -1));
 			onlyAskOnceForAmbiguousMappings.setSelection(configuration.getAttribute("rememberAmbiguousMappingChoice", true));
 			createTransformationModel.setSelection(configuration.getAttribute("storeTransformation", false));
+			logLevelCombo.select(logLevelCombo.indexOf(configuration.getAttribute("logLevel", "INFO")));
 		} catch (CoreException e) {
 			setErrorMessage(e.getMessage());
 		}
@@ -498,6 +531,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute("maxPathLength", pathLengthSpinner.getSelection());
 		configuration.setAttribute("rememberAmbiguousMappingChoice", onlyAskOnceForAmbiguousMappings.getSelection());
 		configuration.setAttribute("storeTransformation", createTransformationModel.getSelection());
+		configuration.setAttribute("logLevel", logLevelCombo.getText());
 	}
 
 	@Override
@@ -522,6 +556,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		}
 		if(!isTargetFileComboValid()) {
 			setErrorMessage("Specify a valid target file");
+			return false;
+		}
+		if (!isLogLevelValid()) {
+			setErrorMessage("Specify a valid log level");
 			return false;
 		}
 		return true;
@@ -558,6 +596,11 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	// check if the selected target file is valid
 	private boolean isTargetFileComboValid() {
 		return targetFileCombo.getText().endsWith(".xmi");
+	}
+
+	// check if the log level is valid
+	private boolean isLogLevelValid() {
+		return Stream.of("ALL", "INFO", "WARNING", "SEVERE", "OFF").anyMatch(l -> l.equals(logLevelCombo.getText()));
 	}
 
 	/** 
@@ -640,6 +683,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 			//set whether a TransformationModel shall be created
 			workingCopy.setAttribute("storeTransformation", false);
+
+			// set the log level
+			workingCopy.setAttribute("logLevel", "INFO");
 
 		} else {
 			return;

@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.util;
+package de.mfreund.gentrans.transformation.logging;
 
 import java.util.logging.LogRecord;
 import java.util.logging.StreamHandler;

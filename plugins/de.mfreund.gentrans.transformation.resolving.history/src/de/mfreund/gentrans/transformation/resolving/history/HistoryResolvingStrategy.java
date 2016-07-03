@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -111,7 +111,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	private ArrayList<Comparison> sourceCompareResults;
 
 	/**
-	 * This map is filled once during the {@link #init(PAMTraM, ArrayList, MessageConsoleStream)} method and contains associations between
+	 * This map is filled once during the {@link #init(PAMTraM, ArrayList, Logger)} method and contains associations between
 	 * {@link TargetSection TargetSections} and lists of {@link TransformationMappingHintGroup TransformationMappingHintGroups}
 	 * that are contained in the {@link #transformationModel}. It can be used to retrieve all hint groups from the 
 	 * transformation model that were responsible for instantiating a certain target section.
@@ -136,10 +136,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	@Override
-	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, MessageConsoleStream messageStream)
+	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
 			throws Exception {
 
-		super.init(pamtramModel, sourceModels, messageStream);
+		super.init(pamtramModel, sourceModels, logger);
 
 		/*
 		 * load the transformation model to be used by this strategy

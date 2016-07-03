@@ -998,11 +998,11 @@ public class TargetSectionConnector extends CancelableElement {
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
 				try {
-					logger.info(RESOLVE_JOINING_AMBIGUITY_STARTED);
+					logger.fine(RESOLVE_JOINING_AMBIGUITY_STARTED);
 					List<EObjectWrapper> resolved = ambiguityResolvingStrategy.joiningSelectContainerInstance(
 							new LinkedList<>(contInstsByHintVal.get(hintValEntry.getKey())), 
 							new LinkedList<>(hintValEntry.getValue()), mappingGroup, connectionHint, hintValEntry.getKey());
-					logger.info(RESOLVE_JOINING_AMBIGUITY_ENDED);
+					logger.fine(RESOLVE_JOINING_AMBIGUITY_ENDED);
 					rootInstancesByContainer.put(resolved.get(0), hintValEntry.getValue());
 
 				} catch (Exception e) {
@@ -1087,9 +1087,9 @@ public class TargetSectionConnector extends CancelableElement {
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
 				try {
-					logger.info(RESOLVE_JOINING_AMBIGUITY_STARTED);
+					logger.fine(RESOLVE_JOINING_AMBIGUITY_STARTED);
 					List<ModelConnectionPath> resolved = ambiguityResolvingStrategy.joiningSelectConnectionPath(pathsToConsider, section);
-					logger.info(RESOLVE_JOINING_AMBIGUITY_ENDED);
+					logger.fine(RESOLVE_JOINING_AMBIGUITY_ENDED);
 					modelConnectionPath = resolved.get(0);
 				} catch (Exception e) {
 					logger.severe(e.getMessage());
@@ -1101,7 +1101,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 				logger.warning(
 						"Could not find a path that leads to the container specified by the ModelConnectionHint of "
-						+ mappingName + "::" + mappingGroup.getName());
+								+ mappingName + "::" + mappingGroup.getName());
 				addToTargetModelRoot(rootInstances);
 				addToTargetModelRoot(containerEntry.getValue());
 			}

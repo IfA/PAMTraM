@@ -1,14 +1,13 @@
 package de.mfreund.gentrans.transformation.util;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.StreamHandler;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -37,41 +36,82 @@ public class GenTransConsole extends MessageConsole {
 	private Logger logger;
 
 	/**
-	 * This creates an instance.
+	 * This creates an instance that will print message of any {@link Level}.
+	 * 
+	 * @see #GenTransConsole(Logger, Level)
 	 * 
 	 * @param logger
 	 *            The logger of which the console shall print messages.
 	 */
-	@SuppressWarnings("resource")
 	public GenTransConsole(Logger logger) {
+		this(logger, Level.ALL);
+	}
+
+	/**
+	 * This creates an instance.
+	 * 
+	 * @param logger
+	 *            The logger of which the console shall print messages.
+	 * @param level
+	 *            The minimum {@link Level} a logged messages must represent to
+	 *            be printed to this instance. Use {@link Level#ALL} to ensure
+	 *            logging of all messages and {@link Level#OFF} to prevent any
+	 *            logging.
+	 */
+	@SuppressWarnings("resource")
+	public GenTransConsole(Logger logger, Level level) {
 
 		super(CONSOLE_NAME_PREFIX + " " + DateFormat.getDateTimeInstance().format(new Date()), null, true);
 
 		this.logger = logger;
+		this.handlers = new ArrayList<>();
 
-		IOConsoleOutputStream fineStream = newOutputStream();
-		IOConsoleOutputStream infoStream = newOutputStream();
-		IOConsoleOutputStream warningStream = newOutputStream();
-		IOConsoleOutputStream errorStream = newOutputStream();
+		if (level.intValue() <= Level.FINE.intValue()) {
 
-		fineStream.setColor(new Color(Display.getCurrent(), new RGB(0, 0, 0)));
-		infoStream.setColor(new Color(Display.getCurrent(), new RGB(0, 0, 0)));
-		warningStream.setColor(new Color(Display.getCurrent(), new RGB(250, 100, 0)));
-		errorStream.setColor(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
+			// Initialize the logging of 'finest', 'finer' and 'fine' messages
+			//
+			IOConsoleOutputStream fineStream = newOutputStream();
+			fineStream.setColor(new Color(Display.getCurrent(), new RGB(0, 0, 0)));
+			StreamHandler fineHandler = new GenTransConsoleStreamHandler(fineStream);
+			fineHandler.setFilter((LogRecord record) -> record.getLevel().intValue() <= Level.FINE.intValue());
+			this.handlers.add(fineHandler);
+		}
 
-		StreamHandler fineHandler = new GenTransConsoleStreamHandler(fineStream);
-		fineHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.FINE));
+		if (level.intValue() <= Level.INFO.intValue()) {
 
-		StreamHandler infoHandler = new GenTransConsoleStreamHandler(infoStream);
-		infoHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.INFO));
+			// Initialize the logging of 'config' and 'info' messages
+			//
+			IOConsoleOutputStream infoStream = newOutputStream();
+			infoStream.setColor(new Color(Display.getCurrent(), new RGB(0, 0, 0)));
+			StreamHandler infoHandler = new GenTransConsoleStreamHandler(infoStream);
+			infoHandler.setFilter((LogRecord record) -> record.getLevel().intValue() > Level.FINE.intValue()
+					&& record.getLevel().intValue() <= Level.INFO.intValue());
+			this.handlers.add(infoHandler);
 
-		StreamHandler warningHandler = new GenTransConsoleStreamHandler(warningStream);
-		warningHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.WARNING));
+		}
 
-		StreamHandler errorHandler = new GenTransConsoleStreamHandler(errorStream);
-		errorHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.SEVERE));
+		if (level.intValue() <= Level.WARNING.intValue()) {
 
-		this.handlers = Stream.of(infoHandler, warningHandler, errorHandler).collect(Collectors.toList());
+			// Initialize the logging of 'warning' messages
+			//
+			IOConsoleOutputStream warningStream = newOutputStream();
+			warningStream.setColor(new Color(Display.getCurrent(), new RGB(250, 100, 0)));
+			StreamHandler warningHandler = new GenTransConsoleStreamHandler(warningStream);
+			warningHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.WARNING));
+			this.handlers.add(warningHandler);
+		}
+
+		if (level.intValue() <= Level.SEVERE.intValue()) {
+
+			// Initialize the logging of 'severe' messages
+			//
+			IOConsoleOutputStream errorStream = newOutputStream();
+			errorStream.setColor(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
+			StreamHandler errorHandler = new GenTransConsoleStreamHandler(errorStream);
+			errorHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.SEVERE));
+			this.handlers.add(errorHandler);
+		}
+
 		this.handlers.stream().forEach(logger::addHandler);
 
 		final ConsolePlugin plugin = ConsolePlugin.getDefault();

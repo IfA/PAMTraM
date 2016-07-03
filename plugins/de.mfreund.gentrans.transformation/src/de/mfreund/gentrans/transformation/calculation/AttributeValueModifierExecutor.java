@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.calculation;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.eclipse.ui.console.MessageConsoleStream;
 
@@ -17,17 +18,17 @@ import pamtram.mapping.AttributeValueModifierSet;
  *
  */
 public class AttributeValueModifierExecutor {
-	
+
 	/**
 	 * This keeps track of the single instance.
 	 */
 	private static AttributeValueModifierExecutor instance;
 
 	/**
-	 * An output stream for messages. This is used to print error messages when the application
-	 * of an AttributeValueModifier fails.
+	 * An {@link Logger} for messages. This is used to print error messages when
+	 * the application of an AttributeValueModifier fails.
 	 */
-	private MessageConsoleStream consoleStream;
+	private Logger logger;
 
 	/**
 	 * A set that contains all AttributeValueModifiers with errors so we don't need to send
@@ -37,15 +38,17 @@ public class AttributeValueModifierExecutor {
 
 	/**
 	 * This constructs an instance.
-	 * @param consoleStream A {@link MessageConsoleStream} that will be used to print error messages when
-	 * the application of an AttributeValueModifier fails.
+	 * 
+	 * @param logger
+	 *            A {@link Logger} that will be used to print error messages
+	 *            when the application of an AttributeValueModifier fails.
 	 */
-	private AttributeValueModifierExecutor(final MessageConsoleStream consoleStream) {
-		this.consoleStream = consoleStream;
+	private AttributeValueModifierExecutor(final Logger logger) {
+		this.logger = logger;
 		modifiersWithErrors = new HashSet<>();
 		instance = this;
 	}
-	
+
 	/**
 	 * This returns the single {@link #instance}.
 	 * <p />
@@ -56,32 +59,34 @@ public class AttributeValueModifierExecutor {
 	 * @return The single {@link #instance}.
 	 */
 	public static AttributeValueModifierExecutor getInstance() {
-		
+
 		if(instance == null) {
 			init(null);
 		}
-		
+
 		return instance;
 	}
-	
+
 	/**
-	 * This initializes and returns the {@link #instance} based on the given {@link MessageConsoleStream}.
-	 * This should be called once before {@link #getInstance()} in order to set the 
-	 * correct {@link MessageConsoleStream} to use.
+	 * This initializes and returns the {@link #instance} based on the given
+	 * {@link MessageConsoleStream}. This should be called once before
+	 * {@link #getInstance()} in order to set the correct
+	 * {@link MessageConsoleStream} to use.
 	 * 
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 * @return The {@link #instance}.
 	 */
-	public static AttributeValueModifierExecutor init(final MessageConsoleStream consoleStream) {
-		
+	public static AttributeValueModifierExecutor init(final Logger logger) {
+
 		// Either create the single instance or only set the consoleStream
 		//
 		if(instance == null) {
-			new AttributeValueModifierExecutor(consoleStream);			
+			new AttributeValueModifierExecutor(logger);
 		} else {
-			instance.consoleStream = consoleStream;
+			instance.logger = logger;
 		}
-		
+
 		return instance;
 	}
 
@@ -109,9 +114,10 @@ public class AttributeValueModifierExecutor {
 					} catch (final Exception e) {
 						modifiersWithErrors.add(m);
 
-						if(consoleStream != null) {
-							
-							consoleStream.println("The AttributeValueModifier '" + m.getName() + "' of the AttributeValueModifierSet '"
+						if(logger != null) {
+
+							logger.warning("The AttributeValueModifier '" + m.getName()
+									+ "' of the AttributeValueModifierSet '"
 									+ set.getName() + "' could not be evaluated. The following error was supplied:\n"
 									+ e.getLocalizedMessage());
 						}

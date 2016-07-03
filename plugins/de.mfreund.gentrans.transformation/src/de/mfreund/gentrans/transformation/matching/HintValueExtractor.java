@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.logging.Logger;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
@@ -65,21 +66,30 @@ public class HintValueExtractor extends ValueExtractor {
 	private Map<ExportedMappingHintGroup, MappingInstanceStorage> exportedHintGroups;
 
 	/**
-	 * This creates an instance for a given list of {@link MappingInstanceStorage mappingInstances}.
+	 * This creates an instance for a given list of
+	 * {@link MappingInstanceStorage mappingInstances}.
 	 * <p />
-	 * Note: The extracted hint values are stored in the given <em>mappingInstances</em>. 
+	 * Note: The extracted hint values are stored in the given
+	 * <em>mappingInstances</em>.
 	 * 
-	 * @param mappingInstances The list of {@link MappingInstanceStorage MappingInstanceStorages}
-	 * for that the hint values shall be extracted.
-	 * @param globalAttributes The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
-	 * {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
-	 * @param attributeValueModifierExecutor The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param mappingInstances
+	 *            The list of {@link MappingInstanceStorage
+	 *            MappingInstanceStorages} for that the hint values shall be
+	 *            extracted.
+	 * @param globalAttributes
+	 *            The values of {@link GlobalAttribute GlobalAttributes} that
+	 *            shall be used by
+	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
+	 * @param attributeValueModifierExecutor
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public HintValueExtractor(List<MappingInstanceStorage> mappingInstances, Map<GlobalAttribute, String> globalAttributes,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, MessageConsoleStream consoleStream) {
+			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
 
-		super(globalAttributes, attributeValueModifierExecutor, consoleStream);
+		super(globalAttributes, attributeValueModifierExecutor, logger);
 
 		this.mappingInstances = mappingInstances;
 		this.exportedHintGroups = new HashMap<>();
@@ -100,7 +110,8 @@ public class HintValueExtractor extends ValueExtractor {
 				m -> m.getMappingHintGroups().parallelStream().filter(hg -> hg instanceof ExportedMappingHintGroup).forEach(
 						hg -> {
 							if(exportedHintGroups.containsKey(hg)) {
-								consoleStream.println("Multiple occurences found for exported hint group '" + hg.getName() + 
+								logger.warning("Multiple occurences found for exported hint group '"
+										+ hg.getName() + 
 										"'! This is currently not supported!");
 							}
 							exportedHintGroups.put((ExportedMappingHintGroup) hg, m);	
@@ -219,7 +230,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		} else {
 
-			consoleStream.println("Unsupported type of MappingHint found: '" + hint.eClass().getName() + "'!");
+			logger.severe("Unsupported type of MappingHint found: '" + hint.eClass().getName() + "'!");
 		}
 
 		storeHintValueConsolidated(hintValue, hint, mappingInstance);		
@@ -253,7 +264,7 @@ public class HintValueExtractor extends ValueExtractor {
 			} else if(attributeMappingSourceInterface instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = extractValue((GlobalAttributeImporter) attributeMappingSourceInterface, matchedSectionDescriptor); 
 			} else {
-				consoleStream.println("Unsupported type of source element for an AttributeMapping found: '" + 
+				logger.severe("Unsupported type of source element for an AttributeMapping found: '" +
 						attributeMappingSourceInterface.eClass().getName() + "'!");
 			}
 
@@ -292,7 +303,8 @@ public class HintValueExtractor extends ValueExtractor {
 			} else if(attributeMatcherSourceInterface instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = extractValue((GlobalAttributeImporter) attributeMatcherSourceInterface, matchedSectionDescriptor); 
 			} else {
-				consoleStream.println("Unsupported type of source element for an AttributeMatcher found: '" + 
+				logger.severe("Unsupported type of source element for an AttributeMatcher found: '"
+						+ 
 						attributeMatcherSourceInterface.eClass().getName() + "'!");
 			}
 
@@ -332,7 +344,7 @@ public class HintValueExtractor extends ValueExtractor {
 			} else if(modelConnectionHintSourceInterface instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = extractValue((GlobalAttributeImporter) modelConnectionHintSourceInterface, matchedSectionDescriptor); 
 			} else {
-				consoleStream.println("Unsupported type of source element for a ModelConnectionHint found: '" + 
+				logger.severe("Unsupported type of source element for a ModelConnectionHint found: '" +
 						modelConnectionHintSourceInterface.eClass().getName() + "'!");
 			}
 
@@ -371,7 +383,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		if(mappedAttributeValueExpander.getSourceAttribute().getAttribute().isMany()) {
 			//FIXME Currently, we do not support many-valued attributes
-			consoleStream.println("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
+			logger.severe("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
 			return null;
 		}
 
@@ -430,7 +442,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 			for (AttributeValueRepresentation valueRepresentation : hintValueMap.values()) {
 				if(maxNumberOfValues % valueRepresentation.getValues().size() > 0) {
-					consoleStream.println("The source elements of the mapping hint '" + hint.getName() + "' produced an "
+					logger.warning("The source elements of the mapping hint '" + hint.getName() + "' produced an "
 							+ "inconsistent number of hint values. They are thus skipped...");
 					return;
 				}
@@ -452,8 +464,7 @@ public class HintValueExtractor extends ValueExtractor {
 		} else if (hint instanceof HintImporterMappingHint) {
 
 			if (!(hint instanceof MappedAttributeValueExpander)) {
-				consoleStream
-				.println("Unknown type of HintImporterMappingHint found: '" + hint.eClass().getName() + "'.");
+				logger.severe("Unknown type of HintImporterMappingHint found: '" + hint.eClass().getName() + "'.");
 				return;
 			}
 
@@ -494,7 +505,7 @@ public class HintValueExtractor extends ValueExtractor {
 			boolean prepend) {
 
 		if (!(hintValue instanceof String)) {
-			consoleStream.println("Trying to expand a hint value that is no String. This not supported!");
+			logger.severe("Trying to expand a hint value that is no String. This not supported!");
 			return;
 		}
 
@@ -503,7 +514,7 @@ public class HintValueExtractor extends ValueExtractor {
 		} else if (expandableHint instanceof AttributeMatcher) {
 			expandAttributeMatcher((AttributeMatcher) expandableHint, (String) hintValue, mappingInstance, prepend);
 		} else {
-			consoleStream.println("Unknown type of ExpandableHint found '" + expandableHint.eClass().getName() + "'!");
+			logger.severe("Unknown type of ExpandableHint found '" + expandableHint.eClass().getName() + "'!");
 		}
 	}
 
@@ -575,7 +586,7 @@ public class HintValueExtractor extends ValueExtractor {
 		}
 
 		mappingInstance.getHintValues().getHintValues((MappingInstanceSelector) attributeMatcher.eContainer()).parallelStream()
-			.forEach(existingValue -> {
+		.forEach(existingValue -> {
 
 			if (existingValue.containsKey(element)) {
 				if (prepend) {

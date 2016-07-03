@@ -4,10 +4,9 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
+
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -16,18 +15,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.console.ConsolePlugin;
-import org.eclipse.ui.console.IConsole;
-import org.eclipse.ui.console.IConsoleManager;
-import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
-import org.eclipse.ui.progress.UIJob;
 
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.util.GenTransConsole;
 import pamtram.PAMTraM;
 import pamtram.util.PamtramEPackageHelper;
 import pamtram.util.PamtramEPackageHelper.EPackageCheck;
@@ -42,12 +35,12 @@ import pamtram.util.PamtramEPackageHelper.EPackageCheck;
  * @author mfreund
  */
 public class GenericTransformationRunnerFactory {
-	
+
 	/**
 	 * The singleton instance of the factory.
 	 */
 	public static final GenericTransformationRunnerFactory eINSTANCE = init();
-	
+
 	/**
 	 * This constructs an instance. 
 	 * 
@@ -70,35 +63,35 @@ public class GenericTransformationRunnerFactory {
 			String pamtramPath,
 			String targetBasePath, 
 			BaseTransformationConfiguration baseConfiguration) {
-		
-		MessageConsoleStream consoleStream = initializeLogger();
-		
+
+		Logger logger = initializeLogger();
+
 		// Create a resource set to load the models.
 		//
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		// Load the PAMTraM model
 		//
-		PAMTraM pamtramModel = loadPamtramModel(resourceSet, pamtramPath, consoleStream);
-		
+		PAMTraM pamtramModel = loadPamtramModel(resourceSet, pamtramPath, logger);
+
 		if(pamtramModel == null) {
 			return null;
 		}
-		
+
 		// Load the source models
 		//
 		List<EObject> sourceModels = loadSourceModel(resourceSet, sourceFilePaths);
-		
+
 		// Create the TransformationConfiguration
 		//
 		TransformationConfiguration config = new TransformationConfiguration(
-				sourceModels, pamtramModel, targetBasePath, consoleStream, baseConfiguration)
+				sourceModels, pamtramModel, targetBasePath, logger, baseConfiguration)
 				.withAmbiguityResolvingStrategy(initializeAmbiguityResolvingStrategy(baseConfiguration.getAmbiguityResolvingStrategy()));
-		
+
 		// Create and return the Runner
 		//
 		return new GenericTransformationRunner(config);
-		
+
 	}
 
 	/**
@@ -123,9 +116,9 @@ public class GenericTransformationRunnerFactory {
 			PAMTraM pamtramModel, 
 			String targetBasePath, 
 			BaseTransformationConfiguration baseConfiguration) {
-		
-		MessageConsoleStream consoleStream = initializeLogger();
-		
+
+		Logger logger = initializeLogger();
+
 		// Create a resource set to load the models.
 		//
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -133,13 +126,13 @@ public class GenericTransformationRunnerFactory {
 		// Load the source models
 		//
 		List<EObject> sourceModels = loadSourceModel(resourceSet, sourceFilePaths);
-		
+
 		// Create the TransformationConfiguration
 		//
 		TransformationConfiguration config = new TransformationConfiguration(
-				sourceModels, pamtramModel, targetBasePath, consoleStream, baseConfiguration)
+				sourceModels, pamtramModel, targetBasePath, logger, baseConfiguration)
 				.withAmbiguityResolvingStrategy(initializeAmbiguityResolvingStrategy(baseConfiguration.getAmbiguityResolvingStrategy()));
-	
+
 		// Create and return the Runner
 		//
 		return new GenericTransformationRunner(config);
@@ -167,34 +160,57 @@ public class GenericTransformationRunnerFactory {
 			PAMTraM pamtramModel, 
 			String targetBasePath, 
 			BaseTransformationConfiguration baseConfiguration) {
-		
-		MessageConsoleStream consoleStream = initializeLogger();
-		
+
+		Logger logger = initializeLogger();
+
 		// Create the TransformationConfiguration
 		//
 		TransformationConfiguration config = new TransformationConfiguration(
-				sourceModels, pamtramModel, targetBasePath, consoleStream, baseConfiguration)
+				sourceModels, pamtramModel, targetBasePath, logger, baseConfiguration)
 				.withAmbiguityResolvingStrategy(initializeAmbiguityResolvingStrategy(baseConfiguration.getAmbiguityResolvingStrategy()));
-	
+
 		// Create and return the Runner
 		//
 		return new GenericTransformationRunner(config);
 	}
-	
+
+	/**
+	 * Used to initialize the single {@link #eINSTANCE} of this factory.
+	 * 
+	 * @return A created instance of this factory.
+	 */
 	private static GenericTransformationRunnerFactory init() {
 		return new GenericTransformationRunnerFactory();
 	}
 
-	private MessageConsoleStream initializeLogger() {
+	/**
+	 * This creates the {@link Logger} that will be used across the
+	 * transformation to print messages to the user as well as the
+	 * {@link GenTransConsole} that will display these messages in the console
+	 * view.
+	 * 
+	 * @return The created {@link Logger} that shall be used to print messages
+	 *         to the user.
+	 */
+	private Logger initializeLogger() {
 
-		MessageConsoleStream consoleStream = findConsole(
-				"de.mfreund.gentrans.transformation " + DateFormat.getDateTimeInstance().format(new Date())).newMessageStream();
-		// brings the console view to the front
-		showConsole();
-		
-		return consoleStream;
+		// Create the logger
+		//
+		Logger logger = Logger
+				.getLogger("de.mfreund.gentrans.transformation " + DateFormat.getDateTimeInstance().format(new Date()));
+
+		// Do not log messages to the console of the development platform
+		//
+		logger.setUseParentHandlers(false);
+
+		// Create the Console that will display the messages printed to the
+		// logger
+		//
+		new GenTransConsole(logger);
+
+		return logger;
 	}
-	
+
 	/**
 	 * This initializes the {@link IAmbiguityResolvingStrategy} to be used for the transformation.
 	 * <p />
@@ -212,7 +228,7 @@ public class GenericTransformationRunnerFactory {
 	 * @return The resulting {@link IAmbiguityResolvingStrategy}.
 	 */
 	private IAmbiguityResolvingStrategy initializeAmbiguityResolvingStrategy(final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
-		
+
 		IAmbiguityResolvingStrategy ret;
 
 		if(ambiguityResolvingStrategy == null) {
@@ -232,11 +248,11 @@ public class GenericTransformationRunnerFactory {
 					break;
 				}
 			}
-			
+
 			if(!containsDefaultStrategy) {
 				((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy).addStrategy(new DefaultAmbiguityResolvingStrategy());
 			}
-			
+
 			ret = ambiguityResolvingStrategy;
 
 		} else {
@@ -247,7 +263,7 @@ public class GenericTransformationRunnerFactory {
 			ret = new ComposedAmbiguityResolvingStrategy(composed);
 
 		}
-		
+
 		return ret;
 	}
 
@@ -257,27 +273,27 @@ public class GenericTransformationRunnerFactory {
 	 * 
 	 * @param rs The resource set to be used to load the resource.
 	 * @param pamtramPath The path of the {@link PAMTraM} model to load in the form 'project-name/path'.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print message during loading.
+	 * @param logger The {@link MessageConsoleStream} that shall be used to print message during loading.
 	 * @return The loaded {@link PAMTraM} model; '<em><b>null</b></em>' if the model could not be loaded.
 	 */
-	private PAMTraM loadPamtramModel(ResourceSet rs, String pamtramPath, MessageConsoleStream consoleStream) {
-	
+	private PAMTraM loadPamtramModel(ResourceSet rs, String pamtramPath, Logger logger) {
+
 		ResourceSet resourceSet = rs;
 		PAMTraM pamtramModel;
-	
+
 		// the URI of the pamtram resource
 		final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
-	
+
 		// load the pamtram model
 		XMIResource pamtramResource = 
 				(XMIResource) resourceSet.getResource(pamtramUri, true);
 		if(!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
-			consoleStream.println("The pamtram file does not seem to contain a pamtram instance. Aborting...");
+			logger.severe("The pamtram file does not seem to contain a pamtram instance. Aborting...");
 			return null;
 		}
 		pamtramModel = (PAMTraM) pamtramResource.getContents()
 				.get(0);
-	
+
 		// try to register the ePackages involved in the pamtram model (if not already done)
 		EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(
 				pamtramModel,
@@ -285,11 +301,11 @@ public class GenericTransformationRunnerFactory {
 				EPackage.Registry.INSTANCE);
 		switch (result) {
 		case ERROR_PACKAGE_NOT_FOUND:
-			consoleStream.println("One or more EPackages are not loaded correctly. Aborting...");
+			logger.severe("One or more EPackages are not loaded correctly. Aborting...");
 			return null;
 		case ERROR_METAMODEL_FOLDER_NOT_FOUND:
 		case ERROR_PAMTRAM_NOT_FOUND:
-			consoleStream.println("Internal error during EPackage check. Aborting...");
+			logger.severe("Internal error during EPackage check. Aborting...");
 			return null;
 		case OK_PACKAGES_REGISTERED:
 			// if packages have been registered, a new resource set has to be created; otherwise,
@@ -303,7 +319,7 @@ public class GenericTransformationRunnerFactory {
 		default:
 			break;
 		}
-	
+
 		return pamtramModel;
 	}
 
@@ -316,77 +332,29 @@ public class GenericTransformationRunnerFactory {
 	 * @return The loaded {@link EObject source models}. 
 	 */
 	private List<EObject> loadSourceModel(ResourceSet resourceSet, List<String> sourceFilePaths) {
-	
+
 		List<EObject> sourceModels = new ArrayList<>();
-		
+
 		for (String sourceFilePath : sourceFilePaths) {
-	
+
 			// the URI of the source resource
 			final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
-	
+
 			if(sourceFilePath.endsWith(".xml")) {
 				// add file extension to registry
 				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
 						"xml", new GenericXMLResourceFactoryImpl());
 			}
-	
+
 			// try to load source model
 			Resource sourceResource = 
 					resourceSet.getResource(sourceUri, true);
-	
+
 			sourceModels.add(sourceResource.getContents().get(0));
-	
+
 		}
-		
+
 		return sourceModels;
 	}
 
-	/**
-	 * Find an existing output console for the transformation or create a new one. 
-	 * Copied from: @see <a href="http://wiki.eclipse.org/FAQ_How_do_I_write_to_the_console_from_a_plug-in%3F"
-	 * >Eclipse FAQ</a>
-	 *
-	 * @param consoleName The name of the console to be returned.
-	 * @return A {@link MessageConsole} object with the given '<em>consoleName</em>'. 
-	 */
-	private MessageConsole findConsole(final String consoleName) {
-		
-		final ConsolePlugin plugin = ConsolePlugin.getDefault();
-		final IConsoleManager conMan = plugin.getConsoleManager();
-		final IConsole[] existing = conMan.getConsoles();
-		for (final IConsole element : existing) {
-			if (consoleName.equals(element.getName())) {
-				return (MessageConsole) element;
-			}
-		}
-		// no console found, so create a new one
-		final MessageConsole myConsole = new MessageConsole(consoleName, null);
-		conMan.addConsoles(new IConsole[] { myConsole });
-		return myConsole;
-	}
-
-	/**
-	 * Brings the console view to the foreground. If the view is closed, it will
-	 * be opened.
-	 */
-	private void showConsole() {
-		// as the transformation runs in a non-UI thread, we have to use
-		// a UIJob to find the console viw
-		final UIJob job = new UIJob("Show Console View") {
-			@Override
-			public IStatus runInUIThread(final IProgressMonitor monitor) {
-				try {
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage()
-					.showView("org.eclipse.ui.console.ConsoleView");
-				} catch (final PartInitException e) {
-					e.printStackTrace();
-					return Status.CANCEL_STATUS;
-				}
-				return Status.OK_STATUS;
-			}
-		};
-		job.schedule();
-	}
-	
 }

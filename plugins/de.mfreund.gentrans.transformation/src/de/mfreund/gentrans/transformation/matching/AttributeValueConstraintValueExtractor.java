@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.eclipse.ui.console.MessageConsoleStream;
+import java.util.logging.Logger;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
@@ -39,40 +38,52 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	private AttributeValueCalculator attributeValueCalculator;
 
 	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of
+	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 * 
-	 * @param globalAttributeValues The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
-	 * {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
-	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
-	 * resulting values.
-	 * @param attributeValueModifierExecutor The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param globalAttributeValues
+	 *            The values of {@link GlobalAttribute GlobalAttributes} that
+	 *            shall be used by
+	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
+	 * @param attributeValueCalculator
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
+	 * @param attributeValueModifierExecutor
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public AttributeValueConstraintValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
 			AttributeValueCalculator attributeValueCalculator,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, MessageConsoleStream consoleStream) {
-		
-		super(globalAttributeValues, attributeValueModifierExecutor, consoleStream);
-		
+			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
+
+		super(globalAttributeValues, attributeValueModifierExecutor, logger);
+
 		this.attributeValueCalculator = attributeValueCalculator;
 	}
 
 	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of
+	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 * 
-	 * @param attributeValueModifierExecutor The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
-	 * resulting values.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param attributeValueModifierExecutor
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
+	 * @param attributeValueCalculator
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public AttributeValueConstraintValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor,
-			AttributeValueCalculator attributeValueCalculator, MessageConsoleStream consoleStream) {
-		
-		super(attributeValueModifierExecutor, consoleStream);
-		
+			AttributeValueCalculator attributeValueCalculator, Logger logger) {
+
+		super(attributeValueModifierExecutor, logger);
+
 		this.attributeValueCalculator = attributeValueCalculator;
 	}
-	
+
 	/**
 	 * This extracts and returns the required target value for the given {@link SingleReferenceAttributeValueConstraint} as specified by its 
 	 * {@link SingleReferenceAttributeValueConstraint#getSourceElements() source elements}.
@@ -84,15 +95,15 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 */
 	public String extractRequiredTargetValue(SingleReferenceAttributeValueConstraint valueConstraint, 
 			MatchedSectionDescriptor matchedSectionDescriptor) {
-		
+
 		List<AttributeValueConstraintSourceInterface> sourceElements = valueConstraint.getSourceElements();
 		List<AttributeValueModifierSet> resultModifiers = valueConstraint.getResultModifier();
 		String expression = valueConstraint.getExpression();
-		
+
 		return extractRequiredTargetValue(matchedSectionDescriptor, sourceElements, expression, resultModifiers);
-		
+
 	}
-	
+
 	/**
 	 * This extracts and returns the required target value for the given {@link RangeBound} as specified by its 
 	 * {@link SingleReferenceAttributeValueConstraint#getSourceElements() source elements}.
@@ -104,13 +115,13 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 */
 	public String extractRequiredTargetValue(RangeBound rangeBound, 
 			MatchedSectionDescriptor matchedSectionDescriptor) {
-		
+
 		List<AttributeValueConstraintSourceInterface> sourceElements = rangeBound.getSourceElements();
 		List<AttributeValueModifierSet> resultModifiers = rangeBound.getResultModifier();
 		String expression = rangeBound.getExpression();
-		
+
 		return extractRequiredTargetValue(matchedSectionDescriptor, sourceElements, expression, resultModifiers);
-		
+
 	}
 
 	/**
@@ -130,17 +141,17 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 			List<AttributeValueConstraintSourceInterface> sourceElements,
 			String expression, 
 			List<AttributeValueModifierSet> resultModifiers) {
-		
+
 		// Collect the value parts
 		//
 		Map<AttributeValueConstraintSourceInterface, AttributeValueRepresentation> valueParts = new HashMap<>();
-		
+
 		// Extract the value part based on its type
 		//
 		for (AttributeValueConstraintSourceInterface sourceElement : sourceElements) {
-			
+
 			AttributeValueRepresentation attributeValueRepresentation = null;
-			
+
 			if(sourceElement instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) sourceElement, matchedSectionDescriptor);
 			} else if(sourceElement instanceof FixedValue) {
@@ -148,17 +159,18 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 			} else if(sourceElement instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = extractValue((GlobalAttributeImporter) sourceElement, matchedSectionDescriptor); 
 			} else {
-				consoleStream.println("Unsupported type of source element for an AttributeValueConstraint found: '" + 
+				logger.severe("Unsupported type of source element for an AttributeValueConstraint found: '" +
 						sourceElement.eClass().getName() + "'!");
 			}
-			
+
 			if(attributeValueRepresentation != null) {					
 
 				if(attributeValueRepresentation.isMany()) {
-					consoleStream.println("Multiple values found for the source element '" + sourceElement.getName() +
+					logger.warning("Multiple values found for the source element '" + sourceElement.getName()
+							+
 							"' of an AttributeValueConstraint! This is currently not supported and only the first found value will be used!'");
 				}
-				
+
 				valueParts.put(sourceElement, attributeValueRepresentation);
 			}
 		}

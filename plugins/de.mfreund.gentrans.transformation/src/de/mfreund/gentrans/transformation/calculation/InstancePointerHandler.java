@@ -2,12 +2,12 @@ package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
@@ -26,45 +26,53 @@ import pamtram.metamodel.SourceSectionClass;
  * 1.) By 'matchedSection'-HashMap we get specific model objects (from global HashMap defined in the SourceSectionMatcher)
  * 2.) By List we extract specific model objects from a delivered list (so this method can be used everywhere inside generic transformation for minimize the number of specific /concretize model objects
  */
- public class InstancePointerHandler{
-	 
-	 /**
+public class InstancePointerHandler{
+
+	/**
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
-	
+
 	/**
 	 * The {@link InstancePointerValueExtractor} that is used to extract target values for InstancePointers.
 	 */
 	private InstancePointerValueExtractor valueExtractor;
-	
+
 	/**
-	 * The {@link MessageConsoleStream} that shall be used to print messages.
+	 * The {@link Logger} that shall be used to print messages.
 	 */
-	private final MessageConsoleStream consoleStream;
+	private final Logger logger;
 
 	/**
 	 * This creates an instance.
 	 * 
-	 * @param matchedSections A map relating {@link SourceSection SourceSections} and lists of {@link MatchedSectionDescriptor 
-	 * MatchedSectionDescriptors} that have been create for each SourceSection during the <em>matching</em> process.
-	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
-	 * defined in the PAMTraM model.
-	 * @param attributeValueCalculator The {@link AttributeValueCalculator} to use in order to calculate
-	 * resulting values.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
+	 * @param matchedSections
+	 *            A map relating {@link SourceSection SourceSections} and lists
+	 *            of {@link MatchedSectionDescriptor MatchedSectionDescriptors}
+	 *            that have been create for each SourceSection during the
+	 *            <em>matching</em> process.
+	 * @param globalValues
+	 *            The <em>global values</em> (values of {@link FixedValue
+	 *            FixedValues} and {@link GlobalAttribute GlobalAttribute})
+	 *            defined in the PAMTraM model.
+	 * @param attributeValueCalculator
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public InstancePointerHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, 
-			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator, MessageConsoleStream consoleStream){
-		
+			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator, Logger logger) {
+
 		this.matchedSections = matchedSections;
 		this.valueExtractor = new InstancePointerValueExtractor(
-				globalValues.getGlobalAttributes(), attributeValueCalculator, AttributeValueModifierExecutor.getInstance(), consoleStream);
-		this.consoleStream = consoleStream;
-		
+				globalValues.getGlobalAttributes(), attributeValueCalculator,
+				AttributeValueModifierExecutor.getInstance(), logger);
+		this.logger = logger;
+
 	}
-	
+
 	/**
 	 * From the given {@link SourceSectionClass}, this first retrieves all instances from the {@link #matchedSections} and then
 	 * filters and returns those that satisfy the given {@link InstancePointer}.
@@ -77,18 +85,18 @@ import pamtram.metamodel.SourceSectionClass;
 	 */
 	public List<EObject> getPointedInstanceBySourceSectionClass(InstancePointer instancePointer, 
 			SourceSectionClass sourceSectionClass, MatchedSectionDescriptor matchedSectionDescriptor){
-		
+
 		EList<EObject> correspondEclassInstances = new BasicEList<>();
-		
+
 		if(matchedSections.get(sourceSectionClass.getContainingSection()) != null) {
 			matchedSections.get(sourceSectionClass.getContainingSection()).stream().forEach(descriptor -> 
-				correspondEclassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
+			correspondEclassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
 		}
-		
+
 		return getPointedInstanceByInstanceList(instancePointer, correspondEclassInstances, matchedSectionDescriptor);
-		
+
 	}
-		
+
 	/**
 	 * From the given list of {@link EObject elements}, this filters and returns those that satisfy the given
 	 * {@link InstancePointer}.
@@ -100,34 +108,34 @@ import pamtram.metamodel.SourceSectionClass;
 	 */
 	public List<EObject> getPointedInstanceByInstanceList(InstancePointer instancePointer, List<EObject> instanceList, 
 			MatchedSectionDescriptor matchedSectionDescriptor){
-		
+
 		EObject container = instancePointer.eContainer();
-		
+
 		while(!(container instanceof Mapping)) {
 			container = container.eContainer();
 		}
-		
+
 		String instancePointerRefValue = valueExtractor.extractRequiredTargetValue(instancePointer, matchedSectionDescriptor);
-		
+
 		SourceSectionAttribute sourceAttr = instancePointer.getAttributePointer();
-		
+
 		return instanceList.parallelStream().filter(element -> {
-	
+
 			Object sourceRefAttr = element.eGet(instancePointer.getAttributePointer().getAttribute());
-			
+
 			try{
 				// convert Attribute value to String
 				String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
 						.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
 				return sourceRefAttrAsString.equals(instancePointerRefValue);
-				
+
 			} catch(final Exception e){
-				consoleStream.println("Message:\n InstancePointerHander failed because of:" + e.getMessage());
+				logger.warning("Message:\n InstancePointerHander failed because of:" + e.getMessage());
 				return false;
 			}
-			
+
 		}).collect(Collectors.toList());
-		
+
 	}
 
 }

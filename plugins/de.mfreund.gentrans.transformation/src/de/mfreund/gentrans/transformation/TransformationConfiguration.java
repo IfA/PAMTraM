@@ -1,9 +1,9 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
@@ -31,71 +31,84 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * should represent a root element of a model to be transformed.
 	 */
 	private List<EObject> sourceModels;
-	
+
 	/**
 	 * The {@link PAMTraM} model to be executed.
 	 */
 	private PAMTraM pamtramModel;
-	
+
 	/**
 	 *  The path relative to that all target models will be created. This needs to be in the 
 	 *  form 'project-name/path'.
 	 */
 	private String targetBasePath; 
-	
+
 	/**
-	 * The {@link MessageConsoleStream message output stream} that shall be used to print messages to the user.
+	 * The {@link Logger} that shall be used to print messages.
 	 */
-	private MessageConsoleStream consoleStream;
-	
+	private Logger logger;
+
 	/**
 	 * This creates an instance and sets all necessary parameters.
 	 * <p />
-	 * Note: All optional parameters are initialized with default values but can be set/changed
-	 * with the various <em>with...</em> methods.
+	 * Note: All optional parameters are initialized with default values but can
+	 * be set/changed with the various <em>with...</em> methods.
 	 * 
-	 * @param sourceModels The list of {@link EObject EObjects} representing the source models to be transformed.
-	 * @param pamtramModel The {@link PAMTraM} model containing the mappings to execute in the transformation.
-	 * @param targetBasePath The path to the folder where the target models shall be stored. This needs to be
-	 * in the form 'project-name/path'.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used by the transformation to 
-	 * print messages.
+	 * @param sourceModels
+	 *            The list of {@link EObject EObjects} representing the source
+	 *            models to be transformed.
+	 * @param pamtramModel
+	 *            The {@link PAMTraM} model containing the mappings to execute
+	 *            in the transformation.
+	 * @param targetBasePath
+	 *            The path to the folder where the target models shall be
+	 *            stored. This needs to be in the form 'project-name/path'.
+	 * @param logger
+	 *            The {@link Logger} that shall be used by the transformation to
+	 *            print messages.
 	 */
 	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, 
-			String targetBasePath, MessageConsoleStream consoleStream){
-		
+			String targetBasePath, Logger logger) {
+
 		// Initialize all optional parameters with default values
 		//
 		super();
-		
+
 		// Initialize the mandatory parameters
 		//
 		this.sourceModels = sourceModels;
 		this.pamtramModel = pamtramModel;
 		this.targetBasePath = targetBasePath;
-		this.consoleStream = consoleStream;
-		
+		this.logger = logger;
+
 	}
-	
+
 	/**
 	 * This creates an instance and sets all necessary parameters.
 	 * <p />
-	 * Note: All optional parameters are initialized based on the value specified in the given
-	 * {@link BaseTransformationConfiguration} but can be changed afterwards
-	 * with the various <em>with...</em> methods.
+	 * Note: All optional parameters are initialized based on the value
+	 * specified in the given {@link BaseTransformationConfiguration} but can be
+	 * changed afterwards with the various <em>with...</em> methods.
 	 * 
-	 * @param sourceModels The list of {@link EObject EObjects} representing the source models to be transformed.
-	 * @param pamtramModel The {@link PAMTraM} model containing the mappings to execute in the transformation.
-	 * @param targetBasePath The path to the folder where the target models shall be stored. This needs to be
-	 * in the form '/project-name/path'.
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used by the transformation to 
-	 * print messages.
-	 * @param baseConfig The {@link BaseTransformationConfiguration} that shall be used to set the
-	 * optional parameters.
+	 * @param sourceModels
+	 *            The list of {@link EObject EObjects} representing the source
+	 *            models to be transformed.
+	 * @param pamtramModel
+	 *            The {@link PAMTraM} model containing the mappings to execute
+	 *            in the transformation.
+	 * @param targetBasePath
+	 *            The path to the folder where the target models shall be
+	 *            stored. This needs to be in the form '/project-name/path'.
+	 * @param logger
+	 *            The {@link Logger} that shall be used by the transformation to
+	 *            print messages.
+	 * @param baseConfig
+	 *            The {@link BaseTransformationConfiguration} that shall be used
+	 *            to set the optional parameters.
 	 */
 	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, 
-			String targetBasePath, MessageConsoleStream consoleStream, BaseTransformationConfiguration baseConfig){
-		
+			String targetBasePath, Logger logger, BaseTransformationConfiguration baseConfig) {
+
 		// Initialize all optional parameters with the values specified in the given
 		// BaseTransformationConfiguraiton
 		//
@@ -105,15 +118,15 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		this.onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
 		this.targetLibraryContextDescriptor = baseConfig.getTargetLibraryContextDescriptor();
 		this.ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
-		
+
 		// Initialize the mandatory parameters
 		//
 		this.sourceModels = sourceModels;
 		this.pamtramModel = pamtramModel;
 		this.targetBasePath = targetBasePath;
-		this.consoleStream = consoleStream;
+		this.logger = logger;
 	}
-	
+
 	/**
 	 * Check if all parameters have been initialized with meaningful values.
 	 * 
@@ -122,33 +135,33 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 */
 	@Override
 	public boolean validate() {
-		
+
 		if(!super.validate()) {
 			return false;
 		}
-		
-		if(consoleStream == null) {
+
+		if (logger == null) {
 			return false;
 		}
-		
+
 		if(sourceModels == null || sourceModels.isEmpty()) {
-			consoleStream.println("No source models have been specified!");
+			logger.severe("No source models have been specified!");
 			return false;
 		}
-		
+
 		if(pamtramModel == null) {
-			consoleStream.println("No PAMTraM model has been specified!");
+			logger.severe("No PAMTraM model has been specified!");
 			return false;
 		}
-		
+
 		if(targetBasePath == null || targetBasePath.isEmpty()) {
-			consoleStream.println("No target base path has been specified!");
+			logger.severe("No target base path has been specified!");
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	@Override
 	public TransformationConfiguration withDefaultTargetModel(String defaultTargetModel) {
 		super.withDefaultTargetModel(defaultTargetModel);
@@ -184,7 +197,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		super.withAmbiguityResolvingStrategy(ambiguityResolvingStrategy);
 		return this;
 	}
-	
+
 	/**
 	 * The getter for the {@link #sourceModels}.
 	 * 
@@ -211,13 +224,13 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	public String getTargetBasePath() {
 		return targetBasePath;
 	}
-	
+
 	/**
-	 * The getter for the {@link #consoleStream}.
+	 * The getter for the {@link #logger}.
 	 * 
-	 * @return the consoleStream
+	 * @return the logger
 	 */
-	public MessageConsoleStream getConsoleStream() {
-		return consoleStream;
+	public Logger getLogger() {
+		return logger;
 	}
 }

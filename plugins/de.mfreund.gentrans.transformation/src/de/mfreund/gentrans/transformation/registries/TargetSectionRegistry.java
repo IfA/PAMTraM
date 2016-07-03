@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
@@ -15,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -50,17 +50,17 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * MappingHintGroup
 	 */
 	private final Map<TargetSectionClass, Map<InstantiableMappingHintGroup, List<EObjectWrapper>>> targetClassInstanceByHintGroupRegistry;
-	
+
 	/**
 	 * Child classes for each class (if there are any)
 	 */
 	private final Map<EClass, Set<EClass>> childClassesRegistry;
-	
+
 	/**
 	 * Possible Paths, sorted by target MetaModel class
 	 */
 	private final Map<EClass, Set<ModelConnectionPath>> possiblePathsRegistry;
-	
+
 	/**
 	 * Possible connections from a start class to a specific target class
 	 */
@@ -75,23 +75,25 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * Source classes that are the starting point of a specific reference
 	 */
 	private final Map<EReference, Set<EClass>> containmentReferenceSourcesRegistry;
-	
+
 	/**
-	 * Message output stream
+	 * The {@link Logger} that shall be used to print messages.
 	 */
-	private final MessageConsoleStream consoleStream;
-	
+	private final Logger logger;
+
 	/**
 	 * This creates an instance.
 	 * 
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
-	 * @param attrValRegistry The {@link AttributeValueRegistry} that keeps track of already used 
-	 * values for target attributes.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
+	 * @param attrValRegistry
+	 *            The {@link AttributeValueRegistry} that keeps track of already
+	 *            used values for target attributes.
 	 */
-	private TargetSectionRegistry(final MessageConsoleStream consoleStream,
+	private TargetSectionRegistry(final Logger logger,
 			final AttributeValueRegistry attrValRegistry) {
-		
-		this.consoleStream = consoleStream;
+
+		this.logger = logger;
 		this.targetClassInstanceRegistry = new LinkedHashMap<>();
 		this.targetClassInstanceByHintGroupRegistry = new LinkedHashMap<>();
 		this.childClassesRegistry = new LinkedHashMap<>();
@@ -106,35 +108,42 @@ public class TargetSectionRegistry extends CancelableElement {
 	/**
 	 * This creates an instance for a single target meta-model.
 	 *
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
-	 * @param attrValRegistry The {@link AttributeValueRegistry} that keeps track of already used 
-	 * values for target attributes.
-	 * @param targetMetaModel The {@link EPackage} representing the target meta-model.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
+	 * @param attrValRegistry
+	 *            The {@link AttributeValueRegistry} that keeps track of already
+	 *            used values for target attributes.
+	 * @param targetMetaModel
+	 *            The {@link EPackage} representing the target meta-model.
 	 */
-	public TargetSectionRegistry(final MessageConsoleStream consoleStream,
+	public TargetSectionRegistry(final Logger logger,
 			final AttributeValueRegistry attrValRegistry,
 			final EPackage targetMetaModel) {
-		
-		this(consoleStream, attrValRegistry);
-		
+
+		this(logger, attrValRegistry);
+
 		analyseTargetMetaModel(targetMetaModel);
 	}
-	
+
 
 	/**
 	 * This creates an instance for multiple target meta-models.
 	 *
-	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages.
-	 * @param attrValRegistry The {@link AttributeValueRegistry} that keeps track of already used 
-	 * values for target attributes.
-	 * @param targetMetaModels The list of {@link EPackage EPackages} representing the target meta-models.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
+	 * @param attrValRegistry
+	 *            The {@link AttributeValueRegistry} that keeps track of already
+	 *            used values for target attributes.
+	 * @param targetMetaModels
+	 *            The list of {@link EPackage EPackages} representing the target
+	 *            meta-models.
 	 */
-	public TargetSectionRegistry(final MessageConsoleStream consoleStream,
+	public TargetSectionRegistry(final Logger logger,
 			final AttributeValueRegistry attrValRegistry,
 			final Set<EPackage> targetMetaModels) {
-		
-		this(consoleStream, attrValRegistry);
-		
+
+		this(logger, attrValRegistry);
+
 		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
 	}
 
@@ -148,7 +157,7 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * @param instance The {@link EObject} to register.
 	 */
 	public void addClassInstance(final EObject instance) {
-		
+
 		final EClass eClass = instance.eClass();
 
 		if (!targetClassInstanceRegistry.containsKey(eClass)) {
@@ -172,7 +181,7 @@ public class TargetSectionRegistry extends CancelableElement {
 	public void addClassInstance(final EObjectWrapper instance,
 			final InstantiableMappingHintGroup mappingHintGroup,
 			final TargetSectionClass targetSectionClass) {
-		
+
 		final EClass eClass = instance.getEObject().eClass();
 
 		if (!targetClassInstanceRegistry.containsKey(eClass)) {
@@ -202,24 +211,24 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * @param path The {@link ModelConnectionPath} to register.
 	 */
 	public void addConnection(final ModelConnectionPath path) {
-		
+
 		// The EClass at the beginning of the path (lower in the containment hierarchy).
 		EClass elementClass = (EClass) path.getPathElements().getFirst();
-		
+
 		// The EClass at the end of the path (higher in the containment hierarchy).
 		EClass containerClass = (EClass) path.getPathElements().getLast();
-		
+
 		if (!possibleConnectionsRegistry.containsKey(elementClass)) {
 			possibleConnectionsRegistry.put(elementClass,
 					new LinkedHashMap<EClass, Set<ModelConnectionPath>>());
 		}
-		
+
 		if (!possibleConnectionsRegistry.get(elementClass).containsKey(
 				containerClass)) {
 			possibleConnectionsRegistry.get(elementClass).put(containerClass,
 					new LinkedHashSet<ModelConnectionPath>());
 		}
-		
+
 		possibleConnectionsRegistry.get(elementClass).get(containerClass).add(path);
 	}
 
@@ -232,7 +241,7 @@ public class TargetSectionRegistry extends CancelableElement {
 
 		// The EClass at the beginning of the path (lower in the containment hierarchy).
 		EClass eClass = (EClass) modelConnectionPath.getPathElements().getFirst();
-		
+
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass,
 					new LinkedHashSet<ModelConnectionPath>());
@@ -250,30 +259,29 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * @param targetMetaModel The {@link EPackage} representing the target meta-model to be analyzed.
 	 */
 	private void analyseTargetMetaModel(final EPackage targetMetaModel) {
-		
-		consoleStream.println();
-		consoleStream.println("Analyzing target meta-model '" + targetMetaModel.getName() + "'.");
+
+		logger.fine("\nAnalyzing target meta-model '" + targetMetaModel.getName() + "'.");
 
 		// Retrieve all EClass defined in the targetMetaModel
 		//
-		consoleStream.println("\tMapping targetMetaModel classes");
+		logger.fine("\tMapping targetMetaModel classes");
 		final List<EClass> classesToAnalyse = getClasses(targetMetaModel);
 
 		// Determine the child EClasses for each EClass
 		//
-		consoleStream.println("\tMapping targetMetaModel inheritance and containment relationships");
+		logger.fine("\tMapping targetMetaModel inheritance and containment relationships");
 		classesToAnalyse.stream().forEach(eClass -> eClass.getEAllSuperTypes().stream().forEach(
 				superEClass -> childClassesRegistry.get(superEClass).add(eClass)));
-		
+
 		// For each containment EReference defined in the target meta-model, 
 		// 1. register the EClasses that hold the ERefrence and 
 		// 2. register to which EClasses this EReference points
 		//
-		consoleStream.println("\tMapping targetMetaModel containment relationships");
+		logger.fine("\tMapping targetMetaModel containment relationships");
 		classesToAnalyse.stream().forEach(e -> e.getEAllContainments().stream().forEach(c -> {
-			
+
 			if (targetClassReferencesRegistry.containsKey(c.getEReferenceType())) {
-				
+
 				if (!containmentReferenceSourcesRegistry.containsKey(c)) {
 					containmentReferenceSourcesRegistry.put(c,
 							new LinkedHashSet<EClass>());
@@ -283,14 +291,14 @@ public class TargetSectionRegistry extends CancelableElement {
 				targetClassReferencesRegistry.get(c.getEReferenceType()).add(c);
 
 			} else {
-				consoleStream.println("Ignoring targetMetaModel reference "
+				logger.warning("Ignoring targetMetaModel reference "
 						+ c.getName() + " of element " + e.getName() + " "
 						+ c.getEReferenceType().getName() + " "
 						+ c.getEType().getName());
 			}
-			
+
 		}));
-		
+
 		// Add inherited containment references
 		classesToAnalyse.stream().forEach(e -> childClassesRegistry.get(e).stream().forEach(c -> {
 			targetClassReferencesRegistry.get(c).addAll(targetClassReferencesRegistry.get(e));}));
@@ -327,32 +335,32 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * @return The set of {@link EClass EClasses} contained in the given <em>rootEPackage</em>.
 	 */
 	private List<EClass> getClasses(final EPackage rootEPackage) {
-		
+
 		List<EClass> classes = new LinkedList<>();
-		
+
 		// collect all sub-packages
 		//
 		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage);
-		
+
 		// scan all packages
 		//
 		for (EPackage ePackage : packagesToScan) {
-	
+
 			final EClass docroot = ExtendedMetaData.INSTANCE.getDocumentRoot(ePackage);
-			
+
 			ePackage.getEClassifiers().stream().filter(c -> c instanceof EClass).forEach(c -> {
-				
+
 				// ignore DocumentRoot classes created when converting xsd to ecore
 				if (docroot != null && docroot.equals(c)) {
 					return;
 				}
-				
+
 				classes.add((EClass) c);
-				
+
 				childClassesRegistry.put((EClass) c, new LinkedHashSet<EClass>());
 				targetClassReferencesRegistry.put((EClass) c, new LinkedHashSet<EReference>());
 			});
-			
+
 		}
 
 		return classes;
@@ -409,7 +417,7 @@ public class TargetSectionRegistry extends CancelableElement {
 		}
 
 		if (possibleConnectionsRegistry.get(eClass).containsKey(containerClass)) {
-			
+
 			return new ArrayList<>(possibleConnectionsRegistry.get(eClass).get(containerClass));
 		} else {
 			return new ArrayList<>();
@@ -424,12 +432,12 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * @return The list of {@link EObjectWrapper EObjectWrappers} created for the given TargetSectionClass.
 	 */
 	public List<EObjectWrapper> getFlattenedPamtramClassInstances(TargetSectionClass targetSectionClass) {
-		
-		
+
+
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(targetSectionClass)) {
 			return new ArrayList<>();
 		}
-		
+
 		return targetClassInstanceByHintGroupRegistry.get(targetSectionClass).values().parallelStream().flatMap(
 				v -> v.parallelStream()).collect(Collectors.toList());
 
@@ -441,7 +449,7 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * @return The key set represented in the {@link #childClassesRegistry}.
 	 */
 	public Set<EClass> getMetaModelClasses() {
-		
+
 		return childClassesRegistry.keySet();
 	}
 
@@ -454,7 +462,7 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * sorted by the {@link InstantiableMappingHintGroup} they were created by.
 	 */
 	public Map<InstantiableMappingHintGroup, List<EObjectWrapper>> getPamtramClassInstances(TargetSectionClass targetSectionClass) {
-		
+
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(targetSectionClass)) {
 			return new LinkedHashMap<>();
 		}
@@ -502,7 +510,7 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * @return The set of {@link EClass EClasses} that are the starting point for the given {@link EReference}.
 	 */
 	public Set<EClass> getReferenceSources(final EReference ref) {
-		
+
 		return containmentReferenceSourcesRegistry.containsKey(ref) ? containmentReferenceSourcesRegistry.get(ref) : 
 			new LinkedHashSet<>();
 

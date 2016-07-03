@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -104,6 +106,13 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		//
 		int maxPathLength=configuration.getAttribute("maxPathLength", -1);
 		boolean rememberAmbiguousMappingChoice=configuration.getAttribute("rememberAmbiguousMappingChoice", true);
+		Level logLevel = Level.ALL;
+		try {
+			String level = configuration.getAttribute("logLevel", "SEVERE");
+			logLevel = Level.parse(level);
+		} catch (Exception e) {
+			Logger.getLogger(GentransLaunchingDelegate.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+		}
 
 		// if at least one xml source file shall be transformed, 
 		// add the file extension to registry
@@ -137,8 +146,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				targetLibraryContextDescriptor, 
 				resolvingStrategy,
 				maxPathLength,
-				rememberAmbiguousMappingChoice);
-		
+				rememberAmbiguousMappingChoice, logLevel);
+
 		job.setUser(true);
 		job.schedule();
 
@@ -156,9 +165,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 */
 	private IAmbiguityResolvingStrategy initializeAmbiguityResolvingStrategy(ILaunchConfiguration configuration,
 			final String project) throws CoreException {
-		
+
 		IAmbiguityResolvingStrategy resolvingStrategy;
-		
+
 		String transformationModelPath = null;
 		if(configuration.getAttribute("enableHistory", false)) {
 
@@ -179,12 +188,12 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		}
 
 		if(configuration.getAttribute("enableUser", false)) {
-			
+
 			UserDecisionResolvingStrategy userStrategy = new UserDecisionResolvingStrategy();
 			if(configuration.getAttribute("handleExpanding", false)) {
 				userStrategy.setSkipExpandingAmbiguities(false);
 			}
-			
+
 			resolvingStrategy = transformationModelPath == null ?
 					userStrategy : 
 						new HistoryResolvingStrategy(new ArrayList<>(Arrays.asList(userStrategy)), transformationModelPath);
@@ -193,7 +202,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 					new DefaultAmbiguityResolvingStrategy() : 
 						new HistoryResolvingStrategy(new ArrayList<>(Arrays.asList(new DefaultAmbiguityResolvingStrategy())), transformationModelPath);
 		}
-		
+
 		return resolvingStrategy;
 	}
 
@@ -213,7 +222,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// Validate the settings in the 'Library' tab
 		//
 		validateLibraryTab(configuration);
-		
+
 	}
 
 	/**
@@ -227,15 +236,15 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		if(configuration.getAttribute("project", "").isEmpty()) {
 			throw new GentransLaunchingDelegateValidationException("No project has been specified!");
 		}
-	
+
 		if(configuration.getAttribute("srcFiles", new ArrayList<String>()).isEmpty()){
 			throw new GentransLaunchingDelegateValidationException("No source file has been specified!");
 		}
-	
+
 		if(configuration.getAttribute("pamtramFile", "").isEmpty()) {
 			throw new GentransLaunchingDelegateValidationException("No pamtram file has been specified!");
 		}
-	
+
 		if(configuration.getAttribute("targetFile", "").isEmpty()) {
 			throw new GentransLaunchingDelegateValidationException("No target file has been specified!");
 		}
@@ -310,13 +319,13 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		 * 
 		 */
 		private static final long serialVersionUID = -7164144847724395702L;
-		
+
 		/**
 		 * The id of the gentrans plug-in that will be used in the creation of the
 		 * {@link Status} object describing the status of the validation.
 		 */
 		private static final String ID = "de.mfreund.gentrans";
-		
+
 		/**
 		 * This creates an instances.
 		 * 
@@ -325,7 +334,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		private GentransLaunchingDelegateValidationException(String message) {
 			super(new Status(Status.ERROR, ID, message));
 		}
-		
+
 		/**
 		 * This creates an instances that wraps another {@link Throwable}.
 		 * 
@@ -335,7 +344,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		private GentransLaunchingDelegateValidationException(String message, Throwable cause) {
 			super(new Status(Status.ERROR, ID, message, cause));
 		}
-		
+
 	}
 
 }

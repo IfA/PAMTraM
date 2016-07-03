@@ -60,16 +60,16 @@ public class GenTransConsole extends MessageConsole {
 		warningStream.setColor(new Color(Display.getCurrent(), new RGB(250, 100, 0)));
 		errorStream.setColor(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
 
-		StreamHandler fineHandler = new StreamHandler(infoStream, new SimpleFormatter());
+		StreamHandler fineHandler = new StreamHandler(fineStream, new SimpleFormatter());
 		fineHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.FINE));
 
 		StreamHandler infoHandler = new StreamHandler(infoStream, new SimpleFormatter());
 		infoHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.INFO));
 
-		StreamHandler warningHandler = new StreamHandler(infoStream, new SimpleFormatter());
+		StreamHandler warningHandler = new StreamHandler(warningStream, new SimpleFormatter());
 		warningHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.WARNING));
 
-		StreamHandler errorHandler = new StreamHandler(infoStream, new SimpleFormatter());
+		StreamHandler errorHandler = new StreamHandler(errorStream, new SimpleFormatter());
 		errorHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.SEVERE));
 
 		this.handlers = Stream.of(infoHandler, warningHandler, errorHandler).collect(Collectors.toList());

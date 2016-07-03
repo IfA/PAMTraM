@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -64,7 +65,7 @@ public class GenericTransformationRunnerFactory {
 			String targetBasePath, 
 			BaseTransformationConfiguration baseConfiguration) {
 
-		Logger logger = initializeLogger();
+		Logger logger = initializeLogger(baseConfiguration.getLogLevel());
 
 		// Create a resource set to load the models.
 		//
@@ -117,7 +118,7 @@ public class GenericTransformationRunnerFactory {
 			String targetBasePath, 
 			BaseTransformationConfiguration baseConfiguration) {
 
-		Logger logger = initializeLogger();
+		Logger logger = initializeLogger(baseConfiguration.getLogLevel());
 
 		// Create a resource set to load the models.
 		//
@@ -161,7 +162,7 @@ public class GenericTransformationRunnerFactory {
 			String targetBasePath, 
 			BaseTransformationConfiguration baseConfiguration) {
 
-		Logger logger = initializeLogger();
+		Logger logger = initializeLogger(baseConfiguration.getLogLevel());
 
 		// Create the TransformationConfiguration
 		//
@@ -189,10 +190,13 @@ public class GenericTransformationRunnerFactory {
 	 * {@link GenTransConsole} that will display these messages in the console
 	 * view.
 	 * 
+	 * @param level
+	 *            The minimum Level a logged messages must represent to be
+	 *            printed to the user.
 	 * @return The created {@link Logger} that shall be used to print messages
 	 *         to the user.
 	 */
-	private Logger initializeLogger() {
+	private Logger initializeLogger(Level level) {
 
 		// Create the logger
 		//
@@ -206,7 +210,7 @@ public class GenericTransformationRunnerFactory {
 		// Create the Console that will display the messages printed to the
 		// logger
 		//
-		new GenTransConsole(logger);
+		new GenTransConsole(logger, level);
 
 		return logger;
 	}

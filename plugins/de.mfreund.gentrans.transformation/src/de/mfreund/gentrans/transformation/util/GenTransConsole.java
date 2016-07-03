@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 import java.util.logging.StreamHandler;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -60,16 +59,16 @@ public class GenTransConsole extends MessageConsole {
 		warningStream.setColor(new Color(Display.getCurrent(), new RGB(250, 100, 0)));
 		errorStream.setColor(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
 
-		StreamHandler fineHandler = new StreamHandler(fineStream, new SimpleFormatter());
+		StreamHandler fineHandler = new GenTransConsoleStreamHandler(fineStream);
 		fineHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.FINE));
 
-		StreamHandler infoHandler = new StreamHandler(infoStream, new SimpleFormatter());
+		StreamHandler infoHandler = new GenTransConsoleStreamHandler(infoStream);
 		infoHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.INFO));
 
-		StreamHandler warningHandler = new StreamHandler(warningStream, new SimpleFormatter());
+		StreamHandler warningHandler = new GenTransConsoleStreamHandler(warningStream);
 		warningHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.WARNING));
 
-		StreamHandler errorHandler = new StreamHandler(errorStream, new SimpleFormatter());
+		StreamHandler errorHandler = new GenTransConsoleStreamHandler(errorStream);
 		errorHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.SEVERE));
 
 		this.handlers = Stream.of(infoHandler, warningHandler, errorHandler).collect(Collectors.toList());

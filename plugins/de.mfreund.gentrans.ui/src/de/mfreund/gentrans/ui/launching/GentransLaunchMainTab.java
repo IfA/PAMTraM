@@ -2,6 +2,7 @@ package de.mfreund.gentrans.ui.launching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
@@ -557,6 +558,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			setErrorMessage("Specify a valid target file");
 			return false;
 		}
+		if (!isLogLevelValid()) {
+			setErrorMessage("Specify a valid log level");
+			return false;
+		}
 		return true;
 	}
 
@@ -591,6 +596,11 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	// check if the selected target file is valid
 	private boolean isTargetFileComboValid() {
 		return targetFileCombo.getText().endsWith(".xmi");
+	}
+
+	// check if the log level is valid
+	private boolean isLogLevelValid() {
+		return Stream.of("ALL", "INFO", "WARNING", "SEVERE", "OFF").anyMatch(l -> l.equals(logLevelCombo.getText()));
 	}
 
 	/** 

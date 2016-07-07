@@ -957,12 +957,13 @@ public class SourceSectionMatcher {
 				boolean constraintVal = this.checkAttributeValueConstraint(srcAttrAsString, constraint);
 
 				if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+
 					return false;
+
 				} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
+
 					containsInclusions = true;
-					if (constraintVal) {
-						inclusionMatched = true;
-					}
+					inclusionMatched = constraintVal;
 				}
 
 			} catch (final Exception e) {
@@ -1001,13 +1002,16 @@ public class SourceSectionMatcher {
 		// and we need to extract the right reference Value(s) for each constraint
 
 		if (constraint instanceof SingleReferenceAttributeValueConstraint){
+
 			String srcAttrRefValAsString = this.refValueCalculator.calculateReferenceValue(constraint);
 			constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(attributeValueAsString,srcAttrRefValAsString);
+
 		} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
 
 			if(constraint instanceof RangeConstraint){
+
 				List<String> srcAttrRefValuesAsList = new ArrayList<>();
-				RangeBound lowerBound= ((RangeConstraint) constraint).getLowerBound();
+				RangeBound lowerBound = ((RangeConstraint) constraint).getLowerBound();
 				RangeBound upperBound = ((RangeConstraint) constraint).getUpperBound();
 
 
@@ -1067,62 +1071,40 @@ public class SourceSectionMatcher {
 			return false;
 		}
 
-		if (this.matchedSections.containsKey(sourceSectionClass)
+		return this.matchedSections.containsKey(sourceSectionClass)
 				&& this.matchedSections.get(sourceSectionClass).contains(element)
 				|| this.matchedContainers.containsKey(sourceSectionClass)
-				&& this.matchedContainers.get(sourceSectionClass).contains(element)) {
-			return true;
-		}
-
-		return false;
+				&& this.matchedContainers.get(sourceSectionClass).contains(element);
 	}
 
 	/**
-	 * Counts how often each associated source model element is referenced by
-	 * each {@link MatchedSectionDescriptor} as associated source model object
-	 * and returns one mapping result for the Object with the lowest count.
+	 * Counts how often each {@link EObject source model element} is
+	 * {@link MatchedSectionDescriptor#getAssociatedSourceModelElement() referenced} by each
+	 * {@link MatchedSectionDescriptor} and returns one mapping result for the Object with the lowest count.
 	 *
 	 * @param possibleElements
-	 *            The list of possible {@link MatchedSectionDescriptor
-	 *            MatchedSectionDescriptors} to evaluate.
+	 *            The list of possible {@link MatchedSectionDescriptor MatchedSectionDescriptors} to evaluate.
 	 * @return The chosen {@link MatchedSectionDescriptor}.
 	 */
 	private static MatchedSectionDescriptor getResultForLeastUsedSrcModelElement(
 			final LinkedList<MatchedSectionDescriptor> possibleElements) {
 
-		MatchedSectionDescriptor srcSectionResult;
 		// count how often a sourceModel Element is mapped
-		final LinkedHashMap<EObject, Integer> usages = new LinkedHashMap<>();
-		for (final MatchedSectionDescriptor e : possibleElements) {
-			final EObject element = e.getAssociatedSourceModelElement();
-			if (!usages.containsKey(element)) {
-				usages.put(element, 0);
-			}
-			usages.put(element, usages.get(element) + 1);
-		}
+		//
+		final Map<EObject, Integer> usages = possibleElements.parallelStream()
+				.map(e -> e.getAssociatedSourceModelElement())
+				.collect(Collectors.toConcurrentMap(element -> element, element -> 1, (i, j) -> i + j));
+
 		// use one of the mappings for one of the elements with the least
 		// possible mappings
-		EObject leastUsed = possibleElements.getFirst().getAssociatedSourceModelElement();
-		int numberUsed = usages.get(leastUsed);
-		for (final EObject o : usages.keySet()) {// find the first element least
-			// used
-			// and return the first possible
-			// result
-			if (usages.get(o) < numberUsed) {
-				leastUsed = o;
-				numberUsed = usages.get(o);
-			}
-		}
+		//
+		EObject leastUsed = usages.entrySet().parallelStream()
+				.sorted((e1, e2) -> e1.getValue() < e2.getValue() ? -1 : 1).findFirst().get().getKey();
 
-		srcSectionResult = possibleElements.getFirst();// initialize this
-		// variable so we dont
-		// get compile errors
-		for (final MatchedSectionDescriptor e : possibleElements) {
-			if (e.getAssociatedSourceModelElement().equals(leastUsed)) {
-				srcSectionResult = e;
-				break;
-			}
-		}
-		return srcSectionResult;
+		// return the descriptor representing the 'leastUsed' element
+		//
+		return possibleElements.parallelStream().filter(d -> d.getAssociatedSourceModelElement().equals(leastUsed))
+				.findAny().get();
+
 	}
 }

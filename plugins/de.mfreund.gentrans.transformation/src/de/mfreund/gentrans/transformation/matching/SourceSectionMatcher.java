@@ -2,6 +2,7 @@ package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -126,7 +127,7 @@ public class SourceSectionMatcher {
 		this.logger = logger;
 		this.matchedSections = new HashMap<>();
 		this.matchedContainers = new HashMap<>();
-		this.constraintsWithErrors = new HashSet<>();
+		this.constraintsWithErrors = Collections.synchronizedSet(new HashSet<>());
 		GlobalValueMap globalValueMap = new GlobalValueMap(globalValues, new HashMap<>());
 		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(
 				globalValueMap,
@@ -944,10 +945,10 @@ public class SourceSectionMatcher {
 				for (Object srcAttrValue : srcAttrValues) {
 
 					if(!this.checkAttributeValueConstraints(at, srcAttrValue)) {
-						return false;
-					}
+					return false;
 				}
 			}
+		}
 		}
 
 		return true;

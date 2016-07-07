@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
@@ -368,10 +369,61 @@ public class SourceSectionMatcher {
 		}
 
 		/*
-		 * Step 1: identify all containers and the corresponding elements; we do
-		 * not collect all elements all the way up but only those
-		 * SourceSectionClasses for that 'isSection()' returns 'true'
+		 * Step 1: Identify all container sections and the corresponding elements (and check if these elements match the
+		 * EClass specified by the respective container section).
 		 */
+		final Map<SourceSection, EObject> containers = this.collectContainers(element, sourceSection);
+
+		if (containers == null) {
+			return false;
+		}
+
+		/*
+		 * Step 2: Check if each container section (that has not already been matched) can be matched, starting from the
+		 * highest
+		 */
+		return containers.entrySet().stream()
+				.filter(container -> !this.checkObjectWasMapped(container.getKey(), container.getValue()))
+				.allMatch(container -> {
+
+					MatchedSectionDescriptor containerDescriptor = this.checkSection(container.getValue(), false,
+							container.getKey(), null);
+					if (containerDescriptor == null) {
+						return false;
+					}
+
+					// Register the created container descriptor in the 'sections2Descriptors' map that will be returned
+					// in the end
+					//
+					this.registerDescriptor(container.getKey(), containerDescriptor);
+
+					// Before returning the matched sections, we mark the affected elements as 'matched' in the
+					// containment tree and update the 'matchedSections' map
+					//
+					this.updateMatchedContainers(containerDescriptor);
+
+					return true;
+				});
+
+	}
+
+	/**
+	 * For a given {@link SourceSection} and an {@link EObject element}, identify, check, and collect all container
+	 * {@link SourceSections} and the corresponding {@link EObject elements} for a given combination.
+	 *
+	 * Note: This does not collect all elements all the way up but only those SourceSectionClasses for that
+	 * 'isSection()' returns 'true'.
+	 *
+	 * @param element
+	 *            The {@link EObject element} for that the containers shall be identified and checked.
+	 * @param sourceSection
+	 *            The {@link SourceSection} for that the containers shall be identified and checked.
+	 * @return A map of identified {@link SourceSection SourceSections} and associated {@link EObject elements} or
+	 *         '<em><b>null</b></em>' if at least one identified container {@link EObject element} was not of the
+	 *         {@link EClass} specified by the associated {@link SourceSection}.
+	 */
+	private Map<SourceSection, EObject> collectContainers(final EObject element, final SourceSection sourceSection) {
+
 		final Map<SourceSection, EObject> containers = new HashMap<>();
 
 		SourceSectionClass currentClass = sourceSection;
@@ -380,7 +432,7 @@ public class SourceSectionMatcher {
 		while (currentClass.getContainer() != null) {
 
 			if (currentElement.eContainer() == null) {
-				return false;
+				return null;
 			}
 
 			currentElement = currentElement.eContainer();
@@ -396,7 +448,7 @@ public class SourceSectionMatcher {
 			while (!currentClass.getContainingSection().equals(currentClass)) {
 
 				if (currentElement.eContainer() == null) {
-					return false;
+					return null;
 				}
 
 				currentElement = currentElement.eContainer();
@@ -410,43 +462,7 @@ public class SourceSectionMatcher {
 			containers.put((SourceSection) currentClass, currentElement);
 
 		}
-
-		/*
-		 * Step 2: Check if each container section can be matched, starting from
-		 * the highest
-		 */
-		for (Entry<SourceSection, EObject> container : containers.entrySet()) {
-			/*
-			 * map container if it wasn't mapped before
-			 */
-			if (!this.checkObjectWasMapped(container.getKey(), container.getValue())) {
-
-				MatchedSectionDescriptor containerDescriptor = this.checkSection(container.getValue(), false,
-						container.getKey(), null);
-				if (containerDescriptor == null) {
-					return false;
-				}
-
-				/*
-				 * Register the created container descriptor in the 'sections2Descriptors' map that will be
-				 * returned in the end
-				 */
-				this.registerDescriptor(container.getKey(), containerDescriptor);
-
-				/*
-				 * Before returning the matched sections, we mark the affected elements
-				 * as 'matched' in the containment tree and update the 'matchedSections' map
-				 */
-				this.updateMatchedContainers(containerDescriptor);
-
-			}
-		}
-
-		// if we reached this point all went well.
-		//
-		return true;
-
-
+		return containers;
 	}
 
 	/**

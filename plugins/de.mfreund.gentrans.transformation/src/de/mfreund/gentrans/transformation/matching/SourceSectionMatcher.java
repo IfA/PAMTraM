@@ -942,13 +942,11 @@ public class SourceSectionMatcher {
 				/*
 				 * Check if all the constraints are satisfied for every attribute value.
 				 */
-				for (Object srcAttrValue : srcAttrValues) {
-
-					if(!this.checkAttributeValueConstraints(at, srcAttrValue)) {
+				if (!srcAttrValues.parallelStream()
+						.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue))) {
 					return false;
 				}
 			}
-		}
 		}
 
 		return true;

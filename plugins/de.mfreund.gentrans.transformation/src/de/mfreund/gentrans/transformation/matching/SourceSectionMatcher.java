@@ -1,7 +1,6 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,6 +27,7 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
 import pamtram.mapping.FixedValue;
 import pamtram.metamodel.AttributeValueConstraint;
@@ -911,45 +911,13 @@ public class SourceSectionMatcher {
 	private boolean checkAttributes(final EObject srcModelObject,
 			final SourceSectionClass srcSection, final MatchedSectionDescriptor descriptor) {
 
-		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
+		// Check if all the constraints are satisfied for every attribute value.
+		//
+		return srcSection.getAttributes().stream()
+				.allMatch(at -> AgteleEcoreUtil.getAttributeValueAsList(srcModelObject, at.getAttribute())
+						.parallelStream()
+						.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue)));
 
-			/*
-			 * Check if the modeled attribute exists in the srcModelObject
-			 */
-			final Object srcAttr = srcModelObject.eGet(at.getAttribute());
-
-			if (srcAttr == null) {
-				/*
-				 * This is not a problem unless any mappings point here or AttributeValueConstraints were modeled.
-				 * Unset mapping hint values are handled elsewhere. Here we only need to check for matchers.
-				 */
-				if (!at.getValueConstraint().isEmpty()) {
-					return false;
-				}
-			} else {
-
-				/*
-				 * As attributes may have a cardinality greater than 1, too, we have to handle
-				 * every attribute value separately.
-				 */
-				ArrayList<Object> srcAttrValues = new ArrayList<>();
-				if(at.getAttribute().isMany()) {
-					srcAttrValues.addAll((Collection<?>) srcAttr);
-				} else {
-					srcAttrValues.add(srcAttr);
-				}
-
-				/*
-				 * Check if all the constraints are satisfied for every attribute value.
-				 */
-				if (!srcAttrValues.parallelStream()
-						.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue))) {
-					return false;
-				}
-			}
-		}
-
-		return true;
 	}
 
 	/**

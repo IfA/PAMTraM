@@ -591,7 +591,7 @@ public class SourceSectionMatcher {
 				}));
 		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
 		sourceSectionClass.getReferences().parallelStream()
-				.forEach(r -> r.getValuesGeneric().parallelStream().forEach(c -> refByClassMap.put(c, r)));
+		.forEach(r -> r.getValuesGeneric().parallelStream().forEach(c -> refByClassMap.put(c, r)));
 
 		// now, iterate through all the modeled references (and reference targets) and check if they can be matched for
 		// the current 'srcModelObject'
@@ -690,52 +690,69 @@ public class SourceSectionMatcher {
 		MatchedSectionDescriptor childDescriptor = null;
 		boolean nonZeroCardSectionFound = false;
 
-		for (final SourceSectionClass c : classes) {
-			// check non-zero sections first (it doesn't make sense in
-			// this case to model ZERO_INFINITY sections, if there is
-			// one
-			// section with a minimum cardinality of 1, but it can be
-			// handled
-			if (!c.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
-				if (nonZeroCardSectionFound) {
-					// modeling error
-					this.logger.severe("Modeling error in source section: '"
-							+ sourceSectionClass.getContainer().getName() + "', subsection: '" + sourceSectionClass.getName()
-							+ "'. The Reference '" + refByClassMap.get(c)
-							+ "' points to a metamodel reference, that can only hold one value but in the source section "
-							+ "it references more than one Class with a CardinalityType that is not ZERO_INFINITY.");
-					return false;
-				}
-				nonZeroCardSectionFound = true;
-				childDescriptor = this.checkSection(referencedElement,
-						refByClassMap.get(c) instanceof MetaModelSectionReference || usedOkay, c, descriptor);
+		// check non-zero classes (classes with a lower bound != ZERO) first; it doesn't make sense in this case to
+		// model ZERO_INFINITY sections, if there is one section with a minimum cardinality of 1, but it can be handled
+		//
+		List<SourceSectionClass> nonZeroClasses = classes.parallelStream()
+				.filter(c -> !c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
+
+		for (final SourceSectionClass c : nonZeroClasses) {
+
+			if (nonZeroCardSectionFound) {
+
+				// modeling error
+				this.logger.severe("Modeling error in source section: '" + sourceSectionClass.getContainer().getName()
+						+ "', subsection: '" + sourceSectionClass.getName() + "'. The Reference '"
+						+ refByClassMap.get(c)
+						+ "' points to a metamodel reference, that can only hold one value but in the source section "
+						+ "it references more than one Class with a CardinalityType that is not ZERO_INFINITY.");
+				return false;
 			}
+
+			nonZeroCardSectionFound = true;
+
+			// iterate further
+			//
+			childDescriptor = this.checkSection(referencedElement,
+					refByClassMap.get(c) instanceof MetaModelSectionReference || usedOkay, c, descriptor);
 		}
 
 		if (!nonZeroCardSectionFound) {
-			for (final SourceSectionClass c : classes) {
+
+			// if no non-zero class has been found, try to match classes with a lower bound of ZERO
+			//
+			List<SourceSectionClass> zeroClasses = classes.parallelStream()
+					.filter(c -> c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
+			for (final SourceSectionClass c : zeroClasses) {
+
+				// iterate further
+				//
 				childDescriptor = this.checkSection(referencedElement,
 						refByClassMap.get(c) instanceof MetaModelSectionReference || usedOkay, c, descriptor);
+
 				if (childDescriptor != null) {
-					continue;
+					break;
 				}
 			}
 		}
 
+		// none of the given classes could be matched
+		//
 		if (childDescriptor == null) {
 			return false;
 		}
 
-		// success: combine references
+		// one of the classes could be matched, so we update the given parent descriptor
+		//
 		descriptor.add(childDescriptor);
-		if (refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
-			/*
-			 * Register the created child descriptor in the 'sections2Descriptors' map that will be
-			 * returned in the end
-			 */
-			if(childDescriptor.getAssociatedSourceSectionClass() instanceof SourceSection) {
-				this.registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor);
-			}
+
+		// if the given descriptor was retrieved via a MetaModelSectionReference, we need to register this descriptor in
+		// the 'sections2Descriptors' map that will be returned in the end
+		//
+		if (refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference
+				&& childDescriptor.getAssociatedSourceSectionClass() instanceof SourceSection) {
+
+			this.registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor);
 		}
 
 		return true;

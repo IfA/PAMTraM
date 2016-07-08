@@ -759,26 +759,28 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This checks if the given list of <em>refTargetL</em> that are referenced by a {@link EReference#isMany()
+	 * This checks if the given list of <em>referencedElements</em> that are referenced by a {@link EReference#isMany()
 	 * many-valued} reference can be matched for the given {@link MatchedSectionDescriptor} representing the referencing
 	 * element.
 	 * <p />
 	 * Note: This iterates further downward in the containment hierarchy by calling
 	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
+	 *
 	 * @param referencedElements
 	 *            The {@link EObject elements} to check.
 	 * @param descriptor
 	 *            The {@link MatchedSectionDescriptor} representing the {@link EObject} that references the given
-	 *            <em>refTargetL</em>.
+	 *            <em>referencedElements</em>.
 	 * @param classes
 	 *            The list of {@link SourceSectionClass SourceSectionClasses} that have been modeled as target for the
-	 *            current reference to be checked (these are the potential matches for the given <em>refTargetL</em>).
+	 *            current reference to be checked (these are the potential matches for the given
+	 *            <em>referencedElements</em>).
 	 * @param refByClassMap
 	 *            A map that collects all {@link SourceSectionClass SourceSectionClasses} and the
 	 *            {@link SourceSectionReference} that they are referenced by.
 	 * @param usedOkay
 	 *            Whether elements already contained in <em>descriptor<em> can be matched again. This needs to be set to
-	 *            '<em>true</em> when this is called if <em>refTargetL</em> are referenced by a non-containment
+	 *            '<em>true</em> when this is called if <em>referencedElements</em> are referenced by a non-containment
 	 *            reference.
 	 *
 	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
@@ -799,21 +801,23 @@ public class SourceSectionMatcher {
 		 * MMSection
 		 */
 
-		// Map to store possible srcModelSections to MMSections
-		// (non-vc))
+		// Map to store possible srcModelSections to MMSections (non-vc)
+		//
 		final SourceSectionMatchingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMatchingResultsMap();
-		// Map to store possible srcModelSections to MMSections (vc))
+		classes.stream().filter(val -> val.getCardinality().equals(CardinalityType.ONE))
+		.forEach(possibleSrcModelElementsNoVC::init);
+
+		// Map to store possible srcModelSections to MMSections (vc)
+		//
 		final SourceSectionMatchingResultsMap possibleSrcModelElementsVC = new SourceSectionMatchingResultsMap();
-		for (final SourceSectionClass val : classes) {
-			if (val.getCardinality().equals(CardinalityType.ONE)) {
-				possibleSrcModelElementsNoVC.put(val, new LinkedList<MatchedSectionDescriptor>());
-			} else {
-				possibleSrcModelElementsVC.put(val, new LinkedList<MatchedSectionDescriptor>());
-			}
-		}
+		classes.stream().filter(val -> !val.getCardinality().equals(CardinalityType.ONE))
+		.forEach(possibleSrcModelElementsVC::init);
+
 
 		final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<>();
+
 		// find possible srcElements for mmsections
+		//
 		for (final EObject rt : referencedElements) {
 			boolean foundMapping = false;
 			for (final SourceSectionClass val : classes) {
@@ -821,14 +825,10 @@ public class SourceSectionMatcher {
 						refByClassMap.get(val) instanceof MetaModelSectionReference || usedOkay, val,
 						descriptor);
 
-				if (childDescriptor != null) {// mapping possible
+				// we found a match
+				//
+				if (childDescriptor != null) {
 					foundMapping = true;
-
-					// TODO Do we need this? This is done as part of
-					// 'checkSection(...)', isn't it?
-					//
-					childDescriptor.setAssociatedSourceModelElement(rt);
-					childDescriptor.setAssociatedSourceSectionClass(val);
 
 					if (!val.getCardinality().equals(CardinalityType.ONE)) {
 						possibleSrcModelElementsVC.get(val).add(childDescriptor);

@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -466,30 +468,25 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This recursively checks if a {@link SourceSectionClass} is applicable for
-	 * a certain part of the source model. Therefore, it iterates downward in
-	 * the containment hierarchy of the source section and checks if every
-	 * element can be matched to a part of the source model.
+	 * This recursively checks if a {@link SourceSectionClass} is applicable for a certain part of the source model.
+	 * Therefore, it iterates downward in the containment hierarchy of the source section and checks if every element
+	 * can be matched to a part of the source model.
 	 *
 	 * @param srcModelObject
-	 *            The element of the source model that is currently evaluated
-	 *            for applicability.
+	 *            The element of the source model that is currently evaluated for applicability.
 	 * @param usedOkay
-	 *            Whether elements already contained in
-	 *            <em>newRefsAndHints<em> can be matched again. This needs to be set to '<em>true</em>
-	 *            when
-	 *            {@link #checkMapping(EObject, boolean, Iterable, Iterable, Iterable, SourceSectionClass, MappingInstanceStorage)
-	 *            checkMapping()} is called for a non-containment reference.
+	 *            Whether elements already contained in <em>newRefsAndHints</em> can be matched again. This needs to be
+	 *            set to '<em>true</em> when
+	 *            {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)} is called for a
+	 *            non-containment reference.
 	 * @param srcSection
-	 *            The {@link SourceSectionClass} (either the sourceMMSection
-	 *            itself or a direct or indirect child of it) that is currently
-	 *            checked.
+	 *            The {@link SourceSectionClass} (either the sourceMMSection itself or a direct or indirect child of it)
+	 *            that is currently checked.
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for the parent
-	 *            {@link SourceSectionClass element}.
+	 *            The {@link MatchedSectionDescriptor} for the parent {@link SourceSectionClass element}.
 	 *
-	 * @return The {@link MatchedSectionDescriptor} representing the matched
-	 *         section (including all matched child elements).
+	 * @return The {@link MatchedSectionDescriptor} representing the matched section (including all matched child
+	 *         elements).
 	 */
 	private MatchedSectionDescriptor checkSection(final EObject srcModelObject, final boolean usedOkay,
 			final SourceSectionClass srcSection, final MatchedSectionDescriptor parentDescriptor) {
@@ -508,10 +505,9 @@ public class SourceSectionMatcher {
 			return null;
 		}
 
-		// this is the 'MatchedSectionDescriptor' that we will return this in
-		// Case
-		// we find the mapping to be applicable
+		// this is the 'MatchedSectionDescriptor' that we will return this in case we find the mapping to be applicable
 		// else we return null
+		//
 		final MatchedSectionDescriptor descriptor = new MatchedSectionDescriptor();
 		descriptor.setAssociatedSourceModelElement(srcModelObject);
 		descriptor.setAssociatedSourceSectionClass(srcSection);
@@ -525,7 +521,7 @@ public class SourceSectionMatcher {
 		descriptor.addSourceModelObjectMapped(srcModelObject, srcSection);
 
 		/*
-		 * check if all attributes are present and valid; determine HintValues
+		 * check if all attributes are present and valid
 		 */
 		boolean attributesOk = this.checkAttributes(srcModelObject, srcSection, descriptor);
 
@@ -533,21 +529,13 @@ public class SourceSectionMatcher {
 			return null;
 		}
 
-		/*
-		 * Combine values of references of same type. if this gets to slow,
-		 * maybe add a map (refBySectionByClass) to this class
-		 */
-		final Map<EReference, List<SourceSectionClass>> classByRefMap = new LinkedHashMap<>();
-		final Map<SourceSectionClass, SourceSectionReference> refByClassMap = new HashMap<>();
-
 
 		/*
 		 * check if all modeled references can be matched; this will also
 		 * iterate further down the hierarchy (and thereby call 'checkMapping',
 		 * 'checkAttributes' and 'checkReferences' multiple times)
 		 */
-		boolean referencesOk = this.checkReferences(srcModelObject, usedOkay, srcSection, descriptor, classByRefMap,
-				refByClassMap);
+		boolean referencesOk = this.checkReferences(srcModelObject, usedOkay, srcSection, descriptor);
 
 		if (!referencesOk) {
 			return null;
@@ -562,79 +550,63 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This checks if all {@link SourceSectionReference references} that have
-	 * been defined for a given {@link SourceSectionClass} can be matched for
-	 * the given '<em>srcModelObject</em>'. Therefore, all
-	 * {@link SourceSectionClass#getCardinality() cardinalities} of referenced
-	 * {@link SourceSectionClass classes} are checked. <br />
-	 * <b>Note:<b/> For every {@link SourceSectionClass class} that is
-	 * referenced by a modeled {@link SourceSectionReference reference}, this
-	 * calls
-	 * {@link #checkcheckMapping(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)
-	 * checkMapping()} so that we iteratively go through the complete hierarchy
-	 * of the modeled section.
+	 * This checks if all {@link SourceSectionReference references} that have been defined for a given
+	 * {@link SourceSectionClass} can be matched for the given '<em>srcModelObject</em>'. Therefore, all
+	 * {@link SourceSectionClass#getCardinality() cardinalities} of referenced {@link SourceSectionClass classes} are
+	 * checked. <br />
+	 * <b>Note:</b> For every {@link SourceSectionClass class} that is referenced by a modeled
+	 * {@link SourceSectionReference reference}, this calls
+	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)} so that we iteratively go
+	 * through the complete hierarchy of the modeled section.
 	 *
 	 * @param srcModelObject
 	 *            The object to be checked.
 	 * @param usedOkay
-	 *            Whether elements already contained in
-	 *            <em>descriptor<em> can be matched again. This needs to be set to '<em>true</em>
-	 *            when
+	 *            Whether elements already contained in <em>descriptor<em> can be matched again. This needs to be set to
+	 *            '<em>true</em> when
 	 *            {@link #checkReferences(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)
-	 *            checkReferences()} is called for elements referenced by a
-	 *            non-containment reference.
-	 * @param srcSection
-	 *            The {@link SourceSectionClass} for which the references shall
-	 *            be checked. The {@link MatchedSectionDescriptor} for the
-	 *            {@link SourceSection} to be evaluated. Note: The same instance
-	 *            will be used for the SourceSection and all child
-	 *            SourceSectionClasses.
+	 *            checkReferences()} is called for elements referenced by a non-containment reference.
+	 * @param sourceSectionClass
+	 *            The {@link SourceSectionClass} for which the references shall be checked. The
+	 *            {@link MatchedSectionDescriptor} for the {@link SourceSection} to be evaluated. Note: The same
+	 *            instance will be used for the SourceSection and all child SourceSectionClasses.
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for the
-	 *            {@link SourceSectionClass} to be evaluated.
-	 * @param classByRefMap
-	 *            A map that collects all {@link SourceSectionClass
-	 *            SourceSectionClasses} and the {@link SourceSectionReference}
-	 *            that they are referenced by.
+	 *            The {@link MatchedSectionDescriptor} for the {@link SourceSectionClass} to be evaluated.
 	 * @param refByClassMap
-	 *            A map that collects all {@link SourceSectionReference
-	 *            SourceSectionReferences} and the {@link SourceSectionClass}
-	 *            that they are contained in.
+	 *            A map that collects all {@link SourceSectionReference SourceSectionReferences} and the
+	 *            {@link SourceSectionClass} that they are contained in.
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean checkReferences(final EObject srcModelObject, final boolean usedOkay,
-			final SourceSectionClass srcSection, final MatchedSectionDescriptor descriptor,
-			final Map<EReference, List<SourceSectionClass>> classByRefMap,
-			final Map<SourceSectionClass, SourceSectionReference> refByClassMap) {
+			final SourceSectionClass sourceSectionClass, final MatchedSectionDescriptor descriptor) {
 
-		/*
-		 * update the 'classByRef' and 'refByClass' map
-		 */
-		for (final SourceSectionReference ref : srcSection.getReferences()) {
-			if (!classByRefMap.containsKey(ref.getEReference())) {
-				classByRefMap.put(ref.getEReference(), new LinkedList<SourceSectionClass>());
-			}
+		// Collect the modeled references and reference targets (SourceSectionClasses) for the
+		// current 'sourceSectionClass' and store them in to maps
+		//
+		Map<EReference, List<SourceSectionClass>> classByRefMap = sourceSectionClass.getReferences()
+				.parallelStream()
+				.collect(Collectors.toConcurrentMap(r -> r.getEReference(), r -> r.getValuesGeneric(), (i, j) -> {
+					i.addAll(j);
+					return i;
+				}));
+		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
+		sourceSectionClass.getReferences().parallelStream()
+				.forEach(r -> r.getValuesGeneric().parallelStream().forEach(c -> refByClassMap.put(c, r)));
 
-			classByRefMap.get(ref.getEReference()).addAll(ref.getValuesGeneric());
-
-			for (final SourceSectionClass c : ref.getValuesGeneric()) {
-				refByClassMap.put(c, ref);
-			}
-		}
-
-		// now go through all the srcMmSection refs
+		// now, iterate through all the modeled references (and reference targets) and check if they can be matched for
+		// the current 'srcModelObject'
+		//
 		for (final Entry<EReference, List<SourceSectionClass>> entry : classByRefMap.entrySet()) {
 
-			// the reference that we are currenlty checking
+			// the reference that we are currently checking
 			//
 			EReference reference = entry.getKey();
+
 			// the SourceSectionClasses that have been modeled for the
 			// 'reference' in the pamtram model
 			//
 			List<SourceSectionClass> classes = entry.getValue();
 
-			// check if reference is allowed by src metamodel
-			// check if reference in srcMMSection points anywhere
 			if (classes.isEmpty()) {
 
 				/*
@@ -652,256 +624,326 @@ public class SourceSectionMatcher {
 				}
 			}
 
-			/*
-			 * get targets of the reference in the source model, then behave
-			 * depending on the cardinality of the reference
-			 */
+			// get targets of the reference in the source model, then proceed depending on the cardinality of the
+			// reference
+			//
 			final Object refTarget = srcModelObject.eGet(reference);
 
-			/*
-			 * There are cases in which modeling more target values for a
-			 * section than it can actually hold might make sense depending on
-			 * how the target's CardinalityType value was set. Therefore we do
-			 * not check the modeled references values at this point.
-			 */
 			if (!reference.isMany()) {
 
-				final EObject refTargetObj = (EObject) refTarget;
-				if (refTargetObj == null) {
+				// check the single-valued reference
+				//
+				if (!this.checkSingleValuedReference((EObject) refTarget, descriptor, classes, refByClassMap, usedOkay,
+						sourceSectionClass)) {
 					return false;
 				}
 
-				MatchedSectionDescriptor childDescriptor = null;
-				boolean nonZeroCardSectionFound = false;
+			} else {
 
-				for (final SourceSectionClass c : classes) {
-					// check non-zero sections first (it doesn't make sense in
-					// this case to model ZERO_INFINITY sections, if there is
-					// one
-					// section with a minimum cardinality of 1, but it can be
-					// handled
-					if (!c.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
-						if (nonZeroCardSectionFound) {
-							// modeling error
-							this.logger.severe("Modeling error in source section: '"
-									+ srcSection.getContainer().getName() + "', subsection: '" + srcSection.getName()
-									+ "'. The Reference '" + refByClassMap.get(c)
-									+ "' points to a metamodel reference, that can only hold one value but in the source section "
-									+ "it references more than one Class with a CardinalityType that is not ZERO_INFINITY.");
-							return false;
-						}
-						nonZeroCardSectionFound = true;
-						childDescriptor = this.checkSection(refTargetObj,
-								refByClassMap.get(c) instanceof MetaModelSectionReference || usedOkay, c, descriptor);
-					}
-				}
-
-				if (!nonZeroCardSectionFound) {
-					for (final SourceSectionClass c : classes) {
-						childDescriptor = this.checkSection(refTargetObj,
-								refByClassMap.get(c) instanceof MetaModelSectionReference || usedOkay, c, descriptor);
-						if (childDescriptor != null) {
-							continue;
-						}
-					}
-				}
-
-				if (childDescriptor == null) {
+				// check the multi-valued reference
+				//
+				if (!this.checkManyValuedReference(new ArrayList<>((Collection<EObject>) refTarget), descriptor,
+						classes, refByClassMap, usedOkay)) {
 					return false;
 				}
+			}
 
-				// success: combine references
-				descriptor.add(childDescriptor);
-				if (refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
+		}
+
+		return true;
+	}
+
+	/**
+	 * This checks if the given <em>refTargetObj</em> that is referenced by a {@link EReference#isMany() single-valued}
+	 * reference can be matched for the given {@link MatchedSectionDescriptor} representing the referencing element.
+	 * <p />
+	 * Note: This iterates further downward in the containment hierarchy by calling
+	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
+	 *
+	 * @param referencedElement
+	 *            The {@link EObject element} to check.
+	 * @param descriptor
+	 *            The {@link MatchedSectionDescriptor} representing the {@link EObject} that references the given
+	 *            <em>refTargetObj</em>.
+	 * @param classes
+	 *            The list of {@link SourceSectionClass SourceSectionClasses} that have been modeled as target for the
+	 *            current reference to be checked (these are the potential matches for the given <em>refTargetObj</em>).
+	 * @param refByClassMap
+	 *            A map that collects all {@link SourceSectionClass SourceSectionClasses} and the
+	 *            {@link SourceSectionReference} that they are referenced by.
+	 * @param usedOkay
+	 *            Whether elements already contained in <em>descriptor<em> can be matched again. This needs to be set to
+	 *            '<em>true</em> when this is called if <em>refTargetObj</em> is referenced by a non-containment
+	 *            reference.
+	 * @param sourceSectionClass
+	 *            The parent {@link SourceSectionClass} for which the references shall be checked.
+	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean checkSingleValuedReference(final EObject referencedElement, final MatchedSectionDescriptor descriptor,
+			List<SourceSectionClass> classes, final Map<SourceSectionClass, SourceSectionReference> refByClassMap,
+			final boolean usedOkay, final SourceSectionClass sourceSectionClass) {
+
+		if (referencedElement == null) {
+			return false;
+		}
+
+		MatchedSectionDescriptor childDescriptor = null;
+		boolean nonZeroCardSectionFound = false;
+
+		for (final SourceSectionClass c : classes) {
+			// check non-zero sections first (it doesn't make sense in
+			// this case to model ZERO_INFINITY sections, if there is
+			// one
+			// section with a minimum cardinality of 1, but it can be
+			// handled
+			if (!c.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
+				if (nonZeroCardSectionFound) {
+					// modeling error
+					this.logger.severe("Modeling error in source section: '"
+							+ sourceSectionClass.getContainer().getName() + "', subsection: '" + sourceSectionClass.getName()
+							+ "'. The Reference '" + refByClassMap.get(c)
+							+ "' points to a metamodel reference, that can only hold one value but in the source section "
+							+ "it references more than one Class with a CardinalityType that is not ZERO_INFINITY.");
+					return false;
+				}
+				nonZeroCardSectionFound = true;
+				childDescriptor = this.checkSection(referencedElement,
+						refByClassMap.get(c) instanceof MetaModelSectionReference || usedOkay, c, descriptor);
+			}
+		}
+
+		if (!nonZeroCardSectionFound) {
+			for (final SourceSectionClass c : classes) {
+				childDescriptor = this.checkSection(referencedElement,
+						refByClassMap.get(c) instanceof MetaModelSectionReference || usedOkay, c, descriptor);
+				if (childDescriptor != null) {
+					continue;
+				}
+			}
+		}
+
+		if (childDescriptor == null) {
+			return false;
+		}
+
+		// success: combine references
+		descriptor.add(childDescriptor);
+		if (refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
+			/*
+			 * Register the created child descriptor in the 'sections2Descriptors' map that will be
+			 * returned in the end
+			 */
+			if(childDescriptor.getAssociatedSourceSectionClass() instanceof SourceSection) {
+				this.registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor);
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * This checks if the given list of <em>refTargetL</em> that are referenced by a {@link EReference#isMany()
+	 * many-valued} reference can be matched for the given {@link MatchedSectionDescriptor} representing the referencing
+	 * element.
+	 * <p />
+	 * Note: This iterates further downward in the containment hierarchy by calling
+	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
+	 * @param referencedElements
+	 *            The {@link EObject elements} to check.
+	 * @param descriptor
+	 *            The {@link MatchedSectionDescriptor} representing the {@link EObject} that references the given
+	 *            <em>refTargetL</em>.
+	 * @param classes
+	 *            The list of {@link SourceSectionClass SourceSectionClasses} that have been modeled as target for the
+	 *            current reference to be checked (these are the potential matches for the given <em>refTargetL</em>).
+	 * @param refByClassMap
+	 *            A map that collects all {@link SourceSectionClass SourceSectionClasses} and the
+	 *            {@link SourceSectionReference} that they are referenced by.
+	 * @param usedOkay
+	 *            Whether elements already contained in <em>descriptor<em> can be matched again. This needs to be set to
+	 *            '<em>true</em> when this is called if <em>refTargetL</em> are referenced by a non-containment
+	 *            reference.
+	 *
+	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean checkManyValuedReference(final List<EObject> referencedElements, final MatchedSectionDescriptor descriptor,
+			List<SourceSectionClass> classes, final Map<SourceSectionClass, SourceSectionReference> refByClassMap,
+			final boolean usedOkay) {
+
+		/*
+		 * this is a little more complicated: now we need to find ONE
+		 * possible way to map our referenceTargets to the source
+		 * sections
+		 *
+		 * To do this we need to find out first which MMSections are
+		 * applicable to which srcModel sections.
+		 *
+		 * Then we try to find a way to map one srcModelSection to each
+		 * MMSection
+		 */
+
+		// Map to store possible srcModelSections to MMSections
+		// (non-vc))
+		final SourceSectionMatchingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMatchingResultsMap();
+		// Map to store possible srcModelSections to MMSections (vc))
+		final SourceSectionMatchingResultsMap possibleSrcModelElementsVC = new SourceSectionMatchingResultsMap();
+		for (final SourceSectionClass val : classes) {
+			if (val.getCardinality().equals(CardinalityType.ONE)) {
+				possibleSrcModelElementsNoVC.put(val, new LinkedList<MatchedSectionDescriptor>());
+			} else {
+				possibleSrcModelElementsVC.put(val, new LinkedList<MatchedSectionDescriptor>());
+			}
+		}
+
+		final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<>();
+		// find possible srcElements for mmsections
+		for (final EObject rt : referencedElements) {
+			boolean foundMapping = false;
+			for (final SourceSectionClass val : classes) {
+				final MatchedSectionDescriptor childDescriptor = this.checkSection(rt,
+						refByClassMap.get(val) instanceof MetaModelSectionReference || usedOkay, val,
+						descriptor);
+
+				if (childDescriptor != null) {// mapping possible
+					foundMapping = true;
+
+					// TODO Do we need this? This is done as part of
+					// 'checkSection(...)', isn't it?
+					//
+					childDescriptor.setAssociatedSourceModelElement(rt);
+					childDescriptor.setAssociatedSourceSectionClass(val);
+
+					if (!val.getCardinality().equals(CardinalityType.ONE)) {
+						possibleSrcModelElementsVC.get(val).add(childDescriptor);
+						elementsUsableForVC.add(rt);
+
+					} else {
+						possibleSrcModelElementsNoVC.get(val).add(childDescriptor);
+					}
+				}
+			}
+			if (!foundMapping) {
+				return false; // we need to find a mapping for every
+				// srcModelElement if the reference Type
+				// was modeled in the srcMMSection
+			}
+		}
+
+		final LinkedList<EObject> allElementsMapped = new LinkedList<>();
+
+		while (!possibleSrcModelElementsNoVC.keySet().isEmpty()) {
+			final SourceSectionClass smallestKey = possibleSrcModelElementsNoVC
+					.getKeyForValueWithSmallestCollectionSize();
+			if (!possibleSrcModelElementsNoVC.get(smallestKey).isEmpty()) {
+				MatchedSectionDescriptor srcSectionResult;
+				// we need to filter a little more
+				if (possibleSrcModelElementsNoVC.get(smallestKey).size() > 1) {
+					LinkedList<MatchedSectionDescriptor> possibleElements = new LinkedList<>();
+					possibleElements.addAll(possibleSrcModelElementsNoVC.get(smallestKey));
+
+					// filter elements that can be used for a vc-section
+					final LinkedList<MatchedSectionDescriptor> allVCIncompatible = new LinkedList<>();
+					for (final MatchedSectionDescriptor s : possibleElements) {
+						if (!elementsUsableForVC.contains(s.getAssociatedSourceModelElement())) {
+							allVCIncompatible.add(s);
+						}
+					}
+					if (!allVCIncompatible.isEmpty()) {
+						possibleElements = allVCIncompatible;
+					}
+
+					srcSectionResult = SourceSectionMatcher.getResultForLeastUsedSrcModelElement(possibleElements);
+
+				} else {
+					srcSectionResult = possibleSrcModelElementsNoVC.get(smallestKey).getFirst();
+				}
+
+				// remember mapping
+				descriptor.add(srcSectionResult);
+				if (refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
 					/*
 					 * Register the created child descriptor in the 'sections2Descriptors' map that will be
 					 * returned in the end
 					 */
-					if(childDescriptor.getAssociatedSourceSectionClass() instanceof SourceSection) {
-						this.registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor);
+					if(srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
+						this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(), srcSectionResult);
 					}
 				}
 
-			} else {// unbounded or unspecified
-				// cast refTarget to EList
-				final LinkedList<EObject> refTargetL = new LinkedList<>((EList<EObject>) refTarget);
-
+				allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
+				// remove srcModel element from possibility lists of
+				// MMSections
+				possibleSrcModelElementsNoVC.removeResultsForElement(srcSectionResult);
+				possibleSrcModelElementsVC.removeResultsForElement(srcSectionResult);
+				possibleSrcModelElementsNoVC.remove(smallestKey);// remove
 				/*
-				 * this is a little more complicated: now we need to find ONE
-				 * possible way to map our referenceTargets to the source
-				 * sections
-				 *
-				 * To do this we need to find out first which MMSections are
-				 * applicable to which srcModel sections.
-				 *
-				 * Then we try to find a way to map one srcModelSection to each
-				 * MMSection
+				 * successfully mapped mmSection from list
 				 */
 
-				// Map to store possible srcModelSections to MMSections
-				// (non-vc))
-				final SourceSectionMatchingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMatchingResultsMap();
-				// Map to store possible srcModelSections to MMSections (vc))
-				final SourceSectionMatchingResultsMap possibleSrcModelElementsVC = new SourceSectionMatchingResultsMap();
-				for (final SourceSectionClass val : classes) {
-					if (val.getCardinality().equals(CardinalityType.ONE)) {
-						possibleSrcModelElementsNoVC.put(val, new LinkedList<MatchedSectionDescriptor>());
-					} else {
-						possibleSrcModelElementsVC.put(val, new LinkedList<MatchedSectionDescriptor>());
-					}
-				}
-
-				final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<>();
-				// find possible srcElements for mmsections
-				for (final EObject rt : refTargetL) {
-					boolean foundMapping = false;
-					for (final SourceSectionClass val : classes) {
-						final MatchedSectionDescriptor childDescriptor = this.checkSection(rt,
-								refByClassMap.get(val) instanceof MetaModelSectionReference || usedOkay, val,
-								descriptor);
-
-						if (childDescriptor != null) {// mapping possible
-							foundMapping = true;
-
-							// TODO Do we need this? This is done as part of
-							// 'checkSection(...)', isn't it?
-							//
-							childDescriptor.setAssociatedSourceModelElement(rt);
-							childDescriptor.setAssociatedSourceSectionClass(val);
-
-							if (!val.getCardinality().equals(CardinalityType.ONE)) {
-								possibleSrcModelElementsVC.get(val).add(childDescriptor);
-								elementsUsableForVC.add(rt);
-
-							} else {
-								possibleSrcModelElementsNoVC.get(val).add(childDescriptor);
-							}
-						}
-					}
-					if (!foundMapping) {
-						return false; // we need to find a mapping for every
-						// srcModelElement if the reference Type
-						// was modeled in the srcMMSection
-					}
-				}
-
-				final LinkedList<EObject> allElementsMapped = new LinkedList<>();
-
-				while (!possibleSrcModelElementsNoVC.keySet().isEmpty()) {
-					final SourceSectionClass smallestKey = possibleSrcModelElementsNoVC
-							.getKeyForValueWithSmallestCollectionSize();
-					if (!possibleSrcModelElementsNoVC.get(smallestKey).isEmpty()) {
-						MatchedSectionDescriptor srcSectionResult;
-						// we need to filter a little more
-						if (possibleSrcModelElementsNoVC.get(smallestKey).size() > 1) {
-							LinkedList<MatchedSectionDescriptor> possibleElements = new LinkedList<>();
-							possibleElements.addAll(possibleSrcModelElementsNoVC.get(smallestKey));
-
-							// filter elements that can be used for a vc-section
-							final LinkedList<MatchedSectionDescriptor> allVCIncompatible = new LinkedList<>();
-							for (final MatchedSectionDescriptor s : possibleElements) {
-								if (!elementsUsableForVC.contains(s.getAssociatedSourceModelElement())) {
-									allVCIncompatible.add(s);
-								}
-							}
-							if (!allVCIncompatible.isEmpty()) {
-								possibleElements = allVCIncompatible;
-							}
-
-							srcSectionResult = SourceSectionMatcher.getResultForLeastUsedSrcModelElement(possibleElements);
-
-						} else {
-							srcSectionResult = possibleSrcModelElementsNoVC.get(smallestKey).getFirst();
-						}
-
-						// remember mapping
-						descriptor.add(srcSectionResult);
-						if (refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
-							/*
-							 * Register the created child descriptor in the 'sections2Descriptors' map that will be
-							 * returned in the end
-							 */
-							if(srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
-								this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(), srcSectionResult);
-							}
-						}
-
-						allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
-						// remove srcModel element from possibility lists of
-						// MMSections
-						possibleSrcModelElementsNoVC.removeResultsForElement(srcSectionResult);
-						possibleSrcModelElementsVC.removeResultsForElement(srcSectionResult);
-						possibleSrcModelElementsNoVC.remove(smallestKey);// remove
-						/*
-						 * successfully mapped mmSection from list
-						 */
-
-					} else {
-						// consoleStream.println("no-vc mapping failed");
-						return false;// all non-vc-elements need to be mapped
-						// exactly once
-					}
-				}
-
-				// try to map all vc-elements
-				final LinkedHashSet<SourceSectionClass> usedKeys = new LinkedHashSet<>(); // for
-				// counting
-				// cardinality
-
-				while (!possibleSrcModelElementsVC.keySet().isEmpty()) {
-
-					final SourceSectionClass smallestKey = possibleSrcModelElementsVC
-							.getKeyForValueWithSmallestCollectionSize();
-					if (!possibleSrcModelElementsVC.get(smallestKey).isEmpty()) {
-
-						usedKeys.add(smallestKey);
-						MatchedSectionDescriptor srcSectionResult;
-						// we need to filter a little more
-						if (possibleSrcModelElementsVC.get(smallestKey).size() > 1) {
-
-							srcSectionResult = SourceSectionMatcher.getResultForLeastUsedSrcModelElement(
-									possibleSrcModelElementsVC.get(smallestKey));
-
-						} else {
-							srcSectionResult = possibleSrcModelElementsVC.get(smallestKey).getFirst();
-						}
-						// remember mapping
-						descriptor.add(srcSectionResult);
-						if (refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
-							/*
-							 * Register the created child descriptor in the 'sections2Descriptors' map that will be
-							 * returned in the end
-							 */
-							if(srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
-								this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(), srcSectionResult);
-							}
-						}
-
-						allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
-
-						// remove srcModel element from possibility lists of
-						// MMSections
-						possibleSrcModelElementsVC.removeResultsForElement(srcSectionResult);
-
-
-					} else if (usedKeys.contains(smallestKey)
-							|| smallestKey.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
-						// remove mmSection from list
-						possibleSrcModelElementsVC.remove(smallestKey);
-					} else {
-						// the fact that samllestKey is not in the collection
-						// means that no mapping was found at all
-						return false;
-					}
-				}
-
-				// check if all refTargets where mapped
-				refTargetL.removeAll(allElementsMapped);
-				if (!refTargetL.isEmpty()) {
-					this.logger.warning("Not everything could be mapped");
-					return false;
-				}
+			} else {
+				// consoleStream.println("no-vc mapping failed");
+				return false;// all non-vc-elements need to be mapped
+				// exactly once
 			}
+		}
+
+		// try to map all vc-elements
+		final LinkedHashSet<SourceSectionClass> usedKeys = new LinkedHashSet<>(); // for
+		// counting
+		// cardinality
+
+		while (!possibleSrcModelElementsVC.keySet().isEmpty()) {
+
+			final SourceSectionClass smallestKey = possibleSrcModelElementsVC
+					.getKeyForValueWithSmallestCollectionSize();
+			if (!possibleSrcModelElementsVC.get(smallestKey).isEmpty()) {
+
+				usedKeys.add(smallestKey);
+				MatchedSectionDescriptor srcSectionResult;
+				// we need to filter a little more
+				if (possibleSrcModelElementsVC.get(smallestKey).size() > 1) {
+
+					srcSectionResult = SourceSectionMatcher.getResultForLeastUsedSrcModelElement(
+							possibleSrcModelElementsVC.get(smallestKey));
+
+				} else {
+					srcSectionResult = possibleSrcModelElementsVC.get(smallestKey).getFirst();
+				}
+				// remember mapping
+				descriptor.add(srcSectionResult);
+				if (refByClassMap.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
+					/*
+					 * Register the created child descriptor in the 'sections2Descriptors' map that will be
+					 * returned in the end
+					 */
+					if(srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
+						this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(), srcSectionResult);
+					}
+				}
+
+				allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
+
+				// remove srcModel element from possibility lists of
+				// MMSections
+				possibleSrcModelElementsVC.removeResultsForElement(srcSectionResult);
+
+
+			} else if (usedKeys.contains(smallestKey)
+					|| smallestKey.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
+				// remove mmSection from list
+				possibleSrcModelElementsVC.remove(smallestKey);
+			} else {
+				// the fact that samllestKey is not in the collection
+				// means that no mapping was found at all
+				return false;
+			}
+		}
+
+		// check if all refTargets where mapped
+		referencedElements.removeAll(allElementsMapped);
+		if (!referencedElements.isEmpty()) {
+			this.logger.warning("Not everything could be mapped");
+			return false;
 		}
 
 		return true;

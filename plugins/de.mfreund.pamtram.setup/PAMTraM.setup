@@ -40,31 +40,44 @@
         name="org.eclipse.egit.gitflow.feature.feature.group"
         versionRange="4.0.0"/>
     <requirement
-        name="org.eclipse.wb.core.feature.feature.group" optional="true"/>
+        name="org.eclipse.wb.core.feature.feature.group"
+        optional="true"/>
     <requirement
-        name="org.eclipse.wb.core.java.feature.feature.group" optional="true"/>
+        name="org.eclipse.wb.core.java.feature.feature.group"
+        optional="true"/>
     <requirement
-        name="org.eclipse.wb.core.ui.feature.feature.group" optional="true"/>
+        name="org.eclipse.wb.core.ui.feature.feature.group"
+        optional="true"/>
     <requirement
-        name="org.eclipse.wb.core.xml.feature.feature.group" optional="true"/>
+        name="org.eclipse.wb.core.xml.feature.feature.group"
+        optional="true"/>
     <requirement
-        name="org.eclipse.wb.doc.user.feature.feature.group" optional="true"/>
+        name="org.eclipse.wb.doc.user.feature.feature.group"
+        optional="true"/>
     <requirement
-        name="org.eclipse.wb.layout.group.feature.feature.group" optional="true"/>
+        name="org.eclipse.wb.layout.group.feature.feature.group"
+        optional="true"/>
     <requirement
-        name="org.eclipse.wb.swt.feature.feature.group" optional="true"/>
+        name="org.eclipse.wb.swt.feature.feature.group"
+        optional="true"/>
     <requirement
-        name="org.eclipse.wb.rcp.feature.feature.group" optional="true"/>
+        name="org.eclipse.wb.rcp.feature.feature.group"
+        optional="true"/>
     <requirement
-        name="org.eclipse.wb.rcp.doc.user.feature.feature.group" optional="true"/>
+        name="org.eclipse.wb.rcp.doc.user.feature.feature.group"
+        optional="true"/>
     <requirement
         name="org.sonarlint.eclipse.feature.feature.group"/>
     <requirement
         name="org.sonarlint.eclipse.jdt.feature.feature.group"/>
+    <requirement
+        name="de.tud.et.ifa.agtele.eclipse.commons.feature.feature.group"/>
     <repository
         url="http://download.eclipse.org/epsilon/updates/"/>
     <repository
         url="http://eclipse.sonarlint.org"/>
+    <repository
+        url="https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/updates"/>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"

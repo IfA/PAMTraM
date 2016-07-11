@@ -71,7 +71,8 @@
     <requirement
         name="org.sonarlint.eclipse.jdt.feature.feature.group"/>
     <requirement
-        name="de.tud.et.ifa.agtele.eclipse.commons.feature.feature.group"/>
+        name="de.tud.et.ifa.agtele.eclipse.commons.feature.feature.group"
+        optional="true"/>
     <repository
         url="http://download.eclipse.org/epsilon/updates/"/>
     <repository

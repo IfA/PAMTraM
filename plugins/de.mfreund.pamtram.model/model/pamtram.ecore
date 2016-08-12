@@ -121,7 +121,7 @@
       <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
       <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
       <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-      <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TargetSectionModel">
@@ -419,7 +419,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSection">
@@ -458,7 +458,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass">
@@ -684,7 +684,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionReference" abstract="true">
@@ -723,7 +723,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//metamodel/SourceSectionReference"/>
     </eClassifiers>
@@ -869,7 +869,7 @@
         <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/A"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute">
+    <eClassifiers xsi:type="ecore:EClass" name="ActualSourceSectionAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
       </eAnnotations>
@@ -884,7 +884,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true">
@@ -963,7 +963,7 @@
         <details key="noModifiedAttributeElementTypesInConditionModelConditions" value="Tuple {&#xD;&#xA;&#x9;message : String = 'ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.oclContainer().oclIsKindOf(pamtram::condition::ComplexCondition) and self.oclContainer().oclAsType(pamtram::condition::ComplexCondition).isConditionModelCondition() then&#xD;&#xA;&#x9;&#x9;&#x9;not self.sourceAttributes->exists(self.oclIsTypeOf(pamtram::mapping::ModifiedAttributeElementType)) else&#xD;&#xA;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributePointer" lowerBound="1"
-          eType="#//metamodel/SourceSectionAttribute"/>
+          eType="#//metamodel/ActualSourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributes" lowerBound="1"
           upperBound="-1" eType="#//metamodel/InstancePointerSourceInterface" containment="true"/>
@@ -975,7 +975,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//metamodel/InstancePointerSourceInterface"/>
     </eClassifiers>
@@ -984,7 +984,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//metamodel/InstancePointerSourceInterface"/>
     </eClassifiers>
@@ -994,7 +994,7 @@
       </eAnnotations>
       <eOperations name="validateOnlyFixedValuesInSourceSections" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this.getSourceElements().isEmpty() || &#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.metamodel.MetamodelPackage%>.eINSTANCE.getSourceSectionAttribute())) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%>);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;String errorMessage = &quot;This AttributeValueConstraint must only&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; contain FixedValues as source elements as it is modeled as part of a SourceSection!'&quot;;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;diagnostics.add&#xD;&#xA;&#x9;&#x9;(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9; &lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9; MetamodelValidator.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;&#x9; errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9; new Object [] { this,  &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          <details key="body" value="if(this.getSourceElements().isEmpty() || &#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.metamodel.MetamodelPackage%>.eINSTANCE.getActualSourceSectionAttribute())) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%>);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;String errorMessage = &quot;This AttributeValueConstraint must only&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; contain FixedValues as source elements as it is modeled as part of a SourceSection!'&quot;;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;diagnostics.add&#xD;&#xA;&#x9;&#x9;(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9; &lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9; MetamodelValidator.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;&#x9; errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9; new Object [] { this,  &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;return result;"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1019,7 +1019,7 @@
       </eOperations>
       <eOperations name="isLocalConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this.eContainer().eContainer() instanceof &lt;%pamtram.metamodel.SourceSectionAttribute%>) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if(!(this.eContainer().eContainer() instanceof &lt;%pamtram.condition.AttributeCondition%>)) {&#xD;&#xA;&#x9;throw new UnsupportedOperationException();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EObject%> container = this;&#xD;&#xA;&#xD;&#xA;while(!(container instanceof &lt;%pamtram.mapping.Mapping%>)) {&#xD;&#xA;&#x9;if(container == null) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// The SourceSection of the Mapping that contains the constraint&#xD;&#xA;//&#xD;&#xA;&lt;%pamtram.metamodel.SourceSection%> localSection = ((Mapping) container).getSourceMMSection();&#xD;&#xA;&#xD;&#xA;if(getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%> || s instanceof &lt;%pamtram.mapping.GlobalAttributeImporter%> ||&#xD;&#xA;&#x9;&#x9;(s instanceof &lt;%pamtram.metamodel.AttributeValueConstraintSourceElement%> &amp;&amp;&#xD;&#xA;&#x9;&#x9;((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||&#xD;&#xA;&#x9;&#x9;(s instanceof &lt;%pamtram.metamodel.AttributeValueConstraintExternalSourceElement%> &amp;&amp;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist&#xD;&#xA;//&#xD;&#xA;return getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(&#xD;&#xA;&#x9;&#x9;instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;s -> s instanceof &lt;%pamtram.metamodel.InstancePointerSourceElement%> || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;s instanceof &lt;%pamtram.metamodel.InstancePointerExternalSourceElement%>)&#xD;&#xA;&#x9;&#x9;).findAny().isPresent();"/>
+          <details key="body" value="if(this.eContainer().eContainer() instanceof &lt;%pamtram.metamodel.ActualSourceSectionAttribute%>) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if(!(this.eContainer().eContainer() instanceof &lt;%pamtram.condition.AttributeCondition%>)) {&#xD;&#xA;&#x9;throw new UnsupportedOperationException();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EObject%> container = this;&#xD;&#xA;&#xD;&#xA;while(!(container instanceof &lt;%pamtram.mapping.Mapping%>)) {&#xD;&#xA;&#x9;if(container == null) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// The SourceSection of the Mapping that contains the constraint&#xD;&#xA;//&#xD;&#xA;&lt;%pamtram.metamodel.SourceSection%> localSection = ((Mapping) container).getSourceMMSection();&#xD;&#xA;&#xD;&#xA;if(getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%> || s instanceof &lt;%pamtram.mapping.GlobalAttributeImporter%> ||&#xD;&#xA;&#x9;&#x9;(s instanceof &lt;%pamtram.metamodel.AttributeValueConstraintSourceElement%> &amp;&amp;&#xD;&#xA;&#x9;&#x9;((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||&#xD;&#xA;&#x9;&#x9;(s instanceof &lt;%pamtram.metamodel.AttributeValueConstraintExternalSourceElement%> &amp;&amp;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist&#xD;&#xA;//&#xD;&#xA;return getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(&#xD;&#xA;&#x9;&#x9;instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;s -> s instanceof &lt;%pamtram.metamodel.InstancePointerSourceElement%> || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;s instanceof &lt;%pamtram.metamodel.InstancePointerExternalSourceElement%>)&#xD;&#xA;&#x9;&#x9;).findAny().isPresent();"/>
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundType" eType="#//metamodel/AttributeValueConstraintType"/>
@@ -1039,7 +1039,7 @@
       </eOperations>
       <eOperations name="validateOnlyFixedValuesInSourceSections" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this.getSourceElements().isEmpty() || &#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.metamodel.MetamodelPackage%>.eINSTANCE.getSourceSectionAttribute())) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%>);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;String errorMessage = &quot;This AttributeValueConstraint must only&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; contain FixedValues as source elements as it is modeled as part of a SourceSection!'&quot;;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;diagnostics.add&#xD;&#xA;&#x9;&#x9;(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9; &lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9; MetamodelValidator.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;&#x9; errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9; new Object [] { this,  &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          <details key="body" value="if(this.getSourceElements().isEmpty() || &#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.metamodel.MetamodelPackage%>.eINSTANCE.getActualSourceSectionAttribute())) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%>);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;String errorMessage = &quot;This AttributeValueConstraint must only&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; contain FixedValues as source elements as it is modeled as part of a SourceSection!'&quot;;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;diagnostics.add&#xD;&#xA;&#x9;&#x9;(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9; &lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9; MetamodelValidator.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;&#x9; errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9; new Object [] { this,  &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;return result;"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1064,7 +1064,7 @@
       </eOperations>
       <eOperations name="isLocalConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this.eContainer() instanceof &lt;%pamtram.metamodel.SourceSectionAttribute%>) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if(!(this.eContainer() instanceof &lt;%pamtram.condition.AttributeCondition%>)) {&#xD;&#xA;&#x9;throw new UnsupportedOperationException();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EObject%> container = this;&#xD;&#xA;&#xD;&#xA;while(!(container instanceof &lt;%pamtram.mapping.Mapping%>)) {&#xD;&#xA;&#x9;if(container == null) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// The SourceSection of the Mapping that contains the constraint&#xD;&#xA;//&#xD;&#xA;&lt;%pamtram.metamodel.SourceSection%> localSection = ((Mapping) container).getSourceMMSection();&#xD;&#xA;&#xD;&#xA;if(getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%> || s instanceof &lt;%pamtram.mapping.GlobalAttributeImporter%> ||&#xD;&#xA;&#x9;&#x9;(s instanceof &lt;%pamtram.metamodel.AttributeValueConstraintSourceElement%> &amp;&amp;&#xD;&#xA;&#x9;&#x9;((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||&#xD;&#xA;&#x9;&#x9;(s instanceof &lt;%pamtram.metamodel.AttributeValueConstraintExternalSourceElement%> &amp;&amp;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist&#xD;&#xA;//&#xD;&#xA;return getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(&#xD;&#xA;&#x9;&#x9;instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;s -> s instanceof &lt;%pamtram.metamodel.InstancePointerSourceElement%> || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;s instanceof &lt;%pamtram.metamodel.InstancePointerExternalSourceElement%>)&#xD;&#xA;&#x9;&#x9;).findAny().isPresent();"/>
+          <details key="body" value="if(this.eContainer() instanceof &lt;%pamtram.metamodel.ActualSourceSectionAttribute%>) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if(!(this.eContainer() instanceof &lt;%pamtram.condition.AttributeCondition%>)) {&#xD;&#xA;&#x9;throw new UnsupportedOperationException();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EObject%> container = this;&#xD;&#xA;&#xD;&#xA;while(!(container instanceof &lt;%pamtram.mapping.Mapping%>)) {&#xD;&#xA;&#x9;if(container == null) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// The SourceSection of the Mapping that contains the constraint&#xD;&#xA;//&#xD;&#xA;&lt;%pamtram.metamodel.SourceSection%> localSection = ((Mapping) container).getSourceMMSection();&#xD;&#xA;&#xD;&#xA;if(getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%> || s instanceof &lt;%pamtram.mapping.GlobalAttributeImporter%> ||&#xD;&#xA;&#x9;&#x9;(s instanceof &lt;%pamtram.metamodel.AttributeValueConstraintSourceElement%> &amp;&amp;&#xD;&#xA;&#x9;&#x9;((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||&#xD;&#xA;&#x9;&#x9;(s instanceof &lt;%pamtram.metamodel.AttributeValueConstraintExternalSourceElement%> &amp;&amp;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist&#xD;&#xA;//&#xD;&#xA;return getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(&#xD;&#xA;&#x9;&#x9;instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;s -> s instanceof &lt;%pamtram.metamodel.InstancePointerSourceElement%> || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;s instanceof &lt;%pamtram.metamodel.InstancePointerExternalSourceElement%>)&#xD;&#xA;&#x9;&#x9;).findAny().isPresent();"/>
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValueAdditionalSpecification"
@@ -1079,7 +1079,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//metamodel/AttributeValueConstraintSourceInterface"/>
     </eClassifiers>
@@ -1088,7 +1088,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//metamodel/AttributeValueConstraintSourceInterface"/>
     </eClassifiers>
@@ -1189,7 +1189,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" lowerBound="1"
           upperBound="-1" eType="#//metamodel/AttributeValueConstraint" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionAttributeRef"
-          lowerBound="1" eType="#//metamodel/SourceSectionAttribute"/>
+          lowerBound="1" eType="#//metamodel/ActualSourceSectionAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SectionCondition" eSuperTypes="#//condition/Condition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionSectionRef"
@@ -1347,7 +1347,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
     </eClassifiers>
@@ -1501,7 +1501,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExportedMappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHint" eSuperTypes="#//mapping/MappingHintBaseType">
-      <eOperations name="getSourceAttributes" unique="false" upperBound="-1" eType="#//metamodel/SourceSectionAttribute"/>
+      <eOperations name="getSourceAttributes" unique="false" upperBound="-1" eType="#//metamodel/ActualSourceSectionAttribute"/>
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ModelConnectionHintSourceElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="&#x9;&#x9;EList&lt;ModelConnectionHintSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;ModelConnectionHintSourceElement>();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;for(ModelConnectionHintSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;&#x9;&#x9;if(i instanceof ModelConnectionHintSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((ModelConnectionHintSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;return elements;"/>
@@ -1523,7 +1523,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
     </eClassifiers>
@@ -1532,7 +1532,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/ModelConnectionHintSourceInterface"/>
     </eClassifiers>
@@ -1555,7 +1555,7 @@
         eSuperTypes="#//mapping/MappingHintType"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
         eSuperTypes="#//mapping/HintImporterMappingHint">
-      <eOperations name="getSourceAttribute" eType="#//metamodel/SourceSectionAttribute">
+      <eOperations name="getSourceAttribute" eType="#//metamodel/ActualSourceSectionAttribute">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="if(this instanceof LocalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((LocalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else if(this instanceof ExternalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((ExternalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
         </eAnnotations>
@@ -1573,7 +1573,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/MappedAttributeValueExpander"/>
     </eClassifiers>
@@ -1591,7 +1591,7 @@
         <details key="sourceAttributeHasUpperBoundOne" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'Global attributes may only be defined for attributes that have an upper bound of 1!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.source.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.source.attribute.upperBound = 1&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-          eType="#//metamodel/SourceSectionAttribute"/>
+          eType="#//metamodel/ActualSourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
@@ -1603,7 +1603,7 @@
         interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintSourceInterface" abstract="true"
         interface="true" eSuperTypes="#//NamedElement">
-      <eOperations name="getSourceAttribute" lowerBound="1" eType="#//metamodel/SourceSectionAttribute"/>
+      <eOperations name="getSourceAttribute" lowerBound="1" eType="#//metamodel/ActualSourceSectionAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintSourceInterface"
         abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
@@ -1612,7 +1612,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
     </eClassifiers>
@@ -1622,7 +1622,7 @@
         <details key="constraints" value="sourceAttributeMatchesContainerSection"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="sourceAttributeMatchesContainerSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not part of a container section of the source section of the parent mapping \'' + self.getMapping().sourceMMSection.name + '\'!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.getMapping().oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let sourceMMSection = self.getMapping().sourceMMSection in&#xD;&#xA;&#x9;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSection).isContainerFor(sourceMMSection.oclAsType(pamtram::metamodel::SourceSection))&#xD;&#xA;&#x9;&#x9;&#x9;endif&#x9;&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+        <details key="sourceAttributeMatchesContainerSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not part of a container section of the source section of the parent mapping \'' + self.getMapping().sourceMMSection.name + '\'!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.getMapping().oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let sourceMMSection = self.getMapping().sourceMMSection in&#xD;&#xA;&#x9;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::ActualSourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSection).isContainerFor(sourceMMSection.oclAsType(pamtram::metamodel::SourceSection))&#xD;&#xA;&#x9;&#x9;&#x9;endif&#x9;&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//metamodel/Section">
@@ -1668,7 +1668,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/ModelConnectionHintSourceInterface"/>
     </eClassifiers>
@@ -1677,7 +1677,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
     </eClassifiers>
@@ -1687,7 +1687,7 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//metamodel/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/MappedAttributeValueExpander"/>
     </eClassifiers>

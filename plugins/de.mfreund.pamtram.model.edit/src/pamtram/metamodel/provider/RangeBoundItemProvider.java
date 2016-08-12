@@ -234,7 +234,8 @@ extends ExpressionHintItemProvider {
 		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of
 		// Conditions
 		//
-		if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
+		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
+				MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			newChildDescriptors.add
 			(this.createChildParameter
@@ -245,7 +246,8 @@ extends ExpressionHintItemProvider {
 		// Do not allow to add local/external source attributes or GlobalAttributeImporters below
 		// SourceSectionAttributes as these are only supported as part of Conditions
 		//
-		if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
+		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
+				MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			// Do not allow to add local/external source attributes below
 			// AttributeConditions that are located inside a ConditionModel

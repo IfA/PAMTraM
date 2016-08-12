@@ -6,6 +6,7 @@ package pamtram.metamodel.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -15,10 +16,10 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.ActualSourceSectionAttribute} object.
@@ -60,13 +61,13 @@ extends AttributeItemProvider {
 	 * <!-- end-user-doc -->
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_SourceSectionAttribute_attribute_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
-						MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE,
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_SourceSectionAttribute_attribute_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
+				MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE,
 						true,
 						false,
 						true,
@@ -77,12 +78,12 @@ extends AttributeItemProvider {
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
 
-				pamtram.metamodel.Class owner=((pamtram.metamodel.Class)((Attribute) object).eContainer());
+				pamtram.metamodel.Class owner=(pamtram.metamodel.Class)((Attribute) object).eContainer();
 				if(owner.getEClass() != null){
 					return owner.getEClass().getEAllAttributes();
 				} else {
-					return new ArrayList<Object>();
-				}					
+					return new ArrayList<>();
+				}
 			}
 		});
 	}
@@ -99,7 +100,7 @@ extends AttributeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+			childrenFeatures.add(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -161,7 +162,7 @@ extends AttributeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ActualSourceSectionAttribute.class)) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -181,32 +182,32 @@ extends AttributeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 MetamodelFactory.eINSTANCE.createEqualityMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 MetamodelFactory.eINSTANCE.createSubstringMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 MetamodelFactory.eINSTANCE.createBeginningMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 MetamodelFactory.eINSTANCE.createEndingMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 MetamodelFactory.eINSTANCE.createRegExMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 MetamodelFactory.eINSTANCE.createRangeConstraint()));
 	}
 

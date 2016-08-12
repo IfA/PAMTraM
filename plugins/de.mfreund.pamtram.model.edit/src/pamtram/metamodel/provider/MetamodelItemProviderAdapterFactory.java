@@ -374,7 +374,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActualSourceSectionAttributeItemProvider sourceSectionAttributeItemProvider;
+	protected ActualSourceSectionAttributeItemProvider actualSourceSectionAttributeItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.metamodel.ActualSourceSectionAttribute}.
@@ -383,12 +383,12 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createSourceSectionAttributeAdapter() {
-		if (sourceSectionAttributeItemProvider == null) {
-			sourceSectionAttributeItemProvider = new ActualSourceSectionAttributeItemProvider(this);
+	public Adapter createActualSourceSectionAttributeAdapter() {
+		if (actualSourceSectionAttributeItemProvider == null) {
+			actualSourceSectionAttributeItemProvider = new ActualSourceSectionAttributeItemProvider(this);
 		}
 
-		return sourceSectionAttributeItemProvider;
+		return actualSourceSectionAttributeItemProvider;
 	}
 
 	/**

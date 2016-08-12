@@ -387,12 +387,12 @@ extends MetaModelElementItemProvider {
 		newChildDescriptors.add
 		(this.createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-						MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
+				MetamodelFactory.eINSTANCE.createActualSourceSectionAttribute()));
 
 		newChildDescriptors.add
 		(this.createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				MetamodelFactory.eINSTANCE.createActualTargetSectionAttribute()));
+						MetamodelFactory.eINSTANCE.createActualTargetSectionAttribute()));
 	}
 
 	@Override

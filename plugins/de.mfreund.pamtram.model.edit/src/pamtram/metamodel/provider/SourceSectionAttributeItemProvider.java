@@ -8,12 +8,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -43,11 +42,11 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -60,11 +59,11 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+			this.childrenFeatures.add(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -88,26 +87,21 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
-	
+
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((SourceSectionAttribute)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SourceSectionAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_SourceSectionAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
+		StyledString styledLabel = new StyledString();
+		styledLabel.append(" " + label);
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -118,11 +112,11 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSectionAttribute.class)) {
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -140,34 +134,34 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createEqualityMatcher()));
+						MetamodelFactory.eINSTANCE.createEqualityMatcher()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createSubstringMatcher()));
+						MetamodelFactory.eINSTANCE.createSubstringMatcher()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createBeginningMatcher()));
+						MetamodelFactory.eINSTANCE.createBeginningMatcher()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createEndingMatcher()));
+						MetamodelFactory.eINSTANCE.createEndingMatcher()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createRegExMatcher()));
+						MetamodelFactory.eINSTANCE.createRegExMatcher()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createRangeConstraint()));
+						MetamodelFactory.eINSTANCE.createRangeConstraint()));
 	}
 
 }

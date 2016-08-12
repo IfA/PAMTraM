@@ -26,7 +26,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.provider.ExpressionHintItemProvider;
@@ -293,7 +292,8 @@ extends ExpressionHintItemProvider {
 			Collection<?> collection, int index) {
 
 		if(feature.equals(MetamodelPackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
-				!AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping()) && !collection.parallelStream().allMatch(s -> s instanceof FixedValue)) {
+				!AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping())
+				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.createAddCommand(domain, owner, feature, collection, index);
@@ -303,7 +303,8 @@ extends ExpressionHintItemProvider {
 	public AbstractCommand createDragAndDropCommand(EditingDomain domain, Collection<EObject> collection,
 			EObject parent, EReference ref) {
 		if(ref.equals(MetamodelPackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
-				!AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping()) && !collection.parallelStream().allMatch(s -> s instanceof FixedValue)) {
+				!AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping())
+				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.createDragAndDropCommand(domain, collection, parent, ref);

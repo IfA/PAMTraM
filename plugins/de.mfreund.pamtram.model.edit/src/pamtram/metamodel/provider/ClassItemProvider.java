@@ -64,14 +64,14 @@ extends MetaModelElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addEClassPropertyDescriptor(object);
-			this.addCardinalityPropertyDescriptor(object);
-			this.addContainerPropertyDescriptor(object);
+			addEClassPropertyDescriptor(object);
+			addCardinalityPropertyDescriptor(object);
+			addContainerPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -81,19 +81,19 @@ extends MetaModelElementItemProvider {
 	 * @generated
 	 */
 	protected void addEClassPropertyDescriptorGen(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_Class_eClass_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
-						MetamodelPackage.Literals.CLASS__ECLASS,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_eClass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
+				 MetamodelPackage.Literals.CLASS__ECLASS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -197,19 +197,19 @@ extends MetaModelElementItemProvider {
 	 * @generated
 	 */
 	protected void addCardinalityPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_Class_cardinality_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
-						MetamodelPackage.Literals.CLASS__CARDINALITY,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_cardinality_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
+				 MetamodelPackage.Literals.CLASS__CARDINALITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -219,19 +219,19 @@ extends MetaModelElementItemProvider {
 	 * @generated
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_Class_container_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
-						MetamodelPackage.Literals.CLASS__CONTAINER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_container_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
+				 MetamodelPackage.Literals.CLASS__CONTAINER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -244,12 +244,12 @@ extends MetaModelElementItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(MetamodelPackage.Literals.CLASS__REFERENCES);
-			this.childrenFeatures.add(MetamodelPackage.Literals.CLASS__ATTRIBUTES);
+			childrenFeatures.add(MetamodelPackage.Literals.CLASS__REFERENCES);
+			childrenFeatures.add(MetamodelPackage.Literals.CLASS__ATTRIBUTES);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
@@ -273,7 +273,7 @@ extends MetaModelElementItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/Class"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Class"));
 	}
 
 	/**
@@ -284,7 +284,7 @@ extends MetaModelElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -326,15 +326,15 @@ extends MetaModelElementItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(pamtram.metamodel.Class.class)) {
 			case MetamodelPackage.CLASS__CARDINALITY:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MetamodelPackage.CLASS__REFERENCES:
 			case MetamodelPackage.CLASS__ATTRIBUTES:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);

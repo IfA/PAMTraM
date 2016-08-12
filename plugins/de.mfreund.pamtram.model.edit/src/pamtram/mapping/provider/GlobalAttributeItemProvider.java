@@ -52,13 +52,13 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addSourcePropertyDescriptor(object);
-			this.addModifierPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
+			addModifierPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -131,19 +131,19 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 * @generated
 	 */
 	protected void addModifierPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_GlobalAttribute_modifier_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttribute_modifier_feature", "_UI_GlobalAttribute_type"),
-						MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GlobalAttribute_modifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttribute_modifier_feature", "_UI_GlobalAttribute_type"),
+				 MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/GlobalAttribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GlobalAttribute"));
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 
@@ -178,11 +178,11 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((GlobalAttribute)object).getName();
-		StyledString styledLabel = new StyledString();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(this.getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -196,7 +196,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

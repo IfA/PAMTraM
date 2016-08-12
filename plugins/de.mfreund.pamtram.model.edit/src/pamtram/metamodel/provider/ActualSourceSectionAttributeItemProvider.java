@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -42,12 +43,12 @@ extends SourceSectionAttributeItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAttributePropertyDescriptor(object);
+			this.addAttributePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -62,7 +63,7 @@ extends SourceSectionAttributeItemProvider {
 						this.getResourceLocator(),
 						this.getString("_UI_SourceSectionAttribute_attribute_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
-				MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE,
+						MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
 						true,
 						false,
 						true,
@@ -101,7 +102,7 @@ extends SourceSectionAttributeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -124,7 +125,7 @@ extends SourceSectionAttributeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

@@ -445,7 +445,7 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//metamodel/VirtualAttribute">
+    <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//metamodel/VirtualTargetSectionAttribute">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" lowerBound="1"
           eType="#//metamodel/FileTypeEnum"/>
     </eClassifiers>
@@ -480,7 +480,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-          eType="#//metamodel/ActualAttribute" containment="true"/>
+          eType="#//metamodel/ActualTargetSectionAttribute" containment="true"/>
       <eGenericSuperTypes eClassifier="#//metamodel/LibraryParameter">
         <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractAttributeParameter">
           <eTypeArguments/>
@@ -519,8 +519,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="originalLibraryEntry"
           lowerBound="1" eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//LibraryEntry"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="path" lowerBound="1"
-          eType="#//metamodel/VirtualAttribute" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1" eType="#//metamodel/VirtualAttribute"
+          eType="#//metamodel/VirtualTargetSectionAttribute" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1" eType="#//metamodel/VirtualTargetSectionAttribute"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true">
@@ -811,7 +811,7 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute">
+    <eClassifiers xsi:type="ecore:EClass" name="ActualTargetSectionAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
       </eAnnotations>
@@ -821,7 +821,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VirtualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute"/>
+    <eClassifiers xsi:type="ecore:EClass" name="VirtualTargetSectionAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute"/>
     <eClassifiers xsi:type="ecore:EEnum" name="AttributeValueConstraintType">
       <eLiterals name="INCLUSION"/>
       <eLiterals name="EXCLUSION" value="1"/>

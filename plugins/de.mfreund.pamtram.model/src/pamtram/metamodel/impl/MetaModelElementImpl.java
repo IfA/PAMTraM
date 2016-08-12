@@ -65,17 +65,17 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	@Override
 	public S getContainingSection() {
 		MetaModelElement<S,C,R,A> element = this;
-
+		
 		// move upwards in the hierarchy
 		while(element.eContainer() instanceof MetaModelElement) {
 			element = (MetaModelElement<S,C,R,A>) element.eContainer();
 		}
-
+		
 		if(element instanceof Section || element.eContainer() instanceof ContainerParameter) {
 			// we have found the section
 			return (S) element;
-		} else if(element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter ||
-				element instanceof TargetSectionNonContainmentReference && element.eContainer() instanceof ExternalReferenceParameter) {
+		} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || 
+				(element instanceof TargetSectionNonContainmentReference) && element.eContainer() instanceof ExternalReferenceParameter) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic
@@ -84,7 +84,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 				}
 			}
 			return null;
-		} else if (element instanceof VirtualTargetSectionAttribute && element.eContainer() instanceof LibraryEntry) {
+		} else  if(element instanceof VirtualTargetSectionAttribute && element.eContainer() instanceof LibraryEntry) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer();
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic
@@ -107,7 +107,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	@Override
 	public SectionModel<S, C, R, A> getContainingSectionModel() {
 		S section = this.getContainingSection();
-
+		
 		EObject container = section.eContainer();
 		while(!(container instanceof SectionModel)) {
 			// we have reached the root element
@@ -128,7 +128,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	 */
 	@Override
 	public boolean isLibraryEntry() {
-		return this.getContainingSection().eContainer() instanceof ContainerParameter;
+		return (this.getContainingSection().eContainer() instanceof ContainerParameter);
 	}
 
 	/**
@@ -140,11 +140,11 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION:
-				return this.getContainingSection();
+				return getContainingSection();
 			case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL:
-				return this.getContainingSectionModel();
+				return getContainingSectionModel();
 			case MetamodelPackage.META_MODEL_ELEMENT___IS_LIBRARY_ENTRY:
-				return this.isLibraryEntry();
+				return isLibraryEntry();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.EAttribute;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getActualTargetSectionAttribute()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
-public interface ActualTargetSectionAttribute extends TargetSectionAttribute {
+public interface ActualTargetSectionAttribute extends TargetSectionAttribute, ActualAttribute<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

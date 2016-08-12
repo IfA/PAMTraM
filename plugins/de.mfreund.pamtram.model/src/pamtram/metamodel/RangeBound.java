@@ -23,7 +23,7 @@ import pamtram.mapping.ModifiableHint;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getRangeBound()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel'"
  * @generated
  */
 public interface RangeBound extends ExpressionHint, ModifiableHint {

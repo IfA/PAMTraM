@@ -17,7 +17,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  *
  * @see pamtram.mapping.MappingPackage#getModelConnectionHintTargetAttribute()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceMatchesPossibleContainerType'"
  * @generated
  */
 public interface ModelConnectionHintTargetAttribute extends ModifiedAttributeElementType<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {

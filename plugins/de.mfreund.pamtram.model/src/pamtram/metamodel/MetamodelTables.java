@@ -135,7 +135,6 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_TMPLid__1 = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.ids.IdManager.getTemplateParameterId(0));
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_TMPLid__2 = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.ids.IdManager.getTemplateParameterId(1));
     public static final /*@NonInvalid*/ java.lang.String STR_ActualAttribute_c_c_attributeMatchesParentEClass = "ActualAttribute::attributeMatchesParentEClass";
-    public static final /*@NonInvalid*/ java.lang.String STR_ActualSourceSectionAttribute_c_c_attributeMatchesParentEClass = "ActualSourceSectionAttribute::attributeMatchesParentEClass";
     public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_cardinalityIsValid = "Class::cardinalityIsValid";
     public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_containerIsValid = "Class::containerIsValid";
     public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_eClassMatchesParentEReference = "Class::eClassMatchesParentEReference";
@@ -403,6 +402,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorFragment _ActualAttribute__OclAny = new ExecutorFragment(Types._ActualAttribute, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _ActualAttribute__OclElement = new ExecutorFragment(Types._ActualAttribute, OCLstdlibTables.Types._OclElement);
 
+		private static final /*@NonNull*/ ExecutorFragment _ActualSourceSectionAttribute__ActualAttribute = new ExecutorFragment(Types._ActualSourceSectionAttribute, MetamodelTables.Types._ActualAttribute);
 		private static final /*@NonNull*/ ExecutorFragment _ActualSourceSectionAttribute__ActualSourceSectionAttribute = new ExecutorFragment(Types._ActualSourceSectionAttribute, MetamodelTables.Types._ActualSourceSectionAttribute);
 		private static final /*@NonNull*/ ExecutorFragment _ActualSourceSectionAttribute__Attribute = new ExecutorFragment(Types._ActualSourceSectionAttribute, MetamodelTables.Types._Attribute);
 		private static final /*@NonNull*/ ExecutorFragment _ActualSourceSectionAttribute__MetaModelElement = new ExecutorFragment(Types._ActualSourceSectionAttribute, MetamodelTables.Types._MetaModelElement);
@@ -874,8 +874,7 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _ActualAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, Types._ActualAttribute, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _ActualSourceSectionAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE, Types._ActualSourceSectionAttribute, 0);
-		public static final /*@NonNull*/ ExecutorProperty _ActualSourceSectionAttribute__InstancePointer__attributePointer = new ExecutorPropertyWithImplementation("InstancePointer", Types._ActualSourceSectionAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER));
+		public static final /*@NonNull*/ ExecutorProperty _ActualSourceSectionAttribute__InstancePointer__attributePointer = new ExecutorPropertyWithImplementation("InstancePointer", Types._ActualSourceSectionAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER));
 
 		public static final /*@NonNull*/ ExecutorProperty _ActualTargetSectionAttribute__AttributeParameter__attribute = new ExecutorPropertyWithImplementation("AttributeParameter", Types._ActualTargetSectionAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE));
 
@@ -999,10 +998,11 @@ public class MetamodelTables
 			Fragments._ActualSourceSectionAttribute__NamedElement /* 2 */,
 			Fragments._ActualSourceSectionAttribute__MetaModelElement /* 3 */,
 			Fragments._ActualSourceSectionAttribute__Attribute /* 4 */,
+			Fragments._ActualSourceSectionAttribute__ActualAttribute /* 5 */,
 			Fragments._ActualSourceSectionAttribute__SourceSectionAttribute /* 5 */,
 			Fragments._ActualSourceSectionAttribute__ActualSourceSectionAttribute /* 6 */
 		};
-		private static final int /*@NonNull*/ [] __ActualSourceSectionAttribute = { 1,1,1,1,1,1,1 };
+		private static final int /*@NonNull*/ [] __ActualSourceSectionAttribute = { 1,1,1,1,1,2,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ActualTargetSectionAttribute =
 		{
@@ -1673,6 +1673,7 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualSourceSectionAttribute__ActualSourceSectionAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualSourceSectionAttribute__ActualAttribute = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualSourceSectionAttribute__Attribute = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualSourceSectionAttribute__MetaModelElement = {
 			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
@@ -3461,6 +3462,7 @@ public class MetamodelTables
 			Fragments._ActualAttribute__OclAny.initOperations(_ActualAttribute__OclAny);
 			Fragments._ActualAttribute__OclElement.initOperations(_ActualAttribute__OclElement);
 
+			Fragments._ActualSourceSectionAttribute__ActualAttribute.initOperations(_ActualSourceSectionAttribute__ActualAttribute);
 			Fragments._ActualSourceSectionAttribute__ActualSourceSectionAttribute.initOperations(_ActualSourceSectionAttribute__ActualSourceSectionAttribute);
 			Fragments._ActualSourceSectionAttribute__Attribute.initOperations(_ActualSourceSectionAttribute__Attribute);
 			Fragments._ActualSourceSectionAttribute__MetaModelElement.initOperations(_ActualSourceSectionAttribute__MetaModelElement);
@@ -3856,7 +3858,7 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ActualSourceSectionAttribute = {
-			MetamodelTables.Properties._ActualSourceSectionAttribute__attribute,
+			MetamodelTables.Properties._ActualAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._SourceSectionAttribute__valueConstraint,
 			MetamodelTables.Properties._ActualSourceSectionAttribute__InstancePointer__attributePointer

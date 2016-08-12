@@ -357,6 +357,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				ActualSourceSectionAttribute actualSourceSectionAttribute = (ActualSourceSectionAttribute)theEObject;
 				T result = caseActualSourceSectionAttribute(actualSourceSectionAttribute);
 				if (result == null) result = caseSourceSectionAttribute(actualSourceSectionAttribute);
+				if (result == null) result = caseActualAttribute(actualSourceSectionAttribute);
 				if (result == null) result = caseAttribute(actualSourceSectionAttribute);
 				if (result == null) result = caseMetaModelElement(actualSourceSectionAttribute);
 				if (result == null) result = caseNamedElement(actualSourceSectionAttribute);

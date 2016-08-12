@@ -5974,27 +5974,6 @@ public interface MetamodelPackage extends EPackage {
 	EClass getActualSourceSectionAttribute();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.metamodel.ActualSourceSectionAttribute#getAttribute <em>Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Attribute</em>'.
-	 * @see pamtram.metamodel.ActualSourceSectionAttribute#getAttribute()
-	 * @see #getActualSourceSectionAttribute()
-	 * @generated
-	 */
-	EReference getActualSourceSectionAttribute_Attribute();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.ActualSourceSectionAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Attribute Matches Parent EClass</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Attribute Matches Parent EClass</em>' operation.
-	 * @see pamtram.metamodel.ActualSourceSectionAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getActualSourceSectionAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionAttribute <em>Target Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7178,22 +7157,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTUAL_SOURCE_SECTION_ATTRIBUTE = eINSTANCE.getActualSourceSectionAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE = eINSTANCE.getActualSourceSectionAttribute_Attribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Attribute Matches Parent EClass</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ACTUAL_SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getActualSourceSectionAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.

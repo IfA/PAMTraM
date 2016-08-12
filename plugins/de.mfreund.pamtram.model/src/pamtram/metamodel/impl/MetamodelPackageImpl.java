@@ -1228,24 +1228,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActualSourceSectionAttribute_Attribute() {
-		return (EReference)actualSourceSectionAttributeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getActualSourceSectionAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map() {
-		return actualSourceSectionAttributeEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTargetSectionAttribute() {
 		return targetSectionAttributeEClass;
 	}
@@ -1796,8 +1778,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(sourceSectionAttributeEClass, SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
 
 		actualSourceSectionAttributeEClass = createEClass(ACTUAL_SOURCE_SECTION_ATTRIBUTE);
-		createEReference(actualSourceSectionAttributeEClass, ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE);
-		createEOperation(actualSourceSectionAttributeEClass, ACTUAL_SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP);
 
 		targetSectionAttributeEClass = createEClass(TARGET_SECTION_ATTRIBUTE);
 		createEAttribute(targetSectionAttributeEClass, TARGET_SECTION_ATTRIBUTE__UNIQUE);
@@ -2516,7 +2496,18 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g2 = createEGenericType(this.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		sourceSectionAttributeEClass.getEGenericSuperTypes().add(g1);
-		actualSourceSectionAttributeEClass.getESuperTypes().add(this.getSourceSectionAttribute());
+		g1 = createEGenericType(this.getSourceSectionAttribute());
+		actualSourceSectionAttributeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getActualAttribute());
+		g2 = createEGenericType(this.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		actualSourceSectionAttributeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttribute());
 		g2 = createEGenericType(this.getTargetSection());
 		g1.getETypeArguments().add(g2);
@@ -2871,16 +2862,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getSourceSectionAttribute_ValueConstraint(), this.getAttributeValueConstraint(), null, "valueConstraint", null, 0, -1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actualSourceSectionAttributeEClass, ActualSourceSectionAttribute.class, "ActualSourceSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActualSourceSectionAttribute_Attribute(), ecorePackage.getEAttribute(), null, "attribute", null, 1, 1, ActualSourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getActualSourceSectionAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "attributeMatchesParentEClass", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(targetSectionAttributeEClass, TargetSectionAttribute.class, "TargetSectionAttribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTargetSectionAttribute_Unique(), ecorePackage.getEBoolean(), "unique", "false", 1, 1, TargetSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3079,12 +3060,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   });	
 		addAnnotation
 		  (actualAttributeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "attributeMatchesParentEClass"
-		   });	
-		addAnnotation
-		  (actualSourceSectionAttributeEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "attributeMatchesParentEClass"

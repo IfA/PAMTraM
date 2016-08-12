@@ -27,6 +27,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
@@ -157,7 +158,7 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'ActualSourceSectionAttribute::attributeMatchesParentEClass'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'ActualAttribute::attributeMatchesParentEClass'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
@@ -233,7 +234,7 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_ActualSourceSectionAttribute_c_c_attributeMatchesParentEClass, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_ActualAttribute_c_c_attributeMatchesParentEClass, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -295,6 +296,54 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 				return attribute != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ActualAttribute.class) {
+			switch (derivedFeatureID) {
+				case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE: return MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ActualAttribute.class) {
+			switch (baseFeatureID) {
+				case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE: return MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ActualAttribute.class) {
+			switch (baseOperationID) {
+				case MetamodelPackage.ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	/**

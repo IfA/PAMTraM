@@ -212,15 +212,12 @@
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/SourceSectionAttribute">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/SourceSectionAttribute/valueConstraint"/>
       </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//metamodel/ActualSourceSectionAttribute">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ActualSourceSectionAttribute/attribute"/>
-      </genClasses>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/ActualSourceSectionAttribute"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/TargetSectionAttribute">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/TargetSectionAttribute/unique"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/TargetSectionAttribute/value"/>
       </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//metamodel/ActualTargetSectionAttribute"/>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/ActualTargetSectionAttribute"/>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/VirtualTargetSectionAttribute"/>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/EqualityMatcher"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/AttributeValueConstraint">

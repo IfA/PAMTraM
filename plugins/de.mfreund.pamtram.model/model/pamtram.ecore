@@ -781,6 +781,86 @@
         <eTypeArguments eTypeParameter="#//metamodel/Attribute/A"/>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" abstract="true">
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="C">
+        <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="R">
+        <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="A">
+        <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eGenericSuperTypes eClassifier="#//metamodel/Attribute">
+        <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/S"/>
+        <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/C"/>
+        <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/R"/>
+        <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/A"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VirtualAttribute" abstract="true">
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="C">
+        <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="R">
+        <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="A">
+        <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eGenericSuperTypes eClassifier="#//metamodel/Attribute">
+        <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/S"/>
+        <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/C"/>
+        <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/R"/>
+        <eTypeArguments eTypeParameter="#//metamodel/VirtualAttribute/A"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
@@ -811,7 +891,7 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ActualTargetSectionAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute">
+    <eClassifiers xsi:type="ecore:EClass" name="ActualTargetSectionAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
       </eAnnotations>
@@ -820,8 +900,23 @@
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/TargetSectionAttribute"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/ActualAttribute">
+        <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
+      </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VirtualTargetSectionAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute"/>
+    <eClassifiers xsi:type="ecore:EClass" name="VirtualTargetSectionAttribute">
+      <eGenericSuperTypes eClassifier="#//metamodel/TargetSectionAttribute"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/VirtualAttribute">
+        <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="AttributeValueConstraintType">
       <eLiterals name="INCLUSION"/>
       <eLiterals name="EXCLUSION" value="1"/>

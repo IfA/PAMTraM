@@ -3,24 +3,28 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import org.eclipse.emf.edit.provider.StyledString.Fragment;
-import pamtram.metamodel.VirtualAttribute;
+
+import pamtram.metamodel.ActualTargetSectionAttribute;
+import pamtram.metamodel.AttributeParameter;
+import pamtram.metamodel.MetamodelPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.VirtualAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.ActualTargetSectionAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class VirtualAttributeItemProvider
+public class ActualTargetSectionAttributeItemProvider
 extends TargetSectionAttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -28,7 +32,7 @@ extends TargetSectionAttributeItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VirtualAttributeItemProvider(AdapterFactory adapterFactory) {
+	public ActualTargetSectionAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -43,19 +47,56 @@ extends TargetSectionAttributeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns VirtualAttribute.gif.
+	 * This adds a property descriptor for the Attribute feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 */
+	protected void addAttributePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+		(new ItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ActualAttribute_attribute_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
+						MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
+
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				ActualTargetSectionAttribute att = (ActualTargetSectionAttribute) object;
+
+				// in case of a 'normal' TargetSectionClass, the attribute of this class can be chosen
+				if(att.getOwningClass() != null) {
+					return att.getOwningClass().getEClass().getEAllAttributes();
+					// in case of an AttributeParameter, the attribute of its source can be chosen
+				} else if(att.eContainer() instanceof AttributeParameter && 
+						((AttributeParameter) att.eContainer()).getSource() != null) {
+					return ((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes();
+				}
+				return new ArrayList<Object>();
+			}
+		});
+	}
+
+	/**
+	 * This returns ActualAttribute.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/VirtualAttribute"));
+		return super.getImage(object);
 	}
 
 	/**
@@ -77,28 +118,7 @@ extends TargetSectionAttributeItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-
-		VirtualAttribute attribute = (VirtualAttribute) object;
-
-		StyledString styledLabel = new StyledString();
-
-		if(attribute.getName() == null || attribute.getName().isEmpty()) {
-			styledLabel.append((StyledString) super.getStyledText(object));
-		} else {
-			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
-			while(it.hasNext()) {
-				Fragment next = it.next();
-				if(next.getString().equals(attribute.getName())) {
-					// use the 'qualifier styler' for the label
-					styledLabel.append(next.getString(), StyledString.Style.QUALIFIER_STYLER);
-				} else {
-					// every other fragment is added as is
-					styledLabel.append(next.getString(), next.getStyle());
-				}
-			}
-		}
-
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**

@@ -25,7 +25,7 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenc
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryItem;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
-import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainerParameter;
@@ -37,7 +37,7 @@ import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 import pamtram.metamodel.impl.MetamodelFactoryImpl;
 
 
@@ -119,7 +119,7 @@ public class LibraryHelper {
 			// second, generate a target section attribute for every attribute
 			for (EAttribute att : currentObject.eClass().getEAllAttributes()) {
 				if(currentObject.eGet(att) != null) {
-					ActualAttribute tAttribute = 
+					ActualTargetSectionAttribute tAttribute = 
 							MetamodelFactoryImpl.eINSTANCE.createActualAttribute();
 					tAttribute.setAttribute(att);
 					tAttribute.setName(att.getName());
@@ -389,11 +389,11 @@ public class LibraryHelper {
 
 			// set the path, id, etc.
 			//			pamtramLibEntry.setPath(libFileEntry.getKey());
-			VirtualAttribute pathAttribute = MetamodelFactoryImpl.eINSTANCE.createVirtualAttribute();
+			VirtualTargetSectionAttribute pathAttribute = MetamodelFactoryImpl.eINSTANCE.createVirtualAttribute();
 			pathAttribute.setName("Classpath");
 			pathAttribute.setValue(path);
 			pamtramLibEntry.setPath(pathAttribute);
-			VirtualAttribute idAttribute = MetamodelFactoryImpl.eINSTANCE.createVirtualAttribute();
+			VirtualTargetSectionAttribute idAttribute = MetamodelFactoryImpl.eINSTANCE.createVirtualAttribute();
 			idAttribute.setName("ID");
 			idAttribute.setValue(libEntry.getParameterDescription().getID());
 			pamtramLibEntry.setId(idAttribute);
@@ -414,7 +414,7 @@ public class LibraryHelper {
 				param.setName(attParameter.eClass().getName());
 				param.setSource(attParameter.getSource());
 
-				ActualAttribute attribute = MetamodelFactoryImpl.eINSTANCE.createActualAttribute();
+				ActualTargetSectionAttribute attribute = MetamodelFactoryImpl.eINSTANCE.createActualAttribute();
 				attribute.setAttribute(attParameter.getAttribute());
 				attribute.setName(attParameter.getAttribute().getName());
 

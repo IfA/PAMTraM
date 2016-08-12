@@ -392,15 +392,15 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ActualAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ActualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActualAttributeItemProvider actualAttributeItemProvider;
+	protected ActualTargetSectionAttributeItemProvider actualAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.ActualAttribute}.
+	 * This creates an adapter for a {@link pamtram.metamodel.ActualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -408,22 +408,22 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	@Override
 	public Adapter createActualAttributeAdapter() {
 		if (actualAttributeItemProvider == null) {
-			actualAttributeItemProvider = new ActualAttributeItemProvider(this);
+			actualAttributeItemProvider = new ActualTargetSectionAttributeItemProvider(this);
 		}
 
 		return actualAttributeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.VirtualAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.VirtualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VirtualAttributeItemProvider virtualAttributeItemProvider;
+	protected VirtualTargetSectionAttributeItemProvider virtualAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.VirtualAttribute}.
+	 * This creates an adapter for a {@link pamtram.metamodel.VirtualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -431,7 +431,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	@Override
 	public Adapter createVirtualAttributeAdapter() {
 		if (virtualAttributeItemProvider == null) {
-			virtualAttributeItemProvider = new VirtualAttributeItemProvider(this);
+			virtualAttributeItemProvider = new VirtualTargetSectionAttributeItemProvider(this);
 		}
 
 		return virtualAttributeItemProvider;

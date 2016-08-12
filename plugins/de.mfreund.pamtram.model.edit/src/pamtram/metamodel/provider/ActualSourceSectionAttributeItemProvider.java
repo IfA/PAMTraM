@@ -13,7 +13,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -43,12 +42,12 @@ extends SourceSectionAttributeItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addAttributePropertyDescriptor(object);
+			addAttributePropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -102,7 +101,7 @@ extends SourceSectionAttributeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -125,7 +124,7 @@ extends SourceSectionAttributeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

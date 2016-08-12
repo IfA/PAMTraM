@@ -42,11 +42,11 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -59,11 +59,11 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+			childrenFeatures.add(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -112,11 +112,11 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSectionAttribute.class)) {
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -134,34 +134,34 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-						MetamodelFactory.eINSTANCE.createEqualityMatcher()));
+				 MetamodelFactory.eINSTANCE.createEqualityMatcher()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-						MetamodelFactory.eINSTANCE.createSubstringMatcher()));
+				 MetamodelFactory.eINSTANCE.createSubstringMatcher()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-						MetamodelFactory.eINSTANCE.createBeginningMatcher()));
+				 MetamodelFactory.eINSTANCE.createBeginningMatcher()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-						MetamodelFactory.eINSTANCE.createEndingMatcher()));
+				 MetamodelFactory.eINSTANCE.createEndingMatcher()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-						MetamodelFactory.eINSTANCE.createRegExMatcher()));
+				 MetamodelFactory.eINSTANCE.createRegExMatcher()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-						MetamodelFactory.eINSTANCE.createRangeConstraint()));
+				 MetamodelFactory.eINSTANCE.createRangeConstraint()));
 	}
 
 }

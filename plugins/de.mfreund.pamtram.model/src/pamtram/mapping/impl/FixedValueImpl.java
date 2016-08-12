@@ -17,7 +17,7 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointerSourceInterface;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -109,7 +109,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated NOT
 	 */
 	@Override
-	public SourceSectionAttribute getSourceAttribute() {
+	public ActualSourceSectionAttribute getSourceAttribute() {
 		return null;
 	}
 

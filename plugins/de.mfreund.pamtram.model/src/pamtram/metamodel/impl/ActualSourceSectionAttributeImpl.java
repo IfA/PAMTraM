@@ -36,7 +36,7 @@ import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
@@ -48,13 +48,13 @@ import pamtram.metamodel.SourceSectionReference;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getValueConstraint <em>Value Constraint</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.ActualSourceSectionAttributeImpl#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.ActualSourceSectionAttributeImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionAttribute {
+public class ActualSourceSectionAttributeImpl extends AttributeImpl<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> implements ActualSourceSectionAttribute {
 	/**
 	 * The cached value of the '{@link #getValueConstraint() <em>Value Constraint</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -80,7 +80,7 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, Sou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SourceSectionAttributeImpl() {
+	protected ActualSourceSectionAttributeImpl() {
 		super();
 	}
 

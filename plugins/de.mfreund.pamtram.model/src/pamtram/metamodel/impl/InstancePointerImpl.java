@@ -44,7 +44,7 @@ import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,7 +81,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSectionAttribute attributePointer;
+	protected ActualSourceSectionAttribute attributePointer;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -148,10 +148,10 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute getAttributePointer() {
+	public ActualSourceSectionAttribute getAttributePointer() {
 		if (attributePointer != null && attributePointer.eIsProxy()) {
 			InternalEObject oldAttributePointer = (InternalEObject)attributePointer;
-			attributePointer = (SourceSectionAttribute)eResolveProxy(oldAttributePointer);
+			attributePointer = (ActualSourceSectionAttribute)eResolveProxy(oldAttributePointer);
 			if (attributePointer != oldAttributePointer) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER, oldAttributePointer, attributePointer));
@@ -165,7 +165,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute basicGetAttributePointer() {
+	public ActualSourceSectionAttribute basicGetAttributePointer() {
 		return attributePointer;
 	}
 
@@ -174,8 +174,8 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAttributePointer(SourceSectionAttribute newAttributePointer) {
-		SourceSectionAttribute oldAttributePointer = attributePointer;
+	public void setAttributePointer(ActualSourceSectionAttribute newAttributePointer) {
+		ActualSourceSectionAttribute oldAttributePointer = attributePointer;
 		attributePointer = newAttributePointer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER, oldAttributePointer, attributePointer));
@@ -386,7 +386,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 				getResultModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
 				return;
 			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
-				setAttributePointer((SourceSectionAttribute)newValue);
+				setAttributePointer((ActualSourceSectionAttribute)newValue);
 				return;
 			case MetamodelPackage.INSTANCE_POINTER__VALUE:
 				setValue((String)newValue);
@@ -411,7 +411,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 				getResultModifier().clear();
 				return;
 			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
-				setAttributePointer((SourceSectionAttribute)null);
+				setAttributePointer((ActualSourceSectionAttribute)null);
 				return;
 			case MetamodelPackage.INSTANCE_POINTER__VALUE:
 				setValue(VALUE_EDEFAULT);

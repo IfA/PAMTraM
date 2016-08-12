@@ -145,7 +145,7 @@ public interface MetamodelFactory extends EFactory {
 	 * @return a new object of class '<em>Source Section Attribute</em>'.
 	 * @generated
 	 */
-	SourceSectionAttribute createSourceSectionAttribute();
+	ActualSourceSectionAttribute createSourceSectionAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Actual Target Section Attribute</em>'.

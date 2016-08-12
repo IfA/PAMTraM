@@ -17,7 +17,7 @@ import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
@@ -28,7 +28,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class AttributeValueConstraintExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements AttributeValueConstraintExternalSourceElement {
+public class AttributeValueConstraintExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> implements AttributeValueConstraintExternalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,7 +53,7 @@ public class AttributeValueConstraintExternalSourceElementImpl extends ExternalM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute getSourceAttribute() {
+	public ActualSourceSectionAttribute getSourceAttribute() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintSourceInterface!getSourceAttribute()
 	}
 

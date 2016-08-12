@@ -32,7 +32,7 @@ import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SubstringMatcher;
@@ -292,8 +292,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute createSourceSectionAttribute() {
-		SourceSectionAttributeImpl sourceSectionAttribute = new SourceSectionAttributeImpl();
+	public ActualSourceSectionAttribute createSourceSectionAttribute() {
+		ActualSourceSectionAttributeImpl sourceSectionAttribute = new ActualSourceSectionAttributeImpl();
 		return sourceSectionAttribute;
 	}
 

@@ -48,7 +48,7 @@ import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.util.MetamodelValidator;
 
 /**
@@ -317,7 +317,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 */
 	public boolean isLocalConstraint() {
-		if(this.eContainer() instanceof SourceSectionAttribute) {
+		if(this.eContainer() instanceof ActualSourceSectionAttribute) {
 			return true;
 		}
 		

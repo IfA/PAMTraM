@@ -36,13 +36,13 @@ public interface InstancePointer extends ExpressionHint, ModifiableHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute Pointer</em>' reference.
-	 * @see #setAttributePointer(SourceSectionAttribute)
+	 * @see #setAttributePointer(ActualSourceSectionAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getInstancePointer_AttributePointer()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!InstancePointer!attributePointer'"
 	 * @generated
 	 */
-	SourceSectionAttribute getAttributePointer();
+	ActualSourceSectionAttribute getAttributePointer();
 
 	/**
 	 * Sets the value of the '{@link pamtram.metamodel.InstancePointer#getAttributePointer <em>Attribute Pointer</em>}' reference.
@@ -52,7 +52,7 @@ public interface InstancePointer extends ExpressionHint, ModifiableHint {
 	 * @see #getAttributePointer()
 	 * @generated
 	 */
-	void setAttributePointer(SourceSectionAttribute value);
+	void setAttributePointer(ActualSourceSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.

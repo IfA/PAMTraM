@@ -3,7 +3,7 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 
 /**
@@ -48,7 +48,7 @@ public interface MappedAttributeValueExpander extends HintImporterMappingHint {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this instanceof LocalMappedAttributeValueExpander) {\r\n\treturn ((LocalMappedAttributeValueExpander) this).getSource();\r\n} else if(this instanceof ExternalMappedAttributeValueExpander) {\r\n\treturn ((ExternalMappedAttributeValueExpander) this).getSource();\r\n} else {\r\n\treturn null;\r\n}'"
 	 * @generated
 	 */
-	SourceSectionAttribute getSourceAttribute();
+	ActualSourceSectionAttribute getSourceAttribute();
 
 	/**
 	 * <!-- begin-user-doc -->

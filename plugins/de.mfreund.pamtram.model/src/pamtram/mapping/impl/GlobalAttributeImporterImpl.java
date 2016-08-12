@@ -18,7 +18,7 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointerSourceInterface;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -118,7 +118,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
-	public SourceSectionAttribute getSourceAttribute() {
+	public ActualSourceSectionAttribute getSourceAttribute() {
 		if(this.getGlobalAttribute() == null){
 			return null;
 		} else {

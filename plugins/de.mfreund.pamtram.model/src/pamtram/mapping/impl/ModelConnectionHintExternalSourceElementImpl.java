@@ -10,7 +10,7 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintExternalSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
@@ -21,7 +21,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ModelConnectionHintExternalSourceElement {
+public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> implements ModelConnectionHintExternalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,7 +45,7 @@ public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
-	public SourceSectionAttribute getSourceAttribute() {
+	public ActualSourceSectionAttribute getSourceAttribute() {
 		return this.getSource();
 	}
 

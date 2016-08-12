@@ -10,7 +10,7 @@ import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
@@ -21,7 +21,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class SourceSectionClassImpl extends ClassImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionClass {
+public class SourceSectionClassImpl extends ClassImpl<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> implements SourceSectionClass {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +73,9 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSection, SourceSecti
 	 * @generated
 	 */
 	@Override
-	public EList<SourceSectionAttribute> getAttributes() {
+	public EList<ActualSourceSectionAttribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<SourceSectionAttribute>(SourceSectionAttribute.class, this, MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES, MetamodelPackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
+			attributes = new EObjectContainmentWithInverseEList<ActualSourceSectionAttribute>(ActualSourceSectionAttribute.class, this, MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES, MetamodelPackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
 		}
 		return attributes;
 	}

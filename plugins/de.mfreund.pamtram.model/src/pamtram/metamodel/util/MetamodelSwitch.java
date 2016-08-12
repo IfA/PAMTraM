@@ -46,7 +46,7 @@ import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
@@ -344,7 +344,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: {
-				SourceSectionAttribute sourceSectionAttribute = (SourceSectionAttribute)theEObject;
+				ActualSourceSectionAttribute sourceSectionAttribute = (ActualSourceSectionAttribute)theEObject;
 				T result = caseSourceSectionAttribute(sourceSectionAttribute);
 				if (result == null) result = caseAttribute(sourceSectionAttribute);
 				if (result == null) result = caseMetaModelElement(sourceSectionAttribute);
@@ -953,7 +953,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSourceSectionAttribute(SourceSectionAttribute object) {
+	public T caseSourceSectionAttribute(ActualSourceSectionAttribute object) {
 		return null;
 	}
 

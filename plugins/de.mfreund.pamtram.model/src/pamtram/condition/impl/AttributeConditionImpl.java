@@ -21,7 +21,7 @@ import pamtram.condition.ConditionPackage;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,7 +56,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSectionAttribute conditionAttributeRef;
+	protected ActualSourceSectionAttribute conditionAttributeRef;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,10 +94,10 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute getConditionAttributeRef() {
+	public ActualSourceSectionAttribute getConditionAttributeRef() {
 		if (conditionAttributeRef != null && conditionAttributeRef.eIsProxy()) {
 			InternalEObject oldConditionAttributeRef = (InternalEObject)conditionAttributeRef;
-			conditionAttributeRef = (SourceSectionAttribute)eResolveProxy(oldConditionAttributeRef);
+			conditionAttributeRef = (ActualSourceSectionAttribute)eResolveProxy(oldConditionAttributeRef);
 			if (conditionAttributeRef != oldConditionAttributeRef) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, oldConditionAttributeRef, conditionAttributeRef));
@@ -111,7 +111,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute basicGetConditionAttributeRef() {
+	public ActualSourceSectionAttribute basicGetConditionAttributeRef() {
 		return conditionAttributeRef;
 	}
 
@@ -120,8 +120,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConditionAttributeRef(SourceSectionAttribute newConditionAttributeRef) {
-		SourceSectionAttribute oldConditionAttributeRef = conditionAttributeRef;
+	public void setConditionAttributeRef(ActualSourceSectionAttribute newConditionAttributeRef) {
+		ActualSourceSectionAttribute oldConditionAttributeRef = conditionAttributeRef;
 		conditionAttributeRef = newConditionAttributeRef;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, oldConditionAttributeRef, conditionAttributeRef));
@@ -172,7 +172,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 				getValueConstraint().addAll((Collection<? extends AttributeValueConstraint>)newValue);
 				return;
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
-				setConditionAttributeRef((SourceSectionAttribute)newValue);
+				setConditionAttributeRef((ActualSourceSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -190,7 +190,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 				getValueConstraint().clear();
 				return;
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
-				setConditionAttributeRef((SourceSectionAttribute)null);
+				setConditionAttributeRef((ActualSourceSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);

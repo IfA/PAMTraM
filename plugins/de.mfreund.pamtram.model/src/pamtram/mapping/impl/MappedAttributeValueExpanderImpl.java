@@ -13,7 +13,7 @@ import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.LocalMappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 	 * @generated
 	 */
 	@Override
-	public SourceSectionAttribute getSourceAttribute() {
+	public ActualSourceSectionAttribute getSourceAttribute() {
 		if(this instanceof LocalMappedAttributeValueExpander) {
 			return ((LocalMappedAttributeValueExpander) this).getSource();
 		} else if(this instanceof ExternalMappedAttributeValueExpander) {

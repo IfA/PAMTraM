@@ -12,7 +12,7 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
@@ -23,7 +23,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class AttributeMappingExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements AttributeMappingExternalSourceElement {
+public class AttributeMappingExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> implements AttributeMappingExternalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49,7 +49,7 @@ public class AttributeMappingExternalSourceElementImpl extends ExternalModifiedA
 	 * @generated NOT
 	 */
 	@Override
-	public SourceSectionAttribute getSourceAttribute() {
+	public ActualSourceSectionAttribute getSourceAttribute() {
 		return getSource();
 	}
 

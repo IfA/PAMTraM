@@ -44,7 +44,7 @@ import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.util.MetamodelValidator;
 
 /**
@@ -262,7 +262,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 */
 	public boolean isLocalConstraint() {
-		if(this.eContainer().eContainer() instanceof SourceSectionAttribute) {
+		if(this.eContainer().eContainer() instanceof ActualSourceSectionAttribute) {
 			return true;
 		}
 		

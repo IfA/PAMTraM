@@ -18,7 +18,7 @@ import pamtram.mapping.ModelConnectionHintExternalSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -105,7 +105,7 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 */
 	@Override
-	public EList<SourceSectionAttribute> getSourceAttributes() {
+	public EList<ActualSourceSectionAttribute> getSourceAttributes() {
 		return this.getSourceAttributes();
 	}
 

@@ -1553,10 +1553,10 @@ public interface MetamodelPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.impl.ActualSourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.SourceSectionAttributeImpl
+	 * @see pamtram.metamodel.impl.ActualSourceSectionAttributeImpl
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSourceSectionAttribute()
 	 * @generated
 	 */
@@ -5861,43 +5861,43 @@ public interface MetamodelPackage extends EPackage {
 	EClass getVirtualAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionAttribute <em>Source Section Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.ActualSourceSectionAttribute <em>Source Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Source Section Attribute</em>'.
-	 * @see pamtram.metamodel.SourceSectionAttribute
+	 * @see pamtram.metamodel.ActualSourceSectionAttribute
 	 * @generated
 	 */
 	EClass getSourceSectionAttribute();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.ActualSourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Value Constraint</em>'.
-	 * @see pamtram.metamodel.SourceSectionAttribute#getValueConstraint()
+	 * @see pamtram.metamodel.ActualSourceSectionAttribute#getValueConstraint()
 	 * @see #getSourceSectionAttribute()
 	 * @generated
 	 */
 	EReference getSourceSectionAttribute_ValueConstraint();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.metamodel.SourceSectionAttribute#getAttribute <em>Attribute</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.ActualSourceSectionAttribute#getAttribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Attribute</em>'.
-	 * @see pamtram.metamodel.SourceSectionAttribute#getAttribute()
+	 * @see pamtram.metamodel.ActualSourceSectionAttribute#getAttribute()
 	 * @see #getSourceSectionAttribute()
 	 * @generated
 	 */
 	EReference getSourceSectionAttribute_Attribute();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.SourceSectionAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Attribute Matches Parent EClass</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.metamodel.ActualSourceSectionAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Attribute Matches Parent EClass</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Attribute Matches Parent EClass</em>' operation.
-	 * @see pamtram.metamodel.SourceSectionAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.metamodel.ActualSourceSectionAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSourceSectionAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map_1();
@@ -7060,10 +7060,10 @@ public interface MetamodelPackage extends EPackage {
 		EClass VIRTUAL_ATTRIBUTE = eINSTANCE.getVirtualAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.ActualSourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.SourceSectionAttributeImpl
+		 * @see pamtram.metamodel.impl.ActualSourceSectionAttributeImpl
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSourceSectionAttribute()
 		 * @generated
 		 */

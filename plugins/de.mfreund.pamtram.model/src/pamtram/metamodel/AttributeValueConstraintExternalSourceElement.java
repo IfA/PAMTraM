@@ -14,5 +14,5 @@ import pamtram.mapping.ExternalModifiedAttributeElementType;
  * @model
  * @generated
  */
-public interface AttributeValueConstraintExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueConstraintSourceInterface {
+public interface AttributeValueConstraintExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute>, AttributeValueConstraintSourceInterface {
 } // AttributeValueConstraintExternalSourceElement

@@ -7,7 +7,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 
 /**
@@ -38,13 +38,13 @@ public interface GlobalAttribute extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(SourceSectionAttribute)
+	 * @see #setSource(ActualSourceSectionAttribute)
 	 * @see pamtram.mapping.MappingPackage#getGlobalAttribute_Source()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!GlobalAttribute!source'"
 	 * @generated
 	 */
-	SourceSectionAttribute getSource();
+	ActualSourceSectionAttribute getSource();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.GlobalAttribute#getSource <em>Source</em>}' reference.
@@ -54,7 +54,7 @@ public interface GlobalAttribute extends NamedElement {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(SourceSectionAttribute value);
+	void setSource(ActualSourceSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.

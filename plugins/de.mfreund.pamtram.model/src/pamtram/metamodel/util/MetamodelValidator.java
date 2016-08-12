@@ -48,7 +48,7 @@ import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
@@ -338,7 +338,7 @@ public class MetamodelValidator extends EObjectValidator {
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE:
 				return validateVirtualAttribute((VirtualAttribute<?, ?, ?, ?>)value, diagnostics, context);
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE:
-				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
+				return validateSourceSectionAttribute((ActualSourceSectionAttribute)value, diagnostics, context);
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE:
 				return validateTargetSectionAttribute((TargetSectionAttribute)value, diagnostics, context);
 			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE:
@@ -993,7 +993,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSectionAttribute(SourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSourceSectionAttribute(ActualSourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(sourceSectionAttribute, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(sourceSectionAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionAttribute, diagnostics, context);
@@ -1013,7 +1013,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSectionAttribute_attributeMatchesParentEClass(SourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSourceSectionAttribute_attributeMatchesParentEClass(ActualSourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return sourceSectionAttribute.attributeMatchesParentEClass(diagnostics, context);
 	}
 

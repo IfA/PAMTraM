@@ -17,15 +17,15 @@ import org.eclipse.emf.ecore.EAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}</li>
- *   <li>{@link pamtram.metamodel.SourceSectionAttribute#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.metamodel.ActualSourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.metamodel.ActualSourceSectionAttribute#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getSourceSectionAttribute()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
-public interface SourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
+public interface ActualSourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> {
 	/**
 	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraint}.
@@ -61,7 +61,7 @@ public interface SourceSectionAttribute extends Attribute<SourceSection, SourceS
 	EAttribute getAttribute();
 
 	/**
-	 * Sets the value of the '{@link pamtram.metamodel.SourceSectionAttribute#getAttribute <em>Attribute</em>}' reference.
+	 * Sets the value of the '{@link pamtram.metamodel.ActualSourceSectionAttribute#getAttribute <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Attribute</em>' reference.

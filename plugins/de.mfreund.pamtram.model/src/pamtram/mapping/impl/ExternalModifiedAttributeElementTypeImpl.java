@@ -29,7 +29,7 @@ import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -154,7 +154,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSection_0 = idResolver.getClass(MappingTables.CLSSid_SourceSection, null);
 		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute = idResolver.getClass(MappingTables.CLSSid_SourceSectionAttribute, null);
 		            final /*@Thrown*/ Object source_0 = this.getSource();
-		            final /*@Thrown*/ SourceSectionAttribute oclAsType = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, source_0, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute));
+		            final /*@Thrown*/ ActualSourceSectionAttribute oclAsType = ClassUtil.nonNullState((ActualSourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, source_0, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute));
 		            final /*@Thrown*/ Object getContainingSection = ((MetaModelElement)oclAsType).getContainingSection();
 		            final /*@Thrown*/ SourceSection oclAsType_0 = ClassUtil.nonNullState((SourceSection)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, getContainingSection, TYP_pamtram_c_c_metamodel_c_c_SourceSection_0));
 		            if (CAUGHT_sourceMMSection instanceof InvalidValueException) {

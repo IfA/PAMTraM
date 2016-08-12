@@ -2,28 +2,25 @@
  */
 package pamtram.metamodel.impl;
 
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
@@ -34,6 +31,7 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.impl.ExpressionHintImpl;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
@@ -44,7 +42,6 @@ import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.util.MetamodelValidator;
 
 /**
@@ -138,6 +135,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
 			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER);
@@ -150,6 +148,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AttributeValueConstraintType getBoundType() {
 		return boundType;
 	}
@@ -159,6 +158,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBoundType(AttributeValueConstraintType newBoundType) {
 		AttributeValueConstraintType oldBoundType = boundType;
 		boundType = newBoundType == null ? BOUND_TYPE_EDEFAULT : newBoundType;
@@ -171,6 +171,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<InstancePointer> getBoundReferenceValueAdditionalSpecification() {
 		if (boundReferenceValueAdditionalSpecification == null) {
 			boundReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
@@ -183,6 +184,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueConstraintSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<AttributeValueConstraintSourceInterface>(AttributeValueConstraintSourceInterface.class, this, MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS);
@@ -195,9 +197,10 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if(this.getSourceElements().isEmpty() || 
-				!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
+				!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
 			return true;
 		}
 		
@@ -225,6 +228,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if(this.getSourceElements().isEmpty() || 
 				!AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition())) {
@@ -261,6 +265,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLocalConstraint() {
 		if(this.eContainer().eContainer() instanceof ActualSourceSectionAttribute) {
 			return true;

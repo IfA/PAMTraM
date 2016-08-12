@@ -218,8 +218,8 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createVirtualAttributeAdapter();
 			}
 			@Override
-			public Adapter caseSourceSectionAttribute(ActualSourceSectionAttribute object) {
-				return createSourceSectionAttributeAdapter();
+			public Adapter caseActualSourceSectionAttribute(ActualSourceSectionAttribute object) {
+				return createActualSourceSectionAttributeAdapter();
 			}
 			@Override
 			public Adapter caseTargetSectionAttribute(TargetSectionAttribute object) {
@@ -704,7 +704,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ActualSourceSectionAttribute <em>Source Section Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ActualSourceSectionAttribute <em>Actual Source Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -713,7 +713,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.metamodel.ActualSourceSectionAttribute
 	 * @generated
 	 */
-	public Adapter createSourceSectionAttributeAdapter() {
+	public Adapter createActualSourceSectionAttributeAdapter() {
 		return null;
 	}
 

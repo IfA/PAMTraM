@@ -185,12 +185,12 @@ public class MetamodelValidator extends EObjectValidator {
 	public static final int ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 12;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Attribute Matches Parent EClass' of 'Source Section Attribute'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Attribute Matches Parent EClass' of 'Actual Source Section Attribute'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 13;
+	public static final int ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 13;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'No Modified Attribute Element Types In Condition Model Conditions' of 'Instance Pointer'.
@@ -337,8 +337,8 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateActualAttribute((ActualAttribute<?, ?, ?, ?>)value, diagnostics, context);
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE:
 				return validateVirtualAttribute((VirtualAttribute<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE:
-				return validateSourceSectionAttribute((ActualSourceSectionAttribute)value, diagnostics, context);
+			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE:
+				return validateActualSourceSectionAttribute((ActualSourceSectionAttribute)value, diagnostics, context);
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE:
 				return validateTargetSectionAttribute((TargetSectionAttribute)value, diagnostics, context);
 			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE:
@@ -993,28 +993,28 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSectionAttribute(ActualSourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(sourceSectionAttribute, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSourceSectionAttribute_attributeMatchesParentEClass(sourceSectionAttribute, diagnostics, context);
+	public boolean validateActualSourceSectionAttribute(ActualSourceSectionAttribute actualSourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(actualSourceSectionAttribute, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(actualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(actualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(actualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(actualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(actualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(actualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(actualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(actualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateActualSourceSectionAttribute_attributeMatchesParentEClass(actualSourceSectionAttribute, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the attributeMatchesParentEClass constraint of '<em>Source Section Attribute</em>'.
+	 * Validates the attributeMatchesParentEClass constraint of '<em>Actual Source Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSectionAttribute_attributeMatchesParentEClass(ActualSourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return sourceSectionAttribute.attributeMatchesParentEClass(diagnostics, context);
+	public boolean validateActualSourceSectionAttribute_attributeMatchesParentEClass(ActualSourceSectionAttribute actualSourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return actualSourceSectionAttribute.attributeMatchesParentEClass(diagnostics, context);
 	}
 
 	/**

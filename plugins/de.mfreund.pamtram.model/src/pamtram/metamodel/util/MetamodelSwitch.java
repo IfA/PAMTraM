@@ -343,12 +343,12 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: {
-				ActualSourceSectionAttribute sourceSectionAttribute = (ActualSourceSectionAttribute)theEObject;
-				T result = caseSourceSectionAttribute(sourceSectionAttribute);
-				if (result == null) result = caseAttribute(sourceSectionAttribute);
-				if (result == null) result = caseMetaModelElement(sourceSectionAttribute);
-				if (result == null) result = caseNamedElement(sourceSectionAttribute);
+			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: {
+				ActualSourceSectionAttribute actualSourceSectionAttribute = (ActualSourceSectionAttribute)theEObject;
+				T result = caseActualSourceSectionAttribute(actualSourceSectionAttribute);
+				if (result == null) result = caseAttribute(actualSourceSectionAttribute);
+				if (result == null) result = caseMetaModelElement(actualSourceSectionAttribute);
+				if (result == null) result = caseNamedElement(actualSourceSectionAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -943,17 +943,17 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Source Section Attribute</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Actual Source Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Source Section Attribute</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Actual Source Section Attribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSourceSectionAttribute(ActualSourceSectionAttribute object) {
+	public T caseActualSourceSectionAttribute(ActualSourceSectionAttribute object) {
 		return null;
 	}
 

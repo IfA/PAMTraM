@@ -99,7 +99,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
 			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: return createSourceSectionAttribute();
+			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
 			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
 			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
 			case MetamodelPackage.EQUALITY_MATCHER: return createEqualityMatcher();
@@ -292,9 +292,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualSourceSectionAttribute createSourceSectionAttribute() {
-		ActualSourceSectionAttributeImpl sourceSectionAttribute = new ActualSourceSectionAttributeImpl();
-		return sourceSectionAttribute;
+	public ActualSourceSectionAttribute createActualSourceSectionAttribute() {
+		ActualSourceSectionAttributeImpl actualSourceSectionAttribute = new ActualSourceSectionAttributeImpl();
+		return actualSourceSectionAttribute;
 	}
 
 	/**

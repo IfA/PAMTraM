@@ -12,7 +12,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -25,18 +24,15 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
-import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.provider.ExpressionHintItemProvider;
-import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
-import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
@@ -45,8 +41,8 @@ import pamtram.provider.PamtramEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RangeBoundItemProvider 
-	extends ExpressionHintItemProvider {
+public class RangeBoundItemProvider
+extends ExpressionHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -65,13 +61,13 @@ public class RangeBoundItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addResultModifierPropertyDescriptor(object);
-			addBoundTypePropertyDescriptor(object);
+			this.addResultModifierPropertyDescriptor(object);
+			this.addBoundTypePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -81,19 +77,19 @@ public class RangeBoundItemProvider
 	 * @generated
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ModifiableHint_resultModifier_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -103,19 +99,19 @@ public class RangeBoundItemProvider
 	 * @generated
 	 */
 	protected void addBoundTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RangeBound_boundType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeBound_boundType_feature", "_UI_RangeBound_type"),
-				 MetamodelPackage.Literals.RANGE_BOUND__BOUND_TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_RangeBound_boundType_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_RangeBound_boundType_feature", "_UI_RangeBound_type"),
+						MetamodelPackage.Literals.RANGE_BOUND__BOUND_TYPE,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -128,12 +124,12 @@ public class RangeBoundItemProvider
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			this.childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -157,7 +153,7 @@ public class RangeBoundItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RangeBound"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/RangeBound"));
 	}
 
 	/**
@@ -168,9 +164,9 @@ public class RangeBoundItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -179,23 +175,23 @@ public class RangeBoundItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		initializeLabelRelatedChildrenFeatureNotifications(object);
+		this.initializeLabelRelatedChildrenFeatureNotifications(object);
 
 		String value = ((RangeBound)object).getExpression();
 
 		StyledString styledLabel = new StyledString();
-		styledLabel.append(getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
+		styledLabel.append(this.getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
 
 		if(value != null && !value.isEmpty()) {
-			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
+			styledLabel.append(value, StyledString.Style.COUNTER_STYLER);
 		} else {
-			
+
 			List<String> sources = ((RangeBound)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
 			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
 
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -206,15 +202,15 @@ public class RangeBoundItemProvider
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(RangeBound.class)) {
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -229,56 +225,56 @@ public class RangeBoundItemProvider
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-		
+
 		if(!(object instanceof EObject)) {
 			return;
 		}
-		
-		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of 
+
+		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of
 		// Conditions
 		//
 		if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
 
 			newChildDescriptors.add
-				(createChildParameter
+			(this.createChildParameter
 					(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
-					 MetamodelFactory.eINSTANCE.createInstancePointer()));
+							MetamodelFactory.eINSTANCE.createInstancePointer()));
 		}
-		
-		// Do not allow to add local/external source attributes or GlobalAttributeImporters below 
+
+		// Do not allow to add local/external source attributes or GlobalAttributeImporters below
 		// SourceSectionAttributes as these are only supported as part of Conditions
 		//
 		if(!AgteleEcoreUtil.hasAncestorOfKind((EObject) object, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
-			
-			// Do not allow to add local/external source attributes below 
+
+			// Do not allow to add local/external source attributes below
 			// AttributeConditions that are located inside a ConditionModel
 			//
 			ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object, ConditionPackage.eINSTANCE.getComplexCondition());
 			if(condition == null || !condition.isConditionModelCondition()) {
-			
+
 				newChildDescriptors.add
-					(createChildParameter
+				(this.createChildParameter
 						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-						 MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
-		
+								MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
+
 				newChildDescriptors.add
-					(createChildParameter
+				(this.createChildParameter
 						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-						 MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+								MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
 			}
-			
+
 			newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 					(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
 							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 		}
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createFixedValue()));
+						MappingFactory.eINSTANCE.createFixedValue()));
 	}
 
 	/**
@@ -291,18 +287,18 @@ public class RangeBoundItemProvider
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
 	}
-	
+
 	@Override
 	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
 			Collection<?> collection, int index) {
-		
+
 		if(feature.equals(MetamodelPackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
 				!AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping()) && !collection.parallelStream().allMatch(s -> s instanceof FixedValue)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.createAddCommand(domain, owner, feature, collection, index);
 	}
-	
+
 	@Override
 	public AbstractCommand createDragAndDropCommand(EditingDomain domain, Collection<EObject> collection,
 			EObject parent, EReference ref) {

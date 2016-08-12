@@ -397,7 +397,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActualTargetSectionAttributeItemProvider actualAttributeItemProvider;
+	protected ActualTargetSectionAttributeItemProvider actualTargetSectionAttributeItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.metamodel.ActualTargetSectionAttribute}.
@@ -406,12 +406,12 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createActualAttributeAdapter() {
-		if (actualAttributeItemProvider == null) {
-			actualAttributeItemProvider = new ActualTargetSectionAttributeItemProvider(this);
+	public Adapter createActualTargetSectionAttributeAdapter() {
+		if (actualTargetSectionAttributeItemProvider == null) {
+			actualTargetSectionAttributeItemProvider = new ActualTargetSectionAttributeItemProvider(this);
 		}
 
-		return actualAttributeItemProvider;
+		return actualTargetSectionAttributeItemProvider;
 	}
 
 	/**
@@ -420,7 +420,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VirtualTargetSectionAttributeItemProvider virtualAttributeItemProvider;
+	protected VirtualTargetSectionAttributeItemProvider virtualTargetSectionAttributeItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.metamodel.VirtualTargetSectionAttribute}.
@@ -429,12 +429,12 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createVirtualAttributeAdapter() {
-		if (virtualAttributeItemProvider == null) {
-			virtualAttributeItemProvider = new VirtualTargetSectionAttributeItemProvider(this);
+	public Adapter createVirtualTargetSectionAttributeAdapter() {
+		if (virtualTargetSectionAttributeItemProvider == null) {
+			virtualTargetSectionAttributeItemProvider = new VirtualTargetSectionAttributeItemProvider(this);
 		}
 
-		return virtualAttributeItemProvider;
+		return virtualTargetSectionAttributeItemProvider;
 	}
 
 	/**

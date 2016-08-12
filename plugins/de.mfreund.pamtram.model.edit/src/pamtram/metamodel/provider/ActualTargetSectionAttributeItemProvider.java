@@ -44,12 +44,12 @@ extends TargetSectionAttributeItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAttributePropertyDescriptor(object);
+			this.addAttributePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -58,13 +58,13 @@ extends TargetSectionAttributeItemProvider {
 	 * <!-- end-user-doc -->
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ActualAttribute_attribute_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
-						MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ActualAttribute_attribute_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
+				MetamodelPackage.Literals.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE,
 						true,
 						false,
 						true,
@@ -80,11 +80,11 @@ extends TargetSectionAttributeItemProvider {
 				if(att.getOwningClass() != null) {
 					return att.getOwningClass().getEClass().getEAllAttributes();
 					// in case of an AttributeParameter, the attribute of its source can be chosen
-				} else if(att.eContainer() instanceof AttributeParameter && 
+				} else if(att.eContainer() instanceof AttributeParameter &&
 						((AttributeParameter) att.eContainer()).getSource() != null) {
 					return ((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes();
 				}
-				return new ArrayList<Object>();
+				return new ArrayList<>();
 			}
 		});
 	}
@@ -107,7 +107,7 @@ extends TargetSectionAttributeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -130,7 +130,7 @@ extends TargetSectionAttributeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

@@ -18,15 +18,15 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.SourceSectionAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.ActualSourceSectionAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SourceSectionAttributeItemProvider
+public class ActualSourceSectionAttributeItemProvider
 extends AttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -34,7 +34,7 @@ extends AttributeItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttributeItemProvider(AdapterFactory adapterFactory) {
+	public ActualSourceSectionAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -160,7 +160,7 @@ extends AttributeItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SourceSectionAttribute.class)) {
+		switch (notification.getFeatureID(ActualSourceSectionAttribute.class)) {
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

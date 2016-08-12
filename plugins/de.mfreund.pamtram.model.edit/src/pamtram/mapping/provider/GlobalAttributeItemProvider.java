@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.provider.NamedElementItemProvider;
@@ -83,7 +83,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 						
-						List<SourceSectionAttribute> sources = new LinkedList<SourceSectionAttribute>();
+						List<ActualSourceSectionAttribute> sources = new LinkedList<ActualSourceSectionAttribute>();
 						
 						Mapping mapping= (Mapping) ((EObject) object).eContainer();
 						

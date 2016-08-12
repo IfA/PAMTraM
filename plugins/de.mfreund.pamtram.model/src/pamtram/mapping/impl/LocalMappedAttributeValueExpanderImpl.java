@@ -17,7 +17,7 @@ import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
@@ -34,7 +34,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> implements LocalMappedAttributeValueExpander {
+public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements LocalMappedAttributeValueExpander {
 	/**
 	 * The cached value of the '{@link #getHintsToExpand() <em>Hints To Expand</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -83,7 +83,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttribut
 	 * @generated
 	 */
 	@Override
-	public ActualSourceSectionAttribute getSourceAttribute() {
+	public SourceSectionAttribute getSourceAttribute() {
 		if(this instanceof LocalMappedAttributeValueExpander) {
 			return ((LocalMappedAttributeValueExpander) this).getSource();
 		} else if(this instanceof ExternalMappedAttributeValueExpander) {

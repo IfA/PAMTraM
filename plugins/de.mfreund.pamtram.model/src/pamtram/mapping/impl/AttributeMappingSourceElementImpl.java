@@ -3,14 +3,16 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
@@ -21,7 +23,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class AttributeMappingSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> implements AttributeMappingSourceElement {
+public class AttributeMappingSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements AttributeMappingSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,7 +47,8 @@ public class AttributeMappingSourceElementImpl extends LocalModifiedAttributeEle
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
-	public ActualSourceSectionAttribute getSourceAttribute() {
+	@Override
+	public SourceSectionAttribute getSourceAttribute() {
 		return this.getSource();
 	}
 

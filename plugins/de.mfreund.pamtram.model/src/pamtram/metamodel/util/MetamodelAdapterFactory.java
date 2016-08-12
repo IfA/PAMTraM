@@ -47,6 +47,7 @@ import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
@@ -216,6 +217,10 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseVirtualAttribute(VirtualAttribute<S, C, R, A> object) {
 				return createVirtualAttributeAdapter();
+			}
+			@Override
+			public Adapter caseSourceSectionAttribute(SourceSectionAttribute object) {
+				return createSourceSectionAttributeAdapter();
 			}
 			@Override
 			public Adapter caseActualSourceSectionAttribute(ActualSourceSectionAttribute object) {
@@ -700,6 +705,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVirtualAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SourceSectionAttribute <em>Source Section Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.SourceSectionAttribute
+	 * @generated
+	 */
+	public Adapter createSourceSectionAttributeAdapter() {
 		return null;
 	}
 

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EAttribute;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
-public interface ActualSourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> {
+public interface ActualSourceSectionAttribute extends SourceSectionAttribute {
 	/**
 	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraint}.

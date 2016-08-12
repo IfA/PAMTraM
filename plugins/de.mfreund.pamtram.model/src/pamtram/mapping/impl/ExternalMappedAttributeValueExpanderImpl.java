@@ -4,9 +4,11 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
@@ -17,7 +19,7 @@ import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
@@ -34,7 +36,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> implements ExternalMappedAttributeValueExpander {
+public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ExternalMappedAttributeValueExpander {
 	/**
 	 * The cached value of the '{@link #getHintsToExpand() <em>Hints To Expand</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -83,7 +85,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	 * @generated
 	 */
 	@Override
-	public ActualSourceSectionAttribute getSourceAttribute() {
+	public SourceSectionAttribute getSourceAttribute() {
 		if(this instanceof LocalMappedAttributeValueExpander) {
 			return ((LocalMappedAttributeValueExpander) this).getSource();
 		} else if(this instanceof ExternalMappedAttributeValueExpander) {
@@ -98,6 +100,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueModifierSet> getModifiers() {
 		if(this instanceof LocalMappedAttributeValueExpander) {
 			return ((LocalMappedAttributeValueExpander) this).getModifier();

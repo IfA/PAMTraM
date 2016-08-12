@@ -14,5 +14,5 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
  * @model
  * @generated
  */
-public interface AttributeValueConstraintSourceElement extends LocalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute>, AttributeValueConstraintSourceInterface {
+public interface AttributeValueConstraintSourceElement extends LocalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueConstraintSourceInterface {
 } // AttributeValueConstraintSourceElement

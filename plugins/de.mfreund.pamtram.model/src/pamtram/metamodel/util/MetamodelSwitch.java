@@ -46,6 +46,7 @@ import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
@@ -343,9 +344,19 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: {
+				SourceSectionAttribute sourceSectionAttribute = (SourceSectionAttribute)theEObject;
+				T result = caseSourceSectionAttribute(sourceSectionAttribute);
+				if (result == null) result = caseAttribute(sourceSectionAttribute);
+				if (result == null) result = caseMetaModelElement(sourceSectionAttribute);
+				if (result == null) result = caseNamedElement(sourceSectionAttribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: {
 				ActualSourceSectionAttribute actualSourceSectionAttribute = (ActualSourceSectionAttribute)theEObject;
 				T result = caseActualSourceSectionAttribute(actualSourceSectionAttribute);
+				if (result == null) result = caseSourceSectionAttribute(actualSourceSectionAttribute);
 				if (result == null) result = caseAttribute(actualSourceSectionAttribute);
 				if (result == null) result = caseMetaModelElement(actualSourceSectionAttribute);
 				if (result == null) result = caseNamedElement(actualSourceSectionAttribute);
@@ -939,6 +950,21 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseVirtualAttribute(VirtualAttribute<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Source Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Source Section Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSourceSectionAttribute(SourceSectionAttribute object) {
 		return null;
 	}
 

@@ -3,7 +3,7 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
-import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +23,6 @@ public interface MappingHintSourceInterface extends NamedElement {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintSourceInterface!getSourceAttribute()'"
 	 * @generated
 	 */
-	ActualSourceSectionAttribute getSourceAttribute();
+	SourceSectionAttribute getSourceAttribute();
 
 } // MappingHintSourceInterface

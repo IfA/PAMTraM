@@ -14,5 +14,5 @@ import pamtram.mapping.ExternalModifiedAttributeElementType;
  * @model
  * @generated
  */
-public interface InstancePointerExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute>, InstancePointerSourceInterface {
+public interface InstancePointerExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, InstancePointerSourceInterface {
 } // InstancePointerExternalSourceElement

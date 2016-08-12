@@ -304,6 +304,7 @@ public class MetamodelTables
 		public static final /*@NonNull*/ EcoreExecutorType _Section = new EcoreExecutorType(MetamodelPackage.Literals.SECTION, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._Section_S, TypeParameters._Section_C, TypeParameters._Section_R, TypeParameters._Section_A);
 		public static final /*@NonNull*/ EcoreExecutorType _SingleReferenceAttributeValueConstraint = new EcoreExecutorType(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _SourceSection = new EcoreExecutorType(MetamodelPackage.Literals.SOURCE_SECTION, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _SourceSectionAttribute = new EcoreExecutorType(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _SourceSectionClass = new EcoreExecutorType(MetamodelPackage.Literals.SOURCE_SECTION_CLASS, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _SourceSectionContainmentReference = new EcoreExecutorType(MetamodelPackage.Literals.SOURCE_SECTION_CONTAINMENT_REFERENCE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _SourceSectionReference = new EcoreExecutorType(MetamodelPackage.Literals.SOURCE_SECTION_REFERENCE, PACKAGE, 0 | ExecutorType.ABSTRACT);
@@ -356,6 +357,7 @@ public class MetamodelTables
 			_Section,
 			_SingleReferenceAttributeValueConstraint,
 			_SourceSection,
+			_SourceSectionAttribute,
 			_SourceSectionClass,
 			_SourceSectionContainmentReference,
 			_SourceSectionReference,
@@ -406,6 +408,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorFragment _ActualSourceSectionAttribute__NamedElement = new ExecutorFragment(Types._ActualSourceSectionAttribute, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _ActualSourceSectionAttribute__OclAny = new ExecutorFragment(Types._ActualSourceSectionAttribute, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _ActualSourceSectionAttribute__OclElement = new ExecutorFragment(Types._ActualSourceSectionAttribute, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _ActualSourceSectionAttribute__SourceSectionAttribute = new ExecutorFragment(Types._ActualSourceSectionAttribute, MetamodelTables.Types._SourceSectionAttribute);
 
 		private static final /*@NonNull*/ ExecutorFragment _ActualTargetSectionAttribute__ActualAttribute = new ExecutorFragment(Types._ActualTargetSectionAttribute, MetamodelTables.Types._ActualAttribute);
 		private static final /*@NonNull*/ ExecutorFragment _ActualTargetSectionAttribute__ActualTargetSectionAttribute = new ExecutorFragment(Types._ActualTargetSectionAttribute, MetamodelTables.Types._ActualTargetSectionAttribute);
@@ -665,6 +668,13 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorFragment _SourceSection__Section = new ExecutorFragment(Types._SourceSection, MetamodelTables.Types._Section);
 		private static final /*@NonNull*/ ExecutorFragment _SourceSection__SourceSection = new ExecutorFragment(Types._SourceSection, MetamodelTables.Types._SourceSection);
 		private static final /*@NonNull*/ ExecutorFragment _SourceSection__SourceSectionClass = new ExecutorFragment(Types._SourceSection, MetamodelTables.Types._SourceSectionClass);
+
+		private static final /*@NonNull*/ ExecutorFragment _SourceSectionAttribute__Attribute = new ExecutorFragment(Types._SourceSectionAttribute, MetamodelTables.Types._Attribute);
+		private static final /*@NonNull*/ ExecutorFragment _SourceSectionAttribute__MetaModelElement = new ExecutorFragment(Types._SourceSectionAttribute, MetamodelTables.Types._MetaModelElement);
+		private static final /*@NonNull*/ ExecutorFragment _SourceSectionAttribute__NamedElement = new ExecutorFragment(Types._SourceSectionAttribute, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _SourceSectionAttribute__OclAny = new ExecutorFragment(Types._SourceSectionAttribute, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _SourceSectionAttribute__OclElement = new ExecutorFragment(Types._SourceSectionAttribute, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _SourceSectionAttribute__SourceSectionAttribute = new ExecutorFragment(Types._SourceSectionAttribute, MetamodelTables.Types._SourceSectionAttribute);
 
 		private static final /*@NonNull*/ ExecutorFragment _SourceSectionClass__Class = new ExecutorFragment(Types._SourceSectionClass, MetamodelTables.Types._Class);
 		private static final /*@NonNull*/ ExecutorFragment _SourceSectionClass__MetaModelElement = new ExecutorFragment(Types._SourceSectionClass, MetamodelTables.Types._MetaModelElement);
@@ -987,9 +997,10 @@ public class MetamodelTables
 			Fragments._ActualSourceSectionAttribute__NamedElement /* 2 */,
 			Fragments._ActualSourceSectionAttribute__MetaModelElement /* 3 */,
 			Fragments._ActualSourceSectionAttribute__Attribute /* 4 */,
-			Fragments._ActualSourceSectionAttribute__ActualSourceSectionAttribute /* 5 */
+			Fragments._ActualSourceSectionAttribute__SourceSectionAttribute /* 5 */,
+			Fragments._ActualSourceSectionAttribute__ActualSourceSectionAttribute /* 6 */
 		};
-		private static final int /*@NonNull*/ [] __ActualSourceSectionAttribute = { 1,1,1,1,1,1 };
+		private static final int /*@NonNull*/ [] __ActualSourceSectionAttribute = { 1,1,1,1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ActualTargetSectionAttribute =
 		{
@@ -1394,6 +1405,17 @@ public class MetamodelTables
 		};
 		private static final int /*@NonNull*/ [] __SourceSection = { 1,1,1,1,1,2,1 };
 
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _SourceSectionAttribute =
+		{
+			Fragments._SourceSectionAttribute__OclAny /* 0 */,
+			Fragments._SourceSectionAttribute__OclElement /* 1 */,
+			Fragments._SourceSectionAttribute__NamedElement /* 2 */,
+			Fragments._SourceSectionAttribute__MetaModelElement /* 3 */,
+			Fragments._SourceSectionAttribute__Attribute /* 4 */,
+			Fragments._SourceSectionAttribute__SourceSectionAttribute /* 5 */
+		};
+		private static final int /*@NonNull*/ [] __SourceSectionAttribute = { 1,1,1,1,1,1 };
+
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _SourceSectionClass =
 		{
 			Fragments._SourceSectionClass__OclAny /* 0 */,
@@ -1581,6 +1603,7 @@ public class MetamodelTables
 			Types._Section.initFragments(_Section, __Section);
 			Types._SingleReferenceAttributeValueConstraint.initFragments(_SingleReferenceAttributeValueConstraint, __SingleReferenceAttributeValueConstraint);
 			Types._SourceSection.initFragments(_SourceSection, __SourceSection);
+			Types._SourceSectionAttribute.initFragments(_SourceSectionAttribute, __SourceSectionAttribute);
 			Types._SourceSectionClass.initFragments(_SourceSectionClass, __SourceSectionClass);
 			Types._SourceSectionContainmentReference.initFragments(_SourceSectionContainmentReference, __SourceSectionContainmentReference);
 			Types._SourceSectionReference.initFragments(_SourceSectionReference, __SourceSectionReference);
@@ -1681,6 +1704,7 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualSourceSectionAttribute__SourceSectionAttribute = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualTargetSectionAttribute__ActualTargetSectionAttribute = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualTargetSectionAttribute__ActualAttribute = {};
@@ -2930,6 +2954,41 @@ public class MetamodelTables
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSection__SourceSectionClass = {};
 
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSectionAttribute__SourceSectionAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSectionAttribute__Attribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSectionAttribute__MetaModelElement = {
+			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
+			MetamodelTables.Operations._MetaModelElement__getContainingSectionModel /* getContainingSectionModel() */,
+			MetamodelTables.Operations._MetaModelElement__isLibraryEntry /* isLibraryEntry() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSectionAttribute__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSectionAttribute__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSectionAttribute__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSectionClass__SourceSectionClass = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSectionClass__Class = {
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
@@ -3406,6 +3465,7 @@ public class MetamodelTables
 			Fragments._ActualSourceSectionAttribute__NamedElement.initOperations(_ActualSourceSectionAttribute__NamedElement);
 			Fragments._ActualSourceSectionAttribute__OclAny.initOperations(_ActualSourceSectionAttribute__OclAny);
 			Fragments._ActualSourceSectionAttribute__OclElement.initOperations(_ActualSourceSectionAttribute__OclElement);
+			Fragments._ActualSourceSectionAttribute__SourceSectionAttribute.initOperations(_ActualSourceSectionAttribute__SourceSectionAttribute);
 
 			Fragments._ActualTargetSectionAttribute__ActualAttribute.initOperations(_ActualTargetSectionAttribute__ActualAttribute);
 			Fragments._ActualTargetSectionAttribute__ActualTargetSectionAttribute.initOperations(_ActualTargetSectionAttribute__ActualTargetSectionAttribute);
@@ -3665,6 +3725,13 @@ public class MetamodelTables
 			Fragments._SourceSection__Section.initOperations(_SourceSection__Section);
 			Fragments._SourceSection__SourceSection.initOperations(_SourceSection__SourceSection);
 			Fragments._SourceSection__SourceSectionClass.initOperations(_SourceSection__SourceSectionClass);
+
+			Fragments._SourceSectionAttribute__Attribute.initOperations(_SourceSectionAttribute__Attribute);
+			Fragments._SourceSectionAttribute__MetaModelElement.initOperations(_SourceSectionAttribute__MetaModelElement);
+			Fragments._SourceSectionAttribute__NamedElement.initOperations(_SourceSectionAttribute__NamedElement);
+			Fragments._SourceSectionAttribute__OclAny.initOperations(_SourceSectionAttribute__OclAny);
+			Fragments._SourceSectionAttribute__OclElement.initOperations(_SourceSectionAttribute__OclElement);
+			Fragments._SourceSectionAttribute__SourceSectionAttribute.initOperations(_SourceSectionAttribute__SourceSectionAttribute);
 
 			Fragments._SourceSectionClass__Class.initOperations(_SourceSectionClass__Class);
 			Fragments._SourceSectionClass__MetaModelElement.initOperations(_SourceSectionClass__MetaModelElement);
@@ -4013,6 +4080,10 @@ public class MetamodelTables
 			MetamodelTables.Properties._SourceSectionClass__MetaModelSectionReference__value
 		};
 
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SourceSectionAttribute = {
+			MetamodelTables.Properties._Attribute__owningClass
+		};
+
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SourceSectionClass = {
 			MetamodelTables.Properties._Class__attributes,
 			MetamodelTables.Properties._Class__cardinality,
@@ -4140,6 +4211,7 @@ public class MetamodelTables
 			Fragments._Section__Section.initProperties(_Section);
 			Fragments._SingleReferenceAttributeValueConstraint__SingleReferenceAttributeValueConstraint.initProperties(_SingleReferenceAttributeValueConstraint);
 			Fragments._SourceSection__SourceSection.initProperties(_SourceSection);
+			Fragments._SourceSectionAttribute__SourceSectionAttribute.initProperties(_SourceSectionAttribute);
 			Fragments._SourceSectionClass__SourceSectionClass.initProperties(_SourceSectionClass);
 			Fragments._SourceSectionContainmentReference__SourceSectionContainmentReference.initProperties(_SourceSectionContainmentReference);
 			Fragments._SourceSectionReference__SourceSectionReference.initProperties(_SourceSectionReference);

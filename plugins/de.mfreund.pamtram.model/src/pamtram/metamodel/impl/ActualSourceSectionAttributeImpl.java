@@ -35,10 +35,7 @@ import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
-import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +51,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class ActualSourceSectionAttributeImpl extends AttributeImpl<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> implements ActualSourceSectionAttribute {
+public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl implements ActualSourceSectionAttribute {
 	/**
 	 * The cached value of the '{@link #getValueConstraint() <em>Value Constraint</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -363,7 +360,7 @@ public class ActualSourceSectionAttributeImpl extends AttributeImpl<SourceSectio
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
 				return attributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

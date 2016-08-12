@@ -3,7 +3,7 @@
 package pamtram.mapping;
 
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
@@ -18,5 +18,5 @@ import pamtram.metamodel.SourceSectionReference;
  * @model
  * @generated
  */
-public interface ModelConnectionHintExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute>, ModelConnectionHintSourceInterface {
+public interface ModelConnectionHintExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ModelConnectionHintSourceInterface {
 } // ModelConnectionHintExternalSourceElement

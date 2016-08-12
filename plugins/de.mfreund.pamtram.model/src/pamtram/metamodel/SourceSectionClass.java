@@ -12,7 +12,7 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface SourceSectionClass extends pamtram.metamodel.Class<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute> {
+public interface SourceSectionClass extends pamtram.metamodel.Class<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 	
 	
 } // SourceSectionClass

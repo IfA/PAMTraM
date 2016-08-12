@@ -48,6 +48,7 @@ import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
@@ -337,6 +338,8 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateActualAttribute((ActualAttribute<?, ?, ?, ?>)value, diagnostics, context);
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE:
 				return validateVirtualAttribute((VirtualAttribute<?, ?, ?, ?>)value, diagnostics, context);
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE:
+				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
 			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE:
 				return validateActualSourceSectionAttribute((ActualSourceSectionAttribute)value, diagnostics, context);
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE:
@@ -986,6 +989,15 @@ public class MetamodelValidator extends EObjectValidator {
 	 */
 	public boolean validateVirtualAttribute(VirtualAttribute<?, ?, ?, ?> virtualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(virtualAttribute, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSectionAttribute(SourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sourceSectionAttribute, diagnostics, context);
 	}
 
 	/**

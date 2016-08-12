@@ -14,5 +14,5 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
  * @model
  * @generated
  */
-public interface InstancePointerSourceElement extends LocalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, ActualSourceSectionAttribute>, InstancePointerSourceInterface {
+public interface InstancePointerSourceElement extends LocalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, InstancePointerSourceInterface {
 } // InstancePointerSourceElement

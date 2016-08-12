@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.pamtram.util.NullComparator;
 import pamtram.PAMTraM;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeValueConstraintType;
@@ -27,7 +28,6 @@ import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
@@ -264,8 +264,8 @@ public class MetaModelSectionGenerator {
 		for(EAttribute eAttribute : eAttributes) {
 			Attribute<?, ?, ?, ?> attribute;
 			if(this.sectionType == SectionType.SOURCE) {
-				attribute = MetamodelFactory.eINSTANCE.createSourceSectionAttribute();
-				((SourceSectionAttribute) attribute).setAttribute(eAttribute);
+				attribute = MetamodelFactory.eINSTANCE.createActualSourceSectionAttribute();
+				((ActualSourceSectionAttribute) attribute).setAttribute(eAttribute);
 			} else {
 				attribute = MetamodelFactory.eINSTANCE.createActualTargetSectionAttribute();
 				((ActualTargetSectionAttribute) attribute).setAttribute(eAttribute);
@@ -279,7 +279,7 @@ public class MetaModelSectionGenerator {
 					attValConstraint.setName(eAttribute.getName() + "_Constraint");
 					attValConstraint.setType(AttributeValueConstraintType.INCLUSION);
 					attValConstraint.setExpression(attributeValue.toString());
-					((SourceSectionAttribute) attribute).getValueConstraint().add(attValConstraint);
+					((ActualSourceSectionAttribute) attribute).getValueConstraint().add(attValConstraint);
 				} else {
 					((ActualTargetSectionAttribute) attribute).setValue(attributeValue.toString());
 				}
@@ -391,10 +391,10 @@ public class MetaModelSectionGenerator {
 		String hash = "";
 		for(Attribute<?, ?, ?, ?> att : createdSection.getAttributes()) {
 			if(this.sectionType == SectionType.SOURCE) {
-				hash = hash + ((SourceSectionAttribute) att).getAttribute().getName();
-				if(!((SourceSectionAttribute) att).getValueConstraint().isEmpty() &&
-						((SourceSectionAttribute) att).getValueConstraint().get(0) instanceof SingleReferenceAttributeValueConstraint){
-					hash = hash +  ((SingleReferenceAttributeValueConstraint) ((SourceSectionAttribute) att).getValueConstraint().get(0)).getExpression();
+				hash = hash + ((ActualSourceSectionAttribute) att).getAttribute().getName();
+				if(!((ActualSourceSectionAttribute) att).getValueConstraint().isEmpty() &&
+						((ActualSourceSectionAttribute) att).getValueConstraint().get(0) instanceof SingleReferenceAttributeValueConstraint){
+					hash = hash +  ((SingleReferenceAttributeValueConstraint) ((ActualSourceSectionAttribute) att).getValueConstraint().get(0)).getExpression();
 				} else {
 					hash = hash + "noValue";
 				}

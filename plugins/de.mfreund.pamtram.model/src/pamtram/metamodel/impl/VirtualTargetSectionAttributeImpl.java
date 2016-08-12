@@ -31,7 +31,7 @@ public class VirtualTargetSectionAttributeImpl extends TargetSectionAttributeImp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.VIRTUAL_ATTRIBUTE;
+		return MetamodelPackage.Literals.VIRTUAL_TARGET_SECTION_ATTRIBUTE;
 	}
 
 } //VirtualAttributeImpl

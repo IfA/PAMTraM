@@ -21,7 +21,6 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see pamtram.condition.ConditionPackage#getMultipleConditionOperator()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='minimalNumberOfArgs'"
  * @generated
  */
 public interface MultipleConditionOperator extends ComplexCondition {

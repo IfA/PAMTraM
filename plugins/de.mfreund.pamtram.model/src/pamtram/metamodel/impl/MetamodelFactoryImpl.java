@@ -100,8 +100,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
 			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: return createSourceSectionAttribute();
-			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualAttribute();
-			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualAttribute();
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
+			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
 			case MetamodelPackage.EQUALITY_MATCHER: return createEqualityMatcher();
 			case MetamodelPackage.SUBSTRING_MATCHER: return createSubstringMatcher();
 			case MetamodelPackage.BEGINNING_MATCHER: return createBeginningMatcher();
@@ -302,9 +302,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualTargetSectionAttribute createActualAttribute() {
-		ActualTargetSectionAttributeImpl actualAttribute = new ActualTargetSectionAttributeImpl();
-		return actualAttribute;
+	public ActualTargetSectionAttribute createActualTargetSectionAttribute() {
+		ActualTargetSectionAttributeImpl actualTargetSectionAttribute = new ActualTargetSectionAttributeImpl();
+		return actualTargetSectionAttribute;
 	}
 
 	/**
@@ -312,9 +312,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VirtualTargetSectionAttribute createVirtualAttribute() {
-		VirtualTargetSectionAttributeImpl virtualAttribute = new VirtualTargetSectionAttributeImpl();
-		return virtualAttribute;
+	public VirtualTargetSectionAttribute createVirtualTargetSectionAttribute() {
+		VirtualTargetSectionAttributeImpl virtualTargetSectionAttribute = new VirtualTargetSectionAttributeImpl();
+		return virtualTargetSectionAttribute;
 	}
 
 	/**

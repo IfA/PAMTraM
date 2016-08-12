@@ -23,7 +23,6 @@ import pamtram.condition.ComplexCondition;
  *
  * @see pamtram.PamtramPackage#getConditionalElement()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eitherModelOrReferCondition referenceOnlyConditionsFromConditionModel'"
  * @generated
  */
 public interface ConditionalElement extends EObject {

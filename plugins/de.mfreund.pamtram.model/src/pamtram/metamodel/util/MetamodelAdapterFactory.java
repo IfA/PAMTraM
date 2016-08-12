@@ -216,12 +216,12 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createTargetSectionAttributeAdapter();
 			}
 			@Override
-			public Adapter caseActualAttribute(ActualTargetSectionAttribute object) {
-				return createActualAttributeAdapter();
+			public Adapter caseActualTargetSectionAttribute(ActualTargetSectionAttribute object) {
+				return createActualTargetSectionAttributeAdapter();
 			}
 			@Override
-			public Adapter caseVirtualAttribute(VirtualTargetSectionAttribute object) {
-				return createVirtualAttributeAdapter();
+			public Adapter caseVirtualTargetSectionAttribute(VirtualTargetSectionAttribute object) {
+				return createVirtualTargetSectionAttributeAdapter();
 			}
 			@Override
 			public Adapter caseEqualityMatcher(EqualityMatcher object) {
@@ -694,7 +694,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ActualTargetSectionAttribute <em>Actual Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ActualTargetSectionAttribute <em>Actual Target Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -703,12 +703,12 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.metamodel.ActualTargetSectionAttribute
 	 * @generated
 	 */
-	public Adapter createActualAttributeAdapter() {
+	public Adapter createActualTargetSectionAttributeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.VirtualTargetSectionAttribute <em>Virtual Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.VirtualTargetSectionAttribute <em>Virtual Target Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -717,7 +717,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.metamodel.VirtualTargetSectionAttribute
 	 * @generated
 	 */
-	public Adapter createVirtualAttributeAdapter() {
+	public Adapter createVirtualTargetSectionAttributeAdapter() {
 		return null;
 	}
 

@@ -72,7 +72,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.ACTUAL_ATTRIBUTE;
+		return MetamodelPackage.Literals.ACTUAL_TARGET_SECTION_ATTRIBUTE;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 			attribute = (EAttribute)eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
 			}
 		}
 		return attribute;
@@ -111,7 +111,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 		EAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
 	}
 	
 	/**
@@ -158,7 +158,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'ActualAttribute::attributeMatchesParentEClass'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'ActualTargetSectionAttribute::attributeMatchesParentEClass'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
@@ -234,7 +234,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_ActualAttribute_c_c_attributeMatchesParentEClass, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_ActualTargetSectionAttribute_c_c_attributeMatchesParentEClass, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -246,7 +246,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
 		}
@@ -261,7 +261,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)newValue);
 				return;
 		}
@@ -276,7 +276,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)null);
 				return;
 		}
@@ -291,7 +291,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				return attribute != null;
 		}
 		return super.eIsSet(featureID);
@@ -306,7 +306,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_7:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1:
 				return attributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

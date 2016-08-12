@@ -70,7 +70,7 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Orphanage", "orphanage", null);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.et.tu-dresden.de/ifa/agtele/genlib", null, de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage.eINSTANCE);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ActualAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ActualAttribute", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ActualTargetSectionAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ActualTargetSectionAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeCondition = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("AttributeCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeMapping = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMapping", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeMatcher = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMatcher", 0);
@@ -121,7 +121,7 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSectionClass = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionClass", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSectionModel = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("TargetSectionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSectionNonContainmentReference = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionNonContainmentReference", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_VirtualAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("VirtualAttribute", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_VirtualTargetSectionAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("VirtualTargetSectionAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.DataTypeId DATAid_EInt = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_AttributeValueConstraintType = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("AttributeValueConstraintType");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_CardinalityType = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("CardinalityType");
@@ -132,7 +132,7 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_4 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("4");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_TMPLid__1 = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.ids.IdManager.getTemplateParameterId(0));
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_TMPLid__2 = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.ids.IdManager.getTemplateParameterId(1));
-    public static final /*@NonInvalid*/ java.lang.String STR_ActualAttribute_c_c_attributeMatchesParentEClass = "ActualAttribute::attributeMatchesParentEClass";
+    public static final /*@NonInvalid*/ java.lang.String STR_ActualTargetSectionAttribute_c_c_attributeMatchesParentEClass = "ActualTargetSectionAttribute::attributeMatchesParentEClass";
     public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_cardinalityIsValid = "Class::cardinalityIsValid";
     public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_containerIsValid = "Class::containerIsValid";
     public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_eClassMatchesParentEReference = "Class::eClassMatchesParentEReference";
@@ -255,7 +255,7 @@ public class MetamodelTables
 			TypeParameters.init();
 		}
 
-		public static final /*@NonNull*/ EcoreExecutorType _ActualAttribute = new EcoreExecutorType(MetamodelPackage.Literals.ACTUAL_ATTRIBUTE, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ActualTargetSectionAttribute = new EcoreExecutorType(MetamodelPackage.Literals.ACTUAL_TARGET_SECTION_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _Attribute = new EcoreExecutorType(MetamodelPackage.Literals.ATTRIBUTE, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._Attribute_S, TypeParameters._Attribute_C, TypeParameters._Attribute_R, TypeParameters._Attribute_A);
 		public static final /*@NonNull*/ EcoreExecutorType _AttributeParameter = new EcoreExecutorType(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _AttributeValueConstraint = new EcoreExecutorType(MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT, PACKAGE, 0 | ExecutorType.ABSTRACT);
@@ -302,10 +302,10 @@ public class MetamodelTables
 		public static final /*@NonNull*/ EcoreExecutorType _TargetSectionContainmentReference = new EcoreExecutorType(MetamodelPackage.Literals.TARGET_SECTION_CONTAINMENT_REFERENCE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _TargetSectionNonContainmentReference = new EcoreExecutorType(MetamodelPackage.Literals.TARGET_SECTION_NON_CONTAINMENT_REFERENCE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _TargetSectionReference = new EcoreExecutorType(MetamodelPackage.Literals.TARGET_SECTION_REFERENCE, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _VirtualAttribute = new EcoreExecutorType(MetamodelPackage.Literals.VIRTUAL_ATTRIBUTE, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _VirtualTargetSectionAttribute = new EcoreExecutorType(MetamodelPackage.Literals.VIRTUAL_TARGET_SECTION_ATTRIBUTE, PACKAGE, 0);
 
 		private static final /*@NonNull*/ EcoreExecutorType /*@NonNull*/ [] types = {
-			_ActualAttribute,
+			_ActualTargetSectionAttribute,
 			_Attribute,
 			_AttributeParameter,
 			_AttributeValueConstraint,
@@ -352,7 +352,7 @@ public class MetamodelTables
 			_TargetSectionContainmentReference,
 			_TargetSectionNonContainmentReference,
 			_TargetSectionReference,
-			_VirtualAttribute
+			_VirtualTargetSectionAttribute
 		};
 
 		/*
@@ -378,13 +378,13 @@ public class MetamodelTables
 			Types.init();
 		}
 
-		private static final /*@NonNull*/ ExecutorFragment _ActualAttribute__ActualAttribute = new ExecutorFragment(Types._ActualAttribute, MetamodelTables.Types._ActualAttribute);
-		private static final /*@NonNull*/ ExecutorFragment _ActualAttribute__Attribute = new ExecutorFragment(Types._ActualAttribute, MetamodelTables.Types._Attribute);
-		private static final /*@NonNull*/ ExecutorFragment _ActualAttribute__MetaModelElement = new ExecutorFragment(Types._ActualAttribute, MetamodelTables.Types._MetaModelElement);
-		private static final /*@NonNull*/ ExecutorFragment _ActualAttribute__NamedElement = new ExecutorFragment(Types._ActualAttribute, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _ActualAttribute__OclAny = new ExecutorFragment(Types._ActualAttribute, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _ActualAttribute__OclElement = new ExecutorFragment(Types._ActualAttribute, OCLstdlibTables.Types._OclElement);
-		private static final /*@NonNull*/ ExecutorFragment _ActualAttribute__TargetSectionAttribute = new ExecutorFragment(Types._ActualAttribute, MetamodelTables.Types._TargetSectionAttribute);
+		private static final /*@NonNull*/ ExecutorFragment _ActualTargetSectionAttribute__ActualTargetSectionAttribute = new ExecutorFragment(Types._ActualTargetSectionAttribute, MetamodelTables.Types._ActualTargetSectionAttribute);
+		private static final /*@NonNull*/ ExecutorFragment _ActualTargetSectionAttribute__Attribute = new ExecutorFragment(Types._ActualTargetSectionAttribute, MetamodelTables.Types._Attribute);
+		private static final /*@NonNull*/ ExecutorFragment _ActualTargetSectionAttribute__MetaModelElement = new ExecutorFragment(Types._ActualTargetSectionAttribute, MetamodelTables.Types._MetaModelElement);
+		private static final /*@NonNull*/ ExecutorFragment _ActualTargetSectionAttribute__NamedElement = new ExecutorFragment(Types._ActualTargetSectionAttribute, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ActualTargetSectionAttribute__OclAny = new ExecutorFragment(Types._ActualTargetSectionAttribute, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ActualTargetSectionAttribute__OclElement = new ExecutorFragment(Types._ActualTargetSectionAttribute, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _ActualTargetSectionAttribute__TargetSectionAttribute = new ExecutorFragment(Types._ActualTargetSectionAttribute, MetamodelTables.Types._TargetSectionAttribute);
 
 		private static final /*@NonNull*/ ExecutorFragment _Attribute__Attribute = new ExecutorFragment(Types._Attribute, MetamodelTables.Types._Attribute);
 		private static final /*@NonNull*/ ExecutorFragment _Attribute__MetaModelElement = new ExecutorFragment(Types._Attribute, MetamodelTables.Types._MetaModelElement);
@@ -510,7 +510,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__OclAny = new ExecutorFragment(Types._FileAttribute, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__OclElement = new ExecutorFragment(Types._FileAttribute, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__TargetSectionAttribute = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._TargetSectionAttribute);
-		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__VirtualAttribute = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._VirtualAttribute);
+		private static final /*@NonNull*/ ExecutorFragment _FileAttribute__VirtualTargetSectionAttribute = new ExecutorFragment(Types._FileAttribute, MetamodelTables.Types._VirtualTargetSectionAttribute);
 
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__FileTypeEnum = new ExecutorFragment(Types._FileTypeEnum, MetamodelTables.Types._FileTypeEnum);
 		private static final /*@NonNull*/ ExecutorFragment _FileTypeEnum__OclAny = new ExecutorFragment(Types._FileTypeEnum, OCLstdlibTables.Types._OclAny);
@@ -723,13 +723,13 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorFragment _TargetSectionReference__Reference = new ExecutorFragment(Types._TargetSectionReference, MetamodelTables.Types._Reference);
 		private static final /*@NonNull*/ ExecutorFragment _TargetSectionReference__TargetSectionReference = new ExecutorFragment(Types._TargetSectionReference, MetamodelTables.Types._TargetSectionReference);
 
-		private static final /*@NonNull*/ ExecutorFragment _VirtualAttribute__Attribute = new ExecutorFragment(Types._VirtualAttribute, MetamodelTables.Types._Attribute);
-		private static final /*@NonNull*/ ExecutorFragment _VirtualAttribute__MetaModelElement = new ExecutorFragment(Types._VirtualAttribute, MetamodelTables.Types._MetaModelElement);
-		private static final /*@NonNull*/ ExecutorFragment _VirtualAttribute__NamedElement = new ExecutorFragment(Types._VirtualAttribute, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _VirtualAttribute__OclAny = new ExecutorFragment(Types._VirtualAttribute, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _VirtualAttribute__OclElement = new ExecutorFragment(Types._VirtualAttribute, OCLstdlibTables.Types._OclElement);
-		private static final /*@NonNull*/ ExecutorFragment _VirtualAttribute__TargetSectionAttribute = new ExecutorFragment(Types._VirtualAttribute, MetamodelTables.Types._TargetSectionAttribute);
-		private static final /*@NonNull*/ ExecutorFragment _VirtualAttribute__VirtualAttribute = new ExecutorFragment(Types._VirtualAttribute, MetamodelTables.Types._VirtualAttribute);
+		private static final /*@NonNull*/ ExecutorFragment _VirtualTargetSectionAttribute__Attribute = new ExecutorFragment(Types._VirtualTargetSectionAttribute, MetamodelTables.Types._Attribute);
+		private static final /*@NonNull*/ ExecutorFragment _VirtualTargetSectionAttribute__MetaModelElement = new ExecutorFragment(Types._VirtualTargetSectionAttribute, MetamodelTables.Types._MetaModelElement);
+		private static final /*@NonNull*/ ExecutorFragment _VirtualTargetSectionAttribute__NamedElement = new ExecutorFragment(Types._VirtualTargetSectionAttribute, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _VirtualTargetSectionAttribute__OclAny = new ExecutorFragment(Types._VirtualTargetSectionAttribute, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _VirtualTargetSectionAttribute__OclElement = new ExecutorFragment(Types._VirtualTargetSectionAttribute, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _VirtualTargetSectionAttribute__TargetSectionAttribute = new ExecutorFragment(Types._VirtualTargetSectionAttribute, MetamodelTables.Types._TargetSectionAttribute);
+		private static final /*@NonNull*/ ExecutorFragment _VirtualTargetSectionAttribute__VirtualTargetSectionAttribute = new ExecutorFragment(Types._VirtualTargetSectionAttribute, MetamodelTables.Types._VirtualTargetSectionAttribute);
 
 		static {
 			Init.initEnd();
@@ -829,8 +829,8 @@ public class MetamodelTables
 			Operations.init();
 		}
 
-		public static final /*@NonNull*/ ExecutorProperty _ActualAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, Types._ActualAttribute, 0);
-		public static final /*@NonNull*/ ExecutorProperty _ActualAttribute__AttributeParameter__attribute = new ExecutorPropertyWithImplementation("AttributeParameter", Types._ActualAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE));
+		public static final /*@NonNull*/ ExecutorProperty _ActualTargetSectionAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, Types._ActualTargetSectionAttribute, 0);
+		public static final /*@NonNull*/ ExecutorProperty _ActualTargetSectionAttribute__AttributeParameter__attribute = new ExecutorPropertyWithImplementation("AttributeParameter", Types._ActualTargetSectionAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE));
 
 		public static final /*@NonNull*/ ExecutorProperty _Attribute__owningClass = new EcoreExecutorProperty(MetamodelPackage.Literals.ATTRIBUTE__OWNING_CLASS, Types._Attribute, 0);
 
@@ -915,8 +915,8 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionNonContainmentReference__ExternalReferenceParameter__reference = new ExecutorPropertyWithImplementation("ExternalReferenceParameter", Types._TargetSectionNonContainmentReference, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER__REFERENCE));
 
-		public static final /*@NonNull*/ ExecutorProperty _VirtualAttribute__LibraryEntry__id = new ExecutorPropertyWithImplementation("LibraryEntry", Types._VirtualAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ID));
-		public static final /*@NonNull*/ ExecutorProperty _VirtualAttribute__LibraryEntry__path = new ExecutorPropertyWithImplementation("LibraryEntry", Types._VirtualAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH));
+		public static final /*@NonNull*/ ExecutorProperty _VirtualTargetSectionAttribute__LibraryEntry__id = new ExecutorPropertyWithImplementation("LibraryEntry", Types._VirtualTargetSectionAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ID));
+		public static final /*@NonNull*/ ExecutorProperty _VirtualTargetSectionAttribute__LibraryEntry__path = new ExecutorPropertyWithImplementation("LibraryEntry", Types._VirtualTargetSectionAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH));
 		static {
 			Init.initEnd();
 		}
@@ -936,17 +936,17 @@ public class MetamodelTables
 			Properties.init();
 		}
 
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ActualAttribute =
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ActualTargetSectionAttribute =
 		{
-			Fragments._ActualAttribute__OclAny /* 0 */,
-			Fragments._ActualAttribute__OclElement /* 1 */,
-			Fragments._ActualAttribute__NamedElement /* 2 */,
-			Fragments._ActualAttribute__MetaModelElement /* 3 */,
-			Fragments._ActualAttribute__Attribute /* 4 */,
-			Fragments._ActualAttribute__TargetSectionAttribute /* 5 */,
-			Fragments._ActualAttribute__ActualAttribute /* 6 */
+			Fragments._ActualTargetSectionAttribute__OclAny /* 0 */,
+			Fragments._ActualTargetSectionAttribute__OclElement /* 1 */,
+			Fragments._ActualTargetSectionAttribute__NamedElement /* 2 */,
+			Fragments._ActualTargetSectionAttribute__MetaModelElement /* 3 */,
+			Fragments._ActualTargetSectionAttribute__Attribute /* 4 */,
+			Fragments._ActualTargetSectionAttribute__TargetSectionAttribute /* 5 */,
+			Fragments._ActualTargetSectionAttribute__ActualTargetSectionAttribute /* 6 */
 		};
-		private static final int /*@NonNull*/ [] __ActualAttribute = { 1,1,1,1,1,1,1 };
+		private static final int /*@NonNull*/ [] __ActualTargetSectionAttribute = { 1,1,1,1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _Attribute =
 		{
@@ -1137,7 +1137,7 @@ public class MetamodelTables
 			Fragments._FileAttribute__MetaModelElement /* 3 */,
 			Fragments._FileAttribute__Attribute /* 4 */,
 			Fragments._FileAttribute__TargetSectionAttribute /* 5 */,
-			Fragments._FileAttribute__VirtualAttribute /* 6 */,
+			Fragments._FileAttribute__VirtualTargetSectionAttribute /* 6 */,
 			Fragments._FileAttribute__FileAttribute /* 7 */
 		};
 		private static final int /*@NonNull*/ [] __FileAttribute = { 1,1,1,1,1,1,1,1 };
@@ -1469,23 +1469,23 @@ public class MetamodelTables
 		};
 		private static final int /*@NonNull*/ [] __TargetSectionReference = { 1,1,1,1,1,1 };
 
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _VirtualAttribute =
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _VirtualTargetSectionAttribute =
 		{
-			Fragments._VirtualAttribute__OclAny /* 0 */,
-			Fragments._VirtualAttribute__OclElement /* 1 */,
-			Fragments._VirtualAttribute__NamedElement /* 2 */,
-			Fragments._VirtualAttribute__MetaModelElement /* 3 */,
-			Fragments._VirtualAttribute__Attribute /* 4 */,
-			Fragments._VirtualAttribute__TargetSectionAttribute /* 5 */,
-			Fragments._VirtualAttribute__VirtualAttribute /* 6 */
+			Fragments._VirtualTargetSectionAttribute__OclAny /* 0 */,
+			Fragments._VirtualTargetSectionAttribute__OclElement /* 1 */,
+			Fragments._VirtualTargetSectionAttribute__NamedElement /* 2 */,
+			Fragments._VirtualTargetSectionAttribute__MetaModelElement /* 3 */,
+			Fragments._VirtualTargetSectionAttribute__Attribute /* 4 */,
+			Fragments._VirtualTargetSectionAttribute__TargetSectionAttribute /* 5 */,
+			Fragments._VirtualTargetSectionAttribute__VirtualTargetSectionAttribute /* 6 */
 		};
-		private static final int /*@NonNull*/ [] __VirtualAttribute = { 1,1,1,1,1,1,1 };
+		private static final int /*@NonNull*/ [] __VirtualTargetSectionAttribute = { 1,1,1,1,1,1,1 };
 
 		/**
 		 *	Install the fragment descriptors in the class descriptors.
 		 */
 		static {
-			Types._ActualAttribute.initFragments(_ActualAttribute, __ActualAttribute);
+			Types._ActualTargetSectionAttribute.initFragments(_ActualTargetSectionAttribute, __ActualTargetSectionAttribute);
 			Types._Attribute.initFragments(_Attribute, __Attribute);
 			Types._AttributeParameter.initFragments(_AttributeParameter, __AttributeParameter);
 			Types._AttributeValueConstraint.initFragments(_AttributeValueConstraint, __AttributeValueConstraint);
@@ -1532,7 +1532,7 @@ public class MetamodelTables
 			Types._TargetSectionContainmentReference.initFragments(_TargetSectionContainmentReference, __TargetSectionContainmentReference);
 			Types._TargetSectionNonContainmentReference.initFragments(_TargetSectionNonContainmentReference, __TargetSectionNonContainmentReference);
 			Types._TargetSectionReference.initFragments(_TargetSectionReference, __TargetSectionReference);
-			Types._VirtualAttribute.initFragments(_VirtualAttribute, __VirtualAttribute);
+			Types._VirtualTargetSectionAttribute.initFragments(_VirtualTargetSectionAttribute, __VirtualTargetSectionAttribute);
 
 			Init.initEnd();
 		}
@@ -1552,15 +1552,15 @@ public class MetamodelTables
 			TypeFragments.init();
 		}
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualAttribute__ActualAttribute = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualAttribute__Attribute = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualAttribute__MetaModelElement = {
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualTargetSectionAttribute__ActualTargetSectionAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualTargetSectionAttribute__Attribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualTargetSectionAttribute__MetaModelElement = {
 			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
 			MetamodelTables.Operations._MetaModelElement__getContainingSectionModel /* getContainingSectionModel() */,
 			MetamodelTables.Operations._MetaModelElement__isLibraryEntry /* isLibraryEntry() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualAttribute__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualAttribute__OclAny = {
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualTargetSectionAttribute__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualTargetSectionAttribute__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -1577,7 +1577,7 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualAttribute__OclElement = {
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualTargetSectionAttribute__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
@@ -1586,7 +1586,7 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualAttribute__TargetSectionAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ActualTargetSectionAttribute__TargetSectionAttribute = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Attribute__Attribute = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Attribute__MetaModelElement = {
@@ -2173,7 +2173,7 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FileAttribute__TargetSectionAttribute = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FileAttribute__VirtualAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FileAttribute__VirtualTargetSectionAttribute = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FileTypeEnum__FileTypeEnum = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FileTypeEnum__OclAny = {
@@ -3220,15 +3220,15 @@ public class MetamodelTables
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _TargetSectionReference__Reference = {};
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualAttribute__VirtualAttribute = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualAttribute__Attribute = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualAttribute__MetaModelElement = {
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualTargetSectionAttribute__VirtualTargetSectionAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualTargetSectionAttribute__Attribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualTargetSectionAttribute__MetaModelElement = {
 			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
 			MetamodelTables.Operations._MetaModelElement__getContainingSectionModel /* getContainingSectionModel() */,
 			MetamodelTables.Operations._MetaModelElement__isLibraryEntry /* isLibraryEntry() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualAttribute__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualAttribute__OclAny = {
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualTargetSectionAttribute__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualTargetSectionAttribute__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -3245,7 +3245,7 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualAttribute__OclElement = {
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualTargetSectionAttribute__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
@@ -3254,19 +3254,19 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualAttribute__TargetSectionAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VirtualTargetSectionAttribute__TargetSectionAttribute = {};
 
 		/*
 		 *	Install the operation descriptors in the fragment descriptors.
 		 */
 		static {
-			Fragments._ActualAttribute__ActualAttribute.initOperations(_ActualAttribute__ActualAttribute);
-			Fragments._ActualAttribute__Attribute.initOperations(_ActualAttribute__Attribute);
-			Fragments._ActualAttribute__MetaModelElement.initOperations(_ActualAttribute__MetaModelElement);
-			Fragments._ActualAttribute__NamedElement.initOperations(_ActualAttribute__NamedElement);
-			Fragments._ActualAttribute__OclAny.initOperations(_ActualAttribute__OclAny);
-			Fragments._ActualAttribute__OclElement.initOperations(_ActualAttribute__OclElement);
-			Fragments._ActualAttribute__TargetSectionAttribute.initOperations(_ActualAttribute__TargetSectionAttribute);
+			Fragments._ActualTargetSectionAttribute__ActualTargetSectionAttribute.initOperations(_ActualTargetSectionAttribute__ActualTargetSectionAttribute);
+			Fragments._ActualTargetSectionAttribute__Attribute.initOperations(_ActualTargetSectionAttribute__Attribute);
+			Fragments._ActualTargetSectionAttribute__MetaModelElement.initOperations(_ActualTargetSectionAttribute__MetaModelElement);
+			Fragments._ActualTargetSectionAttribute__NamedElement.initOperations(_ActualTargetSectionAttribute__NamedElement);
+			Fragments._ActualTargetSectionAttribute__OclAny.initOperations(_ActualTargetSectionAttribute__OclAny);
+			Fragments._ActualTargetSectionAttribute__OclElement.initOperations(_ActualTargetSectionAttribute__OclElement);
+			Fragments._ActualTargetSectionAttribute__TargetSectionAttribute.initOperations(_ActualTargetSectionAttribute__TargetSectionAttribute);
 
 			Fragments._Attribute__Attribute.initOperations(_Attribute__Attribute);
 			Fragments._Attribute__MetaModelElement.initOperations(_Attribute__MetaModelElement);
@@ -3392,7 +3392,7 @@ public class MetamodelTables
 			Fragments._FileAttribute__OclAny.initOperations(_FileAttribute__OclAny);
 			Fragments._FileAttribute__OclElement.initOperations(_FileAttribute__OclElement);
 			Fragments._FileAttribute__TargetSectionAttribute.initOperations(_FileAttribute__TargetSectionAttribute);
-			Fragments._FileAttribute__VirtualAttribute.initOperations(_FileAttribute__VirtualAttribute);
+			Fragments._FileAttribute__VirtualTargetSectionAttribute.initOperations(_FileAttribute__VirtualTargetSectionAttribute);
 
 			Fragments._FileTypeEnum__FileTypeEnum.initOperations(_FileTypeEnum__FileTypeEnum);
 			Fragments._FileTypeEnum__OclAny.initOperations(_FileTypeEnum__OclAny);
@@ -3605,13 +3605,13 @@ public class MetamodelTables
 			Fragments._TargetSectionReference__Reference.initOperations(_TargetSectionReference__Reference);
 			Fragments._TargetSectionReference__TargetSectionReference.initOperations(_TargetSectionReference__TargetSectionReference);
 
-			Fragments._VirtualAttribute__Attribute.initOperations(_VirtualAttribute__Attribute);
-			Fragments._VirtualAttribute__MetaModelElement.initOperations(_VirtualAttribute__MetaModelElement);
-			Fragments._VirtualAttribute__NamedElement.initOperations(_VirtualAttribute__NamedElement);
-			Fragments._VirtualAttribute__OclAny.initOperations(_VirtualAttribute__OclAny);
-			Fragments._VirtualAttribute__OclElement.initOperations(_VirtualAttribute__OclElement);
-			Fragments._VirtualAttribute__TargetSectionAttribute.initOperations(_VirtualAttribute__TargetSectionAttribute);
-			Fragments._VirtualAttribute__VirtualAttribute.initOperations(_VirtualAttribute__VirtualAttribute);
+			Fragments._VirtualTargetSectionAttribute__Attribute.initOperations(_VirtualTargetSectionAttribute__Attribute);
+			Fragments._VirtualTargetSectionAttribute__MetaModelElement.initOperations(_VirtualTargetSectionAttribute__MetaModelElement);
+			Fragments._VirtualTargetSectionAttribute__NamedElement.initOperations(_VirtualTargetSectionAttribute__NamedElement);
+			Fragments._VirtualTargetSectionAttribute__OclAny.initOperations(_VirtualTargetSectionAttribute__OclAny);
+			Fragments._VirtualTargetSectionAttribute__OclElement.initOperations(_VirtualTargetSectionAttribute__OclElement);
+			Fragments._VirtualTargetSectionAttribute__TargetSectionAttribute.initOperations(_VirtualTargetSectionAttribute__TargetSectionAttribute);
+			Fragments._VirtualTargetSectionAttribute__VirtualTargetSectionAttribute.initOperations(_VirtualTargetSectionAttribute__VirtualTargetSectionAttribute);
 
 			Init.initEnd();
 		}
@@ -3631,12 +3631,12 @@ public class MetamodelTables
 			FragmentOperations.init();
 		}
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ActualAttribute = {
-			MetamodelTables.Properties._ActualAttribute__attribute,
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ActualTargetSectionAttribute = {
+			MetamodelTables.Properties._ActualTargetSectionAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._TargetSectionAttribute__unique,
 			MetamodelTables.Properties._TargetSectionAttribute__value,
-			MetamodelTables.Properties._ActualAttribute__AttributeParameter__attribute
+			MetamodelTables.Properties._ActualTargetSectionAttribute__AttributeParameter__attribute
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Attribute = {
@@ -3736,8 +3736,8 @@ public class MetamodelTables
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._TargetSectionAttribute__unique,
 			MetamodelTables.Properties._TargetSectionAttribute__value,
-			MetamodelTables.Properties._VirtualAttribute__LibraryEntry__id,
-			MetamodelTables.Properties._VirtualAttribute__LibraryEntry__path,
+			MetamodelTables.Properties._VirtualTargetSectionAttribute__LibraryEntry__id,
+			MetamodelTables.Properties._VirtualTargetSectionAttribute__LibraryEntry__path,
 			MetamodelTables.Properties._FileAttribute__TargetSection__file
 		};
 
@@ -3931,19 +3931,19 @@ public class MetamodelTables
 			MetamodelTables.Properties._Reference__owningClass
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _VirtualAttribute = {
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _VirtualTargetSectionAttribute = {
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._TargetSectionAttribute__unique,
 			MetamodelTables.Properties._TargetSectionAttribute__value,
-			MetamodelTables.Properties._VirtualAttribute__LibraryEntry__id,
-			MetamodelTables.Properties._VirtualAttribute__LibraryEntry__path
+			MetamodelTables.Properties._VirtualTargetSectionAttribute__LibraryEntry__id,
+			MetamodelTables.Properties._VirtualTargetSectionAttribute__LibraryEntry__path
 		};
 
 		/**
 		 *	Install the property descriptors in the fragment descriptors.
 		 */
 		static {
-			Fragments._ActualAttribute__ActualAttribute.initProperties(_ActualAttribute);
+			Fragments._ActualTargetSectionAttribute__ActualTargetSectionAttribute.initProperties(_ActualTargetSectionAttribute);
 			Fragments._Attribute__Attribute.initProperties(_Attribute);
 			Fragments._AttributeParameter__AttributeParameter.initProperties(_AttributeParameter);
 			Fragments._AttributeValueConstraint__AttributeValueConstraint.initProperties(_AttributeValueConstraint);
@@ -3990,7 +3990,7 @@ public class MetamodelTables
 			Fragments._TargetSectionContainmentReference__TargetSectionContainmentReference.initProperties(_TargetSectionContainmentReference);
 			Fragments._TargetSectionNonContainmentReference__TargetSectionNonContainmentReference.initProperties(_TargetSectionNonContainmentReference);
 			Fragments._TargetSectionReference__TargetSectionReference.initProperties(_TargetSectionReference);
-			Fragments._VirtualAttribute__VirtualAttribute.initProperties(_VirtualAttribute);
+			Fragments._VirtualTargetSectionAttribute__VirtualTargetSectionAttribute.initProperties(_VirtualTargetSectionAttribute);
 
 			Init.initEnd();
 		}

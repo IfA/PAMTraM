@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getMetaModelSectionReference()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='valuesMatchReferenceType'"
+ * @model
  * @generated
  */
 public interface MetaModelSectionReference extends SourceSectionReference {

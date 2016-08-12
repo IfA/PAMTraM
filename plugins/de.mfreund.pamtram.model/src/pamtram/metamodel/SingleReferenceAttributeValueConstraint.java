@@ -23,7 +23,6 @@ import pamtram.mapping.ModifiableHint;
  *
  * @see pamtram.metamodel.MetamodelPackage#getSingleReferenceAttributeValueConstraint()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel'"
  * @generated
  */
 public interface SingleReferenceAttributeValueConstraint extends AttributeValueConstraint, ExpressionHint, ModifiableHint {

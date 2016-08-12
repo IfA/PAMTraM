@@ -164,7 +164,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 			case MetamodelPackage.FILE_ATTRIBUTE: {
 				FileAttribute fileAttribute = (FileAttribute)theEObject;
 				T result = caseFileAttribute(fileAttribute);
-				if (result == null) result = caseVirtualAttribute(fileAttribute);
+				if (result == null) result = caseVirtualTargetSectionAttribute(fileAttribute);
 				if (result == null) result = caseTargetSectionAttribute(fileAttribute);
 				if (result == null) result = caseAttribute(fileAttribute);
 				if (result == null) result = caseMetaModelElement(fileAttribute);
@@ -341,22 +341,22 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: {
-				ActualTargetSectionAttribute actualAttribute = (ActualTargetSectionAttribute)theEObject;
-				T result = caseActualAttribute(actualAttribute);
-				if (result == null) result = caseTargetSectionAttribute(actualAttribute);
-				if (result == null) result = caseAttribute(actualAttribute);
-				if (result == null) result = caseMetaModelElement(actualAttribute);
-				if (result == null) result = caseNamedElement(actualAttribute);
+				ActualTargetSectionAttribute actualTargetSectionAttribute = (ActualTargetSectionAttribute)theEObject;
+				T result = caseActualTargetSectionAttribute(actualTargetSectionAttribute);
+				if (result == null) result = caseTargetSectionAttribute(actualTargetSectionAttribute);
+				if (result == null) result = caseAttribute(actualTargetSectionAttribute);
+				if (result == null) result = caseMetaModelElement(actualTargetSectionAttribute);
+				if (result == null) result = caseNamedElement(actualTargetSectionAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: {
-				VirtualTargetSectionAttribute virtualAttribute = (VirtualTargetSectionAttribute)theEObject;
-				T result = caseVirtualAttribute(virtualAttribute);
-				if (result == null) result = caseTargetSectionAttribute(virtualAttribute);
-				if (result == null) result = caseAttribute(virtualAttribute);
-				if (result == null) result = caseMetaModelElement(virtualAttribute);
-				if (result == null) result = caseNamedElement(virtualAttribute);
+				VirtualTargetSectionAttribute virtualTargetSectionAttribute = (VirtualTargetSectionAttribute)theEObject;
+				T result = caseVirtualTargetSectionAttribute(virtualTargetSectionAttribute);
+				if (result == null) result = caseTargetSectionAttribute(virtualTargetSectionAttribute);
+				if (result == null) result = caseAttribute(virtualTargetSectionAttribute);
+				if (result == null) result = caseMetaModelElement(virtualTargetSectionAttribute);
+				if (result == null) result = caseNamedElement(virtualTargetSectionAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -920,32 +920,32 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Actual Attribute</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Actual Target Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Actual Attribute</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Actual Target Section Attribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseActualAttribute(ActualTargetSectionAttribute object) {
+	public T caseActualTargetSectionAttribute(ActualTargetSectionAttribute object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Virtual Attribute</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Virtual Target Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Virtual Attribute</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Virtual Target Section Attribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVirtualAttribute(VirtualTargetSectionAttribute object) {
+	public T caseVirtualTargetSectionAttribute(VirtualTargetSectionAttribute object) {
 		return null;
 	}
 

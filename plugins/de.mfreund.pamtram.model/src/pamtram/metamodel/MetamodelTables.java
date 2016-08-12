@@ -70,6 +70,7 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Orphanage", "orphanage", null);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.et.tu-dresden.de/ifa/agtele/genlib", null, de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage.eINSTANCE);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ActualAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ActualAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ActualTargetSectionAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ActualTargetSectionAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeCondition = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("AttributeCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeMapping = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMapping", 0);
@@ -132,7 +133,7 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_4 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("4");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_TMPLid__1 = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.ids.IdManager.getTemplateParameterId(0));
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_TMPLid__2 = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.ids.IdManager.getTemplateParameterId(1));
-    public static final /*@NonInvalid*/ java.lang.String STR_ActualTargetSectionAttribute_c_c_attributeMatchesParentEClass = "ActualTargetSectionAttribute::attributeMatchesParentEClass";
+    public static final /*@NonInvalid*/ java.lang.String STR_ActualAttribute_c_c_attributeMatchesParentEClass = "ActualAttribute::attributeMatchesParentEClass";
     public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_cardinalityIsValid = "Class::cardinalityIsValid";
     public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_containerIsValid = "Class::containerIsValid";
     public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_eClassMatchesParentEReference = "Class::eClassMatchesParentEReference";
@@ -860,9 +861,9 @@ public class MetamodelTables
 			Operations.init();
 		}
 
+		public static final /*@NonNull*/ ExecutorProperty _ActualAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, Types._ActualAttribute, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _ActualTargetSectionAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, Types._ActualTargetSectionAttribute, 0);
-		public static final /*@NonNull*/ ExecutorProperty _ActualTargetSectionAttribute__AttributeParameter__attribute = new ExecutorPropertyWithImplementation("AttributeParameter", Types._ActualTargetSectionAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE));
+		public static final /*@NonNull*/ ExecutorProperty _ActualTargetSectionAttribute__AttributeParameter__attribute = new ExecutorPropertyWithImplementation("AttributeParameter", Types._ActualTargetSectionAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE));
 
 		public static final /*@NonNull*/ ExecutorProperty _Attribute__owningClass = new EcoreExecutorProperty(MetamodelPackage.Literals.ATTRIBUTE__OWNING_CLASS, Types._Attribute, 0);
 
@@ -3781,11 +3782,12 @@ public class MetamodelTables
 		}
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ActualAttribute = {
+			MetamodelTables.Properties._ActualAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ActualTargetSectionAttribute = {
-			MetamodelTables.Properties._ActualTargetSectionAttribute__attribute,
+			MetamodelTables.Properties._ActualAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._TargetSectionAttribute__unique,
 			MetamodelTables.Properties._TargetSectionAttribute__value,

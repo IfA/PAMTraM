@@ -44,12 +44,12 @@ extends TargetSectionAttributeItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAttributePropertyDescriptor(object);
+			this.addAttributePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -64,7 +64,7 @@ extends TargetSectionAttributeItemProvider {
 						this.getResourceLocator(),
 						this.getString("_UI_ActualAttribute_attribute_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
-				MetamodelPackage.Literals.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE,
+				MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
 						true,
 						false,
 						true,
@@ -107,7 +107,7 @@ extends TargetSectionAttributeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -130,7 +130,7 @@ extends TargetSectionAttributeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

@@ -782,6 +782,12 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="attributeMatchesParentEClass"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="attributeMatchesParentEClass" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eAttribute \'' + self.attribute.name + '\' is not allowed by the containing Class!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.isLibraryEntry() or self.attribute.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let parentEClass = self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass in&#xD;&#xA;&#x9;&#x9;&#x9;if parentEClass.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;parentEClass.oclAsType(ecore::EClass).eAllAttributes->includes(self.attribute)&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+      </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//metamodel/Section">
           <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/S"/>
@@ -814,6 +820,8 @@
           <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/A"/>
         </eBounds>
       </eTypeParameters>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Attribute">
         <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/S"/>
         <eTypeArguments eTypeParameter="#//metamodel/ActualAttribute/C"/>
@@ -892,14 +900,6 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ActualTargetSectionAttribute">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="attributeMatchesParentEClass"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="attributeMatchesParentEClass" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eAttribute \'' + self.attribute.name + '\' is not allowed by the containing Class!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.isLibraryEntry() or self.attribute.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let parentEClass = self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass in&#xD;&#xA;&#x9;&#x9;&#x9;if parentEClass.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;parentEClass.oclAsType(ecore::EClass).eAllAttributes->includes(self.attribute)&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
       <eGenericSuperTypes eClassifier="#//metamodel/TargetSectionAttribute"/>
       <eGenericSuperTypes eClassifier="#//metamodel/ActualAttribute">
         <eTypeArguments eClassifier="#//metamodel/TargetSection"/>

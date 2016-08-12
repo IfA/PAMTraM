@@ -28,7 +28,7 @@ import pamtram.metamodel.MetamodelPackage;
  * @generated
  */
 public class ActualSourceSectionAttributeItemProvider
-extends AttributeItemProvider {
+extends SourceSectionAttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -15,12 +16,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
+
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.provider.NamedElementItemProvider;
@@ -51,13 +52,13 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourcePropertyDescriptor(object);
-			addModifierPropertyDescriptor(object);
+			this.addSourcePropertyDescriptor(object);
+			this.addModifierPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -66,61 +67,61 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GlobalVariable_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalVariable_source_feature", "_UI_GlobalVariable_type"),
-				 MappingPackage.Literals.GLOBAL_ATTRIBUTE__SOURCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+		this.itemPropertyDescriptors.add
+		(new ItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_GlobalVariable_source_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_GlobalVariable_source_feature", "_UI_GlobalVariable_type"),
+						MappingPackage.Literals.GLOBAL_ATTRIBUTE__SOURCE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						
-						List<ActualSourceSectionAttribute> sources = new LinkedList<ActualSourceSectionAttribute>();
-						
-						Mapping mapping= (Mapping) ((EObject) object).eContainer();
-						
-						if(mapping.getSourceMMSection() == null){
-							return super.getChoiceOfValues(object);
-						} else {
-							List<SourceSectionClass> classes=new LinkedList<SourceSectionClass>();
-							Set<SourceSectionClass> classesScanned=new HashSet<SourceSectionClass>();
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
 
-							classes.add(mapping.getSourceMMSection());
-							
-							while(classes.size() > 0){
-								SourceSectionClass c=classes.remove(0);
-								//add attributes
-								if(c.getAttributes() != null){
-									sources.addAll(c.getAttributes());
-								}
-								
-								//search children
-								for(SourceSectionReference ref : c.getReferences()){
-									for(SourceSectionClass rClass : ref.getValuesGeneric()){
-										if(!classesScanned.contains(rClass)){
-											classes.add(rClass);	
-										}
-									}
+				List<SourceSectionAttribute> sources = new LinkedList<SourceSectionAttribute>();
+
+				Mapping mapping= (Mapping) ((EObject) object).eContainer();
+
+				if(mapping.getSourceMMSection() == null){
+					return super.getChoiceOfValues(object);
+				} else {
+					List<SourceSectionClass> classes=new LinkedList<>();
+					Set<SourceSectionClass> classesScanned=new HashSet<>();
+
+					classes.add(mapping.getSourceMMSection());
+
+					while(classes.size() > 0){
+						SourceSectionClass c=classes.remove(0);
+						//add attributes
+						if(c.getAttributes() != null){
+							sources.addAll(c.getAttributes());
+						}
+
+						//search children
+						for(SourceSectionReference ref : c.getReferences()){
+							for(SourceSectionClass rClass : ref.getValuesGeneric()){
+								if(!classesScanned.contains(rClass)){
+									classes.add(rClass);
 								}
 							}
-							
-							
-							return sources;
 						}
-						
-						
 					}
-				
-				
-			});
+
+
+					return sources;
+				}
+
+
+			}
+
+
+		});
 	}
 
 	/**
@@ -130,19 +131,19 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 * @generated
 	 */
 	protected void addModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GlobalAttribute_modifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttribute_modifier_feature", "_UI_GlobalAttribute_type"),
-				 MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_GlobalAttribute_modifier_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttribute_modifier_feature", "_UI_GlobalAttribute_type"),
+						MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -153,7 +154,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GlobalAttribute"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/GlobalAttribute"));
 	}
 
 	/**
@@ -164,9 +165,9 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
-	
+
 
 	/**
 	 * This returns the label styled text for the adapted class.
@@ -177,11 +178,11 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((GlobalAttribute)object).getName();
-    	StyledString styledLabel = new StyledString();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -195,7 +196,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
@@ -221,5 +222,5 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
 	}
-	
+
 }

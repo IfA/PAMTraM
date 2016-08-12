@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -37,7 +37,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	 * @generated
 	 * @ordered
 	 */
-	protected ActualAttribute attribute;
+	protected ActualTargetSectionAttribute attribute;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualAttribute getAttribute() {
+	public ActualTargetSectionAttribute getAttribute() {
 		return attribute;
 	}
 
@@ -83,8 +83,8 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAttribute(ActualAttribute newAttribute, NotificationChain msgs) {
-		ActualAttribute oldAttribute = attribute;
+	public NotificationChain basicSetAttribute(ActualTargetSectionAttribute newAttribute, NotificationChain msgs) {
+		ActualTargetSectionAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, oldAttribute, newAttribute);
@@ -98,7 +98,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAttribute(ActualAttribute newAttribute) {
+	public void setAttribute(ActualTargetSectionAttribute newAttribute) {
 		if (newAttribute != attribute) {
 			NotificationChain msgs = null;
 			if (attribute != null)
@@ -149,7 +149,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
-				setAttribute((ActualAttribute)newValue);
+				setAttribute((ActualTargetSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -164,7 +164,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
-				setAttribute((ActualAttribute)null);
+				setAttribute((ActualTargetSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);

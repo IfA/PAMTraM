@@ -1654,24 +1654,24 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.impl.ActualTargetSectionAttributeImpl <em>Actual Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.ActualAttributeImpl
+	 * @see pamtram.metamodel.impl.ActualTargetSectionAttributeImpl
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getActualAttribute()
 	 * @generated
 	 */
-	int ACTUAL_ATTRIBUTE = 25;
+	int ACTUAL_TARGET_SECTION_ATTRIBUTE = 25;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.impl.VirtualTargetSectionAttributeImpl <em>Virtual Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.VirtualAttributeImpl
+	 * @see pamtram.metamodel.impl.VirtualTargetSectionAttributeImpl
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getVirtualAttribute()
 	 * @generated
 	 */
-	int VIRTUAL_ATTRIBUTE = 26;
+	int VIRTUAL_TARGET_SECTION_ATTRIBUTE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5730,42 +5730,42 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getTargetSectionAttribute_Value();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.ActualAttribute <em>Actual Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.ActualTargetSectionAttribute <em>Actual Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Actual Attribute</em>'.
-	 * @see pamtram.metamodel.ActualAttribute
+	 * @see pamtram.metamodel.ActualTargetSectionAttribute
 	 * @generated
 	 */
 	EClass getActualAttribute();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.metamodel.ActualAttribute#getAttribute <em>Attribute</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.ActualTargetSectionAttribute#getAttribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Attribute</em>'.
-	 * @see pamtram.metamodel.ActualAttribute#getAttribute()
+	 * @see pamtram.metamodel.ActualTargetSectionAttribute#getAttribute()
 	 * @see #getActualAttribute()
 	 * @generated
 	 */
 	EReference getActualAttribute_Attribute();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.ActualAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Attribute Matches Parent EClass</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.metamodel.ActualTargetSectionAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Attribute Matches Parent EClass</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Attribute Matches Parent EClass</em>' operation.
-	 * @see pamtram.metamodel.ActualAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.metamodel.ActualTargetSectionAttribute#attributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map_7();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.VirtualAttribute <em>Virtual Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.VirtualTargetSectionAttribute <em>Virtual Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Virtual Attribute</em>'.
-	 * @see pamtram.metamodel.VirtualAttribute
+	 * @see pamtram.metamodel.VirtualTargetSectionAttribute
 	 * @generated
 	 */
 	EClass getVirtualAttribute();
@@ -6900,10 +6900,10 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute TARGET_SECTION_ATTRIBUTE__VALUE = eINSTANCE.getTargetSectionAttribute_Value();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.ActualTargetSectionAttributeImpl <em>Actual Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.ActualAttributeImpl
+		 * @see pamtram.metamodel.impl.ActualTargetSectionAttributeImpl
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getActualAttribute()
 		 * @generated
 		 */
@@ -6926,10 +6926,10 @@ public interface MetamodelPackage extends EPackage {
 		EOperation ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_7 = eINSTANCE.getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map_7();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.VirtualTargetSectionAttributeImpl <em>Virtual Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.VirtualAttributeImpl
+		 * @see pamtram.metamodel.impl.VirtualTargetSectionAttributeImpl
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getVirtualAttribute()
 		 * @generated
 		 */

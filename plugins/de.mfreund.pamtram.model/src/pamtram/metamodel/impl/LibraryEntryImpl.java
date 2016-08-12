@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,7 +85,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected VirtualAttribute path;
+	protected VirtualTargetSectionAttribute path;
 
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' containment reference.
@@ -95,7 +95,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected VirtualAttribute id;
+	protected VirtualTargetSectionAttribute id;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,7 +158,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public VirtualAttribute getPath() {
+	public VirtualTargetSectionAttribute getPath() {
 		return path;
 	}
 
@@ -167,8 +167,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPath(VirtualAttribute newPath, NotificationChain msgs) {
-		VirtualAttribute oldPath = path;
+	public NotificationChain basicSetPath(VirtualTargetSectionAttribute newPath, NotificationChain msgs) {
+		VirtualTargetSectionAttribute oldPath = path;
 		path = newPath;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__PATH, oldPath, newPath);
@@ -182,7 +182,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPath(VirtualAttribute newPath) {
+	public void setPath(VirtualTargetSectionAttribute newPath) {
 		if (newPath != path) {
 			NotificationChain msgs = null;
 			if (path != null)
@@ -201,7 +201,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VirtualAttribute getId() {
+	public VirtualTargetSectionAttribute getId() {
 		return id;
 	}
 
@@ -210,8 +210,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetId(VirtualAttribute newId, NotificationChain msgs) {
-		VirtualAttribute oldId = id;
+	public NotificationChain basicSetId(VirtualTargetSectionAttribute newId, NotificationChain msgs) {
+		VirtualTargetSectionAttribute oldId = id;
 		id = newId;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__ID, oldId, newId);
@@ -225,7 +225,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(VirtualAttribute newId) {
+	public void setId(VirtualTargetSectionAttribute newId) {
 		if (newId != id) {
 			NotificationChain msgs = null;
 			if (id != null)
@@ -340,10 +340,10 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)newValue);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
-				setPath((VirtualAttribute)newValue);
+				setPath((VirtualTargetSectionAttribute)newValue);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
-				setId((VirtualAttribute)newValue);
+				setId((VirtualTargetSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -367,10 +367,10 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)null);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
-				setPath((VirtualAttribute)null);
+				setPath((VirtualTargetSectionAttribute)null);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
-				setId((VirtualAttribute)null);
+				setId((VirtualTargetSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);

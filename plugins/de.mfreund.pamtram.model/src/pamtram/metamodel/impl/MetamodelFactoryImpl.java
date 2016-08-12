@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceElement;
@@ -40,7 +40,7 @@ import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,8 +100,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
 			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: return createSourceSectionAttribute();
-			case MetamodelPackage.ACTUAL_ATTRIBUTE: return createActualAttribute();
-			case MetamodelPackage.VIRTUAL_ATTRIBUTE: return createVirtualAttribute();
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualAttribute();
+			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualAttribute();
 			case MetamodelPackage.EQUALITY_MATCHER: return createEqualityMatcher();
 			case MetamodelPackage.SUBSTRING_MATCHER: return createSubstringMatcher();
 			case MetamodelPackage.BEGINNING_MATCHER: return createBeginningMatcher();
@@ -302,8 +302,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualAttribute createActualAttribute() {
-		ActualAttributeImpl actualAttribute = new ActualAttributeImpl();
+	public ActualTargetSectionAttribute createActualAttribute() {
+		ActualTargetSectionAttributeImpl actualAttribute = new ActualTargetSectionAttributeImpl();
 		return actualAttribute;
 	}
 
@@ -312,8 +312,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VirtualAttribute createVirtualAttribute() {
-		VirtualAttributeImpl virtualAttribute = new VirtualAttributeImpl();
+	public VirtualTargetSectionAttribute createVirtualAttribute() {
+		VirtualTargetSectionAttributeImpl virtualAttribute = new VirtualTargetSectionAttributeImpl();
 		return virtualAttribute;
 	}
 

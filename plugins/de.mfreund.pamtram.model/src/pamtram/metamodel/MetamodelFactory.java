@@ -154,7 +154,7 @@ public interface MetamodelFactory extends EFactory {
 	 * @return a new object of class '<em>Actual Attribute</em>'.
 	 * @generated
 	 */
-	ActualAttribute createActualAttribute();
+	ActualTargetSectionAttribute createActualAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Virtual Attribute</em>'.
@@ -163,7 +163,7 @@ public interface MetamodelFactory extends EFactory {
 	 * @return a new object of class '<em>Virtual Attribute</em>'.
 	 * @generated
 	 */
-	VirtualAttribute createVirtualAttribute();
+	VirtualTargetSectionAttribute createVirtualAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Equality Matcher</em>'.

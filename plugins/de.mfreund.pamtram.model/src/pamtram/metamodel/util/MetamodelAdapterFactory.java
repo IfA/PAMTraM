@@ -13,7 +13,7 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraint;
@@ -57,7 +57,7 @@ import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -216,11 +216,11 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createTargetSectionAttributeAdapter();
 			}
 			@Override
-			public Adapter caseActualAttribute(ActualAttribute object) {
+			public Adapter caseActualAttribute(ActualTargetSectionAttribute object) {
 				return createActualAttributeAdapter();
 			}
 			@Override
-			public Adapter caseVirtualAttribute(VirtualAttribute object) {
+			public Adapter caseVirtualAttribute(VirtualTargetSectionAttribute object) {
 				return createVirtualAttributeAdapter();
 			}
 			@Override
@@ -694,13 +694,13 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ActualAttribute <em>Actual Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ActualTargetSectionAttribute <em>Actual Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.ActualAttribute
+	 * @see pamtram.metamodel.ActualTargetSectionAttribute
 	 * @generated
 	 */
 	public Adapter createActualAttributeAdapter() {
@@ -708,13 +708,13 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.VirtualAttribute <em>Virtual Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.VirtualTargetSectionAttribute <em>Virtual Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.VirtualAttribute
+	 * @see pamtram.metamodel.VirtualTargetSectionAttribute
 	 * @generated
 	 */
 	public Adapter createVirtualAttributeAdapter() {

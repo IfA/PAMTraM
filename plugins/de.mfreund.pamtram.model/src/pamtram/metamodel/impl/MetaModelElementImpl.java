@@ -22,7 +22,7 @@ import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,7 +84,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 				}
 			}
 			return null;
-		} else  if(element instanceof VirtualAttribute && element.eContainer() instanceof LibraryEntry) {
+		} else  if(element instanceof VirtualTargetSectionAttribute && element.eContainer() instanceof LibraryEntry) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer();
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic

@@ -15,14 +15,14 @@ import org.eclipse.emf.ecore.EAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.ActualAttribute#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.metamodel.ActualTargetSectionAttribute#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getActualAttribute()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
-public interface ActualAttribute extends TargetSectionAttribute {
+public interface ActualTargetSectionAttribute extends TargetSectionAttribute {
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -41,7 +41,7 @@ public interface ActualAttribute extends TargetSectionAttribute {
 	EAttribute getAttribute();
 
 	/**
-	 * Sets the value of the '{@link pamtram.metamodel.ActualAttribute#getAttribute <em>Attribute</em>}' reference.
+	 * Sets the value of the '{@link pamtram.metamodel.ActualTargetSectionAttribute#getAttribute <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Attribute</em>' reference.

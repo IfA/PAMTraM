@@ -13,5 +13,5 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface VirtualAttribute extends TargetSectionAttribute {
+public interface VirtualTargetSectionAttribute extends TargetSectionAttribute {
 } // VirtualAttribute

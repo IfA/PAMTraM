@@ -12,7 +12,7 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraint;
@@ -56,7 +56,7 @@ import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -340,8 +340,8 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.ACTUAL_ATTRIBUTE: {
-				ActualAttribute actualAttribute = (ActualAttribute)theEObject;
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: {
+				ActualTargetSectionAttribute actualAttribute = (ActualTargetSectionAttribute)theEObject;
 				T result = caseActualAttribute(actualAttribute);
 				if (result == null) result = caseTargetSectionAttribute(actualAttribute);
 				if (result == null) result = caseAttribute(actualAttribute);
@@ -350,8 +350,8 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.VIRTUAL_ATTRIBUTE: {
-				VirtualAttribute virtualAttribute = (VirtualAttribute)theEObject;
+			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: {
+				VirtualTargetSectionAttribute virtualAttribute = (VirtualTargetSectionAttribute)theEObject;
 				T result = caseVirtualAttribute(virtualAttribute);
 				if (result == null) result = caseTargetSectionAttribute(virtualAttribute);
 				if (result == null) result = caseAttribute(virtualAttribute);
@@ -930,7 +930,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseActualAttribute(ActualAttribute object) {
+	public T caseActualAttribute(ActualTargetSectionAttribute object) {
 		return null;
 	}
 
@@ -945,7 +945,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVirtualAttribute(VirtualAttribute object) {
+	public T caseVirtualAttribute(VirtualTargetSectionAttribute object) {
 		return null;
 	}
 

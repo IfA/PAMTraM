@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
 import pamtram.mapping.util.MappingValidator;
-import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraint;
@@ -58,7 +58,7 @@ import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -335,10 +335,10 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE:
 				return validateTargetSectionAttribute((TargetSectionAttribute)value, diagnostics, context);
-			case MetamodelPackage.ACTUAL_ATTRIBUTE:
-				return validateActualAttribute((ActualAttribute)value, diagnostics, context);
-			case MetamodelPackage.VIRTUAL_ATTRIBUTE:
-				return validateVirtualAttribute((VirtualAttribute)value, diagnostics, context);
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE:
+				return validateActualAttribute((ActualTargetSectionAttribute)value, diagnostics, context);
+			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE:
+				return validateVirtualAttribute((VirtualTargetSectionAttribute)value, diagnostics, context);
 			case MetamodelPackage.EQUALITY_MATCHER:
 				return validateEqualityMatcher((EqualityMatcher)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT:
@@ -987,7 +987,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateActualAttribute(ActualAttribute actualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateActualAttribute(ActualTargetSectionAttribute actualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(actualAttribute, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(actualAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(actualAttribute, diagnostics, context);
@@ -1007,7 +1007,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateActualAttribute_attributeMatchesParentEClass(ActualAttribute actualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateActualAttribute_attributeMatchesParentEClass(ActualTargetSectionAttribute actualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return actualAttribute.attributeMatchesParentEClass(diagnostics, context);
 	}
 
@@ -1016,7 +1016,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateVirtualAttribute(VirtualAttribute virtualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateVirtualAttribute(VirtualTargetSectionAttribute virtualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(virtualAttribute, diagnostics, context);
 	}
 

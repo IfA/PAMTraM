@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
@@ -40,12 +40,12 @@ import pamtram.metamodel.MetamodelTables;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.impl.ActualAttributeImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.ActualTargetSectionAttributeImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ActualAttributeImpl extends TargetSectionAttributeImpl implements ActualAttribute {
+public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl implements ActualTargetSectionAttribute {
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public class ActualAttributeImpl extends TargetSectionAttributeImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActualAttributeImpl() {
+	protected ActualTargetSectionAttributeImpl() {
 		super();
 	}
 

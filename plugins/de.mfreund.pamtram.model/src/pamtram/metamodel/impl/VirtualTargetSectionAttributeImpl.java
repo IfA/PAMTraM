@@ -5,7 +5,7 @@ package pamtram.metamodel.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,13 +14,13 @@ import pamtram.metamodel.VirtualAttribute;
  *
  * @generated
  */
-public class VirtualAttributeImpl extends TargetSectionAttributeImpl implements VirtualAttribute {
+public class VirtualTargetSectionAttributeImpl extends TargetSectionAttributeImpl implements VirtualTargetSectionAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VirtualAttributeImpl() {
+	protected VirtualTargetSectionAttributeImpl() {
 		super();
 	}
 

@@ -23,7 +23,7 @@ import pamtram.metamodel.MetamodelPackage;
  *
  * @generated
  */
-public class FileAttributeImpl extends VirtualAttributeImpl implements FileAttribute {
+public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl implements FileAttribute {
 	/**
 	 * The default value of the '{@link #getFileType() <em>File Type</em>}' attribute.
 	 * <!-- begin-user-doc -->

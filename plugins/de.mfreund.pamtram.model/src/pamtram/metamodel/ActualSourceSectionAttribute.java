@@ -4,7 +4,6 @@ package pamtram.metamodel;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 
 
@@ -17,7 +16,6 @@ import org.eclipse.emf.ecore.EAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.ActualSourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}</li>
  *   <li>{@link pamtram.metamodel.ActualSourceSectionAttribute#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
@@ -26,23 +24,6 @@ import org.eclipse.emf.ecore.EAttribute;
  * @generated
  */
 public interface ActualSourceSectionAttribute extends SourceSectionAttribute {
-	/**
-	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Value Constraint</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
-	 * @see pamtram.metamodel.MetamodelPackage#getActualSourceSectionAttribute_ValueConstraint()
-	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ActualSourceSectionAttribute!valueConstraint'"
-	 * @generated
-	 */
-	EList<AttributeValueConstraint> getValueConstraint();
-
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

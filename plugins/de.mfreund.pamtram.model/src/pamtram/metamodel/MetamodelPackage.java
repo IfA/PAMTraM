@@ -3198,13 +3198,22 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE__OWNING_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Value Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = ATTRIBUTE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Source Section Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -3277,7 +3286,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT + 0;
+	int ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -3286,7 +3295,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE = SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT + 1;
+	int ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE = SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Actual Source Section Attribute</em>' class.
@@ -3295,7 +3304,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT + 2;
+	int ACTUAL_SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -5944,6 +5953,17 @@ public interface MetamodelPackage extends EPackage {
 	EClass getSourceSectionAttribute();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Value Constraint</em>'.
+	 * @see pamtram.metamodel.SourceSectionAttribute#getValueConstraint()
+	 * @see #getSourceSectionAttribute()
+	 * @generated
+	 */
+	EReference getSourceSectionAttribute_ValueConstraint();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.ActualSourceSectionAttribute <em>Actual Source Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5952,17 +5972,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getActualSourceSectionAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.ActualSourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Value Constraint</em>'.
-	 * @see pamtram.metamodel.ActualSourceSectionAttribute#getValueConstraint()
-	 * @see #getActualSourceSectionAttribute()
-	 * @generated
-	 */
-	EReference getActualSourceSectionAttribute_ValueConstraint();
 
 	/**
 	 * Returns the meta object for the reference '{@link pamtram.metamodel.ActualSourceSectionAttribute#getAttribute <em>Attribute</em>}'.
@@ -7153,6 +7162,14 @@ public interface MetamodelPackage extends EPackage {
 		EClass SOURCE_SECTION_ATTRIBUTE = eINSTANCE.getSourceSectionAttribute();
 
 		/**
+		 * The meta object literal for the '<em><b>Value Constraint</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = eINSTANCE.getSourceSectionAttribute_ValueConstraint();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ActualSourceSectionAttributeImpl <em>Actual Source Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7161,14 +7178,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTUAL_SOURCE_SECTION_ATTRIBUTE = eINSTANCE.getActualSourceSectionAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Value Constraint</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = eINSTANCE.getActualSourceSectionAttribute_ValueConstraint();
 
 		/**
 		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.

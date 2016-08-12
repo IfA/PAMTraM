@@ -3,19 +3,15 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -31,7 +27,6 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
@@ -45,23 +40,12 @@ import pamtram.metamodel.ActualSourceSectionAttribute;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.impl.ActualSourceSectionAttributeImpl#getValueConstraint <em>Value Constraint</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.ActualSourceSectionAttributeImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl implements ActualSourceSectionAttribute {
-	/**
-	 * The cached value of the '{@link #getValueConstraint() <em>Value Constraint</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueConstraint()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AttributeValueConstraint> valueConstraint;
-
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -89,19 +73,6 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 	@Override
 	protected EClass eStaticClass() {
 		return MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<AttributeValueConstraint> getValueConstraint() {
-		if (valueConstraint == null) {
-			valueConstraint = new EObjectContainmentEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
-		}
-		return valueConstraint;
 	}
 
 	/**
@@ -272,24 +243,8 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				return ((InternalEList<?>)getValueConstraint()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				return getValueConstraint();
 			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
@@ -306,10 +261,6 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				getValueConstraint().clear();
-				getValueConstraint().addAll((Collection<? extends AttributeValueConstraint>)newValue);
-				return;
 			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)newValue);
 				return;
@@ -325,9 +276,6 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				getValueConstraint().clear();
-				return;
 			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)null);
 				return;
@@ -343,8 +291,6 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				return valueConstraint != null && !valueConstraint.isEmpty();
 			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				return attribute != null;
 		}

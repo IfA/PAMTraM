@@ -117,6 +117,7 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SectionModel = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("SectionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SingleReferenceAttributeValueConstraint = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SingleReferenceAttributeValueConstraint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSection = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSection", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSectionAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSectionClass = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSection = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSection", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSectionClass = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionClass", 0);
@@ -874,8 +875,7 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _ActualAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, Types._ActualAttribute, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _ActualSourceSectionAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE, Types._ActualSourceSectionAttribute, 0);
-		public static final /*@NonNull*/ ExecutorProperty _ActualSourceSectionAttribute__valueConstraint = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT, Types._ActualSourceSectionAttribute, 1);
-		public static final /*@NonNull*/ ExecutorProperty _ActualSourceSectionAttribute__InstancePointer__attributePointer = new ExecutorPropertyWithImplementation("InstancePointer", Types._ActualSourceSectionAttribute, 2, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER));
+		public static final /*@NonNull*/ ExecutorProperty _ActualSourceSectionAttribute__InstancePointer__attributePointer = new ExecutorPropertyWithImplementation("InstancePointer", Types._ActualSourceSectionAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER));
 
 		public static final /*@NonNull*/ ExecutorProperty _ActualTargetSectionAttribute__AttributeParameter__attribute = new ExecutorPropertyWithImplementation("AttributeParameter", Types._ActualTargetSectionAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE));
 
@@ -884,7 +884,7 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _AttributeParameter__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE, Types._AttributeParameter, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _AttributeValueConstraint__type = new EcoreExecutorProperty(MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT__TYPE, Types._AttributeValueConstraint, 0);
-		public static final /*@NonNull*/ ExecutorProperty _AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint = new ExecutorPropertyWithImplementation("ActualSourceSectionAttribute", Types._AttributeValueConstraint, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT));
+		public static final /*@NonNull*/ ExecutorProperty _AttributeValueConstraint__SourceSectionAttribute__valueConstraint = new ExecutorPropertyWithImplementation("SourceSectionAttribute", Types._AttributeValueConstraint, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT));
 
 		public static final /*@NonNull*/ ExecutorProperty _AttributeValueConstraintSourceInterface__RangeBound__sourceElements = new ExecutorPropertyWithImplementation("RangeBound", Types._AttributeValueConstraintSourceInterface, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS));
 		public static final /*@NonNull*/ ExecutorProperty _AttributeValueConstraintSourceInterface__SingleReferenceAttributeValueConstraint__sourceElements = new ExecutorPropertyWithImplementation("SingleReferenceAttributeValueConstraint", Types._AttributeValueConstraintSourceInterface, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS));
@@ -946,6 +946,8 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _SingleReferenceAttributeValueConstraint__sourceElements = new EcoreExecutorProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS, Types._SingleReferenceAttributeValueConstraint, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _SourceSection__referencingMappings = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS, Types._SourceSection, 0);
+
+		public static final /*@NonNull*/ ExecutorProperty _SourceSectionAttribute__valueConstraint = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT, Types._SourceSectionAttribute, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _SourceSectionClass__MetaModelSectionReference__value = new ExecutorPropertyWithImplementation("MetaModelSectionReference", Types._SourceSectionClass, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE));
 
@@ -3856,7 +3858,7 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ActualSourceSectionAttribute = {
 			MetamodelTables.Properties._ActualSourceSectionAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass,
-			MetamodelTables.Properties._ActualSourceSectionAttribute__valueConstraint,
+			MetamodelTables.Properties._SourceSectionAttribute__valueConstraint,
 			MetamodelTables.Properties._ActualSourceSectionAttribute__InstancePointer__attributePointer
 		};
 
@@ -3880,7 +3882,7 @@ public class MetamodelTables
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeValueConstraint = {
 			MetamodelTables.Properties._AttributeValueConstraint__type,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeValueConstraintExternalSourceElement = {
@@ -3905,7 +3907,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__sourceElements,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _CardinalityType = {};
@@ -3915,7 +3917,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__sourceElements,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Class = {
@@ -3943,7 +3945,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__sourceElements,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _EqualityMatcher = {
@@ -3951,7 +3953,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__sourceElements,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ExternalReferenceParameter = {
@@ -4015,7 +4017,7 @@ public class MetamodelTables
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MultipleReferencesAttributeValueConstraint = {
 			MetamodelTables.Properties._AttributeValueConstraint__type,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _NonContainmentReference = {
@@ -4036,7 +4038,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._RangeConstraint__lowerBound,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
 			MetamodelTables.Properties._RangeConstraint__upperBound,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Reference = {
@@ -4048,7 +4050,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__sourceElements,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Section = {
@@ -4065,7 +4067,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__sourceElements,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SourceSection = {
@@ -4081,7 +4083,8 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SourceSectionAttribute = {
-			MetamodelTables.Properties._Attribute__owningClass
+			MetamodelTables.Properties._Attribute__owningClass,
+			MetamodelTables.Properties._SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SourceSectionClass = {
@@ -4109,7 +4112,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__constraintReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._SingleReferenceAttributeValueConstraint__sourceElements,
 			MetamodelTables.Properties._AttributeValueConstraint__type,
-			MetamodelTables.Properties._AttributeValueConstraint__ActualSourceSectionAttribute__valueConstraint
+			MetamodelTables.Properties._AttributeValueConstraint__SourceSectionAttribute__valueConstraint
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _TargetSection = {

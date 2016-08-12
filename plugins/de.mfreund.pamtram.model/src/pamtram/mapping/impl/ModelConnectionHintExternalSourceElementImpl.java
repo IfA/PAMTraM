@@ -82,7 +82,7 @@ public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifi
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
-				return this.getSourceAttribute();
+				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

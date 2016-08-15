@@ -3,19 +3,16 @@
 package pamtram.metamodel.provider;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -26,8 +23,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SourceSectionAttributeItemProvider
-extends AttributeItemProvider {
+public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -49,42 +45,8 @@ extends AttributeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Attribute feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	protected void addAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_SourceSectionAttribute_attribute_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
-						MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null){
-
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
-
-				pamtram.metamodel.Class owner=((pamtram.metamodel.Class)((Attribute) object).eContainer());
-				if(owner.getEClass() != null){
-					return owner.getEClass().getEAllAttributes();
-				} else {
-					return new ArrayList<Object>();
-				}					
-			}
-		});
 	}
 
 	/**
@@ -118,16 +80,6 @@ extends AttributeItemProvider {
 	}
 
 	/**
-	 * This returns SourceSectionAttribute.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return super.getImage(object);
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,14 +91,16 @@ extends AttributeItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return super.getStyledText(object);
+		String label = ((SourceSectionAttribute)object).getName();
+		StyledString styledLabel = new StyledString();
+		styledLabel.append(" " + label);
+		return styledLabel;
 	}
 
 	/**

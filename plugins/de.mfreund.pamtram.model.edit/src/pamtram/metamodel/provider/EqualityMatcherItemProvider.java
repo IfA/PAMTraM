@@ -3,7 +3,6 @@
 package pamtram.metamodel.provider;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,9 +14,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelPackage;

@@ -15,8 +15,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SubstringMatcher;
 

@@ -31,7 +31,7 @@ import pamtram.mapping.provider.ExpressionHintItemProvider;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
@@ -287,7 +287,7 @@ public class InstancePointerItemProvider
 	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
 			int operation, Collection<?> collection) {
 
-		if(collection.size() == 1 && collection.iterator().next() instanceof SourceSectionAttribute) {
+		if(collection.size() == 1 && collection.iterator().next() instanceof ActualSourceSectionAttribute) {
 			return new BasicDragAndDropSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER, 
 					collection.iterator().next(), 0);
 		}

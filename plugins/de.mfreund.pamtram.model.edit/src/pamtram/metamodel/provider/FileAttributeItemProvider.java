@@ -26,7 +26,7 @@ import pamtram.metamodel.MetamodelPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FileAttributeItemProvider extends VirtualAttributeItemProvider {
+public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

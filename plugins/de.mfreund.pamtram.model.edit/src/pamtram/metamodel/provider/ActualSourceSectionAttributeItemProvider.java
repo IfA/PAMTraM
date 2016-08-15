@@ -3,46 +3,34 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.TargetModelAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.ActualSourceSectionAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TargetModelAttributeItemProvider
-	extends AttributeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ActualSourceSectionAttributeItemProvider
+extends SourceSectionAttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetModelAttributeItemProvider(AdapterFactory adapterFactory) {
+	public ActualSourceSectionAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,68 +54,65 @@ public class TargetModelAttributeItemProvider
 	 * This adds a property descriptor for the Attribute feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TargetModelAttribute_attribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetModelAttribute_attribute_feature", "_UI_TargetModelAttribute_type"),
-				 MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(new ItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_SourceSectionAttribute_attribute_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
+						MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
+
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+
+				pamtram.metamodel.Class owner=(pamtram.metamodel.Class)((Attribute) object).eContainer();
+				if(owner.getEClass() != null){
+					return owner.getEClass().getEAllAttributes();
+				} else {
+					return new ArrayList<>();
+				}
+			}
+		});
 	}
 
 	/**
-	 * This returns TargetModelAttribute.gif.
+	 * This returns SourceSectionAttribute.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return super.getImage(object);
+	}
+
+	/**
+	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetModelAttribute"));
+	public String getText(Object object) {
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
-	
 	/**
-	 * This returns the label text for the adapted class.
+	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public String getText(Object object) {
-		String label = ((Attribute)object).getName();
-		
-		EAttribute eAttribute = ((pamtram.metamodel.TargetModelAttribute)object).getAttribute();
-		
-		String ret = "";
-		if(label != null && label.length() != 0) {
-			ret += label;
-		}
-		if(eAttribute != null) {
-			EClass eClass = (EClass) eAttribute.eContainer();
-			EPackage ePackage = eClass.getEPackage();
-			if(ePackage != null) {
-				ret += (ret.equals("") ?
-						"(" + ePackage.getNsPrefix() + "::" :
-						" (" + ePackage.getNsPrefix() + "::");
-				ret += eClass.getName() + "." + eAttribute.getName() + ")";
-			} else {
-				ret += (ret.equals("") ?
-						"(" + ((EClass) (eAttribute.eContainer())).getName() + "." + eAttribute.getName() + ")" :
-						" (" + ((EClass) (eAttribute.eContainer())).getName() + "." + eAttribute.getName() + ")");
-			}
-		}
-		
-		return ret;
+	public Object getStyledText(Object object) {
+		return super.getStyledText(object);
 	}
 
 	/**

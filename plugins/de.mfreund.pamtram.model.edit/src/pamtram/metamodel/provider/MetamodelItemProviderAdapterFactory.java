@@ -369,72 +369,72 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.SourceSectionAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ActualSourceSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SourceSectionAttributeItemProvider sourceSectionAttributeItemProvider;
+	protected ActualSourceSectionAttributeItemProvider actualSourceSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.SourceSectionAttribute}.
+	 * This creates an adapter for a {@link pamtram.metamodel.ActualSourceSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSourceSectionAttributeAdapter() {
-		if (sourceSectionAttributeItemProvider == null) {
-			sourceSectionAttributeItemProvider = new SourceSectionAttributeItemProvider(this);
+	public Adapter createActualSourceSectionAttributeAdapter() {
+		if (actualSourceSectionAttributeItemProvider == null) {
+			actualSourceSectionAttributeItemProvider = new ActualSourceSectionAttributeItemProvider(this);
 		}
 
-		return sourceSectionAttributeItemProvider;
+		return actualSourceSectionAttributeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ActualAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ActualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActualAttributeItemProvider actualAttributeItemProvider;
+	protected ActualTargetSectionAttributeItemProvider actualTargetSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.ActualAttribute}.
+	 * This creates an adapter for a {@link pamtram.metamodel.ActualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createActualAttributeAdapter() {
-		if (actualAttributeItemProvider == null) {
-			actualAttributeItemProvider = new ActualAttributeItemProvider(this);
+	public Adapter createActualTargetSectionAttributeAdapter() {
+		if (actualTargetSectionAttributeItemProvider == null) {
+			actualTargetSectionAttributeItemProvider = new ActualTargetSectionAttributeItemProvider(this);
 		}
 
-		return actualAttributeItemProvider;
+		return actualTargetSectionAttributeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.VirtualAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.VirtualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VirtualAttributeItemProvider virtualAttributeItemProvider;
+	protected VirtualTargetSectionAttributeItemProvider virtualTargetSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.VirtualAttribute}.
+	 * This creates an adapter for a {@link pamtram.metamodel.VirtualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createVirtualAttributeAdapter() {
-		if (virtualAttributeItemProvider == null) {
-			virtualAttributeItemProvider = new VirtualAttributeItemProvider(this);
+	public Adapter createVirtualTargetSectionAttributeAdapter() {
+		if (virtualTargetSectionAttributeItemProvider == null) {
+			virtualTargetSectionAttributeItemProvider = new VirtualTargetSectionAttributeItemProvider(this);
 		}
 
-		return virtualAttributeItemProvider;
+		return virtualTargetSectionAttributeItemProvider;
 	}
 
 	/**

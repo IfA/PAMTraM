@@ -15,9 +15,9 @@ import de.mfreund.gentrans.transformation.matching.InstancePointerValueExtractor
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
@@ -46,7 +46,7 @@ public class InstancePointerHandler{
 
 	/**
 	 * This creates an instance.
-	 * 
+	 *
 	 * @param matchedSections
 	 *            A map relating {@link SourceSection SourceSections} and lists
 	 *            of {@link MatchedSectionDescriptor MatchedSectionDescriptors}
@@ -62,7 +62,7 @@ public class InstancePointerHandler{
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	public InstancePointerHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, 
+	public InstancePointerHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
 			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator, Logger logger) {
 
 		this.matchedSections = matchedSections;
@@ -76,37 +76,37 @@ public class InstancePointerHandler{
 	/**
 	 * From the given {@link SourceSectionClass}, this first retrieves all instances from the {@link #matchedSections} and then
 	 * filters and returns those that satisfy the given {@link InstancePointer}.
-	 * 
+	 *
 	 * @param instancePointer The {@link InstancePointer} to evaluate.
 	 * @param sourceSectionClass The {@link SourceSectionClass} for that instances shall be retrieved and filtered.
 	 * @param matchedSectionDescriptor the {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated.
-	 * @return The subset of <em>instanceList</em> determined based on the given {@link SourceSectionClass} that satisfy 
+	 * @return The subset of <em>instanceList</em> determined based on the given {@link SourceSectionClass} that satisfy
 	 * the given <em>instancePointer</em>.
 	 */
-	public List<EObject> getPointedInstanceBySourceSectionClass(InstancePointer instancePointer, 
+	public List<EObject> getPointedInstanceBySourceSectionClass(InstancePointer instancePointer,
 			SourceSectionClass sourceSectionClass, MatchedSectionDescriptor matchedSectionDescriptor){
 
 		EList<EObject> correspondEclassInstances = new BasicEList<>();
 
-		if(matchedSections.get(sourceSectionClass.getContainingSection()) != null) {
-			matchedSections.get(sourceSectionClass.getContainingSection()).stream().forEach(descriptor -> 
+		if(this.matchedSections.get(sourceSectionClass.getContainingSection()) != null) {
+			this.matchedSections.get(sourceSectionClass.getContainingSection()).stream().forEach(descriptor ->
 			correspondEclassInstances.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
 		}
 
-		return getPointedInstanceByInstanceList(instancePointer, correspondEclassInstances, matchedSectionDescriptor);
+		return this.getPointedInstanceByInstanceList(instancePointer, correspondEclassInstances, matchedSectionDescriptor);
 
 	}
 
 	/**
 	 * From the given list of {@link EObject elements}, this filters and returns those that satisfy the given
 	 * {@link InstancePointer}.
-	 * 
+	 *
 	 * @param instancePointer The {@link InstancePointer} to evaluate.
 	 * @param instanceList The list of {@link EObject elements} to check.
 	 * @param matchedSectionDescriptor the {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated.
 	 * @return The subset of the given <em>instanceList</em> that satisfy the given <em>instancePointer</em>.
 	 */
-	public List<EObject> getPointedInstanceByInstanceList(InstancePointer instancePointer, List<EObject> instanceList, 
+	public List<EObject> getPointedInstanceByInstanceList(InstancePointer instancePointer, List<EObject> instanceList,
 			MatchedSectionDescriptor matchedSectionDescriptor){
 
 		EObject container = instancePointer.eContainer();
@@ -115,9 +115,9 @@ public class InstancePointerHandler{
 			container = container.eContainer();
 		}
 
-		String instancePointerRefValue = valueExtractor.extractRequiredTargetValue(instancePointer, matchedSectionDescriptor);
+		String instancePointerRefValue = this.valueExtractor.extractRequiredTargetValue(instancePointer, matchedSectionDescriptor);
 
-		SourceSectionAttribute sourceAttr = instancePointer.getAttributePointer();
+		ActualSourceSectionAttribute sourceAttr = instancePointer.getAttributePointer();
 
 		return instanceList.parallelStream().filter(element -> {
 
@@ -130,7 +130,7 @@ public class InstancePointerHandler{
 				return sourceRefAttrAsString.equals(instancePointerRefValue);
 
 			} catch(final Exception e){
-				logger.warning("Message:\n InstancePointerHander failed because of:" + e.getMessage());
+				this.logger.warning("Message:\n InstancePointerHander failed because of:" + e.getMessage());
 				return false;
 			}
 

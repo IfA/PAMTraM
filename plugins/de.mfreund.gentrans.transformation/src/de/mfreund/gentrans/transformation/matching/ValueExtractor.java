@@ -20,6 +20,7 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.ModifiedAttributeElementType;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -28,7 +29,7 @@ import pamtram.metamodel.SourceSectionReference;
 /**
  * This represents an abstract base class that allows to extract {@link AttributeValueRepresentation values}
  * from a list of {@link MatchedSectionDescriptor MatchedSectionDescriptors}.
- * 
+ *
  * @author mfreund
  *
  */
@@ -51,7 +52,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	/**
 	 * This creates an instance for a given list of
 	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
-	 * 
+	 *
 	 * @param attributeValueModifierExecutor
 	 *            The {@link AttributeValueModifierExecutor} that shall be used
 	 *            for modifying attribute values.
@@ -68,7 +69,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	/**
 	 * This creates an instance for a given list of
 	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
-	 * 
+	 *
 	 * @param globalAttributeValues
 	 *            The values of {@link GlobalAttribute GlobalAttributes} that
 	 *            shall be used by
@@ -89,7 +90,7 @@ public abstract class ValueExtractor extends CancelableElement {
 
 	/**
 	 * This is the getter for the {@link #globalAttributeValues}.
-	 * 
+	 *
 	 * @return The registry for values of {@link GlobalAttribute GlobalAttributes}.
 	 */
 	public Map<GlobalAttribute, String> getGlobalAttributeValues() {
@@ -99,7 +100,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	/**
 	 * This extracts and returns the value for the given {@link FixedValue} from the source elements represented
 	 * by the given <em>matchedSectionDescriptor</em>.
-	 * 
+	 *
 	 * @param fixedValue The {@link FixedValue} for that the values shall be extracted.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could be extracted.
@@ -107,27 +108,27 @@ public abstract class ValueExtractor extends CancelableElement {
 	protected AttributeValueRepresentation extractValue(FixedValue fixedValue, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		//FIXME two different FixedValues are currently not supported (both get added to the 'null' attribute
-		return new AttributeValueRepresentation(null, fixedValue.getValue()); 
+		return new AttributeValueRepresentation(null, fixedValue.getValue());
 	}
 
 	/**
 	 * This extracts and returns the value for the given {@link GlobalAttributeImporter} from the source elements represented
 	 * by the given <em>mappingInstance</em>.
-	 * 
+	 *
 	 * @param globaleAttributeImporter The {@link GlobalAttributeImporter} for that the hint values shall be extracted.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(GlobalAttributeImporter globaleAttributeImporter, MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		return globalAttributeValues.containsKey(globaleAttributeImporter.getGlobalAttribute()) ?
-				new AttributeValueRepresentation(null, globalAttributeValues.get(globaleAttributeImporter.getGlobalAttribute())) : null;
+		return this.globalAttributeValues.containsKey(globaleAttributeImporter.getGlobalAttribute()) ?
+				new AttributeValueRepresentation(null, this.globalAttributeValues.get(globaleAttributeImporter.getGlobalAttribute())) : null;
 	}
 
 	/**
 	 * This extracts and returns the hint value for the given {@link ModifiedAttributeElementType} from the source elements represented
 	 * by the given <em>mappingInstance</em>.
-	 * 
+	 *
 	 * @param mappingHintSourceElement The {@link ModifiedAttributeElementType} for that the hint values shall be extracted.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could be extracted.
@@ -154,11 +155,19 @@ public abstract class ValueExtractor extends CancelableElement {
 		Set<EObject> sourceElements = sourceDescriptor.getSourceModelObjectsMapped().get(mappingHintSourceElement.getSource().eContainer());
 
 		if(sourceElements == null) {
-			logger.warning("Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
+			this.logger.warning("Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
 			return null;
 		}
 
-		EAttribute sourceAttribute = mappingHintSourceElement.getSource().getAttribute();
+		if (!(mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute)) {
+
+			this.logger.severe("Mapping hint source elements of type '" + mappingHintSourceElement.getSource().eClass()
+					+ "' are not yet supported!");
+			return null;
+		}
+
+		EAttribute sourceAttribute = ((ActualSourceSectionAttribute) mappingHintSourceElement.getSource())
+				.getAttribute();
 
 		// Collect all values of the attribute in all source elements
 		//
@@ -179,7 +188,7 @@ public abstract class ValueExtractor extends CancelableElement {
 			final String srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
 					.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
 
-			final String valCopy = attributeValueModifierExecutor
+			final String valCopy = this.attributeValueModifierExecutor
 					.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifier());
 
 			// create a new AttributeValueRepresentation or update the existing one

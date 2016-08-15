@@ -32,6 +32,7 @@ import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
 import pamtram.mapping.FixedValue;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
@@ -183,8 +184,8 @@ public class SourceSectionMatcher {
 		List<MatchedSectionDescriptor> descriptors = this.sections2Descriptors.containsKey(sourceSection)
 				? this.sections2Descriptors.get(sourceSection) : new ArrayList<>();
 
-		descriptors.add(descriptor);
-		this.sections2Descriptors.put(sourceSection, descriptors);
+				descriptors.add(descriptor);
+				this.sections2Descriptors.put(sourceSection, descriptors);
 	}
 
 	/**
@@ -244,7 +245,7 @@ public class SourceSectionMatcher {
 		 * Now, iterate over all sections and find those that are applicable for the current 'element'.
 		 */
 		this.sourceSections.parallelStream().filter(section -> section.getEClass().isSuperTypeOf(element.eClass()))
-				.sequential().forEach(section -> this.findApplicableSection(element, mappingData, section));
+		.sequential().forEach(section -> this.findApplicableSection(element, mappingData, section));
 
 		return mappingData;
 	}
@@ -574,7 +575,7 @@ public class SourceSectionMatcher {
 				}));
 		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
 		sourceSectionClass.getReferences().parallelStream()
-				.forEach(r -> r.getValuesGeneric().parallelStream().forEach(c -> refByClassMap.put(c, r)));
+		.forEach(r -> r.getValuesGeneric().parallelStream().forEach(c -> refByClassMap.put(c, r)));
 
 		// now, iterate through all the modeled references (and reference targets) and check if they can be matched for
 		// the current 'srcModelObject'
@@ -784,13 +785,13 @@ public class SourceSectionMatcher {
 		//
 		final SourceSectionMatchingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMatchingResultsMap();
 		classes.stream().filter(val -> val.getCardinality().equals(CardinalityType.ONE))
-				.forEach(possibleSrcModelElementsNoVC::init);
+		.forEach(possibleSrcModelElementsNoVC::init);
 
 		// Map to store possible srcModelSections to MMSections (vc)
 		//
 		final SourceSectionMatchingResultsMap possibleSrcModelElementsVC = new SourceSectionMatchingResultsMap();
 		classes.stream().filter(val -> !val.getCardinality().equals(CardinalityType.ONE))
-				.forEach(possibleSrcModelElementsVC::init);
+		.forEach(possibleSrcModelElementsVC::init);
 
 		final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<>();
 
@@ -982,9 +983,14 @@ public class SourceSectionMatcher {
 	private boolean checkAttributes(final EObject srcModelObject, final SourceSectionClass srcSection,
 			final MatchedSectionDescriptor descriptor) {
 
+		srcSection.getAttributes().parallelStream().filter(at -> !(at instanceof ActualSourceSectionAttribute))
+		.forEach(at -> this.logger.severe(
+				"SourceSectionAttributes of type '" + at.eClass().getName() + "' are not yet supported!"));
+
 		// Check if all the constraints are satisfied for every attribute value.
 		//
-		return srcSection.getAttributes().stream()
+		return srcSection.getAttributes().stream().filter(at -> at instanceof ActualSourceSectionAttribute)
+				.map(at -> (ActualSourceSectionAttribute) at)
 				.allMatch(at -> AgteleEcoreUtil.getAttributeValueAsList(srcModelObject, at.getAttribute())
 						.parallelStream()
 						.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue)));
@@ -1005,8 +1011,19 @@ public class SourceSectionMatcher {
 	private boolean checkAttributeValueConstraints(final SourceSectionAttribute attribute, Object value) {
 
 		// convert Attribute value to String
-		final String srcAttrAsString = attribute.getAttribute().getEType().getEPackage().getEFactoryInstance()
-				.convertToString(attribute.getAttribute().getEAttributeType(), value);
+		String srcAttrAsString;
+
+		if (value instanceof String) {
+			srcAttrAsString = (String) value;
+		} else if (attribute instanceof ActualSourceSectionAttribute) {
+			srcAttrAsString = ((ActualSourceSectionAttribute) attribute).getAttribute().getEType().getEPackage()
+					.getEFactoryInstance().convertToString(
+							((ActualSourceSectionAttribute) attribute).getAttribute().getEAttributeType(), value);
+		} else {
+			this.logger.severe("Unable to convert the following value of the SourceSectionAttribute '"
+					+ attribute.toString() + "' to a String: '" + value.toString() + "'");
+			return false;
+		}
 
 		/*
 		 * check AttributeValueConstraints
@@ -1112,8 +1129,8 @@ public class SourceSectionMatcher {
 
 				if (!constraintVal) { // just for debugging!
 					this.logger.info("Coonstraint " + constraint.getName()
-							+ "of AttributeValueConstraint is false while the Attribute value " + attributeValueAsString
-							+ ", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
+					+ "of AttributeValueConstraint is false while the Attribute value " + attributeValueAsString
+					+ ", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
 				}
 			} else {
 				// If we are here, some mistake is happened
@@ -1127,7 +1144,7 @@ public class SourceSectionMatcher {
 			// more types could be supported in the future
 			// placeholder for other MultipleReferenceAttributeValueConstraints
 			this.logger
-					.severe("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+			.severe("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
 		}
 
 		return constraintVal;
@@ -1151,7 +1168,7 @@ public class SourceSectionMatcher {
 		return this.matchedSections.containsKey(sourceSectionClass)
 				&& this.matchedSections.get(sourceSectionClass).contains(element)
 				|| this.matchedContainers.containsKey(sourceSectionClass)
-						&& this.matchedContainers.get(sourceSectionClass).contains(element);
+				&& this.matchedContainers.get(sourceSectionClass).contains(element);
 	}
 
 	/**

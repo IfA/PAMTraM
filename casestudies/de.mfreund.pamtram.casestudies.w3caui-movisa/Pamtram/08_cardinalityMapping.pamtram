@@ -8,7 +8,7 @@
         <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel/abstractInteractionUnit"/>
         <value xsi:type="metamodel:SourceSectionClass" name="AbstractInteractionUnit" cardinality="ZERO__INFINITY">
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
           </attributes>
         </value>
@@ -16,7 +16,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractInteractionUnit">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
@@ -25,7 +25,7 @@
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Button" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Button">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name" value="Button">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
@@ -35,7 +35,7 @@
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Panel/OwnedUIComponent"/>
         <value xsi:type="metamodel:TargetSectionClass" name="Button" cardinality="ZERO__INFINITY">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Button_inside_Panel">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name" value="Button_inside_Panel">
             <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
           </attributes>
         </value>

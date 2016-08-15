@@ -4,11 +4,11 @@
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
@@ -17,7 +17,7 @@
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Button">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>

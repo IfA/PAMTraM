@@ -4,17 +4,17 @@
     <metaModelPackage xsi:type="ecore:EPackage" href="http://www.w3.org/2013/mbui-aui#/0"/>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation" container="//@sourceSectionModel.0/@metaModelSections.1">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractInteractionUnit">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
@@ -23,10 +23,10 @@
     <metaModelPackage xsi:type="ecore:EPackage" href="http://stefan-hennig.de/movisa#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Button">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Comment">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>

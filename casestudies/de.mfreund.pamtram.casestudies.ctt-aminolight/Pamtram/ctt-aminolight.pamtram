@@ -4,7 +4,7 @@
     <metaModelPackage href="http://giove.isti.cnr.it/ctt#/"/>
     <metaModelSections xsi:type="metamodel:SourceSection" name="RootElement">
       <eClass href="http://giove.isti.cnr.it/ctt#//TaskModelType"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="nameTaskModelID">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="nameTaskModelID">
         <attribute href="http://giove.isti.cnr.it/ctt#//TaskModelType/nameTaskModelID"/>
       </attributes>
     </metaModelSections>
@@ -17,16 +17,16 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ZERO__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="class">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="class">
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Numerical"/>
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
           </attributes>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ObjectName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="ObjectName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Taskname">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Taskname">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
     </metaModelSections>
@@ -35,15 +35,15 @@
     <metaModelPackage href="http://giove.isti.cnr.it/ctt#/"/>
     <metaModelSections xsi:type="metamodel:SourceSection" name="PercievableObject">
       <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="ObjectName">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="ObjectName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="class">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="class">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Numerical"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Decimal"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="type">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Perceivable"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Object/type"/>
       </attributes>
@@ -57,7 +57,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm0ParentName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm0ParentName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Parent/name"/>
           </attributes>
         </value>
@@ -66,7 +66,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ConditionObjectName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="ConditionObjectName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
           </attributes>
         </value>
@@ -83,20 +83,20 @@
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="metamodel:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionObject">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionObject">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionValue">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionValue">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionOperator">
+              <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionOperator">
                 <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionRootOperator">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionRootOperator">
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>
@@ -105,15 +105,15 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
         <value xsi:type="metamodel:SourceSectionClass" name="SiblingRight">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingRightName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="SiblingRightName">
             <attribute href="http://giove.isti.cnr.it/ctt#//SiblingRight/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm0TaskName">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm0TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="type">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm0"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
@@ -124,7 +124,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm1ParentName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm1ParentName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Parent/name"/>
           </attributes>
         </value>
@@ -133,7 +133,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ConditionObjectName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="ConditionObjectName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
           </attributes>
         </value>
@@ -150,20 +150,20 @@
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="metamodel:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionObject">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionObject">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionValue">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionValue">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionOperator">
+              <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionOperator">
                 <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionRootOperator">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionRootOperator">
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>
@@ -172,7 +172,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
         <value xsi:type="metamodel:SourceSectionClass" name="SiblingRight">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingRightName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="SiblingRightName">
             <attribute href="http://giove.isti.cnr.it/ctt#//SiblingRight/name"/>
           </attributes>
         </value>
@@ -181,15 +181,15 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
         <value xsi:type="metamodel:SourceSectionClass" name="SiblingLeft">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingLeftName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="SiblingLeftName">
             <attribute href="http://giove.isti.cnr.it/ctt#//SiblingLeft/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm1TaskName">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm1TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="type">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm1"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
@@ -200,7 +200,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm2ParentName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm2ParentName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Parent/name"/>
           </attributes>
         </value>
@@ -209,7 +209,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ConditionObjectName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="ConditionObjectName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
           </attributes>
         </value>
@@ -226,20 +226,20 @@
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="metamodel:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionObject">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionObject">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionValue">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionValue">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionOperator">
+              <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionOperator">
                 <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionRootOperator">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionRootOperator">
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>
@@ -248,7 +248,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
         <value xsi:type="metamodel:SourceSectionClass" name="SiblingRight">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingRightName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="SiblingRightName">
             <attribute href="http://giove.isti.cnr.it/ctt#//SiblingRight/name"/>
           </attributes>
         </value>
@@ -257,16 +257,16 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
         <value xsi:type="metamodel:SourceSectionClass" name="SiblingLeft">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingLeftName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="SiblingLeftName">
             <attribute href="http://giove.isti.cnr.it/ctt#//SiblingLeft/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="type">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm2"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm2TaskName">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm2TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
     </metaModelSections>
@@ -276,7 +276,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm3ParentName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm3ParentName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Parent/name"/>
           </attributes>
         </value>
@@ -285,7 +285,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ConditionObjectName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="ConditionObjectName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
           </attributes>
         </value>
@@ -294,7 +294,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
         <value xsi:type="metamodel:SourceSectionClass" name="SiblingRight">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingRightName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="SiblingRightName">
             <attribute href="http://giove.isti.cnr.it/ctt#//SiblingRight/name"/>
           </attributes>
         </value>
@@ -303,7 +303,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
         <value xsi:type="metamodel:SourceSectionClass" name="SiblingLeft">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingLeftName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="SiblingLeftName">
             <attribute href="http://giove.isti.cnr.it/ctt#//SiblingLeft/name"/>
           </attributes>
         </value>
@@ -320,28 +320,28 @@
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="metamodel:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionObject">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionObject">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionValue">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionValue">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionOperator">
+              <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionOperator">
                 <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionRootOperator">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionRootOperator">
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm3TaskName">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm3TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="type">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm3"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
@@ -352,7 +352,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm4ParentName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm4ParentName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Parent/name"/>
           </attributes>
         </value>
@@ -361,7 +361,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ConditionObjectName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="ConditionObjectName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
           </attributes>
         </value>
@@ -370,7 +370,7 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
         <value xsi:type="metamodel:SourceSectionClass" name="SiblingLeft">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="SiblingLeftName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="SiblingLeftName">
             <attribute href="http://giove.isti.cnr.it/ctt#//SiblingLeft/name"/>
           </attributes>
         </value>
@@ -387,28 +387,28 @@
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="metamodel:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionObject">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionObject">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionValue">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionValue">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionOperator">
+              <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionOperator">
                 <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionRootOperator">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionRootOperator">
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Alarm4TaskName">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Alarm4TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="type">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="type">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm4"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
@@ -427,20 +427,20 @@
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="metamodel:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreConditionObject">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PreConditionObject">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreConditionValue">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PreConditionValue">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreConditionOperator">
+              <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PreConditionOperator">
                 <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreConditionRootOperator">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PreConditionRootOperator">
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>
@@ -457,20 +457,20 @@
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="metamodel:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionObject">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionObject">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionValue">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionValue">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionOperator">
+              <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionOperator">
                 <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="PostConditionRootOperator">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PostConditionRootOperator">
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>
@@ -479,16 +479,16 @@
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="ConditionObjectName">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="ConditionObjectName">
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="GaugeTaskType">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="GaugeTaskType">
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="Alarm_Element"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="GaugeTaskName">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="GaugeTaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
     </metaModelSections>
@@ -506,20 +506,20 @@
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="metamodel:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreConditionObject">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PreConditionObject">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreConditionValue">
+                  <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PreConditionValue">
                     <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreConditionOperator">
+              <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PreConditionOperator">
                 <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="metamodel:SourceSectionAttribute" name="PreConditionRootOperator">
+          <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="PreConditionRootOperator">
             <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="and"/>
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
@@ -562,7 +562,7 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/colorTheme"/>
         <value xsi:type="metamodel:TargetSectionClass" name="ColorTheme">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorTheme"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="name" value="defaultColorTheme">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name" value="defaultColorTheme">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
           </attributes>
         </value>
@@ -571,10 +571,10 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/language"/>
         <value xsi:type="metamodel:TargetSectionClass" name="defaultLanguage">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/Language"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="name" value="defaultLanguage">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name" value="defaultLanguage">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
           </attributes>
-          <attributes xsi:type="metamodel:ActualAttribute" name="code" value="de">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="code" value="de">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/Language/code"/>
           </attributes>
         </value>
@@ -594,12 +594,12 @@
                   <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.4/@value.0">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry/language"/>
                   </references>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="val" value="0.0">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="0.0">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry/val"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="name">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
               </attributes>
             </value>
@@ -622,7 +622,7 @@
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorEntry/value"/>
                     <value xsi:type="metamodel:TargetSectionClass" name="DefaultColorValue">
                       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/HEXColorValue"/>
-                      <attributes xsi:type="metamodel:ActualAttribute" name="val">
+                      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val">
                         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/HEXColorValue/val"/>
                       </attributes>
                     </value>
@@ -648,13 +648,13 @@
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/AssetGroup"/>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="ModelName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ModelName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Signal" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Signal"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SignalName" unique="true">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SignalName" unique="true">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -667,12 +667,12 @@
           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.4/@value.0">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry/language"/>
           </references>
-          <attributes xsi:type="metamodel:ActualAttribute" name="val" value="">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry/val"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name" unique="true" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name" unique="true" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -685,12 +685,12 @@
           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.4/@value.0">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry/language"/>
           </references>
-          <attributes xsi:type="metamodel:ActualAttribute" name="val">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry/val"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -704,7 +704,7 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/val"/>
             <value xsi:type="metamodel:TargetSectionClass" name="FloatValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/FloatValue"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/FloatValue/val"/>
               </attributes>
             </value>
@@ -712,7 +712,7 @@
           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.1">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/ref"/>
           </references>
-          <attributes xsi:type="metamodel:ActualAttribute" name="compareType">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="compareType">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/compareType"/>
           </attributes>
         </value>
@@ -723,7 +723,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ConditionMetSignal" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/ConditionGroup/ConditionMetSignal"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -737,7 +737,7 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorEntry/value"/>
             <value xsi:type="metamodel:TargetSectionClass" name="HEXColorValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/HEXColorValue"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="HexColorVal">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="HexColorVal">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/HEXColorValue/val"/>
               </attributes>
             </value>
@@ -747,7 +747,7 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="ColorItemName" unique="true">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ColorItemName" unique="true">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -757,12 +757,12 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/Asset/ref"/>
         <value xsi:type="metamodel:TargetSectionClass" name="AssetReference">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/AssetReference"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="ImageAssetRef">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ImageAssetRef">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/AssetReference/ref"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="ImageAssetName" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ImageAssetName" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/CommentedElement/comment"/>
       </attributes>
     </metaModelSections>
@@ -776,7 +776,7 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/val"/>
             <value xsi:type="metamodel:TargetSectionClass" name="FloatValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/FloatValue"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/FloatValue/val"/>
               </attributes>
             </value>
@@ -784,7 +784,7 @@
           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.1">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/ref"/>
           </references>
-          <attributes xsi:type="metamodel:ActualAttribute" name="compareType">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="compareType">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/compareType"/>
           </attributes>
         </value>
@@ -795,7 +795,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ConditionMetSignal" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/ConditionGroup/ConditionMetSignal"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -816,7 +816,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="GaugeWidthValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="GaugeWidthValue">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="GaugeWidthValue">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
                   </attributes>
                 </value>
@@ -828,7 +828,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="GaugeHeightValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="GaugeHeightValue">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="GaugeHeightValue">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
                   </attributes>
                 </value>
@@ -852,7 +852,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="VisibilityPresetValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="val" value="hidden">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="hidden">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue/val"/>
                   </attributes>
                 </value>
@@ -877,7 +877,7 @@
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                     <value xsi:type="metamodel:TargetSectionClass" name="GaugeWidthValue">
                       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
-                      <attributes xsi:type="metamodel:ActualAttribute" name="GaugeDynamicWidthValue">
+                      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="GaugeDynamicWidthValue">
                         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
                       </attributes>
                     </value>
@@ -889,7 +889,7 @@
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                     <value xsi:type="metamodel:TargetSectionClass" name="GaugeHeightValue">
                       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
-                      <attributes xsi:type="metamodel:ActualAttribute" name="GaugeHeightValue">
+                      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="GaugeHeightValue">
                         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
                       </attributes>
                     </value>
@@ -906,7 +906,7 @@
                       </references>
                     </value>
                   </references>
-                  <attributes xsi:type="metamodel:VirtualAttribute" name="dynamicBackgroundColorName"/>
+                  <attributes xsi:type="metamodel:VirtualTargetSectionAttribute" name="dynamicBackgroundColorName"/>
                 </value>
               </references>
             </value>
@@ -936,7 +936,7 @@
                         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                         <value xsi:type="metamodel:TargetSectionClass" name="VisibilityPresetValue">
                           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue"/>
-                          <attributes xsi:type="metamodel:ActualAttribute" name="val" value="visible">
+                          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="visible">
                             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue/val"/>
                           </attributes>
                         </value>
@@ -948,23 +948,23 @@
               <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
               </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="GaugeAnimationRecordName">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="GaugeAnimationRecordName">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="metamodel:ActualAttribute" name="GaugeAnimationRecordName">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="GaugeAnimationRecordName">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="GaugeName" unique="true" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="GaugeName" unique="true" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="simpleContainer" container="//@targetSectionModel.0/@metaModelSections.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//simpleContainer"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="simpleContainerName" unique="true" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="simpleContainerName" unique="true" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -985,7 +985,7 @@
                   <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.2">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="defaultVal">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="defaultVal">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/StringDefaultVariable/defaultVal"/>
                   </attributes>
                 </value>
@@ -994,7 +994,7 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="StaticTextComponentName" unique="true" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="StaticTextComponentName" unique="true" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1015,12 +1015,12 @@
                   <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.3">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="defaultVal">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="defaultVal">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/StringDefaultVariable/defaultVal"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:VirtualAttribute" name="virtualDynamicTextName" unique="true"/>
+              <attributes xsi:type="metamodel:VirtualTargetSectionAttribute" name="virtualDynamicTextName" unique="true"/>
             </value>
           </references>
         </value>
@@ -1043,7 +1043,7 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="DynamicTextComponentName" unique="true" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="DynamicTextComponentName" unique="true" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1061,15 +1061,15 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="VisibilityPresetValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="val" value="HIDDEN">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="HIDDEN">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue/val"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="VisibilityPresetValueName">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="VisibilityPresetValueName">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:VirtualAttribute" name="virtualBorderVisibilityName"/>
+              <attributes xsi:type="metamodel:VirtualTargetSectionAttribute" name="virtualBorderVisibilityName"/>
             </value>
             <value xsi:type="metamodel:TargetSectionClass" name="DefaultBorderColor">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BorderColor"/>
@@ -1082,11 +1082,11 @@
                   </references>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:VirtualAttribute" name="VirtualDefaultBorderColorName"/>
+              <attributes xsi:type="metamodel:VirtualTargetSectionAttribute" name="VirtualDefaultBorderColorName"/>
             </value>
             <value xsi:type="metamodel:TargetSectionClass" name="BorderStyle">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BorderStyle"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="SOLID">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="SOLID">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LineStylePresetValue/val"/>
               </attributes>
             </value>
@@ -1096,7 +1096,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="LengthValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="val" value="10">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="10">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
                   </attributes>
                 </value>
@@ -1109,12 +1109,12 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="metamodel:TargetSectionClass" name="BorderAnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="BorderAnimationRecordName" value="">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="BorderAnimationRecordName" value="">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="BorderName" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="BorderName" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1137,7 +1137,7 @@
                   </references>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:VirtualAttribute" name="virtualSoundComponentSoundName"/>
+              <attributes xsi:type="metamodel:VirtualTargetSectionAttribute" name="virtualSoundComponentSoundName"/>
             </value>
             <value xsi:type="metamodel:TargetSectionClass" name="SoundActive">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/Properties/SoundActive"/>
@@ -1145,10 +1145,10 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="SoundComponentActiveValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundActiveValue"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="SoundComponentActiveVal">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundComponentActiveVal">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/BooleanVariable/val"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="SoundComponentActiveValName" value="">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundComponentActiveValName" value="">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
                   </attributes>
                 </value>
@@ -1161,12 +1161,12 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="metamodel:TargetSectionClass" name="SoundComponentAnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="SoundComponentAnimationRecordName">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundComponentAnimationRecordName">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SoundComponentName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundComponentName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1189,7 +1189,7 @@
                   </references>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:VirtualAttribute" name="virtualVibrationComponentVibrationName" value=""/>
+              <attributes xsi:type="metamodel:VirtualTargetSectionAttribute" name="virtualVibrationComponentVibrationName" value=""/>
             </value>
             <value xsi:type="metamodel:TargetSectionClass" name="VibrationActive">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/Properties/VibrationActive"/>
@@ -1197,10 +1197,10 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="VibrationComponentActiveValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationActiveValue"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="VibrationComponentActiveVal">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="VibrationComponentActiveVal">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/BooleanVariable/val"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="VibrationComponentActiveValName">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="VibrationComponentActiveValName">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
                   </attributes>
                 </value>
@@ -1213,12 +1213,12 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="metamodel:TargetSectionClass" name="VibrationComponentAnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="VibrationAnimationRecordName">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="VibrationAnimationRecordName">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="VibrationComponentName" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="VibrationComponentName" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1239,7 +1239,7 @@
                   <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.2">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="defaultVal" value="!">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="defaultVal" value="!">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/StringDefaultVariable/defaultVal"/>
                   </attributes>
                 </value>
@@ -1256,7 +1256,7 @@
                   </references>
                 </value>
               </references>
-              <attributes xsi:type="metamodel:VirtualAttribute" name="VirtualLampBackgroundColorName"/>
+              <attributes xsi:type="metamodel:VirtualTargetSectionAttribute" name="VirtualLampBackgroundColorName"/>
             </value>
             <value xsi:type="metamodel:TargetSectionClass" name="TextColor">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/TextColor"/>
@@ -1276,7 +1276,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="FontSizeLenght">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/FontSizeLenght"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="FontSizeVal">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="FontSizeVal">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
                   </attributes>
                 </value>
@@ -1288,10 +1288,10 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="LampWidthValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="LampWidthValue">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="LampWidthValue">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="unit" value="PX">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="unit" value="PX">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue/unit"/>
                   </attributes>
                 </value>
@@ -1303,10 +1303,10 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="LampHeightValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="LampHeightValue">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="LampHeightValue">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="unit" value="PX">
+                  <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="unit" value="PX">
                     <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue/unit"/>
                   </attributes>
                 </value>
@@ -1319,12 +1319,12 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="metamodel:TargetSectionClass" name="LampAnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="LampAnimationRecordName">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="LampAnimationRecordName">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="LampName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="LampName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1333,16 +1333,16 @@
     <metaModelPackage href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="GenericSoundItem" container="//@targetSectionModel.2/@metaModelSections.2">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Sounds/GenericSoundItem"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Frequency">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Frequency">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Sounds/GenericSoundItem/Frequency"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Waveform" value="sine">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Waveform" value="sine">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Sounds/GenericSoundItem/Waveform"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Rate">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Rate">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Sounds/GenericSoundItem/Rate"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="GenericSoundName" unique="true">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="GenericSoundName" unique="true">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1352,21 +1352,21 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/Asset/ref"/>
         <value xsi:type="metamodel:TargetSectionClass" name="AssetReference">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/AssetReference"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="SoundAssetRef">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundAssetRef">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/AssetReference/ref"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SoundAssetName" unique="true" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundAssetName" unique="true" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="SoundItemGroup" container="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundItemGroup"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Repeat" value="true">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Repeat" value="true">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundItemGroup/Repeat"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SoundItemGroupName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundItemGroupName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1375,7 +1375,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.2/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SoundFileItemName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundFileItemName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1388,21 +1388,21 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroup/vibrationItem"/>
         <value xsi:type="metamodel:TargetSectionClass" name="PulsingVibrationItem">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Vibration/PulsingVibrationItem"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="PulsingVibrationFrequency">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="PulsingVibrationFrequency">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Vibration/PulsingVibrationItem/frequency"/>
           </attributes>
-          <attributes xsi:type="metamodel:ActualAttribute" name="PulsingVibrationDutyCycle">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="PulsingVibrationDutyCycle">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Vibration/PulsingVibrationItem/dutyCycle"/>
           </attributes>
-          <attributes xsi:type="metamodel:ActualAttribute" name="VibrationItemName" value="">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="VibrationItemName" value="">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
           </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Repeat" value="true">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Repeat" value="true">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroupable/Repeat"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="VibrationItemGroupName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="VibrationItemGroupName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1446,14 +1446,14 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="metamodel:TargetSectionClass" name="AnimationIterationCountInt">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationIterationCountInt"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="1">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="1">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/IntegerVariable/val"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SingleGaugeAnimationName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SingleGaugeAnimationName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1462,7 +1462,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="BorderAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="BorderAnimationName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="BorderAnimationName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1471,7 +1471,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SingleSoundAnimationName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SingleSoundAnimationName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1480,7 +1480,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SingleVibrationAnimationName" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SingleVibrationAnimationName" value="">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1500,7 +1500,7 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="metamodel:TargetSectionClass" name="AnimationIterationCountPresetValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationIterationCountPresetValue"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="infinite">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="infinite">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationIterationCountPresetValue/val"/>
               </attributes>
             </value>
@@ -1512,14 +1512,14 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="metamodel:TargetSectionClass" name="AnimationDurationValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationDurationValue"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="AnimationDurationVal">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="AnimationDurationVal">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="InfiniteBorderAnimationName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="InfiniteBorderAnimationName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1536,14 +1536,14 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="metamodel:TargetSectionClass" name="AnimationIterationCountInt">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationIterationCountInt"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="val" value="1">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="val" value="1">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/IntegerVariable/val"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SingleLampAnimationGroupName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SingleLampAnimationGroupName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1609,7 +1609,7 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="BorderColorAnimationName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="BorderColorAnimationName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1619,7 +1619,7 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation/variableResult"/>
         <value xsi:type="metamodel:TargetSectionClass" name="SoundActiveValue">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundActiveValue"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="SoundActiveVal">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundActiveVal">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/BooleanVariable/val"/>
           </attributes>
         </value>
@@ -1627,7 +1627,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="SoundActivePropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation/PropertyToAnimate"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="SoundActiveAnimationName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="SoundActiveAnimationName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1637,7 +1637,7 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation/variableResult"/>
         <value xsi:type="metamodel:TargetSectionClass" name="VibrationActiveValue">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationActiveValue"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="VibrationActiveVal" value="">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="VibrationActiveVal" value="">
             <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/BooleanVariable/val"/>
           </attributes>
         </value>
@@ -1645,7 +1645,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="VibrationActivePropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation/PropertyToAnimate"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="VibrationActiveAnimationName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="VibrationActiveAnimationName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1659,7 +1659,7 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="metamodel:TargetSectionClass" name="BorderVisibilityPresetValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="BorderVisibilityVal" value="">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="BorderVisibilityVal" value="">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue/val"/>
               </attributes>
             </value>
@@ -1674,7 +1674,7 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="metamodel:TargetSectionClass" name="BorderVisibilityAnimationDelayValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationDelayValue"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="BorderVisibilityDelayVal">
+              <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="BorderVisibilityDelayVal">
                 <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/FloatVariable/val"/>
               </attributes>
             </value>
@@ -1684,7 +1684,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="BorderVisibilityAnimationName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="BorderVisibilityAnimationName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>
@@ -1708,7 +1708,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.0/@value.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="LampColorAnimationName">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="LampColorAnimationName">
         <attribute href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Utils/NamedElement/name"/>
       </attributes>
     </metaModelSections>

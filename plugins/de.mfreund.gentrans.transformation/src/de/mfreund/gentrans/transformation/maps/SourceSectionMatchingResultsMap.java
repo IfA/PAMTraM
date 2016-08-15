@@ -12,13 +12,24 @@ import pamtram.metamodel.SourceSectionClass;
  * @author mfreund
  */
 public class SourceSectionMatchingResultsMap
-		extends LinkedHashMap<SourceSectionClass, LinkedList<MatchedSectionDescriptor>> {
+extends LinkedHashMap<SourceSectionClass, LinkedList<MatchedSectionDescriptor>> {
 
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -5790045415437517507L;
+
+	/**
+	 * Initialize the map entry for the given <em>key</em>.
+	 *
+	 * @param key
+	 *            The {@link SourceSectionClass} representing the key to init.
+	 */
+	public void init(SourceSectionClass key) {
+
+		this.put(key, new LinkedList<>());
+	}
 
 	/**
 	 * Finds the Smallest of the stored lists
@@ -28,10 +39,10 @@ public class SourceSectionMatchingResultsMap
 	public SourceSectionClass getKeyForValueWithSmallestCollectionSize() {
 		SourceSectionClass keyForSmallest = null;
 		int smallestSize = -1;
-		for (final SourceSectionClass key : keySet()) {
-			if (get(key).size() < smallestSize || keyForSmallest == null) {
+		for (final SourceSectionClass key : this.keySet()) {
+			if (this.get(key).size() < smallestSize || keyForSmallest == null) {
 				keyForSmallest = key;
-				smallestSize = get(key).size();
+				smallestSize = this.get(key).size();
 			}
 		}
 		return keyForSmallest;
@@ -43,14 +54,14 @@ public class SourceSectionMatchingResultsMap
 	 * @param descriptor
 	 */
 	public void removeResultsForElement(final MatchedSectionDescriptor descriptor) {
-		for (final SourceSectionClass key : keySet()) // remove srcModel element
+		for (final SourceSectionClass key : this.keySet()) // remove srcModel element
 			// from possibility
 			// lists of MMSections
 		{
-			for (final MatchedSectionDescriptor s : get(key)) {
+			for (final MatchedSectionDescriptor s : this.get(key)) {
 				if (s.getAssociatedSourceModelElement().equals(
 						descriptor.getAssociatedSourceModelElement())) {
-					get(key).remove(s);
+					this.get(key).remove(s);
 					break;
 				}
 			}

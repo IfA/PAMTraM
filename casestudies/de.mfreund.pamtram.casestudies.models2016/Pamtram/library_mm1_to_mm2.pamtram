@@ -4,7 +4,7 @@
     <metaModelPackage xsi:type="ecore:EPackage" href="http://mm1#/"/>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Library">
       <eClass xsi:type="ecore:EClass" href="http://mm1#//Library"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Library/name"/>
       </attributes>
     </metaModelSections>
@@ -16,19 +16,19 @@
       <references xsi:type="metamodel:MetaModelSectionReference" name="filmLoans" value="//@sourceSectionModel.0/@metaModelSections.3">
         <eReference xsi:type="ecore:EReference" href="http://mm1#//Member/filmLoans"/>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Member/name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Book" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://mm1#//Book"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Book/name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Film" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://mm1#//Film"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Film/name"/>
       </attributes>
     </metaModelSections>
@@ -41,7 +41,7 @@
         <eReference xsi:type="ecore:EReference" href="http://mm2#//Library/members"/>
         <value xsi:type="metamodel:TargetSectionClass" name="Member" cardinality="ZERO__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm2#//Member"/>
-          <attributes xsi:type="metamodel:ActualAttribute" name="name">
+          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name">
             <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Member/name"/>
           </attributes>
         </value>
@@ -55,16 +55,16 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="loans" value="//@targetSectionModel.0/@metaModelSections.2">
         <eReference xsi:type="ecore:EReference" href="http://mm2#//Member/loans"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Member/name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Medium" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://mm2#//Medium"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Medium/name"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="type">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="type">
         <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Medium/type"/>
       </attributes>
     </metaModelSections>

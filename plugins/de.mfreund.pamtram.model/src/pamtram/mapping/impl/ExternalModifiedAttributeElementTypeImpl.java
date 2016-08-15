@@ -29,7 +29,7 @@ import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,7 +81,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		 *             sourceMMSection.oclType() = OclVoid
 		 *           then true
 		 *           else
-		 *             self.source.oclAsType(metamodel::SourceSectionAttribute)
+		 *             self.source.oclAsType(metamodel::ActualSourceSectionAttribute)
 		 *             .getContainingSection()
 		 *             .oclAsType(metamodel::SourceSection)
 		 *             .isContainerFor(
@@ -151,10 +151,10 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		            symbol_0 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_ActualSourceSectionAttribute = idResolver.getClass(MappingTables.CLSSid_ActualSourceSectionAttribute, null);
 		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSection_0 = idResolver.getClass(MappingTables.CLSSid_SourceSection, null);
-		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute = idResolver.getClass(MappingTables.CLSSid_SourceSectionAttribute, null);
 		            final /*@Thrown*/ Object source_0 = this.getSource();
-		            final /*@Thrown*/ SourceSectionAttribute oclAsType = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, source_0, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute));
+		            final /*@Thrown*/ ActualSourceSectionAttribute oclAsType = ClassUtil.nonNullState((ActualSourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, source_0, TYP_pamtram_c_c_metamodel_c_c_ActualSourceSectionAttribute));
 		            final /*@Thrown*/ Object getContainingSection = ((MetaModelElement)oclAsType).getContainingSection();
 		            final /*@Thrown*/ SourceSection oclAsType_0 = ClassUtil.nonNullState((SourceSection)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, getContainingSection, TYP_pamtram_c_c_metamodel_c_c_SourceSection_0));
 		            if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
@@ -206,7 +206,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_7:
+			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP:
 				return sourceAttributeMatchesContainerSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

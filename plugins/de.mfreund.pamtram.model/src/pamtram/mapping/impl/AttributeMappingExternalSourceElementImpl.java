@@ -50,7 +50,7 @@ public class AttributeMappingExternalSourceElementImpl extends ExternalModifiedA
 	 */
 	@Override
 	public SourceSectionAttribute getSourceAttribute() {
-		return getSource();
+		return this.getSource();
 	}
 
 	/**

@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceElement;
@@ -32,7 +32,7 @@ import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SubstringMatcher;
@@ -40,7 +40,7 @@ import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -99,9 +99,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
 			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: return createSourceSectionAttribute();
-			case MetamodelPackage.ACTUAL_ATTRIBUTE: return createActualAttribute();
-			case MetamodelPackage.VIRTUAL_ATTRIBUTE: return createVirtualAttribute();
+			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
+			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
 			case MetamodelPackage.EQUALITY_MATCHER: return createEqualityMatcher();
 			case MetamodelPackage.SUBSTRING_MATCHER: return createSubstringMatcher();
 			case MetamodelPackage.BEGINNING_MATCHER: return createBeginningMatcher();
@@ -292,9 +292,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute createSourceSectionAttribute() {
-		SourceSectionAttributeImpl sourceSectionAttribute = new SourceSectionAttributeImpl();
-		return sourceSectionAttribute;
+	public ActualSourceSectionAttribute createActualSourceSectionAttribute() {
+		ActualSourceSectionAttributeImpl actualSourceSectionAttribute = new ActualSourceSectionAttributeImpl();
+		return actualSourceSectionAttribute;
 	}
 
 	/**
@@ -302,9 +302,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualAttribute createActualAttribute() {
-		ActualAttributeImpl actualAttribute = new ActualAttributeImpl();
-		return actualAttribute;
+	public ActualTargetSectionAttribute createActualTargetSectionAttribute() {
+		ActualTargetSectionAttributeImpl actualTargetSectionAttribute = new ActualTargetSectionAttributeImpl();
+		return actualTargetSectionAttribute;
 	}
 
 	/**
@@ -312,9 +312,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VirtualAttribute createVirtualAttribute() {
-		VirtualAttributeImpl virtualAttribute = new VirtualAttributeImpl();
-		return virtualAttribute;
+	public VirtualTargetSectionAttribute createVirtualTargetSectionAttribute() {
+		VirtualTargetSectionAttributeImpl virtualTargetSectionAttribute = new VirtualTargetSectionAttributeImpl();
+		return virtualTargetSectionAttribute;
 	}
 
 	/**

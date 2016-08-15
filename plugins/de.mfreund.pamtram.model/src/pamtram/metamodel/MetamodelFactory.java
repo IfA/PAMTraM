@@ -139,31 +139,31 @@ public interface MetamodelFactory extends EFactory {
 	MetaModelSectionReference createMetaModelSectionReference();
 
 	/**
-	 * Returns a new object of class '<em>Source Section Attribute</em>'.
+	 * Returns a new object of class '<em>Actual Source Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Attribute</em>'.
+	 * @return a new object of class '<em>Actual Source Section Attribute</em>'.
 	 * @generated
 	 */
-	SourceSectionAttribute createSourceSectionAttribute();
+	ActualSourceSectionAttribute createActualSourceSectionAttribute();
 
 	/**
-	 * Returns a new object of class '<em>Actual Attribute</em>'.
+	 * Returns a new object of class '<em>Actual Target Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Actual Attribute</em>'.
+	 * @return a new object of class '<em>Actual Target Section Attribute</em>'.
 	 * @generated
 	 */
-	ActualAttribute createActualAttribute();
+	ActualTargetSectionAttribute createActualTargetSectionAttribute();
 
 	/**
-	 * Returns a new object of class '<em>Virtual Attribute</em>'.
+	 * Returns a new object of class '<em>Virtual Target Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Virtual Attribute</em>'.
+	 * @return a new object of class '<em>Virtual Target Section Attribute</em>'.
 	 * @generated
 	 */
-	VirtualAttribute createVirtualAttribute();
+	VirtualTargetSectionAttribute createVirtualTargetSectionAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Equality Matcher</em>'.

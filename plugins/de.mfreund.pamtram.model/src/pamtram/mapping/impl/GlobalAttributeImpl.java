@@ -27,7 +27,7 @@ import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSectionAttribute source;
+	protected ActualSourceSectionAttribute source;
 	/**
 	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -88,10 +88,10 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * @generated
 	 */
 	@Override
-	public SourceSectionAttribute getSource() {
+	public ActualSourceSectionAttribute getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
-			source = (SourceSectionAttribute)eResolveProxy(oldSource);
+			source = (ActualSourceSectionAttribute)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.GLOBAL_ATTRIBUTE__SOURCE, oldSource, source));
@@ -105,7 +105,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute basicGetSource() {
+	public ActualSourceSectionAttribute basicGetSource() {
 		return source;
 	}
 
@@ -114,8 +114,8 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceGen(SourceSectionAttribute newSource) {
-		SourceSectionAttribute oldSource = source;
+	public void setSourceGen(ActualSourceSectionAttribute newSource) {
+		ActualSourceSectionAttribute oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_ATTRIBUTE__SOURCE, oldSource, source));
@@ -125,7 +125,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * Before setting the {@link newSource}, update the name
 	 */
 	@Override
-	public void setSource(SourceSectionAttribute newSource) {
+	public void setSource(ActualSourceSectionAttribute newSource) {
 		setNameDerived(source, newSource, null, null);
 		setSourceGen(newSource);
 	}
@@ -173,7 +173,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
 		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		    final /*@Thrown*/ SourceSectionAttribute source = this.getSource();
+		    final /*@Thrown*/ ActualSourceSectionAttribute source = this.getSource();
 		    final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, source);
 		    final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
 		    /*@Thrown*/ boolean status;
@@ -234,7 +234,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
-				setSource((SourceSectionAttribute)newValue);
+				setSource((ActualSourceSectionAttribute)newValue);
 				return;
 			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
 				getModifier().clear();
@@ -253,7 +253,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
-				setSource((SourceSectionAttribute)null);
+				setSource((ActualSourceSectionAttribute)null);
 				return;
 			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
 				getModifier().clear();
@@ -287,7 +287,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.GLOBAL_ATTRIBUTE___SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE__DIAGNOSTICCHAIN_MAP_7:
+			case MappingPackage.GLOBAL_ATTRIBUTE___SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE__DIAGNOSTICCHAIN_MAP:
 				return sourceAttributeHasUpperBoundOne((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

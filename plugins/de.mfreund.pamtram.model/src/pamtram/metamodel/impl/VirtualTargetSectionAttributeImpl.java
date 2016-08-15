@@ -4,11 +4,8 @@ package pamtram.metamodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,13 +14,13 @@ import pamtram.metamodel.VirtualAttribute;
  *
  * @generated
  */
-public abstract class VirtualAttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends AttributeImpl<S, C, R, A> implements VirtualAttribute<S, C, R, A> {
+public class VirtualTargetSectionAttributeImpl extends TargetSectionAttributeImpl implements VirtualTargetSectionAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VirtualAttributeImpl() {
+	protected VirtualTargetSectionAttributeImpl() {
 		super();
 	}
 
@@ -34,7 +31,7 @@ public abstract class VirtualAttributeImpl<S extends Section<S, C, R, A>, C exte
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.VIRTUAL_ATTRIBUTE;
+		return MetamodelPackage.Literals.VIRTUAL_TARGET_SECTION_ATTRIBUTE;
 	}
 
 } //VirtualAttributeImpl

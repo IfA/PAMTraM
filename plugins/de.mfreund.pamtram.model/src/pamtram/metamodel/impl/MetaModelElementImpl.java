@@ -22,7 +22,7 @@ import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * This method returns the Section containing this MetaModelElement (or 
+	 * This method returns the Section containing this MetaModelElement (or
 	 * the element itself if this already is the Section).
 	 * Thereby, a section is characterized by the following two conditions:
 	 * 1. The Section is an element of type 'pamtram.metamodel.Class'
@@ -84,7 +84,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 				}
 			}
 			return null;
-		} else  if(element instanceof VirtualAttribute && element.eContainer() instanceof LibraryEntry) {
+		} else  if(element instanceof VirtualTargetSectionAttribute && element.eContainer() instanceof LibraryEntry) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer();
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic

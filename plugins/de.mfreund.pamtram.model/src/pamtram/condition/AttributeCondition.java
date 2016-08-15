@@ -5,7 +5,7 @@ package pamtram.condition;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,13 +51,13 @@ public interface AttributeCondition extends Condition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition Attribute Ref</em>' reference.
-	 * @see #setConditionAttributeRef(SourceSectionAttribute)
+	 * @see #setConditionAttributeRef(ActualSourceSectionAttribute)
 	 * @see pamtram.condition.ConditionPackage#getAttributeCondition_ConditionAttributeRef()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!AttributeCondition!conditionAttributeRef'"
 	 * @generated
 	 */
-	SourceSectionAttribute getConditionAttributeRef();
+	ActualSourceSectionAttribute getConditionAttributeRef();
 
 	/**
 	 * Sets the value of the '{@link pamtram.condition.AttributeCondition#getConditionAttributeRef <em>Condition Attribute Ref</em>}' reference.
@@ -67,6 +67,6 @@ public interface AttributeCondition extends Condition {
 	 * @see #getConditionAttributeRef()
 	 * @generated
 	 */
-	void setConditionAttributeRef(SourceSectionAttribute value);
+	void setConditionAttributeRef(ActualSourceSectionAttribute value);
 
 } // AttributeCondition

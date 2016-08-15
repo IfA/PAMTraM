@@ -10,7 +10,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.pivot.evaluation.Executor;
@@ -29,12 +28,10 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,12 +41,12 @@ import pamtram.metamodel.Section;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.impl.ActualAttributeImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.ActualTargetSectionAttributeImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends AttributeImpl<S, C, R, A> implements ActualAttribute<S, C, R, A> {
+public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl implements ActualTargetSectionAttribute {
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -65,7 +62,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActualAttributeImpl() {
+	protected ActualTargetSectionAttributeImpl() {
 		super();
 	}
 
@@ -76,7 +73,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.ACTUAL_ATTRIBUTE;
+		return MetamodelPackage.Literals.ACTUAL_TARGET_SECTION_ATTRIBUTE;
 	}
 
 	/**
@@ -84,13 +81,14 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAttribute() {
 		if (attribute != null && attribute.eIsProxy()) {
 			InternalEObject oldAttribute = (InternalEObject)attribute;
 			attribute = (EAttribute)eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
 			}
 		}
 		return attribute;
@@ -110,11 +108,20 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAttribute(EAttribute newAttribute) {
+	public void setAttributeGen(EAttribute newAttribute) {
 		EAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+	}
+	
+	/**
+	 * Before setting the {@link newEAttribute}, update the name.
+	 */
+	@Override
+	public void setAttribute(EAttribute newAttribute) {
+		setNameDerived(attribute, newAttribute, null, null);
+		setAttributeGen(newAttribute);
 	}
 
 	/**
@@ -240,7 +247,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
 		}
@@ -255,7 +262,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)newValue);
 				return;
 		}
@@ -270,7 +277,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)null);
 				return;
 		}
@@ -285,7 +292,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				return attribute != null;
 		}
 		return super.eIsSet(featureID);
@@ -297,10 +304,58 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ActualAttribute.class) {
+			switch (derivedFeatureID) {
+				case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE: return MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ActualAttribute.class) {
+			switch (baseFeatureID) {
+				case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE: return MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ActualAttribute.class) {
+			switch (baseOperationID) {
+				case MetamodelPackage.ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
 				return attributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EAttribute;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Actual Attribute</b></em>'.
@@ -19,10 +20,12 @@ import org.eclipse.emf.ecore.EAttribute;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getActualAttribute()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
+ * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
-public interface ActualAttribute extends TargetSectionAttribute {
+public interface ActualAttribute<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Attribute<S, C, R, A> {
+
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -35,7 +38,7 @@ public interface ActualAttribute extends TargetSectionAttribute {
 	 * @see #setAttribute(EAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getActualAttribute_Attribute()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ActualAttribute!attribute'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ActualAttribute{S,C,R,A}!attribute'"
 	 * @generated
 	 */
 	EAttribute getAttribute();
@@ -57,5 +60,4 @@ public interface ActualAttribute extends TargetSectionAttribute {
 	 * @generated
 	 */
 	boolean attributeMatchesParentEClass(DiagnosticChain diagnostics, Map<Object, Object> context);
-
 } // ActualAttribute

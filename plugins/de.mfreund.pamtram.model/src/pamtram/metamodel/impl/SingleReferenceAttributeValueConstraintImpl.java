@@ -3,24 +3,19 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
-
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -30,7 +25,6 @@ import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
-
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.FixedValue;
@@ -38,6 +32,7 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceElement;
 import pamtram.metamodel.AttributeValueConstraintSourceInterface;
@@ -48,7 +43,6 @@ import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.util.MetamodelValidator;
 
 /**
@@ -163,6 +157,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AttributeValueConstraintType getType() {
 		return type;
 	}
@@ -172,6 +167,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(AttributeValueConstraintType newType) {
 		AttributeValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
@@ -184,6 +180,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExpression() {
 		return expression;
 	}
@@ -193,6 +190,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpression(String newExpression) {
 		String oldExpression = expression;
 		expression = newExpression;
@@ -205,6 +203,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
 			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__RESULT_MODIFIER);
@@ -217,6 +216,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<InstancePointer> getConstraintReferenceValueAdditionalSpecification() {
 		if (constraintReferenceValueAdditionalSpecification == null) {
 			constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
@@ -229,6 +229,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueConstraintSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<AttributeValueConstraintSourceInterface>(AttributeValueConstraintSourceInterface.class, this, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
@@ -241,6 +242,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkConstraint(final String attrValue, final String refValue) {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceAttributeValueConstraint!checkConstraint(String,String)
 	}
@@ -250,9 +252,10 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if(this.getSourceElements().isEmpty() || 
-				!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getSourceSectionAttribute())) {
+				!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
 			return true;
 		}
 		
@@ -280,6 +283,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if(this.getSourceElements().isEmpty() || 
 				!AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition())) {
@@ -316,8 +320,9 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLocalConstraint() {
-		if(this.eContainer() instanceof SourceSectionAttribute) {
+		if(this.eContainer() instanceof ActualSourceSectionAttribute) {
 			return true;
 		}
 		

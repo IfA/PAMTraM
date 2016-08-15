@@ -10,8 +10,8 @@ package pamtram.metamodel;
  *
  *
  * @see pamtram.metamodel.MetamodelPackage#getVirtualAttribute()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface VirtualAttribute extends TargetSectionAttribute {
+public interface VirtualAttribute<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Attribute<S, C, R, A> {
 } // VirtualAttribute

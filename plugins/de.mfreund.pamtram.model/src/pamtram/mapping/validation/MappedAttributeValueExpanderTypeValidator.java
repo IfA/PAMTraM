@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.mapping.AttributeValueModifierSet;
 
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * A sample validator interface for {@link pamtram.mapping.MappedAttributeValueExpanderType}.
@@ -19,6 +19,6 @@ import pamtram.metamodel.SourceSectionAttribute;
 public interface MappedAttributeValueExpanderTypeValidator {
 	boolean validate();
 
-	boolean validateSourceAttribute(SourceSectionAttribute value);
+	boolean validateSourceAttribute(ActualSourceSectionAttribute value);
 	boolean validateModifiers(EList<AttributeValueModifierSet> value);
 }

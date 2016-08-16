@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 import pamtram.MappingModel;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 
 /**
  * A listener that will present a dialog to the user when
@@ -134,7 +134,7 @@ PamtramChildCommandStackListener {
 				}
 			}
 
-			if(feature != null && feature.getEType().getInstanceClass() == AttributeValueModifierSet.class) {
+			if(feature != null && feature.getEType().getInstanceClass() == ValueModifierSet.class) {
 				return true;
 			} else {
 				return false;
@@ -149,11 +149,11 @@ PamtramChildCommandStackListener {
 			// the cast to EList should always be safe because multiple AttValModifierSets can always 
 			// be specified
 			@SuppressWarnings("unchecked")
-			BasicEList<AttributeValueModifierSet> newSets =
-			(BasicEList<AttributeValueModifierSet>) owner.eGet(feature);
+			BasicEList<ValueModifierSet> newSets =
+			(BasicEList<ValueModifierSet>) owner.eGet(feature);
 
 			// compute the old list of AttValModifierSets by the new list and child commands
-			BasicEList<AttributeValueModifierSet> oldSets = 
+			BasicEList<ValueModifierSet> oldSets = 
 					new BasicEList<>(newSets);
 			for (Command child : children) {
 				if(child instanceof AddCommand) {
@@ -163,7 +163,7 @@ PamtramChildCommandStackListener {
 				} else if(child instanceof RemoveCommand) {
 					RemoveCommand rem = (RemoveCommand) child;
 					for(int i=0; i<rem.getCollection().size(); i++) {
-						oldSets.add(rem.getIndices()[i], (AttributeValueModifierSet) rem.getCollection().toArray()[i]);
+						oldSets.add(rem.getIndices()[i], (ValueModifierSet) rem.getCollection().toArray()[i]);
 					}
 				} else if(child instanceof MoveCommand) {
 					MoveCommand move = (MoveCommand) child;
@@ -191,8 +191,8 @@ PamtramChildCommandStackListener {
 				}
 				// again, this should be safe (see above)
 				@SuppressWarnings("unchecked")
-				BasicEList<AttributeValueModifierSet> possibleMatch = 
-				(BasicEList<AttributeValueModifierSet>) object.eGet(feature);
+				BasicEList<ValueModifierSet> possibleMatch = 
+				(BasicEList<ValueModifierSet>) object.eGet(feature);
 
 				if(possibleMatch.equals(oldSets)) {
 					matches.put(object, feature);

@@ -247,10 +247,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				return validateAttributeMatcherSourceInterface((AttributeMatcherSourceInterface)value, diagnostics, context);
 			case MappingPackage.CLASS_MATCHER:
 				return validateClassMatcher((ClassMatcher)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET:
-				return validateAttributeValueModifierSet((ValueModifierSet)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER:
-				return validateAttributeValueModifier((ValueModifier)value, diagnostics, context);
+			case MappingPackage.VALUE_MODIFIER_SET:
+				return validateValueModifierSet((ValueModifierSet)value, diagnostics, context);
+			case MappingPackage.VALUE_MODIFIER:
+				return validateValueModifier((ValueModifier)value, diagnostics, context);
 			case MappingPackage.SUBSTRING_REPLACER:
 				return validateSubstringReplacer((SubstringReplacer)value, diagnostics, context);
 			case MappingPackage.STRING_APPENDER:
@@ -700,8 +700,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeValueModifierSet(ValueModifierSet attributeValueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeValueModifierSet, diagnostics, context);
+	public boolean validateValueModifierSet(ValueModifierSet valueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(valueModifierSet, diagnostics, context);
 	}
 
 	/**
@@ -709,8 +709,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeValueModifier(ValueModifier attributeValueModifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeValueModifier, diagnostics, context);
+	public boolean validateValueModifier(ValueModifier valueModifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(valueModifier, diagnostics, context);
 	}
 
 	/**

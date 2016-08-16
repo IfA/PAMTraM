@@ -359,16 +359,6 @@ public interface MappingPackage extends EPackage {
 	int CLASS_MATCHER = 16;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.ValueModifier <em>Attribute Value Modifier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.ValueModifier
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifier()
-	 * @generated
-	 */
-	int ATTRIBUTE_VALUE_MODIFIER = 18;
-
-	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -417,16 +407,6 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 23;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ValueModifierSetImpl <em>Attribute Value Modifier Set</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ValueModifierSetImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifierSet()
-	 * @generated
-	 */
-	int ATTRIBUTE_VALUE_MODIFIER_SET = 17;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupTypeImpl <em>Hint Group Type</em>}' class.
@@ -1829,13 +1809,23 @@ public interface MappingPackage extends EPackage {
 	int CLASS_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ValueModifierSetImpl <em>Value Modifier Set</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ValueModifierSetImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifierSet()
+	 * @generated
+	 */
+	int VALUE_MODIFIER_SET = 17;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER_SET__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+	int VALUE_MODIFIER_SET__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' containment reference list.
@@ -1844,25 +1834,35 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int VALUE_MODIFIER_SET__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Attribute Value Modifier Set</em>' class.
+	 * The number of structural features of the '<em>Value Modifier Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER_SET_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int VALUE_MODIFIER_SET_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Attribute Value Modifier Set</em>' class.
+	 * The number of operations of the '<em>Value Modifier Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER_SET_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int VALUE_MODIFIER_SET_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.ValueModifier <em>Value Modifier</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.ValueModifier
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifier()
+	 * @generated
+	 */
+	int VALUE_MODIFIER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1871,16 +1871,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+	int VALUE_MODIFIER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
 
 	/**
-	 * The number of structural features of the '<em>Attribute Value Modifier</em>' class.
+	 * The number of structural features of the '<em>Value Modifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int VALUE_MODIFIER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Modify Value</em>' operation.
@@ -1889,16 +1889,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int VALUE_MODIFIER___MODIFY_VALUE__STRING = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Attribute Value Modifier</em>' class.
+	 * The number of operations of the '<em>Value Modifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int VALUE_MODIFIER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1907,7 +1907,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_REPLACER__NAME = ATTRIBUTE_VALUE_MODIFIER__NAME;
+	int SUBSTRING_REPLACER__NAME = VALUE_MODIFIER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Regex</b></em>' attribute.
@@ -1916,7 +1916,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_REPLACER__REGEX = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 0;
+	int SUBSTRING_REPLACER__REGEX = VALUE_MODIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Replacement</b></em>' attribute.
@@ -1925,7 +1925,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_REPLACER__REPLACEMENT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 1;
+	int SUBSTRING_REPLACER__REPLACEMENT = VALUE_MODIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Substring Replacer</em>' class.
@@ -1934,7 +1934,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_REPLACER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 2;
+	int SUBSTRING_REPLACER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Modify Value</em>' operation.
@@ -1943,7 +1943,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_REPLACER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
+	int SUBSTRING_REPLACER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>Substring Replacer</em>' class.
@@ -1952,7 +1952,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_REPLACER_OPERATION_COUNT = ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT + 0;
+	int SUBSTRING_REPLACER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1961,7 +1961,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_APPENDER__NAME = ATTRIBUTE_VALUE_MODIFIER__NAME;
+	int STRING_APPENDER__NAME = VALUE_MODIFIER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>String</b></em>' attribute.
@@ -1970,7 +1970,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_APPENDER__STRING = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 0;
+	int STRING_APPENDER__STRING = VALUE_MODIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>String Appender</em>' class.
@@ -1979,7 +1979,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_APPENDER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 1;
+	int STRING_APPENDER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Modify Value</em>' operation.
@@ -1988,7 +1988,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_APPENDER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
+	int STRING_APPENDER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>String Appender</em>' class.
@@ -1997,7 +1997,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_APPENDER_OPERATION_COUNT = ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT + 0;
+	int STRING_APPENDER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2006,7 +2006,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIQUE_NUMBER_APPENDER__NAME = ATTRIBUTE_VALUE_MODIFIER__NAME;
+	int UNIQUE_NUMBER_APPENDER__NAME = VALUE_MODIFIER__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Unique Number Appender</em>' class.
@@ -2015,7 +2015,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIQUE_NUMBER_APPENDER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 0;
+	int UNIQUE_NUMBER_APPENDER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Modify Value</em>' operation.
@@ -2024,7 +2024,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIQUE_NUMBER_APPENDER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
+	int UNIQUE_NUMBER_APPENDER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>Unique Number Appender</em>' class.
@@ -2033,7 +2033,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIQUE_NUMBER_APPENDER_OPERATION_COUNT = ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT + 0;
+	int UNIQUE_NUMBER_APPENDER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2042,7 +2042,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_PREPENDER__NAME = ATTRIBUTE_VALUE_MODIFIER__NAME;
+	int STRING_PREPENDER__NAME = VALUE_MODIFIER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>String</b></em>' attribute.
@@ -2051,7 +2051,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_PREPENDER__STRING = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 0;
+	int STRING_PREPENDER__STRING = VALUE_MODIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>String Prepender</em>' class.
@@ -2060,7 +2060,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_PREPENDER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 1;
+	int STRING_PREPENDER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Modify Value</em>' operation.
@@ -2069,7 +2069,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_PREPENDER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
+	int STRING_PREPENDER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>String Prepender</em>' class.
@@ -2078,7 +2078,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_PREPENDER_OPERATION_COUNT = ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT + 0;
+	int STRING_PREPENDER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3890,7 +3890,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER__NAME = ATTRIBUTE_VALUE_MODIFIER__NAME;
+	int MATCH_TO_LOWER_CASE_CONVERTER__NAME = VALUE_MODIFIER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Regex</b></em>' attribute.
@@ -3899,7 +3899,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER__REGEX = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 0;
+	int MATCH_TO_LOWER_CASE_CONVERTER__REGEX = VALUE_MODIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Match To Lower Case Converter</em>' class.
@@ -3908,7 +3908,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 1;
+	int MATCH_TO_LOWER_CASE_CONVERTER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Modify Value</em>' operation.
@@ -3917,7 +3917,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
+	int MATCH_TO_LOWER_CASE_CONVERTER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>Match To Lower Case Converter</em>' class.
@@ -3926,7 +3926,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER_OPERATION_COUNT = ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT + 0;
+	int MATCH_TO_LOWER_CASE_CONVERTER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MatchToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
@@ -3945,7 +3945,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER__NAME = ATTRIBUTE_VALUE_MODIFIER__NAME;
+	int MATCH_TO_UPPER_CASE_CONVERTER__NAME = VALUE_MODIFIER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Regex</b></em>' attribute.
@@ -3954,7 +3954,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER__REGEX = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 0;
+	int MATCH_TO_UPPER_CASE_CONVERTER__REGEX = VALUE_MODIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Match To Upper Case Converter</em>' class.
@@ -3963,7 +3963,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 1;
+	int MATCH_TO_UPPER_CASE_CONVERTER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Modify Value</em>' operation.
@@ -3972,7 +3972,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
+	int MATCH_TO_UPPER_CASE_CONVERTER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>Match To Upper Case Converter</em>' class.
@@ -3981,7 +3981,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER_OPERATION_COUNT = ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT + 0;
+	int MATCH_TO_UPPER_CASE_CONVERTER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
@@ -4460,14 +4460,35 @@ public interface MappingPackage extends EPackage {
 	EReference getClassMatcher_TargetClass();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ValueModifier <em>Attribute Value Modifier</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ValueModifierSet <em>Value Modifier Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute Value Modifier</em>'.
+	 * @return the meta object for class '<em>Value Modifier Set</em>'.
+	 * @see pamtram.mapping.ValueModifierSet
+	 * @generated
+	 */
+	EClass getValueModifierSet();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ValueModifierSet#getModifier <em>Modifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Modifier</em>'.
+	 * @see pamtram.mapping.ValueModifierSet#getModifier()
+	 * @see #getValueModifierSet()
+	 * @generated
+	 */
+	EReference getValueModifierSet_Modifier();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ValueModifier <em>Value Modifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Value Modifier</em>'.
 	 * @see pamtram.mapping.ValueModifier
 	 * @generated
 	 */
-	EClass getAttributeValueModifier();
+	EClass getValueModifier();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.ValueModifier#modifyValue(java.lang.String) <em>Modify Value</em>}' operation.
@@ -4477,7 +4498,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.ValueModifier#modifyValue(java.lang.String)
 	 * @generated
 	 */
-	EOperation getAttributeValueModifier__ModifyValue__String();
+	EOperation getValueModifier__ModifyValue__String();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.SubstringReplacer <em>Substring Replacer</em>}'.
@@ -4634,27 +4655,6 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getLocalModifiedAttributeElementType__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ValueModifierSet <em>Attribute Value Modifier Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute Value Modifier Set</em>'.
-	 * @see pamtram.mapping.ValueModifierSet
-	 * @generated
-	 */
-	EClass getAttributeValueModifierSet();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ValueModifierSet#getModifier <em>Modifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.ValueModifierSet#getModifier()
-	 * @see #getAttributeValueModifierSet()
-	 * @generated
-	 */
-	EReference getAttributeValueModifierSet_Modifier();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintGroup <em>Hint Group</em>}'.
@@ -5660,14 +5660,32 @@ public interface MappingPackage extends EPackage {
 		EReference CLASS_MATCHER__TARGET_CLASS = eINSTANCE.getClassMatcher_TargetClass();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.ValueModifier <em>Attribute Value Modifier</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ValueModifierSetImpl <em>Value Modifier Set</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ValueModifierSetImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifierSet()
+		 * @generated
+		 */
+		EClass VALUE_MODIFIER_SET = eINSTANCE.getValueModifierSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Modifier</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_MODIFIER_SET__MODIFIER = eINSTANCE.getValueModifierSet_Modifier();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.ValueModifier <em>Value Modifier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.mapping.ValueModifier
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifier()
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifier()
 		 * @generated
 		 */
-		EClass ATTRIBUTE_VALUE_MODIFIER = eINSTANCE.getAttributeValueModifier();
+		EClass VALUE_MODIFIER = eINSTANCE.getValueModifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Modify Value</b></em>' operation.
@@ -5675,7 +5693,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING = eINSTANCE.getAttributeValueModifier__ModifyValue__String();
+		EOperation VALUE_MODIFIER___MODIFY_VALUE__STRING = eINSTANCE.getValueModifier__ModifyValue__String();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
@@ -5808,24 +5826,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLocalModifiedAttributeElementType__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ValueModifierSetImpl <em>Attribute Value Modifier Set</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ValueModifierSetImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifierSet()
-		 * @generated
-		 */
-		EClass ATTRIBUTE_VALUE_MODIFIER_SET = eINSTANCE.getAttributeValueModifierSet();
-
-		/**
-		 * The meta object literal for the '<em><b>Modifier</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER = eINSTANCE.getAttributeValueModifierSet_Modifier();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintGroupImpl <em>Hint Group</em>}' class.

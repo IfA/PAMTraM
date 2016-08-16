@@ -72,8 +72,6 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeMatcherExternalSourceElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMatcherExternalSourceElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeMatcherSourceElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMatcherSourceElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeMatcherSourceInterface = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMatcherSourceInterface", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeValueModifier = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeValueModifier", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeValueModifierSet = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeValueModifierSet", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_CardinalityMapping = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("CardinalityMapping", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class = pamtram.mapping.MappingTables.PACKid_$metamodel$.getClassId("Class", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class_0 = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Class", 0);
@@ -113,6 +111,8 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSectionAttribute = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSectionClass = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionClass", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSectionNonContainmentReference = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionNonContainmentReference", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ValueModifier = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ValueModifier", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ValueModifierSet = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ValueModifierSet", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.DataTypeId DATAid_EInt = pamtram.mapping.MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_CardinalityType = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("CardinalityType");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
@@ -171,8 +171,6 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationLiteralId ELITid_ONE = pamtram.mapping.MappingTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_AttributeMappingSourceInterface = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeMappingSourceInterface);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_AttributeMatcherSourceInterface = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeMatcherSourceInterface);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_AttributeValueModifier = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeValueModifier);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_AttributeValueModifierSet = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeValueModifierSet);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_EReference = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_EReference);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ExpandableHint = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ExpandableHint);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_GlobalAttribute = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_GlobalAttribute);
@@ -182,6 +180,8 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_MappingHintType = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_MappingHintType);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ModelConnectionHintSourceInterface = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ModelConnectionHintSourceInterface);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ModelConnectionHintTargetAttribute = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ModelConnectionHintTargetAttribute);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueModifier = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ValueModifier);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueModifierSet = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ValueModifierSet);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_ActualSourceSectionAttribute = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ActualSourceSectionAttribute);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_AttributeMappingExternalSourceElement = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeMappingExternalSourceElement);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_AttributeMappingSourceElement = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeMappingSourceElement);
@@ -241,8 +241,6 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _AttributeMatcherExternalSourceElement = new EcoreExecutorType(MappingPackage.Literals.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _AttributeMatcherSourceElement = new EcoreExecutorType(MappingPackage.Literals.ATTRIBUTE_MATCHER_SOURCE_ELEMENT, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _AttributeMatcherSourceInterface = new EcoreExecutorType(MappingPackage.Literals.ATTRIBUTE_MATCHER_SOURCE_INTERFACE, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _AttributeValueModifier = new EcoreExecutorType(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _AttributeValueModifierSet = new EcoreExecutorType(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _CardinalityMapping = new EcoreExecutorType(MappingPackage.Literals.CARDINALITY_MAPPING, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ClassMatcher = new EcoreExecutorType(MappingPackage.Literals.CLASS_MATCHER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExpandableHint = new EcoreExecutorType(MappingPackage.Literals.EXPANDABLE_HINT, PACKAGE, 0 | ExecutorType.ABSTRACT);
@@ -286,6 +284,8 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _StringPrepender = new EcoreExecutorType(MappingPackage.Literals.STRING_PREPENDER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _SubstringReplacer = new EcoreExecutorType(MappingPackage.Literals.SUBSTRING_REPLACER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _UniqueNumberAppender = new EcoreExecutorType(MappingPackage.Literals.UNIQUE_NUMBER_APPENDER, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ValueModifier = new EcoreExecutorType(MappingPackage.Literals.VALUE_MODIFIER, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final /*@NonNull*/ EcoreExecutorType _ValueModifierSet = new EcoreExecutorType(MappingPackage.Literals.VALUE_MODIFIER_SET, PACKAGE, 0);
 
 		private static final /*@NonNull*/ EcoreExecutorType /*@NonNull*/ [] types = {
 			_AttributeMapping,
@@ -296,8 +296,6 @@ public class MappingTables
 			_AttributeMatcherExternalSourceElement,
 			_AttributeMatcherSourceElement,
 			_AttributeMatcherSourceInterface,
-			_AttributeValueModifier,
-			_AttributeValueModifierSet,
 			_CardinalityMapping,
 			_ClassMatcher,
 			_ExpandableHint,
@@ -340,7 +338,9 @@ public class MappingTables
 			_StringAppender,
 			_StringPrepender,
 			_SubstringReplacer,
-			_UniqueNumberAppender
+			_UniqueNumberAppender,
+			_ValueModifier,
+			_ValueModifierSet
 		};
 
 		/*
@@ -433,16 +433,6 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _AttributeMatcherSourceInterface__NamedElement = new ExecutorFragment(Types._AttributeMatcherSourceInterface, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _AttributeMatcherSourceInterface__OclAny = new ExecutorFragment(Types._AttributeMatcherSourceInterface, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _AttributeMatcherSourceInterface__OclElement = new ExecutorFragment(Types._AttributeMatcherSourceInterface, OCLstdlibTables.Types._OclElement);
-
-		private static final /*@NonNull*/ ExecutorFragment _AttributeValueModifier__AttributeValueModifier = new ExecutorFragment(Types._AttributeValueModifier, MappingTables.Types._AttributeValueModifier);
-		private static final /*@NonNull*/ ExecutorFragment _AttributeValueModifier__NamedElement = new ExecutorFragment(Types._AttributeValueModifier, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _AttributeValueModifier__OclAny = new ExecutorFragment(Types._AttributeValueModifier, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _AttributeValueModifier__OclElement = new ExecutorFragment(Types._AttributeValueModifier, OCLstdlibTables.Types._OclElement);
-
-		private static final /*@NonNull*/ ExecutorFragment _AttributeValueModifierSet__AttributeValueModifierSet = new ExecutorFragment(Types._AttributeValueModifierSet, MappingTables.Types._AttributeValueModifierSet);
-		private static final /*@NonNull*/ ExecutorFragment _AttributeValueModifierSet__NamedElement = new ExecutorFragment(Types._AttributeValueModifierSet, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _AttributeValueModifierSet__OclAny = new ExecutorFragment(Types._AttributeValueModifierSet, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _AttributeValueModifierSet__OclElement = new ExecutorFragment(Types._AttributeValueModifierSet, OCLstdlibTables.Types._OclElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _CardinalityMapping__CardinalityMapping = new ExecutorFragment(Types._CardinalityMapping, MappingTables.Types._CardinalityMapping);
 		private static final /*@NonNull*/ ExecutorFragment _CardinalityMapping__ConditionalElement = new ExecutorFragment(Types._CardinalityMapping, PamtramTables.Types._ConditionalElement);
@@ -672,17 +662,17 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _MappingType__OclAny = new ExecutorFragment(Types._MappingType, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _MappingType__OclElement = new ExecutorFragment(Types._MappingType, OCLstdlibTables.Types._OclElement);
 
-		private static final /*@NonNull*/ ExecutorFragment _MatchToLowerCaseConverter__AttributeValueModifier = new ExecutorFragment(Types._MatchToLowerCaseConverter, MappingTables.Types._AttributeValueModifier);
 		private static final /*@NonNull*/ ExecutorFragment _MatchToLowerCaseConverter__MatchToLowerCaseConverter = new ExecutorFragment(Types._MatchToLowerCaseConverter, MappingTables.Types._MatchToLowerCaseConverter);
 		private static final /*@NonNull*/ ExecutorFragment _MatchToLowerCaseConverter__NamedElement = new ExecutorFragment(Types._MatchToLowerCaseConverter, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _MatchToLowerCaseConverter__OclAny = new ExecutorFragment(Types._MatchToLowerCaseConverter, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _MatchToLowerCaseConverter__OclElement = new ExecutorFragment(Types._MatchToLowerCaseConverter, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _MatchToLowerCaseConverter__ValueModifier = new ExecutorFragment(Types._MatchToLowerCaseConverter, MappingTables.Types._ValueModifier);
 
-		private static final /*@NonNull*/ ExecutorFragment _MatchToUpperCaseConverter__AttributeValueModifier = new ExecutorFragment(Types._MatchToUpperCaseConverter, MappingTables.Types._AttributeValueModifier);
 		private static final /*@NonNull*/ ExecutorFragment _MatchToUpperCaseConverter__MatchToUpperCaseConverter = new ExecutorFragment(Types._MatchToUpperCaseConverter, MappingTables.Types._MatchToUpperCaseConverter);
 		private static final /*@NonNull*/ ExecutorFragment _MatchToUpperCaseConverter__NamedElement = new ExecutorFragment(Types._MatchToUpperCaseConverter, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _MatchToUpperCaseConverter__OclAny = new ExecutorFragment(Types._MatchToUpperCaseConverter, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _MatchToUpperCaseConverter__OclElement = new ExecutorFragment(Types._MatchToUpperCaseConverter, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _MatchToUpperCaseConverter__ValueModifier = new ExecutorFragment(Types._MatchToUpperCaseConverter, MappingTables.Types._ValueModifier);
 
 		private static final /*@NonNull*/ ExecutorFragment _Matcher__Matcher = new ExecutorFragment(Types._Matcher, MappingTables.Types._Matcher);
 		private static final /*@NonNull*/ ExecutorFragment _Matcher__OclAny = new ExecutorFragment(Types._Matcher, OCLstdlibTables.Types._OclAny);
@@ -733,29 +723,39 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _ModifiedAttributeElementType__OclAny = new ExecutorFragment(Types._ModifiedAttributeElementType, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _ModifiedAttributeElementType__OclElement = new ExecutorFragment(Types._ModifiedAttributeElementType, OCLstdlibTables.Types._OclElement);
 
-		private static final /*@NonNull*/ ExecutorFragment _StringAppender__AttributeValueModifier = new ExecutorFragment(Types._StringAppender, MappingTables.Types._AttributeValueModifier);
 		private static final /*@NonNull*/ ExecutorFragment _StringAppender__NamedElement = new ExecutorFragment(Types._StringAppender, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _StringAppender__OclAny = new ExecutorFragment(Types._StringAppender, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _StringAppender__OclElement = new ExecutorFragment(Types._StringAppender, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _StringAppender__StringAppender = new ExecutorFragment(Types._StringAppender, MappingTables.Types._StringAppender);
+		private static final /*@NonNull*/ ExecutorFragment _StringAppender__ValueModifier = new ExecutorFragment(Types._StringAppender, MappingTables.Types._ValueModifier);
 
-		private static final /*@NonNull*/ ExecutorFragment _StringPrepender__AttributeValueModifier = new ExecutorFragment(Types._StringPrepender, MappingTables.Types._AttributeValueModifier);
 		private static final /*@NonNull*/ ExecutorFragment _StringPrepender__NamedElement = new ExecutorFragment(Types._StringPrepender, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _StringPrepender__OclAny = new ExecutorFragment(Types._StringPrepender, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _StringPrepender__OclElement = new ExecutorFragment(Types._StringPrepender, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _StringPrepender__StringPrepender = new ExecutorFragment(Types._StringPrepender, MappingTables.Types._StringPrepender);
+		private static final /*@NonNull*/ ExecutorFragment _StringPrepender__ValueModifier = new ExecutorFragment(Types._StringPrepender, MappingTables.Types._ValueModifier);
 
-		private static final /*@NonNull*/ ExecutorFragment _SubstringReplacer__AttributeValueModifier = new ExecutorFragment(Types._SubstringReplacer, MappingTables.Types._AttributeValueModifier);
 		private static final /*@NonNull*/ ExecutorFragment _SubstringReplacer__NamedElement = new ExecutorFragment(Types._SubstringReplacer, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _SubstringReplacer__OclAny = new ExecutorFragment(Types._SubstringReplacer, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _SubstringReplacer__OclElement = new ExecutorFragment(Types._SubstringReplacer, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _SubstringReplacer__SubstringReplacer = new ExecutorFragment(Types._SubstringReplacer, MappingTables.Types._SubstringReplacer);
+		private static final /*@NonNull*/ ExecutorFragment _SubstringReplacer__ValueModifier = new ExecutorFragment(Types._SubstringReplacer, MappingTables.Types._ValueModifier);
 
-		private static final /*@NonNull*/ ExecutorFragment _UniqueNumberAppender__AttributeValueModifier = new ExecutorFragment(Types._UniqueNumberAppender, MappingTables.Types._AttributeValueModifier);
 		private static final /*@NonNull*/ ExecutorFragment _UniqueNumberAppender__NamedElement = new ExecutorFragment(Types._UniqueNumberAppender, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _UniqueNumberAppender__OclAny = new ExecutorFragment(Types._UniqueNumberAppender, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _UniqueNumberAppender__OclElement = new ExecutorFragment(Types._UniqueNumberAppender, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _UniqueNumberAppender__UniqueNumberAppender = new ExecutorFragment(Types._UniqueNumberAppender, MappingTables.Types._UniqueNumberAppender);
+		private static final /*@NonNull*/ ExecutorFragment _UniqueNumberAppender__ValueModifier = new ExecutorFragment(Types._UniqueNumberAppender, MappingTables.Types._ValueModifier);
+
+		private static final /*@NonNull*/ ExecutorFragment _ValueModifier__NamedElement = new ExecutorFragment(Types._ValueModifier, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ValueModifier__OclAny = new ExecutorFragment(Types._ValueModifier, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ValueModifier__OclElement = new ExecutorFragment(Types._ValueModifier, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _ValueModifier__ValueModifier = new ExecutorFragment(Types._ValueModifier, MappingTables.Types._ValueModifier);
+
+		private static final /*@NonNull*/ ExecutorFragment _ValueModifierSet__NamedElement = new ExecutorFragment(Types._ValueModifierSet, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ValueModifierSet__OclAny = new ExecutorFragment(Types._ValueModifierSet, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ValueModifierSet__OclElement = new ExecutorFragment(Types._ValueModifierSet, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _ValueModifierSet__ValueModifierSet = new ExecutorFragment(Types._ValueModifierSet, MappingTables.Types._ValueModifierSet);
 
 		static {
 			Init.initEnd();
@@ -807,9 +807,6 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorOperation _AttributeMatcher__getLocalSourceElements = new ExecutorOperation("getLocalSourceElements", TypeUtil.EMPTY_PARAMETER_TYPES, Types._AttributeMatcher,
 			1, TemplateParameters.EMPTY_LIST, null);
 
-		public static final /*@NonNull*/ ExecutorOperation _AttributeValueModifier__modifyValue = new ExecutorOperation("modifyValue", Parameters._String, Types._AttributeValueModifier,
-			0, TemplateParameters.EMPTY_LIST, null);
-
 		public static final /*@NonNull*/ ExecutorOperation _MappedAttributeValueExpander__getModifiers = new ExecutorOperation("getModifiers", TypeUtil.EMPTY_PARAMETER_TYPES, Types._MappedAttributeValueExpander,
 			0, TemplateParameters.EMPTY_LIST, null);
 		public static final /*@NonNull*/ ExecutorOperation _MappedAttributeValueExpander__getSourceAttribute = new ExecutorOperation("getSourceAttribute", TypeUtil.EMPTY_PARAMETER_TYPES, Types._MappedAttributeValueExpander,
@@ -834,6 +831,9 @@ public class MappingTables
 			0, TemplateParameters.EMPTY_LIST, null);
 		public static final /*@NonNull*/ ExecutorOperation _ModifiedAttributeElementType__getMappingHintGroup = new ExecutorOperation("getMappingHintGroup", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ModifiedAttributeElementType,
 			1, TemplateParameters.EMPTY_LIST, null);
+
+		public static final /*@NonNull*/ ExecutorOperation _ValueModifier__modifyValue = new ExecutorOperation("modifyValue", Parameters._String, Types._ValueModifier,
+			0, TemplateParameters.EMPTY_LIST, null);
 
 		static {
 			Init.initEnd();
@@ -863,13 +863,6 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__targetAttribute = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE, Types._AttributeMatcher, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes = new ExecutorPropertyWithImplementation("AttributeMatcher", Types._AttributeMatcherSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES));
-
-		public static final /*@NonNull*/ ExecutorProperty _AttributeValueModifier__AttributeValueModifierSet__modifier = new ExecutorPropertyWithImplementation("AttributeValueModifierSet", Types._AttributeValueModifier, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER));
-
-		public static final /*@NonNull*/ ExecutorProperty _AttributeValueModifierSet__modifier = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER, Types._AttributeValueModifierSet, 0);
-		public static final /*@NonNull*/ ExecutorProperty _AttributeValueModifierSet__GlobalAttribute__modifier = new ExecutorPropertyWithImplementation("GlobalAttribute", Types._AttributeValueModifierSet, 1, new EcoreLibraryOppositeProperty(MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIER));
-		public static final /*@NonNull*/ ExecutorProperty _AttributeValueModifierSet__ModifiableHint__resultModifier = new ExecutorPropertyWithImplementation("ModifiableHint", Types._AttributeValueModifierSet, 2, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER));
-		public static final /*@NonNull*/ ExecutorProperty _AttributeValueModifierSet__ModifiedAttributeElementType__modifier = new ExecutorPropertyWithImplementation("ModifiedAttributeElementType", Types._AttributeValueModifierSet, 3, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER));
 
 		public static final /*@NonNull*/ ExecutorProperty _CardinalityMapping__source = new EcoreExecutorProperty(MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE, Types._CardinalityMapping, 0);
 		public static final /*@NonNull*/ ExecutorProperty _CardinalityMapping__target = new EcoreExecutorProperty(MappingPackage.Literals.CARDINALITY_MAPPING__TARGET, Types._CardinalityMapping, 1);
@@ -945,6 +938,13 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _SubstringReplacer__regex = new EcoreExecutorProperty(MappingPackage.Literals.SUBSTRING_REPLACER__REGEX, Types._SubstringReplacer, 0);
 		public static final /*@NonNull*/ ExecutorProperty _SubstringReplacer__replacement = new EcoreExecutorProperty(MappingPackage.Literals.SUBSTRING_REPLACER__REPLACEMENT, Types._SubstringReplacer, 1);
+
+		public static final /*@NonNull*/ ExecutorProperty _ValueModifier__ValueModifierSet__modifier = new ExecutorPropertyWithImplementation("ValueModifierSet", Types._ValueModifier, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.VALUE_MODIFIER_SET__MODIFIER));
+
+		public static final /*@NonNull*/ ExecutorProperty _ValueModifierSet__modifier = new EcoreExecutorProperty(MappingPackage.Literals.VALUE_MODIFIER_SET__MODIFIER, Types._ValueModifierSet, 0);
+		public static final /*@NonNull*/ ExecutorProperty _ValueModifierSet__GlobalAttribute__modifier = new ExecutorPropertyWithImplementation("GlobalAttribute", Types._ValueModifierSet, 1, new EcoreLibraryOppositeProperty(MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIER));
+		public static final /*@NonNull*/ ExecutorProperty _ValueModifierSet__ModifiableHint__resultModifier = new ExecutorPropertyWithImplementation("ModifiableHint", Types._ValueModifierSet, 2, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER));
+		public static final /*@NonNull*/ ExecutorProperty _ValueModifierSet__ModifiedAttributeElementType__modifier = new ExecutorPropertyWithImplementation("ModifiedAttributeElementType", Types._ValueModifierSet, 3, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER));
 		static {
 			Init.initEnd();
 		}
@@ -1063,24 +1063,6 @@ public class MappingTables
 			Fragments._AttributeMatcherSourceInterface__AttributeMatcherSourceInterface /* 4 */
 		};
 		private static final int /*@NonNull*/ [] __AttributeMatcherSourceInterface = { 1,1,1,1,1 };
-
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _AttributeValueModifier =
-		{
-			Fragments._AttributeValueModifier__OclAny /* 0 */,
-			Fragments._AttributeValueModifier__OclElement /* 1 */,
-			Fragments._AttributeValueModifier__NamedElement /* 2 */,
-			Fragments._AttributeValueModifier__AttributeValueModifier /* 3 */
-		};
-		private static final int /*@NonNull*/ [] __AttributeValueModifier = { 1,1,1,1 };
-
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _AttributeValueModifierSet =
-		{
-			Fragments._AttributeValueModifierSet__OclAny /* 0 */,
-			Fragments._AttributeValueModifierSet__OclElement /* 1 */,
-			Fragments._AttributeValueModifierSet__NamedElement /* 2 */,
-			Fragments._AttributeValueModifierSet__AttributeValueModifierSet /* 3 */
-		};
-		private static final int /*@NonNull*/ [] __AttributeValueModifierSet = { 1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _CardinalityMapping =
 		{
@@ -1431,7 +1413,7 @@ public class MappingTables
 			Fragments._MatchToLowerCaseConverter__OclAny /* 0 */,
 			Fragments._MatchToLowerCaseConverter__OclElement /* 1 */,
 			Fragments._MatchToLowerCaseConverter__NamedElement /* 2 */,
-			Fragments._MatchToLowerCaseConverter__AttributeValueModifier /* 3 */,
+			Fragments._MatchToLowerCaseConverter__ValueModifier /* 3 */,
 			Fragments._MatchToLowerCaseConverter__MatchToLowerCaseConverter /* 4 */
 		};
 		private static final int /*@NonNull*/ [] __MatchToLowerCaseConverter = { 1,1,1,1,1 };
@@ -1441,7 +1423,7 @@ public class MappingTables
 			Fragments._MatchToUpperCaseConverter__OclAny /* 0 */,
 			Fragments._MatchToUpperCaseConverter__OclElement /* 1 */,
 			Fragments._MatchToUpperCaseConverter__NamedElement /* 2 */,
-			Fragments._MatchToUpperCaseConverter__AttributeValueModifier /* 3 */,
+			Fragments._MatchToUpperCaseConverter__ValueModifier /* 3 */,
 			Fragments._MatchToUpperCaseConverter__MatchToUpperCaseConverter /* 4 */
 		};
 		private static final int /*@NonNull*/ [] __MatchToUpperCaseConverter = { 1,1,1,1,1 };
@@ -1532,7 +1514,7 @@ public class MappingTables
 			Fragments._StringAppender__OclAny /* 0 */,
 			Fragments._StringAppender__OclElement /* 1 */,
 			Fragments._StringAppender__NamedElement /* 2 */,
-			Fragments._StringAppender__AttributeValueModifier /* 3 */,
+			Fragments._StringAppender__ValueModifier /* 3 */,
 			Fragments._StringAppender__StringAppender /* 4 */
 		};
 		private static final int /*@NonNull*/ [] __StringAppender = { 1,1,1,1,1 };
@@ -1542,7 +1524,7 @@ public class MappingTables
 			Fragments._StringPrepender__OclAny /* 0 */,
 			Fragments._StringPrepender__OclElement /* 1 */,
 			Fragments._StringPrepender__NamedElement /* 2 */,
-			Fragments._StringPrepender__AttributeValueModifier /* 3 */,
+			Fragments._StringPrepender__ValueModifier /* 3 */,
 			Fragments._StringPrepender__StringPrepender /* 4 */
 		};
 		private static final int /*@NonNull*/ [] __StringPrepender = { 1,1,1,1,1 };
@@ -1552,7 +1534,7 @@ public class MappingTables
 			Fragments._SubstringReplacer__OclAny /* 0 */,
 			Fragments._SubstringReplacer__OclElement /* 1 */,
 			Fragments._SubstringReplacer__NamedElement /* 2 */,
-			Fragments._SubstringReplacer__AttributeValueModifier /* 3 */,
+			Fragments._SubstringReplacer__ValueModifier /* 3 */,
 			Fragments._SubstringReplacer__SubstringReplacer /* 4 */
 		};
 		private static final int /*@NonNull*/ [] __SubstringReplacer = { 1,1,1,1,1 };
@@ -1562,10 +1544,28 @@ public class MappingTables
 			Fragments._UniqueNumberAppender__OclAny /* 0 */,
 			Fragments._UniqueNumberAppender__OclElement /* 1 */,
 			Fragments._UniqueNumberAppender__NamedElement /* 2 */,
-			Fragments._UniqueNumberAppender__AttributeValueModifier /* 3 */,
+			Fragments._UniqueNumberAppender__ValueModifier /* 3 */,
 			Fragments._UniqueNumberAppender__UniqueNumberAppender /* 4 */
 		};
 		private static final int /*@NonNull*/ [] __UniqueNumberAppender = { 1,1,1,1,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ValueModifier =
+		{
+			Fragments._ValueModifier__OclAny /* 0 */,
+			Fragments._ValueModifier__OclElement /* 1 */,
+			Fragments._ValueModifier__NamedElement /* 2 */,
+			Fragments._ValueModifier__ValueModifier /* 3 */
+		};
+		private static final int /*@NonNull*/ [] __ValueModifier = { 1,1,1,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ValueModifierSet =
+		{
+			Fragments._ValueModifierSet__OclAny /* 0 */,
+			Fragments._ValueModifierSet__OclElement /* 1 */,
+			Fragments._ValueModifierSet__NamedElement /* 2 */,
+			Fragments._ValueModifierSet__ValueModifierSet /* 3 */
+		};
+		private static final int /*@NonNull*/ [] __ValueModifierSet = { 1,1,1,1 };
 
 		/**
 		 *	Install the fragment descriptors in the class descriptors.
@@ -1579,8 +1579,6 @@ public class MappingTables
 			Types._AttributeMatcherExternalSourceElement.initFragments(_AttributeMatcherExternalSourceElement, __AttributeMatcherExternalSourceElement);
 			Types._AttributeMatcherSourceElement.initFragments(_AttributeMatcherSourceElement, __AttributeMatcherSourceElement);
 			Types._AttributeMatcherSourceInterface.initFragments(_AttributeMatcherSourceInterface, __AttributeMatcherSourceInterface);
-			Types._AttributeValueModifier.initFragments(_AttributeValueModifier, __AttributeValueModifier);
-			Types._AttributeValueModifierSet.initFragments(_AttributeValueModifierSet, __AttributeValueModifierSet);
 			Types._CardinalityMapping.initFragments(_CardinalityMapping, __CardinalityMapping);
 			Types._ClassMatcher.initFragments(_ClassMatcher, __ClassMatcher);
 			Types._ExpandableHint.initFragments(_ExpandableHint, __ExpandableHint);
@@ -1624,6 +1622,8 @@ public class MappingTables
 			Types._StringPrepender.initFragments(_StringPrepender, __StringPrepender);
 			Types._SubstringReplacer.initFragments(_SubstringReplacer, __SubstringReplacer);
 			Types._UniqueNumberAppender.initFragments(_UniqueNumberAppender, __UniqueNumberAppender);
+			Types._ValueModifier.initFragments(_ValueModifier, __ValueModifier);
+			Types._ValueModifierSet.initFragments(_ValueModifierSet, __ValueModifierSet);
 
 			Init.initEnd();
 		}
@@ -1924,66 +1924,6 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _AttributeMatcherSourceInterface__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _AttributeValueModifier__AttributeValueModifier = {
-			MappingTables.Operations._AttributeValueModifier__modifyValue /* modifyValue(String[1]) */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _AttributeValueModifier__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _AttributeValueModifier__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _AttributeValueModifier__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _AttributeValueModifierSet__AttributeValueModifierSet = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _AttributeValueModifierSet__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _AttributeValueModifierSet__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _AttributeValueModifierSet__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
@@ -2972,9 +2912,6 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToLowerCaseConverter__MatchToLowerCaseConverter = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToLowerCaseConverter__AttributeValueModifier = {
-			MappingTables.Operations._AttributeValueModifier__modifyValue /* modifyValue(String[1]) */
-		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToLowerCaseConverter__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToLowerCaseConverter__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -3002,11 +2939,11 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToLowerCaseConverter__ValueModifier = {
+			MappingTables.Operations._ValueModifier__modifyValue /* modifyValue(String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToUpperCaseConverter__MatchToUpperCaseConverter = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToUpperCaseConverter__AttributeValueModifier = {
-			MappingTables.Operations._AttributeValueModifier__modifyValue /* modifyValue(String[1]) */
-		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToUpperCaseConverter__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToUpperCaseConverter__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -3033,6 +2970,9 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MatchToUpperCaseConverter__ValueModifier = {
+			MappingTables.Operations._ValueModifier__modifyValue /* modifyValue(String[1]) */
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Matcher__Matcher = {};
@@ -3299,9 +3239,6 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringAppender__StringAppender = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringAppender__AttributeValueModifier = {
-			MappingTables.Operations._AttributeValueModifier__modifyValue /* modifyValue(String[1]) */
-		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringAppender__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringAppender__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -3329,11 +3266,11 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringAppender__ValueModifier = {
+			MappingTables.Operations._ValueModifier__modifyValue /* modifyValue(String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringPrepender__StringPrepender = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringPrepender__AttributeValueModifier = {
-			MappingTables.Operations._AttributeValueModifier__modifyValue /* modifyValue(String[1]) */
-		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringPrepender__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringPrepender__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -3361,11 +3298,11 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _StringPrepender__ValueModifier = {
+			MappingTables.Operations._ValueModifier__modifyValue /* modifyValue(String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SubstringReplacer__SubstringReplacer = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SubstringReplacer__AttributeValueModifier = {
-			MappingTables.Operations._AttributeValueModifier__modifyValue /* modifyValue(String[1]) */
-		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SubstringReplacer__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SubstringReplacer__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -3393,11 +3330,11 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SubstringReplacer__ValueModifier = {
+			MappingTables.Operations._ValueModifier__modifyValue /* modifyValue(String[1]) */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UniqueNumberAppender__UniqueNumberAppender = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UniqueNumberAppender__AttributeValueModifier = {
-			MappingTables.Operations._AttributeValueModifier__modifyValue /* modifyValue(String[1]) */
-		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UniqueNumberAppender__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UniqueNumberAppender__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -3417,6 +3354,69 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UniqueNumberAppender__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UniqueNumberAppender__ValueModifier = {
+			MappingTables.Operations._ValueModifier__modifyValue /* modifyValue(String[1]) */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ValueModifier__ValueModifier = {
+			MappingTables.Operations._ValueModifier__modifyValue /* modifyValue(String[1]) */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ValueModifier__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ValueModifier__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ValueModifier__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ValueModifierSet__ValueModifierSet = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ValueModifierSet__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ValueModifierSet__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ValueModifierSet__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
@@ -3497,16 +3497,6 @@ public class MappingTables
 			Fragments._AttributeMatcherSourceInterface__NamedElement.initOperations(_AttributeMatcherSourceInterface__NamedElement);
 			Fragments._AttributeMatcherSourceInterface__OclAny.initOperations(_AttributeMatcherSourceInterface__OclAny);
 			Fragments._AttributeMatcherSourceInterface__OclElement.initOperations(_AttributeMatcherSourceInterface__OclElement);
-
-			Fragments._AttributeValueModifier__AttributeValueModifier.initOperations(_AttributeValueModifier__AttributeValueModifier);
-			Fragments._AttributeValueModifier__NamedElement.initOperations(_AttributeValueModifier__NamedElement);
-			Fragments._AttributeValueModifier__OclAny.initOperations(_AttributeValueModifier__OclAny);
-			Fragments._AttributeValueModifier__OclElement.initOperations(_AttributeValueModifier__OclElement);
-
-			Fragments._AttributeValueModifierSet__AttributeValueModifierSet.initOperations(_AttributeValueModifierSet__AttributeValueModifierSet);
-			Fragments._AttributeValueModifierSet__NamedElement.initOperations(_AttributeValueModifierSet__NamedElement);
-			Fragments._AttributeValueModifierSet__OclAny.initOperations(_AttributeValueModifierSet__OclAny);
-			Fragments._AttributeValueModifierSet__OclElement.initOperations(_AttributeValueModifierSet__OclElement);
 
 			Fragments._CardinalityMapping__CardinalityMapping.initOperations(_CardinalityMapping__CardinalityMapping);
 			Fragments._CardinalityMapping__ConditionalElement.initOperations(_CardinalityMapping__ConditionalElement);
@@ -3736,17 +3726,17 @@ public class MappingTables
 			Fragments._MappingType__OclAny.initOperations(_MappingType__OclAny);
 			Fragments._MappingType__OclElement.initOperations(_MappingType__OclElement);
 
-			Fragments._MatchToLowerCaseConverter__AttributeValueModifier.initOperations(_MatchToLowerCaseConverter__AttributeValueModifier);
 			Fragments._MatchToLowerCaseConverter__MatchToLowerCaseConverter.initOperations(_MatchToLowerCaseConverter__MatchToLowerCaseConverter);
 			Fragments._MatchToLowerCaseConverter__NamedElement.initOperations(_MatchToLowerCaseConverter__NamedElement);
 			Fragments._MatchToLowerCaseConverter__OclAny.initOperations(_MatchToLowerCaseConverter__OclAny);
 			Fragments._MatchToLowerCaseConverter__OclElement.initOperations(_MatchToLowerCaseConverter__OclElement);
+			Fragments._MatchToLowerCaseConverter__ValueModifier.initOperations(_MatchToLowerCaseConverter__ValueModifier);
 
-			Fragments._MatchToUpperCaseConverter__AttributeValueModifier.initOperations(_MatchToUpperCaseConverter__AttributeValueModifier);
 			Fragments._MatchToUpperCaseConverter__MatchToUpperCaseConverter.initOperations(_MatchToUpperCaseConverter__MatchToUpperCaseConverter);
 			Fragments._MatchToUpperCaseConverter__NamedElement.initOperations(_MatchToUpperCaseConverter__NamedElement);
 			Fragments._MatchToUpperCaseConverter__OclAny.initOperations(_MatchToUpperCaseConverter__OclAny);
 			Fragments._MatchToUpperCaseConverter__OclElement.initOperations(_MatchToUpperCaseConverter__OclElement);
+			Fragments._MatchToUpperCaseConverter__ValueModifier.initOperations(_MatchToUpperCaseConverter__ValueModifier);
 
 			Fragments._Matcher__Matcher.initOperations(_Matcher__Matcher);
 			Fragments._Matcher__OclAny.initOperations(_Matcher__OclAny);
@@ -3797,29 +3787,39 @@ public class MappingTables
 			Fragments._ModifiedAttributeElementType__OclAny.initOperations(_ModifiedAttributeElementType__OclAny);
 			Fragments._ModifiedAttributeElementType__OclElement.initOperations(_ModifiedAttributeElementType__OclElement);
 
-			Fragments._StringAppender__AttributeValueModifier.initOperations(_StringAppender__AttributeValueModifier);
 			Fragments._StringAppender__NamedElement.initOperations(_StringAppender__NamedElement);
 			Fragments._StringAppender__OclAny.initOperations(_StringAppender__OclAny);
 			Fragments._StringAppender__OclElement.initOperations(_StringAppender__OclElement);
 			Fragments._StringAppender__StringAppender.initOperations(_StringAppender__StringAppender);
+			Fragments._StringAppender__ValueModifier.initOperations(_StringAppender__ValueModifier);
 
-			Fragments._StringPrepender__AttributeValueModifier.initOperations(_StringPrepender__AttributeValueModifier);
 			Fragments._StringPrepender__NamedElement.initOperations(_StringPrepender__NamedElement);
 			Fragments._StringPrepender__OclAny.initOperations(_StringPrepender__OclAny);
 			Fragments._StringPrepender__OclElement.initOperations(_StringPrepender__OclElement);
 			Fragments._StringPrepender__StringPrepender.initOperations(_StringPrepender__StringPrepender);
+			Fragments._StringPrepender__ValueModifier.initOperations(_StringPrepender__ValueModifier);
 
-			Fragments._SubstringReplacer__AttributeValueModifier.initOperations(_SubstringReplacer__AttributeValueModifier);
 			Fragments._SubstringReplacer__NamedElement.initOperations(_SubstringReplacer__NamedElement);
 			Fragments._SubstringReplacer__OclAny.initOperations(_SubstringReplacer__OclAny);
 			Fragments._SubstringReplacer__OclElement.initOperations(_SubstringReplacer__OclElement);
 			Fragments._SubstringReplacer__SubstringReplacer.initOperations(_SubstringReplacer__SubstringReplacer);
+			Fragments._SubstringReplacer__ValueModifier.initOperations(_SubstringReplacer__ValueModifier);
 
-			Fragments._UniqueNumberAppender__AttributeValueModifier.initOperations(_UniqueNumberAppender__AttributeValueModifier);
 			Fragments._UniqueNumberAppender__NamedElement.initOperations(_UniqueNumberAppender__NamedElement);
 			Fragments._UniqueNumberAppender__OclAny.initOperations(_UniqueNumberAppender__OclAny);
 			Fragments._UniqueNumberAppender__OclElement.initOperations(_UniqueNumberAppender__OclElement);
 			Fragments._UniqueNumberAppender__UniqueNumberAppender.initOperations(_UniqueNumberAppender__UniqueNumberAppender);
+			Fragments._UniqueNumberAppender__ValueModifier.initOperations(_UniqueNumberAppender__ValueModifier);
+
+			Fragments._ValueModifier__NamedElement.initOperations(_ValueModifier__NamedElement);
+			Fragments._ValueModifier__OclAny.initOperations(_ValueModifier__OclAny);
+			Fragments._ValueModifier__OclElement.initOperations(_ValueModifier__OclElement);
+			Fragments._ValueModifier__ValueModifier.initOperations(_ValueModifier__ValueModifier);
+
+			Fragments._ValueModifierSet__NamedElement.initOperations(_ValueModifierSet__NamedElement);
+			Fragments._ValueModifierSet__OclAny.initOperations(_ValueModifierSet__OclAny);
+			Fragments._ValueModifierSet__OclElement.initOperations(_ValueModifierSet__OclElement);
+			Fragments._ValueModifierSet__ValueModifierSet.initOperations(_ValueModifierSet__ValueModifierSet);
 
 			Init.initEnd();
 		}
@@ -3888,17 +3888,6 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMatcherSourceInterface = {
 			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes
-		};
-
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeValueModifier = {
-			MappingTables.Properties._AttributeValueModifier__AttributeValueModifierSet__modifier
-		};
-
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeValueModifierSet = {
-			MappingTables.Properties._AttributeValueModifierSet__modifier,
-			MappingTables.Properties._AttributeValueModifierSet__GlobalAttribute__modifier,
-			MappingTables.Properties._AttributeValueModifierSet__ModifiableHint__resultModifier,
-			MappingTables.Properties._AttributeValueModifierSet__ModifiedAttributeElementType__modifier
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _CardinalityMapping = {
@@ -4072,12 +4061,12 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MatchToLowerCaseConverter = {
 			MappingTables.Properties._MatchToLowerCaseConverter__regex,
-			MappingTables.Properties._AttributeValueModifier__AttributeValueModifierSet__modifier
+			MappingTables.Properties._ValueModifier__ValueModifierSet__modifier
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MatchToUpperCaseConverter = {
 			MappingTables.Properties._MatchToUpperCaseConverter__regex,
-			MappingTables.Properties._AttributeValueModifier__AttributeValueModifierSet__modifier
+			MappingTables.Properties._ValueModifier__ValueModifierSet__modifier
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Matcher = {
@@ -4123,22 +4112,33 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _StringAppender = {
 			MappingTables.Properties._StringAppender__string,
-			MappingTables.Properties._AttributeValueModifier__AttributeValueModifierSet__modifier
+			MappingTables.Properties._ValueModifier__ValueModifierSet__modifier
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _StringPrepender = {
 			MappingTables.Properties._StringPrepender__string,
-			MappingTables.Properties._AttributeValueModifier__AttributeValueModifierSet__modifier
+			MappingTables.Properties._ValueModifier__ValueModifierSet__modifier
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SubstringReplacer = {
 			MappingTables.Properties._SubstringReplacer__regex,
 			MappingTables.Properties._SubstringReplacer__replacement,
-			MappingTables.Properties._AttributeValueModifier__AttributeValueModifierSet__modifier
+			MappingTables.Properties._ValueModifier__ValueModifierSet__modifier
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _UniqueNumberAppender = {
-			MappingTables.Properties._AttributeValueModifier__AttributeValueModifierSet__modifier
+			MappingTables.Properties._ValueModifier__ValueModifierSet__modifier
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ValueModifier = {
+			MappingTables.Properties._ValueModifier__ValueModifierSet__modifier
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ValueModifierSet = {
+			MappingTables.Properties._ValueModifierSet__modifier,
+			MappingTables.Properties._ValueModifierSet__GlobalAttribute__modifier,
+			MappingTables.Properties._ValueModifierSet__ModifiableHint__resultModifier,
+			MappingTables.Properties._ValueModifierSet__ModifiedAttributeElementType__modifier
 		};
 
 		/**
@@ -4153,8 +4153,6 @@ public class MappingTables
 			Fragments._AttributeMatcherExternalSourceElement__AttributeMatcherExternalSourceElement.initProperties(_AttributeMatcherExternalSourceElement);
 			Fragments._AttributeMatcherSourceElement__AttributeMatcherSourceElement.initProperties(_AttributeMatcherSourceElement);
 			Fragments._AttributeMatcherSourceInterface__AttributeMatcherSourceInterface.initProperties(_AttributeMatcherSourceInterface);
-			Fragments._AttributeValueModifier__AttributeValueModifier.initProperties(_AttributeValueModifier);
-			Fragments._AttributeValueModifierSet__AttributeValueModifierSet.initProperties(_AttributeValueModifierSet);
 			Fragments._CardinalityMapping__CardinalityMapping.initProperties(_CardinalityMapping);
 			Fragments._ClassMatcher__ClassMatcher.initProperties(_ClassMatcher);
 			Fragments._ExpandableHint__ExpandableHint.initProperties(_ExpandableHint);
@@ -4198,6 +4196,8 @@ public class MappingTables
 			Fragments._StringPrepender__StringPrepender.initProperties(_StringPrepender);
 			Fragments._SubstringReplacer__SubstringReplacer.initProperties(_SubstringReplacer);
 			Fragments._UniqueNumberAppender__UniqueNumberAppender.initProperties(_UniqueNumberAppender);
+			Fragments._ValueModifier__ValueModifier.initProperties(_ValueModifier);
+			Fragments._ValueModifierSet__ValueModifierSet.initProperties(_ValueModifierSet);
 
 			Init.initEnd();
 		}

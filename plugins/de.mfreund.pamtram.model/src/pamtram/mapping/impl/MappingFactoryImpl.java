@@ -62,7 +62,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.ATTRIBUTE_MATCHER: return createAttributeMatcher();
 			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createAttributeMatcherSourceElement();
 			case MappingPackage.CLASS_MATCHER: return createClassMatcher();
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET: return createAttributeValueModifierSet();
+			case MappingPackage.VALUE_MODIFIER_SET: return createValueModifierSet();
 			case MappingPackage.SUBSTRING_REPLACER: return createSubstringReplacer();
 			case MappingPackage.STRING_APPENDER: return createStringAppender();
 			case MappingPackage.UNIQUE_NUMBER_APPENDER: return createUniqueNumberAppender();
@@ -201,6 +201,16 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ValueModifierSet createValueModifierSet() {
+		ValueModifierSetImpl valueModifierSet = new ValueModifierSetImpl();
+		return valueModifierSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SubstringReplacer createSubstringReplacer() {
 		SubstringReplacerImpl substringReplacer = new SubstringReplacerImpl();
 		return substringReplacer;
@@ -234,16 +244,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public StringPrepender createStringPrepender() {
 		StringPrependerImpl stringPrepender = new StringPrependerImpl();
 		return stringPrepender;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueModifierSet createAttributeValueModifierSet() {
-		ValueModifierSetImpl attributeValueModifierSet = new ValueModifierSetImpl();
-		return attributeValueModifierSet;
 	}
 
 	/**

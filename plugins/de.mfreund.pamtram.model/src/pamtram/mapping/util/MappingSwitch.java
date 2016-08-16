@@ -224,24 +224,24 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET: {
-				ValueModifierSet attributeValueModifierSet = (ValueModifierSet)theEObject;
-				T result = caseAttributeValueModifierSet(attributeValueModifierSet);
-				if (result == null) result = caseNamedElement(attributeValueModifierSet);
+			case MappingPackage.VALUE_MODIFIER_SET: {
+				ValueModifierSet valueModifierSet = (ValueModifierSet)theEObject;
+				T result = caseValueModifierSet(valueModifierSet);
+				if (result == null) result = caseNamedElement(valueModifierSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER: {
-				ValueModifier attributeValueModifier = (ValueModifier)theEObject;
-				T result = caseAttributeValueModifier(attributeValueModifier);
-				if (result == null) result = caseNamedElement(attributeValueModifier);
+			case MappingPackage.VALUE_MODIFIER: {
+				ValueModifier valueModifier = (ValueModifier)theEObject;
+				T result = caseValueModifier(valueModifier);
+				if (result == null) result = caseNamedElement(valueModifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MappingPackage.SUBSTRING_REPLACER: {
 				SubstringReplacer substringReplacer = (SubstringReplacer)theEObject;
 				T result = caseSubstringReplacer(substringReplacer);
-				if (result == null) result = caseAttributeValueModifier(substringReplacer);
+				if (result == null) result = caseValueModifier(substringReplacer);
 				if (result == null) result = caseNamedElement(substringReplacer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -249,7 +249,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.STRING_APPENDER: {
 				StringAppender stringAppender = (StringAppender)theEObject;
 				T result = caseStringAppender(stringAppender);
-				if (result == null) result = caseAttributeValueModifier(stringAppender);
+				if (result == null) result = caseValueModifier(stringAppender);
 				if (result == null) result = caseNamedElement(stringAppender);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -257,7 +257,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.UNIQUE_NUMBER_APPENDER: {
 				UniqueNumberAppender uniqueNumberAppender = (UniqueNumberAppender)theEObject;
 				T result = caseUniqueNumberAppender(uniqueNumberAppender);
-				if (result == null) result = caseAttributeValueModifier(uniqueNumberAppender);
+				if (result == null) result = caseValueModifier(uniqueNumberAppender);
 				if (result == null) result = caseNamedElement(uniqueNumberAppender);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -265,7 +265,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.STRING_PREPENDER: {
 				StringPrepender stringPrepender = (StringPrepender)theEObject;
 				T result = caseStringPrepender(stringPrepender);
-				if (result == null) result = caseAttributeValueModifier(stringPrepender);
+				if (result == null) result = caseValueModifier(stringPrepender);
 				if (result == null) result = caseNamedElement(stringPrepender);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -556,7 +556,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: {
 				MatchToLowerCaseConverter matchToLowerCaseConverter = (MatchToLowerCaseConverter)theEObject;
 				T result = caseMatchToLowerCaseConverter(matchToLowerCaseConverter);
-				if (result == null) result = caseAttributeValueModifier(matchToLowerCaseConverter);
+				if (result == null) result = caseValueModifier(matchToLowerCaseConverter);
 				if (result == null) result = caseNamedElement(matchToLowerCaseConverter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -564,7 +564,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER: {
 				MatchToUpperCaseConverter matchToUpperCaseConverter = (MatchToUpperCaseConverter)theEObject;
 				T result = caseMatchToUpperCaseConverter(matchToUpperCaseConverter);
-				if (result == null) result = caseAttributeValueModifier(matchToUpperCaseConverter);
+				if (result == null) result = caseValueModifier(matchToUpperCaseConverter);
 				if (result == null) result = caseNamedElement(matchToUpperCaseConverter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -769,17 +769,32 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Modifier</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Value Modifier Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Modifier</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Value Modifier Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeValueModifier(ValueModifier object) {
+	public T caseValueModifierSet(ValueModifierSet object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value Modifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value Modifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValueModifier(ValueModifier object) {
 		return null;
 	}
 
@@ -870,21 +885,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Modifier Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Modifier Set</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeValueModifierSet(ValueModifierSet object) {
 		return null;
 	}
 

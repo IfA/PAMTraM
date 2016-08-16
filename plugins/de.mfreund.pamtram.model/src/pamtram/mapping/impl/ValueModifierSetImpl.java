@@ -56,7 +56,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET;
+		return MappingPackage.Literals.VALUE_MODIFIER_SET;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@Override
 	public EList<ValueModifier> getModifier() {
 		if (modifier == null) {
-			modifier = new EObjectContainmentEList<ValueModifier>(ValueModifier.class, this, MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER);
+			modifier = new EObjectContainmentEList<ValueModifier>(ValueModifier.class, this, MappingPackage.VALUE_MODIFIER_SET__MODIFIER);
 		}
 		return modifier;
 	}
@@ -80,7 +80,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
+			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
 				return ((InternalEList<?>)getModifier()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -94,7 +94,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
+			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
 				return getModifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -110,7 +110,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@SuppressWarnings("unchecked")
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
+			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
 				getModifier().clear();
 				getModifier().addAll((Collection<? extends ValueModifier>)newValue);
 				return;
@@ -126,7 +126,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
+			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
 				getModifier().clear();
 				return;
 		}
@@ -141,7 +141,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
+			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
 				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);

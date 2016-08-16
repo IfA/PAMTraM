@@ -18,7 +18,7 @@ import pamtram.NamedElement;
  *   <li>{@link pamtram.mapping.ValueModifierSet#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getAttributeValueModifierSet()
+ * @see pamtram.mapping.MappingPackage#getValueModifierSet()
  * @model
  * @generated
  */
@@ -33,9 +33,9 @@ public interface ValueModifierSet extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getAttributeValueModifierSet_Modifier()
+	 * @see pamtram.mapping.MappingPackage#getValueModifierSet_Modifier()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!AttributeValueModifierSet!modifier'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ValueModifierSet!modifier'"
 	 * @generated
 	 */
 	EList<ValueModifier> getModifier();

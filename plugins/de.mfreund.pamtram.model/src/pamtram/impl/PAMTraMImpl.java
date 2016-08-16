@@ -379,7 +379,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final /*@Thrown*/ List<MappingModel> mappingModel = this.getMappingModel();
 		final /*@Thrown*/ OrderedSetValue BOXED_mappingModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_MappingModel, mappingModel);
-		/*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_AttributeValueModifierSet);
+		/*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_ValueModifierSet);
 		/*@NonNull*/ Iterator<Object> ITERATOR_s = BOXED_mappingModel.iterator();
 		/*@Thrown*/ SequenceValue collect;
 		while (true) {
@@ -392,7 +392,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		     * s.modifierSets
 		     */
 		    final /*@Thrown*/ List<ValueModifierSet> modifierSets = s.getModifierSets();
-		    final /*@Thrown*/ OrderedSetValue BOXED_modifierSets = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_AttributeValueModifierSet, modifierSets);
+		    final /*@Thrown*/ OrderedSetValue BOXED_modifierSets = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_ValueModifierSet, modifierSets);
 		    //
 		    for (Object value : BOXED_modifierSets.flatten().getElements()) {
 		        accumulator.add(value);

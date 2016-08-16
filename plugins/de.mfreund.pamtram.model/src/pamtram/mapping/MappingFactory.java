@@ -115,6 +115,15 @@ public interface MappingFactory extends EFactory {
 	ClassMatcher createClassMatcher();
 
 	/**
+	 * Returns a new object of class '<em>Value Modifier Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Modifier Set</em>'.
+	 * @generated
+	 */
+	ValueModifierSet createValueModifierSet();
+
+	/**
 	 * Returns a new object of class '<em>Substring Replacer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,15 +158,6 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	StringPrepender createStringPrepender();
-
-	/**
-	 * Returns a new object of class '<em>Attribute Value Modifier Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Value Modifier Set</em>'.
-	 * @generated
-	 */
-	ValueModifierSet createAttributeValueModifierSet();
 
 	/**
 	 * Returns a new object of class '<em>Hint Group</em>'.

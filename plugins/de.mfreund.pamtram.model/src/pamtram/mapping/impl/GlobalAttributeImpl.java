@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
@@ -61,7 +61,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> modifier;
+	protected EList<ValueModifierSet> modifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,9 +136,9 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueModifierSet> getModifier() {
+	public EList<ValueModifierSet> getModifier() {
 		if (modifier == null) {
-			modifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER);
+			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER);
 		}
 		return modifier;
 	}
@@ -238,7 +238,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 				return;
 			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
 				getModifier().clear();
-				getModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				getModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.PamtramPackage;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 
@@ -77,7 +77,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> modifierSets;
+	protected EList<ValueModifierSet> modifierSets;
 
 	/**
 	 * The cached value of the '{@link #getGlobalValues() <em>Global Values</em>}' containment reference list.
@@ -148,9 +148,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueModifierSet> getModifierSets() {
+	public EList<ValueModifierSet> getModifierSets() {
 		if (modifierSets == null) {
-			modifierSets = new EObjectContainmentEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, PamtramPackage.MAPPING_MODEL__MODIFIER_SETS);
+			modifierSets = new EObjectContainmentEList<ValueModifierSet>(ValueModifierSet.class, this, PamtramPackage.MAPPING_MODEL__MODIFIER_SETS);
 		}
 		return modifierSets;
 	}
@@ -243,7 +243,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 				return;
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 				getModifierSets().clear();
-				getModifierSets().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				getModifierSets().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
 				getGlobalValues().clear();

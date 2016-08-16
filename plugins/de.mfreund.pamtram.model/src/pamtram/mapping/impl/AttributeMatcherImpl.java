@@ -33,7 +33,7 @@ import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.MappingInstanceSelector;
@@ -88,7 +88,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> resultModifier;
 
 	/**
 	 * The cached value of the '{@link #getTargetAttribute() <em>Target Attribute</em>}' reference.
@@ -158,9 +158,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -443,7 +443,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER:
 				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE:
 				setTargetAttribute((TargetSectionAttribute)newValue);

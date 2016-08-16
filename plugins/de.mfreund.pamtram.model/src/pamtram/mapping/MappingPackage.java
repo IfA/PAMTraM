@@ -359,10 +359,10 @@ public interface MappingPackage extends EPackage {
 	int CLASS_MATCHER = 16;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.AttributeValueModifier <em>Attribute Value Modifier</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.ValueModifier <em>Attribute Value Modifier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.AttributeValueModifier
+	 * @see pamtram.mapping.ValueModifier
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifier()
 	 * @generated
 	 */
@@ -419,10 +419,10 @@ public interface MappingPackage extends EPackage {
 	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 23;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeValueModifierSetImpl <em>Attribute Value Modifier Set</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ValueModifierSetImpl <em>Attribute Value Modifier Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeValueModifierSetImpl
+	 * @see pamtram.mapping.impl.ValueModifierSetImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifierSet()
 	 * @generated
 	 */
@@ -4460,21 +4460,21 @@ public interface MappingPackage extends EPackage {
 	EReference getClassMatcher_TargetClass();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeValueModifier <em>Attribute Value Modifier</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ValueModifier <em>Attribute Value Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Value Modifier</em>'.
-	 * @see pamtram.mapping.AttributeValueModifier
+	 * @see pamtram.mapping.ValueModifier
 	 * @generated
 	 */
 	EClass getAttributeValueModifier();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.AttributeValueModifier#modifyValue(java.lang.String) <em>Modify Value</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.ValueModifier#modifyValue(java.lang.String) <em>Modify Value</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Modify Value</em>' operation.
-	 * @see pamtram.mapping.AttributeValueModifier#modifyValue(java.lang.String)
+	 * @see pamtram.mapping.ValueModifier#modifyValue(java.lang.String)
 	 * @generated
 	 */
 	EOperation getAttributeValueModifier__ModifyValue__String();
@@ -4636,21 +4636,21 @@ public interface MappingPackage extends EPackage {
 	EOperation getLocalModifiedAttributeElementType__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeValueModifierSet <em>Attribute Value Modifier Set</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ValueModifierSet <em>Attribute Value Modifier Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Value Modifier Set</em>'.
-	 * @see pamtram.mapping.AttributeValueModifierSet
+	 * @see pamtram.mapping.ValueModifierSet
 	 * @generated
 	 */
 	EClass getAttributeValueModifierSet();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.AttributeValueModifierSet#getModifier <em>Modifier</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ValueModifierSet#getModifier <em>Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.AttributeValueModifierSet#getModifier()
+	 * @see pamtram.mapping.ValueModifierSet#getModifier()
 	 * @see #getAttributeValueModifierSet()
 	 * @generated
 	 */
@@ -5660,10 +5660,10 @@ public interface MappingPackage extends EPackage {
 		EReference CLASS_MATCHER__TARGET_CLASS = eINSTANCE.getClassMatcher_TargetClass();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.AttributeValueModifier <em>Attribute Value Modifier</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.ValueModifier <em>Attribute Value Modifier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.AttributeValueModifier
+		 * @see pamtram.mapping.ValueModifier
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifier()
 		 * @generated
 		 */
@@ -5810,10 +5810,10 @@ public interface MappingPackage extends EPackage {
 		EOperation LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLocalModifiedAttributeElementType__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeValueModifierSetImpl <em>Attribute Value Modifier Set</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ValueModifierSetImpl <em>Attribute Value Modifier Set</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeValueModifierSetImpl
+		 * @see pamtram.mapping.impl.ValueModifierSetImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifierSet()
 		 * @generated
 		 */

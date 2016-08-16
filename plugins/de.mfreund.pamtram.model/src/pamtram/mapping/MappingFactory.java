@@ -157,7 +157,7 @@ public interface MappingFactory extends EFactory {
 	 * @return a new object of class '<em>Attribute Value Modifier Set</em>'.
 	 * @generated
 	 */
-	AttributeValueModifierSet createAttributeValueModifierSet();
+	ValueModifierSet createAttributeValueModifierSet();
 
 	/**
 	 * Returns a new object of class '<em>Hint Group</em>'.

@@ -19,7 +19,7 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface MatchToUpperCaseConverter extends AttributeValueModifier {
+public interface MatchToUpperCaseConverter extends ValueModifier {
 	/**
 	 * Returns the value of the '<em><b>Regex</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -14,7 +14,7 @@ import pamtram.NamedElement;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface AttributeValueModifier extends NamedElement {
+public interface ValueModifier extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

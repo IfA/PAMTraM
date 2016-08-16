@@ -248,9 +248,9 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			case MappingPackage.CLASS_MATCHER:
 				return validateClassMatcher((ClassMatcher)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET:
-				return validateAttributeValueModifierSet((AttributeValueModifierSet)value, diagnostics, context);
+				return validateAttributeValueModifierSet((ValueModifierSet)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER:
-				return validateAttributeValueModifier((AttributeValueModifier)value, diagnostics, context);
+				return validateAttributeValueModifier((ValueModifier)value, diagnostics, context);
 			case MappingPackage.SUBSTRING_REPLACER:
 				return validateSubstringReplacer((SubstringReplacer)value, diagnostics, context);
 			case MappingPackage.STRING_APPENDER:
@@ -700,7 +700,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeValueModifierSet(AttributeValueModifierSet attributeValueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAttributeValueModifierSet(ValueModifierSet attributeValueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeValueModifierSet, diagnostics, context);
 	}
 
@@ -709,7 +709,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeValueModifier(AttributeValueModifier attributeValueModifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAttributeValueModifier(ValueModifier attributeValueModifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeValueModifier, diagnostics, context);
 	}
 

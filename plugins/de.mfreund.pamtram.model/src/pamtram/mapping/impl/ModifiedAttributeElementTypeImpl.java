@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
@@ -59,7 +59,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> modifier;
+	protected EList<ValueModifierSet> modifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,9 +136,9 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueModifierSet> getModifier() {
+	public EList<ValueModifierSet> getModifier() {
 		if (modifier == null) {
-			modifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER);
+			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER);
 		}
 		return modifier;
 	}
@@ -213,7 +213,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 				return;
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
 				getModifier().clear();
-				getModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				getModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

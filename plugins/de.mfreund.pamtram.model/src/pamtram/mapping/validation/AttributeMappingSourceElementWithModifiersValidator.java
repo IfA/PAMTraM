@@ -6,7 +6,7 @@ package pamtram.mapping.validation;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 
 /**
  * A sample validator interface for {@link pamtram.mapping.AttributeMappingSourceElementWithModifiers}.
@@ -17,5 +17,5 @@ import pamtram.mapping.AttributeValueModifierSet;
 public interface AttributeMappingSourceElementWithModifiersValidator {
 	boolean validate();
 
-	boolean validateModifier(EList<AttributeValueModifierSet> value);
+	boolean validateModifier(EList<ValueModifierSet> value);
 }

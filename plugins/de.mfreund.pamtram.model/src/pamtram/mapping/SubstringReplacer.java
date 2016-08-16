@@ -20,7 +20,7 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface SubstringReplacer extends AttributeValueModifier {
+public interface SubstringReplacer extends ValueModifier {
 	/**
 	 * Returns the value of the '<em><b>Regex</b></em>' attribute.
 	 * <!-- begin-user-doc -->

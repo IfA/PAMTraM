@@ -24,7 +24,7 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
@@ -69,7 +69,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> resultModifier;
 
 	/**
 	 * The default value of the '{@link #getBoundType() <em>Bound Type</em>}' attribute.
@@ -136,9 +136,9 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -352,7 +352,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 		switch (featureID) {
 			case MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER:
 				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
 				setBoundType((AttributeValueConstraintType)newValue);

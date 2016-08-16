@@ -15,17 +15,17 @@ import pamtram.NamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.AttributeValueModifierSet#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.ValueModifierSet#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeValueModifierSet()
  * @model
  * @generated
  */
-public interface AttributeValueModifierSet extends NamedElement {
+public interface ValueModifierSet extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Modifier</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifier}.
+	 * The list contents are of type {@link pamtram.mapping.ValueModifier}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Modifier</em>' containment reference list isn't clear,
@@ -38,6 +38,6 @@ public interface AttributeValueModifierSet extends NamedElement {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!AttributeValueModifierSet!modifier'"
 	 * @generated
 	 */
-	EList<AttributeValueModifier> getModifier();
+	EList<ValueModifier> getModifier();
 
 } // AttributeValueModifierSet

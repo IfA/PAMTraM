@@ -58,7 +58,7 @@ public interface GlobalAttribute extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifierSet}.
+	 * The list contents are of type {@link pamtram.mapping.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Modifier</em>' reference list isn't clear,
@@ -70,7 +70,7 @@ public interface GlobalAttribute extends NamedElement {
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!GlobalAttribute!modifier'"
 	 * @generated
 	 */
-	EList<AttributeValueModifierSet> getModifier();
+	EList<ValueModifierSet> getModifier();
 
 	/**
 	 * <!-- begin-user-doc -->

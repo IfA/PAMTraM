@@ -141,11 +141,11 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createClassMatcherAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueModifierSet(AttributeValueModifierSet object) {
+			public Adapter caseAttributeValueModifierSet(ValueModifierSet object) {
 				return createAttributeValueModifierSetAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueModifier(AttributeValueModifier object) {
+			public Adapter caseAttributeValueModifier(ValueModifier object) {
 				return createAttributeValueModifierAdapter();
 			}
 			@Override
@@ -507,13 +507,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeValueModifier <em>Attribute Value Modifier</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ValueModifier <em>Attribute Value Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeValueModifier
+	 * @see pamtram.mapping.ValueModifier
 	 * @generated
 	 */
 	public Adapter createAttributeValueModifierAdapter() {
@@ -605,13 +605,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeValueModifierSet <em>Attribute Value Modifier Set</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ValueModifierSet <em>Attribute Value Modifier Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeValueModifierSet
+	 * @see pamtram.mapping.ValueModifierSet
 	 * @generated
 	 */
 	public Adapter createAttributeValueModifierSetAdapter() {

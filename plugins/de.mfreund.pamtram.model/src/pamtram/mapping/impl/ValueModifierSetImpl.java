@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.AttributeValueModifier;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifier;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.MappingPackage;
 
 /**
@@ -24,12 +24,12 @@ import pamtram.mapping.MappingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.AttributeValueModifierSetImpl#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.ValueModifierSetImpl#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AttributeValueModifierSetImpl extends NamedElementImpl implements AttributeValueModifierSet {
+public class ValueModifierSetImpl extends NamedElementImpl implements ValueModifierSet {
 	/**
 	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -38,14 +38,14 @@ public class AttributeValueModifierSetImpl extends NamedElementImpl implements A
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifier> modifier;
+	protected EList<ValueModifier> modifier;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttributeValueModifierSetImpl() {
+	protected ValueModifierSetImpl() {
 		super();
 	}
 
@@ -65,9 +65,9 @@ public class AttributeValueModifierSetImpl extends NamedElementImpl implements A
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueModifier> getModifier() {
+	public EList<ValueModifier> getModifier() {
 		if (modifier == null) {
-			modifier = new EObjectContainmentEList<AttributeValueModifier>(AttributeValueModifier.class, this, MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER);
+			modifier = new EObjectContainmentEList<ValueModifier>(ValueModifier.class, this, MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER);
 		}
 		return modifier;
 	}
@@ -112,7 +112,7 @@ public class AttributeValueModifierSetImpl extends NamedElementImpl implements A
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
 				getModifier().clear();
-				getModifier().addAll((Collection<? extends AttributeValueModifier>)newValue);
+				getModifier().addAll((Collection<? extends ValueModifier>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

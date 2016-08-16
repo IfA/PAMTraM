@@ -36,7 +36,7 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.condition.ComplexCondition;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.impl.ExpressionHintImpl;
@@ -71,7 +71,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> resultModifier;
 
 	/**
 	 * The cached value of the '{@link #getAttributePointer() <em>Attribute Pointer</em>}' reference.
@@ -136,9 +136,9 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AttributeValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MetamodelPackage.INSTANCE_POINTER__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MetamodelPackage.INSTANCE_POINTER__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -383,7 +383,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		switch (featureID) {
 			case MetamodelPackage.INSTANCE_POINTER__RESULT_MODIFIER:
 				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
 				setAttributePointer((ActualSourceSectionAttribute)newValue);

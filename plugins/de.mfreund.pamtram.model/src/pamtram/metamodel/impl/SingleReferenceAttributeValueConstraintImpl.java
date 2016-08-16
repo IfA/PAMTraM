@@ -25,7 +25,7 @@ import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
@@ -111,7 +111,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> resultModifier;
 
 	/**
 	 * The cached value of the '{@link #getConstraintReferenceValueAdditionalSpecification() <em>Constraint Reference Value Additional Specification</em>}' containment reference list.
@@ -204,9 +204,9 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -415,7 +415,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__RESULT_MODIFIER:
 				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				getConstraintReferenceValueAdditionalSpecification().clear();

@@ -42,7 +42,7 @@ import pamtram.PamtramTables;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.FixedValue;
@@ -371,7 +371,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public EList<AttributeValueModifierSet> getModifierSets() {
+	public EList<ValueModifierSet> getModifierSets() {
 		/**
 		 * self.mappingModel->collect(s | s.modifierSets)
 		 */
@@ -391,15 +391,15 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		    /**
 		     * s.modifierSets
 		     */
-		    final /*@Thrown*/ List<AttributeValueModifierSet> modifierSets = s.getModifierSets();
+		    final /*@Thrown*/ List<ValueModifierSet> modifierSets = s.getModifierSets();
 		    final /*@Thrown*/ OrderedSetValue BOXED_modifierSets = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_AttributeValueModifierSet, modifierSets);
 		    //
 		    for (Object value : BOXED_modifierSets.flatten().getElements()) {
 		        accumulator.add(value);
 		    }
 		}
-		final /*@Thrown*/ List<AttributeValueModifierSet> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(AttributeValueModifierSet.class, collect);
-		return (EList<AttributeValueModifierSet>)ECORE_collect;
+		final /*@Thrown*/ List<ValueModifierSet> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(ValueModifierSet.class, collect);
+		return (EList<ValueModifierSet>)ECORE_collect;
 	}
 
 	/**

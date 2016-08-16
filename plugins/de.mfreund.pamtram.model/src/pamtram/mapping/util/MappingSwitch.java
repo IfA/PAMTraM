@@ -225,14 +225,14 @@ public class MappingSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET: {
-				AttributeValueModifierSet attributeValueModifierSet = (AttributeValueModifierSet)theEObject;
+				ValueModifierSet attributeValueModifierSet = (ValueModifierSet)theEObject;
 				T result = caseAttributeValueModifierSet(attributeValueModifierSet);
 				if (result == null) result = caseNamedElement(attributeValueModifierSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER: {
-				AttributeValueModifier attributeValueModifier = (AttributeValueModifier)theEObject;
+				ValueModifier attributeValueModifier = (ValueModifier)theEObject;
 				T result = caseAttributeValueModifier(attributeValueModifier);
 				if (result == null) result = caseNamedElement(attributeValueModifier);
 				if (result == null) result = defaultCase(theEObject);
@@ -779,7 +779,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeValueModifier(AttributeValueModifier object) {
+	public T caseAttributeValueModifier(ValueModifier object) {
 		return null;
 	}
 
@@ -884,7 +884,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeValueModifierSet(AttributeValueModifierSet object) {
+	public T caseAttributeValueModifierSet(ValueModifierSet object) {
 		return null;
 	}
 

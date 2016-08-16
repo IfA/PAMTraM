@@ -241,8 +241,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueModifierSet createAttributeValueModifierSet() {
-		AttributeValueModifierSetImpl attributeValueModifierSet = new AttributeValueModifierSetImpl();
+	public ValueModifierSet createAttributeValueModifierSet() {
+		ValueModifierSetImpl attributeValueModifierSet = new ValueModifierSetImpl();
 		return attributeValueModifierSet;
 	}
 

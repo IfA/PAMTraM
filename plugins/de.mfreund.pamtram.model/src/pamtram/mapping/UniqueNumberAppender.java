@@ -13,5 +13,5 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface UniqueNumberAppender extends AttributeValueModifier {
+public interface UniqueNumberAppender extends ValueModifier {
 } // UniqueNumberAppender

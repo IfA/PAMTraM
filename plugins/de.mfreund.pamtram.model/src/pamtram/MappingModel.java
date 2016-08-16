@@ -3,7 +3,7 @@
 package pamtram;
 
 import org.eclipse.emf.common.util.EList;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 
@@ -45,7 +45,7 @@ public interface MappingModel extends NamedElement, DeactivatableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Modifier Sets</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifierSet}.
+	 * The list contents are of type {@link pamtram.mapping.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Modifier Sets</em>' containment reference list isn't clear,
@@ -58,7 +58,7 @@ public interface MappingModel extends NamedElement, DeactivatableElement {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!MappingModel!modifierSets'"
 	 * @generated
 	 */
-	EList<AttributeValueModifierSet> getModifierSets();
+	EList<ValueModifierSet> getModifierSets();
 
 	/**
 	 * Returns the value of the '<em><b>Global Values</b></em>' containment reference list.

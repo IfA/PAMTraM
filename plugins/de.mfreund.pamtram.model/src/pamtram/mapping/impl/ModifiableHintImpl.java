@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 
@@ -38,7 +38,7 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> resultModifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,9 +64,9 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AttributeValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -96,7 +96,7 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 		switch (featureID) {
 			case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER:
 				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

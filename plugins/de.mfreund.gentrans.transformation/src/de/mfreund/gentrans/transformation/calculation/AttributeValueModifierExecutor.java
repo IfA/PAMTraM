@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import pamtram.mapping.AttributeValueModifier;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifier;
+import pamtram.mapping.ValueModifierSet;
 
 /**
- * This is a helper class to apply {@link AttributeValueModifier AttributeValueModifiers}.
+ * This is a helper class to apply {@link ValueModifier AttributeValueModifiers}.
  *
  * @author Sascha Steffen
  * @version 1.0
@@ -34,7 +34,7 @@ public class AttributeValueModifierExecutor {
 	 * A set that contains all AttributeValueModifiers with errors so we don't need to send
 	 * a potential error message twice
 	 */
-	private final Set<AttributeValueModifier> modifiersWithErrors;
+	private final Set<ValueModifier> modifiersWithErrors;
 
 	/**
 	 * This constructs an instance.
@@ -91,19 +91,19 @@ public class AttributeValueModifierExecutor {
 	}
 
 	/**
-	 * This applies the given list of {@link AttributeValueModifier AttributeValueModifiers} to the given
+	 * This applies the given list of {@link ValueModifier AttributeValueModifiers} to the given
 	 * '<em>value</em>'.
 	 *
-	 * @param value The value on which the given list of {@link AttributeValueModifier AttributeValueModifiers} shall
+	 * @param value The value on which the given list of {@link ValueModifier AttributeValueModifiers} shall
 	 * be applied.
 	 * @param modifierSets The modifiers that shall be applied to the given '<em>value</em>'.
-	 * @return The modified string (after application of the {@link AttributeValueModifier AttributeValueModifiers}.
+	 * @return The modified string (after application of the {@link ValueModifier AttributeValueModifiers}.
 	 */
 	public String applyAttributeValueModifiers(final String value,
-			final List<AttributeValueModifierSet> modifierSets) {
+			final List<ValueModifierSet> modifierSets) {
 		String retVal = value;
-		for (final AttributeValueModifierSet set : modifierSets) {
-			for (final AttributeValueModifier m : set.getModifier()) {
+		for (final ValueModifierSet set : modifierSets) {
+			for (final ValueModifier m : set.getModifier()) {
 				if (!modifiersWithErrors.contains(m)) {
 					try {
 						retVal = m.modifyValue(retVal);

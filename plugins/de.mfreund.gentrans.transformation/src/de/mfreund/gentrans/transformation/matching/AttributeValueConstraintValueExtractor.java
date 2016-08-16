@@ -10,7 +10,7 @@ import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
@@ -97,7 +97,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		List<AttributeValueConstraintSourceInterface> sourceElements = valueConstraint.getSourceElements();
-		List<AttributeValueModifierSet> resultModifiers = valueConstraint.getResultModifier();
+		List<ValueModifierSet> resultModifiers = valueConstraint.getResultModifier();
 		String expression = valueConstraint.getExpression();
 
 		return extractRequiredTargetValue(matchedSectionDescriptor, sourceElements, expression, resultModifiers);
@@ -117,7 +117,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		List<AttributeValueConstraintSourceInterface> sourceElements = rangeBound.getSourceElements();
-		List<AttributeValueModifierSet> resultModifiers = rangeBound.getResultModifier();
+		List<ValueModifierSet> resultModifiers = rangeBound.getResultModifier();
 		String expression = rangeBound.getExpression();
 
 		return extractRequiredTargetValue(matchedSectionDescriptor, sourceElements, expression, resultModifiers);
@@ -132,7 +132,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the value shall be extracted.
 	 * @param sourceElements The list of {@link AttributeValueConstraintSourceInterface source elements} to take into account.
 	 * @param expression The expression to use or '<em>null</em>' if no expression shall be used.
-	 * @param resultModifiers The list of {@link AttributeValueModifierSet AttributeValueModifierSets} to apply before
+	 * @param resultModifiers The list of {@link ValueModifierSet AttributeValueModifierSets} to apply before
 	 * the resulting target value is returned.
 	 * @return The extracted target value.
 	 */
@@ -140,7 +140,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	private String extractRequiredTargetValue(MatchedSectionDescriptor matchedSectionDescriptor,
 			List<AttributeValueConstraintSourceInterface> sourceElements,
 			String expression, 
-			List<AttributeValueModifierSet> resultModifiers) {
+			List<ValueModifierSet> resultModifiers) {
 
 		// Collect the value parts
 		//

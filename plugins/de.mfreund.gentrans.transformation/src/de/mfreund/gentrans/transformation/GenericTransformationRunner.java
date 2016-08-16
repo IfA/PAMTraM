@@ -60,7 +60,7 @@ import de.mfreund.pamtram.transformation.TransformationFactory;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import pamtram.PAMTraM;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -431,7 +431,7 @@ public class GenericTransformationRunner extends CancelableElement {
 	 * @param sourceModels The list of {@link EObject EObjects} representing/containing the source model to be matched. 
 	 * @param suitableMappings A list of {@link Mapping Mappings} that shall be used for the matching process.
 	 * @param attributeValueModifier An instance of {@link AttributeValueModifierExecutor} that shall be used to 
-	 * apply {@link AttributeValueModifierSet AttributeValueModifierSets} in order to obtain hint values.
+	 * apply {@link ValueModifierSet AttributeValueModifierSets} in order to obtain hint values.
 	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
 	 * @return A {@link MatchingResult} that contains the various results of the matching.
 	 */
@@ -540,7 +540,7 @@ public class GenericTransformationRunner extends CancelableElement {
 	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
 	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
 	 * @param attributeValuemodifier An instance of {@link AttributeValueModifierExecutor} to use for applying
-	 * {@link AttributeValueModifierSet AttributeValueModifierSets}.
+	 * {@link ValueModifierSet AttributeValueModifierSets}.
 	 * @return An {@link ExpandingResult} that contains the various results of the expanding step.
 	 */
 	private ExpandingResult performExpanding(
@@ -597,7 +597,7 @@ public class GenericTransformationRunner extends CancelableElement {
 	 * @param expandingResult The {@link ExpandingResult} that contains the results of the 
 	 * {@link #performExpanding(MatchingResult, IProgressMonitor, AttributeValueModifierExecutor) expanding step}.
 	 * @param attributeValueModifier An instance of {@link AttributeValueModifierExecutor} to use for applying
-	 * {@link AttributeValueModifierSet AttributeValueModifierSets}.
+	 * {@link ValueModifierSet AttributeValueModifierSets}.
 	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
 	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
 	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.

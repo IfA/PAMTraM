@@ -13,7 +13,7 @@ import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.NamedElement;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingHint;
@@ -76,7 +76,7 @@ public class AttributeValueCalculator {
 	 *            FixedValues} that can be used in calculations.
 	 * @param attributeValuemodifier
 	 *            The {@link AttributeValueModifierExecutor} that shall be used
-	 *            to apply {@link AttributeValueModifierSet
+	 *            to apply {@link ValueModifierSet
 	 *            AttributeValueModifierSets}.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages to the
@@ -128,7 +128,7 @@ public class AttributeValueCalculator {
 				expression = ((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getExpression();
 			}
 
-			List<AttributeValueModifierSet> resultModifiers = new ArrayList<>();
+			List<ValueModifierSet> resultModifiers = new ArrayList<>();
 			if(hint instanceof AttributeMapping) {
 				resultModifiers.addAll(((AttributeMapping) hint).getResultModifier());
 			} else if(hint instanceof MappingInstanceSelector) {
@@ -158,11 +158,11 @@ public class AttributeValueCalculator {
 	 * 		either an {@link AttributeMapping}, a {@link MappingInstanceSelector} with {@link AttributeMatcher}, or 
 	 * 		<em>null</em> if no hint has been found.
 	 * @param hintValues A list of hint values to be used in the calculation.
-	 * @param resultModifiers The list of {@link AttributeValueModifierSet} to apply to the resulting value.
+	 * @param resultModifiers The list of {@link ValueModifierSet} to apply to the resulting value.
 	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
 	 */
 	private String calculateAttributeValueWithoutExpression(MappingHint hint, Map<?, AttributeValueRepresentation> hintValues, 
-			List<AttributeValueModifierSet> resultModifiers) {
+			List<ValueModifierSet> resultModifiers) {
 
 		// Collect the source elements that determine the order in which the hint
 		// values will get appended
@@ -184,11 +184,11 @@ public class AttributeValueCalculator {
 	 * 		<em>null</em> if no hint has been found.
 	 * @param attrHintValues A list of hint values to be used in the calculation.
 	 * @param expression An expression to be used to calculate the hint values.
-	 * @param resultModifiers The list of {@link AttributeValueModifierSet} to apply to the resulting value.
+	 * @param resultModifiers The list of {@link ValueModifierSet} to apply to the resulting value.
 	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
 	 */
 	private String calculateAttributeValueWithExpression(MappingHint hint, Map<?, AttributeValueRepresentation> attrHintValues, String expression,
-			List<AttributeValueModifierSet> resultModifiers) {
+			List<ValueModifierSet> resultModifiers) {
 
 		if(hint instanceof AttributeMapping && !((AttributeMapping) hint).getSourceAttributeMappings().isEmpty()
 				&& attrHintValues.isEmpty()) {
@@ -211,12 +211,12 @@ public class AttributeValueCalculator {
 	 * @param sourceElements The list of source elements that determine the order in which the
 	 * <em>valueParts</em> shall be assembled.
 	 * @param valueParts The value parts (the keys of the map should match the list of <em>sourceElements</em>).
-	 * @param resultModifiers A list of {@link AttributeValueModifierSet AttributeValueModifierSets} to apply
+	 * @param resultModifiers A list of {@link ValueModifierSet AttributeValueModifierSets} to apply
 	 * to the resulting value before returning it.
 	 * @return The assembled value after applying the <em>resultModifiers</em>.
 	 */
 	public String calculateValueWithoutExpression(List<Object> sourceElements,
-			Map<?, AttributeValueRepresentation> valueParts, List<AttributeValueModifierSet> resultModifiers) {
+			Map<?, AttributeValueRepresentation> valueParts, List<ValueModifierSet> resultModifiers) {
 
 		StringBuilder attrValueBuilder = new StringBuilder();
 
@@ -244,12 +244,12 @@ public class AttributeValueCalculator {
 	 * 
 	 * @param valueParts The value parts to use for the evaluation of the expression.
 	 * @param expression The expression to calculate.
-	 * @param resultModifiers A list of {@link AttributeValueModifierSet AttributeValueModifierSets} to apply
+	 * @param resultModifiers A list of {@link ValueModifierSet AttributeValueModifierSets} to apply
 	 * to the resulting value before returning it.
 	 * @return The calculated value after applying the <em>resultModifiers</em>.
 	 */
 	public String calculateValueWithExpression(Map<?, AttributeValueRepresentation> valueParts, String expression,
-			List<AttributeValueModifierSet> resultModifiers) {
+			List<ValueModifierSet> resultModifiers) {
 		// If no hint values are passed, we simply use the expression as return value
 		//
 		if(valueParts.isEmpty()) {

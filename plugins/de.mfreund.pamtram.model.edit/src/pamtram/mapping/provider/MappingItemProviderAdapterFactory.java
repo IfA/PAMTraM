@@ -234,6 +234,29 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ValueModifierSet} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValueModifierSetItemProvider valueModifierSetItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ValueModifierSet}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValueModifierSetAdapter() {
+		if (valueModifierSetItemProvider == null) {
+			valueModifierSetItemProvider = new ValueModifierSetItemProvider(this);
+		}
+
+		return valueModifierSetItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.SubstringReplacer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -323,29 +346,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		}
 
 		return stringPrependerItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ValueModifierSet} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ValueModifierSetItemProvider attributeValueModifierSetItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ValueModifierSet}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAttributeValueModifierSetAdapter() {
-		if (attributeValueModifierSetItemProvider == null) {
-			attributeValueModifierSetItemProvider = new ValueModifierSetItemProvider(this);
-		}
-
-		return attributeValueModifierSetItemProvider;
 	}
 
 	/**
@@ -915,7 +915,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
 		if (attributeMatcherSourceElementItemProvider != null) attributeMatcherSourceElementItemProvider.dispose();
 		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
-		if (attributeValueModifierSetItemProvider != null) attributeValueModifierSetItemProvider.dispose();
+		if (valueModifierSetItemProvider != null) valueModifierSetItemProvider.dispose();
 		if (substringReplacerItemProvider != null) substringReplacerItemProvider.dispose();
 		if (stringAppenderItemProvider != null) stringAppenderItemProvider.dispose();
 		if (uniqueNumberAppenderItemProvider != null) uniqueNumberAppenderItemProvider.dispose();

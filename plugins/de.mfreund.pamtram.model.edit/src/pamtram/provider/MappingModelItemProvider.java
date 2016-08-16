@@ -196,7 +196,7 @@ public class MappingModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS,
-				 MappingFactory.eINSTANCE.createAttributeValueModifierSet()));
+				 MappingFactory.eINSTANCE.createValueModifierSet()));
 
 		newChildDescriptors.add
 			(createChildParameter

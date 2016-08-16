@@ -326,15 +326,15 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeValueModifierSet} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ValueModifierSet} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttributeValueModifierSetItemProvider attributeValueModifierSetItemProvider;
+	protected ValueModifierSetItemProvider attributeValueModifierSetItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.AttributeValueModifierSet}.
+	 * This creates an adapter for a {@link pamtram.mapping.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -342,7 +342,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	@Override
 	public Adapter createAttributeValueModifierSetAdapter() {
 		if (attributeValueModifierSetItemProvider == null) {
-			attributeValueModifierSetItemProvider = new AttributeValueModifierSetItemProvider(this);
+			attributeValueModifierSetItemProvider = new ValueModifierSetItemProvider(this);
 		}
 
 		return attributeValueModifierSetItemProvider;

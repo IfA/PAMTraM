@@ -14,19 +14,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.AttributeValueModifierSet} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ValueModifierSet} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeValueModifierSetItemProvider
+public class ValueModifierSetItemProvider
 extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -34,7 +34,7 @@ extends NamedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueModifierSetItemProvider(AdapterFactory adapterFactory) {
+	public ValueModifierSetItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -101,7 +101,7 @@ extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AttributeValueModifierSet)object).getName();
+		String label = ((ValueModifierSet)object).getName();
 		return label == null || label.length() == 0 ?
 				"ModifierSet" :
 					"ModifierSet " + label;
@@ -115,7 +115,7 @@ extends NamedElementItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeValueModifierSet)object).getName();
+		String label = ((ValueModifierSet)object).getName();
 		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append("Modifier Set", StyledString.Style.QUALIFIER_STYLER); 
@@ -136,7 +136,7 @@ extends NamedElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AttributeValueModifierSet.class)) {
+		switch (notification.getFeatureID(ValueModifierSet.class)) {
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

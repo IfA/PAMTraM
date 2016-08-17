@@ -112,8 +112,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.INSTANCE_POINTER_SOURCE_ELEMENT: return createInstancePointerSourceElement();
 			case MetamodelPackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: return createInstancePointerExternalSourceElement();
 			case MetamodelPackage.RANGE_BOUND: return createRangeBound();
-			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_ELEMENT: return createAttributeValueConstraintSourceElement();
-			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createAttributeValueConstraintExternalSourceElement();
+			case MetamodelPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: return createValueConstraintSourceElement();
+			case MetamodelPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createValueConstraintExternalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -129,8 +129,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eDataType.getClassifierID()) {
 			case MetamodelPackage.FILE_TYPE_ENUM:
 				return createFileTypeEnumFromString(eDataType, initialValue);
-			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
-				return createAttributeValueConstraintTypeFromString(eDataType, initialValue);
+			case MetamodelPackage.VALUE_CONSTRAINT_TYPE:
+				return createValueConstraintTypeFromString(eDataType, initialValue);
 			case MetamodelPackage.CARDINALITY_TYPE:
 				return createCardinalityTypeFromString(eDataType, initialValue);
 			default:
@@ -148,8 +148,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eDataType.getClassifierID()) {
 			case MetamodelPackage.FILE_TYPE_ENUM:
 				return convertFileTypeEnumToString(eDataType, instanceValue);
-			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
-				return convertAttributeValueConstraintTypeToString(eDataType, instanceValue);
+			case MetamodelPackage.VALUE_CONSTRAINT_TYPE:
+				return convertValueConstraintTypeToString(eDataType, instanceValue);
 			case MetamodelPackage.CARDINALITY_TYPE:
 				return convertCardinalityTypeToString(eDataType, instanceValue);
 			default:
@@ -422,9 +422,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueConstraintSourceElement createAttributeValueConstraintSourceElement() {
-		ValueConstraintSourceElementImpl attributeValueConstraintSourceElement = new ValueConstraintSourceElementImpl();
-		return attributeValueConstraintSourceElement;
+	public ValueConstraintSourceElement createValueConstraintSourceElement() {
+		ValueConstraintSourceElementImpl valueConstraintSourceElement = new ValueConstraintSourceElementImpl();
+		return valueConstraintSourceElement;
 	}
 
 	/**
@@ -432,9 +432,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueConstraintExternalSourceElement createAttributeValueConstraintExternalSourceElement() {
-		ValueConstraintExternalSourceElementImpl attributeValueConstraintExternalSourceElement = new ValueConstraintExternalSourceElementImpl();
-		return attributeValueConstraintExternalSourceElement;
+	public ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement() {
+		ValueConstraintExternalSourceElementImpl valueConstraintExternalSourceElement = new ValueConstraintExternalSourceElementImpl();
+		return valueConstraintExternalSourceElement;
 	}
 
 	/**
@@ -462,7 +462,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueConstraintType createAttributeValueConstraintTypeFromString(EDataType eDataType, String initialValue) {
+	public ValueConstraintType createValueConstraintTypeFromString(EDataType eDataType, String initialValue) {
 		ValueConstraintType result = ValueConstraintType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -473,7 +473,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertAttributeValueConstraintTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertValueConstraintTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

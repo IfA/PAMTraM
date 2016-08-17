@@ -505,7 +505,6 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__AttributeMappingSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._AttributeMappingSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__AttributeMatcherSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._AttributeMatcherSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _FixedValue__AttributeValueConstraintSourceInterface = new ExecutorFragment(Types._FixedValue, MetamodelTables.Types._AttributeValueConstraintSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__FixedValue = new ExecutorFragment(Types._FixedValue, MappingTables.Types._FixedValue);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__InstancePointerSourceInterface = new ExecutorFragment(Types._FixedValue, MetamodelTables.Types._InstancePointerSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__MappingHintSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._MappingHintSourceInterface);
@@ -513,6 +512,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__NamedElement = new ExecutorFragment(Types._FixedValue, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__OclAny = new ExecutorFragment(Types._FixedValue, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__OclElement = new ExecutorFragment(Types._FixedValue, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _FixedValue__ValueConstraintSourceInterface = new ExecutorFragment(Types._FixedValue, MetamodelTables.Types._ValueConstraintSourceInterface);
 
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttribute__GlobalAttribute = new ExecutorFragment(Types._GlobalAttribute, MappingTables.Types._GlobalAttribute);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttribute__NamedElement = new ExecutorFragment(Types._GlobalAttribute, PamtramTables.Types._NamedElement);
@@ -521,7 +521,6 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__AttributeMappingSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._AttributeMappingSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__AttributeMatcherSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._AttributeMatcherSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__AttributeValueConstraintSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MetamodelTables.Types._AttributeValueConstraintSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__GlobalAttributeImporter = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._GlobalAttributeImporter);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__InstancePointerSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MetamodelTables.Types._InstancePointerSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__MappingHintSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._MappingHintSourceInterface);
@@ -529,6 +528,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__NamedElement = new ExecutorFragment(Types._GlobalAttributeImporter, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__OclAny = new ExecutorFragment(Types._GlobalAttributeImporter, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__OclElement = new ExecutorFragment(Types._GlobalAttributeImporter, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__ValueConstraintSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MetamodelTables.Types._ValueConstraintSourceInterface);
 
 		private static final /*@NonNull*/ ExecutorFragment _HintImporterMappingHint__HintImporterMappingHint = new ExecutorFragment(Types._HintImporterMappingHint, MappingTables.Types._HintImporterMappingHint);
 		private static final /*@NonNull*/ ExecutorFragment _HintImporterMappingHint__MappingHintBaseType = new ExecutorFragment(Types._HintImporterMappingHint, MappingTables.Types._MappingHintBaseType);
@@ -1177,9 +1177,9 @@ public class MappingTables
 			Fragments._FixedValue__MappingHintSourceInterface /* 3 */,
 			Fragments._FixedValue__AttributeMappingSourceInterface /* 4 */,
 			Fragments._FixedValue__AttributeMatcherSourceInterface /* 4 */,
-			Fragments._FixedValue__AttributeValueConstraintSourceInterface /* 4 */,
 			Fragments._FixedValue__InstancePointerSourceInterface /* 4 */,
 			Fragments._FixedValue__ModelConnectionHintSourceInterface /* 4 */,
+			Fragments._FixedValue__ValueConstraintSourceInterface /* 4 */,
 			Fragments._FixedValue__FixedValue /* 5 */
 		};
 		private static final int /*@NonNull*/ [] __FixedValue = { 1,1,1,1,5,1 };
@@ -1201,9 +1201,9 @@ public class MappingTables
 			Fragments._GlobalAttributeImporter__MappingHintSourceInterface /* 3 */,
 			Fragments._GlobalAttributeImporter__AttributeMappingSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__AttributeMatcherSourceInterface /* 4 */,
-			Fragments._GlobalAttributeImporter__AttributeValueConstraintSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__InstancePointerSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__ModelConnectionHintSourceInterface /* 4 */,
+			Fragments._GlobalAttributeImporter__ValueConstraintSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__GlobalAttributeImporter /* 5 */
 		};
 		private static final int /*@NonNull*/ [] __GlobalAttributeImporter = { 1,1,1,1,5,1 };
@@ -2242,7 +2242,6 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__FixedValue = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__AttributeMappingSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__AttributeMatcherSourceInterface = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__AttributeValueConstraintSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__InstancePointerSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__MappingHintSourceInterface = {
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
@@ -2275,6 +2274,7 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__ValueConstraintSourceInterface = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttribute__GlobalAttribute = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttribute__NamedElement = {};
@@ -2308,7 +2308,6 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__GlobalAttributeImporter = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__AttributeMappingSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__AttributeMatcherSourceInterface = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__AttributeValueConstraintSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__InstancePointerSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__MappingHintSourceInterface = {
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
@@ -2341,6 +2340,7 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__ValueConstraintSourceInterface = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _HintImporterMappingHint__HintImporterMappingHint = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _HintImporterMappingHint__MappingHintBaseType = {};
@@ -3569,7 +3569,6 @@ public class MappingTables
 
 			Fragments._FixedValue__AttributeMappingSourceInterface.initOperations(_FixedValue__AttributeMappingSourceInterface);
 			Fragments._FixedValue__AttributeMatcherSourceInterface.initOperations(_FixedValue__AttributeMatcherSourceInterface);
-			Fragments._FixedValue__AttributeValueConstraintSourceInterface.initOperations(_FixedValue__AttributeValueConstraintSourceInterface);
 			Fragments._FixedValue__FixedValue.initOperations(_FixedValue__FixedValue);
 			Fragments._FixedValue__InstancePointerSourceInterface.initOperations(_FixedValue__InstancePointerSourceInterface);
 			Fragments._FixedValue__MappingHintSourceInterface.initOperations(_FixedValue__MappingHintSourceInterface);
@@ -3577,6 +3576,7 @@ public class MappingTables
 			Fragments._FixedValue__NamedElement.initOperations(_FixedValue__NamedElement);
 			Fragments._FixedValue__OclAny.initOperations(_FixedValue__OclAny);
 			Fragments._FixedValue__OclElement.initOperations(_FixedValue__OclElement);
+			Fragments._FixedValue__ValueConstraintSourceInterface.initOperations(_FixedValue__ValueConstraintSourceInterface);
 
 			Fragments._GlobalAttribute__GlobalAttribute.initOperations(_GlobalAttribute__GlobalAttribute);
 			Fragments._GlobalAttribute__NamedElement.initOperations(_GlobalAttribute__NamedElement);
@@ -3585,7 +3585,6 @@ public class MappingTables
 
 			Fragments._GlobalAttributeImporter__AttributeMappingSourceInterface.initOperations(_GlobalAttributeImporter__AttributeMappingSourceInterface);
 			Fragments._GlobalAttributeImporter__AttributeMatcherSourceInterface.initOperations(_GlobalAttributeImporter__AttributeMatcherSourceInterface);
-			Fragments._GlobalAttributeImporter__AttributeValueConstraintSourceInterface.initOperations(_GlobalAttributeImporter__AttributeValueConstraintSourceInterface);
 			Fragments._GlobalAttributeImporter__GlobalAttributeImporter.initOperations(_GlobalAttributeImporter__GlobalAttributeImporter);
 			Fragments._GlobalAttributeImporter__InstancePointerSourceInterface.initOperations(_GlobalAttributeImporter__InstancePointerSourceInterface);
 			Fragments._GlobalAttributeImporter__MappingHintSourceInterface.initOperations(_GlobalAttributeImporter__MappingHintSourceInterface);
@@ -3593,6 +3592,7 @@ public class MappingTables
 			Fragments._GlobalAttributeImporter__NamedElement.initOperations(_GlobalAttributeImporter__NamedElement);
 			Fragments._GlobalAttributeImporter__OclAny.initOperations(_GlobalAttributeImporter__OclAny);
 			Fragments._GlobalAttributeImporter__OclElement.initOperations(_GlobalAttributeImporter__OclElement);
+			Fragments._GlobalAttributeImporter__ValueConstraintSourceInterface.initOperations(_GlobalAttributeImporter__ValueConstraintSourceInterface);
 
 			Fragments._HintImporterMappingHint__HintImporterMappingHint.initOperations(_HintImporterMappingHint__HintImporterMappingHint);
 			Fragments._HintImporterMappingHint__MappingHintBaseType.initOperations(_HintImporterMappingHint__MappingHintBaseType);

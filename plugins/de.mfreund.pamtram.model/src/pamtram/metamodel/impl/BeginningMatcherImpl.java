@@ -22,7 +22,7 @@ import pamtram.metamodel.MetamodelPackage;
  *
  * @generated
  */
-public class BeginningMatcherImpl extends SingleReferenceAttributeValueConstraintImpl implements
+public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl implements
 		BeginningMatcher {
 	/**
 	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.

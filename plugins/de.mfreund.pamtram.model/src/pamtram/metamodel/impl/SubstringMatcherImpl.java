@@ -22,7 +22,7 @@ import pamtram.metamodel.SubstringMatcher;
  *
  * @generated
  */
-public class SubstringMatcherImpl extends SingleReferenceAttributeValueConstraintImpl implements
+public class SubstringMatcherImpl extends SingleReferenceValueConstraintImpl implements
 		SubstringMatcher {
 	/**
 	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.

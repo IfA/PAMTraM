@@ -301,8 +301,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createInstancePointerSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
-				return createAttributeValueConstraintSourceInterfaceAdapter();
+			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
+				return createValueConstraintSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1123,7 +1123,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -1132,7 +1132,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.metamodel.ValueConstraintSourceInterface
 	 * @generated
 	 */
-	public Adapter createAttributeValueConstraintSourceInterfaceAdapter() {
+	public Adapter createValueConstraintSourceInterfaceAdapter() {
 		return null;
 	}
 

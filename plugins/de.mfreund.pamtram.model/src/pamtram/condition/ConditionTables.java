@@ -60,7 +60,6 @@ public class ConditionTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://mfreund.de/pamtram/metamodel", null, pamtram.metamodel.MetamodelPackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ActualSourceSectionAttribute = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ActualSourceSectionAttribute", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeValueConstraint = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("AttributeValueConstraint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ComplexCondition = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ConditionModel = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ConditionalElement = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionalElement", 0);
@@ -69,6 +68,7 @@ public class ConditionTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Not = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("Not", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SingleConditionOperator = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("SingleConditionOperator", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSectionClass = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ValueConstraint = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ValueConstraint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.DataTypeId DATAid_EInt = pamtram.condition.ConditionTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_ComparatorEnum = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getEnumerationId("ComparatorEnum");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_CondSettingEnum = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getEnumerationId("CondSettingEnum");
@@ -84,9 +84,9 @@ public class ConditionTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_ConditionalElement = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ConditionalElement);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_MultipleConditionOperator = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_MultipleConditionOperator);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_SingleConditionOperator = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_SingleConditionOperator);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_AttributeValueConstraint = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_AttributeValueConstraint);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ComplexCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_InstancePointer = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_InstancePointer);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueConstraint = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ValueConstraint);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ComplexCondition);
 
 	/**

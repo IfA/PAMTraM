@@ -9,7 +9,7 @@ import pamtram.mapping.ExternalModifiedAttributeElementType;
  * Element</b></em>'. <!-- end-user-doc -->
  *
  *
- * @see pamtram.metamodel.MetamodelPackage#getAttributeValueConstraintExternalSourceElement()
+ * @see pamtram.metamodel.MetamodelPackage#getValueConstraintExternalSourceElement()
  * @model
  * @generated
  */

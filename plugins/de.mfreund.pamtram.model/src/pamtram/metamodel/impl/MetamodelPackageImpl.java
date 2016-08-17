@@ -302,7 +302,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass attributeValueConstraintEClass = null;
+	private EClass valueConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -351,7 +351,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass multipleReferencesAttributeValueConstraintEClass = null;
+	private EClass multipleReferencesValueConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -393,28 +393,28 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass singleReferenceAttributeValueConstraintEClass = null;
+	private EClass singleReferenceValueConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass attributeValueConstraintSourceInterfaceEClass = null;
+	private EClass valueConstraintSourceInterfaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass attributeValueConstraintSourceElementEClass = null;
+	private EClass valueConstraintSourceElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass attributeValueConstraintExternalSourceElementEClass = null;
+	private EClass valueConstraintExternalSourceElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -428,7 +428,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum attributeValueConstraintTypeEEnum = null;
+	private EEnum valueConstraintTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -652,7 +652,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getClass__ContainerIsValid__DiagnosticChain_Map() {
+	public EOperation getClass__ContainerIsValid__DiagnosticChain_Map_1() {
 		return classEClass.getEOperations().get(4);
 	}
 
@@ -661,7 +661,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getClass__CardinalityIsValid__DiagnosticChain_Map() {
+	public EOperation getClass__CardinalityIsValid__DiagnosticChain_Map_1() {
 		return classEClass.getEOperations().get(5);
 	}
 
@@ -670,7 +670,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getClass__EClassMatchesParentEReference__DiagnosticChain_Map() {
+	public EOperation getClass__EClassMatchesParentEReference__DiagnosticChain_Map_1() {
 		return classEClass.getEOperations().get(6);
 	}
 
@@ -724,7 +724,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSection__ExtendsValidSections__DiagnosticChain_Map() {
+	public EOperation getSection__ExtendsValidSections__DiagnosticChain_Map_1() {
 		return sectionEClass.getEOperations().get(2);
 	}
 
@@ -751,7 +751,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSourceSection__IsReferencedByMapping__DiagnosticChain_Map() {
+	public EOperation getSourceSection__IsReferencedByMapping__DiagnosticChain_Map_1() {
 		return sourceSectionEClass.getEOperations().get(0);
 	}
 
@@ -787,7 +787,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map() {
+	public EOperation getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map_1() {
 		return targetSectionEClass.getEOperations().get(0);
 	}
 
@@ -994,7 +994,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getReference__EReferenceMatchesParentEClass__DiagnosticChain_Map() {
+	public EOperation getReference__EReferenceMatchesParentEClass__DiagnosticChain_Map_1() {
 		return referenceEClass.getEOperations().get(0);
 	}
 
@@ -1021,7 +1021,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getContainmentReference__EReferenceIsContainment__DiagnosticChain_Map() {
+	public EOperation getContainmentReference__EReferenceIsContainment__DiagnosticChain_Map_1() {
 		return containmentReferenceEClass.getEOperations().get(0);
 	}
 
@@ -1048,7 +1048,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNonContainmentReference__EReferenceIsNonContainment__DiagnosticChain_Map() {
+	public EOperation getNonContainmentReference__EReferenceIsNonContainment__DiagnosticChain_Map_1() {
 		return nonContainmentReferenceEClass.getEOperations().get(0);
 	}
 
@@ -1138,7 +1138,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMetaModelSectionReference__ValuesMatchReferenceType__DiagnosticChain_Map() {
+	public EOperation getMetaModelSectionReference__ValuesMatchReferenceType__DiagnosticChain_Map_1() {
 		return metaModelSectionReferenceEClass.getEOperations().get(0);
 	}
 
@@ -1183,7 +1183,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map() {
+	public EOperation getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map_1() {
 		return actualAttributeEClass.getEOperations().get(0);
 	}
 
@@ -1282,8 +1282,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAttributeValueConstraint() {
-		return attributeValueConstraintEClass;
+	public EClass getValueConstraint() {
+		return valueConstraintEClass;
 	}
 
 	/**
@@ -1291,8 +1291,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAttributeValueConstraint_Type() {
-		return (EAttribute)attributeValueConstraintEClass.getEStructuralFeatures().get(0);
+	public EAttribute getValueConstraint_Type() {
+		return (EAttribute)valueConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1381,8 +1381,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMultipleReferencesAttributeValueConstraint() {
-		return multipleReferencesAttributeValueConstraintEClass;
+	public EClass getMultipleReferencesValueConstraint() {
+		return multipleReferencesValueConstraintEClass;
 	}
 
 	/**
@@ -1390,8 +1390,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultipleReferencesAttributeValueConstraint__CheckConstraint__String_EList() {
-		return multipleReferencesAttributeValueConstraintEClass.getEOperations().get(0);
+	public EOperation getMultipleReferencesValueConstraint__CheckConstraint__String_EList() {
+		return multipleReferencesValueConstraintEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1435,7 +1435,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getInstancePointer__NoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map() {
+	public EOperation getInstancePointer__NoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map_1() {
 		return instancePointerEClass.getEOperations().get(0);
 	}
 
@@ -1534,8 +1534,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSingleReferenceAttributeValueConstraint() {
-		return singleReferenceAttributeValueConstraintEClass;
+	public EClass getSingleReferenceValueConstraint() {
+		return singleReferenceValueConstraintEClass;
 	}
 
 	/**
@@ -1543,8 +1543,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification() {
-		return (EReference)singleReferenceAttributeValueConstraintEClass.getEStructuralFeatures().get(0);
+	public EReference getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification() {
+		return (EReference)singleReferenceValueConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1552,8 +1552,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSingleReferenceAttributeValueConstraint_SourceElements() {
-		return (EReference)singleReferenceAttributeValueConstraintEClass.getEStructuralFeatures().get(1);
+	public EReference getSingleReferenceValueConstraint_SourceElements() {
+		return (EReference)singleReferenceValueConstraintEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1561,8 +1561,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String() {
-		return singleReferenceAttributeValueConstraintEClass.getEOperations().get(0);
+	public EOperation getSingleReferenceValueConstraint__CheckConstraint__String_String() {
+		return singleReferenceValueConstraintEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1570,8 +1570,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleReferenceAttributeValueConstraint__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map() {
-		return singleReferenceAttributeValueConstraintEClass.getEOperations().get(1);
+	public EOperation getSingleReferenceValueConstraint__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map() {
+		return singleReferenceValueConstraintEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1579,8 +1579,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleReferenceAttributeValueConstraint__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map() {
-		return singleReferenceAttributeValueConstraintEClass.getEOperations().get(2);
+	public EOperation getSingleReferenceValueConstraint__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map() {
+		return singleReferenceValueConstraintEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -1588,8 +1588,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleReferenceAttributeValueConstraint__IsLocalConstraint() {
-		return singleReferenceAttributeValueConstraintEClass.getEOperations().get(3);
+	public EOperation getSingleReferenceValueConstraint__IsLocalConstraint() {
+		return singleReferenceValueConstraintEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -1597,8 +1597,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAttributeValueConstraintSourceInterface() {
-		return attributeValueConstraintSourceInterfaceEClass;
+	public EClass getValueConstraintSourceInterface() {
+		return valueConstraintSourceInterfaceEClass;
 	}
 
 	/**
@@ -1606,8 +1606,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAttributeValueConstraintSourceElement() {
-		return attributeValueConstraintSourceElementEClass;
+	public EClass getValueConstraintSourceElement() {
+		return valueConstraintSourceElementEClass;
 	}
 
 	/**
@@ -1615,8 +1615,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAttributeValueConstraintExternalSourceElement() {
-		return attributeValueConstraintExternalSourceElementEClass;
+	public EClass getValueConstraintExternalSourceElement() {
+		return valueConstraintExternalSourceElementEClass;
 	}
 
 	/**
@@ -1633,8 +1633,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getAttributeValueConstraintType() {
-		return attributeValueConstraintTypeEEnum;
+	public EEnum getValueConstraintType() {
+		return valueConstraintTypeEEnum;
 	}
 
 	/**
@@ -1689,25 +1689,25 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEOperation(classEClass, CLASS___IS_CONTAINED_IN__CLASS);
 		createEOperation(classEClass, CLASS___GET_OWNING_CONTAINMENT_REFERENCE);
 		createEOperation(classEClass, CLASS___IS_REFERENCED_BY__CLASS_ELIST);
-		createEOperation(classEClass, CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP);
-		createEOperation(classEClass, CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP);
-		createEOperation(classEClass, CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(classEClass, CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1);
+		createEOperation(classEClass, CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1);
+		createEOperation(classEClass, CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1);
 
 		sectionEClass = createEClass(SECTION);
 		createEAttribute(sectionEClass, SECTION__ABSTRACT);
 		createEReference(sectionEClass, SECTION__EXTEND);
 		createEOperation(sectionEClass, SECTION___EXTENDS_ONLY_VALID_SECTIONS);
 		createEOperation(sectionEClass, SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP);
-		createEOperation(sectionEClass, SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(sectionEClass, SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1);
 
 		sourceSectionEClass = createEClass(SOURCE_SECTION);
 		createEReference(sourceSectionEClass, SOURCE_SECTION__REFERENCING_MAPPINGS);
-		createEOperation(sourceSectionEClass, SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP);
+		createEOperation(sourceSectionEClass, SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_1);
 
 		targetSectionEClass = createEClass(TARGET_SECTION);
 		createEReference(targetSectionEClass, TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS);
 		createEReference(targetSectionEClass, TARGET_SECTION__FILE);
-		createEOperation(targetSectionEClass, TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP);
+		createEOperation(targetSectionEClass, TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP_1);
 
 		fileAttributeEClass = createEClass(FILE_ATTRIBUTE);
 		createEAttribute(fileAttributeEClass, FILE_ATTRIBUTE__FILE_TYPE);
@@ -1739,15 +1739,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		referenceEClass = createEClass(REFERENCE);
 		createEReference(referenceEClass, REFERENCE__EREFERENCE);
 		createEReference(referenceEClass, REFERENCE__OWNING_CLASS);
-		createEOperation(referenceEClass, REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(referenceEClass, REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1);
 
 		containmentReferenceEClass = createEClass(CONTAINMENT_REFERENCE);
 		createEReference(containmentReferenceEClass, CONTAINMENT_REFERENCE__VALUE);
-		createEOperation(containmentReferenceEClass, CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(containmentReferenceEClass, CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1);
 
 		nonContainmentReferenceEClass = createEClass(NON_CONTAINMENT_REFERENCE);
 		createEReference(nonContainmentReferenceEClass, NON_CONTAINMENT_REFERENCE__VALUE);
-		createEOperation(nonContainmentReferenceEClass, NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nonContainmentReferenceEClass, NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1);
 
 		sourceSectionReferenceEClass = createEClass(SOURCE_SECTION_REFERENCE);
 		createEOperation(sourceSectionReferenceEClass, SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC);
@@ -1763,14 +1763,14 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		metaModelSectionReferenceEClass = createEClass(META_MODEL_SECTION_REFERENCE);
 		createEReference(metaModelSectionReferenceEClass, META_MODEL_SECTION_REFERENCE__VALUE);
-		createEOperation(metaModelSectionReferenceEClass, META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(metaModelSectionReferenceEClass, META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_1);
 
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__OWNING_CLASS);
 
 		actualAttributeEClass = createEClass(ACTUAL_ATTRIBUTE);
 		createEReference(actualAttributeEClass, ACTUAL_ATTRIBUTE__ATTRIBUTE);
-		createEOperation(actualAttributeEClass, ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(actualAttributeEClass, ACTUAL_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1);
 
 		virtualAttributeEClass = createEClass(VIRTUAL_ATTRIBUTE);
 
@@ -1789,8 +1789,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		equalityMatcherEClass = createEClass(EQUALITY_MATCHER);
 
-		attributeValueConstraintEClass = createEClass(ATTRIBUTE_VALUE_CONSTRAINT);
-		createEAttribute(attributeValueConstraintEClass, ATTRIBUTE_VALUE_CONSTRAINT__TYPE);
+		valueConstraintEClass = createEClass(VALUE_CONSTRAINT);
+		createEAttribute(valueConstraintEClass, VALUE_CONSTRAINT__TYPE);
 
 		substringMatcherEClass = createEClass(SUBSTRING_MATCHER);
 
@@ -1807,14 +1807,14 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(rangeConstraintEClass, RANGE_CONSTRAINT__UPPER_BOUND);
 		createEReference(rangeConstraintEClass, RANGE_CONSTRAINT__LOWER_BOUND);
 
-		multipleReferencesAttributeValueConstraintEClass = createEClass(MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT);
-		createEOperation(multipleReferencesAttributeValueConstraintEClass, MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST);
+		multipleReferencesValueConstraintEClass = createEClass(MULTIPLE_REFERENCES_VALUE_CONSTRAINT);
+		createEOperation(multipleReferencesValueConstraintEClass, MULTIPLE_REFERENCES_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST);
 
 		instancePointerEClass = createEClass(INSTANCE_POINTER);
 		createEReference(instancePointerEClass, INSTANCE_POINTER__ATTRIBUTE_POINTER);
 		createEAttribute(instancePointerEClass, INSTANCE_POINTER__VALUE);
 		createEReference(instancePointerEClass, INSTANCE_POINTER__SOURCE_ATTRIBUTES);
-		createEOperation(instancePointerEClass, INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(instancePointerEClass, INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP_1);
 
 		instancePointerSourceInterfaceEClass = createEClass(INSTANCE_POINTER_SOURCE_INTERFACE);
 
@@ -1830,23 +1830,23 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEOperation(rangeBoundEClass, RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
 		createEOperation(rangeBoundEClass, RANGE_BOUND___IS_LOCAL_CONSTRAINT);
 
-		singleReferenceAttributeValueConstraintEClass = createEClass(SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT);
-		createEReference(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
-		createEReference(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
-		createEOperation(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING);
-		createEOperation(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
-		createEOperation(singleReferenceAttributeValueConstraintEClass, SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT);
+		singleReferenceValueConstraintEClass = createEClass(SINGLE_REFERENCE_VALUE_CONSTRAINT);
+		createEReference(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+		createEReference(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
+		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING);
+		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
+		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT);
 
-		attributeValueConstraintSourceInterfaceEClass = createEClass(ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_INTERFACE);
+		valueConstraintSourceInterfaceEClass = createEClass(VALUE_CONSTRAINT_SOURCE_INTERFACE);
 
-		attributeValueConstraintSourceElementEClass = createEClass(ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_ELEMENT);
+		valueConstraintSourceElementEClass = createEClass(VALUE_CONSTRAINT_SOURCE_ELEMENT);
 
-		attributeValueConstraintExternalSourceElementEClass = createEClass(ATTRIBUTE_VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT);
+		valueConstraintExternalSourceElementEClass = createEClass(VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT);
 
 		// Create enums
 		fileTypeEnumEEnum = createEEnum(FILE_TYPE_ENUM);
-		attributeValueConstraintTypeEEnum = createEEnum(ATTRIBUTE_VALUE_CONSTRAINT_TYPE);
+		valueConstraintTypeEEnum = createEEnum(VALUE_CONSTRAINT_TYPE);
 		cardinalityTypeEEnum = createEEnum(CARDINALITY_TYPE);
 	}
 
@@ -2543,14 +2543,14 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		virtualTargetSectionAttributeEClass.getEGenericSuperTypes().add(g1);
 		equalityMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
-		attributeValueConstraintEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		valueConstraintEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		substringMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
 		beginningMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
 		endingMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
-		regExMatcherEClass.getESuperTypes().add(this.getSingleReferenceAttributeValueConstraint());
-		caseSensitiveConstraintEClass.getESuperTypes().add(this.getSingleReferenceAttributeValueConstraint());
-		rangeConstraintEClass.getESuperTypes().add(this.getMultipleReferencesAttributeValueConstraint());
-		multipleReferencesAttributeValueConstraintEClass.getESuperTypes().add(this.getAttributeValueConstraint());
+		regExMatcherEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
+		caseSensitiveConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
+		rangeConstraintEClass.getESuperTypes().add(this.getMultipleReferencesValueConstraint());
+		multipleReferencesValueConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		instancePointerEClass.getESuperTypes().add(theMappingPackage.getExpressionHint());
 		instancePointerEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
 		instancePointerSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
@@ -2580,10 +2580,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		instancePointerExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		rangeBoundEClass.getESuperTypes().add(theMappingPackage.getExpressionHint());
 		rangeBoundEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
-		singleReferenceAttributeValueConstraintEClass.getESuperTypes().add(this.getAttributeValueConstraint());
-		singleReferenceAttributeValueConstraintEClass.getESuperTypes().add(theMappingPackage.getExpressionHint());
-		singleReferenceAttributeValueConstraintEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
-		attributeValueConstraintSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
+		singleReferenceValueConstraintEClass.getESuperTypes().add(this.getValueConstraint());
+		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getExpressionHint());
+		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
+		valueConstraintSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
 		g1 = createEGenericType(theMappingPackage.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(this.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -2593,9 +2593,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
-		attributeValueConstraintSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getAttributeValueConstraintSourceInterface());
-		attributeValueConstraintSourceElementEClass.getEGenericSuperTypes().add(g1);
+		valueConstraintSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getValueConstraintSourceInterface());
+		valueConstraintSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theMappingPackage.getExternalModifiedAttributeElementType());
 		g2 = createEGenericType(this.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -2605,9 +2605,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
-		attributeValueConstraintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getAttributeValueConstraintSourceInterface());
-		attributeValueConstraintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		valueConstraintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getValueConstraintSourceInterface());
+		valueConstraintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(metaModelElementEClass, MetaModelElement.class, "MetaModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2666,7 +2666,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1 = createEGenericType(classEClass_C);
 		addEParameter(op, g1, "referencedClasses", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getClass__ContainerIsValid__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "containerIsValid", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getClass__ContainerIsValid__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "containerIsValid", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2675,7 +2675,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getClass__CardinalityIsValid__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "cardinalityIsValid", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getClass__CardinalityIsValid__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "cardinalityIsValid", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2684,7 +2684,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getClass__EClassMatchesParentEReference__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "eClassMatchesParentEReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getClass__EClassMatchesParentEReference__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "eClassMatchesParentEReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2709,7 +2709,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getSection__ExtendsValidSections__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "extendsValidSections", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSection__ExtendsValidSections__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "extendsValidSections", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2721,7 +2721,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(sourceSectionEClass, SourceSection.class, "SourceSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSection_ReferencingMappings(), theMappingPackage.getMappingType(), null, "referencingMappings", null, 0, -1, SourceSection.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getSourceSection__IsReferencedByMapping__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "isReferencedByMapping", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSourceSection__IsReferencedByMapping__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "isReferencedByMapping", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2734,7 +2734,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getTargetSection_ReferencingMappingHintGroups(), theMappingPackage.getMappingHintGroupType(), null, "referencingMappingHintGroups", null, 0, -1, TargetSection.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetSection_File(), this.getFileAttribute(), null, "file", null, 0, 1, TargetSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "isReferencedByMappingHintGroup", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "isReferencedByMappingHintGroup", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2779,7 +2779,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1 = createEGenericType(referenceEClass_C);
 		initEReference(getReference_OwningClass(), g1, this.getClass_References(), "owningClass", null, 0, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getReference__EReferenceMatchesParentEClass__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "eReferenceMatchesParentEClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getReference__EReferenceMatchesParentEClass__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "eReferenceMatchesParentEClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2792,7 +2792,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1 = createEGenericType(containmentReferenceEClass_C);
 		initEReference(getContainmentReference_Value(), g1, null, "value", null, 0, -1, ContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getContainmentReference__EReferenceIsContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "eReferenceIsContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getContainmentReference__EReferenceIsContainment__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "eReferenceIsContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2805,7 +2805,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1 = createEGenericType(nonContainmentReferenceEClass_C);
 		initEReference(getNonContainmentReference_Value(), g1, null, "value", null, 0, -1, NonContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getNonContainmentReference__EReferenceIsNonContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "eReferenceIsNonContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getNonContainmentReference__EReferenceIsNonContainment__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "eReferenceIsNonContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2831,7 +2831,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(metaModelSectionReferenceEClass, MetaModelSectionReference.class, "MetaModelSectionReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetaModelSectionReference_Value(), this.getSourceSectionClass(), null, "value", null, 0, -1, MetaModelSectionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getMetaModelSectionReference__ValuesMatchReferenceType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "valuesMatchReferenceType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getMetaModelSectionReference__ValuesMatchReferenceType__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "valuesMatchReferenceType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2847,7 +2847,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(actualAttributeEClass, ActualAttribute.class, "ActualAttribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActualAttribute_Attribute(), ecorePackage.getEAttribute(), null, "attribute", null, 1, 1, ActualAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "attributeMatchesParentEClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getActualAttribute__AttributeMatchesParentEClass__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "attributeMatchesParentEClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2859,7 +2859,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(virtualAttributeEClass, VirtualAttribute.class, "VirtualAttribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sourceSectionAttributeEClass, SourceSectionAttribute.class, "SourceSectionAttribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSourceSectionAttribute_ValueConstraint(), this.getAttributeValueConstraint(), null, "valueConstraint", null, 0, -1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourceSectionAttribute_ValueConstraint(), this.getValueConstraint(), null, "valueConstraint", null, 0, -1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actualSourceSectionAttributeEClass, ActualSourceSectionAttribute.class, "ActualSourceSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2873,8 +2873,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(equalityMatcherEClass, EqualityMatcher.class, "EqualityMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(attributeValueConstraintEClass, ValueConstraint.class, "AttributeValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAttributeValueConstraint_Type(), this.getAttributeValueConstraintType(), "type", "INCLUSION", 1, 1, ValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(valueConstraintEClass, ValueConstraint.class, "ValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getValueConstraint_Type(), this.getValueConstraintType(), "type", "INCLUSION", 1, 1, ValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(substringMatcherEClass, SubstringMatcher.class, "SubstringMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2891,9 +2891,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getRangeConstraint_UpperBound(), this.getRangeBound(), null, "upperBound", null, 0, 1, RangeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRangeConstraint_LowerBound(), this.getRangeBound(), null, "lowerBound", null, 0, 1, RangeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(multipleReferencesAttributeValueConstraintEClass, MultipleReferencesValueConstraint.class, "MultipleReferencesAttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(multipleReferencesValueConstraintEClass, MultipleReferencesValueConstraint.class, "MultipleReferencesValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = initEOperation(getMultipleReferencesAttributeValueConstraint__CheckConstraint__String_EList(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getMultipleReferencesValueConstraint__CheckConstraint__String_EList(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "attrValue", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "refValue", 1, -1, IS_UNIQUE, IS_ORDERED);
 
@@ -2902,7 +2902,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEAttribute(getInstancePointer_Value(), ecorePackage.getEString(), "value", null, 0, 1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstancePointer_SourceAttributes(), this.getInstancePointerSourceInterface(), null, "sourceAttributes", null, 1, -1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getInstancePointer__NoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "noModifiedAttributeElementTypesInConditionModelConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getInstancePointer__NoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "noModifiedAttributeElementTypesInConditionModelConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2918,9 +2918,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(instancePointerExternalSourceElementEClass, InstancePointerExternalSourceElement.class, "InstancePointerExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(rangeBoundEClass, RangeBound.class, "RangeBound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRangeBound_BoundType(), this.getAttributeValueConstraintType(), "boundType", null, 0, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRangeBound_BoundType(), this.getValueConstraintType(), "boundType", null, 0, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRangeBound_BoundReferenceValueAdditionalSpecification(), this.getInstancePointer(), null, "boundReferenceValueAdditionalSpecification", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRangeBound_SourceElements(), this.getAttributeValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRangeBound_SourceElements(), this.getValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getRangeBound__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOnlyFixedValuesInSourceSections", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -2942,15 +2942,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEOperation(getRangeBound__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(singleReferenceAttributeValueConstraintEClass, SingleReferenceValueConstraint.class, "SingleReferenceAttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification(), this.getInstancePointer(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSingleReferenceAttributeValueConstraint_SourceElements(), this.getAttributeValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(singleReferenceValueConstraintEClass, SingleReferenceValueConstraint.class, "SingleReferenceValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification(), this.getInstancePointer(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceValueConstraint_SourceElements(), this.getValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSingleReferenceValueConstraint__CheckConstraint__String_String(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "attrValue", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "refValue", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getSingleReferenceAttributeValueConstraint__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOnlyFixedValuesInSourceSections", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSingleReferenceValueConstraint__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOnlyFixedValuesInSourceSections", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -2959,7 +2959,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getSingleReferenceAttributeValueConstraint__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOnlyFixedValuesOrGlobalAttributesInConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSingleReferenceValueConstraint__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOnlyFixedValuesOrGlobalAttributesInConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -2968,22 +2968,22 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getSingleReferenceAttributeValueConstraint__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getSingleReferenceValueConstraint__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(attributeValueConstraintSourceInterfaceEClass, ValueConstraintSourceInterface.class, "AttributeValueConstraintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(valueConstraintSourceInterfaceEClass, ValueConstraintSourceInterface.class, "ValueConstraintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(attributeValueConstraintSourceElementEClass, ValueConstraintSourceElement.class, "AttributeValueConstraintSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(valueConstraintSourceElementEClass, ValueConstraintSourceElement.class, "ValueConstraintSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(attributeValueConstraintExternalSourceElementEClass, ValueConstraintExternalSourceElement.class, "AttributeValueConstraintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(valueConstraintExternalSourceElementEClass, ValueConstraintExternalSourceElement.class, "ValueConstraintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(fileTypeEnumEEnum, FileTypeEnum.class, "FileTypeEnum");
 		addEEnumLiteral(fileTypeEnumEEnum, FileTypeEnum.XMI);
 		addEEnumLiteral(fileTypeEnumEEnum, FileTypeEnum.XML);
 
-		initEEnum(attributeValueConstraintTypeEEnum, ValueConstraintType.class, "AttributeValueConstraintType");
-		addEEnumLiteral(attributeValueConstraintTypeEEnum, ValueConstraintType.INCLUSION);
-		addEEnumLiteral(attributeValueConstraintTypeEEnum, ValueConstraintType.EXCLUSION);
+		initEEnum(valueConstraintTypeEEnum, ValueConstraintType.class, "ValueConstraintType");
+		addEEnumLiteral(valueConstraintTypeEEnum, ValueConstraintType.INCLUSION);
+		addEEnumLiteral(valueConstraintTypeEEnum, ValueConstraintType.EXCLUSION);
 
 		initEEnum(cardinalityTypeEEnum, CardinalityType.class, "CardinalityType");
 		addEEnumLiteral(cardinalityTypeEEnum, CardinalityType.ONE);
@@ -3077,7 +3077,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 			 "constraints", "onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel"
 		   });	
 		addAnnotation
-		  (singleReferenceAttributeValueConstraintEClass, 
+		  (singleReferenceValueConstraintEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel"

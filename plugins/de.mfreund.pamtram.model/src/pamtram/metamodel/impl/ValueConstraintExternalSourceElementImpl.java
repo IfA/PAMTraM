@@ -41,7 +41,7 @@ public class ValueConstraintExternalSourceElementImpl extends ExternalModifiedAt
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT;
+		return MetamodelPackage.Literals.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class ValueConstraintExternalSourceElementImpl extends ExternalModifiedAt
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MetamodelPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -83,8 +83,8 @@ public class ValueConstraintExternalSourceElementImpl extends ExternalModifiedAt
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
-				return this.getSourceAttribute();
+			case MetamodelPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

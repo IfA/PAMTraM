@@ -416,7 +416,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMatcherSourceInterface(fixedValue);
 				if (result == null) result = caseModelConnectionHintSourceInterface(fixedValue);
 				if (result == null) result = caseInstancePointerSourceInterface(fixedValue);
-				if (result == null) result = caseAttributeValueConstraintSourceInterface(fixedValue);
+				if (result == null) result = caseValueConstraintSourceInterface(fixedValue);
 				if (result == null) result = caseMappingHintSourceInterface(fixedValue);
 				if (result == null) result = caseNamedElement(fixedValue);
 				if (result == null) result = defaultCase(theEObject);
@@ -436,7 +436,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMatcherSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseModelConnectionHintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseInstancePointerSourceInterface(globalAttributeImporter);
-				if (result == null) result = caseAttributeValueConstraintSourceInterface(globalAttributeImporter);
+				if (result == null) result = caseValueConstraintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseMappingHintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseNamedElement(globalAttributeImporter);
 				if (result == null) result = defaultCase(theEObject);
@@ -1429,17 +1429,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Constraint Source Interface</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Value Constraint Source Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Constraint Source Interface</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Value Constraint Source Interface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
+	public T caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
 		return null;
 	}
 

@@ -28,7 +28,7 @@ import pamtram.metamodel.RangeConstraint;
  *
  * @generated
  */
-public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstraintImpl implements RangeConstraint {
+public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl implements RangeConstraint {
 	/**
 	 * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' containment reference.
 	 * <!-- begin-user-doc -->

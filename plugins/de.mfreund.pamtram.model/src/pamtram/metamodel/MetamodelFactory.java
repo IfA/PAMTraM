@@ -256,22 +256,22 @@ public interface MetamodelFactory extends EFactory {
 	RangeBound createRangeBound();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Value Constraint Source Element</em>'.
+	 * Returns a new object of class '<em>Value Constraint Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Value Constraint Source Element</em>'.
+	 * @return a new object of class '<em>Value Constraint Source Element</em>'.
 	 * @generated
 	 */
-	ValueConstraintSourceElement createAttributeValueConstraintSourceElement();
+	ValueConstraintSourceElement createValueConstraintSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Value Constraint External Source Element</em>'.
+	 * Returns a new object of class '<em>Value Constraint External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Value Constraint External Source Element</em>'.
+	 * @return a new object of class '<em>Value Constraint External Source Element</em>'.
 	 * @generated
 	 */
-	ValueConstraintExternalSourceElement createAttributeValueConstraintExternalSourceElement();
+	ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

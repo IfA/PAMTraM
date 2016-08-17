@@ -11,8 +11,7 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Value Constraint Type</b></em>',
  * and utility methods for working with them. <!-- end-user-doc -->
- * 
- * @see pamtram.metamodel.MetamodelPackage#getAttributeValueConstraintType()
+ * @see pamtram.metamodel.MetamodelPackage#getValueConstraintType()
  * @model
  * @generated
  */
@@ -68,27 +67,27 @@ public enum ValueConstraintType implements Enumerator {
 	public static final int EXCLUSION_VALUE = 1;
 
 	/**
-	 * An array of all the '<em><b>Attribute Value Constraint Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Value Constraint Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final ValueConstraintType[] VALUES_ARRAY =
 			new ValueConstraintType[] {
-					INCLUSION,
-					EXCLUSION,
-	};
+			INCLUSION,
+			EXCLUSION,
+		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Attribute Value Constraint Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Value Constraint Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ValueConstraintType> VALUES = Collections.unmodifiableList(Arrays.asList(ValueConstraintType.VALUES_ARRAY));
+	public static final List<ValueConstraintType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Attribute Value Constraint Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Value Constraint Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
@@ -96,7 +95,8 @@ public enum ValueConstraintType implements Enumerator {
 	 * @generated
 	 */
 	public static ValueConstraintType get(String literal) {
-		for (ValueConstraintType result : ValueConstraintType.VALUES_ARRAY) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ValueConstraintType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -105,7 +105,7 @@ public enum ValueConstraintType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Attribute Value Constraint Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Value Constraint Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
@@ -113,7 +113,8 @@ public enum ValueConstraintType implements Enumerator {
 	 * @generated
 	 */
 	public static ValueConstraintType getByName(String name) {
-		for (ValueConstraintType result : ValueConstraintType.VALUES_ARRAY) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ValueConstraintType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -122,7 +123,7 @@ public enum ValueConstraintType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Attribute Value Constraint Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Value Constraint Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
@@ -177,7 +178,7 @@ public enum ValueConstraintType implements Enumerator {
 	 */
 	@Override
 	public int getValue() {
-		return this.value;
+	  return value;
 	}
 
 	/**
@@ -187,7 +188,7 @@ public enum ValueConstraintType implements Enumerator {
 	 */
 	@Override
 	public String getName() {
-		return this.name;
+	  return name;
 	}
 
 	/**
@@ -197,7 +198,7 @@ public enum ValueConstraintType implements Enumerator {
 	 */
 	@Override
 	public String getLiteral() {
-		return this.literal;
+	  return literal;
 	}
 
 	/**
@@ -208,7 +209,7 @@ public enum ValueConstraintType implements Enumerator {
 	 */
 	@Override
 	public String toString() {
-		return this.literal;
+		return literal;
 	}
 
 } //AttributeValueConstraintType

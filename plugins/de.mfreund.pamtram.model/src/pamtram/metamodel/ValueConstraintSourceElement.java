@@ -9,7 +9,7 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
  * end-user-doc -->
  *
  *
- * @see pamtram.metamodel.MetamodelPackage#getAttributeValueConstraintSourceElement()
+ * @see pamtram.metamodel.MetamodelPackage#getValueConstraintSourceElement()
  * @model
  * @generated
  */

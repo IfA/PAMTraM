@@ -59,14 +59,14 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTypePropertyDescriptor(object);
-			addExpressionPropertyDescriptor(object);
-			addResultModifierPropertyDescriptor(object);
+			this.addTypePropertyDescriptor(object);
+			this.addExpressionPropertyDescriptor(object);
+			this.addResultModifierPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -76,19 +76,19 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeValueConstraint_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeValueConstraint_type_feature", "_UI_AttributeValueConstraint_type"),
-				 MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT__TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ValueConstraint_type_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ValueConstraint_type_feature", "_UI_ValueConstraint_type"),
+						MetamodelPackage.Literals.VALUE_CONSTRAINT__TYPE,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -98,19 +98,19 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExpressionHint_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
-				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ExpressionHint_expression_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
+						MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -120,19 +120,19 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	 * @generated
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ModifiableHint_resultModifier_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -145,12 +145,12 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
-			childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			this.childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 		 * automatically as its 'Notify' property in the genmodel is set to 'true'
 		 */
 		return Arrays.asList(
-				MetamodelPackage.eINSTANCE.getSingleReferenceAttributeValueConstraint_SourceElements());
+				MetamodelPackage.eINSTANCE.getSingleReferenceValueConstraint_SourceElements());
 
 	}
 
@@ -186,7 +186,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -198,11 +198,11 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((SingleReferenceValueConstraint)object).getName();
-    	StyledString styledLabel = new StyledString();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SingleReferenceAttributeValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_SingleReferenceValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_SingleReferenceAttributeValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_SingleReferenceValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -215,16 +215,16 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(SingleReferenceValueConstraint.class)) {
-			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
-			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
+			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -262,7 +262,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 			newChildDescriptors.add
 			(this.createChildParameter
-					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
+			(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
 							MetamodelFactory.eINSTANCE.createInstancePointer()));
 		}
 
@@ -280,25 +280,25 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 				newChildDescriptors.add
 				(this.createChildParameter
-						(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
-								MetamodelFactory.eINSTANCE.createAttributeValueConstraintSourceElement()));
+				(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+						MetamodelFactory.eINSTANCE.createValueConstraintSourceElement()));
 
 				newChildDescriptors.add
 				(this.createChildParameter
-						(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
-								MetamodelFactory.eINSTANCE.createAttributeValueConstraintExternalSourceElement()));
+				(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+						MetamodelFactory.eINSTANCE.createValueConstraintExternalSourceElement()));
 
 			}
 
 			newChildDescriptors.add
 			(this.createChildParameter
-					(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+			(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
 							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 		}
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+		(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
 						MappingFactory.eINSTANCE.createFixedValue()));
 	}
 
@@ -317,7 +317,8 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
 			Collection<?> collection, int index) {
 
-		if(feature.equals(MetamodelPackage.eINSTANCE.getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification()) &&
+		if (feature.equals(MetamodelPackage.eINSTANCE
+				.getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification()) &&
 				!AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping())
 				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;
@@ -328,7 +329,10 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	@Override
 	public AbstractCommand createDragAndDropCommand(EditingDomain domain, Collection<EObject> collection,
 			EObject parent, EReference ref) {
-		if(ref.equals(MetamodelPackage.eINSTANCE.getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification()) &&
+
+		if (ref.equals(MetamodelPackage.eINSTANCE
+				.getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification())
+				&&
 				!AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping())
 				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;

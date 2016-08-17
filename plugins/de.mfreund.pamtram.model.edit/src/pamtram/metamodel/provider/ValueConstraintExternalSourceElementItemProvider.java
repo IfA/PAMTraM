@@ -53,14 +53,14 @@ public class ValueConstraintExternalSourceElementItemProvider extends ExternalMo
 	}
 
 	/**
-	 * This returns AttributeValueConstraintExternalSourceElement.gif.
+	 * This returns ValueConstraintExternalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeValueConstraintExternalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ValueConstraintExternalSourceElement"));
 	}
 
 	/**
@@ -85,9 +85,9 @@ public class ValueConstraintExternalSourceElementItemProvider extends ExternalMo
 		String label = ((ValueConstraintExternalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_AttributeValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	

@@ -604,7 +604,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ValueConstraintSourceElementItemProvider attributeValueConstraintSourceElementItemProvider;
+	protected ValueConstraintSourceElementItemProvider valueConstraintSourceElementItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.metamodel.ValueConstraintSourceElement}.
@@ -613,12 +613,12 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createAttributeValueConstraintSourceElementAdapter() {
-		if (attributeValueConstraintSourceElementItemProvider == null) {
-			attributeValueConstraintSourceElementItemProvider = new ValueConstraintSourceElementItemProvider(this);
+	public Adapter createValueConstraintSourceElementAdapter() {
+		if (valueConstraintSourceElementItemProvider == null) {
+			valueConstraintSourceElementItemProvider = new ValueConstraintSourceElementItemProvider(this);
 		}
 
-		return attributeValueConstraintSourceElementItemProvider;
+		return valueConstraintSourceElementItemProvider;
 	}
 
 	/**
@@ -627,7 +627,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ValueConstraintExternalSourceElementItemProvider attributeValueConstraintExternalSourceElementItemProvider;
+	protected ValueConstraintExternalSourceElementItemProvider valueConstraintExternalSourceElementItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.metamodel.ValueConstraintExternalSourceElement}.
@@ -636,12 +636,12 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createAttributeValueConstraintExternalSourceElementAdapter() {
-		if (attributeValueConstraintExternalSourceElementItemProvider == null) {
-			attributeValueConstraintExternalSourceElementItemProvider = new ValueConstraintExternalSourceElementItemProvider(this);
+	public Adapter createValueConstraintExternalSourceElementAdapter() {
+		if (valueConstraintExternalSourceElementItemProvider == null) {
+			valueConstraintExternalSourceElementItemProvider = new ValueConstraintExternalSourceElementItemProvider(this);
 		}
 
-		return attributeValueConstraintExternalSourceElementItemProvider;
+		return valueConstraintExternalSourceElementItemProvider;
 	}
 
 	/**

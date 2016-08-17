@@ -67,9 +67,9 @@ public class MultipleReferencesValueConstraintItemProvider extends NamedElementI
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AttributeValueConstraint_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeValueConstraint_type_feature", "_UI_AttributeValueConstraint_type"),
-				 MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT__TYPE,
+				 getString("_UI_ValueConstraint_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ValueConstraint_type_feature", "_UI_ValueConstraint_type"),
+				 MetamodelPackage.Literals.VALUE_CONSTRAINT__TYPE,
 				 true,
 				 false,
 				 false,
@@ -100,9 +100,9 @@ public class MultipleReferencesValueConstraintItemProvider extends NamedElementI
 		String label = ((MultipleReferencesValueConstraint)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MultipleReferencesAttributeValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_MultipleReferencesValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_MultipleReferencesAttributeValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_MultipleReferencesValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	
@@ -119,7 +119,7 @@ public class MultipleReferencesValueConstraintItemProvider extends NamedElementI
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultipleReferencesValueConstraint.class)) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
+			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

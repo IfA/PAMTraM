@@ -30,24 +30,24 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.SingleReferenceAttributeValueConstraint} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.SingleReferenceValueConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SingleReferenceAttributeValueConstraintItemProvider extends NamedElementItemProvider {
+public class SingleReferenceValueConstraintItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SingleReferenceAttributeValueConstraintItemProvider(AdapterFactory adapterFactory) {
+	public SingleReferenceValueConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -197,7 +197,7 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((SingleReferenceAttributeValueConstraint)object).getName();
+		String label = ((SingleReferenceValueConstraint)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_SingleReferenceAttributeValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -217,7 +217,7 @@ public class SingleReferenceAttributeValueConstraintItemProvider extends NamedEl
 	public void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SingleReferenceAttributeValueConstraint.class)) {
+		switch (notification.getFeatureID(SingleReferenceValueConstraint.class)) {
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

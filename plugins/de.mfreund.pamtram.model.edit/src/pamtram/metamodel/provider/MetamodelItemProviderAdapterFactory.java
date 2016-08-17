@@ -599,15 +599,15 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.AttributeValueConstraintSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ValueConstraintSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttributeValueConstraintSourceElementItemProvider attributeValueConstraintSourceElementItemProvider;
+	protected ValueConstraintSourceElementItemProvider attributeValueConstraintSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.AttributeValueConstraintSourceElement}.
+	 * This creates an adapter for a {@link pamtram.metamodel.ValueConstraintSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -615,22 +615,22 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	@Override
 	public Adapter createAttributeValueConstraintSourceElementAdapter() {
 		if (attributeValueConstraintSourceElementItemProvider == null) {
-			attributeValueConstraintSourceElementItemProvider = new AttributeValueConstraintSourceElementItemProvider(this);
+			attributeValueConstraintSourceElementItemProvider = new ValueConstraintSourceElementItemProvider(this);
 		}
 
 		return attributeValueConstraintSourceElementItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.AttributeValueConstraintExternalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ValueConstraintExternalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttributeValueConstraintExternalSourceElementItemProvider attributeValueConstraintExternalSourceElementItemProvider;
+	protected ValueConstraintExternalSourceElementItemProvider attributeValueConstraintExternalSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.AttributeValueConstraintExternalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.metamodel.ValueConstraintExternalSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -638,7 +638,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	@Override
 	public Adapter createAttributeValueConstraintExternalSourceElementAdapter() {
 		if (attributeValueConstraintExternalSourceElementItemProvider == null) {
-			attributeValueConstraintExternalSourceElementItemProvider = new AttributeValueConstraintExternalSourceElementItemProvider(this);
+			attributeValueConstraintExternalSourceElementItemProvider = new ValueConstraintExternalSourceElementItemProvider(this);
 		}
 
 		return attributeValueConstraintExternalSourceElementItemProvider;

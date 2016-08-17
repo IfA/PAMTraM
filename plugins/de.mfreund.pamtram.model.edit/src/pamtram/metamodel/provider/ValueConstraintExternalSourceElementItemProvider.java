@@ -14,26 +14,26 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.provider.LocalModifiedAttributeElementTypeItemProvider;
+import pamtram.mapping.provider.ExternalModifiedAttributeElementTypeItemProvider;
 
-import pamtram.metamodel.AttributeValueConstraintSourceElement;
+import pamtram.metamodel.ValueConstraintExternalSourceElement;
 
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.AttributeValueConstraintSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.ValueConstraintExternalSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeValueConstraintSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
+public class ValueConstraintExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueConstraintSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public ValueConstraintExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,14 +53,14 @@ public class AttributeValueConstraintSourceElementItemProvider extends LocalModi
 	}
 
 	/**
-	 * This returns AttributeValueConstraintSourceElement.gif.
+	 * This returns AttributeValueConstraintExternalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeValueConstraintSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeValueConstraintExternalSourceElement"));
 	}
 
 	/**
@@ -82,12 +82,12 @@ public class AttributeValueConstraintSourceElementItemProvider extends LocalModi
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeValueConstraintSourceElement)object).getName();
+		String label = ((ValueConstraintExternalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_AttributeValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_AttributeValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_AttributeValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	

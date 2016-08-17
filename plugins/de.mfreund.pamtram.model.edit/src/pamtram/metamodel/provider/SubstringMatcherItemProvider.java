@@ -25,7 +25,7 @@ import pamtram.metamodel.SubstringMatcher;
  * @generated
  */
 public class SubstringMatcherItemProvider
-	extends SingleReferenceAttributeValueConstraintItemProvider {
+	extends SingleReferenceValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

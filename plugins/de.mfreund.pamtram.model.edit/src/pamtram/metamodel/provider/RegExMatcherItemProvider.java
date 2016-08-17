@@ -20,7 +20,7 @@ import pamtram.metamodel.RegExMatcher;
  * @generated
  */
 public class RegExMatcherItemProvider
-	extends SingleReferenceAttributeValueConstraintItemProvider {
+	extends SingleReferenceValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

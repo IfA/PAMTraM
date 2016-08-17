@@ -14,7 +14,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -25,7 +25,7 @@ import pamtram.metamodel.MetamodelPackage;
  * @generated
  */
 public class EqualityMatcherItemProvider
-extends SingleReferenceAttributeValueConstraintItemProvider {
+extends SingleReferenceValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -81,10 +81,10 @@ extends SingleReferenceAttributeValueConstraintItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		AttributeValueConstraintType constraintType = ((EqualityMatcher) object).getType();
-		if(constraintType.equals(AttributeValueConstraintType.INCLUSION)) {
+		ValueConstraintType constraintType = ((EqualityMatcher) object).getType();
+		if(constraintType.equals(ValueConstraintType.INCLUSION)) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/EqualityMatcher_Inclusion"));			
-		} else if(constraintType.equals(AttributeValueConstraintType.EXCLUSION)) {
+		} else if(constraintType.equals(ValueConstraintType.EXCLUSION)) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/EqualityMatcher_Exclusion"));			
 		} else {
 			return null;

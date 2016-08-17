@@ -15,11 +15,11 @@ import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraint;
+import pamtram.metamodel.ValueConstraintExternalSourceElement;
+import pamtram.metamodel.ValueConstraintSourceElement;
+import pamtram.metamodel.ValueConstraintSourceInterface;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.CaseSensitiveConstraint;
@@ -39,14 +39,14 @@ import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.MultipleReferencesValueConstraint;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.ActualSourceSectionAttribute;
@@ -343,7 +343,7 @@ public class MetamodelValidator extends EObjectValidator {
 			case MetamodelPackage.EQUALITY_MATCHER:
 				return validateEqualityMatcher((EqualityMatcher)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT:
-				return validateAttributeValueConstraint((AttributeValueConstraint)value, diagnostics, context);
+				return validateAttributeValueConstraint((ValueConstraint)value, diagnostics, context);
 			case MetamodelPackage.SUBSTRING_MATCHER:
 				return validateSubstringMatcher((SubstringMatcher)value, diagnostics, context);
 			case MetamodelPackage.BEGINNING_MATCHER:
@@ -357,7 +357,7 @@ public class MetamodelValidator extends EObjectValidator {
 			case MetamodelPackage.RANGE_CONSTRAINT:
 				return validateRangeConstraint((RangeConstraint)value, diagnostics, context);
 			case MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT:
-				return validateMultipleReferencesAttributeValueConstraint((MultipleReferencesAttributeValueConstraint)value, diagnostics, context);
+				return validateMultipleReferencesAttributeValueConstraint((MultipleReferencesValueConstraint)value, diagnostics, context);
 			case MetamodelPackage.INSTANCE_POINTER:
 				return validateInstancePointer((InstancePointer)value, diagnostics, context);
 			case MetamodelPackage.INSTANCE_POINTER_SOURCE_INTERFACE:
@@ -369,17 +369,17 @@ public class MetamodelValidator extends EObjectValidator {
 			case MetamodelPackage.RANGE_BOUND:
 				return validateRangeBound((RangeBound)value, diagnostics, context);
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT:
-				return validateSingleReferenceAttributeValueConstraint((SingleReferenceAttributeValueConstraint)value, diagnostics, context);
+				return validateSingleReferenceAttributeValueConstraint((SingleReferenceValueConstraint)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_INTERFACE:
-				return validateAttributeValueConstraintSourceInterface((AttributeValueConstraintSourceInterface)value, diagnostics, context);
+				return validateAttributeValueConstraintSourceInterface((ValueConstraintSourceInterface)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_ELEMENT:
-				return validateAttributeValueConstraintSourceElement((AttributeValueConstraintSourceElement)value, diagnostics, context);
+				return validateAttributeValueConstraintSourceElement((ValueConstraintSourceElement)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT:
-				return validateAttributeValueConstraintExternalSourceElement((AttributeValueConstraintExternalSourceElement)value, diagnostics, context);
+				return validateAttributeValueConstraintExternalSourceElement((ValueConstraintExternalSourceElement)value, diagnostics, context);
 			case MetamodelPackage.FILE_TYPE_ENUM:
 				return validateFileTypeEnum((FileTypeEnum)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
-				return validateAttributeValueConstraintType((AttributeValueConstraintType)value, diagnostics, context);
+				return validateAttributeValueConstraintType((ValueConstraintType)value, diagnostics, context);
 			case MetamodelPackage.CARDINALITY_TYPE:
 				return validateCardinalityType((CardinalityType)value, diagnostics, context);
 			default:
@@ -1075,7 +1075,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeValueConstraint(AttributeValueConstraint attributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAttributeValueConstraint(ValueConstraint attributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeValueConstraint, diagnostics, context);
 	}
 
@@ -1203,7 +1203,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMultipleReferencesAttributeValueConstraint(MultipleReferencesAttributeValueConstraint multipleReferencesAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMultipleReferencesAttributeValueConstraint(MultipleReferencesValueConstraint multipleReferencesAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(multipleReferencesAttributeValueConstraint, diagnostics, context);
 	}
 
@@ -1387,7 +1387,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleReferenceAttributeValueConstraint(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceAttributeValueConstraint(SingleReferenceValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(singleReferenceAttributeValueConstraint, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(singleReferenceAttributeValueConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(singleReferenceAttributeValueConstraint, diagnostics, context);
@@ -1410,7 +1410,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceAttributeValueConstraint_onlyFixedValuesInSourceSections(SingleReferenceValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -1438,7 +1438,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceAttributeValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(SingleReferenceValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -1466,7 +1466,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesInSourceSections(SingleReferenceValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return singleReferenceAttributeValueConstraint.validateOnlyFixedValuesInSourceSections(diagnostics, context);
 	}
 
@@ -1476,7 +1476,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(SingleReferenceAttributeValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceAttributeValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(SingleReferenceValueConstraint singleReferenceAttributeValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return singleReferenceAttributeValueConstraint.validateOnlyFixedValuesOrGlobalAttributesInConditionModel(diagnostics, context);
 	}
 
@@ -1485,7 +1485,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeValueConstraintSourceInterface(AttributeValueConstraintSourceInterface attributeValueConstraintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAttributeValueConstraintSourceInterface(ValueConstraintSourceInterface attributeValueConstraintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeValueConstraintSourceInterface, diagnostics, context);
 	}
 
@@ -1494,7 +1494,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeValueConstraintSourceElement(AttributeValueConstraintSourceElement attributeValueConstraintSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAttributeValueConstraintSourceElement(ValueConstraintSourceElement attributeValueConstraintSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(attributeValueConstraintSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(attributeValueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeValueConstraintSourceElement, diagnostics, context);
@@ -1514,7 +1514,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeValueConstraintExternalSourceElement(AttributeValueConstraintExternalSourceElement attributeValueConstraintExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAttributeValueConstraintExternalSourceElement(ValueConstraintExternalSourceElement attributeValueConstraintExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(attributeValueConstraintExternalSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(attributeValueConstraintExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeValueConstraintExternalSourceElement, diagnostics, context);
@@ -1542,7 +1542,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeValueConstraintType(AttributeValueConstraintType attributeValueConstraintType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAttributeValueConstraintType(ValueConstraintType attributeValueConstraintType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
 
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.MultipleReferencesValueConstraint;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +28,7 @@ import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
  *
  * @generated
  */
-public abstract class MultipleReferencesAttributeValueConstraintImpl extends NamedElementImpl implements MultipleReferencesAttributeValueConstraint {
+public abstract class MultipleReferencesAttributeValueConstraintImpl extends NamedElementImpl implements MultipleReferencesValueConstraint {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AttributeValueConstraintType TYPE_EDEFAULT = AttributeValueConstraintType.INCLUSION;
+	protected static final ValueConstraintType TYPE_EDEFAULT = ValueConstraintType.INCLUSION;
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 * @generated
 	 * @ordered
 	 */
-	protected AttributeValueConstraintType type = TYPE_EDEFAULT;
+	protected ValueConstraintType type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueConstraintType getType() {
+	public ValueConstraintType getType() {
 		return type;
 	}
 
@@ -81,8 +81,8 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(AttributeValueConstraintType newType) {
-		AttributeValueConstraintType oldType = type;
+	public void setType(ValueConstraintType newType) {
+		ValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT__TYPE, oldType, type));
@@ -120,7 +120,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
-				setType((AttributeValueConstraintType)newValue);
+				setType((ValueConstraintType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

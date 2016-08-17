@@ -11,7 +11,7 @@ import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
+import pamtram.metamodel.ValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
@@ -301,7 +301,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createInstancePointerSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueConstraintSourceInterface(AttributeValueConstraintSourceInterface object) {
+			public Adapter caseAttributeValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
 				return createAttributeValueConstraintSourceInterfaceAdapter();
 			}
 			@Override
@@ -1123,13 +1123,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.AttributeValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.AttributeValueConstraintSourceInterface
+	 * @see pamtram.metamodel.ValueConstraintSourceInterface
 	 * @generated
 	 */
 	public Adapter createAttributeValueConstraintSourceInterfaceAdapter() {

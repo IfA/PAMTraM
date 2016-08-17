@@ -25,7 +25,7 @@ public interface SourceSectionAttribute extends Attribute<SourceSection, SourceS
 
 	/**
 	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraint}.
+	 * The list contents are of type {@link pamtram.metamodel.ValueConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value Constraint</em>' containment reference list isn't clear,
@@ -38,5 +38,5 @@ public interface SourceSectionAttribute extends Attribute<SourceSection, SourceS
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SourceSectionAttribute!valueConstraint'"
 	 * @generated
 	 */
-	EList<AttributeValueConstraint> getValueConstraint();
+	EList<ValueConstraint> getValueConstraint();
 } // SourceSectionAttribute

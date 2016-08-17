@@ -5,8 +5,7 @@ package pamtram.metamodel;
 import pamtram.mapping.MappingHintSourceInterface;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Attribute Value Constraint Source Interface</b></em>'.
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Value Constraint Source Interface</b></em>'.
  * <!-- end-user-doc -->
  *
  *
@@ -14,5 +13,5 @@ import pamtram.mapping.MappingHintSourceInterface;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface AttributeValueConstraintSourceInterface extends MappingHintSourceInterface {
+public interface ValueConstraintSourceInterface extends MappingHintSourceInterface {
 } // AttributeValueConstraintSourceInterface

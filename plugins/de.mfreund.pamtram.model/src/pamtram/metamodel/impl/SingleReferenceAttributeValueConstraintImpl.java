@@ -33,15 +33,15 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintExternalSourceElement;
+import pamtram.metamodel.ValueConstraintSourceElement;
+import pamtram.metamodel.ValueConstraintSourceInterface;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.InstancePointerExternalSourceElement;
 import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.util.MetamodelValidator;
 
@@ -62,7 +62,7 @@ import pamtram.metamodel.util.MetamodelValidator;
  *
  * @generated
  */
-public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedElementImpl implements SingleReferenceAttributeValueConstraint {
+public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedElementImpl implements SingleReferenceValueConstraint {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -71,7 +71,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AttributeValueConstraintType TYPE_EDEFAULT = AttributeValueConstraintType.INCLUSION;
+	protected static final ValueConstraintType TYPE_EDEFAULT = ValueConstraintType.INCLUSION;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -81,7 +81,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 * @ordered
 	 */
-	protected AttributeValueConstraintType type = TYPE_EDEFAULT;
+	protected ValueConstraintType type = TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
@@ -131,7 +131,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueConstraintSourceInterface> sourceElements;
+	protected EList<ValueConstraintSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,7 +158,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 */
 	@Override
-	public AttributeValueConstraintType getType() {
+	public ValueConstraintType getType() {
 		return type;
 	}
 
@@ -168,8 +168,8 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 */
 	@Override
-	public void setType(AttributeValueConstraintType newType) {
-		AttributeValueConstraintType oldType = type;
+	public void setType(ValueConstraintType newType) {
+		ValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE, oldType, type));
@@ -230,9 +230,9 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueConstraintSourceInterface> getSourceElements() {
+	public EList<ValueConstraintSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<AttributeValueConstraintSourceInterface>(AttributeValueConstraintSourceInterface.class, this, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<ValueConstraintSourceInterface>(ValueConstraintSourceInterface.class, this, MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
@@ -344,10 +344,10 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 		SourceSection localSection = ((Mapping) container).getSourceMMSection();
 		
 		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
-				(s instanceof AttributeValueConstraintSourceElement &&
-				((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
-				(s instanceof AttributeValueConstraintExternalSourceElement &&
-						((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
+				(s instanceof ValueConstraintSourceElement &&
+				((ValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
+				(s instanceof ValueConstraintExternalSourceElement &&
+						((ValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
 			return true;
 		}
 		
@@ -408,7 +408,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
-				setType((AttributeValueConstraintType)newValue);
+				setType((ValueConstraintType)newValue);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__EXPRESSION:
 				setExpression((String)newValue);
@@ -423,7 +423,7 @@ public abstract class SingleReferenceAttributeValueConstraintImpl extends NamedE
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();
-				getSourceElements().addAll((Collection<? extends AttributeValueConstraintSourceInterface>)newValue);
+				getSourceElements().addAll((Collection<? extends ValueConstraintSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

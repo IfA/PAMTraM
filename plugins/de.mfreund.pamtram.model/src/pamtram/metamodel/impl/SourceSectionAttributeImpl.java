@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.ValueConstraint;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -39,7 +39,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueConstraint> valueConstraint;
+	protected EList<ValueConstraint> valueConstraint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,9 +65,9 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AttributeValueConstraint> getValueConstraint() {
+	public EList<ValueConstraint> getValueConstraint() {
 		if (valueConstraint == null) {
-			valueConstraint = new EObjectContainmentEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
 		}
 		return valueConstraint;
 	}
@@ -111,7 +111,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				getValueConstraint().clear();
-				getValueConstraint().addAll((Collection<? extends AttributeValueConstraint>)newValue);
+				getValueConstraint().addAll((Collection<? extends ValueConstraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.Mapping;
-import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.ValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 
@@ -46,7 +46,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueConstraint> valueConstraint;
+	protected EList<ValueConstraint> valueConstraint;
 
 	/**
 	 * The cached value of the '{@link #getConditionAttributeRef() <em>Condition Attribute Ref</em>}' reference.
@@ -82,9 +82,9 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AttributeValueConstraint> getValueConstraint() {
+	public EList<ValueConstraint> getValueConstraint() {
 		if (valueConstraint == null) {
-			valueConstraint = new EObjectContainmentEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
+			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
 		}
 		return valueConstraint;
 	}
@@ -169,7 +169,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		switch (featureID) {
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
 				getValueConstraint().clear();
-				getValueConstraint().addAll((Collection<? extends AttributeValueConstraint>)newValue);
+				getValueConstraint().addAll((Collection<? extends ValueConstraint>)newValue);
 				return;
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
 				setConditionAttributeRef((ActualSourceSectionAttribute)newValue);

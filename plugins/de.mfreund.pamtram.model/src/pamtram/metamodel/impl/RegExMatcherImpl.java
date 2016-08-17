@@ -3,7 +3,7 @@
 package pamtram.metamodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RegExMatcher;
 
@@ -35,8 +35,8 @@ public class RegExMatcherImpl extends SingleReferenceAttributeValueConstraintImp
 	@Override
 	public boolean checkConstraint(String attrValue, String refValue) {
 		boolean condition = attrValue.matches(refValue);
-		return (condition && this.type.equals(AttributeValueConstraintType.INCLUSION))
-				|| (!condition && this.type.equals(AttributeValueConstraintType.EXCLUSION));
+		return (condition && this.type.equals(ValueConstraintType.INCLUSION))
+				|| (!condition && this.type.equals(ValueConstraintType.EXCLUSION));
 	}
 	
 	

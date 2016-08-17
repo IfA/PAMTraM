@@ -32,10 +32,10 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.impl.ExpressionHintImpl;
 import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintExternalSourceElement;
+import pamtram.metamodel.ValueConstraintSourceElement;
+import pamtram.metamodel.ValueConstraintSourceInterface;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.InstancePointerExternalSourceElement;
 import pamtram.metamodel.InstancePointerSourceElement;
@@ -79,7 +79,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AttributeValueConstraintType BOUND_TYPE_EDEFAULT = AttributeValueConstraintType.INCLUSION;
+	protected static final ValueConstraintType BOUND_TYPE_EDEFAULT = ValueConstraintType.INCLUSION;
 
 	/**
 	 * The cached value of the '{@link #getBoundType() <em>Bound Type</em>}' attribute.
@@ -89,7 +89,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 * @ordered
 	 */
-	protected AttributeValueConstraintType boundType = BOUND_TYPE_EDEFAULT;
+	protected ValueConstraintType boundType = BOUND_TYPE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getBoundReferenceValueAdditionalSpecification() <em>Bound Reference Value Additional Specification</em>}' containment reference list.
@@ -109,7 +109,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueConstraintSourceInterface> sourceElements;
+	protected EList<ValueConstraintSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,7 +149,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 */
 	@Override
-	public AttributeValueConstraintType getBoundType() {
+	public ValueConstraintType getBoundType() {
 		return boundType;
 	}
 
@@ -159,8 +159,8 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 */
 	@Override
-	public void setBoundType(AttributeValueConstraintType newBoundType) {
-		AttributeValueConstraintType oldBoundType = boundType;
+	public void setBoundType(ValueConstraintType newBoundType) {
+		ValueConstraintType oldBoundType = boundType;
 		boundType = newBoundType == null ? BOUND_TYPE_EDEFAULT : newBoundType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.RANGE_BOUND__BOUND_TYPE, oldBoundType, boundType));
@@ -185,9 +185,9 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueConstraintSourceInterface> getSourceElements() {
+	public EList<ValueConstraintSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<AttributeValueConstraintSourceInterface>(AttributeValueConstraintSourceInterface.class, this, MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<ValueConstraintSourceInterface>(ValueConstraintSourceInterface.class, this, MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
@@ -289,10 +289,10 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 		SourceSection localSection = ((Mapping) container).getSourceMMSection();
 		
 		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
-				(s instanceof AttributeValueConstraintSourceElement &&
-				((AttributeValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
-				(s instanceof AttributeValueConstraintExternalSourceElement &&
-						((AttributeValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
+				(s instanceof ValueConstraintSourceElement &&
+				((ValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
+				(s instanceof ValueConstraintExternalSourceElement &&
+						((ValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
 			return true;
 		}
 		
@@ -355,7 +355,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
-				setBoundType((AttributeValueConstraintType)newValue);
+				setBoundType((ValueConstraintType)newValue);
 				return;
 			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				getBoundReferenceValueAdditionalSpecification().clear();
@@ -363,7 +363,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 				return;
 			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
 				getSourceElements().clear();
-				getSourceElements().addAll((Collection<? extends AttributeValueConstraintSourceInterface>)newValue);
+				getSourceElements().addAll((Collection<? extends ValueConstraintSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

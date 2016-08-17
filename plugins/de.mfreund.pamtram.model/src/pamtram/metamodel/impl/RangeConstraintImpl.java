@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
@@ -249,10 +249,10 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 			lowerBoundResult = true; //Keep True if no rangeBound were modeled 
 		} else {
 			try{
-				if(this.getLowerBound().getBoundType().equals(AttributeValueConstraintType.INCLUSION)){
+				if(this.getLowerBound().getBoundType().equals(ValueConstraintType.INCLUSION)){
 					lowerBoundResult = Double.valueOf(attrValue) >= Double.valueOf(lowerBoundRefValue);
 				}
-				else if (this.getLowerBound().getBoundType().equals(AttributeValueConstraintType.EXCLUSION)){
+				else if (this.getLowerBound().getBoundType().equals(ValueConstraintType.EXCLUSION)){
 					lowerBoundResult = Double.valueOf(attrValue) > Double.valueOf(lowerBoundRefValue);
 				}
 			} catch (NumberFormatException e){
@@ -265,10 +265,10 @@ public class RangeConstraintImpl extends MultipleReferencesAttributeValueConstra
 		} else {
 			try{
 				if (refValue.get(1) != null){
-					if(this.getUpperBound().getBoundType().equals(AttributeValueConstraintType.INCLUSION)){
+					if(this.getUpperBound().getBoundType().equals(ValueConstraintType.INCLUSION)){
 						upperBoundResult = Double.valueOf(attrValue) <= Double.valueOf(upperBoundRefValue);
 					}
-					else if (this.getUpperBound().getBoundType().equals(AttributeValueConstraintType.EXCLUSION)){
+					else if (this.getUpperBound().getBoundType().equals(ValueConstraintType.EXCLUSION)){
 						upperBoundResult = Double.valueOf(attrValue) < Double.valueOf(upperBoundRefValue);
 					}
 				}

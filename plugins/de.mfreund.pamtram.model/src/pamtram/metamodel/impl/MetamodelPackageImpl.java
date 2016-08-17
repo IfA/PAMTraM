@@ -23,11 +23,11 @@ import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraint;
+import pamtram.metamodel.ValueConstraintExternalSourceElement;
+import pamtram.metamodel.ValueConstraintSourceElement;
+import pamtram.metamodel.ValueConstraintSourceInterface;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.CaseSensitiveConstraint;
@@ -48,14 +48,14 @@ import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.MultipleReferencesValueConstraint;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.ActualSourceSectionAttribute;
@@ -2873,8 +2873,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(equalityMatcherEClass, EqualityMatcher.class, "EqualityMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(attributeValueConstraintEClass, AttributeValueConstraint.class, "AttributeValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAttributeValueConstraint_Type(), this.getAttributeValueConstraintType(), "type", "INCLUSION", 1, 1, AttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(attributeValueConstraintEClass, ValueConstraint.class, "AttributeValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAttributeValueConstraint_Type(), this.getAttributeValueConstraintType(), "type", "INCLUSION", 1, 1, ValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(substringMatcherEClass, SubstringMatcher.class, "SubstringMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2891,7 +2891,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getRangeConstraint_UpperBound(), this.getRangeBound(), null, "upperBound", null, 0, 1, RangeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRangeConstraint_LowerBound(), this.getRangeBound(), null, "lowerBound", null, 0, 1, RangeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(multipleReferencesAttributeValueConstraintEClass, MultipleReferencesAttributeValueConstraint.class, "MultipleReferencesAttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(multipleReferencesAttributeValueConstraintEClass, MultipleReferencesValueConstraint.class, "MultipleReferencesAttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getMultipleReferencesAttributeValueConstraint__CheckConstraint__String_EList(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "attrValue", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -2942,9 +2942,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEOperation(getRangeBound__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(singleReferenceAttributeValueConstraintEClass, SingleReferenceAttributeValueConstraint.class, "SingleReferenceAttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification(), this.getInstancePointer(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSingleReferenceAttributeValueConstraint_SourceElements(), this.getAttributeValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, SingleReferenceAttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(singleReferenceAttributeValueConstraintEClass, SingleReferenceValueConstraint.class, "SingleReferenceAttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification(), this.getInstancePointer(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceAttributeValueConstraint_SourceElements(), this.getAttributeValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "attrValue", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -2970,20 +2970,20 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEOperation(getSingleReferenceAttributeValueConstraint__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(attributeValueConstraintSourceInterfaceEClass, AttributeValueConstraintSourceInterface.class, "AttributeValueConstraintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(attributeValueConstraintSourceInterfaceEClass, ValueConstraintSourceInterface.class, "AttributeValueConstraintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(attributeValueConstraintSourceElementEClass, AttributeValueConstraintSourceElement.class, "AttributeValueConstraintSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(attributeValueConstraintSourceElementEClass, ValueConstraintSourceElement.class, "AttributeValueConstraintSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(attributeValueConstraintExternalSourceElementEClass, AttributeValueConstraintExternalSourceElement.class, "AttributeValueConstraintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(attributeValueConstraintExternalSourceElementEClass, ValueConstraintExternalSourceElement.class, "AttributeValueConstraintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(fileTypeEnumEEnum, FileTypeEnum.class, "FileTypeEnum");
 		addEEnumLiteral(fileTypeEnumEEnum, FileTypeEnum.XMI);
 		addEEnumLiteral(fileTypeEnumEEnum, FileTypeEnum.XML);
 
-		initEEnum(attributeValueConstraintTypeEEnum, AttributeValueConstraintType.class, "AttributeValueConstraintType");
-		addEEnumLiteral(attributeValueConstraintTypeEEnum, AttributeValueConstraintType.INCLUSION);
-		addEEnumLiteral(attributeValueConstraintTypeEEnum, AttributeValueConstraintType.EXCLUSION);
+		initEEnum(attributeValueConstraintTypeEEnum, ValueConstraintType.class, "AttributeValueConstraintType");
+		addEEnumLiteral(attributeValueConstraintTypeEEnum, ValueConstraintType.INCLUSION);
+		addEEnumLiteral(attributeValueConstraintTypeEEnum, ValueConstraintType.EXCLUSION);
 
 		initEEnum(cardinalityTypeEEnum, CardinalityType.class, "CardinalityType");
 		addEEnumLiteral(cardinalityTypeEEnum, CardinalityType.ONE);

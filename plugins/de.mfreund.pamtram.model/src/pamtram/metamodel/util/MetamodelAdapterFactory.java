@@ -17,10 +17,10 @@ import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
+import pamtram.metamodel.ValueConstraint;
+import pamtram.metamodel.ValueConstraintExternalSourceElement;
+import pamtram.metamodel.ValueConstraintSourceElement;
+import pamtram.metamodel.ValueConstraintSourceInterface;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CaseSensitiveConstraint;
 import pamtram.metamodel.ContainerParameter;
@@ -38,14 +38,14 @@ import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.MultipleReferencesValueConstraint;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.ActualSourceSectionAttribute;
@@ -243,7 +243,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createEqualityMatcherAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueConstraint(AttributeValueConstraint object) {
+			public Adapter caseAttributeValueConstraint(ValueConstraint object) {
 				return createAttributeValueConstraintAdapter();
 			}
 			@Override
@@ -271,7 +271,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createRangeConstraintAdapter();
 			}
 			@Override
-			public Adapter caseMultipleReferencesAttributeValueConstraint(MultipleReferencesAttributeValueConstraint object) {
+			public Adapter caseMultipleReferencesAttributeValueConstraint(MultipleReferencesValueConstraint object) {
 				return createMultipleReferencesAttributeValueConstraintAdapter();
 			}
 			@Override
@@ -295,19 +295,19 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createRangeBoundAdapter();
 			}
 			@Override
-			public Adapter caseSingleReferenceAttributeValueConstraint(SingleReferenceAttributeValueConstraint object) {
+			public Adapter caseSingleReferenceAttributeValueConstraint(SingleReferenceValueConstraint object) {
 				return createSingleReferenceAttributeValueConstraintAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueConstraintSourceInterface(AttributeValueConstraintSourceInterface object) {
+			public Adapter caseAttributeValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
 				return createAttributeValueConstraintSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueConstraintSourceElement(AttributeValueConstraintSourceElement object) {
+			public Adapter caseAttributeValueConstraintSourceElement(ValueConstraintSourceElement object) {
 				return createAttributeValueConstraintSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueConstraintExternalSourceElement(AttributeValueConstraintExternalSourceElement object) {
+			public Adapter caseAttributeValueConstraintExternalSourceElement(ValueConstraintExternalSourceElement object) {
 				return createAttributeValueConstraintExternalSourceElementAdapter();
 			}
 			@Override
@@ -793,13 +793,13 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.AttributeValueConstraint <em>Attribute Value Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ValueConstraint <em>Attribute Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.AttributeValueConstraint
+	 * @see pamtram.metamodel.ValueConstraint
 	 * @generated
 	 */
 	public Adapter createAttributeValueConstraintAdapter() {
@@ -891,13 +891,13 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint <em>Single Reference Attribute Value Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SingleReferenceValueConstraint <em>Single Reference Attribute Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint
+	 * @see pamtram.metamodel.SingleReferenceValueConstraint
 	 * @generated
 	 */
 	public Adapter createSingleReferenceAttributeValueConstraintAdapter() {
@@ -905,13 +905,13 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.AttributeValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.AttributeValueConstraintSourceInterface
+	 * @see pamtram.metamodel.ValueConstraintSourceInterface
 	 * @generated
 	 */
 	public Adapter createAttributeValueConstraintSourceInterfaceAdapter() {
@@ -919,13 +919,13 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.AttributeValueConstraintSourceElement <em>Attribute Value Constraint Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ValueConstraintSourceElement <em>Attribute Value Constraint Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.AttributeValueConstraintSourceElement
+	 * @see pamtram.metamodel.ValueConstraintSourceElement
 	 * @generated
 	 */
 	public Adapter createAttributeValueConstraintSourceElementAdapter() {
@@ -933,13 +933,13 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.AttributeValueConstraintExternalSourceElement <em>Attribute Value Constraint External Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ValueConstraintExternalSourceElement <em>Attribute Value Constraint External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.AttributeValueConstraintExternalSourceElement
+	 * @see pamtram.metamodel.ValueConstraintExternalSourceElement
 	 * @generated
 	 */
 	public Adapter createAttributeValueConstraintExternalSourceElementAdapter() {
@@ -947,13 +947,13 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.MultipleReferencesAttributeValueConstraint <em>Multiple References Attribute Value Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.MultipleReferencesValueConstraint <em>Multiple References Attribute Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.MultipleReferencesAttributeValueConstraint
+	 * @see pamtram.metamodel.MultipleReferencesValueConstraint
 	 * @generated
 	 */
 	public Adapter createMultipleReferencesAttributeValueConstraintAdapter() {

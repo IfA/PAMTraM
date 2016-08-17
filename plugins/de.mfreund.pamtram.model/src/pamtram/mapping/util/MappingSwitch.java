@@ -10,7 +10,7 @@ import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
+import pamtram.metamodel.ValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
@@ -1439,7 +1439,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeValueConstraintSourceInterface(AttributeValueConstraintSourceInterface object) {
+	public T caseAttributeValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
 		return null;
 	}
 

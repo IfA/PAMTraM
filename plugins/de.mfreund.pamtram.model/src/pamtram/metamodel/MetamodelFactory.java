@@ -262,7 +262,7 @@ public interface MetamodelFactory extends EFactory {
 	 * @return a new object of class '<em>Attribute Value Constraint Source Element</em>'.
 	 * @generated
 	 */
-	AttributeValueConstraintSourceElement createAttributeValueConstraintSourceElement();
+	ValueConstraintSourceElement createAttributeValueConstraintSourceElement();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Value Constraint External Source Element</em>'.
@@ -271,7 +271,7 @@ public interface MetamodelFactory extends EFactory {
 	 * @return a new object of class '<em>Attribute Value Constraint External Source Element</em>'.
 	 * @generated
 	 */
-	AttributeValueConstraintExternalSourceElement createAttributeValueConstraintExternalSourceElement();
+	ValueConstraintExternalSourceElement createAttributeValueConstraintExternalSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

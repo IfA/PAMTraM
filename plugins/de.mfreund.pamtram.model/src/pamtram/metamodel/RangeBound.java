@@ -29,7 +29,7 @@ import pamtram.mapping.ModifiableHint;
 public interface RangeBound extends ExpressionHint, ModifiableHint {
 	/**
 	 * Returns the value of the '<em><b>Bound Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link pamtram.metamodel.AttributeValueConstraintType}.
+	 * The literals are from the enumeration {@link pamtram.metamodel.ValueConstraintType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bound Type</em>' attribute isn't clear,
@@ -37,24 +37,24 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bound Type</em>' attribute.
-	 * @see pamtram.metamodel.AttributeValueConstraintType
-	 * @see #setBoundType(AttributeValueConstraintType)
+	 * @see pamtram.metamodel.ValueConstraintType
+	 * @see #setBoundType(ValueConstraintType)
 	 * @see pamtram.metamodel.MetamodelPackage#getRangeBound_BoundType()
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeBound!boundType'"
 	 * @generated
 	 */
-	AttributeValueConstraintType getBoundType();
+	ValueConstraintType getBoundType();
 
 	/**
 	 * Sets the value of the '{@link pamtram.metamodel.RangeBound#getBoundType <em>Bound Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bound Type</em>' attribute.
-	 * @see pamtram.metamodel.AttributeValueConstraintType
+	 * @see pamtram.metamodel.ValueConstraintType
 	 * @see #getBoundType()
 	 * @generated
 	 */
-	void setBoundType(AttributeValueConstraintType value);
+	void setBoundType(ValueConstraintType value);
 
 	/**
 	 * Returns the value of the '<em><b>Bound Reference Value Additional Specification</b></em>' containment reference list.
@@ -75,7 +75,7 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraintSourceInterface}.
+	 * The list contents are of type {@link pamtram.metamodel.ValueConstraintSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Elements</em>' containment reference list isn't clear,
@@ -88,7 +88,7 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeBound!sourceElements'"
 	 * @generated
 	 */
-	EList<AttributeValueConstraintSourceInterface> getSourceElements();
+	EList<ValueConstraintSourceInterface> getSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->

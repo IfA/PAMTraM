@@ -6,7 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -107,8 +107,8 @@ public class EqualityMatcherImpl extends SingleReferenceAttributeValueConstraint
 			//doesn't work
 		}
 		
-		return (newRefValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.INCLUSION))
-				|| (!newRefValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.EXCLUSION));
+		return (newRefValue.equals(newAttrValue) && this.type.equals(ValueConstraintType.INCLUSION))
+				|| (!newRefValue.equals(newAttrValue) && this.type.equals(ValueConstraintType.EXCLUSION));
 	}
 
 	/**

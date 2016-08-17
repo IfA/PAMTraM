@@ -17,8 +17,8 @@ import pamtram.mapping.ModifiableHint;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
- *   <li>{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.metamodel.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
+ *   <li>{@link pamtram.metamodel.SingleReferenceValueConstraint#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getSingleReferenceAttributeValueConstraint()
@@ -26,7 +26,7 @@ import pamtram.mapping.ModifiableHint;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel'"
  * @generated
  */
-public interface SingleReferenceAttributeValueConstraint extends AttributeValueConstraint, ExpressionHint, ModifiableHint {
+public interface SingleReferenceValueConstraint extends ValueConstraint, ExpressionHint, ModifiableHint {
 	/**
 	 * Returns the value of the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.metamodel.InstancePointer}.
@@ -46,7 +46,7 @@ public interface SingleReferenceAttributeValueConstraint extends AttributeValueC
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.AttributeValueConstraintSourceInterface}.
+	 * The list contents are of type {@link pamtram.metamodel.ValueConstraintSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Elements</em>' containment reference list isn't clear,
@@ -59,7 +59,7 @@ public interface SingleReferenceAttributeValueConstraint extends AttributeValueC
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceAttributeValueConstraint!sourceElements'"
 	 * @generated
 	 */
-	EList<AttributeValueConstraintSourceInterface> getSourceElements();
+	EList<ValueConstraintSourceInterface> getSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->

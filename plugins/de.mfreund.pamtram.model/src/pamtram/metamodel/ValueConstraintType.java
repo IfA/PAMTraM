@@ -9,15 +9,14 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Attribute Value Constraint Type</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Value Constraint Type</b></em>',
+ * and utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see pamtram.metamodel.MetamodelPackage#getAttributeValueConstraintType()
  * @model
  * @generated
  */
-public enum AttributeValueConstraintType implements Enumerator {
+public enum ValueConstraintType implements Enumerator {
 	/**
 	 * The '<em><b>INCLUSION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -74,11 +73,11 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AttributeValueConstraintType[] VALUES_ARRAY =
-		new AttributeValueConstraintType[] {
-			INCLUSION,
-			EXCLUSION,
-		};
+	private static final ValueConstraintType[] VALUES_ARRAY =
+			new ValueConstraintType[] {
+					INCLUSION,
+					EXCLUSION,
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>Attribute Value Constraint Type</b></em>' enumerators.
@@ -86,7 +85,7 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<AttributeValueConstraintType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ValueConstraintType> VALUES = Collections.unmodifiableList(Arrays.asList(ValueConstraintType.VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Attribute Value Constraint Type</b></em>' literal with the specified literal value.
@@ -96,9 +95,8 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static AttributeValueConstraintType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			AttributeValueConstraintType result = VALUES_ARRAY[i];
+	public static ValueConstraintType get(String literal) {
+		for (ValueConstraintType result : ValueConstraintType.VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -114,9 +112,8 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static AttributeValueConstraintType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			AttributeValueConstraintType result = VALUES_ARRAY[i];
+	public static ValueConstraintType getByName(String name) {
+		for (ValueConstraintType result : ValueConstraintType.VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -132,7 +129,7 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static AttributeValueConstraintType get(int value) {
+	public static ValueConstraintType get(int value) {
 		switch (value) {
 			case INCLUSION_VALUE: return INCLUSION;
 			case EXCLUSION_VALUE: return EXCLUSION;
@@ -167,7 +164,7 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private AttributeValueConstraintType(int value, String name, String literal) {
+	private ValueConstraintType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -178,8 +175,9 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getValue() {
-	  return value;
+		return this.value;
 	}
 
 	/**
@@ -187,8 +185,9 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
-	  return name;
+		return this.name;
 	}
 
 	/**
@@ -196,8 +195,9 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLiteral() {
-	  return literal;
+		return this.literal;
 	}
 
 	/**
@@ -208,7 +208,7 @@ public enum AttributeValueConstraintType implements Enumerator {
 	 */
 	@Override
 	public String toString() {
-		return literal;
+		return this.literal;
 	}
-	
+
 } //AttributeValueConstraintType

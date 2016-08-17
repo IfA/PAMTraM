@@ -15,7 +15,7 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
+import pamtram.metamodel.ValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 
@@ -204,7 +204,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 				default: return -1;
 			}
 		}
-		if (baseClass == AttributeValueConstraintSourceInterface.class) {
+		if (baseClass == ValueConstraintSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

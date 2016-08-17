@@ -10,9 +10,9 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.AttributeValueConstraintExternalSourceElement;
-import pamtram.metamodel.AttributeValueConstraintSourceElement;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintExternalSourceElement;
+import pamtram.metamodel.ValueConstraintSourceElement;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainerParameter;
@@ -422,8 +422,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueConstraintSourceElement createAttributeValueConstraintSourceElement() {
-		AttributeValueConstraintSourceElementImpl attributeValueConstraintSourceElement = new AttributeValueConstraintSourceElementImpl();
+	public ValueConstraintSourceElement createAttributeValueConstraintSourceElement() {
+		ValueConstraintSourceElementImpl attributeValueConstraintSourceElement = new ValueConstraintSourceElementImpl();
 		return attributeValueConstraintSourceElement;
 	}
 
@@ -432,8 +432,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueConstraintExternalSourceElement createAttributeValueConstraintExternalSourceElement() {
-		AttributeValueConstraintExternalSourceElementImpl attributeValueConstraintExternalSourceElement = new AttributeValueConstraintExternalSourceElementImpl();
+	public ValueConstraintExternalSourceElement createAttributeValueConstraintExternalSourceElement() {
+		ValueConstraintExternalSourceElementImpl attributeValueConstraintExternalSourceElement = new ValueConstraintExternalSourceElementImpl();
 		return attributeValueConstraintExternalSourceElement;
 	}
 
@@ -462,8 +462,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueConstraintType createAttributeValueConstraintTypeFromString(EDataType eDataType, String initialValue) {
-		AttributeValueConstraintType result = AttributeValueConstraintType.get(initialValue);
+	public ValueConstraintType createAttributeValueConstraintTypeFromString(EDataType eDataType, String initialValue) {
+		ValueConstraintType result = ValueConstraintType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}

@@ -6,7 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -89,8 +89,8 @@ public class EndingMatcherImpl extends SingleReferenceAttributeValueConstraintIm
 		} else {
 			condition = attrValue.toLowerCase().endsWith(refValue.toLowerCase());
 		}
-		return (condition && type.equals(AttributeValueConstraintType.INCLUSION))
-				|| (!condition && type.equals(AttributeValueConstraintType.EXCLUSION));
+		return (condition && type.equals(ValueConstraintType.INCLUSION))
+				|| (!condition && type.equals(ValueConstraintType.EXCLUSION));
 	}
 
 	/**

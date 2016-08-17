@@ -3451,10 +3451,10 @@ public interface MetamodelPackage extends EPackage {
 	int ACTUAL_TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.AttributeValueConstraint <em>Attribute Value Constraint</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.ValueConstraint <em>Attribute Value Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.AttributeValueConstraint
+	 * @see pamtram.metamodel.ValueConstraint
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraint()
 	 * @generated
 	 */
@@ -4906,10 +4906,10 @@ public interface MetamodelPackage extends EPackage {
 	int RANGE_BOUND_OPERATION_COUNT = MappingPackage.EXPRESSION_HINT_OPERATION_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.AttributeValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.ValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.AttributeValueConstraintSourceInterface
+	 * @see pamtram.metamodel.ValueConstraintSourceInterface
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintSourceInterface()
 	 * @generated
 	 */
@@ -4952,10 +4952,10 @@ public interface MetamodelPackage extends EPackage {
 	int ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_INTERFACE_OPERATION_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.AttributeValueConstraintSourceElementImpl <em>Attribute Value Constraint Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.impl.ValueConstraintSourceElementImpl <em>Attribute Value Constraint Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.AttributeValueConstraintSourceElementImpl
+	 * @see pamtram.metamodel.impl.ValueConstraintSourceElementImpl
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintSourceElement()
 	 * @generated
 	 */
@@ -5043,10 +5043,10 @@ public interface MetamodelPackage extends EPackage {
 	int ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_ELEMENT_OPERATION_COUNT = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.AttributeValueConstraintExternalSourceElementImpl <em>Attribute Value Constraint External Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.impl.ValueConstraintExternalSourceElementImpl <em>Attribute Value Constraint External Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.AttributeValueConstraintExternalSourceElementImpl
+	 * @see pamtram.metamodel.impl.ValueConstraintExternalSourceElementImpl
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintExternalSourceElement()
 	 * @generated
 	 */
@@ -5144,10 +5144,10 @@ public interface MetamodelPackage extends EPackage {
 	int FILE_TYPE_ENUM = 48;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.AttributeValueConstraintType <em>Attribute Value Constraint Type</em>}' enum.
+	 * The meta object id for the '{@link pamtram.metamodel.ValueConstraintType <em>Attribute Value Constraint Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.AttributeValueConstraintType
+	 * @see pamtram.metamodel.ValueConstraintType
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintType()
 	 * @generated
 	 */
@@ -6036,21 +6036,21 @@ public interface MetamodelPackage extends EPackage {
 	EClass getEqualityMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.AttributeValueConstraint <em>Attribute Value Constraint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.ValueConstraint <em>Attribute Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Value Constraint</em>'.
-	 * @see pamtram.metamodel.AttributeValueConstraint
+	 * @see pamtram.metamodel.ValueConstraint
 	 * @generated
 	 */
 	EClass getAttributeValueConstraint();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.metamodel.AttributeValueConstraint#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.ValueConstraint#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see pamtram.metamodel.AttributeValueConstraint#getType()
+	 * @see pamtram.metamodel.ValueConstraint#getType()
 	 * @see #getAttributeValueConstraint()
 	 * @generated
 	 */
@@ -6150,21 +6150,21 @@ public interface MetamodelPackage extends EPackage {
 	EReference getRangeConstraint_LowerBound();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.MultipleReferencesAttributeValueConstraint <em>Multiple References Attribute Value Constraint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.MultipleReferencesValueConstraint <em>Multiple References Attribute Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Multiple References Attribute Value Constraint</em>'.
-	 * @see pamtram.metamodel.MultipleReferencesAttributeValueConstraint
+	 * @see pamtram.metamodel.MultipleReferencesValueConstraint
 	 * @generated
 	 */
 	EClass getMultipleReferencesAttributeValueConstraint();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.MultipleReferencesAttributeValueConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList) <em>Check Constraint</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.metamodel.MultipleReferencesValueConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList) <em>Check Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Check Constraint</em>' operation.
-	 * @see pamtram.metamodel.MultipleReferencesAttributeValueConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList)
+	 * @see pamtram.metamodel.MultipleReferencesValueConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
 	EOperation getMultipleReferencesAttributeValueConstraint__CheckConstraint__String_EList();
@@ -6326,103 +6326,103 @@ public interface MetamodelPackage extends EPackage {
 	EOperation getRangeBound__IsLocalConstraint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint <em>Single Reference Attribute Value Constraint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.SingleReferenceValueConstraint <em>Single Reference Attribute Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Single Reference Attribute Value Constraint</em>'.
-	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint
+	 * @see pamtram.metamodel.SingleReferenceValueConstraint
 	 * @generated
 	 */
 	EClass getSingleReferenceAttributeValueConstraint();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Constraint Reference Value Additional Specification</em>'.
-	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#getConstraintReferenceValueAdditionalSpecification()
+	 * @see pamtram.metamodel.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification()
 	 * @see #getSingleReferenceAttributeValueConstraint()
 	 * @generated
 	 */
 	EReference getSingleReferenceAttributeValueConstraint_ConstraintReferenceValueAdditionalSpecification();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#getSourceElements <em>Source Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SingleReferenceValueConstraint#getSourceElements <em>Source Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
-	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#getSourceElements()
+	 * @see pamtram.metamodel.SingleReferenceValueConstraint#getSourceElements()
 	 * @see #getSingleReferenceAttributeValueConstraint()
 	 * @generated
 	 */
 	EReference getSingleReferenceAttributeValueConstraint_SourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#checkConstraint(java.lang.String, java.lang.String) <em>Check Constraint</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceValueConstraint#checkConstraint(java.lang.String, java.lang.String) <em>Check Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Check Constraint</em>' operation.
-	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#checkConstraint(java.lang.String, java.lang.String)
+	 * @see pamtram.metamodel.SingleReferenceValueConstraint#checkConstraint(java.lang.String, java.lang.String)
 	 * @generated
 	 */
 	EOperation getSingleReferenceAttributeValueConstraint__CheckConstraint__String_String();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values In Source Sections</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceValueConstraint#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values In Source Sections</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
-	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.metamodel.SingleReferenceValueConstraint#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSingleReferenceAttributeValueConstraint__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceValueConstraint#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
-	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.metamodel.SingleReferenceValueConstraint#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSingleReferenceAttributeValueConstraint__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceAttributeValueConstraint#isLocalConstraint() <em>Is Local Constraint</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.metamodel.SingleReferenceValueConstraint#isLocalConstraint() <em>Is Local Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Is Local Constraint</em>' operation.
-	 * @see pamtram.metamodel.SingleReferenceAttributeValueConstraint#isLocalConstraint()
+	 * @see pamtram.metamodel.SingleReferenceValueConstraint#isLocalConstraint()
 	 * @generated
 	 */
 	EOperation getSingleReferenceAttributeValueConstraint__IsLocalConstraint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.AttributeValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.ValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Value Constraint Source Interface</em>'.
-	 * @see pamtram.metamodel.AttributeValueConstraintSourceInterface
+	 * @see pamtram.metamodel.ValueConstraintSourceInterface
 	 * @generated
 	 */
 	EClass getAttributeValueConstraintSourceInterface();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.AttributeValueConstraintSourceElement <em>Attribute Value Constraint Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.ValueConstraintSourceElement <em>Attribute Value Constraint Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Value Constraint Source Element</em>'.
-	 * @see pamtram.metamodel.AttributeValueConstraintSourceElement
+	 * @see pamtram.metamodel.ValueConstraintSourceElement
 	 * @generated
 	 */
 	EClass getAttributeValueConstraintSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.AttributeValueConstraintExternalSourceElement <em>Attribute Value Constraint External Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.ValueConstraintExternalSourceElement <em>Attribute Value Constraint External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Value Constraint External Source Element</em>'.
-	 * @see pamtram.metamodel.AttributeValueConstraintExternalSourceElement
+	 * @see pamtram.metamodel.ValueConstraintExternalSourceElement
 	 * @generated
 	 */
 	EClass getAttributeValueConstraintExternalSourceElement();
@@ -6438,11 +6438,11 @@ public interface MetamodelPackage extends EPackage {
 	EEnum getFileTypeEnum();
 
 	/**
-	 * Returns the meta object for enum '{@link pamtram.metamodel.AttributeValueConstraintType <em>Attribute Value Constraint Type</em>}'.
+	 * Returns the meta object for enum '{@link pamtram.metamodel.ValueConstraintType <em>Attribute Value Constraint Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Attribute Value Constraint Type</em>'.
-	 * @see pamtram.metamodel.AttributeValueConstraintType
+	 * @see pamtram.metamodel.ValueConstraintType
 	 * @generated
 	 */
 	EEnum getAttributeValueConstraintType();
@@ -7215,10 +7215,10 @@ public interface MetamodelPackage extends EPackage {
 		EClass EQUALITY_MATCHER = eINSTANCE.getEqualityMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.AttributeValueConstraint <em>Attribute Value Constraint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.ValueConstraint <em>Attribute Value Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.AttributeValueConstraint
+		 * @see pamtram.metamodel.ValueConstraint
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraint()
 		 * @generated
 		 */
@@ -7523,30 +7523,30 @@ public interface MetamodelPackage extends EPackage {
 		EOperation SINGLE_REFERENCE_ATTRIBUTE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT = eINSTANCE.getSingleReferenceAttributeValueConstraint__IsLocalConstraint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.AttributeValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.ValueConstraintSourceInterface <em>Attribute Value Constraint Source Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.AttributeValueConstraintSourceInterface
+		 * @see pamtram.metamodel.ValueConstraintSourceInterface
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintSourceInterface()
 		 * @generated
 		 */
 		EClass ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_INTERFACE = eINSTANCE.getAttributeValueConstraintSourceInterface();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.AttributeValueConstraintSourceElementImpl <em>Attribute Value Constraint Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.ValueConstraintSourceElementImpl <em>Attribute Value Constraint Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.AttributeValueConstraintSourceElementImpl
+		 * @see pamtram.metamodel.impl.ValueConstraintSourceElementImpl
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintSourceElement()
 		 * @generated
 		 */
 		EClass ATTRIBUTE_VALUE_CONSTRAINT_SOURCE_ELEMENT = eINSTANCE.getAttributeValueConstraintSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.AttributeValueConstraintExternalSourceElementImpl <em>Attribute Value Constraint External Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.ValueConstraintExternalSourceElementImpl <em>Attribute Value Constraint External Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.AttributeValueConstraintExternalSourceElementImpl
+		 * @see pamtram.metamodel.impl.ValueConstraintExternalSourceElementImpl
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintExternalSourceElement()
 		 * @generated
 		 */
@@ -7563,10 +7563,10 @@ public interface MetamodelPackage extends EPackage {
 		EEnum FILE_TYPE_ENUM = eINSTANCE.getFileTypeEnum();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.AttributeValueConstraintType <em>Attribute Value Constraint Type</em>}' enum.
+		 * The meta object literal for the '{@link pamtram.metamodel.ValueConstraintType <em>Attribute Value Constraint Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.AttributeValueConstraintType
+		 * @see pamtram.metamodel.ValueConstraintType
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintType()
 		 * @generated
 		 */

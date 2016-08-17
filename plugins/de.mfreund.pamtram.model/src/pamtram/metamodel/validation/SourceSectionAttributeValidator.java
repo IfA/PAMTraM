@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EAttribute;
 
-import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.ValueConstraint;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
@@ -22,5 +22,5 @@ public interface SourceSectionAttributeValidator {
 
 	boolean validateOwningClass(SourceSectionClass value);
 	boolean validateAttribute(EAttribute value);
-	boolean validateValueConstraint(EList<AttributeValueConstraint> value);
+	boolean validateValueConstraint(EList<ValueConstraint> value);
 }

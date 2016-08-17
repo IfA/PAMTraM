@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface MultipleReferencesAttributeValueConstraint extends AttributeValueConstraint {
+public interface MultipleReferencesValueConstraint extends ValueConstraint {
 
 	/**
 	 * <!-- begin-user-doc -->

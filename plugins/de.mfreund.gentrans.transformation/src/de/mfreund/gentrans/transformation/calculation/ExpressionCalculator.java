@@ -7,7 +7,7 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.ValueConstraint;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
 
@@ -61,7 +61,7 @@ public class ExpressionCalculator {
 	}
 
 	/**
-	 * This calculates the value for a given expression, e.g. may be used in {@link AttributeValueConstraint}s or in {@link TargetSectionAttribute}s.
+	 * This calculates the value for a given expression, e.g. may be used in {@link ValueConstraint}s or in {@link TargetSectionAttribute}s.
 	 * It represents only the general calculation rule.
 	 * 
 	 * @param expression The expression for which the value shall be calculated or <em>null</em> 

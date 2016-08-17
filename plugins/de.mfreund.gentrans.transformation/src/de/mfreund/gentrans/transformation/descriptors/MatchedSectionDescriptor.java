@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.ValueConstraint;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -42,11 +42,11 @@ public class MatchedSectionDescriptor {
 	private LinkedHashMap<SourceSectionClass, Set<EObject>> sourceModelObjetsMapped;
 
 	/**
-	 * This keeps track of the {@link AttributeValueConstraint
+	 * This keeps track of the {@link ValueConstraint
 	 * AttributeValueConstraints} that need to be checked for the elements
 	 * represented by this descriptor.
 	 */
-	private List<AttributeValueConstraint> attributeValueConstraints;
+	private List<ValueConstraint> attributeValueConstraints;
 
 	/**
 	 * This keeps track of the {@link MatchedSectionDescriptor} that represents the 
@@ -185,11 +185,11 @@ public class MatchedSectionDescriptor {
 	 * Add to the list of {@link #attributeValueConstraints}.
 	 * 
 	 * @param attributeValueConstraints
-	 *            The list of {@link AttributeValueConstraint
+	 *            The list of {@link ValueConstraint
 	 *            AttributeValueConstraints} to add to the
 	 *            {@link #attributeValueConstraints}.
 	 */
-	public void addAttributeValueConstraints(List<AttributeValueConstraint> attributeValueConstraints) {
+	public void addAttributeValueConstraints(List<ValueConstraint> attributeValueConstraints) {
 		this.attributeValueConstraints.addAll(attributeValueConstraints);
 	}
 

@@ -15,17 +15,17 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.AttributeValueConstraintSourceInterface;
+import pamtram.metamodel.ValueConstraint;
+import pamtram.metamodel.ValueConstraintSourceInterface;
 import pamtram.metamodel.RangeBound;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 
 /**
- * This class can be used to extract values required by an {@link AttributeValueConstraint}
+ * This class can be used to extract values required by an {@link ValueConstraint}
  * from source model elements for a given list of {@link MatchedSectionDescriptor matched sections}.
  * 
  * @author mfreund
@@ -85,18 +85,18 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the required target value for the given {@link SingleReferenceAttributeValueConstraint} as specified by its 
-	 * {@link SingleReferenceAttributeValueConstraint#getSourceElements() source elements}.
+	 * This extracts and returns the required target value for the given {@link SingleReferenceValueConstraint} as specified by its 
+	 * {@link SingleReferenceValueConstraint#getSourceElements() source elements}.
 	 * 
-	 * @param valueConstraint The {@link SingleReferenceAttributeValueConstraint} for that the target value shall be extracted.
+	 * @param valueConstraint The {@link SingleReferenceValueConstraint} for that the target value shall be extracted.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the value shall be extracted.
-	 * @return The extracted value (after applying a possible {@link SingleReferenceAttributeValueConstraint#getResultModifier() result modifier} or 
+	 * @return The extracted value (after applying a possible {@link SingleReferenceValueConstraint#getResultModifier() result modifier} or 
 	 * '<em><b>null</b></em>' if no value could be extracted.
 	 */
-	public String extractRequiredTargetValue(SingleReferenceAttributeValueConstraint valueConstraint, 
+	public String extractRequiredTargetValue(SingleReferenceValueConstraint valueConstraint, 
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		List<AttributeValueConstraintSourceInterface> sourceElements = valueConstraint.getSourceElements();
+		List<ValueConstraintSourceInterface> sourceElements = valueConstraint.getSourceElements();
 		List<ValueModifierSet> resultModifiers = valueConstraint.getResultModifier();
 		String expression = valueConstraint.getExpression();
 
@@ -106,17 +106,17 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 
 	/**
 	 * This extracts and returns the required target value for the given {@link RangeBound} as specified by its 
-	 * {@link SingleReferenceAttributeValueConstraint#getSourceElements() source elements}.
+	 * {@link SingleReferenceValueConstraint#getSourceElements() source elements}.
 	 * 
 	 * @param rangeBound The {@link RangeBound} for that the target value shall be extracted.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the value shall be extracted.
-	 * @return The extracted value (after applying a possible {@link SingleReferenceAttributeValueConstraint#getResultModifier() result modifier} or 
+	 * @return The extracted value (after applying a possible {@link SingleReferenceValueConstraint#getResultModifier() result modifier} or 
 	 * '<em><b>null</b></em>' if no value could be extracted.
 	 */
 	public String extractRequiredTargetValue(RangeBound rangeBound, 
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		List<AttributeValueConstraintSourceInterface> sourceElements = rangeBound.getSourceElements();
+		List<ValueConstraintSourceInterface> sourceElements = rangeBound.getSourceElements();
 		List<ValueModifierSet> resultModifiers = rangeBound.getResultModifier();
 		String expression = rangeBound.getExpression();
 
@@ -126,11 +126,11 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 
 	/**
 	 * This extracts and returns the required target value for the given list of 
-	 * {@link AttributeValueConstraintSourceInterface source elements} for the
+	 * {@link ValueConstraintSourceInterface source elements} for the
 	 * given {@link MatchedSectionDescriptor}.
 	 * 
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the value shall be extracted.
-	 * @param sourceElements The list of {@link AttributeValueConstraintSourceInterface source elements} to take into account.
+	 * @param sourceElements The list of {@link ValueConstraintSourceInterface source elements} to take into account.
 	 * @param expression The expression to use or '<em>null</em>' if no expression shall be used.
 	 * @param resultModifiers The list of {@link ValueModifierSet AttributeValueModifierSets} to apply before
 	 * the resulting target value is returned.
@@ -138,17 +138,17 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 */
 	@SuppressWarnings("unchecked")
 	private String extractRequiredTargetValue(MatchedSectionDescriptor matchedSectionDescriptor,
-			List<AttributeValueConstraintSourceInterface> sourceElements,
+			List<ValueConstraintSourceInterface> sourceElements,
 			String expression, 
 			List<ValueModifierSet> resultModifiers) {
 
 		// Collect the value parts
 		//
-		Map<AttributeValueConstraintSourceInterface, AttributeValueRepresentation> valueParts = new HashMap<>();
+		Map<ValueConstraintSourceInterface, AttributeValueRepresentation> valueParts = new HashMap<>();
 
 		// Extract the value part based on its type
 		//
-		for (AttributeValueConstraintSourceInterface sourceElement : sourceElements) {
+		for (ValueConstraintSourceInterface sourceElement : sourceElements) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 

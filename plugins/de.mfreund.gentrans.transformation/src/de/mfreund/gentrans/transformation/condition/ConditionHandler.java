@@ -33,14 +33,14 @@ import pamtram.condition.SectionCondition;
 import pamtram.condition.SingleConditionOperator;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraint;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.MultipleReferencesValueConstraint;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -82,11 +82,11 @@ public class ConditionHandler {
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections; 
 
 	/**
-	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be evaluated 
+	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints} that could not be evaluated 
 	 * so we don't need to send a potential error message twice. This might e.g. happen for a malformed regular expression
 	 * in a {@link RegExMatcher}.
 	 */
-	private final Set<AttributeValueConstraint> attributeConditionConstraintsWithErrors;
+	private final Set<ValueConstraint> attributeConditionConstraintsWithErrors;
 
 	/**
 	 * It will be used for calculating referenceValues that are needed for {@link AttributeCondition}s
@@ -261,7 +261,7 @@ public class ConditionHandler {
 			boolean inclusionMatched = false;
 			boolean containsInclusions = false;
 			boolean exclusionFailed = false;
-			for (final AttributeValueConstraint constraint : attrCondition.getValueConstraint()) {
+			for (final ValueConstraint constraint : attrCondition.getValueConstraint()) {
 
 				if (attributeConditionConstraintsWithErrors.contains(constraint)) {
 					continue;
@@ -273,10 +273,10 @@ public class ConditionHandler {
 					// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
 					// and we need to extract the right reference Value(s) for each constraint
 
-					if (constraint instanceof SingleReferenceAttributeValueConstraint){
+					if (constraint instanceof SingleReferenceValueConstraint){
 						String srcAttrRefValAsString = refValueCalculator.calculateReferenceValue(constraint, matchedSectionDescriptor);
-						constraintVal = ((SingleReferenceAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
-					} else if (constraint instanceof MultipleReferencesAttributeValueConstraint){
+						constraintVal = ((SingleReferenceValueConstraint) constraint).checkConstraint(srcAttrAsString,srcAttrRefValAsString);
+					} else if (constraint instanceof MultipleReferencesValueConstraint){
 
 						if(constraint instanceof RangeConstraint){
 
@@ -297,7 +297,7 @@ public class ConditionHandler {
 							}
 
 							BasicEList<String> refValuesAsEList = new BasicEList<>(srcAttrRefValuesAsList); 
-							constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint).checkConstraint(srcAttrAsString, refValuesAsEList);
+							constraintVal = ((MultipleReferencesValueConstraint) constraint).checkConstraint(srcAttrAsString, refValuesAsEList);
 
 						}  else {
 
@@ -326,12 +326,12 @@ public class ConditionHandler {
 
 				}
 
-				if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+				if (!constraintVal && constraint.getType().equals(ValueConstraintType.EXCLUSION)) {
 
 					exclusionFailed = true;
 					break;
 
-				} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
+				} else if (constraint.getType().equals(ValueConstraintType.INCLUSION)) {
 
 					containsInclusions = true;
 					if (constraintVal) {

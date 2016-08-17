@@ -33,16 +33,16 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
 import pamtram.mapping.FixedValue;
 import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraint;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.MetaModelSectionReference;
-import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.MultipleReferencesValueConstraint;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.Section;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -86,15 +86,15 @@ public class SourceSectionMatcher {
 	private final Map<SourceSectionClass, Set<EObject>> matchedContainers;
 
 	/**
-	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be evaluated so
+	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints} that could not be evaluated so
 	 * we don't need to send a potential error message twice. This might e.g. happen for a malformed regular expression
 	 * in a {@link RegExMatcher}.
 	 */
-	private final Set<AttributeValueConstraint> constraintsWithErrors;
+	private final Set<ValueConstraint> constraintsWithErrors;
 
 	/**
 	 * This {@link AttributeValueConstraintReferenceValueCalculator} will be used for calculating referenceValues that
-	 * are needed for {@link AttributeValueConstraint}
+	 * are needed for {@link ValueConstraint}
 	 */
 	private AttributeValueConstraintReferenceValueCalculator refValueCalculator;
 
@@ -969,7 +969,7 @@ public class SourceSectionMatcher {
 	/**
 	 * This checks if all {@link SourceSectionAttribute attributes} that have been defined for a given
 	 * {@link SourceSectionClass} can be mapped for the given '<em>srcModelObject</em>'. Therefore, all the
-	 * {@link AttributeValueConstraint AttributeValueConstraints} are checked.
+	 * {@link ValueConstraint AttributeValueConstraints} are checked.
 	 *
 	 * @param srcModelObject
 	 *            The object to be checked.
@@ -998,7 +998,7 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * Check the given {@link Object attribute value} against the {@link AttributeValueConstraint
+	 * Check the given {@link Object attribute value} against the {@link ValueConstraint
 	 * AttributeValueConstraints} modeled for the given {@link SourceSectionAttribute attribute}.
 	 *
 	 * @param attribute
@@ -1035,22 +1035,22 @@ public class SourceSectionMatcher {
 		boolean inclusionMatched = false;
 		boolean containsInclusions = false;
 
-		List<AttributeValueConstraint> validConstraints = attribute.getValueConstraint().parallelStream()
+		List<ValueConstraint> validConstraints = attribute.getValueConstraint().parallelStream()
 				.filter(c -> !this.constraintsWithErrors.contains(c)).collect(Collectors.toList());
 
 		// Check each constraint
 		//
-		for (final AttributeValueConstraint constraint : validConstraints) {
+		for (final ValueConstraint constraint : validConstraints) {
 
 			try {
 
 				boolean constraintVal = this.checkAttributeValueConstraint(srcAttrAsString, constraint);
 
-				if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+				if (!constraintVal && constraint.getType().equals(ValueConstraintType.EXCLUSION)) {
 
 					return false;
 
-				} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
+				} else if (constraint.getType().equals(ValueConstraintType.INCLUSION)) {
 
 					containsInclusions = true;
 					inclusionMatched = constraintVal;
@@ -1073,7 +1073,7 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * Check the given {@link Object attribute value} against the {@link AttributeValueConstraint
+	 * Check the given {@link Object attribute value} against the {@link ValueConstraint
 	 * AttributeValueConstraints} modeled for the given {@link SourceSectionAttribute attribute}.
 	 *
 	 * @param attribute
@@ -1084,12 +1084,12 @@ public class SourceSectionMatcher {
 	 * @param attributeValueAsString
 	 *            A String representation of the attribute value to be checked against the given <em>constraint</em>.
 	 * @param constraint
-	 *            The {@link AttributeValueConstraint} that the given <em>attributeValueAsString</em> shall be checked
+	 *            The {@link ValueConstraint} that the given <em>attributeValueAsString</em> shall be checked
 	 *            against.
 	 * @return '<em><b>true</b></em>' if the value satisfies the constraint; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean checkAttributeValueConstraint(final String attributeValueAsString,
-			final AttributeValueConstraint constraint) {
+			final ValueConstraint constraint) {
 
 		boolean constraintVal = false;
 
@@ -1097,13 +1097,13 @@ public class SourceSectionMatcher {
 		// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
 		// and we need to extract the right reference Value(s) for each constraint
 
-		if (constraint instanceof SingleReferenceAttributeValueConstraint) {
+		if (constraint instanceof SingleReferenceValueConstraint) {
 
 			String srcAttrRefValAsString = this.refValueCalculator.calculateReferenceValue(constraint);
-			constraintVal = ((SingleReferenceAttributeValueConstraint) constraint)
+			constraintVal = ((SingleReferenceValueConstraint) constraint)
 					.checkConstraint(attributeValueAsString, srcAttrRefValAsString);
 
-		} else if (constraint instanceof MultipleReferencesAttributeValueConstraint) {
+		} else if (constraint instanceof MultipleReferencesValueConstraint) {
 
 			if (constraint instanceof RangeConstraint) {
 
@@ -1124,7 +1124,7 @@ public class SourceSectionMatcher {
 				}
 
 				BasicEList<String> refValuesAsEList = new BasicEList<>(srcAttrRefValuesAsList);
-				constraintVal = ((MultipleReferencesAttributeValueConstraint) constraint)
+				constraintVal = ((MultipleReferencesValueConstraint) constraint)
 						.checkConstraint(attributeValueAsString, refValuesAsEList);
 
 				if (!constraintVal) { // just for debugging!

@@ -901,9 +901,8 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__attributePointer = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER, Types._InstancePointer, 0);
 		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__sourceAttributes = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES, Types._InstancePointer, 1);
-		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__value = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__VALUE, Types._InstancePointer, 2);
-		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("RangeBound", Types._InstancePointer, 3, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
-		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__SingleReferenceValueConstraint__constraintReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("SingleReferenceValueConstraint", Types._InstancePointer, 4, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("RangeBound", Types._InstancePointer, 2, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__SingleReferenceValueConstraint__constraintReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("SingleReferenceValueConstraint", Types._InstancePointer, 3, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
 
 		public static final /*@NonNull*/ ExecutorProperty _InstancePointerSourceInterface__InstancePointer__sourceAttributes = new ExecutorPropertyWithImplementation("InstancePointer", Types._InstancePointerSourceInterface, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES));
 
@@ -3957,7 +3956,6 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _InstancePointer = {
 			MetamodelTables.Properties._InstancePointer__attributePointer,
 			MetamodelTables.Properties._InstancePointer__sourceAttributes,
-			MetamodelTables.Properties._InstancePointer__value,
 			MetamodelTables.Properties._InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._InstancePointer__SingleReferenceValueConstraint__constraintReferenceValueAdditionalSpecification
 		};

@@ -56,7 +56,6 @@ import pamtram.metamodel.ActualSourceSectionAttribute;
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.InstancePointerImpl#getResultModifier <em>Result Modifier</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.InstancePointerImpl#getAttributePointer <em>Attribute Pointer</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.InstancePointerImpl#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.InstancePointerImpl#getSourceAttributes <em>Source Attributes</em>}</li>
  * </ul>
  *
@@ -82,25 +81,6 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * @ordered
 	 */
 	protected ActualSourceSectionAttribute attributePointer;
-
-	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String VALUE_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getSourceAttributes() <em>Source Attributes</em>}' containment reference list.
@@ -179,27 +159,6 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		attributePointer = newAttributePointer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER, oldAttributePointer, attributePointer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getValue() {
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue(String newValue) {
-		String oldValue = value;
-		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.INSTANCE_POINTER__VALUE, oldValue, value));
 	}
 
 	/**
@@ -364,8 +323,6 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
 				if (resolve) return getAttributePointer();
 				return basicGetAttributePointer();
-			case MetamodelPackage.INSTANCE_POINTER__VALUE:
-				return getValue();
 			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
 				return getSourceAttributes();
 		}
@@ -387,9 +344,6 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 				return;
 			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
 				setAttributePointer((ActualSourceSectionAttribute)newValue);
-				return;
-			case MetamodelPackage.INSTANCE_POINTER__VALUE:
-				setValue((String)newValue);
 				return;
 			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
 				getSourceAttributes().clear();
@@ -413,9 +367,6 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
 				setAttributePointer((ActualSourceSectionAttribute)null);
 				return;
-			case MetamodelPackage.INSTANCE_POINTER__VALUE:
-				setValue(VALUE_EDEFAULT);
-				return;
 			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
 				getSourceAttributes().clear();
 				return;
@@ -435,8 +386,6 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 				return resultModifier != null && !resultModifier.isEmpty();
 			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
 				return attributePointer != null;
-			case MetamodelPackage.INSTANCE_POINTER__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
 				return sourceAttributes != null && !sourceAttributes.isEmpty();
 		}
@@ -484,26 +433,10 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return noModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (value: ");
-		result.append(value);
-		result.append(')');
-		return result.toString();
 	}
 
 } //InstancePointerImpl

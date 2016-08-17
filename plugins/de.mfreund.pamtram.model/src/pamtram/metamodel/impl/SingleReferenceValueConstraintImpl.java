@@ -81,7 +81,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 * @ordered
 	 */
-	protected ValueConstraintType type = SingleReferenceValueConstraintImpl.TYPE_EDEFAULT;
+	protected ValueConstraintType type = TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
@@ -101,7 +101,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 * @ordered
 	 */
-	protected String expression = SingleReferenceValueConstraintImpl.EXPRESSION_EDEFAULT;
+	protected String expression = EXPRESSION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
@@ -159,7 +159,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public ValueConstraintType getType() {
-		return this.type;
+		return type;
 	}
 
 	/**
@@ -169,11 +169,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public void setType(ValueConstraintType newType) {
-		ValueConstraintType oldType = this.type;
-		this.type = newType == null ? SingleReferenceValueConstraintImpl.TYPE_EDEFAULT : newType;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE, oldType, this.type));
-		}
+		ValueConstraintType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE, oldType, type));
 	}
 
 	/**
@@ -183,7 +182,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public String getExpression() {
-		return this.expression;
+		return expression;
 	}
 
 	/**
@@ -193,11 +192,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public void setExpression(String newExpression) {
-		String oldExpression = this.expression;
-		this.expression = newExpression;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION, oldExpression, this.expression));
-		}
+		String oldExpression = expression;
+		expression = newExpression;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION, oldExpression, expression));
 	}
 
 	/**
@@ -207,10 +205,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<ValueModifierSet> getResultModifier() {
-		if (this.resultModifier == null) {
-			this.resultModifier = new EObjectResolvingEList<>(ValueModifierSet.class, this, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER);
+		if (resultModifier == null) {
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER);
 		}
-		return this.resultModifier;
+		return resultModifier;
 	}
 
 	/**
@@ -220,10 +218,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<InstancePointer> getConstraintReferenceValueAdditionalSpecification() {
-		if (this.constraintReferenceValueAdditionalSpecification == null) {
-			this.constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<>(InstancePointer.class, this, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+		if (constraintReferenceValueAdditionalSpecification == null) {
+			constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
 		}
-		return this.constraintReferenceValueAdditionalSpecification;
+		return constraintReferenceValueAdditionalSpecification;
 	}
 
 	/**
@@ -233,10 +231,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<ValueConstraintSourceInterface> getSourceElements() {
-		if (this.sourceElements == null) {
-			this.sourceElements = new EObjectContainmentEList<>(ValueConstraintSourceInterface.class, this, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
+		if (sourceElements == null) {
+			sourceElements = new EObjectContainmentEList<ValueConstraintSourceInterface>(ValueConstraintSourceInterface.class, this, MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}
-		return this.sourceElements;
+		return sourceElements;
 	}
 
 	/**
@@ -256,27 +254,27 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if(this.getSourceElements().isEmpty() ||
+		if(this.getSourceElements().isEmpty() || 
 				!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
 			return true;
 		}
-
+		
 		boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue);
-
+		
 		if (!result && diagnostics != null) {
-
+			
 			String errorMessage = "This ValueConstraint must only"
 					+ " contain FixedValues as source elements as it is modeled as part of a SourceSection!'";
-
+			
 			diagnostics.add
-			(new BasicDiagnostic
+				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-							MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,
-							errorMessage,
-							new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
-		}
-
+					 MetamodelValidator.DIAGNOSTIC_SOURCE,
+					 MetamodelValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,
+					 errorMessage,
+					 new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
+			}
+		
 		return result;
 	}
 
@@ -287,33 +285,33 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if(this.getSourceElements().isEmpty() ||
+		if(this.getSourceElements().isEmpty() || 
 				!AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition())) {
 			return true;
 		}
-
+		
 		ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition());
-
+		
 		if(!condition.isConditionModelCondition()) {
 			return true;
 		}
-
+		
 		boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter);
-
+		
 		if (!result && diagnostics != null) {
-
+			
 			String errorMessage = "This ValueConstraint must only"
 					+ " contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!'";
-
+			
 			diagnostics.add
-			(new BasicDiagnostic
+				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-							MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
-							errorMessage,
-							new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
-		}
-
+					 MetamodelValidator.DIAGNOSTIC_SOURCE,
+					 MetamodelValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
+					 errorMessage,
+					 new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
+			}
+		
 		return result;
 	}
 
@@ -327,37 +325,37 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		if(this.eContainer() instanceof ActualSourceSectionAttribute) {
 			return true;
 		}
-
+		
 		if(!(this.eContainer() instanceof AttributeCondition)) {
 			throw new UnsupportedOperationException();
 		}
-
+		
 		EObject container = this;
-
+		
 		while(!(container instanceof Mapping)) {
 			if(container == null) {
 				return false;
 			}
 			container = container.eContainer();
 		}
-
+		
 		// The SourceSection of the Mapping that contains the constraint
 		//
 		SourceSection localSection = ((Mapping) container).getSourceMMSection();
-
-		if(this.getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
-				s instanceof ValueConstraintSourceElement &&
-				((ValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection) ||
-				s instanceof ValueConstraintExternalSourceElement &&
-				((ValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection))) {
+		
+		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
+				(s instanceof ValueConstraintSourceElement &&
+				((ValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
+				(s instanceof ValueConstraintExternalSourceElement &&
+						((ValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
 			return true;
 		}
-
+		
 		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
 		//
-		return this.getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(
+		return getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(
 				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
-						s -> s instanceof InstancePointerSourceElement ||
+						s -> s instanceof InstancePointerSourceElement || 
 						s instanceof InstancePointerExternalSourceElement)
 				).findAny().isPresent();
 	}
@@ -371,9 +369,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-				return ((InternalEList<?>)this.getConstraintReferenceValueAdditionalSpecification()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getConstraintReferenceValueAdditionalSpecification()).basicRemove(otherEnd, msgs);
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
-				return ((InternalEList<?>)this.getSourceElements()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -387,15 +385,15 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
-				return this.getType();
+				return getType();
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
-				return this.getExpression();
+				return getExpression();
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
-				return this.getResultModifier();
+				return getResultModifier();
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-				return this.getConstraintReferenceValueAdditionalSpecification();
+				return getConstraintReferenceValueAdditionalSpecification();
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
-				return this.getSourceElements();
+				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -410,22 +408,22 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
-				this.setType((ValueConstraintType)newValue);
+				setType((ValueConstraintType)newValue);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
-				this.setExpression((String)newValue);
+				setExpression((String)newValue);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
-				this.getResultModifier().clear();
-				this.getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
+				getResultModifier().clear();
+				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-				this.getConstraintReferenceValueAdditionalSpecification().clear();
-				this.getConstraintReferenceValueAdditionalSpecification().addAll((Collection<? extends InstancePointer>)newValue);
+				getConstraintReferenceValueAdditionalSpecification().clear();
+				getConstraintReferenceValueAdditionalSpecification().addAll((Collection<? extends InstancePointer>)newValue);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
-				this.getSourceElements().clear();
-				this.getSourceElements().addAll((Collection<? extends ValueConstraintSourceInterface>)newValue);
+				getSourceElements().clear();
+				getSourceElements().addAll((Collection<? extends ValueConstraintSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -440,19 +438,19 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
-				this.setType(SingleReferenceValueConstraintImpl.TYPE_EDEFAULT);
+				setType(TYPE_EDEFAULT);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
-				this.setExpression(SingleReferenceValueConstraintImpl.EXPRESSION_EDEFAULT);
+				setExpression(EXPRESSION_EDEFAULT);
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
-				this.getResultModifier().clear();
+				getResultModifier().clear();
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-				this.getConstraintReferenceValueAdditionalSpecification().clear();
+				getConstraintReferenceValueAdditionalSpecification().clear();
 				return;
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
-				this.getSourceElements().clear();
+				getSourceElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -467,15 +465,15 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
-				return this.type != SingleReferenceValueConstraintImpl.TYPE_EDEFAULT;
+				return type != TYPE_EDEFAULT;
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
-				return SingleReferenceValueConstraintImpl.EXPRESSION_EDEFAULT == null ? this.expression != null : !SingleReferenceValueConstraintImpl.EXPRESSION_EDEFAULT.equals(this.expression);
+				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
-				return this.resultModifier != null && !this.resultModifier.isEmpty();
+				return resultModifier != null && !resultModifier.isEmpty();
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-				return this.constraintReferenceValueAdditionalSpecification != null && !this.constraintReferenceValueAdditionalSpecification.isEmpty();
+				return constraintReferenceValueAdditionalSpecification != null && !constraintReferenceValueAdditionalSpecification.isEmpty();
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
-				return this.sourceElements != null && !this.sourceElements.isEmpty();
+				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -533,13 +531,13 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING:
-				return this.checkConstraint((String)arguments.get(0), (String)arguments.get(1));
+				return checkConstraint((String)arguments.get(0), (String)arguments.get(1));
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
-				return this.validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
-				return this.validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+				return validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
-				return this.isLocalConstraint();
+				return isLocalConstraint();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -551,15 +549,13 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public String toString() {
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (type: ");
-		result.append(this.type);
+		result.append(type);
 		result.append(", expression: ");
-		result.append(this.expression);
+		result.append(expression);
 		result.append(')');
 		return result.toString();
 	}

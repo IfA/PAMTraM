@@ -18,7 +18,7 @@ import pamtram.PAMTraM;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.Attribute;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EqualityMatcher;
@@ -26,7 +26,7 @@ import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -277,7 +277,7 @@ public class MetaModelSectionGenerator {
 					EqualityMatcher attValConstraint = MetamodelFactory.eINSTANCE.createEqualityMatcher();
 					attValConstraint.setCaseSensitive(true);
 					attValConstraint.setName(eAttribute.getName() + "_Constraint");
-					attValConstraint.setType(AttributeValueConstraintType.INCLUSION);
+					attValConstraint.setType(ValueConstraintType.INCLUSION);
 					attValConstraint.setExpression(attributeValue.toString());
 					((ActualSourceSectionAttribute) attribute).getValueConstraint().add(attValConstraint);
 				} else {
@@ -393,8 +393,8 @@ public class MetaModelSectionGenerator {
 			if(this.sectionType == SectionType.SOURCE) {
 				hash = hash + ((ActualSourceSectionAttribute) att).getAttribute().getName();
 				if(!((ActualSourceSectionAttribute) att).getValueConstraint().isEmpty() &&
-						((ActualSourceSectionAttribute) att).getValueConstraint().get(0) instanceof SingleReferenceAttributeValueConstraint){
-					hash = hash +  ((SingleReferenceAttributeValueConstraint) ((ActualSourceSectionAttribute) att).getValueConstraint().get(0)).getExpression();
+						((ActualSourceSectionAttribute) att).getValueConstraint().get(0) instanceof SingleReferenceValueConstraint){
+					hash = hash +  ((SingleReferenceValueConstraint) ((ActualSourceSectionAttribute) att).getValueConstraint().get(0)).getExpression();
 				} else {
 					hash = hash + "noValue";
 				}

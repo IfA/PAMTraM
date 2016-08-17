@@ -5,7 +5,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 import pamtram.metamodel.Attribute;
-import pamtram.metamodel.SingleReferenceAttributeValueConstraint;
+import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
 
@@ -42,8 +42,8 @@ public class ResultPageTableViewerLabelProvider implements ITableLabelProvider {
 		case 1:
 			if(att instanceof ActualSourceSectionAttribute) {
 				if(!((ActualSourceSectionAttribute) att).getValueConstraint().isEmpty() &&
-						((ActualSourceSectionAttribute) att).getValueConstraint().get(0) instanceof SingleReferenceAttributeValueConstraint) {
-					return ((SingleReferenceAttributeValueConstraint) ((ActualSourceSectionAttribute) att).getValueConstraint().get(0)).getExpression();
+						((ActualSourceSectionAttribute) att).getValueConstraint().get(0) instanceof SingleReferenceValueConstraint) {
+					return ((SingleReferenceValueConstraint) ((ActualSourceSectionAttribute) att).getValueConstraint().get(0)).getExpression();
 				} else {
 					return "";
 				}

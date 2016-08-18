@@ -171,22 +171,13 @@ public interface ConditionPackage extends EPackage {
 	int CONDITION__COMPARATOR = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Default Setting</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__DEFAULT_SETTING = COMPLEX_CONDITION_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 4;
+	int CONDITION_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -780,15 +771,6 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__COMPARATOR = CONDITION__COMPARATOR;
 
 	/**
-	 * The feature id for the '<em><b>Default Setting</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CONDITION__DEFAULT_SETTING = CONDITION__DEFAULT_SETTING;
-
-	/**
 	 * The feature id for the '<em><b>Value Constraint</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -905,15 +887,6 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int SECTION_CONDITION__COMPARATOR = CONDITION__COMPARATOR;
-
-	/**
-	 * The feature id for the '<em><b>Default Setting</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION_CONDITION__DEFAULT_SETTING = CONDITION__DEFAULT_SETTING;
 
 	/**
 	 * The feature id for the '<em><b>Condition Section Ref</b></em>' reference.
@@ -1071,17 +1044,6 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCondition_Comparator();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getDefaultSetting <em>Default Setting</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Setting</em>'.
-	 * @see pamtram.condition.Condition#getDefaultSetting()
-	 * @see #getCondition()
-	 * @generated
-	 */
-	EAttribute getCondition_DefaultSetting();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.Condition#checkCondition(pamtram.condition.ComplexCondition) <em>Check Condition</em>}' operation.
@@ -1403,14 +1365,6 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONDITION__COMPARATOR = eINSTANCE.getCondition_Comparator();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Setting</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONDITION__DEFAULT_SETTING = eINSTANCE.getCondition_DefaultSetting();
 
 		/**
 		 * The meta object literal for the '<em><b>Check Condition</b></em>' operation.

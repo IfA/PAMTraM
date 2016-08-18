@@ -17,7 +17,6 @@ import pamtram.metamodel.InstancePointer;
  *   <li>{@link pamtram.condition.Condition#getAdditionalConditionSpecification <em>Additional Condition Specification</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
- *   <li>{@link pamtram.condition.Condition#getDefaultSetting <em>Default Setting</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getCondition()
@@ -70,35 +69,6 @@ public interface Condition extends ComplexCondition {
 	 * @generated
 	 */
 	void setComparator(ComparatorEnum value);
-
-	/**
-	 * Returns the value of the '<em><b>Default Setting</b></em>' attribute.
-	 * The literals are from the enumeration {@link pamtram.condition.CondSettingEnum}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Default Setting</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Setting</em>' attribute.
-	 * @see pamtram.condition.CondSettingEnum
-	 * @see #setDefaultSetting(CondSettingEnum)
-	 * @see pamtram.condition.ConditionPackage#getCondition_DefaultSetting()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!defaultSetting'"
-	 * @generated
-	 */
-	CondSettingEnum getDefaultSetting();
-
-	/**
-	 * Sets the value of the '{@link pamtram.condition.Condition#getDefaultSetting <em>Default Setting</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Setting</em>' attribute.
-	 * @see pamtram.condition.CondSettingEnum
-	 * @see #getDefaultSetting()
-	 * @generated
-	 */
-	void setDefaultSetting(CondSettingEnum value);
 
 	/**
 	 * <!-- begin-user-doc -->

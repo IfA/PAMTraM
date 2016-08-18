@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
-import pamtram.condition.CondSettingEnum;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
 import pamtram.metamodel.InstancePointer;
@@ -31,7 +30,6 @@ import pamtram.metamodel.InstancePointer;
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getAdditionalConditionSpecification <em>Additional Condition Specification</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getComparator <em>Comparator</em>}</li>
- *   <li>{@link pamtram.condition.impl.ConditionImpl#getDefaultSetting <em>Default Setting</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,26 +86,6 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	protected ComparatorEnum comparator = COMPARATOR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDefaultSetting() <em>Default Setting</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefaultSetting()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final CondSettingEnum DEFAULT_SETTING_EDEFAULT = CondSettingEnum.MATCHING_REQUIRED;
-
-	/**
-	 * The cached value of the '{@link #getDefaultSetting() <em>Default Setting</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefaultSetting()
-	 * @generated
-	 * @ordered
-	 */
-	protected CondSettingEnum defaultSetting = DEFAULT_SETTING_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -157,27 +135,6 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 		comparator = newComparator == null ? COMPARATOR_EDEFAULT : newComparator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__COMPARATOR, oldComparator, comparator));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CondSettingEnum getDefaultSetting() {
-		return defaultSetting;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultSetting(CondSettingEnum newDefaultSetting) {
-		CondSettingEnum oldDefaultSetting = defaultSetting;
-		defaultSetting = newDefaultSetting == null ? DEFAULT_SETTING_EDEFAULT : newDefaultSetting;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__DEFAULT_SETTING, oldDefaultSetting, defaultSetting));
 	}
 
 	/**
@@ -238,8 +195,6 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 				return getValue();
 			case ConditionPackage.CONDITION__COMPARATOR:
 				return getComparator();
-			case ConditionPackage.CONDITION__DEFAULT_SETTING:
-				return getDefaultSetting();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,9 +218,6 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 			case ConditionPackage.CONDITION__COMPARATOR:
 				setComparator((ComparatorEnum)newValue);
 				return;
-			case ConditionPackage.CONDITION__DEFAULT_SETTING:
-				setDefaultSetting((CondSettingEnum)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -287,9 +239,6 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 			case ConditionPackage.CONDITION__COMPARATOR:
 				setComparator(COMPARATOR_EDEFAULT);
 				return;
-			case ConditionPackage.CONDITION__DEFAULT_SETTING:
-				setDefaultSetting(DEFAULT_SETTING_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -308,8 +257,6 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 				return value != VALUE_EDEFAULT;
 			case ConditionPackage.CONDITION__COMPARATOR:
 				return comparator != COMPARATOR_EDEFAULT;
-			case ConditionPackage.CONDITION__DEFAULT_SETTING:
-				return defaultSetting != DEFAULT_SETTING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -342,8 +289,6 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 		result.append(value);
 		result.append(", comparator: ");
 		result.append(comparator);
-		result.append(", defaultSetting: ");
-		result.append(defaultSetting);
 		result.append(')');
 		return result.toString();
 	}

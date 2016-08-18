@@ -71,7 +71,6 @@ public class ConditionTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ValueConstraint = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ValueConstraint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.DataTypeId DATAid_EInt = pamtram.condition.ConditionTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_ComparatorEnum = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getEnumerationId("ComparatorEnum");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_CondSettingEnum = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getEnumerationId("CondSettingEnum");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_1 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("1");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_4 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("4");
@@ -322,8 +321,7 @@ public class ConditionTables
 
 		public static final /*@NonNull*/ ExecutorProperty _Condition__additionalConditionSpecification = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION, Types._Condition, 0);
 		public static final /*@NonNull*/ ExecutorProperty _Condition__comparator = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__COMPARATOR, Types._Condition, 1);
-		public static final /*@NonNull*/ ExecutorProperty _Condition__defaultSetting = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__DEFAULT_SETTING, Types._Condition, 2);
-		public static final /*@NonNull*/ ExecutorProperty _Condition__value = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__VALUE, Types._Condition, 3);
+		public static final /*@NonNull*/ ExecutorProperty _Condition__value = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__VALUE, Types._Condition, 2);
 
 		public static final /*@NonNull*/ ExecutorProperty _MultipleConditionOperator__condParts = new EcoreExecutorProperty(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS, Types._MultipleConditionOperator, 0);
 		public static final /*@NonNull*/ ExecutorProperty _MultipleConditionOperator__condPartsRef = new EcoreExecutorProperty(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF, Types._MultipleConditionOperator, 1);
@@ -996,7 +994,6 @@ public class ConditionTables
 			ConditionTables.Properties._Condition__additionalConditionSpecification,
 			ConditionTables.Properties._Condition__comparator,
 			ConditionTables.Properties._AttributeCondition__conditionAttributeRef,
-			ConditionTables.Properties._Condition__defaultSetting,
 			ConditionTables.Properties._Condition__value,
 			ConditionTables.Properties._AttributeCondition__valueConstraint,
 			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
@@ -1019,7 +1016,6 @@ public class ConditionTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Condition = {
 			ConditionTables.Properties._Condition__additionalConditionSpecification,
 			ConditionTables.Properties._Condition__comparator,
-			ConditionTables.Properties._Condition__defaultSetting,
 			ConditionTables.Properties._Condition__value,
 			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
 			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
@@ -1058,7 +1054,6 @@ public class ConditionTables
 			ConditionTables.Properties._Condition__additionalConditionSpecification,
 			ConditionTables.Properties._Condition__comparator,
 			ConditionTables.Properties._SectionCondition__conditionSectionRef,
-			ConditionTables.Properties._Condition__defaultSetting,
 			ConditionTables.Properties._Condition__value,
 			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
 			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,

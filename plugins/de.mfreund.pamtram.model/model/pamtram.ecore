@@ -965,8 +965,8 @@
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributePointer" lowerBound="1"
           eType="#//metamodel/ActualSourceSectionAttribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributes" lowerBound="1"
-          upperBound="-1" eType="#//metamodel/InstancePointerSourceInterface" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributes" upperBound="-1"
+          eType="#//metamodel/InstancePointerSourceInterface" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstancePointerSourceInterface" abstract="true"
         interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>

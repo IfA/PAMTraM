@@ -315,7 +315,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map() {
+	public EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_1() {
 		return multipleConditionOperatorEClass.getEOperations().get(1);
 	}
 
@@ -378,7 +378,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map() {
+	public EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_1() {
 		return singleConditionOperatorEClass.getEOperations().get(0);
 	}
 
@@ -405,7 +405,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map() {
+	public EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1() {
 		return notEClass.getEOperations().get(1);
 	}
 
@@ -515,7 +515,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEReference(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR__COND_PARTS);
 		createEReference(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF);
 		createEOperation(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS);
-		createEOperation(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(multipleConditionOperatorEClass, MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1);
 
 		andEClass = createEClass(AND);
 
@@ -524,11 +524,11 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		singleConditionOperatorEClass = createEClass(SINGLE_CONDITION_OPERATOR);
 		createEReference(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR__COND_PART);
 		createEReference(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR__COND_PART_REF);
-		createEOperation(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP);
+		createEOperation(singleConditionOperatorEClass, SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1);
 
 		notEClass = createEClass(NOT);
 		createEOperation(notEClass, NOT___REFERENCES_ONLY_VALID_CONDITIONS);
-		createEOperation(notEClass, NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(notEClass, NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1);
 
 		attributeConditionEClass = createEClass(ATTRIBUTE_CONDITION);
 		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
@@ -607,7 +607,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		initEOperation(getMultipleConditionOperator__ReferencesOnlyValidConditions(), ecorePackage.getEBoolean(), "referencesOnlyValidConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "minimalNumberOfArgs", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "minimalNumberOfArgs", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -624,7 +624,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEReference(getSingleConditionOperator_CondPart(), this.getComplexCondition(), null, "condPart", null, 0, 1, SingleConditionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSingleConditionOperator_CondPartRef(), this.getComplexCondition(), null, "condPartRef", null, 0, 1, SingleConditionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "exactlyOneArg", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "exactlyOneArg", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -637,7 +637,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		initEOperation(getNot__ReferencesOnlyValidConditions(), ecorePackage.getEBoolean(), "referencesOnlyValidConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModelOrFromConditionalElements", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModelOrFromConditionalElements", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());

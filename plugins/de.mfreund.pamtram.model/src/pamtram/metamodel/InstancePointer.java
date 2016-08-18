@@ -64,7 +64,7 @@ public interface InstancePointer extends ExpressionHint, ModifiableHint {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Attributes</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getInstancePointer_SourceAttributes()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!InstancePointer!sourceAttributes'"
 	 * @generated
 	 */

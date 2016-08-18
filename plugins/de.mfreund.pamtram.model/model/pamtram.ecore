@@ -1126,7 +1126,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparator" eType="#//condition/ComparatorEnum"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultSetting" eType="#//condition/CondSettingEnum"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ComparatorEnum">
       <eLiterals name="EQ" literal="EQ"/>

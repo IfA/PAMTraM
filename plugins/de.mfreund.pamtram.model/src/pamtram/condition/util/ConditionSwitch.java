@@ -147,6 +147,15 @@ public class ConditionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ConditionPackage.APPLICATION_DEPENDENCY: {
+				ApplicationDependency applicationDependency = (ApplicationDependency)theEObject;
+				T result = caseApplicationDependency(applicationDependency);
+				if (result == null) result = caseCondition(applicationDependency);
+				if (result == null) result = caseComplexCondition(applicationDependency);
+				if (result == null) result = caseNamedElement(applicationDependency);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -283,6 +292,21 @@ public class ConditionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSectionCondition(SectionCondition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Application Dependency</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Application Dependency</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseApplicationDependency(ApplicationDependency object) {
 		return null;
 	}
 

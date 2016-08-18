@@ -126,6 +126,8 @@ public class ConditionValidator extends EObjectValidator {
 				return validateAttributeCondition((AttributeCondition)value, diagnostics, context);
 			case ConditionPackage.SECTION_CONDITION:
 				return validateSectionCondition((SectionCondition)value, diagnostics, context);
+			case ConditionPackage.APPLICATION_DEPENDENCY:
+				return validateApplicationDependency((ApplicationDependency)value, diagnostics, context);
 			case ConditionPackage.COMPARATOR_ENUM:
 				return validateComparatorEnum((ComparatorEnum)value, diagnostics, context);
 			case ConditionPackage.COND_SETTING_ENUM:
@@ -295,6 +297,15 @@ public class ConditionValidator extends EObjectValidator {
 	 */
 	public boolean validateSectionCondition(SectionCondition sectionCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sectionCondition, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateApplicationDependency(ApplicationDependency applicationDependency, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(applicationDependency, diagnostics, context);
 	}
 
 	/**

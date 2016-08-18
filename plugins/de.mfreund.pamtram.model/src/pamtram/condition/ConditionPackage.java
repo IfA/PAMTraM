@@ -313,7 +313,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+	int MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Multiple Condition Operator</em>' class.
@@ -413,7 +413,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1;
+	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -513,7 +513,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1;
+	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Or</em>' class.
@@ -604,7 +604,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1 = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+	int SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Single Condition Operator</em>' class.
@@ -695,7 +695,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1 = SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1;
+	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -713,7 +713,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1 = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 1;
+	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Not</em>' class.
@@ -952,6 +952,115 @@ public interface ConditionPackage extends EPackage {
 	int SECTION_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.condition.impl.ApplicationDependencyImpl
+	 * @see pamtram.condition.impl.ConditionPackageImpl#getApplicationDependency()
+	 * @generated
+	 */
+	int APPLICATION_DEPENDENCY = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY__NAME = CONDITION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY__ADDITIONAL_CONDITION_SPECIFICATION = CONDITION__ADDITIONAL_CONDITION_SPECIFICATION;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY__VALUE = CONDITION__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Comparator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY__COMPARATOR = CONDITION__COMPARATOR;
+
+	/**
+	 * The feature id for the '<em><b>Conditional Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT = CONDITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Application Dependency</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY___IS_MAPPING_CONDITION = CONDITION___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY___IS_CONDITION_MODEL_CONDITION = CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Check Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY___CHECK_CONDITION__COMPLEXCONDITION = CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
+
+	/**
+	 * The number of operations of the '<em>Application Dependency</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.condition.ComparatorEnum <em>Comparator Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -959,7 +1068,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getComparatorEnum()
 	 * @generated
 	 */
-	int COMPARATOR_ENUM = 9;
+	int COMPARATOR_ENUM = 10;
 
 
 	/**
@@ -970,7 +1079,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getCondSettingEnum()
 	 * @generated
 	 */
-	int COND_SETTING_ENUM = 10;
+	int COND_SETTING_ENUM = 11;
 
 
 	/**
@@ -1105,7 +1214,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.MultipleConditionOperator#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_1();
+	EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getValue <em>Value</em>}'.
@@ -1178,7 +1287,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.SingleConditionOperator#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_1();
+	EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Not <em>Not</em>}'.
@@ -1208,7 +1317,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.Not#referenceOnlyConditionsFromConditionModelOrFromConditionalElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1();
+	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.AttributeCondition <em>Attribute Condition</em>}'.
@@ -1262,6 +1371,27 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSectionCondition_ConditionSectionRef();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.condition.ApplicationDependency <em>Application Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Application Dependency</em>'.
+	 * @see pamtram.condition.ApplicationDependency
+	 * @generated
+	 */
+	EClass getApplicationDependency();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.condition.ApplicationDependency#getConditionalElement <em>Conditional Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Conditional Element</em>'.
+	 * @see pamtram.condition.ApplicationDependency#getConditionalElement()
+	 * @see #getApplicationDependency()
+	 * @generated
+	 */
+	EReference getApplicationDependency_ConditionalElement();
 
 	/**
 	 * Returns the meta object for enum '{@link pamtram.condition.ComparatorEnum <em>Comparator Enum</em>}'.
@@ -1414,7 +1544,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_1();
+		EOperation MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1476,7 +1606,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_1();
+		EOperation SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.
@@ -1502,7 +1632,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1();
+		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.AttributeConditionImpl <em>Attribute Condition</em>}' class.
@@ -1547,6 +1677,24 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SECTION_CONDITION__CONDITION_SECTION_REF = eINSTANCE.getSectionCondition_ConditionSectionRef();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.condition.impl.ApplicationDependencyImpl
+		 * @see pamtram.condition.impl.ConditionPackageImpl#getApplicationDependency()
+		 * @generated
+		 */
+		EClass APPLICATION_DEPENDENCY = eINSTANCE.getApplicationDependency();
+
+		/**
+		 * The meta object literal for the '<em><b>Conditional Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT = eINSTANCE.getApplicationDependency_ConditionalElement();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.ComparatorEnum <em>Comparator Enum</em>}' enum.

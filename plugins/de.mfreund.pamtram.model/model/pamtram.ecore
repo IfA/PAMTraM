@@ -35,14 +35,14 @@
         eType="#//metamodel/SourceSection" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="return new BasicEList&lt;>(this.getSourceSectionModel().parallelStream().flatMap(s -> s.getMetaModelSections().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+        <details key="get" value="List&lt;SourceSection> sourceSections = this.getSourceSectionModel().parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;sourceSections.size(), sourceSections.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetSections" upperBound="-1"
         eType="#//metamodel/TargetSection" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="return new BasicEList&lt;>(this.getTargetSectionModel().parallelStream().flatMap(s -> s.getMetaModelSections().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+        <details key="get" value="List&lt;TargetSection> targetSections = this.getTargetSectionModel().parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,&#xD;&#xA;&#x9;&#x9;targetSections.size(), targetSections.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"

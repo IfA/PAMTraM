@@ -209,6 +209,11 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 			(createChildParameter
 				(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS,
 				 ConditionFactory.eINSTANCE.createSectionCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 	
 }

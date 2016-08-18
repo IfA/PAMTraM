@@ -323,6 +323,11 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 
 		newChildDescriptors.add
 			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
 				 MappingFactory.eINSTANCE.createAttributeMapping()));
 

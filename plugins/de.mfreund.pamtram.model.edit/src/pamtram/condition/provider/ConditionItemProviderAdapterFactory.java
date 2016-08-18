@@ -188,6 +188,29 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.condition.ApplicationDependency} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ApplicationDependencyItemProvider applicationDependencyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.condition.ApplicationDependency}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createApplicationDependencyAdapter() {
+		if (applicationDependencyItemProvider == null) {
+			applicationDependencyItemProvider = new ApplicationDependencyItemProvider(this);
+		}
+
+		return applicationDependencyItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -291,6 +314,7 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 		if (notItemProvider != null) notItemProvider.dispose();
 		if (attributeConditionItemProvider != null) attributeConditionItemProvider.dispose();
 		if (sectionConditionItemProvider != null) sectionConditionItemProvider.dispose();
+		if (applicationDependencyItemProvider != null) applicationDependencyItemProvider.dispose();
 	}
 
 }

@@ -283,6 +283,11 @@ extends MappingTypeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
 				 MappingFactory.eINSTANCE.createMappingHintGroup()));
 

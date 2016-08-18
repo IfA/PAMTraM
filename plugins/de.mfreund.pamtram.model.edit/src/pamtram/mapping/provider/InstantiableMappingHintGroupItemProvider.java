@@ -237,6 +237,11 @@ extends NamedElementItemProvider {
 			(createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
 				 ConditionFactory.eINSTANCE.createSectionCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 
 	/**

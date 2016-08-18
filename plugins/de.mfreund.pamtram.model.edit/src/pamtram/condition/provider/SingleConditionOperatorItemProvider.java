@@ -210,6 +210,11 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 			(createChildParameter
 				(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART,
 				 ConditionFactory.eINSTANCE.createSectionCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 
 }

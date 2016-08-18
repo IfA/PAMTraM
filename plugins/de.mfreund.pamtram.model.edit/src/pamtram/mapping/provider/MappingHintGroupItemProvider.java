@@ -239,6 +239,11 @@ extends MappingHintGroupTypeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
 				 MappingFactory.eINSTANCE.createModelConnectionHint()));
 	}

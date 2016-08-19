@@ -2,6 +2,7 @@ package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +23,7 @@ import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
+import pamtram.condition.ApplicationDependency;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
@@ -48,6 +50,23 @@ public class MappingSelector extends CancelableElement {
 	 * The list of {@link Mapping Mappings} that shall be considered.
 	 */
 	private final List<Mapping> mappings;
+
+	/**
+	 * The subset of {@link #mappings} that is equipped with one or more {@link ApplicationDependency
+	 * ApplicationDependencies}.
+	 */
+	private final List<Mapping> dependentMappings;
+
+	/**
+	 * This keeps track of the mappings that have been selected (the result of the {@link #selectMappings()} step.
+	 */
+	private Map<Mapping, List<MappingInstanceStorage>> selectedMappings;
+
+	/**
+	 * The list of {@link SourceSection} for that no mapping could yet be selected because at least one of the available
+	 * mappings is a {@link #dependentMappings dependentMapping}.
+	 */
+	private final List<SourceSection> deferredSections;
 
 	/**
 	 * If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
@@ -97,6 +116,11 @@ public class MappingSelector extends CancelableElement {
 
 		this.matchedSections = matchedSections;
 		this.mappings = mappings;
+		// TODO also filter if sub-conditions of type ApplicationDependency
+		this.dependentMappings = mappings.parallelStream()
+				.filter(m -> m.getCondition() instanceof ApplicationDependency).collect(Collectors.toList());
+		this.selectedMappings = Collections.synchronizedMap(new HashMap<>());
+		this.deferredSections = Collections.synchronizedList(new ArrayList<>());
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.conditionHandler = new ConditionHandler(matchedSections, globalValues, attributeValueCalculator);
@@ -112,16 +136,30 @@ public class MappingSelector extends CancelableElement {
 	 */
 	public Map<Mapping, List<MappingInstanceStorage>> selectMappings() {
 
-		// Select a mapping for each matched section and each descriptor instance
+		// Select a mapping for each matched section and each descriptor instance.
+		// In the first run, we 'defer' those sections that are associated with a Mapping that contains a
+		// 'MappingDependency'.
 		//
 		List<MappingInstanceStorage> mappingInstances = this.matchedSections.entrySet().parallelStream()
-				.map(e -> this.selectMapping(e.getKey(), e.getValue())).flatMap(l -> l.stream())
+				.map(e -> this.selectMapping(e.getKey(), e.getValue(), true)).flatMap(l -> l.stream())
 				.collect(Collectors.toList());
 
-		// Sort determined mapping instances by mapping and return them
+		this.selectedMappings.putAll(mappingInstances.parallelStream()
+				.collect(Collectors.toConcurrentMap(m -> m.getMapping(), Arrays::asList,
+						(m1, m2) -> Stream.concat(m1.stream(), m2.stream()).collect(Collectors.toList()))));
+
+		// Now, do the same stuff for the 'deferred' sections as we are now able to evaluate the
+		// 'ApplicationDependencies'.
 		//
-		return mappingInstances.parallelStream().collect(Collectors.toConcurrentMap(m -> m.getMapping(), Arrays::asList,
-				(m1, m2) -> Stream.concat(m1.stream(), m2.stream()).collect(Collectors.toList())));
+		List<MappingInstanceStorage> deferredInstances = this.deferredSections.parallelStream()
+				.map(s -> this.selectMapping(s, this.matchedSections.get(s), false)).flatMap(l -> l.stream())
+				.collect(Collectors.toList());
+
+		this.selectedMappings.putAll(deferredInstances.parallelStream()
+				.collect(Collectors.toConcurrentMap(m -> m.getMapping(), Arrays::asList,
+						(m1, m2) -> Stream.concat(m1.stream(), m2.stream()).collect(Collectors.toList()))));
+
+		return this.selectedMappings;
 	}
 
 	/**
@@ -135,12 +173,16 @@ public class MappingSelector extends CancelableElement {
 	 * @param descriptors
 	 *            The list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that are associated with the
 	 *            <em>matchedSection</em>.
+	 * @param deferApplicationDependencies
+	 *            This can be used to control whether those sections, for that at least one of the applicable mappings
+	 *            has an {@link ApplicationDependency} shall be 'deferred'. Typically, this should be set to 'true'
+	 *            during the first run (to collect the {@link #deferredSections} and to 'false' during the second run.
 	 * @return A list of {@link MappingInstanceStorage MappingInstanceStorages} (one for each of the given
 	 *         <em>descriptors</em>). Note: The {@link MappingInstanceStorage MappingInstanceStorages} do not yet
 	 *         contain any calculated hint values.
 	 */
 	private List<MappingInstanceStorage> selectMapping(SourceSection matchedSection,
-			List<MatchedSectionDescriptor> descriptors) {
+			List<MatchedSectionDescriptor> descriptors, boolean deferApplicationDependencies) {
 
 		// This will be returned in the end
 		//
@@ -150,6 +192,14 @@ public class MappingSelector extends CancelableElement {
 		//
 		Set<Mapping> applicableMappings = this.mappings.parallelStream()
 				.filter(m -> matchedSection.equals(m.getSourceMMSection())).collect(Collectors.toSet());
+
+		// Check if we need to 'defer' the selection of mappings for the given set of 'descriptors' as at least one of
+		// the possible mappings has an 'ApplicationDependency'
+		if (deferApplicationDependencies
+				&& applicableMappings.parallelStream().anyMatch(this.dependentMappings::contains)) {
+			this.deferredSections.add(matchedSection);
+			return ret;
+		}
 
 		// Filter mappings and descriptors by the applicability of conditions
 		//
@@ -246,7 +296,7 @@ public class MappingSelector extends CancelableElement {
 			//
 			Optional<Entry<Set<Mapping>, Set<MatchedSectionDescriptor>>> existing = applicableMappingsToDescriptors
 					.entrySet().stream().filter(entry -> entry.getKey().size() == localApplicableMappings.size()
-							&& entry.getKey().containsAll(localApplicableMappings))
+					&& entry.getKey().containsAll(localApplicableMappings))
 					.findFirst();
 
 			if (existing.isPresent()) {
@@ -272,8 +322,10 @@ public class MappingSelector extends CancelableElement {
 
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		//
-		return this.conditionHandler.checkCondition(mapping.getCondition(), descriptor) == CondResult.TRUE
-				&& this.conditionHandler.checkCondition(mapping.getConditionRef(), descriptor) == CondResult.TRUE;
+		return this.conditionHandler.checkCondition(mapping.getCondition(), descriptor,
+				this.selectedMappings) == CondResult.TRUE
+				&& this.conditionHandler.checkCondition(mapping.getConditionRef(), descriptor,
+						this.selectedMappings) == CondResult.TRUE;
 
 	}
 
@@ -291,22 +343,22 @@ public class MappingSelector extends CancelableElement {
 		// check conditions of all corresponding MappingHintGroups
 		//
 		mappingInstance.getMapping().getActiveMappingHintGroups().parallelStream()
-				.filter(hg -> hg instanceof ConditionalElement).forEach(hg -> {
+		.filter(hg -> hg instanceof ConditionalElement).forEach(hg -> {
 
-					boolean result = this.checkCondition((ConditionalElement) hg, mappingInstance);
+			boolean result = this.checkCondition((ConditionalElement) hg, mappingInstance);
 
-					if (result) {
+			if (result) {
 
-						// Iterate now over all corresponding MappingHints
-						//
-						hg.getMappingHints().parallelStream().forEach(m -> this.checkCondition(m, mappingInstance));
-					}
-				});
+				// Iterate now over all corresponding MappingHints
+				//
+				hg.getMappingHints().parallelStream().forEach(m -> this.checkCondition(m, mappingInstance));
+			}
+		});
 
 		// check Condition of corresponding IMPORTED MappingHintGroups
 		//
 		mappingInstance.getMapping().getActiveImportedMappingHintGroups().parallelStream()
-				.forEach(hg -> this.checkCondition(hg, mappingInstance));
+		.forEach(hg -> this.checkCondition(hg, mappingInstance));
 
 	}
 
@@ -345,9 +397,10 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private boolean checkCondition(ConditionalElement conditionalElement, MatchedSectionDescriptor descriptor) {
 
-		return !(this.conditionHandler.checkCondition(conditionalElement.getCondition(), descriptor) == CondResult.FALSE
+		return !(this.conditionHandler.checkCondition(conditionalElement.getCondition(), descriptor,
+				this.selectedMappings) == CondResult.FALSE
 				|| this.conditionHandler.checkCondition(conditionalElement.getConditionRef(),
-						descriptor) == CondResult.FALSE);
+						descriptor, this.selectedMappings) == CondResult.FALSE);
 
 	}
 

@@ -155,7 +155,7 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.pamtram"
         name="clone.origin.pamtram"
-        defaultValue="G:\staff\matthias\projects\pamtram"
+        defaultValue="ssh://git@eats3.et.tu-dresden.de/staff/mfreund/projects/pamtram"
         label="Pamtram clone origin">
       <description>The URL where all projects related to the 'pamtram' will be cloned from.</description>
     </setupTask>
@@ -163,7 +163,7 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.genlibrary"
         name="clone.origin.genlibrary"
-        defaultValue="G:\projects\genlibrary\common"
+        defaultValue="ssh://git@eats3.et.tu-dresden.de/projects/genlibrary/common"
         label="Genlibrary clone origin">
       <description>The URL where all projects related to the 'genlibrary' will be cloned from.</description>
     </setupTask>
@@ -171,7 +171,7 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.commons"
         name="clone.origin.commons"
-        defaultValue="G:\projects\eclipse-commons"
+        defaultValue="ssh://git@eats3.et.tu-dresden.de/projects/eclipse-commons"
         label="AGTele Eclipse Commons clone origin">
       <description>The URL where all projects from the 'AGTele Eclipse Commons' feature will be cloned from.</description>
     </setupTask>

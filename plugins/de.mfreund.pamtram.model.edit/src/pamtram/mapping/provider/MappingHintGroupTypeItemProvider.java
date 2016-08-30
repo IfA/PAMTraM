@@ -334,7 +334,7 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 		// provide labels for the custom child descriptors
 		if(child instanceof AttributeMapping) {
 			AttributeMapping attributeMapping = (AttributeMapping) child;
-			if(!attributeMapping.getSourceAttributeMappings().isEmpty()) {
+			if(!attributeMapping.getSourceElements().isEmpty()) {
 				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Source Attribute)";
 			}
 		} else if(child instanceof MappingInstanceSelector) {

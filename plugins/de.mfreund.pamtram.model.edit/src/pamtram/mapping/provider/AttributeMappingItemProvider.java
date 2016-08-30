@@ -193,7 +193,7 @@ extends MappingHintItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
+			childrenFeatures.add(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -274,7 +274,7 @@ extends MappingHintItemProvider {
 			styledLabel.append(" = " + am.getExpression(), StyledString.Style.COUNTER_STYLER);
 		} else {
 			ArrayList<String> sources = new ArrayList<>();
-			for (AttributeMappingSourceInterface source : am.getSourceAttributeMappings()) {
+			for (AttributeMappingSourceInterface source : am.getSourceElements()) {
 				sources.add(source.getName());
 				//				registerNotifyChangedListener(am, source, adapterFactory);
 			} 
@@ -298,7 +298,7 @@ extends MappingHintItemProvider {
 			case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -326,22 +326,22 @@ extends MappingHintItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
+				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMappingSourceElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
+				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
+				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
+				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
 	}
 

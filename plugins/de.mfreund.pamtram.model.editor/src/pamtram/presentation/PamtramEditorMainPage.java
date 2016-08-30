@@ -510,8 +510,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				if(item.getData() instanceof MappingHintGroupType){
 					MappingHintGroupType hintGroup = (MappingHintGroupType) item.getData();
 					mapping = (Mapping) hintGroup.eContainer();
-					source = mapping.getSourceMMSection();
-					TargetSectionClass target = hintGroup.getTargetMMSection();
+					source = mapping.getSourceSection();
+					TargetSectionClass target = hintGroup.getTargetSection();
 					if(target != null) {
 						if(target.eContainer() instanceof ContainerParameter) {
 							libraryTargets.add(target);
@@ -534,9 +534,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				} else if(item.getData() instanceof MappingHintGroupImporter){
 					MappingHintGroupImporter hintGroupImporter = (MappingHintGroupImporter) item.getData();
 					mapping = (Mapping) hintGroupImporter.eContainer();
-					source = mapping.getSourceMMSection();
+					source = mapping.getSourceSection();
 					if(hintGroupImporter.getHintGroup() != null) {
-						TargetSectionClass target = hintGroupImporter.getHintGroup().getTargetMMSection();
+						TargetSectionClass target = hintGroupImporter.getHintGroup().getTargetSection();
 						if(target != null) {
 							if(target.eContainer() instanceof ContainerParameter) {
 								libraryTargets.add(target);
@@ -561,7 +561,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					if(g.getSource() != null){
 						source = g.getSource();
 					} else{
-						source = mapping.getSourceMMSection();
+						source = mapping.getSourceSection();
 					}
 					expanded.add(mapping);
 					expanded.add(g);
@@ -590,14 +590,14 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					 */
 				} else if(item.getData() instanceof Mapping){
 					mapping = (Mapping) item.getData();
-					source = mapping.getSourceMMSection();
+					source = mapping.getSourceSection();
 					if(mapping.getConditionRef() != null) {
 						conditions.add(mapping.getConditionRef());
 					}
 					expanded.add(mapping);
 					for(MappingHintGroupType group : mapping.getMappingHintGroups()){
-						if(group.getTargetMMSection() != null) {
-							TargetSectionClass target = group.getTargetMMSection();
+						if(group.getTargetSection() != null) {
+							TargetSectionClass target = group.getTargetSection();
 							if(target.eContainer() instanceof ContainerParameter) {
 								libraryTargets.add(target);
 							} else {
@@ -692,13 +692,13 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				if(importer.eContainer() instanceof AttributeMapping) {
 					target = ((AttributeMapping) importer.eContainer()).getTarget();
 				} else if(importer.eContainer() instanceof AttributeMatcher) {
-					target = ((AttributeMatcher) importer.eContainer()).getTargetAttribute();
+					target = ((AttributeMatcher) importer.eContainer()).getTarget();
 				} else if(importer.eContainer() instanceof ModelConnectionHint) {
 					if(!((ModelConnectionHint) importer.eContainer()).getTargetAttributes().isEmpty()) {
 						target = ((ModelConnectionHint) importer.eContainer()).getTargetAttributes().get(0).getSource();
 					}
 				} else if(importer.eContainer() instanceof InstancePointer) {
-					target = ((InstancePointer) importer.eContainer()).getAttributePointer();
+					target = ((InstancePointer) importer.eContainer()).getTarget();
 				}
 				Attribute<?, ?, ?, ?> source = importer.getSourceAttribute();
 
@@ -713,7 +713,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				Attribute<?, ?, ?, ?> target = mapping.getTarget();
 
 				List<Object> sources = new LinkedList<>();
-				for(AttributeMappingSourceInterface c : mapping.getSourceAttributeMappings()){
+				for(AttributeMappingSourceInterface c : mapping.getSourceElements()){
 					if(c.getSourceAttribute() != null){
 						sources.add(c.getSourceAttribute());
 					}
@@ -758,11 +758,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 			} else if(item.getData() instanceof AttributeMatcher){
 				AttributeMatcher matcher= (AttributeMatcher) item.getData();
 
-				TargetSectionAttribute target= matcher.getTargetAttribute();
+				TargetSectionAttribute target= matcher.getTarget();
 
 				List<SourceSectionAttribute> sources = new LinkedList<>();
 
-				for(AttributeMatcherSourceInterface srcElement : matcher.getSourceAttributes()){
+				for(AttributeMatcherSourceInterface srcElement : matcher.getSourceElements()){
 					if(srcElement.getSourceAttribute() != null){
 						sources.add(srcElement.getSourceAttribute());
 					}
@@ -822,7 +822,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					if(m instanceof AttributeMapping){
 						attr.add(((AttributeMapping) m).getTarget());
 					} else if(m instanceof AttributeMatcher){
-						attr.add(((AttributeMatcher) m).getTargetAttribute());
+						attr.add(((AttributeMatcher) m).getTarget());
 					}
 				}
 

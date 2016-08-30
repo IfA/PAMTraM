@@ -383,7 +383,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 				// model viewer shall be shown (depending on the users selection)
 				//
 				if(((TreeItem) e.item).getData() instanceof MappingType) {
-					sourceSectionClass = ((MappingType) ((TreeItem) e.item).getData()).getSourceMMSection();
+					sourceSectionClass = ((MappingType) ((TreeItem) e.item).getData()).getSourceSection();
 					// select the source section for this mapping (that is used to find the matched elements
 					sourceViewer.setSelection(new StructuredSelection(sourceSectionClass), true);
 				} else {

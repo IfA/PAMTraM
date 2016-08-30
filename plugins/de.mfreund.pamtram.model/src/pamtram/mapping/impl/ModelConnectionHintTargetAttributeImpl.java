@@ -85,20 +85,20 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		 *   in
 		 *     let
 		 *       status : OclAny[?] = let
-		 *         targetMMSection : metamodel::TargetSection[1] = self.oclContainer()
+		 *         targetSection : metamodel::TargetSection[1] = self.oclContainer()
 		 *         .oclContainer()
-		 *         .oclAsType(MappingHintGroupType).targetMMSection
+		 *         .oclAsType(MappingHintGroupType).targetSection
 		 *       in
 		 *         if
 		 *           self.source.oclType() = OclVoid or
-		 *           targetMMSection.oclType() = OclVoid
+		 *           targetSection.oclType() = OclVoid
 		 *         then true
 		 *         else
 		 *           self.source.oclAsType(metamodel::TargetSectionAttribute)
 		 *           .oclContainer()
 		 *           .oclAsType(metamodel::Class(S, C, R, A))
 		 *           .eClass.eAllContainments->exists(r |
-		 *             r.eReferenceType.isSuperTypeOf(targetMMSection.eClass))
+		 *             r.eReferenceType.isSuperTypeOf(targetSection.eClass))
 		 *         endif
 		 *     in
 		 *       let
@@ -106,7 +106,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		 *         then 'The type of the parent hint group\'s target section (\'' +
 		 *           self.oclContainer()
 		 *           .oclContainer()
-		 *           .oclAsType(MappingHintGroupType).targetMMSection.eClass.name + '\') cannot be connected to (contained in) the type of the class containing the target attribute (\'' +
+		 *           .oclAsType(MappingHintGroupType).targetSection.eClass.name + '\') cannot be connected to (contained in) the type of the class containing the target attribute (\'' +
 		 *           self.source.oclAsType(metamodel::TargetSectionAttribute)
 		 *           .oclContainer()
 		 *           .oclAsType(metamodel::Class(S, C, R, A)).name + '\')!'
@@ -119,17 +119,17 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		/*@Caught*/ /*@Nullable*/ Object CAUGHT_symbol_0;
 		try {
-		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_targetMMSection;
+		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_targetSection;
 		    try {
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
 		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		        final /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, oclContainer);
 		        final /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		        final /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetSection();
-		        CAUGHT_targetMMSection = targetMMSection;
+		        final /*@Thrown*/ TargetSection targetSection = oclAsType.getTargetSection();
+		        CAUGHT_targetSection = targetSection;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_targetMMSection = ValueUtil.createInvalidValue(e);
+		        CAUGHT_targetSection = ValueUtil.createInvalidValue(e);
 		    }
 		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq;
 		    try {
@@ -145,10 +145,10 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_0;
 		    try {
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_1 = idResolver.getClass(TypeId.OCL_VOID, null);
-		        if (CAUGHT_targetMMSection instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_targetMMSection;
+		        if (CAUGHT_targetSection instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_targetSection;
 		        }
-		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, CAUGHT_targetMMSection);
+		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, CAUGHT_targetSection);
 		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_1.getTypeId();
 		        CAUGHT_eq_0 = eq_0;
 		    }
@@ -188,15 +188,15 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		            }
 		            /*@NonInvalid*/ EReference r = (EReference)ITERATOR_r.next();
 		            /**
-		             * r.eReferenceType.isSuperTypeOf(targetMMSection.eClass)
+		             * r.eReferenceType.isSuperTypeOf(targetSection.eClass)
 		             */
 		            /*@Caught*/ /*@NonNull*/ Object CAUGHT_isSuperTypeOf;
 		            try {
 		                final /*@Thrown*/ EClass eReferenceType = r.getEReferenceType();
-		                if (CAUGHT_targetMMSection instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_targetMMSection;
+		                if (CAUGHT_targetSection instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_targetSection;
 		                }
-		                final /*@Thrown*/ EClass eClass_0 = ((TargetSection)CAUGHT_targetMMSection).getEClass();
+		                final /*@Thrown*/ EClass eClass_0 = ((TargetSection)CAUGHT_targetSection).getEClass();
 		                final /*@Thrown*/ boolean isSuperTypeOf = eReferenceType.isSuperTypeOf(eClass_0);
 		                CAUGHT_isSuperTypeOf = isSuperTypeOf;
 		            }
@@ -237,8 +237,8 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		    final /*@NonInvalid*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		    final /*@Thrown*/ Object oclContainer_3 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, oclContainer_2);
 		    final /*@Thrown*/ MappingHintGroupType oclAsType_2 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_3, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
-		    final /*@Thrown*/ TargetSection targetMMSection_0 = oclAsType_2.getTargetSection();
-		    final /*@Thrown*/ EClass eClass_1 = targetMMSection_0.getEClass();
+		    final /*@Thrown*/ TargetSection targetSection_0 = oclAsType_2.getTargetSection();
+		    final /*@Thrown*/ EClass eClass_1 = targetSection_0.getEClass();
 		    final /*@Thrown*/ String name = eClass_1.getName();
 		    final /*@NonInvalid*/ String sum = StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_type_32_of_32_the_32_parent_32_hint_32_group_39_s_32_target_32_section_32_o_39, name);
 		    final /*@NonInvalid*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_e_32_cannot_32_be_32_connected_32_to_32_o_contained_32_in_e_32_the_32_type_32_of_32_the_32_class_32_c);
@@ -267,7 +267,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_4:
 				return sourceMatchesPossibleContainerType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

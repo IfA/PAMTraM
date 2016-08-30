@@ -902,7 +902,7 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__extend = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND, Types._MappingHintGroupType, 0);
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__mappingHints = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS, Types._MappingHintGroupType, 1);
-		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__targetMMSection = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, Types._MappingHintGroupType, 2);
+		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__targetSection = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION, Types._MappingHintGroupType, 2);
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__Mapping__mappingHintGroups = new ExecutorPropertyWithImplementation("Mapping", Types._MappingHintGroupType, 3, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS));
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__MappingHintGroupType__extend = new ExecutorPropertyWithImplementation("MappingHintGroupType", Types._MappingHintGroupType, 4, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND));
 
@@ -911,7 +911,7 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorProperty _MappingInstanceSelector__affectedReference = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE, Types._MappingInstanceSelector, 0);
 		public static final /*@NonNull*/ ExecutorProperty _MappingInstanceSelector__matcher = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER, Types._MappingInstanceSelector, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _MappingType__sourceMMSection = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION, Types._MappingType, 0);
+		public static final /*@NonNull*/ ExecutorProperty _MappingType__sourceSection = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION, Types._MappingType, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _MatchToLowerCaseConverter__regex = new EcoreExecutorProperty(MappingPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER__REGEX, Types._MatchToLowerCaseConverter, 0);
 
@@ -3909,7 +3909,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ExportedMappingHintGroup = {
 			MappingTables.Properties._MappingHintGroupType__extend,
 			MappingTables.Properties._MappingHintGroupType__mappingHints,
-			MappingTables.Properties._MappingHintGroupType__targetMMSection,
+			MappingTables.Properties._MappingHintGroupType__targetSection,
 			MappingTables.Properties._MappingHintGroupType__Mapping__mappingHintGroups,
 			MappingTables.Properties._ExportedMappingHintGroup__MappingHintGroupImporter__hintGroup,
 			MappingTables.Properties._MappingHintGroupType__MappingHintGroupType__extend
@@ -4008,7 +4008,7 @@ public class MappingTables
 			MappingTables.Properties._Mapping__globalVariables,
 			MappingTables.Properties._Mapping__importedMappingHintGroups,
 			MappingTables.Properties._Mapping__mappingHintGroups,
-			MappingTables.Properties._MappingType__sourceMMSection
+			MappingTables.Properties._MappingType__sourceSection
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MappingHint = {
@@ -4022,7 +4022,7 @@ public class MappingTables
 			MappingTables.Properties._MappingHintGroupType__extend,
 			MappingTables.Properties._MappingHintGroupType__mappingHints,
 			MappingTables.Properties._MappingHintGroup__modelConnectionMatcher,
-			MappingTables.Properties._MappingHintGroupType__targetMMSection,
+			MappingTables.Properties._MappingHintGroupType__targetSection,
 			MappingTables.Properties._MappingHintGroupType__Mapping__mappingHintGroups,
 			MappingTables.Properties._MappingHintGroupType__MappingHintGroupType__extend
 		};
@@ -4037,7 +4037,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MappingHintGroupType = {
 			MappingTables.Properties._MappingHintGroupType__extend,
 			MappingTables.Properties._MappingHintGroupType__mappingHints,
-			MappingTables.Properties._MappingHintGroupType__targetMMSection,
+			MappingTables.Properties._MappingHintGroupType__targetSection,
 			MappingTables.Properties._MappingHintGroupType__Mapping__mappingHintGroups,
 			MappingTables.Properties._MappingHintGroupType__MappingHintGroupType__extend
 		};
@@ -4056,7 +4056,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MappingType = {
-			MappingTables.Properties._MappingType__sourceMMSection
+			MappingTables.Properties._MappingType__sourceSection
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MatchToLowerCaseConverter = {

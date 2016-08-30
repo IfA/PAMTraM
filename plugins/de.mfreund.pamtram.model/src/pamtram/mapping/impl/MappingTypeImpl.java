@@ -23,7 +23,7 @@ import pamtram.metamodel.SourceSection;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappingTypeImpl#isDeactivated <em>Deactivated</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingTypeImpl#getSourceMMSection <em>Source MM Section</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingTypeImpl#getSourceSection <em>Source Section</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,7 +48,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 */
 	protected boolean deactivated = DEACTIVATED_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getSourceSection() <em>Source MM Section</em>}' reference.
+	 * The cached value of the '{@link #getSourceSection() <em>Source Section</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceSection()
@@ -107,11 +107,11 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	@Override
 	public SourceSection getSourceSection() {
 		if (sourceSection != null && sourceSection.eIsProxy()) {
-			InternalEObject oldSourceMMSection = (InternalEObject)sourceSection;
-			sourceSection = (SourceSection)eResolveProxy(oldSourceMMSection);
-			if (sourceSection != oldSourceMMSection) {
+			InternalEObject oldSourceSection = (InternalEObject)sourceSection;
+			sourceSection = (SourceSection)eResolveProxy(oldSourceSection);
+			if (sourceSection != oldSourceSection) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION, oldSourceMMSection, sourceSection));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_TYPE__SOURCE_SECTION, oldSourceSection, sourceSection));
 			}
 		}
 		return sourceSection;
@@ -131,11 +131,11 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceSectionGen(SourceSection newSourceMMSection) {
-		SourceSection oldSourceMMSection = sourceSection;
-		sourceSection = newSourceMMSection;
+	public void setSourceSectionGen(SourceSection newSourceSection) {
+		SourceSection oldSourceSection = sourceSection;
+		sourceSection = newSourceSection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION, oldSourceMMSection, sourceSection));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_TYPE__SOURCE_SECTION, oldSourceSection, sourceSection));
 	}
 
 	/**
@@ -158,7 +158,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 		switch (featureID) {
 			case MappingPackage.MAPPING_TYPE__DEACTIVATED:
 				return isDeactivated();
-			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
+			case MappingPackage.MAPPING_TYPE__SOURCE_SECTION:
 				if (resolve) return getSourceSection();
 				return basicGetSourceSection();
 		}
@@ -176,7 +176,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 			case MappingPackage.MAPPING_TYPE__DEACTIVATED:
 				setDeactivated((Boolean)newValue);
 				return;
-			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
+			case MappingPackage.MAPPING_TYPE__SOURCE_SECTION:
 				setSourceSection((SourceSection)newValue);
 				return;
 		}
@@ -194,7 +194,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 			case MappingPackage.MAPPING_TYPE__DEACTIVATED:
 				setDeactivated(DEACTIVATED_EDEFAULT);
 				return;
-			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
+			case MappingPackage.MAPPING_TYPE__SOURCE_SECTION:
 				setSourceSection((SourceSection)null);
 				return;
 		}
@@ -211,7 +211,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 		switch (featureID) {
 			case MappingPackage.MAPPING_TYPE__DEACTIVATED:
 				return deactivated != DEACTIVATED_EDEFAULT;
-			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
+			case MappingPackage.MAPPING_TYPE__SOURCE_SECTION:
 				return sourceSection != null;
 		}
 		return super.eIsSet(featureID);

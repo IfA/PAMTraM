@@ -66,16 +66,15 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 	 */
 	@Override
 	public ConditionalElement getConditionalElement() {
-		if (this.conditionalElement != null && this.conditionalElement.eIsProxy()) {
-			InternalEObject oldConditionalElement = (InternalEObject)this.conditionalElement;
-			this.conditionalElement = (ConditionalElement)this.eResolveProxy(oldConditionalElement);
-			if (this.conditionalElement != oldConditionalElement) {
-				if (this.eNotificationRequired()) {
-					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT, oldConditionalElement, this.conditionalElement));
-				}
+		if (conditionalElement != null && conditionalElement.eIsProxy()) {
+			InternalEObject oldConditionalElement = (InternalEObject)conditionalElement;
+			conditionalElement = (ConditionalElement)eResolveProxy(oldConditionalElement);
+			if (conditionalElement != oldConditionalElement) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT, oldConditionalElement, conditionalElement));
 			}
 		}
-		return this.conditionalElement;
+		return conditionalElement;
 	}
 
 	/**
@@ -84,7 +83,7 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 	 * @generated
 	 */
 	public ConditionalElement basicGetConditionalElement() {
-		return this.conditionalElement;
+		return conditionalElement;
 	}
 
 	/**
@@ -94,11 +93,10 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 	 */
 	@Override
 	public void setConditionalElement(ConditionalElement newConditionalElement) {
-		ConditionalElement oldConditionalElement = this.conditionalElement;
-		this.conditionalElement = newConditionalElement;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT, oldConditionalElement, this.conditionalElement));
-		}
+		ConditionalElement oldConditionalElement = conditionalElement;
+		conditionalElement = newConditionalElement;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT, oldConditionalElement, conditionalElement));
 	}
 
 	/**
@@ -110,10 +108,8 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT:
-				if (resolve) {
-					return this.getConditionalElement();
-				}
-				return this.basicGetConditionalElement();
+				if (resolve) return getConditionalElement();
+				return basicGetConditionalElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -127,7 +123,7 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT:
-				this.setConditionalElement((ConditionalElement)newValue);
+				setConditionalElement((ConditionalElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,7 +138,7 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT:
-				this.setConditionalElement((ConditionalElement)null);
+				setConditionalElement((ConditionalElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -157,7 +153,7 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT:
-				return this.conditionalElement != null;
+				return conditionalElement != null;
 		}
 		return super.eIsSet(featureID);
 	}

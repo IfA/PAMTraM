@@ -210,10 +210,10 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 		 *             .oclIsKindOf(MappingHintGroupType)
 		 *           then
 		 *             self.oclContainer()
-		 *             .oclAsType(MappingHintGroupType).targetMMSection
+		 *             .oclAsType(MappingHintGroupType).targetSection
 		 *           else
 		 *             self.oclContainer()
-		 *             .oclAsType(MappingHintGroupImporter).hintGroup.targetMMSection
+		 *             .oclAsType(MappingHintGroupImporter).hintGroup.targetSection
 		 *           endif
 		 *         in
 		 *           if targetMMSection.oclType() = OclVoid
@@ -258,33 +258,33 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 		        status = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_targetMMSection_1;
+		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_targetMMSection;
 		        try {
 		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
 		            final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		            final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0).booleanValue();
-		            /*@Thrown*/ TargetSection targetMMSection_1;
+		            /*@Thrown*/ TargetSection targetMMSection;
 		            if (oclIsKindOf) {
 		                final /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		                final /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetSection();
-		                targetMMSection_1 = targetMMSection;
+		                final /*@Thrown*/ TargetSection targetSection = oclAsType.getTargetSection();
+		                targetMMSection = targetSection;
 		            }
 		            else {
 		                final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupImporter, null);
 		                final /*@Thrown*/ MappingHintGroupImporter oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupImporter)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter));
 		                final /*@Thrown*/ ExportedMappingHintGroup hintGroup = oclAsType_0.getHintGroup();
-		                final /*@Thrown*/ TargetSection targetMMSection_0 = hintGroup.getTargetSection();
-		                targetMMSection_1 = targetMMSection_0;
+		                final /*@Thrown*/ TargetSection targetSection_0 = hintGroup.getTargetSection();
+		                targetMMSection = targetSection_0;
 		            }
-		            CAUGHT_targetMMSection_1 = targetMMSection_1;
+		            CAUGHT_targetMMSection = targetMMSection;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_targetMMSection_1 = ValueUtil.createInvalidValue(e);
+		            CAUGHT_targetMMSection = ValueUtil.createInvalidValue(e);
 		        }
-		        if (CAUGHT_targetMMSection_1 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_targetMMSection_1;
+		        if (CAUGHT_targetMMSection instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_targetMMSection;
 		        }
-		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, CAUGHT_targetMMSection_1);
+		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, CAUGHT_targetMMSection);
 		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_0.getTypeId();
 		        /*@Thrown*/ Boolean symbol_0;
 		        if (eq_0) {
@@ -294,7 +294,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 		            /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_1;
 		            try {
 		                final /*@Thrown*/ Object getContainingSection = ((MetaModelElement)affectedReference).getContainingSection();
-		                final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(CAUGHT_targetMMSection_1);
+		                final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(CAUGHT_targetMMSection);
 		                CAUGHT_eq_1 = eq_1;
 		            }
 		            catch (Exception e) {
@@ -303,7 +303,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 		            /*@Caught*/ /*@NonNull*/ Object CAUGHT_includes;
 		            try {
 		                final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Section, null);
-		                final /*@Thrown*/ Section oclAsType_1 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, CAUGHT_targetMMSection_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0));
+		                final /*@Thrown*/ Section oclAsType_1 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, CAUGHT_targetMMSection, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0));
 		                final /*@Thrown*/ List<Object> extend = oclAsType_1.getExtend();
 		                final /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend);
 		                final /*@Thrown*/ Object getContainingSection_0 = ((MetaModelElement)affectedReference).getContainingSection();
@@ -518,9 +518,9 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_4:
 				return affectedReferenceMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_4:
 				return affectedReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

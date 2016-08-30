@@ -245,13 +245,13 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		 *         self.oclContainer()
 		 *         .oclContainer()
 		 *         .oclAsType(Mapping)
-		 *         .sourceMMSection.oclType() = OclVoid
+		 *         .sourceSection.oclType() = OclVoid
 		 *       then true
 		 *       else
 		 *         self.source.getContainingSection() =
 		 *         self.oclContainer()
 		 *         .oclContainer()
-		 *         .oclAsType(Mapping).sourceMMSection
+		 *         .oclAsType(Mapping).sourceSection
 		 *       endif
 		 *     in
 		 *       let
@@ -287,8 +287,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		        final /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, oclContainer);
 		        final /*@Thrown*/ Mapping oclAsType = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_Mapping));
-		        final /*@Thrown*/ SourceSection sourceMMSection = oclAsType.getSourceSection();
-		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, sourceMMSection);
+		        final /*@Thrown*/ SourceSection sourceSection = oclAsType.getSourceSection();
+		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, sourceSection);
 		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_1.getTypeId();
 		        CAUGHT_eq_0 = eq_0;
 		    }
@@ -310,8 +310,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		        final /*@NonInvalid*/ Object oclContainer_1 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		        final /*@Thrown*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, oclContainer_1);
 		        final /*@Thrown*/ Mapping oclAsType_0 = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_2, TYP_pamtram_c_c_mapping_c_c_Mapping_0));
-		        final /*@Thrown*/ SourceSection sourceMMSection_0 = oclAsType_0.getSourceSection();
-		        final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(sourceMMSection_0);
+		        final /*@Thrown*/ SourceSection sourceSection_0 = oclAsType_0.getSourceSection();
+		        final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(sourceSection_0);
 		        status = eq_1;
 		    }
 		    CAUGHT_status = status;
@@ -361,12 +361,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		 *         self.target.oclType() = OclVoid or
 		 *         self.oclContainer()
 		 *         .oclAsType(MappingHintGroupType)
-		 *         .targetMMSection.oclType() = OclVoid
+		 *         .targetSection.oclType() = OclVoid
 		 *       then true
 		 *       else
 		 *         self.target.getContainingSection() =
 		 *         self.oclContainer()
-		 *         .oclAsType(MappingHintGroupType).targetMMSection
+		 *         .oclAsType(MappingHintGroupType).targetSection
 		 *       endif
 		 *     in
 		 *       let
@@ -400,8 +400,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
 		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		        final /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		        final /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetSection();
-		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, targetMMSection);
+		        final /*@Thrown*/ TargetSection targetSection = oclAsType.getTargetSection();
+		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, targetSection);
 		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_1.getTypeId();
 		        CAUGHT_eq_0 = eq_0;
 		    }
@@ -422,8 +422,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		        final /*@Thrown*/ Object getContainingSection = ((MetaModelElement)target_0).getContainingSection();
 		        final /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		        final /*@Thrown*/ MappingHintGroupType oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
-		        final /*@Thrown*/ TargetSection targetMMSection_0 = oclAsType_0.getTargetSection();
-		        final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(targetMMSection_0);
+		        final /*@Thrown*/ TargetSection targetSection_0 = oclAsType_0.getTargetSection();
+		        final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(targetSection_0);
 		        status = eq_1;
 		    }
 		    CAUGHT_status = status;
@@ -661,15 +661,15 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.CARDINALITY_MAPPING___NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.CARDINALITY_MAPPING___NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP_4:
 				return noCardinalityMappingForSourceSectionRoot((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.CARDINALITY_MAPPING___SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.CARDINALITY_MAPPING___SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_4:
 				return sourceClassMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.CARDINALITY_MAPPING___TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.CARDINALITY_MAPPING___TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_4:
 				return targetClassMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.CARDINALITY_MAPPING___TARGET_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.CARDINALITY_MAPPING___TARGET_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP_4:
 				return targetClassIsVariableCardinality((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.CARDINALITY_MAPPING___SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.CARDINALITY_MAPPING___SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP_4:
 				return sourceClassIsVariableCardinality((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

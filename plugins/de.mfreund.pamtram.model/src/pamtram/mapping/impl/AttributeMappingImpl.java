@@ -58,7 +58,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getResultModifier <em>Result Modifier</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getSourceAttributeMappings <em>Source Attribute Mappings</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -103,7 +103,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	protected TargetSectionAttribute target;
 
 	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Attribute Mappings</em>}' containment reference list.
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceElements()
@@ -187,7 +187,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	@Override
 	public EList<AttributeMappingSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<AttributeMappingSourceInterface>(AttributeMappingSourceInterface.class, this, MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
+			sourceElements = new EObjectContainmentEList<AttributeMappingSourceInterface>(AttributeMappingSourceInterface.class, this, MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
@@ -413,7 +413,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -434,7 +434,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
 				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -459,7 +459,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				setTarget((TargetSectionAttribute)newValue);
 				return;
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				getSourceElements().addAll((Collection<? extends AttributeMappingSourceInterface>)newValue);
 				return;
@@ -484,7 +484,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				setTarget((TargetSectionAttribute)null);
 				return;
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				return;
 		}
@@ -505,7 +505,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				return resultModifier != null && !resultModifier.isEmpty();
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				return target != null;
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -578,7 +578,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				return getLocalSourceElements();
 			case MappingPackage.ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
-			case MappingPackage.ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_4:
+			case MappingPackage.ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_7:
 				return targetAttributeMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

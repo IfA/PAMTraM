@@ -854,10 +854,10 @@ public class MappingTables
 			Operations.init();
 		}
 
-		public static final /*@NonNull*/ ExecutorProperty _AttributeMapping__sourceAttributeMappings = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS, Types._AttributeMapping, 0);
+		public static final /*@NonNull*/ ExecutorProperty _AttributeMapping__sourceElements = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS, Types._AttributeMapping, 0);
 		public static final /*@NonNull*/ ExecutorProperty _AttributeMapping__target = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET, Types._AttributeMapping, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _AttributeMappingSourceInterface__AttributeMapping__sourceAttributeMappings = new ExecutorPropertyWithImplementation("AttributeMapping", Types._AttributeMappingSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS));
+		public static final /*@NonNull*/ ExecutorProperty _AttributeMappingSourceInterface__AttributeMapping__sourceElements = new ExecutorPropertyWithImplementation("AttributeMapping", Types._AttributeMappingSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS));
 
 		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__sourceAttributes = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES, Types._AttributeMatcher, 0);
 		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__targetAttribute = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE, Types._AttributeMatcher, 1);
@@ -3842,7 +3842,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMapping = {
 			MappingTables.Properties._ExpressionHint__expression,
 			MappingTables.Properties._ModifiableHint__resultModifier,
-			MappingTables.Properties._AttributeMapping__sourceAttributeMappings,
+			MappingTables.Properties._AttributeMapping__sourceElements,
 			MappingTables.Properties._AttributeMapping__target,
 			MappingTables.Properties._ExpandableHint__MappedAttributeValueExpander__hintsToExpand,
 			MappingTables.Properties._MappingHintType__MappingHintGroupImporter__mappingHints,
@@ -3852,17 +3852,17 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMappingExternalSourceElement = {
 			MappingTables.Properties._ModifiedAttributeElementType__modifier,
 			MappingTables.Properties._ModifiedAttributeElementType__source,
-			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceAttributeMappings
+			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMappingSourceElement = {
 			MappingTables.Properties._ModifiedAttributeElementType__modifier,
 			MappingTables.Properties._ModifiedAttributeElementType__source,
-			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceAttributeMappings
+			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMappingSourceInterface = {
-			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceAttributeMappings
+			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMatcher = {
@@ -3947,7 +3947,7 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _FixedValue = {
 			MappingTables.Properties._FixedValue__value,
-			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceAttributeMappings,
+			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements,
 			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes,
 			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
 		};
@@ -3961,7 +3961,7 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _GlobalAttributeImporter = {
 			MappingTables.Properties._GlobalAttributeImporter__globalAttribute,
-			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceAttributeMappings,
+			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements,
 			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes,
 			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
 		};

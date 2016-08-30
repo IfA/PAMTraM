@@ -17,7 +17,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.AttributeMapping#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.mapping.AttributeMapping#getSourceAttributeMappings <em>Source Attribute Mappings</em>}</li>
+ *   <li>{@link pamtram.mapping.AttributeMapping#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMapping()
@@ -53,7 +53,7 @@ public interface AttributeMapping extends MappingHint, ExpressionHint, Modifiabl
 	void setTarget(TargetSectionAttribute value);
 
 	/**
-	 * Returns the value of the '<em><b>Source Attribute Mappings</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.mapping.AttributeMappingSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -61,10 +61,10 @@ public interface AttributeMapping extends MappingHint, ExpressionHint, Modifiabl
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Attribute Mappings</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getAttributeMapping_SourceAttributeMappings()
+	 * @return the value of the '<em>Source Elements</em>' containment reference list.
+	 * @see pamtram.mapping.MappingPackage#getAttributeMapping_SourceElements()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!AttributeMapping!sourceAttributeMappings'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!AttributeMapping!sourceElements'"
 	 * @generated
 	 */
 	EList<AttributeMappingSourceInterface> getSourceElements();
@@ -73,7 +73,7 @@ public interface AttributeMapping extends MappingHint, ExpressionHint, Modifiabl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\tEList<AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingSourceElement>();\r\n\t\t\r\n\t\tfor(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){\r\n\t\t\tif(i instanceof AttributeMappingSourceElement){\r\n\t\t\t\telements.add((AttributeMappingSourceElement) i);\r\n\t\t\t}\r\n\t\t}\r\n\t\t\r\n\t\treturn elements;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\tEList<AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingSourceElement>();\r\n\t\t\r\n\t\tfor(AttributeMappingSourceInterface i : this.getSourceElements()){\r\n\t\t\tif(i instanceof AttributeMappingSourceElement){\r\n\t\t\t\telements.add((AttributeMappingSourceElement) i);\r\n\t\t\t}\r\n\t\t}\r\n\t\t\r\n\t\treturn elements;'"
 	 * @generated
 	 */
 	EList<AttributeMappingSourceElement> getLocalSourceElements();
@@ -82,7 +82,7 @@ public interface AttributeMapping extends MappingHint, ExpressionHint, Modifiabl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingExternalSourceElement>();\r\n\r\nfor(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){\r\n\tif(i instanceof AttributeMappingExternalSourceElement){\r\n\t\telements.add((AttributeMappingExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingExternalSourceElement>();\r\n\r\nfor(AttributeMappingSourceInterface i : this.getSourceElements()){\r\n\tif(i instanceof AttributeMappingExternalSourceElement){\r\n\t\telements.add((AttributeMappingExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
 	 * @generated
 	 */
 	EList<AttributeMappingExternalSourceElement> getExternalSourceElements();

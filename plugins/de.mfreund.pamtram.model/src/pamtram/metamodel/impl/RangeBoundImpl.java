@@ -286,7 +286,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 		
 		// The SourceSection of the Mapping that contains the constraint
 		//
-		SourceSection localSection = ((Mapping) container).getSourceMMSection();
+		SourceSection localSection = ((Mapping) container).getSourceSection();
 		
 		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
 				(s instanceof ValueConstraintSourceElement &&

@@ -234,7 +234,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		
 		// The SourceSection of the Mapping that contains the condition
 		//
-		SourceSection localSection = ((Mapping) container).getSourceMMSection();
+		SourceSection localSection = ((Mapping) container).getSourceSection();
 		
 		if(referencedSection.equals(localSection)) {
 			return true;

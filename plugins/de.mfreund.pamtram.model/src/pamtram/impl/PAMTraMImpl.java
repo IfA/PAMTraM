@@ -573,10 +573,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 						/*
 						 * check if the hint group or its parent mapping equals the section that we just added the concrete elements to
 						 */
-						if(concreteSection.equals(hintGroup.getTargetMMSection()) ||
-								concreteSection.isContainerFor(hintGroup.getTargetMMSection()) ||
-								concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceMMSection()) ||
-								concreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceMMSection())) {
+						if(concreteSection.equals(hintGroup.getTargetSection()) ||
+								concreteSection.isContainerFor(hintGroup.getTargetSection()) ||
+								concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceSection()) ||
+								concreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceSection())) {
 
 							if(setting.getEStructuralFeature().equals(MappingPackage.eINSTANCE.getModifiedAttributeElementType_Source()) &&
 									setting.getEObject() instanceof ModelConnectionHintTargetAttribute) {
@@ -758,7 +758,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 							local = false;
 						}
 						ArrayList<Section> sourceAndTargetSections = new ArrayList<>();
-						SourceSection sourceSection = ((Mapping) concreteHintGroup.eContainer()).getSourceMMSection();
+						SourceSection sourceSection = ((Mapping) concreteHintGroup.eContainer()).getSourceSection();
 						if(local) {
 							sourceAndTargetSections.add(sourceSection);
 						} else {
@@ -767,7 +767,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 								sourceAndTargetSections.add(sourceSection);
 							}
 						}
-						TargetSection targetSection = concreteHintGroup.getTargetMMSection();
+						TargetSection targetSection = concreteHintGroup.getTargetSection();
 						if(local) {
 							sourceAndTargetSections.add(targetSection);
 						} else {

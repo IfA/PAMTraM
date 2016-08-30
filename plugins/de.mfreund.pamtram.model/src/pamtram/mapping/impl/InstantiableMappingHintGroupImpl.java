@@ -547,7 +547,7 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 			hintGroup = ((MappingHintGroupImporter) this).getHintGroup();
 		}
 
-		return hintGroup == null ? null : hintGroup.getTargetMMSection();
+		return hintGroup == null ? null : hintGroup.getTargetSection();
 	}
 
 } //InstantiableMappingHintGroupImpl

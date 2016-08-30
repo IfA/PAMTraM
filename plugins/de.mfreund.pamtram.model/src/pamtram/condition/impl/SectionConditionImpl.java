@@ -177,7 +177,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 		
 		// The SourceSection of the Mapping that contains the condition
 		//
-		SourceSection localSection = ((Mapping) container).getSourceMMSection();
+		SourceSection localSection = ((Mapping) container).getSourceSection();
 		
 		if(referencedSection.equals(localSection)) {
 			return true;

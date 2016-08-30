@@ -176,7 +176,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		    /**
 		     * self = mhg.targetMMSection
 		     */
-		    final /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetMMSection();
+		    final /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetSection();
 		    final /*@Thrown*/ boolean eq = this.equals(targetMMSection);
 		    //
 		    if (eq == ValueUtil.TRUE_VALUE) {

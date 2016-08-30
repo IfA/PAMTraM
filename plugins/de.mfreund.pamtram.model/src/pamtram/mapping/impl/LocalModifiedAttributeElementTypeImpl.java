@@ -50,12 +50,12 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 	 * @generated
 	 */
 	public boolean validateSourceAttributeMatchesSectionOrContainedSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if(this.getMapping() == null || this.source == null || this.getMapping().getSourceMMSection() == null
+		if(this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null
 						|| !(this.source.getContainingSection() instanceof SourceSection)) {
 			return true;
 		}
 		
-		SourceSection sourceSection = this.getMapping().getSourceMMSection();
+		SourceSection sourceSection = this.getMapping().getSourceSection();
 		SourceSection containingSourceSection = (SourceSection) this.source.getContainingSection();
 		
 		boolean result = sourceSection == containingSourceSection 

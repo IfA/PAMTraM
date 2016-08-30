@@ -4092,7 +4092,7 @@ public interface MappingPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source MM Section</em>'.
-	 * @see pamtram.mapping.MappingType#getSourceMMSection()
+	 * @see pamtram.mapping.MappingType#getSourceSection()
 	 * @see #getMappingType()
 	 * @generated
 	 */
@@ -4702,7 +4702,7 @@ public interface MappingPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target MM Section</em>'.
-	 * @see pamtram.mapping.MappingHintGroupType#getTargetMMSection()
+	 * @see pamtram.mapping.MappingHintGroupType#getTargetSection()
 	 * @see #getMappingHintGroupType()
 	 * @generated
 	 */

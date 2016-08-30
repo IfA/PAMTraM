@@ -777,7 +777,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 
 	@Override
 	public TargetSection getTargetMMSectionGeneric() {
-		return this.getHintGroup() == null ? null : this.getHintGroup().getTargetMMSection();
+		return this.getHintGroup() == null ? null : this.getHintGroup().getTargetSection();
 	}
 
 } //MappingHintGroupImporterImpl

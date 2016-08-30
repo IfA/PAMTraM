@@ -161,7 +161,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		    /**
 		     * self = m.sourceMMSection
 		     */
-		    final /*@Thrown*/ SourceSection sourceMMSection = m.getSourceMMSection();
+		    final /*@Thrown*/ SourceSection sourceMMSection = m.getSourceSection();
 		    final /*@Thrown*/ boolean eq = this.equals(sourceMMSection);
 		    //
 		    if (eq == ValueUtil.TRUE_VALUE) {

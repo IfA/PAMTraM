@@ -48,14 +48,14 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 */
 	protected boolean deactivated = DEACTIVATED_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getSourceMMSection() <em>Source MM Section</em>}' reference.
+	 * The cached value of the '{@link #getSourceSection() <em>Source MM Section</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceMMSection()
+	 * @see #getSourceSection()
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSection sourceMMSection;
+	protected SourceSection sourceSection;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,16 +105,16 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * @generated
 	 */
 	@Override
-	public SourceSection getSourceMMSection() {
-		if (sourceMMSection != null && sourceMMSection.eIsProxy()) {
-			InternalEObject oldSourceMMSection = (InternalEObject)sourceMMSection;
-			sourceMMSection = (SourceSection)eResolveProxy(oldSourceMMSection);
-			if (sourceMMSection != oldSourceMMSection) {
+	public SourceSection getSourceSection() {
+		if (sourceSection != null && sourceSection.eIsProxy()) {
+			InternalEObject oldSourceMMSection = (InternalEObject)sourceSection;
+			sourceSection = (SourceSection)eResolveProxy(oldSourceMMSection);
+			if (sourceSection != oldSourceMMSection) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION, oldSourceMMSection, sourceMMSection));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION, oldSourceMMSection, sourceSection));
 			}
 		}
-		return sourceMMSection;
+		return sourceSection;
 	}
 
 	/**
@@ -122,8 +122,8 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSection basicGetSourceMMSection() {
-		return sourceMMSection;
+	public SourceSection basicGetSourceSection() {
+		return sourceSection;
 	}
 
 	/**
@@ -131,20 +131,20 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceMMSectionGen(SourceSection newSourceMMSection) {
-		SourceSection oldSourceMMSection = sourceMMSection;
-		sourceMMSection = newSourceMMSection;
+	public void setSourceSectionGen(SourceSection newSourceMMSection) {
+		SourceSection oldSourceMMSection = sourceSection;
+		sourceSection = newSourceMMSection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION, oldSourceMMSection, sourceMMSection));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION, oldSourceMMSection, sourceSection));
 	}
 
 	/**
 	 * Before setting the {@link newSourceMMSection}, update the name.
 	 */
 	@Override
-	public void setSourceMMSection(SourceSection newSourceMMSection) {
-		setNameDerived(sourceMMSection, newSourceMMSection, null, "Mapping");
-		setSourceMMSectionGen(newSourceMMSection);
+	public void setSourceSection(SourceSection newSourceMMSection) {
+		setNameDerived(sourceSection, newSourceMMSection, null, "Mapping");
+		setSourceSectionGen(newSourceMMSection);
 
 	}
 
@@ -159,8 +159,8 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 			case MappingPackage.MAPPING_TYPE__DEACTIVATED:
 				return isDeactivated();
 			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
-				if (resolve) return getSourceMMSection();
-				return basicGetSourceMMSection();
+				if (resolve) return getSourceSection();
+				return basicGetSourceSection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -177,7 +177,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 				setDeactivated((Boolean)newValue);
 				return;
 			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
-				setSourceMMSection((SourceSection)newValue);
+				setSourceSection((SourceSection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,7 +195,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 				setDeactivated(DEACTIVATED_EDEFAULT);
 				return;
 			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
-				setSourceMMSection((SourceSection)null);
+				setSourceSection((SourceSection)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,7 +212,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 			case MappingPackage.MAPPING_TYPE__DEACTIVATED:
 				return deactivated != DEACTIVATED_EDEFAULT;
 			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
-				return sourceMMSection != null;
+				return sourceSection != null;
 		}
 		return super.eIsSet(featureID);
 	}

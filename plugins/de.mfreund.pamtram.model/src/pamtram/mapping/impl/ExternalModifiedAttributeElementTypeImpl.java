@@ -114,7 +114,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		    else {
 		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_sourceMMSection;
 		        try {
-		            final /*@Thrown*/ SourceSection sourceMMSection = getMapping.getSourceMMSection();
+		            final /*@Thrown*/ SourceSection sourceMMSection = getMapping.getSourceSection();
 		            CAUGHT_sourceMMSection = sourceMMSection;
 		        }
 		        catch (Exception e) {
@@ -184,7 +184,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		    final /*@NonInvalid*/ String sum = StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_source_32_attribute_32_39, name);
 		    final /*@NonInvalid*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_part_32_of_32_a_32_container_32_section_32_of_32_the_32_source_32_section_32_of_32_th);
 		    final /*@Thrown*/ Mapping getMapping_1 = ((ModifiedAttributeElementType)this).getMapping();
-		    final /*@Thrown*/ SourceSection sourceMMSection_0 = getMapping_1.getSourceMMSection();
+		    final /*@Thrown*/ SourceSection sourceMMSection_0 = getMapping_1.getSourceSection();
 		    final /*@Thrown*/ String name_0 = sourceMMSection_0.getName();
 		    final /*@NonInvalid*/ String sum_1 = StringConcatOperation.INSTANCE.evaluate(sum_0, name_0);
 		    final /*@NonInvalid*/ String sum_2 = StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__39_33);

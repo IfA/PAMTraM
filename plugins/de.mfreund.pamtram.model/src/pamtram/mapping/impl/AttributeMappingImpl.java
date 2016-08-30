@@ -323,7 +323,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
 		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		        final /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType));
-		        final /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetMMSection();
+		        final /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetSection();
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, targetMMSection);
 		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_0.getTypeId();
 		        CAUGHT_eq_0 = eq_0;
@@ -347,7 +347,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		            final /*@Thrown*/ Object getContainingSection = ((MetaModelElement)target_0).getContainingSection();
 		            final /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		            final /*@Thrown*/ MappingHintGroupType oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		            final /*@Thrown*/ TargetSection targetMMSection_0 = oclAsType_0.getTargetMMSection();
+		            final /*@Thrown*/ TargetSection targetMMSection_0 = oclAsType_0.getTargetSection();
 		            final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(targetMMSection_0);
 		            CAUGHT_eq_1 = eq_1;
 		        }
@@ -360,7 +360,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Section, null);
 		            final /*@NonInvalid*/ Object oclContainer_1 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		            final /*@Thrown*/ MappingHintGroupType oclAsType_1 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_1, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
-		            final /*@Thrown*/ TargetSection targetMMSection_1 = oclAsType_1.getTargetMMSection();
+		            final /*@Thrown*/ TargetSection targetMMSection_1 = oclAsType_1.getTargetSection();
 		            final /*@Thrown*/ Section oclAsType_2 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, targetMMSection_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e));
 		            final /*@Thrown*/ List<Object> extend = oclAsType_2.getExtend();
 		            final /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend);

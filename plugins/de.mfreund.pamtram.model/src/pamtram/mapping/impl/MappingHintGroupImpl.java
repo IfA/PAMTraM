@@ -617,7 +617,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 
 	@Override
 	public TargetSection getTargetMMSectionGeneric() {
-		return this.getTargetMMSection();
+		return this.getTargetSection();
 	}
 
 } //MappingHintGroupImpl

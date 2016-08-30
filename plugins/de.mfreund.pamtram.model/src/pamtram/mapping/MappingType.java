@@ -32,22 +32,22 @@ public interface MappingType extends NamedElement, DeactivatableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source MM Section</em>' reference.
-	 * @see #setSourceMMSection(SourceSection)
+	 * @see #setSourceSection(SourceSection)
 	 * @see pamtram.mapping.MappingPackage#getMappingType_SourceMMSection()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingType!sourceMMSection'"
 	 * @generated
 	 */
-	SourceSection getSourceMMSection();
+	SourceSection getSourceSection();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.MappingType#getSourceMMSection <em>Source MM Section</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source MM Section</em>' reference.
-	 * @see #getSourceMMSection()
+	 * @see #getSourceSection()
 	 * @generated
 	 */
-	void setSourceMMSection(SourceSection value);
+	void setSourceSection(SourceSection value);
 
 } // MappingType

@@ -177,7 +177,7 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 					"Unknown type of ConditionalElement '" + this.conditionalElement.eClass().getName() + "' found!");
 		}
 
-		SourceSection sourceSection = mapping.getSourceMMSection();
+		SourceSection sourceSection = mapping.getSourceSection();
 
 		if (sourceSection == null) {
 			return false;
@@ -198,7 +198,7 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 
 		// The SourceSection of the Mapping that contains the condition
 		//
-		SourceSection localSection = ((Mapping) container).getSourceMMSection();
+		SourceSection localSection = ((Mapping) container).getSourceSection();
 
 		if (referencedSection.equals(localSection)) {
 			return true;

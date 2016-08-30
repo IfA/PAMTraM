@@ -266,14 +266,14 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 		            /*@Thrown*/ TargetSection targetMMSection_1;
 		            if (oclIsKindOf) {
 		                final /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		                final /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetMMSection();
+		                final /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetSection();
 		                targetMMSection_1 = targetMMSection;
 		            }
 		            else {
 		                final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupImporter, null);
 		                final /*@Thrown*/ MappingHintGroupImporter oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupImporter)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter));
 		                final /*@Thrown*/ ExportedMappingHintGroup hintGroup = oclAsType_0.getHintGroup();
-		                final /*@Thrown*/ TargetSection targetMMSection_0 = hintGroup.getTargetMMSection();
+		                final /*@Thrown*/ TargetSection targetMMSection_0 = hintGroup.getTargetSection();
 		                targetMMSection_1 = targetMMSection_0;
 		            }
 		            CAUGHT_targetMMSection_1 = targetMMSection_1;

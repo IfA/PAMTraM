@@ -1267,7 +1267,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = MATCHER_FEATURE_COUNT + 2;
+	int ATTRIBUTE_MATCHER__TARGET = MATCHER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Source Attributes</b></em>' containment reference list.
@@ -1276,7 +1276,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = MATCHER_FEATURE_COUNT + 3;
+	int ATTRIBUTE_MATCHER__SOURCE_ELEMENTS = MATCHER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Matcher</em>' class.
@@ -4371,22 +4371,22 @@ public interface MappingPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target Attribute</em>'.
-	 * @see pamtram.mapping.AttributeMatcher#getTargetAttribute()
+	 * @see pamtram.mapping.AttributeMatcher#getTarget()
 	 * @see #getAttributeMatcher()
 	 * @generated
 	 */
-	EReference getAttributeMatcher_TargetAttribute();
+	EReference getAttributeMatcher_Target();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.AttributeMatcher#getSourceAttributes <em>Source Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Attributes</em>'.
-	 * @see pamtram.mapping.AttributeMatcher#getSourceAttributes()
+	 * @see pamtram.mapping.AttributeMatcher#getSourceElements()
 	 * @see #getAttributeMatcher()
 	 * @generated
 	 */
-	EReference getAttributeMatcher_SourceAttributes();
+	EReference getAttributeMatcher_SourceElements();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMatcher#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
@@ -5587,7 +5587,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = eINSTANCE.getAttributeMatcher_TargetAttribute();
+		EReference ATTRIBUTE_MATCHER__TARGET = eINSTANCE.getAttributeMatcher_Target();
 
 		/**
 		 * The meta object literal for the '<em><b>Source Attributes</b></em>' containment reference list feature.
@@ -5595,7 +5595,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = eINSTANCE.getAttributeMatcher_SourceAttributes();
+		EReference ATTRIBUTE_MATCHER__SOURCE_ELEMENTS = eINSTANCE.getAttributeMatcher_SourceElements();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.

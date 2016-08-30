@@ -171,7 +171,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	@Override
 	public AttributeMatcher createAttributeMatcherWithSource() {
 		AttributeMatcher attributeMatcher = createAttributeMatcher();
-		attributeMatcher.getSourceAttributes().add(
+		attributeMatcher.getSourceElements().add(
 				new AttributeMatcherSourceElementImpl());
 		return attributeMatcher;
 	}

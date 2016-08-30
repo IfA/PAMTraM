@@ -859,10 +859,10 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _AttributeMappingSourceInterface__AttributeMapping__sourceElements = new ExecutorPropertyWithImplementation("AttributeMapping", Types._AttributeMappingSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS));
 
-		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__sourceAttributes = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES, Types._AttributeMatcher, 0);
-		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__targetAttribute = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE, Types._AttributeMatcher, 1);
+		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__sourceAttributes = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS, Types._AttributeMatcher, 0);
+		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__targetAttribute = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET, Types._AttributeMatcher, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes = new ExecutorPropertyWithImplementation("AttributeMatcher", Types._AttributeMatcherSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES));
+		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes = new ExecutorPropertyWithImplementation("AttributeMatcher", Types._AttributeMatcherSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS));
 
 		public static final /*@NonNull*/ ExecutorProperty _CardinalityMapping__source = new EcoreExecutorProperty(MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE, Types._CardinalityMapping, 0);
 		public static final /*@NonNull*/ ExecutorProperty _CardinalityMapping__target = new EcoreExecutorProperty(MappingPackage.Literals.CARDINALITY_MAPPING__TARGET, Types._CardinalityMapping, 1);

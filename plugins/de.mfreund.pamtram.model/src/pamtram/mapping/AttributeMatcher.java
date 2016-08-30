@@ -34,23 +34,23 @@ public interface AttributeMatcher extends Matcher, ExpressionHint, ModifiableHin
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Attribute</em>' reference.
-	 * @see #setTargetAttribute(TargetSectionAttribute)
-	 * @see pamtram.mapping.MappingPackage#getAttributeMatcher_TargetAttribute()
+	 * @see #setTarget(TargetSectionAttribute)
+	 * @see pamtram.mapping.MappingPackage#getAttributeMatcher_Target()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!AttributeMatcher!targetAttribute'"
 	 * @generated
 	 */
-	TargetSectionAttribute getTargetAttribute();
+	TargetSectionAttribute getTarget();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.AttributeMatcher#getTargetAttribute <em>Target Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target Attribute</em>' reference.
-	 * @see #getTargetAttribute()
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTargetAttribute(TargetSectionAttribute value);
+	void setTarget(TargetSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Source Attributes</b></em>' containment reference list.
@@ -62,12 +62,12 @@ public interface AttributeMatcher extends Matcher, ExpressionHint, ModifiableHin
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Attributes</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getAttributeMatcher_SourceAttributes()
+	 * @see pamtram.mapping.MappingPackage#getAttributeMatcher_SourceElements()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!AttributeMatcher!sourceAttributes'"
 	 * @generated
 	 */
-	EList<AttributeMatcherSourceInterface> getSourceAttributes();
+	EList<AttributeMatcherSourceInterface> getSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->

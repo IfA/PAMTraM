@@ -55,8 +55,8 @@ import pamtram.metamodel.ActualSourceSectionAttribute;
  * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.InstancePointerImpl#getResultModifier <em>Result Modifier</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.InstancePointerImpl#getAttributePointer <em>Attribute Pointer</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.InstancePointerImpl#getSourceAttributes <em>Source Attributes</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.InstancePointerImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.InstancePointerImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,7 +73,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	protected EList<ValueModifierSet> resultModifier;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Attribute Pointer</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTarget()
@@ -83,7 +83,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	protected ActualSourceSectionAttribute target;
 
 	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Attributes</em>}' containment reference list.
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceElements()
@@ -130,11 +130,11 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 */
 	public ActualSourceSectionAttribute getTarget() {
 		if (target != null && target.eIsProxy()) {
-			InternalEObject oldAttributePointer = (InternalEObject)target;
-			target = (ActualSourceSectionAttribute)eResolveProxy(oldAttributePointer);
-			if (target != oldAttributePointer) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (ActualSourceSectionAttribute)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.INSTANCE_POINTER__TARGET, oldAttributePointer, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.INSTANCE_POINTER__TARGET, oldTarget, target));
 			}
 		}
 		return target;
@@ -154,11 +154,11 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(ActualSourceSectionAttribute newAttributePointer) {
-		ActualSourceSectionAttribute oldAttributePointer = target;
-		target = newAttributePointer;
+	public void setTarget(ActualSourceSectionAttribute newTarget) {
+		ActualSourceSectionAttribute oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.INSTANCE_POINTER__TARGET, oldAttributePointer, target));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.INSTANCE_POINTER__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -192,7 +192,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		 *         .oclAsType(condition::ComplexCondition)
 		 *         .isConditionModelCondition()
 		 *       then
-		 *         not self.sourceAttributes->exists(
+		 *         not self.sourceElements->exists(
 		 *           self.oclIsTypeOf(mapping::ModifiedAttributeElementType(S, C, R, A)))
 		 *       else true
 		 *       endif
@@ -236,10 +236,10 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		    }
 		    /*@Thrown*/ Boolean status;
 		    if (and) {
-		        final /*@Thrown*/ List<InstancePointerSourceInterface> sourceAttributes = this.getSourceElements();
-		        final /*@Thrown*/ OrderedSetValue BOXED_sourceAttributes = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_InstancePointerSourceInterface, sourceAttributes);
+		        final /*@Thrown*/ List<InstancePointerSourceInterface> sourceElements = this.getSourceElements();
+		        final /*@Thrown*/ OrderedSetValue BOXED_sourceElements = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_InstancePointerSourceInterface, sourceElements);
 		        /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-		        /*@NonNull*/ Iterator<Object> ITERATOR__1 = BOXED_sourceAttributes.iterator();
+		        /*@NonNull*/ Iterator<Object> ITERATOR__1 = BOXED_sourceElements.iterator();
 		        /*@Thrown*/ boolean exists;
 		        while (true) {
 		            if (!ITERATOR__1.hasNext()) {
@@ -433,7 +433,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP_10:
+			case MetamodelPackage.INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP_1:
 				return noModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

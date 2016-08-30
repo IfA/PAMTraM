@@ -874,7 +874,7 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _ActualAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, Types._ActualAttribute, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _ActualSourceSectionAttribute__InstancePointer__attributePointer = new ExecutorPropertyWithImplementation("InstancePointer", Types._ActualSourceSectionAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__TARGET));
+		public static final /*@NonNull*/ ExecutorProperty _ActualSourceSectionAttribute__InstancePointer__target = new ExecutorPropertyWithImplementation("InstancePointer", Types._ActualSourceSectionAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__TARGET));
 
 		public static final /*@NonNull*/ ExecutorProperty _ActualTargetSectionAttribute__AttributeParameter__attribute = new ExecutorPropertyWithImplementation("AttributeParameter", Types._ActualTargetSectionAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE));
 
@@ -899,12 +899,12 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _FileAttribute__fileType = new EcoreExecutorProperty(MetamodelPackage.Literals.FILE_ATTRIBUTE__FILE_TYPE, Types._FileAttribute, 0);
 		public static final /*@NonNull*/ ExecutorProperty _FileAttribute__TargetSection__file = new ExecutorPropertyWithImplementation("TargetSection", Types._FileAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.TARGET_SECTION__FILE));
 
-		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__attributePointer = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__TARGET, Types._InstancePointer, 0);
-		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__sourceAttributes = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS, Types._InstancePointer, 1);
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__sourceElements = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS, Types._InstancePointer, 0);
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__target = new EcoreExecutorProperty(MetamodelPackage.Literals.INSTANCE_POINTER__TARGET, Types._InstancePointer, 1);
 		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("RangeBound", Types._InstancePointer, 2, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
 		public static final /*@NonNull*/ ExecutorProperty _InstancePointer__SingleReferenceValueConstraint__constraintReferenceValueAdditionalSpecification = new ExecutorPropertyWithImplementation("SingleReferenceValueConstraint", Types._InstancePointer, 3, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION));
 
-		public static final /*@NonNull*/ ExecutorProperty _InstancePointerSourceInterface__InstancePointer__sourceAttributes = new ExecutorPropertyWithImplementation("InstancePointer", Types._InstancePointerSourceInterface, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS));
+		public static final /*@NonNull*/ ExecutorProperty _InstancePointerSourceInterface__InstancePointer__sourceElements = new ExecutorPropertyWithImplementation("InstancePointer", Types._InstancePointerSourceInterface, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS));
 
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__id = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ID, Types._LibraryEntry, 0);
 		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__libraryFile = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE, Types._LibraryEntry, 1);
@@ -3860,7 +3860,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._ActualAttribute__attribute,
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._SourceSectionAttribute__valueConstraint,
-			MetamodelTables.Properties._ActualSourceSectionAttribute__InstancePointer__attributePointer
+			MetamodelTables.Properties._ActualSourceSectionAttribute__InstancePointer__target
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ActualTargetSectionAttribute = {
@@ -3954,22 +3954,22 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _FileTypeEnum = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _InstancePointer = {
-			MetamodelTables.Properties._InstancePointer__attributePointer,
-			MetamodelTables.Properties._InstancePointer__sourceAttributes,
+			MetamodelTables.Properties._InstancePointer__sourceElements,
+			MetamodelTables.Properties._InstancePointer__target,
 			MetamodelTables.Properties._InstancePointer__RangeBound__boundReferenceValueAdditionalSpecification,
 			MetamodelTables.Properties._InstancePointer__SingleReferenceValueConstraint__constraintReferenceValueAdditionalSpecification
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _InstancePointerExternalSourceElement = {
-			MetamodelTables.Properties._InstancePointerSourceInterface__InstancePointer__sourceAttributes
+			MetamodelTables.Properties._InstancePointerSourceInterface__InstancePointer__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _InstancePointerSourceElement = {
-			MetamodelTables.Properties._InstancePointerSourceInterface__InstancePointer__sourceAttributes
+			MetamodelTables.Properties._InstancePointerSourceInterface__InstancePointer__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _InstancePointerSourceInterface = {
-			MetamodelTables.Properties._InstancePointerSourceInterface__InstancePointer__sourceAttributes
+			MetamodelTables.Properties._InstancePointerSourceInterface__InstancePointer__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _LibraryEntry = {

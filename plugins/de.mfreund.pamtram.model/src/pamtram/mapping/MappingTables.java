@@ -859,10 +859,10 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _AttributeMappingSourceInterface__AttributeMapping__sourceElements = new ExecutorPropertyWithImplementation("AttributeMapping", Types._AttributeMappingSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS));
 
-		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__sourceAttributes = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS, Types._AttributeMatcher, 0);
-		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__targetAttribute = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET, Types._AttributeMatcher, 1);
+		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__sourceElements = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS, Types._AttributeMatcher, 0);
+		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcher__target = new EcoreExecutorProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET, Types._AttributeMatcher, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes = new ExecutorPropertyWithImplementation("AttributeMatcher", Types._AttributeMatcherSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS));
+		public static final /*@NonNull*/ ExecutorProperty _AttributeMatcherSourceInterface__AttributeMatcher__sourceElements = new ExecutorPropertyWithImplementation("AttributeMatcher", Types._AttributeMatcherSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS));
 
 		public static final /*@NonNull*/ ExecutorProperty _CardinalityMapping__source = new EcoreExecutorProperty(MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE, Types._CardinalityMapping, 0);
 		public static final /*@NonNull*/ ExecutorProperty _CardinalityMapping__target = new EcoreExecutorProperty(MappingPackage.Literals.CARDINALITY_MAPPING__TARGET, Types._CardinalityMapping, 1);
@@ -3868,8 +3868,8 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMatcher = {
 			MappingTables.Properties._ExpressionHint__expression,
 			MappingTables.Properties._ModifiableHint__resultModifier,
-			MappingTables.Properties._AttributeMatcher__sourceAttributes,
-			MappingTables.Properties._AttributeMatcher__targetAttribute,
+			MappingTables.Properties._AttributeMatcher__sourceElements,
+			MappingTables.Properties._AttributeMatcher__target,
 			MappingTables.Properties._ExpandableHint__MappedAttributeValueExpander__hintsToExpand,
 			MappingTables.Properties._Matcher__MappingInstanceSelector__matcher
 		};
@@ -3877,17 +3877,17 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMatcherExternalSourceElement = {
 			MappingTables.Properties._ModifiedAttributeElementType__modifier,
 			MappingTables.Properties._ModifiedAttributeElementType__source,
-			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes
+			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMatcherSourceElement = {
 			MappingTables.Properties._ModifiedAttributeElementType__modifier,
 			MappingTables.Properties._ModifiedAttributeElementType__source,
-			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes
+			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMatcherSourceInterface = {
-			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes
+			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _CardinalityMapping = {
@@ -3948,7 +3948,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _FixedValue = {
 			MappingTables.Properties._FixedValue__value,
 			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements,
-			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes,
+			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceElements,
 			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
 		};
 
@@ -3962,7 +3962,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _GlobalAttributeImporter = {
 			MappingTables.Properties._GlobalAttributeImporter__globalAttribute,
 			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements,
-			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceAttributes,
+			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceElements,
 			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
 		};
 

@@ -67,7 +67,7 @@ public interface AttributeMapping extends MappingHint, ExpressionHint, Modifiabl
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!AttributeMapping!sourceAttributeMappings'"
 	 * @generated
 	 */
-	EList<AttributeMappingSourceInterface> getSourceAttributeMappings();
+	EList<AttributeMappingSourceInterface> getSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->

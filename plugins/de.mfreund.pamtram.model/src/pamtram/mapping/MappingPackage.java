@@ -4176,7 +4176,7 @@ public interface MappingPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Attribute Mappings</em>'.
-	 * @see pamtram.mapping.AttributeMapping#getSourceAttributeMappings()
+	 * @see pamtram.mapping.AttributeMapping#getSourceElements()
 	 * @see #getAttributeMapping()
 	 * @generated
 	 */

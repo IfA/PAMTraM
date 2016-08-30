@@ -103,14 +103,14 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	protected TargetSectionAttribute target;
 
 	/**
-	 * The cached value of the '{@link #getSourceAttributeMappings() <em>Source Attribute Mappings</em>}' containment reference list.
+	 * The cached value of the '{@link #getSourceElements() <em>Source Attribute Mappings</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceAttributeMappings()
+	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeMappingSourceInterface> sourceAttributeMappings;
+	protected EList<AttributeMappingSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,11 +185,11 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeMappingSourceInterface> getSourceAttributeMappings() {
-		if (sourceAttributeMappings == null) {
-			sourceAttributeMappings = new EObjectContainmentEList<AttributeMappingSourceInterface>(AttributeMappingSourceInterface.class, this, MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
+	public EList<AttributeMappingSourceInterface> getSourceElements() {
+		if (sourceElements == null) {
+			sourceElements = new EObjectContainmentEList<AttributeMappingSourceInterface>(AttributeMappingSourceInterface.class, this, MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
 		}
-		return sourceAttributeMappings;
+		return sourceElements;
 	}
 
 	/**
@@ -237,7 +237,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	public EList<AttributeMappingSourceElement> getLocalSourceElements() {
 				EList<AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingSourceElement>();
 				
-				for(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){
+				for(AttributeMappingSourceInterface i : this.getSourceElements()){
 					if(i instanceof AttributeMappingSourceElement){
 						elements.add((AttributeMappingSourceElement) i);
 					}
@@ -255,7 +255,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	public EList<AttributeMappingExternalSourceElement> getExternalSourceElements() {
 		EList<AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingExternalSourceElement>();
 		
-		for(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){
+		for(AttributeMappingSourceInterface i : this.getSourceElements()){
 			if(i instanceof AttributeMappingExternalSourceElement){
 				elements.add((AttributeMappingExternalSourceElement) i);
 			}
@@ -414,7 +414,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				return ((InternalEList<?>)getSourceAttributeMappings()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -435,7 +435,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				if (resolve) return getTarget();
 				return basicGetTarget();
 			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				return getSourceAttributeMappings();
+				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -460,8 +460,8 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				setTarget((TargetSectionAttribute)newValue);
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				getSourceAttributeMappings().clear();
-				getSourceAttributeMappings().addAll((Collection<? extends AttributeMappingSourceInterface>)newValue);
+				getSourceElements().clear();
+				getSourceElements().addAll((Collection<? extends AttributeMappingSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -485,7 +485,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				setTarget((TargetSectionAttribute)null);
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				getSourceAttributeMappings().clear();
+				getSourceElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -506,7 +506,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				return target != null;
 			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				return sourceAttributeMappings != null && !sourceAttributeMappings.isEmpty();
+				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1280,20 +1280,19 @@
       </eAnnotations>
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/AttributeMappingSourceElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#x9;&#x9;EList&lt;AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMappingSourceElement>();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;for(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){&#xD;&#xA;&#x9;&#x9;&#x9;if(i instanceof AttributeMappingSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((AttributeMappingSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;return elements;"/>
+          <details key="body" value="&#x9;&#x9;EList&lt;AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMappingSourceElement>();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;for(AttributeMappingSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;&#x9;&#x9;if(i instanceof AttributeMappingSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((AttributeMappingSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;return elements;"/>
         </eAnnotations>
       </eOperations>
       <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
           eType="#//mapping/AttributeMappingExternalSourceElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMappingExternalSourceElement>();&#xD;&#xA;&#xD;&#xA;for(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){&#xD;&#xA;&#x9;if(i instanceof AttributeMappingExternalSourceElement){&#xD;&#xA;&#x9;&#x9;elements.add((AttributeMappingExternalSourceElement) i);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return elements;"/>
+          <details key="body" value="EList&lt;AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMappingExternalSourceElement>();&#xD;&#xA;&#xD;&#xA;for(AttributeMappingSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;if(i instanceof AttributeMappingExternalSourceElement){&#xD;&#xA;&#x9;&#x9;elements.add((AttributeMappingExternalSourceElement) i);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return elements;"/>
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
           eType="#//metamodel/TargetSectionAttribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributeMappings"
-          lowerBound="1" upperBound="-1" eType="#//mapping/AttributeMappingSourceInterface"
-          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
+          upperBound="-1" eType="#//mapping/AttributeMappingSourceInterface" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

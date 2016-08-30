@@ -115,7 +115,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 */
 	public AttributeMapping createAttributeMappingWithSource() {
 		AttributeMapping attributeMapping = createAttributeMapping();
-		attributeMapping.getSourceAttributeMappings().add(
+		attributeMapping.getSourceElements().add(
 				new AttributeMappingSourceElementImpl());
 		return attributeMapping;
 	}

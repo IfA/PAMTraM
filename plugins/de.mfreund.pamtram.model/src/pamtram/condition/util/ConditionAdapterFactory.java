@@ -108,6 +108,10 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createSectionConditionAdapter();
 			}
 			@Override
+			public Adapter caseApplicationDependency(ApplicationDependency object) {
+				return createApplicationDependencyAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -254,6 +258,20 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSectionConditionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.ApplicationDependency <em>Application Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.condition.ApplicationDependency
+	 * @generated
+	 */
+	public Adapter createApplicationDependencyAdapter() {
 		return null;
 	}
 

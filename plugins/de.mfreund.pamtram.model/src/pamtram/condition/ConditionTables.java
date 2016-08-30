@@ -117,6 +117,7 @@ public class ConditionTables
 		}
 
 		public static final /*@NonNull*/ EcoreExecutorType _And = new EcoreExecutorType(ConditionPackage.Literals.AND, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ApplicationDependency = new EcoreExecutorType(ConditionPackage.Literals.APPLICATION_DEPENDENCY, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _AttributeCondition = new EcoreExecutorType(ConditionPackage.Literals.ATTRIBUTE_CONDITION, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorEnumeration _ComparatorEnum = new EcoreExecutorEnumeration(ConditionPackage.Literals.COMPARATOR_ENUM, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ComplexCondition = new EcoreExecutorType(ConditionPackage.Literals.COMPLEX_CONDITION, PACKAGE, 0 | ExecutorType.ABSTRACT);
@@ -130,6 +131,7 @@ public class ConditionTables
 
 		private static final /*@NonNull*/ EcoreExecutorType /*@NonNull*/ [] types = {
 			_And,
+			_ApplicationDependency,
 			_AttributeCondition,
 			_ComparatorEnum,
 			_ComplexCondition,
@@ -171,6 +173,13 @@ public class ConditionTables
 		private static final /*@NonNull*/ ExecutorFragment _And__NamedElement = new ExecutorFragment(Types._And, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _And__OclAny = new ExecutorFragment(Types._And, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _And__OclElement = new ExecutorFragment(Types._And, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _ApplicationDependency__ApplicationDependency = new ExecutorFragment(Types._ApplicationDependency, ConditionTables.Types._ApplicationDependency);
+		private static final /*@NonNull*/ ExecutorFragment _ApplicationDependency__ComplexCondition = new ExecutorFragment(Types._ApplicationDependency, ConditionTables.Types._ComplexCondition);
+		private static final /*@NonNull*/ ExecutorFragment _ApplicationDependency__Condition = new ExecutorFragment(Types._ApplicationDependency, ConditionTables.Types._Condition);
+		private static final /*@NonNull*/ ExecutorFragment _ApplicationDependency__NamedElement = new ExecutorFragment(Types._ApplicationDependency, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ApplicationDependency__OclAny = new ExecutorFragment(Types._ApplicationDependency, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ApplicationDependency__OclElement = new ExecutorFragment(Types._ApplicationDependency, OCLstdlibTables.Types._OclElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _AttributeCondition__AttributeCondition = new ExecutorFragment(Types._AttributeCondition, ConditionTables.Types._AttributeCondition);
 		private static final /*@NonNull*/ ExecutorFragment _AttributeCondition__ComplexCondition = new ExecutorFragment(Types._AttributeCondition, ConditionTables.Types._ComplexCondition);
@@ -311,6 +320,8 @@ public class ConditionTables
 		}
 
 
+		public static final /*@NonNull*/ ExecutorProperty _ApplicationDependency__conditionalElement = new EcoreExecutorProperty(ConditionPackage.Literals.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT, Types._ApplicationDependency, 0);
+
 		public static final /*@NonNull*/ ExecutorProperty _AttributeCondition__conditionAttributeRef = new EcoreExecutorProperty(ConditionPackage.Literals.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, Types._AttributeCondition, 0);
 		public static final /*@NonNull*/ ExecutorProperty _AttributeCondition__valueConstraint = new EcoreExecutorProperty(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT, Types._AttributeCondition, 1);
 
@@ -359,6 +370,17 @@ public class ConditionTables
 			Fragments._And__And /* 5 */
 		};
 		private static final int /*@NonNull*/ [] __And = { 1,1,1,1,1,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ApplicationDependency =
+		{
+			Fragments._ApplicationDependency__OclAny /* 0 */,
+			Fragments._ApplicationDependency__OclElement /* 1 */,
+			Fragments._ApplicationDependency__NamedElement /* 2 */,
+			Fragments._ApplicationDependency__ComplexCondition /* 3 */,
+			Fragments._ApplicationDependency__Condition /* 4 */,
+			Fragments._ApplicationDependency__ApplicationDependency /* 5 */
+		};
+		private static final int /*@NonNull*/ [] __ApplicationDependency = { 1,1,1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _AttributeCondition =
 		{
@@ -468,6 +490,7 @@ public class ConditionTables
 		 */
 		static {
 			Types._And.initFragments(_And, __And);
+			Types._ApplicationDependency.initFragments(_ApplicationDependency, __ApplicationDependency);
 			Types._AttributeCondition.initFragments(_AttributeCondition, __AttributeCondition);
 			Types._ComparatorEnum.initFragments(_ComparatorEnum, __ComparatorEnum);
 			Types._ComplexCondition.initFragments(_ComplexCondition, __ComplexCondition);
@@ -525,6 +548,43 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _And__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ApplicationDependency__ApplicationDependency = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ApplicationDependency__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
+			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
+			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ApplicationDependency__Condition = {
+			ConditionTables.Operations._Condition__checkCondition /* checkCondition(ComplexCondition[?]) */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ApplicationDependency__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ApplicationDependency__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ApplicationDependency__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
@@ -900,6 +960,13 @@ public class ConditionTables
 			Fragments._And__OclAny.initOperations(_And__OclAny);
 			Fragments._And__OclElement.initOperations(_And__OclElement);
 
+			Fragments._ApplicationDependency__ApplicationDependency.initOperations(_ApplicationDependency__ApplicationDependency);
+			Fragments._ApplicationDependency__ComplexCondition.initOperations(_ApplicationDependency__ComplexCondition);
+			Fragments._ApplicationDependency__Condition.initOperations(_ApplicationDependency__Condition);
+			Fragments._ApplicationDependency__NamedElement.initOperations(_ApplicationDependency__NamedElement);
+			Fragments._ApplicationDependency__OclAny.initOperations(_ApplicationDependency__OclAny);
+			Fragments._ApplicationDependency__OclElement.initOperations(_ApplicationDependency__OclElement);
+
 			Fragments._AttributeCondition__AttributeCondition.initOperations(_AttributeCondition__AttributeCondition);
 			Fragments._AttributeCondition__ComplexCondition.initOperations(_AttributeCondition__ComplexCondition);
 			Fragments._AttributeCondition__Condition.initOperations(_AttributeCondition__Condition);
@@ -984,6 +1051,17 @@ public class ConditionTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _And = {
 			ConditionTables.Properties._MultipleConditionOperator__condParts,
 			ConditionTables.Properties._MultipleConditionOperator__condPartsRef,
+			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
+			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
+			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
+			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ApplicationDependency = {
+			ConditionTables.Properties._Condition__additionalConditionSpecification,
+			ConditionTables.Properties._Condition__comparator,
+			ConditionTables.Properties._ApplicationDependency__conditionalElement,
+			ConditionTables.Properties._Condition__value,
 			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
 			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
 			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
@@ -1075,6 +1153,7 @@ public class ConditionTables
 		 */
 		static {
 			Fragments._And__And.initProperties(_And);
+			Fragments._ApplicationDependency__ApplicationDependency.initProperties(_ApplicationDependency);
 			Fragments._AttributeCondition__AttributeCondition.initProperties(_AttributeCondition);
 			Fragments._ComparatorEnum__ComparatorEnum.initProperties(_ComparatorEnum);
 			Fragments._ComplexCondition__ComplexCondition.initProperties(_ComplexCondition);

@@ -175,7 +175,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 				} else {
 					continue;
 				}
-				TargetSection section = hintGroup.getTargetMMSection();
+				TargetSection section = hintGroup.getTargetSection();
 				if(section == null) {
 					continue;
 				}
@@ -364,7 +364,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * (we do not want to blindly reuse a choice even if there are changes in the list of mappings that
 		 * we can choose from).
 		 */
-		EList<MappingType> oldChoices = oldTransformationMapping.getAssociatedMapping().getSourceMMSection().getReferencingMappings();
+		EList<MappingType> oldChoices = oldTransformationMapping.getAssociatedMapping().getSourceSection().getReferencingMappings();
 		ArrayList<MappingType> oldChoicesWithoutDeactivated = new ArrayList<>(oldChoices);
 		for (MappingType oldChoice : oldChoices) {
 			// sort out deactivated elements
@@ -492,7 +492,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
 		 */
-		Match sectionMatch = pamtramCompareResult.getMatch(hintGroup.getTargetMMSection());
+		Match sectionMatch = pamtramCompareResult.getMatch(hintGroup.getTargetSection());
 		Match hintGroupMatch = pamtramCompareResult.getMatch(hintGroup);
 		if(sectionMatch == null || sectionMatch.getRight() == null || !(sectionMatch.getRight() instanceof TargetSection) ||
 				hintGroupMatch == null || hintGroupMatch.getRight() == null || !(hintGroupMatch.getRight() instanceof MappingHintGroupType)) {
@@ -853,7 +853,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
 		 */
-		Match sectionMatch = pamtramCompareResult.getMatch(hintGroup.getTargetMMSection());
+		Match sectionMatch = pamtramCompareResult.getMatch(hintGroup.getTargetSection());
 		Match hintGroupMatch = pamtramCompareResult.getMatch(hintGroup);
 		if(sectionMatch == null || sectionMatch.getRight() == null || !(sectionMatch.getRight() instanceof TargetSection) ||
 				hintGroupMatch == null || hintGroupMatch.getRight() == null || !(hintGroupMatch.getRight() instanceof MappingHintGroupType)) {

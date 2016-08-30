@@ -63,7 +63,7 @@ public class InstancePointerItemProvider
 			super.getPropertyDescriptors(object);
 
 			addResultModifierPropertyDescriptor(object);
-			addAttributePointerPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -96,14 +96,14 @@ public class InstancePointerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAttributePointerPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_InstancePointer_attributePointer_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_attributePointer_feature", "_UI_InstancePointer_type"),
-				 MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER,
+				 MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
 				 true,
 				 false,
 				 true,
@@ -124,7 +124,7 @@ public class InstancePointerItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES);
+			childrenFeatures.add(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -194,7 +194,7 @@ public class InstancePointerItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InstancePointer.class)) {
-			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
+			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -225,23 +225,23 @@ public class InstancePointerItemProvider
 			
 			newChildDescriptors.add
 			(createChildParameter
-					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 							MetamodelFactory.eINSTANCE.createInstancePointerSourceElement()));
 			
 			newChildDescriptors.add
 			(createChildParameter
-					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 							MetamodelFactory.eINSTANCE.createInstancePointerExternalSourceElement()));
 		}
 
 		newChildDescriptors.add
 		(createChildParameter
-				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 						MappingFactory.eINSTANCE.createFixedValue()));
 		
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ATTRIBUTES,
+				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 	}
 
@@ -261,7 +261,7 @@ public class InstancePointerItemProvider
 			int operation, Collection<?> collection) {
 
 		if(collection.size() == 1 && collection.iterator().next() instanceof ActualSourceSectionAttribute) {
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.INSTANCE_POINTER__ATTRIBUTE_POINTER, 
+			return new BasicDragAndDropSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.INSTANCE_POINTER__TARGET, 
 					collection.iterator().next(), 0);
 		}
 		

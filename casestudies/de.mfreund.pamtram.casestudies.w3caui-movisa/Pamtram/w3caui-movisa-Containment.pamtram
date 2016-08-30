@@ -465,24 +465,24 @@
     </metaModelSections>
   </targetSectionModel>
   <mappingModel xsi:type="pamtram:MappingModel">
-    <mapping xsi:type="mapping:Mapping" name="RootMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetMMSection="//@targetSectionModel.0/@metaModelSections.0"/>
+    <mapping xsi:type="mapping:Mapping" name="RootMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetSection="//@targetSectionModel.0/@metaModelSections.0"/>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="CompositionMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetMMSection="//@targetSectionModel.0/@metaModelSections.1">
+    <mapping xsi:type="mapping:Mapping" name="CompositionMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetSection="//@targetSectionModel.0/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="PanelNameMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NewViewNavigationFlow" targetMMSection="//@targetSectionModel.0/@metaModelSections.5"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NewViewNavigationFlow" targetSection="//@targetSectionModel.0/@metaModelSections.5"/>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="DropDownMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.2">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDown" targetMMSection="//@targetSectionModel.0/@metaModelSections.2">
+    <mapping xsi:type="mapping:Mapping" name="DropDownMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDown" targetSection="//@targetSectionModel.0/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="DropDownNameMapping" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualDropDownRepresentationNameMapping" target="//@targetSectionModel.0/@metaModelSections.2/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
           <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
@@ -490,14 +490,14 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="DropDownOptionMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.3">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDownOption" targetMMSection="//@targetSectionModel.0/@metaModelSections.3">
+    <mapping xsi:type="mapping:Mapping" name="DropDownOptionMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDownOption" targetSection="//@targetSectionModel.0/@metaModelSections.3">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.0/@metaModelSections.3/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.0/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.0/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Label" affectedReference="//@targetSectionModel.0/@metaModelSections.3/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ElementId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ElementId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
           </matcher>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
@@ -505,16 +505,16 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="DropDownId" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetMMSection="//@targetSectionModel.0/@metaModelSections.4">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="ElementId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ElementId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.0/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.0/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="getParent">
+    <modifierSets xsi:type="mapping:ValueModifierSet" name="getParent">
       <modifier xsi:type="mapping:SubstringReplacer" regex="[_]\d+$" replacement=""/>
     </modifierSets>
   </mappingModel>

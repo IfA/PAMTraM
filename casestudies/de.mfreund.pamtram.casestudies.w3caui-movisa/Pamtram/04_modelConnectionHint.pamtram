@@ -31,10 +31,10 @@
     </metaModelSections>
   </targetSectionModel>
   <mappingModel xsi:type="pamtram:MappingModel">
-    <mapping xsi:type="mapping:Mapping" name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
+    <mapping xsi:type="mapping:Mapping" name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModel.0/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="connectToSimpleContainer">
           <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="Name" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
@@ -42,14 +42,14 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="AbstractInteractionUnitMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel.0/@metaModelSections.1">
+    <mapping xsi:type="mapping:Mapping" name="AbstractInteractionUnitMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetSection="//@targetSectionModel.0/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="replaceComp">
+    <modifierSets xsi:type="mapping:ValueModifierSet" name="replaceComp">
       <modifier xsi:type="mapping:SubstringReplacer" name="replaceComp" regex="comp" replacement=""/>
     </modifierSets>
   </mappingModel>

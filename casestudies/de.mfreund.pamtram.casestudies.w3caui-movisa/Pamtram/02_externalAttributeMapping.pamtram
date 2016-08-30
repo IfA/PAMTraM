@@ -32,24 +32,24 @@
     </metaModelSections>
   </targetSectionModel>
   <mappingModel xsi:type="pamtram:MappingModel">
-    <mapping xsi:type="mapping:Mapping" name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
+    <mapping xsi:type="mapping:Mapping" name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModel.0/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1"/>
+          <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="CommentMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="getNumber">
+    <modifierSets xsi:type="mapping:ValueModifierSet" name="getNumber">
       <modifier xsi:type="mapping:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
     </modifierSets>
-    <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="prependButton">
+    <modifierSets xsi:type="mapping:ValueModifierSet" name="prependButton">
       <modifier xsi:type="mapping:StringPrepender" name="NextButton" string="Button_"/>
     </modifierSets>
-    <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="add one">
+    <modifierSets xsi:type="mapping:ValueModifierSet" name="add one">
       <modifier xsi:type="mapping:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
     </modifierSets>
   </mappingModel>

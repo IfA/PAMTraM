@@ -91,7 +91,7 @@ public class InstancePointerItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Attribute Pointer feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -101,8 +101,8 @@ public class InstancePointerItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_InstancePointer_attributePointer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_attributePointer_feature", "_UI_InstancePointer_type"),
+				 getString("_UI_InstancePointer_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_target_feature", "_UI_InstancePointer_type"),
 				 MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
 				 true,
 				 false,

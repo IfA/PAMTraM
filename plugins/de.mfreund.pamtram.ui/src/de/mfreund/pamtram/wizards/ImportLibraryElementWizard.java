@@ -36,9 +36,9 @@ import pamtram.metamodel.LibraryParameter;
 import pamtram.util.LibraryHelper;
 
 /**
- * This wizard allows to import one or multiple library elements from a 
+ * This wizard allows to import one or multiple library elements from a
  * library (represented by a Zip file) into a pamtram model.
- * 
+ *
  * @author mfreund
  */
 public class ImportLibraryElementWizard extends Wizard {
@@ -46,7 +46,7 @@ public class ImportLibraryElementWizard extends Wizard {
 	private final ImportLibraryElementWizardMainPage one;
 
 	/**
-	 * This is the pamtram instance into that the library elements shall be 
+	 * This is the pamtram instance into that the library elements shall be
 	 * imported.
 	 */
 	private final PAMTraM pamtram;
@@ -58,22 +58,22 @@ public class ImportLibraryElementWizard extends Wizard {
 
 	/**
 	 * This constructs an instance of the wizard.
-	 * 
+	 *
 	 * @param pamtram The pamtram instance into that the library elements shall
 	 * be imported.
 	 * @param editingDomain The editing domain to be used to perform model changes.
 	 */
 	public ImportLibraryElementWizard(PAMTraM pamtram, EditingDomain editingDomain) {
 		super();
-		setNeedsProgressMonitor(true);
+		this.setNeedsProgressMonitor(true);
 		this.pamtram = pamtram;
 		this.editingDomain = editingDomain;
-		one = new ImportLibraryElementWizardMainPage(pamtram);
+		this.one = new ImportLibraryElementWizardMainPage(pamtram);
 	}
 
 	@Override
 	public void addPages() {
-		addPage(one);
+		this.addPage(this.one);
 	}
 
 	@Override
@@ -82,38 +82,38 @@ public class ImportLibraryElementWizard extends Wizard {
 		CompoundCommand compoundCommand = new CompoundCommand();
 
 		// now, we import the selected library elements to the pamtram model
-		for (LibraryFileEntry entry : one.getLibEntriesToImport()) {
+		for (LibraryFileEntry entry : this.one.getLibEntriesToImport()) {
 			try {
 
 				// determine the project for the pamtram instance
-				IWorkspace workspace = ResourcesPlugin.getWorkspace(); 
-				IProject project = 
-						workspace.getRoot().getProject(pamtram.eResource().getURI().trimSegments(2).lastSegment());
+				IWorkspace workspace = ResourcesPlugin.getWorkspace();
+				IProject project =
+						workspace.getRoot().getProject(this.pamtram.eResource().getURI().trimSegments(2).lastSegment());
 
-				LibraryContextDescriptor targetLibraryContextDescriptor = 
+				LibraryContextDescriptor targetLibraryContextDescriptor =
 						new LibraryContextDescriptor(
-								PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PATH, project), 
+								PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PATH, project),
 								PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE, project),
 								PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_CONTEXT, project),
 								PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PARSER, project));
 
 				// first, create the library element
-				LibraryEntry libElement = 
+				LibraryEntry libElement =
 						LibraryHelper.convertToLibraryElement(
-								targetLibraryContextDescriptor, 
-								entry.getKey(), 
-								pamtram.eResource().getURI().trimSegments(1).appendSegment("lib"),
-								editingDomain.getResourceSet());
-				libElement.setLibraryFile(one.getLibraryFile());
+								targetLibraryContextDescriptor,
+								entry.getKey(),
+								this.pamtram.eResource().getURI().trimSegments(1).appendSegment("lib"),
+								this.editingDomain.getResourceSet());
+				libElement.setLibraryFile(this.one.getLibraryFile());
 
-				// second, create a command to import it to the pamtram model 
+				// second, create a command to import it to the pamtram model
 				Command createLibraryEntryCommand = new CreateLibraryEntryCommand(
-						editingDomain, 
-						one.getTargetSectionModel(), 
-						libElement, pamtram.eResource().getURI().trimSegments(1).appendSegment("lib").appendSegment("target").appendSegment(entry.getKey()).appendSegment("data.xmi"));
-				compoundCommand.append(createLibraryEntryCommand);					
+						this.editingDomain,
+						this.one.getTargetSectionModel(),
+						libElement, this.pamtram.eResource().getURI().trimSegments(1).appendSegment("lib").appendSegment("target").appendSegment(entry.getKey()).appendSegment("data.xmi"));
+				compoundCommand.append(createLibraryEntryCommand);
 
-				if(one.isCreateMappings()) {
+				if(this.one.isCreateMappings()) {
 					// first, create a mapping that points to the library entry
 					Mapping mapping = MappingFactory.eINSTANCE.createMapping();
 					ArrayList<MappingHintGroup> mappingHintGroups = new ArrayList<>();
@@ -125,10 +125,12 @@ public class ImportLibraryElementWizard extends Wizard {
 							mappingHintGroups.add(hintGroup);
 							// add the mapping hint group to the mapping
 							compoundCommand.append(
-									new CreateChildCommand(editingDomain, mapping, MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, hintGroup, null));
+									new CreateChildCommand(this.editingDomain, mapping, MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, hintGroup, null));
 							// set the target metamodel section of the hint group
 							compoundCommand.append(
-									new SetCommand(editingDomain, hintGroup, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, ((ContainerParameter) parameter).getClass_()));
+									new SetCommand(this.editingDomain, hintGroup,
+											MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION,
+											((ContainerParameter) parameter).getClass_()));
 						} else if(parameter instanceof ExternalReferenceParameter) {
 							MappingInstanceSelector selector = MappingFactory.eINSTANCE.createMappingInstanceSelector();
 							mappingHints.add(selector);
@@ -145,15 +147,15 @@ public class ImportLibraryElementWizard extends Wizard {
 					//TODO if there are multiple groups, choose the right one for each hint
 					for (MappingHint mappingHint : mappingHints) {
 						compoundCommand.append(
-								new CreateChildCommand(editingDomain, mappingHintGroups.get(0), MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS, mappingHint, null));
+								new CreateChildCommand(this.editingDomain, mappingHintGroups.get(0), MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS, mappingHint, null));
 					}
 
 					// second, create a command to import it to the pamtram model
 					Command createMappingCommand = new CreateChildCommand(
-							editingDomain, 
-							one.getMappingModel(), 
-							PamtramPackage.Literals.MAPPING_MODEL__MAPPING, 
-							mapping, 
+							this.editingDomain,
+							this.one.getMappingModel(),
+							PamtramPackage.Literals.MAPPING_MODEL__MAPPING,
+							mapping,
 							null);
 					compoundCommand.append(createMappingCommand);
 				}
@@ -165,7 +167,7 @@ public class ImportLibraryElementWizard extends Wizard {
 		}
 
 		// execute the command to import all library items at once
-		editingDomain.getCommandStack().execute(compoundCommand);
+		this.editingDomain.getCommandStack().execute(compoundCommand);
 
 		return true;
 	}

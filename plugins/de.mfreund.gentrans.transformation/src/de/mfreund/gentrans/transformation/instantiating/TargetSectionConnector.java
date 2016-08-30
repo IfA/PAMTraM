@@ -159,7 +159,7 @@ public class TargetSectionConnector extends CancelableElement {
 		// Join 'local' hint groups
 		//
 		if(!mapping.getActiveMappingHintGroups().stream()
-				.filter(g -> g.getTargetMMSection() != null && g instanceof MappingHintGroup)
+				.filter(g -> g.getTargetSection() != null && g instanceof MappingHintGroup)
 				.allMatch(g -> joinTargetSection(g, mapping, mappingInstances, targetSectionRegistry))) {
 
 			return false;
@@ -168,7 +168,7 @@ public class TargetSectionConnector extends CancelableElement {
 		// Join 'imported' hint groups
 		//
 		if(!mapping.getActiveImportedMappingHintGroups().stream()
-				.filter(i -> i.getHintGroup() != null && i.getHintGroup().getTargetMMSection() != null)
+				.filter(i -> i.getHintGroup() != null && i.getHintGroup().getTargetSection() != null)
 				.allMatch(i -> joinTargetSection(i, mapping, mappingInstances, targetSectionRegistry))) {
 
 			return false;
@@ -195,14 +195,14 @@ public class TargetSectionConnector extends CancelableElement {
 
 		// The TargetSection of which we want to joing created instances
 		//
-		final TargetSection section = hintGroup.getTargetMMSection();
+		final TargetSection section = hintGroup.getTargetSection();
 
 		if(section.getFile() != null) {
 
 			// do not join sections for that a 'file' is specified, those are simply added as root elements to that file
 			//
 			addToTargetModelRoot(
-					targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetMMSection()).get(hintGroup));
+					targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection()).get(hintGroup));
 			return true;
 
 		}
@@ -294,7 +294,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 		// The TargetSection of which we want to joing created instances
 		//
-		final TargetSection section = g.getTargetMMSection();
+		final TargetSection section = g.getTargetSection();
 
 		if(section.getFile() != null) {
 
@@ -326,7 +326,7 @@ public class TargetSectionConnector extends CancelableElement {
 					continue;
 				}
 
-				final List<EObjectWrapper> rootInstances = selMap.getInstances(hintGroupImporter, g.getTargetMMSection());
+				final List<EObjectWrapper> rootInstances = selMap.getInstances(hintGroupImporter, g.getTargetSection());
 
 				if (!rootInstances.isEmpty()) {
 					final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
@@ -352,7 +352,7 @@ public class TargetSectionConnector extends CancelableElement {
 					// link
 					linkToTargetModelNoConnectionHint(
 							rootInstances,
-							g.getTargetMMSection(),
+							g.getTargetSection(),
 							mapping.getName(), g,
 							new HashSet<>(Arrays.asList(hintGroupImporter.getContainer().getEClass())),
 							containerInstances);
@@ -370,14 +370,14 @@ public class TargetSectionConnector extends CancelableElement {
 			final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
 			final List<EObjectWrapper> rootInstances = targetSectionRegistry
 					.getPamtramClassInstances(
-							g.getTargetMMSection()).get(hintGroupImporter);
+							g.getTargetSection()).get(hintGroupImporter);
 			final Set<EClass> containerClasses = new HashSet<>();
-			if (g.getTargetMMSection().getContainer() != null) {
-				containerClasses.add(g.getTargetMMSection()
+			if (g.getTargetSection().getContainer() != null) {
+				containerClasses.add(g.getTargetSection()
 						.getContainer().getEClass());
 				containerInstances.addAll(targetSectionRegistry
 						.getFlattenedPamtramClassInstances(g
-								.getTargetMMSection()
+								.getTargetSection()
 								.getContainer()));
 
 			}
@@ -386,7 +386,7 @@ public class TargetSectionConnector extends CancelableElement {
 				// link
 				linkToTargetModelNoConnectionHint(
 						rootInstances,
-						g.getTargetMMSection(),
+						g.getTargetSection(),
 						mapping.getName(), g,
 						containerClasses,
 						containerInstances);

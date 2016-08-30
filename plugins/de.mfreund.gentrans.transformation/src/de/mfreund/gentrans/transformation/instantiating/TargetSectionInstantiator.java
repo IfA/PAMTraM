@@ -164,7 +164,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		 */
 		// TODO check if we can parallelize this
 		mappingInstance.getMappingHintGroups().stream()
-		.filter(g -> g.getTargetMMSection() != null && g instanceof MappingHintGroup)
+		.filter(g -> g.getTargetSection() != null && g instanceof MappingHintGroup)
 		.map(g -> (MappingHintGroup) g).forEach(g -> expandTargetSectionInstance(mappingInstance, g));
 
 		/*
@@ -172,7 +172,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		 */
 		// TODO check if we can parallelize this
 		mappingInstance.getMappingHintGroupImporters().stream()
-		.filter(g -> g.getHintGroup() != null && g.getHintGroup().getTargetMMSection() != null)
+		.filter(g -> g.getHintGroup() != null && g.getHintGroup().getTargetSection() != null)
 		.forEach(g -> expandTargetSectionInstance(mappingInstance, g));
 
 	}
@@ -198,16 +198,16 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
 				instantiateTargetSectionFirstPass(
-						hintGroup.getTargetMMSection(),
+						hintGroup.getTargetSection(),
 						hintGroup, mappingInstance.getMappingHints(hintGroup),
 						mappingInstance.getHintValues());
 
 		if (instancesBySection == null) {
-			if (hintGroup.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
+			if (hintGroup.getTargetSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
 
 				logger
 				.severe("Error instantiating target section '"
-						+ hintGroup.getTargetMMSection().getName()
+						+ hintGroup.getTargetSection().getName()
 						+ "' using mapping rule '"
 						+ mappingInstance.getMapping().getName()
 						+ "'");
@@ -243,15 +243,15 @@ public class TargetSectionInstantiator extends CancelableElement {
 		final List<MappingHint> hints = getMappingHints(mappingInstance, mappingHintGroupImporter);
 
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = 
-				instantiateTargetSectionFirstPass(mappingHintGroupImporter.getHintGroup().getTargetMMSection(), mappingHintGroupImporter, hints,
+				instantiateTargetSectionFirstPass(mappingHintGroupImporter.getHintGroup().getTargetSection(), mappingHintGroupImporter, hints,
 						mappingInstance.getHintValues());
 
 		if (instancesBySection == null) {
-			if (mappingHintGroupImporter.getHintGroup().getTargetMMSection()
+			if (mappingHintGroupImporter.getHintGroup().getTargetSection()
 					.getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
 				logger.severe(
 						"Error instantiating target section '"
-								+ mappingHintGroupImporter.getHintGroup().getTargetMMSection().getName()
+								+ mappingHintGroupImporter.getHintGroup().getTargetSection().getName()
 								+ "' using mapping rule '" + mappingInstance.getMapping().getName() + "'");
 			}
 		} else {
@@ -554,7 +554,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 				final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
 
-				if (mhGrp.getModelConnectionMatcher() != null && mhGrp.getTargetMMSection().equals(targetSectionClass)) {
+				if (mhGrp.getModelConnectionMatcher() != null && mhGrp.getTargetSection().equals(targetSectionClass)) {
 
 					hintFound = true;
 					cardinality = hintValues.getHintValues(mhGrp.getModelConnectionMatcher()).size();

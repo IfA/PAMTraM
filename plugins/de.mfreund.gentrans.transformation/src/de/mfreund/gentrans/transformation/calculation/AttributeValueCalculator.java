@@ -169,9 +169,9 @@ public class AttributeValueCalculator {
 		//
 		List<Object> sourceElements = new ArrayList<>();
 		if(hint instanceof AttributeMapping) {
-			sourceElements.addAll(((AttributeMapping) hint).getSourceAttributeMappings());
+			sourceElements.addAll(((AttributeMapping) hint).getSourceElements());
 		} else if(hint instanceof MappingInstanceSelector) {
-			sourceElements.addAll(((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getSourceAttributes());
+			sourceElements.addAll(((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getSourceElements());
 		}
 
 		return calculateValueWithoutExpression(sourceElements, hintValues, resultModifiers);
@@ -190,7 +190,7 @@ public class AttributeValueCalculator {
 	private String calculateAttributeValueWithExpression(MappingHint hint, Map<?, AttributeValueRepresentation> attrHintValues, String expression,
 			List<ValueModifierSet> resultModifiers) {
 
-		if(hint instanceof AttributeMapping && !((AttributeMapping) hint).getSourceAttributeMappings().isEmpty()
+		if(hint instanceof AttributeMapping && !((AttributeMapping) hint).getSourceElements().isEmpty()
 				&& attrHintValues.isEmpty()) {
 			logger.severe("Error calculating the expression for hint '" + hint.getName() + "'."
 					+ "No hint values have been passed.");

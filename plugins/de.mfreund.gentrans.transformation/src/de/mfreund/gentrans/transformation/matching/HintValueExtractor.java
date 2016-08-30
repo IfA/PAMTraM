@@ -254,7 +254,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		// Extract the hint value part based on its type
 		//
-		for (AttributeMappingSourceInterface attributeMappingSourceInterface : attributeMapping.getSourceAttributeMappings()) {
+		for (AttributeMappingSourceInterface attributeMappingSourceInterface : attributeMapping.getSourceElements()) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
@@ -293,7 +293,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		// Extract the hint value part based on its type
 		//
-		for (AttributeMatcherSourceInterface attributeMatcherSourceInterface : attributeMatcher.getSourceAttributes()) {
+		for (AttributeMatcherSourceInterface attributeMatcherSourceInterface : attributeMatcher.getSourceElements()) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
@@ -543,10 +543,10 @@ public class HintValueExtractor extends ValueExtractor {
 		AttributeMappingSourceInterface element;
 
 		if (prepend) {
-			element = attributeMapping.getSourceAttributeMappings().get(0);
+			element = attributeMapping.getSourceElements().get(0);
 		} else {
-			element = attributeMapping.getSourceAttributeMappings()
-					.get(attributeMapping.getSourceAttributeMappings().size() - 1);
+			element = attributeMapping.getSourceElements()
+					.get(attributeMapping.getSourceElements().size() - 1);
 		}
 
 		mappingInstance.getHintValues().getHintValues(attributeMapping).parallelStream().forEach(existingValue -> {
@@ -583,9 +583,9 @@ public class HintValueExtractor extends ValueExtractor {
 		AttributeMatcherSourceInterface element;
 
 		if (prepend) {
-			element = attributeMatcher.getSourceAttributes().get(0);
+			element = attributeMatcher.getSourceElements().get(0);
 		} else {
-			element = attributeMatcher.getSourceAttributes().get(attributeMatcher.getSourceAttributes().size() - 1);
+			element = attributeMatcher.getSourceElements().get(attributeMatcher.getSourceElements().size() - 1);
 		}
 
 		mappingInstance.getHintValues().getHintValues((MappingInstanceSelector) attributeMatcher.eContainer()).parallelStream()

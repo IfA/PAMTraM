@@ -117,11 +117,11 @@ public class InstancePointerHandler{
 
 		String instancePointerRefValue = this.valueExtractor.extractRequiredTargetValue(instancePointer, matchedSectionDescriptor);
 
-		ActualSourceSectionAttribute sourceAttr = instancePointer.getAttributePointer();
+		ActualSourceSectionAttribute sourceAttr = instancePointer.getTarget();
 
 		return instanceList.parallelStream().filter(element -> {
 
-			Object sourceRefAttr = element.eGet(instancePointer.getAttributePointer().getAttribute());
+			Object sourceRefAttr = element.eGet(instancePointer.getTarget().getAttribute());
 
 			try{
 				// convert Attribute value to String

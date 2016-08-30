@@ -829,16 +829,16 @@ public class GenericTransformationRunner extends CancelableElement {
 			 * Create a TransformationMappingHintGroup for each mapping hint group
 			 */
 			selMap.getMapping().getActiveMappingHintGroups().stream()
-			.filter(g -> g.getTargetMMSection() != null && g instanceof InstantiableMappingHintGroup)
+			.filter(g -> g.getTargetSection() != null && g instanceof InstantiableMappingHintGroup)
 			.forEach(g -> {
-				if (g.getTargetMMSection() != null && g instanceof InstantiableMappingHintGroup) {
+				if (g.getTargetSection() != null && g instanceof InstantiableMappingHintGroup) {
 
 					/*
 					 * Create a TransformationMappingHintGroup for the mapping hint group
 					 */
 					TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
 					transformationMappingHintGroup.setAssociatedMappingHintGroup((InstantiableMappingHintGroup) g);
-					for (EObjectWrapper instance : selMap.getInstancesBySection((InstantiableMappingHintGroup) g).get(g.getTargetMMSection())) {
+					for (EObjectWrapper instance : selMap.getInstancesBySection((InstantiableMappingHintGroup) g).get(g.getTargetSection())) {
 						transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
 					}					
 					transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);
@@ -846,16 +846,16 @@ public class GenericTransformationRunner extends CancelableElement {
 			});
 
 			selMap.getMapping().getActiveImportedMappingHintGroups().stream()
-			.filter(g -> g.getHintGroup() != null && g.getHintGroup().getTargetMMSection() != null)
+			.filter(g -> g.getHintGroup() != null && g.getHintGroup().getTargetSection() != null)
 			.forEach(g -> {
-				if (g.getHintGroup() != null && g.getHintGroup().getTargetMMSection() != null) {
+				if (g.getHintGroup() != null && g.getHintGroup().getTargetSection() != null) {
 
 					/*
 					 * Create a TransformationMappingHintGroup for the mapping hint group
 					 */
 					TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
 					transformationMappingHintGroup.setAssociatedMappingHintGroup(g);
-					for (EObjectWrapper instance : selMap.getInstancesBySection(g).get(g.getHintGroup().getTargetMMSection())) {
+					for (EObjectWrapper instance : selMap.getInstancesBySection(g).get(g.getHintGroup().getTargetSection())) {
 						transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
 					}					
 					transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);

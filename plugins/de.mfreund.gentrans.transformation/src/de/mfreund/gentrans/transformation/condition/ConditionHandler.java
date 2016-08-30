@@ -522,11 +522,11 @@ public class ConditionHandler {
 		} else if (condition instanceof ApplicationDependency) {
 			ConditionalElement conditionalElement = ((ApplicationDependency) condition).getConditionalElement();
 			if (conditionalElement instanceof Mapping) {
-				affectedSection = ((Mapping) conditionalElement).getSourceMMSection();
+				affectedSection = ((Mapping) conditionalElement).getSourceSection();
 			} else if (conditionalElement instanceof InstantiableMappingHintGroup) {
-				affectedSection = ((Mapping) conditionalElement.eContainer()).getSourceMMSection();
+				affectedSection = ((Mapping) conditionalElement.eContainer()).getSourceSection();
 			} else if (conditionalElement instanceof MappingHint) {
-				affectedSection = ((Mapping) conditionalElement.eContainer().eContainer()).getSourceMMSection();
+				affectedSection = ((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection();
 			} else {
 				this.logger.severe(
 						"Unknown type of ConditionalElement '" + conditionalElement.eClass().getName() + "' found!");

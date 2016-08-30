@@ -191,7 +191,7 @@ public class MappingSelector extends CancelableElement {
 		// The mappings with suitable 'sourceMMSections'
 		//
 		Set<Mapping> applicableMappings = this.mappings.parallelStream()
-				.filter(m -> matchedSection.equals(m.getSourceMMSection())).collect(Collectors.toSet());
+				.filter(m -> matchedSection.equals(m.getSourceSection())).collect(Collectors.toSet());
 
 		// Check if we need to 'defer' the selection of mappings for the given set of 'descriptors' as at least one of
 		// the possible mappings has an 'ApplicationDependency'

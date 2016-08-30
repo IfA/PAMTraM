@@ -72,7 +72,7 @@ public interface IAmbiguityResolvingStrategy {
 
 	/**
 	 * Resolve ambiguities that arise when selecting a {@link Mapping} for a given 'element' in the '<em>matching</em>' step
-	 * of the transformation. This method is called when multiple Mappings point to the same {@link Mapping#getSourceMMSection() 
+	 * of the transformation. This method is called when multiple Mappings point to the same {@link Mapping#getSourceSection() 
 	 * source section}.
 	 * 
 	 * @param choices The list of applicable {@link Mapping Mappings} for the given 'element'.

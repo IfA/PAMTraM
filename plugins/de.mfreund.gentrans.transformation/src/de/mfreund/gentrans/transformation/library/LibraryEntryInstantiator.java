@@ -301,14 +301,14 @@ public class LibraryEntryInstantiator {
 				 * container as parameter for the library entry.
 				 */
 				List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(
-						((MappingHintGroup) mappingGroup).getTargetMMSection()).get(mappingGroup);
+						((MappingHintGroup) mappingGroup).getTargetSection()).get(mappingGroup);
 
 				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(
 						transformationHelper.getEObject().eContainer());
 
 				EcoreUtil.delete(transformationHelper.getEObject());
 
-				targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).put(mappingGroup, rootInstances);				
+				targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetSection()).put(mappingGroup, rootInstances);				
 
 			} else if (param instanceof ExternalReferenceParameter) {
 

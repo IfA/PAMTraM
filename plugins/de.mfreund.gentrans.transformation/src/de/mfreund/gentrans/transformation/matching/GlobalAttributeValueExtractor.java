@@ -58,7 +58,7 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 		//
 		Map<SourceSection, EList<GlobalAttribute>> globalAttributesBySection =
 				suitableMappings.parallelStream().collect(Collectors.toConcurrentMap(
-						Mapping::getSourceMMSection, Mapping::getGlobalVariables, (i, j) -> { i.addAll(j); return i;}));
+						Mapping::getSourceSection, Mapping::getGlobalVariables, (i, j) -> { i.addAll(j); return i;}));
 
 		// Collect the MatchedSectionDescriptors for each GlobalAttribute
 		//

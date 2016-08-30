@@ -181,7 +181,7 @@ public class TargetSectionLinker extends CancelableElement {
 			final MappingHintGroupImporter hintGroupImporter) {
 
 		final ExportedMappingHintGroup expGrp = hintGroupImporter.getHintGroup();
-		if (expGrp.getTargetMMSection() != null) {
+		if (expGrp.getTargetSection() != null) {
 			if (mappingInstance.getInstancesBySection(hintGroupImporter) != null) {
 				final List<MappingHint> hints = new LinkedList<>();
 				hints.addAll(mappingInstance.getMappingHints(expGrp));
@@ -198,7 +198,7 @@ public class TargetSectionLinker extends CancelableElement {
 				}
 
 				instantiateTargetSectionSecondPass(
-						expGrp.getTargetMMSection(), 
+						expGrp.getTargetSection(), 
 						hintGroupImporter, 
 						hints, 
 						mappingInstance.getHintValues(), 
@@ -230,12 +230,12 @@ public class TargetSectionLinker extends CancelableElement {
 	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance, 
 			final MappingHintGroupType hintGroup) {
 
-		if (hintGroup.getTargetMMSection() != null && hintGroup instanceof MappingHintGroup) {
+		if (hintGroup.getTargetSection() != null && hintGroup instanceof MappingHintGroup) {
 
 			if (mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup) != null) {
 
 				instantiateTargetSectionSecondPass(
-						hintGroup.getTargetMMSection(),
+						hintGroup.getTargetSection(),
 						(MappingHintGroup) hintGroup,
 						mappingInstance.getMappingHints(hintGroup),
 						mappingInstance.getHintValues(),
@@ -336,7 +336,7 @@ public class TargetSectionLinker extends CancelableElement {
 					hintFound = true;
 					// now search for target attributes
 					final List<EObjectWrapper> targetInstances = targetSectionRegistry
-							.getFlattenedPamtramClassInstances(matcher.getTargetAttribute().getOwningClass());
+							.getFlattenedPamtramClassInstances(matcher.getTarget().getOwningClass());
 
 					// instances are sorted in the same order as
 					// hintValues
@@ -409,7 +409,7 @@ public class TargetSectionLinker extends CancelableElement {
 
 							for (final EObjectWrapper targetInst : targetInstances) {
 								// get Attribute value
-								final String targetValStr = targetInst.getAttributeValue(matcher.getTargetAttribute());
+								final String targetValStr = targetInst.getAttributeValue(matcher.getTarget());
 								if (targetValStr != null) {
 									if (targetValStr.equals(attrValStr)) {
 										fittingVals.add(targetInst);

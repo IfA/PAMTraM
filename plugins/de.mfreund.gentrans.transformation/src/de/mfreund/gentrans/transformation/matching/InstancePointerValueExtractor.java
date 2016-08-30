@@ -85,7 +85,7 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 
 	/**
 	 * This extracts and returns the required target value for the given {@link InstancePointer} as specified by its 
-	 * {@link InstancePointer#getSourceAttributes() source attributes}.
+	 * {@link InstancePointer#getSourceElements() source attributes}.
 	 * 
 	 * @param instancePointer The {@link InstancePointer} for that the target value shall be extracted.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the value shall be extracted.
@@ -102,7 +102,7 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 
 		// Extract the value part based on its type
 		//
-		for (InstancePointerSourceInterface instancePointerSourceInterface : instancePointer.getSourceAttributes()) {
+		for (InstancePointerSourceInterface instancePointerSourceInterface : instancePointer.getSourceElements()) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
@@ -134,7 +134,7 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 		//
 		String expression = instancePointer.getExpression();
 		if(expression == null || expression.isEmpty()) {
-			return attributeValueCalculator.calculateValueWithoutExpression(new ArrayList<>(instancePointer.getSourceAttributes()), valueParts, instancePointer.getResultModifier());
+			return attributeValueCalculator.calculateValueWithoutExpression(new ArrayList<>(instancePointer.getSourceElements()), valueParts, instancePointer.getResultModifier());
 		} else {
 			return attributeValueCalculator.calculateValueWithExpression(valueParts, expression, instancePointer.getResultModifier());
 		}

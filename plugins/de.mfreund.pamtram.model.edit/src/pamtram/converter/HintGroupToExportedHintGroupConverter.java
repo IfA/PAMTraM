@@ -23,8 +23,8 @@ public class HintGroupToExportedHintGroupConverter implements
 			target.setName(source.getName());
 		}
 		
-		if(source.getTargetMMSection() != null){
-			target.setTargetMMSection(source.getTargetMMSection());
+		if(source.getTargetSection() != null){
+			target.setTargetSection(source.getTargetSection());
 		}
 		
 		

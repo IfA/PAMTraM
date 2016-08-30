@@ -83,9 +83,9 @@ extends MappingHintItemProvider {
 			public Collection<?> getChoiceOfValues(Object object) {
 				TargetSectionClass target=null;
 				if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupType){
-					target=((MappingHintGroupType) ((MappingInstanceSelector)object).eContainer()).getTargetMMSection();
+					target=((MappingHintGroupType) ((MappingInstanceSelector)object).eContainer()).getTargetSection();
 				} else if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupImporter){
-					target=((MappingHintGroupImporter) ((MappingInstanceSelector)object).eContainer()).getHintGroup().getTargetMMSection();
+					target=((MappingHintGroupImporter) ((MappingInstanceSelector)object).eContainer()).getHintGroup().getTargetSection();
 				}
 
 				TreeIterator<EObject> it =target.eAllContents();

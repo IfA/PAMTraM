@@ -54,13 +54,13 @@ extends MappingTypeItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addConditionRefPropertyDescriptor(object);
-			addAbstractPropertyDescriptor(object);
+			this.addConditionRefPropertyDescriptor(object);
+			this.addAbstractPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -70,19 +70,19 @@ extends MappingTypeItemProvider {
 	 * @generated
 	 */
 	protected void addConditionRefPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConditionalElement_conditionRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_conditionRef_feature", "_UI_ConditionalElement_type"),
-				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ConditionalElement_conditionRef_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_conditionRef_feature", "_UI_ConditionalElement_type"),
+						PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -92,19 +92,19 @@ extends MappingTypeItemProvider {
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Mapping_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_abstract_feature", "_UI_Mapping_type"),
-				 MappingPackage.Literals.MAPPING__ABSTRACT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_Mapping_abstract_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_Mapping_abstract_feature", "_UI_Mapping_type"),
+						MappingPackage.Literals.MAPPING__ABSTRACT,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -117,14 +117,14 @@ extends MappingTypeItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES);
+			this.childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION);
+			this.childrenFeatures.add(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS);
+			this.childrenFeatures.add(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
+			this.childrenFeatures.add(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -146,14 +146,14 @@ extends MappingTypeItemProvider {
 	 * <!-- end-user-doc -->
 	 */
 	@Override
-	protected void addSourceMMSectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+	protected void addSourceSectionPropertyDescriptor(Object object) {
+		this.itemPropertyDescriptors.add
 		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MappingType_sourceMMSection_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature", "_UI_MappingType_type"),
-						MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION,
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_MappingType_sourceMMSection_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature", "_UI_MappingType_type"),
+				MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION,
 						true,
 						false,
 						true,
@@ -180,7 +180,7 @@ extends MappingTypeItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Mapping"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/Mapping"));
 	}
 
 	/**
@@ -191,7 +191,7 @@ extends MappingTypeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -206,7 +206,7 @@ extends MappingTypeItemProvider {
 		StyledString styledLabel = new StyledString();
 
 		if (label == null || label.length() == 0) {
-			styledLabel.append(""); 
+			styledLabel.append("");
 		} else {
 			styledLabel.append(label, ((Mapping) object).isAbstract() ? StyledString.Style.QUALIFIER_STYLER : StyledString.Style.NO_STYLE);
 		}
@@ -229,17 +229,17 @@ extends MappingTypeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(Mapping.class)) {
 			case MappingPackage.MAPPING__ABSTRACT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.MAPPING__CONDITION:
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -257,68 +257,68 @@ extends MappingTypeItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
-				 ConditionFactory.eINSTANCE.createAnd()));
+						ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
-				 ConditionFactory.eINSTANCE.createOr()));
+						ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
-				 ConditionFactory.eINSTANCE.createNot()));
+						ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
-				 ConditionFactory.eINSTANCE.createAttributeCondition()));
+						ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
-				 ConditionFactory.eINSTANCE.createSectionCondition()));
+						ConditionFactory.eINSTANCE.createSectionCondition()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
-				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+						ConditionFactory.eINSTANCE.createApplicationDependency()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
-				 MappingFactory.eINSTANCE.createMappingHintGroup()));
+						MappingFactory.eINSTANCE.createMappingHintGroup()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
-				 MappingFactory.eINSTANCE.createExportedMappingHintGroup()));
+						MappingFactory.eINSTANCE.createExportedMappingHintGroup()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS,
-				 MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
+						MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES,
-				 MappingFactory.eINSTANCE.createGlobalAttribute()));
+						MappingFactory.eINSTANCE.createGlobalAttribute()));
 	}
-	
+
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
 			int operation, Collection<?> collection) {
 
 		if(collection.size() == 1) {
-			Object object = (Object) collection.iterator().next();
+			Object object = collection.iterator().next();
 			if(object instanceof ComplexCondition) {
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner,
 						PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF, object, 0);
 			}
 		}
-		
+
 		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 	}
 

@@ -160,9 +160,9 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 				Mapping mapping= (Mapping) ((EObject)object).eContainer();
 
 				for(MappingHintGroupType g : mapping.getMappingHintGroups()){
-					if(g.getTargetMMSection() != null && g instanceof MappingHintGroup){
-						choiceOfValues.add(g.getTargetMMSection());
-						TreeIterator<EObject> it=g.getTargetMMSection().eAllContents();
+					if(g.getTargetSection() != null && g instanceof MappingHintGroup){
+						choiceOfValues.add(g.getTargetSection());
+						TreeIterator<EObject> it=g.getTargetSection().eAllContents();
 						while(it.hasNext()){
 							EObject next=it.next();
 							if(next instanceof TargetSectionClass){

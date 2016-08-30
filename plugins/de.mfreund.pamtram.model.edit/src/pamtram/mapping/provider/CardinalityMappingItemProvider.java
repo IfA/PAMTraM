@@ -118,7 +118,7 @@ extends MappingHintItemProvider {
 
 
 				// the source section
-				SourceSectionClass source = mapping.getSourceMMSection();
+				SourceSectionClass source = mapping.getSourceSection();
 
 				List<Object> choiceOfValues = new ArrayList<Object>();
 
@@ -205,9 +205,9 @@ extends MappingHintItemProvider {
 				// the target section
 				Class target = null;
 				if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupType){
-					target=((MappingHintGroupType) ((CardinalityMapping)object).eContainer()).getTargetMMSection();
+					target=((MappingHintGroupType) ((CardinalityMapping)object).eContainer()).getTargetSection();
 				} else if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupImporter){
-					target=((MappingHintGroupImporter) ((CardinalityMapping)object).eContainer()).getHintGroup().getTargetMMSection();
+					target=((MappingHintGroupImporter) ((CardinalityMapping)object).eContainer()).getHintGroup().getTargetSection();
 				}
 
 				List<Object> choiceOfValues = new ArrayList<Object>();

@@ -132,12 +132,12 @@ public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAt
 				//
 				Mapping mapping = ((ModifiedAttributeElementType<?,?,?,?>) object).getMapping();
 				
-				if(mapping == null || mapping.getSourceMMSection() == null) {
+				if(mapping == null || mapping.getSourceSection() == null) {
 					return new ArrayList<>();
 				}
 				
 				// the container section
-				SourceSectionClass container = mapping.getSourceMMSection().getContainer();
+				SourceSectionClass container = mapping.getSourceSection().getContainer();
 
 				List<Object> choiceOfValues = new ArrayList<>();
 

@@ -88,13 +88,13 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 
 				Mapping mapping= (Mapping) ((EObject) object).eContainer();
 
-				if(mapping.getSourceMMSection() == null){
+				if(mapping.getSourceSection() == null){
 					return super.getChoiceOfValues(object);
 				} else {
 					List<SourceSectionClass> classes=new LinkedList<>();
 					Set<SourceSectionClass> classesScanned=new HashSet<>();
 
-					classes.add(mapping.getSourceMMSection());
+					classes.add(mapping.getSourceSection());
 
 					while(classes.size() > 0){
 						SourceSectionClass c=classes.remove(0);

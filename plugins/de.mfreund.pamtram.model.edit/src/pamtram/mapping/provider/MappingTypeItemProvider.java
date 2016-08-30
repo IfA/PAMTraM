@@ -5,15 +5,16 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.PamtramPackage;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingType;
@@ -27,7 +28,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class MappingTypeItemProvider
-	extends NamedElementItemProvider {
+extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -46,13 +47,13 @@ public class MappingTypeItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDeactivatedPropertyDescriptor(object);
-			addSourceMMSectionPropertyDescriptor(object);
+			this.addDeactivatedPropertyDescriptor(object);
+			this.addSourceSectionPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -62,19 +63,19 @@ public class MappingTypeItemProvider
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
-				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_DeactivatableElement_deactivated_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+						PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -83,20 +84,20 @@ public class MappingTypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourceMMSectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingType_sourceMMSection_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature", "_UI_MappingType_type"),
-				 MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	protected void addSourceSectionPropertyDescriptor(Object object) {
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_MappingType_sourceMMSection_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature", "_UI_MappingType_type"),
+				MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -107,7 +108,7 @@ public class MappingTypeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -119,11 +120,11 @@ public class MappingTypeItemProvider
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((MappingType)object).getName();
-    	StyledString styledLabel = new StyledString();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MappingType_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_MappingType_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_MappingType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_MappingType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -137,11 +138,11 @@ public class MappingTypeItemProvider
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingType.class)) {
 			case MappingPackage.MAPPING_TYPE__DEACTIVATED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);

@@ -114,9 +114,9 @@ extends MappingHintItemProvider {
 				// the target sections
 				TargetSectionClass target = null;
 				if(attrMapping.eContainer()  instanceof MappingHintGroupType){
-					target=((MappingHintGroupType)attrMapping.eContainer()).getTargetMMSection();
+					target=((MappingHintGroupType)attrMapping.eContainer()).getTargetSection();
 				} else if(attrMapping.eContainer() instanceof MappingHintGroupImporter){
-					target=((MappingHintGroupImporter)attrMapping.eContainer()).getHintGroup().getTargetMMSection();
+					target=((MappingHintGroupImporter)attrMapping.eContainer()).getHintGroup().getTargetSection();
 				}
 
 

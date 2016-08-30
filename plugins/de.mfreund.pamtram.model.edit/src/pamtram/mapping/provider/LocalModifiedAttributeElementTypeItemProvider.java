@@ -152,8 +152,8 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 				// If we operate on an ModelConnectionHintTarget, we need to scan the container of the target section.
 				//
 				if(object instanceof ModelConnectionHintTargetAttribute) {
-					if(parent instanceof MappingHintGroupType && ((MappingHintGroupType) parent).getTargetMMSection() != null) {
-						relevantClass = ((MappingHintGroupType) parent).getTargetMMSection().getContainer();
+					if(parent instanceof MappingHintGroupType && ((MappingHintGroupType) parent).getTargetSection() != null) {
+						relevantClass = ((MappingHintGroupType) parent).getTargetSection().getContainer();
 
 						// If no container has been specified, we allow for the default values.
 						if(relevantClass == null) {
@@ -164,7 +164,7 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 				// Otherwise, we need to scan the source section for suitable attributes.
 				//
 				} else if(mapping != null) {
-					relevantClass = mapping.getSourceMMSection();
+					relevantClass = mapping.getSourceSection();
 				}
 
 				if(relevantClass == null) {

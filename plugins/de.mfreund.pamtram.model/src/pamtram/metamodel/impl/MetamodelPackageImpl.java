@@ -1408,7 +1408,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstancePointer_AttributePointer() {
+	public EReference getInstancePointer_Target() {
 		return (EReference)instancePointerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1417,7 +1417,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstancePointer_SourceAttributes() {
+	public EReference getInstancePointer_SourceElements() {
 		return (EReference)instancePointerEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1802,8 +1802,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEOperation(multipleReferencesValueConstraintEClass, MULTIPLE_REFERENCES_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST);
 
 		instancePointerEClass = createEClass(INSTANCE_POINTER);
-		createEReference(instancePointerEClass, INSTANCE_POINTER__ATTRIBUTE_POINTER);
-		createEReference(instancePointerEClass, INSTANCE_POINTER__SOURCE_ATTRIBUTES);
+		createEReference(instancePointerEClass, INSTANCE_POINTER__TARGET);
+		createEReference(instancePointerEClass, INSTANCE_POINTER__SOURCE_ELEMENTS);
 		createEOperation(instancePointerEClass, INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP_10);
 
 		instancePointerSourceInterfaceEClass = createEClass(INSTANCE_POINTER_SOURCE_INTERFACE);
@@ -2888,8 +2888,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		addEParameter(op, ecorePackage.getEString(), "refValue", 1, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(instancePointerEClass, InstancePointer.class, "InstancePointer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInstancePointer_AttributePointer(), this.getActualSourceSectionAttribute(), null, "attributePointer", null, 1, 1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInstancePointer_SourceAttributes(), this.getInstancePointerSourceInterface(), null, "sourceAttributes", null, 0, -1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstancePointer_Target(), this.getActualSourceSectionAttribute(), null, "attributePointer", null, 1, 1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstancePointer_SourceElements(), this.getInstancePointerSourceInterface(), null, "sourceAttributes", null, 0, -1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getInstancePointer__NoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map_10(), ecorePackage.getEBoolean(), "noModifiedAttributeElementTypesInConditionModelConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);

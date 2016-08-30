@@ -299,7 +299,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
 		//
 		return getBoundReferenceValueAdditionalSpecification().parallelStream().flatMap(
-				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
+				instancePointer -> instancePointer.getSourceElements().parallelStream().filter(
 						s -> s instanceof InstancePointerSourceElement || 
 						s instanceof InstancePointerExternalSourceElement)
 				).findAny().isPresent();

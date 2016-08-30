@@ -203,7 +203,7 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 		// A condition is also 'local' if an InstancePointer with local or external SourceAttributes exist
 		//
 		return this.getAdditionalConditionSpecification().parallelStream()
-				.flatMap(instancePointer -> instancePointer.getSourceAttributes().parallelStream()
+				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
 						.filter(s -> s instanceof pamtram.metamodel.InstancePointerSourceElement
 								|| s instanceof pamtram.metamodel.InstancePointerExternalSourceElement))
 				.findAny().isPresent();

@@ -186,7 +186,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 		// A condition is also 'local' if an InstancePointer with local or external SourceAttributes exist
 		//
 		return getAdditionalConditionSpecification().parallelStream().flatMap(
-				instancePointer -> instancePointer.getSourceAttributes().parallelStream().filter(
+				instancePointer -> instancePointer.getSourceElements().parallelStream().filter(
 						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
 						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
 				).findAny().isPresent();

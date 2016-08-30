@@ -4530,7 +4530,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER__ATTRIBUTE_POINTER = MappingPackage.EXPRESSION_HINT_FEATURE_COUNT + 1;
+	int INSTANCE_POINTER__TARGET = MappingPackage.EXPRESSION_HINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Source Attributes</b></em>' containment reference list.
@@ -4539,7 +4539,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER__SOURCE_ATTRIBUTES = MappingPackage.EXPRESSION_HINT_FEATURE_COUNT + 2;
+	int INSTANCE_POINTER__SOURCE_ELEMENTS = MappingPackage.EXPRESSION_HINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Instance Pointer</em>' class.
@@ -6175,22 +6175,22 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Attribute Pointer</em>'.
-	 * @see pamtram.metamodel.InstancePointer#getAttributePointer()
+	 * @see pamtram.metamodel.InstancePointer#getTarget()
 	 * @see #getInstancePointer()
 	 * @generated
 	 */
-	EReference getInstancePointer_AttributePointer();
+	EReference getInstancePointer_Target();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.InstancePointer#getSourceAttributes <em>Source Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Attributes</em>'.
-	 * @see pamtram.metamodel.InstancePointer#getSourceAttributes()
+	 * @see pamtram.metamodel.InstancePointer#getSourceElements()
 	 * @see #getInstancePointer()
 	 * @generated
 	 */
-	EReference getInstancePointer_SourceAttributes();
+	EReference getInstancePointer_SourceElements();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.metamodel.InstancePointer#noModifiedAttributeElementTypesInConditionModelConditions(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Modified Attribute Element Types In Condition Model Conditions</em>}' operation.
@@ -7330,7 +7330,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INSTANCE_POINTER__ATTRIBUTE_POINTER = eINSTANCE.getInstancePointer_AttributePointer();
+		EReference INSTANCE_POINTER__TARGET = eINSTANCE.getInstancePointer_Target();
 
 		/**
 		 * The meta object literal for the '<em><b>Source Attributes</b></em>' containment reference list feature.
@@ -7338,7 +7338,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INSTANCE_POINTER__SOURCE_ATTRIBUTES = eINSTANCE.getInstancePointer_SourceAttributes();
+		EReference INSTANCE_POINTER__SOURCE_ELEMENTS = eINSTANCE.getInstancePointer_SourceElements();
 
 		/**
 		 * The meta object literal for the '<em><b>No Modified Attribute Element Types In Condition Model Conditions</b></em>' operation.

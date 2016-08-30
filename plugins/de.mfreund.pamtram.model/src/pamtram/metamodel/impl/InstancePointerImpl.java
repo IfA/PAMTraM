@@ -73,24 +73,24 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	protected EList<ValueModifierSet> resultModifier;
 
 	/**
-	 * The cached value of the '{@link #getAttributePointer() <em>Attribute Pointer</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Attribute Pointer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAttributePointer()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected ActualSourceSectionAttribute attributePointer;
+	protected ActualSourceSectionAttribute target;
 
 	/**
-	 * The cached value of the '{@link #getSourceAttributes() <em>Source Attributes</em>}' containment reference list.
+	 * The cached value of the '{@link #getSourceElements() <em>Source Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceAttributes()
+	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstancePointerSourceInterface> sourceAttributes;
+	protected EList<InstancePointerSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,16 +128,16 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualSourceSectionAttribute getAttributePointer() {
-		if (attributePointer != null && attributePointer.eIsProxy()) {
-			InternalEObject oldAttributePointer = (InternalEObject)attributePointer;
-			attributePointer = (ActualSourceSectionAttribute)eResolveProxy(oldAttributePointer);
-			if (attributePointer != oldAttributePointer) {
+	public ActualSourceSectionAttribute getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldAttributePointer = (InternalEObject)target;
+			target = (ActualSourceSectionAttribute)eResolveProxy(oldAttributePointer);
+			if (target != oldAttributePointer) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER, oldAttributePointer, attributePointer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.INSTANCE_POINTER__TARGET, oldAttributePointer, target));
 			}
 		}
-		return attributePointer;
+		return target;
 	}
 
 	/**
@@ -145,8 +145,8 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualSourceSectionAttribute basicGetAttributePointer() {
-		return attributePointer;
+	public ActualSourceSectionAttribute basicGetTarget() {
+		return target;
 	}
 
 	/**
@@ -154,11 +154,11 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAttributePointer(ActualSourceSectionAttribute newAttributePointer) {
-		ActualSourceSectionAttribute oldAttributePointer = attributePointer;
-		attributePointer = newAttributePointer;
+	public void setTarget(ActualSourceSectionAttribute newAttributePointer) {
+		ActualSourceSectionAttribute oldAttributePointer = target;
+		target = newAttributePointer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER, oldAttributePointer, attributePointer));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.INSTANCE_POINTER__TARGET, oldAttributePointer, target));
 	}
 
 	/**
@@ -166,11 +166,11 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InstancePointerSourceInterface> getSourceAttributes() {
-		if (sourceAttributes == null) {
-			sourceAttributes = new EObjectContainmentEList<InstancePointerSourceInterface>(InstancePointerSourceInterface.class, this, MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES);
+	public EList<InstancePointerSourceInterface> getSourceElements() {
+		if (sourceElements == null) {
+			sourceElements = new EObjectContainmentEList<InstancePointerSourceInterface>(InstancePointerSourceInterface.class, this, MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS);
 		}
-		return sourceAttributes;
+		return sourceElements;
 	}
 
 	/**
@@ -236,7 +236,7 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		    }
 		    /*@Thrown*/ Boolean status;
 		    if (and) {
-		        final /*@Thrown*/ List<InstancePointerSourceInterface> sourceAttributes = this.getSourceAttributes();
+		        final /*@Thrown*/ List<InstancePointerSourceInterface> sourceAttributes = this.getSourceElements();
 		        final /*@Thrown*/ OrderedSetValue BOXED_sourceAttributes = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_InstancePointerSourceInterface, sourceAttributes);
 		        /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
 		        /*@NonNull*/ Iterator<Object> ITERATOR__1 = BOXED_sourceAttributes.iterator();
@@ -304,8 +304,8 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
-				return ((InternalEList<?>)getSourceAttributes()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -320,11 +320,11 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		switch (featureID) {
 			case MetamodelPackage.INSTANCE_POINTER__RESULT_MODIFIER:
 				return getResultModifier();
-			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
-				if (resolve) return getAttributePointer();
-				return basicGetAttributePointer();
-			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
-				return getSourceAttributes();
+			case MetamodelPackage.INSTANCE_POINTER__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
+			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -342,12 +342,12 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 				getResultModifier().clear();
 				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
-				setAttributePointer((ActualSourceSectionAttribute)newValue);
+			case MetamodelPackage.INSTANCE_POINTER__TARGET:
+				setTarget((ActualSourceSectionAttribute)newValue);
 				return;
-			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
-				getSourceAttributes().clear();
-				getSourceAttributes().addAll((Collection<? extends InstancePointerSourceInterface>)newValue);
+			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+				getSourceElements().clear();
+				getSourceElements().addAll((Collection<? extends InstancePointerSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -364,11 +364,11 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 			case MetamodelPackage.INSTANCE_POINTER__RESULT_MODIFIER:
 				getResultModifier().clear();
 				return;
-			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
-				setAttributePointer((ActualSourceSectionAttribute)null);
+			case MetamodelPackage.INSTANCE_POINTER__TARGET:
+				setTarget((ActualSourceSectionAttribute)null);
 				return;
-			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
-				getSourceAttributes().clear();
+			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+				getSourceElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -384,10 +384,10 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		switch (featureID) {
 			case MetamodelPackage.INSTANCE_POINTER__RESULT_MODIFIER:
 				return resultModifier != null && !resultModifier.isEmpty();
-			case MetamodelPackage.INSTANCE_POINTER__ATTRIBUTE_POINTER:
-				return attributePointer != null;
-			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ATTRIBUTES:
-				return sourceAttributes != null && !sourceAttributes.isEmpty();
+			case MetamodelPackage.INSTANCE_POINTER__TARGET:
+				return target != null;
+			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

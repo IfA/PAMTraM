@@ -3,26 +3,28 @@
 package pamtram.metamodel;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.ModifiableHint;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Instance Pointer</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Instance Pointer</b></em>'. <!-- end-user-doc
+ * -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.InstancePointer#getAttributePointer <em>Attribute Pointer</em>}</li>
- *   <li>{@link pamtram.metamodel.InstancePointer#getSourceAttributes <em>Source Attributes</em>}</li>
+ * <li>{@link pamtram.metamodel.InstancePointer#getTarget <em>Attribute Pointer</em>}</li>
+ * <li>{@link pamtram.metamodel.InstancePointer#getSourceAttributes <em>Source Attributes</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getInstancePointer()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='noModifiedAttributeElementTypesInConditionModelConditions'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore
+ *        constraints='noModifiedAttributeElementTypesInConditionModelConditions'"
  * @generated
  */
 public interface InstancePointer extends ExpressionHint, ModifiableHint {
@@ -35,23 +37,24 @@ public interface InstancePointer extends ExpressionHint, ModifiableHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute Pointer</em>' reference.
-	 * @see #setAttributePointer(ActualSourceSectionAttribute)
-	 * @see pamtram.metamodel.MetamodelPackage#getInstancePointer_AttributePointer()
+	 * @see #setTarget(ActualSourceSectionAttribute)
+	 * @see pamtram.metamodel.MetamodelPackage#getInstancePointer_Target()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!InstancePointer!attributePointer'"
 	 * @generated
 	 */
-	ActualSourceSectionAttribute getAttributePointer();
+	ActualSourceSectionAttribute getTarget();
 
 	/**
-	 * Sets the value of the '{@link pamtram.metamodel.InstancePointer#getAttributePointer <em>Attribute Pointer</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Attribute Pointer</em>' reference.
-	 * @see #getAttributePointer()
+	 * Sets the value of the '{@link pamtram.metamodel.InstancePointer#getTarget <em>Attribute Pointer</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Attribute Pointer</em>' reference.
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setAttributePointer(ActualSourceSectionAttribute value);
+	void setTarget(ActualSourceSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Source Attributes</b></em>' containment reference list.
@@ -63,12 +66,12 @@ public interface InstancePointer extends ExpressionHint, ModifiableHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Attributes</em>' containment reference list.
-	 * @see pamtram.metamodel.MetamodelPackage#getInstancePointer_SourceAttributes()
+	 * @see pamtram.metamodel.MetamodelPackage#getInstancePointer_SourceElements()
 	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!InstancePointer!sourceAttributes'"
 	 * @generated
 	 */
-	EList<InstancePointerSourceInterface> getSourceAttributes();
+	EList<InstancePointerSourceInterface> getSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->

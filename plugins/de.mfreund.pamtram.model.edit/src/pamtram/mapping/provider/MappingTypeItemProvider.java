@@ -47,13 +47,13 @@ extends NamedElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addDeactivatedPropertyDescriptor(object);
-			this.addSourceSectionPropertyDescriptor(object);
+			addDeactivatedPropertyDescriptor(object);
+			addSourceSectionPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -63,41 +63,41 @@ extends NamedElementItemProvider {
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_DeactivatableElement_deactivated_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
-						PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DeactivatableElement_deactivated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Source MM Section feature.
+	 * This adds a property descriptor for the Source Section feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSourceSectionPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_MappingType_sourceMMSection_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature", "_UI_MappingType_type"),
-				MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MappingType_sourceSection_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceSection_feature", "_UI_MappingType_type"),
+				 MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -108,7 +108,7 @@ extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -120,11 +120,11 @@ extends NamedElementItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((MappingType)object).getName();
-		StyledString styledLabel = new StyledString();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_MappingType_type"), StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_MappingType_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(this.getString("_UI_MappingType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_MappingType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -138,11 +138,11 @@ extends NamedElementItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingType.class)) {
 			case MappingPackage.MAPPING_TYPE__DEACTIVATED:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);

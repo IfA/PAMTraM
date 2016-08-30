@@ -55,35 +55,35 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addTargetSectionPropertyDescriptor(object);
-			this.addExtendPropertyDescriptor(object);
+			addTargetSectionPropertyDescriptor(object);
+			addExtendPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Target MM Section feature.
+	 * This adds a property descriptor for the Target Section feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTargetSectionPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_MappingHintGroupType_targetMMSection_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupType_targetMMSection_feature", "_UI_MappingHintGroupType_type"),
-						MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MappingHintGroupType_targetSection_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupType_targetSection_feature", "_UI_MappingHintGroupType_type"),
+				 MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -162,11 +162,11 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS);
+			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	@Override
@@ -199,7 +199,7 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 
@@ -242,11 +242,11 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingHintGroupType.class)) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -269,19 +269,19 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createAttributeMapping()));
+				 MappingFactory.eINSTANCE.createAttributeMapping()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createCardinalityMapping()));
+				 MappingFactory.eINSTANCE.createCardinalityMapping()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createMappingInstanceSelector()));
+				 MappingFactory.eINSTANCE.createMappingInstanceSelector()));
 	}
 
 	/**

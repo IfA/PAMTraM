@@ -287,7 +287,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMultipleConditionOperator() {
+	public EClass getVariadicCondition() {
 		return variadicConditionEClass;
 	}
 
@@ -296,7 +296,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultipleConditionOperator_CondParts() {
+	public EReference getVariadicCondition_CondParts() {
 		return (EReference)variadicConditionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -305,7 +305,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultipleConditionOperator_CondPartsRef() {
+	public EReference getVariadicCondition_CondPartsRef() {
 		return (EReference)variadicConditionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -314,7 +314,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultipleConditionOperator__ReferencesOnlyValidConditions() {
+	public EOperation getVariadicCondition__ReferencesOnlyValidConditions() {
 		return variadicConditionEClass.getEOperations().get(0);
 	}
 
@@ -323,7 +323,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_1() {
+	public EOperation getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map() {
 		return variadicConditionEClass.getEOperations().get(1);
 	}
 
@@ -359,7 +359,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSingleConditionOperator() {
+	public EClass getUnaryCondition() {
 		return unaryConditionEClass;
 	}
 
@@ -368,7 +368,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSingleConditionOperator_CondPart() {
+	public EReference getUnaryCondition_CondPart() {
 		return (EReference)unaryConditionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -377,7 +377,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSingleConditionOperator_CondPartRef() {
+	public EReference getUnaryCondition_CondPartRef() {
 		return (EReference)unaryConditionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -386,7 +386,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_1() {
+	public EOperation getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map() {
 		return unaryConditionEClass.getEOperations().get(0);
 	}
 
@@ -413,7 +413,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1() {
+	public EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map() {
 		return notEClass.getEOperations().get(1);
 	}
 
@@ -537,24 +537,24 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEAttribute(conditionEClass, CONDITION__COMPARATOR);
 		createEOperation(conditionEClass, CONDITION___CHECK_CONDITION__COMPLEXCONDITION);
 
-		variadicConditionEClass = createEClass(MULTIPLE_CONDITION_OPERATOR);
-		createEReference(variadicConditionEClass, MULTIPLE_CONDITION_OPERATOR__COND_PARTS);
-		createEReference(variadicConditionEClass, MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF);
-		createEOperation(variadicConditionEClass, MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS);
-		createEOperation(variadicConditionEClass, MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1);
+		variadicConditionEClass = createEClass(VARIADIC_CONDITION);
+		createEReference(variadicConditionEClass, VARIADIC_CONDITION__COND_PARTS);
+		createEReference(variadicConditionEClass, VARIADIC_CONDITION__COND_PARTS_REF);
+		createEOperation(variadicConditionEClass, VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS);
+		createEOperation(variadicConditionEClass, VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP);
 
 		andEClass = createEClass(AND);
 
 		orEClass = createEClass(OR);
 
-		unaryConditionEClass = createEClass(SINGLE_CONDITION_OPERATOR);
-		createEReference(unaryConditionEClass, SINGLE_CONDITION_OPERATOR__COND_PART);
-		createEReference(unaryConditionEClass, SINGLE_CONDITION_OPERATOR__COND_PART_REF);
-		createEOperation(unaryConditionEClass, SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1);
+		unaryConditionEClass = createEClass(UNARY_CONDITION);
+		createEReference(unaryConditionEClass, UNARY_CONDITION__COND_PART);
+		createEReference(unaryConditionEClass, UNARY_CONDITION__COND_PART_REF);
+		createEOperation(unaryConditionEClass, UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP);
 
 		notEClass = createEClass(NOT);
 		createEOperation(notEClass, NOT___REFERENCES_ONLY_VALID_CONDITIONS);
-		createEOperation(notEClass, NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1);
+		createEOperation(notEClass, NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 
 		attributeConditionEClass = createEClass(ATTRIBUTE_CONDITION);
 		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
@@ -606,10 +606,10 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		complexConditionEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		conditionEClass.getESuperTypes().add(this.getComplexCondition());
 		variadicConditionEClass.getESuperTypes().add(this.getComplexCondition());
-		andEClass.getESuperTypes().add(this.getMultipleConditionOperator());
-		orEClass.getESuperTypes().add(this.getMultipleConditionOperator());
+		andEClass.getESuperTypes().add(this.getVariadicCondition());
+		orEClass.getESuperTypes().add(this.getVariadicCondition());
 		unaryConditionEClass.getESuperTypes().add(this.getComplexCondition());
-		notEClass.getESuperTypes().add(this.getSingleConditionOperator());
+		notEClass.getESuperTypes().add(this.getUnaryCondition());
 		attributeConditionEClass.getESuperTypes().add(this.getCondition());
 		sectionConditionEClass.getESuperTypes().add(this.getCondition());
 		applicationDependencyEClass.getESuperTypes().add(this.getCondition());
@@ -631,13 +631,13 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		EOperation op = initEOperation(getCondition__CheckCondition__ComplexCondition(), ecorePackage.getEBoolean(), "checkCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getComplexCondition(), "condition", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(variadicConditionEClass, VariadicCondition.class, "MultipleConditionOperator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultipleConditionOperator_CondParts(), this.getComplexCondition(), null, "condParts", null, 0, -1, VariadicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultipleConditionOperator_CondPartsRef(), this.getComplexCondition(), null, "condPartsRef", null, 0, -1, VariadicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(variadicConditionEClass, VariadicCondition.class, "VariadicCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVariadicCondition_CondParts(), this.getComplexCondition(), null, "condParts", null, 0, -1, VariadicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVariadicCondition_CondPartsRef(), this.getComplexCondition(), null, "condPartsRef", null, 0, -1, VariadicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getMultipleConditionOperator__ReferencesOnlyValidConditions(), ecorePackage.getEBoolean(), "referencesOnlyValidConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getVariadicCondition__ReferencesOnlyValidConditions(), ecorePackage.getEBoolean(), "referencesOnlyValidConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "minimalNumberOfArgs", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "minimalNumberOfArgs", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -650,11 +650,11 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		initEClass(orEClass, Or.class, "Or", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(unaryConditionEClass, UnaryCondition.class, "SingleConditionOperator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSingleConditionOperator_CondPart(), this.getComplexCondition(), null, "condPart", null, 0, 1, UnaryCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSingleConditionOperator_CondPartRef(), this.getComplexCondition(), null, "condPartRef", null, 0, 1, UnaryCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(unaryConditionEClass, UnaryCondition.class, "UnaryCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUnaryCondition_CondPart(), this.getComplexCondition(), null, "condPart", null, 0, 1, UnaryCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnaryCondition_CondPartRef(), this.getComplexCondition(), null, "condPartRef", null, 0, 1, UnaryCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "exactlyOneArg", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "exactlyOneArg", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -667,7 +667,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		initEOperation(getNot__ReferencesOnlyValidConditions(), ecorePackage.getEBoolean(), "referencesOnlyValidConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModelOrFromConditionalElements", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModelOrFromConditionalElements", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());

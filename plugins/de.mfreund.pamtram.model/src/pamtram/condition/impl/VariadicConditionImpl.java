@@ -87,7 +87,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR;
+		return ConditionPackage.Literals.VARIADIC_CONDITION;
 	}
 
 	/**
@@ -97,7 +97,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 */
 	public EList<ComplexCondition> getCondParts() {
 		if (condParts == null) {
-			condParts = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS);
+			condParts = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__COND_PARTS);
 		}
 		return condParts;
 	}
@@ -109,7 +109,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 */
 	public EList<ComplexCondition> getCondPartsRef() {
 		if (condPartsRef == null) {
-			condPartsRef = new EObjectResolvingEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF);
+			condPartsRef = new EObjectResolvingEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF);
 		}
 		return condPartsRef;
 	}
@@ -154,7 +154,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'MultipleConditionOperator::minimalNumberOfArgs'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'VariadicCondition::minimalNumberOfArgs'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
@@ -184,7 +184,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, ConditionTables.STR_MultipleConditionOperator_c_c_minimalNumberOfArgs, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue();
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, ConditionTables.STR_VariadicCondition_c_c_minimalNumberOfArgs, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -196,7 +196,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
 				return ((InternalEList<?>)getCondParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -210,9 +210,9 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
 				return getCondParts();
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF:
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF:
 				return getCondPartsRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -227,11 +227,11 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
 				getCondParts().clear();
 				getCondParts().addAll((Collection<? extends ComplexCondition>)newValue);
 				return;
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF:
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF:
 				getCondPartsRef().clear();
 				getCondPartsRef().addAll((Collection<? extends ComplexCondition>)newValue);
 				return;
@@ -247,10 +247,10 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
 				getCondParts().clear();
 				return;
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF:
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF:
 				getCondPartsRef().clear();
 				return;
 		}
@@ -265,9 +265,9 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
 				return condParts != null && !condParts.isEmpty();
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF:
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF:
 				return condPartsRef != null && !condPartsRef.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -282,9 +282,9 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS:
+			case ConditionPackage.VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS:
 				return referencesOnlyValidConditions();
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1:
+			case ConditionPackage.VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
 				return minimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

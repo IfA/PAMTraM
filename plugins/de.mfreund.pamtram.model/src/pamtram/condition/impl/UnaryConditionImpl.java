@@ -79,7 +79,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR;
+		return ConditionPackage.Literals.UNARY_CONDITION;
 	}
 
 	/**
@@ -100,7 +100,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		ComplexCondition oldCondPart = condPart;
 		condPart = newCondPart;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART, oldCondPart, newCondPart);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConditionPackage.UNARY_CONDITION__COND_PART, oldCondPart, newCondPart);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -115,14 +115,14 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		if (newCondPart != condPart) {
 			NotificationChain msgs = null;
 			if (condPart != null)
-				msgs = ((InternalEObject)condPart).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART, null, msgs);
+				msgs = ((InternalEObject)condPart).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConditionPackage.UNARY_CONDITION__COND_PART, null, msgs);
 			if (newCondPart != null)
-				msgs = ((InternalEObject)newCondPart).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART, null, msgs);
+				msgs = ((InternalEObject)newCondPart).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConditionPackage.UNARY_CONDITION__COND_PART, null, msgs);
 			msgs = basicSetCondPart(newCondPart, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART, newCondPart, newCondPart));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.UNARY_CONDITION__COND_PART, newCondPart, newCondPart));
 	}
 
 	/**
@@ -136,7 +136,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 			condPartRef = (ComplexCondition)eResolveProxy(oldCondPartRef);
 			if (condPartRef != oldCondPartRef) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF, oldCondPartRef, condPartRef));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.UNARY_CONDITION__COND_PART_REF, oldCondPartRef, condPartRef));
 			}
 		}
 		return condPartRef;
@@ -160,7 +160,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		ComplexCondition oldCondPartRef = condPartRef;
 		condPartRef = newCondPartRef;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF, oldCondPartRef, condPartRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.UNARY_CONDITION__COND_PART_REF, oldCondPartRef, condPartRef));
 	}
 
 	/**
@@ -184,7 +184,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'SingleConditionOperator::exactlyOneArg'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'UnaryCondition::exactlyOneArg'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
@@ -213,7 +213,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, ConditionTables.STR_SingleConditionOperator_c_c_exactlyOneArg, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue();
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, ConditionTables.STR_UnaryCondition_c_c_exactlyOneArg, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -225,7 +225,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART:
+			case ConditionPackage.UNARY_CONDITION__COND_PART:
 				return basicSetCondPart(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -239,9 +239,9 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART:
+			case ConditionPackage.UNARY_CONDITION__COND_PART:
 				return getCondPart();
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF:
+			case ConditionPackage.UNARY_CONDITION__COND_PART_REF:
 				if (resolve) return getCondPartRef();
 				return basicGetCondPartRef();
 		}
@@ -257,10 +257,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART:
+			case ConditionPackage.UNARY_CONDITION__COND_PART:
 				setCondPart((ComplexCondition)newValue);
 				return;
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF:
+			case ConditionPackage.UNARY_CONDITION__COND_PART_REF:
 				setCondPartRef((ComplexCondition)newValue);
 				return;
 		}
@@ -275,10 +275,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART:
+			case ConditionPackage.UNARY_CONDITION__COND_PART:
 				setCondPart((ComplexCondition)null);
 				return;
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF:
+			case ConditionPackage.UNARY_CONDITION__COND_PART_REF:
 				setCondPartRef((ComplexCondition)null);
 				return;
 		}
@@ -293,9 +293,9 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART:
+			case ConditionPackage.UNARY_CONDITION__COND_PART:
 				return condPart != null;
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART_REF:
+			case ConditionPackage.UNARY_CONDITION__COND_PART_REF:
 				return condPartRef != null;
 		}
 		return super.eIsSet(featureID);
@@ -310,7 +310,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1:
+			case ConditionPackage.UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP:
 				return exactlyOneArg((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -86,18 +86,18 @@ public class ConditionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR: {
-				VariadicCondition multipleConditionOperator = (VariadicCondition)theEObject;
-				T result = caseMultipleConditionOperator(multipleConditionOperator);
-				if (result == null) result = caseComplexCondition(multipleConditionOperator);
-				if (result == null) result = caseNamedElement(multipleConditionOperator);
+			case ConditionPackage.VARIADIC_CONDITION: {
+				VariadicCondition variadicCondition = (VariadicCondition)theEObject;
+				T result = caseVariadicCondition(variadicCondition);
+				if (result == null) result = caseComplexCondition(variadicCondition);
+				if (result == null) result = caseNamedElement(variadicCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ConditionPackage.AND: {
 				And and = (And)theEObject;
 				T result = caseAnd(and);
-				if (result == null) result = caseMultipleConditionOperator(and);
+				if (result == null) result = caseVariadicCondition(and);
 				if (result == null) result = caseComplexCondition(and);
 				if (result == null) result = caseNamedElement(and);
 				if (result == null) result = defaultCase(theEObject);
@@ -106,24 +106,24 @@ public class ConditionSwitch<T> extends Switch<T> {
 			case ConditionPackage.OR: {
 				Or or = (Or)theEObject;
 				T result = caseOr(or);
-				if (result == null) result = caseMultipleConditionOperator(or);
+				if (result == null) result = caseVariadicCondition(or);
 				if (result == null) result = caseComplexCondition(or);
 				if (result == null) result = caseNamedElement(or);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR: {
-				UnaryCondition singleConditionOperator = (UnaryCondition)theEObject;
-				T result = caseSingleConditionOperator(singleConditionOperator);
-				if (result == null) result = caseComplexCondition(singleConditionOperator);
-				if (result == null) result = caseNamedElement(singleConditionOperator);
+			case ConditionPackage.UNARY_CONDITION: {
+				UnaryCondition unaryCondition = (UnaryCondition)theEObject;
+				T result = caseUnaryCondition(unaryCondition);
+				if (result == null) result = caseComplexCondition(unaryCondition);
+				if (result == null) result = caseNamedElement(unaryCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ConditionPackage.NOT: {
 				Not not = (Not)theEObject;
 				T result = caseNot(not);
-				if (result == null) result = caseSingleConditionOperator(not);
+				if (result == null) result = caseUnaryCondition(not);
 				if (result == null) result = caseComplexCondition(not);
 				if (result == null) result = caseNamedElement(not);
 				if (result == null) result = defaultCase(theEObject);
@@ -191,17 +191,17 @@ public class ConditionSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multiple Condition Operator</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Variadic Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multiple Condition Operator</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Variadic Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMultipleConditionOperator(VariadicCondition object) {
+	public T caseVariadicCondition(VariadicCondition object) {
 		return null;
 	}
 
@@ -236,17 +236,17 @@ public class ConditionSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Single Condition Operator</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Unary Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Single Condition Operator</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Unary Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSingleConditionOperator(UnaryCondition object) {
+	public T caseUnaryCondition(UnaryCondition object) {
 		return null;
 	}
 

@@ -64,25 +64,25 @@ public class ConditionTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ConditionModel = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ConditionalElement = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionalElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_InstancePointer = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointer", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MultipleConditionOperator = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("MultipleConditionOperator", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Not = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("Not", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SingleConditionOperator = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("SingleConditionOperator", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSectionClass = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_UnaryCondition = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("UnaryCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ValueConstraint = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ValueConstraint", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_VariadicCondition = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("VariadicCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.DataTypeId DATAid_EInt = pamtram.condition.ConditionTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_ComparatorEnum = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getEnumerationId("ComparatorEnum");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_1 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("1");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_4 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("4");
-    public static final /*@NonInvalid*/ java.lang.String STR_MultipleConditionOperator_c_c_minimalNumberOfArgs = "MultipleConditionOperator::minimalNumberOfArgs";
     public static final /*@NonInvalid*/ java.lang.String STR_Not_c_c_referenceOnlyConditionsFromConditionModelOrFromConditionalE = "Not::referenceOnlyConditionsFromConditionModelOrFromConditionalElements";
     public static final /*@NonInvalid*/ java.lang.String STR_Reference_32_only_32_Conditions_32_that_32_placed_32_inside_32_ConditionModel_32_or_32_w = "Reference only Conditions that placed inside ConditionModel or where the Container is Kind of ConditionalElement!";
-    public static final /*@NonInvalid*/ java.lang.String STR_SingleConditionOperator_c_c_exactlyOneArg = "SingleConditionOperator::exactlyOneArg";
     public static final /*@NonInvalid*/ java.lang.String STR_The_32_required_32_subparts_32_of_32_this_32_Not_m_Condition_32_are_32_not_32_modeled_32_or_32_n = "The required subparts of this Not-Condition are not modeled or not referenced or both done but not allowed!";
     public static final /*@NonInvalid*/ java.lang.String STR_The_32_required_32_subparts_32_of_32_this_32_condition_32_are_32_not_32_modeled_32_or_32_not_32_r = "The required subparts of this condition are not modeled or not referenced !";
+    public static final /*@NonInvalid*/ java.lang.String STR_UnaryCondition_c_c_exactlyOneArg = "UnaryCondition::exactlyOneArg";
+    public static final /*@NonInvalid*/ java.lang.String STR_VariadicCondition_c_c_minimalNumberOfArgs = "VariadicCondition::minimalNumberOfArgs";
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_ConditionalElement = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ConditionalElement);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_MultipleConditionOperator = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_MultipleConditionOperator);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_SingleConditionOperator = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_SingleConditionOperator);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_UnaryCondition = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_UnaryCondition);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_VariadicCondition = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_VariadicCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ComplexCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_InstancePointer = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_InstancePointer);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueConstraint = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ValueConstraint);
@@ -123,11 +123,11 @@ public class ConditionTables
 		public static final /*@NonNull*/ EcoreExecutorType _ComplexCondition = new EcoreExecutorType(ConditionPackage.Literals.COMPLEX_CONDITION, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorEnumeration _CondSettingEnum = new EcoreExecutorEnumeration(ConditionPackage.Literals.COND_SETTING_ENUM, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _Condition = new EcoreExecutorType(ConditionPackage.Literals.CONDITION, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _MultipleConditionOperator = new EcoreExecutorType(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _Not = new EcoreExecutorType(ConditionPackage.Literals.NOT, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _Or = new EcoreExecutorType(ConditionPackage.Literals.OR, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _SectionCondition = new EcoreExecutorType(ConditionPackage.Literals.SECTION_CONDITION, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _SingleConditionOperator = new EcoreExecutorType(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final /*@NonNull*/ EcoreExecutorType _UnaryCondition = new EcoreExecutorType(ConditionPackage.Literals.UNARY_CONDITION, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final /*@NonNull*/ EcoreExecutorType _VariadicCondition = new EcoreExecutorType(ConditionPackage.Literals.VARIADIC_CONDITION, PACKAGE, 0 | ExecutorType.ABSTRACT);
 
 		private static final /*@NonNull*/ EcoreExecutorType /*@NonNull*/ [] types = {
 			_And,
@@ -137,11 +137,11 @@ public class ConditionTables
 			_ComplexCondition,
 			_CondSettingEnum,
 			_Condition,
-			_MultipleConditionOperator,
 			_Not,
 			_Or,
 			_SectionCondition,
-			_SingleConditionOperator
+			_UnaryCondition,
+			_VariadicCondition
 		};
 
 		/*
@@ -169,10 +169,10 @@ public class ConditionTables
 
 		private static final /*@NonNull*/ ExecutorFragment _And__And = new ExecutorFragment(Types._And, ConditionTables.Types._And);
 		private static final /*@NonNull*/ ExecutorFragment _And__ComplexCondition = new ExecutorFragment(Types._And, ConditionTables.Types._ComplexCondition);
-		private static final /*@NonNull*/ ExecutorFragment _And__MultipleConditionOperator = new ExecutorFragment(Types._And, ConditionTables.Types._MultipleConditionOperator);
 		private static final /*@NonNull*/ ExecutorFragment _And__NamedElement = new ExecutorFragment(Types._And, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _And__OclAny = new ExecutorFragment(Types._And, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _And__OclElement = new ExecutorFragment(Types._And, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _And__VariadicCondition = new ExecutorFragment(Types._And, ConditionTables.Types._VariadicCondition);
 
 		private static final /*@NonNull*/ ExecutorFragment _ApplicationDependency__ApplicationDependency = new ExecutorFragment(Types._ApplicationDependency, ConditionTables.Types._ApplicationDependency);
 		private static final /*@NonNull*/ ExecutorFragment _ApplicationDependency__ComplexCondition = new ExecutorFragment(Types._ApplicationDependency, ConditionTables.Types._ComplexCondition);
@@ -211,25 +211,19 @@ public class ConditionTables
 		private static final /*@NonNull*/ ExecutorFragment _Condition__OclAny = new ExecutorFragment(Types._Condition, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _Condition__OclElement = new ExecutorFragment(Types._Condition, OCLstdlibTables.Types._OclElement);
 
-		private static final /*@NonNull*/ ExecutorFragment _MultipleConditionOperator__ComplexCondition = new ExecutorFragment(Types._MultipleConditionOperator, ConditionTables.Types._ComplexCondition);
-		private static final /*@NonNull*/ ExecutorFragment _MultipleConditionOperator__MultipleConditionOperator = new ExecutorFragment(Types._MultipleConditionOperator, ConditionTables.Types._MultipleConditionOperator);
-		private static final /*@NonNull*/ ExecutorFragment _MultipleConditionOperator__NamedElement = new ExecutorFragment(Types._MultipleConditionOperator, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _MultipleConditionOperator__OclAny = new ExecutorFragment(Types._MultipleConditionOperator, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _MultipleConditionOperator__OclElement = new ExecutorFragment(Types._MultipleConditionOperator, OCLstdlibTables.Types._OclElement);
-
 		private static final /*@NonNull*/ ExecutorFragment _Not__ComplexCondition = new ExecutorFragment(Types._Not, ConditionTables.Types._ComplexCondition);
 		private static final /*@NonNull*/ ExecutorFragment _Not__NamedElement = new ExecutorFragment(Types._Not, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _Not__Not = new ExecutorFragment(Types._Not, ConditionTables.Types._Not);
 		private static final /*@NonNull*/ ExecutorFragment _Not__OclAny = new ExecutorFragment(Types._Not, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _Not__OclElement = new ExecutorFragment(Types._Not, OCLstdlibTables.Types._OclElement);
-		private static final /*@NonNull*/ ExecutorFragment _Not__SingleConditionOperator = new ExecutorFragment(Types._Not, ConditionTables.Types._SingleConditionOperator);
+		private static final /*@NonNull*/ ExecutorFragment _Not__UnaryCondition = new ExecutorFragment(Types._Not, ConditionTables.Types._UnaryCondition);
 
 		private static final /*@NonNull*/ ExecutorFragment _Or__ComplexCondition = new ExecutorFragment(Types._Or, ConditionTables.Types._ComplexCondition);
-		private static final /*@NonNull*/ ExecutorFragment _Or__MultipleConditionOperator = new ExecutorFragment(Types._Or, ConditionTables.Types._MultipleConditionOperator);
 		private static final /*@NonNull*/ ExecutorFragment _Or__NamedElement = new ExecutorFragment(Types._Or, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _Or__OclAny = new ExecutorFragment(Types._Or, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _Or__OclElement = new ExecutorFragment(Types._Or, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _Or__Or = new ExecutorFragment(Types._Or, ConditionTables.Types._Or);
+		private static final /*@NonNull*/ ExecutorFragment _Or__VariadicCondition = new ExecutorFragment(Types._Or, ConditionTables.Types._VariadicCondition);
 
 		private static final /*@NonNull*/ ExecutorFragment _SectionCondition__ComplexCondition = new ExecutorFragment(Types._SectionCondition, ConditionTables.Types._ComplexCondition);
 		private static final /*@NonNull*/ ExecutorFragment _SectionCondition__Condition = new ExecutorFragment(Types._SectionCondition, ConditionTables.Types._Condition);
@@ -238,11 +232,17 @@ public class ConditionTables
 		private static final /*@NonNull*/ ExecutorFragment _SectionCondition__OclElement = new ExecutorFragment(Types._SectionCondition, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _SectionCondition__SectionCondition = new ExecutorFragment(Types._SectionCondition, ConditionTables.Types._SectionCondition);
 
-		private static final /*@NonNull*/ ExecutorFragment _SingleConditionOperator__ComplexCondition = new ExecutorFragment(Types._SingleConditionOperator, ConditionTables.Types._ComplexCondition);
-		private static final /*@NonNull*/ ExecutorFragment _SingleConditionOperator__NamedElement = new ExecutorFragment(Types._SingleConditionOperator, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _SingleConditionOperator__OclAny = new ExecutorFragment(Types._SingleConditionOperator, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _SingleConditionOperator__OclElement = new ExecutorFragment(Types._SingleConditionOperator, OCLstdlibTables.Types._OclElement);
-		private static final /*@NonNull*/ ExecutorFragment _SingleConditionOperator__SingleConditionOperator = new ExecutorFragment(Types._SingleConditionOperator, ConditionTables.Types._SingleConditionOperator);
+		private static final /*@NonNull*/ ExecutorFragment _UnaryCondition__ComplexCondition = new ExecutorFragment(Types._UnaryCondition, ConditionTables.Types._ComplexCondition);
+		private static final /*@NonNull*/ ExecutorFragment _UnaryCondition__NamedElement = new ExecutorFragment(Types._UnaryCondition, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _UnaryCondition__OclAny = new ExecutorFragment(Types._UnaryCondition, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _UnaryCondition__OclElement = new ExecutorFragment(Types._UnaryCondition, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _UnaryCondition__UnaryCondition = new ExecutorFragment(Types._UnaryCondition, ConditionTables.Types._UnaryCondition);
+
+		private static final /*@NonNull*/ ExecutorFragment _VariadicCondition__ComplexCondition = new ExecutorFragment(Types._VariadicCondition, ConditionTables.Types._ComplexCondition);
+		private static final /*@NonNull*/ ExecutorFragment _VariadicCondition__NamedElement = new ExecutorFragment(Types._VariadicCondition, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _VariadicCondition__OclAny = new ExecutorFragment(Types._VariadicCondition, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _VariadicCondition__OclElement = new ExecutorFragment(Types._VariadicCondition, OCLstdlibTables.Types._OclElement);
+		private static final /*@NonNull*/ ExecutorFragment _VariadicCondition__VariadicCondition = new ExecutorFragment(Types._VariadicCondition, ConditionTables.Types._VariadicCondition);
 
 		static {
 			Init.initEnd();
@@ -294,10 +294,10 @@ public class ConditionTables
 		public static final /*@NonNull*/ ExecutorOperation _Condition__checkCondition = new ExecutorOperation("checkCondition", Parameters._ComplexCondition, Types._Condition,
 			0, TemplateParameters.EMPTY_LIST, null);
 
-		public static final /*@NonNull*/ ExecutorOperation _MultipleConditionOperator__referencesOnlyValidConditions = new ExecutorOperation("referencesOnlyValidConditions", TypeUtil.EMPTY_PARAMETER_TYPES, Types._MultipleConditionOperator,
+		public static final /*@NonNull*/ ExecutorOperation _Not__referencesOnlyValidConditions = new ExecutorOperation("referencesOnlyValidConditions", TypeUtil.EMPTY_PARAMETER_TYPES, Types._Not,
 			0, TemplateParameters.EMPTY_LIST, null);
 
-		public static final /*@NonNull*/ ExecutorOperation _Not__referencesOnlyValidConditions = new ExecutorOperation("referencesOnlyValidConditions", TypeUtil.EMPTY_PARAMETER_TYPES, Types._Not,
+		public static final /*@NonNull*/ ExecutorOperation _VariadicCondition__referencesOnlyValidConditions = new ExecutorOperation("referencesOnlyValidConditions", TypeUtil.EMPTY_PARAMETER_TYPES, Types._VariadicCondition,
 			0, TemplateParameters.EMPTY_LIST, null);
 
 		static {
@@ -325,22 +325,22 @@ public class ConditionTables
 		public static final /*@NonNull*/ ExecutorProperty _AttributeCondition__conditionAttributeRef = new EcoreExecutorProperty(ConditionPackage.Literals.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, Types._AttributeCondition, 0);
 		public static final /*@NonNull*/ ExecutorProperty _AttributeCondition__valueConstraint = new EcoreExecutorProperty(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT, Types._AttributeCondition, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__MultipleConditionOperator__condParts = new ExecutorPropertyWithImplementation("MultipleConditionOperator", Types._ComplexCondition, 0, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS));
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__MultipleConditionOperator__condPartsRef = new ExecutorPropertyWithImplementation("MultipleConditionOperator", Types._ComplexCondition, 1, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF));
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__SingleConditionOperator__condPart = new ExecutorPropertyWithImplementation("SingleConditionOperator", Types._ComplexCondition, 2, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART));
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__SingleConditionOperator__condPartRef = new ExecutorPropertyWithImplementation("SingleConditionOperator", Types._ComplexCondition, 3, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART_REF));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__condPart = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 0, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__condPartRef = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 1, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART_REF));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__condParts = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 2, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__condPartsRef = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 3, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS_REF));
 
 		public static final /*@NonNull*/ ExecutorProperty _Condition__additionalConditionSpecification = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION, Types._Condition, 0);
 		public static final /*@NonNull*/ ExecutorProperty _Condition__comparator = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__COMPARATOR, Types._Condition, 1);
 		public static final /*@NonNull*/ ExecutorProperty _Condition__value = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__VALUE, Types._Condition, 2);
 
-		public static final /*@NonNull*/ ExecutorProperty _MultipleConditionOperator__condParts = new EcoreExecutorProperty(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS, Types._MultipleConditionOperator, 0);
-		public static final /*@NonNull*/ ExecutorProperty _MultipleConditionOperator__condPartsRef = new EcoreExecutorProperty(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF, Types._MultipleConditionOperator, 1);
-
 		public static final /*@NonNull*/ ExecutorProperty _SectionCondition__conditionSectionRef = new EcoreExecutorProperty(ConditionPackage.Literals.SECTION_CONDITION__CONDITION_SECTION_REF, Types._SectionCondition, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _SingleConditionOperator__condPart = new EcoreExecutorProperty(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART, Types._SingleConditionOperator, 0);
-		public static final /*@NonNull*/ ExecutorProperty _SingleConditionOperator__condPartRef = new EcoreExecutorProperty(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART_REF, Types._SingleConditionOperator, 1);
+		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPart = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART, Types._UnaryCondition, 0);
+		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPartRef = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART_REF, Types._UnaryCondition, 1);
+
+		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__condParts = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS, Types._VariadicCondition, 0);
+		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__condPartsRef = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS_REF, Types._VariadicCondition, 1);
 		static {
 			Init.initEnd();
 		}
@@ -366,7 +366,7 @@ public class ConditionTables
 			Fragments._And__OclElement /* 1 */,
 			Fragments._And__NamedElement /* 2 */,
 			Fragments._And__ComplexCondition /* 3 */,
-			Fragments._And__MultipleConditionOperator /* 4 */,
+			Fragments._And__VariadicCondition /* 4 */,
 			Fragments._And__And /* 5 */
 		};
 		private static final int /*@NonNull*/ [] __And = { 1,1,1,1,1,1 };
@@ -432,23 +432,13 @@ public class ConditionTables
 		};
 		private static final int /*@NonNull*/ [] __Condition = { 1,1,1,1,1 };
 
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _MultipleConditionOperator =
-		{
-			Fragments._MultipleConditionOperator__OclAny /* 0 */,
-			Fragments._MultipleConditionOperator__OclElement /* 1 */,
-			Fragments._MultipleConditionOperator__NamedElement /* 2 */,
-			Fragments._MultipleConditionOperator__ComplexCondition /* 3 */,
-			Fragments._MultipleConditionOperator__MultipleConditionOperator /* 4 */
-		};
-		private static final int /*@NonNull*/ [] __MultipleConditionOperator = { 1,1,1,1,1 };
-
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _Not =
 		{
 			Fragments._Not__OclAny /* 0 */,
 			Fragments._Not__OclElement /* 1 */,
 			Fragments._Not__NamedElement /* 2 */,
 			Fragments._Not__ComplexCondition /* 3 */,
-			Fragments._Not__SingleConditionOperator /* 4 */,
+			Fragments._Not__UnaryCondition /* 4 */,
 			Fragments._Not__Not /* 5 */
 		};
 		private static final int /*@NonNull*/ [] __Not = { 1,1,1,1,1,1 };
@@ -459,7 +449,7 @@ public class ConditionTables
 			Fragments._Or__OclElement /* 1 */,
 			Fragments._Or__NamedElement /* 2 */,
 			Fragments._Or__ComplexCondition /* 3 */,
-			Fragments._Or__MultipleConditionOperator /* 4 */,
+			Fragments._Or__VariadicCondition /* 4 */,
 			Fragments._Or__Or /* 5 */
 		};
 		private static final int /*@NonNull*/ [] __Or = { 1,1,1,1,1,1 };
@@ -475,15 +465,25 @@ public class ConditionTables
 		};
 		private static final int /*@NonNull*/ [] __SectionCondition = { 1,1,1,1,1,1 };
 
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _SingleConditionOperator =
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _UnaryCondition =
 		{
-			Fragments._SingleConditionOperator__OclAny /* 0 */,
-			Fragments._SingleConditionOperator__OclElement /* 1 */,
-			Fragments._SingleConditionOperator__NamedElement /* 2 */,
-			Fragments._SingleConditionOperator__ComplexCondition /* 3 */,
-			Fragments._SingleConditionOperator__SingleConditionOperator /* 4 */
+			Fragments._UnaryCondition__OclAny /* 0 */,
+			Fragments._UnaryCondition__OclElement /* 1 */,
+			Fragments._UnaryCondition__NamedElement /* 2 */,
+			Fragments._UnaryCondition__ComplexCondition /* 3 */,
+			Fragments._UnaryCondition__UnaryCondition /* 4 */
 		};
-		private static final int /*@NonNull*/ [] __SingleConditionOperator = { 1,1,1,1,1 };
+		private static final int /*@NonNull*/ [] __UnaryCondition = { 1,1,1,1,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _VariadicCondition =
+		{
+			Fragments._VariadicCondition__OclAny /* 0 */,
+			Fragments._VariadicCondition__OclElement /* 1 */,
+			Fragments._VariadicCondition__NamedElement /* 2 */,
+			Fragments._VariadicCondition__ComplexCondition /* 3 */,
+			Fragments._VariadicCondition__VariadicCondition /* 4 */
+		};
+		private static final int /*@NonNull*/ [] __VariadicCondition = { 1,1,1,1,1 };
 
 		/**
 		 *	Install the fragment descriptors in the class descriptors.
@@ -496,11 +496,11 @@ public class ConditionTables
 			Types._ComplexCondition.initFragments(_ComplexCondition, __ComplexCondition);
 			Types._CondSettingEnum.initFragments(_CondSettingEnum, __CondSettingEnum);
 			Types._Condition.initFragments(_Condition, __Condition);
-			Types._MultipleConditionOperator.initFragments(_MultipleConditionOperator, __MultipleConditionOperator);
 			Types._Not.initFragments(_Not, __Not);
 			Types._Or.initFragments(_Or, __Or);
 			Types._SectionCondition.initFragments(_SectionCondition, __SectionCondition);
-			Types._SingleConditionOperator.initFragments(_SingleConditionOperator, __SingleConditionOperator);
+			Types._UnaryCondition.initFragments(_UnaryCondition, __UnaryCondition);
+			Types._VariadicCondition.initFragments(_VariadicCondition, __VariadicCondition);
 
 			Init.initEnd();
 		}
@@ -525,9 +525,6 @@ public class ConditionTables
 			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _And__MultipleConditionOperator = {
-			ConditionTables.Operations._MultipleConditionOperator__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _And__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _And__OclAny = {
@@ -555,6 +552,9 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _And__VariadicCondition = {
+			ConditionTables.Operations._VariadicCondition__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ApplicationDependency__ApplicationDependency = {};
@@ -768,42 +768,6 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MultipleConditionOperator__MultipleConditionOperator = {
-			ConditionTables.Operations._MultipleConditionOperator__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MultipleConditionOperator__ComplexCondition = {
-			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
-			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
-			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MultipleConditionOperator__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MultipleConditionOperator__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MultipleConditionOperator__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Not__Not = {
 			ConditionTables.Operations._Not__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
 		};
@@ -839,16 +803,13 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Not__SingleConditionOperator = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Not__UnaryCondition = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Or__Or = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Or__ComplexCondition = {
 			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Or__MultipleConditionOperator = {
-			ConditionTables.Operations._MultipleConditionOperator__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Or__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Or__OclAny = {
@@ -876,6 +837,9 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Or__VariadicCondition = {
+			ConditionTables.Operations._VariadicCondition__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SectionCondition__SectionCondition = {};
@@ -915,14 +879,14 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SingleConditionOperator__SingleConditionOperator = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SingleConditionOperator__ComplexCondition = {
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UnaryCondition__UnaryCondition = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UnaryCondition__ComplexCondition = {
 			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
 			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SingleConditionOperator__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SingleConditionOperator__OclAny = {
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UnaryCondition__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UnaryCondition__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -939,7 +903,43 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SingleConditionOperator__OclElement = {
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _UnaryCondition__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VariadicCondition__VariadicCondition = {
+			ConditionTables.Operations._VariadicCondition__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VariadicCondition__ComplexCondition = {
+			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
+			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,
+			ConditionTables.Operations._ComplexCondition__isMappingCondition /* isMappingCondition() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VariadicCondition__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VariadicCondition__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _VariadicCondition__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
@@ -955,10 +955,10 @@ public class ConditionTables
 		static {
 			Fragments._And__And.initOperations(_And__And);
 			Fragments._And__ComplexCondition.initOperations(_And__ComplexCondition);
-			Fragments._And__MultipleConditionOperator.initOperations(_And__MultipleConditionOperator);
 			Fragments._And__NamedElement.initOperations(_And__NamedElement);
 			Fragments._And__OclAny.initOperations(_And__OclAny);
 			Fragments._And__OclElement.initOperations(_And__OclElement);
+			Fragments._And__VariadicCondition.initOperations(_And__VariadicCondition);
 
 			Fragments._ApplicationDependency__ApplicationDependency.initOperations(_ApplicationDependency__ApplicationDependency);
 			Fragments._ApplicationDependency__ComplexCondition.initOperations(_ApplicationDependency__ComplexCondition);
@@ -997,25 +997,19 @@ public class ConditionTables
 			Fragments._Condition__OclAny.initOperations(_Condition__OclAny);
 			Fragments._Condition__OclElement.initOperations(_Condition__OclElement);
 
-			Fragments._MultipleConditionOperator__ComplexCondition.initOperations(_MultipleConditionOperator__ComplexCondition);
-			Fragments._MultipleConditionOperator__MultipleConditionOperator.initOperations(_MultipleConditionOperator__MultipleConditionOperator);
-			Fragments._MultipleConditionOperator__NamedElement.initOperations(_MultipleConditionOperator__NamedElement);
-			Fragments._MultipleConditionOperator__OclAny.initOperations(_MultipleConditionOperator__OclAny);
-			Fragments._MultipleConditionOperator__OclElement.initOperations(_MultipleConditionOperator__OclElement);
-
 			Fragments._Not__ComplexCondition.initOperations(_Not__ComplexCondition);
 			Fragments._Not__NamedElement.initOperations(_Not__NamedElement);
 			Fragments._Not__Not.initOperations(_Not__Not);
 			Fragments._Not__OclAny.initOperations(_Not__OclAny);
 			Fragments._Not__OclElement.initOperations(_Not__OclElement);
-			Fragments._Not__SingleConditionOperator.initOperations(_Not__SingleConditionOperator);
+			Fragments._Not__UnaryCondition.initOperations(_Not__UnaryCondition);
 
 			Fragments._Or__ComplexCondition.initOperations(_Or__ComplexCondition);
-			Fragments._Or__MultipleConditionOperator.initOperations(_Or__MultipleConditionOperator);
 			Fragments._Or__NamedElement.initOperations(_Or__NamedElement);
 			Fragments._Or__OclAny.initOperations(_Or__OclAny);
 			Fragments._Or__OclElement.initOperations(_Or__OclElement);
 			Fragments._Or__Or.initOperations(_Or__Or);
+			Fragments._Or__VariadicCondition.initOperations(_Or__VariadicCondition);
 
 			Fragments._SectionCondition__ComplexCondition.initOperations(_SectionCondition__ComplexCondition);
 			Fragments._SectionCondition__Condition.initOperations(_SectionCondition__Condition);
@@ -1024,11 +1018,17 @@ public class ConditionTables
 			Fragments._SectionCondition__OclElement.initOperations(_SectionCondition__OclElement);
 			Fragments._SectionCondition__SectionCondition.initOperations(_SectionCondition__SectionCondition);
 
-			Fragments._SingleConditionOperator__ComplexCondition.initOperations(_SingleConditionOperator__ComplexCondition);
-			Fragments._SingleConditionOperator__NamedElement.initOperations(_SingleConditionOperator__NamedElement);
-			Fragments._SingleConditionOperator__OclAny.initOperations(_SingleConditionOperator__OclAny);
-			Fragments._SingleConditionOperator__OclElement.initOperations(_SingleConditionOperator__OclElement);
-			Fragments._SingleConditionOperator__SingleConditionOperator.initOperations(_SingleConditionOperator__SingleConditionOperator);
+			Fragments._UnaryCondition__ComplexCondition.initOperations(_UnaryCondition__ComplexCondition);
+			Fragments._UnaryCondition__NamedElement.initOperations(_UnaryCondition__NamedElement);
+			Fragments._UnaryCondition__OclAny.initOperations(_UnaryCondition__OclAny);
+			Fragments._UnaryCondition__OclElement.initOperations(_UnaryCondition__OclElement);
+			Fragments._UnaryCondition__UnaryCondition.initOperations(_UnaryCondition__UnaryCondition);
+
+			Fragments._VariadicCondition__ComplexCondition.initOperations(_VariadicCondition__ComplexCondition);
+			Fragments._VariadicCondition__NamedElement.initOperations(_VariadicCondition__NamedElement);
+			Fragments._VariadicCondition__OclAny.initOperations(_VariadicCondition__OclAny);
+			Fragments._VariadicCondition__OclElement.initOperations(_VariadicCondition__OclElement);
+			Fragments._VariadicCondition__VariadicCondition.initOperations(_VariadicCondition__VariadicCondition);
 
 			Init.initEnd();
 		}
@@ -1049,12 +1049,12 @@ public class ConditionTables
 		}
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _And = {
-			ConditionTables.Properties._MultipleConditionOperator__condParts,
-			ConditionTables.Properties._MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+			ConditionTables.Properties._VariadicCondition__condParts,
+			ConditionTables.Properties._VariadicCondition__condPartsRef,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ApplicationDependency = {
@@ -1062,10 +1062,10 @@ public class ConditionTables
 			ConditionTables.Properties._Condition__comparator,
 			ConditionTables.Properties._ApplicationDependency__conditionalElement,
 			ConditionTables.Properties._Condition__value,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeCondition = {
@@ -1074,19 +1074,19 @@ public class ConditionTables
 			ConditionTables.Properties._AttributeCondition__conditionAttributeRef,
 			ConditionTables.Properties._Condition__value,
 			ConditionTables.Properties._AttributeCondition__valueConstraint,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ComparatorEnum = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ComplexCondition = {
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _CondSettingEnum = {};
@@ -1095,37 +1095,28 @@ public class ConditionTables
 			ConditionTables.Properties._Condition__additionalConditionSpecification,
 			ConditionTables.Properties._Condition__comparator,
 			ConditionTables.Properties._Condition__value,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
-		};
-
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MultipleConditionOperator = {
-			ConditionTables.Properties._MultipleConditionOperator__condParts,
-			ConditionTables.Properties._MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Not = {
-			ConditionTables.Properties._SingleConditionOperator__condPart,
-			ConditionTables.Properties._SingleConditionOperator__condPartRef,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+			ConditionTables.Properties._UnaryCondition__condPart,
+			ConditionTables.Properties._UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Or = {
-			ConditionTables.Properties._MultipleConditionOperator__condParts,
-			ConditionTables.Properties._MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+			ConditionTables.Properties._VariadicCondition__condParts,
+			ConditionTables.Properties._VariadicCondition__condPartsRef,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SectionCondition = {
@@ -1133,19 +1124,28 @@ public class ConditionTables
 			ConditionTables.Properties._Condition__comparator,
 			ConditionTables.Properties._SectionCondition__conditionSectionRef,
 			ConditionTables.Properties._Condition__value,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SingleConditionOperator = {
-			ConditionTables.Properties._SingleConditionOperator__condPart,
-			ConditionTables.Properties._SingleConditionOperator__condPartRef,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condParts,
-			ConditionTables.Properties._ComplexCondition__MultipleConditionOperator__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPart,
-			ConditionTables.Properties._ComplexCondition__SingleConditionOperator__condPartRef
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _UnaryCondition = {
+			ConditionTables.Properties._UnaryCondition__condPart,
+			ConditionTables.Properties._UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _VariadicCondition = {
+			ConditionTables.Properties._VariadicCondition__condParts,
+			ConditionTables.Properties._VariadicCondition__condPartsRef,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
 		};
 
 		/**
@@ -1159,11 +1159,11 @@ public class ConditionTables
 			Fragments._ComplexCondition__ComplexCondition.initProperties(_ComplexCondition);
 			Fragments._CondSettingEnum__CondSettingEnum.initProperties(_CondSettingEnum);
 			Fragments._Condition__Condition.initProperties(_Condition);
-			Fragments._MultipleConditionOperator__MultipleConditionOperator.initProperties(_MultipleConditionOperator);
 			Fragments._Not__Not.initProperties(_Not);
 			Fragments._Or__Or.initProperties(_Or);
 			Fragments._SectionCondition__SectionCondition.initProperties(_SectionCondition);
-			Fragments._SingleConditionOperator__SingleConditionOperator.initProperties(_SingleConditionOperator);
+			Fragments._UnaryCondition__UnaryCondition.initProperties(_UnaryCondition);
+			Fragments._VariadicCondition__VariadicCondition.initProperties(_VariadicCondition);
 
 			Init.initEnd();
 		}

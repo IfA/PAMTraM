@@ -39,20 +39,20 @@ public class ConditionValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "pamtram.condition";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Minimal Number Of Args' of 'Multiple Condition Operator'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Minimal Number Of Args' of 'Variadic Condition'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MULTIPLE_CONDITION_OPERATOR__MINIMAL_NUMBER_OF_ARGS = 1;
+	public static final int VARIADIC_CONDITION__MINIMAL_NUMBER_OF_ARGS = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Exactly One Arg' of 'Single Condition Operator'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Exactly One Arg' of 'Unary Condition'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SINGLE_CONDITION_OPERATOR__EXACTLY_ONE_ARG = 2;
+	public static final int UNARY_CONDITION__EXACTLY_ONE_ARG = 2;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Reference Only Conditions From Condition Model Or From Conditional Elements' of 'Not'.
@@ -112,14 +112,14 @@ public class ConditionValidator extends EObjectValidator {
 				return validateComplexCondition((ComplexCondition)value, diagnostics, context);
 			case ConditionPackage.CONDITION:
 				return validateCondition((Condition)value, diagnostics, context);
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR:
-				return validateMultipleConditionOperator((VariadicCondition)value, diagnostics, context);
+			case ConditionPackage.VARIADIC_CONDITION:
+				return validateVariadicCondition((VariadicCondition)value, diagnostics, context);
 			case ConditionPackage.AND:
 				return validateAnd((And)value, diagnostics, context);
 			case ConditionPackage.OR:
 				return validateOr((Or)value, diagnostics, context);
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR:
-				return validateSingleConditionOperator((UnaryCondition)value, diagnostics, context);
+			case ConditionPackage.UNARY_CONDITION:
+				return validateUnaryCondition((UnaryCondition)value, diagnostics, context);
 			case ConditionPackage.NOT:
 				return validateNot((Not)value, diagnostics, context);
 			case ConditionPackage.ATTRIBUTE_CONDITION:
@@ -160,28 +160,28 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMultipleConditionOperator(VariadicCondition multipleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(multipleConditionOperator, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(multipleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(multipleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(multipleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(multipleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(multipleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(multipleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(multipleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(multipleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultipleConditionOperator_minimalNumberOfArgs(multipleConditionOperator, diagnostics, context);
+	public boolean validateVariadicCondition(VariadicCondition variadicCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(variadicCondition, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariadicCondition_minimalNumberOfArgs(variadicCondition, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the minimalNumberOfArgs constraint of '<em>Multiple Condition Operator</em>'.
+	 * Validates the minimalNumberOfArgs constraint of '<em>Variadic Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMultipleConditionOperator_minimalNumberOfArgs(VariadicCondition multipleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return multipleConditionOperator.minimalNumberOfArgs(diagnostics, context);
+	public boolean validateVariadicCondition_minimalNumberOfArgs(VariadicCondition variadicCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return variadicCondition.minimalNumberOfArgs(diagnostics, context);
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(and, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(and, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(and, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultipleConditionOperator_minimalNumberOfArgs(and, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariadicCondition_minimalNumberOfArgs(and, diagnostics, context);
 		return result;
 	}
 
@@ -218,7 +218,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(or, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(or, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(or, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultipleConditionOperator_minimalNumberOfArgs(or, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariadicCondition_minimalNumberOfArgs(or, diagnostics, context);
 		return result;
 	}
 
@@ -227,28 +227,28 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleConditionOperator(UnaryCondition singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(singleConditionOperator, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(singleConditionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleConditionOperator_exactlyOneArg(singleConditionOperator, diagnostics, context);
+	public boolean validateUnaryCondition(UnaryCondition unaryCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(unaryCondition, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateUnaryCondition_exactlyOneArg(unaryCondition, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the exactlyOneArg constraint of '<em>Single Condition Operator</em>'.
+	 * Validates the exactlyOneArg constraint of '<em>Unary Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleConditionOperator_exactlyOneArg(UnaryCondition singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return singleConditionOperator.exactlyOneArg(diagnostics, context);
+	public boolean validateUnaryCondition_exactlyOneArg(UnaryCondition unaryCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return unaryCondition.exactlyOneArg(diagnostics, context);
 	}
 
 	/**
@@ -266,7 +266,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(not, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleConditionOperator_exactlyOneArg(not, diagnostics, context);
+		if (result || diagnostics != null) result &= validateUnaryCondition_exactlyOneArg(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validateNot_referenceOnlyConditionsFromConditionModelOrFromConditionalElements(not, diagnostics, context);
 		return result;
 	}

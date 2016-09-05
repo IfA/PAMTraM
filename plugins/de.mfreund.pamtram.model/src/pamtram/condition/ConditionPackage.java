@@ -225,14 +225,14 @@ public interface ConditionPackage extends EPackage {
 	int CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.condition.impl.VariadicConditionImpl <em>Multiple Condition Operator</em>}' class.
+	 * The meta object id for the '{@link pamtram.condition.impl.VariadicConditionImpl <em>Variadic Condition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.condition.impl.VariadicConditionImpl
-	 * @see pamtram.condition.impl.ConditionPackageImpl#getMultipleConditionOperator()
+	 * @see pamtram.condition.impl.ConditionPackageImpl#getVariadicCondition()
 	 * @generated
 	 */
-	int MULTIPLE_CONDITION_OPERATOR = 2;
+	int VARIADIC_CONDITION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -241,7 +241,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR__NAME = COMPLEX_CONDITION__NAME;
+	int VARIADIC_CONDITION__NAME = COMPLEX_CONDITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Cond Parts</b></em>' containment reference list.
@@ -250,7 +250,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR__COND_PARTS = COMPLEX_CONDITION_FEATURE_COUNT + 0;
+	int VARIADIC_CONDITION__COND_PARTS = COMPLEX_CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Cond Parts Ref</b></em>' reference list.
@@ -259,16 +259,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF = COMPLEX_CONDITION_FEATURE_COUNT + 1;
+	int VARIADIC_CONDITION__COND_PARTS_REF = COMPLEX_CONDITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Multiple Condition Operator</em>' class.
+	 * The number of structural features of the '<em>Variadic Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
+	int VARIADIC_CONDITION_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -277,7 +277,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
+	int VARIADIC_CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -286,7 +286,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
+	int VARIADIC_CONDITION___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
@@ -295,7 +295,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
+	int VARIADIC_CONDITION___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -304,7 +304,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+	int VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS = COMPLEX_CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Minimal Number Of Args</em>' operation.
@@ -313,16 +313,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+	int VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Multiple Condition Operator</em>' class.
+	 * The number of operations of the '<em>Variadic Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_CONDITION_OPERATOR_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 2;
+	int VARIADIC_CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.AndImpl <em>And</em>}' class.
@@ -341,7 +341,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND__NAME = MULTIPLE_CONDITION_OPERATOR__NAME;
+	int AND__NAME = VARIADIC_CONDITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Cond Parts</b></em>' containment reference list.
@@ -350,7 +350,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND__COND_PARTS = MULTIPLE_CONDITION_OPERATOR__COND_PARTS;
+	int AND__COND_PARTS = VARIADIC_CONDITION__COND_PARTS;
 
 	/**
 	 * The feature id for the '<em><b>Cond Parts Ref</b></em>' reference list.
@@ -359,7 +359,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND__COND_PARTS_REF = MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF;
+	int AND__COND_PARTS_REF = VARIADIC_CONDITION__COND_PARTS_REF;
 
 	/**
 	 * The number of structural features of the '<em>And</em>' class.
@@ -368,7 +368,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
+	int AND_FEATURE_COUNT = VARIADIC_CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -377,7 +377,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND___IS_LOCAL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION;
+	int AND___IS_LOCAL_CONDITION = VARIADIC_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -386,7 +386,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND___IS_MAPPING_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION;
+	int AND___IS_MAPPING_CONDITION = VARIADIC_CONDITION___IS_MAPPING_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
@@ -395,7 +395,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND___IS_CONDITION_MODEL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION;
+	int AND___IS_CONDITION_MODEL_CONDITION = VARIADIC_CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -404,7 +404,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND___REFERENCES_ONLY_VALID_CONDITIONS = MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS;
+	int AND___REFERENCES_ONLY_VALID_CONDITIONS = VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS;
 
 	/**
 	 * The operation id for the '<em>Minimal Number Of Args</em>' operation.
@@ -413,7 +413,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1;
+	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -422,7 +422,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND_OPERATION_COUNT = MULTIPLE_CONDITION_OPERATOR_OPERATION_COUNT + 0;
+	int AND_OPERATION_COUNT = VARIADIC_CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.OrImpl <em>Or</em>}' class.
@@ -441,7 +441,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR__NAME = MULTIPLE_CONDITION_OPERATOR__NAME;
+	int OR__NAME = VARIADIC_CONDITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Cond Parts</b></em>' containment reference list.
@@ -450,7 +450,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR__COND_PARTS = MULTIPLE_CONDITION_OPERATOR__COND_PARTS;
+	int OR__COND_PARTS = VARIADIC_CONDITION__COND_PARTS;
 
 	/**
 	 * The feature id for the '<em><b>Cond Parts Ref</b></em>' reference list.
@@ -459,7 +459,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR__COND_PARTS_REF = MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF;
+	int OR__COND_PARTS_REF = VARIADIC_CONDITION__COND_PARTS_REF;
 
 	/**
 	 * The number of structural features of the '<em>Or</em>' class.
@@ -468,7 +468,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR_FEATURE_COUNT = MULTIPLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
+	int OR_FEATURE_COUNT = VARIADIC_CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -477,7 +477,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR___IS_LOCAL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION;
+	int OR___IS_LOCAL_CONDITION = VARIADIC_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -486,7 +486,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR___IS_MAPPING_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION;
+	int OR___IS_MAPPING_CONDITION = VARIADIC_CONDITION___IS_MAPPING_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
@@ -495,7 +495,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR___IS_CONDITION_MODEL_CONDITION = MULTIPLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION;
+	int OR___IS_CONDITION_MODEL_CONDITION = VARIADIC_CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -504,7 +504,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR___REFERENCES_ONLY_VALID_CONDITIONS = MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS;
+	int OR___REFERENCES_ONLY_VALID_CONDITIONS = VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS;
 
 	/**
 	 * The operation id for the '<em>Minimal Number Of Args</em>' operation.
@@ -513,7 +513,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1;
+	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Or</em>' class.
@@ -522,17 +522,17 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR_OPERATION_COUNT = MULTIPLE_CONDITION_OPERATOR_OPERATION_COUNT + 0;
+	int OR_OPERATION_COUNT = VARIADIC_CONDITION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.condition.impl.UnaryConditionImpl <em>Single Condition Operator</em>}' class.
+	 * The meta object id for the '{@link pamtram.condition.impl.UnaryConditionImpl <em>Unary Condition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.condition.impl.UnaryConditionImpl
-	 * @see pamtram.condition.impl.ConditionPackageImpl#getSingleConditionOperator()
+	 * @see pamtram.condition.impl.ConditionPackageImpl#getUnaryCondition()
 	 * @generated
 	 */
-	int SINGLE_CONDITION_OPERATOR = 5;
+	int UNARY_CONDITION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -541,7 +541,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR__NAME = COMPLEX_CONDITION__NAME;
+	int UNARY_CONDITION__NAME = COMPLEX_CONDITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Cond Part</b></em>' containment reference.
@@ -550,7 +550,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR__COND_PART = COMPLEX_CONDITION_FEATURE_COUNT + 0;
+	int UNARY_CONDITION__COND_PART = COMPLEX_CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Cond Part Ref</b></em>' reference.
@@ -559,16 +559,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR__COND_PART_REF = COMPLEX_CONDITION_FEATURE_COUNT + 1;
+	int UNARY_CONDITION__COND_PART_REF = COMPLEX_CONDITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Single Condition Operator</em>' class.
+	 * The number of structural features of the '<em>Unary Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
+	int UNARY_CONDITION_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -577,7 +577,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
+	int UNARY_CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -586,7 +586,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
+	int UNARY_CONDITION___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
@@ -595,7 +595,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
+	int UNARY_CONDITION___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Exactly One Arg</em>' operation.
@@ -604,16 +604,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1 = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+	int UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Single Condition Operator</em>' class.
+	 * The number of operations of the '<em>Unary Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_CONDITION_OPERATOR_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+	int UNARY_CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.
@@ -632,7 +632,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT__NAME = SINGLE_CONDITION_OPERATOR__NAME;
+	int NOT__NAME = UNARY_CONDITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Cond Part</b></em>' containment reference.
@@ -641,7 +641,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT__COND_PART = SINGLE_CONDITION_OPERATOR__COND_PART;
+	int NOT__COND_PART = UNARY_CONDITION__COND_PART;
 
 	/**
 	 * The feature id for the '<em><b>Cond Part Ref</b></em>' reference.
@@ -650,7 +650,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT__COND_PART_REF = SINGLE_CONDITION_OPERATOR__COND_PART_REF;
+	int NOT__COND_PART_REF = UNARY_CONDITION__COND_PART_REF;
 
 	/**
 	 * The number of structural features of the '<em>Not</em>' class.
@@ -659,7 +659,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_FEATURE_COUNT = SINGLE_CONDITION_OPERATOR_FEATURE_COUNT + 0;
+	int NOT_FEATURE_COUNT = UNARY_CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -668,7 +668,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___IS_LOCAL_CONDITION = SINGLE_CONDITION_OPERATOR___IS_LOCAL_CONDITION;
+	int NOT___IS_LOCAL_CONDITION = UNARY_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -677,7 +677,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___IS_MAPPING_CONDITION = SINGLE_CONDITION_OPERATOR___IS_MAPPING_CONDITION;
+	int NOT___IS_MAPPING_CONDITION = UNARY_CONDITION___IS_MAPPING_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
@@ -686,7 +686,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___IS_CONDITION_MODEL_CONDITION = SINGLE_CONDITION_OPERATOR___IS_CONDITION_MODEL_CONDITION;
+	int NOT___IS_CONDITION_MODEL_CONDITION = UNARY_CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Exactly One Arg</em>' operation.
@@ -695,7 +695,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1 = SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1;
+	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -704,7 +704,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___REFERENCES_ONLY_VALID_CONDITIONS = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 0;
+	int NOT___REFERENCES_ONLY_VALID_CONDITIONS = UNARY_CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Reference Only Conditions From Condition Model Or From Conditional Elements</em>' operation.
@@ -713,7 +713,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1 = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 1;
+	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = UNARY_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Not</em>' class.
@@ -722,7 +722,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_OPERATION_COUNT = SINGLE_CONDITION_OPERATOR_OPERATION_COUNT + 2;
+	int NOT_OPERATION_COUNT = UNARY_CONDITION_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.AttributeConditionImpl <em>Attribute Condition</em>}' class.
@@ -1165,14 +1165,14 @@ public interface ConditionPackage extends EPackage {
 	EOperation getCondition__CheckCondition__ComplexCondition();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.condition.VariadicCondition <em>Multiple Condition Operator</em>}'.
+	 * Returns the meta object for class '{@link pamtram.condition.VariadicCondition <em>Variadic Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Multiple Condition Operator</em>'.
+	 * @return the meta object for class '<em>Variadic Condition</em>'.
 	 * @see pamtram.condition.VariadicCondition
 	 * @generated
 	 */
-	EClass getMultipleConditionOperator();
+	EClass getVariadicCondition();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.condition.VariadicCondition#getCondParts <em>Cond Parts</em>}'.
@@ -1180,10 +1180,10 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Cond Parts</em>'.
 	 * @see pamtram.condition.VariadicCondition#getCondParts()
-	 * @see #getMultipleConditionOperator()
+	 * @see #getVariadicCondition()
 	 * @generated
 	 */
-	EReference getMultipleConditionOperator_CondParts();
+	EReference getVariadicCondition_CondParts();
 
 	/**
 	 * Returns the meta object for the reference list '{@link pamtram.condition.VariadicCondition#getCondPartsRef <em>Cond Parts Ref</em>}'.
@@ -1191,10 +1191,10 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Cond Parts Ref</em>'.
 	 * @see pamtram.condition.VariadicCondition#getCondPartsRef()
-	 * @see #getMultipleConditionOperator()
+	 * @see #getVariadicCondition()
 	 * @generated
 	 */
-	EReference getMultipleConditionOperator_CondPartsRef();
+	EReference getVariadicCondition_CondPartsRef();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.VariadicCondition#referencesOnlyValidConditions() <em>References Only Valid Conditions</em>}' operation.
@@ -1204,7 +1204,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.VariadicCondition#referencesOnlyValidConditions()
 	 * @generated
 	 */
-	EOperation getMultipleConditionOperator__ReferencesOnlyValidConditions();
+	EOperation getVariadicCondition__ReferencesOnlyValidConditions();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.VariadicCondition#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Minimal Number Of Args</em>}' operation.
@@ -1214,7 +1214,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.VariadicCondition#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_1();
+	EOperation getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getValue <em>Value</em>}'.
@@ -1248,14 +1248,14 @@ public interface ConditionPackage extends EPackage {
 	EClass getOr();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.condition.UnaryCondition <em>Single Condition Operator</em>}'.
+	 * Returns the meta object for class '{@link pamtram.condition.UnaryCondition <em>Unary Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Single Condition Operator</em>'.
+	 * @return the meta object for class '<em>Unary Condition</em>'.
 	 * @see pamtram.condition.UnaryCondition
 	 * @generated
 	 */
-	EClass getSingleConditionOperator();
+	EClass getUnaryCondition();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link pamtram.condition.UnaryCondition#getCondPart <em>Cond Part</em>}'.
@@ -1263,10 +1263,10 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Cond Part</em>'.
 	 * @see pamtram.condition.UnaryCondition#getCondPart()
-	 * @see #getSingleConditionOperator()
+	 * @see #getUnaryCondition()
 	 * @generated
 	 */
-	EReference getSingleConditionOperator_CondPart();
+	EReference getUnaryCondition_CondPart();
 
 	/**
 	 * Returns the meta object for the reference '{@link pamtram.condition.UnaryCondition#getCondPartRef <em>Cond Part Ref</em>}'.
@@ -1274,10 +1274,10 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Cond Part Ref</em>'.
 	 * @see pamtram.condition.UnaryCondition#getCondPartRef()
-	 * @see #getSingleConditionOperator()
+	 * @see #getUnaryCondition()
 	 * @generated
 	 */
-	EReference getSingleConditionOperator_CondPartRef();
+	EReference getUnaryCondition_CondPartRef();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.UnaryCondition#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Exactly One Arg</em>}' operation.
@@ -1287,7 +1287,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.UnaryCondition#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_1();
+	EOperation getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Not <em>Not</em>}'.
@@ -1317,7 +1317,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.Not#referenceOnlyConditionsFromConditionModelOrFromConditionalElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1();
+	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.AttributeCondition <em>Attribute Condition</em>}'.
@@ -1505,14 +1505,14 @@ public interface ConditionPackage extends EPackage {
 		EOperation CONDITION___CHECK_CONDITION__COMPLEXCONDITION = eINSTANCE.getCondition__CheckCondition__ComplexCondition();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.condition.impl.VariadicConditionImpl <em>Multiple Condition Operator</em>}' class.
+		 * The meta object literal for the '{@link pamtram.condition.impl.VariadicConditionImpl <em>Variadic Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.condition.impl.VariadicConditionImpl
-		 * @see pamtram.condition.impl.ConditionPackageImpl#getMultipleConditionOperator()
+		 * @see pamtram.condition.impl.ConditionPackageImpl#getVariadicCondition()
 		 * @generated
 		 */
-		EClass MULTIPLE_CONDITION_OPERATOR = eINSTANCE.getMultipleConditionOperator();
+		EClass VARIADIC_CONDITION = eINSTANCE.getVariadicCondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Cond Parts</b></em>' containment reference list feature.
@@ -1520,7 +1520,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTIPLE_CONDITION_OPERATOR__COND_PARTS = eINSTANCE.getMultipleConditionOperator_CondParts();
+		EReference VARIADIC_CONDITION__COND_PARTS = eINSTANCE.getVariadicCondition_CondParts();
 
 		/**
 		 * The meta object literal for the '<em><b>Cond Parts Ref</b></em>' reference list feature.
@@ -1528,7 +1528,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF = eINSTANCE.getMultipleConditionOperator_CondPartsRef();
+		EReference VARIADIC_CONDITION__COND_PARTS_REF = eINSTANCE.getVariadicCondition_CondPartsRef();
 
 		/**
 		 * The meta object literal for the '<em><b>References Only Valid Conditions</b></em>' operation.
@@ -1536,7 +1536,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MULTIPLE_CONDITION_OPERATOR___REFERENCES_ONLY_VALID_CONDITIONS = eINSTANCE.getMultipleConditionOperator__ReferencesOnlyValidConditions();
+		EOperation VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS = eINSTANCE.getVariadicCondition__ReferencesOnlyValidConditions();
 
 		/**
 		 * The meta object literal for the '<em><b>Minimal Number Of Args</b></em>' operation.
@@ -1544,7 +1544,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MULTIPLE_CONDITION_OPERATOR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_1();
+		EOperation VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1575,14 +1575,14 @@ public interface ConditionPackage extends EPackage {
 		EClass OR = eINSTANCE.getOr();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.condition.impl.UnaryConditionImpl <em>Single Condition Operator</em>}' class.
+		 * The meta object literal for the '{@link pamtram.condition.impl.UnaryConditionImpl <em>Unary Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.condition.impl.UnaryConditionImpl
-		 * @see pamtram.condition.impl.ConditionPackageImpl#getSingleConditionOperator()
+		 * @see pamtram.condition.impl.ConditionPackageImpl#getUnaryCondition()
 		 * @generated
 		 */
-		EClass SINGLE_CONDITION_OPERATOR = eINSTANCE.getSingleConditionOperator();
+		EClass UNARY_CONDITION = eINSTANCE.getUnaryCondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Cond Part</b></em>' containment reference feature.
@@ -1590,7 +1590,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SINGLE_CONDITION_OPERATOR__COND_PART = eINSTANCE.getSingleConditionOperator_CondPart();
+		EReference UNARY_CONDITION__COND_PART = eINSTANCE.getUnaryCondition_CondPart();
 
 		/**
 		 * The meta object literal for the '<em><b>Cond Part Ref</b></em>' reference feature.
@@ -1598,7 +1598,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SINGLE_CONDITION_OPERATOR__COND_PART_REF = eINSTANCE.getSingleConditionOperator_CondPartRef();
+		EReference UNARY_CONDITION__COND_PART_REF = eINSTANCE.getUnaryCondition_CondPartRef();
 
 		/**
 		 * The meta object literal for the '<em><b>Exactly One Arg</b></em>' operation.
@@ -1606,7 +1606,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SINGLE_CONDITION_OPERATOR___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_1();
+		EOperation UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = eINSTANCE.getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.
@@ -1632,7 +1632,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1();
+		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.AttributeConditionImpl <em>Attribute Condition</em>}' class.

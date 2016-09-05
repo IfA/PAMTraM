@@ -80,8 +80,8 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createConditionAdapter();
 			}
 			@Override
-			public Adapter caseMultipleConditionOperator(VariadicCondition object) {
-				return createMultipleConditionOperatorAdapter();
+			public Adapter caseVariadicCondition(VariadicCondition object) {
+				return createVariadicConditionAdapter();
 			}
 			@Override
 			public Adapter caseAnd(And object) {
@@ -92,8 +92,8 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createOrAdapter();
 			}
 			@Override
-			public Adapter caseSingleConditionOperator(UnaryCondition object) {
-				return createSingleConditionOperatorAdapter();
+			public Adapter caseUnaryCondition(UnaryCondition object) {
+				return createUnaryConditionAdapter();
 			}
 			@Override
 			public Adapter caseNot(Not object) {
@@ -164,7 +164,7 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.condition.VariadicCondition <em>Multiple Condition Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.VariadicCondition <em>Variadic Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -173,7 +173,7 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.condition.VariadicCondition
 	 * @generated
 	 */
-	public Adapter createMultipleConditionOperatorAdapter() {
+	public Adapter createVariadicConditionAdapter() {
 		return null;
 	}
 
@@ -206,7 +206,7 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.condition.UnaryCondition <em>Single Condition Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.UnaryCondition <em>Unary Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -215,7 +215,7 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.condition.UnaryCondition
 	 * @generated
 	 */
-	public Adapter createSingleConditionOperatorAdapter() {
+	public Adapter createUnaryConditionAdapter() {
 		return null;
 	}
 

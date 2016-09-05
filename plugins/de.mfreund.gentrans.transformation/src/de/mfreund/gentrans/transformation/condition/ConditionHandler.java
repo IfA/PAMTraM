@@ -26,14 +26,14 @@ import pamtram.ConditionalElement;
 import pamtram.condition.And;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.AttributeCondition;
+import pamtram.condition.CardinalityCondition;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
-import pamtram.condition.MultipleConditionOperator;
 import pamtram.condition.Not;
 import pamtram.condition.Or;
-import pamtram.condition.SectionCondition;
-import pamtram.condition.SingleConditionOperator;
+import pamtram.condition.UnaryCondition;
+import pamtram.condition.VariadicCondition;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -128,7 +128,7 @@ public class ConditionHandler {
 
 	/**
 	 * This is the general checkCondition method. Based on the type of condition to be evaluated, it will forward to the
-	 * specific checking methods (e.g. {@link #checkConditionAnd(And, MatchedSectionDescriptor)}).
+	 * specific checking methods (e.g. {@link #checkConditionAnd(And, MatchedSectionDescriptor, Map)}).
 	 *
 	 * @param complexCondition
 	 *            The {@link ComplexCondition} to check.
@@ -159,23 +159,23 @@ public class ConditionHandler {
 		// Otherwise, we have to calculate the value
 		CondResult result;
 
-		if(complexCondition instanceof MultipleConditionOperator){
+		if(complexCondition instanceof VariadicCondition){
 
-			result = this.checkConditionMultipleConditionOperator((MultipleConditionOperator) complexCondition,
+			result = this.checkVariadicCondition((VariadicCondition) complexCondition,
 					matchedSectionDescriptor, mappingInstances);
 
-		} else if(complexCondition instanceof SingleConditionOperator){
+		} else if(complexCondition instanceof UnaryCondition){
 
-			result = this.checkConditionSingleConditionOperator((SingleConditionOperator) complexCondition,
+			result = this.checkUnaryCondition((UnaryCondition) complexCondition,
 					matchedSectionDescriptor, mappingInstances);
 
 		} else if(complexCondition instanceof AttributeCondition){
 
 			result = this.checkAttributeCondition((AttributeCondition) complexCondition, matchedSectionDescriptor);
 
-		} else if (complexCondition instanceof SectionCondition){
+		} else if (complexCondition instanceof CardinalityCondition){
 
-			result = this.checkSectionCondition((SectionCondition) complexCondition, matchedSectionDescriptor);
+			result = this.checkCardinalityCondition((CardinalityCondition) complexCondition, matchedSectionDescriptor);
 
 		} else if (complexCondition instanceof ApplicationDependency) {
 
@@ -195,15 +195,15 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * Check the given {@link SectionCondition} for the given {@link MatchedSectionDescriptor}.
+	 * Check the given {@link CardinalityCondition} for the given {@link MatchedSectionDescriptor}.
 	 *
-	 * @param sectionCondition The {@link SectionCondition} to check.
+	 * @param sectionCondition The {@link CardinalityCondition} to check.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the given condition shall be checked.
 	 * @return The {@link CondResult result} of the check.
 	 */
-	private CondResult checkSectionCondition(SectionCondition sectionCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
+	private CondResult checkCardinalityCondition(CardinalityCondition sectionCondition, MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// The Section referenced by the SectionCondition was not matched in the source model
+		// The Section referenced by the CardinalityCondition was not matched in the source model
 		//
 		if(!this.matchedSections.containsKey(sectionCondition.getConditionSectionRef().getContainingSection())){
 
@@ -515,8 +515,8 @@ public class ConditionHandler {
 		//
 		SourceSection affectedSection;
 
-		if(condition instanceof SectionCondition) {
-			affectedSection = ((SectionCondition) condition).getConditionSectionRef().getContainingSection();
+		if(condition instanceof CardinalityCondition) {
+			affectedSection = ((CardinalityCondition) condition).getConditionSectionRef().getContainingSection();
 		} else if(condition instanceof AttributeCondition) {
 			affectedSection = ((AttributeCondition) condition).getConditionAttributeRef().getContainingSection();
 		} else if (condition instanceof ApplicationDependency) {
@@ -631,11 +631,11 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * This is the general checkCondition method for {@link SingleConditionOperator SingleConditionOperators}. Based on
-	 * the type of condition to be evaluated, it will forward to the specific checking methods.
+	 * This is the general checkCondition method for {@link UnaryCondition UnaryConditions}. Based on the type of
+	 * condition to be evaluated, it will forward to the specific checking methods.
 	 *
 	 * @param condition
-	 *            The {@link SingleConditionOperator} to check.
+	 *            The {@link UnaryCondition} to check.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
 	 * @param mappingInstances
@@ -643,7 +643,7 @@ public class ConditionHandler {
 	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
-	private CondResult checkConditionSingleConditionOperator(SingleConditionOperator condition,
+	private CondResult checkUnaryCondition(UnaryCondition condition,
 			MatchedSectionDescriptor matchedSectionDescriptor,
 			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
 
@@ -701,11 +701,11 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * This is the general checkCondition method for {@link MultipleConditionOperator MultipleConditionOperators}. Based
-	 * on the type of condition to be evaluated, it will forward to the specific checking methods.
+	 * This is the general checkCondition method for {@link VariadicCondition VariadicConditions}. Based on the type of
+	 * condition to be evaluated, it will forward to the specific checking methods.
 	 *
 	 * @param condition
-	 *            The {@link MultipleConditionOperator} to check.
+	 *            The {@link VariadicCondition} to check.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
 	 * @param mappingInstances
@@ -713,7 +713,7 @@ public class ConditionHandler {
 	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
-	private CondResult checkConditionMultipleConditionOperator(MultipleConditionOperator condition,
+	private CondResult checkVariadicCondition(VariadicCondition condition,
 			MatchedSectionDescriptor matchedSectionDescriptor,
 			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
 

@@ -1134,10 +1134,6 @@
       <eLiterals name="GE" value="3" literal="GE"/>
       <eLiterals name="LE" value="4" literal="LE"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="CondSettingEnum">
-      <eLiterals name="MatchingRequired" literal="MatchingRequired"/>
-      <eLiterals name="NoMatchingAccepted" value="1" literal="NoMatchingAccepted"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariadicCondition" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

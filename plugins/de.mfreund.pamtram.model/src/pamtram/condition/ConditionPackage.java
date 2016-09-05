@@ -843,14 +843,14 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.condition.impl.SectionConditionImpl <em>Section Condition</em>}' class.
+	 * The meta object id for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Section Condition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.condition.impl.SectionConditionImpl
-	 * @see pamtram.condition.impl.ConditionPackageImpl#getSectionCondition()
+	 * @see pamtram.condition.impl.CardinalityConditionImpl
+	 * @see pamtram.condition.impl.ConditionPackageImpl#getCardinalityCondition()
 	 * @generated
 	 */
-	int SECTION_CONDITION = 8;
+	int CARDINALITY_CONDITION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -859,7 +859,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION__NAME = CONDITION__NAME;
+	int CARDINALITY_CONDITION__NAME = CONDITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
@@ -868,7 +868,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = CONDITION__ADDITIONAL_CONDITION_SPECIFICATION;
+	int CARDINALITY_CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = CONDITION__ADDITIONAL_CONDITION_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -877,7 +877,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION__VALUE = CONDITION__VALUE;
+	int CARDINALITY_CONDITION__VALUE = CONDITION__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Comparator</b></em>' attribute.
@@ -886,7 +886,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION__COMPARATOR = CONDITION__COMPARATOR;
+	int CARDINALITY_CONDITION__COMPARATOR = CONDITION__COMPARATOR;
 
 	/**
 	 * The feature id for the '<em><b>Condition Section Ref</b></em>' reference.
@@ -895,7 +895,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION__CONDITION_SECTION_REF = CONDITION_FEATURE_COUNT + 0;
+	int CARDINALITY_CONDITION__CONDITION_SECTION_REF = CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Section Condition</em>' class.
@@ -904,7 +904,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+	int CARDINALITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -913,7 +913,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
+	int CARDINALITY_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -922,7 +922,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION___IS_MAPPING_CONDITION = CONDITION___IS_MAPPING_CONDITION;
+	int CARDINALITY_CONDITION___IS_MAPPING_CONDITION = CONDITION___IS_MAPPING_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
@@ -931,7 +931,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION___IS_CONDITION_MODEL_CONDITION = CONDITION___IS_CONDITION_MODEL_CONDITION;
+	int CARDINALITY_CONDITION___IS_CONDITION_MODEL_CONDITION = CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
@@ -940,7 +940,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION___CHECK_CONDITION__COMPLEXCONDITION = CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
+	int CARDINALITY_CONDITION___CHECK_CONDITION__COMPLEXCONDITION = CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
 	 * The number of operations of the '<em>Section Condition</em>' class.
@@ -949,7 +949,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
+	int CARDINALITY_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.
@@ -1352,25 +1352,25 @@ public interface ConditionPackage extends EPackage {
 	EReference getAttributeCondition_ConditionAttributeRef();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.condition.SectionCondition <em>Section Condition</em>}'.
+	 * Returns the meta object for class '{@link pamtram.condition.CardinalityCondition <em>Section Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Section Condition</em>'.
-	 * @see pamtram.condition.SectionCondition
+	 * @see pamtram.condition.CardinalityCondition
 	 * @generated
 	 */
-	EClass getSectionCondition();
+	EClass getCardinalityCondition();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.SectionCondition#getConditionSectionRef <em>Condition Section Ref</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.condition.CardinalityCondition#getConditionSectionRef <em>Condition Section Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Condition Section Ref</em>'.
-	 * @see pamtram.condition.SectionCondition#getConditionSectionRef()
-	 * @see #getSectionCondition()
+	 * @see pamtram.condition.CardinalityCondition#getConditionSectionRef()
+	 * @see #getCardinalityCondition()
 	 * @generated
 	 */
-	EReference getSectionCondition_ConditionSectionRef();
+	EReference getCardinalityCondition_ConditionSectionRef();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.ApplicationDependency <em>Application Dependency</em>}'.
@@ -1661,14 +1661,14 @@ public interface ConditionPackage extends EPackage {
 		EReference ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF = eINSTANCE.getAttributeCondition_ConditionAttributeRef();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.condition.impl.SectionConditionImpl <em>Section Condition</em>}' class.
+		 * The meta object literal for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Section Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.condition.impl.SectionConditionImpl
-		 * @see pamtram.condition.impl.ConditionPackageImpl#getSectionCondition()
+		 * @see pamtram.condition.impl.CardinalityConditionImpl
+		 * @see pamtram.condition.impl.ConditionPackageImpl#getCardinalityCondition()
 		 * @generated
 		 */
-		EClass SECTION_CONDITION = eINSTANCE.getSectionCondition();
+		EClass CARDINALITY_CONDITION = eINSTANCE.getCardinalityCondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Condition Section Ref</b></em>' reference feature.
@@ -1676,7 +1676,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SECTION_CONDITION__CONDITION_SECTION_REF = eINSTANCE.getSectionCondition_ConditionSectionRef();
+		EReference CARDINALITY_CONDITION__CONDITION_SECTION_REF = eINSTANCE.getCardinalityCondition_ConditionSectionRef();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.

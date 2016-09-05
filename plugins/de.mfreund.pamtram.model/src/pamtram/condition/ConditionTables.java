@@ -125,7 +125,7 @@ public class ConditionTables
 		public static final /*@NonNull*/ EcoreExecutorType _Condition = new EcoreExecutorType(ConditionPackage.Literals.CONDITION, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _Not = new EcoreExecutorType(ConditionPackage.Literals.NOT, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _Or = new EcoreExecutorType(ConditionPackage.Literals.OR, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _SectionCondition = new EcoreExecutorType(ConditionPackage.Literals.SECTION_CONDITION, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _SectionCondition = new EcoreExecutorType(ConditionPackage.Literals.CARDINALITY_CONDITION, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _UnaryCondition = new EcoreExecutorType(ConditionPackage.Literals.UNARY_CONDITION, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _VariadicCondition = new EcoreExecutorType(ConditionPackage.Literals.VARIADIC_CONDITION, PACKAGE, 0 | ExecutorType.ABSTRACT);
 
@@ -334,7 +334,7 @@ public class ConditionTables
 		public static final /*@NonNull*/ ExecutorProperty _Condition__comparator = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__COMPARATOR, Types._Condition, 1);
 		public static final /*@NonNull*/ ExecutorProperty _Condition__value = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__VALUE, Types._Condition, 2);
 
-		public static final /*@NonNull*/ ExecutorProperty _SectionCondition__conditionSectionRef = new EcoreExecutorProperty(ConditionPackage.Literals.SECTION_CONDITION__CONDITION_SECTION_REF, Types._SectionCondition, 0);
+		public static final /*@NonNull*/ ExecutorProperty _SectionCondition__conditionSectionRef = new EcoreExecutorProperty(ConditionPackage.Literals.CARDINALITY_CONDITION__CONDITION_SECTION_REF, Types._SectionCondition, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPart = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART, Types._UnaryCondition, 0);
 		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPartRef = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART_REF, Types._UnaryCondition, 1);

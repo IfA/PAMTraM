@@ -64,7 +64,7 @@ public interface ConditionFactory extends EFactory {
 	 * @return a new object of class '<em>Section Condition</em>'.
 	 * @generated
 	 */
-	SectionCondition createSectionCondition();
+	CardinalityCondition createCardinalityCondition();
 
 	/**
 	 * Returns a new object of class '<em>Application Dependency</em>'.

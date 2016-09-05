@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.condition.ConditionPackage;
-import pamtram.condition.SectionCondition;
+import pamtram.condition.CardinalityCondition;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
@@ -23,12 +23,12 @@ import pamtram.metamodel.SourceSectionClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.SectionConditionImpl#getConditionSectionRef <em>Condition Section Ref</em>}</li>
+ *   <li>{@link pamtram.condition.impl.CardinalityConditionImpl#getConditionSectionRef <em>Condition Section Ref</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SectionConditionImpl extends ConditionImpl implements SectionCondition {
+public class CardinalityConditionImpl extends ConditionImpl implements CardinalityCondition {
 	/**
 	 * The cached value of the '{@link #getConditionSectionRef() <em>Condition Section Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -44,7 +44,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SectionConditionImpl() {
+	protected CardinalityConditionImpl() {
 		super();
 	}
 
@@ -55,7 +55,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ConditionPackage.Literals.SECTION_CONDITION;
+		return ConditionPackage.Literals.CARDINALITY_CONDITION;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 			conditionSectionRef = (SourceSectionClass)eResolveProxy(oldConditionSectionRef);
 			if (conditionSectionRef != oldConditionSectionRef) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.SECTION_CONDITION__CONDITION_SECTION_REF, oldConditionSectionRef, conditionSectionRef));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF, oldConditionSectionRef, conditionSectionRef));
 			}
 		}
 		return conditionSectionRef;
@@ -93,7 +93,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 		SourceSectionClass oldConditionSectionRef = conditionSectionRef;
 		conditionSectionRef = newConditionSectionRef;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.SECTION_CONDITION__CONDITION_SECTION_REF, oldConditionSectionRef, conditionSectionRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF, oldConditionSectionRef, conditionSectionRef));
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.SECTION_CONDITION__CONDITION_SECTION_REF:
+			case ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF:
 				if (resolve) return getConditionSectionRef();
 				return basicGetConditionSectionRef();
 		}
@@ -119,7 +119,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.SECTION_CONDITION__CONDITION_SECTION_REF:
+			case ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF:
 				setConditionSectionRef((SourceSectionClass)newValue);
 				return;
 		}
@@ -134,7 +134,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.SECTION_CONDITION__CONDITION_SECTION_REF:
+			case ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF:
 				setConditionSectionRef((SourceSectionClass)null);
 				return;
 		}
@@ -149,7 +149,7 @@ public class SectionConditionImpl extends ConditionImpl implements SectionCondit
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.SECTION_CONDITION__CONDITION_SECTION_REF:
+			case ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF:
 				return conditionSectionRef != null;
 		}
 		return super.eIsSet(featureID);

@@ -13,14 +13,14 @@ import pamtram.metamodel.SourceSectionClass;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.SectionCondition#getConditionSectionRef <em>Condition Section Ref</em>}</li>
+ *   <li>{@link pamtram.condition.CardinalityCondition#getConditionSectionRef <em>Condition Section Ref</em>}</li>
  * </ul>
  *
- * @see pamtram.condition.ConditionPackage#getSectionCondition()
+ * @see pamtram.condition.ConditionPackage#getCardinalityCondition()
  * @model
  * @generated
  */
-public interface SectionCondition extends Condition {
+public interface CardinalityCondition extends Condition {
 	/**
 	 * Returns the value of the '<em><b>Condition Section Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ public interface SectionCondition extends Condition {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition Section Ref</em>' reference.
 	 * @see #setConditionSectionRef(SourceSectionClass)
-	 * @see pamtram.condition.ConditionPackage#getSectionCondition_ConditionSectionRef()
+	 * @see pamtram.condition.ConditionPackage#getCardinalityCondition_ConditionSectionRef()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!SectionCondition!conditionSectionRef'"
 	 * @generated
@@ -39,7 +39,7 @@ public interface SectionCondition extends Condition {
 	SourceSectionClass getConditionSectionRef();
 
 	/**
-	 * Sets the value of the '{@link pamtram.condition.SectionCondition#getConditionSectionRef <em>Condition Section Ref</em>}' reference.
+	 * Sets the value of the '{@link pamtram.condition.CardinalityCondition#getConditionSectionRef <em>Condition Section Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition Section Ref</em>' reference.

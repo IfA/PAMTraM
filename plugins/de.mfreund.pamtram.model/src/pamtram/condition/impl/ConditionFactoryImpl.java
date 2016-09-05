@@ -58,7 +58,7 @@ public class ConditionFactoryImpl extends EFactoryImpl implements ConditionFacto
 			case ConditionPackage.OR: return createOr();
 			case ConditionPackage.NOT: return createNot();
 			case ConditionPackage.ATTRIBUTE_CONDITION: return createAttributeCondition();
-			case ConditionPackage.SECTION_CONDITION: return createSectionCondition();
+			case ConditionPackage.CARDINALITY_CONDITION: return createCardinalityCondition();
 			case ConditionPackage.APPLICATION_DEPENDENCY: return createApplicationDependency();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -144,8 +144,8 @@ public class ConditionFactoryImpl extends EFactoryImpl implements ConditionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SectionCondition createSectionCondition() {
-		SectionConditionImpl sectionCondition = new SectionConditionImpl();
+	public CardinalityCondition createCardinalityCondition() {
+		CardinalityConditionImpl sectionCondition = new CardinalityConditionImpl();
 		return sectionCondition;
 	}
 

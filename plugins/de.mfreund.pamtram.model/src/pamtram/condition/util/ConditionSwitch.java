@@ -138,8 +138,8 @@ public class ConditionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConditionPackage.SECTION_CONDITION: {
-				SectionCondition sectionCondition = (SectionCondition)theEObject;
+			case ConditionPackage.CARDINALITY_CONDITION: {
+				CardinalityCondition sectionCondition = (CardinalityCondition)theEObject;
 				T result = caseSectionCondition(sectionCondition);
 				if (result == null) result = caseCondition(sectionCondition);
 				if (result == null) result = caseComplexCondition(sectionCondition);
@@ -291,7 +291,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSectionCondition(SectionCondition object) {
+	public T caseSectionCondition(CardinalityCondition object) {
 		return null;
 	}
 

@@ -104,7 +104,7 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeConditionAdapter();
 			}
 			@Override
-			public Adapter caseSectionCondition(SectionCondition object) {
+			public Adapter caseSectionCondition(CardinalityCondition object) {
 				return createSectionConditionAdapter();
 			}
 			@Override
@@ -248,13 +248,13 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.condition.SectionCondition <em>Section Condition</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.CardinalityCondition <em>Section Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.condition.SectionCondition
+	 * @see pamtram.condition.CardinalityCondition
 	 * @generated
 	 */
 	public Adapter createSectionConditionAdapter() {

@@ -1072,17 +1072,6 @@ public interface ConditionPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link pamtram.condition.CondSettingEnum <em>Cond Setting Enum</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.condition.CondSettingEnum
-	 * @see pamtram.condition.impl.ConditionPackageImpl#getCondSettingEnum()
-	 * @generated
-	 */
-	int COND_SETTING_ENUM = 11;
-
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.condition.ComplexCondition <em>Complex Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1404,16 +1393,6 @@ public interface ConditionPackage extends EPackage {
 	EEnum getComparatorEnum();
 
 	/**
-	 * Returns the meta object for enum '{@link pamtram.condition.CondSettingEnum <em>Cond Setting Enum</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Cond Setting Enum</em>'.
-	 * @see pamtram.condition.CondSettingEnum
-	 * @generated
-	 */
-	EEnum getCondSettingEnum();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1705,16 +1684,6 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum COMPARATOR_ENUM = eINSTANCE.getComparatorEnum();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.condition.CondSettingEnum <em>Cond Setting Enum</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.condition.CondSettingEnum
-		 * @see pamtram.condition.impl.ConditionPackageImpl#getCondSettingEnum()
-		 * @generated
-		 */
-		EEnum COND_SETTING_ENUM = eINSTANCE.getCondSettingEnum();
 
 	}
 

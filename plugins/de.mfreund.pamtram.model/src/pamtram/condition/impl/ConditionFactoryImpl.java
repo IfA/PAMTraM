@@ -75,8 +75,6 @@ public class ConditionFactoryImpl extends EFactoryImpl implements ConditionFacto
 		switch (eDataType.getClassifierID()) {
 			case ConditionPackage.COMPARATOR_ENUM:
 				return createComparatorEnumFromString(eDataType, initialValue);
-			case ConditionPackage.COND_SETTING_ENUM:
-				return createCondSettingEnumFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -92,8 +90,6 @@ public class ConditionFactoryImpl extends EFactoryImpl implements ConditionFacto
 		switch (eDataType.getClassifierID()) {
 			case ConditionPackage.COMPARATOR_ENUM:
 				return convertComparatorEnumToString(eDataType, instanceValue);
-			case ConditionPackage.COND_SETTING_ENUM:
-				return convertCondSettingEnumToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -176,26 +172,6 @@ public class ConditionFactoryImpl extends EFactoryImpl implements ConditionFacto
 	 * @generated
 	 */
 	public String convertComparatorEnumToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CondSettingEnum createCondSettingEnumFromString(EDataType eDataType, String initialValue) {
-		CondSettingEnum result = CondSettingEnum.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCondSettingEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

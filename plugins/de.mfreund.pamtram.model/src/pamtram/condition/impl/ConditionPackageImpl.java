@@ -19,7 +19,6 @@ import pamtram.condition.ApplicationDependency;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
-import pamtram.condition.CondSettingEnum;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionFactory;
 import pamtram.condition.ConditionPackage;
@@ -118,13 +117,6 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * @generated
 	 */
 	private EEnum comparatorEnumEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum condSettingEnumEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -494,15 +486,6 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getCondSettingEnum() {
-		return condSettingEnumEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ConditionFactory getConditionFactory() {
 		return (ConditionFactory)getEFactoryInstance();
 	}
@@ -568,7 +551,6 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Create enums
 		comparatorEnumEEnum = createEEnum(COMPARATOR_ENUM);
-		condSettingEnumEEnum = createEEnum(COND_SETTING_ENUM);
 	}
 
 	/**
@@ -693,10 +675,6 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		addEEnumLiteral(comparatorEnumEEnum, ComparatorEnum.LT);
 		addEEnumLiteral(comparatorEnumEEnum, ComparatorEnum.GE);
 		addEEnumLiteral(comparatorEnumEEnum, ComparatorEnum.LE);
-
-		initEEnum(condSettingEnumEEnum, CondSettingEnum.class, "CondSettingEnum");
-		addEEnumLiteral(condSettingEnumEEnum, CondSettingEnum.MATCHING_REQUIRED);
-		addEEnumLiteral(condSettingEnumEEnum, CondSettingEnum.NO_MATCHING_ACCEPTED);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

@@ -130,8 +130,6 @@ public class ConditionValidator extends EObjectValidator {
 				return validateApplicationDependency((ApplicationDependency)value, diagnostics, context);
 			case ConditionPackage.COMPARATOR_ENUM:
 				return validateComparatorEnum((ComparatorEnum)value, diagnostics, context);
-			case ConditionPackage.COND_SETTING_ENUM:
-				return validateCondSettingEnum((CondSettingEnum)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -314,15 +312,6 @@ public class ConditionValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateComparatorEnum(ComparatorEnum comparatorEnum, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCondSettingEnum(CondSettingEnum condSettingEnum, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

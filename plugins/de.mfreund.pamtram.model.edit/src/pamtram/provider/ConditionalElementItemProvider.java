@@ -199,7 +199,7 @@ public class ConditionalElementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
-				 ConditionFactory.eINSTANCE.createSectionCondition()));
+				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter

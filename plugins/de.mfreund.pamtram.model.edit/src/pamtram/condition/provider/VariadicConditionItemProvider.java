@@ -209,7 +209,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 		newChildDescriptors.add
 		(this.createChildParameter
 				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
-						ConditionFactory.eINSTANCE.createSectionCondition()));
+						ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
 		(this.createChildParameter

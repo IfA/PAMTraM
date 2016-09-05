@@ -210,7 +210,7 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 		newChildDescriptors.add
 		(this.createChildParameter
 				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
-						ConditionFactory.eINSTANCE.createSectionCondition()));
+						ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
 		(this.createChildParameter

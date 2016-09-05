@@ -165,15 +165,15 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.condition.SectionCondition} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.condition.CardinalityCondition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SectionConditionItemProvider sectionConditionItemProvider;
+	protected CardinalityConditionItemProvider sectionConditionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.condition.SectionCondition}.
+	 * This creates an adapter for a {@link pamtram.condition.CardinalityCondition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -181,7 +181,7 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 	@Override
 	public Adapter createSectionConditionAdapter() {
 		if (sectionConditionItemProvider == null) {
-			sectionConditionItemProvider = new SectionConditionItemProvider(this);
+			sectionConditionItemProvider = new CardinalityConditionItemProvider(this);
 		}
 
 		return sectionConditionItemProvider;

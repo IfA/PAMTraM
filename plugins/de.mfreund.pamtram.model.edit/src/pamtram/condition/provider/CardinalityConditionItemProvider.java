@@ -13,22 +13,22 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.condition.ConditionPackage;
-import pamtram.condition.SectionCondition;
+import pamtram.condition.CardinalityCondition;
 
 /**
- * This is the item provider adapter for a {@link pamtram.condition.SectionCondition} object.
+ * This is the item provider adapter for a {@link pamtram.condition.CardinalityCondition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SectionConditionItemProvider extends ConditionItemProvider {
+public class CardinalityConditionItemProvider extends ConditionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SectionConditionItemProvider(AdapterFactory adapterFactory) {
+	public CardinalityConditionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,7 +61,7 @@ public class SectionConditionItemProvider extends ConditionItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_SectionCondition_conditionSectionRef_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SectionCondition_conditionSectionRef_feature", "_UI_SectionCondition_type"),
-				 ConditionPackage.Literals.SECTION_CONDITION__CONDITION_SECTION_REF,
+				 ConditionPackage.Literals.CARDINALITY_CONDITION__CONDITION_SECTION_REF,
 				 true,
 				 false,
 				 true,
@@ -100,7 +100,7 @@ public class SectionConditionItemProvider extends ConditionItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((SectionCondition)object).getName();
+		String label = ((CardinalityCondition)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_SectionCondition_type"), StyledString.Style.QUALIFIER_STYLER); 

@@ -17,25 +17,26 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.ConditionModel;
 import pamtram.condition.ConditionFactory;
 import pamtram.condition.ConditionPackage;
-import pamtram.condition.MultipleConditionOperator;
+import pamtram.condition.VariadicCondition;
 
 /**
- * This is the item provider adapter for a {@link pamtram.condition.MultipleConditionOperator} object.
+ * This is the item provider adapter for a {@link pamtram.condition.VariadicCondition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MultipleConditionOperatorItemProvider extends ComplexConditionItemProvider {
+public class VariadicConditionItemProvider extends ComplexConditionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultipleConditionOperatorItemProvider(AdapterFactory adapterFactory) {
+	public VariadicConditionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -47,12 +48,12 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCondPartsRefPropertyDescriptor(object);
+			this.addCondPartsRefPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -62,38 +63,38 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 	 * @generated NOT
 	 */
 	protected void addCondPartsRefPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MultipleConditionOperator_condPartsRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MultipleConditionOperator_condPartsRef_feature", "_UI_MultipleConditionOperator_type"),
-				 ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS_REF,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null)
-			{				
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
+		this.itemPropertyDescriptors.add
+		(new ItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_MultipleConditionOperator_condPartsRef_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_MultipleConditionOperator_condPartsRef_feature", "_UI_MultipleConditionOperator_type"),
+				ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS_REF,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
 
-					List<Object> choiceOfValues = new ArrayList<Object>();
-					choiceOfValues.addAll(super.getChoiceOfValues(object));
-					for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
-						EObject choiceValue = (EObject) element.next();
-						if(choiceValue==null){
-							continue;
-						}
-						if(!(choiceValue.eContainer() instanceof ConditionModel)){
-							element.remove();
-						}
+				List<Object> choiceOfValues = new ArrayList<>();
+				choiceOfValues.addAll(super.getChoiceOfValues(object));
+				for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
+					EObject choiceValue = (EObject) element.next();
+					if(choiceValue==null){
+						continue;
 					}
-					
-					return choiceOfValues;
+					if(!(choiceValue.eContainer() instanceof ConditionModel)){
+						element.remove();
+					}
 				}
-			});
+
+				return choiceOfValues;
+			}
+		});
 	}
 
 	/**
@@ -106,11 +107,11 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS);
+			this.childrenFeatures.add(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -134,9 +135,9 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -145,15 +146,15 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MultipleConditionOperator)object).getName();
-    	StyledString styledLabel = new StyledString();
+		String label = ((VariadicCondition)object).getName();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MultipleConditionOperator_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_VariadicCondition_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_MultipleConditionOperator_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_VariadicCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -164,11 +165,11 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
-		switch (notification.getFeatureID(MultipleConditionOperator.class)) {
-			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR__COND_PARTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(VariadicCondition.class)) {
+			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -186,34 +187,34 @@ public class MultipleConditionOperatorItemProvider extends ComplexConditionItemP
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS,
-				 ConditionFactory.eINSTANCE.createAnd()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+						ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS,
-				 ConditionFactory.eINSTANCE.createOr()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+						ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS,
-				 ConditionFactory.eINSTANCE.createNot()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+						ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS,
-				 ConditionFactory.eINSTANCE.createAttributeCondition()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+						ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS,
-				 ConditionFactory.eINSTANCE.createSectionCondition()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+						ConditionFactory.eINSTANCE.createSectionCondition()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.MULTIPLE_CONDITION_OPERATOR__COND_PARTS,
-				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+						ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
-	
+
 }

@@ -19,7 +19,7 @@ import pamtram.condition.Or;
  * @generated
  */
 public class OrItemProvider
-	extends MultipleConditionOperatorItemProvider {
+	extends VariadicConditionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

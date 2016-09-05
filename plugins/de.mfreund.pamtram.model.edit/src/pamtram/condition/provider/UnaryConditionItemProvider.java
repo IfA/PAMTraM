@@ -17,26 +17,27 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.condition.ConditionFactory;
 import pamtram.condition.ConditionPackage;
-import pamtram.condition.SingleConditionOperator;
+import pamtram.condition.UnaryCondition;
 
 /**
- * This is the item provider adapter for a {@link pamtram.condition.SingleConditionOperator} object.
+ * This is the item provider adapter for a {@link pamtram.condition.UnaryCondition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SingleConditionOperatorItemProvider extends ComplexConditionItemProvider {
+public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SingleConditionOperatorItemProvider(AdapterFactory adapterFactory) {
+	public UnaryConditionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -48,12 +49,12 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCondPartRefPropertyDescriptor(object);
+			this.addCondPartRefPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -63,38 +64,38 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 	 * @generated NOT
 	 */
 	protected void addCondPartRefPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SingleConditionOperator_condPartRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SingleConditionOperator_condPartRef_feature", "_UI_SingleConditionOperator_type"),
-				 ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART_REF,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null)
-			{
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
+		this.itemPropertyDescriptors.add
+		(new ItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_SingleConditionOperator_condPartRef_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_SingleConditionOperator_condPartRef_feature", "_UI_SingleConditionOperator_type"),
+				ConditionPackage.Literals.UNARY_CONDITION__COND_PART_REF,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
 
-					List<Object> choiceOfValues = new ArrayList<Object>();
-					choiceOfValues.addAll(super.getChoiceOfValues(object));
-					for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
-						EObject choiceValue = (EObject) element.next();
-						if(choiceValue==null){
-							continue;
-						}
-						if(!(choiceValue.eContainer() instanceof ConditionModel || choiceValue.eContainer() instanceof ConditionalElement)){
-							element.remove();
-						}
+				List<Object> choiceOfValues = new ArrayList<>();
+				choiceOfValues.addAll(super.getChoiceOfValues(object));
+				for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
+					EObject choiceValue = (EObject) element.next();
+					if(choiceValue==null){
+						continue;
 					}
-					
-					return choiceOfValues;
+					if(!(choiceValue.eContainer() instanceof ConditionModel || choiceValue.eContainer() instanceof ConditionalElement)){
+						element.remove();
+					}
 				}
-			});
+
+				return choiceOfValues;
+			}
+		});
 	}
 
 	/**
@@ -107,11 +108,11 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART);
+			this.childrenFeatures.add(ConditionPackage.Literals.UNARY_CONDITION__COND_PART);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -135,9 +136,9 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -146,15 +147,15 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((SingleConditionOperator)object).getName();
-    	StyledString styledLabel = new StyledString();
+		String label = ((UnaryCondition)object).getName();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SingleConditionOperator_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_UnaryCondition_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_SingleConditionOperator_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_UnaryCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -165,11 +166,11 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
-		switch (notification.getFeatureID(SingleConditionOperator.class)) {
-			case ConditionPackage.SINGLE_CONDITION_OPERATOR__COND_PART:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(UnaryCondition.class)) {
+			case ConditionPackage.UNARY_CONDITION__COND_PART:
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -187,34 +188,34 @@ public class SingleConditionOperatorItemProvider extends ComplexConditionItemPro
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART,
-				 ConditionFactory.eINSTANCE.createAnd()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+						ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART,
-				 ConditionFactory.eINSTANCE.createOr()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+						ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART,
-				 ConditionFactory.eINSTANCE.createNot()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+						ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART,
-				 ConditionFactory.eINSTANCE.createAttributeCondition()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+						ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART,
-				 ConditionFactory.eINSTANCE.createSectionCondition()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+						ConditionFactory.eINSTANCE.createSectionCondition()));
 
 		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.SINGLE_CONDITION_OPERATOR__COND_PART,
-				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+		(this.createChildParameter
+				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+						ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 
 }

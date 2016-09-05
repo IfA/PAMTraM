@@ -36,9 +36,9 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
-import pamtram.condition.MultipleConditionOperator;
-import pamtram.condition.SectionCondition;
-import pamtram.condition.SingleConditionOperator;
+import pamtram.condition.VariadicCondition;
+import pamtram.condition.CardinalityCondition;
+import pamtram.condition.UnaryCondition;
 import pamtram.contentadapter.DeactivationListenerAdapter;
 import pamtram.contentprovider.ConditionContentProvider;
 import pamtram.contentprovider.LibraryEntryContentProvider;
@@ -572,16 +572,16 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				} else if(item.getData() instanceof ComplexCondition) {
 					ComplexCondition condition = (ComplexCondition) item.getData();
 
-					if(condition instanceof SingleConditionOperator &&
-							((SingleConditionOperator) condition).getCondPartRef() != null) {
-						conditions.add(((SingleConditionOperator) condition).getCondPartRef());
-					} else if(condition instanceof MultipleConditionOperator &&
-							((MultipleConditionOperator) condition).getCondPartsRef() != null) {
-						conditions.addAll(((MultipleConditionOperator) condition).getCondPartsRef());
+					if(condition instanceof UnaryCondition &&
+							((UnaryCondition) condition).getCondPartRef() != null) {
+						conditions.add(((UnaryCondition) condition).getCondPartRef());
+					} else if(condition instanceof VariadicCondition &&
+							((VariadicCondition) condition).getCondPartsRef() != null) {
+						conditions.addAll(((VariadicCondition) condition).getCondPartsRef());
 					} else if(condition instanceof AttributeCondition) {
 						source = ((AttributeCondition) condition).getConditionAttributeRef();
-					} else if(condition instanceof SectionCondition) {
-						source = ((SectionCondition) condition).getConditionSectionRef();
+					} else if(condition instanceof CardinalityCondition) {
+						source = ((CardinalityCondition) condition).getConditionSectionRef();
 					}
 
 					/*

@@ -59,8 +59,8 @@ public class CardinalityConditionItemProvider extends ConditionItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SectionCondition_conditionSectionRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SectionCondition_conditionSectionRef_feature", "_UI_SectionCondition_type"),
+				 getString("_UI_CardinalityCondition_conditionSectionRef_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityCondition_conditionSectionRef_feature", "_UI_CardinalityCondition_type"),
 				 ConditionPackage.Literals.CARDINALITY_CONDITION__CONDITION_SECTION_REF,
 				 true,
 				 false,
@@ -71,14 +71,14 @@ public class CardinalityConditionItemProvider extends ConditionItemProvider {
 	}
 
 	/**
-	 * This returns SectionCondition.gif.
+	 * This returns CardinalityCondition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SectionCondition"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CardinalityCondition"));
 	}
 
 	/**
@@ -103,9 +103,9 @@ public class CardinalityConditionItemProvider extends ConditionItemProvider {
 		String label = ((CardinalityCondition)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SectionCondition_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_CardinalityCondition_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_SectionCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_CardinalityCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	

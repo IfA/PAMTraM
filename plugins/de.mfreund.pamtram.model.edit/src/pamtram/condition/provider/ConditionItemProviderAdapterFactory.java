@@ -170,7 +170,7 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CardinalityConditionItemProvider sectionConditionItemProvider;
+	protected CardinalityConditionItemProvider cardinalityConditionItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.condition.CardinalityCondition}.
@@ -179,12 +179,12 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createSectionConditionAdapter() {
-		if (sectionConditionItemProvider == null) {
-			sectionConditionItemProvider = new CardinalityConditionItemProvider(this);
+	public Adapter createCardinalityConditionAdapter() {
+		if (cardinalityConditionItemProvider == null) {
+			cardinalityConditionItemProvider = new CardinalityConditionItemProvider(this);
 		}
 
-		return sectionConditionItemProvider;
+		return cardinalityConditionItemProvider;
 	}
 
 	/**
@@ -313,7 +313,7 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 		if (orItemProvider != null) orItemProvider.dispose();
 		if (notItemProvider != null) notItemProvider.dispose();
 		if (attributeConditionItemProvider != null) attributeConditionItemProvider.dispose();
-		if (sectionConditionItemProvider != null) sectionConditionItemProvider.dispose();
+		if (cardinalityConditionItemProvider != null) cardinalityConditionItemProvider.dispose();
 		if (applicationDependencyItemProvider != null) applicationDependencyItemProvider.dispose();
 	}
 

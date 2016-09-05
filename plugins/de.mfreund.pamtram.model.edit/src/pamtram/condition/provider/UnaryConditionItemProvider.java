@@ -49,12 +49,12 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addCondPartRefPropertyDescriptor(object);
+			addCondPartRefPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -108,11 +108,11 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(ConditionPackage.Literals.UNARY_CONDITION__COND_PART);
+			childrenFeatures.add(ConditionPackage.Literals.UNARY_CONDITION__COND_PART);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -148,11 +148,11 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((UnaryCondition)object).getName();
-		StyledString styledLabel = new StyledString();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_UnaryCondition_type"), StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_UnaryCondition_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(this.getString("_UI_UnaryCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_UnaryCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -166,11 +166,11 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(UnaryCondition.class)) {
 			case ConditionPackage.UNARY_CONDITION__COND_PART:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -188,34 +188,34 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
-						ConditionFactory.eINSTANCE.createAnd()));
+				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
-						ConditionFactory.eINSTANCE.createOr()));
+				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
-						ConditionFactory.eINSTANCE.createNot()));
+				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
-						ConditionFactory.eINSTANCE.createAttributeCondition()));
+				 ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
-						ConditionFactory.eINSTANCE.createCardinalityCondition()));
+				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
-						ConditionFactory.eINSTANCE.createApplicationDependency()));
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 
 }

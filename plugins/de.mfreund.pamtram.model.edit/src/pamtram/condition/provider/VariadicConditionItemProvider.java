@@ -48,12 +48,12 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addCondPartsRefPropertyDescriptor(object);
+			addCondPartsRefPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -107,11 +107,11 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS);
+			childrenFeatures.add(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -147,11 +147,11 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((VariadicCondition)object).getName();
-		StyledString styledLabel = new StyledString();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_VariadicCondition_type"), StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_VariadicCondition_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(this.getString("_UI_VariadicCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_VariadicCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -165,11 +165,11 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(VariadicCondition.class)) {
 			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -187,34 +187,34 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
-						ConditionFactory.eINSTANCE.createAnd()));
+				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
-						ConditionFactory.eINSTANCE.createOr()));
+				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
-						ConditionFactory.eINSTANCE.createNot()));
+				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
-						ConditionFactory.eINSTANCE.createAttributeCondition()));
+				 ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
-						ConditionFactory.eINSTANCE.createCardinalityCondition()));
+				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
-						ConditionFactory.eINSTANCE.createApplicationDependency()));
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 
 }

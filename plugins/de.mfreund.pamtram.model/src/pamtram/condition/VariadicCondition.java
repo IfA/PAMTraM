@@ -15,8 +15,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.MultipleConditionOperator#getCondParts <em>Cond Parts</em>}</li>
- *   <li>{@link pamtram.condition.MultipleConditionOperator#getCondPartsRef <em>Cond Parts Ref</em>}</li>
+ *   <li>{@link pamtram.condition.VariadicCondition#getCondParts <em>Cond Parts</em>}</li>
+ *   <li>{@link pamtram.condition.VariadicCondition#getCondPartsRef <em>Cond Parts Ref</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getMultipleConditionOperator()
@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='minimalNumberOfArgs'"
  * @generated
  */
-public interface MultipleConditionOperator extends ComplexCondition {
+public interface VariadicCondition extends ComplexCondition {
 	/**
 	 * Returns the value of the '<em><b>Cond Parts</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.condition.ComplexCondition}.

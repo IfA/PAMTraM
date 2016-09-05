@@ -34,7 +34,7 @@ import pamtram.ConditionModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.ConditionTables;
-import pamtram.condition.MultipleConditionOperator;
+import pamtram.condition.VariadicCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,13 +44,13 @@ import pamtram.condition.MultipleConditionOperator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.MultipleConditionOperatorImpl#getCondParts <em>Cond Parts</em>}</li>
- *   <li>{@link pamtram.condition.impl.MultipleConditionOperatorImpl#getCondPartsRef <em>Cond Parts Ref</em>}</li>
+ *   <li>{@link pamtram.condition.impl.VariadicConditionImpl#getCondParts <em>Cond Parts</em>}</li>
+ *   <li>{@link pamtram.condition.impl.VariadicConditionImpl#getCondPartsRef <em>Cond Parts Ref</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl implements MultipleConditionOperator {
+public abstract class VariadicConditionImpl extends ComplexConditionImpl implements VariadicCondition {
 	/**
 	 * The cached value of the '{@link #getCondParts() <em>Cond Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -76,7 +76,7 @@ public abstract class MultipleConditionOperatorImpl extends ComplexConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MultipleConditionOperatorImpl() {
+	protected VariadicConditionImpl() {
 		super();
 	}
 

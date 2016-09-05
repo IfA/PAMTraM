@@ -14,7 +14,7 @@ import pamtram.condition.ConditionPackage;
  *
  * @generated
  */
-public class AndImpl extends MultipleConditionOperatorImpl implements And {
+public class AndImpl extends VariadicConditionImpl implements And {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

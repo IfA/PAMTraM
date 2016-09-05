@@ -27,7 +27,7 @@ import pamtram.condition.Not;
  *
  * @generated
  */
-public class NotImpl extends SingleConditionOperatorImpl implements Not {
+public class NotImpl extends UnaryConditionImpl implements Not {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

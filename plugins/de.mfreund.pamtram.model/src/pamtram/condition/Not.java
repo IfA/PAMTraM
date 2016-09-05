@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='referenceOnlyConditionsFromConditionModelOrFromConditionalElements'"
  * @generated
  */
-public interface Not extends SingleConditionOperator {
+public interface Not extends UnaryCondition {
 
 	/**
 	 * <!-- begin-user-doc -->

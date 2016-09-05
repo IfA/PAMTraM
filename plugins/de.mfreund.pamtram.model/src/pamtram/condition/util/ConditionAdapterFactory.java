@@ -80,7 +80,7 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createConditionAdapter();
 			}
 			@Override
-			public Adapter caseMultipleConditionOperator(MultipleConditionOperator object) {
+			public Adapter caseMultipleConditionOperator(VariadicCondition object) {
 				return createMultipleConditionOperatorAdapter();
 			}
 			@Override
@@ -92,7 +92,7 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createOrAdapter();
 			}
 			@Override
-			public Adapter caseSingleConditionOperator(SingleConditionOperator object) {
+			public Adapter caseSingleConditionOperator(UnaryCondition object) {
 				return createSingleConditionOperatorAdapter();
 			}
 			@Override
@@ -164,13 +164,13 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.condition.MultipleConditionOperator <em>Multiple Condition Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.VariadicCondition <em>Multiple Condition Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.condition.MultipleConditionOperator
+	 * @see pamtram.condition.VariadicCondition
 	 * @generated
 	 */
 	public Adapter createMultipleConditionOperatorAdapter() {
@@ -206,13 +206,13 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.condition.SingleConditionOperator <em>Single Condition Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.UnaryCondition <em>Single Condition Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.condition.SingleConditionOperator
+	 * @see pamtram.condition.UnaryCondition
 	 * @generated
 	 */
 	public Adapter createSingleConditionOperatorAdapter() {

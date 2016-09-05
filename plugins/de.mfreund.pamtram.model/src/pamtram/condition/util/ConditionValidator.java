@@ -113,13 +113,13 @@ public class ConditionValidator extends EObjectValidator {
 			case ConditionPackage.CONDITION:
 				return validateCondition((Condition)value, diagnostics, context);
 			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR:
-				return validateMultipleConditionOperator((MultipleConditionOperator)value, diagnostics, context);
+				return validateMultipleConditionOperator((VariadicCondition)value, diagnostics, context);
 			case ConditionPackage.AND:
 				return validateAnd((And)value, diagnostics, context);
 			case ConditionPackage.OR:
 				return validateOr((Or)value, diagnostics, context);
 			case ConditionPackage.SINGLE_CONDITION_OPERATOR:
-				return validateSingleConditionOperator((SingleConditionOperator)value, diagnostics, context);
+				return validateSingleConditionOperator((UnaryCondition)value, diagnostics, context);
 			case ConditionPackage.NOT:
 				return validateNot((Not)value, diagnostics, context);
 			case ConditionPackage.ATTRIBUTE_CONDITION:
@@ -160,7 +160,7 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMultipleConditionOperator(MultipleConditionOperator multipleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMultipleConditionOperator(VariadicCondition multipleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(multipleConditionOperator, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(multipleConditionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(multipleConditionOperator, diagnostics, context);
@@ -180,7 +180,7 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMultipleConditionOperator_minimalNumberOfArgs(MultipleConditionOperator multipleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMultipleConditionOperator_minimalNumberOfArgs(VariadicCondition multipleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return multipleConditionOperator.minimalNumberOfArgs(diagnostics, context);
 	}
 
@@ -227,7 +227,7 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleConditionOperator(SingleConditionOperator singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleConditionOperator(UnaryCondition singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(singleConditionOperator, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(singleConditionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(singleConditionOperator, diagnostics, context);
@@ -247,7 +247,7 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleConditionOperator_exactlyOneArg(SingleConditionOperator singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleConditionOperator_exactlyOneArg(UnaryCondition singleConditionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return singleConditionOperator.exactlyOneArg(diagnostics, context);
 	}
 

@@ -87,7 +87,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ConditionPackage.MULTIPLE_CONDITION_OPERATOR: {
-				MultipleConditionOperator multipleConditionOperator = (MultipleConditionOperator)theEObject;
+				VariadicCondition multipleConditionOperator = (VariadicCondition)theEObject;
 				T result = caseMultipleConditionOperator(multipleConditionOperator);
 				if (result == null) result = caseComplexCondition(multipleConditionOperator);
 				if (result == null) result = caseNamedElement(multipleConditionOperator);
@@ -113,7 +113,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ConditionPackage.SINGLE_CONDITION_OPERATOR: {
-				SingleConditionOperator singleConditionOperator = (SingleConditionOperator)theEObject;
+				UnaryCondition singleConditionOperator = (UnaryCondition)theEObject;
 				T result = caseSingleConditionOperator(singleConditionOperator);
 				if (result == null) result = caseComplexCondition(singleConditionOperator);
 				if (result == null) result = caseNamedElement(singleConditionOperator);
@@ -201,7 +201,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMultipleConditionOperator(MultipleConditionOperator object) {
+	public T caseMultipleConditionOperator(VariadicCondition object) {
 		return null;
 	}
 
@@ -246,7 +246,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSingleConditionOperator(SingleConditionOperator object) {
+	public T caseSingleConditionOperator(UnaryCondition object) {
 		return null;
 	}
 

@@ -12,6 +12,6 @@ package pamtram.condition;
  * @model
  * @generated
  */
-public interface And extends MultipleConditionOperator {
+public interface And extends VariadicCondition {
 
 } // And

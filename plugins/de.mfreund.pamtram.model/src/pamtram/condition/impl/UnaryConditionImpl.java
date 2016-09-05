@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.values.SetValue;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.ConditionTables;
-import pamtram.condition.SingleConditionOperator;
+import pamtram.condition.UnaryCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,13 +36,13 @@ import pamtram.condition.SingleConditionOperator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.SingleConditionOperatorImpl#getCondPart <em>Cond Part</em>}</li>
- *   <li>{@link pamtram.condition.impl.SingleConditionOperatorImpl#getCondPartRef <em>Cond Part Ref</em>}</li>
+ *   <li>{@link pamtram.condition.impl.UnaryConditionImpl#getCondPart <em>Cond Part</em>}</li>
+ *   <li>{@link pamtram.condition.impl.UnaryConditionImpl#getCondPartRef <em>Cond Part Ref</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl implements SingleConditionOperator {
+public abstract class UnaryConditionImpl extends ComplexConditionImpl implements UnaryCondition {
 	/**
 	 * The cached value of the '{@link #getCondPart() <em>Cond Part</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -68,7 +68,7 @@ public abstract class SingleConditionOperatorImpl extends ComplexConditionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SingleConditionOperatorImpl() {
+	protected UnaryConditionImpl() {
 		super();
 	}
 

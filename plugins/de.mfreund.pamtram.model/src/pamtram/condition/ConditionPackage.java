@@ -225,10 +225,10 @@ public interface ConditionPackage extends EPackage {
 	int CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.condition.impl.MultipleConditionOperatorImpl <em>Multiple Condition Operator</em>}' class.
+	 * The meta object id for the '{@link pamtram.condition.impl.VariadicConditionImpl <em>Multiple Condition Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.condition.impl.MultipleConditionOperatorImpl
+	 * @see pamtram.condition.impl.VariadicConditionImpl
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getMultipleConditionOperator()
 	 * @generated
 	 */
@@ -525,10 +525,10 @@ public interface ConditionPackage extends EPackage {
 	int OR_OPERATION_COUNT = MULTIPLE_CONDITION_OPERATOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.condition.impl.SingleConditionOperatorImpl <em>Single Condition Operator</em>}' class.
+	 * The meta object id for the '{@link pamtram.condition.impl.UnaryConditionImpl <em>Single Condition Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.condition.impl.SingleConditionOperatorImpl
+	 * @see pamtram.condition.impl.UnaryConditionImpl
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getSingleConditionOperator()
 	 * @generated
 	 */
@@ -1165,53 +1165,53 @@ public interface ConditionPackage extends EPackage {
 	EOperation getCondition__CheckCondition__ComplexCondition();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.condition.MultipleConditionOperator <em>Multiple Condition Operator</em>}'.
+	 * Returns the meta object for class '{@link pamtram.condition.VariadicCondition <em>Multiple Condition Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Multiple Condition Operator</em>'.
-	 * @see pamtram.condition.MultipleConditionOperator
+	 * @see pamtram.condition.VariadicCondition
 	 * @generated
 	 */
 	EClass getMultipleConditionOperator();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.condition.MultipleConditionOperator#getCondParts <em>Cond Parts</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.condition.VariadicCondition#getCondParts <em>Cond Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Cond Parts</em>'.
-	 * @see pamtram.condition.MultipleConditionOperator#getCondParts()
+	 * @see pamtram.condition.VariadicCondition#getCondParts()
 	 * @see #getMultipleConditionOperator()
 	 * @generated
 	 */
 	EReference getMultipleConditionOperator_CondParts();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.condition.MultipleConditionOperator#getCondPartsRef <em>Cond Parts Ref</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.condition.VariadicCondition#getCondPartsRef <em>Cond Parts Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Cond Parts Ref</em>'.
-	 * @see pamtram.condition.MultipleConditionOperator#getCondPartsRef()
+	 * @see pamtram.condition.VariadicCondition#getCondPartsRef()
 	 * @see #getMultipleConditionOperator()
 	 * @generated
 	 */
 	EReference getMultipleConditionOperator_CondPartsRef();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.condition.MultipleConditionOperator#referencesOnlyValidConditions() <em>References Only Valid Conditions</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.condition.VariadicCondition#referencesOnlyValidConditions() <em>References Only Valid Conditions</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>References Only Valid Conditions</em>' operation.
-	 * @see pamtram.condition.MultipleConditionOperator#referencesOnlyValidConditions()
+	 * @see pamtram.condition.VariadicCondition#referencesOnlyValidConditions()
 	 * @generated
 	 */
 	EOperation getMultipleConditionOperator__ReferencesOnlyValidConditions();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.condition.MultipleConditionOperator#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Minimal Number Of Args</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.condition.VariadicCondition#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Minimal Number Of Args</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Minimal Number Of Args</em>' operation.
-	 * @see pamtram.condition.MultipleConditionOperator#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.condition.VariadicCondition#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getMultipleConditionOperator__MinimalNumberOfArgs__DiagnosticChain_Map_1();
@@ -1248,43 +1248,43 @@ public interface ConditionPackage extends EPackage {
 	EClass getOr();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.condition.SingleConditionOperator <em>Single Condition Operator</em>}'.
+	 * Returns the meta object for class '{@link pamtram.condition.UnaryCondition <em>Single Condition Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Single Condition Operator</em>'.
-	 * @see pamtram.condition.SingleConditionOperator
+	 * @see pamtram.condition.UnaryCondition
 	 * @generated
 	 */
 	EClass getSingleConditionOperator();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.condition.SingleConditionOperator#getCondPart <em>Cond Part</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.condition.UnaryCondition#getCondPart <em>Cond Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Cond Part</em>'.
-	 * @see pamtram.condition.SingleConditionOperator#getCondPart()
+	 * @see pamtram.condition.UnaryCondition#getCondPart()
 	 * @see #getSingleConditionOperator()
 	 * @generated
 	 */
 	EReference getSingleConditionOperator_CondPart();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.SingleConditionOperator#getCondPartRef <em>Cond Part Ref</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.condition.UnaryCondition#getCondPartRef <em>Cond Part Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Cond Part Ref</em>'.
-	 * @see pamtram.condition.SingleConditionOperator#getCondPartRef()
+	 * @see pamtram.condition.UnaryCondition#getCondPartRef()
 	 * @see #getSingleConditionOperator()
 	 * @generated
 	 */
 	EReference getSingleConditionOperator_CondPartRef();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.condition.SingleConditionOperator#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Exactly One Arg</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.condition.UnaryCondition#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Exactly One Arg</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Exactly One Arg</em>' operation.
-	 * @see pamtram.condition.SingleConditionOperator#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.condition.UnaryCondition#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSingleConditionOperator__ExactlyOneArg__DiagnosticChain_Map_1();
@@ -1505,10 +1505,10 @@ public interface ConditionPackage extends EPackage {
 		EOperation CONDITION___CHECK_CONDITION__COMPLEXCONDITION = eINSTANCE.getCondition__CheckCondition__ComplexCondition();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.condition.impl.MultipleConditionOperatorImpl <em>Multiple Condition Operator</em>}' class.
+		 * The meta object literal for the '{@link pamtram.condition.impl.VariadicConditionImpl <em>Multiple Condition Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.condition.impl.MultipleConditionOperatorImpl
+		 * @see pamtram.condition.impl.VariadicConditionImpl
 		 * @see pamtram.condition.impl.ConditionPackageImpl#getMultipleConditionOperator()
 		 * @generated
 		 */
@@ -1575,10 +1575,10 @@ public interface ConditionPackage extends EPackage {
 		EClass OR = eINSTANCE.getOr();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.condition.impl.SingleConditionOperatorImpl <em>Single Condition Operator</em>}' class.
+		 * The meta object literal for the '{@link pamtram.condition.impl.UnaryConditionImpl <em>Single Condition Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.condition.impl.SingleConditionOperatorImpl
+		 * @see pamtram.condition.impl.UnaryConditionImpl
 		 * @see pamtram.condition.impl.ConditionPackageImpl#getSingleConditionOperator()
 		 * @generated
 		 */

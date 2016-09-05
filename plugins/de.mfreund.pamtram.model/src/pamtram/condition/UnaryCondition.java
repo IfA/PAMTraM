@@ -14,8 +14,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.SingleConditionOperator#getCondPart <em>Cond Part</em>}</li>
- *   <li>{@link pamtram.condition.SingleConditionOperator#getCondPartRef <em>Cond Part Ref</em>}</li>
+ *   <li>{@link pamtram.condition.UnaryCondition#getCondPart <em>Cond Part</em>}</li>
+ *   <li>{@link pamtram.condition.UnaryCondition#getCondPartRef <em>Cond Part Ref</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getSingleConditionOperator()
@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='exactlyOneArg'"
  * @generated
  */
-public interface SingleConditionOperator extends ComplexCondition {
+public interface UnaryCondition extends ComplexCondition {
 	/**
 	 * Returns the value of the '<em><b>Cond Part</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -42,7 +42,7 @@ public interface SingleConditionOperator extends ComplexCondition {
 	ComplexCondition getCondPart();
 
 	/**
-	 * Sets the value of the '{@link pamtram.condition.SingleConditionOperator#getCondPart <em>Cond Part</em>}' containment reference.
+	 * Sets the value of the '{@link pamtram.condition.UnaryCondition#getCondPart <em>Cond Part</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cond Part</em>' containment reference.
@@ -68,7 +68,7 @@ public interface SingleConditionOperator extends ComplexCondition {
 	ComplexCondition getCondPartRef();
 
 	/**
-	 * Sets the value of the '{@link pamtram.condition.SingleConditionOperator#getCondPartRef <em>Cond Part Ref</em>}' reference.
+	 * Sets the value of the '{@link pamtram.condition.UnaryCondition#getCondPartRef <em>Cond Part Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cond Part Ref</em>' reference.

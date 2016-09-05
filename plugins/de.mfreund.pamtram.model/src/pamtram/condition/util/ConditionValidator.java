@@ -125,7 +125,7 @@ public class ConditionValidator extends EObjectValidator {
 			case ConditionPackage.ATTRIBUTE_CONDITION:
 				return validateAttributeCondition((AttributeCondition)value, diagnostics, context);
 			case ConditionPackage.CARDINALITY_CONDITION:
-				return validateSectionCondition((CardinalityCondition)value, diagnostics, context);
+				return validateCardinalityCondition((CardinalityCondition)value, diagnostics, context);
 			case ConditionPackage.APPLICATION_DEPENDENCY:
 				return validateApplicationDependency((ApplicationDependency)value, diagnostics, context);
 			case ConditionPackage.COMPARATOR_ENUM:
@@ -295,8 +295,8 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSectionCondition(CardinalityCondition sectionCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sectionCondition, diagnostics, context);
+	public boolean validateCardinalityCondition(CardinalityCondition cardinalityCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(cardinalityCondition, diagnostics, context);
 	}
 
 	/**

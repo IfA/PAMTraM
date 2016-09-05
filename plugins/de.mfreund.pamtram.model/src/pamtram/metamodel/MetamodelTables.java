@@ -77,6 +77,7 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeMapping = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMapping", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeMatcher = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMatcher", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeParameter = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("AttributeParameter", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_CardinalityCondition = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("CardinalityCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_CardinalityMapping = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("CardinalityMapping", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Class", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ClassMatcher = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ClassMatcher", 0);
@@ -111,7 +112,6 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_RangeConstraint = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("RangeConstraint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Reference = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Reference", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Section = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Section", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SectionCondition = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("SectionCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SectionModel = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("SectionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SingleReferenceValueConstraint = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SingleReferenceValueConstraint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSection = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSection", 0);
@@ -164,6 +164,7 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_AttributeCondition = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_AttributeCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_AttributeMapping = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_AttributeMapping);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_AttributeMatcher = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_AttributeMatcher);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_CardinalityCondition = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_CardinalityCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_CardinalityMapping = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_CardinalityMapping);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_ClassMatcher = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_ClassMatcher);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_GlobalAttribute = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_GlobalAttribute);
@@ -174,7 +175,6 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_MappingType = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_MappingType);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_MetaModelSectionReference = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_MetaModelSectionReference);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_PAMTraM = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_PAMTraM);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_SectionCondition = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_SectionCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_TargetSection = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_TargetSection);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationLiteralId ELITid_ONE = pamtram.metamodel.MetamodelTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_EAttribute = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_EAttribute);

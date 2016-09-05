@@ -145,8 +145,8 @@ public class ConditionFactoryImpl extends EFactoryImpl implements ConditionFacto
 	 * @generated
 	 */
 	public CardinalityCondition createCardinalityCondition() {
-		CardinalityConditionImpl sectionCondition = new CardinalityConditionImpl();
-		return sectionCondition;
+		CardinalityConditionImpl cardinalityCondition = new CardinalityConditionImpl();
+		return cardinalityCondition;
 	}
 
 	/**

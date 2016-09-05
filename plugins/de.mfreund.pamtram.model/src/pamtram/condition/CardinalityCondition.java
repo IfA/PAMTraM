@@ -33,7 +33,7 @@ public interface CardinalityCondition extends Condition {
 	 * @see #setConditionSectionRef(SourceSectionClass)
 	 * @see pamtram.condition.ConditionPackage#getCardinalityCondition_ConditionSectionRef()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!SectionCondition!conditionSectionRef'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!CardinalityCondition!conditionSectionRef'"
 	 * @generated
 	 */
 	SourceSectionClass getConditionSectionRef();

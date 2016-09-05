@@ -58,10 +58,10 @@ public interface ConditionFactory extends EFactory {
 	AttributeCondition createAttributeCondition();
 
 	/**
-	 * Returns a new object of class '<em>Section Condition</em>'.
+	 * Returns a new object of class '<em>Cardinality Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Section Condition</em>'.
+	 * @return a new object of class '<em>Cardinality Condition</em>'.
 	 * @generated
 	 */
 	CardinalityCondition createCardinalityCondition();

@@ -139,11 +139,11 @@ public class ConditionSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ConditionPackage.CARDINALITY_CONDITION: {
-				CardinalityCondition sectionCondition = (CardinalityCondition)theEObject;
-				T result = caseSectionCondition(sectionCondition);
-				if (result == null) result = caseCondition(sectionCondition);
-				if (result == null) result = caseComplexCondition(sectionCondition);
-				if (result == null) result = caseNamedElement(sectionCondition);
+				CardinalityCondition cardinalityCondition = (CardinalityCondition)theEObject;
+				T result = caseCardinalityCondition(cardinalityCondition);
+				if (result == null) result = caseCondition(cardinalityCondition);
+				if (result == null) result = caseComplexCondition(cardinalityCondition);
+				if (result == null) result = caseNamedElement(cardinalityCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -281,17 +281,17 @@ public class ConditionSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Section Condition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Section Condition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSectionCondition(CardinalityCondition object) {
+	public T caseCardinalityCondition(CardinalityCondition object) {
 		return null;
 	}
 

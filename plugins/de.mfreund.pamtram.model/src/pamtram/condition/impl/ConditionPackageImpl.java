@@ -103,7 +103,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass sectionConditionEClass = null;
+	private EClass cardinalityConditionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -450,7 +450,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * @generated
 	 */
 	public EClass getCardinalityCondition() {
-		return sectionConditionEClass;
+		return cardinalityConditionEClass;
 	}
 
 	/**
@@ -459,7 +459,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * @generated
 	 */
 	public EReference getCardinalityCondition_ConditionSectionRef() {
-		return (EReference)sectionConditionEClass.getEStructuralFeatures().get(0);
+		return (EReference)cardinalityConditionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -560,8 +560,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
 		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF);
 
-		sectionConditionEClass = createEClass(CARDINALITY_CONDITION);
-		createEReference(sectionConditionEClass, CARDINALITY_CONDITION__CONDITION_SECTION_REF);
+		cardinalityConditionEClass = createEClass(CARDINALITY_CONDITION);
+		createEReference(cardinalityConditionEClass, CARDINALITY_CONDITION__CONDITION_SECTION_REF);
 
 		applicationDependencyEClass = createEClass(APPLICATION_DEPENDENCY);
 		createEReference(applicationDependencyEClass, APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT);
@@ -611,7 +611,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		unaryConditionEClass.getESuperTypes().add(this.getComplexCondition());
 		notEClass.getESuperTypes().add(this.getUnaryCondition());
 		attributeConditionEClass.getESuperTypes().add(this.getCondition());
-		sectionConditionEClass.getESuperTypes().add(this.getCondition());
+		cardinalityConditionEClass.getESuperTypes().add(this.getCondition());
 		applicationDependencyEClass.getESuperTypes().add(this.getCondition());
 
 		// Initialize classes, features, and operations; add parameters
@@ -680,7 +680,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEReference(getAttributeCondition_ValueConstraint(), theMetamodelPackage.getValueConstraint(), null, "valueConstraint", null, 1, -1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAttributeCondition_ConditionAttributeRef(), theMetamodelPackage.getActualSourceSectionAttribute(), null, "conditionAttributeRef", null, 1, 1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sectionConditionEClass, CardinalityCondition.class, "SectionCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(cardinalityConditionEClass, CardinalityCondition.class, "CardinalityCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCardinalityCondition_ConditionSectionRef(), theMetamodelPackage.getSourceSectionClass(), null, "conditionSectionRef", null, 1, 1, CardinalityCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(applicationDependencyEClass, ApplicationDependency.class, "ApplicationDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

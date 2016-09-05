@@ -843,7 +843,7 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Section Condition</em>}' class.
+	 * The meta object id for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Cardinality Condition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.condition.impl.CardinalityConditionImpl
@@ -898,7 +898,7 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION__CONDITION_SECTION_REF = CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Section Condition</em>' class.
+	 * The number of structural features of the '<em>Cardinality Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -943,7 +943,7 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION___CHECK_CONDITION__COMPLEXCONDITION = CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
-	 * The number of operations of the '<em>Section Condition</em>' class.
+	 * The number of operations of the '<em>Cardinality Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1352,10 +1352,10 @@ public interface ConditionPackage extends EPackage {
 	EReference getAttributeCondition_ConditionAttributeRef();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.condition.CardinalityCondition <em>Section Condition</em>}'.
+	 * Returns the meta object for class '{@link pamtram.condition.CardinalityCondition <em>Cardinality Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Section Condition</em>'.
+	 * @return the meta object for class '<em>Cardinality Condition</em>'.
 	 * @see pamtram.condition.CardinalityCondition
 	 * @generated
 	 */
@@ -1661,7 +1661,7 @@ public interface ConditionPackage extends EPackage {
 		EReference ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF = eINSTANCE.getAttributeCondition_ConditionAttributeRef();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Section Condition</em>}' class.
+		 * The meta object literal for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Cardinality Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.condition.impl.CardinalityConditionImpl

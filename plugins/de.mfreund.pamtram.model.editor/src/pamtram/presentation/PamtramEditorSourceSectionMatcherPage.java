@@ -8,7 +8,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -25,8 +25,6 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -51,6 +49,12 @@ import pamtram.listeners.SetViewerSelectionListener;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.SourceSectionClass;
 
+/**
+ * The page of the {@link PamtramEditor} that allows to check which source sections are matched for a given source
+ * model..
+ *
+ * @author mfreund
+ */
 public class PamtramEditorSourceSectionMatcherPage extends SashForm implements IPersistable {
 
 	/**
@@ -131,9 +135,21 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	 */
 	protected Map<SourceSectionClass, Set<EObject>> matchedSections;
 
+	/**
+	 * This creates an instance.
+	 *
+	 * @param parent
+	 *            A widget which will be the parent of the new instance (cannot be null)
+	 * @param style
+	 *            The style of widget to construct
+	 * @param adapterFactory
+	 *            The one adapter factory used for providing views of the model.
+	 * @param editor
+	 *            The parent {@link PamtramEditor} that this page belongs to.
+	 */
 	public PamtramEditorSourceSectionMatcherPage(
-			Composite parent, 
-			int style, 
+			Composite parent,
+			int style,
 			ComposedAdapterFactory adapterFactory,
 			PamtramEditor editor) {
 
@@ -150,84 +166,88 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 			this.setLayoutData(data);
 		}
 
-		createSourceViewer();
-		createMappingViewer();
-		createSourceModelViewer();
+		this.createSourceViewer();
+		this.createMappingViewer();
+		this.createSourceModelViewer();
 	}
 
+	/**
+	 * Create the viewer for the source sections.
+	 */
 	private void createSourceViewer() {
 
 		// Create the viewer for the source sections.
 		//
-		sourceViewerGroup = new TreeViewerGroup(
-				this, adapterFactory, editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), 
+		this.sourceViewerGroup = new TreeViewerGroup(
+				this, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
 				"Source Sections");
-		sourceViewer = sourceViewerGroup.getViewer();
-		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
-		sourceViewer.setInput(editor.pamtram);
-		sourceTreeSelectionListener = new SetViewerSelectionListener(editor, sourceViewer);
-		sourceViewer.getTree().addSelectionListener(sourceTreeSelectionListener);
-		sourceViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, sourceViewer));
+		this.sourceViewer = this.sourceViewerGroup.getViewer();
+		this.sourceViewer.setContentProvider(new SourceSectionContentProvider(this.adapterFactory));
+		this.sourceViewer.setInput(this.editor.pamtram);
+		this.sourceTreeSelectionListener = new SetViewerSelectionListener(this.editor, this.sourceViewer);
+		this.sourceViewer.getTree().addSelectionListener(this.sourceTreeSelectionListener);
+		this.sourceViewer.getTree().addMouseListener(new SetViewerMouseListener(this.editor, this.sourceViewer));
 
-		new AdapterFactoryTreeEditor(sourceViewer.getTree(), adapterFactory);
+		new AdapterFactoryTreeEditor(this.sourceViewer.getTree(), this.adapterFactory);
 
-		editor.createContextMenuFor(sourceViewer);
+		this.editor.createContextMenuFor(this.sourceViewer);
 
 	}
 
+	/**
+	 * Create the viewer for the mappings.
+	 */
 	private void createMappingViewer() {
 
 		// Create the viewer for the source sections.
 		//
-		mappingViewerGroup = new TreeViewerGroup(
-				this, adapterFactory, editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), 
+		this.mappingViewerGroup = new TreeViewerGroup(
+				this, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
 				"Mappings");
-		mappingViewer = mappingViewerGroup.getViewer();
+		this.mappingViewer = this.mappingViewerGroup.getViewer();
 
-		mappingViewer.setContentProvider(new MappingContentProvider(adapterFactory));
-		mappingViewer.setInput(editor.pamtram);
-		mappingTreeSelectionListener = new SetViewerSelectionListener(editor, mappingViewer);
-		mappingViewer.getTree().addSelectionListener(mappingTreeSelectionListener);
-		mappingViewer.getTree().addMouseListener(new SetViewerMouseListener(editor, mappingViewer));
+		this.mappingViewer.setContentProvider(new MappingContentProvider(this.adapterFactory));
+		this.mappingViewer.setInput(this.editor.pamtram);
+		this.mappingTreeSelectionListener = new SetViewerSelectionListener(this.editor, this.mappingViewer);
+		this.mappingViewer.getTree().addSelectionListener(this.mappingTreeSelectionListener);
+		this.mappingViewer.getTree().addMouseListener(new SetViewerMouseListener(this.editor, this.mappingViewer));
 
-		new AdapterFactoryTreeEditor(mappingViewer.getTree(), adapterFactory);
+		new AdapterFactoryTreeEditor(this.mappingViewer.getTree(), this.adapterFactory);
 
-		editor.createContextMenuFor(mappingViewer);
+		this.editor.createContextMenuFor(this.mappingViewer);
 
 	}
 
+	/**
+	 * Create the viewer for the source model to be matched.
+	 */
 	private void createSourceModelViewer() {
 		// Create a group for the source section tree viewer.
-		sourceModelGroup = new Group(this, SWT.NONE);
-		sourceModelGroup.setText("Model to be matched");
-		sourceModelGroup.setLayoutData(
+		this.sourceModelGroup = new Group(this, SWT.NONE);
+		this.sourceModelGroup.setText("Model to be matched");
+		this.sourceModelGroup.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
-		sourceModelGroup.setLayout(new GridLayout(1, true));
+		this.sourceModelGroup.setLayout(new GridLayout(1, true));
 
 		// Create a drop-down list that allows to select the source model to be analysed.
-		sourceModelCombo = new Combo(sourceModelGroup, SWT.DROP_DOWN | SWT.BORDER);
+		this.sourceModelCombo = new Combo(this.sourceModelGroup, SWT.DROP_DOWN | SWT.BORDER);
 		{
 			GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 			gd.grabExcessHorizontalSpace = true;
-			sourceModelCombo.setLayoutData(gd);
+			this.sourceModelCombo.setLayoutData(gd);
 		}
 		// Create a modify listener that updates the source model based on the selection.
-		sourceModelCombo.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent e) {
-				updateSourceModel();
-			}
-		});
+		this.sourceModelCombo.addModifyListener(e -> PamtramEditorSourceSectionMatcherPage.this.updateSourceModel());
 
 		// Get the current project.
-		project = ResourceUtil.getResource(editor.getEditorInput()).getProject();
+		this.project = ResourceUtil.getResource(this.editor.getEditorInput()).getProject();
 
 		try {
-			if(project.hasNature("de.mfreund.pamtram.pamtramNature")) {
+			if(this.project.hasNature("de.mfreund.pamtram.pamtramNature")) {
 				// populate the current source projects in the workspace to the list
-				for(IResource res : project.getFolder("Source").members()) {
+				for(IResource res : this.project.getFolder("Source").members()) {
 					if(res.getName().endsWith(".xml") || res.getName().endsWith(".xmi")) {
-						sourceModelCombo.add(res.getName());
+						this.sourceModelCombo.add(res.getName());
 					}
 				}
 			}
@@ -236,34 +256,34 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		}
 
 		// Create the source tree viewer.
-		Tree sourceModelTree = new Tree(sourceModelGroup, SWT.MULTI);
-		sourceModelViewer = new TreeViewer(sourceModelTree);
+		Tree sourceModelTree = new Tree(this.sourceModelGroup, SWT.MULTI);
+		this.sourceModelViewer = new TreeViewer(sourceModelTree);
 		sourceModelTree.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
-		sourceModelViewer.setContentProvider(new EObjectTreeContentProvider());
-		sourceModelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-		sourceModelTree.addSelectionListener(new SetViewerSelectionListener(editor, sourceModelViewer));
+		this.sourceModelViewer.setContentProvider(new EObjectTreeContentProvider());
+		this.sourceModelViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
+		sourceModelTree.addSelectionListener(new SetViewerSelectionListener(this.editor, this.sourceModelViewer));
 	}
 
 	/**
 	 * This updates the source model file shown in the source model
 	 * tree based on the current selection in the source model combo.
-	 * 
-	 * TODO There should be no direct dependency to the gentrans plug-in/the GenericTransformationRunner. 
+	 *
+	 * TODO There should be no direct dependency to the gentrans plug-in/the GenericTransformationRunner.
 	 * This should be solved by an extension point.
 	 */
 	protected void updateSourceModel() {
 
-		if(sourceModelCombo.getText().isEmpty()) {
-			sourceModelViewer.setInput(null);
+		if(this.sourceModelCombo.getText().isEmpty()) {
+			this.sourceModelViewer.setInput(null);
 			return;
 		}
 
 		// the selected file
-		String modelFile = project.getName() + Path.SEPARATOR + "Source" + Path.SEPARATOR + sourceModelCombo.getText();
+		String modelFile = this.project.getName() + IPath.SEPARATOR + "Source" + IPath.SEPARATOR + this.sourceModelCombo.getText();
 
-		// if an xml source file has been selected, 
-		// add the file extension to registry 
+		// if an xml source file has been selected,
+		// add the file extension to registry
 		if(modelFile.endsWith(".xml")) {
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
 			.put("xml", new GenericXMLResourceFactoryImpl());
@@ -275,55 +295,55 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		Resource modelResource = null;
 		try {
 			// load the source model
-			modelResource = editor.getEditingDomain().getResourceSet().getResource(modelUri, true);
+			modelResource = this.editor.getEditingDomain().getResourceSet().getResource(modelUri, true);
 			modelResource.load(Collections.EMPTY_MAP);
 		} catch(Exception e) {
-			MessageDialog.openError(getShell(), "Error loading resource", 
+			MessageDialog.openError(this.getShell(), "Error loading resource",
 					e.getMessage());
-			sourceModelViewer.setInput(null);
+			this.sourceModelViewer.setInput(null);
 			return;
 		}
 
 		EList<EObject> contents = modelResource.getContents();
 
-		/* 
-		 * If an xml source file has been selected,  we have to omit the 'document root' element and 
+		/*
+		 * If an xml source file has been selected,  we have to omit the 'document root' element and
 		 * instead determine the actual contents. Passing the load option 'XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT'
-		 * somehow does not seem to work. 
+		 * somehow does not seem to work.
 		 */
-		if((contents.get(0)).eClass().getName().equals("DocumentRoot")) {
-			contents = (contents.get(0)).eContents();
+		if(contents.get(0).eClass().getName().equals("DocumentRoot")) {
+			contents = contents.get(0).eContents();
 		}
 
 
 		// set the contents of the resource as input for the source model viewer
-		sourceModelViewer.setInput(contents);
+		this.sourceModelViewer.setInput(contents);
 
 		// the target file
-		String targetBasePath = project.getName() + Path.SEPARATOR + "Target";
+		String targetBasePath = this.project.getName() + IPath.SEPARATOR + "Target";
 		String defaultTargetModel = "temp.xmi";
 
 		// Create a transformation runner and use it to get the matching source sections
 		//
 		BaseTransformationConfiguration baseConfig = new BaseTransformationConfiguration()
 				.withDefaultTargetModel(defaultTargetModel);
-		
-		GenericTransformationRunner tr = 
+
+		GenericTransformationRunner tr =
 				GenericTransformationRunnerFactory.eINSTANCE.createInstanceFromSourceModels(
-						new ArrayList<EObject>(contents), 
-						editor.pamtram, 
-						targetBasePath, 
+						new ArrayList<>(contents),
+						this.editor.pamtram,
+						targetBasePath,
 						baseConfig);
 
-		matchedSections = tr.matchSourceSections();
+		this.matchedSections = tr.matchSourceSections();
 
-		if(matchedSections == null) {
+		if(this.matchedSections == null) {
 			return;
 		}
 
 		// add a selection listener for the highlighting (overwrite the old one)
-		sourceViewer.getTree().removeSelectionListener(sourceTreeSelectionListener);
-		sourceTreeSelectionListener = new SelectionListener() {
+		this.sourceViewer.getTree().removeSelectionListener(this.sourceTreeSelectionListener);
+		this.sourceTreeSelectionListener = new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
@@ -336,24 +356,24 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 					sourceSectionClass = (SourceSectionClass) ((TreeItem) e.item).getData();
 					// do not select a mapping because multiple mappings could make use of
 					// this source section
-					mappingViewer.setSelection(new StructuredSelection());
+					PamtramEditorSourceSectionMatcherPage.this.mappingViewer.setSelection(new StructuredSelection());
 				} else {
-					sourceModelViewer.setSelection(new StructuredSelection());
+					PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer.setSelection(new StructuredSelection());
 				}
 
 				if(sourceSectionClass != null) {
 					// find the 'matched sections' for the selected source section
-					for (SourceSectionClass c : matchedSections.keySet()) {
+					for (SourceSectionClass c : PamtramEditorSourceSectionMatcherPage.this.matchedSections.keySet()) {
 						if(EcoreUtil.equals(sourceSectionClass, c)) {
 							// the matched elements that shall be highlighted
-							Set<EObject> matchedEObjects = matchedSections.get(c);
+							Set<EObject> matchedEObjects = PamtramEditorSourceSectionMatcherPage.this.matchedSections.get(c);
 
 							if(matchedEObjects == null) {
 								continue;
 							}
 
-							sourceModelViewer.collapseAll();
-							sourceModelViewer.setSelection(
+							PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer.collapseAll();
+							PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer.setSelection(
 									new StructuredSelection(matchedEObjects.toArray()),
 									true
 									);
@@ -363,17 +383,17 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 					}
 				}
 
-				editor.setCurrentViewer(sourceViewer);
+				PamtramEditorSourceSectionMatcherPage.this.editor.setCurrentViewer(PamtramEditorSourceSectionMatcherPage.this.sourceViewer);
 			}
 
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {}
 		};
-		sourceViewer.getTree().addSelectionListener(sourceTreeSelectionListener);
+		this.sourceViewer.getTree().addSelectionListener(this.sourceTreeSelectionListener);
 
 		// add a selection listener for the highlighting (overwrite the old one)
-		mappingViewer.getTree().removeSelectionListener(mappingTreeSelectionListener);
-		mappingTreeSelectionListener = new SelectionListener() {
+		this.mappingViewer.getTree().removeSelectionListener(this.mappingTreeSelectionListener);
+		this.mappingTreeSelectionListener = new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
@@ -385,24 +405,24 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 				if(((TreeItem) e.item).getData() instanceof MappingType) {
 					sourceSectionClass = ((MappingType) ((TreeItem) e.item).getData()).getSourceSection();
 					// select the source section for this mapping (that is used to find the matched elements
-					sourceViewer.setSelection(new StructuredSelection(sourceSectionClass), true);
+					PamtramEditorSourceSectionMatcherPage.this.sourceViewer.setSelection(new StructuredSelection(sourceSectionClass), true);
 				} else {
-					sourceModelViewer.setSelection(new StructuredSelection());
+					PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer.setSelection(new StructuredSelection());
 				}
 
 				if(sourceSectionClass != null) {
 					// find the 'matched sections' for the selected source section
-					for (SourceSectionClass c : matchedSections.keySet()) {
+					for (SourceSectionClass c : PamtramEditorSourceSectionMatcherPage.this.matchedSections.keySet()) {
 						if(EcoreUtil.equals(sourceSectionClass, c)) {
 							// the matched elements that shall be highlighted
-							Set<EObject> matchedEObjects = matchedSections.get(c);
+							Set<EObject> matchedEObjects = PamtramEditorSourceSectionMatcherPage.this.matchedSections.get(c);
 
 							if(matchedEObjects == null) {
 								continue;
 							}
 
-							sourceModelViewer.collapseAll();
-							sourceModelViewer.setSelection(
+							PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer.collapseAll();
+							PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer.setSelection(
 									new StructuredSelection(matchedEObjects.toArray()),
 									true
 									);
@@ -412,32 +432,32 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 					}
 				}
 
-				editor.setCurrentViewer(mappingViewer);
+				PamtramEditorSourceSectionMatcherPage.this.editor.setCurrentViewer(PamtramEditorSourceSectionMatcherPage.this.mappingViewer);
 			}
 
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {}
 		};
-		mappingViewer.getTree().addSelectionListener(mappingTreeSelectionListener);
+		this.mappingViewer.getTree().addSelectionListener(this.mappingTreeSelectionListener);
 	}
 
 	@Override
 	public void persist(IDialogSettings settings) {
-		
+
 		// Persist the active editor and its selection
 		//
 		String activeViewer = "";
 		String activeSelection = "";
-		if(editor.getSelectedPage() != null && editor.getSelectedPage().equals(this) && 
-				editor.currentViewer != null) {
-			if(editor.currentViewer.equals(sourceViewer)) {
+		if(this.editor.getSelectedPage() != null && this.editor.getSelectedPage().equals(this) &&
+				this.editor.currentViewer != null) {
+			if(this.editor.currentViewer.equals(this.sourceViewer)) {
 				activeViewer = "SOURCE_VIEWER";
-			} else if(editor.currentViewer.equals(mappingViewer)) {
+			} else if(this.editor.currentViewer.equals(this.mappingViewer)) {
 				activeViewer = "MAPPING_VIEWER";
 			}
-			if(!editor.currentViewer.getSelection().isEmpty() && 
-					editor.currentViewer.getSelection() instanceof TreeSelection) {
-				Object selection = ((TreeSelection) editor.currentViewer.getSelection()).getFirstElement();
+			if(!this.editor.currentViewer.getSelection().isEmpty() &&
+					this.editor.currentViewer.getSelection() instanceof TreeSelection) {
+				Object selection = ((TreeSelection) this.editor.currentViewer.getSelection()).getFirstElement();
 				if(selection instanceof EObject) {
 					try {
 						/*
@@ -452,49 +472,49 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		}
 		settings.put("ACTIVE_VIEWER", activeViewer);
 		settings.put("ACTIVE_SELECTION", activeSelection);
-		
+
 		// Persist the expanded tree paths of the various tree viewers
 		//
-		sourceViewerGroup.persist(settings.addNewSection("SOURCE_VIEWER"));
-		mappingViewerGroup.persist(settings.addNewSection("MAPPING_VIEWER"));
+		this.sourceViewerGroup.persist(settings.addNewSection("SOURCE_VIEWER"));
+		this.mappingViewerGroup.persist(settings.addNewSection("MAPPING_VIEWER"));
 	}
 
 	@Override
 	public void restore(IDialogSettings settings) {
-		
+
 		// Restore the active editor and its selection
 		//
-		if(editor.getSelectedPage() != null && editor.getSelectedPage().equals(this) && 
+		if(this.editor.getSelectedPage() != null && this.editor.getSelectedPage().equals(this) &&
 				settings.get("ACTIVE_VIEWER") != null) {
-			
+
 			String activeViewer = settings.get("ACTIVE_VIEWER");
 			if(activeViewer.equals("SOURCE_VIEWER")) {
-				editor.setCurrentViewer(sourceViewer);
+				this.editor.setCurrentViewer(this.sourceViewer);
 			} else if(activeViewer.equals("MAPPING_VIEWER")) {
-				editor.setCurrentViewer(mappingViewer);
+				this.editor.setCurrentViewer(this.mappingViewer);
 			}
 		}
-		if(editor.getSelectedPage() != null && editor.getSelectedPage().equals(this) && 
+		if(this.editor.getSelectedPage() != null && this.editor.getSelectedPage().equals(this) &&
 				settings.get("ACTIVE_SELECTION") != null && !settings.get("ACTIVE_SELECTION").isEmpty()) {
-			
+
 			String activeSelection = settings.get("ACTIVE_SELECTION");
 			/*
 			 * as the URI of an eObject also reflects the containing resource, we can use this to
 			 * uniquely identify an eObject inside a resource set
 			 */
-			EObject selection = editor.getEditingDomain().getResourceSet().getEObject(URI.createURI(activeSelection), true);
+			EObject selection = this.editor.getEditingDomain().getResourceSet().getEObject(URI.createURI(activeSelection), true);
 			if(selection != null) {
-				editor.currentViewer.setSelection(new StructuredSelection(selection));			
+				this.editor.currentViewer.setSelection(new StructuredSelection(selection));
 			}
 		}
 
 		// Restore the expanded tree paths of the various tree viewers
 		//
 		if(settings.getSection("SOURCE_VIEWER") != null) {
-			sourceViewerGroup.restore(settings.getSection("SOURCE_VIEWER"));
+			this.sourceViewerGroup.restore(settings.getSection("SOURCE_VIEWER"));
 		}
 		if(settings.getSection("MAPPING_VIEWER") != null) {
-			mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));
+			this.mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));
 		}
 	}
 

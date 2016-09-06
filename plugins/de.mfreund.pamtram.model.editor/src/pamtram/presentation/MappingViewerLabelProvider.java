@@ -14,22 +14,27 @@ import pamtram.DeactivatableElement;
  * This is a special LabelProvider that takes {@link DeactivatableElement}s into account
  * and adjusts the foreground color if {@link DeactivatableElement#isDeactivated()}
  * returns '<b><em>true</em></b>'.
- * 
+ *
  * @author mfreund
  *
  */
 public class MappingViewerLabelProvider extends AdapterFactoryLabelProvider
 implements IColorProvider {
 
+	/**
+	 * This creates an instance.
+	 *
+	 * @param adapterFactory
+	 *            An adapter factory that yield adapters that implement the various item label provider interfaces.
+	 */
 	public MappingViewerLabelProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
 	/**
-	 *  This implementation checks if the element itself or one of its parents
-	 *  is of type {@link DeactivatableElement} and {@link DeactivatableElement#isDeactivated()}
-	 *  returns '<b><em>true</em></b>'. If this is the case, a color that represents a
-	 *  'grayed out' status is returned. Otherwise, the default color is returned.
+	 * This implementation checks if the element itself or one of its parents is of type {@link DeactivatableElement}
+	 * and {@link DeactivatableElement#isDeactivated()} returns '<b><em>true</em></b>'. If this is the case, a color
+	 * that represents a 'grayed out' status is returned. Otherwise, the default color is returned.
 	 */
 	@Override
 	public Color getForeground(Object object) {

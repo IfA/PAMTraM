@@ -35,10 +35,10 @@ import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import pamtram.condition.AttributeCondition;
-import pamtram.condition.ComplexCondition;
-import pamtram.condition.VariadicCondition;
 import pamtram.condition.CardinalityCondition;
+import pamtram.condition.ComplexCondition;
 import pamtram.condition.UnaryCondition;
+import pamtram.condition.VariadicCondition;
 import pamtram.contentadapter.DeactivationListenerAdapter;
 import pamtram.contentprovider.ConditionContentProvider;
 import pamtram.contentprovider.LibraryEntryContentProvider;
@@ -83,6 +83,11 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.presentation.widgets.MinimizableSashForm;
 import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
 
+/**
+ * The main page of the {@link PamtramEditor} that allows to configure source sections, mappings, and target sections.
+ *
+ * @author mfreund
+ */
 public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
@@ -94,8 +99,6 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 	/**
 	 * This is the one adapter factory used for providing views of the model.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 */
 	protected ComposedAdapterFactory adapterFactory;
 
@@ -211,6 +214,18 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 */
 	protected MinimizableSashForm targetSash;
 
+	/**
+	 * This creates an instance.
+	 *
+	 * @param parent
+	 *            A widget which will be the parent of the new instance (cannot be null)
+	 * @param style
+	 *            The style of widget to construct
+	 * @param adapterFactory
+	 *            The one adapter factory used for providing views of the model.
+	 * @param editor
+	 *            The parent {@link PamtramEditor} that this page belongs to.
+	 */
 	public PamtramEditorMainPage(
 			Composite parent,
 			int style,
@@ -235,6 +250,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	}
 
 
+	/**
+	 * Create the viewer for the source sections.
+	 */
 	private void createSourceViewer() {
 
 		this.sourceSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
@@ -278,7 +296,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		this.editor.createContextMenuFor(this.conditionViewer);
 	}
 
-
+	/**
+	 * Create the viewer for the mappings.
+	 */
 	private void createMappingViewer() {
 
 		this.mappingSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
@@ -338,7 +358,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 	}
 
-
+	/**
+	 * Create the viewer for the target sections.
+	 */
 	private void createTargetViewer() {
 
 		this.targetSash = new MinimizableSashForm(this, SWT.NONE | SWT.VERTICAL);
@@ -431,7 +453,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				// if a non containment reference has been selected while holding down the
 				// control key, jump to the referenced class
-				if(reference != null && e.stateMask == SWT.CTRL) {
+				if (e.stateMask == SWT.CTRL) {
 					PamtramEditorMainPage.this.sourceViewer.setSelection(
 							new StructuredSelection(referencedElements.toArray()));
 				}

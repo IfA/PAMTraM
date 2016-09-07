@@ -38,33 +38,33 @@ public class AttributeValueModifierExecutor {
 
 	/**
 	 * This constructs an instance.
-	 * 
+	 *
 	 * @param logger
 	 *            A {@link Logger} that will be used to print error messages
 	 *            when the application of an AttributeValueModifier fails.
 	 */
 	private AttributeValueModifierExecutor(final Logger logger) {
 		this.logger = logger;
-		modifiersWithErrors = new HashSet<>();
-		instance = this;
+		this.modifiersWithErrors = new HashSet<>();
+		AttributeValueModifierExecutor.instance = this;
 	}
 
 	/**
 	 * This returns the single {@link #instance}.
 	 * <p />
-	 * Note: This will {@link #init(MessageConsoleStream) initialize} the instance if necessary
-	 * but without any {@link MessageConsoleStream}. Thus, {@link #init(MessageConsoleStream)}
-	 * should be called once before using this in order to allow for printing messages.
-	 * 
+	 * Note: This will {@link #init(Logger) initialize} the instance if necessary but without any
+	 * {@link MessageConsoleStream}. Thus, {@link #init(Logger)} should be called once before using this in order to
+	 * allow for printing messages.
+	 *
 	 * @return The single {@link #instance}.
 	 */
 	public static AttributeValueModifierExecutor getInstance() {
 
-		if(instance == null) {
-			init(null);
+		if(AttributeValueModifierExecutor.instance == null) {
+			AttributeValueModifierExecutor.init(null);
 		}
 
-		return instance;
+		return AttributeValueModifierExecutor.instance;
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class AttributeValueModifierExecutor {
 	 * {@link MessageConsoleStream}. This should be called once before
 	 * {@link #getInstance()} in order to set the correct
 	 * {@link MessageConsoleStream} to use.
-	 * 
+	 *
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @return The {@link #instance}.
@@ -81,13 +81,13 @@ public class AttributeValueModifierExecutor {
 
 		// Either create the single instance or only set the consoleStream
 		//
-		if(instance == null) {
+		if(AttributeValueModifierExecutor.instance == null) {
 			new AttributeValueModifierExecutor(logger);
 		} else {
-			instance.logger = logger;
+			AttributeValueModifierExecutor.instance.logger = logger;
 		}
 
-		return instance;
+		return AttributeValueModifierExecutor.instance;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class AttributeValueModifierExecutor {
 		String retVal = value;
 		for (final ValueModifierSet set : modifierSets) {
 			for (final ValueModifier m : set.getModifier()) {
-				if (!modifiersWithErrors.contains(m)) {
+				if (!this.modifiersWithErrors.contains(m)) {
 					try {
 						retVal = m.modifyValue(retVal);
 						/*
@@ -112,14 +112,14 @@ public class AttributeValueModifierExecutor {
 						 * formatted correctly
 						 */
 					} catch (final Exception e) {
-						modifiersWithErrors.add(m);
+						this.modifiersWithErrors.add(m);
 
-						if(logger != null) {
+						if(this.logger != null) {
 
-							logger.warning("The AttributeValueModifier '" + m.getName()
-									+ "' of the AttributeValueModifierSet '"
-									+ set.getName() + "' could not be evaluated. The following error was supplied:\n"
-									+ e.getLocalizedMessage());
+							this.logger.warning("The AttributeValueModifier '" + m.getName()
+							+ "' of the AttributeValueModifierSet '"
+							+ set.getName() + "' could not be evaluated. The following error was supplied:\n"
+							+ e.getLocalizedMessage());
 						}
 					}
 				}

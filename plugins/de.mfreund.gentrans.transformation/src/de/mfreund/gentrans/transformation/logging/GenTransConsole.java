@@ -67,10 +67,9 @@ public class GenTransConsole extends MessageConsole {
 	 *            logging of all messages and {@link Level#OFF} to prevent any
 	 *            logging.
 	 */
-	@SuppressWarnings("resource")
 	public GenTransConsole(Logger logger, Level level) {
 
-		super(CONSOLE_NAME_PREFIX + " " + DateFormat.getDateTimeInstance().format(new Date()), null, true);
+		super(GenTransConsole.CONSOLE_NAME_PREFIX + " " + DateFormat.getDateTimeInstance().format(new Date()), null, true);
 
 		this.logger = logger;
 		this.handlers = new ArrayList<>();
@@ -79,7 +78,7 @@ public class GenTransConsole extends MessageConsole {
 
 			// Initialize the logging of 'finest', 'finer' and 'fine' messages
 			//
-			IOConsoleOutputStream fineStream = newOutputStream();
+			IOConsoleOutputStream fineStream = this.newOutputStream();
 			fineStream.setColor(new Color(Display.getCurrent(), new RGB(0, 0, 0)));
 			GenTransConsoleStreamHandler fineHandler = new GenTransConsoleStreamHandler(fineStream);
 			fineHandler.setLevel(Level.ALL);
@@ -91,7 +90,7 @@ public class GenTransConsole extends MessageConsole {
 
 			// Initialize the logging of 'config' and 'info' messages
 			//
-			IOConsoleOutputStream infoStream = newOutputStream();
+			IOConsoleOutputStream infoStream = this.newOutputStream();
 			infoStream.setColor(new Color(Display.getCurrent(), new RGB(0, 0, 0)));
 			GenTransConsoleStreamHandler infoHandler = new GenTransConsoleStreamHandler(infoStream);
 			infoHandler.setLevel(Level.INFO);
@@ -105,7 +104,7 @@ public class GenTransConsole extends MessageConsole {
 
 			// Initialize the logging of 'warning' messages
 			//
-			IOConsoleOutputStream warningStream = newOutputStream();
+			IOConsoleOutputStream warningStream = this.newOutputStream();
 			warningStream.setColor(new Color(Display.getCurrent(), new RGB(250, 100, 0)));
 			GenTransConsoleStreamHandler warningHandler = new GenTransConsoleStreamHandler(warningStream);
 			warningHandler.setLevel(Level.WARNING);
@@ -117,7 +116,7 @@ public class GenTransConsole extends MessageConsole {
 
 			// Initialize the logging of 'severe' messages
 			//
-			IOConsoleOutputStream errorStream = newOutputStream();
+			IOConsoleOutputStream errorStream = this.newOutputStream();
 			errorStream.setColor(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
 			GenTransConsoleStreamHandler errorHandler = new GenTransConsoleStreamHandler(errorStream);
 			errorHandler.setLevel(Level.SEVERE);
@@ -131,7 +130,7 @@ public class GenTransConsole extends MessageConsole {
 		final IConsoleManager conMan = plugin.getConsoleManager();
 		conMan.addConsoles(new IConsole[] { this });
 
-		showConsole();
+		this.showConsole();
 	}
 
 	/**
@@ -160,8 +159,8 @@ public class GenTransConsole extends MessageConsole {
 	@Override
 	public void dispose() {
 
-		if (logger != null) {
-			this.handlers.stream().forEach(logger::removeHandler);
+		if (this.logger != null) {
+			this.handlers.stream().forEach(this.logger::removeHandler);
 		}
 
 		super.dispose();

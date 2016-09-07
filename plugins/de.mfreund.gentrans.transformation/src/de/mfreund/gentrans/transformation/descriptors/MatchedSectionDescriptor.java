@@ -4,17 +4,25 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.metamodel.ValueConstraint;
 import pamtram.metamodel.MetaModelSectionReference;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.ValueConstraint;
 
+/**
+ * Class for storing matched a part of a source model that has been matched against a {@link SourceSection}.
+ * <p>
+ * Objects of this class can be seen as instances of a source sections.
+ *
+ * @author mfreund
+ */
 public class MatchedSectionDescriptor {
 
 	/**
@@ -49,7 +57,7 @@ public class MatchedSectionDescriptor {
 	private List<ValueConstraint> attributeValueConstraints;
 
 	/**
-	 * This keeps track of the {@link MatchedSectionDescriptor} that represents the 
+	 * This keeps track of the {@link MatchedSectionDescriptor} that represents the
 	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
 	 * <p />
 	 * This can be used to determine 'external hint values'.
@@ -75,7 +83,7 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * This sets the {@link #associatedSourceSectionClass}.
-	 * 
+	 *
 	 * @param associatedSourceSectionClass
 	 *            The {@link SourceSectionClass} that is associated with this
 	 *            descriptor.
@@ -86,7 +94,7 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * This returns the {@link #associatedSourceSectionClass}.
-	 * 
+	 *
 	 * @return The {@link SourceSectionClass} that is associated with this
 	 *         descriptor.
 	 */
@@ -96,7 +104,7 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * This sets the {@link #associatedSourceModelElement}.
-	 * 
+	 *
 	 * @param associatedSourceModelElement
 	 *            The {@link EObject} that is associated with this descriptor.
 	 */
@@ -106,7 +114,7 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * This returns the {@link #associatedSourceModelElement}.
-	 * 
+	 *
 	 * @return The {@link EObject} that is associated with this descriptor.
 	 */
 	public EObject getAssociatedSourceModelElement() {
@@ -114,7 +122,7 @@ public class MatchedSectionDescriptor {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return map of the source model Objects mapped
 	 */
 	public LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
@@ -124,10 +132,10 @@ public class MatchedSectionDescriptor {
 	/**
 	 * This returns the list of {@link EObject matched elements} represented by this descriptor.
 	 * <p />
-	 * In contrast to {@link #getSourceModelObjectsMapped()}, this does not sort the matched elements by 
+	 * In contrast to {@link #getSourceModelObjectsMapped()}, this does not sort the matched elements by
 	 * the {@link SourceSectionClass} they represent.
-	 * 
-	 * @return The list of {@link EObject matched elements} represented by this descriptor. 
+	 *
+	 * @return The list of {@link EObject matched elements} represented by this descriptor.
 	 */
 	public Set<EObject> getSourceModelObjectFlat() {
 		return this.sourceModelObjetsMapped.entrySet().parallelStream().map(e -> e.getValue()).
@@ -144,10 +152,10 @@ public class MatchedSectionDescriptor {
 	 *            associated with.
 	 */
 	public void addSourceModelObjectMapped(final EObject element, final SourceSectionClass srcSectionClass) {
-		if (!sourceModelObjetsMapped.containsKey(srcSectionClass)) {
-			sourceModelObjetsMapped.put(srcSectionClass, new LinkedHashSet<EObject>());
+		if (!this.sourceModelObjetsMapped.containsKey(srcSectionClass)) {
+			this.sourceModelObjetsMapped.put(srcSectionClass, new LinkedHashSet<EObject>());
 		}
-		sourceModelObjetsMapped.get(srcSectionClass).add(element);
+		this.sourceModelObjetsMapped.get(srcSectionClass).add(element);
 
 	}
 
@@ -161,10 +169,10 @@ public class MatchedSectionDescriptor {
 	 */
 	public void addSourceModelObjectsMapped(final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
 		for (final Entry<SourceSectionClass, Set<EObject>> entry : refs.entrySet()) {
-			if (!sourceModelObjetsMapped.containsKey(entry.getKey())) {
-				sourceModelObjetsMapped.put(entry.getKey(), new LinkedHashSet<EObject>());
+			if (!this.sourceModelObjetsMapped.containsKey(entry.getKey())) {
+				this.sourceModelObjetsMapped.put(entry.getKey(), new LinkedHashSet<EObject>());
 			}
-			sourceModelObjetsMapped.get(entry.getKey()).addAll(entry.getValue());
+			this.sourceModelObjetsMapped.get(entry.getKey()).addAll(entry.getValue());
 		}
 	}
 
@@ -178,12 +186,12 @@ public class MatchedSectionDescriptor {
 	 *         <em><b>false</b></em>' otherwise.
 	 */
 	public boolean containsSourceModelObjectMapped(final EObject element) {
-		return sourceModelObjetsMapped.values().parallelStream().anyMatch(s -> s.contains(element));
+		return this.sourceModelObjetsMapped.values().parallelStream().anyMatch(s -> s.contains(element));
 	}
 
 	/**
 	 * Add to the list of {@link #attributeValueConstraints}.
-	 * 
+	 *
 	 * @param attributeValueConstraints
 	 *            The list of {@link ValueConstraint
 	 *            AttributeValueConstraints} to add to the
@@ -210,17 +218,17 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * This returns the {@link #containerDescriptor}.
-	 * 
-	 * @return The {@link MatchedSectionDescriptor} that represents the 
+	 *
+	 * @return The {@link MatchedSectionDescriptor} that represents the
 	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
 	 */
 	public MatchedSectionDescriptor getContainerDescriptor() {
-		return containerDescriptor;
+		return this.containerDescriptor;
 	}
 
 	/**
 	 * Set the {@link #containerDescriptor}.
-	 * @param containerDescriptor tThe {@link MatchedSectionDescriptor} that represents the 
+	 * @param containerDescriptor tThe {@link MatchedSectionDescriptor} that represents the
 	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
 	 */
 	public void setContainerDescriptor(MatchedSectionDescriptor containerDescriptor) {
@@ -229,30 +237,30 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * This is the getter for the {@link #associatedMappingInstance}.
-	 * 
+	 *
 	 * @return The {@link MappingInstanceStorage} that has been associated with this
 	 * descriptor.
 	 */
 	public MappingInstanceStorage getAssociatedMappingInstance() {
-		return associatedMappingInstance;
+		return this.associatedMappingInstance;
 	}
 
 	/**
 	 * This is the setter for the {@link #associatedMappingInstance}.
-	 * 
+	 *
 	 * @param associatedMappingInstance The {@link MappingInstanceStorage} to be associated with this
 	 * descriptor.
 	 */
 	public void setAssociatedMappingInstance(MappingInstanceStorage associatedMappingInstance) {
 		this.associatedMappingInstance = associatedMappingInstance;
 	}
-	
+
 	/**
-	 * From the given list of {@link MatchedSectionDescriptor descriptors}, select the one that  
+	 * From the given list of {@link MatchedSectionDescriptor descriptors}, select the one that
 	 * {@link MatchedSectionDescriptor#sourceModelObjetsMapped represents} the given
 	 * {@link EObject}.
-	 *  
-	 * @param element The {@link EObject} for that the corresponding {@link MatchedSectionDescriptor} 
+	 *
+	 * @param element The {@link EObject} for that the corresponding {@link MatchedSectionDescriptor}
 	 * shall be returned.
 	 * @param descriptorsToConsider The list of {@link MatchedSectionDescriptor MatchedSectionDescriptors}
 	 * in that shall be considered.
@@ -261,10 +269,10 @@ public class MatchedSectionDescriptor {
 	 * any of the given descriptors.
 	 */
 	public static MatchedSectionDescriptor getDescriptorForElement(EObject element, List<MatchedSectionDescriptor> descriptorsToConsider) {
-		
-		Optional<MatchedSectionDescriptor> descriptor = 
+
+		Optional<MatchedSectionDescriptor> descriptor =
 				descriptorsToConsider.parallelStream().filter(d -> d.getSourceModelObjectFlat().contains(element)).findAny();
-		
+
 		return descriptor.isPresent() ? descriptor.get() : null;
 	}
 

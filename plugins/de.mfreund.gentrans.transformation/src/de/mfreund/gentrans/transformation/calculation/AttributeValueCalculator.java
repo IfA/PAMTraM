@@ -13,11 +13,11 @@ import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.NamedElement;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.metamodel.TargetSectionAttribute;
 
 /**
@@ -42,30 +42,6 @@ public class AttributeValueCalculator {
 	 * The {@link Logger} to be used to print messages.
 	 */
 	private Logger logger;
-
-	/**
-	 * This creates an instance.
-	 * <p />
-	 * Note: This has been deprecated. Use {@link #AttributeValueCalculator(GlobalValueMap, 
-	 * AttributeValueModifierExecutor, Logger)} instead.
-	 * 
-	 * @deprecated
-	 * @param globalVarValueDoubles
-	 * @param attributeValuemodifier
-	 * @param logger
-	 */
-	@Deprecated
-	public AttributeValueCalculator(Map<String, Double> globalVarValueDoubles, AttributeValueModifierExecutor attributeValuemodifier, Logger logger) {
-
-		// store the attribute value modifier
-		this.attributeValuemodifier = attributeValuemodifier;
-
-		// store the global var value doubles
-		this.globalVarValueDoubles = globalVarValueDoubles;
-
-		// store the message stream
-		this.logger = logger;
-	}
 
 	/**
 	 * This creates an instance.
@@ -137,9 +113,9 @@ public class AttributeValueCalculator {
 
 			// calculate the value based on the hint values and a possible expression
 			if(expression.isEmpty()) {
-				attrValue = calculateAttributeValueWithoutExpression(hint, attrHintValues, resultModifiers);
+				attrValue = this.calculateAttributeValueWithoutExpression(hint, attrHintValues, resultModifiers);
 			} else {
-				attrValue = calculateAttributeValueWithExpression(hint, attrHintValues, expression, resultModifiers);
+				attrValue = this.calculateAttributeValueWithExpression(hint, attrHintValues, expression, resultModifiers);
 			}
 
 		}
@@ -174,7 +150,7 @@ public class AttributeValueCalculator {
 			sourceElements.addAll(((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getSourceElements());
 		}
 
-		return calculateValueWithoutExpression(sourceElements, hintValues, resultModifiers);
+		return this.calculateValueWithoutExpression(sourceElements, hintValues, resultModifiers);
 	}
 
 	/**
@@ -192,12 +168,12 @@ public class AttributeValueCalculator {
 
 		if(hint instanceof AttributeMapping && !((AttributeMapping) hint).getSourceElements().isEmpty()
 				&& attrHintValues.isEmpty()) {
-			logger.severe("Error calculating the expression for hint '" + hint.getName() + "'."
+			this.logger.severe("Error calculating the expression for hint '" + hint.getName() + "'."
 					+ "No hint values have been passed.");
 			return null;
 		}
 
-		return calculateValueWithExpression(attrHintValues, expression, resultModifiers);
+		return this.calculateValueWithExpression(attrHintValues, expression, resultModifiers);
 	}
 
 	/**
@@ -224,14 +200,14 @@ public class AttributeValueCalculator {
 			if (valueParts.containsKey(srcElement)) {
 				attrValueBuilder.append(valueParts.get(srcElement).getNextValue());
 			} else {
-				logger.warning("SourceValue not found for element '"
+				this.logger.warning("SourceValue not found for element '"
 						+ 
 						(srcElement instanceof NamedElement ? ((NamedElement) srcElement).getName() : srcElement) + 
 						"'.");
 			}
 		}
 
-		return attributeValuemodifier.applyAttributeValueModifiers(
+		return this.attributeValuemodifier.applyAttributeValueModifiers(
 				attrValueBuilder.toString(), resultModifiers);
 	}
 
@@ -260,7 +236,7 @@ public class AttributeValueCalculator {
 
 		// Add global variables
 		//
-		vars.putAll(globalVarValueDoubles);
+		vars.putAll(this.globalVarValueDoubles);
 
 		// Add local variables (as double)
 		//
@@ -271,18 +247,18 @@ public class AttributeValueCalculator {
 				try {
 					vars.put(((NamedElement) entry.getKey()).getName(), Double.valueOf(value));
 				} catch (NumberFormatException e) {
-					logger.warning("Error parsing double of value '" + value + "'.");
+					this.logger.warning("Error parsing double of value '" + value + "'.");
 				}					
 			}
 		}
 
 		// Calculate the value
 		//
-		ExpressionCalculator expCalc = new ExpressionCalculator(logger);
+		ExpressionCalculator expCalc = new ExpressionCalculator(this.logger);
 		String attrValue = expCalc.calculateExpression(expression, vars);
 
 		// Apply the result modifiers
-		return attributeValuemodifier.applyAttributeValueModifiers(
+		return this.attributeValuemodifier.applyAttributeValueModifiers(
 				attrValue, resultModifiers);
 	}
 }

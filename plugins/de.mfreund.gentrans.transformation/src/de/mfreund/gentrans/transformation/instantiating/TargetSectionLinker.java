@@ -24,11 +24,11 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
-import pamtram.NamedElement;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ClassMatcher;
@@ -74,14 +74,14 @@ public class TargetSectionLinker extends CancelableElement {
 	private final Logger logger;
 
 	/**
-	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to
 	 * resolve ambiguities that arise during the execution of the transformation.
 	 */
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
 	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) to
-	 * their {@link LibraryEntryInstantiator}. 
+	 * their {@link LibraryEntryInstantiator}.
 	 */
 	private Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
 
@@ -92,27 +92,24 @@ public class TargetSectionLinker extends CancelableElement {
 
 	/**
 	 * This creates an instance.
-	 * 
+	 *
 	 * @param targetSectionRegistry
 	 *            target section registry used when instantiating classes
-	 * @param globalValues
-	 *            Registry for values of {@link GlobalAttribute
-	 *            GlobalAttributes} and {@link FixedValue FixedValues}.
+	 * @param globalValueMap
+	 *            Registry for values of {@link GlobalAttribute GlobalAttributes} and {@link FixedValue FixedValues}.
 	 * @param libEntryInstantiatorMap
-	 *            The temporarily created elements for LibraryEntries
-	 *            (represented by an {@link EObjectWrapper}) and their
-	 *            corresponding {@link LibraryEntryInstantiator}.
+	 *            The temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) and
+	 *            their corresponding {@link LibraryEntryInstantiator}.
 	 * @param attributeValuemodifier
 	 *            An instance of the {@link AttributeValueModifierExecutor}.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to
-	 *            resolve occurring ambiguities.
+	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve occurring ambiguities.
 	 */
 	public TargetSectionLinker(
 			final TargetSectionRegistry targetSectionRegistry,
-			final Map<NamedElement, Double> globalValues,
+			final GlobalValueMap globalValueMap,
 			final Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap,
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final Logger logger,
@@ -124,10 +121,7 @@ public class TargetSectionLinker extends CancelableElement {
 		this.canceled = false;
 		this.libEntryInstantiatorMap = libEntryInstantiatorMap;
 
-		Map<String, Double> globalDoubleValues = globalValues.entrySet().parallelStream().collect(
-				Collectors.toMap(e -> e.getKey().getName(), e -> e.getValue()));
-
-		calculator = new AttributeValueCalculator(globalDoubleValues, attributeValuemodifier, logger);
+		this.calculator = new AttributeValueCalculator(globalValueMap, attributeValuemodifier, logger);
 
 		logger.info("...parsing done!");
 	}
@@ -135,10 +129,10 @@ public class TargetSectionLinker extends CancelableElement {
 	/**
 	 * This links the {@link TargetSection TargetSections} represented by the
 	 * <em>hintGroups</em> of the given {@link MappingInstanceStorage}.
-	 * 
+	 *
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to link.
-	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully; 
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 * '<em><b>false</b></em>' otherwise
 	 */
 	public boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance) {
@@ -147,7 +141,7 @@ public class TargetSectionLinker extends CancelableElement {
 		// Link 'local' hint groups
 		//
 		if(!mappingInstance.getMappingHintGroups().stream()
-				.allMatch(g -> linkTargetSectionInstance(mappingInstance, g))) {
+				.allMatch(g -> this.linkTargetSectionInstance(mappingInstance, g))) {
 
 			return false;
 		}
@@ -155,7 +149,7 @@ public class TargetSectionLinker extends CancelableElement {
 		// Link 'imported' hint groups
 		//
 		if(!mappingInstance.getMappingHintGroupImporters().stream()
-				.allMatch(g -> linkTargetSectionInstance(mappingInstance, g))) {
+				.allMatch(g -> this.linkTargetSectionInstance(mappingInstance, g))) {
 
 			return false;
 		}
@@ -168,16 +162,16 @@ public class TargetSectionLinker extends CancelableElement {
 	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
 	 * redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionSecondPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)}.
-	 * 
+	 *
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to link.
 	 * @param hintGroupImporter
 	 *            The {@link MappingHintGroupImporter} that lead to the
 	 *            instantiation of the given <em>mappingInstance</em>.
-	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully; 
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 * '<em><b>false</b></em>' otherwise
 	 */
-	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance, 
+	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			final MappingHintGroupImporter hintGroupImporter) {
 
 		final ExportedMappingHintGroup expGrp = hintGroupImporter.getHintGroup();
@@ -187,7 +181,7 @@ public class TargetSectionLinker extends CancelableElement {
 				hints.addAll(mappingInstance.getMappingHints(expGrp));
 				for (final MappingHintType h : mappingInstance.getMappingHints(hintGroupImporter)) {
 
-					if (isCanceled()) {
+					if (this.isCanceled()) {
 						return false;
 					}
 
@@ -197,14 +191,14 @@ public class TargetSectionLinker extends CancelableElement {
 					// done during 1st pass
 				}
 
-				instantiateTargetSectionSecondPass(
-						expGrp.getTargetSection(), 
-						hintGroupImporter, 
-						hints, 
-						mappingInstance.getHintValues(), 
+				this.instantiateTargetSectionSecondPass(
+						expGrp.getTargetSection(),
+						hintGroupImporter,
+						hints,
+						mappingInstance.getHintValues(),
 						mappingInstance.getInstancesBySection(hintGroupImporter));
 
-				if (isCanceled()) {
+				if (this.isCanceled()) {
 					return false;
 				}
 			}
@@ -218,30 +212,30 @@ public class TargetSectionLinker extends CancelableElement {
 	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
 	 * redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionSecondPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)}.
-	 * 
+	 *
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to link.
 	 * @param hintGroup
 	 *            The {@link MappingHintGroupType} that lead to the
 	 *            instantiation of the given <em>mappingInstance</em>.
-	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully; 
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 * '<em><b>false</b></em>' otherwise
 	 */
-	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance, 
+	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			final MappingHintGroupType hintGroup) {
 
 		if (hintGroup.getTargetSection() != null && hintGroup instanceof MappingHintGroup) {
 
 			if (mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup) != null) {
 
-				instantiateTargetSectionSecondPass(
+				this.instantiateTargetSectionSecondPass(
 						hintGroup.getTargetSection(),
 						(MappingHintGroup) hintGroup,
 						mappingInstance.getMappingHints(hintGroup),
 						mappingInstance.getHintValues(),
 						mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup));
 
-				if (isCanceled()) {
+				if (this.isCanceled()) {
 					return false;
 				}
 			}
@@ -335,7 +329,7 @@ public class TargetSectionLinker extends CancelableElement {
 
 					hintFound = true;
 					// now search for target attributes
-					final List<EObjectWrapper> targetInstances = targetSectionRegistry
+					final List<EObjectWrapper> targetInstances = this.targetSectionRegistry
 							.getFlattenedPamtramClassInstances(matcher.getTarget().getOwningClass());
 
 					// instances are sorted in the same order as
@@ -379,7 +373,7 @@ public class TargetSectionLinker extends CancelableElement {
 						numberOfInstancesToCreate = instancesToConsider.size();
 					} else {
 
-						logger.warning(
+						this.logger.warning(
 								"There was a size mismatch while trying to set a non-containment reference, using the Hint "
 										+ h.getName() + ". There where " + instancesToConsider.size()
 										+ " instances to be connected but "
@@ -403,7 +397,7 @@ public class TargetSectionLinker extends CancelableElement {
 
 							String attrValStr = null;
 							if (h.getMatcher() instanceof AttributeMatcher) {
-								attrValStr = calculator.calculateAttributeValue(null, h, newHintValues);
+								attrValStr = this.calculator.calculateAttributeValue(null, h, newHintValues);
 							}
 							final List<EObjectWrapper> fittingVals = new LinkedList<>();
 
@@ -415,7 +409,7 @@ public class TargetSectionLinker extends CancelableElement {
 										fittingVals.add(targetInst);
 									}
 								} else {
-									logger.warning("Problemo?");
+									this.logger.warning("Problemo?");
 								}
 							}
 							// select targetInst
@@ -425,7 +419,7 @@ public class TargetSectionLinker extends CancelableElement {
 
 							} else if (fittingVals.size() > 1) {
 
-								if (canceled) {
+								if (this.canceled) {
 									return;
 								}
 
@@ -434,13 +428,13 @@ public class TargetSectionLinker extends CancelableElement {
 								 * resolve the ambiguity.
 								 */
 								try {
-									logger.fine(RESOLVE_LINKING_AMBIGUITY_STARTED);
-									List<EObjectWrapper> resolved = ambiguityResolvingStrategy
+									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
+									List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy
 											.linkingSelectTargetInstance(fittingVals,
 													h.getAffectedReference(),
 													(MappingHintGroupType) mappingGroup, h,
 													srcInst);
-									logger.fine(RESOLVE_LINKING_AMBIGUITY_FINISHED);
+									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
 									if (ref.getEReference().isMany()) {
 										for (EObjectWrapper eObjectWrapper : resolved) {
 											targetInst.add(eObjectWrapper.getEObject());
@@ -449,13 +443,13 @@ public class TargetSectionLinker extends CancelableElement {
 										targetInst.add(resolved.get(0).getEObject());
 									}
 								} catch (Exception e) {
-									logger.severe(e.getMessage());
-									cancel();
+									this.logger.severe(e.getMessage());
+									this.cancel();
 									return;
 								}
 
 							} else {
-								logger.warning("The MappigInstanceSelector " + h.getName() + " (Mapping: "
+								this.logger.warning("The MappigInstanceSelector " + h.getName() + " (Mapping: "
 										+ ((Mapping) mappingGroup.eContainer()).getName() + ", Group: "
 										+ mappingGroup.getName()
 										+ " ) has an AttributeMatcher that picked up the value '" + attrValStr
@@ -467,7 +461,7 @@ public class TargetSectionLinker extends CancelableElement {
 							// finally, we can set the value of
 							// the reference
 							if (!targetSectionClass.isLibraryEntry()) {
-								addValuesToReference(ref, targetInst, srcInst.getEObject());
+								this.addValuesToReference(ref, targetInst, srcInst.getEObject());
 							} else {
 								/*
 								 * for library entries, we cannot simply add the
@@ -476,7 +470,7 @@ public class TargetSectionLinker extends CancelableElement {
 								 * want to specify the value as 'target' for the
 								 * affected ExternalReferenceParameter
 								 */
-								LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(srcInst).getLibraryEntry();
+								LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(srcInst).getLibraryEntry();
 								LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer()
 										.eContainer();
 								ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
@@ -518,7 +512,7 @@ public class TargetSectionLinker extends CancelableElement {
 							/*
 							 * select potential instances globally
 							 */
-							final List<EObjectWrapper> insts = targetSectionRegistry
+							final List<EObjectWrapper> insts = this.targetSectionRegistry
 									.getFlattenedPamtramClassInstances(matcherTargetClass);
 
 							EObjectWrapper targetInstance = null;
@@ -526,7 +520,7 @@ public class TargetSectionLinker extends CancelableElement {
 								targetInstance = insts.get(0);
 							} else if (insts.size() > 1) {
 								// Dialog
-								if (canceled) {
+								if (this.canceled) {
 									return;
 								}
 
@@ -535,21 +529,21 @@ public class TargetSectionLinker extends CancelableElement {
 								 * resolve the ambiguity.
 								 */
 								try {
-									logger.fine(RESOLVE_LINKING_AMBIGUITY_STARTED);
-									List<EObjectWrapper> resolved = ambiguityResolvingStrategy
+									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
+									List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy
 											.linkingSelectTargetInstance(insts,
 													h.getAffectedReference(), null,
 													h, null);
-									logger.fine(RESOLVE_LINKING_AMBIGUITY_FINISHED);
+									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
 									targetInstance = resolved.get(0);
 								} catch (Exception e) {
-									logger.severe(e.getMessage());
-									cancel();
+									this.logger.severe(e.getMessage());
+									this.cancel();
 									return;
 								}
 
 							} else {
-								logger.warning("The MappingInstanceSelector '" + h.getName() + " of Mapping"
+								this.logger.warning("The MappingInstanceSelector '" + h.getName() + " of Mapping"
 										+ ((Mapping) mappingGroup.eContainer()).getName() + "(Group: "
 										+ mappingGroup.getName() + ")' has a Matcher that points to the target class "
 										+ matcherTargetClass.getName() + " (Section: "
@@ -563,7 +557,7 @@ public class TargetSectionLinker extends CancelableElement {
 									// mapping
 									//
 									if (!targetSectionClass.isLibraryEntry()) {
-										addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
+										this.addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
 									} else {
 										/*
 										 * for library entries, we cannot simply
@@ -574,7 +568,7 @@ public class TargetSectionLinker extends CancelableElement {
 										 * the affected
 										 * ExternalReferenceParameter
 										 */
-										LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(inst)
+										LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(inst)
 												.getLibraryEntry();
 										LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer()
 												.eContainer();
@@ -592,7 +586,7 @@ public class TargetSectionLinker extends CancelableElement {
 					}
 
 				} else {
-					logger.severe("Matcher of type " + h.getMatcher().eClass().getName() + " in MappingHint "
+					this.logger.severe("Matcher of type " + h.getMatcher().eClass().getName() + " in MappingHint "
 							+ h.getName() + " is not supported.");
 				}
 
@@ -604,14 +598,14 @@ public class TargetSectionLinker extends CancelableElement {
 			/*
 			 * In case no suitable hint could be found we will try the
 			 * following:
-			 * 
+			 *
 			 * 1.only non-cont ref targets to other subsections of this
 			 * targetMMSection are considered, we can resolve the reference if
 			 * only one Instance of the ref Target was created in the same
 			 * mapping instance
-			 * 
+			 *
 			 * if that isn't the case:
-			 * 
+			 *
 			 * 2. consider all available instances of the ref target
 			 */
 			if (!hintFound) { // last chance
@@ -710,7 +704,7 @@ public class TargetSectionLinker extends CancelableElement {
 								.get(rootBySourceInstance.get(source));
 						if (instances.size() == 1) {
 							if (!targetSectionClass.isLibraryEntry()) {
-								addValueToReference(ref, instances.get(0).getEObject(), source.getEObject());
+								this.addValueToReference(ref, instances.get(0).getEObject(), source.getEObject());
 							} else {
 								/*
 								 * for library entries, we cannot simply add the
@@ -719,7 +713,7 @@ public class TargetSectionLinker extends CancelableElement {
 								 * want to specify the value as 'target' for the
 								 * affected ExternalReferenceParameter
 								 */
-								LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(source).getLibraryEntry();
+								LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(source).getLibraryEntry();
 								LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer()
 										.eContainer();
 								ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
@@ -731,7 +725,7 @@ public class TargetSectionLinker extends CancelableElement {
 							}
 						} else if (instances.size() > 1) {
 							// Dialog
-							if (canceled) {
+							if (this.canceled) {
 								return;
 							}
 
@@ -741,7 +735,7 @@ public class TargetSectionLinker extends CancelableElement {
 							 */
 							List<EObject> targets = new ArrayList<>();
 							try {
-								List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
+								List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy.linkingSelectTargetInstance(
 										instances, ref, (MappingHintGroupType) mappingGroup, null, source);
 								if (ref.getEReference().isMany()) {
 									for (EObjectWrapper eObjectWrapper : resolved) {
@@ -751,8 +745,8 @@ public class TargetSectionLinker extends CancelableElement {
 									targets.add(resolved.get(0).getEObject());
 								}
 							} catch (Exception e) {
-								logger.severe(e.getMessage());
-								cancel();
+								this.logger.severe(e.getMessage());
+								this.cancel();
 								return;
 							}
 
@@ -785,7 +779,7 @@ public class TargetSectionLinker extends CancelableElement {
 							// return;
 							// }
 							if (!targetSectionClass.isLibraryEntry()) {
-								addValuesToReference(ref, targets, source.getEObject());
+								this.addValuesToReference(ref, targets, source.getEObject());
 							} else {
 								/*
 								 * for library entries, we cannot simply add the
@@ -794,7 +788,7 @@ public class TargetSectionLinker extends CancelableElement {
 								 * want to specify the value as 'target' for the
 								 * affected ExternalReferenceParameter
 								 */
-								LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(source).getLibraryEntry();
+								LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(source).getLibraryEntry();
 								LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer()
 										.eContainer();
 								ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
@@ -810,7 +804,7 @@ public class TargetSectionLinker extends CancelableElement {
 							}
 
 						} else {
-							logger.warning("No suitable refernce target found for non-cont. reference '"
+							this.logger.warning("No suitable refernce target found for non-cont. reference '"
 									+ ref.getName() + "' of the following instance of target class "
 									+ targetSectionClass.getName() + " (Section: "
 									+ targetSectionClass.getContainingSection().getName() + ").'\n"
@@ -829,7 +823,7 @@ public class TargetSectionLinker extends CancelableElement {
 					for (final TargetSectionClass v : refValueClone) {
 						final String classString = v.getName() + " (Section: " + v.getContainingSection().getName()
 								+ ")";
-						final List<EObjectWrapper> insts = targetSectionRegistry.getFlattenedPamtramClassInstances(v);
+						final List<EObjectWrapper> insts = this.targetSectionRegistry.getFlattenedPamtramClassInstances(v);
 
 						if (insts.size() > 0) {
 							targetSectionChoices.add(classString);
@@ -853,7 +847,7 @@ public class TargetSectionLinker extends CancelableElement {
 
 					} else if (targetInstancesToConsider.values().size() > 1) {
 
-						if (canceled) {
+						if (this.canceled) {
 							return;
 						}
 
@@ -864,14 +858,14 @@ public class TargetSectionLinker extends CancelableElement {
 						HashMap<TargetSectionClass, List<EObjectWrapper>> choices = new HashMap<>();
 						for (TargetSectionClass targetSection : refValueClone) {
 							choices.put(targetSection, new ArrayList<>(
-									targetSectionRegistry.getFlattenedPamtramClassInstances(targetSection)));
+									this.targetSectionRegistry.getFlattenedPamtramClassInstances(targetSection)));
 						}
 						try {
-							logger.fine(RESOLVE_LINKING_AMBIGUITY_STARTED);
-							HashMap<TargetSectionClass, List<EObjectWrapper>> resolved = ambiguityResolvingStrategy
+							this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
+							HashMap<TargetSectionClass, List<EObjectWrapper>> resolved = this.ambiguityResolvingStrategy
 									.linkingSelectTargetSectionAndInstance(choices, ref,
 											(MappingHintGroupType) mappingGroup);
-							logger.fine(RESOLVE_LINKING_AMBIGUITY_FINISHED);
+							this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
 							if (ref.getEReference().isMany()) {
 								targets = new ArrayList<>();
 								for (EObjectWrapper eObjectWrapper : resolved.entrySet().iterator().next().getValue()) {
@@ -879,16 +873,16 @@ public class TargetSectionLinker extends CancelableElement {
 								}
 							} else {
 								targets = new ArrayList<>(Arrays.asList(
-										(resolved.entrySet().iterator().next().getValue().get(0).getEObject())));
+										resolved.entrySet().iterator().next().getValue().get(0).getEObject()));
 							}
 						} catch (Exception e) {
-							logger.severe(e.getMessage());
-							cancel();
+							this.logger.severe(e.getMessage());
+							this.cancel();
 							return;
 						}
 
 					} else {
-						logger.warning("No suitable hint targets found for non-cont reference '" + ref.getName()
+						this.logger.warning("No suitable hint targets found for non-cont reference '" + ref.getName()
 						+ "' of TargetMMSection " + mappingGroup.getTargetMMSectionGeneric().getName()
 						+ "(Section: " + targetSectionClass.getName() + ") in Mapping "
 						+ ((Mapping) mappingGroup.eContainer()).getName() + "(Group: " + mappingGroup.getName()
@@ -898,7 +892,7 @@ public class TargetSectionLinker extends CancelableElement {
 					if (targets != null) {
 						for (final EObjectWrapper inst : instancesBySection.get(targetSectionClass)) {
 							if (!targetSectionClass.isLibraryEntry()) {
-								addValuesToReference(ref, targets, inst.getEObject());
+								this.addValuesToReference(ref, targets, inst.getEObject());
 							} else {
 								/*
 								 * for library entries, we cannot simply add the
@@ -907,7 +901,7 @@ public class TargetSectionLinker extends CancelableElement {
 								 * want to specify the value as 'target' for the
 								 * affected ExternalReferenceParameter
 								 */
-								LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(inst).getLibraryEntry();
+								LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(inst).getLibraryEntry();
 								LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer()
 										.eContainer();
 								ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
@@ -929,7 +923,7 @@ public class TargetSectionLinker extends CancelableElement {
 			}
 		}
 
-		instantiateTargetSectionSecondPassGoDeeper(targetSectionClass, mappingGroup, mappingHints, hintValues,
+		this.instantiateTargetSectionSecondPassGoDeeper(targetSectionClass, mappingGroup, mappingHints, hintValues,
 				instancesBySection);
 	}
 
@@ -937,7 +931,7 @@ public class TargetSectionLinker extends CancelableElement {
 	 * This iterates further downward in the containment hierarchy and calls
 	 * {@link #instantiateTargetSectionSecondPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)}
 	 * for every found child {@link TargetSectionClass}.
-	 * 
+	 *
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} from where to iterate further
 	 *            downward in the containment hierarchy.
@@ -970,11 +964,11 @@ public class TargetSectionLinker extends CancelableElement {
 				for (final TargetSectionClass val : ((TargetSectionContainmentReference) ref).getValue()) {// instantiate
 					// targets
 
-					instantiateTargetSectionSecondPass(val, mappingGroup,
+					this.instantiateTargetSectionSecondPass(val, mappingGroup,
 							hints, hintValues,
 							instancesBySection);
 
-					if (canceled) {
+					if (this.canceled) {
 						return;
 					}
 				}
@@ -999,7 +993,7 @@ public class TargetSectionLinker extends CancelableElement {
 		if (ref.getEReference().getUpperBound() == 1) {
 			if (source.eIsSet(ref.getEReference())) {
 
-				logger.warning(
+				this.logger.warning(
 						"More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
 								+ ref.getName()
 								+ "' in the target section '"
@@ -1040,7 +1034,7 @@ public class TargetSectionLinker extends CancelableElement {
 		if (ref.getEReference().getUpperBound() == 1) {
 			if(targets.size() > 1) {
 
-				logger.warning(
+				this.logger.warning(
 						"More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
 								+ ref.getName()
 								+ "' in the target section '"
@@ -1048,7 +1042,7 @@ public class TargetSectionLinker extends CancelableElement {
 								+ "Please check your mapping model.");
 			} else {
 
-				addValueToReference(ref, targets.get(0), source);
+				this.addValueToReference(ref, targets.get(0), source);
 			}
 
 		} else {

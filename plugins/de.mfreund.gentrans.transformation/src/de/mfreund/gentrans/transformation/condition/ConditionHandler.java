@@ -68,7 +68,16 @@ public class ConditionHandler {
 	 * Enum for possible results of a condition
 	 */
 	public enum CondResult{
-		TRUE, FALSE
+
+		/**
+		 * Represents a positive evaluation of the condition.
+		 */
+		TRUE,
+
+		/**
+		 * Represents a negative evaluation of the condition.
+		 */
+		FALSE
 	}
 
 	/**

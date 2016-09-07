@@ -7,7 +7,7 @@
  *  <li>{@link de.mfreund.gentrans.transformation.condition}</li>
  *  <li>{@link de.mfreund.gentrans.transformation.descriptors}</li>
  *  <li>{@link de.mfreund.gentrans.transformation.handler}</li>
- *  <li>{@link de.mfreund.gentrans.transformation.instantiating}</li>
+ *  <li>{@link de.mfreund.gentrans.transformation.expanding}</li>
  *  <li>{@link de.mfreund.gentrans.transformation.library}</li>
  *  <li>{@link de.mfreund.gentrans.transformation.maps}</li>
  *  <li>{@link de.mfreund.gentrans.transformation.matching}</li>

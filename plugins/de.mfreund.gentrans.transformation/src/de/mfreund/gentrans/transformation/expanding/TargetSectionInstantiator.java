@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.instantiating;
+package de.mfreund.gentrans.transformation.expanding;
 
 import java.util.ArrayList;
 import java.util.Arrays;

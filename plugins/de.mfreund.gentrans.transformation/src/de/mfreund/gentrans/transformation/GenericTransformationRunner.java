@@ -38,9 +38,9 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.instantiating.TargetSectionConnector;
-import de.mfreund.gentrans.transformation.instantiating.TargetSectionInstantiator;
-import de.mfreund.gentrans.transformation.instantiating.TargetSectionLinker;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
@@ -381,7 +381,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Perform the 'expanding' step of the transformation
 		 */
-		ExpandingResult expandingResult = this.performExpanding(
+		ExpandingResult expandingResult = this.performInstantiating(
 				matchingResult, monitor, attributeValueModifier);
 		transformationResult.setExpandingResult(expandingResult);
 
@@ -531,19 +531,22 @@ public class GenericTransformationRunner extends CancelableElement {
 	}
 
 	/**
-	 * This performs the '<em>expanding</em>' step of the transformation:
-	 * The target sections (excluding those that are defined by {@link LibraryEntry LibraryEntries})
-	 * are instantiated (only containment references and attributes but no non-containment
-	 * references).
+	 * This performs the '<em>instantiating</em>' step of the transformation: The target sections (excluding those that
+	 * are defined by {@link LibraryEntry LibraryEntries}) are instantiated (only containment references and attributes
+	 * but no non-containment references).
 	 *
-	 * @param matchingResult A {@link MatchingResult} that contains the results from the
-	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
-	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
-	 * @param attributeValuemodifier An instance of {@link AttributeValueModifierExecutor} to use for applying
-	 * {@link ValueModifierSet AttributeValueModifierSets}.
+	 * @param matchingResult
+	 *            A {@link MatchingResult} that contains the results from the
+	 *            {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching}
+	 *            step.
+	 * @param monitor
+	 *            An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
+	 * @param attributeValuemodifier
+	 *            An instance of {@link AttributeValueModifierExecutor} to use for applying {@link ValueModifierSet
+	 *            AttributeValueModifierSets}.
 	 * @return An {@link ExpandingResult} that contains the various results of the expanding step.
 	 */
-	private ExpandingResult performExpanding(
+	private ExpandingResult performInstantiating(
 			final MatchingResult matchingResult,
 			final IProgressMonitor monitor,
 			final AttributeValueModifierExecutor attributeValuemodifier) {
@@ -589,13 +592,13 @@ public class GenericTransformationRunner extends CancelableElement {
 	/**
 	 * This performs the '<em>joining</em>' step of the transformation:
 	 * The target sections that have been instantiated during the
-	 * {@link #performExpanding(MatchingResult, IProgressMonitor, AttributeValueModifierExecutor) expanding step} are linked
+	 * {@link #performInstantiating(MatchingResult, IProgressMonitor, AttributeValueModifierExecutor) expanding step} are linked
 	 * via containment references and added to the target model. If necessary, intermediary object are created as well.
 	 *
 	 * @param defaultTargetModel File path of the <em>default</em> target model (relative to the {@link #targetBasePath}).
 	 * @param suitableMappings The active {@link Mapping mappings} from the PAMTraM model.
 	 * @param expandingResult The {@link ExpandingResult} that contains the results of the
-	 * {@link #performExpanding(MatchingResult, IProgressMonitor, AttributeValueModifierExecutor) expanding step}.
+	 * {@link #performInstantiating(MatchingResult, IProgressMonitor, AttributeValueModifierExecutor) expanding step}.
 	 * @param attributeValueModifier An instance of {@link AttributeValueModifierExecutor} to use for applying
 	 * {@link ValueModifierSet AttributeValueModifierSets}.
 	 * @param matchingResult A {@link MatchingResult} that contains the results from the

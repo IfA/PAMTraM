@@ -12,7 +12,7 @@ import org.eclipse.core.runtime.CoreException;
 
 /**
  * A bean to describe all settings necessary to launch a new generic transformation.
- * 
+ *
  * @author mfreund
  */
 class GentransLaunchContext {
@@ -23,24 +23,24 @@ class GentransLaunchContext {
 	private final IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
 	/**
-	 * Add basic 'Bean' behavior (cf. http://www.vogella.com/tutorials/EclipseDataBinding/article.html#databinding_pojovsbean).	
+	 * Add basic 'Bean' behavior (cf. http://www.vogella.com/tutorials/EclipseDataBinding/article.html#databinding_pojovsbean).
 	 */
-	private final PropertyChangeSupport changeSupport = 
+	private final PropertyChangeSupport changeSupport =
 			new PropertyChangeSupport(this);
 
-	public void addPropertyChangeListener(PropertyChangeListener 
+	public void addPropertyChangeListener(PropertyChangeListener
 			listener) {
-		changeSupport.addPropertyChangeListener(listener);
+		this.changeSupport.addPropertyChangeListener(listener);
 	}
 
-	public void removePropertyChangeListener(PropertyChangeListener 
+	public void removePropertyChangeListener(PropertyChangeListener
 			listener) {
-		changeSupport.removePropertyChangeListener(listener);
+		this.changeSupport.removePropertyChangeListener(listener);
 	}
 
 	protected void firePropertyChange(String propertyName, Object oldValue,
 			Object newValue) {
-		changeSupport.firePropertyChange(propertyName, oldValue, newValue);
+		this.changeSupport.firePropertyChange(propertyName, oldValue, newValue);
 	}
 
 	/**
@@ -49,9 +49,14 @@ class GentransLaunchContext {
 	private String project = "";
 
 	/**
-	 * Whether the '<em>HistoryResolvingStrategy</em>' shall be applied to resolve ambiguites.
+	 * Whether the '<em>HistoryResolvingStrategy</em>' shall be applied to resolve ambiguities.
 	 */
 	private boolean enableHistory = false;
+
+	/**
+	 * Whether the '<em>StatisticsResolvingStrategy</em>' shall be applied to resolve ambiguities.
+	 */
+	private boolean enableStatistics = false;
 
 	/**
 	 * Whether the '<em>UserDecisionResolvingStrategy</em>' shall be applied to resolve ambiguities.
@@ -67,7 +72,7 @@ class GentransLaunchContext {
 	 * The name of the transformation to use.
 	 */
 	private String transformationModelToUse = "";
-	
+
 	/**
 	 * Whether the UserDecisionResolvingStratety shall also handle expanding ambiguities.
 	 */
@@ -79,19 +84,19 @@ class GentransLaunchContext {
 	 * @return the project
 	 */
 	public String getProject() {
-		return project;
+		return this.project;
 	}
 
 	/**
 	 * @param project the project to set
 	 */
 	public void setProject(String project) {
-		firePropertyChange("project", this.project, project);
+		this.firePropertyChange("project", this.project, project);
 
 		// update the list of possible transformation models to choose from based on the changed selection
 		ArrayList<String> transformationModels = new ArrayList<>();
 		try {
-			IResource[] transformationFolders = workspaceRoot.getProject(project).getFolder("Pamtram").getFolder("transformation").members();
+			IResource[] transformationFolders = this.workspaceRoot.getProject(project).getFolder("Pamtram").getFolder("transformation").members();
 			for (IResource iResource : transformationFolders) {
 				if(iResource instanceof IFolder && ((IFolder) iResource).getFile(iResource.getName() + ".transformation").exists()) {
 					transformationModels.add(iResource.getName());
@@ -107,29 +112,47 @@ class GentransLaunchContext {
 	 * @return the enableHistory
 	 */
 	public boolean isEnableHistory() {
-		return enableHistory;
+		return this.enableHistory;
 	}
 
 	/**
 	 * @param enableHistory the enableHistory to set
 	 */
 	public void setEnableHistory(boolean enableHistory) {
-		firePropertyChange("enableHistory", this.enableHistory, enableHistory);
+		this.firePropertyChange("enableHistory", this.enableHistory, enableHistory);
 		this.enableHistory = enableHistory;
+	}
+
+	/**
+	 * @return the enableStatistics
+	 */
+	public boolean isEnableStatistics() {
+
+		return this.enableStatistics;
+	}
+
+	/**
+	 * @param enableStatistics
+	 *            the enableHistory to set
+	 */
+	public void setEnableStatistics(boolean enableStatistics) {
+
+		this.firePropertyChange("enableStatistics", this.enableStatistics, enableStatistics);
+		this.enableStatistics = enableStatistics;
 	}
 
 	/**
 	 * @return the enableUser
 	 */
 	public boolean isEnableUser() {
-		return enableUser;
+		return this.enableUser;
 	}
 
 	/**
 	 * @param enableUser the enableUser to set
 	 */
 	public void setEnableUser(boolean enableUser) {
-		firePropertyChange("enableUser", this.enableUser, enableUser);
+		this.firePropertyChange("enableUser", this.enableUser, enableUser);
 		this.enableUser = enableUser;
 	}
 
@@ -137,17 +160,17 @@ class GentransLaunchContext {
 	 * @return the useSpecificTransformationModel
 	 */
 	public boolean isUseSpecificTransformationModel() {
-		return useSpecificTransformationModel;
+		return this.useSpecificTransformationModel;
 	}
 
 	/**
 	 * @param useSpecificTransformationModel the useSpecificTransformationModel to set
 	 */
 	public void setUseSpecificTransformationModel(boolean useSpecificTransformationModel) {
-		firePropertyChange("useSpecificTransformationModel", this.useSpecificTransformationModel, useSpecificTransformationModel);
+		this.firePropertyChange("useSpecificTransformationModel", this.useSpecificTransformationModel, useSpecificTransformationModel);
 		if(!useSpecificTransformationModel) {
 			// reset the selection of the transformation model to use
-			setTransformationModelToUse("");
+			this.setTransformationModelToUse("");
 		}
 		this.useSpecificTransformationModel = useSpecificTransformationModel;
 	}
@@ -156,14 +179,14 @@ class GentransLaunchContext {
 	 * @return the transformationModelToUse
 	 */
 	public String getTransformationModelToUse() {
-		return transformationModelToUse;
+		return this.transformationModelToUse;
 	}
 
 	/**
 	 * @param transformationModelToUse the transformationModelToUse to set
 	 */
 	public void setTransformationModelToUse(String transformationModelToUse) {
-		firePropertyChange("transformationModelToUse", this.transformationModelToUse, transformationModelToUse);
+		this.firePropertyChange("transformationModelToUse", this.transformationModelToUse, transformationModelToUse);
 		this.transformationModelToUse = transformationModelToUse;
 	}
 
@@ -171,19 +194,19 @@ class GentransLaunchContext {
 	 * @return the modelsToChooseFrom
 	 */
 	public ArrayList<String> getModelsToChooseFrom() {
-		return modelsToChooseFrom;
+		return this.modelsToChooseFrom;
 	}
 
 	/**
 	 * @param modelsToChooseFrom the modelsToChooseFrom to set
 	 */
 	public void setModelsToChooseFrom(ArrayList<String> modelsToChooseFrom) {
-		firePropertyChange("modelsToChooseFrom", this.modelsToChooseFrom, modelsToChooseFrom);
+		this.firePropertyChange("modelsToChooseFrom", this.modelsToChooseFrom, modelsToChooseFrom);
 		this.modelsToChooseFrom = modelsToChooseFrom;
 	}
 
 	public boolean isHandleExpandingAmbiguities() {
-		return handleExpandingAmbiguities;
+		return this.handleExpandingAmbiguities;
 	}
 
 	public void setHandleExpandingAmbiguities(boolean handleExpandingAmbiguities) {

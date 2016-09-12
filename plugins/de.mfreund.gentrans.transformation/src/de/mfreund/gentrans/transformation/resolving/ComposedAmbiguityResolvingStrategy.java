@@ -32,7 +32,8 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  *
  * @author mfreund
  */
-public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
+public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy
+implements IAmbiguityResolvedAdapter {
 
 	/**
 	 * This keeps track of the strategies that this ComposedStrategy composes.
@@ -340,4 +341,105 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 		return ret;
 	}
+
+	@Override
+	public void searchingSectionSelected(List<MatchedSectionDescriptor> choices,
+			MatchedSectionDescriptor resolved) {
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			if (strategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) strategy).searchingSectionSelected(choices, resolved);
+			}
+		}
+
+	}
+
+	@Override
+	public void searchingMappingSelected(List<Mapping> choices, Mapping resolved) {
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			if (strategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) strategy).searchingMappingSelected(choices, resolved);
+			}
+		}
+
+	}
+
+	@Override
+	public void instantiatingAttributeValueSelected(List<String> choices, String resolved) {
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			if (strategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) strategy).instantiatingAttributeValueSelected(choices, resolved);
+			}
+		}
+
+	}
+
+	@Override
+	public void instantiatingCardinalitySelected(List<Integer> choices, Integer resolved) {
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			if (strategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) strategy).instantiatingCardinalitySelected(choices, resolved);
+			}
+		}
+
+	}
+
+	@Override
+	public void joiningContainerInstanceSelected(List<EObjectWrapper> choices, EObjectWrapper resolved) {
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			if (strategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) strategy).joiningContainerInstanceSelected(choices, resolved);
+			}
+		}
+
+	}
+
+	@Override
+	public void joiningConnectionPathSelected(List<ModelConnectionPath> choices, ModelConnectionPath resolved) {
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			if (strategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) strategy).joiningConnectionPathSelected(choices, resolved);
+			}
+		}
+
+	}
+
+	@Override
+	public void joiningRootElementSelected(List<EClass> choices, EClass resolved) {
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			if (strategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) strategy).joiningRootElementSelected(choices, resolved);
+			}
+		}
+
+	}
+
+	@Override
+	public void linkingTargetInstanceSelected(List<EObjectWrapper> choices, EObjectWrapper resolved) {
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			if (strategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) strategy).linkingTargetInstanceSelected(choices, resolved);
+			}
+		}
+
+	}
+
+	@Override
+	public void linkingTargetSectionSelected(List<TargetSectionClass> choices, TargetSectionClass resolved) {
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			if (strategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) strategy).linkingTargetSectionSelected(choices, resolved);
+			}
+		}
+
+	}
+
 }

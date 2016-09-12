@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GenTrans Ambiguity Resolving (Statistics: Based on Statistical Evaluations of Previous Choices)
+Bundle-SymbolicName: de.mfreund.gentrans.transformation.resolving.statistics;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

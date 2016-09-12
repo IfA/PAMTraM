@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Notifier;
@@ -43,6 +44,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -336,6 +338,75 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		return foundMatch;
+	}
+
+	/**
+	 * Consult the list of {@link TransformationMapping TransformationMappings} stored in the
+	 * {@link #transformationModel} in order to retrieve the corresponding selection for the given list of choices. If a
+	 * corresponding choice is found, reuse it; otherwise, forward the decision to the list of
+	 * {@link ComposedAmbiguityResolvingStrategy#composedStrategies}.
+	 */
+	@Override
+	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
+			EObject element) throws AmbiguityResolvingException {
+
+		/*
+		 * First, we need to check if we can find a match for the given 'element'.
+		 */
+		Match match = this.getSourceModelMatch(element);
+		if (match == null || match.getRight() == null) {
+			return super.searchingSelectSection(choices, element);
+		}
+
+		// the matched element from the 'old' source model
+		EObject matchedElement = match.getRight();
+
+		/*
+		 * Now, we can determine the mapping that was used in the 'old' transformation.
+		 */
+		TransformationMapping oldTransformationMapping = null;
+		for (TransformationMapping transformationMapping : this.transformationModel.getTransformationMappings()) {
+			if (transformationMapping.getSourceElement().equals(matchedElement)) {
+				oldTransformationMapping = transformationMapping;
+				break;
+			}
+		}
+
+		if (oldTransformationMapping == null) {
+			return super.searchingSelectSection(choices, element);
+		}
+
+		/*
+		 * Finally, we check if the list of choices is the 'same' list of choices as in the 'old' transformation (we do
+		 * not want to blindly reuse a choice even if there are changes in the list of mappings that we can choose
+		 * from). Currently, we do this by simply checking that nothing has been changed in the PAMTraM and source
+		 * models but this might be done in a more clever way in the future.
+		 */
+		if (!this.pamtramCompareResult.getDifferences().isEmpty()) {
+			return super.searchingSelectSection(choices, element);
+		}
+		for (Comparison comparison : this.sourceCompareResults) {
+			if (!comparison.getDifferences().isEmpty()) {
+				return super.searchingSelectSection(choices, element);
+			}
+		}
+
+		/*
+		 * Now, we are sure that the current list of choices matches the old one (and thus that the 'old' choice is also
+		 * an option in the current list of choices). Thus, we may safely reuse the old choice.
+		 */
+		Match sectionMatch = this.pamtramCompareResult
+				.getMatch(oldTransformationMapping.getAssociatedMapping().getSourceSection());
+		Optional<MatchedSectionDescriptor> descriptor = choices.parallelStream()
+				.filter(m -> m.getAssociatedSourceSectionClass().equals(sectionMatch.getLeft())).findAny();
+
+		if (!descriptor.isPresent()) {
+			return super.searchingSelectSection(choices, element);
+		}
+
+		this.printMessage(descriptor.get().getAssociatedSourceSectionClass().getName(),
+				HistoryResolvingStrategy.historyDecisionPrefix);
+		return Arrays.asList(descriptor.get());
 	}
 
 	/**
@@ -794,7 +865,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
 			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement)
-			throws AmbiguityResolvingException {
+					throws AmbiguityResolvingException {
 
 		/*
 		 * First, we need to check if we can find a match for the given 'sourceElement' in the 'old' target model.

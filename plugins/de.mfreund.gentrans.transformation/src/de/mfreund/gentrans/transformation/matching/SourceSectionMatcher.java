@@ -29,6 +29,8 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
 import pamtram.mapping.FixedValue;
@@ -66,6 +68,12 @@ public class SourceSectionMatcher {
 	 * {@link #containmentTree} in the course of the matching process.
 	 */
 	private EList<SourceSection> sourceSections;
+
+	/**
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
+	 * execution of the transformation.
+	 */
+	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
 	 * The {@link Logger} that shall be used to print messages.
@@ -110,14 +118,18 @@ public class SourceSectionMatcher {
 	 *            against.
 	 * @param globalValues
 	 *            The list of {@link MappingModel#getGlobalValues() global values} modeled in the PAMTraM instance.
+	 * @param ambiguityResolvingStrategy
+	 *            The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public SourceSectionMatcher(ContainmentTree containmentTree, EList<SourceSection> sourceSections,
-			Map<FixedValue, String> globalValues, Logger logger) {
+			Map<FixedValue, String> globalValues, IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
+			Logger logger) {
 
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
+		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.logger = logger;
 		this.matchedSections = new HashMap<>();
 		this.matchedContainers = new HashMap<>();
@@ -261,7 +273,8 @@ public class SourceSectionMatcher {
 	 *            The {@link EObject element} of the source model for that we are selecting an applicable section.
 	 * @param matches
 	 *            The applicable sections.
-	 * @return The {@link MatchedSectionDescriptor} representing the selected {@link SourceSection}.
+	 * @return The {@link MatchedSectionDescriptor} representing the selected {@link SourceSection} or '<em>null</em>'
+	 *         if no descriptor was selected.
 	 */
 	private MatchedSectionDescriptor selectApplicableSection(EObject element,
 			Map<SourceSection, MatchedSectionDescriptor> matches) {
@@ -296,8 +309,16 @@ public class SourceSectionMatcher {
 
 		// As there are multiple elements with the same number of matched elements, we need to select one of those to
 		// actually use.
-		// TODO as a start, we simply use the first match
-		return matchesWithMaximumElements.get(0);
+		try {
+			this.logger.fine("[Ambiguity] Resolve searching ambiguity...");
+			List<MatchedSectionDescriptor> resolved = this.ambiguityResolvingStrategy
+					.searchingSelectSection(new ArrayList<>(matchesWithMaximumElements), element);
+			this.logger.fine("[Ambiguity] ...finished.\n");
+			return resolved.get(0);
+		} catch (AmbiguityResolvingException e) {
+			this.logger.severe(e.getMessage());
+			return null;
+		}
 	}
 
 	/**

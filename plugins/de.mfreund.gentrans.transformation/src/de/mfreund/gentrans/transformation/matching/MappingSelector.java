@@ -418,7 +418,7 @@ public class MappingSelector extends CancelableElement {
 	private List<Mapping> selectMappingForDescriptor(MatchedSectionDescriptor descriptor,
 			Set<Mapping> applicableMappings) throws Exception {
 
-		this.logger.fine("[Ambiguity] Resolve matching ambiguity...");
+		this.logger.fine("[Ambiguity] Resolve searching ambiguity...");
 		List<Mapping> resolved = this.ambiguityResolvingStrategy.searchingSelectMapping(
 				new ArrayList<>(applicableMappings), descriptor.getAssociatedSourceModelElement());
 		this.logger.fine("[Ambiguity] ...finished.\n");

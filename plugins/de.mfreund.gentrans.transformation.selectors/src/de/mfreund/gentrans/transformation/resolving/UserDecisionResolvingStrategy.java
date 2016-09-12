@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
@@ -55,6 +56,30 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	 */
 	public void setSkipExpandingAmbiguities(boolean skipExpandingAmbiguities) {
 		this.skipExpandingAmbiguities = skipExpandingAmbiguities;
+	}
+
+	@Override
+	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
+			EObject element) throws AmbiguityResolvingException {
+
+		final GenericSelectionDialogRunner<MatchedSectionDescriptor> dialog = new GenericSelectionDialogRunner<MatchedSectionDescriptor>(
+				"Please select a SourceSection for the source element\n'" + EObjectWrapper.asString(element) + "'", 0,
+				false, choices) {
+
+			@Override
+			protected String getStringRepresentation(MatchedSectionDescriptor option) {
+
+				return option.getAssociatedSourceSectionClass().getName();
+			}
+		};
+
+		Display.getDefault().syncExec(dialog);
+		if (dialog.wasTransformationStopRequested()) {
+			throw new AmbiguityResolvingException(new UserAbortException());
+		}
+		this.printMessage(dialog.getSingleSelection().getAssociatedSourceSectionClass().getName(),
+				UserDecisionResolvingStrategy.userDecisionPrefix);
+		return dialog.getSelection();
 	}
 
 	@Override

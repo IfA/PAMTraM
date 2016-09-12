@@ -123,7 +123,7 @@ public interface IAmbiguityResolvingStrategy {
 
 	/**
 	 * Resolve ambiguities that arise when specifying an attribute value for a given 'element' in the
-	 * '<em>expanding</em>' step of the transformation. This method is called when no {@link AttributeMapping} was
+	 * '<em>instantiating</em>' step of the transformation. This method is called when no {@link AttributeMapping} was
 	 * specified (resp. the specified mapping did not return any hint values).
 	 *
 	 * @param choices
@@ -139,7 +139,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
+	public default List<String> instantiatingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
 			EObject element) throws AmbiguityResolvingException {
 
 		List<String> ret = new ArrayList<>();
@@ -151,7 +151,7 @@ public interface IAmbiguityResolvingStrategy {
 
 	/**
 	 * Resolve ambiguities that arise when specifying the cardinality for a given 'targetSectionClass' in the
-	 * '<em>expanding</em>' step of the transformation. This method is called when no hint values from an
+	 * '<em>instantiating</em>' step of the transformation. This method is called when no hint values from an
 	 * {@link AttributeMapping} or {@link CardinalityMapping} could be used to determine the cardinality.
 	 *
 	 * @param choices
@@ -168,7 +168,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<Integer> expandingSelectCardinality(List<Integer> choices,
+	public default List<Integer> instantiatingSelectCardinality(List<Integer> choices,
 			TargetSectionClass targetSectionClass, InstantiableMappingHintGroup mappingHintGroup)
 					throws AmbiguityResolvingException {
 

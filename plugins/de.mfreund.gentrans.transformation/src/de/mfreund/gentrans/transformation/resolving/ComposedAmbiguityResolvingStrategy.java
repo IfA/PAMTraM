@@ -134,7 +134,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	}
 
 	@Override
-	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
+	public List<String> instantiatingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
 			EObject element) throws AmbiguityResolvingException {
 
 		List<String> ret = new ArrayList<>();
@@ -147,7 +147,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
-			ret = strategy.expandingSelectAttributeValue(ret, attribute, element);
+			ret = strategy.instantiatingSelectAttributeValue(ret, attribute, element);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {
@@ -159,7 +159,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	}
 
 	@Override
-	public List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
+	public List<Integer> instantiatingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
 			InstantiableMappingHintGroup mappingHintGroup) throws AmbiguityResolvingException {
 
 		List<Integer> ret = new ArrayList<>();
@@ -172,7 +172,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
-			ret = strategy.expandingSelectCardinality(ret, targetSectionClass, mappingHintGroup);
+			ret = strategy.instantiatingSelectCardinality(ret, targetSectionClass, mappingHintGroup);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {

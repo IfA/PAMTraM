@@ -62,9 +62,9 @@ import pamtram.metamodel.TargetSectionReference;
  */
 public class TargetSectionInstantiator extends CancelableElement {
 
-	private static final String RESOLVE_EXPANDING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
+	private static final String RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
 
-	private static final String RESOLVE_EXPANDING_AMBIGUITY_STARTED = "[Ambiguity] Resolve expanding ambiguity...";
+	private static final String RESOLVE_INSTANTIATING_AMBIGUITY_STARTED = "[Ambiguity] Resolve expanding ambiguity...";
 
 	/**
 	 * TargetSectionContainmentReferences that point to a EReference with an
@@ -622,9 +622,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 						 * Consult the specified resolving strategy to resolve the ambiguity.
 						 */
 						try {
-							this.logger.fine(TargetSectionInstantiator.RESOLVE_EXPANDING_AMBIGUITY_STARTED);
-							List<Integer> resolved = this.ambiguityResolvingStrategy.expandingSelectCardinality(Arrays.asList((Integer) null), targetSectionClass, mappingGroup);
-							this.logger.fine(TargetSectionInstantiator.RESOLVE_EXPANDING_AMBIGUITY_FINISHED);
+							this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
+							List<Integer> resolved = this.ambiguityResolvingStrategy.instantiatingSelectCardinality(Arrays.asList((Integer) null), targetSectionClass, mappingGroup);
+							this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED);
 							if(resolved.get(0) != null) {
 								cardinality = resolved.get(0);
 							} else {
@@ -811,7 +811,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 					 */
 					try {
 						this.logger.fine("[Ambiguity] Resolve expanding ambiguity...");
-						List<String> resolved = this.ambiguityResolvingStrategy.expandingSelectAttributeValue(Arrays.asList((String) null), attr, instance.getEObject());
+						List<String> resolved = this.ambiguityResolvingStrategy.instantiatingSelectAttributeValue(Arrays.asList((String) null), attr, instance.getEObject());
 						this.logger.fine("[Ambiguity] ...finished.\n");
 						attrValue = resolved.get(0);
 					} catch (Exception e) {

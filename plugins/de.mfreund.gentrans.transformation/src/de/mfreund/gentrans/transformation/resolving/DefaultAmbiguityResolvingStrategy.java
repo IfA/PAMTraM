@@ -36,7 +36,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	@Override
-	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) {
+	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element) {
 
 		if (choices == null || choices.isEmpty()) {
 			return new ArrayList<>();

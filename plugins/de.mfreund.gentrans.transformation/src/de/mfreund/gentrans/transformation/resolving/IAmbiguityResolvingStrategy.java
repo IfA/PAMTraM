@@ -41,7 +41,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * <p />
  * <b>Note:</b> The naming scheme of the methods always indicates in which of the four steps of the transformation
  * the ambiguity that needs to be resolved occurs by starting with the step's name. For example, ambiguities that
- * need to be resolved in the method {@link #matchingSelectMapping(List, EObject)} occur in the '<em>matching</em>'
+ * need to be resolved in the method {@link #searchingSelectMapping(List, EObject)} occur in the '<em>matching</em>'
  * step of the transformation.
  * <br />
  * <b>Note:</b> A default implementation exists for every method that does not resolve any ambiguities but simply
@@ -70,7 +70,7 @@ public interface IAmbiguityResolvingStrategy {
 	}
 
 	/**
-	 * Resolve ambiguities that arise when selecting a {@link Mapping} for a given 'element' in the '<em>matching</em>'
+	 * Resolve ambiguities that arise when selecting a {@link Mapping} for a given 'element' in the '<em>searching</em>'
 	 * step of the transformation. This method is called when multiple Mappings point to the same
 	 * {@link Mapping#getSourceSection() source section}.
 	 *
@@ -83,7 +83,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<Mapping> matchingSelectMapping(
+	public default List<Mapping> searchingSelectMapping(
 			List<Mapping> choices,
 			EObject element) throws AmbiguityResolvingException {
 

@@ -419,7 +419,7 @@ public class MappingSelector extends CancelableElement {
 			Set<Mapping> applicableMappings) throws Exception {
 
 		this.logger.fine("[Ambiguity] Resolve matching ambiguity...");
-		List<Mapping> resolved = this.ambiguityResolvingStrategy.matchingSelectMapping(
+		List<Mapping> resolved = this.ambiguityResolvingStrategy.searchingSelectMapping(
 				new ArrayList<>(applicableMappings), descriptor.getAssociatedSourceModelElement());
 		this.logger.fine("[Ambiguity] ...finished.\n");
 		return resolved;

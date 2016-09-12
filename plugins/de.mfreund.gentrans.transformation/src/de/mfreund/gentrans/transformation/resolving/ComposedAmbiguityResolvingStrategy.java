@@ -83,7 +83,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	}
 
 	@Override
-	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element)
+	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element)
 			throws AmbiguityResolvingException {
 
 		List<Mapping> ret = new ArrayList<>();
@@ -96,7 +96,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
-			ret = strategy.matchingSelectMapping(ret, element);
+			ret = strategy.searchingSelectMapping(ret, element);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {

@@ -9,7 +9,7 @@ import pamtram.PAMTraM;
 
 /**
  * This provides an abstract, extensible implementation of {@link IAmbiguityResolvingStrategy}.
- * 
+ *
  * @author mfreund
  */
 public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityResolvingStrategy {
@@ -33,11 +33,11 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 
 	@Override
 	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
-			throws Exception {
+			throws AmbiguityResolvingException {
 
 		this.logger = logger;
 
-		printMessage("Initializing strategy '" + this.getClass().getSimpleName() + "'...");
+		this.printMessage("Initializing strategy '" + this.getClass().getSimpleName() + "'...");
 
 		this.pamtramModel = pamtramModel;
 		this.sourceModels = sourceModels;
@@ -48,13 +48,13 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	 * <p/>
 	 * Note: If '<em>messageStream</em>' is '<em>null</em>' a call of this
 	 * method will do nothing.
-	 * 
+	 *
 	 * @param message
 	 *            The message to print.
 	 */
 	protected void printMessage(String message) {
-		if (logger != null) {
-			logger.fine(message);
+		if (this.logger != null) {
+			this.logger.fine(message);
 		}
 	}
 
@@ -65,13 +65,13 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	 * <p/>
 	 * Note: If '<em>messageStream</em>' is '<em>null</em>' a call of this
 	 * method will do nothing.
-	 * 
+	 *
 	 * @param message
 	 *            The message to print.
 	 */
 	protected void printMessage(String message, String prefix) {
-		if (logger != null) {
-			logger.fine("[" + prefix + "]" + message);
+		if (this.logger != null) {
+			this.logger.fine("[" + prefix + "]" + message);
 		}
 	}
 }

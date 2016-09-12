@@ -27,6 +27,7 @@ import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import pamtram.mapping.AttributeMatcher;
@@ -862,7 +863,7 @@ public class TargetSectionLinker extends CancelableElement {
 						}
 						try {
 							this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
-							HashMap<TargetSectionClass, List<EObjectWrapper>> resolved = this.ambiguityResolvingStrategy
+							Map<TargetSectionClass, List<EObjectWrapper>> resolved = this.ambiguityResolvingStrategy
 									.linkingSelectTargetSectionAndInstance(choices, ref,
 											(MappingHintGroupType) mappingGroup);
 							this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
@@ -875,7 +876,7 @@ public class TargetSectionLinker extends CancelableElement {
 								targets = new ArrayList<>(Arrays.asList(
 										resolved.entrySet().iterator().next().getValue().get(0).getEObject()));
 							}
-						} catch (Exception e) {
+						} catch (AmbiguityResolvingException e) {
 							this.logger.severe(e.getMessage());
 							this.cancel();
 							return;

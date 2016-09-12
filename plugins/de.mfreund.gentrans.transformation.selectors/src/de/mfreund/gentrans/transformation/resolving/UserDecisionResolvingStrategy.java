@@ -58,7 +58,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	}
 
 	@Override
-	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element)
+	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element)
 			throws AmbiguityResolvingException {
 
 		final GenericSelectionDialogRunner<Mapping> dialog = new GenericSelectionDialogRunner<Mapping>(

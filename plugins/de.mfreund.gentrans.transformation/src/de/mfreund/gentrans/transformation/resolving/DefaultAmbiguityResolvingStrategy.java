@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -34,6 +35,17 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * @author mfreund
  */
 public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
+
+	@Override
+	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
+			EObject element) throws AmbiguityResolvingException {
+
+		if (choices == null || choices.isEmpty()) {
+			return new ArrayList<>();
+		} else {
+			return new ArrayList<>(Arrays.asList(choices.get(0)));
+		}
+	}
 
 	@Override
 	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element) {

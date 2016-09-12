@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -80,6 +81,31 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			strategy.init(pamtramModel, sourceModels, logger);
 		}
+	}
+
+	@Override
+	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
+			EObject element) throws AmbiguityResolvingException {
+
+		List<MatchedSectionDescriptor> ret = new ArrayList<>();
+		if (choices != null) {
+			ret.addAll(choices);
+		}
+
+		if (ret.size() <= 1) {
+			return ret;
+		}
+
+		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
+			ret = strategy.searchingSelectSection(ret, element);
+			if (ret == null) {
+				return null;
+			} else if (ret.size() <= 1) {
+				break;
+			}
+		}
+
+		return ret;
 	}
 
 	@Override

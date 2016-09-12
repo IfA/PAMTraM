@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
@@ -22,6 +23,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -67,6 +69,31 @@ public interface IAmbiguityResolvingStrategy {
 	public default void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
 			throws AmbiguityResolvingException {
 		return;
+	}
+
+	/**
+	 * Resolve ambiguities that arise when selecting a {@link SourceSection} for a given 'element' in the
+	 * '<em>searching</em>' step of the transformation. This method is called when multiple {@link SourceSection
+	 * SourceSections} could be matched and cover the same number of elements from the source model.
+	 *
+	 * @param choices
+	 *            The list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} representing the various
+	 *            {@link SourceSection SourceSections} that were matched.
+	 * @param element
+	 *            The source {@link EObject element} for that the SourceSection shall be selected.
+	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of
+	 *         '<em>choices</em>').
+	 * @throws AmbiguityResolvingException
+	 *             If an error occurred while applying the resolving strategy.
+	 */
+	public default List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
+			EObject element) throws AmbiguityResolvingException {
+
+		List<MatchedSectionDescriptor> ret = new ArrayList<>();
+		if (choices != null) {
+			ret.addAll(choices);
+		}
+		return ret;
 	}
 
 	/**

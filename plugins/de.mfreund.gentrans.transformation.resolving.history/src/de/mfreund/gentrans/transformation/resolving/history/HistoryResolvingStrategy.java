@@ -345,7 +345,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * to the list of {@link ComposedAmbiguityResolvingStrategy#composedStrategies}.
 	 */
 	@Override
-	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element)
+	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element)
 			throws AmbiguityResolvingException {
 
 		/*
@@ -353,7 +353,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 */
 		Match match = this.getSourceModelMatch(element);
 		if(match == null || match.getRight() == null) {
-			return super.matchingSelectMapping(choices, element);
+			return super.searchingSelectMapping(choices, element);
 		}
 
 		// the matched element from the 'old' source model
@@ -371,7 +371,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		if(oldTransformationMapping == null) {
-			return super.matchingSelectMapping(choices, element);
+			return super.searchingSelectMapping(choices, element);
 		}
 
 		/*
@@ -388,14 +388,14 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			}
 		}
 		if(oldChoicesWithoutDeactivated.size() != choices.size()) {
-			return super.matchingSelectMapping(choices, element);
+			return super.searchingSelectMapping(choices, element);
 		}
 		for (MappingType oldChoice : oldChoicesWithoutDeactivated) {
 			// find a matching 'new' choice
 			Match matchingNewChoice = this.pamtramCompareResult.getMatch(oldChoice);
 			if(matchingNewChoice == null || matchingNewChoice.getLeft() == null || !(matchingNewChoice.getLeft() instanceof Mapping) ||
 					!choices.contains(matchingNewChoice.getLeft())) {
-				return super.matchingSelectMapping(choices, element);
+				return super.searchingSelectMapping(choices, element);
 			}
 		}
 

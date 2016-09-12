@@ -105,7 +105,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	}
 
 	@Override
-	public List<String> expandingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
+	public List<String> instantiatingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
 			EObject element) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {
@@ -131,7 +131,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	}
 
 	@Override
-	public List<Integer> expandingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
+	public List<Integer> instantiatingSelectCardinality(List<Integer> choices, TargetSectionClass targetSectionClass,
 			InstantiableMappingHintGroup mappingHintGroup) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {

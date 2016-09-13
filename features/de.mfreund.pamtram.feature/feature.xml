@@ -80,6 +80,7 @@
       <import plugin="org.eclipse.ui.console" version="3.6.100" match="greaterOrEqual"/>
       <import plugin="de.mfreund.gentrans.transformation.resolving.history" version="1.0.2" match="greaterOrEqual"/>
       <import feature="de.tud.et.ifa.agtele.eclipse.commons.feature"/>
+      <import plugin="de.mfreund.gentrans.transformation.resolving.statistics" version="0.0.1" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -185,5 +186,12 @@
          download-size="0"
          install-size="0"
          version="0.0.0"/>
+
+   <plugin
+         id="de.mfreund.gentrans.transformation.resolving.statistics"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

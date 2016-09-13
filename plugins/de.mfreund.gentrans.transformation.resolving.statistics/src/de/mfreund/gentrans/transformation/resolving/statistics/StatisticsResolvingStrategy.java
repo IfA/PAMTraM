@@ -22,6 +22,7 @@ import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.AbstractAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
@@ -42,6 +43,16 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 implements IAmbiguityResolvedAdapter {
 
 	/**
+	 * The weighting factor to be used when calculating
+	 * {@link #getWeightedCount(IDialogSettings, IDialogSettings, double, String) weighted counts} for statistics that
+	 * can be evaluated on mapping model or meta-model level.
+	 * <p />
+	 * This needs to be between <em>0</em> (statistics will only regard decisions on the meta-model level) and
+	 * <em>1</em> (statistics will only regard decisions on the mapping model level).
+	 */
+	private double weightingFactor;
+
+	/**
 	 * The instance of {@link IDialogSettings} that is used to store and retrieve statistics on the mapping model level.
 	 */
 	private IDialogSettings mappingSection;
@@ -60,6 +71,9 @@ implements IAmbiguityResolvedAdapter {
 
 		super.init(pamtramModel, sourceModels, logger);
 
+		// Set the default weighting factor
+		this.weightingFactor = 0.5;
+
 		// Acquire the various IDialogSettings that are used to persist/evaluate stored choices
 		//
 		IDialogSettings settings = StatisticsResolvingStrategyPlugin.getPlugin().getDialogSettings();
@@ -68,16 +82,29 @@ implements IAmbiguityResolvedAdapter {
 		IDialogSettings mapping = DialogSettings.getOrCreateSection(section, "MAPPING");
 
 		this.mappingSection = DialogSettings.getOrCreateSection(mapping,
-				pamtramModel.eResource().getURI().toFileString());
+				pamtramModel.eResource().getURI().toString());
 
 		IDialogSettings metamodel = DialogSettings.getOrCreateSection(section, "METAMODEL");
 
 		Set<String> nsURIs = Stream
 				.concat(pamtramModel.getSourceSectionModel().stream(), pamtramModel.getTargetSectionModel().stream())
-				.map(sm -> sm.getMetaModelPackage().getNsURI()).collect(Collectors.toSet());
+				.map(sm -> AgteleEcoreUtil.getRootEPackage(sm.getMetaModelPackage()).getNsURI())
+				.collect(Collectors.toSet());
 
-		nsURIs.stream().forEach(nsURI -> DialogSettings.getOrCreateSection(metamodel, nsURI));
+		this.metamodelSections = nsURIs.stream().collect(
+				Collectors.toMap(nsURI -> nsURI, nsURI -> DialogSettings.getOrCreateSection(metamodel, nsURI)));
 
+	}
+
+	/**
+	 * This is the setter for the {@link #weightingFactor}.
+	 *
+	 * @param weightingFactor
+	 *            the {@link #weightingFactor} to set.
+	 */
+	public void setWeightingFactor(double weightingFactor) {
+
+		this.weightingFactor = weightingFactor;
 	}
 
 	@Override
@@ -95,8 +122,8 @@ implements IAmbiguityResolvedAdapter {
 		//
 		return choices.parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getInt(choicesSection, o2.getAssociatedSourceSectionClass().getName())
-						.compareTo(this.getInt(choicesSection, o1.getAssociatedSourceSectionClass().getName())))
+						.getCount(choicesSection, o2.getAssociatedSourceSectionClass().getName())
+						.compareTo(this.getCount(choicesSection, o1.getAssociatedSourceSectionClass().getName())))
 				.collect(Collectors.toList());
 
 	}
@@ -114,7 +141,7 @@ implements IAmbiguityResolvedAdapter {
 
 		// The previous count for the given selected choice
 		//
-		int count = this.getInt(choicesSection, resolved.getAssociatedSourceSectionClass().getName());
+		int count = this.getCount(choicesSection, resolved.getAssociatedSourceSectionClass().getName());
 
 		choicesSection.put(resolved.getAssociatedSourceSectionClass().getName(), ++count);
 
@@ -135,7 +162,7 @@ implements IAmbiguityResolvedAdapter {
 		//
 		return choices.parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getInt(choicesSection, o2.getName()).compareTo(this.getInt(choicesSection, o1.getName())))
+						.getCount(choicesSection, o2.getName()).compareTo(this.getCount(choicesSection, o1.getName())))
 				.collect(Collectors.toList());
 	}
 
@@ -151,7 +178,7 @@ implements IAmbiguityResolvedAdapter {
 
 		// The previous count for the given selected choice
 		//
-		int count = this.getInt(choicesSection, resolved.getName());
+		int count = this.getCount(choicesSection, resolved.getName());
 
 		choicesSection.put(resolved.getName(), ++count);
 
@@ -188,14 +215,18 @@ implements IAmbiguityResolvedAdapter {
 		String key = String.join(";",
 				choices.keySet().parallelStream().map(m -> m.toString()).sorted().collect(Collectors.toList()));
 
-		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
+		IDialogSettings mappingLayerSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
+		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections
+				.get(AgteleEcoreUtil.getRootEPackage(choices.keySet().iterator().next().getPathRootClass()).getNsURI()),
+				key);
 
 		// Sort the choices in descending order based on the number of previous count
 		// (we only sort the keys as, up to now, we do not perform statistical analysis on instances)
 		//
 		List<ModelConnectionPath> sortedKeys = choices.keySet()
 				.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getInt(choicesSection, o2.toString()).compareTo(this.getInt(choicesSection, o1.toString())))
+						.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor, o2.toString()).compareTo(
+								this.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor, o1.toString())))
 				.collect(Collectors.toList());
 
 		// We create a new LinkedHashMap as this guarantees ordering of keys
@@ -215,13 +246,15 @@ implements IAmbiguityResolvedAdapter {
 		String key = String.join(";",
 				choices.parallelStream().map(m -> m.toString()).sorted().collect(Collectors.toList()));
 
-		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
+		IDialogSettings mappingLayerSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
+		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections
+				.get(AgteleEcoreUtil.getRootEPackage(choices.get(0).getPathRootClass()).getNsURI()), key);
 
 		// Sort the choices in descending order based on the number of previous count
 		//
-		return choices
-				.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getInt(choicesSection, o2.toString()).compareTo(this.getInt(choicesSection, o1.toString())))
+		return choices.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
+				.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor, o2.toString())
+				.compareTo(this.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor, o1.toString())))
 				.collect(Collectors.toList());
 	}
 
@@ -233,13 +266,30 @@ implements IAmbiguityResolvedAdapter {
 		String key = String.join(";",
 				choices.parallelStream().map(m -> m.toString()).sorted().collect(Collectors.toList()));
 
-		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
+		/*
+		 * Store on the mapping layer
+		 */
+		IDialogSettings mappingLayerSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 
 		// The previous count for the given selected choice
 		//
-		int count = this.getInt(choicesSection, resolved.toString());
+		int mappingCount = this.getCount(mappingLayerSection, resolved.toString());
 
-		choicesSection.put(resolved.toString(), ++count);
+		mappingLayerSection.put(resolved.toString(), ++mappingCount);
+
+		/*
+		 * Store on the meta-model layer
+		 */
+		String nsURI = AgteleEcoreUtil.getRootEPackage(resolved.getPathRootClass()).getNsURI();
+		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(
+				this.metamodelSections.get(nsURI),
+				key);
+
+		// The previous count for the given selected choice
+		//
+		int metamodelCount = this.getCount(metamodelLayerSection, resolved.toString());
+
+		metamodelLayerSection.put(resolved.toString(), ++metamodelCount);
 
 	}
 
@@ -251,13 +301,18 @@ implements IAmbiguityResolvedAdapter {
 		String key = String.join(";",
 				choices.parallelStream().map(m -> m.getName()).sorted().collect(Collectors.toList()));
 
-		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
+		IDialogSettings mappingLayerSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
+		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(
+				this.metamodelSections.get(AgteleEcoreUtil.getRootEPackage(choices.get(0)).getNsURI()), key);
 
 		// Sort the choices in descending order based on the number of previous count
 		//
-		return choices
-				.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getInt(choicesSection, o2.getName()).compareTo(this.getInt(choicesSection, o1.getName())))
+		return choices.parallelStream()
+				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
+						.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor,
+								o2.getName())
+						.compareTo(this.getWeightedCount(mappingLayerSection, metamodelLayerSection,
+								this.weightingFactor, o1.getName())))
 				.collect(Collectors.toList());
 	}
 
@@ -269,13 +324,29 @@ implements IAmbiguityResolvedAdapter {
 		String key = String.join(";",
 				choices.parallelStream().map(m -> m.getName()).sorted().collect(Collectors.toList()));
 
-		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
+		/*
+		 * Store on the mapping layer
+		 */
+		IDialogSettings mappingLayerSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 
 		// The previous count for the given selected choice
 		//
-		int count = this.getInt(choicesSection, resolved.getName());
+		int mappingCount = this.getCount(mappingLayerSection, resolved.getName());
 
-		choicesSection.put(resolved.getName(), ++count);
+		mappingLayerSection.put(resolved.getName(), ++mappingCount);
+
+		/*
+		 * Store on the meta-model layer
+		 */
+		String nsURI = AgteleEcoreUtil.getRootEPackage(resolved).getNsURI();
+		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections.get(nsURI),
+				key);
+
+		// The previous count for the given selected choice
+		//
+		int metamodelCount = this.getCount(metamodelLayerSection, resolved.getName());
+
+		metamodelLayerSection.put(resolved.getName(), ++metamodelCount);
 
 	}
 
@@ -303,7 +374,7 @@ implements IAmbiguityResolvedAdapter {
 		//
 		List<TargetSectionClass> sortedKeys = choices.keySet()
 				.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getInt(choicesSection, o2.getName()).compareTo(this.getInt(choicesSection, o1.getName())))
+						.getCount(choicesSection, o2.getName()).compareTo(this.getCount(choicesSection, o1.getName())))
 				.collect(Collectors.toList());
 
 		// We create a new LinkedHashMap as this guarantees ordering of keys
@@ -326,28 +397,52 @@ implements IAmbiguityResolvedAdapter {
 
 		// The previous count for the given selected choice
 		//
-		int count = this.getInt(choicesSection, resolved.getName());
+		int count = this.getCount(choicesSection, resolved.getName());
 
 		choicesSection.put(resolved.getName(), ++count);
 
 	}
 
 	/**
-	 * A helper method to extract an Integer value from an instance of {@link IDialogSettings}.
+	 * A helper method to extract a count from an instance of {@link IDialogSettings}.
 	 *
 	 * @param settings
-	 *            The instance of {@link IDialogSettings} from that the Integer is to be extracted.
+	 *            The instance of {@link IDialogSettings} from that the count is to be extracted.
 	 * @param key
-	 *            The key that shall be used to extract the Integer value.
-	 * @return The extracted Integer value of '<em>0</em>' if no value could be extracted.
+	 *            The key that shall be used to extract the count.
+	 * @return The extracted count or '<em>0</em>' if no value could be extracted.
 	 */
-	private Integer getInt(IDialogSettings settings, String key) {
+	private Integer getCount(IDialogSettings settings, String key) {
 
 		try {
 			return settings.getInt(key);
 		} catch (NumberFormatException e) {
 			return 0;
 		}
+
+	}
+
+	/**
+	 * A helper method to extract a weighted count from two instances of {@link IDialogSettings}.
+	 *
+	 * @param settings1
+	 *            The first instance of {@link IDialogSettings} from that the Integer is to be extracted.
+	 * @param settings2
+	 *            The second instance of {@link IDialogSettings} from that the Integer is to be extracted.
+	 * @param factor
+	 *            The weighing factor (between <em>0</em> and <em>1</em>) to be used when calculating the weighted
+	 *            count. <em>0</em> means that only <em>settings2</em> is weighted, <em>1</em> means that only
+	 *            <em>settings1</em> is weighted.
+	 * @param key
+	 *            The key that shall be used to extract the count.
+	 * @return The extracted weighted count or '<em>0</em>' if no count could be extracted.
+	 */
+	private Double getWeightedCount(IDialogSettings settings1, IDialogSettings settings2, double factor, String key) {
+
+		int count1 = this.getCount(settings1, key);
+		int count2 = this.getCount(settings2, key);
+
+		return factor * count1 + (1 - factor) * count2;
 
 	}
 }

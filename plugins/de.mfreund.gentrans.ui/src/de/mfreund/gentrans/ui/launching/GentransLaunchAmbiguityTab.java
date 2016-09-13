@@ -146,7 +146,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		this.btnEnableStatistics.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 3, 1));
 		this.btnEnableStatistics.setToolTipText(
 				"Enable to use a strategy that resolves ambiguities based on statistical evaluations of previous selections...");
-		this.btnEnableStatistics.setText("Statistics Decision Strategy");
+		this.btnEnableStatistics.setText("Statistics Strategy");
 		this.btnEnableStatistics.setAlignment(SWT.CENTER);
 		this.btnEnableStatistics.addSelectionListener((SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 

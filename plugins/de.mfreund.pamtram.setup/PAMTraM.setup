@@ -275,9 +275,18 @@
           xsi:type="setup:VariableTask"
           id="clone.location.gentrans.transformation.history"
           name="clone.location.gentrans.transformation.history"
-          value="${clone.location.pamtram}\de.mfreund.gentrans.transformation.history${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.gentrans.transformation.resolving.history${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location GenTrans transformation.history project">
+        <description></description>
+      </setupTask>
+      <setupTask
+          xsi:type="setup:VariableTask"
+          id="clone.location.gentrans.transformation.statistics"
+          name="clone.location.gentrans.transformation.statistics"
+          value="${clone.location.pamtram}\de.mfreund.gentrans.transformation.resolving.statistics${clone.append.suffix|trimRight}"
+          defaultValue=""
+          label="Clone location GenTrans transformation.statistics project">
         <description></description>
       </setupTask>
       <setupTask
@@ -635,6 +644,37 @@
               value="master"/>
         </configSections>
         <description>Clone the 'de.mfreund.gentrans.transformation.resolving.history.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.gentrans.transformation.resolving.statistics"
+          location="${clone.location.gentrans.transformation.statistics}"
+          remoteURI="${clone.origin.pamtram}/de.mfreund.gentrans.transformation.resolving.statistics.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
+        <description>Clone the 'de.mfreund.gentrans.transformation.resolving.statistics.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
@@ -1401,6 +1441,8 @@
           rootFolder="${clone.location.gentrans.transformation.selectors}"/>
       <sourceLocator
           rootFolder="${clone.location.gentrans.transformation.history}"/>
+      <sourceLocator
+          rootFolder="${clone.location.gentrans.transformation.statistics}"/>
       <sourceLocator
           rootFolder="${clone.location.gentrans.ui}"/>
       <sourceLocator

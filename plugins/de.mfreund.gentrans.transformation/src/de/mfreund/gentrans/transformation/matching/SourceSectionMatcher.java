@@ -29,12 +29,13 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
 import pamtram.mapping.FixedValue;
 import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.ValueConstraint;
-import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MultipleReferencesValueConstraint;
@@ -47,6 +48,8 @@ import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
+import pamtram.metamodel.ValueConstraint;
+import pamtram.metamodel.ValueConstraintType;
 
 /**
  * This class can be used to match a list of {@link #sourceSections} against a {@link #containmentTree}.
@@ -66,6 +69,12 @@ public class SourceSectionMatcher {
 	 * {@link #containmentTree} in the course of the matching process.
 	 */
 	private EList<SourceSection> sourceSections;
+
+	/**
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
+	 * execution of the transformation.
+	 */
+	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
 	 * The {@link Logger} that shall be used to print messages.
@@ -110,14 +119,18 @@ public class SourceSectionMatcher {
 	 *            against.
 	 * @param globalValues
 	 *            The list of {@link MappingModel#getGlobalValues() global values} modeled in the PAMTraM instance.
+	 * @param ambiguityResolvingStrategy
+	 *            The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public SourceSectionMatcher(ContainmentTree containmentTree, EList<SourceSection> sourceSections,
-			Map<FixedValue, String> globalValues, Logger logger) {
+			Map<FixedValue, String> globalValues, IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
+			Logger logger) {
 
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
+		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.logger = logger;
 		this.matchedSections = new HashMap<>();
 		this.matchedContainers = new HashMap<>();
@@ -146,25 +159,26 @@ public class SourceSectionMatcher {
 
 			Map<SourceSection, MatchedSectionDescriptor> matches = this.findApplicableSections(element);
 
-			// Store the descriptors in the result map
+			// If there are multiple matches, select the one section to actually apply.
 			//
-			for (Entry<SourceSection, MatchedSectionDescriptor> entry : matches.entrySet()) {
+			MatchedSectionDescriptor descriptor = this.selectApplicableSection(element, matches);
 
-				SourceSection source = entry.getKey();
-				MatchedSectionDescriptor descriptor = entry.getValue();
-
-				/*
-				 * Register the created descriptor in the 'sections2Descriptors' map that will be returned in the end
-				 */
-				this.registerDescriptor(source, descriptor);
-
-				/*
-				 * Before returning the matched sections, we mark the affected elements as 'matched' in the containment
-				 * tree and update the 'matchedSections' map
-				 */
-				this.updateMatchedElements(entry.getValue());
-
+			if (descriptor == null) {
+				continue;
 			}
+
+
+			/*
+			 * Register the created descriptor in the 'sections2Descriptors' map that will be returned in the end
+			 */
+			this.registerDescriptor((SourceSection) descriptor.getAssociatedSourceSectionClass(), descriptor);
+
+			/*
+			 * Before returning the matched sections, we mark the affected elements as 'matched' in the containment
+			 * tree and update the 'matchedSections' map
+			 */
+			this.updateMatchedElements(descriptor);
+
 
 		}
 
@@ -248,6 +262,68 @@ public class SourceSectionMatcher {
 		.sequential().forEach(section -> this.findApplicableSection(element, mappingData, section));
 
 		return mappingData;
+	}
+
+	/**
+	 * If multiple applicable sections have been found for an element of the source model during
+	 * {@link #findApplicableSections(EObject)}, one of the sections needs to be selected that shall actually be used.
+	 * Therefore, we first select those matched sections that match the most elements. If there are multiple sections
+	 * that match the same number of elements, we apply the AmbiguityResolvingStrategy.
+	 *
+	 * @param element
+	 *            The {@link EObject element} of the source model for that we are selecting an applicable section.
+	 * @param matches
+	 *            The applicable sections.
+	 * @return The {@link MatchedSectionDescriptor} representing the selected {@link SourceSection} or '<em>null</em>'
+	 *         if no descriptor was selected.
+	 */
+	private MatchedSectionDescriptor selectApplicableSection(EObject element,
+			Map<SourceSection, MatchedSectionDescriptor> matches) {
+
+		if (matches.isEmpty()) {
+			return null;
+		} else if (matches.size() == 1) {
+			return matches.values().iterator().next();
+		}
+
+		// First, we collect those matches that cover the most elements of the source model
+		//
+		List<MatchedSectionDescriptor> matchesWithMaximumElements = new ArrayList<>();
+
+		int maxMatchedElements = 0;
+		for (MatchedSectionDescriptor match : matches.values()) {
+
+			if (match.getSourceModelObjectFlat().size() >= maxMatchedElements) {
+
+				if (match.getSourceModelObjectFlat().size() > maxMatchedElements) {
+					maxMatchedElements = match.getSourceModelObjectFlat().size();
+					matchesWithMaximumElements.clear();
+				}
+
+				matchesWithMaximumElements.add(match);
+			}
+		}
+
+		if (matchesWithMaximumElements.size() == 1) {
+			return matchesWithMaximumElements.get(0);
+		}
+
+		// As there are multiple elements with the same number of matched elements, we need to select one of those to
+		// actually use.
+		try {
+			this.logger.fine("[Ambiguity] Resolve searching ambiguity...");
+			List<MatchedSectionDescriptor> resolved = this.ambiguityResolvingStrategy
+					.searchingSelectSection(new ArrayList<>(matchesWithMaximumElements), element);
+			if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).searchingSectionSelected(
+						new ArrayList<>(matchesWithMaximumElements), resolved.get(0));
+			}
+			this.logger.fine("[Ambiguity] ...finished.\n");
+			return resolved.get(0);
+		} catch (AmbiguityResolvingException e) {
+			this.logger.severe(e.getMessage());
+			return null;
+		}
 	}
 
 	/**

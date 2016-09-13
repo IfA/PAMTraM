@@ -228,7 +228,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, new BasicEList<>(activeSourceSections), globalFixedValues, this.transformationConfig.getLogger());
+				containmentTree, new BasicEList<>(activeSourceSections), globalFixedValues,
+				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger());
 
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 
@@ -466,7 +467,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, new BasicEList<>(activeSourceSections), globalFixedValues, this.transformationConfig.getLogger());
+				containmentTree, new BasicEList<>(activeSourceSections), globalFixedValues,
+				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger());
 
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 

@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
@@ -435,6 +437,11 @@ public class TargetSectionLinker extends CancelableElement {
 													h.getAffectedReference(),
 													(MappingHintGroupType) mappingGroup, h,
 													srcInst);
+									if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+										((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+										.linkingTargetInstanceSelected(new ArrayList<>(fittingVals),
+												resolved.get(0));
+									}
 									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
 									if (ref.getEReference().isMany()) {
 										for (EObjectWrapper eObjectWrapper : resolved) {
@@ -443,7 +450,7 @@ public class TargetSectionLinker extends CancelableElement {
 									} else {
 										targetInst.add(resolved.get(0).getEObject());
 									}
-								} catch (Exception e) {
+								} catch (AmbiguityResolvingException e) {
 									this.logger.severe(e.getMessage());
 									this.cancel();
 									return;
@@ -866,15 +873,24 @@ public class TargetSectionLinker extends CancelableElement {
 							Map<TargetSectionClass, List<EObjectWrapper>> resolved = this.ambiguityResolvingStrategy
 									.linkingSelectTargetSectionAndInstance(choices, ref,
 											(MappingHintGroupType) mappingGroup);
+							Entry<TargetSectionClass, List<EObjectWrapper>> selected = resolved.entrySet().iterator()
+									.next();
+							if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+								((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+								.linkingTargetSectionSelected(new ArrayList<>(choices.keySet()), selected.getKey());
+								((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+								.linkingTargetInstanceSelected(new ArrayList<>(choices.get(selected.getKey())),
+												selected.getValue().get(0));
+							}
 							this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
 							if (ref.getEReference().isMany()) {
 								targets = new ArrayList<>();
-								for (EObjectWrapper eObjectWrapper : resolved.entrySet().iterator().next().getValue()) {
+								for (EObjectWrapper eObjectWrapper : selected.getValue()) {
 									targets.add(eObjectWrapper.getEObject());
 								}
 							} else {
 								targets = new ArrayList<>(Arrays.asList(
-										resolved.entrySet().iterator().next().getValue().get(0).getEObject()));
+										selected.getValue().get(0).getEObject()));
 							}
 						} catch (AmbiguityResolvingException e) {
 							this.logger.severe(e.getMessage());

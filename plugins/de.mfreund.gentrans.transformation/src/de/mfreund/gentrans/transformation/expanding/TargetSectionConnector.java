@@ -24,6 +24,7 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
@@ -517,10 +518,14 @@ public class TargetSectionConnector extends CancelableElement {
 				try {
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 					List<EClass> resolved = this.ambiguityResolvingStrategy.joiningSelectRootElement(new ArrayList<>(common));
+					if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+						((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+						.joiningRootElementSelected(new ArrayList<>(common), resolved.get(0));
+					}
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 					rootClass = resolved.get(0);
 
-				} catch (Exception e) {
+				} catch (AmbiguityResolvingException e) {
 					this.logger.severe(e.getMessage());
 					this.cancel();
 					return;
@@ -576,10 +581,15 @@ public class TargetSectionConnector extends CancelableElement {
 								try {
 									this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 									List<ModelConnectionPath> resolved = this.ambiguityResolvingStrategy.joiningSelectConnectionPath(fittingPaths, (TargetSection) tSection);
+									if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+										((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+										.joiningConnectionPathSelected(new ArrayList<>(fittingPaths),
+												resolved.get(0));
+									}
 									this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 									chosenPath = resolved.get(0);
 
-								} catch (Exception e) {
+								} catch (AmbiguityResolvingException e) {
 									this.logger.severe(e.getMessage());
 									this.cancel();
 									return;
@@ -817,9 +827,15 @@ public class TargetSectionConnector extends CancelableElement {
 				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 				Map<ModelConnectionPath, List<EObjectWrapper>> resolved = this.ambiguityResolvingStrategy
 						.joiningSelectConnectionPathAndContainerInstance(choices, section, rootInstances, mappingGroup);
-				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 				modelConnectionPath = resolved.entrySet().iterator().next().getKey();
 				inst = instancesByPath.get(modelConnectionPath.toString()).get(resolved.entrySet().iterator().next().getValue().get(0).toString());
+				if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+					.joiningConnectionPathSelected(new ArrayList<>(choices.keySet()), modelConnectionPath);
+					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+					.joiningContainerInstanceSelected(new ArrayList<>(choices.get(modelConnectionPath)), inst);
+				}
+				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 
 			} catch (AmbiguityResolvingException e) {
 
@@ -1004,10 +1020,14 @@ public class TargetSectionConnector extends CancelableElement {
 					List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy.joiningSelectContainerInstance(
 							new LinkedList<>(contInstsByHintVal.get(hintValEntry.getKey())),
 							new LinkedList<>(hintValEntry.getValue()), mappingGroup, connectionHint, hintValEntry.getKey());
+					if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+						((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).joiningContainerInstanceSelected(
+								new ArrayList<>(contInstsByHintVal.get(hintValEntry.getKey())), resolved.get(0));
+					}
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 					rootInstancesByContainer.put(resolved.get(0), hintValEntry.getValue());
 
-				} catch (Exception e) {
+				} catch (AmbiguityResolvingException e) {
 					this.logger.severe(e.getMessage());
 					this.cancel();
 					return;
@@ -1091,9 +1111,13 @@ public class TargetSectionConnector extends CancelableElement {
 				try {
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 					List<ModelConnectionPath> resolved = this.ambiguityResolvingStrategy.joiningSelectConnectionPath(pathsToConsider, section);
+					if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+						((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+						.joiningConnectionPathSelected(new ArrayList<>(pathsToConsider), resolved.get(0));
+					}
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 					modelConnectionPath = resolved.get(0);
-				} catch (Exception e) {
+				} catch (AmbiguityResolvingException e) {
 					this.logger.severe(e.getMessage());
 					this.cancel();
 					return;

@@ -20,7 +20,9 @@ import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
 import pamtram.condition.ApplicationDependency;
@@ -412,15 +414,20 @@ public class MappingSelector extends CancelableElement {
 	 *            The {@link MatchedSectionDescriptor} for that the mappings to be applied are determined.
 	 * @param applicableMappings
 	 *            The list of applicable {@link Mapping Mappings} that shall be taken into account.
-	 * @return
-	 * @throws Exception
+	 * @return The determined mappings to apply.
+	 * @throws AmbiguityResolvingException
+	 *             If an error occurred while applying the resolving strategy.
 	 */
 	private List<Mapping> selectMappingForDescriptor(MatchedSectionDescriptor descriptor,
-			Set<Mapping> applicableMappings) throws Exception {
+			Set<Mapping> applicableMappings) throws AmbiguityResolvingException {
 
 		this.logger.fine("[Ambiguity] Resolve searching ambiguity...");
 		List<Mapping> resolved = this.ambiguityResolvingStrategy.searchingSelectMapping(
 				new ArrayList<>(applicableMappings), descriptor.getAssociatedSourceModelElement());
+		if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+			((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+			.searchingMappingSelected(new ArrayList<>(applicableMappings), resolved.get(0));
+		}
 		this.logger.fine("[Ambiguity] ...finished.\n");
 		return resolved;
 	}

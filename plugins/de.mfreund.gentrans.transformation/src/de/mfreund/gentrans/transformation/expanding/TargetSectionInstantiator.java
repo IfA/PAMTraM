@@ -31,7 +31,9 @@ import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import pamtram.mapping.AttributeMapping;
@@ -624,13 +626,18 @@ public class TargetSectionInstantiator extends CancelableElement {
 						try {
 							this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
 							List<Integer> resolved = this.ambiguityResolvingStrategy.instantiatingSelectCardinality(Arrays.asList((Integer) null), targetSectionClass, mappingGroup);
+							if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+								((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+										.instantiatingCardinalitySelected(Arrays.asList((Integer) null),
+												resolved.get(0));
+							}
 							this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED);
 							if(resolved.get(0) != null) {
 								cardinality = resolved.get(0);
 							} else {
 								cardinality = targetSectionClass.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0;
 							}
-						} catch (Exception e) {
+						} catch (AmbiguityResolvingException e) {
 
 							this.logger.severe(e.getMessage());
 							this.canceled = true;
@@ -812,9 +819,13 @@ public class TargetSectionInstantiator extends CancelableElement {
 					try {
 						this.logger.fine("[Ambiguity] Resolve expanding ambiguity...");
 						List<String> resolved = this.ambiguityResolvingStrategy.instantiatingSelectAttributeValue(Arrays.asList((String) null), attr, instance.getEObject());
+						if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+							((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+							.instantiatingAttributeValueSelected(Arrays.asList((String) null), resolved.get(0));
+						}
 						this.logger.fine("[Ambiguity] ...finished.\n");
 						attrValue = resolved.get(0);
-					} catch (Exception e) {
+					} catch (AmbiguityResolvingException e) {
 						this.logger.severe(e.getMessage());
 						this.canceled = true;
 						return null;

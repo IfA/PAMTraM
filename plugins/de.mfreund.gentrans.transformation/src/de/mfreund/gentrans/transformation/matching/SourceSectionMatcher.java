@@ -29,6 +29,7 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
@@ -313,6 +314,10 @@ public class SourceSectionMatcher {
 			this.logger.fine("[Ambiguity] Resolve searching ambiguity...");
 			List<MatchedSectionDescriptor> resolved = this.ambiguityResolvingStrategy
 					.searchingSelectSection(new ArrayList<>(matchesWithMaximumElements), element);
+			if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).searchingSectionSelected(
+						new ArrayList<>(matchesWithMaximumElements), resolved.get(0));
+			}
 			this.logger.fine("[Ambiguity] ...finished.\n");
 			return resolved.get(0);
 		} catch (AmbiguityResolvingException e) {

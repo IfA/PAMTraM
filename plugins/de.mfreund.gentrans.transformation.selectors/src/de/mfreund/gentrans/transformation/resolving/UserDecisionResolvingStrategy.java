@@ -196,25 +196,11 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
-		// get shortest path
-		ModelConnectionPath chosenPath = choices.get(0);
-		int chosenPathSize = chosenPath.size();
-		for (final ModelConnectionPath p : choices) {// get
-			/*
-			 * one of the shortest paths
-			 */
-			final int pSize = p.size();
-			if (pSize < chosenPathSize) {
-				chosenPath = p;
-				chosenPathSize = pSize;
-			}
-		}
-
 		final GenericSelectionDialogRunner<ModelConnectionPath> dialog = new GenericSelectionDialogRunner<>(
 				"Please choose one of the possible connections for connecting the "
 						+ "instances of the target section '" + section.getName() + "' (EClass: '"
 						+ section.getEClass().getName() + "') to the model root element of the type '" + choices.get(0).getPathRootClass().getName() + "'.",
-						choices.indexOf(chosenPath), false, choices);
+				0, false, choices);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new AmbiguityResolvingException(new UserAbortException());

@@ -19,6 +19,13 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 
+import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
+
+/**
+ * An {@link ILaunchShortcut2} that is able to launch a GenTrans transformation based on a selection.
+ *
+ * @author mfreund
+ */
 public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 	@Override
@@ -30,19 +37,20 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 		// get the existing launch configurations for the current selection
 		ILaunchConfiguration[] launchConfigs =
-				getLaunchConfigurations(selection);
+				this.getLaunchConfigurations(selection);
 
-		ILaunchConfiguration configToLaunch = null;
+		ILaunchConfiguration configToLaunch;
+
 		if(launchConfigs.length == 0) {
 			// if no launch config has been found, create a new one
 			try {
-				IResource res = getLaunchableResource(selection);
+				IResource res = this.getLaunchableResource(selection);
 				if(res == null) {
-					MessageDialog.openError(new Shell(), 
+					MessageDialog.openError(new Shell(),
 							"Error", "No launchable resource found!");
 					return;
 				}
-				ILaunchConfigurationWorkingCopy workingCopy = 
+				ILaunchConfigurationWorkingCopy workingCopy =
 						type.newInstance(null, res.getName());
 
 				// set default for common settings
@@ -102,14 +110,14 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	/**
 	 * Retrieve the existing launch configurations that are available for the
 	 * current selection.
-	 * 
+	 *
 	 * @param selection the current selection
 	 * @return a list of launch configurations for the current selection
 	 */
 	@Override
 	public ILaunchConfiguration[] getLaunchConfigurations(ISelection selection) {
 
-		IResource res = getLaunchableResource(selection);
+		IResource res = this.getLaunchableResource(selection);
 		// if no launchable project could be determined, return
 		// an empty list of launch configurations
 		if(res == null || !(res instanceof IProject)) {
@@ -117,8 +125,8 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 		}
 
 		IProject project = (IProject) res;
-		ArrayList<ILaunchConfiguration> launchConfigs = 
-				new ArrayList<ILaunchConfiguration>();
+		ArrayList<ILaunchConfiguration> launchConfigs =
+				new ArrayList<>();
 
 		try {
 
@@ -127,13 +135,14 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 					.getLaunchConfigurationType("de.mfreund.gentrans.launchConfigurationType.gentrans");
 
 			// retrieve the launch configurations from the launch manager
-			ILaunchConfiguration[] launchConfigurations = 
+			ILaunchConfiguration[] launchConfigurations =
 					launchManager.getLaunchConfigurations(type);
 
 			for (ILaunchConfiguration launchConfiguration : launchConfigurations) {
 				// the launch configuration is applicable if the project
 				// attribute matches the launchable resource
-				if (launchConfiguration.getAttribute("project", "").equals(project.getName())) {
+				if (launchConfiguration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, "")
+						.equals(project.getName())) {
 					launchConfigs.add(launchConfiguration);
 				}
 			}
@@ -147,7 +156,8 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 	@Override
 	public ILaunchConfiguration[] getLaunchConfigurations(IEditorPart editorpart) {
-		return null;
+
+		return new ILaunchConfiguration[] {};
 	}
 
 	@Override
@@ -168,10 +178,10 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 				// if a source or pamtram file has been selected, determine
 				// the corresponding project and return it
 				IFile file = (IFile) el;
-				if((file.getName().endsWith(".xmi") || file.getName().endsWith(".xml")) && 
+				if((file.getName().endsWith(".xmi") || file.getName().endsWith(".xml")) &&
 						file.getParent().getName().equals("Source")) {
 					return file.getProject();
-				} else if(file.getName().endsWith(".pamtram") && 
+				} else if(file.getName().endsWith(".pamtram") &&
 						file.getParent().getName().equals("Pamtram")) {
 					return file.getProject();
 				}

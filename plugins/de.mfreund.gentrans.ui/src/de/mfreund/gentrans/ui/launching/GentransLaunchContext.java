@@ -3,6 +3,7 @@ package de.mfreund.gentrans.ui.launching;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
@@ -39,9 +40,19 @@ class GentransLaunchContext {
 	private boolean enableHistory = false;
 
 	/**
+	 * The name of the {@link #enableHistory} property.
+	 */
+	public static final String PROPERTY_NAME_ENABLE_HISTORY = "enableHistory";
+
+	/**
 	 * Whether the '<em>StatisticsResolvingStrategy</em>' shall be applied to resolve ambiguities.
 	 */
 	private boolean enableStatistics = false;
+
+	/**
+	 * The name of the {@link #enableStatistics} property.
+	 */
+	public static final String PROPERTY_NAME_ENABLE_STATISTICS = "enableStatistics";
 
 	/**
 	 * The weighting factor (in percent) to be used by the '<em>StatisticsResolvingStrategy</em>' (for statistics that
@@ -50,9 +61,19 @@ class GentransLaunchContext {
 	private int weightingFactor = 50;
 
 	/**
+	 * The name of the {@link #weightingFactor} property.
+	 */
+	public static final String PROPERTY_NAME_WEIGHTING_FACTOR = "weightingFactor";
+
+	/**
 	 * Whether the '<em>UserDecisionResolvingStrategy</em>' shall be applied to resolve ambiguities.
 	 */
 	private boolean enableUser = false;
+
+	/**
+	 * The name of the {@link #enableUser} property.
+	 */
+	public static final String PROPERTY_NAME_ENABLE_USER = "enableUser";
 
 	/**
 	 * Whether a specific transformation model shall be used.
@@ -60,16 +81,39 @@ class GentransLaunchContext {
 	private boolean useSpecificTransformationModel = false;
 
 	/**
+	 * The name of the {@link #useSpecificTransformationModel} property.
+	 */
+	public static final String PROPERTY_NAME_USE_SPECIFIC_TRANSFORMATION_MODEL = "useSpecificTransformationModel";
+
+	/**
 	 * The name of the transformation to use.
 	 */
 	private String transformationModelToUse = "";
+
+	/**
+	 * The name of the {@link #transformationModelToUse} property.
+	 */
+	public static final String PROPERTY_NAME_TRANSFORMATION_MODEL_TO_USE = "transformationModelToUse";
 
 	/**
 	 * Whether the UserDecisionResolvingStratety shall also handle expanding ambiguities.
 	 */
 	private boolean handleExpandingAmbiguities = false;
 
-	private ArrayList<String> modelsToChooseFrom = new ArrayList<>();
+	/**
+	 * The name of the {@link #handleExpandingAmbiguities} property.
+	 */
+	public static final String PROPERTY_NAME_HANDLE_EXPANDING_AMBIGUITIES = "handleExpandingAmbiguities";
+
+	/**
+	 * The list of transformation models that the user can choose from.
+	 */
+	private List<String> modelsToChooseFrom = new ArrayList<>();
+
+	/**
+	 * The name of the {@link #modelsToChooseFrom} property.
+	 */
+	public static final String PROPERTY_NAME_MODELS_TO_CHOOSE_FROM = "modelsToChooseFrom";
 
 	public void addPropertyChangeListener(PropertyChangeListener
 			listener) {
@@ -109,6 +153,7 @@ class GentransLaunchContext {
 				}
 			}
 		} catch (CoreException e) {
+			// we simply do nothing
 		}
 		this.setModelsToChooseFrom(transformationModels);
 		this.project = project;
@@ -220,14 +265,14 @@ class GentransLaunchContext {
 	/**
 	 * @return the modelsToChooseFrom
 	 */
-	public ArrayList<String> getModelsToChooseFrom() {
+	public List<String> getModelsToChooseFrom() {
 		return this.modelsToChooseFrom;
 	}
 
 	/**
 	 * @param modelsToChooseFrom the modelsToChooseFrom to set
 	 */
-	public void setModelsToChooseFrom(ArrayList<String> modelsToChooseFrom) {
+	public void setModelsToChooseFrom(List<String> modelsToChooseFrom) {
 		this.firePropertyChange("modelsToChooseFrom", this.modelsToChooseFrom, modelsToChooseFrom);
 		this.modelsToChooseFrom = modelsToChooseFrom;
 	}

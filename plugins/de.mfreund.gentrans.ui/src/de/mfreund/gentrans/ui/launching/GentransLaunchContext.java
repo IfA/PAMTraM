@@ -28,21 +28,6 @@ class GentransLaunchContext {
 	private final PropertyChangeSupport changeSupport =
 			new PropertyChangeSupport(this);
 
-	public void addPropertyChangeListener(PropertyChangeListener
-			listener) {
-		this.changeSupport.addPropertyChangeListener(listener);
-	}
-
-	public void removePropertyChangeListener(PropertyChangeListener
-			listener) {
-		this.changeSupport.removePropertyChangeListener(listener);
-	}
-
-	protected void firePropertyChange(String propertyName, Object oldValue,
-			Object newValue) {
-		this.changeSupport.firePropertyChange(propertyName, oldValue, newValue);
-	}
-
 	/**
 	 * The name of the project that this generic transformation works on.
 	 */
@@ -57,6 +42,12 @@ class GentransLaunchContext {
 	 * Whether the '<em>StatisticsResolvingStrategy</em>' shall be applied to resolve ambiguities.
 	 */
 	private boolean enableStatistics = false;
+
+	/**
+	 * The weighting factor (in percent) to be used by the '<em>StatisticsResolvingStrategy</em>' (for statistics that
+	 * can applied on the meta-model and on the mapping level).
+	 */
+	private int weightingFactor = 50;
 
 	/**
 	 * Whether the '<em>UserDecisionResolvingStrategy</em>' shall be applied to resolve ambiguities.
@@ -79,6 +70,21 @@ class GentransLaunchContext {
 	private boolean handleExpandingAmbiguities = false;
 
 	private ArrayList<String> modelsToChooseFrom = new ArrayList<>();
+
+	public void addPropertyChangeListener(PropertyChangeListener
+			listener) {
+		this.changeSupport.addPropertyChangeListener(listener);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener
+			listener) {
+		this.changeSupport.removePropertyChangeListener(listener);
+	}
+
+	protected void firePropertyChange(String propertyName, Object oldValue,
+			Object newValue) {
+		this.changeSupport.firePropertyChange(propertyName, oldValue, newValue);
+	}
 
 	/**
 	 * @return the project
@@ -139,6 +145,27 @@ class GentransLaunchContext {
 
 		this.firePropertyChange("enableStatistics", this.enableStatistics, enableStatistics);
 		this.enableStatistics = enableStatistics;
+	}
+
+	/**
+	 * This is the getter for the {@link #weightingFactor}.
+	 *
+	 * @return the {@link #weightingFactor}.
+	 */
+	public int getWeightingFactor() {
+
+		return this.weightingFactor;
+	}
+
+	/**
+	 * This is the setter for the {@link #weightingFactor}.
+	 *
+	 * @param weightingFactor
+	 *            the {@link #weightingFactor} to set.
+	 */
+	public void setWeightingFactor(int weightingFactor) {
+
+		this.weightingFactor = weightingFactor;
 	}
 
 	/**

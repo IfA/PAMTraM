@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.ui.launching;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
@@ -11,6 +12,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
+import org.eclipse.jface.bindings.Binding;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -24,6 +26,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Scale;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wb.swt.SWTResourceManager;
 
@@ -32,7 +35,6 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 
-	private DataBindingContext m_bindingContext;
 	private Button btnUseSpecificTransformation;
 	private Combo comboSelectTransformation;
 	private Button btnUseLatestTransformation;
@@ -43,6 +45,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	private Composite historyComposite;
 
 	private Composite statisticsComposite;
+
+	private Scale scaleStatisticsFactor;
 	private Composite userComposite;
 
 	/**
@@ -50,7 +54,6 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	 */
 	private GentransLaunchContext context = new GentransLaunchContext();
 	private Button btnEnableUser;
-
 	public GentransLaunchAmbiguityTab(GentransLaunchContext context) {
 		this.context = context;
 	}
@@ -151,13 +154,33 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		this.btnEnableStatistics.addSelectionListener((SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 
 		this.statisticsComposite = new Composite(ambiguityStrategyGroup, SWT.NONE);
-		GridLayout gl_statisticsComposite = new GridLayout(2, false);
+		GridLayout gl_statisticsComposite = new GridLayout(4, false);
 		gl_statisticsComposite.marginLeft = 10;
 		this.statisticsComposite.setLayout(gl_statisticsComposite);
 		this.statisticsComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
-		Label label2 = new Label(ambiguityStrategyGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		Label labelWeightingFactor = new Label(this.statisticsComposite, SWT.HORIZONTAL);
+		labelWeightingFactor.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1));
+		labelWeightingFactor.setText("Auswertungsebene (Wichtungsfaktor): ");
+
+		Label labelMetaModelLevel = new Label(this.statisticsComposite, SWT.HORIZONTAL);
+		labelMetaModelLevel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1));
+		labelMetaModelLevel.setText("Metamodell");
+
+		this.scaleStatisticsFactor = new Scale(this.statisticsComposite, SWT.HORIZONTAL);
+		this.scaleStatisticsFactor.setMinimum(0);
+		this.scaleStatisticsFactor.setMaximum(100);
+		this.scaleStatisticsFactor.setSelection(50);
+		this.scaleStatisticsFactor.setEnabled(false);
+		this.scaleStatisticsFactor.setToolTipText(
+				"The weighting factor to be used for statistics that can be evaluated on mapping model or meta-model level (0: statistics "
+						+ "will only be evaluated on the meta-model level; 100: statistics will only be evaluated on the mapping level)");
+		this.scaleStatisticsFactor.addSelectionListener(
+				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
+
+		Label labelMappingModelLevel = new Label(this.statisticsComposite, SWT.HORIZONTAL);
+		labelMappingModelLevel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1));
+		labelMappingModelLevel.setText("Mapping-Modell");
 
 		this.btnEnableUser = new Button(ambiguityStrategyGroup, SWT.CHECK);
 		this.btnEnableUser.setSelection(true);
@@ -182,7 +205,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		new Label(this.userComposite, SWT.NONE);
 		this.btnHandleExpandingCardinalities.addSelectionListener((SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 
-		this.m_bindingContext = this.initDataBindings();
+		this.initDataBindings();
 
 	}
 
@@ -194,8 +217,11 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		// set the transformationModel attribute
 		configuration.setAttribute("transformationModel", "");
 
-		// set the enableStatistics
+		// set the enableStatistics attribute
 		configuration.setAttribute("enableStatistics", false);
+
+		// set the weightingFactor attribute
+		configuration.setAttribute("weightingFactor", 50);
 
 		// set the enableUser attribute
 		configuration.setAttribute("enableUser", false);
@@ -208,12 +234,12 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
 			// set the enableHistory/User fields in the context
-			//			context.setEnableHistory(configuration.getAttribute("enableHistory", false));
 			this.btnEnableHistory.setSelection(configuration.getAttribute("enableHistory", false));
 
 			this.btnEnableStatistics.setSelection(configuration.getAttribute("enableStatistics", false));
+			this.scaleStatisticsFactor.setEnabled(configuration.getAttribute("enableStatistics", false));
+			this.scaleStatisticsFactor.setSelection(configuration.getAttribute("weightingFactor", 50));
 
-			//			context.setEnableUser(configuration.getAttribute("enableUser", true));
 			this.btnEnableUser.setSelection(configuration.getAttribute("enableUser", true));
 			this.btnHandleExpandingCardinalities.setSelection(configuration.getAttribute("handleExpanding", false));
 
@@ -247,6 +273,9 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		// set the enableStatistics attribute
 		configuration.setAttribute("enableStatistics", this.btnEnableStatistics.getSelection());
 
+		// set the weightingFactor attribute
+		configuration.setAttribute("weightingFactor", this.scaleStatisticsFactor.getSelection());
+
 		// set the enableUser attribute
 		configuration.setAttribute("enableUser", this.btnEnableUser.getSelection());
 
@@ -259,56 +288,101 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	public String getName() {
 		return "Ambiguity resolving";
 	}
-	protected DataBindingContext initDataBindings() {
+
+	/**
+	 * Initialize all {@link Binding data bindings} between the various widgets displayed on this tab and the
+	 * {@link #context} as well as among widgets.
+	 *
+	 */
+	@SuppressWarnings("unchecked")
+	protected void initDataBindings() {
+
+		// The context where all bindings will be registered
+		//
 		DataBindingContext bindingContext = new DataBindingContext();
+
+		// The various observable values for widget properties
 		//
-		IObservableValue observeEnabledComboSelectTransformationObserveWidget_1 = WidgetProperties.enabled().observe(this.comboSelectTransformation);
-		IObservableValue observeSelectionBtnEnableHistoryObserveWidget_2 = WidgetProperties.selection().observe(this.btnEnableHistory);
-		bindingContext.bindValue(observeEnabledComboSelectTransformationObserveWidget_1, observeSelectionBtnEnableHistoryObserveWidget_2, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
-		//
-		IObservableValue observeEnabledBtnUseLatestTransformationObserveWidget = WidgetProperties.enabled().observe(this.btnUseLatestTransformation);
-		IObservableValue observeSelectionBtnEnableHistoryObserveWidget = WidgetProperties.selection().observe(this.btnEnableHistory);
-		bindingContext.bindValue(observeEnabledBtnUseLatestTransformationObserveWidget, observeSelectionBtnEnableHistoryObserveWidget, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
-		//
-		IObservableValue observeEnabledBtnUseSpecificTransformationObserveWidget = WidgetProperties.enabled().observe(this.btnUseSpecificTransformation);
-		IObservableValue observeSelectionBtnEnableHistoryObserveWidget_1 = WidgetProperties.selection().observe(this.btnEnableHistory);
-		bindingContext.bindValue(observeEnabledBtnUseSpecificTransformationObserveWidget, observeSelectionBtnEnableHistoryObserveWidget_1, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
-		//
-		IObservableValue observeSelectionBtnEnableHistoryObserveWidget_3 = WidgetProperties.selection().observe(this.btnEnableHistory);
-		IObservableValue enableHistoryAmbiguityResolvingContextObserveValue = BeanProperties.value("enableHistory").observe(this.context);
-		bindingContext.bindValue(observeSelectionBtnEnableHistoryObserveWidget_3, enableHistoryAmbiguityResolvingContextObserveValue, null, null);
-		//
-		IObservableValue observeSelectionBtnEnableStatisticsObserveWidget_3 = WidgetProperties.selection()
+		IObservableValue<Boolean> observeSelectionBtnEnableHistoryObserveWidget = WidgetProperties.selection()
+				.observe(this.btnEnableHistory);
+		IObservableValue<Boolean> observeEnabledBtnUseLatestTransformationObserveWidget = WidgetProperties.enabled()
+				.observe(this.btnUseLatestTransformation);
+		IObservableValue<Boolean> observeEnabledBtnUseSpecificTransformationObserveWidget = WidgetProperties.enabled()
+				.observe(this.btnUseSpecificTransformation);
+		IObservableValue<Boolean> observeSelectionBtnUseSpecificTransformationObserveWidget = WidgetProperties
+				.selection().observe(this.btnUseSpecificTransformation);
+		IObservableValue<Boolean> observeEnabledComboSelectTransformationObserveWidget = WidgetProperties.enabled()
+				.observe(this.comboSelectTransformation);
+		IObservableValue<Boolean> observeSelectionComboSelectTransformationObserveWidget = WidgetProperties.selection()
+				.observe(this.comboSelectTransformation);
+		IObservableList<List<?>> itemsComboSelectTransformationObserveWidget = WidgetProperties.items()
+				.observe(this.comboSelectTransformation);
+
+		IObservableValue<Boolean> observeSelectionBtnEnableStatisticsObserveWidget = WidgetProperties.selection()
 				.observe(this.btnEnableStatistics);
-		IObservableValue enableStatisticsAmbiguityResolvingContextObserveValue = BeanProperties
+		IObservableValue<Boolean> observeEnabledScaleStatisticsObserveWidget = WidgetProperties.enabled()
+				.observe(this.scaleStatisticsFactor);
+		IObservableValue<Integer> observeSelectionScaleStatisticsFactorObserveWidget = WidgetProperties.selection()
+				.observe(this.scaleStatisticsFactor);
+
+		IObservableValue<Boolean> observeSelectionBtnEnableUserObserveWidget = WidgetProperties.selection()
+				.observe(this.btnEnableUser);
+		IObservableValue<Boolean> observeEnabledBtnHandleExpandingCardinalitiesObserveWidget = WidgetProperties
+				.enabled().observe(this.btnHandleExpandingCardinalities);
+		IObservableValue<Boolean> observeSelectionBtnHandleExpandingCardinalitiesObserveWidget = WidgetProperties
+				.selection().observe(this.btnHandleExpandingCardinalities);
+
+		// The various observable values for bean properties
+		//
+		IObservableValue<Boolean> enableHistoryAmbiguityResolvingContextObserveValue = BeanProperties
+				.value("enableHistory").observe(this.context);
+		IObservableValue<Boolean> useSpecificTransformationModelAmbiguityResolvingContextObserveValue = BeanProperties
+				.value("useSpecificTransformationModel").observe(this.context);
+		IObservableValue<Boolean> transformationModelToUseContextObserveValue = BeanProperties
+				.value("transformationModelToUse").observe(this.context);
+		IObservableList<List<?>> modelsToChooseFromContextObserveList = BeanProperties.list("modelsToChooseFrom")
+				.observe(this.context);
+
+		IObservableValue<Boolean> enableStatisticsAmbiguityResolvingContextObserveValue = BeanProperties
 				.value("enableStatistics").observe(this.context);
-		bindingContext.bindValue(observeSelectionBtnEnableStatisticsObserveWidget_3,
+		IObservableValue<Integer> scaleStatisticsFactorContextObserveValue = BeanProperties.value("weightingFactor")
+				.observe(this.context);
+
+		IObservableValue<Boolean> enableUserAmbiguityResolvingContextObserveValue = BeanProperties.value("enableUser")
+				.observe(this.context);
+		IObservableValue<Boolean> handleExpandingAmbiguitiesContextObserveValue = BeanProperties
+				.value("handleExpandingAmbiguities").observe(this.context);
+
+		// Enable the bindings among widgets
+		//
+		bindingContext.bindValue(observeEnabledComboSelectTransformationObserveWidget,
+				observeSelectionBtnEnableHistoryObserveWidget,
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		bindingContext.bindValue(observeEnabledBtnUseLatestTransformationObserveWidget,
+				observeSelectionBtnEnableHistoryObserveWidget,
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		bindingContext.bindValue(observeEnabledBtnUseSpecificTransformationObserveWidget,
+				observeSelectionBtnEnableHistoryObserveWidget,
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		bindingContext.bindValue(observeEnabledScaleStatisticsObserveWidget,
+				observeSelectionBtnEnableStatisticsObserveWidget,
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		bindingContext.bindValue(observeEnabledBtnHandleExpandingCardinalitiesObserveWidget,
+				observeSelectionBtnEnableUserObserveWidget, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER),
+				null);
+
+		// Enable the bindings between widgets and the context
+		//
+		bindingContext.bindValue(observeSelectionBtnEnableHistoryObserveWidget,
+				enableHistoryAmbiguityResolvingContextObserveValue, null, null);
+		bindingContext.bindValue(observeSelectionBtnEnableStatisticsObserveWidget,
 				enableStatisticsAmbiguityResolvingContextObserveValue, null, null);
-		//
-		IObservableValue observeSelectionBtnEnableUserObserveWidget = WidgetProperties.selection().observe(this.btnEnableUser);
-		IObservableValue enableUserAmbiguityResolvingContextObserveValue = BeanProperties.value("enableUser").observe(this.context);
+		bindingContext.bindValue(observeSelectionScaleStatisticsFactorObserveWidget,
+				scaleStatisticsFactorContextObserveValue, null, null);
 		bindingContext.bindValue(observeSelectionBtnEnableUserObserveWidget, enableUserAmbiguityResolvingContextObserveValue, null, null);
-		//
-		IObservableValue observeSelectionBtnUseSpecificTransformationObserveWidget = WidgetProperties.selection().observe(this.btnUseSpecificTransformation);
-		IObservableValue useSpecificTransformationModelAmbiguityResolvingContextObserveValue = BeanProperties.value("useSpecificTransformationModel").observe(this.context);
 		bindingContext.bindValue(observeSelectionBtnUseSpecificTransformationObserveWidget, useSpecificTransformationModelAmbiguityResolvingContextObserveValue, null, null);
-		//
-		IObservableList itemsComboSelectTransformationObserveWidget = WidgetProperties.items().observe(this.comboSelectTransformation);
-		IObservableList modelsToChooseFromContextObserveList = BeanProperties.list("modelsToChooseFrom").observe(this.context);
 		bindingContext.bindList(itemsComboSelectTransformationObserveWidget, modelsToChooseFromContextObserveList, null, null);
-		//
-		IObservableValue observeSelectionComboSelectTransformationObserveWidget = WidgetProperties.selection().observe(this.comboSelectTransformation);
-		IObservableValue transformationModelToUseContextObserveValue = BeanProperties.value("transformationModelToUse").observe(this.context);
 		bindingContext.bindValue(observeSelectionComboSelectTransformationObserveWidget, transformationModelToUseContextObserveValue, null, null);
-		//
-		IObservableValue observeEnabledBtnHandleExpandingCardinalitiesObserveWidget = WidgetProperties.enabled().observe(this.btnHandleExpandingCardinalities);
-		IObservableValue observeSelectionBtnEnableUserObserveWidget_1 = WidgetProperties.selection().observe(this.btnEnableUser);
-		bindingContext.bindValue(observeEnabledBtnHandleExpandingCardinalitiesObserveWidget, observeSelectionBtnEnableUserObserveWidget_1, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
-		//
-		IObservableValue observeSelectionBtnHandleExpandingCardinalitiesObserveWidget = WidgetProperties.selection().observe(this.btnHandleExpandingCardinalities);
-		IObservableValue handleExpandingAmbiguitiesContextObserveValue = BeanProperties.value("handleExpandingAmbiguities").observe(this.context);
 		bindingContext.bindValue(observeSelectionBtnHandleExpandingCardinalitiesObserveWidget, handleExpandingAmbiguitiesContextObserveValue, null, null);
-		//
-		return bindingContext;
 	}
 }

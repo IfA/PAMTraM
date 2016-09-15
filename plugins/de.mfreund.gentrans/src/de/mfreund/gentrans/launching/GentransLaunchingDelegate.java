@@ -193,7 +193,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		ArrayList<IAmbiguityResolvingStrategy> strategies = new ArrayList<>();
 
 		if(configuration.getAttribute("enableStatistics", false)) {
-			strategies.add(new StatisticsResolvingStrategy());
+			StatisticsResolvingStrategy statisticsStrategy = new StatisticsResolvingStrategy();
+			statisticsStrategy.setWeightingFactor(configuration.getAttribute("weightingFactor", 50) / 100d);
+			strategies.add(statisticsStrategy);
 		}
 
 

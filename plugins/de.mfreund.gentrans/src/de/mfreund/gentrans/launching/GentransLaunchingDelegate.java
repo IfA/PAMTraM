@@ -36,10 +36,109 @@ import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPathParser;
 import de.tud.et.ifa.agtele.ui.listeners.ProjectRefreshingJobDoneListener;
 
+/**
+ * An {@link ILaunchConfigurationDelegate} that is able to launch GenTrans transformations.
+ * <p />
+ * Note: The names of the various {@link ILaunchConfiguration#getAttributes() attributes} that are used by this delegate
+ * are stored in the various <em>ATTRIBUTE_NAME_...</em> fields. These can be used to store/retrieve values in a
+ * configuration more easily.
+ *
+ * @author mfreund
+ */
 public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 	/**
-	 * The file extension for stored transformations includint the '.' before the actual extension.
+	 * The name of the 'project' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_PROJECT = "project";
+
+	/**
+	 * The name of the 'srcFiles' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_SRC_FILES = "srcFiles";
+
+	/**
+	 * The name of the 'pamtramFile' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_PAMTRAM_FILE = "pamtramFile";
+
+	/**
+	 * The name of the 'targetFile' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_TARGET_FILE = "targetFile";
+
+	/**
+	 * The name of the 'maxPathLength' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_MAX_PATH_LENGTH = "maxPathLength";
+
+	/**
+	 * The name of the 'rememberAmbiguousMappingChoice' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_REMEMBER_AMBIGUOUS_MAPPINGS_CHOICE = "rememberAmbiguousMappingChoice";
+
+	/**
+	 * The name of the 'storeTransformation' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_STORE_TRANSFORMATION = "storeTransformation";
+	
+	/**
+	 * The name of the 'logLevel' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_LOG_LEVEL = "logLevel";
+
+	/**
+	 * The name of the 'enableHistory' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_ENABLE_HISTORY = "enableHistory";
+
+	/**
+	 * The name of the 'transformationModel' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_TRANSFORMATION_MODEL = "transformationModel";
+
+	/**
+	 * The name of the 'enableStatistics' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_ENABLE_STATISTICS = "enableStatistics";
+
+	/**
+	 * The name of the 'weightingFactor' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_WEIGHTING_FACTOR = "weightingFactor";
+
+	/**
+	 * The name of the 'enableUser' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_ENABLE_USER = "enableUser";
+
+	/**
+	 * The name of the 'handleExpanding' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_HANDLE_EXPANDING = "handleExpanding";
+
+	/**
+	 * The name of the 'targetLibPath' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_TARGET_LIB_PATH = "targetLibPath";
+
+	/**
+	 * The name of the 'targetLibBundle' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_TARGET_LIB_BUNDLE = "targetLibBundle";
+
+	/**
+	 * The name of the 'targetLibContext' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_TARGET_LIB_CONTEXT = "targetLibContext";
+
+	/**
+	 * The name of the 'targetLibParser' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_TARGET_LIB_PARSER = "targetLibParser";
+
+	/**
+	 * The file extension for stored transformations including the '.' before the actual extension.
 	 */
 	private static final String TRANSFORMATION_FILE_EXTENSION = ".transformation";
 
@@ -255,19 +354,21 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 * @throws CoreException If the validation fails.
 	 */
 	private void validateMainTab(ILaunchConfiguration configuration) throws CoreException {
-		if(configuration.getAttribute("project", "").isEmpty()) {
+
+		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, "").isEmpty()) {
 			throw new GentransLaunchingDelegateValidationException("No project has been specified!");
 		}
 
-		if(configuration.getAttribute("srcFiles", new ArrayList<String>()).isEmpty()){
+		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, new ArrayList<String>())
+				.isEmpty()) {
 			throw new GentransLaunchingDelegateValidationException("No source file has been specified!");
 		}
 
-		if(configuration.getAttribute("pamtramFile", "").isEmpty()) {
+		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, "").isEmpty()) {
 			throw new GentransLaunchingDelegateValidationException("No pamtram file has been specified!");
 		}
 
-		if(configuration.getAttribute("targetFile", "").isEmpty()) {
+		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, "").isEmpty()) {
 			throw new GentransLaunchingDelegateValidationException("No target file has been specified!");
 		}
 	}
@@ -281,7 +382,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 */
 	private void validateLibraryTab(ILaunchConfiguration configuration)
 			throws CoreException {
-		String targetLibPath = configuration.getAttribute("targetLibPath", "");
+
+		String targetLibPath = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PATH, "");
+
 		if(targetLibPath.isEmpty()) {
 			// do nothing as this is not necessary if no library entries are used
 		} else if(!new File(targetLibPath).exists()) {
@@ -290,15 +393,25 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			throw new GentransLaunchingDelegateValidationException("Target library path does not represent a folder!");
 		}
 
-		String targetLibBundle = configuration.getAttribute("targetLibBundle", "");
+		// Load the library bundle based on the configured package name
+		//
+		String targetLibBundle = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_BUNDLE,
+				"");
 		Bundle bundle;
 		this.targetLibContextClass = null;
 		this.targetLibParserClass = null;
+
 		if(!targetLibBundle.isEmpty()) {
+
 			if((bundle = Platform.getBundle(targetLibBundle)) == null) {
 				throw new GentransLaunchingDelegateValidationException("Bundle '" + targetLibBundle + "' cannot be resolved!" );
 			}
-			String targetLibContext = configuration.getAttribute("targetLibContext", "");
+
+			// Load the library context based on the configured class name
+			//
+			String targetLibContext = configuration
+					.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_CONTEXT, "");
+
 			if(targetLibContext.isEmpty()) {
 				throw new GentransLaunchingDelegateValidationException("No target library context has been specified!");
 			} else {
@@ -313,7 +426,12 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 					throw new GentransLaunchingDelegateValidationException("The target library context class is no sub-class of 'LibraryContext'!", e);
 				}
 			}
-			String targetLibParser = configuration.getAttribute("targetLibParser", "");
+
+			// Load the library path parser based on the configured class name
+			//
+			String targetLibParser = configuration
+					.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PARSER, "");
+
 			if(!targetLibParser.isEmpty()) {
 				try {
 					this.targetLibParserClass = bundle.loadClass(targetLibParser);

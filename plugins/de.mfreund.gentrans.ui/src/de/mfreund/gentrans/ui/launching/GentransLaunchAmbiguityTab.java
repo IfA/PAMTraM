@@ -53,9 +53,15 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	private Button btnHandleExpandingAmbiguities;
 
 	/**
-	 * The domain model that this tab operates on and that is used to realize all data bindings to the various widgets.
+	 * The domain model that this tab operates on.
 	 */
 	private GentransLaunchContext context;
+
+	/**
+	 * The {@link DataBindingContext} that is used to realize all data bindings among widgets and between widgets and
+	 * the {@link #context}.
+	 */
+	private DataBindingContext bindingContext;
 
 	/**
 	 * This creates an instance.
@@ -295,6 +301,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		} catch (CoreException e) {
 			this.setErrorMessage(e.getMessage());
 		}
+
+		this.bindingContext.updateModels();
 	}
 
 	@Override
@@ -342,7 +350,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 		// The context where all bindings will be registered
 		//
-		DataBindingContext bindingContext = new DataBindingContext();
+		this.bindingContext = new DataBindingContext();
 
 		// The various observable values for widget properties
 		//
@@ -401,34 +409,34 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 		// Enable the bindings among widgets
 		//
-		bindingContext.bindValue(observeEnabledComboSelectTransformationObserveWidget,
+		this.bindingContext.bindValue(observeEnabledComboSelectTransformationObserveWidget,
 				observeSelectionBtnEnableHistoryObserveWidget,
 				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
-		bindingContext.bindValue(observeEnabledBtnUseLatestTransformationObserveWidget,
+		this.bindingContext.bindValue(observeEnabledBtnUseLatestTransformationObserveWidget,
 				observeSelectionBtnEnableHistoryObserveWidget,
 				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
-		bindingContext.bindValue(observeEnabledBtnUseSpecificTransformationObserveWidget,
+		this.bindingContext.bindValue(observeEnabledBtnUseSpecificTransformationObserveWidget,
 				observeSelectionBtnEnableHistoryObserveWidget,
 				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
-		bindingContext.bindValue(observeEnabledScaleStatisticsObserveWidget,
+		this.bindingContext.bindValue(observeEnabledScaleStatisticsObserveWidget,
 				observeSelectionBtnEnableStatisticsObserveWidget,
 				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
-		bindingContext.bindValue(observeEnabledBtnHandleExpandingCardinalitiesObserveWidget,
+		this.bindingContext.bindValue(observeEnabledBtnHandleExpandingCardinalitiesObserveWidget,
 				observeSelectionBtnEnableUserObserveWidget, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER),
 				null);
 
 		// Enable the bindings between widgets and the context
 		//
-		bindingContext.bindValue(observeSelectionBtnEnableHistoryObserveWidget,
+		this.bindingContext.bindValue(observeSelectionBtnEnableHistoryObserveWidget,
 				enableHistoryAmbiguityResolvingContextObserveValue, null, null);
-		bindingContext.bindValue(observeSelectionBtnEnableStatisticsObserveWidget,
+		this.bindingContext.bindValue(observeSelectionBtnEnableStatisticsObserveWidget,
 				enableStatisticsAmbiguityResolvingContextObserveValue, null, null);
-		bindingContext.bindValue(observeSelectionScaleStatisticsFactorObserveWidget,
+		this.bindingContext.bindValue(observeSelectionScaleStatisticsFactorObserveWidget,
 				scaleStatisticsFactorContextObserveValue, null, null);
-		bindingContext.bindValue(observeSelectionBtnEnableUserObserveWidget, enableUserAmbiguityResolvingContextObserveValue, null, null);
-		bindingContext.bindValue(observeSelectionBtnUseSpecificTransformationObserveWidget, useSpecificTransformationModelAmbiguityResolvingContextObserveValue, null, null);
-		bindingContext.bindList(itemsComboSelectTransformationObserveWidget, modelsToChooseFromContextObserveList, null, null);
-		bindingContext.bindValue(observeSelectionComboSelectTransformationObserveWidget, transformationModelToUseContextObserveValue, null, null);
-		bindingContext.bindValue(observeSelectionBtnHandleExpandingCardinalitiesObserveWidget, handleExpandingAmbiguitiesContextObserveValue, null, null);
+		this.bindingContext.bindValue(observeSelectionBtnEnableUserObserveWidget, enableUserAmbiguityResolvingContextObserveValue, null, null);
+		this.bindingContext.bindValue(observeSelectionBtnUseSpecificTransformationObserveWidget, useSpecificTransformationModelAmbiguityResolvingContextObserveValue, null, null);
+		this.bindingContext.bindList(itemsComboSelectTransformationObserveWidget, modelsToChooseFromContextObserveList, null, null);
+		this.bindingContext.bindValue(observeSelectionComboSelectTransformationObserveWidget, transformationModelToUseContextObserveValue, null, null);
+		this.bindingContext.bindValue(observeSelectionBtnHandleExpandingCardinalitiesObserveWidget, handleExpandingAmbiguitiesContextObserveValue, null, null);
 	}
 }

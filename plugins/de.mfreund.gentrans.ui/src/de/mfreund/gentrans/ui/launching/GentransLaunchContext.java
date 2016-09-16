@@ -115,6 +115,46 @@ class GentransLaunchContext {
 	 */
 	public static final String PROPERTY_NAME_MODELS_TO_CHOOSE_FROM = "modelsToChooseFrom";
 
+	/**
+	 * The path to the target library to be used in the transformation.
+	 */
+	private String targetLibraryPath;
+
+	/**
+	 * The name of the {@link #targetLibraryPath} property.
+	 */
+	public static final String PROPERTY_NAME_TARGET_LIBRARY_PATH = "targetLibraryPath";
+
+	/**
+	 * The path to the target library bundle to be used in the transformation.
+	 */
+	private String targetLibraryBundle;
+
+	/**
+	 * The name of the {@link #targetLibraryBundle} property.
+	 */
+	public static final String PROPERTY_NAME_TARGET_LIBRARY_BUNDLE = "targetLibraryBundle";
+
+	/**
+	 * The path to the target library context to be used in the transformation.
+	 */
+	private String targetLibraryContext;
+
+	/**
+	 * The name of the {@link #targetLibraryContext} property.
+	 */
+	public static final String PROPERTY_NAME_TARGET_LIBRARY_CONTEXT = "targetLibraryContext";
+
+	/**
+	 * The path to the target library path parser to be used in the transformation.
+	 */
+	private String targetLibraryPathParser;
+
+	/**
+	 * The name of the {@link #targetLibraryPathParser} property.
+	 */
+	public static final String PROPERTY_NAME_TARGET_LIBRARY_PATH_PARSER = "targetLibraryPathParser";
+
 	public void addPropertyChangeListener(PropertyChangeListener
 			listener) {
 		this.changeSupport.addPropertyChangeListener(listener);
@@ -277,11 +317,109 @@ class GentransLaunchContext {
 		this.modelsToChooseFrom = modelsToChooseFrom;
 	}
 
+	/**
+	 * This is the getter for the {@link #handleExpandingAmbiguities}.
+	 *
+	 * @return the {@link #handleExpandingAmbiguities}.
+	 */
 	public boolean isHandleExpandingAmbiguities() {
+
 		return this.handleExpandingAmbiguities;
 	}
 
+	/**
+	 * This is the setter for the {@link #handleExpandingAmbiguities}.
+	 *
+	 * @param handleExpandingAmbiguities
+	 *            the {@link #handleExpandingAmbiguities} to set.
+	 */
 	public void setHandleExpandingAmbiguities(boolean handleExpandingAmbiguities) {
+
 		this.handleExpandingAmbiguities = handleExpandingAmbiguities;
 	}
+
+	/**
+	 * This is the getter for the {@link #targetLibraryPath}.
+	 *
+	 * @return the {@link #targetLibraryPath}.
+	 */
+	public String getTargetLibraryPath() {
+
+		return this.targetLibraryPath;
+	}
+
+	/**
+	 * This is the setter for the {@link #targetLibraryPath}.
+	 *
+	 * @param targetLibraryPath
+	 *            the {@link #targetLibraryPath} to set.
+	 */
+	public void setTargetLibraryPath(String targetLibraryPath) {
+
+		this.targetLibraryPath = targetLibraryPath;
+	}
+
+	/**
+	 * This is the getter for the {@link #targetLibraryBundle}.
+	 *
+	 * @return the {@link #targetLibraryBundle}.
+	 */
+	public String getTargetLibraryBundle() {
+
+		return this.targetLibraryBundle;
+	}
+
+	/**
+	 * This is the setter for the {@link #targetLibraryBundle}.
+	 *
+	 * @param targetLibraryBundle
+	 *            the {@link #targetLibraryBundle} to set.
+	 */
+	public void setTargetLibraryBundle(String targetLibraryBundle) {
+
+		this.targetLibraryBundle = targetLibraryBundle;
+	}
+
+	/**
+	 * This is the getter for the {@link #targetLibraryContext}.
+	 *
+	 * @return the {@link #targetLibraryContext}.
+	 */
+	public String getTargetLibraryContext() {
+
+		return this.targetLibraryContext;
+	}
+
+	/**
+	 * This is the setter for the {@link #targetLibraryContext}.
+	 *
+	 * @param targetLibraryContext
+	 *            the {@link #targetLibraryContext} to set.
+	 */
+	public void setTargetLibraryContext(String targetLibraryContext) {
+
+		this.targetLibraryContext = targetLibraryContext;
+	}
+
+	/**
+	 * This is the getter for the {@link #targetLibraryPathParser}.
+	 *
+	 * @return the {@link #targetLibraryPathParser}.
+	 */
+	public String getTargetLibraryPathParser() {
+
+		return this.targetLibraryPathParser;
+	}
+
+	/**
+	 * This is the setter for the {@link #targetLibraryPathParser}.
+	 *
+	 * @param targetLibraryPathParser
+	 *            the {@link #targetLibraryPathParser} to set.
+	 */
+	public void setTargetLibraryPathParser(String targetLibraryPathParser) {
+
+		this.targetLibraryPathParser = targetLibraryPathParser;
+	}
+
 }

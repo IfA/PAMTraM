@@ -2,6 +2,9 @@ package de.mfreund.gentrans.ui.launching;
 
 import java.io.File;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -10,6 +13,8 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
 import org.eclipse.debug.ui.ILaunchConfigurationTab2;
+import org.eclipse.jface.bindings.Binding;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ISelection;
@@ -36,11 +41,6 @@ import de.tud.et.ifa.agtele.ui.util.UIHelper;
 public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
 	/**
-	 * The domain model that this tab operates on and that is used to realize all data bindings to the various widgets.
-	 */
-	private GentransLaunchContext context;
-
-	/**
 	 * A text field to specify the full path to the folder that holds the target library.
 	 */
 	private Text targetPathText;
@@ -59,6 +59,17 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	 * A text field to specify the concrete library path parser of the specific target library.
 	 */
 	private Text targetLibParserText;
+
+	/**
+	 * The domain model that this tab operates on.
+	 */
+	private GentransLaunchContext context;
+
+	/**
+	 * The {@link DataBindingContext} that is used to realize all data bindings among widgets and between widgets and
+	 * the {@link #context}.
+	 */
+	private DataBindingContext bindingContext;
 
 	/**
 	 * This creates an instance.
@@ -141,6 +152,11 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		this.targetLibParserText
 		.addModifyListener(e -> GentransLaunchLibraryTab.this.updateLaunchConfigurationDialog());
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetLibParserText);
+
+		// After we have created all widgets, we can initialize the data bindings among the widgets and between widgets
+		// and the context
+		//
+		this.initDataBindings();
 	}
 
 	@Override
@@ -167,7 +183,7 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		try {
 			// set the target lib path
 			this.targetPathText
-			.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PATH, ""));
+					.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PATH, ""));
 			// set the target bundle
 			this.targetBundleText.setText(
 					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_BUNDLE, ""));
@@ -180,6 +196,8 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		} catch (CoreException e) {
 			this.setErrorMessage(e.getMessage());
 		}
+
+		this.bindingContext.updateModels();
 	}
 
 	@Override
@@ -321,6 +339,52 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 			return;
 		}
 
+	}
+
+	/**
+	 * Initialize all {@link Binding data bindings} between the various widgets displayed on this tab and the
+	 * {@link #context} as well as among widgets.
+	 *
+	 */
+	@SuppressWarnings("unchecked")
+	protected void initDataBindings() {
+
+		// The context where all bindings will be registered
+		//
+		this.bindingContext = new DataBindingContext();
+
+		// The various observable values for widget properties
+		//
+		IObservableValue<String> observeTextTargetPathTextObserveWidget = WidgetProperties.text()
+				.observe(this.targetPathText);
+		IObservableValue<String> observeTextTargetBundleTextObserveWidget = WidgetProperties.text()
+				.observe(this.targetBundleText);
+		IObservableValue<String> observeTextTargetLibContextTextObserveWidget = WidgetProperties.text()
+				.observe(this.targetLibContextText);
+		IObservableValue<String> observeTextTargetLibParserTextObserveWidget = WidgetProperties.text()
+				.observe(this.targetLibParserText);
+
+		// The various observable values for bean properties
+		//
+		IObservableValue<String> targetLibraryPathContextObserveValue = BeanProperties
+				.value(GentransLaunchContext.PROPERTY_NAME_TARGET_LIBRARY_PATH).observe(this.context);
+		IObservableValue<String> targetLibraryBundleContextObserveValue = BeanProperties
+				.value(GentransLaunchContext.PROPERTY_NAME_TARGET_LIBRARY_BUNDLE).observe(this.context);
+		IObservableValue<String> targetLibraryContextContextObserveValue = BeanProperties
+				.value(GentransLaunchContext.PROPERTY_NAME_TARGET_LIBRARY_CONTEXT).observe(this.context);
+		IObservableValue<String> targetLibraryPathParserContextObserveValue = BeanProperties
+				.value(GentransLaunchContext.PROPERTY_NAME_TARGET_LIBRARY_PATH_PARSER).observe(this.context);
+
+		// Enable the bindings between widgets and the context
+		//
+		this.bindingContext.bindValue(observeTextTargetPathTextObserveWidget, targetLibraryPathContextObserveValue,
+				null, null);
+		this.bindingContext.bindValue(observeTextTargetBundleTextObserveWidget, targetLibraryBundleContextObserveValue,
+				null, null);
+		this.bindingContext.bindValue(observeTextTargetLibContextTextObserveWidget,
+				targetLibraryContextContextObserveValue, null, null);
+		this.bindingContext.bindValue(observeTextTargetLibParserTextObserveWidget,
+				targetLibraryPathParserContextObserveValue, null, null);
 	}
 
 }

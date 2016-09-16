@@ -79,6 +79,8 @@
         url="http://eclipse.sonarlint.org"/>
     <repository
         url="https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/updates"/>
+    <repository
+        url="http://download.eclipse.org/windowbuilder/WB/release/4.6/"/>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"

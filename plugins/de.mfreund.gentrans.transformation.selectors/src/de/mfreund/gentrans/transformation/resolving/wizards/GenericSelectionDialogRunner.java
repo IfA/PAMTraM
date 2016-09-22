@@ -5,15 +5,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.swt.widgets.Dialog;
+
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 /**
- * This represents a {@link Runnable} that will spawn an {@link GenericSelectionDialog} that allows a 
+ * This represents a {@link Runnable} that will spawn an {@link GenericSelectionDialog} that allows a
  * user to select between multiple options during an execution of a {@link GenericTransformationJob generic transformation}.
  * <p />
  * Clients can overwrite the {@link #initializeDialog()} method if a sub-class of {@link GenericSelectionDialog} shall be used
  * as dialog.
- * 
+ *
  * @author mfreund
  * @param <SelectionType> The type of the elements that will be returned by the dialog after the user's selection.
  */
@@ -24,44 +26,52 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 * be default selected.
 	 */
 	protected final int standardSelection;
-	
+
 	/**
 	 * Whether multi-selection shall be allowed in the dialog.
 	 */
 	protected final boolean multiSelectionAllowed;
-	
+
 	/**
 	 * The options to be presented to the user in the dialog.
 	 */
 	protected final List<SelectionType> options;
-	
+
 	/**
 	 * The options that have been selected by the user (this will be a subset of {@link #options}).
 	 */
 	protected List<SelectionType> selection;
-	
+
 	/**
 	 * This creates an instance.
-	 * 
-	 * @param message The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
-	 * @param standardSelection The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if
-	 * no option shall be default selected.
-	 * @param multiSelectionAllowed Whether multi-selection shall be allowed in the dialog.
-	 * @param options The options to be presented to the user in the dialog.
+	 *
+	 * @param message
+	 *            The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
+	 * @param standardSelection
+	 *            The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if no option
+	 *            shall be default selected.
+	 * @param multiSelectionAllowed
+	 *            Whether multi-selection shall be allowed in the dialog.
+	 * @param options
+	 *            The options to be presented to the user in the dialog.
+	 * @param enhanceMappingModelListener
+	 *            A {@link SelectionListener2} that will be called when the
+	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
 	 */
-	public GenericSelectionDialogRunner(final String message, final int standardSelection, 
-			final boolean multiSelectionAllowed, final List<SelectionType> options) {
-		
-		super(message);
-		
+	public GenericSelectionDialogRunner(final String message, final int standardSelection,
+			final boolean multiSelectionAllowed, final List<SelectionType> options,
+			final SelectionListener2 enhanceMappingModelListener) {
+
+		super(message, enhanceMappingModelListener);
+
 		this.standardSelection = standardSelection;
 		this.multiSelectionAllowed = multiSelectionAllowed;
 		this.options = options;
-		
+
 		this.selection = Arrays.asList(options.get(standardSelection));
 	}
-	
-	
+
+
 
 	/**
 	 * Get the options that have been selected by the user after the dialog has finished.
@@ -69,9 +79,9 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 * @return The {@link #selection}.
 	 */
 	public List<SelectionType> getSelection() {
-		return (selection == null ? new ArrayList<SelectionType>() : selection);
+		return this.selection == null ? new ArrayList<>() : this.selection;
 	}
-	
+
 	/**
 	 * Get the single selected element after the dialog has finished.
 	 * <p />
@@ -80,55 +90,56 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 * @return The single element selected by the user.
 	 */
 	public SelectionType getSingleSelection() {
-		return (selection == null || selection.isEmpty() ? null : selection.iterator().next());
+		return this.selection == null || this.selection.isEmpty() ? null : this.selection.iterator().next();
 	}
-	
+
 	/**
 	 * Returns a String representation for the given '<em>option</em>' that will be displayed to the user
-	 * in the dialog. 
+	 * in the dialog.
 	 * <p />
 	 * Note: The default implementation simply returns 'option.toString()'.
-	 * 
+	 *
 	 * @param option The option for that the String representation shall be returned.
 	 * @return The String representation for the given '<em>option</em>' that will be displayed to the user
-	 * in the dialog. 
+	 * in the dialog.
 	 */
 	protected String getStringRepresentation(SelectionType option) {
 		return option.toString();
 	}
-	
+
 	/**
 	 * Returns a list of {@link #getStringRepresentation(Object) String representations} for the {@link #options}.
-	 * 
-	 * @return A list of String representations for the list of {@link #options}. 
+	 *
+	 * @return A list of String representations for the list of {@link #options}.
 	 */
 	protected ArrayList<String> getStringRepresentations() {
-		
-		final ArrayList<String> optionsAsString = new ArrayList<String>(options.size());
-		
-		for (SelectionType option : options) {
-			optionsAsString.add(getStringRepresentation(option));
+
+		final ArrayList<String> optionsAsString = new ArrayList<>(this.options.size());
+
+		for (SelectionType option : this.options) {
+			optionsAsString.add(this.getStringRepresentation(option));
 		}
-		
+
 		return optionsAsString;
 	}
-	
+
 	@Override
 	protected void initializeDialog() {
-		
-		dialog = new GenericSelectionDialog(message, getStringRepresentations(), multiSelectionAllowed, standardSelection);
+
+		this.dialog = new GenericSelectionDialog(this.message, this.getStringRepresentations(),
+				this.multiSelectionAllowed, this.standardSelection, this.enhanceMappingModelListener);
 	}
-	
+
 	@Override
 	protected void evaluateResults() {
-		
-		selection = new ArrayList<>();
-		if(multiSelectionAllowed) {
-			for (Integer index : ((GenericSelectionDialog) dialog).getSelection()) {
-				selection.add(options.get(index));
+
+		this.selection = new ArrayList<>();
+		if(this.multiSelectionAllowed) {
+			for (Integer index : ((GenericSelectionDialog) this.dialog).getSelection()) {
+				this.selection.add(this.options.get(index));
 			}
 		} else {
-			selection.add(options.get(((GenericSelectionDialog) dialog).getSingleSelection()));
+			this.selection.add(this.options.get(((GenericSelectionDialog) this.dialog).getSingleSelection()));
 		}
 	}
 

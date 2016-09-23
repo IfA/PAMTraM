@@ -982,11 +982,16 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			 * '<em><b>false</b></em>' otherwise.
 			 */
 			public boolean isEditorFor(PAMTraM pamtram) {
+
 				if(this.pamtram == null) {
 					return false;
-				} else if(this.pamtram.equals(pamtram) || this.pamtram.eResource().getURI().equals(pamtram.eResource().getURI())) {
+
+				} else if (this.pamtram.equals(pamtram)
+						|| this.pamtram.eResource().getURI().toString().equals(pamtram.eResource().getURI().toString())) {
 					return true;
+
 				} else if(pamtram.eResource().getURI().isFile()) {
+
 					// if all other checks failed, check if both pamtram instance are based on the same file
 					IWorkspace workspace = ResourcesPlugin.getWorkspace();
 					IFile file = workspace.getRoot().getFile(new Path(this.pamtram.eResource().getURI().toPlatformString(true)));

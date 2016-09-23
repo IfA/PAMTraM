@@ -74,11 +74,23 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 
 
 	/**
+	 * This is the getter for the {@link #options}.
+	 *
+	 * @return the {@link #options}.
+	 */
+	public List<SelectionType> getOptions() {
+
+		return this.options;
+	}
+
+	/**
 	 * Get the options that have been selected by the user after the dialog has finished.
 	 *
 	 * @return The {@link #selection}.
 	 */
 	public List<SelectionType> getSelection() {
+
+		this.evaluateResults();
 		return this.selection == null ? new ArrayList<>() : this.selection;
 	}
 
@@ -90,6 +102,8 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 * @return The single element selected by the user.
 	 */
 	public SelectionType getSingleSelection() {
+
+		this.evaluateResults();
 		return this.selection == null || this.selection.isEmpty() ? null : this.selection.iterator().next();
 	}
 

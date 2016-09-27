@@ -684,10 +684,10 @@ public class ConditionHandler {
 		CondResult condTemp = CondResult.TRUE;
 
 		// Not Implementation
-		if(condition.getCondPartRef() != null){
-			condTemp = this.checkCondition(condition.getCondPartRef(), matchedSectionDescriptor, mappingInstances);
-		} else if(condition.getCondPart() != null){
-			condTemp = this.checkCondition(condition.getCondPart(), matchedSectionDescriptor, mappingInstances);
+		if (condition.getSharedCondPart() != null) {
+			condTemp = this.checkCondition(condition.getSharedCondPart(), matchedSectionDescriptor, mappingInstances);
+		} else if(condition.getLocalCondPart() != null){
+			condTemp = this.checkCondition(condition.getLocalCondPart(), matchedSectionDescriptor, mappingInstances);
 		}
 
 		// Invert the result and return
@@ -758,8 +758,8 @@ public class ConditionHandler {
 
 		//Get and put all arguments in a new list
 		EList<ComplexCondition> args = new BasicEList<>();
-		args.addAll(condition.getCondParts());
-		args.addAll(condition.getCondPartsRef());
+		args.addAll(condition.getLocalCondParts());
+		args.addAll(condition.getSharedCondParts());
 
 		for(ComplexCondition arg: args){
 
@@ -790,8 +790,8 @@ public class ConditionHandler {
 
 		//Get and put all arguments in a new list
 		EList<ComplexCondition> args = new BasicEList<>();
-		args.addAll(condition.getCondParts());
-		args.addAll(condition.getCondPartsRef());
+		args.addAll(condition.getLocalCondParts());
+		args.addAll(condition.getSharedCondParts());
 
 		for(ComplexCondition arg: args){
 

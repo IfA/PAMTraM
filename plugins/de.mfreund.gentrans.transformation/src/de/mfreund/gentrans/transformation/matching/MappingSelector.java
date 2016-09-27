@@ -120,7 +120,7 @@ public class MappingSelector extends CancelableElement {
 		this.mappings = mappings;
 		// TODO also filter if sub-conditions of type ApplicationDependency
 		this.dependentMappings = mappings.parallelStream()
-				.filter(m -> m.getCondition() instanceof ApplicationDependency).collect(Collectors.toList());
+				.filter(m -> m.getLocalCondition() instanceof ApplicationDependency).collect(Collectors.toList());
 		this.selectedMappings = Collections.synchronizedMap(new HashMap<>());
 		this.deferredSections = Collections.synchronizedList(new ArrayList<>());
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
@@ -324,9 +324,9 @@ public class MappingSelector extends CancelableElement {
 
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		//
-		return this.conditionHandler.checkCondition(mapping.getCondition(), descriptor,
+		return this.conditionHandler.checkCondition(mapping.getLocalCondition(), descriptor,
 				this.selectedMappings) == CondResult.TRUE
-				&& this.conditionHandler.checkCondition(mapping.getConditionRef(), descriptor,
+				&& this.conditionHandler.checkCondition(mapping.getSharedCondition(), descriptor,
 						this.selectedMappings) == CondResult.TRUE;
 
 	}
@@ -399,9 +399,9 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private boolean checkCondition(ConditionalElement conditionalElement, MatchedSectionDescriptor descriptor) {
 
-		return !(this.conditionHandler.checkCondition(conditionalElement.getCondition(), descriptor,
+		return !(this.conditionHandler.checkCondition(conditionalElement.getLocalCondition(), descriptor,
 				this.selectedMappings) == CondResult.FALSE
-				|| this.conditionHandler.checkCondition(conditionalElement.getConditionRef(),
+				|| this.conditionHandler.checkCondition(conditionalElement.getSharedCondition(),
 						descriptor, this.selectedMappings) == CondResult.FALSE);
 
 	}

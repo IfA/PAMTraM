@@ -57,25 +57,25 @@ extends MappingTypeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addConditionRefPropertyDescriptor(object);
+			addSharedConditionPropertyDescriptor(object);
 			addAbstractPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Condition Ref feature.
+	 * This adds a property descriptor for the Shared Condition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConditionRefPropertyDescriptor(Object object) {
+	protected void addSharedConditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConditionalElement_conditionRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_conditionRef_feature", "_UI_ConditionalElement_type"),
+				 getString("_UI_ConditionalElement_sharedCondition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
 				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION,
 				 true,
 				 false,
@@ -235,7 +235,7 @@ extends MappingTypeItemProvider {
 			case MappingPackage.MAPPING__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MappingPackage.MAPPING__CONDITION:
+			case MappingPackage.MAPPING__LOCAL_CONDITION:
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 			case MappingPackage.MAPPING__GLOBAL_VARIABLES:

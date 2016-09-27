@@ -52,9 +52,31 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCondPartRefPropertyDescriptor(object);
+			addSharedCondPartPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Shared Cond Part feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSharedCondPartPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UnaryCondition_sharedCondPart_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UnaryCondition_sharedCondPart_feature", "_UI_UnaryCondition_type"),
+				 ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -169,7 +191,7 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UnaryCondition.class)) {
-			case ConditionPackage.UNARY_CONDITION__COND_PART:
+			case ConditionPackage.UNARY_CONDITION__LOCAL_COND_PART:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

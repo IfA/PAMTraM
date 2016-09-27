@@ -51,9 +51,31 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCondPartsRefPropertyDescriptor(object);
+			addSharedCondPartsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Shared Cond Parts feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSharedCondPartsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VariadicCondition_sharedCondParts_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VariadicCondition_sharedCondParts_feature", "_UI_VariadicCondition_type"),
+				 ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -168,7 +190,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VariadicCondition.class)) {
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

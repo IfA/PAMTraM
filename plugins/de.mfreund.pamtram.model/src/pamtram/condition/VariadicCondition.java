@@ -40,7 +40,7 @@ public interface VariadicCondition extends ComplexCondition {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!VariadicCondition!condParts'"
 	 * @generated
 	 */
-	EList<ComplexCondition> getCondParts();
+	EList<ComplexCondition> getLocalCondParts();
 
 	/**
 	 * Returns the value of the '<em><b>Cond Parts Ref</b></em>' reference list.
@@ -56,7 +56,7 @@ public interface VariadicCondition extends ComplexCondition {
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!VariadicCondition!condPartsRef'"
 	 * @generated
 	 */
-	EList<ComplexCondition> getCondPartsRef();
+	EList<ComplexCondition> getSharedCondParts();
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -84,20 +84,20 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	protected boolean deactivated = DEACTIVATED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+	 * The cached value of the '{@link #getLocalCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondition()
+	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
 	 */
 	protected ComplexCondition condition;
 
 	/**
-	 * The cached value of the '{@link #getConditionRef() <em>Condition Ref</em>}' reference.
+	 * The cached value of the '{@link #getSharedCondition() <em>Condition Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConditionRef()
+	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
 	 */
@@ -190,7 +190,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public ComplexCondition getCondition() {
+	public ComplexCondition getLocalCondition() {
 		return condition;
 	}
 
@@ -215,7 +215,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public void setCondition(ComplexCondition newCondition) {
+	public void setLocalCondition(ComplexCondition newCondition) {
 		if (newCondition != condition) {
 			NotificationChain msgs = null;
 			if (condition != null)
@@ -235,7 +235,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public ComplexCondition getConditionRef() {
+	public ComplexCondition getSharedCondition() {
 		if (conditionRef != null && conditionRef.eIsProxy()) {
 			InternalEObject oldConditionRef = (InternalEObject)conditionRef;
 			conditionRef = (ComplexCondition)eResolveProxy(oldConditionRef);
@@ -262,7 +262,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public void setConditionRef(ComplexCondition newConditionRef) {
+	public void setSharedCondition(ComplexCondition newConditionRef) {
 		ComplexCondition oldConditionRef = conditionRef;
 		conditionRef = newConditionRef;
 		if (eNotificationRequired())
@@ -436,10 +436,10 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ ComplexCondition conditionRef = this.getConditionRef();
+		    final /*@Thrown*/ ComplexCondition conditionRef = this.getSharedCondition();
 		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef);
 		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
-		    final /*@Thrown*/ ComplexCondition condition = this.getCondition();
+		    final /*@Thrown*/ ComplexCondition condition = this.getLocalCondition();
 		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, condition);
 		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
 		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
@@ -496,7 +496,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ ComplexCondition conditionRef_0 = this.getConditionRef();
+		    final /*@Thrown*/ ComplexCondition conditionRef_0 = this.getSharedCondition();
 		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef_0);
 		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
 		    final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
@@ -557,9 +557,9 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
 				return isDeactivated();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
-				return getCondition();
+				return getLocalCondition();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
-				if (resolve) return getConditionRef();
+				if (resolve) return getSharedCondition();
 				return basicGetConditionRef();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				if (resolve) return getHintGroup();
@@ -586,10 +586,10 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				setDeactivated((Boolean)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
-				setCondition((ComplexCondition)newValue);
+				setLocalCondition((ComplexCondition)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
-				setConditionRef((ComplexCondition)newValue);
+				setSharedCondition((ComplexCondition)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				setHintGroup((ExportedMappingHintGroup)newValue);
@@ -617,10 +617,10 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				setDeactivated(DEACTIVATED_EDEFAULT);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION:
-				setCondition((ComplexCondition)null);
+				setLocalCondition((ComplexCondition)null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONDITION_REF:
-				setConditionRef((ComplexCondition)null);
+				setSharedCondition((ComplexCondition)null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				setHintGroup((ExportedMappingHintGroup)null);

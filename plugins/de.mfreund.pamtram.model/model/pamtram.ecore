@@ -152,12 +152,12 @@
       <details key="constraints" value="eitherModelOrReferCondition referenceOnlyConditionsFromConditionModel"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="eitherModelOrReferCondition" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'As this Instance is a ConditionElement and you want to add a condition, you either have to model a condition or reference an already existing one!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.conditionRef->size()+self.condition->size()) &lt;= 1&#xD;&#xA;}.status"/>
-      <details key="referenceOnlyConditionsFromConditionModel" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'It only allowed to reference Condition-Instances that are model inside the ConditionModel!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;&#x9;if self.conditionRef->size() = 1 then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.conditionRef.oclContainer().oclIsTypeOf(pamtram::ConditionModel) else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+      <details key="eitherModelOrReferCondition" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'Please specify at most one (local or shared) condition!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.sharedCondition->size()+self.localCondition->size()) &lt;= 1&#xD;&#xA;}.status"/>
+      <details key="referenceOnlyConditionsFromConditionModel" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'It only allowed to reference shared conditions that are model inside the ConditionModel!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;&#x9;if self.sharedCondition->size() = 1 then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.sharedCondition.oclContainer().oclIsTypeOf(pamtram::ConditionModel) else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//condition/ComplexCondition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localCondition" eType="#//condition/ComplexCondition"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionRef" eType="#//condition/ComplexCondition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondition" eType="#//condition/ComplexCondition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionModel" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" upperBound="-1"
@@ -1140,16 +1140,16 @@
         <details key="constraints" value="minimalNumberOfArgs"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="minimalNumberOfArgs" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this condition are not modeled or not referenced !',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.condParts->size()+self.condPartsRef->size()) > 1&#xD;&#xA;}.status"/>
+        <details key="minimalNumberOfArgs" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'At least two (local or shared) condition parts need to be specified!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.localCondParts->size()+self.sharedCondParts->size()) > 1&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eOperations name="referencesOnlyValidConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this.condPartsRef == null || this.condPartsRef.size() == 0) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;EList&lt;ComplexCondition> conditionRefs = new BasicEList&lt;ComplexCondition>();&#xD;&#xA;conditionRefs.add((ComplexCondition) this.condPartsRef);&#xD;&#xA;for(ComplexCondition condition : conditionRefs){&#xD;&#xA;&#x9;if(!(condition instanceof ConditionModel)){&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return true;"/>
+          <details key="body" value="if(this.sharedCondParts == null || this.sharedCondParts.size() == 0) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;EList&lt;ComplexCondition> conditionRefs = new BasicEList&lt;ComplexCondition>();&#xD;&#xA;conditionRefs.add((ComplexCondition) this.sharedCondParts);&#xD;&#xA;for(ComplexCondition condition : conditionRefs){&#xD;&#xA;&#x9;if(!(condition instanceof ConditionModel)){&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return true;"/>
         </eAnnotations>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condParts" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="localCondParts" upperBound="-1"
           eType="#//condition/ComplexCondition" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condPartsRef" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondParts" upperBound="-1"
           eType="#//condition/ComplexCondition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//condition/VariadicCondition"/>
@@ -1159,11 +1159,11 @@
         <details key="constraints" value="exactlyOneArg"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="exactlyOneArg" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The required subparts of this Not-Condition are not modeled or not referenced or both done but not allowed!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.condPart->size()+self.condPartRef->size()) = 1&#xD;&#xA;}.status"/>
+        <details key="exactlyOneArg" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'Please specify exactly one (local or shared) condition part!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.localCondPart->size()+self.sharedCondPart->size()) = 1&#xD;&#xA;}.status"/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condPart" eType="#//condition/ComplexCondition"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="localCondPart" eType="#//condition/ComplexCondition"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condPartRef" eType="#//condition/ComplexCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondPart" eType="#//condition/ComplexCondition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//condition/UnaryCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1175,7 +1175,7 @@
       </eAnnotations>
       <eOperations name="referencesOnlyValidConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this.condPartRef == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;EObject condPartRefContainer = this.condPartRef.eContainer();&#xD;&#xA;return condPartRefContainer instanceof ConditionModel || condPartRefContainer instanceof ConditionalElement;"/>
+          <details key="body" value="if(this.sharedCondPart == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;EObject sharedCondPartContainer = this.sharedCondPart.eContainer();&#xD;&#xA;return sharedCondPartContainer instanceof ConditionModel || sharedCondPartContainer instanceof ConditionalElement;"/>
         </eAnnotations>
       </eOperations>
     </eClassifiers>

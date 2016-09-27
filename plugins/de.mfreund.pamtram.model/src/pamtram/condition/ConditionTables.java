@@ -319,20 +319,20 @@ public class ConditionTables
 
 		public static final /*@NonNull*/ ExecutorProperty _CardinalityCondition__conditionSectionRef = new EcoreExecutorProperty(ConditionPackage.Literals.CARDINALITY_CONDITION__CONDITION_SECTION_REF, Types._CardinalityCondition, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__condPart = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 0, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART));
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__condPartRef = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 1, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART_REF));
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__condParts = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 2, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS));
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__condPartsRef = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 3, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS_REF));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__condPart = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 0, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__condPartRef = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 1, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__condParts = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 2, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__condPartsRef = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 3, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS));
 
 		public static final /*@NonNull*/ ExecutorProperty _Condition__additionalConditionSpecification = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION, Types._Condition, 0);
 		public static final /*@NonNull*/ ExecutorProperty _Condition__comparator = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__COMPARATOR, Types._Condition, 1);
 		public static final /*@NonNull*/ ExecutorProperty _Condition__value = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__VALUE, Types._Condition, 2);
 
-		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPart = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART, Types._UnaryCondition, 0);
-		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPartRef = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__COND_PART_REF, Types._UnaryCondition, 1);
+		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPart = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART, Types._UnaryCondition, 0);
+		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPartRef = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART, Types._UnaryCondition, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__condParts = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS, Types._VariadicCondition, 0);
-		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__condPartsRef = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS_REF, Types._VariadicCondition, 1);
+		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__condParts = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS, Types._VariadicCondition, 0);
+		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__condPartsRef = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS, Types._VariadicCondition, 1);
 		static {
 			Init.initEnd();
 		}

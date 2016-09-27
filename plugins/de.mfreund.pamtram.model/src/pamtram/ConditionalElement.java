@@ -36,23 +36,23 @@ public interface ConditionalElement extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(ComplexCondition)
-	 * @see pamtram.PamtramPackage#getConditionalElement_Condition()
+	 * @see #setLocalCondition(ComplexCondition)
+	 * @see pamtram.PamtramPackage#getConditionalElement_LocalCondition()
 	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!ConditionalElement!condition'"
 	 * @generated
 	 */
-	ComplexCondition getCondition();
+	ComplexCondition getLocalCondition();
 
 	/**
 	 * Sets the value of the '{@link pamtram.ConditionalElement#getCondition <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition</em>' containment reference.
-	 * @see #getCondition()
+	 * @see #getLocalCondition()
 	 * @generated
 	 */
-	void setCondition(ComplexCondition value);
+	void setLocalCondition(ComplexCondition value);
 
 	/**
 	 * Returns the value of the '<em><b>Condition Ref</b></em>' reference.
@@ -63,22 +63,22 @@ public interface ConditionalElement extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition Ref</em>' reference.
-	 * @see #setConditionRef(ComplexCondition)
-	 * @see pamtram.PamtramPackage#getConditionalElement_ConditionRef()
+	 * @see #setSharedCondition(ComplexCondition)
+	 * @see pamtram.PamtramPackage#getConditionalElement_SharedCondition()
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!ConditionalElement!conditionRef'"
 	 * @generated
 	 */
-	ComplexCondition getConditionRef();
+	ComplexCondition getSharedCondition();
 
 	/**
 	 * Sets the value of the '{@link pamtram.ConditionalElement#getConditionRef <em>Condition Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition Ref</em>' reference.
-	 * @see #getConditionRef()
+	 * @see #getSharedCondition()
 	 * @generated
 	 */
-	void setConditionRef(ComplexCondition value);
+	void setSharedCondition(ComplexCondition value);
 
 	/**
 	 * <!-- begin-user-doc -->

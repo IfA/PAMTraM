@@ -44,20 +44,20 @@ import pamtram.condition.UnaryCondition;
  */
 public abstract class UnaryConditionImpl extends ComplexConditionImpl implements UnaryCondition {
 	/**
-	 * The cached value of the '{@link #getCondPart() <em>Cond Part</em>}' containment reference.
+	 * The cached value of the '{@link #getLocalCondPart() <em>Cond Part</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondPart()
+	 * @see #getLocalCondPart()
 	 * @generated
 	 * @ordered
 	 */
 	protected ComplexCondition condPart;
 
 	/**
-	 * The cached value of the '{@link #getCondPartRef() <em>Cond Part Ref</em>}' reference.
+	 * The cached value of the '{@link #getSharedCondPart() <em>Cond Part Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondPartRef()
+	 * @see #getSharedCondPart()
 	 * @generated
 	 * @ordered
 	 */
@@ -87,7 +87,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition getCondPart() {
+	public ComplexCondition getLocalCondPart() {
 		return condPart;
 	}
 
@@ -96,7 +96,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondPart(ComplexCondition newCondPart, NotificationChain msgs) {
+	public NotificationChain basicSetLocalCondPart(ComplexCondition newCondPart, NotificationChain msgs) {
 		ComplexCondition oldCondPart = condPart;
 		condPart = newCondPart;
 		if (eNotificationRequired()) {
@@ -111,14 +111,14 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCondPart(ComplexCondition newCondPart) {
+	public void setLocalCondPart(ComplexCondition newCondPart) {
 		if (newCondPart != condPart) {
 			NotificationChain msgs = null;
 			if (condPart != null)
 				msgs = ((InternalEObject)condPart).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConditionPackage.UNARY_CONDITION__COND_PART, null, msgs);
 			if (newCondPart != null)
 				msgs = ((InternalEObject)newCondPart).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConditionPackage.UNARY_CONDITION__COND_PART, null, msgs);
-			msgs = basicSetCondPart(newCondPart, msgs);
+			msgs = basicSetLocalCondPart(newCondPart, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -130,7 +130,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition getCondPartRef() {
+	public ComplexCondition getSharedCondPart() {
 		if (condPartRef != null && condPartRef.eIsProxy()) {
 			InternalEObject oldCondPartRef = (InternalEObject)condPartRef;
 			condPartRef = (ComplexCondition)eResolveProxy(oldCondPartRef);
@@ -147,7 +147,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition basicGetCondPartRef() {
+	public ComplexCondition basicGetSharedCondPart() {
 		return condPartRef;
 	}
 
@@ -156,7 +156,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCondPartRef(ComplexCondition newCondPartRef) {
+	public void setSharedCondPart(ComplexCondition newCondPartRef) {
 		ComplexCondition oldCondPartRef = condPartRef;
 		condPartRef = newCondPartRef;
 		if (eNotificationRequired())
@@ -189,10 +189,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ ComplexCondition condPart = this.getCondPart();
+		    final /*@Thrown*/ ComplexCondition condPart = this.getLocalCondPart();
 		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, ConditionTables.SET_CLSSid_ComplexCondition, condPart);
 		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
-		    final /*@Thrown*/ ComplexCondition condPartRef = this.getCondPartRef();
+		    final /*@Thrown*/ ComplexCondition condPartRef = this.getSharedCondPart();
 		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, ConditionTables.SET_CLSSid_ComplexCondition, condPartRef);
 		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
 		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
@@ -226,7 +226,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ConditionPackage.UNARY_CONDITION__COND_PART:
-				return basicSetCondPart(null, msgs);
+				return basicSetLocalCondPart(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -240,10 +240,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ConditionPackage.UNARY_CONDITION__COND_PART:
-				return getCondPart();
+				return getLocalCondPart();
 			case ConditionPackage.UNARY_CONDITION__COND_PART_REF:
-				if (resolve) return getCondPartRef();
-				return basicGetCondPartRef();
+				if (resolve) return getSharedCondPart();
+				return basicGetSharedCondPart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -258,10 +258,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ConditionPackage.UNARY_CONDITION__COND_PART:
-				setCondPart((ComplexCondition)newValue);
+				setLocalCondPart((ComplexCondition)newValue);
 				return;
 			case ConditionPackage.UNARY_CONDITION__COND_PART_REF:
-				setCondPartRef((ComplexCondition)newValue);
+				setSharedCondPart((ComplexCondition)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -276,10 +276,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ConditionPackage.UNARY_CONDITION__COND_PART:
-				setCondPart((ComplexCondition)null);
+				setLocalCondPart((ComplexCondition)null);
 				return;
 			case ConditionPackage.UNARY_CONDITION__COND_PART_REF:
-				setCondPartRef((ComplexCondition)null);
+				setSharedCondPart((ComplexCondition)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -319,10 +319,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@Override
 	public boolean isLocalCondition() {
 		
-		ComplexCondition subCondition = getCondPart();
+		ComplexCondition subCondition = getLocalCondPart();
 		
 		if(subCondition == null) {
-			subCondition = getCondPartRef();
+			subCondition = getSharedCondPart();
 		}
 		
 		return subCondition == null ? false : subCondition.isLocalCondition();

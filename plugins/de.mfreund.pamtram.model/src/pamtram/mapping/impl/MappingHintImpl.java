@@ -50,19 +50,19 @@ import pamtram.mapping.MappingPackage;
  */
 public abstract class MappingHintImpl extends MappingHintTypeImpl implements MappingHint {
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+	 * The cached value of the '{@link #getLocalCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondition()
+	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
 	 */
 	protected ComplexCondition condition;
 	/**
-	 * The cached value of the '{@link #getConditionRef() <em>Condition Ref</em>}' reference.
+	 * The cached value of the '{@link #getSharedCondition() <em>Condition Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConditionRef()
+	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
 	 */
@@ -92,7 +92,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition getCondition() {
+	public ComplexCondition getLocalCondition() {
 		return condition;
 	}
 
@@ -116,7 +116,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCondition(ComplexCondition newCondition) {
+	public void setLocalCondition(ComplexCondition newCondition) {
 		if (newCondition != condition) {
 			NotificationChain msgs = null;
 			if (condition != null)
@@ -135,7 +135,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition getConditionRef() {
+	public ComplexCondition getSharedCondition() {
 		if (conditionRef != null && conditionRef.eIsProxy()) {
 			InternalEObject oldConditionRef = (InternalEObject)conditionRef;
 			conditionRef = (ComplexCondition)eResolveProxy(oldConditionRef);
@@ -161,7 +161,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConditionRef(ComplexCondition newConditionRef) {
+	public void setSharedCondition(ComplexCondition newConditionRef) {
 		ComplexCondition oldConditionRef = conditionRef;
 		conditionRef = newConditionRef;
 		if (eNotificationRequired())
@@ -194,10 +194,10 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ ComplexCondition conditionRef = this.getConditionRef();
+		    final /*@Thrown*/ ComplexCondition conditionRef = this.getSharedCondition();
 		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef);
 		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
-		    final /*@Thrown*/ ComplexCondition condition = this.getCondition();
+		    final /*@Thrown*/ ComplexCondition condition = this.getLocalCondition();
 		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, condition);
 		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
 		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
@@ -253,7 +253,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ ComplexCondition conditionRef_0 = this.getConditionRef();
+		    final /*@Thrown*/ ComplexCondition conditionRef_0 = this.getSharedCondition();
 		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef_0);
 		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
 		    final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
@@ -310,9 +310,9 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT__CONDITION:
-				return getCondition();
+				return getLocalCondition();
 			case MappingPackage.MAPPING_HINT__CONDITION_REF:
-				if (resolve) return getConditionRef();
+				if (resolve) return getSharedCondition();
 				return basicGetConditionRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -327,10 +327,10 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT__CONDITION:
-				setCondition((ComplexCondition)newValue);
+				setLocalCondition((ComplexCondition)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT__CONDITION_REF:
-				setConditionRef((ComplexCondition)newValue);
+				setSharedCondition((ComplexCondition)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -345,10 +345,10 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT__CONDITION:
-				setCondition((ComplexCondition)null);
+				setLocalCondition((ComplexCondition)null);
 				return;
 			case MappingPackage.MAPPING_HINT__CONDITION_REF:
-				setConditionRef((ComplexCondition)null);
+				setSharedCondition((ComplexCondition)null);
 				return;
 		}
 		super.eUnset(featureID);

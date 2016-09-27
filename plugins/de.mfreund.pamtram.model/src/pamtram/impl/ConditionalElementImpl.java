@@ -49,24 +49,24 @@ import pamtram.condition.ComplexCondition;
  */
 public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Container implements ConditionalElement {
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+	 * The cached value of the '{@link #getLocalCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondition()
+	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComplexCondition condition;
+	protected ComplexCondition localCondition;
 
 	/**
-	 * The cached value of the '{@link #getConditionRef() <em>Condition Ref</em>}' reference.
+	 * The cached value of the '{@link #getSharedCondition() <em>Condition Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConditionRef()
+	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComplexCondition conditionRef;
+	protected ComplexCondition sharedCondition;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -92,8 +92,8 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition getCondition() {
-		return condition;
+	public ComplexCondition getLocalCondition() {
+		return localCondition;
 	}
 
 	/**
@@ -101,9 +101,9 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondition(ComplexCondition newCondition, NotificationChain msgs) {
-		ComplexCondition oldCondition = condition;
-		condition = newCondition;
+	public NotificationChain basicSetLocalCondition(ComplexCondition newCondition, NotificationChain msgs) {
+		ComplexCondition oldCondition = localCondition;
+		localCondition = newCondition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PamtramPackage.CONDITIONAL_ELEMENT__CONDITION, oldCondition, newCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
@@ -116,14 +116,14 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCondition(ComplexCondition newCondition) {
-		if (newCondition != condition) {
+	public void setLocalCondition(ComplexCondition newCondition) {
+		if (newCondition != localCondition) {
 			NotificationChain msgs = null;
-			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.CONDITIONAL_ELEMENT__CONDITION, null, msgs);
+			if (localCondition != null)
+				msgs = ((InternalEObject)localCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.CONDITIONAL_ELEMENT__CONDITION, null, msgs);
 			if (newCondition != null)
 				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.CONDITIONAL_ELEMENT__CONDITION, null, msgs);
-			msgs = basicSetCondition(newCondition, msgs);
+			msgs = basicSetLocalCondition(newCondition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -135,16 +135,16 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition getConditionRef() {
-		if (conditionRef != null && conditionRef.eIsProxy()) {
-			InternalEObject oldConditionRef = (InternalEObject)conditionRef;
-			conditionRef = (ComplexCondition)eResolveProxy(oldConditionRef);
-			if (conditionRef != oldConditionRef) {
+	public ComplexCondition getSharedCondition() {
+		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+			InternalEObject oldConditionRef = (InternalEObject)sharedCondition;
+			sharedCondition = (ComplexCondition)eResolveProxy(oldConditionRef);
+			if (sharedCondition != oldConditionRef) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF, oldConditionRef, conditionRef));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF, oldConditionRef, sharedCondition));
 			}
 		}
-		return conditionRef;
+		return sharedCondition;
 	}
 
 	/**
@@ -153,7 +153,7 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	public ComplexCondition basicGetConditionRef() {
-		return conditionRef;
+		return sharedCondition;
 	}
 
 	/**
@@ -161,11 +161,11 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConditionRef(ComplexCondition newConditionRef) {
-		ComplexCondition oldConditionRef = conditionRef;
-		conditionRef = newConditionRef;
+	public void setSharedCondition(ComplexCondition newConditionRef) {
+		ComplexCondition oldConditionRef = sharedCondition;
+		sharedCondition = newConditionRef;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF, oldConditionRef, conditionRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF, oldConditionRef, sharedCondition));
 	}
 
 	/**
@@ -194,10 +194,10 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ ComplexCondition conditionRef = this.getConditionRef();
+		    final /*@Thrown*/ ComplexCondition conditionRef = this.getSharedCondition();
 		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef);
 		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
-		    final /*@Thrown*/ ComplexCondition condition = this.getCondition();
+		    final /*@Thrown*/ ComplexCondition condition = this.getLocalCondition();
 		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, condition);
 		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
 		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
@@ -253,7 +253,7 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ ComplexCondition conditionRef_0 = this.getConditionRef();
+		    final /*@Thrown*/ ComplexCondition conditionRef_0 = this.getSharedCondition();
 		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef_0);
 		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
 		    final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
@@ -296,7 +296,7 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION:
-				return basicSetCondition(null, msgs);
+				return basicSetLocalCondition(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -310,9 +310,9 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION:
-				return getCondition();
+				return getLocalCondition();
 			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF:
-				if (resolve) return getConditionRef();
+				if (resolve) return getSharedCondition();
 				return basicGetConditionRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -327,10 +327,10 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION:
-				setCondition((ComplexCondition)newValue);
+				setLocalCondition((ComplexCondition)newValue);
 				return;
 			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF:
-				setConditionRef((ComplexCondition)newValue);
+				setSharedCondition((ComplexCondition)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -345,10 +345,10 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION:
-				setCondition((ComplexCondition)null);
+				setLocalCondition((ComplexCondition)null);
 				return;
 			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF:
-				setConditionRef((ComplexCondition)null);
+				setSharedCondition((ComplexCondition)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -363,9 +363,9 @@ public abstract class ConditionalElementImpl extends MinimalEObjectImpl.Containe
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION:
-				return condition != null;
+				return localCondition != null;
 			case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF:
-				return conditionRef != null;
+				return sharedCondition != null;
 		}
 		return super.eIsSet(featureID);
 	}

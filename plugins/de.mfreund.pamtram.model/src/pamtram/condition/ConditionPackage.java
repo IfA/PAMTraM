@@ -1168,7 +1168,7 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Cond Parts</em>'.
-	 * @see pamtram.condition.VariadicCondition#getCondParts()
+	 * @see pamtram.condition.VariadicCondition#getLocalCondParts()
 	 * @see #getVariadicCondition()
 	 * @generated
 	 */
@@ -1179,7 +1179,7 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Cond Parts Ref</em>'.
-	 * @see pamtram.condition.VariadicCondition#getCondPartsRef()
+	 * @see pamtram.condition.VariadicCondition#getSharedCondParts()
 	 * @see #getVariadicCondition()
 	 * @generated
 	 */
@@ -1251,22 +1251,22 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Cond Part</em>'.
-	 * @see pamtram.condition.UnaryCondition#getCondPart()
+	 * @see pamtram.condition.UnaryCondition#getLocalCondPart()
 	 * @see #getUnaryCondition()
 	 * @generated
 	 */
-	EReference getUnaryCondition_CondPart();
+	EReference getUnaryCondition_LocalCondPart();
 
 	/**
 	 * Returns the meta object for the reference '{@link pamtram.condition.UnaryCondition#getCondPartRef <em>Cond Part Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Cond Part Ref</em>'.
-	 * @see pamtram.condition.UnaryCondition#getCondPartRef()
+	 * @see pamtram.condition.UnaryCondition#getSharedCondPart()
 	 * @see #getUnaryCondition()
 	 * @generated
 	 */
-	EReference getUnaryCondition_CondPartRef();
+	EReference getUnaryCondition_SharedCondPart();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.UnaryCondition#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Exactly One Arg</em>}' operation.
@@ -1499,7 +1499,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIADIC_CONDITION__COND_PARTS = eINSTANCE.getVariadicCondition_CondParts();
+		EReference VARIADIC_CONDITION__LOCAL_COND_PARTS = eINSTANCE.getVariadicCondition_CondParts();
 
 		/**
 		 * The meta object literal for the '<em><b>Cond Parts Ref</b></em>' reference list feature.
@@ -1507,7 +1507,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIADIC_CONDITION__COND_PARTS_REF = eINSTANCE.getVariadicCondition_CondPartsRef();
+		EReference VARIADIC_CONDITION__SHARED_COND_PARTS = eINSTANCE.getVariadicCondition_CondPartsRef();
 
 		/**
 		 * The meta object literal for the '<em><b>References Only Valid Conditions</b></em>' operation.
@@ -1569,7 +1569,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference UNARY_CONDITION__COND_PART = eINSTANCE.getUnaryCondition_CondPart();
+		EReference UNARY_CONDITION__LOCAL_COND_PART = eINSTANCE.getUnaryCondition_LocalCondPart();
 
 		/**
 		 * The meta object literal for the '<em><b>Cond Part Ref</b></em>' reference feature.
@@ -1577,7 +1577,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference UNARY_CONDITION__COND_PART_REF = eINSTANCE.getUnaryCondition_CondPartRef();
+		EReference UNARY_CONDITION__SHARED_COND_PART = eINSTANCE.getUnaryCondition_SharedCondPart();
 
 		/**
 		 * The meta object literal for the '<em><b>Exactly One Arg</b></em>' operation.

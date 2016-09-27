@@ -293,8 +293,8 @@ public class PamtramTables
 		public static final /*@NonNull*/ ExecutorProperty _ConditionModel__condition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITION_MODEL__CONDITION, Types._ConditionModel, 0);
 		public static final /*@NonNull*/ ExecutorProperty _ConditionModel__PAMTraM__conditionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._ConditionModel, 1, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL));
 
-		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__condition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION, Types._ConditionalElement, 0);
-		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__conditionRef = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF, Types._ConditionalElement, 1);
+		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__condition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION, Types._ConditionalElement, 0);
+		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__conditionRef = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, Types._ConditionalElement, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _DeactivatableElement__deactivated = new EcoreExecutorProperty(PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED, Types._DeactivatableElement, 0);
 

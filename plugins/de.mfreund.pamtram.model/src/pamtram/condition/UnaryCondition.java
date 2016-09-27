@@ -3,6 +3,7 @@
 package pamtram.condition;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
@@ -33,49 +34,50 @@ public interface UnaryCondition extends ComplexCondition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cond Part</em>' containment reference.
-	 * @see #setCondPart(ComplexCondition)
-	 * @see pamtram.condition.ConditionPackage#getUnaryCondition_CondPart()
+	 * @see #setLocalCondPart(ComplexCondition)
+	 * @see pamtram.condition.ConditionPackage#getUnaryCondition_LocalCondPart()
 	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!UnaryCondition!condPart'"
 	 * @generated
 	 */
-	ComplexCondition getCondPart();
+	ComplexCondition getLocalCondPart();
 
 	/**
 	 * Sets the value of the '{@link pamtram.condition.UnaryCondition#getCondPart <em>Cond Part</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cond Part</em>' containment reference.
-	 * @see #getCondPart()
+	 * @see #getLocalCondPart()
 	 * @generated
 	 */
-	void setCondPart(ComplexCondition value);
+	void setLocalCondPart(ComplexCondition value);
 
 	/**
-	 * Returns the value of the '<em><b>Cond Part Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Cond Part Ref</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Cond Part Ref</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Cond Part Ref</em>' reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Cond Part Ref</em>' reference.
-	 * @see #setCondPartRef(ComplexCondition)
-	 * @see pamtram.condition.ConditionPackage#getUnaryCondition_CondPartRef()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!UnaryCondition!condPartRef'"
+	 * @see #setSharedCondPart(ComplexCondition)
+	 * @see pamtram.condition.ConditionPackage#getUnaryCondition_SharedCondPart()
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException(); //
+	 *        FIXME Unimplemented http://mfreund.de/pamtram/condition!UnaryCondition!condPartRef'"
 	 * @generated
 	 */
-	ComplexCondition getCondPartRef();
+	ComplexCondition getSharedCondPart();
 
 	/**
 	 * Sets the value of the '{@link pamtram.condition.UnaryCondition#getCondPartRef <em>Cond Part Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cond Part Ref</em>' reference.
-	 * @see #getCondPartRef()
+	 * @see #getSharedCondPart()
 	 * @generated
 	 */
-	void setCondPartRef(ComplexCondition value);
+	void setSharedCondPart(ComplexCondition value);
 
 	/**
 	 * <!-- begin-user-doc -->

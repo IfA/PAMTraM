@@ -452,7 +452,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConditionalElement_Condition() {
+	public EReference getConditionalElement_LocalCondition() {
 		return (EReference)conditionalElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -461,7 +461,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConditionalElement_ConditionRef() {
+	public EReference getConditionalElement_SharedCondition() {
 		return (EReference)conditionalElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -721,8 +721,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEOperation(getMappingModel__GetActiveMappings(), theMappingPackage.getMapping(), "getActiveMappings", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(conditionalElementEClass, ConditionalElement.class, "ConditionalElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConditionalElement_Condition(), theConditionPackage.getComplexCondition(), null, "condition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConditionalElement_ConditionRef(), theConditionPackage.getComplexCondition(), null, "conditionRef", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditionalElement_LocalCondition(), theConditionPackage.getComplexCondition(), null, "condition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditionalElement_SharedCondition(), theConditionPackage.getComplexCondition(), null, "conditionRef", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "eitherModelOrReferCondition", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);

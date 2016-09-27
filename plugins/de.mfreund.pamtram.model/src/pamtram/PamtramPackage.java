@@ -948,22 +948,22 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see pamtram.ConditionalElement#getCondition()
+	 * @see pamtram.ConditionalElement#getLocalCondition()
 	 * @see #getConditionalElement()
 	 * @generated
 	 */
-	EReference getConditionalElement_Condition();
+	EReference getConditionalElement_LocalCondition();
 
 	/**
 	 * Returns the meta object for the reference '{@link pamtram.ConditionalElement#getConditionRef <em>Condition Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Condition Ref</em>'.
-	 * @see pamtram.ConditionalElement#getConditionRef()
+	 * @see pamtram.ConditionalElement#getSharedCondition()
 	 * @see #getConditionalElement()
 	 * @generated
 	 */
-	EReference getConditionalElement_ConditionRef();
+	EReference getConditionalElement_SharedCondition();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.ConditionalElement#eitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Either Model Or Refer Condition</em>}' operation.
@@ -1283,7 +1283,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITIONAL_ELEMENT__CONDITION = eINSTANCE.getConditionalElement_Condition();
+		EReference CONDITIONAL_ELEMENT__LOCAL_CONDITION = eINSTANCE.getConditionalElement_LocalCondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Condition Ref</b></em>' reference feature.
@@ -1291,7 +1291,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITIONAL_ELEMENT__CONDITION_REF = eINSTANCE.getConditionalElement_ConditionRef();
+		EReference CONDITIONAL_ELEMENT__SHARED_CONDITION = eINSTANCE.getConditionalElement_SharedCondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Either Model Or Refer Condition</b></em>' operation.

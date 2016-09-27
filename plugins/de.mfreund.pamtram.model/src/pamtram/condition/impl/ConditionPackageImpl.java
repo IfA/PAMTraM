@@ -360,7 +360,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUnaryCondition_CondPart() {
+	public EReference getUnaryCondition_LocalCondPart() {
 		return (EReference)unaryConditionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -369,7 +369,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUnaryCondition_CondPartRef() {
+	public EReference getUnaryCondition_SharedCondPart() {
 		return (EReference)unaryConditionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -633,8 +633,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEClass(orEClass, Or.class, "Or", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(unaryConditionEClass, UnaryCondition.class, "UnaryCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUnaryCondition_CondPart(), this.getComplexCondition(), null, "condPart", null, 0, 1, UnaryCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUnaryCondition_CondPartRef(), this.getComplexCondition(), null, "condPartRef", null, 0, 1, UnaryCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnaryCondition_LocalCondPart(), this.getComplexCondition(), null, "condPart", null, 0, 1, UnaryCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnaryCondition_SharedCondPart(), this.getComplexCondition(), null, "condPartRef", null, 0, 1, UnaryCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "exactlyOneArg", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);

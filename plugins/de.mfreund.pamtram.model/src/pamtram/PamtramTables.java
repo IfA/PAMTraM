@@ -82,10 +82,10 @@ public class PamtramTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_1 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("1");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_4 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("4");
-    public static final /*@NonInvalid*/ java.lang.String STR_As_32_this_32_Instance_32_is_32_a_32_ConditionElement_32_and_32_you_32_want_32_to_32_add_32_a_32_con = "As this Instance is a ConditionElement and you want to add a condition, you either have to model a condition or reference an already existing one!";
     public static final /*@NonInvalid*/ java.lang.String STR_ConditionalElement_c_c_eitherModelOrReferCondition = "ConditionalElement::eitherModelOrReferCondition";
     public static final /*@NonInvalid*/ java.lang.String STR_ConditionalElement_c_c_referenceOnlyConditionsFromConditionModel = "ConditionalElement::referenceOnlyConditionsFromConditionModel";
-    public static final /*@NonInvalid*/ java.lang.String STR_It_32_only_32_allowed_32_to_32_reference_32_Condition_m_Instances_32_that_32_are_32_model_32 = "It only allowed to reference Condition-Instances that are model inside the ConditionModel!";
+    public static final /*@NonInvalid*/ java.lang.String STR_It_32_only_32_allowed_32_to_32_reference_32_shared_32_conditions_32_that_32_are_32_model_32_in = "It only allowed to reference shared conditions that are model inside the ConditionModel!";
+    public static final /*@NonInvalid*/ java.lang.String STR_Please_32_specify_32_at_32_most_32_one_32_o_local_32_or_32_shared_e_32_condition_33 = "Please specify at most one (local or shared) condition!";
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_ApplicationDependency = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.PamtramTables.CLSSid_ApplicationDependency);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_ComplexCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ConditionModel = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_ConditionModel);
@@ -293,8 +293,8 @@ public class PamtramTables
 		public static final /*@NonNull*/ ExecutorProperty _ConditionModel__condition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITION_MODEL__CONDITION, Types._ConditionModel, 0);
 		public static final /*@NonNull*/ ExecutorProperty _ConditionModel__PAMTraM__conditionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._ConditionModel, 1, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL));
 
-		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__condition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION, Types._ConditionalElement, 0);
-		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__conditionRef = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, Types._ConditionalElement, 1);
+		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__localCondition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION, Types._ConditionalElement, 0);
+		public static final /*@NonNull*/ ExecutorProperty _ConditionalElement__sharedCondition = new EcoreExecutorProperty(PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, Types._ConditionalElement, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _DeactivatableElement__deactivated = new EcoreExecutorProperty(PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED, Types._DeactivatableElement, 0);
 
@@ -792,8 +792,8 @@ public class PamtramTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ConditionalElement = {
-			PamtramTables.Properties._ConditionalElement__condition,
-			PamtramTables.Properties._ConditionalElement__conditionRef
+			PamtramTables.Properties._ConditionalElement__localCondition,
+			PamtramTables.Properties._ConditionalElement__sharedCondition
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _DeactivatableElement = {

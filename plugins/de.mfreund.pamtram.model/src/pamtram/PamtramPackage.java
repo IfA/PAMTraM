@@ -535,22 +535,22 @@ public interface PamtramPackage extends EPackage {
 	int CONDITIONAL_ELEMENT = 7;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT__CONDITION = 0;
+	int CONDITIONAL_ELEMENT__LOCAL_CONDITION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Condition Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Shared Condition</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT__CONDITION_REF = 1;
+	int CONDITIONAL_ELEMENT__SHARED_CONDITION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Conditional Element</em>' class.
@@ -568,7 +568,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = 0;
+	int CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1 = 0;
 
 	/**
 	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
@@ -577,7 +577,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = 1;
+	int CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1 = 1;
 
 	/**
 	 * The number of operations of the '<em>Conditional Element</em>' class.
@@ -944,10 +944,10 @@ public interface PamtramPackage extends EPackage {
 	EClass getConditionalElement();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.ConditionalElement#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.ConditionalElement#getLocalCondition <em>Local Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @return the meta object for the containment reference '<em>Local Condition</em>'.
 	 * @see pamtram.ConditionalElement#getLocalCondition()
 	 * @see #getConditionalElement()
 	 * @generated
@@ -955,10 +955,10 @@ public interface PamtramPackage extends EPackage {
 	EReference getConditionalElement_LocalCondition();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.ConditionalElement#getConditionRef <em>Condition Ref</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.ConditionalElement#getSharedCondition <em>Shared Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Condition Ref</em>'.
+	 * @return the meta object for the reference '<em>Shared Condition</em>'.
 	 * @see pamtram.ConditionalElement#getSharedCondition()
 	 * @see #getConditionalElement()
 	 * @generated
@@ -973,7 +973,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.ConditionalElement#eitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map();
+	EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_1();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.ConditionalElement#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Reference Only Conditions From Condition Model</em>}' operation.
@@ -983,7 +983,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.ConditionalElement#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
+	EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_1();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.ConditionModel <em>Condition Model</em>}'.
@@ -1278,7 +1278,7 @@ public interface PamtramPackage extends EPackage {
 		EClass CONDITIONAL_ELEMENT = eINSTANCE.getConditionalElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Local Condition</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1286,7 +1286,7 @@ public interface PamtramPackage extends EPackage {
 		EReference CONDITIONAL_ELEMENT__LOCAL_CONDITION = eINSTANCE.getConditionalElement_LocalCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition Ref</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Shared Condition</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1299,7 +1299,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map();
+		EOperation CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_1();
 
 		/**
 		 * The meta object literal for the '<em><b>Reference Only Conditions From Condition Model</b></em>' operation.
@@ -1307,7 +1307,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
+		EOperation CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_1();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.ConditionModelImpl <em>Condition Model</em>}' class.

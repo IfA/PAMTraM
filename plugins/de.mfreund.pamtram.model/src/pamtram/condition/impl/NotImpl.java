@@ -53,12 +53,12 @@ public class NotImpl extends UnaryConditionImpl implements Not {
 	 * @generated
 	 */
 	public boolean referencesOnlyValidConditions() {
-		if(this.condPartRef == null) {
+		if(this.sharedCondPart == null) {
 			return true;
 		}
 		
-		EObject condPartRefContainer = this.condPartRef.eContainer();
-		return condPartRefContainer instanceof ConditionModel || condPartRefContainer instanceof ConditionalElement;
+		EObject sharedCondPartContainer = this.sharedCondPart.eContainer();
+		return sharedCondPartContainer instanceof ConditionModel || sharedCondPartContainer instanceof ConditionalElement;
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class NotImpl extends UnaryConditionImpl implements Not {
 		switch (operationID) {
 			case ConditionPackage.NOT___REFERENCES_ONLY_VALID_CONDITIONS:
 				return referencesOnlyValidConditions();
-			case ConditionPackage.NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP:
+			case ConditionPackage.NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1:
 				return referenceOnlyConditionsFromConditionModelOrFromConditionalElements((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

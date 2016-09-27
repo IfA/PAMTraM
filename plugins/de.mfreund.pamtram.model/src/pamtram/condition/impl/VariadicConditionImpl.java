@@ -44,15 +44,15 @@ import pamtram.condition.VariadicCondition;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.VariadicConditionImpl#getCondParts <em>Cond Parts</em>}</li>
- *   <li>{@link pamtram.condition.impl.VariadicConditionImpl#getCondPartsRef <em>Cond Parts Ref</em>}</li>
+ *   <li>{@link pamtram.condition.impl.VariadicConditionImpl#getLocalCondParts <em>Local Cond Parts</em>}</li>
+ *   <li>{@link pamtram.condition.impl.VariadicConditionImpl#getSharedCondParts <em>Shared Cond Parts</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class VariadicConditionImpl extends ComplexConditionImpl implements VariadicCondition {
 	/**
-	 * The cached value of the '{@link #getLocalCondParts() <em>Cond Parts</em>}' containment reference list.
+	 * The cached value of the '{@link #getLocalCondParts() <em>Local Cond Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLocalCondParts()
@@ -62,7 +62,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	protected EList<ComplexCondition> localCondParts;
 
 	/**
-	 * The cached value of the '{@link #getSharedCondParts() <em>Cond Parts Ref</em>}' reference list.
+	 * The cached value of the '{@link #getSharedCondParts() <em>Shared Cond Parts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSharedCondParts()
@@ -97,7 +97,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 */
 	public EList<ComplexCondition> getLocalCondParts() {
 		if (localCondParts == null) {
-			localCondParts = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__COND_PARTS);
+			localCondParts = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS);
 		}
 		return localCondParts;
 	}
@@ -109,7 +109,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 */
 	public EList<ComplexCondition> getSharedCondParts() {
 		if (sharedCondParts == null) {
-			sharedCondParts = new EObjectResolvingEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF);
+			sharedCondParts = new EObjectResolvingEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__SHARED_COND_PARTS);
 		}
 		return sharedCondParts;
 	}
@@ -145,12 +145,12 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = self.condParts->size() +
-		 *       self.condPartsRef->size() > 1
+		 *       status : OclAny[1] = self.localCondParts->size() +
+		 *       self.sharedCondParts->size() > 1
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
-		 *         then 'The required subparts of this condition are not modeled or not referenced !'
+		 *         then 'At least two (local or shared) condition parts need to be specified!'
 		 *         else null
 		 *         endif
 		 *       in
@@ -160,12 +160,12 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ List<ComplexCondition> condParts = this.getLocalCondParts();
-		    final /*@Thrown*/ OrderedSetValue BOXED_condParts = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, condParts);
-		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_condParts);
-		    final /*@Thrown*/ List<ComplexCondition> condPartsRef = this.getSharedCondParts();
-		    final /*@Thrown*/ OrderedSetValue BOXED_condPartsRef = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, condPartsRef);
-		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_condPartsRef);
+		    final /*@Thrown*/ List<ComplexCondition> localCondParts = this.getLocalCondParts();
+		    final /*@Thrown*/ OrderedSetValue BOXED_localCondParts = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, localCondParts);
+		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_localCondParts);
+		    final /*@Thrown*/ List<ComplexCondition> sharedCondParts = this.getSharedCondParts();
+		    final /*@Thrown*/ OrderedSetValue BOXED_sharedCondParts = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, sharedCondParts);
+		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_sharedCondParts);
 		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
 		    final /*@Thrown*/ boolean status = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, sum, ConditionTables.INT_1).booleanValue();
 		    CAUGHT_status = status;
@@ -179,7 +179,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@NonInvalid*/ String message_0;
 		if (ne) {
-		    message_0 = ConditionTables.STR_The_32_required_32_subparts_32_of_32_this_32_condition_32_are_32_not_32_modeled_32_or_32_not_32_r;
+		    message_0 = ConditionTables.STR_At_32_least_32_two_32_o_local_32_or_32_shared_e_32_condition_32_parts_32_need_32_to_32_be_32_specif;
 		}
 		else {
 		    message_0 = null;
@@ -196,7 +196,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS:
 				return ((InternalEList<?>)getLocalCondParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -210,9 +210,9 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS:
 				return getLocalCondParts();
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF:
+			case ConditionPackage.VARIADIC_CONDITION__SHARED_COND_PARTS:
 				return getSharedCondParts();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -227,11 +227,11 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS:
 				getLocalCondParts().clear();
 				getLocalCondParts().addAll((Collection<? extends ComplexCondition>)newValue);
 				return;
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF:
+			case ConditionPackage.VARIADIC_CONDITION__SHARED_COND_PARTS:
 				getSharedCondParts().clear();
 				getSharedCondParts().addAll((Collection<? extends ComplexCondition>)newValue);
 				return;
@@ -247,10 +247,10 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS:
 				getLocalCondParts().clear();
 				return;
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF:
+			case ConditionPackage.VARIADIC_CONDITION__SHARED_COND_PARTS:
 				getSharedCondParts().clear();
 				return;
 		}
@@ -265,9 +265,9 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS:
+			case ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS:
 				return localCondParts != null && !localCondParts.isEmpty();
-			case ConditionPackage.VARIADIC_CONDITION__COND_PARTS_REF:
+			case ConditionPackage.VARIADIC_CONDITION__SHARED_COND_PARTS:
 				return sharedCondParts != null && !sharedCondParts.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -284,7 +284,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		switch (operationID) {
 			case ConditionPackage.VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS:
 				return referencesOnlyValidConditions();
-			case ConditionPackage.VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
+			case ConditionPackage.VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1:
 				return minimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

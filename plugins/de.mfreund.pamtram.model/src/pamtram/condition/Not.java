@@ -21,7 +21,7 @@ public interface Not extends UnaryCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.condPartRef == null) {\r\n\treturn true;\r\n}\r\n\r\nEObject condPartRefContainer = this.condPartRef.eContainer();\r\nreturn condPartRefContainer instanceof ConditionModel || condPartRefContainer instanceof ConditionalElement;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.sharedCondPart == null) {\r\n\treturn true;\r\n}\r\n\r\nEObject sharedCondPartContainer = this.sharedCondPart.eContainer();\r\nreturn sharedCondPartContainer instanceof ConditionModel || sharedCondPartContainer instanceof ConditionalElement;'"
 	 * @generated
 	 */
 	boolean referencesOnlyValidConditions();

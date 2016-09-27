@@ -244,22 +244,22 @@ public interface ConditionPackage extends EPackage {
 	int VARIADIC_CONDITION__NAME = COMPLEX_CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Cond Parts</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Local Cond Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIADIC_CONDITION__COND_PARTS = COMPLEX_CONDITION_FEATURE_COUNT + 0;
+	int VARIADIC_CONDITION__LOCAL_COND_PARTS = COMPLEX_CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Cond Parts Ref</b></em>' reference list.
+	 * The feature id for the '<em><b>Shared Cond Parts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIADIC_CONDITION__COND_PARTS_REF = COMPLEX_CONDITION_FEATURE_COUNT + 1;
+	int VARIADIC_CONDITION__SHARED_COND_PARTS = COMPLEX_CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Variadic Condition</em>' class.
@@ -313,7 +313,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+	int VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Variadic Condition</em>' class.
@@ -344,22 +344,22 @@ public interface ConditionPackage extends EPackage {
 	int AND__NAME = VARIADIC_CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Cond Parts</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Local Cond Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND__COND_PARTS = VARIADIC_CONDITION__COND_PARTS;
+	int AND__LOCAL_COND_PARTS = VARIADIC_CONDITION__LOCAL_COND_PARTS;
 
 	/**
-	 * The feature id for the '<em><b>Cond Parts Ref</b></em>' reference list.
+	 * The feature id for the '<em><b>Shared Cond Parts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND__COND_PARTS_REF = VARIADIC_CONDITION__COND_PARTS_REF;
+	int AND__SHARED_COND_PARTS = VARIADIC_CONDITION__SHARED_COND_PARTS;
 
 	/**
 	 * The number of structural features of the '<em>And</em>' class.
@@ -413,7 +413,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
+	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -444,22 +444,22 @@ public interface ConditionPackage extends EPackage {
 	int OR__NAME = VARIADIC_CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Cond Parts</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Local Cond Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OR__COND_PARTS = VARIADIC_CONDITION__COND_PARTS;
+	int OR__LOCAL_COND_PARTS = VARIADIC_CONDITION__LOCAL_COND_PARTS;
 
 	/**
-	 * The feature id for the '<em><b>Cond Parts Ref</b></em>' reference list.
+	 * The feature id for the '<em><b>Shared Cond Parts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OR__COND_PARTS_REF = VARIADIC_CONDITION__COND_PARTS_REF;
+	int OR__SHARED_COND_PARTS = VARIADIC_CONDITION__SHARED_COND_PARTS;
 
 	/**
 	 * The number of structural features of the '<em>Or</em>' class.
@@ -513,7 +513,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
+	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1;
 
 	/**
 	 * The number of operations of the '<em>Or</em>' class.
@@ -544,22 +544,22 @@ public interface ConditionPackage extends EPackage {
 	int UNARY_CONDITION__NAME = COMPLEX_CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Cond Part</b></em>' containment reference.
+	 * The feature id for the '<em><b>Local Cond Part</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_CONDITION__COND_PART = COMPLEX_CONDITION_FEATURE_COUNT + 0;
+	int UNARY_CONDITION__LOCAL_COND_PART = COMPLEX_CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Cond Part Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Shared Cond Part</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_CONDITION__COND_PART_REF = COMPLEX_CONDITION_FEATURE_COUNT + 1;
+	int UNARY_CONDITION__SHARED_COND_PART = COMPLEX_CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Unary Condition</em>' class.
@@ -604,7 +604,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+	int UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1 = COMPLEX_CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Unary Condition</em>' class.
@@ -635,22 +635,22 @@ public interface ConditionPackage extends EPackage {
 	int NOT__NAME = UNARY_CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Cond Part</b></em>' containment reference.
+	 * The feature id for the '<em><b>Local Cond Part</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT__COND_PART = UNARY_CONDITION__COND_PART;
+	int NOT__LOCAL_COND_PART = UNARY_CONDITION__LOCAL_COND_PART;
 
 	/**
-	 * The feature id for the '<em><b>Cond Part Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Shared Cond Part</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT__COND_PART_REF = UNARY_CONDITION__COND_PART_REF;
+	int NOT__SHARED_COND_PART = UNARY_CONDITION__SHARED_COND_PART;
 
 	/**
 	 * The number of structural features of the '<em>Not</em>' class.
@@ -695,7 +695,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP;
+	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1 = UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -713,7 +713,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = UNARY_CONDITION_OPERATION_COUNT + 1;
+	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1 = UNARY_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Not</em>' class.
@@ -1164,26 +1164,26 @@ public interface ConditionPackage extends EPackage {
 	EClass getVariadicCondition();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.condition.VariadicCondition#getCondParts <em>Cond Parts</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.condition.VariadicCondition#getLocalCondParts <em>Local Cond Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Cond Parts</em>'.
+	 * @return the meta object for the containment reference list '<em>Local Cond Parts</em>'.
 	 * @see pamtram.condition.VariadicCondition#getLocalCondParts()
 	 * @see #getVariadicCondition()
 	 * @generated
 	 */
-	EReference getVariadicCondition_CondParts();
+	EReference getVariadicCondition_LocalCondParts();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.condition.VariadicCondition#getCondPartsRef <em>Cond Parts Ref</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.condition.VariadicCondition#getSharedCondParts <em>Shared Cond Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Cond Parts Ref</em>'.
+	 * @return the meta object for the reference list '<em>Shared Cond Parts</em>'.
 	 * @see pamtram.condition.VariadicCondition#getSharedCondParts()
 	 * @see #getVariadicCondition()
 	 * @generated
 	 */
-	EReference getVariadicCondition_CondPartsRef();
+	EReference getVariadicCondition_SharedCondParts();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.VariadicCondition#referencesOnlyValidConditions() <em>References Only Valid Conditions</em>}' operation.
@@ -1203,7 +1203,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.VariadicCondition#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map();
+	EOperation getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map_1();
 
 	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getValue <em>Value</em>}'.
@@ -1247,10 +1247,10 @@ public interface ConditionPackage extends EPackage {
 	EClass getUnaryCondition();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.condition.UnaryCondition#getCondPart <em>Cond Part</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.condition.UnaryCondition#getLocalCondPart <em>Local Cond Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Cond Part</em>'.
+	 * @return the meta object for the containment reference '<em>Local Cond Part</em>'.
 	 * @see pamtram.condition.UnaryCondition#getLocalCondPart()
 	 * @see #getUnaryCondition()
 	 * @generated
@@ -1258,10 +1258,10 @@ public interface ConditionPackage extends EPackage {
 	EReference getUnaryCondition_LocalCondPart();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.UnaryCondition#getCondPartRef <em>Cond Part Ref</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.condition.UnaryCondition#getSharedCondPart <em>Shared Cond Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Cond Part Ref</em>'.
+	 * @return the meta object for the reference '<em>Shared Cond Part</em>'.
 	 * @see pamtram.condition.UnaryCondition#getSharedCondPart()
 	 * @see #getUnaryCondition()
 	 * @generated
@@ -1276,7 +1276,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.UnaryCondition#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map();
+	EOperation getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map_1();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Not <em>Not</em>}'.
@@ -1306,7 +1306,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.Not#referenceOnlyConditionsFromConditionModelOrFromConditionalElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
+	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.AttributeCondition <em>Attribute Condition</em>}'.
@@ -1494,20 +1494,20 @@ public interface ConditionPackage extends EPackage {
 		EClass VARIADIC_CONDITION = eINSTANCE.getVariadicCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Cond Parts</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Local Cond Parts</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIADIC_CONDITION__LOCAL_COND_PARTS = eINSTANCE.getVariadicCondition_CondParts();
+		EReference VARIADIC_CONDITION__LOCAL_COND_PARTS = eINSTANCE.getVariadicCondition_LocalCondParts();
 
 		/**
-		 * The meta object literal for the '<em><b>Cond Parts Ref</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Shared Cond Parts</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIADIC_CONDITION__SHARED_COND_PARTS = eINSTANCE.getVariadicCondition_CondPartsRef();
+		EReference VARIADIC_CONDITION__SHARED_COND_PARTS = eINSTANCE.getVariadicCondition_SharedCondParts();
 
 		/**
 		 * The meta object literal for the '<em><b>References Only Valid Conditions</b></em>' operation.
@@ -1523,7 +1523,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map();
+		EOperation VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map_1();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1564,7 +1564,7 @@ public interface ConditionPackage extends EPackage {
 		EClass UNARY_CONDITION = eINSTANCE.getUnaryCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Cond Part</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Local Cond Part</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1572,7 +1572,7 @@ public interface ConditionPackage extends EPackage {
 		EReference UNARY_CONDITION__LOCAL_COND_PART = eINSTANCE.getUnaryCondition_LocalCondPart();
 
 		/**
-		 * The meta object literal for the '<em><b>Cond Part Ref</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Shared Cond Part</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1585,7 +1585,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = eINSTANCE.getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map();
+		EOperation UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map_1();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.
@@ -1611,7 +1611,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
+		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_1();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.AttributeConditionImpl <em>Attribute Condition</em>}' class.

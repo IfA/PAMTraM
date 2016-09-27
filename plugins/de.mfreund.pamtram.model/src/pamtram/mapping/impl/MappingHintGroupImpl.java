@@ -47,8 +47,8 @@ import pamtram.metamodel.TargetSection;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#isDeactivated <em>Deactivated</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getConditionRef <em>Condition Ref</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getLocalCondition <em>Local Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getSharedCondition <em>Shared Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getModelConnectionMatcher <em>Model Connection Matcher</em>}</li>
  * </ul>
  *
@@ -74,23 +74,23 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	protected boolean deactivated = DEACTIVATED_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getLocalCondition() <em>Condition</em>}' containment reference.
+	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComplexCondition condition;
+	protected ComplexCondition localCondition;
 	/**
-	 * The cached value of the '{@link #getSharedCondition() <em>Condition Ref</em>}' reference.
+	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComplexCondition conditionRef;
+	protected ComplexCondition sharedCondition;
 	/**
 	 * The cached value of the '{@link #getModelConnectionMatcher() <em>Model Connection Matcher</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -150,7 +150,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	@Override
 	public ComplexCondition getLocalCondition() {
-		return condition;
+		return localCondition;
 	}
 
 	/**
@@ -158,11 +158,11 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondition(ComplexCondition newCondition, NotificationChain msgs) {
-		ComplexCondition oldCondition = condition;
-		condition = newCondition;
+	public NotificationChain basicSetLocalCondition(ComplexCondition newLocalCondition, NotificationChain msgs) {
+		ComplexCondition oldLocalCondition = localCondition;
+		localCondition = newLocalCondition;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONDITION, oldCondition, newCondition);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION, oldLocalCondition, newLocalCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -174,18 +174,18 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public void setLocalCondition(ComplexCondition newCondition) {
-		if (newCondition != condition) {
+	public void setLocalCondition(ComplexCondition newLocalCondition) {
+		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
-			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONDITION, null, msgs);
-			if (newCondition != null)
-				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONDITION, null, msgs);
-			msgs = basicSetCondition(newCondition, msgs);
+			if (localCondition != null)
+				msgs = ((InternalEObject)localCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION, null, msgs);
+			if (newLocalCondition != null)
+				msgs = ((InternalEObject)newLocalCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION, null, msgs);
+			msgs = basicSetLocalCondition(newLocalCondition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONDITION, newCondition, newCondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
 	}
 
 	/**
@@ -195,15 +195,15 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	@Override
 	public ComplexCondition getSharedCondition() {
-		if (conditionRef != null && conditionRef.eIsProxy()) {
-			InternalEObject oldConditionRef = (InternalEObject)conditionRef;
-			conditionRef = (ComplexCondition)eResolveProxy(oldConditionRef);
-			if (conditionRef != oldConditionRef) {
+		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
+			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
+			if (sharedCondition != oldSharedCondition) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP__CONDITION_REF, oldConditionRef, conditionRef));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION, oldSharedCondition, sharedCondition));
 			}
 		}
-		return conditionRef;
+		return sharedCondition;
 	}
 
 	/**
@@ -211,8 +211,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition basicGetConditionRef() {
-		return conditionRef;
+	public ComplexCondition basicGetSharedCondition() {
+		return sharedCondition;
 	}
 
 	/**
@@ -221,11 +221,11 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public void setSharedCondition(ComplexCondition newConditionRef) {
-		ComplexCondition oldConditionRef = conditionRef;
-		conditionRef = newConditionRef;
+	public void setSharedCondition(ComplexCondition newSharedCondition) {
+		ComplexCondition oldSharedCondition = sharedCondition;
+		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONDITION_REF, oldConditionRef, conditionRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION, oldSharedCondition, sharedCondition));
 	}
 
 	/**
@@ -286,12 +286,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = self.conditionRef->size() +
-		 *       self.condition->size() <= 1
+		 *       status : OclAny[1] = self.sharedCondition->size() +
+		 *       self.localCondition->size() <= 1
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
-		 *         then 'As this Instance is a ConditionElement and you want to add a condition, you either have to model a condition or reference an already existing one!'
+		 *         then 'Please specify at most one (local or shared) condition!'
 		 *         else null
 		 *         endif
 		 *       in
@@ -300,11 +300,11 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ ComplexCondition conditionRef = this.getSharedCondition();
-		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef);
+		    final /*@Thrown*/ ComplexCondition sharedCondition = this.getSharedCondition();
+		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, sharedCondition);
 		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
-		    final /*@Thrown*/ ComplexCondition condition = this.getLocalCondition();
-		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, condition);
+		    final /*@Thrown*/ ComplexCondition localCondition = this.getLocalCondition();
+		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, localCondition);
 		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
 		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
 		    final /*@Thrown*/ boolean status = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, sum, PamtramTables.INT_1).booleanValue();
@@ -319,7 +319,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@NonInvalid*/ String message_0;
 		if (ne) {
-		    message_0 = PamtramTables.STR_As_32_this_32_Instance_32_is_32_a_32_ConditionElement_32_and_32_you_32_want_32_to_32_add_32_a_32_con;
+		    message_0 = PamtramTables.STR_Please_32_specify_32_at_32_most_32_one_32_o_local_32_or_32_shared_e_32_condition_33;
 		}
 		else {
 		    message_0 = null;
@@ -341,16 +341,16 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = if self.conditionRef->size() = 1
+		 *       status : OclAny[1] = if self.sharedCondition->size() = 1
 		 *       then
-		 *         self.conditionRef.oclContainer()
+		 *         self.sharedCondition.oclContainer()
 		 *         .oclIsTypeOf(ConditionModel)
 		 *       else true
 		 *       endif
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
-		 *         then 'It only allowed to reference Condition-Instances that are model inside the ConditionModel!'
+		 *         then 'It only allowed to reference shared conditions that are model inside the ConditionModel!'
 		 *         else null
 		 *         endif
 		 *       in
@@ -360,14 +360,14 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Thrown*/ ComplexCondition conditionRef_0 = this.getSharedCondition();
-		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef_0);
+		    final /*@Thrown*/ ComplexCondition sharedCondition_0 = this.getSharedCondition();
+		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, sharedCondition_0);
 		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
 		    final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
 		    /*@Thrown*/ boolean status;
 		    if (eq) {
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(PamtramTables.CLSSid_ConditionModel, null);
-		        final /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, conditionRef_0);
+		        final /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, sharedCondition_0);
 		        final /*@Thrown*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_ConditionModel).booleanValue();
 		        status = oclIsTypeOf;
 		    }
@@ -385,7 +385,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@NonInvalid*/ String message_0;
 		if (ne) {
-		    message_0 = PamtramTables.STR_It_32_only_32_allowed_32_to_32_reference_32_Condition_m_Instances_32_that_32_are_32_model_32;
+		    message_0 = PamtramTables.STR_It_32_only_32_allowed_32_to_32_reference_32_shared_32_conditions_32_that_32_are_32_model_32_in;
 		}
 		else {
 		    message_0 = null;
@@ -402,8 +402,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION:
-				return basicSetCondition(null, msgs);
+			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
+				return basicSetLocalCondition(null, msgs);
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				return basicSetModelConnectionMatcher(null, msgs);
 		}
@@ -420,11 +420,11 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
 				return isDeactivated();
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION:
+			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
 				return getLocalCondition();
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION_REF:
+			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
-				return basicGetConditionRef();
+				return basicGetSharedCondition();
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				return getModelConnectionMatcher();
 		}
@@ -442,10 +442,10 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
 				setDeactivated((Boolean)newValue);
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION:
+			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
 				setLocalCondition((ComplexCondition)newValue);
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION_REF:
+			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
@@ -466,10 +466,10 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
 				setDeactivated(DEACTIVATED_EDEFAULT);
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION:
+			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
 				setLocalCondition((ComplexCondition)null);
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION_REF:
+			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
@@ -489,10 +489,10 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
 				return deactivated != DEACTIVATED_EDEFAULT;
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION:
-				return condition != null;
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION_REF:
-				return conditionRef != null;
+			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
+				return localCondition != null;
+			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
+				return sharedCondition != null;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				return modelConnectionMatcher != null;
 		}
@@ -514,8 +514,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.MAPPING_HINT_GROUP__CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION;
-				case MappingPackage.MAPPING_HINT_GROUP__CONDITION_REF: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF;
+				case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
+				case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
 				default: return -1;
 			}
 		}
@@ -542,8 +542,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION: return MappingPackage.MAPPING_HINT_GROUP__CONDITION;
-				case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF: return MappingPackage.MAPPING_HINT_GROUP__CONDITION_REF;
+				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION;
 				default: return -1;
 			}
 		}
@@ -569,8 +569,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
-				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1: return MappingPackage.MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1;
+				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1: return MappingPackage.MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1;
 				default: return -1;
 			}
 		}
@@ -591,9 +591,9 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING_HINT_GROUP___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1:
 				return eitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING_HINT_GROUP___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1:
 				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

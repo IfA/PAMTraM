@@ -74,10 +74,10 @@ public class ConditionTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_1 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("1");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_4 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("4");
+    public static final /*@NonInvalid*/ java.lang.String STR_At_32_least_32_two_32_o_local_32_or_32_shared_e_32_condition_32_parts_32_need_32_to_32_be_32_specif = "At least two (local or shared) condition parts need to be specified!";
     public static final /*@NonInvalid*/ java.lang.String STR_Not_c_c_referenceOnlyConditionsFromConditionModelOrFromConditionalE = "Not::referenceOnlyConditionsFromConditionModelOrFromConditionalElements";
+    public static final /*@NonInvalid*/ java.lang.String STR_Please_32_specify_32_exactly_32_one_32_o_local_32_or_32_shared_e_32_condition_32_part_33 = "Please specify exactly one (local or shared) condition part!";
     public static final /*@NonInvalid*/ java.lang.String STR_Reference_32_only_32_Conditions_32_that_32_placed_32_inside_32_ConditionModel_32_or_32_w = "Reference only Conditions that placed inside ConditionModel or where the Container is Kind of ConditionalElement!";
-    public static final /*@NonInvalid*/ java.lang.String STR_The_32_required_32_subparts_32_of_32_this_32_Not_m_Condition_32_are_32_not_32_modeled_32_or_32_n = "The required subparts of this Not-Condition are not modeled or not referenced or both done but not allowed!";
-    public static final /*@NonInvalid*/ java.lang.String STR_The_32_required_32_subparts_32_of_32_this_32_condition_32_are_32_not_32_modeled_32_or_32_not_32_r = "The required subparts of this condition are not modeled or not referenced !";
     public static final /*@NonInvalid*/ java.lang.String STR_UnaryCondition_c_c_exactlyOneArg = "UnaryCondition::exactlyOneArg";
     public static final /*@NonInvalid*/ java.lang.String STR_VariadicCondition_c_c_minimalNumberOfArgs = "VariadicCondition::minimalNumberOfArgs";
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_ConditionalElement = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ConditionalElement);
@@ -319,20 +319,20 @@ public class ConditionTables
 
 		public static final /*@NonNull*/ ExecutorProperty _CardinalityCondition__conditionSectionRef = new EcoreExecutorProperty(ConditionPackage.Literals.CARDINALITY_CONDITION__CONDITION_SECTION_REF, Types._CardinalityCondition, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__condPart = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 0, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART));
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__condPartRef = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 1, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART));
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__condParts = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 2, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS));
-		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__condPartsRef = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 3, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__localCondPart = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 0, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__UnaryCondition__sharedCondPart = new ExecutorPropertyWithImplementation("UnaryCondition", Types._ComplexCondition, 1, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__localCondParts = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 2, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS));
+		public static final /*@NonNull*/ ExecutorProperty _ComplexCondition__VariadicCondition__sharedCondParts = new ExecutorPropertyWithImplementation("VariadicCondition", Types._ComplexCondition, 3, new EcoreLibraryOppositeProperty(ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS));
 
 		public static final /*@NonNull*/ ExecutorProperty _Condition__additionalConditionSpecification = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION, Types._Condition, 0);
 		public static final /*@NonNull*/ ExecutorProperty _Condition__comparator = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__COMPARATOR, Types._Condition, 1);
 		public static final /*@NonNull*/ ExecutorProperty _Condition__value = new EcoreExecutorProperty(ConditionPackage.Literals.CONDITION__VALUE, Types._Condition, 2);
 
-		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPart = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART, Types._UnaryCondition, 0);
-		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__condPartRef = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART, Types._UnaryCondition, 1);
+		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__localCondPart = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART, Types._UnaryCondition, 0);
+		public static final /*@NonNull*/ ExecutorProperty _UnaryCondition__sharedCondPart = new EcoreExecutorProperty(ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART, Types._UnaryCondition, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__condParts = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS, Types._VariadicCondition, 0);
-		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__condPartsRef = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS, Types._VariadicCondition, 1);
+		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__localCondParts = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS, Types._VariadicCondition, 0);
+		public static final /*@NonNull*/ ExecutorProperty _VariadicCondition__sharedCondParts = new EcoreExecutorProperty(ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS, Types._VariadicCondition, 1);
 		static {
 			Init.initEnd();
 		}
@@ -990,12 +990,12 @@ public class ConditionTables
 		}
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _And = {
-			ConditionTables.Properties._VariadicCondition__condParts,
-			ConditionTables.Properties._VariadicCondition__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._VariadicCondition__localCondParts,
+			ConditionTables.Properties._VariadicCondition__sharedCondParts,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ApplicationDependency = {
@@ -1003,10 +1003,10 @@ public class ConditionTables
 			ConditionTables.Properties._Condition__comparator,
 			ConditionTables.Properties._ApplicationDependency__conditionalElement,
 			ConditionTables.Properties._Condition__value,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeCondition = {
@@ -1015,10 +1015,10 @@ public class ConditionTables
 			ConditionTables.Properties._AttributeCondition__conditionAttributeRef,
 			ConditionTables.Properties._Condition__value,
 			ConditionTables.Properties._AttributeCondition__valueConstraint,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _CardinalityCondition = {
@@ -1026,65 +1026,65 @@ public class ConditionTables
 			ConditionTables.Properties._Condition__comparator,
 			ConditionTables.Properties._CardinalityCondition__conditionSectionRef,
 			ConditionTables.Properties._Condition__value,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ComparatorEnum = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ComplexCondition = {
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Condition = {
 			ConditionTables.Properties._Condition__additionalConditionSpecification,
 			ConditionTables.Properties._Condition__comparator,
 			ConditionTables.Properties._Condition__value,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Not = {
-			ConditionTables.Properties._UnaryCondition__condPart,
-			ConditionTables.Properties._UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._UnaryCondition__localCondPart,
+			ConditionTables.Properties._UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Or = {
-			ConditionTables.Properties._VariadicCondition__condParts,
-			ConditionTables.Properties._VariadicCondition__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._VariadicCondition__localCondParts,
+			ConditionTables.Properties._VariadicCondition__sharedCondParts,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _UnaryCondition = {
-			ConditionTables.Properties._UnaryCondition__condPart,
-			ConditionTables.Properties._UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._UnaryCondition__localCondPart,
+			ConditionTables.Properties._UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _VariadicCondition = {
-			ConditionTables.Properties._VariadicCondition__condParts,
-			ConditionTables.Properties._VariadicCondition__condPartsRef,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPart,
-			ConditionTables.Properties._ComplexCondition__UnaryCondition__condPartRef,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condParts,
-			ConditionTables.Properties._ComplexCondition__VariadicCondition__condPartsRef
+			ConditionTables.Properties._VariadicCondition__localCondParts,
+			ConditionTables.Properties._VariadicCondition__sharedCondParts,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__localCondPart,
+			ConditionTables.Properties._ComplexCondition__UnaryCondition__sharedCondPart,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__localCondParts,
+			ConditionTables.Properties._ComplexCondition__VariadicCondition__sharedCondParts
 		};
 
 		/**

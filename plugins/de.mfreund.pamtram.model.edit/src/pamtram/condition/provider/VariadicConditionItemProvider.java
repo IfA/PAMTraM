@@ -69,7 +69,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 						this.getResourceLocator(),
 						this.getString("_UI_MultipleConditionOperator_condPartsRef_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_MultipleConditionOperator_condPartsRef_feature", "_UI_MultipleConditionOperator_type"),
-				ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS_REF,
+				ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS,
 						true,
 						false,
 						true,
@@ -109,7 +109,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS);
+			childrenFeatures.add(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS);
 		}
 		return childrenFeatures;
 	}
@@ -188,32 +188,32 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+				(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS,
 				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+				(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS,
 				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+				(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS,
 				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+				(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS,
 				 ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+				(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS,
 				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.VARIADIC_CONDITION__COND_PARTS,
+				(ConditionPackage.Literals.VARIADIC_CONDITION__LOCAL_COND_PARTS,
 				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 

@@ -70,7 +70,7 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 						this.getResourceLocator(),
 						this.getString("_UI_SingleConditionOperator_condPartRef_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_SingleConditionOperator_condPartRef_feature", "_UI_SingleConditionOperator_type"),
-				ConditionPackage.Literals.UNARY_CONDITION__COND_PART_REF,
+				ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART,
 						true,
 						false,
 						true,
@@ -110,7 +110,7 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ConditionPackage.Literals.UNARY_CONDITION__COND_PART);
+			childrenFeatures.add(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART);
 		}
 		return childrenFeatures;
 	}
@@ -189,32 +189,32 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+				(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART,
 				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+				(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART,
 				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+				(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART,
 				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+				(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART,
 				 ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+				(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART,
 				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.UNARY_CONDITION__COND_PART,
+				(ConditionPackage.Literals.UNARY_CONDITION__LOCAL_COND_PART,
 				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 

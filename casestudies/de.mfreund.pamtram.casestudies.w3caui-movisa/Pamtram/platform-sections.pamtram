@@ -5818,7 +5818,7 @@
   </targetSectionModel>
   <mappingModel>
     <mapping name="RootMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <condition xsi:type="condition:SectionCondition" conditionSectionRef="//@sourceSectionModel.1/@metaModelSections.0"/>
+      <localCondition xsi:type="condition:CardinalityCondition" conditionSectionRef="//@sourceSectionModel.1/@metaModelSections.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetSection="//@targetSectionModel.0/@metaModelSections.0"/>
     </mapping>
     <mapping name="sequentialCompositionMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
@@ -7017,56 +7017,56 @@
   </mappingModel>
   <conditionModel>
     <condition xsi:type="condition:And" name="Large devices">
-      <condParts xsi:type="condition:AttributeCondition" name="Horizontal Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.1">
+      <localCondParts xsi:type="condition:AttributeCondition" name="Horizontal Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.1">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <lowerBound expression="1200"/>
         </valueConstraint>
-      </condParts>
-      <condParts xsi:type="condition:AttributeCondition" name="Vertical Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.2">
+      </localCondParts>
+      <localCondParts xsi:type="condition:AttributeCondition" name="Vertical Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.2">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <lowerBound expression="1200"/>
         </valueConstraint>
-      </condParts>
+      </localCondParts>
     </condition>
     <condition xsi:type="condition:And" name="Medium devices">
-      <condParts xsi:type="condition:AttributeCondition" name="Horizontal Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.1">
+      <localCondParts xsi:type="condition:AttributeCondition" name="Horizontal Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.1">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound boundType="EXCLUSION" expression="1200"/>
           <lowerBound expression="992"/>
         </valueConstraint>
-      </condParts>
-      <condParts xsi:type="condition:AttributeCondition" name="Vertical Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.2">
+      </localCondParts>
+      <localCondParts xsi:type="condition:AttributeCondition" name="Vertical Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.2">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound boundType="EXCLUSION" expression="1200"/>
           <lowerBound expression="992"/>
         </valueConstraint>
-      </condParts>
+      </localCondParts>
     </condition>
     <condition xsi:type="condition:And" name="Small devices">
-      <condParts xsi:type="condition:AttributeCondition" name="Horizontal Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.1">
+      <localCondParts xsi:type="condition:AttributeCondition" name="Horizontal Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.1">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound boundType="EXCLUSION" expression="992"/>
           <lowerBound expression="768"/>
         </valueConstraint>
-      </condParts>
-      <condParts xsi:type="condition:AttributeCondition" name="Vertical Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.2">
+      </localCondParts>
+      <localCondParts xsi:type="condition:AttributeCondition" name="Vertical Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.2">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound boundType="EXCLUSION" expression="992"/>
           <lowerBound expression="768"/>
         </valueConstraint>
-      </condParts>
+      </localCondParts>
     </condition>
     <condition xsi:type="condition:And" name="Extra small devices">
-      <condParts xsi:type="condition:AttributeCondition" name="Horizontal Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.1">
+      <localCondParts xsi:type="condition:AttributeCondition" name="Horizontal Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.1">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound boundType="EXCLUSION" expression="768"/>
         </valueConstraint>
-      </condParts>
-      <condParts xsi:type="condition:AttributeCondition" name="Vertical Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.2">
+      </localCondParts>
+      <localCondParts xsi:type="condition:AttributeCondition" name="Vertical Resolution Constraint" conditionAttributeRef="//@sourceSectionModel.7/@metaModelSections.0/@attributes.2">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound boundType="EXCLUSION" expression="768"/>
         </valueConstraint>
-      </condParts>
+      </localCondParts>
     </condition>
   </conditionModel>
 </pamtram:PAMTraM>

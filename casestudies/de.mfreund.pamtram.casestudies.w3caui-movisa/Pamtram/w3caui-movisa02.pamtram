@@ -3631,20 +3631,20 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualRadioButtonGroupRepresentationNameMapping" target="//@targetSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <condition xsi:type="condition:And" name="Cond 1">
-          <condParts xsi:type="condition:Or" name="Larger Screens" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.1"/>
-          <condParts xsi:type="condition:SectionCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
-          <condParts xsi:type="condition:And" name="Resolution">
-            <condParts xsi:type="condition:AttributeCondition" name="xResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.1">
+        <localCondition xsi:type="condition:And" name="Cond 1">
+          <localCondParts xsi:type="condition:Or" name="Larger Screens" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.1"/>
+          <localCondParts xsi:type="condition:CardinalityCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+          <localCondParts xsi:type="condition:And" name="Resolution">
+            <localCondParts xsi:type="condition:AttributeCondition" name="xResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.1">
               <additionalConditionSpecification expression="Samsung Syncmaster 206bw" target="//@sourceSectionModel.4/@metaModelSections.0/@attributes.0"/>
               <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="1680"/>
-            </condParts>
-            <condParts xsi:type="condition:AttributeCondition" name="yResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.2">
+            </localCondParts>
+            <localCondParts xsi:type="condition:AttributeCondition" name="yResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.2">
               <additionalConditionSpecification expression="Samsung Syncmaster 206bw" target="//@sourceSectionModel.4/@metaModelSections.0/@attributes.0"/>
               <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="1050"/>
-            </condParts>
-          </condParts>
-        </condition>
+            </localCondParts>
+          </localCondParts>
+        </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
@@ -3674,13 +3674,13 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="DropDownSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.7/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
         </mappingHints>
-        <condition xsi:type="condition:Or" name="Cond 2">
-          <condParts xsi:type="condition:And" condPartsRef="//@mappingModel.2/@mapping.5/@mappingHintGroups.1/@condition/@condParts.0/@condParts.1">
-            <condParts xsi:type="condition:Or" condPartsRef="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
-            <condParts xsi:type="condition:SectionCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
-          </condParts>
-          <condParts xsi:type="condition:Not" name="" condPartRef="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@condition"/>
-        </condition>
+        <localCondition xsi:type="condition:Or" name="Cond 2">
+          <localCondParts xsi:type="condition:And" sharedCondParts="//@mappingModel.2/@mapping.5/@mappingHintGroups.1/@localCondition/@localCondParts.0/@localCondParts.1">
+            <localCondParts xsi:type="condition:Or" sharedCondParts="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
+            <localCondParts xsi:type="condition:CardinalityCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+          </localCondParts>
+          <localCondParts xsi:type="condition:Not" name="" sharedCondPart="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@localCondition"/>
+        </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
@@ -3688,13 +3688,13 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0">
-        <condition xsi:type="condition:Or" name="Cond 2">
-          <condParts xsi:type="condition:And" condPartsRef="//@mappingModel.2/@mapping.5/@mappingHintGroups.2/@condition/@condParts.0/@condParts.1">
-            <condParts xsi:type="condition:Or" condPartsRef="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
-            <condParts xsi:type="condition:SectionCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
-          </condParts>
-          <condParts xsi:type="condition:Not" name="" condPartRef="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@condition"/>
-        </condition>
+        <localCondition xsi:type="condition:Or" name="Cond 2">
+          <localCondParts xsi:type="condition:And" sharedCondParts="//@mappingModel.2/@mapping.5/@mappingHintGroups.2/@localCondition/@localCondParts.0/@localCondParts.1">
+            <localCondParts xsi:type="condition:Or" sharedCondParts="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
+            <localCondParts xsi:type="condition:CardinalityCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+          </localCondParts>
+          <localCondParts xsi:type="condition:Not" name="" sharedCondPart="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@localCondition"/>
+        </localCondition>
       </mappingHintGroups>
     </mapping>
     <mapping name="RadioButtonAndDropdownElementMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.11">
@@ -3726,20 +3726,20 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="RadioButtonSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.6/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <condition xsi:type="condition:And" name="Cond 1">
-          <condParts xsi:type="condition:Or" name="Larger Screens" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.1"/>
-          <condParts xsi:type="condition:SectionCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
-          <condParts xsi:type="condition:And" name="Resolution">
-            <condParts xsi:type="condition:AttributeCondition" name="xResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.1">
+        <localCondition xsi:type="condition:And" name="Cond 1">
+          <localCondParts xsi:type="condition:Or" name="Larger Screens" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.1"/>
+          <localCondParts xsi:type="condition:CardinalityCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+          <localCondParts xsi:type="condition:And" name="Resolution">
+            <localCondParts xsi:type="condition:AttributeCondition" name="xResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.1">
               <additionalConditionSpecification expression="Samsung Syncmaster 206bw" target="//@sourceSectionModel.4/@metaModelSections.0/@attributes.0"/>
               <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="1680"/>
-            </condParts>
-            <condParts xsi:type="condition:AttributeCondition" name="yResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.2">
+            </localCondParts>
+            <localCondParts xsi:type="condition:AttributeCondition" name="yResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.2">
               <additionalConditionSpecification expression="Samsung Syncmaster 206bw" target="//@sourceSectionModel.4/@metaModelSections.0/@attributes.0"/>
               <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="1050"/>
-            </condParts>
-          </condParts>
-        </condition>
+            </localCondParts>
+          </localCondParts>
+        </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModel.2/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
@@ -3751,47 +3751,47 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0">
-        <condition xsi:type="condition:And" name="Cond 1">
-          <condParts xsi:type="condition:Or" name="Larger Screens" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.1"/>
-          <condParts xsi:type="condition:SectionCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
-          <condParts xsi:type="condition:And" name="Resolution">
-            <condParts xsi:type="condition:AttributeCondition" name="xResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.1">
+        <localCondition xsi:type="condition:And" name="Cond 1">
+          <localCondParts xsi:type="condition:Or" name="Larger Screens" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.1"/>
+          <localCondParts xsi:type="condition:CardinalityCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+          <localCondParts xsi:type="condition:And" name="Resolution">
+            <localCondParts xsi:type="condition:AttributeCondition" name="xResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.1">
               <additionalConditionSpecification expression="Samsung Syncmaster 206bw" target="//@sourceSectionModel.4/@metaModelSections.0/@attributes.0"/>
               <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="1680"/>
-            </condParts>
-            <condParts xsi:type="condition:AttributeCondition" name="yResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.2">
+            </localCondParts>
+            <localCondParts xsi:type="condition:AttributeCondition" name="yResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.2">
               <additionalConditionSpecification expression="Samsung Syncmaster 206bw" target="//@sourceSectionModel.4/@metaModelSections.0/@attributes.0"/>
               <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="1050"/>
-            </condParts>
-          </condParts>
-        </condition>
+            </localCondParts>
+          </localCondParts>
+        </localCondition>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDownOption" targetSection="//@targetSectionModel.2/@metaModelSections.9">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.2/@metaModelSections.9/@attributes.0">
-          <condition xsi:type="condition:Or" name="Cond 2">
-            <condParts xsi:type="condition:And" condPartsRef="//@mappingModel.2/@mapping.6/@mappingHintGroups.3/@mappingHints.0/@condition/@condParts.0/@condParts.1">
-              <condParts xsi:type="condition:Or" condPartsRef="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
-              <condParts xsi:type="condition:SectionCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
-            </condParts>
-            <condParts xsi:type="condition:Not" name="" condPartRef="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@condition"/>
-          </condition>
+          <localCondition xsi:type="condition:Or" name="Cond 2">
+            <localCondParts xsi:type="condition:And" sharedCondParts="//@mappingModel.2/@mapping.6/@mappingHintGroups.3/@mappingHints.0/@localCondition/@localCondParts.0/@localCondParts.1">
+              <localCondParts xsi:type="condition:Or" sharedCondParts="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
+              <localCondParts xsi:type="condition:CardinalityCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+            </localCondParts>
+            <localCondParts xsi:type="condition:Not" name="" sharedCondPart="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@localCondition"/>
+          </localCondition>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.2/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping2" target="//@targetSectionModel.2/@metaModelSections.9/@attributes.0">
-          <condition xsi:type="condition:And" name="Cond 1">
-            <condParts xsi:type="condition:Or" name="Larger Screens" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.1"/>
-            <condParts xsi:type="condition:SectionCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
-            <condParts xsi:type="condition:And" name="Resolution">
-              <condParts xsi:type="condition:AttributeCondition" name="xResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.1">
+          <localCondition xsi:type="condition:And" name="Cond 1">
+            <localCondParts xsi:type="condition:Or" name="Larger Screens" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.1"/>
+            <localCondParts xsi:type="condition:CardinalityCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+            <localCondParts xsi:type="condition:And" name="Resolution">
+              <localCondParts xsi:type="condition:AttributeCondition" name="xResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.1">
                 <additionalConditionSpecification expression="Samsung Syncmaster 206bw" target="//@sourceSectionModel.4/@metaModelSections.0/@attributes.0"/>
                 <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="1680"/>
-              </condParts>
-              <condParts xsi:type="condition:AttributeCondition" name="yResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.2">
+              </localCondParts>
+              <localCondParts xsi:type="condition:AttributeCondition" name="yResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.2">
                 <additionalConditionSpecification expression="Samsung Syncmaster 206bw" target="//@sourceSectionModel.4/@metaModelSections.0/@attributes.0"/>
                 <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="1050"/>
-              </condParts>
-            </condParts>
-          </condition>
+              </localCondParts>
+            </localCondParts>
+          </localCondition>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="role" source="//@sourceSectionModel.2/@metaModelSections.11/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Label" affectedReference="//@targetSectionModel.2/@metaModelSections.9/@references.0">
@@ -3799,20 +3799,20 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <condition xsi:type="condition:Or" name="Cond 2">
-          <condParts xsi:type="condition:And" condPartsRef="//@mappingModel.2/@mapping.6/@mappingHintGroups.3/@condition/@condParts.0/@condParts.1">
-            <condParts xsi:type="condition:Or" condPartsRef="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
-            <condParts xsi:type="condition:SectionCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
-          </condParts>
-          <condParts xsi:type="condition:Not" name="" condPartRef="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@condition"/>
-          <condParts xsi:type="condition:Or" name="Cond 2">
-            <condParts xsi:type="condition:And" condPartsRef="//@mappingModel.2/@mapping.6/@mappingHintGroups.3/@condition/@condParts.2/@condParts.0/@condParts.1">
-              <condParts xsi:type="condition:Or" condPartsRef="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
-              <condParts xsi:type="condition:SectionCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
-            </condParts>
-            <condParts xsi:type="condition:Not" name="" condPartRef="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@condition"/>
-          </condParts>
-        </condition>
+        <localCondition xsi:type="condition:Or" name="Cond 2">
+          <localCondParts xsi:type="condition:And" sharedCondParts="//@mappingModel.2/@mapping.6/@mappingHintGroups.3/@localCondition/@localCondParts.0/@localCondParts.1">
+            <localCondParts xsi:type="condition:Or" sharedCondParts="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
+            <localCondParts xsi:type="condition:CardinalityCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+          </localCondParts>
+          <localCondParts xsi:type="condition:Not" name="" sharedCondPart="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@localCondition"/>
+          <localCondParts xsi:type="condition:Or" name="Cond 2">
+            <localCondParts xsi:type="condition:And" sharedCondParts="//@mappingModel.2/@mapping.6/@mappingHintGroups.3/@localCondition/@localCondParts.2/@localCondParts.0/@localCondParts.1">
+              <localCondParts xsi:type="condition:Or" sharedCondParts="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
+              <localCondParts xsi:type="condition:CardinalityCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+            </localCondParts>
+            <localCondParts xsi:type="condition:Not" name="" sharedCondPart="//@mappingModel.2/@mapping.5/@mappingHintGroups.0/@localCondition"/>
+          </localCondParts>
+        </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModel.2/@metaModelSections.7/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10 //@mappingModel.0/@modifierSets.6"/>
@@ -4525,59 +4525,59 @@
   </mappingModel>
   <conditionModel>
     <condition xsi:type="condition:And" name="Large Screen">
-      <condParts xsi:type="condition:AttributeCondition" name="Large Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
+      <localCondParts xsi:type="condition:AttributeCondition" name="Large Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <lowerBound expression="375"/>
         </valueConstraint>
-      </condParts>
-      <condParts xsi:type="condition:AttributeCondition" name="Large Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
+      </localCondParts>
+      <localCondParts xsi:type="condition:AttributeCondition" name="Large Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <lowerBound expression="250+2*screenBarOffset"/>
         </valueConstraint>
-      </condParts>
+      </localCondParts>
     </condition>
     <condition xsi:type="condition:And" name="Medium Screen">
-      <condParts xsi:type="condition:AttributeCondition" name="Medium Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
+      <localCondParts xsi:type="condition:AttributeCondition" name="Medium Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound expression="375" boundType="EXCLUSION"/>
           <lowerBound expression="250"/>
         </valueConstraint>
-      </condParts>
-      <condParts xsi:type="condition:AttributeCondition" name="Medium Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
+      </localCondParts>
+      <localCondParts xsi:type="condition:AttributeCondition" name="Medium Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound expression="250" boundType="EXCLUSION"/>
           <lowerBound expression="200+2*screenBarOffset"/>
         </valueConstraint>
-      </condParts>
+      </localCondParts>
     </condition>
     <condition xsi:type="condition:And" name="Small Screen">
-      <condParts xsi:type="condition:AttributeCondition" name="Small Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
+      <localCondParts xsi:type="condition:AttributeCondition" name="Small Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound expression="250" boundType="EXCLUSION"/>
           <lowerBound expression="140"/>
         </valueConstraint>
-      </condParts>
-      <condParts xsi:type="condition:AttributeCondition" name="Small Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
+      </localCondParts>
+      <localCondParts xsi:type="condition:AttributeCondition" name="Small Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound expression="200" boundType="EXCLUSION"/>
           <lowerBound expression="105+2*screenBarOffset"/>
         </valueConstraint>
-      </condParts>
+      </localCondParts>
     </condition>
     <condition xsi:type="condition:And" name="Extra Small Screen">
-      <condParts xsi:type="condition:AttributeCondition" name="Extra Small Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
+      <localCondParts xsi:type="condition:AttributeCondition" name="Extra Small Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound expression="140" boundType="EXCLUSION"/>
         </valueConstraint>
-      </condParts>
-      <condParts xsi:type="condition:AttributeCondition" name="Extra Small Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
+      </localCondParts>
+      <localCondParts xsi:type="condition:AttributeCondition" name="Extra Small Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
         <valueConstraint xsi:type="metamodel:RangeConstraint" name="">
           <upperBound expression="105" boundType="EXCLUSION"/>
         </valueConstraint>
-      </condParts>
+      </localCondParts>
     </condition>
   </conditionModel>
   <conditionModel name="Environment">
-    <condition xsi:type="condition:SectionCondition" name="lol" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.13/@references.0/@value.0"/>
+    <condition xsi:type="condition:CardinalityCondition" name="lol" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.13/@references.0/@value.0"/>
   </conditionModel>
 </pamtram:PAMTraM>

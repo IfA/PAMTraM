@@ -31,6 +31,15 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel (Root)">
+      <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel (Root)">
+      <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel (Root)">
+      <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
+    </metaModelSections>
   </targetSectionModel>
   <mappingModel>
     <mapping name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">

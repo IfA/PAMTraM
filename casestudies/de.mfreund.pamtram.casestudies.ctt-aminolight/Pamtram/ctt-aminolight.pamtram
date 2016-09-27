@@ -1822,7 +1822,7 @@
   </mappingModel>
   <mappingModel name="Alarm">
     <mapping name="Alarm0TaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.0">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm0Color" value="#45B7AF"/>
@@ -1988,7 +1988,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm1TaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.1">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GenericSoundItemAlarm1" targetSection="//@targetSectionModel.2/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="FrequencyMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" value="440"/>
@@ -2221,7 +2221,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm1DifferentColorTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.1">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GenericSoundItemAlarm1" targetSection="//@targetSectionModel.2/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="FrequencyMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" value="440"/>
@@ -2454,7 +2454,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm1DifferentSoundTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.1">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GenericSoundItemAlarm1" targetSection="//@targetSectionModel.2/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="FrequencyMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" value="300"/>
@@ -2687,7 +2687,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm2TaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.2">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm2Color" value="#F8CB00"/>
@@ -3065,7 +3065,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm2DifferentColorTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.2">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm2Color" value="#FF4500"/>
@@ -3443,7 +3443,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm2DifferentSoundTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.2">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm2Color" value="#F8CB00"/>
@@ -3821,7 +3821,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm3TaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.3">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Alarm3SoundItemGroup" targetSection="//@targetSectionModel.2/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SoundItemGroupNameMapping" target="//@targetSectionModel.2/@metaModelSections.2/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
@@ -4199,7 +4199,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm3DifferentColorTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.3">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Alarm3SoundItemGroup" targetSection="//@targetSectionModel.2/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SoundItemGroupNameMapping" target="//@targetSectionModel.2/@metaModelSections.2/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
@@ -4577,7 +4577,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm3DifferentSoundTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.3">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Alarm3SoundItemGroup" targetSection="//@targetSectionModel.2/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SoundItemGroupNameMapping" target="//@targetSectionModel.2/@metaModelSections.2/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
@@ -4955,7 +4955,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm4TaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.4">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Sound" targetSection="//@targetSectionModel.2/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SoundAssetRefMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" value="sound/tireSqueling.mp3"/>
@@ -5136,7 +5136,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm_ElementMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.5">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GaugeComponent" targetSection="//@targetSectionModel.1/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="GaugeNameMapping" target="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.1" modifier="//@mappingModel.2/@modifierSets.2"/>
@@ -5338,7 +5338,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm_ElementWithoutSoundMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.5">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GaugeComponent" targetSection="//@targetSectionModel.1/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="GaugeNameMapping" target="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.1" modifier="//@mappingModel.2/@modifierSets.2"/>
@@ -5526,7 +5526,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm_ElementWithoutVibrationMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.5">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GaugeComponent" targetSection="//@targetSectionModel.1/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="GaugeNameMapping" target="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.1" modifier="//@mappingModel.2/@modifierSets.2"/>
@@ -5714,7 +5714,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm0WithoutSoundTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.0">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm0Color" value="#45B7AF"/>
@@ -5845,7 +5845,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm1WithoutSoundTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.1">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm1Color" value="#FACDAE"/>
@@ -6006,7 +6006,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm2WithoutSoundTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.2">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm2Color" value="#F8CB00"/>
@@ -6312,7 +6312,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm3WithoutSoundTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.3">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm3Color" value="#FF6B6B"/>
@@ -6618,7 +6618,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm4WithoutSoundTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.4">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.2"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="StartSignal" targetSection="//@targetSectionModel.0/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" resultModifier="//@mappingModel.0/@modifierSets.2" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
@@ -6718,7 +6718,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm0TaskWithoutVibrationMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.0">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm0Color" value="#45B7AF"/>
@@ -6849,7 +6849,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm1TaskWithoutVibrationMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.1">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GenericSoundItemAlarm1" targetSection="//@targetSectionModel.2/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="FrequencyMapping" target="//@targetSectionModel.2/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" value="440"/>
@@ -7017,7 +7017,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm2TaskWithoutVibrationMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.2">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm2Color" value="#F8CB00"/>
@@ -7330,7 +7330,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm3TaskWithoutVibrationMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.3">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Alarm3SoundItemGroup" targetSection="//@targetSectionModel.2/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SoundItemGroupNameMapping" target="//@targetSectionModel.2/@metaModelSections.2/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
@@ -7643,7 +7643,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm4TaskWithoutVibrationMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.4">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.3 //@conditionModel.0/@condition.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Sound" targetSection="//@targetSectionModel.2/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SoundAssetRefMapping" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" value="sound/tireSqueling.mp3"/>
@@ -7793,7 +7793,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm_ElementWithoutSoundAndVibrationMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.5">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GaugeComponent" targetSection="//@targetSectionModel.1/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="GaugeNameMapping" target="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.2/@metaModelSections.5/@attributes.1" modifier="//@mappingModel.2/@modifierSets.2"/>
@@ -7959,7 +7959,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm0WithoutSoundAndVibrationTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.0">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm0Color" value="#45B7AF"/>
@@ -8055,7 +8055,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm1WithoutSoundAndVibrationTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.1">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm1Color" value="#FACDAE"/>
@@ -8151,7 +8151,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm2WithoutSoundAndVibrationTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.2">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm2Color" value="#F8CB00"/>
@@ -8392,7 +8392,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm3WithoutSoundAndVibrationTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.3">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ColorItem" targetSection="//@targetSectionModel.0/@metaModelSections.5">
         <mappingHints xsi:type="mapping:AttributeMapping" name="HexColorValMapping" target="//@targetSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:FixedValue" name="Alarm3Color" value="#FF6B6B"/>
@@ -8633,7 +8633,7 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Alarm4WithoutSoundAndVibrationTaskMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.4">
-      <condition xsi:type="condition:And" condPartsRef="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
+      <localCondition xsi:type="condition:And" sharedCondParts="//@conditionModel.0/@condition.1 //@conditionModel.0/@condition.3"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="StartSignal" targetSection="//@targetSectionModel.0/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" resultModifier="//@mappingModel.0/@modifierSets.2" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
@@ -8760,13 +8760,13 @@
     <mapping name="TouchscreenVibrationMotorMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.1"/>
   </mappingModel>
   <conditionModel>
-    <condition xsi:type="condition:SectionCondition" name="MonoSpeaker" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.0"/>
+    <condition xsi:type="condition:CardinalityCondition" name="MonoSpeaker" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.0"/>
     <condition xsi:type="condition:Not" name="NotMonoSpeaker">
-      <condPart xsi:type="condition:SectionCondition" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.0"/>
+      <localCondPart xsi:type="condition:CardinalityCondition" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.0"/>
     </condition>
-    <condition xsi:type="condition:SectionCondition" name="VibrationMotor" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.1"/>
+    <condition xsi:type="condition:CardinalityCondition" name="VibrationMotor" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.1"/>
     <condition xsi:type="condition:Not" name="NotVibrationMotor">
-      <condPart xsi:type="condition:SectionCondition" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.1"/>
+      <localCondPart xsi:type="condition:CardinalityCondition" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.1"/>
     </condition>
   </conditionModel>
 </pamtram:PAMTraM>

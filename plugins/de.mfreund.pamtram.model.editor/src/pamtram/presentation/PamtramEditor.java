@@ -871,8 +871,19 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				IFile file = null;
 				try {
 
-					IFile[] files = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(
-							new java.net.URI(pamtram.eResource().getURI().toString()));
+			IFile[] files;
+			if (pamtram.eResource().getURI().isFile()) {
+				files = ResourcesPlugin.getWorkspace().getRoot()
+						.findFilesForLocationURI(new java.net.URI(pamtram.eResource().getURI().toString()));
+			} else {
+				files = ResourcesPlugin.getWorkspace().getRoot()
+						.findFilesForLocationURI(
+								new java.net.URI(URI
+										.createFileURI(
+												ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString()
+														+ pamtram.eResource().getURI().toPlatformString(true))
+										.toString()));
+			}
 
 					if(files.length == 0) {
 						return null;

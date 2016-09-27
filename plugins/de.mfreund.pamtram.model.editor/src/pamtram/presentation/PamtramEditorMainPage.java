@@ -542,8 +542,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 						}
 					}
 					if(hintGroup instanceof InstantiableMappingHintGroup &&
-							((InstantiableMappingHintGroup) hintGroup).getConditionRef() != null) {
-						conditions.add(((InstantiableMappingHintGroup) hintGroup).getConditionRef());
+							((InstantiableMappingHintGroup) hintGroup).getSharedCondition() != null) {
+						conditions.add(((InstantiableMappingHintGroup) hintGroup).getSharedCondition());
 					}
 					expanded.add(mapping);
 					expanded.add(hintGroup);
@@ -567,8 +567,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 							}
 						}
 					}
-					if(hintGroupImporter.getConditionRef() != null) {
-						conditions.add(hintGroupImporter.getConditionRef());
+					if(hintGroupImporter.getSharedCondition() != null) {
+						conditions.add(hintGroupImporter.getSharedCondition());
 					}
 					expanded.add(mapping);
 					expanded.add(hintGroupImporter);
@@ -595,11 +595,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					ComplexCondition condition = (ComplexCondition) item.getData();
 
 					if(condition instanceof UnaryCondition &&
-							((UnaryCondition) condition).getCondPartRef() != null) {
-						conditions.add(((UnaryCondition) condition).getCondPartRef());
+							((UnaryCondition) condition).getSharedCondPart() != null) {
+						conditions.add(((UnaryCondition) condition).getSharedCondPart());
 					} else if(condition instanceof VariadicCondition &&
-							((VariadicCondition) condition).getCondPartsRef() != null) {
-						conditions.addAll(((VariadicCondition) condition).getCondPartsRef());
+							((VariadicCondition) condition).getSharedCondParts() != null) {
+						conditions.addAll(((VariadicCondition) condition).getSharedCondParts());
 					} else if(condition instanceof AttributeCondition) {
 						source = ((AttributeCondition) condition).getConditionAttributeRef();
 					} else if(condition instanceof CardinalityCondition) {
@@ -613,8 +613,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				} else if(item.getData() instanceof Mapping){
 					mapping = (Mapping) item.getData();
 					source = mapping.getSourceSection();
-					if(mapping.getConditionRef() != null) {
-						conditions.add(mapping.getConditionRef());
+					if(mapping.getSharedCondition() != null) {
+						conditions.add(mapping.getSharedCondition());
 					}
 					expanded.add(mapping);
 					for(MappingHintGroupType group : mapping.getMappingHintGroups()){
@@ -740,8 +740,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 						sources.add(c.getSourceAttribute());
 					}
 				}
-				if(mapping.getConditionRef() != null) {
-					sources.add(mapping.getConditionRef());
+				if(mapping.getSharedCondition() != null) {
+					sources.add(mapping.getSharedCondition());
 				}
 
 				this.setSourceTargetViewerSelections(sources, target);
@@ -757,8 +757,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				sources.add(mapping.getSource());
 				pamtram.metamodel.Class<?, ?, ?, ?> target = mapping.getTarget();
 
-				if(mapping.getConditionRef() != null) {
-					sources.add(mapping.getConditionRef());
+				if(mapping.getSharedCondition() != null) {
+					sources.add(mapping.getSharedCondition());
 				}
 
 				this.setSourceTargetViewerSelections(sources, target);
@@ -772,7 +772,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				NonContainmentReference<?, ?, ?, ?> reference = selector.getAffectedReference();
 
-				this.setSourceTargetViewerSelections(selector.getConditionRef(), reference);
+				this.setSourceTargetViewerSelections(selector.getSharedCondition(), reference);
 
 				/*
 				 * If an AttributeMatcher is selected, select its source and target attributes.

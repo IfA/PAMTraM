@@ -210,12 +210,12 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			TargetSection section) throws AmbiguityResolvingException {
 
 		JoiningSelectConnectionPathMappingModelEnhancer enhancer = new JoiningSelectConnectionPathMappingModelEnhancer(
-				this.pamtramModel);
+				this.pamtramModel, section);
 		final GenericSelectionDialogRunner<ModelConnectionPath> dialog = new GenericSelectionDialogRunner<>(
 				"Please choose one of the possible connections for connecting the "
 						+ "instances of the target section '" + section.getName() + "' (EClass: '"
 						+ section.getEClass().getName() + "') to the model root element of the type '" + choices.get(0).getPathRootClass().getName() + "'.",
-				0, false, choices, enhancer);
+						0, false, choices, enhancer);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new AmbiguityResolvingException(new UserAbortException());

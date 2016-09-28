@@ -8,6 +8,7 @@ import de.mfreund.gentrans.transformation.resolving.wizards.AbstractDialog;
 import de.mfreund.gentrans.transformation.resolving.wizards.AbstractDialogRunner;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.PAMTraM;
+import pamtram.presentation.PamtramEditor;
 
 
 /**
@@ -27,9 +28,17 @@ public abstract class MappingModelEnhancer<D extends AbstractDialogRunner> imple
 	protected D dialogRunner = null;
 
 	/**
-	 * The {@link PAMTraM} model that this enhancer operates on.
+	 * The {@link PAMTraM} model that this enhancer operates on (loaded as part of the transformation).
+	 * <p />
+	 * Note: This differs from that {@link PamtramEditor#getPamtram() instance} that is managed by the {@link #editor}
+	 * (as it was loaded via a different resource set).
 	 */
 	protected PAMTraM pamtramModel;
+
+	/**
+	 * The {@link PamtramEditor} associated with the {@link #pamtramModel}.
+	 */
+	private PamtramEditor editor;
 
 	/**
 	 * This creates an instance.
@@ -56,4 +65,18 @@ public abstract class MappingModelEnhancer<D extends AbstractDialogRunner> imple
 
 		this.dialogRunner = (D) dialogRunner;
 	}
+
+	/**
+	 * This is the getter for the {@link #editor}.
+	 *
+	 * @return The {@link PamtramEditor} associated with the {@link #pamtramModel}.
+	 */
+	protected PamtramEditor getEditor() {
+
+		if (this.editor == null) {
+			this.editor = PamtramEditor.getEditor(this.pamtramModel, false);
+		}
+		return this.editor;
+	}
+
 }

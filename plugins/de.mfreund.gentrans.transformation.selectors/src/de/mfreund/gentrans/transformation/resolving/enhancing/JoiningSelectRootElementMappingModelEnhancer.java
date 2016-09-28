@@ -59,7 +59,7 @@ public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEn
 		hintGroup.setTargetSection(rootSection);
 		mapping.getMappingHintGroups().add(hintGroup);
 
-		PamtramEditor editor = PamtramEditor.getEditor(this.pamtramModel, true);
+		PamtramEditor editor = this.getEditor();
 
 		if (editor == null) {
 
@@ -80,8 +80,7 @@ public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEn
 			// Use a command to add the new elements
 			//
 			CompoundCommand addCommand = new CompoundCommand();
-			addCommand.append(new AddCommand(editor.getEditingDomain(),
-					editor.getPamtram().getMappingModel().get(0),
+			addCommand.append(new AddCommand(editor.getEditingDomain(), editor.getPamtram().getMappingModel().get(0),
 					PamtramPackage.Literals.MAPPING_MODEL__MAPPING, mapping));
 			addCommand.append(
 					new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModel().get(0),

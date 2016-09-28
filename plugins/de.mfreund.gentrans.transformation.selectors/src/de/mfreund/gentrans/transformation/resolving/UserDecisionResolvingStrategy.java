@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Display;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
@@ -208,11 +209,13 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
+		JoiningSelectConnectionPathMappingModelEnhancer enhancer = new JoiningSelectConnectionPathMappingModelEnhancer(
+				this.pamtramModel);
 		final GenericSelectionDialogRunner<ModelConnectionPath> dialog = new GenericSelectionDialogRunner<>(
 				"Please choose one of the possible connections for connecting the "
 						+ "instances of the target section '" + section.getName() + "' (EClass: '"
 						+ section.getEClass().getName() + "') to the model root element of the type '" + choices.get(0).getPathRootClass().getName() + "'.",
-						0, false, choices, null);
+				0, false, choices, enhancer);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new AmbiguityResolvingException(new UserAbortException());

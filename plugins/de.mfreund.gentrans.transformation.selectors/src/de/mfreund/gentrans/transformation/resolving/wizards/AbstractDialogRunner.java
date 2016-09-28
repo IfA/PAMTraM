@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.resolving.wizards;
 import org.eclipse.swt.widgets.Dialog;
 
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
+import de.mfreund.gentrans.transformation.resolving.enhancing.MappingModelEnhancer;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 /**
@@ -29,18 +30,18 @@ public abstract class AbstractDialogRunner implements Runnable {
 	protected boolean transformationStopRequested;
 
 	/**
-	 * A {@link SelectionListener2} that is triggered when the {@link AbstractDialog#enhanceMappingModelButton} is
+	 * A {@link MappingModelEnhancer} that is triggered when the {@link AbstractDialog#enhanceMappingModelButton} is
 	 * selected.
 	 */
-	protected final SelectionListener2 enhanceMappingModelListener;
+	protected final MappingModelEnhancer<? extends AbstractDialogRunner> enhanceMappingModelListener;
 
 	/**
 	 * This creates an instance.
 	 * <p />
-	 * Note: this is equivalent to calling {@link #AbstractDialogRunner(String, SelectionListener2)
+	 * Note: this is equivalent to calling {@link #AbstractDialogRunner(String, MappingModelEnhancer)
 	 * AbstractDialog(String, null)}.
 	 *
-	 * @see #AbstractDialogRunner(String, SelectionListener2)
+	 * @see #AbstractDialogRunner(String, MappingModelEnhancer)
 	 *
 	 * @param message
 	 *            The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
@@ -63,11 +64,16 @@ public abstract class AbstractDialogRunner implements Runnable {
 	 *            A {@link SelectionListener2} that will be called when the
 	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
 	 */
-	public AbstractDialogRunner(final String message, final SelectionListener2 enhanceMappingModelListener) {
+	public AbstractDialogRunner(final String message,
+			final MappingModelEnhancer<? extends AbstractDialogRunner> enhanceMappingModelListener) {
 		super();
 		this.transformationStopRequested = false;
 		this.message = message;
 		this.enhanceMappingModelListener = enhanceMappingModelListener;
+
+		if (enhanceMappingModelListener != null) {
+			this.enhanceMappingModelListener.setDialogRunner(this);
+		}
 	}
 
 	@Override

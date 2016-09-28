@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Display;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
@@ -34,6 +35,8 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * @author mfreund
  */
 public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
+
+
 
 	/**
 	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after user selections.
@@ -64,7 +67,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 		final GenericSelectionDialogRunner<MatchedSectionDescriptor> dialog = new GenericSelectionDialogRunner<MatchedSectionDescriptor>(
 				"Please select a SourceSection for the source element\n'" + EObjectWrapper.asString(element) + "'", 0,
-				false, choices) {
+				false, choices, null) {
 
 			@Override
 			protected String getStringRepresentation(MatchedSectionDescriptor option) {
@@ -88,7 +91,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 		final GenericSelectionDialogRunner<Mapping> dialog = new GenericSelectionDialogRunner<Mapping>(
 				"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element)+ "'",
-				0, false, choices) {
+				0, false, choices, null) {
 
 			@Override
 			protected String getStringRepresentation(Mapping option) {
@@ -180,16 +183,25 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			classNames.add(eClass.getName());
 		}
 
-		final GenericSelectionDialogRunner<String> dialog = new GenericSelectionDialogRunner<>(
+		JoiningSelectRootElementMappingModelEnhancer enhancer = new JoiningSelectRootElementMappingModelEnhancer(this.pamtramModel);
+		final GenericSelectionDialogRunner<EClass> dialog = new GenericSelectionDialogRunner<EClass>(
 				"There was more than one target model element that could not be connected to a root element. Therefore "
 						+ "a model root element needs to be created. Please select a fitting class:",
-						0, false, classNames);
+						0, false, choices, enhancer) {
+
+			@Override
+			protected String getStringRepresentation(EClass option) {
+
+				return option.getName();
+			}
+		};
+
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new AmbiguityResolvingException(new UserAbortException());
 		}
-		this.printMessage(dialog.getSingleSelection(), UserDecisionResolvingStrategy.userDecisionPrefix);
-		return new ArrayList<>(Arrays.asList(choices.get(classNames.indexOf(dialog.getSingleSelection()))));
+		this.printMessage(dialog.getSingleSelection().getName(), UserDecisionResolvingStrategy.userDecisionPrefix);
+		return new ArrayList<>(Arrays.asList(dialog.getSingleSelection()));
 	}
 
 	@Override
@@ -200,7 +212,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				"Please choose one of the possible connections for connecting the "
 						+ "instances of the target section '" + section.getName() + "' (EClass: '"
 						+ section.getEClass().getName() + "') to the model root element of the type '" + choices.get(0).getPathRootClass().getName() + "'.",
-				0, false, choices);
+						0, false, choices, null);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new AmbiguityResolvingException(new UserAbortException());
@@ -232,7 +244,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						+ " of the type '" + section.getEClass().getName() + "'. "
 						+ (sectionInstances.size() > 1 ? "Theese need" : "It needs") + " to be put at a sensible position in the target model. "
 						+ "Please choose one of the possible connections to other existing target model elements"
-						+ " below.", namesAsList, instanceNames);
+						+ " below.",
+						namesAsList, instanceNames, null);
 
 		Display.getDefault().syncExec(dialog); // TODO Maybe add option to not do anything
 		if (dialog.wasTransformationStopRequested()) {
@@ -281,7 +294,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						"theese " + sectionInstances.size()+ "elements" :
 							"this " + sectionInstances.size() + "element")
 				+ " should be inserted.\n\n" + "Attribute value: " + hintValue,
-				0, false, choices);
+				0, false, choices, null);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new AmbiguityResolvingException(new UserAbortException());
@@ -313,7 +326,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 
 		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(
-				dialogMessage, 0, reference.getEReference().isMany(), choices);
+				dialogMessage, 0, reference.getEReference().isMany(), choices, null);
 
 		Display.getDefault().syncExec(
 				dialog);
@@ -359,7 +372,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						+ hintGroup.getName()
 						+ ") ."
 						+ "Please select a target Class and element.",
-						namesAsList, instanceNames, reference.getEReference().isMany());
+						namesAsList, instanceNames, reference.getEReference().isMany(), null);
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {

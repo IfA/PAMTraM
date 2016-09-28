@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.eclipse.swt.widgets.Dialog;
 
+import de.mfreund.gentrans.transformation.resolving.enhancing.MappingModelEnhancer;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 /**
@@ -44,7 +45,7 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	 */
 	public PathAndInstanceSelectorRunner(final String message,
 			final List<String> paths, final List<List<String>> instances,
-			final SelectionListener2 enhanceMappingModelListener) {
+			final MappingModelEnhancer<GenericSelectionDialogRunner<String>> enhanceMappingModelListener) {
 
 		this(message, paths, instances, false, enhanceMappingModelListener);
 	}
@@ -66,7 +67,7 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	 */
 	public PathAndInstanceSelectorRunner(final String message,
 			final List<String> paths, final List<List<String>> instances, boolean multiSelectionAllowed,
-			final SelectionListener2 enhanceMappingModelListener) {
+			final MappingModelEnhancer<GenericSelectionDialogRunner<String>> enhanceMappingModelListener) {
 
 		super(message, 0, multiSelectionAllowed, paths, enhanceMappingModelListener);
 

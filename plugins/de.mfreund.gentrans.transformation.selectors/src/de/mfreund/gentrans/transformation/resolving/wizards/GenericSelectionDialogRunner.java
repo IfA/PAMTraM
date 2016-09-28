@@ -7,7 +7,7 @@ import java.util.List;
 import org.eclipse.swt.widgets.Dialog;
 
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
-import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+import de.mfreund.gentrans.transformation.resolving.enhancing.MappingModelEnhancer;
 
 /**
  * This represents a {@link Runnable} that will spawn an {@link GenericSelectionDialog} that allows a
@@ -55,12 +55,12 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 * @param options
 	 *            The options to be presented to the user in the dialog.
 	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the
+	 *            A {@link MappingModelEnhancer} that will be called when the
 	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
 	 */
 	public GenericSelectionDialogRunner(final String message, final int standardSelection,
 			final boolean multiSelectionAllowed, final List<SelectionType> options,
-			final SelectionListener2 enhanceMappingModelListener) {
+			final MappingModelEnhancer<GenericSelectionDialogRunner<SelectionType>> enhanceMappingModelListener) {
 
 		super(message, enhanceMappingModelListener);
 

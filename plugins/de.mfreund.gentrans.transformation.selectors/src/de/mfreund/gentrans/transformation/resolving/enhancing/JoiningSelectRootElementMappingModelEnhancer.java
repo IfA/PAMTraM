@@ -26,14 +26,14 @@ import pamtram.presentation.PamtramEditor;
  *
  * @author mfreund
  */
-public class SelectRootElementMappingModelEnhancer extends MappingModelEnhancer<GenericSelectionDialogRunner<EClass>> {
+public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEnhancer<GenericSelectionDialogRunner<EClass>> {
 
 	/**
 	 * This creates an instance.
 	 *
 	 * @param pamtramModel
 	 */
-	public SelectRootElementMappingModelEnhancer(PAMTraM pamtramModel) {
+	public JoiningSelectRootElementMappingModelEnhancer(PAMTraM pamtramModel) {
 		super(pamtramModel);
 	}
 

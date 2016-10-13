@@ -13,9 +13,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
@@ -667,18 +669,48 @@ public class TargetSectionConnector extends CancelableElement {
 		}
 
 		/*
+		 * Reduce the found paths to those that provide the necessary capacity.
+		 */
+		pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(
+				pathsToConsider, null, rootInstances.size());
+
+		/*
+		 * Remove those paths that would lead to cyclic containments
+		 */
+		for (final ModelConnectionPath p : new LinkedList<>(pathsToConsider)) {
+
+			List<EObject> possibleContainerInstances = this.targetSectionRegistry
+					.getTargetClassInstances(pathsToConsider.iterator().next().getPathRootClass()).parallelStream()
+					.map(i -> i.getEObject()).collect(Collectors.toList());
+
+			List<EObject> rootInstancesToConnect = rootInstances.parallelStream().map(i -> i.getEObject())
+					.collect(Collectors.toList());
+
+			possibleContainerInstances.removeAll(rootInstancesToConnect);
+
+			if (possibleContainerInstances.isEmpty() || possibleContainerInstances.stream()
+					.anyMatch(c -> EcoreUtil.isAncestor(rootInstancesToConnect, c))) {
+
+				pathsToConsider.remove(p);
+
+			}
+
+		}
+
+		/*
 		 * If no paths have been found, register the related elements as 'unlinkable' and return.
 		 */
-		if(pathsToConsider.isEmpty()) {
+		if (pathsToConsider.isEmpty()) {
 
 			if (!this.unlinkeableElements.containsKey(classToConnect)) {
 
-				this.unlinkeableElements.put(classToConnect,new LinkedHashMap<TargetSectionClass, List<EObjectWrapper>>());
+				this.unlinkeableElements.put(classToConnect,
+						new LinkedHashMap<TargetSectionClass, List<EObjectWrapper>>());
 			}
 
 			if (!this.unlinkeableElements.get(classToConnect).containsKey(section)) {
 
-				this.unlinkeableElements.get(classToConnect).put(section,new LinkedList<EObjectWrapper>());
+				this.unlinkeableElements.get(classToConnect).put(section, new LinkedList<EObjectWrapper>());
 			}
 
 			this.unlinkeableElements.get(classToConnect).get(section).addAll(rootInstances);
@@ -686,21 +718,13 @@ public class TargetSectionConnector extends CancelableElement {
 		}
 
 		/*
-		 * Reduce the found paths to those that provide the necessary capacity.
+		 * Only go on with paths that could theoretically fit all of the elements
 		 */
-		pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(
-				pathsToConsider, null, rootInstances.size());
-
-		/*
-		 * Only go on with paths that could theoretically fit all of the
-		 * elements
-		 */
-		if(pathsToConsider.isEmpty()) {
+		if (pathsToConsider.isEmpty()) {
 			// TODO handle limited capacity
 			this.addToTargetModelRoot(rootInstances);
 			return;
 		}
-
 
 		// handle container
 		boolean onlyOnePath;

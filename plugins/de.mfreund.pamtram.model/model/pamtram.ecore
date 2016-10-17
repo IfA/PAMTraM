@@ -1704,5 +1704,73 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalModifiedAttributeElementType"
+        abstract="true">
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/S"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/C"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/R"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="C">
+        <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/S"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/C"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/R"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="R">
+        <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/S"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/C"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/R"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="A">
+        <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/S"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/C"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/R"/>
+          <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+        <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/S"/>
+        <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/C"/>
+        <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/R"/>
+        <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/A"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherGlobalSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/GlobalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingGlobalSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/GlobalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintGlobalSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/GlobalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/ModelConnectionHintSourceInterface"/>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

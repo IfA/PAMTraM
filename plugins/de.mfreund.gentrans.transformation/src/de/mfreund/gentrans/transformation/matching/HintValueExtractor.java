@@ -26,6 +26,7 @@ import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
@@ -52,8 +53,12 @@ import pamtram.metamodel.SourceSectionReference;
 public class HintValueExtractor extends ValueExtractor {
 
 	/**
-	 * The list of {@link MappingInstanceStorage MappingInstanceStorages}
-	 * for that the hint values shall be extracted.
+	 * The result of the <em>matching</em> step.
+	 */
+	private Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult;
+
+	/**
+	 * The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be extracted.
 	 */
 	private List<MappingInstanceStorage> mappingInstances;
 
@@ -67,31 +72,30 @@ public class HintValueExtractor extends ValueExtractor {
 	private Map<ExportedMappingHintGroup, MappingInstanceStorage> exportedHintGroups;
 
 	/**
-	 * This creates an instance for a given list of
-	 * {@link MappingInstanceStorage mappingInstances}.
+	 * This creates an instance for a given list of {@link MappingInstanceStorage mappingInstances}.
 	 * <p />
-	 * Note: The extracted hint values are stored in the given
-	 * <em>mappingInstances</em>.
+	 * Note: The extracted hint values are stored in the given <em>mappingInstances</em>.
 	 *
+	 * @param matchingResult
+	 *            The result of the <em>matching</em> step.
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage
-	 *            MappingInstanceStorages} for that the hint values shall be
+	 *            The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be
 	 *            extracted.
 	 * @param globalAttributes
-	 *            The values of {@link GlobalAttribute GlobalAttributes} that
-	 *            shall be used by
+	 *            The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
 	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used
-	 *            for modifying attribute values.
+	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	public HintValueExtractor(List<MappingInstanceStorage> mappingInstances, Map<GlobalAttribute, String> globalAttributes,
+	public HintValueExtractor(Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult,
+			List<MappingInstanceStorage> mappingInstances, Map<GlobalAttribute, String> globalAttributes,
 			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
 
 		super(globalAttributes, attributeValueModifierExecutor, logger);
 
+		this.matchingResult = matchingResult;
 		this.mappingInstances = mappingInstances;
 		this.exportedHintGroups = new HashMap<>();
 	}
@@ -258,7 +262,11 @@ public class HintValueExtractor extends ValueExtractor {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if(attributeMappingSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+			if (attributeMappingSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+				attributeValueRepresentation = this.extractValue(
+						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
+						this.matchingResult);
+			} else if (attributeMappingSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface, matchedSectionDescriptor);
 			} else if(attributeMappingSourceInterface instanceof FixedValue) {
 				attributeValueRepresentation = this.extractValue((FixedValue) attributeMappingSourceInterface, matchedSectionDescriptor);
@@ -297,7 +305,11 @@ public class HintValueExtractor extends ValueExtractor {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if(attributeMatcherSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+			if (attributeMatcherSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+				attributeValueRepresentation = this.extractValue(
+						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
+						this.matchingResult);
+			} else if (attributeMatcherSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface, matchedSectionDescriptor);
 			} else if(attributeMatcherSourceInterface instanceof FixedValue) {
 				attributeValueRepresentation = this.extractValue((FixedValue) attributeMatcherSourceInterface, matchedSectionDescriptor);
@@ -338,7 +350,11 @@ public class HintValueExtractor extends ValueExtractor {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if(modelConnectionHintSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+			if (modelConnectionHintSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+				attributeValueRepresentation = this.extractValue(
+						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
+						this.matchingResult);
+			} else if (modelConnectionHintSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface, matchedSectionDescriptor);
 			} else if(modelConnectionHintSourceInterface instanceof FixedValue) {
 				attributeValueRepresentation = this.extractValue((FixedValue) modelConnectionHintSourceInterface, matchedSectionDescriptor);

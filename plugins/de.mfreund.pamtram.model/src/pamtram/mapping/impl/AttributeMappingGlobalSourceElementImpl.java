@@ -5,14 +5,12 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.AttributeMappingGlobalSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -46,12 +44,14 @@ public class AttributeMappingGlobalSourceElementImpl extends GlobalModifiedAttri
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
+	@Override
 	public SourceSectionAttribute getSourceAttribute() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintSourceInterface!getSourceAttribute()
+
+		return this.getSource();
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class AttributeMappingGlobalSourceElementImpl extends GlobalModifiedAttri
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
-				return getSourceAttribute();
+				return this.getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

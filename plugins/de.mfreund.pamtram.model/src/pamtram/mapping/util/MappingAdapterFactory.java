@@ -285,6 +285,22 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMatchToUpperCaseConverterAdapter();
 			}
 			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
+				return createGlobalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMatcherGlobalSourceElement(AttributeMatcherGlobalSourceElement object) {
+				return createAttributeMatcherGlobalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement object) {
+				return createAttributeMappingGlobalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseModelConnectionHintGlobalSourceElement(ModelConnectionHintGlobalSourceElement object) {
+				return createModelConnectionHintGlobalSourceElementAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1063,6 +1079,62 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMatchToUpperCaseConverterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.GlobalModifiedAttributeElementType <em>Global Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.GlobalModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createGlobalModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherGlobalSourceElement <em>Attribute Matcher Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.AttributeMatcherGlobalSourceElement
+	 * @generated
+	 */
+	public Adapter createAttributeMatcherGlobalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingGlobalSourceElement <em>Attribute Mapping Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.AttributeMappingGlobalSourceElement
+	 * @generated
+	 */
+	public Adapter createAttributeMappingGlobalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModelConnectionHintGlobalSourceElement <em>Model Connection Hint Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ModelConnectionHintGlobalSourceElement
+	 * @generated
+	 */
+	public Adapter createModelConnectionHintGlobalSourceElementAdapter() {
 		return null;
 	}
 

@@ -347,6 +347,33 @@ public interface MappingFactory extends EFactory {
 	MatchToUpperCaseConverter createMatchToUpperCaseConverter();
 
 	/**
+	 * Returns a new object of class '<em>Attribute Matcher Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Matcher Global Source Element</em>'.
+	 * @generated
+	 */
+	AttributeMatcherGlobalSourceElement createAttributeMatcherGlobalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Mapping Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Mapping Global Source Element</em>'.
+	 * @generated
+	 */
+	AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Model Connection Hint Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Connection Hint Global Source Element</em>'.
+	 * @generated
+	 */
+	ModelConnectionHintGlobalSourceElement createModelConnectionHintGlobalSourceElement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

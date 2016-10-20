@@ -569,6 +569,47 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
+				GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType = (GlobalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
+				T result = caseGlobalModifiedAttributeElementType(globalModifiedAttributeElementType);
+				if (result == null) result = caseModifiedAttributeElementType(globalModifiedAttributeElementType);
+				if (result == null) result = caseNamedElement(globalModifiedAttributeElementType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: {
+				AttributeMatcherGlobalSourceElement attributeMatcherGlobalSourceElement = (AttributeMatcherGlobalSourceElement)theEObject;
+				T result = caseAttributeMatcherGlobalSourceElement(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseNamedElement(attributeMatcherGlobalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: {
+				AttributeMappingGlobalSourceElement attributeMappingGlobalSourceElement = (AttributeMappingGlobalSourceElement)theEObject;
+				T result = caseAttributeMappingGlobalSourceElement(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseNamedElement(attributeMappingGlobalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT: {
+				ModelConnectionHintGlobalSourceElement modelConnectionHintGlobalSourceElement = (ModelConnectionHintGlobalSourceElement)theEObject;
+				T result = caseModelConnectionHintGlobalSourceElement(modelConnectionHintGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(modelConnectionHintGlobalSourceElement);
+				if (result == null) result = caseModelConnectionHintSourceInterface(modelConnectionHintGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(modelConnectionHintGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(modelConnectionHintGlobalSourceElement);
+				if (result == null) result = caseNamedElement(modelConnectionHintGlobalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1365,6 +1406,66 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMatchToUpperCaseConverter(MatchToUpperCaseConverter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Global Modified Attribute Element Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Global Modified Attribute Element Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher Global Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeMatcherGlobalSourceElement(AttributeMatcherGlobalSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping Global Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Connection Hint Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Connection Hint Global Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelConnectionHintGlobalSourceElement(ModelConnectionHintGlobalSourceElement object) {
 		return null;
 	}
 

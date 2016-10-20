@@ -86,6 +86,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: return createExternalMappedAttributeValueAppender();
 			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: return createMatchToLowerCaseConverter();
 			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER: return createMatchToUpperCaseConverter();
+			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: return createAttributeMatcherGlobalSourceElement();
+			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: return createAttributeMappingGlobalSourceElement();
+			case MappingPackage.MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT: return createModelConnectionHintGlobalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -455,6 +458,36 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public MatchToUpperCaseConverter createMatchToUpperCaseConverter() {
 		MatchToUpperCaseConverterImpl matchToUpperCaseConverter = new MatchToUpperCaseConverterImpl();
 		return matchToUpperCaseConverter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeMatcherGlobalSourceElement createAttributeMatcherGlobalSourceElement() {
+		AttributeMatcherGlobalSourceElementImpl attributeMatcherGlobalSourceElement = new AttributeMatcherGlobalSourceElementImpl();
+		return attributeMatcherGlobalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement() {
+		AttributeMappingGlobalSourceElementImpl attributeMappingGlobalSourceElement = new AttributeMappingGlobalSourceElementImpl();
+		return attributeMappingGlobalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelConnectionHintGlobalSourceElement createModelConnectionHintGlobalSourceElement() {
+		ModelConnectionHintGlobalSourceElementImpl modelConnectionHintGlobalSourceElement = new ModelConnectionHintGlobalSourceElementImpl();
+		return modelConnectionHintGlobalSourceElement;
 	}
 
 	/**

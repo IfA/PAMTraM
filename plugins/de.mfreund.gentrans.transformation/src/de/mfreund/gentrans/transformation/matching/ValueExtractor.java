@@ -2,7 +2,6 @@ package de.mfreund.gentrans.transformation.matching;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,9 +11,12 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.InstancePointerHandler;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.FixedValue;
@@ -23,6 +25,7 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -220,23 +223,41 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            Registry for <em>source model objects</em> that have already been matched. The matched objects are
 	 *            stored in a map where the key is the corresponding {@link SourceSectionClass} that they have been
 	 *            matched to.
+	 * @param matchedSectionDescriptor
+	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
 	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(
 			GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
-			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections) {
+			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
+			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		AttributeValueRepresentation hintValue = null;
 
 		List<MatchedSectionDescriptor> sourceDescriptors = matchedSections
 				.get(mappingHintSourceElement.getSource().getContainingSection());
 
-		Set<EObject> sourceElements = new HashSet<>();
+		// Collect all instances for the MatchedSectionDescriptors
+		//
+		List<EObject> sourceElements = sourceDescriptors.parallelStream().flatMap(descriptor -> descriptor
+				.getSourceModelObjectsMapped().get(mappingHintSourceElement.getSource().eContainer()).stream())
+				.collect(Collectors.toList());
 
-		for (MatchedSectionDescriptor sourceDescriptor : sourceDescriptors) {
-			sourceElements.addAll(sourceDescriptor.getSourceModelObjectsMapped()
-					.get(mappingHintSourceElement.getSource().eContainer()));
+		// Reduce the list of instances based on modeled InstancePointers
+		//
+		if (!sourceElements.isEmpty() && !mappingHintSourceElement.getInstanceSelector().isEmpty()) {
+
+			GlobalValueMap gv = new GlobalValueMap(new HashMap<>(), this.globalAttributeValues);
+			InstancePointerHandler instancePointerHandler = new InstancePointerHandler(matchedSections, gv,
+					new AttributeValueCalculator(gv, this.attributeValueModifierExecutor, this.logger), this.logger);
+
+			for (InstancePointer instancePointer : mappingHintSourceElement.getInstanceSelector()) {
+
+				sourceElements = instancePointerHandler.getPointedInstanceByInstanceList(instancePointer,
+						sourceElements, matchedSectionDescriptor);
+			}
+
 		}
 
 		if (sourceElements.isEmpty()) {

@@ -266,7 +266,7 @@ public class HintValueExtractor extends ValueExtractor {
 			if (attributeMappingSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
-						this.matchedSections);
+						this.matchedSections, matchedSectionDescriptor);
 			} else if (attributeMappingSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface, matchedSectionDescriptor);
 			} else if(attributeMappingSourceInterface instanceof FixedValue) {
@@ -309,7 +309,7 @@ public class HintValueExtractor extends ValueExtractor {
 			if (attributeMatcherSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
-						this.matchedSections);
+						this.matchedSections, matchedSectionDescriptor);
 			} else if (attributeMatcherSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface, matchedSectionDescriptor);
 			} else if(attributeMatcherSourceInterface instanceof FixedValue) {
@@ -354,7 +354,7 @@ public class HintValueExtractor extends ValueExtractor {
 			if (modelConnectionHintSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
-						this.matchedSections);
+						this.matchedSections, matchedSectionDescriptor);
 			} else if (modelConnectionHintSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface, matchedSectionDescriptor);
 			} else if(modelConnectionHintSourceInterface instanceof FixedValue) {

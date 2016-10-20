@@ -134,7 +134,7 @@
       <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MappingModel" eSuperTypes="#//NamedElement #//DeactivatableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="MappingModel" eSuperTypes="#//NamedElement #//DeactivatableElement #//ConditionalElement">
     <eOperations name="getActiveMappings" upperBound="-1" eType="#//mapping/Mapping">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="EList&lt;Mapping> mappings = getMapping();&#xD;&#xA;EList&lt;Mapping> activeMappings = new BasicEList&lt;>();&#xD;&#xA;for (Mapping mapping : mappings) {&#xD;&#xA;&#x9;if(!mapping.isDeactivated() &amp;&amp; !mapping.isAbstract()) {&#xD;&#xA;&#x9;&#x9;activeMappings.add(mapping);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return activeMappings;"/>

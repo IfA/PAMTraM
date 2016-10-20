@@ -17,10 +17,6 @@ import de.mfreund.gentrans.transformation.matching.AttributeValueConstraintValue
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.ValueConstraint;
-import pamtram.metamodel.ValueConstraintExternalSourceElement;
-import pamtram.metamodel.ValueConstraintSourceElement;
-import pamtram.metamodel.ValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.SingleReferenceValueConstraint;
@@ -28,12 +24,16 @@ import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
+import pamtram.metamodel.ValueConstraint;
+import pamtram.metamodel.ValueConstraintExternalSourceElement;
+import pamtram.metamodel.ValueConstraintSourceElement;
+import pamtram.metamodel.ValueConstraintSourceInterface;
 
 
 /**
  * This class can be used to calculate reference values of {@link ValueConstraint
  * AttributeValueConstraints}.
- * 
+ *
  * @author mfreund
  */
 public class AttributeValueConstraintReferenceValueCalculator {
@@ -66,7 +66,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 * <p />
 	 * This should be used during the 'matching' phase where these latter
 	 * information are not yet present.
-	 * 
+	 *
 	 * @param globalValues
 	 *            The <em>global values</em> (values of {@link FixedValue
 	 *            FixedValues} and {@link GlobalAttribute GlobalAttribute})
@@ -77,17 +77,17 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	public AttributeValueConstraintReferenceValueCalculator(GlobalValueMap globalValues, 
+	public AttributeValueConstraintReferenceValueCalculator(GlobalValueMap globalValues,
 			AttributeValueCalculator attributeValueCalculator, Logger logger) {
 		this(new HashMap<>(), globalValues, null, attributeValueCalculator, logger);
 	}
 
 	/**
 	 * This creates an instance.
-	 * 
-	 * @param matchedSections A map relating {@link SourceSection SourceSections} and lists of {@link MatchedSectionDescriptor 
+	 *
+	 * @param matchedSections A map relating {@link SourceSection SourceSections} and lists of {@link MatchedSectionDescriptor
 	 * MatchedSectionDescriptors} that have been create for each SourceSection during the <em>matching</em> process.
-	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute}) 
+	 * @param globalValues The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttribute})
 	 * defined in the PAMTraM model.
 	 * @param instancePointerHandler The {@link InstancePointerHandler} that is used to evaluate {@link InstancePointer InstancePointers}
 	 * that have been modeled.
@@ -97,8 +97,8 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 */
 	public AttributeValueConstraintReferenceValueCalculator(
 			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			GlobalValueMap globalValues, 
-			InstancePointerHandler instancePointerHandler, 
+			GlobalValueMap globalValues,
+			InstancePointerHandler instancePointerHandler,
 			AttributeValueCalculator attributeValueCalculator,
 			Logger logger) {
 
@@ -113,16 +113,16 @@ public class AttributeValueConstraintReferenceValueCalculator {
 
 		// create a value extractor
 		this.valueExtractor = new AttributeValueConstraintValueExtractor(
-				globalValues.getGlobalAttributes(), attributeValueCalculator, AttributeValueModifierExecutor.getInstance(), consoleStream);
+				globalValues.getGlobalAttributes(), attributeValueCalculator, AttributeValueModifierExecutor.getInstance(), this.consoleStream);
 
 	}
 
 	/**
 	 * General structure for calculating a reference value (mostly for {@link ValueConstraint}s).
-	 * 
-	 * @param rootObj This is the root element which contains all needed information (e.g. references) 
+	 *
+	 * @param rootObj This is the root element which contains all needed information (e.g. references)
 	 * (mostly an instance of {@link ValueConstraint}-child)
-	 * @param matchedSectionDescriptor 
+	 * @param matchedSectionDescriptor
 	 * @return The calculated attribute value or <em>""</em> if no value could be calculated.
 	 */
 	public String calculateReferenceValue(EObject rootObj, MatchedSectionDescriptor matchedSectionDescriptor) {
@@ -140,29 +140,25 @@ public class AttributeValueConstraintReferenceValueCalculator {
 		if(rootObj instanceof SingleReferenceValueConstraint){
 			sourceElements = ((SingleReferenceValueConstraint) rootObj).getSourceElements();
 			instPointersAsList = ((SingleReferenceValueConstraint) rootObj).getConstraintReferenceValueAdditionalSpecification();
-			descriptorToEvaluate = getInstancesToConsider(sourceElements, instPointersAsList, 
+			descriptorToEvaluate = this.getInstancesToConsider(sourceElements, instPointersAsList,
 					((SingleReferenceValueConstraint) rootObj).isLocalConstraint(), matchedSectionDescriptor);
 		} else if (rootObj instanceof RangeBound){
 			sourceElements = ((RangeBound) rootObj).getSourceElements();
 			instPointersAsList = ((RangeBound) rootObj).getBoundReferenceValueAdditionalSpecification();
-			descriptorToEvaluate = getInstancesToConsider(sourceElements, instPointersAsList, 
+			descriptorToEvaluate = this.getInstancesToConsider(sourceElements, instPointersAsList,
 					((RangeBound) rootObj).isLocalConstraint(), matchedSectionDescriptor);
 		} else {
 			// more types could be supported in the future
-			consoleStream
+			this.consoleStream
 			.severe("AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
 			return null; // "" keep running the application (in this case YOU may have to do some changes here?!)
 		}
 
-		if(descriptorToEvaluate == null) {
-			return null;
-		}
-
 		if(rootObj instanceof SingleReferenceValueConstraint){
-			refValue = valueExtractor.extractRequiredTargetValue(
+			refValue = this.valueExtractor.extractRequiredTargetValue(
 					(SingleReferenceValueConstraint) rootObj, descriptorToEvaluate);
 		} else {
-			refValue = valueExtractor.extractRequiredTargetValue(
+			refValue = this.valueExtractor.extractRequiredTargetValue(
 					(RangeBound) rootObj, descriptorToEvaluate);
 		}
 
@@ -171,8 +167,8 @@ public class AttributeValueConstraintReferenceValueCalculator {
 
 	/**
 	 * General structure for calculating a reference value (mostly for {@link ValueConstraint}s).
-	 * 
-	 * @param rootObj This is the root element which contains all needed information (e.g. references) 
+	 *
+	 * @param rootObj This is the root element which contains all needed information (e.g. references)
 	 * (mostly an instance of {@link ValueConstraint}-child)
 	 * @return The calculated attribute value or <em>""</em> if no value could be calculated.
 	 */
@@ -191,25 +187,25 @@ public class AttributeValueConstraintReferenceValueCalculator {
 		if(rootObj instanceof SingleReferenceValueConstraint){
 			sourceElements = ((SingleReferenceValueConstraint) rootObj).getSourceElements();
 			instPointersAsList = ((SingleReferenceValueConstraint) rootObj).getConstraintReferenceValueAdditionalSpecification();
-			descriptorToEvaluate = getInstancesToConsider(sourceElements, instPointersAsList, 
+			descriptorToEvaluate = this.getInstancesToConsider(sourceElements, instPointersAsList,
 					((SingleReferenceValueConstraint) rootObj).isLocalConstraint(), null);
 		} else if (rootObj instanceof RangeBound){
 			sourceElements = ((RangeBound) rootObj).getSourceElements();
 			instPointersAsList = ((RangeBound) rootObj).getBoundReferenceValueAdditionalSpecification();
-			descriptorToEvaluate = getInstancesToConsider(sourceElements, instPointersAsList, 
+			descriptorToEvaluate = this.getInstancesToConsider(sourceElements, instPointersAsList,
 					((RangeBound) rootObj).isLocalConstraint(), null);
 		} else {
 			// more types could be supported in the future
-			consoleStream
+			this.consoleStream
 			.severe("AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
 			return null; // "" keep running the application (in this case YOU may have to do some changes here?!)
 		}
 
 		if(rootObj instanceof SingleReferenceValueConstraint){
-			refValue = valueExtractor.extractRequiredTargetValue(
+			refValue = this.valueExtractor.extractRequiredTargetValue(
 					(SingleReferenceValueConstraint) rootObj, descriptorToEvaluate);
 		} else {
-			refValue = valueExtractor.extractRequiredTargetValue(
+			refValue = this.valueExtractor.extractRequiredTargetValue(
 					(RangeBound) rootObj, descriptorToEvaluate);
 		}
 
@@ -221,19 +217,19 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 * need to be considered during the evaluation of the given {@link EObject attributeValueConstraint} for the given
 	 * {@link MatchedSectionDescriptor}.
 	 * <p />
-	 * Depending on the presence of {@link InstancePointer InstancePointers}, 
+	 * Depending on the presence of {@link InstancePointer InstancePointers},
 	 * only the elements represented by the given <em>matchedSectionDescriptor</em> or the elements
 	 * represented by all suitable descriptors stored in the {@link #matchedSections} need to be considered.
-	 * 
+	 *
 	 * @param EObject The {@link SingleReferenceValueConstraint} to be checked.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} that the constraint
 	 * shall be checked for.
-	 * @return The list of {@link EObject elements of the source model} that need to be 
+	 * @return The list of {@link EObject elements of the source model} that need to be
 	 * considered when checking the constraint.
 	 */
 	@SuppressWarnings("unchecked")
 	private MatchedSectionDescriptor getInstancesToConsider(
-			List<ValueConstraintSourceInterface> sourceElements, 
+			List<ValueConstraintSourceInterface> sourceElements,
 			List<InstancePointer> instancePointers,
 			boolean isLocalConstraint,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
@@ -243,14 +239,14 @@ public class AttributeValueConstraintReferenceValueCalculator {
 
 		if(isLocalConstraint && instancePointers.isEmpty()) {
 
-			// In case of a 'local' constraint without any InstancePointers specified, 
+			// In case of a 'local' constraint without any InstancePointers specified,
 			// we only consider the given 'matchedSectionDescriptor'.
 			//
 			return matchedSectionDescriptor;
 
 		} else {
 
-			// In case of a 'global' constraint or if an InstancePointer has been specified, we 
+			// In case of a 'global' constraint or if an InstancePointer has been specified, we
 			// have to consider all 'descriptors' for the SourceSection  under consideration
 			//
 			affectedSection = sourceElements.parallelStream()
@@ -295,7 +291,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 			if(result.isEmpty()) {
 				return null;
 			} else if(result.size() > 1) {
-				consoleStream.severe("Internal Error: Multiple source descriptors found during evaluation of an "
+				this.consoleStream.severe("Internal Error: Multiple source descriptors found during evaluation of an "
 						+
 						"AttributeValueConstraint! This should not happen in valid models.");
 				return null;

@@ -25,6 +25,7 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
+import pamtram.MappingModel;
 import pamtram.condition.ApplicationDependency;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
@@ -117,16 +118,15 @@ public class MappingSelector extends CancelableElement {
 			Logger logger) {
 
 		this.matchedSections = matchedSections;
-		this.mappings = mappings;
-		// TODO also filter if sub-conditions of type ApplicationDependency
-		this.dependentMappings = mappings.parallelStream()
-				.filter(m -> m.getLocalCondition() instanceof ApplicationDependency).collect(Collectors.toList());
+		this.mappings = new ArrayList<>(mappings);
+		this.dependentMappings = Collections.synchronizedList(new ArrayList<>());
 		this.selectedMappings = Collections.synchronizedMap(new HashMap<>());
 		this.deferredSections = Collections.synchronizedList(new ArrayList<>());
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.conditionHandler = new ConditionHandler(matchedSections, globalValues, attributeValueCalculator);
 		this.logger = logger;
+
 	}
 
 	/**
@@ -137,6 +137,19 @@ public class MappingSelector extends CancelableElement {
 	 *         {@link MatchedSectionDescriptor}.
 	 */
 	public Map<Mapping, List<MappingInstanceStorage>> selectMappings() {
+
+		// First, we need to filter mapping models with conditions that evaluate to 'false'
+		//
+		Set<MappingModel> mappingModels = this.mappings.parallelStream().map(m -> (MappingModel) m.eContainer())
+				.collect(Collectors.toSet());
+
+		Set<MappingModel> mappingModelsWithNegativeCondition = mappingModels.stream()
+				.filter(m -> !this.checkCondition(m)).collect(Collectors.toSet());
+		this.mappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMapping().stream()).collect(Collectors.toList()));
+
+		// TODO also filter if sub-conditions of type ApplicationDependency
+		this.dependentMappings.addAll(this.mappings.parallelStream()
+				.filter(m -> m.getLocalCondition() instanceof ApplicationDependency).collect(Collectors.toList()));
 
 		// Select a mapping for each matched section and each descriptor instance.
 		// In the first run, we 'defer' those sections that are associated with a Mapping that contains a
@@ -403,6 +416,23 @@ public class MappingSelector extends CancelableElement {
 				this.selectedMappings) == CondResult.FALSE
 				|| this.conditionHandler.checkCondition(conditionalElement.getSharedCondition(),
 						descriptor, this.selectedMappings) == CondResult.FALSE);
+
+	}
+
+	/**
+	 * Checks the condition of the given {@link MappingModel}.
+	 *
+	 * @param mappingModel
+	 *            The {@link MappingModel} to check.
+	 * @return '<em><b>true</b></em>' if the condition was evaluated to {@link CondResult#TRUE}; '<em><b>false</b></em>'
+	 *         otherwise.
+	 */
+	private boolean checkCondition(MappingModel mappingModel) {
+
+		return !(this.conditionHandler.checkCondition(mappingModel.getLocalCondition(), null,
+				this.selectedMappings) == CondResult.FALSE
+				|| this.conditionHandler.checkCondition(mappingModel.getSharedCondition(), null,
+						this.selectedMappings) == CondResult.FALSE);
 
 	}
 

@@ -11,16 +11,21 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.InstancePointerHandler;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -126,12 +131,18 @@ public abstract class ValueExtractor extends CancelableElement {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link ModifiedAttributeElementType} from the source elements represented
-	 * by the given <em>mappingInstance</em>.
+	 * This extracts and returns the hint value for the given {@link ModifiedAttributeElementType} from the source
+	 * elements represented by the given <em>mappingInstance</em>.
+	 * <p />
+	 * Note: This method must not be used for {@link GlobalModifiedAttributeElementType
+	 * GlobalModifiedAttributeElementTypes}. Use {@link #extractValue(GlobalModifiedAttributeElementType, Map)} instead.
 	 *
-	 * @param mappingHintSourceElement The {@link ModifiedAttributeElementType} for that the hint values shall be extracted.
-	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
-	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could be extracted.
+	 * @param mappingHintSourceElement
+	 *            The {@link ModifiedAttributeElementType} for that the hint values shall be extracted.
+	 * @param matchedSectionDescriptor
+	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
+	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
+	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement, MatchedSectionDescriptor matchedSectionDescriptor) {
 
@@ -193,6 +204,102 @@ public abstract class ValueExtractor extends CancelableElement {
 
 			// create a new AttributeValueRepresentation or update the existing one
 			if(hintValue == null) {
+				hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
+			} else {
+				hintValue.addValue(valCopy);
+			}
+		}
+
+		return hintValue;
+	}
+
+	/**
+	 * This extracts and returns the hint value for the given {@link GlobalModifiedAttributeElementType} from the source
+	 * elements represented by the given <em>mappingInstance</em>.
+	 *
+	 * @param mappingHintSourceElement
+	 *            The {@link GlobalModifiedAttributeElementType} for that the hint values shall be extracted.
+	 * @param matchedSections
+	 *            Registry for <em>source model objects</em> that have already been matched. The matched objects are
+	 *            stored in a map where the key is the corresponding {@link SourceSectionClass} that they have been
+	 *            matched to.
+	 * @param matchedSectionDescriptor
+	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
+	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
+	 *         be extracted.
+	 */
+	protected AttributeValueRepresentation extractValue(
+			GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
+			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
+			MatchedSectionDescriptor matchedSectionDescriptor) {
+
+		AttributeValueRepresentation hintValue = null;
+
+		List<MatchedSectionDescriptor> sourceDescriptors = matchedSections
+				.get(mappingHintSourceElement.getSource().getContainingSection());
+
+		// Collect all instances for the MatchedSectionDescriptors
+		//
+		List<EObject> sourceElements = sourceDescriptors.parallelStream().flatMap(descriptor -> descriptor
+				.getSourceModelObjectsMapped().get(mappingHintSourceElement.getSource().eContainer()).stream())
+				.collect(Collectors.toList());
+
+		// Reduce the list of instances based on modeled InstancePointers
+		//
+		if (!sourceElements.isEmpty() && !mappingHintSourceElement.getInstanceSelector().isEmpty()) {
+
+			GlobalValueMap gv = new GlobalValueMap(new HashMap<>(), this.globalAttributeValues);
+			InstancePointerHandler instancePointerHandler = new InstancePointerHandler(matchedSections, gv,
+					new AttributeValueCalculator(gv, this.attributeValueModifierExecutor, this.logger), this.logger);
+
+			for (InstancePointer instancePointer : mappingHintSourceElement.getInstanceSelector()) {
+
+				sourceElements = instancePointerHandler.getPointedInstanceByInstanceList(instancePointer,
+						sourceElements, matchedSectionDescriptor);
+			}
+
+		}
+
+		if (sourceElements.isEmpty()) {
+			this.logger.warning("Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
+			return null;
+		}
+
+		if (!(mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute)) {
+
+			this.logger.severe("Mapping hint source elements of type '" + mappingHintSourceElement.getSource().eClass()
+					+ "' are not yet supported!");
+			return null;
+		}
+
+		EAttribute sourceAttribute = ((ActualSourceSectionAttribute) mappingHintSourceElement.getSource())
+				.getAttribute();
+
+		// Collect all values of the attribute in all source elements
+		//
+		List<Object> srcAttrValues;
+		if (sourceAttribute.isMany()) {
+			srcAttrValues = sourceElements.parallelStream()
+					.flatMap(e -> ((Collection<?>) e.eGet(sourceAttribute)).parallelStream())
+					.collect(Collectors.toList());
+		} else {
+			srcAttrValues = sourceElements.parallelStream().map(e -> e.eGet(sourceAttribute))
+					.collect(Collectors.toList());
+		}
+
+		// Extract a hint value for each retrieved value
+		//
+		for (Object srcAttrValue : srcAttrValues) {
+
+			// convert Attribute value to String
+			final String srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
+					.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
+
+			final String valCopy = this.attributeValueModifierExecutor.applyAttributeValueModifiers(srcAttrAsString,
+					mappingHintSourceElement.getModifier());
+
+			// create a new AttributeValueRepresentation or update the existing one
+			if (hintValue == null) {
 				hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
 			} else {
 				hintValue.addValue(valCopy);

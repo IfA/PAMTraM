@@ -510,6 +510,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Calculate mapping hints
 		 */
 		final HintValueExtractor hintValueExtractor = new HintValueExtractor(
+				matchingResult,
 				mappingInstances,
 				globalValues.getGlobalAttributes(),
 				attributeValueModifier, this.transformationConfig.getLogger());

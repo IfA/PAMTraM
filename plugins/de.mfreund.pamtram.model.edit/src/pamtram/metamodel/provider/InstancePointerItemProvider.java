@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.MappingModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.GlobalModifiedAttributeElementType;
@@ -58,13 +59,13 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addResultModifierPropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
+			this.addResultModifierPropertyDescriptor(object);
+			this.addTargetPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -74,19 +75,19 @@ extends ExpressionHintItemProvider {
 	 * @generated
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ModifiableHint_resultModifier_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -96,19 +97,19 @@ extends ExpressionHintItemProvider {
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_InstancePointer_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_target_feature", "_UI_InstancePointer_type"),
-				 MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_InstancePointer_target_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_target_feature", "_UI_InstancePointer_type"),
+						MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -121,11 +122,11 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -149,7 +150,7 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstancePointer"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/InstancePointer"));
 	}
 
 	/**
@@ -160,7 +161,7 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -172,11 +173,11 @@ extends ExpressionHintItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((InstancePointer)object).getExpression();
-    	StyledString styledLabel = new StyledString();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -190,11 +191,11 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(InstancePointer.class)) {
 			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -220,9 +221,11 @@ extends ExpressionHintItemProvider {
 
 		// ModifiedAttributeType children only allowed in
 		// - conditions that are no ConditionModelConditions or
+		// - conditions that are no MappingModelConditions
 		// - global source elements
 		//
 		if (parentCondition != null && !parentCondition.isConditionModelCondition()
+				&& !(parentCondition.eContainer() instanceof MappingModel)
 				|| ((EObject) object).eContainer() instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
 
 			newChildDescriptors.add
@@ -241,10 +244,14 @@ extends ExpressionHintItemProvider {
 				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 						MappingFactory.eINSTANCE.createFixedValue()));
 
-		newChildDescriptors.add
-		(this.createChildParameter
-				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
-						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+		// GlobalAttributeImporters not allowed in MappingModelConditions
+		//
+		if (parentCondition != null && !(parentCondition.eContainer() instanceof MappingModel)) {
+			newChildDescriptors.add
+			(this.createChildParameter
+					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
+							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+		}
 	}
 
 	/**

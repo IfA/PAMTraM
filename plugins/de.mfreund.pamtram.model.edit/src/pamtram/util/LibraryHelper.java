@@ -23,6 +23,7 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParamet
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryItem;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
 import pamtram.metamodel.ActualTargetSectionAttribute;
@@ -473,6 +474,26 @@ public class LibraryHelper {
 
 					this.pamtramLibEntry.getParameters().add(param);
 				}
+			}
+
+			/*
+			 * Create and populate a Pamtram ResourceParameter for every Genlib ResourceParameter
+			 */
+			for (ResourceParameter resParameter : this.libEntry.getParameterDescription().getResourceParameters()) {
+
+				pamtram.metamodel.ResourceParameter param = MetamodelFactory.eINSTANCE.createResourceParameter();
+				param.setOriginalParameter(resParameter);
+				param.setName(resParameter.eClass().getName());
+
+				VirtualTargetSectionAttribute attribute = MetamodelFactory.eINSTANCE
+						.createVirtualTargetSectionAttribute();
+				attribute.setName(resParameter.getName());
+				attribute.setValue(resParameter.getNewPath());
+
+				param.setAttribute(attribute);
+
+				this.pamtramLibEntry.getResourceParameters().add(param);
+
 			}
 
 			return this.pamtramLibEntry;

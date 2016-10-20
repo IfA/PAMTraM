@@ -31,6 +31,7 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.ResourceParameter;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -94,6 +95,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.ATTRIBUTE_PARAMETER: return createAttributeParameter();
 			case MetamodelPackage.CONTAINER_PARAMETER: return createContainerParameter();
 			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER: return createExternalReferenceParameter();
+			case MetamodelPackage.RESOURCE_PARAMETER: return createResourceParameter();
 			case MetamodelPackage.LIBRARY_ENTRY: return createLibraryEntry();
 			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
@@ -235,6 +237,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public ExternalReferenceParameter createExternalReferenceParameter() {
 		ExternalReferenceParameterImpl externalReferenceParameter = new ExternalReferenceParameterImpl();
 		return externalReferenceParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResourceParameter createResourceParameter() {
+		ResourceParameterImpl resourceParameter = new ResourceParameterImpl();
+		return resourceParameter;
 	}
 
 	/**

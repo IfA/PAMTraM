@@ -43,6 +43,7 @@ import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.ResourceParameter;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
@@ -222,6 +223,13 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				T result = caseExternalReferenceParameter(externalReferenceParameter);
 				if (result == null) result = caseLibraryParameter(externalReferenceParameter);
 				if (result == null) result = caseNamedElement(externalReferenceParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.RESOURCE_PARAMETER: {
+				ResourceParameter resourceParameter = (ResourceParameter)theEObject;
+				T result = caseResourceParameter(resourceParameter);
+				if (result == null) result = caseNamedElement(resourceParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -756,6 +764,21 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExternalReferenceParameter(ExternalReferenceParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Resource Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Resource Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResourceParameter(ResourceParameter object) {
 		return null;
 	}
 

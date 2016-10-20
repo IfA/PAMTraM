@@ -507,6 +507,12 @@
         </eTypeArguments>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ResourceParameter" eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+          eType="#//metamodel/VirtualTargetSectionAttribute" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="originalParameter" lowerBound="1"
+          eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//ResourceParameter"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LibraryEntry">
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" lowerBound="1"
           upperBound="-1" containment="true">
@@ -522,6 +528,8 @@
           eType="#//metamodel/VirtualTargetSectionAttribute" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1" eType="#//metamodel/VirtualTargetSectionAttribute"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameters" upperBound="-1"
+          eType="#//metamodel/ResourceParameter" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

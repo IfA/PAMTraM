@@ -266,6 +266,29 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ResourceParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ResourceParameterItemProvider resourceParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.ResourceParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createResourceParameterAdapter() {
+		if (resourceParameterItemProvider == null) {
+			resourceParameterItemProvider = new ResourceParameterItemProvider(this);
+		}
+
+		return resourceParameterItemProvider;
+	}
+
+	/**
 	 * This creates an adapter for a {@link pamtram.metamodel.LibraryEntry}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

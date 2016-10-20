@@ -61,13 +61,13 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addResultModifierPropertyDescriptor(object);
-			this.addBoundTypePropertyDescriptor(object);
+			addResultModifierPropertyDescriptor(object);
+			addBoundTypePropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -77,19 +77,19 @@ extends ExpressionHintItemProvider {
 	 * @generated
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_ModifiableHint_resultModifier_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModifiableHint_resultModifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -99,19 +99,19 @@ extends ExpressionHintItemProvider {
 	 * @generated
 	 */
 	protected void addBoundTypePropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_RangeBound_boundType_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_RangeBound_boundType_feature", "_UI_RangeBound_type"),
-						MetamodelPackage.Literals.RANGE_BOUND__BOUND_TYPE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RangeBound_boundType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RangeBound_boundType_feature", "_UI_RangeBound_type"),
+				 MetamodelPackage.Literals.RANGE_BOUND__BOUND_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -124,12 +124,12 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
-			this.childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS);
+			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
@@ -153,7 +153,7 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/RangeBound"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RangeBound"));
 	}
 
 	/**
@@ -164,7 +164,7 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -202,15 +202,15 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(RangeBound.class)) {
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);

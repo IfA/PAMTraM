@@ -178,6 +178,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY);
 			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH);
 			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__ID);
+			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
 		}
 		return childrenFeatures;
 	}

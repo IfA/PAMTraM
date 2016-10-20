@@ -190,7 +190,18 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingModel(MappingModel mappingModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingModel, diagnostics, context);
+		if (!validate_NoCircularContainment(mappingModel, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
+		return result;
 	}
 
 	/**

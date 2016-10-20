@@ -113,6 +113,7 @@ public class PamtramSwitch<T> extends Switch<T> {
 				T result = caseMappingModel(mappingModel);
 				if (result == null) result = caseNamedElement(mappingModel);
 				if (result == null) result = caseDeactivatableElement(mappingModel);
+				if (result == null) result = caseConditionalElement(mappingModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

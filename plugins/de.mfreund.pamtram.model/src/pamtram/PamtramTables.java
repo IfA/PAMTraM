@@ -195,6 +195,7 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorFragment _DeactivatableElement__OclAny = new ExecutorFragment(Types._DeactivatableElement, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _DeactivatableElement__OclElement = new ExecutorFragment(Types._DeactivatableElement, OCLstdlibTables.Types._OclElement);
 
+		private static final /*@NonNull*/ ExecutorFragment _MappingModel__ConditionalElement = new ExecutorFragment(Types._MappingModel, PamtramTables.Types._ConditionalElement);
 		private static final /*@NonNull*/ ExecutorFragment _MappingModel__DeactivatableElement = new ExecutorFragment(Types._MappingModel, PamtramTables.Types._DeactivatableElement);
 		private static final /*@NonNull*/ ExecutorFragment _MappingModel__MappingModel = new ExecutorFragment(Types._MappingModel, PamtramTables.Types._MappingModel);
 		private static final /*@NonNull*/ ExecutorFragment _MappingModel__NamedElement = new ExecutorFragment(Types._MappingModel, PamtramTables.Types._NamedElement);
@@ -372,11 +373,12 @@ public class PamtramTables
 		{
 			Fragments._MappingModel__OclAny /* 0 */,
 			Fragments._MappingModel__OclElement /* 1 */,
+			Fragments._MappingModel__ConditionalElement /* 2 */,
 			Fragments._MappingModel__DeactivatableElement /* 2 */,
 			Fragments._MappingModel__NamedElement /* 2 */,
 			Fragments._MappingModel__MappingModel /* 3 */
 		};
-		private static final int /*@NonNull*/ [] __MappingModel = { 1,1,2,1 };
+		private static final int /*@NonNull*/ [] __MappingModel = { 1,1,3,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _NamedElement =
 		{
@@ -543,6 +545,7 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__MappingModel = {
 			PamtramTables.Operations._MappingModel__getActiveMappings /* getActiveMappings() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__OclAny = {
@@ -736,6 +739,7 @@ public class PamtramTables
 			Fragments._DeactivatableElement__OclAny.initOperations(_DeactivatableElement__OclAny);
 			Fragments._DeactivatableElement__OclElement.initOperations(_DeactivatableElement__OclElement);
 
+			Fragments._MappingModel__ConditionalElement.initOperations(_MappingModel__ConditionalElement);
 			Fragments._MappingModel__DeactivatableElement.initOperations(_MappingModel__DeactivatableElement);
 			Fragments._MappingModel__MappingModel.initOperations(_MappingModel__MappingModel);
 			Fragments._MappingModel__NamedElement.initOperations(_MappingModel__NamedElement);
@@ -803,9 +807,11 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MappingModel = {
 			PamtramTables.Properties._DeactivatableElement__deactivated,
 			PamtramTables.Properties._MappingModel__globalValues,
+			PamtramTables.Properties._ConditionalElement__localCondition,
 			PamtramTables.Properties._MappingModel__mapping,
 			PamtramTables.Properties._MappingModel__modifierSets,
 			PamtramTables.Properties._NamedElement__name,
+			PamtramTables.Properties._ConditionalElement__sharedCondition,
 			PamtramTables.Properties._MappingModel__PAMTraM__mappingModel
 		};
 

@@ -84,7 +84,7 @@ public class ModelConnectionHintGlobalSourceElementImpl extends GlobalModifiedAt
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case MappingPackage.MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
-				return this.getSourceAttribute();
+				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -83,6 +83,7 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ExternalModifiedAttributeElementType = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ExternalModifiedAttributeElementType", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_GlobalAttribute = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_GlobalAttributeImporter = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttributeImporter", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_InstancePointer = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointer", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappedAttributeValueExpander = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappedAttributeValueExpander", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Mapping = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("Mapping", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappingHint = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappingHint", 0);
@@ -174,6 +175,7 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_EReference = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_EReference);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ExpandableHint = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ExpandableHint);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_GlobalAttribute = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_GlobalAttribute);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_InstancePointer = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_InstancePointer);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_MappingHint = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_MappingHint);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_MappingHintGroupImporter = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_MappingHintGroupImporter);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_MappingHintGroupType = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_MappingHintGroupType);
@@ -929,6 +931,8 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorProperty _GlobalAttribute__Mapping__globalVariables = new ExecutorPropertyWithImplementation("Mapping", Types._GlobalAttribute, 3, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES));
 
 		public static final /*@NonNull*/ ExecutorProperty _GlobalAttributeImporter__globalAttribute = new EcoreExecutorProperty(MappingPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, Types._GlobalAttributeImporter, 0);
+
+		public static final /*@NonNull*/ ExecutorProperty _GlobalModifiedAttributeElementType__instanceSelector = new EcoreExecutorProperty(MappingPackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR, Types._GlobalModifiedAttributeElementType, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _MappedAttributeValueExpander__hintsToExpand = new EcoreExecutorProperty(MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, Types._MappedAttributeValueExpander, 0);
 
@@ -4135,6 +4139,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMappingGlobalSourceElement = {
+			MappingTables.Properties._GlobalModifiedAttributeElementType__instanceSelector,
 			MappingTables.Properties._ModifiedAttributeElementType__modifier,
 			MappingTables.Properties._ModifiedAttributeElementType__source,
 			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements
@@ -4166,6 +4171,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _AttributeMatcherGlobalSourceElement = {
+			MappingTables.Properties._GlobalModifiedAttributeElementType__instanceSelector,
 			MappingTables.Properties._ModifiedAttributeElementType__modifier,
 			MappingTables.Properties._ModifiedAttributeElementType__source,
 			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceElements
@@ -4258,6 +4264,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _GlobalModifiedAttributeElementType = {
+			MappingTables.Properties._GlobalModifiedAttributeElementType__instanceSelector,
 			MappingTables.Properties._ModifiedAttributeElementType__modifier,
 			MappingTables.Properties._ModifiedAttributeElementType__source
 		};
@@ -4382,6 +4389,7 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement = {
+			MappingTables.Properties._GlobalModifiedAttributeElementType__instanceSelector,
 			MappingTables.Properties._ModifiedAttributeElementType__modifier,
 			MappingTables.Properties._ModifiedAttributeElementType__source,
 			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements

@@ -4021,13 +4021,22 @@ public interface MappingPackage extends EPackage {
 	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
+	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Global Modified Attribute Element Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -4092,6 +4101,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT__MODIFIER = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTOR = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Matcher Global Source Element</em>' class.
@@ -4176,6 +4194,15 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__MODIFIER = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
+	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTOR = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR;
+
+	/**
 	 * The number of structural features of the '<em>Attribute Mapping Global Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4256,6 +4283,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT__MODIFIER = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTOR = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint Global Source Element</em>' class.
@@ -5572,6 +5608,17 @@ public interface MappingPackage extends EPackage {
 	EClass getGlobalModifiedAttributeElementType();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.GlobalModifiedAttributeElementType#getInstanceSelector <em>Instance Selector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Instance Selector</em>'.
+	 * @see pamtram.mapping.GlobalModifiedAttributeElementType#getInstanceSelector()
+	 * @see #getGlobalModifiedAttributeElementType()
+	 * @generated
+	 */
+	EReference getGlobalModifiedAttributeElementType_InstanceSelector();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherGlobalSourceElement <em>Attribute Matcher Global Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6715,6 +6762,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = eINSTANCE.getGlobalModifiedAttributeElementType();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Selector</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR = eINSTANCE.getGlobalModifiedAttributeElementType_InstanceSelector();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMatcherGlobalSourceElementImpl <em>Attribute Matcher Global Source Element</em>}' class.

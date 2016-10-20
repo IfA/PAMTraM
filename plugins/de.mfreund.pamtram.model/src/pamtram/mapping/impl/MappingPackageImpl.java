@@ -1681,6 +1681,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGlobalModifiedAttributeElementType_InstanceSelector() {
+		return (EReference)globalModifiedAttributeElementTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAttributeMatcherGlobalSourceElement() {
 		return attributeMatcherGlobalSourceElementEClass;
 	}
@@ -1907,6 +1916,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEAttribute(matchToUpperCaseConverterEClass, MATCH_TO_UPPER_CASE_CONVERTER__REGEX);
 
 		globalModifiedAttributeElementTypeEClass = createEClass(GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
+		createEReference(globalModifiedAttributeElementTypeEClass, GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR);
 
 		attributeMatcherGlobalSourceElementEClass = createEClass(ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT);
 
@@ -2671,6 +2681,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEAttribute(getMatchToUpperCaseConverter_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, MatchToUpperCaseConverter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(globalModifiedAttributeElementTypeEClass, GlobalModifiedAttributeElementType.class, "GlobalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGlobalModifiedAttributeElementType_InstanceSelector(), theMetamodelPackage.getInstancePointer(), null, "instanceSelector", null, 0, -1, GlobalModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeMatcherGlobalSourceElementEClass, AttributeMatcherGlobalSourceElement.class, "AttributeMatcherGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

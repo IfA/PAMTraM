@@ -809,6 +809,75 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMatcherGlobalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeMatcherGlobalSourceElementItemProvider attributeMatcherGlobalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.AttributeMatcherGlobalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeMatcherGlobalSourceElementAdapter() {
+		if (attributeMatcherGlobalSourceElementItemProvider == null) {
+			attributeMatcherGlobalSourceElementItemProvider = new AttributeMatcherGlobalSourceElementItemProvider(this);
+		}
+
+		return attributeMatcherGlobalSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMappingGlobalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeMappingGlobalSourceElementItemProvider attributeMappingGlobalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.AttributeMappingGlobalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeMappingGlobalSourceElementAdapter() {
+		if (attributeMappingGlobalSourceElementItemProvider == null) {
+			attributeMappingGlobalSourceElementItemProvider = new AttributeMappingGlobalSourceElementItemProvider(this);
+		}
+
+		return attributeMappingGlobalSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintGlobalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModelConnectionHintGlobalSourceElementItemProvider modelConnectionHintGlobalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintGlobalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelConnectionHintGlobalSourceElementAdapter() {
+		if (modelConnectionHintGlobalSourceElementItemProvider == null) {
+			modelConnectionHintGlobalSourceElementItemProvider = new ModelConnectionHintGlobalSourceElementItemProvider(this);
+		}
+
+		return modelConnectionHintGlobalSourceElementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -939,6 +1008,9 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
 		if (matchToLowerCaseConverterItemProvider != null) matchToLowerCaseConverterItemProvider.dispose();
 		if (matchToUpperCaseConverterItemProvider != null) matchToUpperCaseConverterItemProvider.dispose();
+		if (attributeMatcherGlobalSourceElementItemProvider != null) attributeMatcherGlobalSourceElementItemProvider.dispose();
+		if (attributeMappingGlobalSourceElementItemProvider != null) attributeMappingGlobalSourceElementItemProvider.dispose();
+		if (modelConnectionHintGlobalSourceElementItemProvider != null) modelConnectionHintGlobalSourceElementItemProvider.dispose();
 	}
 
 }

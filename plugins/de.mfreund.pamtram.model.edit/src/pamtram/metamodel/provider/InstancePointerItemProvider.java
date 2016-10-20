@@ -9,7 +9,6 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -17,20 +16,20 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
+import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.mapping.provider.ExpressionHintItemProvider;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
@@ -39,8 +38,8 @@ import pamtram.provider.PamtramEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InstancePointerItemProvider 
-	extends ExpressionHintItemProvider {
+public class InstancePointerItemProvider
+extends ExpressionHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -59,13 +58,13 @@ public class InstancePointerItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addResultModifierPropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
+			this.addResultModifierPropertyDescriptor(object);
+			this.addTargetPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -75,19 +74,19 @@ public class InstancePointerItemProvider
 	 * @generated
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ModifiableHint_resultModifier_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -97,19 +96,19 @@ public class InstancePointerItemProvider
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_InstancePointer_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_target_feature", "_UI_InstancePointer_type"),
-				 MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_InstancePointer_target_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_target_feature", "_UI_InstancePointer_type"),
+						MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -122,11 +121,11 @@ public class InstancePointerItemProvider
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -150,7 +149,7 @@ public class InstancePointerItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstancePointer"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/InstancePointer"));
 	}
 
 	/**
@@ -161,9 +160,9 @@ public class InstancePointerItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -173,14 +172,14 @@ public class InstancePointerItemProvider
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((InstancePointer)object).getExpression();
-    	StyledString styledLabel = new StyledString();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -191,11 +190,11 @@ public class InstancePointerItemProvider
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(InstancePointer.class)) {
 			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -211,38 +210,41 @@ public class InstancePointerItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-		
-		ComplexCondition parentCondition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object, 
+
+		ComplexCondition parentCondition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object,
 				ConditionPackage.eINSTANCE.getComplexCondition());
-		
+
 		if(parentCondition != null) {
 			parentCondition = parentCondition.getRootCondition();
 		}
-		
-		// ModifiedAttributeType children only allowed in conditions that are no ConditionModelConditions
+
+		// ModifiedAttributeType children only allowed in
+		// - conditions that are no ConditionModelConditions or
+		// - global source elements
 		//
-		if(parentCondition != null && !parentCondition.isConditionModelCondition()) {
-			
+		if (parentCondition != null && !parentCondition.isConditionModelCondition()
+				|| ((EObject) object).eContainer() instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+
 			newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 							MetamodelFactory.eINSTANCE.createInstancePointerSourceElement()));
-			
+
 			newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 							MetamodelFactory.eINSTANCE.createInstancePointerExternalSourceElement()));
 		}
 
 		newChildDescriptors.add
-		(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 						MappingFactory.eINSTANCE.createFixedValue()));
-		
+
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 	}
 
 	/**
@@ -255,16 +257,16 @@ public class InstancePointerItemProvider
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
 	}
-	
+
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
 			int operation, Collection<?> collection) {
 
 		if(collection.size() == 1 && collection.iterator().next() instanceof ActualSourceSectionAttribute) {
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.INSTANCE_POINTER__TARGET, 
+			return new BasicDragAndDropSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
 					collection.iterator().next(), 0);
 		}
-		
+
 		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 	}
 

@@ -207,6 +207,11 @@ extends MappingHintBaseTypeItemProvider {
 			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createModelConnectionHintExternalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createModelConnectionHintGlobalSourceElement()));
 	}
 
 }

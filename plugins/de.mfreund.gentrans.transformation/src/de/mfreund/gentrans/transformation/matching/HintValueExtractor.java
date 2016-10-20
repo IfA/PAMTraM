@@ -53,9 +53,10 @@ import pamtram.metamodel.SourceSectionReference;
 public class HintValueExtractor extends ValueExtractor {
 
 	/**
-	 * The result of the <em>matching</em> step.
+	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
+	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult;
+	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 
 	/**
 	 * The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be extracted.
@@ -95,7 +96,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		super(globalAttributes, attributeValueModifierExecutor, logger);
 
-		this.matchingResult = matchingResult;
+		this.matchedSections = matchingResult;
 		this.mappingInstances = mappingInstances;
 		this.exportedHintGroups = new HashMap<>();
 	}
@@ -265,7 +266,7 @@ public class HintValueExtractor extends ValueExtractor {
 			if (attributeMappingSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
-						this.matchingResult);
+						this.matchedSections);
 			} else if (attributeMappingSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface, matchedSectionDescriptor);
 			} else if(attributeMappingSourceInterface instanceof FixedValue) {
@@ -308,7 +309,7 @@ public class HintValueExtractor extends ValueExtractor {
 			if (attributeMatcherSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
-						this.matchingResult);
+						this.matchedSections);
 			} else if (attributeMatcherSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface, matchedSectionDescriptor);
 			} else if(attributeMatcherSourceInterface instanceof FixedValue) {
@@ -353,7 +354,7 @@ public class HintValueExtractor extends ValueExtractor {
 			if (modelConnectionHintSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
-						this.matchingResult);
+						this.matchedSections);
 			} else if (modelConnectionHintSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface, matchedSectionDescriptor);
 			} else if(modelConnectionHintSourceInterface instanceof FixedValue) {

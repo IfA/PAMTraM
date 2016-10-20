@@ -216,18 +216,20 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *
 	 * @param mappingHintSourceElement
 	 *            The {@link GlobalModifiedAttributeElementType} for that the hint values shall be extracted.
-	 * @param matchingResult
-	 *            The result of the <em>matching</em> step of the transformation.
+	 * @param matchedSections
+	 *            Registry for <em>source model objects</em> that have already been matched. The matched objects are
+	 *            stored in a map where the key is the corresponding {@link SourceSectionClass} that they have been
+	 *            matched to.
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
 	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(
 			GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
-			Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult) {
+			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections) {
 
 		AttributeValueRepresentation hintValue = null;
 
-		List<MatchedSectionDescriptor> sourceDescriptors = matchingResult
+		List<MatchedSectionDescriptor> sourceDescriptors = matchedSections
 				.get(mappingHintSourceElement.getSource().getContainingSection());
 
 		Set<EObject> sourceElements = new HashSet<>();

@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.MappingModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.MappingFactory;
@@ -60,13 +61,13 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addResultModifierPropertyDescriptor(object);
-			addBoundTypePropertyDescriptor(object);
+			this.addResultModifierPropertyDescriptor(object);
+			this.addBoundTypePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -76,19 +77,19 @@ extends ExpressionHintItemProvider {
 	 * @generated
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ModifiableHint_resultModifier_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -98,19 +99,19 @@ extends ExpressionHintItemProvider {
 	 * @generated
 	 */
 	protected void addBoundTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RangeBound_boundType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeBound_boundType_feature", "_UI_RangeBound_type"),
-				 MetamodelPackage.Literals.RANGE_BOUND__BOUND_TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_RangeBound_boundType_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_RangeBound_boundType_feature", "_UI_RangeBound_type"),
+						MetamodelPackage.Literals.RANGE_BOUND__BOUND_TYPE,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -123,12 +124,12 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			this.childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -152,7 +153,7 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RangeBound"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/RangeBound"));
 	}
 
 	/**
@@ -163,7 +164,7 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -201,15 +202,15 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(RangeBound.class)) {
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -243,8 +244,8 @@ extends ExpressionHintItemProvider {
 							MetamodelFactory.eINSTANCE.createInstancePointer()));
 		}
 
-		// Do not allow to add local/external source attributes or GlobalAttributeImporters below
-		// SourceSectionAttributes as these are only supported as part of Conditions
+		// Do not allow to add local/external source attributes below
+		// Conditions that are located inside a ConditionModel or that are MappingModel conditions
 		//
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
 				MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
@@ -253,23 +254,29 @@ extends ExpressionHintItemProvider {
 			// AttributeConditions that are located inside a ConditionModel
 			//
 			ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object, ConditionPackage.eINSTANCE.getComplexCondition());
-			if(condition == null || !condition.isConditionModelCondition()) {
+			if (condition == null
+					|| !condition.isConditionModelCondition() && !(condition.eContainer() instanceof MappingModel)) {
 
 				newChildDescriptors.add
 				(this.createChildParameter
 						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-						MetamodelFactory.eINSTANCE.createValueConstraintSourceElement()));
+								MetamodelFactory.eINSTANCE.createValueConstraintSourceElement()));
 
 				newChildDescriptors.add
 				(this.createChildParameter
 						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-						MetamodelFactory.eINSTANCE.createValueConstraintExternalSourceElement()));
+								MetamodelFactory.eINSTANCE.createValueConstraintExternalSourceElement()));
 			}
 
-			newChildDescriptors.add
-			(this.createChildParameter
-					(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+			// Do not allow to add global attribute importers below
+			// Conditions that are MappingModel conditions
+			//
+			if (condition == null || !(condition.eContainer() instanceof MappingModel)) {
+				newChildDescriptors.add
+				(this.createChildParameter
+						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+								MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+			}
 		}
 
 		newChildDescriptors.add

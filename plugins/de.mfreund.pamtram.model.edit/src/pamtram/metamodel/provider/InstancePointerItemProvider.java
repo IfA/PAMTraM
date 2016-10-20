@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.MappingModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.GlobalModifiedAttributeElementType;
@@ -220,9 +221,11 @@ extends ExpressionHintItemProvider {
 
 		// ModifiedAttributeType children only allowed in
 		// - conditions that are no ConditionModelConditions or
+		// - conditions that are no MappingModelConditions
 		// - global source elements
 		//
 		if (parentCondition != null && !parentCondition.isConditionModelCondition()
+				&& !(parentCondition.eContainer() instanceof MappingModel)
 				|| ((EObject) object).eContainer() instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
 
 			newChildDescriptors.add
@@ -241,10 +244,14 @@ extends ExpressionHintItemProvider {
 				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 						MappingFactory.eINSTANCE.createFixedValue()));
 
-		newChildDescriptors.add
-		(this.createChildParameter
-				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
-						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+		// GlobalAttributeImporters not allowed in MappingModelConditions
+		//
+		if (parentCondition != null && !(parentCondition.eContainer() instanceof MappingModel)) {
+			newChildDescriptors.add
+			(this.createChildParameter
+					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
+							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+		}
 	}
 
 	/**

@@ -19,7 +19,7 @@ import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
 
 /**
@@ -86,9 +86,9 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 							for(MappingHint h : parent.getHintGroup().getMappingHints()){
 								if(h instanceof AttributeMapping){
 									choices.add((AttributeMapping) h);
-								} else if(h instanceof MappingInstanceSelector){
-									if(((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher){
-										choices.add((ExpandableHint) ((MappingInstanceSelector) h).getMatcher());
+								} else if(h instanceof ReferenceTargetSelector){
+									if(((ReferenceTargetSelector) h).getMatcher() instanceof AttributeMatcher){
+										choices.add((ExpandableHint) ((ReferenceTargetSelector) h).getMatcher());
 									}
 								}
 							}

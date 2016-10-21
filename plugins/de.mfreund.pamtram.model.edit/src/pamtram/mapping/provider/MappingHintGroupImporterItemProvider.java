@@ -339,7 +339,7 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createMappingInstanceSelector()));
+				 MappingFactory.eINSTANCE.createReferenceTargetSelector()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -6,6 +6,7 @@ package pamtram.mapping.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -20,18 +21,18 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappingInstanceSelector} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ReferenceTargetSelector} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingInstanceSelectorItemProvider
+public class ReferenceTargetSelectorItemProvider
 extends MappingHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -39,7 +40,7 @@ extends MappingHintItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingInstanceSelectorItemProvider(AdapterFactory adapterFactory) {
+	public ReferenceTargetSelectorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,13 +66,14 @@ extends MappingHintItemProvider {
 	 * <!-- end-user-doc -->
 	 */
 	protected void addAffectedReferencePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MappingInstanceSelector_affectedReference_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_MappingInstanceSelector_affectedReference_feature", "_UI_MappingInstanceSelector_type"),
-						MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE,
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+				this.getString("_UI_ReferenceTargetSelector_affectedReference_feature"),
+				this.getString("_UI_PropertyDescriptor_description",
+						"_UI_ReferenceTargetSelector_affectedReference_feature", "_UI_ReferenceTargetSelector_type"),
+						MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE,
 						true,
 						false,
 						true,
@@ -82,14 +84,14 @@ extends MappingHintItemProvider {
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
 				TargetSectionClass target=null;
-				if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupType){
-					target=((MappingHintGroupType) ((MappingInstanceSelector)object).eContainer()).getTargetSection();
-				} else if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupImporter){
-					target=((MappingHintGroupImporter) ((MappingInstanceSelector)object).eContainer()).getHintGroup().getTargetSection();
+				if(((ReferenceTargetSelector)object).eContainer() instanceof MappingHintGroupType){
+					target=((MappingHintGroupType) ((ReferenceTargetSelector)object).eContainer()).getTargetSection();
+				} else if(((ReferenceTargetSelector)object).eContainer() instanceof MappingHintGroupImporter){
+					target=((MappingHintGroupImporter) ((ReferenceTargetSelector)object).eContainer()).getHintGroup().getTargetSection();
 				}
 
 				TreeIterator<EObject> it =target.eAllContents();
-				List<EObject> vals= new ArrayList<EObject>();
+				List<EObject> vals= new ArrayList<>();
 
 				while(it.hasNext()){
 					EObject next=it.next();
@@ -118,7 +120,7 @@ extends MappingHintItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER);
+			childrenFeatures.add(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER);
 		}
 		return childrenFeatures;
 	}
@@ -137,14 +139,14 @@ extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This returns MappingInstanceSelector.gif.
+	 * This returns ReferenceTargetSelector.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingInstanceSelector"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceTargetSelector"));
 	}
 
 	/**
@@ -167,7 +169,7 @@ extends MappingHintItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 
-		MappingInstanceSelector mis = ((MappingInstanceSelector)object);
+		ReferenceTargetSelector mis = (ReferenceTargetSelector)object;
 		StyledString styledLabel = new StyledString();
 
 		String label = mis.getName();
@@ -193,8 +195,8 @@ extends MappingHintItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MappingInstanceSelector.class)) {
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
+		switch (notification.getFeatureID(ReferenceTargetSelector.class)) {
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -214,12 +216,12 @@ extends MappingHintItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
+				(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
 				 MappingFactory.eINSTANCE.createAttributeMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
+				(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
 				 MappingFactory.eINSTANCE.createClassMatcher()));
 	}
 

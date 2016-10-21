@@ -18,7 +18,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
 
@@ -78,7 +78,7 @@ extends MatcherItemProvider {
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
-				return ((MappingInstanceSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
+				return ((ReferenceTargetSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
 			}
 
 

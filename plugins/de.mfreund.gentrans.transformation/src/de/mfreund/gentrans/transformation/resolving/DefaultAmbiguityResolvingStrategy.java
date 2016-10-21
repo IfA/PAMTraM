@@ -16,7 +16,7 @@ import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -131,7 +131,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
-			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) {
+			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement) {
 
 		if (choices == null || choices.isEmpty()) {
 			return new ArrayList<>();

@@ -17,7 +17,7 @@ import pamtram.PAMTraM;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -213,7 +213,7 @@ implements IAmbiguityResolvedAdapter {
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
-			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
 					throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();

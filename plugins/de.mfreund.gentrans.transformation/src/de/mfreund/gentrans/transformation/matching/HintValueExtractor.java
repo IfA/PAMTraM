@@ -34,7 +34,7 @@ import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModifiedAttributeElementType;
@@ -215,11 +215,11 @@ public class HintValueExtractor extends ValueExtractor {
 
 			hintValue = this.extractHintValue((AttributeMapping) hint, matchedSectionDescriptor);
 
-		} else if(hint instanceof MappingInstanceSelector) {
+		} else if(hint instanceof ReferenceTargetSelector) {
 
-			if(((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
+			if(((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher) {
 
-				hintValue = this.extractHintValue((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher(), matchedSectionDescriptor);
+				hintValue = this.extractHintValue((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher(), matchedSectionDescriptor);
 			}
 
 		} else if(hint instanceof ModelConnectionHint) {
@@ -425,9 +425,9 @@ public class HintValueExtractor extends ValueExtractor {
 	private void initializeHintValueMap(MappingHintBaseType hint, MappingInstanceStorage mappingInstance) {
 		if (hint instanceof AttributeMapping) {
 			mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, false);
-		} else if (hint instanceof MappingInstanceSelector) {
-			if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
-				mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, false);
+		} else if (hint instanceof ReferenceTargetSelector) {
+			if (((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher) {
+				mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((ReferenceTargetSelector) hint, false);
 			}
 		} else if (hint instanceof ModelConnectionHint) {
 			mappingInstance.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) hint, false);
@@ -605,7 +605,7 @@ public class HintValueExtractor extends ValueExtractor {
 			element = attributeMatcher.getSourceElements().get(attributeMatcher.getSourceElements().size() - 1);
 		}
 
-		mappingInstance.getHintValues().getHintValues((MappingInstanceSelector) attributeMatcher.eContainer()).parallelStream()
+		mappingInstance.getHintValues().getHintValues((ReferenceTargetSelector) attributeMatcher.eContainer()).parallelStream()
 		.forEach(existingValue -> {
 
 			if (existingValue.containsKey(element)) {

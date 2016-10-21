@@ -16,7 +16,7 @@ import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ValueModifierSet;
 import pamtram.metamodel.TargetSectionAttribute;
 
@@ -76,9 +76,9 @@ public class AttributeValueCalculator {
 	 * {@link MappingHint} and a list of hint values.
 	 * 
 	 * @param attr The {@link TargetSectionAttribute} for which the target value is calculated or <em>null</em> if
-	 * 		the given hint is a {@link MappingInstanceSelector}.
+	 * 		the given hint is a {@link ReferenceTargetSelector}.
 	 * @param hint A {@link MappingHint} to be used for the calculation (typically, this should be
-	 * 		either an {@link AttributeMapping}, a {@link MappingInstanceSelector} with {@link AttributeMatcher}, or 
+	 * 		either an {@link AttributeMapping}, a {@link ReferenceTargetSelector} with {@link AttributeMatcher}, or 
 	 * 		<em>null</em> if no hint has been found.
 	 * @param attrHintValueList A list of hint values to be used in the calculation. Each entry of the list represents
 	 * 		the hint values for one instance that is created.
@@ -100,15 +100,15 @@ public class AttributeValueCalculator {
 			String expression = "";
 			if (hint instanceof AttributeMapping) {
 				expression = ((AttributeMapping) hint).getExpression();
-			} else if(hint instanceof MappingInstanceSelector && ((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
-				expression = ((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getExpression();
+			} else if(hint instanceof ReferenceTargetSelector && ((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher) {
+				expression = ((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getExpression();
 			}
 
 			List<ValueModifierSet> resultModifiers = new ArrayList<>();
 			if(hint instanceof AttributeMapping) {
 				resultModifiers.addAll(((AttributeMapping) hint).getResultModifier());
-			} else if(hint instanceof MappingInstanceSelector) {
-				resultModifiers.addAll(((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getResultModifier());
+			} else if(hint instanceof ReferenceTargetSelector) {
+				resultModifiers.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getResultModifier());
 			}
 
 			// calculate the value based on the hint values and a possible expression
@@ -131,7 +131,7 @@ public class AttributeValueCalculator {
 	/**
 	 * This calculates an attribute value based on a list of given hint values.
 	 ** @param hint A {@link MappingHint} to be used for the calculation (typically, this should be
-	 * 		either an {@link AttributeMapping}, a {@link MappingInstanceSelector} with {@link AttributeMatcher}, or 
+	 * 		either an {@link AttributeMapping}, a {@link ReferenceTargetSelector} with {@link AttributeMatcher}, or 
 	 * 		<em>null</em> if no hint has been found.
 	 * @param hintValues A list of hint values to be used in the calculation.
 	 * @param resultModifiers The list of {@link ValueModifierSet} to apply to the resulting value.
@@ -146,8 +146,8 @@ public class AttributeValueCalculator {
 		List<Object> sourceElements = new ArrayList<>();
 		if(hint instanceof AttributeMapping) {
 			sourceElements.addAll(((AttributeMapping) hint).getSourceElements());
-		} else if(hint instanceof MappingInstanceSelector) {
-			sourceElements.addAll(((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getSourceElements());
+		} else if(hint instanceof ReferenceTargetSelector) {
+			sourceElements.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getSourceElements());
 		}
 
 		return this.calculateValueWithoutExpression(sourceElements, hintValues, resultModifiers);
@@ -156,7 +156,7 @@ public class AttributeValueCalculator {
 	/**
 	 * This calculates an attribute value based on a list of given hint values and an expression.
 	 ** @param hint A {@link MappingHint} to be used for the calculation (typically, this should be
-	 * 		either an {@link AttributeMapping}, a {@link MappingInstanceSelector} with {@link AttributeMatcher}, or 
+	 * 		either an {@link AttributeMapping}, a {@link ReferenceTargetSelector} with {@link AttributeMatcher}, or 
 	 * 		<em>null</em> if no hint has been found.
 	 * @param attrHintValues A list of hint values to be used in the calculation.
 	 * @param expression An expression to be used to calculate the hint values.

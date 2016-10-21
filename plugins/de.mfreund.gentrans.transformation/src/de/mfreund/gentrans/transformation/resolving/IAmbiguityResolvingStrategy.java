@@ -20,7 +20,7 @@ import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSection;
@@ -303,8 +303,8 @@ public interface IAmbiguityResolvingStrategy {
 	/**
 	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a
 	 * {@link NonContainmentReference} during the '<em>linking</em>' step of the transformation. This method is either
-	 * called if no {@link MappingInstanceSelector} has been defined for the affected reference or if the evaluation of
-	 * the MappingInstanceSelector's {@link MappingInstanceSelector#getMatcher() matcher} delivered multiple possible
+	 * called if no {@link ReferenceTargetSelector} has been defined for the affected reference or if the evaluation of
+	 * the MappingInstanceSelector's {@link ReferenceTargetSelector#getMatcher() matcher} delivered multiple possible
 	 * target elements.
 	 *
 	 * @param choices
@@ -314,7 +314,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @param hintGroup
 	 *            The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @param mappingInstanceSelector
-	 *            The {@link MappingInstanceSelector} that produced the ambiguous choices. This is
+	 *            The {@link ReferenceTargetSelector} that produced the ambiguous choices. This is
 	 *            '<em><b>null</b></em>' if no MappingInstanceSelector was defined for the given '<em>reference</em>'.
 	 * @param sourceElement
 	 *            The {@link EObjectWrapper element} for that the target of the given 'reference' shall be chosen or
@@ -328,7 +328,7 @@ public interface IAmbiguityResolvingStrategy {
 			List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference,
 			MappingHintGroupType hintGroup,
-			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
 					throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
@@ -341,7 +341,7 @@ public interface IAmbiguityResolvingStrategy {
 	/**
 	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a
 	 * {@link NonContainmentReference} during the '<em>linking</em>' step of the transformation. This method is only
-	 * called if no {@link MappingInstanceSelector} has been defined and there are multiple possible
+	 * called if no {@link ReferenceTargetSelector} has been defined and there are multiple possible
 	 * {@link TargetSection TargetSections} and associated {@link EObjectWrapper instances}.
 	 *
 	 * @param choices

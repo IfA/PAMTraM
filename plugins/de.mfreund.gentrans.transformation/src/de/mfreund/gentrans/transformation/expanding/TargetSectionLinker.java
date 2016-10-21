@@ -45,7 +45,7 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
@@ -315,13 +315,13 @@ public class TargetSectionLinker extends CancelableElement {
 
 			// Collect MappingInstanceSelectors that affect the current reference
 			//
-			List<MappingInstanceSelector> mappingInstanceSelectorsToConcider = mappingHints.parallelStream()
-					.filter(h -> h instanceof MappingInstanceSelector
-							&& ((MappingInstanceSelector) h).getAffectedReference().equals(ref))
-					.map(h -> (MappingInstanceSelector) h).collect(Collectors.toList());
+			List<ReferenceTargetSelector> mappingInstanceSelectorsToConcider = mappingHints.parallelStream()
+					.filter(h -> h instanceof ReferenceTargetSelector
+							&& ((ReferenceTargetSelector) h).getAffectedReference().equals(ref))
+					.map(h -> (ReferenceTargetSelector) h).collect(Collectors.toList());
 
 			// search for mapping instance selector
-			for (MappingInstanceSelector h : mappingInstanceSelectorsToConcider) {
+			for (ReferenceTargetSelector h : mappingInstanceSelectorsToConcider) {
 
 				/*
 				 * handle AttributeMatcher

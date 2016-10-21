@@ -92,14 +92,14 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	protected ComplexCondition sharedCondition;
 	/**
-	 * The cached value of the '{@link #getModelConnectionMatcher() <em>Model Connection Matcher</em>}' containment reference.
+	 * The cached value of the '{@link #getContainerSelector() <em>Model Connection Matcher</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModelConnectionMatcher()
+	 * @see #getContainerSelector()
 	 * @generated
 	 * @ordered
 	 */
-	protected ContainerSelector modelConnectionMatcher;
+	protected ContainerSelector containerSelector;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -234,8 +234,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public ContainerSelector getModelConnectionMatcher() {
-		return modelConnectionMatcher;
+	public ContainerSelector getContainerSelector() {
+		return containerSelector;
 	}
 
 	/**
@@ -243,9 +243,9 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetModelConnectionMatcher(ContainerSelector newModelConnectionMatcher, NotificationChain msgs) {
-		ContainerSelector oldModelConnectionMatcher = modelConnectionMatcher;
-		modelConnectionMatcher = newModelConnectionMatcher;
+	public NotificationChain basicSetContainerSelector(ContainerSelector newModelConnectionMatcher, NotificationChain msgs) {
+		ContainerSelector oldModelConnectionMatcher = containerSelector;
+		containerSelector = newModelConnectionMatcher;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER, oldModelConnectionMatcher, newModelConnectionMatcher);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
@@ -259,14 +259,14 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public void setModelConnectionMatcher(ContainerSelector newModelConnectionMatcher) {
-		if (newModelConnectionMatcher != modelConnectionMatcher) {
+	public void setContainerSelector(ContainerSelector newModelConnectionMatcher) {
+		if (newModelConnectionMatcher != containerSelector) {
 			NotificationChain msgs = null;
-			if (modelConnectionMatcher != null)
-				msgs = ((InternalEObject)modelConnectionMatcher).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER, null, msgs);
+			if (containerSelector != null)
+				msgs = ((InternalEObject)containerSelector).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER, null, msgs);
 			if (newModelConnectionMatcher != null)
 				msgs = ((InternalEObject)newModelConnectionMatcher).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER, null, msgs);
-			msgs = basicSetModelConnectionMatcher(newModelConnectionMatcher, msgs);
+			msgs = basicSetContainerSelector(newModelConnectionMatcher, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -405,7 +405,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
 				return basicSetLocalCondition(null, msgs);
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
-				return basicSetModelConnectionMatcher(null, msgs);
+				return basicSetContainerSelector(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -426,7 +426,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
-				return getModelConnectionMatcher();
+				return getContainerSelector();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -449,7 +449,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 				setSharedCondition((ComplexCondition)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
-				setModelConnectionMatcher((ContainerSelector)newValue);
+				setContainerSelector((ContainerSelector)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -473,7 +473,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 				setSharedCondition((ComplexCondition)null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
-				setModelConnectionMatcher((ContainerSelector)null);
+				setContainerSelector((ContainerSelector)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -494,7 +494,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				return sharedCondition != null;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
-				return modelConnectionMatcher != null;
+				return containerSelector != null;
 		}
 		return super.eIsSet(featureID);
 	}

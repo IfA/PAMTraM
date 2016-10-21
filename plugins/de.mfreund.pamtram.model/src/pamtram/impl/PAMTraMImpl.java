@@ -726,8 +726,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				}
 				// model connection hints need to be handled separately
 				if(abstractHintGroup instanceof MappingHintGroup && concreteHintGroup instanceof MappingHintGroup && 
-						((MappingHintGroup) concreteHintGroup).getModelConnectionMatcher() == null) {
-					hintsToCopy.add(((MappingHintGroup) abstractHintGroup).getModelConnectionMatcher());
+						((MappingHintGroup) concreteHintGroup).getContainerSelector() == null) {
+					hintsToCopy.add(((MappingHintGroup) abstractHintGroup).getContainerSelector());
 				}
 		
 				Collection<MappingHintBaseType> copiedHints = EcoreUtil.copyAll(hintsToCopy);
@@ -812,7 +812,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				// Finally, we add the copied hints to the concrete hint group
 				for (MappingHintBaseType copiedHint : copiedHints) {
 					if(copiedHint instanceof ContainerSelector) {
-						((MappingHintGroup) concreteHintGroup).setModelConnectionMatcher((ContainerSelector) copiedHint);	
+						((MappingHintGroup) concreteHintGroup).setContainerSelector((ContainerSelector) copiedHint);	
 					} else {
 						concreteHintGroup.getMappingHints().add((MappingHint) copiedHint);					
 					}

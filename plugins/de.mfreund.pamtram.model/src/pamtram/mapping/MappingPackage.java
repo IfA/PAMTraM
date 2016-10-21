@@ -5026,11 +5026,11 @@ public interface MappingPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Model Connection Matcher</em>'.
-	 * @see pamtram.mapping.MappingHintGroup#getModelConnectionMatcher()
+	 * @see pamtram.mapping.MappingHintGroup#getContainerSelector()
 	 * @see #getMappingHintGroup()
 	 * @generated
 	 */
-	EReference getMappingHintGroup_ModelConnectionMatcher();
+	EReference getMappingHintGroup_ContainerSelector();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintBaseType <em>Hint Base Type</em>}'.
@@ -6249,7 +6249,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER = eINSTANCE.getMappingHintGroup_ModelConnectionMatcher();
+		EReference MAPPING_HINT_GROUP__CONTAINER_SELECTOR = eINSTANCE.getMappingHintGroup_ContainerSelector();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintBaseTypeImpl <em>Hint Base Type</em>}' class.

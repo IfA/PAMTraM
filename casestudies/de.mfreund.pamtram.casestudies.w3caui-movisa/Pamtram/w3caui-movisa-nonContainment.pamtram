@@ -538,7 +538,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxNameNameMapping" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="CheckBoxId" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel.0/@metaModelSections.2/@references.0/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModel.0/@metaModelSections.2/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="CheckBoxId" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
           </matcher>

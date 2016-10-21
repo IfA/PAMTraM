@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintExternalSourceElement;
-import pamtram.mapping.ModelConnectionHintSourceElement;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorExternalSourceElement;
+import pamtram.mapping.ContainerSelectorSourceElement;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
@@ -28,13 +28,13 @@ import pamtram.metamodel.ActualSourceSectionAttribute;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ModelConnectionHintImpl#getTargetAttributes <em>Target Attributes</em>}</li>
- *   <li>{@link pamtram.mapping.impl.ModelConnectionHintImpl#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.ContainerSelectorImpl#getTargetAttributes <em>Target Attributes</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.ContainerSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements ModelConnectionHint {
+public class ContainerSelectorImpl extends MappingHintBaseTypeImpl implements ContainerSelector {
 	/**
 	 * The cached value of the '{@link #getTargetAttributes() <em>Target Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelConnectionHintTargetAttribute> targetAttributes;
+	protected EList<ContainerSelectorTargetAttribute> targetAttributes;
 
 	/**
 	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
@@ -53,14 +53,14 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelConnectionHintSourceInterface> sourceElements;
+	protected EList<ContainerSelectorSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintImpl() {
+	protected ContainerSelectorImpl() {
 		super();
 	}
 
@@ -71,7 +71,7 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MODEL_CONNECTION_HINT;
+		return MappingPackage.Literals.CONTAINER_SELECTOR;
 	}
 
 	/**
@@ -80,9 +80,9 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * @generated
 	 */
 	@Override
-	public EList<ModelConnectionHintTargetAttribute> getTargetAttributes() {
+	public EList<ContainerSelectorTargetAttribute> getTargetAttributes() {
 		if (targetAttributes == null) {
-			targetAttributes = new EObjectContainmentEList<ModelConnectionHintTargetAttribute>(ModelConnectionHintTargetAttribute.class, this, MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES);
+			targetAttributes = new EObjectContainmentEList<ContainerSelectorTargetAttribute>(ContainerSelectorTargetAttribute.class, this, MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
 		}
 		return targetAttributes;
 	}
@@ -93,9 +93,9 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * @generated
 	 */
 	@Override
-	public EList<ModelConnectionHintSourceInterface> getSourceElements() {
+	public EList<ContainerSelectorSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<ModelConnectionHintSourceInterface>(ModelConnectionHintSourceInterface.class, this, MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<ContainerSelectorSourceInterface>(ContainerSelectorSourceInterface.class, this, MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
@@ -115,12 +115,12 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * @generated
 	 */
 	@Override
-	public EList<ModelConnectionHintSourceElement> getLocalSourceElements() {
-				EList<ModelConnectionHintSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ModelConnectionHintSourceElement>();
+	public EList<ContainerSelectorSourceElement> getLocalSourceElements() {
+				EList<ContainerSelectorSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ContainerSelectorSourceElement>();
 				
-				for(ModelConnectionHintSourceInterface i : this.getSourceElements()){
-					if(i instanceof ModelConnectionHintSourceElement){
-						elements.add((ModelConnectionHintSourceElement) i);
+				for(ContainerSelectorSourceInterface i : this.getSourceElements()){
+					if(i instanceof ContainerSelectorSourceElement){
+						elements.add((ContainerSelectorSourceElement) i);
 					}
 				}
 				
@@ -133,12 +133,12 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * @generated
 	 */
 	@Override
-	public EList<ModelConnectionHintExternalSourceElement> getExternalSourceElements() {
-		EList<ModelConnectionHintExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();
+	public EList<ContainerSelectorExternalSourceElement> getExternalSourceElements() {
+		EList<ContainerSelectorExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();
 		
-		for(ModelConnectionHintSourceInterface i : this.getSourceElements()){
-			if(i instanceof ModelConnectionHintExternalSourceElement){
-				elements.add((ModelConnectionHintExternalSourceElement) i);
+		for(ContainerSelectorSourceInterface i : this.getSourceElements()){
+			if(i instanceof ContainerSelectorExternalSourceElement){
+				elements.add((ContainerSelectorExternalSourceElement) i);
 			}
 		}
 		
@@ -153,9 +153,9 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
+			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
 				return ((InternalEList<?>)getTargetAttributes()).basicRemove(otherEnd, msgs);
-			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -169,9 +169,9 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
+			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
 				return getTargetAttributes();
-			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
 				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -186,13 +186,13 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
+			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
 				getTargetAttributes().clear();
-				getTargetAttributes().addAll((Collection<? extends ModelConnectionHintTargetAttribute>)newValue);
+				getTargetAttributes().addAll((Collection<? extends ContainerSelectorTargetAttribute>)newValue);
 				return;
-			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();
-				getSourceElements().addAll((Collection<? extends ModelConnectionHintSourceInterface>)newValue);
+				getSourceElements().addAll((Collection<? extends ContainerSelectorSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -206,10 +206,10 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
+			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
 				getTargetAttributes().clear();
 				return;
-			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				return;
 		}
@@ -224,9 +224,9 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
+			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
 				return targetAttributes != null && !targetAttributes.isEmpty();
-			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -240,11 +240,11 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES:
+			case MappingPackage.CONTAINER_SELECTOR___GET_SOURCE_ATTRIBUTES:
 				return getSourceAttributes();
-			case MappingPackage.MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS:
+			case MappingPackage.CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
-			case MappingPackage.MODEL_CONNECTION_HINT___GET_EXTERNAL_SOURCE_ELEMENTS:
+			case MappingPackage.CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);

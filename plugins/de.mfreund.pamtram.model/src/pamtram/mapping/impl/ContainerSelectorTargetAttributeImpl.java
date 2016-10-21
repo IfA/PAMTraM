@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -41,13 +41,13 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ModelConnectionHintTargetAttribute {
+public class ContainerSelectorTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ContainerSelectorTargetAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintTargetAttributeImpl() {
+	protected ContainerSelectorTargetAttributeImpl() {
 		super();
 	}
 
@@ -58,7 +58,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE;
+		return MappingPackage.Literals.CONTAINER_SELECTOR_TARGET_ATTRIBUTE;
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'ModelConnectionHintTargetAttribute::sourceMatchesPossibleContainerType'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'ContainerSelectorTargetAttribute::sourceMatchesPossibleContainerType'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
@@ -254,7 +254,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_ModelConnectionHintTargetAttribute_c_c_sourceMatchesPossibleContain, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_symbol_0, MappingTables.INT_0).booleanValue();
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_ContainerSelectorTargetAttribute_c_c_sourceMatchesPossibleContainer, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_symbol_0, MappingTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -267,7 +267,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2:
+			case MappingPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_1:
 				return sourceMatchesPossibleContainerType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

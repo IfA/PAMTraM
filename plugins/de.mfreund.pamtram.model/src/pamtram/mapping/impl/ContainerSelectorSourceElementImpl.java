@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModelConnectionHintGlobalSourceElement;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ContainerSelectorSourceElement;
+import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -18,18 +18,18 @@ import pamtram.metamodel.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model Connection Hint Global Source Element</b></em>'.
+ * An implementation of the model object '<em><b>Model Connection Hint Source Element</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ModelConnectionHintGlobalSourceElementImpl extends GlobalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ModelConnectionHintGlobalSourceElement {
+public class ContainerSelectorSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ContainerSelectorSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintGlobalSourceElementImpl() {
+	protected ContainerSelectorSourceElementImpl() {
 		super();
 	}
 
@@ -40,17 +40,15 @@ public class ModelConnectionHintGlobalSourceElementImpl extends GlobalModifiedAt
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT;
+		return MappingPackage.Literals.CONTAINER_SELECTOR_SOURCE_ELEMENT;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 */
 	@Override
 	public SourceSectionAttribute getSourceAttribute() {
-
 		return this.getSource();
 	}
 
@@ -63,11 +61,11 @@ public class ModelConnectionHintGlobalSourceElementImpl extends GlobalModifiedAt
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.CONTAINER_SELECTOR_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
 				default: return -1;
 			}
 		}
-		if (baseClass == ModelConnectionHintSourceInterface.class) {
+		if (baseClass == ContainerSelectorSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}
@@ -83,10 +81,10 @@ public class ModelConnectionHintGlobalSourceElementImpl extends GlobalModifiedAt
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+			case MappingPackage.CONTAINER_SELECTOR_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ModelConnectionHintGlobalSourceElementImpl
+} //ModelConnectionHintSourceElementImpl

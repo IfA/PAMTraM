@@ -14,9 +14,9 @@ import pamtram.metamodel.SourceSectionReference;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getModelConnectionHintExternalSourceElement()
+ * @see pamtram.mapping.MappingPackage#getContainerSelectorExternalSourceElement()
  * @model
  * @generated
  */
-public interface ModelConnectionHintExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ModelConnectionHintSourceInterface {
+public interface ContainerSelectorExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ContainerSelectorSourceInterface {
 } // ModelConnectionHintExternalSourceElement

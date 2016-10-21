@@ -15,7 +15,7 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.metamodel.ValueConstraintSourceInterface;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.ActualSourceSectionAttribute;
@@ -208,7 +208,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 				default: return -1;
 			}
 		}
-		if (baseClass == ModelConnectionHintSourceInterface.class) {
+		if (baseClass == ContainerSelectorSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModelConnectionHintExternalSourceElement;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ContainerSelectorExternalSourceElement;
+import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -23,13 +23,13 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ModelConnectionHintExternalSourceElement {
+public class ContainerSelectorExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ContainerSelectorExternalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintExternalSourceElementImpl() {
+	protected ContainerSelectorExternalSourceElementImpl() {
 		super();
 	}
 
@@ -40,7 +40,7 @@ public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifi
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT;
+		return MappingPackage.Literals.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -61,11 +61,11 @@ public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifi
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
 				default: return -1;
 			}
 		}
-		if (baseClass == ModelConnectionHintSourceInterface.class) {
+		if (baseClass == ContainerSelectorSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}
@@ -81,7 +81,7 @@ public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifi
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);

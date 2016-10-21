@@ -172,13 +172,13 @@ public class MappingSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MappingPackage.REFERENCE_TARGET_SELECTOR: {
-				ReferenceTargetSelector mappingInstanceSelector = (ReferenceTargetSelector)theEObject;
-				T result = caseMappingInstanceSelector(mappingInstanceSelector);
-				if (result == null) result = caseMappingHint(mappingInstanceSelector);
-				if (result == null) result = caseMappingHintType(mappingInstanceSelector);
-				if (result == null) result = caseConditionalElement(mappingInstanceSelector);
-				if (result == null) result = caseMappingHintBaseType(mappingInstanceSelector);
-				if (result == null) result = caseNamedElement(mappingInstanceSelector);
+				ReferenceTargetSelector referenceTargetSelector = (ReferenceTargetSelector)theEObject;
+				T result = caseReferenceTargetSelector(referenceTargetSelector);
+				if (result == null) result = caseMappingHint(referenceTargetSelector);
+				if (result == null) result = caseMappingHintType(referenceTargetSelector);
+				if (result == null) result = caseConditionalElement(referenceTargetSelector);
+				if (result == null) result = caseMappingHintBaseType(referenceTargetSelector);
+				if (result == null) result = caseNamedElement(referenceTargetSelector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -720,17 +720,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Reference Target Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Selector</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Reference Target Selector</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMappingInstanceSelector(ReferenceTargetSelector object) {
+	public T caseReferenceTargetSelector(ReferenceTargetSelector object) {
 		return null;
 	}
 

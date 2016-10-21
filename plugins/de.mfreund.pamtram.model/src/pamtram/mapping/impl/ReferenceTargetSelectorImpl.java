@@ -108,7 +108,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 			affectedReference = (TargetSectionNonContainmentReference)eResolveProxy(oldAffectedReference);
 			if (affectedReference != oldAffectedReference) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
 			}
 		}
 		return affectedReference;
@@ -132,7 +132,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		TargetSectionNonContainmentReference oldAffectedReference = affectedReference;
 		affectedReference = newAffectedReference;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
 	}
 	
 	/**
@@ -163,7 +163,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		Matcher oldMatcher = matcher;
 		matcher = newMatcher;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER, oldMatcher, newMatcher);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER, oldMatcher, newMatcher);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -179,14 +179,14 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		if (newMatcher != matcher) {
 			NotificationChain msgs = null;
 			if (matcher != null)
-				msgs = ((InternalEObject)matcher).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER, null, msgs);
+				msgs = ((InternalEObject)matcher).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER, null, msgs);
 			if (newMatcher != null)
-				msgs = ((InternalEObject)newMatcher).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER, null, msgs);
+				msgs = ((InternalEObject)newMatcher).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER, null, msgs);
 			msgs = basicSetMatcher(newMatcher, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER, newMatcher, newMatcher));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER, newMatcher, newMatcher));
 	}
 
 	/**
@@ -243,7 +243,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'MappingInstanceSelector::affectedReferenceMatchesSection'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'ReferenceTargetSelector::affectedReferenceMatchesSection'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
@@ -356,7 +356,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_MappingInstanceSelector_c_c_affectedReferenceMatchesSection, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_status, MappingTables.INT_0).booleanValue();
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_ReferenceTargetSelector_c_c_affectedReferenceMatchesSection, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_status, MappingTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -384,7 +384,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		 *         else null
 		 *         endif
 		 *       in
-		 *         'MappingInstanceSelector::affectedReferenceIsNonContainment'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 *         'ReferenceTargetSelector::affectedReferenceIsNonContainment'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
@@ -422,7 +422,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_MappingInstanceSelector_c_c_affectedReferenceIsNonContainment, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_status, MappingTables.INT_0).booleanValue();
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_ReferenceTargetSelector_c_c_affectedReferenceIsNonContainment, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_status, MappingTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -434,7 +434,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 				return basicSetMatcher(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -448,10 +448,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
 				if (resolve) return getAffectedReference();
 				return basicGetAffectedReference();
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 				return getMatcher();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -465,10 +465,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
 				setAffectedReference((TargetSectionNonContainmentReference)newValue);
 				return;
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 				setMatcher((Matcher)newValue);
 				return;
 		}
@@ -483,10 +483,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
 				setAffectedReference((TargetSectionNonContainmentReference)null);
 				return;
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 				setMatcher((Matcher)null);
 				return;
 		}
@@ -501,9 +501,9 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
 				return affectedReference != null;
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 				return matcher != null;
 		}
 		return super.eIsSet(featureID);
@@ -518,9 +518,9 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2:
 				return affectedReferenceMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.REFERENCE_TARGET_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_2:
 				return affectedReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

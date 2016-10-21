@@ -56,10 +56,10 @@ public interface MappingFactory extends EFactory {
 	CardinalityMapping createCardinalityMapping();
 
 	/**
-	 * Returns a new object of class '<em>Instance Selector</em>'.
+	 * Returns a new object of class '<em>Reference Target Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Selector</em>'.
+	 * @return a new object of class '<em>Reference Target Selector</em>'.
 	 * @generated
 	 */
 	ReferenceTargetSelector createReferenceTargetSelector();

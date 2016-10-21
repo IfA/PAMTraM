@@ -268,13 +268,13 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		 *     let
 		 *       status : OclAny[?] = if
 		 *         self.oclContainer()
-		 *         .oclAsType(MappingInstanceSelector)
+		 *         .oclAsType(ReferenceTargetSelector)
 		 *         .affectedReference.oclType() = OclVoid or
 		 *         self.target.oclType() = OclVoid
 		 *       then true
 		 *       else
 		 *         self.oclContainer()
-		 *         .oclAsType(MappingInstanceSelector)
+		 *         .oclAsType(ReferenceTargetSelector)
 		 *         .affectedReference.eReference.oclAsType(ecore::EReference)
 		 *         .eReferenceType.oclAsType(ecore::EClass)
 		 *         .isSuperTypeOf(
@@ -286,9 +286,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		 *         message : String[?] = if status <> true
 		 *         then 'The type of the class containing the target attribute (\'' +
 		 *           self.target.oclContainer()
-		 *           .oclAsType(metamodel::Class(S, C, R, A)).eClass.name + '\') is not allowed by the affected reference of the parent mapping instance selector that ' + 'requires a (sub-)type of \'' +
+		 *           .oclAsType(metamodel::Class(S, C, R, A)).eClass.name + '\') is not allowed by the affected reference of the parent ReferenceTargetSelector that ' + 'requires a (sub-)type of \'' +
 		 *           self.oclContainer()
-		 *           .oclAsType(MappingInstanceSelector)
+		 *           .oclAsType(ReferenceTargetSelector)
 		 *           .affectedReference.eReference.oclAsType(ecore::EReference)
 		 *           .eReferenceType.oclAsType(ecore::EClass).name + '\'!'
 		 *         else null
@@ -303,9 +303,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq;
 		    try {
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector = idResolver.getClass(MappingTables.CLSSid_MappingInstanceSelector, null);
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_ReferenceTargetSelector = idResolver.getClass(MappingTables.CLSSid_ReferenceTargetSelector, null);
 		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		        final /*@Thrown*/ ReferenceTargetSelector oclAsType = ClassUtil.nonNullState((ReferenceTargetSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector));
+		        final /*@Thrown*/ ReferenceTargetSelector oclAsType = ClassUtil.nonNullState((ReferenceTargetSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_ReferenceTargetSelector));
 		        final /*@Thrown*/ TargetSectionNonContainmentReference affectedReference = oclAsType.getAffectedReference();
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, affectedReference);
 		        final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
@@ -336,10 +336,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		    else {
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass = idResolver.getClass(MappingTables.CLSSid_EClass, null);
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference_0 = idResolver.getClass(MappingTables.CLSSid_EReference, null);
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_0 = idResolver.getClass(MappingTables.CLSSid_MappingInstanceSelector, null);
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_ReferenceTargetSelector_0 = idResolver.getClass(MappingTables.CLSSid_ReferenceTargetSelector, null);
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
 		        final /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		        final /*@Thrown*/ ReferenceTargetSelector oclAsType_0 = ClassUtil.nonNullState((ReferenceTargetSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_0));
+		        final /*@Thrown*/ ReferenceTargetSelector oclAsType_0 = ClassUtil.nonNullState((ReferenceTargetSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_ReferenceTargetSelector_0));
 		        final /*@Thrown*/ TargetSectionNonContainmentReference affectedReference_0 = oclAsType_0.getAffectedReference();
 		        final /*@Thrown*/ EReference eReference = affectedReference_0.getEReference();
 		        final /*@Thrown*/ EReference oclAsType_1 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, eReference, TYP_ecore_c_c_EReference_0));
@@ -365,7 +365,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		if (ne) {
 		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass_0 = idResolver.getClass(MappingTables.CLSSid_EClass, null);
 		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference_1 = idResolver.getClass(MappingTables.CLSSid_EReference, null);
-		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_1 = idResolver.getClass(MappingTables.CLSSid_MappingInstanceSelector, null);
+		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_ReferenceTargetSelector_1 = idResolver.getClass(MappingTables.CLSSid_ReferenceTargetSelector, null);
 		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
 		    final /*@Thrown*/ TargetSectionAttribute target_1 = this.getTarget();
 		    final /*@Thrown*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, target_1);
@@ -373,10 +373,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		    final /*@Thrown*/ EClass eClass_0 = oclAsType_4.getEClass();
 		    final /*@Thrown*/ String name = eClass_0.getName();
 		    final /*@NonInvalid*/ String sum = StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_type_32_of_32_the_32_class_32_containing_32_the_32_target_32_attribute_32_o_39, name);
-		    final /*@NonInvalid*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_e_32_is_32_not_32_allowed_32_by_32_the_32_affected_32_reference_32_of_32_the_32_parent_32_mappin);
+		    final /*@NonInvalid*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_e_32_is_32_not_32_allowed_32_by_32_the_32_affected_32_reference_32_of_32_the_32_parent_32_Refere);
 		    final /*@NonInvalid*/ String sum_1 = StringConcatOperation.INSTANCE.evaluate(sum_0, MappingTables.STR_requires_32_a_32_o_sub_m_e_type_32_of_32_39);
 		    final /*@NonInvalid*/ Object oclContainer_3 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		    final /*@Thrown*/ ReferenceTargetSelector oclAsType_5 = ClassUtil.nonNullState((ReferenceTargetSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_3, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_1));
+		    final /*@Thrown*/ ReferenceTargetSelector oclAsType_5 = ClassUtil.nonNullState((ReferenceTargetSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_3, TYP_pamtram_c_c_mapping_c_c_ReferenceTargetSelector_1));
 		    final /*@Thrown*/ TargetSectionNonContainmentReference affectedReference_1 = oclAsType_5.getAffectedReference();
 		    final /*@Thrown*/ EReference eReference_0 = affectedReference_1.getEReference();
 		    final /*@Thrown*/ EReference oclAsType_6 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, eReference_0, TYP_ecore_c_c_EReference_1));
@@ -567,7 +567,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 				return getLocalSourceElements();
 			case MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
-			case MappingPackage.ATTRIBUTE_MATCHER___TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.ATTRIBUTE_MATCHER___TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_2:
 				return targetMatchesAffectedReferenceType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

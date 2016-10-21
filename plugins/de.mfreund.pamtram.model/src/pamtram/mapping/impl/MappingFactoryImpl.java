@@ -139,8 +139,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * @generated
 	 */
 	public ReferenceTargetSelector createReferenceTargetSelector() {
-		ReferenceTargetSelectorImpl mappingInstanceSelector = new ReferenceTargetSelectorImpl();
-		return mappingInstanceSelector;
+		ReferenceTargetSelectorImpl referenceTargetSelector = new ReferenceTargetSelectorImpl();
+		return referenceTargetSelector;
 	}
 	
 	/**

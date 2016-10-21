@@ -117,8 +117,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createCardinalityMappingAdapter();
 			}
 			@Override
-			public Adapter caseMappingInstanceSelector(ReferenceTargetSelector object) {
-				return createMappingInstanceSelectorAdapter();
+			public Adapter caseReferenceTargetSelector(ReferenceTargetSelector object) {
+				return createReferenceTargetSelectorAdapter();
 			}
 			@Override
 			public Adapter caseMatcher(Matcher object) {
@@ -439,7 +439,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ReferenceTargetSelector <em>Instance Selector</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ReferenceTargetSelector <em>Reference Target Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -448,7 +448,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.mapping.ReferenceTargetSelector
 	 * @generated
 	 */
-	public Adapter createMappingInstanceSelectorAdapter() {
+	public Adapter createReferenceTargetSelectorAdapter() {
 		return null;
 	}
 

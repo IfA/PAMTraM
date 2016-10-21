@@ -418,26 +418,26 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHint} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelector} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintItemProvider modelConnectionHintItemProvider;
+	protected ContainerSelectorItemProvider containerSelectorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHint}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelector}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintAdapter() {
-		if (modelConnectionHintItemProvider == null) {
-			modelConnectionHintItemProvider = new ModelConnectionHintItemProvider(this);
+	public Adapter createContainerSelectorAdapter() {
+		if (containerSelectorItemProvider == null) {
+			containerSelectorItemProvider = new ContainerSelectorItemProvider(this);
 		}
 
-		return modelConnectionHintItemProvider;
+		return containerSelectorItemProvider;
 	}
 
 	/**
@@ -464,49 +464,49 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelectorSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintSourceElementItemProvider modelConnectionHintSourceElementItemProvider;
+	protected ContainerSelectorSourceElementItemProvider containerSelectorSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintSourceElementAdapter() {
-		if (modelConnectionHintSourceElementItemProvider == null) {
-			modelConnectionHintSourceElementItemProvider = new ModelConnectionHintSourceElementItemProvider(this);
+	public Adapter createContainerSelectorSourceElementAdapter() {
+		if (containerSelectorSourceElementItemProvider == null) {
+			containerSelectorSourceElementItemProvider = new ContainerSelectorSourceElementItemProvider(this);
 		}
 
-		return modelConnectionHintSourceElementItemProvider;
+		return containerSelectorSourceElementItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintTargetAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelectorTargetAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintTargetAttributeItemProvider modelConnectionHintTargetAttributeItemProvider;
+	protected ContainerSelectorTargetAttributeItemProvider containerSelectorTargetAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintTargetAttribute}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorTargetAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintTargetAttributeAdapter() {
-		if (modelConnectionHintTargetAttributeItemProvider == null) {
-			modelConnectionHintTargetAttributeItemProvider = new ModelConnectionHintTargetAttributeItemProvider(this);
+	public Adapter createContainerSelectorTargetAttributeAdapter() {
+		if (containerSelectorTargetAttributeItemProvider == null) {
+			containerSelectorTargetAttributeItemProvider = new ContainerSelectorTargetAttributeItemProvider(this);
 		}
 
-		return modelConnectionHintTargetAttributeItemProvider;
+		return containerSelectorTargetAttributeItemProvider;
 	}
 
 	/**
@@ -671,26 +671,26 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintExternalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelectorExternalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintExternalSourceElementItemProvider modelConnectionHintExternalSourceElementItemProvider;
+	protected ContainerSelectorExternalSourceElementItemProvider containerSelectorExternalSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintExternalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorExternalSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintExternalSourceElementAdapter() {
-		if (modelConnectionHintExternalSourceElementItemProvider == null) {
-			modelConnectionHintExternalSourceElementItemProvider = new ModelConnectionHintExternalSourceElementItemProvider(this);
+	public Adapter createContainerSelectorExternalSourceElementAdapter() {
+		if (containerSelectorExternalSourceElementItemProvider == null) {
+			containerSelectorExternalSourceElementItemProvider = new ContainerSelectorExternalSourceElementItemProvider(this);
 		}
 
-		return modelConnectionHintExternalSourceElementItemProvider;
+		return containerSelectorExternalSourceElementItemProvider;
 	}
 
 	/**
@@ -855,26 +855,26 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintGlobalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelectorGlobalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintGlobalSourceElementItemProvider modelConnectionHintGlobalSourceElementItemProvider;
+	protected ContainerSelectorGlobalSourceElementItemProvider containerSelectorGlobalSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintGlobalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorGlobalSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintGlobalSourceElementAdapter() {
-		if (modelConnectionHintGlobalSourceElementItemProvider == null) {
-			modelConnectionHintGlobalSourceElementItemProvider = new ModelConnectionHintGlobalSourceElementItemProvider(this);
+	public Adapter createContainerSelectorGlobalSourceElementAdapter() {
+		if (containerSelectorGlobalSourceElementItemProvider == null) {
+			containerSelectorGlobalSourceElementItemProvider = new ContainerSelectorGlobalSourceElementItemProvider(this);
 		}
 
-		return modelConnectionHintGlobalSourceElementItemProvider;
+		return containerSelectorGlobalSourceElementItemProvider;
 	}
 
 	/**
@@ -991,10 +991,10 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (stringPrependerItemProvider != null) stringPrependerItemProvider.dispose();
 		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
-		if (modelConnectionHintItemProvider != null) modelConnectionHintItemProvider.dispose();
+		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
 		if (attributeMappingSourceElementItemProvider != null) attributeMappingSourceElementItemProvider.dispose();
-		if (modelConnectionHintSourceElementItemProvider != null) modelConnectionHintSourceElementItemProvider.dispose();
-		if (modelConnectionHintTargetAttributeItemProvider != null) modelConnectionHintTargetAttributeItemProvider.dispose();
+		if (containerSelectorSourceElementItemProvider != null) containerSelectorSourceElementItemProvider.dispose();
+		if (containerSelectorTargetAttributeItemProvider != null) containerSelectorTargetAttributeItemProvider.dispose();
 		if (localMappedAttributeValueExpanderItemProvider != null) localMappedAttributeValueExpanderItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
@@ -1002,7 +1002,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (globalAttributeItemProvider != null) globalAttributeItemProvider.dispose();
 		if (globalAttributeImporterItemProvider != null) globalAttributeImporterItemProvider.dispose();
 		if (attributeMappingExternalSourceElementItemProvider != null) attributeMappingExternalSourceElementItemProvider.dispose();
-		if (modelConnectionHintExternalSourceElementItemProvider != null) modelConnectionHintExternalSourceElementItemProvider.dispose();
+		if (containerSelectorExternalSourceElementItemProvider != null) containerSelectorExternalSourceElementItemProvider.dispose();
 		if (attributeMatcherExternalSourceElementItemProvider != null) attributeMatcherExternalSourceElementItemProvider.dispose();
 		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();
 		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
@@ -1010,7 +1010,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (matchToUpperCaseConverterItemProvider != null) matchToUpperCaseConverterItemProvider.dispose();
 		if (attributeMatcherGlobalSourceElementItemProvider != null) attributeMatcherGlobalSourceElementItemProvider.dispose();
 		if (attributeMappingGlobalSourceElementItemProvider != null) attributeMappingGlobalSourceElementItemProvider.dispose();
-		if (modelConnectionHintGlobalSourceElementItemProvider != null) modelConnectionHintGlobalSourceElementItemProvider.dispose();
+		if (containerSelectorGlobalSourceElementItemProvider != null) containerSelectorGlobalSourceElementItemProvider.dispose();
 	}
 
 }

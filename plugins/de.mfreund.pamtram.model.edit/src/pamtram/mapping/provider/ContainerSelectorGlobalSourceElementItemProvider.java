@@ -10,24 +10,24 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+
+import pamtram.mapping.ContainerSelectorGlobalSourceElement;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ModelConnectionHintTargetAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ContainerSelectorGlobalSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelConnectionHintTargetAttributeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class ContainerSelectorGlobalSourceElementItemProvider extends GlobalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHintTargetAttributeItemProvider(AdapterFactory adapterFactory) {
+	public ContainerSelectorGlobalSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -47,14 +47,14 @@ public class ModelConnectionHintTargetAttributeItemProvider extends ModifiedAttr
 	}
 
 	/**
-	 * This returns ModelConnectionHintTargetAttribute.gif.
+	 * This returns ContainerSelectorGlobalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHintTargetAttribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerSelectorGlobalSourceElement"));
 	}
 
 	/**
@@ -68,7 +68,6 @@ public class ModelConnectionHintTargetAttributeItemProvider extends ModifiedAttr
 		return ((StyledString)getStyledText(object)).getString();
 	}
 	
-
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -77,15 +76,15 @@ public class ModelConnectionHintTargetAttributeItemProvider extends ModifiedAttr
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ModelConnectionHintTargetAttribute)object).getName();
+		String label = ((ContainerSelectorGlobalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ModelConnectionHintTargetAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ContainerSelectorGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ModelConnectionHintTargetAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ContainerSelectorGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

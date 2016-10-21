@@ -12,22 +12,22 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.ModelConnectionHintSourceElement;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ModelConnectionHintSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ContainerSelectorTargetAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelConnectionHintSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
+public class ContainerSelectorTargetAttributeItemProvider extends ModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHintSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public ContainerSelectorTargetAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -47,14 +47,14 @@ public class ModelConnectionHintSourceElementItemProvider extends LocalModifiedA
 	}
 
 	/**
-	 * This returns ModelConnectionHintSourceElement.gif.
+	 * This returns ContainerSelectorTargetAttribute.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHintSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerSelectorTargetAttribute"));
 	}
 
 	/**
@@ -77,12 +77,12 @@ public class ModelConnectionHintSourceElementItemProvider extends LocalModifiedA
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ModelConnectionHintSourceElement)object).getName();
+		String label = ((ContainerSelectorTargetAttribute)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ModelConnectionHintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ContainerSelectorTargetAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ModelConnectionHintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ContainerSelectorTargetAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

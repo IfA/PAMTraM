@@ -12,22 +12,22 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.ModelConnectionHintExternalSourceElement;
+import pamtram.mapping.ContainerSelectorSourceElement;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ModelConnectionHintExternalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ContainerSelectorSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelConnectionHintExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
+public class ContainerSelectorSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHintExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public ContainerSelectorSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -47,14 +47,14 @@ public class ModelConnectionHintExternalSourceElementItemProvider extends Extern
 	}
 
 	/**
-	 * This returns ModelConnectionHintExternalSourceElement.gif.
+	 * This returns ContainerSelectorSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHintExternalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerSelectorSourceElement"));
 	}
 
 	/**
@@ -77,12 +77,12 @@ public class ModelConnectionHintExternalSourceElementItemProvider extends Extern
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ModelConnectionHintExternalSourceElement)object).getName();
+		String label = ((ContainerSelectorSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ModelConnectionHintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ContainerSelectorSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ModelConnectionHintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ContainerSelectorSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

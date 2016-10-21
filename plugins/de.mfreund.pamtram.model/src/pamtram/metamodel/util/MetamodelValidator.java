@@ -45,6 +45,7 @@ import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.ResourceParameter;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
@@ -304,6 +305,8 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateContainerParameter((ContainerParameter)value, diagnostics, context);
 			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER:
 				return validateExternalReferenceParameter((ExternalReferenceParameter)value, diagnostics, context);
+			case MetamodelPackage.RESOURCE_PARAMETER:
+				return validateResourceParameter((ResourceParameter)value, diagnostics, context);
 			case MetamodelPackage.LIBRARY_ENTRY:
 				return validateLibraryEntry((LibraryEntry)value, diagnostics, context);
 			case MetamodelPackage.REFERENCE:
@@ -708,6 +711,15 @@ public class MetamodelValidator extends EObjectValidator {
 	 */
 	public boolean validateExternalReferenceParameter(ExternalReferenceParameter externalReferenceParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(externalReferenceParameter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateResourceParameter(ResourceParameter resourceParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(resourceParameter, diagnostics, context);
 	}
 
 	/**

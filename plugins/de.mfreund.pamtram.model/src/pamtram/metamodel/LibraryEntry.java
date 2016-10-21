@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getId <em>Id</em>}</li>
+ *   <li>{@link pamtram.metamodel.LibraryEntry#getResourceParameters <em>Resource Parameters</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry()
@@ -123,6 +124,23 @@ public interface LibraryEntry extends EObject {
 	 * @generated
 	 */
 	void setId(VirtualTargetSectionAttribute value);
+
+	/**
+	 * Returns the value of the '<em><b>Resource Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.metamodel.ResourceParameter}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resource Parameters</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resource Parameters</em>' containment reference list.
+	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_ResourceParameters()
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!resourceParameters'"
+	 * @generated
+	 */
+	EList<ResourceParameter> getResourceParameters();
 
 	/**
 	 * Returns the value of the '<em><b>Original Library Entry</b></em>' reference.

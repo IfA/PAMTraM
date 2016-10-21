@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.ResourceParameter;
 import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
@@ -32,6 +33,7 @@ import pamtram.metamodel.VirtualTargetSectionAttribute;
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getPath <em>Path</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getId <em>Id</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getResourceParameters <em>Resource Parameters</em>}</li>
  * </ul>
  *
  * @generated
@@ -96,6 +98,16 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @ordered
 	 */
 	protected VirtualTargetSectionAttribute id;
+
+	/**
+	 * The cached value of the '{@link #getResourceParameters() <em>Resource Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourceParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ResourceParameter> resourceParameters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -244,6 +256,18 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ResourceParameter> getResourceParameters() {
+		if (resourceParameters == null) {
+			resourceParameters = new EObjectContainmentEList<ResourceParameter>(ResourceParameter.class, this, MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
+		}
+		return resourceParameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getOriginalLibraryEntry() {
 		if (originalLibraryEntry != null && originalLibraryEntry.eIsProxy()) {
@@ -293,6 +317,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return basicSetPath(null, msgs);
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
 				return basicSetId(null, msgs);
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				return ((InternalEList<?>)getResourceParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -316,6 +342,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return getPath();
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
 				return getId();
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				return getResourceParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -345,6 +373,10 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
 				setId((VirtualTargetSectionAttribute)newValue);
 				return;
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				getResourceParameters().clear();
+				getResourceParameters().addAll((Collection<? extends ResourceParameter>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -372,6 +404,9 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
 				setId((VirtualTargetSectionAttribute)null);
 				return;
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				getResourceParameters().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -394,6 +429,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return path != null;
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
 				return id != null;
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				return resourceParameters != null && !resourceParameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

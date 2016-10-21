@@ -94,6 +94,15 @@ public interface MetamodelFactory extends EFactory {
 	ExternalReferenceParameter createExternalReferenceParameter();
 
 	/**
+	 * Returns a new object of class '<em>Resource Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Resource Parameter</em>'.
+	 * @generated
+	 */
+	ResourceParameter createResourceParameter();
+
+	/**
 	 * Returns a new object of class '<em>Library Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -44,6 +44,7 @@ import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.ResourceParameter;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SingleReferenceValueConstraint;
 import pamtram.metamodel.SourceSection;
@@ -165,6 +166,10 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExternalReferenceParameter(ExternalReferenceParameter object) {
 				return createExternalReferenceParameterAdapter();
+			}
+			@Override
+			public Adapter caseResourceParameter(ResourceParameter object) {
+				return createResourceParameterAdapter();
 			}
 			@Override
 			public Adapter caseLibraryEntry(LibraryEntry object) {
@@ -523,6 +528,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExternalReferenceParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ResourceParameter <em>Resource Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.ResourceParameter
+	 * @generated
+	 */
+	public Adapter createResourceParameterAdapter() {
 		return null;
 	}
 

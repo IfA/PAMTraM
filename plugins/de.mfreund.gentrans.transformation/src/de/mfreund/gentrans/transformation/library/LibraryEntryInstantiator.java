@@ -334,9 +334,14 @@ public class LibraryEntryInstantiator {
 
 		for (ResourceParameter resParam : this.libraryEntry.getResourceParameters()) {
 
+			// We need to compare the VirtualAttributes by their value instead of directly comparing the instances
+			// because
+			// those will be two different instances because of the previous cloning of the library entry
+			//
 			Optional<AttributeMapping> resParamMapping = this.mappingHints.parallelStream()
 					.filter(mappingHint -> mappingHint instanceof AttributeMapping
-							&& resParam.getAttribute().equals(((AttributeMapping) mappingHint).getTarget()))
+							&& resParam.getAttribute().getValue()
+									.equals(((AttributeMapping) mappingHint).getTarget().getValue()))
 					.map(mappingHint -> (AttributeMapping) mappingHint).findAny();
 
 			if (resParamMapping.isPresent()) {

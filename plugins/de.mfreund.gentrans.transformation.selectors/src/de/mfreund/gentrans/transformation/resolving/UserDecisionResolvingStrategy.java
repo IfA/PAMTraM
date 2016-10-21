@@ -22,7 +22,7 @@ import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDi
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -287,7 +287,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			List<EObjectWrapper> choices,
 			List<EObjectWrapper> sectionInstances,
 			MappingHintGroupType hintGroup,
-			ModelConnectionHint modelConnectionHint,
+			ContainerSelector modelConnectionHint,
 			String hintValue) throws AmbiguityResolvingException {
 
 		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(

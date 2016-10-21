@@ -78,12 +78,12 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="loans" affectedReference="//@targetSectionModel.0/@metaModelSections.1/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="loans" affectedReference="//@targetSectionModel.0/@metaModelSections.1/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="name" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="loans" affectedReference="//@targetSectionModel.0/@metaModelSections.1/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="loans" affectedReference="//@targetSectionModel.0/@metaModelSections.1/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="name" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
           </matcher>

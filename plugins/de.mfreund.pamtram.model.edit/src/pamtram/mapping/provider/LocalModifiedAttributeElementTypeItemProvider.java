@@ -22,7 +22,7 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.MetaModelSectionReference;
@@ -151,7 +151,7 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 
 				// If we operate on an ModelConnectionHintTarget, we need to scan the container of the target section.
 				//
-				if(object instanceof ModelConnectionHintTargetAttribute) {
+				if(object instanceof ContainerSelectorTargetAttribute) {
 					if(parent instanceof MappingHintGroupType && ((MappingHintGroupType) parent).getTargetSection() != null) {
 						relevantClass = ((MappingHintGroupType) parent).getTargetSection().getContainer();
 

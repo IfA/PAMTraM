@@ -24,7 +24,7 @@ import pamtram.condition.ConditionFactory;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 
 /**
@@ -245,7 +245,7 @@ extends MappingHintGroupTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-				 MappingFactory.eINSTANCE.createModelConnectionHint()));
+				 MappingFactory.eINSTANCE.createContainerSelector()));
 	}
 
 	/**
@@ -262,7 +262,7 @@ extends MappingHintGroupTypeItemProvider {
 		newChildDescriptors.add
 		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-						MappingFactory.eINSTANCE.createModelConnectionHintWithSourceAndTarget()));
+						MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
 
 	}
 
@@ -271,8 +271,8 @@ extends MappingHintGroupTypeItemProvider {
 			Object child, Collection<?> selection) {
 
 		// provide labels for the custom child descriptors
-		if(child instanceof ModelConnectionHint) {
-			ModelConnectionHint modelConnectionHint = (ModelConnectionHint) child;
+		if(child instanceof ContainerSelector) {
+			ContainerSelector modelConnectionHint = (ContainerSelector) child;
 			if(!modelConnectionHint.getSourceElements().isEmpty() &&
 					!modelConnectionHint.getTargetAttributes().isEmpty()) {
 				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Source and Target Attribute)";

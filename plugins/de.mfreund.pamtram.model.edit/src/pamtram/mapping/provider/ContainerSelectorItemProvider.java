@@ -16,18 +16,18 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.impl.MappingPackageImpl;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ModelConnectionHint} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ContainerSelector} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelConnectionHintItemProvider
+public class ContainerSelectorItemProvider
 extends MappingHintBaseTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -35,7 +35,7 @@ extends MappingHintBaseTypeItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHintItemProvider(AdapterFactory adapterFactory) {
+	public ContainerSelectorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,8 +66,8 @@ extends MappingHintBaseTypeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES);
-			childrenFeatures.add(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS);
+			childrenFeatures.add(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
+			childrenFeatures.add(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -76,8 +76,8 @@ extends MappingHintBaseTypeItemProvider {
 	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
 		if(labelRelatedChildrenFeatures == null) {
 			labelRelatedChildrenFeatures = new ArrayList<>();
-			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getModelConnectionHint_SourceElements());
-			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getModelConnectionHint_TargetAttributes());
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getContainerSelector_SourceElements());
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getContainerSelector_TargetAttributes());
 		}
 		return labelRelatedChildrenFeatures;
 	}
@@ -128,17 +128,17 @@ extends MappingHintBaseTypeItemProvider {
 
 		initializeLabelRelatedChildrenFeatureNotifications(object);
 
-		ModelConnectionHint mch = ((ModelConnectionHint)object);
+		ContainerSelector mch = ((ContainerSelector)object);
 		StyledString styledLabel = new StyledString();
 
 		ArrayList<String> targets = new ArrayList<>();
-		for (ModelConnectionHintTargetAttribute target : mch.getTargetAttributes()) {
+		for (ContainerSelectorTargetAttribute target : mch.getTargetAttributes()) {
 			targets.add(target.getName());
 		} 
 		styledLabel.append(String.join(", ", targets), StyledString.Style.COUNTER_STYLER);
 
 		ArrayList<String> sources = new ArrayList<>();
-		for (ModelConnectionHintSourceInterface source : mch.getSourceElements()) {
+		for (ContainerSelectorSourceInterface source : mch.getSourceElements()) {
 			sources.add(source.getName());
 		} 
 		styledLabel.append(" == " + String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
@@ -156,9 +156,9 @@ extends MappingHintBaseTypeItemProvider {
 	public void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ModelConnectionHint.class)) {
-			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
-			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+		switch (notification.getFeatureID(ContainerSelector.class)) {
+			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
+			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -185,33 +185,33 @@ extends MappingHintBaseTypeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createModelConnectionHintTargetAttribute()));
+				(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES,
+				 MappingFactory.eINSTANCE.createContainerSelectorTargetAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createModelConnectionHintSourceElement()));
+				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createContainerSelectorSourceElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
+				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
+				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createModelConnectionHintExternalSourceElement()));
+				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createContainerSelectorExternalSourceElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createModelConnectionHintGlobalSourceElement()));
+				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createContainerSelectorGlobalSourceElement()));
 	}
 
 }

@@ -10,24 +10,24 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.ModelConnectionHintExternalSourceElement;
+
+import pamtram.mapping.ContainerSelectorGlobalSourceElement;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ModelConnectionHintExternalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ContainerSelectorGlobalSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelConnectionHintExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
+public class ContainerSelectorGlobalSourceElementItemProvider extends GlobalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHintExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public ContainerSelectorGlobalSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -47,14 +47,14 @@ public class ModelConnectionHintExternalSourceElementItemProvider extends Extern
 	}
 
 	/**
-	 * This returns ModelConnectionHintExternalSourceElement.gif.
+	 * This returns ModelConnectionHintGlobalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHintExternalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHintGlobalSourceElement"));
 	}
 
 	/**
@@ -68,7 +68,6 @@ public class ModelConnectionHintExternalSourceElementItemProvider extends Extern
 		return ((StyledString)getStyledText(object)).getString();
 	}
 	
-
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -77,15 +76,15 @@ public class ModelConnectionHintExternalSourceElementItemProvider extends Extern
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ModelConnectionHintExternalSourceElement)object).getName();
+		String label = ((ContainerSelectorGlobalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ModelConnectionHintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ModelConnectionHintGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ModelConnectionHintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ModelConnectionHintGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

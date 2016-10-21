@@ -418,15 +418,15 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHint} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelector} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintItemProvider modelConnectionHintItemProvider;
+	protected ContainerSelectorItemProvider modelConnectionHintItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHint}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelector}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -434,7 +434,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	@Override
 	public Adapter createModelConnectionHintAdapter() {
 		if (modelConnectionHintItemProvider == null) {
-			modelConnectionHintItemProvider = new ModelConnectionHintItemProvider(this);
+			modelConnectionHintItemProvider = new ContainerSelectorItemProvider(this);
 		}
 
 		return modelConnectionHintItemProvider;
@@ -464,15 +464,15 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelectorSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintSourceElementItemProvider modelConnectionHintSourceElementItemProvider;
+	protected ContainerSelectorSourceElementItemProvider modelConnectionHintSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -480,22 +480,22 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	@Override
 	public Adapter createModelConnectionHintSourceElementAdapter() {
 		if (modelConnectionHintSourceElementItemProvider == null) {
-			modelConnectionHintSourceElementItemProvider = new ModelConnectionHintSourceElementItemProvider(this);
+			modelConnectionHintSourceElementItemProvider = new ContainerSelectorSourceElementItemProvider(this);
 		}
 
 		return modelConnectionHintSourceElementItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintTargetAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelectorTargetAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintTargetAttributeItemProvider modelConnectionHintTargetAttributeItemProvider;
+	protected ContainerSelectorTargetAttributeItemProvider modelConnectionHintTargetAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintTargetAttribute}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorTargetAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -503,7 +503,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	@Override
 	public Adapter createModelConnectionHintTargetAttributeAdapter() {
 		if (modelConnectionHintTargetAttributeItemProvider == null) {
-			modelConnectionHintTargetAttributeItemProvider = new ModelConnectionHintTargetAttributeItemProvider(this);
+			modelConnectionHintTargetAttributeItemProvider = new ContainerSelectorTargetAttributeItemProvider(this);
 		}
 
 		return modelConnectionHintTargetAttributeItemProvider;
@@ -671,15 +671,15 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintExternalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelectorExternalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintExternalSourceElementItemProvider modelConnectionHintExternalSourceElementItemProvider;
+	protected ContainerSelectorExternalSourceElementItemProvider modelConnectionHintExternalSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintExternalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorExternalSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -687,7 +687,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	@Override
 	public Adapter createModelConnectionHintExternalSourceElementAdapter() {
 		if (modelConnectionHintExternalSourceElementItemProvider == null) {
-			modelConnectionHintExternalSourceElementItemProvider = new ModelConnectionHintExternalSourceElementItemProvider(this);
+			modelConnectionHintExternalSourceElementItemProvider = new ContainerSelectorExternalSourceElementItemProvider(this);
 		}
 
 		return modelConnectionHintExternalSourceElementItemProvider;
@@ -855,15 +855,15 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintGlobalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelectorGlobalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintGlobalSourceElementItemProvider modelConnectionHintGlobalSourceElementItemProvider;
+	protected ContainerSelectorGlobalSourceElementItemProvider modelConnectionHintGlobalSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintGlobalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorGlobalSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -871,7 +871,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	@Override
 	public Adapter createModelConnectionHintGlobalSourceElementAdapter() {
 		if (modelConnectionHintGlobalSourceElementItemProvider == null) {
-			modelConnectionHintGlobalSourceElementItemProvider = new ModelConnectionHintGlobalSourceElementItemProvider(this);
+			modelConnectionHintGlobalSourceElementItemProvider = new ContainerSelectorGlobalSourceElementItemProvider(this);
 		}
 
 		return modelConnectionHintGlobalSourceElementItemProvider;

@@ -147,7 +147,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReferenceTargetSelectorItemProvider mappingInstanceSelectorItemProvider;
+	protected ReferenceTargetSelectorItemProvider referenceTargetSelectorItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.mapping.ReferenceTargetSelector}.
@@ -156,12 +156,12 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public Adapter createMappingInstanceSelectorAdapter() {
-		if (mappingInstanceSelectorItemProvider == null) {
-			mappingInstanceSelectorItemProvider = new ReferenceTargetSelectorItemProvider(this);
+	public Adapter createReferenceTargetSelectorAdapter() {
+		if (referenceTargetSelectorItemProvider == null) {
+			referenceTargetSelectorItemProvider = new ReferenceTargetSelectorItemProvider(this);
 		}
 
-		return mappingInstanceSelectorItemProvider;
+		return referenceTargetSelectorItemProvider;
 	}
 
 	/**
@@ -980,7 +980,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (mappingHintGroupItemProvider != null) mappingHintGroupItemProvider.dispose();
 		if (attributeMappingItemProvider != null) attributeMappingItemProvider.dispose();
 		if (cardinalityMappingItemProvider != null) cardinalityMappingItemProvider.dispose();
-		if (mappingInstanceSelectorItemProvider != null) mappingInstanceSelectorItemProvider.dispose();
+		if (referenceTargetSelectorItemProvider != null) referenceTargetSelectorItemProvider.dispose();
 		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
 		if (attributeMatcherSourceElementItemProvider != null) attributeMatcherSourceElementItemProvider.dispose();
 		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();

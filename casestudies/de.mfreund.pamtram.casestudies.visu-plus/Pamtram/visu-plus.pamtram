@@ -2636,7 +2636,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14">
@@ -2655,12 +2655,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -2676,7 +2676,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1_id" targetSection="//@targetSectionModel.0/@metaModelSections.14">
@@ -2695,12 +2695,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.1/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -2721,12 +2721,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MatflowChildType1_id" targetSection="//@targetSectionModel.0/@metaModelSections.5">
@@ -2740,7 +2740,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -2759,12 +2759,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MechanicType" targetSection="//@targetSectionModel.0/@metaModelSections.12">
@@ -2773,12 +2773,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType" targetSection="//@targetSectionModel.0/@metaModelSections.13">
@@ -2787,12 +2787,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetSection="//@targetSectionModel.0/@metaModelSections.11">
@@ -2801,12 +2801,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1">
@@ -2815,12 +2815,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BGType" targetSection="//@targetSectionModel.0/@metaModelSections.17">
@@ -2829,12 +2829,12 @@
         </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BGListType" targetSection="//@targetSectionModel.0/@metaModelSections.16">
@@ -2843,12 +2843,12 @@
         </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisibleType" targetSection="//@targetSectionModel.0/@metaModelSections.10">
@@ -2860,12 +2860,12 @@
         </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TransparencyType" targetSection="//@targetSectionModel.0/@metaModelSections.18">
@@ -2874,12 +2874,12 @@
         </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BListType" targetSection="//@targetSectionModel.0/@metaModelSections.19">
@@ -2888,12 +2888,12 @@
         </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="LTType" targetSection="//@targetSectionModel.0/@metaModelSections.20">
@@ -2902,12 +2902,12 @@
         </localCondition>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -2926,12 +2926,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MechanicType" targetSection="//@targetSectionModel.0/@metaModelSections.12">
@@ -2940,12 +2940,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType" targetSection="//@targetSectionModel.0/@metaModelSections.13">
@@ -2954,12 +2954,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetSection="//@targetSectionModel.0/@metaModelSections.11">
@@ -2968,12 +2968,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1">
@@ -2982,12 +2982,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3006,12 +3006,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MechanicType" targetSection="//@targetSectionModel.0/@metaModelSections.12">
@@ -3020,12 +3020,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType" targetSection="//@targetSectionModel.0/@metaModelSections.13">
@@ -3034,12 +3034,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetSection="//@targetSectionModel.0/@metaModelSections.11">
@@ -3048,12 +3048,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1">
@@ -3062,12 +3062,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item" targetSection="//@targetSectionModel.1/@metaModelSections.2">
@@ -3085,7 +3085,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueActivateChannel" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueActivateChannel" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable" targetSection="//@targetSectionModel.2/@metaModelSections.1">
@@ -3119,12 +3119,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
@@ -3133,7 +3133,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1">
@@ -3142,12 +3142,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetSection="//@targetSectionModel.0/@metaModelSections.11">
@@ -3156,12 +3156,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3176,12 +3176,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
@@ -3190,7 +3190,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1">
@@ -3199,12 +3199,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetSection="//@targetSectionModel.0/@metaModelSections.11">
@@ -3213,12 +3213,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3233,12 +3233,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
@@ -3247,7 +3247,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1">
@@ -3256,12 +3256,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetSection="//@targetSectionModel.0/@metaModelSections.11">
@@ -3270,12 +3270,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3323,7 +3323,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="EditboxType_edit" targetSection="//@targetSectionModel.0/@metaModelSections.6">
@@ -3341,7 +3341,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType_edit" targetSection="//@targetSectionModel.0/@metaModelSections.13">
@@ -3350,7 +3350,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExecutionType1_edit" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -3359,7 +3359,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="StyleType_edit" targetSection="//@targetSectionModel.0/@metaModelSections.8">
@@ -3374,7 +3374,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChildType1_label" targetSection="//@targetSectionModel.0/@metaModelSections.5">
@@ -3387,7 +3387,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType_label" targetSection="//@targetSectionModel.0/@metaModelSections.13">
@@ -3396,7 +3396,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_label" value="_label"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3418,7 +3418,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_label" value="_label"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3491,12 +3491,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.1">
@@ -3505,7 +3505,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.0">
@@ -3531,12 +3531,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3551,12 +3551,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.1">
@@ -3565,7 +3565,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.0">
@@ -3585,12 +3585,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3605,12 +3605,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.1">
@@ -3619,7 +3619,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.0">
@@ -3639,12 +3639,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3659,12 +3659,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_Rectangle" targetSection="//@targetSectionModel.0/@metaModelSections.5" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.1">
@@ -3673,7 +3673,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1" targetSection="//@targetSectionModel.0/@metaModelSections.14" extend="//@mappingModel.1/@mapping.2/@mappingHintGroups.0">
@@ -3693,12 +3693,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.2/@attributes.7"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3719,7 +3719,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1_empty" targetSection="//@targetSectionModel.0/@metaModelSections.14">
@@ -3746,13 +3746,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3765,13 +3765,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3784,13 +3784,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3810,7 +3810,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1_full" targetSection="//@targetSectionModel.0/@metaModelSections.14">
@@ -3837,13 +3837,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_f" value="_f"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3856,13 +3856,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_f" value="_f"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3875,13 +3875,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_f" value="_f"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3897,13 +3897,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_f" value="_f"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3923,7 +3923,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1_product" targetSection="//@targetSectionModel.0/@metaModelSections.14">
@@ -3950,13 +3950,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3969,13 +3969,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3988,13 +3988,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4010,13 +4010,13 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.11"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.15/@attributes.12"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="number" source="//@sourceSectionModel.2/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_p" value="_p"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4029,7 +4029,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item ProductID" targetSection="//@targetSectionModel.1/@metaModelSections.2">
@@ -4041,7 +4041,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable CarrierID" targetSection="//@targetSectionModel.2/@metaModelSections.1">
@@ -4102,7 +4102,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="EditboxType_edit" targetSection="//@targetSectionModel.0/@metaModelSections.6">
@@ -4121,24 +4121,24 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextType_edit" targetSection="//@targetSectionModel.0/@metaModelSections.13">
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4148,12 +4148,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4172,12 +4172,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_e" value="_e"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4196,7 +4196,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="layerName" source="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TypeType1_label" targetSection="//@targetSectionModel.0/@metaModelSections.14">
@@ -4219,12 +4219,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_l" value="_l"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4234,12 +4234,12 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="objectID" source="//@targetSectionModel.0/@metaModelSections.5/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.5"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="width" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.3"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="height" source="//@sourceSectionModel.1/@metaModelSections.3/@attributes.4"/>
           <sourceElements xsi:type="mapping:FixedValue" name="_l" value="_l"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4252,7 +4252,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="GroupName" source="//@targetSectionModel.1/@metaModelSections.1/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="valueBrowsePath" source="//@sourceSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable" targetSection="//@targetSectionModel.2/@metaModelSections.1">

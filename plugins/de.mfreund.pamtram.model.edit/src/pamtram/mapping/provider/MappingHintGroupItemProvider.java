@@ -21,10 +21,10 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
+import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 
 /**
@@ -53,13 +53,13 @@ extends MappingHintGroupTypeItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDeactivatedPropertyDescriptor(object);
-			addSharedConditionPropertyDescriptor(object);
+			this.addDeactivatedPropertyDescriptor(object);
+			this.addSharedConditionPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -69,12 +69,12 @@ extends MappingHintGroupTypeItemProvider {
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+		this.itemPropertyDescriptors.add
+			(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+				 this.getResourceLocator(),
+				 this.getString("_UI_DeactivatableElement_deactivated_feature"),
+				 this.getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
 				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
 				 true,
 				 false,
@@ -91,12 +91,12 @@ extends MappingHintGroupTypeItemProvider {
 	 * @generated
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConditionalElement_sharedCondition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
+		this.itemPropertyDescriptors.add
+			(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+				 this.getResourceLocator(),
+				 this.getString("_UI_ConditionalElement_sharedCondition_feature"),
+				 this.getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
 				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION,
 				 true,
 				 false,
@@ -116,12 +116,12 @@ extends MappingHintGroupTypeItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR);
+			this.childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
+			this.childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -145,7 +145,7 @@ extends MappingHintGroupTypeItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingHintGroup"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/MappingHintGroup"));
 	}
 
 	/**
@@ -156,7 +156,7 @@ extends MappingHintGroupTypeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -187,15 +187,15 @@ extends MappingHintGroupTypeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingHintGroup.class)) {
 			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
-			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -213,37 +213,37 @@ extends MappingHintGroupTypeItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 
 		newChildDescriptors.add
-			(createChildParameter
+			(this.createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
 				 MappingFactory.eINSTANCE.createContainerSelector()));
 	}
@@ -257,10 +257,10 @@ extends MappingHintGroupTypeItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 
-		collectNewChildDescriptorsGen(newChildDescriptors, object);
+		this.collectNewChildDescriptorsGen(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
 						MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
 
@@ -286,7 +286,7 @@ extends MappingHintGroupTypeItemProvider {
 			int operation, Collection<?> collection) {
 
 		if(collection.size() == 1) {
-			Object object = (Object) collection.iterator().next();
+			Object object = collection.iterator().next();
 			if(object instanceof ComplexCondition) {
 				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
 						PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, object, 0);

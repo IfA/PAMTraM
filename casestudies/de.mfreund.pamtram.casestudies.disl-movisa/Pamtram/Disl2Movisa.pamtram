@@ -2982,7 +2982,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="metaModelId2visAppModelName" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="content" source="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0/@references.4/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Target" affectedReference="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0/@references.4/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.1">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="name" source="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
@@ -3012,12 +3012,12 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TransitionWithoutTrigger" targetSection="//@targetSectionModel.0/@metaModelSections.26">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Source" affectedReference="//@targetSectionModel.0/@metaModelSections.26/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Source" affectedReference="//@targetSectionModel.0/@metaModelSections.26/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.24/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.9"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel.0/@metaModelSections.26/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Target" affectedReference="//@targetSectionModel.0/@metaModelSections.26/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.24/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.9"/>
           </matcher>
@@ -3030,18 +3030,18 @@
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="TransitionMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="changeViewNavFlowHintGroup" targetSection="//@targetSectionModel.0/@metaModelSections.5">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="target" affectedReference="//@targetSectionModel.0/@metaModelSections.5/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="target" affectedReference="//@targetSectionModel.0/@metaModelSections.5/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="interfaceIdMatcher" source="//@sourceSectionModel.0/@metaModelSections.20/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.5/@references.2">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.5/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.2/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.7"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="source" affectedReference="//@targetSectionModel.0/@metaModelSections.5/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="source" affectedReference="//@targetSectionModel.0/@metaModelSections.5/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
           </matcher>
@@ -3085,7 +3085,7 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel.0/@metaModelSections.7/@references.3">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModel.0/@metaModelSections.7/@references.3">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.0/@modifierSets.13"/>
@@ -3113,7 +3113,7 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5 //@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.8/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.8/@references.1/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.8/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.8/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.8 //@mappingModel.0/@modifierSets.7"/>
@@ -3167,7 +3167,7 @@
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.10/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel.0/@metaModelSections.10/@references.2">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModel.0/@metaModelSections.10/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.10/@attributes.0" modifier="//@mappingModel.0/@modifierSets.13"/>
@@ -3278,7 +3278,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.0/@metaModelSections.17/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="value" source="//@sourceSectionModel.0/@metaModelSections.15/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Label" affectedReference="//@targetSectionModel.0/@metaModelSections.17/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Label" affectedReference="//@targetSectionModel.0/@metaModelSections.17/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.15/@attributes.0" modifier="//@mappingModel.0/@modifierSets.13"/>
@@ -3306,7 +3306,7 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5 //@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.18/@references.0/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.18/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.8 //@mappingModel.0/@modifierSets.7"/>
@@ -3394,7 +3394,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.0/@metaModelSections.22/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="value" source="//@sourceSectionModel.0/@metaModelSections.15/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel.0/@metaModelSections.22/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModel.0/@metaModelSections.22/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.15/@attributes.0" modifier="//@mappingModel.0/@modifierSets.13"/>
@@ -3409,7 +3409,7 @@
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="ChoiceGroupChangedRuleMapping -> Radiobutton" sourceSection="//@sourceSectionModel.0/@metaModelSections.16">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButtonInteraction" targetSection="//@targetSectionModel.0/@metaModelSections.23">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.23/@references.0/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.23/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.16/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
@@ -3478,7 +3478,7 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5 //@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.14/@references.1/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.14/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.8 //@mappingModel.0/@modifierSets.7"/>
@@ -3507,17 +3507,17 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="interfaceId" source="//@sourceSectionModel.0/@metaModelSections.20/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel.0/@metaModelSections.25/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Target" affectedReference="//@targetSectionModel.0/@metaModelSections.25/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.24/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="interfaceId" source="//@sourceSectionModel.0/@metaModelSections.20/@attributes.0" modifier="//@mappingModel.0/@modifierSets.9"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Source" affectedReference="//@targetSectionModel.0/@metaModelSections.25/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Source" affectedReference="//@targetSectionModel.0/@metaModelSections.25/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.24/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.9"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.25/@references.2">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.25/@references.2">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="interfaceId" source="//@sourceSectionModel.0/@metaModelSections.20/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
           </matcher>
@@ -3527,7 +3527,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.27/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="interfaceId" source="//@sourceSectionModel.0/@metaModelSections.20/@attributes.0" modifier="//@mappingModel.0/@modifierSets.11"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.27/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.27/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="interfaceId" source="//@sourceSectionModel.0/@metaModelSections.20/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
           </matcher>
@@ -3539,7 +3539,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.28/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.21/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="SignalOnChange" affectedReference="//@targetSectionModel.0/@metaModelSections.28/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="SignalOnChange" affectedReference="//@targetSectionModel.0/@metaModelSections.28/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.30/@attributes.1">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.21/@attributes.2" modifier="//@mappingModel.0/@modifierSets.8"/>
           </matcher>
@@ -3557,7 +3557,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.29/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.22/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="SignalOnChange" affectedReference="//@targetSectionModel.0/@metaModelSections.29/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="SignalOnChange" affectedReference="//@targetSectionModel.0/@metaModelSections.29/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.30/@attributes.1">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.22/@attributes.2" modifier="//@mappingModel.0/@modifierSets.8"/>
           </matcher>
@@ -3584,7 +3584,7 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.3/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.11"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.39/@references.1/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.39/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.3/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.7"/>
@@ -3596,7 +3596,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.39/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.1/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.3/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.19"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.39/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.39/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.3/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.7"/>
@@ -3605,7 +3605,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.39/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.3/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.20"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="DataItem" affectedReference="//@targetSectionModel.0/@metaModelSections.39/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataItem" affectedReference="//@targetSectionModel.0/@metaModelSections.39/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.29/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="variableId" source="//@sourceSectionModel.0/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
           </matcher>
@@ -3635,7 +3635,7 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.4/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.11"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.40/@references.1/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.40/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.4/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.7"/>
@@ -3647,7 +3647,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.40/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.1/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.4/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.19"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.40/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.40/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.4/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.7"/>
@@ -3656,7 +3656,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.40/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.4/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.20"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="DataItem" affectedReference="//@targetSectionModel.0/@metaModelSections.40/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataItem" affectedReference="//@targetSectionModel.0/@metaModelSections.40/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.28/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="variableId" source="//@sourceSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
           </matcher>
@@ -3686,7 +3686,7 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.11"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.1/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.7"/>
@@ -3698,7 +3698,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.1/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.19"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.7"/>
@@ -3707,12 +3707,12 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.20"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="DataItem" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.1">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataItem" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.28/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="variableId" source="//@sourceSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="InputPinType" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.2/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="InputPinType" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.2/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.12/@attributes.2">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0"/>
@@ -3730,7 +3730,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.2/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel.0/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel.0/@modifierSets.20"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="OutputPinType" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.2/@references.0/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="OutputPinType" affectedReference="//@targetSectionModel.0/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.2/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.12/@attributes.2">
             <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0"/>

@@ -580,7 +580,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		
 							if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
 									setting.getEObject() instanceof ContainerSelectorTargetAttribute) {
-								// do nothing as ModelConnectionHints are handled below separately
+								// do nothing as ContainerSelectors are handled below separately
 							} else {
 								// redirect the reference (we can always use the 'last' of the concrete objects as we just added it above
 								setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
@@ -595,13 +595,13 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		}
 		
 		/*
-		 * Now, we handle the ModelConnectionHints that we skipped above. We can do this now as we now know all concrete TargetSections that
-		 * are a possible match for each ModelConnectionHint that points to an abstract TargetSection.
+		 * Now, we handle the ContainerSelectors that we skipped above. We can do this now as we now know all concrete TargetSections that
+		 * are a possible match for each ContainerSelector that points to an abstract TargetSection.
 		 */
 		for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
 			for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
 				/*
-				 * as ModelConnectionHints will get treated differently (see below), we store the ModelConnectionHintTargetAttributes
+				 * as ContainerSelectors will get treated differently (see below), we store the ContainerSelectorTargetAttributes
 				 * holding the referneces to the Attributes in the abstract section and will delete these later
 				 */
 				ArrayList<ContainerSelectorTargetAttribute> mchTargetAttributesToDelete = new ArrayList<>();
@@ -632,12 +632,12 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		
 						/* 
 						 * check if the hint group or its parent mapping equals the section that we just added the concrete elements to or
-						 * if we are dealing with a model ModelConnectionHintTargetAttribute
+						 * if we are dealing with a model ContainerSelectorTargetAttribute
 						 */
 						if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
 								setting.getEObject() instanceof ContainerSelectorTargetAttribute) {
 		
-							// in this case, we must not simply redirect but we create a new ModelConnectionHintTargetAttribute
+							// in this case, we must not simply redirect but we create a new ContainerSelectorTargetAttribute
 							ContainerSelectorTargetAttribute original = (ContainerSelectorTargetAttribute) setting.getEObject();
 		
 							for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap.get(referencedObject)) {
@@ -702,7 +702,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		
 				Collection<MappingHintBaseType> hintsToCopy = new BasicEList<>();
 				/*
-				 * Collect all hints that will get copied. Those are all mapping hints (including ModelConnectionHints) that are not
+				 * Collect all hints that will get copied. Those are all mapping hints (including ContainerSelectors) that are not
 				 * 'overwritten' by hints of the concrete HintGroup.
 				 */
 				for (MappingHint abstractHint : abstractHintGroup.getMappingHints()) {

@@ -37,7 +37,7 @@ public interface ContainerSelector extends MappingHintBaseType {
 	 * @return the value of the '<em>Target Attributes</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getContainerSelector_TargetAttributes()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModelConnectionHint!targetAttributes'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ContainerSelector!targetAttributes'"
 	 * @generated
 	 */
 	EList<ContainerSelectorTargetAttribute> getTargetAttributes();
@@ -54,7 +54,7 @@ public interface ContainerSelector extends MappingHintBaseType {
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getContainerSelector_SourceElements()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModelConnectionHint!sourceElements'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ContainerSelector!sourceElements'"
 	 * @generated
 	 */
 	EList<ContainerSelectorSourceInterface> getSourceElements();
@@ -63,7 +63,7 @@ public interface ContainerSelector extends MappingHintBaseType {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModelConnectionHint!getSourceAttributes()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ContainerSelector!getSourceAttributes()'"
 	 * @generated
 	 */
 	EList<ActualSourceSectionAttribute> getSourceAttributes();
@@ -72,7 +72,7 @@ public interface ContainerSelector extends MappingHintBaseType {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\tEList<ModelConnectionHintSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ModelConnectionHintSourceElement>();\r\n\t\t\r\n\t\tfor(ModelConnectionHintSourceInterface i : this.getSourceElements()){\r\n\t\t\tif(i instanceof ModelConnectionHintSourceElement){\r\n\t\t\t\telements.add((ModelConnectionHintSourceElement) i);\r\n\t\t\t}\r\n\t\t}\r\n\t\t\r\n\t\treturn elements;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\tEList<ContainerSelectorSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ContainerSelectorSourceElement>();\r\n\t\t\r\n\t\tfor(ContainerSelectorSourceInterface i : this.getSourceElements()){\r\n\t\t\tif(i instanceof ContainerSelectorSourceElement){\r\n\t\t\t\telements.add((ContainerSelectorSourceElement) i);\r\n\t\t\t}\r\n\t\t}\r\n\t\t\r\n\t\treturn elements;'"
 	 * @generated
 	 */
 	EList<ContainerSelectorSourceElement> getLocalSourceElements();
@@ -81,7 +81,7 @@ public interface ContainerSelector extends MappingHintBaseType {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<ModelConnectionHintExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();\r\n\r\nfor(ModelConnectionHintSourceInterface i : this.getSourceElements()){\r\n\tif(i instanceof ModelConnectionHintExternalSourceElement){\r\n\t\telements.add((ModelConnectionHintExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<ContainerSelectorExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();\r\n\r\nfor(ContainerSelectorSourceInterface i : this.getSourceElements()){\r\n\tif(i instanceof ContainerSelectorExternalSourceElement){\r\n\t\telements.add((ContainerSelectorExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
 	 * @generated
 	 */
 	EList<ContainerSelectorExternalSourceElement> getExternalSourceElements();

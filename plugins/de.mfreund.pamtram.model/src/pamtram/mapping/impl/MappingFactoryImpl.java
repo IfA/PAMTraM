@@ -285,8 +285,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * @generated
 	 */
 	public ContainerSelector createContainerSelector() {
-		ContainerSelectorImpl modelConnectionHint = new ContainerSelectorImpl();
-		return modelConnectionHint;
+		ContainerSelectorImpl containerSelector = new ContainerSelectorImpl();
+		return containerSelector;
 	}
 	
 	/**
@@ -316,8 +316,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * @generated
 	 */
 	public ContainerSelectorSourceElement createContainerSelectorSourceElement() {
-		ContainerSelectorSourceElementImpl modelConnectionHintSourceElement = new ContainerSelectorSourceElementImpl();
-		return modelConnectionHintSourceElement;
+		ContainerSelectorSourceElementImpl containerSelectorSourceElement = new ContainerSelectorSourceElementImpl();
+		return containerSelectorSourceElement;
 	}
 
 	/**
@@ -326,8 +326,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * @generated
 	 */
 	public ContainerSelectorTargetAttribute createContainerSelectorTargetAttribute() {
-		ContainerSelectorTargetAttributeImpl modelConnectionHintTargetAttribute = new ContainerSelectorTargetAttributeImpl();
-		return modelConnectionHintTargetAttribute;
+		ContainerSelectorTargetAttributeImpl containerSelectorTargetAttribute = new ContainerSelectorTargetAttributeImpl();
+		return containerSelectorTargetAttribute;
 	}
 
 	/**
@@ -406,8 +406,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * @generated
 	 */
 	public ContainerSelectorExternalSourceElement createContainerSelectorExternalSourceElement() {
-		ContainerSelectorExternalSourceElementImpl modelConnectionHintExternalSourceElement = new ContainerSelectorExternalSourceElementImpl();
-		return modelConnectionHintExternalSourceElement;
+		ContainerSelectorExternalSourceElementImpl containerSelectorExternalSourceElement = new ContainerSelectorExternalSourceElementImpl();
+		return containerSelectorExternalSourceElement;
 	}
 
 	/**
@@ -486,8 +486,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * @generated
 	 */
 	public ContainerSelectorGlobalSourceElement createContainerSelectorGlobalSourceElement() {
-		ContainerSelectorGlobalSourceElementImpl modelConnectionHintGlobalSourceElement = new ContainerSelectorGlobalSourceElementImpl();
-		return modelConnectionHintGlobalSourceElement;
+		ContainerSelectorGlobalSourceElementImpl containerSelectorGlobalSourceElement = new ContainerSelectorGlobalSourceElementImpl();
+		return containerSelectorGlobalSourceElement;
 	}
 
 	/**

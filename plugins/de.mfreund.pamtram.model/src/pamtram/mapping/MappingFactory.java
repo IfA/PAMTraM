@@ -187,10 +187,10 @@ public interface MappingFactory extends EFactory {
 	ExportedMappingHintGroup createExportedMappingHintGroup();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint</em>'.
+	 * Returns a new object of class '<em>Container Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint</em>'.
+	 * @return a new object of class '<em>Container Selector</em>'.
 	 * @generated
 	 */
 	ContainerSelector createContainerSelector();
@@ -212,19 +212,19 @@ public interface MappingFactory extends EFactory {
 	AttributeMappingSourceElement createAttributeMappingSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint Source Element</em>'.
+	 * Returns a new object of class '<em>Container Selector Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint Source Element</em>'.
+	 * @return a new object of class '<em>Container Selector Source Element</em>'.
 	 * @generated
 	 */
 	ContainerSelectorSourceElement createContainerSelectorSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint Target Attribute</em>'.
+	 * Returns a new object of class '<em>Container Selector Target Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint Target Attribute</em>'.
+	 * @return a new object of class '<em>Container Selector Target Attribute</em>'.
 	 * @generated
 	 */
 	ContainerSelectorTargetAttribute createContainerSelectorTargetAttribute();
@@ -293,10 +293,10 @@ public interface MappingFactory extends EFactory {
 	AttributeMappingExternalSourceElement createAttributeMappingExternalSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint External Source Element</em>'.
+	 * Returns a new object of class '<em>Container Selector External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint External Source Element</em>'.
+	 * @return a new object of class '<em>Container Selector External Source Element</em>'.
 	 * @generated
 	 */
 	ContainerSelectorExternalSourceElement createContainerSelectorExternalSourceElement();
@@ -365,10 +365,10 @@ public interface MappingFactory extends EFactory {
 	AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint Global Source Element</em>'.
+	 * Returns a new object of class '<em>Container Selector Global Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint Global Source Element</em>'.
+	 * @return a new object of class '<em>Container Selector Global Source Element</em>'.
 	 * @generated
 	 */
 	ContainerSelectorGlobalSourceElement createContainerSelectorGlobalSourceElement();

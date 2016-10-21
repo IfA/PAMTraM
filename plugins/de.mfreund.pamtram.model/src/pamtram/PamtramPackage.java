@@ -531,7 +531,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2 = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MAPPING_MODEL___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1 = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
@@ -540,7 +540,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2 = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int MAPPING_MODEL___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1 = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Active Mappings</em>' operation.
@@ -604,7 +604,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2 = 0;
+	int CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1 = 0;
 
 	/**
 	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
@@ -613,7 +613,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2 = 1;
+	int CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1 = 1;
 
 	/**
 	 * The number of operations of the '<em>Conditional Element</em>' class.
@@ -1009,7 +1009,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.ConditionalElement#eitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2();
+	EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_1();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.ConditionalElement#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Reference Only Conditions From Condition Model</em>}' operation.
@@ -1019,7 +1019,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.ConditionalElement#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2();
+	EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_1();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.ConditionModel <em>Condition Model</em>}'.
@@ -1335,7 +1335,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2();
+		EOperation CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_1();
 
 		/**
 		 * The meta object literal for the '<em><b>Reference Only Conditions From Condition Model</b></em>' operation.
@@ -1343,7 +1343,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2();
+		EOperation CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_1();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.ConditionModelImpl <em>Condition Model</em>}' class.

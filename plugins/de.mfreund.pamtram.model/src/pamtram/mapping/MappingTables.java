@@ -75,6 +75,11 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_CardinalityMapping = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("CardinalityMapping", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class = pamtram.mapping.MappingTables.PACKid_$metamodel$.getClassId("Class", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class_0 = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Class", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ContainerSelector = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ContainerSelector", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ContainerSelectorExternalSourceElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ContainerSelectorExternalSourceElement", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ContainerSelectorSourceElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ContainerSelectorSourceElement", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ContainerSelectorSourceInterface = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ContainerSelectorSourceInterface", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ContainerSelectorTargetAttribute = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ContainerSelectorTargetAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_EAttribute = pamtram.mapping.MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_EClass = pamtram.mapping.MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EClass", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_EReference = pamtram.mapping.MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EReference", 0);
@@ -93,11 +98,6 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappingHintType = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappingHintType", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappingModel = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("MappingModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Matcher = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("Matcher", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModelConnectionHint = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModelConnectionHint", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModelConnectionHintExternalSourceElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModelConnectionHintExternalSourceElement", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModelConnectionHintSourceElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModelConnectionHintSourceElement", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModelConnectionHintSourceInterface = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModelConnectionHintSourceInterface", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModelConnectionHintTargetAttribute = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModelConnectionHintTargetAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModifiableHint = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModifiableHint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModifiedAttributeElementType = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModifiedAttributeElementType", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_NamedElement = pamtram.mapping.MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("NamedElement", 0);
@@ -131,12 +131,12 @@ public class MappingTables
     public static final /*@NonInvalid*/ java.lang.String STR_Cardinality_32_mappings_32_may_32_only_32_be_32_defined_32_for_32_source_32_classes_32_with = "Cardinality mappings may only be defined for source classes with a specified cardinality distinct from \'CardinalityType::ONE\'!";
     public static final /*@NonInvalid*/ java.lang.String STR_Cardinality_32_mappings_32_may_32_only_32_be_32_defined_32_for_32_target_32_classes_32_with = "Cardinality mappings may only be defined for target classes with a specified cardinality distinct from \'CardinalityType::ONE\'!";
     public static final /*@NonInvalid*/ java.lang.String STR_Cardinality_32_mappings_32_must_32_not_32_be_32_defined_32_for_32_SourceSection_32_root_32 = "Cardinality mappings must not be defined for SourceSection root classes!";
+    public static final /*@NonInvalid*/ java.lang.String STR_ContainerSelectorTargetAttribute_c_c_sourceMatchesPossibleContainer = "ContainerSelectorTargetAttribute::sourceMatchesPossibleContainerType";
     public static final /*@NonInvalid*/ java.lang.String STR_ExternalModifiedAttributeElementType_c_c_sourceAttributeMatchesCont = "ExternalModifiedAttributeElementType::sourceAttributeMatchesContainerSection";
     public static final /*@NonInvalid*/ java.lang.String STR_GlobalAttribute_c_c_sourceAttributeHasUpperBoundOne = "GlobalAttribute::sourceAttributeHasUpperBoundOne";
     public static final /*@NonInvalid*/ java.lang.String STR_Global_32_attributes_32_may_32_only_32_be_32_defined_32_for_32_attributes_32_that_32_have_32_a = "Global attributes may only be defined for attributes that have an upper bound of 1!";
     public static final /*@NonInvalid*/ java.lang.String STR_Mapping_c_c_containsDeactivatedHintGroups = "Mapping::containsDeactivatedHintGroups";
     public static final /*@NonInvalid*/ java.lang.String STR_Mapping_c_c_containsHintGroups = "Mapping::containsHintGroups";
-    public static final /*@NonInvalid*/ java.lang.String STR_ModelConnectionHintTargetAttribute_c_c_sourceMatchesPossibleContain = "ModelConnectionHintTargetAttribute::sourceMatchesPossibleContainerType";
     public static final /*@NonInvalid*/ java.lang.String STR_ReferenceTargetSelector_c_c_affectedReferenceIsNonContainment = "ReferenceTargetSelector::affectedReferenceIsNonContainment";
     public static final /*@NonInvalid*/ java.lang.String STR_ReferenceTargetSelector_c_c_affectedReferenceMatchesSection = "ReferenceTargetSelector::affectedReferenceMatchesSection";
     public static final /*@NonInvalid*/ java.lang.String STR_The_32_affected_32_reference_32_39 = "The affected reference \'";
@@ -172,6 +172,8 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationLiteralId ELITid_ONE = pamtram.mapping.MappingTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_AttributeMappingSourceInterface = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeMappingSourceInterface);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_AttributeMatcherSourceInterface = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeMatcherSourceInterface);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ContainerSelectorSourceInterface = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ContainerSelectorSourceInterface);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ContainerSelectorTargetAttribute = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ContainerSelectorTargetAttribute);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_EReference = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_EReference);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ExpandableHint = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ExpandableHint);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_GlobalAttribute = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_GlobalAttribute);
@@ -180,8 +182,6 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_MappingHintGroupImporter = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_MappingHintGroupImporter);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_MappingHintGroupType = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_MappingHintGroupType);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_MappingHintType = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_MappingHintType);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ModelConnectionHintSourceInterface = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ModelConnectionHintSourceInterface);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ModelConnectionHintTargetAttribute = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ModelConnectionHintTargetAttribute);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueModifier = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ValueModifier);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueModifierSet = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ValueModifierSet);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_ActualSourceSectionAttribute = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ActualSourceSectionAttribute);
@@ -189,8 +189,8 @@ public class MappingTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_AttributeMappingSourceElement = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeMappingSourceElement);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_AttributeMatcherExternalSourceElement = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeMatcherExternalSourceElement);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_AttributeMatcherSourceElement = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_AttributeMatcherSourceElement);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_ModelConnectionHintExternalSourceElement = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ModelConnectionHintExternalSourceElement);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_ModelConnectionHintSourceElement = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ModelConnectionHintSourceElement);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_ContainerSelectorExternalSourceElement = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ContainerSelectorExternalSourceElement);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_ContainerSelectorSourceElement = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.mapping.MappingTables.CLSSid_ContainerSelectorSourceElement);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -252,6 +252,12 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _AttributeMatcherSourceInterface = new EcoreExecutorType(MappingPackage.Literals.ATTRIBUTE_MATCHER_SOURCE_INTERFACE, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _CardinalityMapping = new EcoreExecutorType(MappingPackage.Literals.CARDINALITY_MAPPING, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ClassMatcher = new EcoreExecutorType(MappingPackage.Literals.CLASS_MATCHER, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ContainerSelector = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ContainerSelectorExternalSourceElement = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ContainerSelectorGlobalSourceElement = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ContainerSelectorSourceElement = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_SOURCE_ELEMENT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ContainerSelectorSourceInterface = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_SOURCE_INTERFACE, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final /*@NonNull*/ EcoreExecutorType _ContainerSelectorTargetAttribute = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_TARGET_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExpandableHint = new EcoreExecutorType(MappingPackage.Literals.EXPANDABLE_HINT, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _ExportedMappingHintGroup = new EcoreExecutorType(MappingPackage.Literals.EXPORTED_MAPPING_HINT_GROUP, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExpressionHint = new EcoreExecutorType(MappingPackage.Literals.EXPRESSION_HINT, PACKAGE, 0 | ExecutorType.ABSTRACT);
@@ -282,12 +288,6 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _MatchToLowerCaseConverter = new EcoreExecutorType(MappingPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _MatchToUpperCaseConverter = new EcoreExecutorType(MappingPackage.Literals.MATCH_TO_UPPER_CASE_CONVERTER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _Matcher = new EcoreExecutorType(MappingPackage.Literals.MATCHER, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHint = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintExternalSourceElement = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintGlobalSourceElement = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintSourceElement = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_SOURCE_ELEMENT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintSourceInterface = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_SOURCE_INTERFACE, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintTargetAttribute = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_TARGET_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ModifiableHint = new EcoreExecutorType(MappingPackage.Literals.MODIFIABLE_HINT, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _ModifiedAttributeElementType = new EcoreExecutorType(MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._ModifiedAttributeElementType_S, TypeParameters._ModifiedAttributeElementType_C, TypeParameters._ModifiedAttributeElementType_R, TypeParameters._ModifiedAttributeElementType_A);
 		public static final /*@NonNull*/ EcoreExecutorType _ReferenceTargetSelector = new EcoreExecutorType(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR, PACKAGE, 0);
@@ -311,6 +311,12 @@ public class MappingTables
 			_AttributeMatcherSourceInterface,
 			_CardinalityMapping,
 			_ClassMatcher,
+			_ContainerSelector,
+			_ContainerSelectorExternalSourceElement,
+			_ContainerSelectorGlobalSourceElement,
+			_ContainerSelectorSourceElement,
+			_ContainerSelectorSourceInterface,
+			_ContainerSelectorTargetAttribute,
 			_ExpandableHint,
 			_ExportedMappingHintGroup,
 			_ExpressionHint,
@@ -341,12 +347,6 @@ public class MappingTables
 			_MatchToLowerCaseConverter,
 			_MatchToUpperCaseConverter,
 			_Matcher,
-			_ModelConnectionHint,
-			_ModelConnectionHintExternalSourceElement,
-			_ModelConnectionHintGlobalSourceElement,
-			_ModelConnectionHintSourceElement,
-			_ModelConnectionHintSourceInterface,
-			_ModelConnectionHintTargetAttribute,
 			_ModifiableHint,
 			_ModifiedAttributeElementType,
 			_ReferenceTargetSelector,
@@ -481,6 +481,51 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _ClassMatcher__OclAny = new ExecutorFragment(Types._ClassMatcher, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _ClassMatcher__OclElement = new ExecutorFragment(Types._ClassMatcher, OCLstdlibTables.Types._OclElement);
 
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelector__ContainerSelector = new ExecutorFragment(Types._ContainerSelector, MappingTables.Types._ContainerSelector);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelector__MappingHintBaseType = new ExecutorFragment(Types._ContainerSelector, MappingTables.Types._MappingHintBaseType);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelector__NamedElement = new ExecutorFragment(Types._ContainerSelector, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelector__OclAny = new ExecutorFragment(Types._ContainerSelector, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelector__OclElement = new ExecutorFragment(Types._ContainerSelector, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorExternalSourceElement__ContainerSelectorExternalSourceElement = new ExecutorFragment(Types._ContainerSelectorExternalSourceElement, MappingTables.Types._ContainerSelectorExternalSourceElement);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorExternalSourceElement__ContainerSelectorSourceInterface = new ExecutorFragment(Types._ContainerSelectorExternalSourceElement, MappingTables.Types._ContainerSelectorSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorExternalSourceElement__ExternalModifiedAttributeElementType = new ExecutorFragment(Types._ContainerSelectorExternalSourceElement, MappingTables.Types._ExternalModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorExternalSourceElement__MappingHintSourceInterface = new ExecutorFragment(Types._ContainerSelectorExternalSourceElement, MappingTables.Types._MappingHintSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorExternalSourceElement__ModifiedAttributeElementType = new ExecutorFragment(Types._ContainerSelectorExternalSourceElement, MappingTables.Types._ModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorExternalSourceElement__NamedElement = new ExecutorFragment(Types._ContainerSelectorExternalSourceElement, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorExternalSourceElement__OclAny = new ExecutorFragment(Types._ContainerSelectorExternalSourceElement, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorExternalSourceElement__OclElement = new ExecutorFragment(Types._ContainerSelectorExternalSourceElement, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorGlobalSourceElement__ContainerSelectorGlobalSourceElement = new ExecutorFragment(Types._ContainerSelectorGlobalSourceElement, MappingTables.Types._ContainerSelectorGlobalSourceElement);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorGlobalSourceElement__ContainerSelectorSourceInterface = new ExecutorFragment(Types._ContainerSelectorGlobalSourceElement, MappingTables.Types._ContainerSelectorSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorGlobalSourceElement__GlobalModifiedAttributeElementType = new ExecutorFragment(Types._ContainerSelectorGlobalSourceElement, MappingTables.Types._GlobalModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorGlobalSourceElement__MappingHintSourceInterface = new ExecutorFragment(Types._ContainerSelectorGlobalSourceElement, MappingTables.Types._MappingHintSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorGlobalSourceElement__ModifiedAttributeElementType = new ExecutorFragment(Types._ContainerSelectorGlobalSourceElement, MappingTables.Types._ModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorGlobalSourceElement__NamedElement = new ExecutorFragment(Types._ContainerSelectorGlobalSourceElement, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorGlobalSourceElement__OclAny = new ExecutorFragment(Types._ContainerSelectorGlobalSourceElement, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorGlobalSourceElement__OclElement = new ExecutorFragment(Types._ContainerSelectorGlobalSourceElement, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceElement__ContainerSelectorSourceElement = new ExecutorFragment(Types._ContainerSelectorSourceElement, MappingTables.Types._ContainerSelectorSourceElement);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceElement__ContainerSelectorSourceInterface = new ExecutorFragment(Types._ContainerSelectorSourceElement, MappingTables.Types._ContainerSelectorSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceElement__LocalModifiedAttributeElementType = new ExecutorFragment(Types._ContainerSelectorSourceElement, MappingTables.Types._LocalModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceElement__MappingHintSourceInterface = new ExecutorFragment(Types._ContainerSelectorSourceElement, MappingTables.Types._MappingHintSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceElement__ModifiedAttributeElementType = new ExecutorFragment(Types._ContainerSelectorSourceElement, MappingTables.Types._ModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceElement__NamedElement = new ExecutorFragment(Types._ContainerSelectorSourceElement, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceElement__OclAny = new ExecutorFragment(Types._ContainerSelectorSourceElement, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceElement__OclElement = new ExecutorFragment(Types._ContainerSelectorSourceElement, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceInterface__ContainerSelectorSourceInterface = new ExecutorFragment(Types._ContainerSelectorSourceInterface, MappingTables.Types._ContainerSelectorSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceInterface__MappingHintSourceInterface = new ExecutorFragment(Types._ContainerSelectorSourceInterface, MappingTables.Types._MappingHintSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceInterface__NamedElement = new ExecutorFragment(Types._ContainerSelectorSourceInterface, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceInterface__OclAny = new ExecutorFragment(Types._ContainerSelectorSourceInterface, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorSourceInterface__OclElement = new ExecutorFragment(Types._ContainerSelectorSourceInterface, OCLstdlibTables.Types._OclElement);
+
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorTargetAttribute__ContainerSelectorTargetAttribute = new ExecutorFragment(Types._ContainerSelectorTargetAttribute, MappingTables.Types._ContainerSelectorTargetAttribute);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorTargetAttribute__ModifiedAttributeElementType = new ExecutorFragment(Types._ContainerSelectorTargetAttribute, MappingTables.Types._ModifiedAttributeElementType);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorTargetAttribute__NamedElement = new ExecutorFragment(Types._ContainerSelectorTargetAttribute, PamtramTables.Types._NamedElement);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorTargetAttribute__OclAny = new ExecutorFragment(Types._ContainerSelectorTargetAttribute, OCLstdlibTables.Types._OclAny);
+		private static final /*@NonNull*/ ExecutorFragment _ContainerSelectorTargetAttribute__OclElement = new ExecutorFragment(Types._ContainerSelectorTargetAttribute, OCLstdlibTables.Types._OclElement);
+
 		private static final /*@NonNull*/ ExecutorFragment _ExpandableHint__ExpandableHint = new ExecutorFragment(Types._ExpandableHint, MappingTables.Types._ExpandableHint);
 		private static final /*@NonNull*/ ExecutorFragment _ExpandableHint__OclAny = new ExecutorFragment(Types._ExpandableHint, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _ExpandableHint__OclElement = new ExecutorFragment(Types._ExpandableHint, OCLstdlibTables.Types._OclElement);
@@ -538,10 +583,10 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__AttributeMappingSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._AttributeMappingSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__AttributeMatcherSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._AttributeMatcherSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _FixedValue__ContainerSelectorSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._ContainerSelectorSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__FixedValue = new ExecutorFragment(Types._FixedValue, MappingTables.Types._FixedValue);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__InstancePointerSourceInterface = new ExecutorFragment(Types._FixedValue, MetamodelTables.Types._InstancePointerSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__MappingHintSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._MappingHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _FixedValue__ModelConnectionHintSourceInterface = new ExecutorFragment(Types._FixedValue, MappingTables.Types._ModelConnectionHintSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__NamedElement = new ExecutorFragment(Types._FixedValue, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__OclAny = new ExecutorFragment(Types._FixedValue, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _FixedValue__OclElement = new ExecutorFragment(Types._FixedValue, OCLstdlibTables.Types._OclElement);
@@ -554,10 +599,10 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__AttributeMappingSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._AttributeMappingSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__AttributeMatcherSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._AttributeMatcherSourceInterface);
+		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__ContainerSelectorSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._ContainerSelectorSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__GlobalAttributeImporter = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._GlobalAttributeImporter);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__InstancePointerSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MetamodelTables.Types._InstancePointerSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__MappingHintSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._MappingHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__ModelConnectionHintSourceInterface = new ExecutorFragment(Types._GlobalAttributeImporter, MappingTables.Types._ModelConnectionHintSourceInterface);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__NamedElement = new ExecutorFragment(Types._GlobalAttributeImporter, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__OclAny = new ExecutorFragment(Types._GlobalAttributeImporter, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _GlobalAttributeImporter__OclElement = new ExecutorFragment(Types._GlobalAttributeImporter, OCLstdlibTables.Types._OclElement);
@@ -708,51 +753,6 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorFragment _Matcher__OclAny = new ExecutorFragment(Types._Matcher, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _Matcher__OclElement = new ExecutorFragment(Types._Matcher, OCLstdlibTables.Types._OclElement);
 
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHint__MappingHintBaseType = new ExecutorFragment(Types._ModelConnectionHint, MappingTables.Types._MappingHintBaseType);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHint__ModelConnectionHint = new ExecutorFragment(Types._ModelConnectionHint, MappingTables.Types._ModelConnectionHint);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHint__NamedElement = new ExecutorFragment(Types._ModelConnectionHint, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHint__OclAny = new ExecutorFragment(Types._ModelConnectionHint, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHint__OclElement = new ExecutorFragment(Types._ModelConnectionHint, OCLstdlibTables.Types._OclElement);
-
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintExternalSourceElement__ExternalModifiedAttributeElementType = new ExecutorFragment(Types._ModelConnectionHintExternalSourceElement, MappingTables.Types._ExternalModifiedAttributeElementType);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintExternalSourceElement__MappingHintSourceInterface = new ExecutorFragment(Types._ModelConnectionHintExternalSourceElement, MappingTables.Types._MappingHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintExternalSourceElement__ModelConnectionHintExternalSourceElement = new ExecutorFragment(Types._ModelConnectionHintExternalSourceElement, MappingTables.Types._ModelConnectionHintExternalSourceElement);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintExternalSourceElement__ModelConnectionHintSourceInterface = new ExecutorFragment(Types._ModelConnectionHintExternalSourceElement, MappingTables.Types._ModelConnectionHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintExternalSourceElement__ModifiedAttributeElementType = new ExecutorFragment(Types._ModelConnectionHintExternalSourceElement, MappingTables.Types._ModifiedAttributeElementType);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintExternalSourceElement__NamedElement = new ExecutorFragment(Types._ModelConnectionHintExternalSourceElement, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintExternalSourceElement__OclAny = new ExecutorFragment(Types._ModelConnectionHintExternalSourceElement, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintExternalSourceElement__OclElement = new ExecutorFragment(Types._ModelConnectionHintExternalSourceElement, OCLstdlibTables.Types._OclElement);
-
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintGlobalSourceElement__GlobalModifiedAttributeElementType = new ExecutorFragment(Types._ModelConnectionHintGlobalSourceElement, MappingTables.Types._GlobalModifiedAttributeElementType);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintGlobalSourceElement__MappingHintSourceInterface = new ExecutorFragment(Types._ModelConnectionHintGlobalSourceElement, MappingTables.Types._MappingHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintGlobalSourceElement__ModelConnectionHintGlobalSourceElement = new ExecutorFragment(Types._ModelConnectionHintGlobalSourceElement, MappingTables.Types._ModelConnectionHintGlobalSourceElement);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintGlobalSourceElement__ModelConnectionHintSourceInterface = new ExecutorFragment(Types._ModelConnectionHintGlobalSourceElement, MappingTables.Types._ModelConnectionHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintGlobalSourceElement__ModifiedAttributeElementType = new ExecutorFragment(Types._ModelConnectionHintGlobalSourceElement, MappingTables.Types._ModifiedAttributeElementType);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintGlobalSourceElement__NamedElement = new ExecutorFragment(Types._ModelConnectionHintGlobalSourceElement, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintGlobalSourceElement__OclAny = new ExecutorFragment(Types._ModelConnectionHintGlobalSourceElement, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintGlobalSourceElement__OclElement = new ExecutorFragment(Types._ModelConnectionHintGlobalSourceElement, OCLstdlibTables.Types._OclElement);
-
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceElement__LocalModifiedAttributeElementType = new ExecutorFragment(Types._ModelConnectionHintSourceElement, MappingTables.Types._LocalModifiedAttributeElementType);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceElement__MappingHintSourceInterface = new ExecutorFragment(Types._ModelConnectionHintSourceElement, MappingTables.Types._MappingHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceElement__ModelConnectionHintSourceElement = new ExecutorFragment(Types._ModelConnectionHintSourceElement, MappingTables.Types._ModelConnectionHintSourceElement);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceElement__ModelConnectionHintSourceInterface = new ExecutorFragment(Types._ModelConnectionHintSourceElement, MappingTables.Types._ModelConnectionHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceElement__ModifiedAttributeElementType = new ExecutorFragment(Types._ModelConnectionHintSourceElement, MappingTables.Types._ModifiedAttributeElementType);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceElement__NamedElement = new ExecutorFragment(Types._ModelConnectionHintSourceElement, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceElement__OclAny = new ExecutorFragment(Types._ModelConnectionHintSourceElement, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceElement__OclElement = new ExecutorFragment(Types._ModelConnectionHintSourceElement, OCLstdlibTables.Types._OclElement);
-
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceInterface__MappingHintSourceInterface = new ExecutorFragment(Types._ModelConnectionHintSourceInterface, MappingTables.Types._MappingHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceInterface__ModelConnectionHintSourceInterface = new ExecutorFragment(Types._ModelConnectionHintSourceInterface, MappingTables.Types._ModelConnectionHintSourceInterface);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceInterface__NamedElement = new ExecutorFragment(Types._ModelConnectionHintSourceInterface, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceInterface__OclAny = new ExecutorFragment(Types._ModelConnectionHintSourceInterface, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintSourceInterface__OclElement = new ExecutorFragment(Types._ModelConnectionHintSourceInterface, OCLstdlibTables.Types._OclElement);
-
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintTargetAttribute__ModelConnectionHintTargetAttribute = new ExecutorFragment(Types._ModelConnectionHintTargetAttribute, MappingTables.Types._ModelConnectionHintTargetAttribute);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintTargetAttribute__ModifiedAttributeElementType = new ExecutorFragment(Types._ModelConnectionHintTargetAttribute, MappingTables.Types._ModifiedAttributeElementType);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintTargetAttribute__NamedElement = new ExecutorFragment(Types._ModelConnectionHintTargetAttribute, PamtramTables.Types._NamedElement);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintTargetAttribute__OclAny = new ExecutorFragment(Types._ModelConnectionHintTargetAttribute, OCLstdlibTables.Types._OclAny);
-		private static final /*@NonNull*/ ExecutorFragment _ModelConnectionHintTargetAttribute__OclElement = new ExecutorFragment(Types._ModelConnectionHintTargetAttribute, OCLstdlibTables.Types._OclElement);
-
 		private static final /*@NonNull*/ ExecutorFragment _ModifiableHint__ModifiableHint = new ExecutorFragment(Types._ModifiableHint, MappingTables.Types._ModifiableHint);
 		private static final /*@NonNull*/ ExecutorFragment _ModifiableHint__OclAny = new ExecutorFragment(Types._ModifiableHint, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _ModifiableHint__OclElement = new ExecutorFragment(Types._ModifiableHint, OCLstdlibTables.Types._OclElement);
@@ -855,6 +855,13 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorOperation _AttributeMatcher__getLocalSourceElements = new ExecutorOperation("getLocalSourceElements", TypeUtil.EMPTY_PARAMETER_TYPES, Types._AttributeMatcher,
 			1, TemplateParameters.EMPTY_LIST, null);
 
+		public static final /*@NonNull*/ ExecutorOperation _ContainerSelector__getExternalSourceElements = new ExecutorOperation("getExternalSourceElements", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ContainerSelector,
+			0, TemplateParameters.EMPTY_LIST, null);
+		public static final /*@NonNull*/ ExecutorOperation _ContainerSelector__getLocalSourceElements = new ExecutorOperation("getLocalSourceElements", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ContainerSelector,
+			1, TemplateParameters.EMPTY_LIST, null);
+		public static final /*@NonNull*/ ExecutorOperation _ContainerSelector__getSourceAttributes = new ExecutorOperation("getSourceAttributes", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ContainerSelector,
+			2, TemplateParameters.EMPTY_LIST, null);
+
 		public static final /*@NonNull*/ ExecutorOperation _MappedAttributeValueExpander__getModifiers = new ExecutorOperation("getModifiers", TypeUtil.EMPTY_PARAMETER_TYPES, Types._MappedAttributeValueExpander,
 			0, TemplateParameters.EMPTY_LIST, null);
 		public static final /*@NonNull*/ ExecutorOperation _MappedAttributeValueExpander__getSourceAttribute = new ExecutorOperation("getSourceAttribute", TypeUtil.EMPTY_PARAMETER_TYPES, Types._MappedAttributeValueExpander,
@@ -867,13 +874,6 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorOperation _MappingHintSourceInterface__getSourceAttribute = new ExecutorOperation("getSourceAttribute", TypeUtil.EMPTY_PARAMETER_TYPES, Types._MappingHintSourceInterface,
 			0, TemplateParameters.EMPTY_LIST, null);
-
-		public static final /*@NonNull*/ ExecutorOperation _ModelConnectionHint__getExternalSourceElements = new ExecutorOperation("getExternalSourceElements", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ModelConnectionHint,
-			0, TemplateParameters.EMPTY_LIST, null);
-		public static final /*@NonNull*/ ExecutorOperation _ModelConnectionHint__getLocalSourceElements = new ExecutorOperation("getLocalSourceElements", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ModelConnectionHint,
-			1, TemplateParameters.EMPTY_LIST, null);
-		public static final /*@NonNull*/ ExecutorOperation _ModelConnectionHint__getSourceAttributes = new ExecutorOperation("getSourceAttributes", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ModelConnectionHint,
-			2, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _ModifiedAttributeElementType__getMapping = new ExecutorOperation("getMapping", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ModifiedAttributeElementType,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -916,6 +916,14 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorProperty _CardinalityMapping__target = new EcoreExecutorProperty(MappingPackage.Literals.CARDINALITY_MAPPING__TARGET, Types._CardinalityMapping, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _ClassMatcher__targetClass = new EcoreExecutorProperty(MappingPackage.Literals.CLASS_MATCHER__TARGET_CLASS, Types._ClassMatcher, 0);
+
+		public static final /*@NonNull*/ ExecutorProperty _ContainerSelector__sourceElements = new EcoreExecutorProperty(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS, Types._ContainerSelector, 0);
+		public static final /*@NonNull*/ ExecutorProperty _ContainerSelector__targetAttributes = new EcoreExecutorProperty(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES, Types._ContainerSelector, 1);
+		public static final /*@NonNull*/ ExecutorProperty _ContainerSelector__MappingHintGroup__modelConnectionMatcher = new ExecutorPropertyWithImplementation("MappingHintGroup", Types._ContainerSelector, 2, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER));
+
+		public static final /*@NonNull*/ ExecutorProperty _ContainerSelectorSourceInterface__ContainerSelector__sourceElements = new ExecutorPropertyWithImplementation("ContainerSelector", Types._ContainerSelectorSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS));
+
+		public static final /*@NonNull*/ ExecutorProperty _ContainerSelectorTargetAttribute__ContainerSelector__targetAttributes = new ExecutorPropertyWithImplementation("ContainerSelector", Types._ContainerSelectorTargetAttribute, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES));
 
 		public static final /*@NonNull*/ ExecutorProperty _ExpandableHint__MappedAttributeValueExpander__hintsToExpand = new ExecutorPropertyWithImplementation("MappedAttributeValueExpander", Types._ExpandableHint, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND));
 
@@ -965,14 +973,6 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorProperty _MatchToUpperCaseConverter__regex = new EcoreExecutorProperty(MappingPackage.Literals.MATCH_TO_UPPER_CASE_CONVERTER__REGEX, Types._MatchToUpperCaseConverter, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _Matcher__ReferenceTargetSelector__matcher = new ExecutorPropertyWithImplementation("ReferenceTargetSelector", Types._Matcher, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER));
-
-		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__sourceElements = new EcoreExecutorProperty(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS, Types._ModelConnectionHint, 0);
-		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__targetAttributes = new EcoreExecutorProperty(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES, Types._ModelConnectionHint, 1);
-		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__MappingHintGroup__modelConnectionMatcher = new ExecutorPropertyWithImplementation("MappingHintGroup", Types._ModelConnectionHint, 2, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER));
-
-		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements = new ExecutorPropertyWithImplementation("ModelConnectionHint", Types._ModelConnectionHintSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS));
-
-		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHintTargetAttribute__ModelConnectionHint__targetAttributes = new ExecutorPropertyWithImplementation("ModelConnectionHint", Types._ModelConnectionHintTargetAttribute, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES));
 
 		public static final /*@NonNull*/ ExecutorProperty _ModifiableHint__resultModifier = new EcoreExecutorProperty(MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER, Types._ModifiableHint, 0);
 
@@ -1162,6 +1162,75 @@ public class MappingTables
 		};
 		private static final int /*@NonNull*/ [] __ClassMatcher = { 1,1,1,1 };
 
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ContainerSelector =
+		{
+			Fragments._ContainerSelector__OclAny /* 0 */,
+			Fragments._ContainerSelector__OclElement /* 1 */,
+			Fragments._ContainerSelector__NamedElement /* 2 */,
+			Fragments._ContainerSelector__MappingHintBaseType /* 3 */,
+			Fragments._ContainerSelector__ContainerSelector /* 4 */
+		};
+		private static final int /*@NonNull*/ [] __ContainerSelector = { 1,1,1,1,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ContainerSelectorExternalSourceElement =
+		{
+			Fragments._ContainerSelectorExternalSourceElement__OclAny /* 0 */,
+			Fragments._ContainerSelectorExternalSourceElement__OclElement /* 1 */,
+			Fragments._ContainerSelectorExternalSourceElement__NamedElement /* 2 */,
+			Fragments._ContainerSelectorExternalSourceElement__MappingHintSourceInterface /* 3 */,
+			Fragments._ContainerSelectorExternalSourceElement__ModifiedAttributeElementType /* 3 */,
+			Fragments._ContainerSelectorExternalSourceElement__ContainerSelectorSourceInterface /* 4 */,
+			Fragments._ContainerSelectorExternalSourceElement__ExternalModifiedAttributeElementType /* 4 */,
+			Fragments._ContainerSelectorExternalSourceElement__ContainerSelectorExternalSourceElement /* 5 */
+		};
+		private static final int /*@NonNull*/ [] __ContainerSelectorExternalSourceElement = { 1,1,1,2,2,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement =
+		{
+			Fragments._ContainerSelectorGlobalSourceElement__OclAny /* 0 */,
+			Fragments._ContainerSelectorGlobalSourceElement__OclElement /* 1 */,
+			Fragments._ContainerSelectorGlobalSourceElement__NamedElement /* 2 */,
+			Fragments._ContainerSelectorGlobalSourceElement__MappingHintSourceInterface /* 3 */,
+			Fragments._ContainerSelectorGlobalSourceElement__ModifiedAttributeElementType /* 3 */,
+			Fragments._ContainerSelectorGlobalSourceElement__ContainerSelectorSourceInterface /* 4 */,
+			Fragments._ContainerSelectorGlobalSourceElement__GlobalModifiedAttributeElementType /* 4 */,
+			Fragments._ContainerSelectorGlobalSourceElement__ContainerSelectorGlobalSourceElement /* 5 */
+		};
+		private static final int /*@NonNull*/ [] __ContainerSelectorGlobalSourceElement = { 1,1,1,2,2,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ContainerSelectorSourceElement =
+		{
+			Fragments._ContainerSelectorSourceElement__OclAny /* 0 */,
+			Fragments._ContainerSelectorSourceElement__OclElement /* 1 */,
+			Fragments._ContainerSelectorSourceElement__NamedElement /* 2 */,
+			Fragments._ContainerSelectorSourceElement__MappingHintSourceInterface /* 3 */,
+			Fragments._ContainerSelectorSourceElement__ModifiedAttributeElementType /* 3 */,
+			Fragments._ContainerSelectorSourceElement__ContainerSelectorSourceInterface /* 4 */,
+			Fragments._ContainerSelectorSourceElement__LocalModifiedAttributeElementType /* 4 */,
+			Fragments._ContainerSelectorSourceElement__ContainerSelectorSourceElement /* 5 */
+		};
+		private static final int /*@NonNull*/ [] __ContainerSelectorSourceElement = { 1,1,1,2,2,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ContainerSelectorSourceInterface =
+		{
+			Fragments._ContainerSelectorSourceInterface__OclAny /* 0 */,
+			Fragments._ContainerSelectorSourceInterface__OclElement /* 1 */,
+			Fragments._ContainerSelectorSourceInterface__NamedElement /* 2 */,
+			Fragments._ContainerSelectorSourceInterface__MappingHintSourceInterface /* 3 */,
+			Fragments._ContainerSelectorSourceInterface__ContainerSelectorSourceInterface /* 4 */
+		};
+		private static final int /*@NonNull*/ [] __ContainerSelectorSourceInterface = { 1,1,1,1,1 };
+
+		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ContainerSelectorTargetAttribute =
+		{
+			Fragments._ContainerSelectorTargetAttribute__OclAny /* 0 */,
+			Fragments._ContainerSelectorTargetAttribute__OclElement /* 1 */,
+			Fragments._ContainerSelectorTargetAttribute__NamedElement /* 2 */,
+			Fragments._ContainerSelectorTargetAttribute__ModifiedAttributeElementType /* 3 */,
+			Fragments._ContainerSelectorTargetAttribute__ContainerSelectorTargetAttribute /* 4 */
+		};
+		private static final int /*@NonNull*/ [] __ContainerSelectorTargetAttribute = { 1,1,1,1,1 };
+
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ExpandableHint =
 		{
 			Fragments._ExpandableHint__OclAny /* 0 */,
@@ -1253,8 +1322,8 @@ public class MappingTables
 			Fragments._FixedValue__MappingHintSourceInterface /* 3 */,
 			Fragments._FixedValue__AttributeMappingSourceInterface /* 4 */,
 			Fragments._FixedValue__AttributeMatcherSourceInterface /* 4 */,
+			Fragments._FixedValue__ContainerSelectorSourceInterface /* 4 */,
 			Fragments._FixedValue__InstancePointerSourceInterface /* 4 */,
-			Fragments._FixedValue__ModelConnectionHintSourceInterface /* 4 */,
 			Fragments._FixedValue__ValueConstraintSourceInterface /* 4 */,
 			Fragments._FixedValue__FixedValue /* 5 */
 		};
@@ -1277,8 +1346,8 @@ public class MappingTables
 			Fragments._GlobalAttributeImporter__MappingHintSourceInterface /* 3 */,
 			Fragments._GlobalAttributeImporter__AttributeMappingSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__AttributeMatcherSourceInterface /* 4 */,
+			Fragments._GlobalAttributeImporter__ContainerSelectorSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__InstancePointerSourceInterface /* 4 */,
-			Fragments._GlobalAttributeImporter__ModelConnectionHintSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__ValueConstraintSourceInterface /* 4 */,
 			Fragments._GlobalAttributeImporter__GlobalAttributeImporter /* 5 */
 		};
@@ -1509,75 +1578,6 @@ public class MappingTables
 		};
 		private static final int /*@NonNull*/ [] __Matcher = { 1,1,1 };
 
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ModelConnectionHint =
-		{
-			Fragments._ModelConnectionHint__OclAny /* 0 */,
-			Fragments._ModelConnectionHint__OclElement /* 1 */,
-			Fragments._ModelConnectionHint__NamedElement /* 2 */,
-			Fragments._ModelConnectionHint__MappingHintBaseType /* 3 */,
-			Fragments._ModelConnectionHint__ModelConnectionHint /* 4 */
-		};
-		private static final int /*@NonNull*/ [] __ModelConnectionHint = { 1,1,1,1,1 };
-
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement =
-		{
-			Fragments._ModelConnectionHintExternalSourceElement__OclAny /* 0 */,
-			Fragments._ModelConnectionHintExternalSourceElement__OclElement /* 1 */,
-			Fragments._ModelConnectionHintExternalSourceElement__NamedElement /* 2 */,
-			Fragments._ModelConnectionHintExternalSourceElement__MappingHintSourceInterface /* 3 */,
-			Fragments._ModelConnectionHintExternalSourceElement__ModifiedAttributeElementType /* 3 */,
-			Fragments._ModelConnectionHintExternalSourceElement__ExternalModifiedAttributeElementType /* 4 */,
-			Fragments._ModelConnectionHintExternalSourceElement__ModelConnectionHintSourceInterface /* 4 */,
-			Fragments._ModelConnectionHintExternalSourceElement__ModelConnectionHintExternalSourceElement /* 5 */
-		};
-		private static final int /*@NonNull*/ [] __ModelConnectionHintExternalSourceElement = { 1,1,1,2,2,1 };
-
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement =
-		{
-			Fragments._ModelConnectionHintGlobalSourceElement__OclAny /* 0 */,
-			Fragments._ModelConnectionHintGlobalSourceElement__OclElement /* 1 */,
-			Fragments._ModelConnectionHintGlobalSourceElement__NamedElement /* 2 */,
-			Fragments._ModelConnectionHintGlobalSourceElement__MappingHintSourceInterface /* 3 */,
-			Fragments._ModelConnectionHintGlobalSourceElement__ModifiedAttributeElementType /* 3 */,
-			Fragments._ModelConnectionHintGlobalSourceElement__GlobalModifiedAttributeElementType /* 4 */,
-			Fragments._ModelConnectionHintGlobalSourceElement__ModelConnectionHintSourceInterface /* 4 */,
-			Fragments._ModelConnectionHintGlobalSourceElement__ModelConnectionHintGlobalSourceElement /* 5 */
-		};
-		private static final int /*@NonNull*/ [] __ModelConnectionHintGlobalSourceElement = { 1,1,1,2,2,1 };
-
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ModelConnectionHintSourceElement =
-		{
-			Fragments._ModelConnectionHintSourceElement__OclAny /* 0 */,
-			Fragments._ModelConnectionHintSourceElement__OclElement /* 1 */,
-			Fragments._ModelConnectionHintSourceElement__NamedElement /* 2 */,
-			Fragments._ModelConnectionHintSourceElement__MappingHintSourceInterface /* 3 */,
-			Fragments._ModelConnectionHintSourceElement__ModifiedAttributeElementType /* 3 */,
-			Fragments._ModelConnectionHintSourceElement__LocalModifiedAttributeElementType /* 4 */,
-			Fragments._ModelConnectionHintSourceElement__ModelConnectionHintSourceInterface /* 4 */,
-			Fragments._ModelConnectionHintSourceElement__ModelConnectionHintSourceElement /* 5 */
-		};
-		private static final int /*@NonNull*/ [] __ModelConnectionHintSourceElement = { 1,1,1,2,2,1 };
-
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ModelConnectionHintSourceInterface =
-		{
-			Fragments._ModelConnectionHintSourceInterface__OclAny /* 0 */,
-			Fragments._ModelConnectionHintSourceInterface__OclElement /* 1 */,
-			Fragments._ModelConnectionHintSourceInterface__NamedElement /* 2 */,
-			Fragments._ModelConnectionHintSourceInterface__MappingHintSourceInterface /* 3 */,
-			Fragments._ModelConnectionHintSourceInterface__ModelConnectionHintSourceInterface /* 4 */
-		};
-		private static final int /*@NonNull*/ [] __ModelConnectionHintSourceInterface = { 1,1,1,1,1 };
-
-		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ModelConnectionHintTargetAttribute =
-		{
-			Fragments._ModelConnectionHintTargetAttribute__OclAny /* 0 */,
-			Fragments._ModelConnectionHintTargetAttribute__OclElement /* 1 */,
-			Fragments._ModelConnectionHintTargetAttribute__NamedElement /* 2 */,
-			Fragments._ModelConnectionHintTargetAttribute__ModifiedAttributeElementType /* 3 */,
-			Fragments._ModelConnectionHintTargetAttribute__ModelConnectionHintTargetAttribute /* 4 */
-		};
-		private static final int /*@NonNull*/ [] __ModelConnectionHintTargetAttribute = { 1,1,1,1,1 };
-
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _ModifiableHint =
 		{
 			Fragments._ModifiableHint__OclAny /* 0 */,
@@ -1682,6 +1682,12 @@ public class MappingTables
 			Types._AttributeMatcherSourceInterface.initFragments(_AttributeMatcherSourceInterface, __AttributeMatcherSourceInterface);
 			Types._CardinalityMapping.initFragments(_CardinalityMapping, __CardinalityMapping);
 			Types._ClassMatcher.initFragments(_ClassMatcher, __ClassMatcher);
+			Types._ContainerSelector.initFragments(_ContainerSelector, __ContainerSelector);
+			Types._ContainerSelectorExternalSourceElement.initFragments(_ContainerSelectorExternalSourceElement, __ContainerSelectorExternalSourceElement);
+			Types._ContainerSelectorGlobalSourceElement.initFragments(_ContainerSelectorGlobalSourceElement, __ContainerSelectorGlobalSourceElement);
+			Types._ContainerSelectorSourceElement.initFragments(_ContainerSelectorSourceElement, __ContainerSelectorSourceElement);
+			Types._ContainerSelectorSourceInterface.initFragments(_ContainerSelectorSourceInterface, __ContainerSelectorSourceInterface);
+			Types._ContainerSelectorTargetAttribute.initFragments(_ContainerSelectorTargetAttribute, __ContainerSelectorTargetAttribute);
 			Types._ExpandableHint.initFragments(_ExpandableHint, __ExpandableHint);
 			Types._ExportedMappingHintGroup.initFragments(_ExportedMappingHintGroup, __ExportedMappingHintGroup);
 			Types._ExpressionHint.initFragments(_ExpressionHint, __ExpressionHint);
@@ -1712,12 +1718,6 @@ public class MappingTables
 			Types._MatchToLowerCaseConverter.initFragments(_MatchToLowerCaseConverter, __MatchToLowerCaseConverter);
 			Types._MatchToUpperCaseConverter.initFragments(_MatchToUpperCaseConverter, __MatchToUpperCaseConverter);
 			Types._Matcher.initFragments(_Matcher, __Matcher);
-			Types._ModelConnectionHint.initFragments(_ModelConnectionHint, __ModelConnectionHint);
-			Types._ModelConnectionHintExternalSourceElement.initFragments(_ModelConnectionHintExternalSourceElement, __ModelConnectionHintExternalSourceElement);
-			Types._ModelConnectionHintGlobalSourceElement.initFragments(_ModelConnectionHintGlobalSourceElement, __ModelConnectionHintGlobalSourceElement);
-			Types._ModelConnectionHintSourceElement.initFragments(_ModelConnectionHintSourceElement, __ModelConnectionHintSourceElement);
-			Types._ModelConnectionHintSourceInterface.initFragments(_ModelConnectionHintSourceInterface, __ModelConnectionHintSourceInterface);
-			Types._ModelConnectionHintTargetAttribute.initFragments(_ModelConnectionHintTargetAttribute, __ModelConnectionHintTargetAttribute);
 			Types._ModifiableHint.initFragments(_ModifiableHint, __ModifiableHint);
 			Types._ModifiedAttributeElementType.initFragments(_ModifiedAttributeElementType, __ModifiedAttributeElementType);
 			Types._ReferenceTargetSelector.initFragments(_ReferenceTargetSelector, __ReferenceTargetSelector);
@@ -2174,6 +2174,219 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelector__ContainerSelector = {
+			MappingTables.Operations._ContainerSelector__getExternalSourceElements /* getExternalSourceElements() */,
+			MappingTables.Operations._ContainerSelector__getLocalSourceElements /* getLocalSourceElements() */,
+			MappingTables.Operations._ContainerSelector__getSourceAttributes /* getSourceAttributes() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelector__MappingHintBaseType = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelector__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelector__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelector__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorExternalSourceElement__ContainerSelectorExternalSourceElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorExternalSourceElement__ContainerSelectorSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorExternalSourceElement__ExternalModifiedAttributeElementType = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorExternalSourceElement__MappingHintSourceInterface = {
+			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorExternalSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
+			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorExternalSourceElement__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorExternalSourceElement__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorExternalSourceElement__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement__ContainerSelectorGlobalSourceElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement__ContainerSelectorSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement__GlobalModifiedAttributeElementType = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement__MappingHintSourceInterface = {
+			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
+			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceElement__ContainerSelectorSourceElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceElement__ContainerSelectorSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceElement__LocalModifiedAttributeElementType = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceElement__MappingHintSourceInterface = {
+			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceElement__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
+			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceElement__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceElement__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceElement__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceInterface__ContainerSelectorSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceInterface__MappingHintSourceInterface = {
+			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceInterface__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceInterface__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorSourceInterface__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorTargetAttribute__ContainerSelectorTargetAttribute = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorTargetAttribute__ModifiedAttributeElementType = {
+			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
+			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorTargetAttribute__NamedElement = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorTargetAttribute__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ContainerSelectorTargetAttribute__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ExpandableHint__ExpandableHint = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ExpandableHint__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -2421,11 +2634,11 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__FixedValue = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__AttributeMappingSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__AttributeMatcherSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__ContainerSelectorSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__InstancePointerSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__MappingHintSourceInterface = {
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__ModelConnectionHintSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FixedValue__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -2487,11 +2700,11 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__GlobalAttributeImporter = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__AttributeMappingSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__AttributeMatcherSourceInterface = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__ContainerSelectorSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__InstancePointerSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__MappingHintSourceInterface = {
 			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__ModelConnectionHintSourceInterface = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _GlobalAttributeImporter__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -3182,219 +3395,6 @@ public class MappingTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHint__ModelConnectionHint = {
-			MappingTables.Operations._ModelConnectionHint__getExternalSourceElements /* getExternalSourceElements() */,
-			MappingTables.Operations._ModelConnectionHint__getLocalSourceElements /* getLocalSourceElements() */,
-			MappingTables.Operations._ModelConnectionHint__getSourceAttributes /* getSourceAttributes() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHint__MappingHintBaseType = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHint__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHint__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHint__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement__ModelConnectionHintExternalSourceElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement__ExternalModifiedAttributeElementType = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement__MappingHintSourceInterface = {
-			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement__ModelConnectionHintSourceInterface = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement__ModifiedAttributeElementType = {
-			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
-			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement__ModelConnectionHintGlobalSourceElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement__GlobalModifiedAttributeElementType = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement__MappingHintSourceInterface = {
-			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement__ModelConnectionHintSourceInterface = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement__ModifiedAttributeElementType = {
-			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
-			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceElement__ModelConnectionHintSourceElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceElement__LocalModifiedAttributeElementType = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceElement__MappingHintSourceInterface = {
-			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceElement__ModelConnectionHintSourceInterface = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceElement__ModifiedAttributeElementType = {
-			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
-			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceElement__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceElement__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceElement__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceInterface__ModelConnectionHintSourceInterface = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceInterface__MappingHintSourceInterface = {
-			MappingTables.Operations._MappingHintSourceInterface__getSourceAttribute /* getSourceAttribute() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceInterface__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceInterface__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintSourceInterface__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintTargetAttribute__ModelConnectionHintTargetAttribute = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintTargetAttribute__ModifiedAttributeElementType = {
-			MappingTables.Operations._ModifiedAttributeElementType__getMapping /* getMapping() */,
-			MappingTables.Operations._ModifiedAttributeElementType__getMappingHintGroup /* getMappingHintGroup() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintTargetAttribute__NamedElement = {};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintTargetAttribute__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModelConnectionHintTargetAttribute__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModifiableHint__ModifiableHint = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ModifiableHint__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -3780,6 +3780,51 @@ public class MappingTables
 			Fragments._ClassMatcher__OclAny.initOperations(_ClassMatcher__OclAny);
 			Fragments._ClassMatcher__OclElement.initOperations(_ClassMatcher__OclElement);
 
+			Fragments._ContainerSelector__ContainerSelector.initOperations(_ContainerSelector__ContainerSelector);
+			Fragments._ContainerSelector__MappingHintBaseType.initOperations(_ContainerSelector__MappingHintBaseType);
+			Fragments._ContainerSelector__NamedElement.initOperations(_ContainerSelector__NamedElement);
+			Fragments._ContainerSelector__OclAny.initOperations(_ContainerSelector__OclAny);
+			Fragments._ContainerSelector__OclElement.initOperations(_ContainerSelector__OclElement);
+
+			Fragments._ContainerSelectorExternalSourceElement__ContainerSelectorExternalSourceElement.initOperations(_ContainerSelectorExternalSourceElement__ContainerSelectorExternalSourceElement);
+			Fragments._ContainerSelectorExternalSourceElement__ContainerSelectorSourceInterface.initOperations(_ContainerSelectorExternalSourceElement__ContainerSelectorSourceInterface);
+			Fragments._ContainerSelectorExternalSourceElement__ExternalModifiedAttributeElementType.initOperations(_ContainerSelectorExternalSourceElement__ExternalModifiedAttributeElementType);
+			Fragments._ContainerSelectorExternalSourceElement__MappingHintSourceInterface.initOperations(_ContainerSelectorExternalSourceElement__MappingHintSourceInterface);
+			Fragments._ContainerSelectorExternalSourceElement__ModifiedAttributeElementType.initOperations(_ContainerSelectorExternalSourceElement__ModifiedAttributeElementType);
+			Fragments._ContainerSelectorExternalSourceElement__NamedElement.initOperations(_ContainerSelectorExternalSourceElement__NamedElement);
+			Fragments._ContainerSelectorExternalSourceElement__OclAny.initOperations(_ContainerSelectorExternalSourceElement__OclAny);
+			Fragments._ContainerSelectorExternalSourceElement__OclElement.initOperations(_ContainerSelectorExternalSourceElement__OclElement);
+
+			Fragments._ContainerSelectorGlobalSourceElement__ContainerSelectorGlobalSourceElement.initOperations(_ContainerSelectorGlobalSourceElement__ContainerSelectorGlobalSourceElement);
+			Fragments._ContainerSelectorGlobalSourceElement__ContainerSelectorSourceInterface.initOperations(_ContainerSelectorGlobalSourceElement__ContainerSelectorSourceInterface);
+			Fragments._ContainerSelectorGlobalSourceElement__GlobalModifiedAttributeElementType.initOperations(_ContainerSelectorGlobalSourceElement__GlobalModifiedAttributeElementType);
+			Fragments._ContainerSelectorGlobalSourceElement__MappingHintSourceInterface.initOperations(_ContainerSelectorGlobalSourceElement__MappingHintSourceInterface);
+			Fragments._ContainerSelectorGlobalSourceElement__ModifiedAttributeElementType.initOperations(_ContainerSelectorGlobalSourceElement__ModifiedAttributeElementType);
+			Fragments._ContainerSelectorGlobalSourceElement__NamedElement.initOperations(_ContainerSelectorGlobalSourceElement__NamedElement);
+			Fragments._ContainerSelectorGlobalSourceElement__OclAny.initOperations(_ContainerSelectorGlobalSourceElement__OclAny);
+			Fragments._ContainerSelectorGlobalSourceElement__OclElement.initOperations(_ContainerSelectorGlobalSourceElement__OclElement);
+
+			Fragments._ContainerSelectorSourceElement__ContainerSelectorSourceElement.initOperations(_ContainerSelectorSourceElement__ContainerSelectorSourceElement);
+			Fragments._ContainerSelectorSourceElement__ContainerSelectorSourceInterface.initOperations(_ContainerSelectorSourceElement__ContainerSelectorSourceInterface);
+			Fragments._ContainerSelectorSourceElement__LocalModifiedAttributeElementType.initOperations(_ContainerSelectorSourceElement__LocalModifiedAttributeElementType);
+			Fragments._ContainerSelectorSourceElement__MappingHintSourceInterface.initOperations(_ContainerSelectorSourceElement__MappingHintSourceInterface);
+			Fragments._ContainerSelectorSourceElement__ModifiedAttributeElementType.initOperations(_ContainerSelectorSourceElement__ModifiedAttributeElementType);
+			Fragments._ContainerSelectorSourceElement__NamedElement.initOperations(_ContainerSelectorSourceElement__NamedElement);
+			Fragments._ContainerSelectorSourceElement__OclAny.initOperations(_ContainerSelectorSourceElement__OclAny);
+			Fragments._ContainerSelectorSourceElement__OclElement.initOperations(_ContainerSelectorSourceElement__OclElement);
+
+			Fragments._ContainerSelectorSourceInterface__ContainerSelectorSourceInterface.initOperations(_ContainerSelectorSourceInterface__ContainerSelectorSourceInterface);
+			Fragments._ContainerSelectorSourceInterface__MappingHintSourceInterface.initOperations(_ContainerSelectorSourceInterface__MappingHintSourceInterface);
+			Fragments._ContainerSelectorSourceInterface__NamedElement.initOperations(_ContainerSelectorSourceInterface__NamedElement);
+			Fragments._ContainerSelectorSourceInterface__OclAny.initOperations(_ContainerSelectorSourceInterface__OclAny);
+			Fragments._ContainerSelectorSourceInterface__OclElement.initOperations(_ContainerSelectorSourceInterface__OclElement);
+
+			Fragments._ContainerSelectorTargetAttribute__ContainerSelectorTargetAttribute.initOperations(_ContainerSelectorTargetAttribute__ContainerSelectorTargetAttribute);
+			Fragments._ContainerSelectorTargetAttribute__ModifiedAttributeElementType.initOperations(_ContainerSelectorTargetAttribute__ModifiedAttributeElementType);
+			Fragments._ContainerSelectorTargetAttribute__NamedElement.initOperations(_ContainerSelectorTargetAttribute__NamedElement);
+			Fragments._ContainerSelectorTargetAttribute__OclAny.initOperations(_ContainerSelectorTargetAttribute__OclAny);
+			Fragments._ContainerSelectorTargetAttribute__OclElement.initOperations(_ContainerSelectorTargetAttribute__OclElement);
+
 			Fragments._ExpandableHint__ExpandableHint.initOperations(_ExpandableHint__ExpandableHint);
 			Fragments._ExpandableHint__OclAny.initOperations(_ExpandableHint__OclAny);
 			Fragments._ExpandableHint__OclElement.initOperations(_ExpandableHint__OclElement);
@@ -3837,10 +3882,10 @@ public class MappingTables
 
 			Fragments._FixedValue__AttributeMappingSourceInterface.initOperations(_FixedValue__AttributeMappingSourceInterface);
 			Fragments._FixedValue__AttributeMatcherSourceInterface.initOperations(_FixedValue__AttributeMatcherSourceInterface);
+			Fragments._FixedValue__ContainerSelectorSourceInterface.initOperations(_FixedValue__ContainerSelectorSourceInterface);
 			Fragments._FixedValue__FixedValue.initOperations(_FixedValue__FixedValue);
 			Fragments._FixedValue__InstancePointerSourceInterface.initOperations(_FixedValue__InstancePointerSourceInterface);
 			Fragments._FixedValue__MappingHintSourceInterface.initOperations(_FixedValue__MappingHintSourceInterface);
-			Fragments._FixedValue__ModelConnectionHintSourceInterface.initOperations(_FixedValue__ModelConnectionHintSourceInterface);
 			Fragments._FixedValue__NamedElement.initOperations(_FixedValue__NamedElement);
 			Fragments._FixedValue__OclAny.initOperations(_FixedValue__OclAny);
 			Fragments._FixedValue__OclElement.initOperations(_FixedValue__OclElement);
@@ -3853,10 +3898,10 @@ public class MappingTables
 
 			Fragments._GlobalAttributeImporter__AttributeMappingSourceInterface.initOperations(_GlobalAttributeImporter__AttributeMappingSourceInterface);
 			Fragments._GlobalAttributeImporter__AttributeMatcherSourceInterface.initOperations(_GlobalAttributeImporter__AttributeMatcherSourceInterface);
+			Fragments._GlobalAttributeImporter__ContainerSelectorSourceInterface.initOperations(_GlobalAttributeImporter__ContainerSelectorSourceInterface);
 			Fragments._GlobalAttributeImporter__GlobalAttributeImporter.initOperations(_GlobalAttributeImporter__GlobalAttributeImporter);
 			Fragments._GlobalAttributeImporter__InstancePointerSourceInterface.initOperations(_GlobalAttributeImporter__InstancePointerSourceInterface);
 			Fragments._GlobalAttributeImporter__MappingHintSourceInterface.initOperations(_GlobalAttributeImporter__MappingHintSourceInterface);
-			Fragments._GlobalAttributeImporter__ModelConnectionHintSourceInterface.initOperations(_GlobalAttributeImporter__ModelConnectionHintSourceInterface);
 			Fragments._GlobalAttributeImporter__NamedElement.initOperations(_GlobalAttributeImporter__NamedElement);
 			Fragments._GlobalAttributeImporter__OclAny.initOperations(_GlobalAttributeImporter__OclAny);
 			Fragments._GlobalAttributeImporter__OclElement.initOperations(_GlobalAttributeImporter__OclElement);
@@ -4007,51 +4052,6 @@ public class MappingTables
 			Fragments._Matcher__OclAny.initOperations(_Matcher__OclAny);
 			Fragments._Matcher__OclElement.initOperations(_Matcher__OclElement);
 
-			Fragments._ModelConnectionHint__MappingHintBaseType.initOperations(_ModelConnectionHint__MappingHintBaseType);
-			Fragments._ModelConnectionHint__ModelConnectionHint.initOperations(_ModelConnectionHint__ModelConnectionHint);
-			Fragments._ModelConnectionHint__NamedElement.initOperations(_ModelConnectionHint__NamedElement);
-			Fragments._ModelConnectionHint__OclAny.initOperations(_ModelConnectionHint__OclAny);
-			Fragments._ModelConnectionHint__OclElement.initOperations(_ModelConnectionHint__OclElement);
-
-			Fragments._ModelConnectionHintExternalSourceElement__ExternalModifiedAttributeElementType.initOperations(_ModelConnectionHintExternalSourceElement__ExternalModifiedAttributeElementType);
-			Fragments._ModelConnectionHintExternalSourceElement__MappingHintSourceInterface.initOperations(_ModelConnectionHintExternalSourceElement__MappingHintSourceInterface);
-			Fragments._ModelConnectionHintExternalSourceElement__ModelConnectionHintExternalSourceElement.initOperations(_ModelConnectionHintExternalSourceElement__ModelConnectionHintExternalSourceElement);
-			Fragments._ModelConnectionHintExternalSourceElement__ModelConnectionHintSourceInterface.initOperations(_ModelConnectionHintExternalSourceElement__ModelConnectionHintSourceInterface);
-			Fragments._ModelConnectionHintExternalSourceElement__ModifiedAttributeElementType.initOperations(_ModelConnectionHintExternalSourceElement__ModifiedAttributeElementType);
-			Fragments._ModelConnectionHintExternalSourceElement__NamedElement.initOperations(_ModelConnectionHintExternalSourceElement__NamedElement);
-			Fragments._ModelConnectionHintExternalSourceElement__OclAny.initOperations(_ModelConnectionHintExternalSourceElement__OclAny);
-			Fragments._ModelConnectionHintExternalSourceElement__OclElement.initOperations(_ModelConnectionHintExternalSourceElement__OclElement);
-
-			Fragments._ModelConnectionHintGlobalSourceElement__GlobalModifiedAttributeElementType.initOperations(_ModelConnectionHintGlobalSourceElement__GlobalModifiedAttributeElementType);
-			Fragments._ModelConnectionHintGlobalSourceElement__MappingHintSourceInterface.initOperations(_ModelConnectionHintGlobalSourceElement__MappingHintSourceInterface);
-			Fragments._ModelConnectionHintGlobalSourceElement__ModelConnectionHintGlobalSourceElement.initOperations(_ModelConnectionHintGlobalSourceElement__ModelConnectionHintGlobalSourceElement);
-			Fragments._ModelConnectionHintGlobalSourceElement__ModelConnectionHintSourceInterface.initOperations(_ModelConnectionHintGlobalSourceElement__ModelConnectionHintSourceInterface);
-			Fragments._ModelConnectionHintGlobalSourceElement__ModifiedAttributeElementType.initOperations(_ModelConnectionHintGlobalSourceElement__ModifiedAttributeElementType);
-			Fragments._ModelConnectionHintGlobalSourceElement__NamedElement.initOperations(_ModelConnectionHintGlobalSourceElement__NamedElement);
-			Fragments._ModelConnectionHintGlobalSourceElement__OclAny.initOperations(_ModelConnectionHintGlobalSourceElement__OclAny);
-			Fragments._ModelConnectionHintGlobalSourceElement__OclElement.initOperations(_ModelConnectionHintGlobalSourceElement__OclElement);
-
-			Fragments._ModelConnectionHintSourceElement__LocalModifiedAttributeElementType.initOperations(_ModelConnectionHintSourceElement__LocalModifiedAttributeElementType);
-			Fragments._ModelConnectionHintSourceElement__MappingHintSourceInterface.initOperations(_ModelConnectionHintSourceElement__MappingHintSourceInterface);
-			Fragments._ModelConnectionHintSourceElement__ModelConnectionHintSourceElement.initOperations(_ModelConnectionHintSourceElement__ModelConnectionHintSourceElement);
-			Fragments._ModelConnectionHintSourceElement__ModelConnectionHintSourceInterface.initOperations(_ModelConnectionHintSourceElement__ModelConnectionHintSourceInterface);
-			Fragments._ModelConnectionHintSourceElement__ModifiedAttributeElementType.initOperations(_ModelConnectionHintSourceElement__ModifiedAttributeElementType);
-			Fragments._ModelConnectionHintSourceElement__NamedElement.initOperations(_ModelConnectionHintSourceElement__NamedElement);
-			Fragments._ModelConnectionHintSourceElement__OclAny.initOperations(_ModelConnectionHintSourceElement__OclAny);
-			Fragments._ModelConnectionHintSourceElement__OclElement.initOperations(_ModelConnectionHintSourceElement__OclElement);
-
-			Fragments._ModelConnectionHintSourceInterface__MappingHintSourceInterface.initOperations(_ModelConnectionHintSourceInterface__MappingHintSourceInterface);
-			Fragments._ModelConnectionHintSourceInterface__ModelConnectionHintSourceInterface.initOperations(_ModelConnectionHintSourceInterface__ModelConnectionHintSourceInterface);
-			Fragments._ModelConnectionHintSourceInterface__NamedElement.initOperations(_ModelConnectionHintSourceInterface__NamedElement);
-			Fragments._ModelConnectionHintSourceInterface__OclAny.initOperations(_ModelConnectionHintSourceInterface__OclAny);
-			Fragments._ModelConnectionHintSourceInterface__OclElement.initOperations(_ModelConnectionHintSourceInterface__OclElement);
-
-			Fragments._ModelConnectionHintTargetAttribute__ModelConnectionHintTargetAttribute.initOperations(_ModelConnectionHintTargetAttribute__ModelConnectionHintTargetAttribute);
-			Fragments._ModelConnectionHintTargetAttribute__ModifiedAttributeElementType.initOperations(_ModelConnectionHintTargetAttribute__ModifiedAttributeElementType);
-			Fragments._ModelConnectionHintTargetAttribute__NamedElement.initOperations(_ModelConnectionHintTargetAttribute__NamedElement);
-			Fragments._ModelConnectionHintTargetAttribute__OclAny.initOperations(_ModelConnectionHintTargetAttribute__OclAny);
-			Fragments._ModelConnectionHintTargetAttribute__OclElement.initOperations(_ModelConnectionHintTargetAttribute__OclElement);
-
 			Fragments._ModifiableHint__ModifiableHint.initOperations(_ModifiableHint__ModifiableHint);
 			Fragments._ModifiableHint__OclAny.initOperations(_ModifiableHint__OclAny);
 			Fragments._ModifiableHint__OclElement.initOperations(_ModifiableHint__OclElement);
@@ -4199,6 +4199,41 @@ public class MappingTables
 			MappingTables.Properties._Matcher__ReferenceTargetSelector__matcher
 		};
 
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ContainerSelector = {
+			MappingTables.Properties._ContainerSelector__sourceElements,
+			MappingTables.Properties._ContainerSelector__targetAttributes,
+			MappingTables.Properties._ContainerSelector__MappingHintGroup__modelConnectionMatcher
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ContainerSelectorExternalSourceElement = {
+			MappingTables.Properties._ModifiedAttributeElementType__modifier,
+			MappingTables.Properties._ModifiedAttributeElementType__source,
+			MappingTables.Properties._ContainerSelectorSourceInterface__ContainerSelector__sourceElements
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ContainerSelectorGlobalSourceElement = {
+			MappingTables.Properties._GlobalModifiedAttributeElementType__instanceSelector,
+			MappingTables.Properties._ModifiedAttributeElementType__modifier,
+			MappingTables.Properties._ModifiedAttributeElementType__source,
+			MappingTables.Properties._ContainerSelectorSourceInterface__ContainerSelector__sourceElements
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ContainerSelectorSourceElement = {
+			MappingTables.Properties._ModifiedAttributeElementType__modifier,
+			MappingTables.Properties._ModifiedAttributeElementType__source,
+			MappingTables.Properties._ContainerSelectorSourceInterface__ContainerSelector__sourceElements
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ContainerSelectorSourceInterface = {
+			MappingTables.Properties._ContainerSelectorSourceInterface__ContainerSelector__sourceElements
+		};
+
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ContainerSelectorTargetAttribute = {
+			MappingTables.Properties._ModifiedAttributeElementType__modifier,
+			MappingTables.Properties._ModifiedAttributeElementType__source,
+			MappingTables.Properties._ContainerSelectorTargetAttribute__ContainerSelector__targetAttributes
+		};
+
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ExpandableHint = {
 			MappingTables.Properties._ExpandableHint__MappedAttributeValueExpander__hintsToExpand
 		};
@@ -4246,7 +4281,7 @@ public class MappingTables
 			MappingTables.Properties._FixedValue__value,
 			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements,
 			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceElements,
-			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
+			MappingTables.Properties._ContainerSelectorSourceInterface__ContainerSelector__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _GlobalAttribute = {
@@ -4260,7 +4295,7 @@ public class MappingTables
 			MappingTables.Properties._GlobalAttributeImporter__globalAttribute,
 			MappingTables.Properties._AttributeMappingSourceInterface__AttributeMapping__sourceElements,
 			MappingTables.Properties._AttributeMatcherSourceInterface__AttributeMatcher__sourceElements,
-			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
+			MappingTables.Properties._ContainerSelectorSourceInterface__ContainerSelector__sourceElements
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _GlobalModifiedAttributeElementType = {
@@ -4369,41 +4404,6 @@ public class MappingTables
 			MappingTables.Properties._Matcher__ReferenceTargetSelector__matcher
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ModelConnectionHint = {
-			MappingTables.Properties._ModelConnectionHint__sourceElements,
-			MappingTables.Properties._ModelConnectionHint__targetAttributes,
-			MappingTables.Properties._ModelConnectionHint__MappingHintGroup__modelConnectionMatcher
-		};
-
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ModelConnectionHintExternalSourceElement = {
-			MappingTables.Properties._ModifiedAttributeElementType__modifier,
-			MappingTables.Properties._ModifiedAttributeElementType__source,
-			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
-		};
-
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ModelConnectionHintGlobalSourceElement = {
-			MappingTables.Properties._GlobalModifiedAttributeElementType__instanceSelector,
-			MappingTables.Properties._ModifiedAttributeElementType__modifier,
-			MappingTables.Properties._ModifiedAttributeElementType__source,
-			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
-		};
-
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ModelConnectionHintSourceElement = {
-			MappingTables.Properties._ModifiedAttributeElementType__modifier,
-			MappingTables.Properties._ModifiedAttributeElementType__source,
-			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
-		};
-
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ModelConnectionHintSourceInterface = {
-			MappingTables.Properties._ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements
-		};
-
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ModelConnectionHintTargetAttribute = {
-			MappingTables.Properties._ModifiedAttributeElementType__modifier,
-			MappingTables.Properties._ModifiedAttributeElementType__source,
-			MappingTables.Properties._ModelConnectionHintTargetAttribute__ModelConnectionHint__targetAttributes
-		};
-
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ModifiableHint = {
 			MappingTables.Properties._ModifiableHint__resultModifier
 		};
@@ -4467,6 +4467,12 @@ public class MappingTables
 			Fragments._AttributeMatcherSourceInterface__AttributeMatcherSourceInterface.initProperties(_AttributeMatcherSourceInterface);
 			Fragments._CardinalityMapping__CardinalityMapping.initProperties(_CardinalityMapping);
 			Fragments._ClassMatcher__ClassMatcher.initProperties(_ClassMatcher);
+			Fragments._ContainerSelector__ContainerSelector.initProperties(_ContainerSelector);
+			Fragments._ContainerSelectorExternalSourceElement__ContainerSelectorExternalSourceElement.initProperties(_ContainerSelectorExternalSourceElement);
+			Fragments._ContainerSelectorGlobalSourceElement__ContainerSelectorGlobalSourceElement.initProperties(_ContainerSelectorGlobalSourceElement);
+			Fragments._ContainerSelectorSourceElement__ContainerSelectorSourceElement.initProperties(_ContainerSelectorSourceElement);
+			Fragments._ContainerSelectorSourceInterface__ContainerSelectorSourceInterface.initProperties(_ContainerSelectorSourceInterface);
+			Fragments._ContainerSelectorTargetAttribute__ContainerSelectorTargetAttribute.initProperties(_ContainerSelectorTargetAttribute);
 			Fragments._ExpandableHint__ExpandableHint.initProperties(_ExpandableHint);
 			Fragments._ExportedMappingHintGroup__ExportedMappingHintGroup.initProperties(_ExportedMappingHintGroup);
 			Fragments._ExpressionHint__ExpressionHint.initProperties(_ExpressionHint);
@@ -4497,12 +4503,6 @@ public class MappingTables
 			Fragments._MatchToLowerCaseConverter__MatchToLowerCaseConverter.initProperties(_MatchToLowerCaseConverter);
 			Fragments._MatchToUpperCaseConverter__MatchToUpperCaseConverter.initProperties(_MatchToUpperCaseConverter);
 			Fragments._Matcher__Matcher.initProperties(_Matcher);
-			Fragments._ModelConnectionHint__ModelConnectionHint.initProperties(_ModelConnectionHint);
-			Fragments._ModelConnectionHintExternalSourceElement__ModelConnectionHintExternalSourceElement.initProperties(_ModelConnectionHintExternalSourceElement);
-			Fragments._ModelConnectionHintGlobalSourceElement__ModelConnectionHintGlobalSourceElement.initProperties(_ModelConnectionHintGlobalSourceElement);
-			Fragments._ModelConnectionHintSourceElement__ModelConnectionHintSourceElement.initProperties(_ModelConnectionHintSourceElement);
-			Fragments._ModelConnectionHintSourceInterface__ModelConnectionHintSourceInterface.initProperties(_ModelConnectionHintSourceInterface);
-			Fragments._ModelConnectionHintTargetAttribute__ModelConnectionHintTargetAttribute.initProperties(_ModelConnectionHintTargetAttribute);
 			Fragments._ModifiableHint__ModifiableHint.initProperties(_ModifiableHint);
 			Fragments._ModifiedAttributeElementType__ModifiedAttributeElementType.initProperties(_ModifiedAttributeElementType);
 			Fragments._ReferenceTargetSelector__ReferenceTargetSelector.initProperties(_ReferenceTargetSelector);

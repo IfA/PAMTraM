@@ -171,8 +171,8 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR: {
-				MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector)theEObject;
+			case MappingPackage.REFERENCE_TARGET_SELECTOR: {
+				ReferenceTargetSelector mappingInstanceSelector = (ReferenceTargetSelector)theEObject;
 				T result = caseMappingInstanceSelector(mappingInstanceSelector);
 				if (result == null) result = caseMappingHint(mappingInstanceSelector);
 				if (result == null) result = caseMappingHintType(mappingInstanceSelector);
@@ -730,7 +730,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMappingInstanceSelector(MappingInstanceSelector object) {
+	public T caseMappingInstanceSelector(ReferenceTargetSelector object) {
 		return null;
 	}
 

@@ -3,27 +3,29 @@
 package pamtram.mapping;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
+
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Instance Selector</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>ReferenceTargetSelector</b></em>'. <!--
+ * end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.MappingInstanceSelector#getAffectedReference <em>Affected Reference</em>}</li>
- *   <li>{@link pamtram.mapping.MappingInstanceSelector#getMatcher <em>Matcher</em>}</li>
+ * <li>{@link pamtram.mapping.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}</li>
+ * <li>{@link pamtram.mapping.ReferenceTargetSelector#getMatcher <em>Matcher</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='affectedReferenceIsNonContainment affectedReferenceMatchesSection'"
+ * @see pamtram.mapping.MappingPackage#getReferenceTargetSelector()
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='affectedReferenceIsNonContainment
+ *        affectedReferenceMatchesSection'"
  * @generated
  */
-public interface MappingInstanceSelector extends MappingHint {
+public interface ReferenceTargetSelector extends MappingHint {
 	/**
 	 * Returns the value of the '<em><b>Affected Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -34,7 +36,7 @@ public interface MappingInstanceSelector extends MappingHint {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Affected Reference</em>' reference.
 	 * @see #setAffectedReference(TargetSectionNonContainmentReference)
-	 * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector_AffectedReference()
+	 * @see pamtram.mapping.MappingPackage#getReferenceTargetSelector_AffectedReference()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingInstanceSelector!affectedReference'"
 	 * @generated
@@ -42,7 +44,7 @@ public interface MappingInstanceSelector extends MappingHint {
 	TargetSectionNonContainmentReference getAffectedReference();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.MappingInstanceSelector#getAffectedReference <em>Affected Reference</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Affected Reference</em>' reference.
@@ -61,7 +63,7 @@ public interface MappingInstanceSelector extends MappingHint {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Matcher</em>' containment reference.
 	 * @see #setMatcher(Matcher)
-	 * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector_Matcher()
+	 * @see pamtram.mapping.MappingPackage#getReferenceTargetSelector_Matcher()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingInstanceSelector!matcher'"
 	 * @generated
@@ -69,7 +71,7 @@ public interface MappingInstanceSelector extends MappingHint {
 	Matcher getMatcher();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.MappingInstanceSelector#getMatcher <em>Matcher</em>}' containment reference.
+	 * Sets the value of the '{@link pamtram.mapping.ReferenceTargetSelector#getMatcher <em>Matcher</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Matcher</em>' containment reference.

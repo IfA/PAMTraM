@@ -319,14 +319,14 @@ public interface MappingPackage extends EPackage {
 	int CARDINALITY_MAPPING = 10;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappingInstanceSelectorImpl <em>Instance Selector</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ReferenceTargetSelectorImpl <em>Instance Selector</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappingInstanceSelectorImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingInstanceSelector()
+	 * @see pamtram.mapping.impl.ReferenceTargetSelectorImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getReferenceTargetSelector()
 	 * @generated
 	 */
-	int MAPPING_INSTANCE_SELECTOR = 11;
+	int REFERENCE_TARGET_SELECTOR = 11;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MatcherImpl <em>Matcher</em>}' class.
@@ -4650,56 +4650,56 @@ public interface MappingPackage extends EPackage {
 	EOperation getCardinalityMapping__SourceClassIsVariableCardinality__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MappingInstanceSelector <em>Instance Selector</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ReferenceTargetSelector <em>Instance Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Instance Selector</em>'.
-	 * @see pamtram.mapping.MappingInstanceSelector
+	 * @see pamtram.mapping.ReferenceTargetSelector
 	 * @generated
 	 */
-	EClass getMappingInstanceSelector();
+	EClass getReferenceTargetSelector();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.MappingInstanceSelector#getAffectedReference <em>Affected Reference</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.mapping.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Affected Reference</em>'.
-	 * @see pamtram.mapping.MappingInstanceSelector#getAffectedReference()
-	 * @see #getMappingInstanceSelector()
+	 * @see pamtram.mapping.ReferenceTargetSelector#getAffectedReference()
+	 * @see #getReferenceTargetSelector()
 	 * @generated
 	 */
-	EReference getMappingInstanceSelector_AffectedReference();
+	EReference getReferenceTargetSelector_AffectedReference();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.mapping.MappingInstanceSelector#getMatcher <em>Matcher</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.mapping.ReferenceTargetSelector#getMatcher <em>Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Matcher</em>'.
-	 * @see pamtram.mapping.MappingInstanceSelector#getMatcher()
-	 * @see #getMappingInstanceSelector()
+	 * @see pamtram.mapping.ReferenceTargetSelector#getMatcher()
+	 * @see #getReferenceTargetSelector()
 	 * @generated
 	 */
-	EReference getMappingInstanceSelector_Matcher();
+	EReference getReferenceTargetSelector_Matcher();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.MappingInstanceSelector#affectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Affected Reference Matches Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.ReferenceTargetSelector#affectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Affected Reference Matches Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Affected Reference Matches Section</em>' operation.
-	 * @see pamtram.mapping.MappingInstanceSelector#affectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.ReferenceTargetSelector#affectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getMappingInstanceSelector__AffectedReferenceMatchesSection__DiagnosticChain_Map();
+	EOperation getReferenceTargetSelector__AffectedReferenceMatchesSection__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.MappingInstanceSelector#affectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Affected Reference Is Non Containment</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.ReferenceTargetSelector#affectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Affected Reference Is Non Containment</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Affected Reference Is Non Containment</em>' operation.
-	 * @see pamtram.mapping.MappingInstanceSelector#affectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.ReferenceTargetSelector#affectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getMappingInstanceSelector__AffectedReferenceIsNonContainment__DiagnosticChain_Map();
+	EOperation getReferenceTargetSelector__AffectedReferenceIsNonContainment__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Matcher <em>Matcher</em>}'.
@@ -5926,14 +5926,14 @@ public interface MappingPackage extends EPackage {
 		EOperation CARDINALITY_MAPPING___SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__SourceClassIsVariableCardinality__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingInstanceSelectorImpl <em>Instance Selector</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ReferenceTargetSelectorImpl <em>Instance Selector</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MappingInstanceSelectorImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingInstanceSelector()
+		 * @see pamtram.mapping.impl.ReferenceTargetSelectorImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getReferenceTargetSelector()
 		 * @generated
 		 */
-		EClass MAPPING_INSTANCE_SELECTOR = eINSTANCE.getMappingInstanceSelector();
+		EClass REFERENCE_TARGET_SELECTOR = eINSTANCE.getReferenceTargetSelector();
 
 		/**
 		 * The meta object literal for the '<em><b>Affected Reference</b></em>' reference feature.
@@ -5941,7 +5941,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE = eINSTANCE.getMappingInstanceSelector_AffectedReference();
+		EReference REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE = eINSTANCE.getReferenceTargetSelector_AffectedReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Matcher</b></em>' containment reference feature.
@@ -5949,7 +5949,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_INSTANCE_SELECTOR__MATCHER = eINSTANCE.getMappingInstanceSelector_Matcher();
+		EReference REFERENCE_TARGET_SELECTOR__MATCHER = eINSTANCE.getReferenceTargetSelector_Matcher();
 
 		/**
 		 * The meta object literal for the '<em><b>Affected Reference Matches Section</b></em>' operation.
@@ -5957,7 +5957,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMappingInstanceSelector__AffectedReferenceMatchesSection__DiagnosticChain_Map();
+		EOperation REFERENCE_TARGET_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReferenceTargetSelector__AffectedReferenceMatchesSection__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Affected Reference Is Non Containment</b></em>' operation.
@@ -5965,7 +5965,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMappingInstanceSelector__AffectedReferenceIsNonContainment__DiagnosticChain_Map();
+		EOperation REFERENCE_TARGET_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReferenceTargetSelector__AffectedReferenceIsNonContainment__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MatcherImpl <em>Matcher</em>}' class.

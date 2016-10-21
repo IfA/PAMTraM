@@ -53,7 +53,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ValueModifierSet;
@@ -709,8 +709,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 					EObject hintTarget = null;
 					if(abstractHint instanceof AttributeMapping) {
 						hintTarget = ((AttributeMapping) abstractHint).getTarget();
-					} else if(abstractHint instanceof MappingInstanceSelector) {
-						hintTarget = ((MappingInstanceSelector) abstractHint).getAffectedReference();
+					} else if(abstractHint instanceof ReferenceTargetSelector) {
+						hintTarget = ((ReferenceTargetSelector) abstractHint).getAffectedReference();
 					} else if(abstractHint instanceof CardinalityMapping) {
 						hintTarget = ((CardinalityMapping) abstractHint).getTarget();
 					} else {

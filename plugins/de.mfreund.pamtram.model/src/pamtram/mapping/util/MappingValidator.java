@@ -235,8 +235,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				return validateAttributeMapping((AttributeMapping)value, diagnostics, context);
 			case MappingPackage.CARDINALITY_MAPPING:
 				return validateCardinalityMapping((CardinalityMapping)value, diagnostics, context);
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR:
-				return validateMappingInstanceSelector((MappingInstanceSelector)value, diagnostics, context);
+			case MappingPackage.REFERENCE_TARGET_SELECTOR:
+				return validateMappingInstanceSelector((ReferenceTargetSelector)value, diagnostics, context);
 			case MappingPackage.MATCHER:
 				return validateMatcher((Matcher)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER:
@@ -590,7 +590,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMappingInstanceSelector(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMappingInstanceSelector(ReferenceTargetSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(mappingInstanceSelector, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(mappingInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingInstanceSelector, diagnostics, context);
@@ -613,7 +613,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMappingInstanceSelector_affectedReferenceIsNonContainment(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMappingInstanceSelector_affectedReferenceIsNonContainment(ReferenceTargetSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return mappingInstanceSelector.affectedReferenceIsNonContainment(diagnostics, context);
 	}
 
@@ -623,7 +623,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMappingInstanceSelector_affectedReferenceMatchesSection(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMappingInstanceSelector_affectedReferenceMatchesSection(ReferenceTargetSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return mappingInstanceSelector.affectedReferenceMatchesSection(diagnostics, context);
 	}
 

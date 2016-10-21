@@ -278,7 +278,7 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _MappingHintGroupType = new EcoreExecutorType(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _MappingHintSourceInterface = new EcoreExecutorType(MappingPackage.Literals.MAPPING_HINT_SOURCE_INTERFACE, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _MappingHintType = new EcoreExecutorType(MappingPackage.Literals.MAPPING_HINT_TYPE, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _MappingInstanceSelector = new EcoreExecutorType(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _MappingInstanceSelector = new EcoreExecutorType(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _MappingType = new EcoreExecutorType(MappingPackage.Literals.MAPPING_TYPE, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _MatchToLowerCaseConverter = new EcoreExecutorType(MappingPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _MatchToUpperCaseConverter = new EcoreExecutorType(MappingPackage.Literals.MATCH_TO_UPPER_CASE_CONVERTER, PACKAGE, 0);
@@ -958,8 +958,8 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintType__MappingHintGroupImporter__mappingHints = new ExecutorPropertyWithImplementation("MappingHintGroupImporter", Types._MappingHintType, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS));
 
-		public static final /*@NonNull*/ ExecutorProperty _MappingInstanceSelector__affectedReference = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE, Types._MappingInstanceSelector, 0);
-		public static final /*@NonNull*/ ExecutorProperty _MappingInstanceSelector__matcher = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER, Types._MappingInstanceSelector, 1);
+		public static final /*@NonNull*/ ExecutorProperty _MappingInstanceSelector__affectedReference = new EcoreExecutorProperty(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, Types._MappingInstanceSelector, 0);
+		public static final /*@NonNull*/ ExecutorProperty _MappingInstanceSelector__matcher = new EcoreExecutorProperty(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER, Types._MappingInstanceSelector, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _MappingType__sourceSection = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION, Types._MappingType, 0);
 
@@ -967,7 +967,7 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _MatchToUpperCaseConverter__regex = new EcoreExecutorProperty(MappingPackage.Literals.MATCH_TO_UPPER_CASE_CONVERTER__REGEX, Types._MatchToUpperCaseConverter, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _Matcher__MappingInstanceSelector__matcher = new ExecutorPropertyWithImplementation("MappingInstanceSelector", Types._Matcher, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER));
+		public static final /*@NonNull*/ ExecutorProperty _Matcher__MappingInstanceSelector__matcher = new ExecutorPropertyWithImplementation("MappingInstanceSelector", Types._Matcher, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER));
 
 		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__sourceElements = new EcoreExecutorProperty(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS, Types._ModelConnectionHint, 0);
 		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__targetAttributes = new EcoreExecutorProperty(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES, Types._ModelConnectionHint, 1);

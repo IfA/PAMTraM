@@ -58,7 +58,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.MAPPING_HINT_GROUP: return createMappingHintGroup();
 			case MappingPackage.ATTRIBUTE_MAPPING: return createAttributeMapping();
 			case MappingPackage.CARDINALITY_MAPPING: return createCardinalityMapping();
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR: return createMappingInstanceSelector();
+			case MappingPackage.REFERENCE_TARGET_SELECTOR: return createReferenceTargetSelector();
 			case MappingPackage.ATTRIBUTE_MATCHER: return createAttributeMatcher();
 			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createAttributeMatcherSourceElement();
 			case MappingPackage.CLASS_MATCHER: return createClassMatcher();
@@ -138,23 +138,23 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingInstanceSelector createMappingInstanceSelector() {
-		MappingInstanceSelectorImpl mappingInstanceSelector = new MappingInstanceSelectorImpl();
+	public ReferenceTargetSelector createReferenceTargetSelector() {
+		ReferenceTargetSelectorImpl mappingInstanceSelector = new ReferenceTargetSelectorImpl();
 		return mappingInstanceSelector;
 	}
 	
 	/**
 	 */
 	@Override
-	public MappingInstanceSelector createMappingInstanceSelectorWithClassMatcher() {
-		MappingInstanceSelector mappingInstanceSelector = createMappingInstanceSelector();
+	public ReferenceTargetSelector createMappingInstanceSelectorWithClassMatcher() {
+		ReferenceTargetSelector mappingInstanceSelector = createReferenceTargetSelector();
 		mappingInstanceSelector.setMatcher(createClassMatcher());
 		return mappingInstanceSelector;
 	}
 	
 	@Override
-	public MappingInstanceSelector createMappingInstanceSelectorWithAttributeMatcher() {
-		MappingInstanceSelector mappingInstanceSelector = createMappingInstanceSelector();
+	public ReferenceTargetSelector createMappingInstanceSelectorWithAttributeMatcher() {
+		ReferenceTargetSelector mappingInstanceSelector = createReferenceTargetSelector();
 		mappingInstanceSelector.setMatcher(createAttributeMatcherWithSource());
 		return mappingInstanceSelector;
 	}

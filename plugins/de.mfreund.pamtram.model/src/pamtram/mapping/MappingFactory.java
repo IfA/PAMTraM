@@ -62,21 +62,21 @@ public interface MappingFactory extends EFactory {
 	 * @return a new object of class '<em>Instance Selector</em>'.
 	 * @generated
 	 */
-	MappingInstanceSelector createMappingInstanceSelector();
+	ReferenceTargetSelector createReferenceTargetSelector();
 	
 	/**
 	 * Returns a new object of class '<em>Instance Selector</em>' that
 	 * already contains a class matcher.
 	 * @return a new object of class '<em>Instance Selector</em>'.
 	 */
-	MappingInstanceSelector createMappingInstanceSelectorWithClassMatcher();
+	ReferenceTargetSelector createMappingInstanceSelectorWithClassMatcher();
 	
 	/**
 	 * Returns a new object of class '<em>Instance Selector</em>' that
 	 * already contains an attribute matcher.
 	 * @return a new object of class '<em>Instance Selector</em>'.
 	 */
-	MappingInstanceSelector createMappingInstanceSelectorWithAttributeMatcher();
+	ReferenceTargetSelector createMappingInstanceSelectorWithAttributeMatcher();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Matcher</em>'.

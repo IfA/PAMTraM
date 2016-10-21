@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
 import pamtram.mapping.Matcher;
@@ -50,13 +50,13 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.MappingInstanceSelectorImpl#getAffectedReference <em>Affected Reference</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingInstanceSelectorImpl#getMatcher <em>Matcher</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.ReferenceTargetSelectorImpl#getAffectedReference <em>Affected Reference</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.ReferenceTargetSelectorImpl#getMatcher <em>Matcher</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MappingInstanceSelectorImpl extends MappingHintImpl implements MappingInstanceSelector {
+public class ReferenceTargetSelectorImpl extends MappingHintImpl implements ReferenceTargetSelector {
 	/**
 	 * The cached value of the '{@link #getAffectedReference() <em>Affected Reference</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -82,7 +82,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MappingInstanceSelectorImpl() {
+	protected ReferenceTargetSelectorImpl() {
 		super();
 	}
 
@@ -93,7 +93,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR;
+		return MappingPackage.Literals.REFERENCE_TARGET_SELECTOR;
 	}
 
 	/**

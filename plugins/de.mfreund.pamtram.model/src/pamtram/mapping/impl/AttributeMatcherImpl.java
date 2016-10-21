@@ -36,7 +36,7 @@ import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExpressionHint;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
 import pamtram.mapping.ModifiableHint;
@@ -305,7 +305,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector = idResolver.getClass(MappingTables.CLSSid_MappingInstanceSelector, null);
 		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		        final /*@Thrown*/ MappingInstanceSelector oclAsType = ClassUtil.nonNullState((MappingInstanceSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector));
+		        final /*@Thrown*/ ReferenceTargetSelector oclAsType = ClassUtil.nonNullState((ReferenceTargetSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector));
 		        final /*@Thrown*/ TargetSectionNonContainmentReference affectedReference = oclAsType.getAffectedReference();
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, affectedReference);
 		        final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
@@ -339,7 +339,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_0 = idResolver.getClass(MappingTables.CLSSid_MappingInstanceSelector, null);
 		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
 		        final /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		        final /*@Thrown*/ MappingInstanceSelector oclAsType_0 = ClassUtil.nonNullState((MappingInstanceSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_0));
+		        final /*@Thrown*/ ReferenceTargetSelector oclAsType_0 = ClassUtil.nonNullState((ReferenceTargetSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_0));
 		        final /*@Thrown*/ TargetSectionNonContainmentReference affectedReference_0 = oclAsType_0.getAffectedReference();
 		        final /*@Thrown*/ EReference eReference = affectedReference_0.getEReference();
 		        final /*@Thrown*/ EReference oclAsType_1 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, eReference, TYP_ecore_c_c_EReference_0));
@@ -376,7 +376,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		    final /*@NonInvalid*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_e_32_is_32_not_32_allowed_32_by_32_the_32_affected_32_reference_32_of_32_the_32_parent_32_mappin);
 		    final /*@NonInvalid*/ String sum_1 = StringConcatOperation.INSTANCE.evaluate(sum_0, MappingTables.STR_requires_32_a_32_o_sub_m_e_type_32_of_32_39);
 		    final /*@NonInvalid*/ Object oclContainer_3 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		    final /*@Thrown*/ MappingInstanceSelector oclAsType_5 = ClassUtil.nonNullState((MappingInstanceSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_3, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_1));
+		    final /*@Thrown*/ ReferenceTargetSelector oclAsType_5 = ClassUtil.nonNullState((ReferenceTargetSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_3, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_1));
 		    final /*@Thrown*/ TargetSectionNonContainmentReference affectedReference_1 = oclAsType_5.getAffectedReference();
 		    final /*@Thrown*/ EReference eReference_0 = affectedReference_1.getEReference();
 		    final /*@Thrown*/ EReference oclAsType_6 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, eReference_0, TYP_ecore_c_c_EReference_1));

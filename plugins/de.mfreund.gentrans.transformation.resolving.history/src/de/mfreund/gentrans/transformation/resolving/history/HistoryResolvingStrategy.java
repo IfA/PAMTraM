@@ -46,7 +46,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingType;
-import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ContainerSelector;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
@@ -560,7 +560,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	@Override
 	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices,
-			List<EObjectWrapper> element, MappingHintGroupType hintGroup, ModelConnectionHint modelConnectionHint,
+			List<EObjectWrapper> element, MappingHintGroupType hintGroup, ContainerSelector modelConnectionHint,
 			String hintValue) throws AmbiguityResolvingException {
 
 		/*

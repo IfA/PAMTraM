@@ -284,7 +284,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		switch (operationID) {
 			case ConditionPackage.VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS:
 				return referencesOnlyValidConditions();
-			case ConditionPackage.VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
+			case ConditionPackage.VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_2:
 				return minimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

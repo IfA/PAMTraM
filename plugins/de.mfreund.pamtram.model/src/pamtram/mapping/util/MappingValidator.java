@@ -103,20 +103,20 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	public static final int CARDINALITY_MAPPING__SOURCE_CLASS_IS_VARIABLE_CARDINALITY = 8;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Matches Section' of 'Instance Selector'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Matches Section' of 'Reference Target Selector'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION = 9;
+	public static final int REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION = 9;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Is Non Containment' of 'Instance Selector'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Is Non Containment' of 'Reference Target Selector'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT = 10;
+	public static final int REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Matches Affected Reference Type' of 'Attribute Matcher'.
@@ -235,8 +235,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				return validateAttributeMapping((AttributeMapping)value, diagnostics, context);
 			case MappingPackage.CARDINALITY_MAPPING:
 				return validateCardinalityMapping((CardinalityMapping)value, diagnostics, context);
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR:
-				return validateMappingInstanceSelector((MappingInstanceSelector)value, diagnostics, context);
+			case MappingPackage.REFERENCE_TARGET_SELECTOR:
+				return validateReferenceTargetSelector((ReferenceTargetSelector)value, diagnostics, context);
 			case MappingPackage.MATCHER:
 				return validateMatcher((Matcher)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER:
@@ -590,41 +590,41 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMappingInstanceSelector(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(mappingInstanceSelector, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
+	public boolean validateReferenceTargetSelector(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(referenceTargetSelector, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the affectedReferenceIsNonContainment constraint of '<em>Instance Selector</em>'.
+	 * Validates the affectedReferenceIsNonContainment constraint of '<em>Reference Target Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMappingInstanceSelector_affectedReferenceIsNonContainment(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return mappingInstanceSelector.affectedReferenceIsNonContainment(diagnostics, context);
+	public boolean validateReferenceTargetSelector_affectedReferenceIsNonContainment(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return referenceTargetSelector.affectedReferenceIsNonContainment(diagnostics, context);
 	}
 
 	/**
-	 * Validates the affectedReferenceMatchesSection constraint of '<em>Instance Selector</em>'.
+	 * Validates the affectedReferenceMatchesSection constraint of '<em>Reference Target Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMappingInstanceSelector_affectedReferenceMatchesSection(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return mappingInstanceSelector.affectedReferenceMatchesSection(diagnostics, context);
+	public boolean validateReferenceTargetSelector_affectedReferenceMatchesSection(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return referenceTargetSelector.affectedReferenceMatchesSection(diagnostics, context);
 	}
 
 	/**

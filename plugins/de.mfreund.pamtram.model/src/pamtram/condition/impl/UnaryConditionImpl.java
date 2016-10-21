@@ -310,7 +310,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP:
+			case ConditionPackage.UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_2:
 				return exactlyOneArg((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

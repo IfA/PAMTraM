@@ -119,7 +119,7 @@ extends MappingHintGroupTypeItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER);
+			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR);
 		}
 		return childrenFeatures;
 	}
@@ -244,7 +244,7 @@ extends MappingHintGroupTypeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
+				(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
 				 MappingFactory.eINSTANCE.createContainerSelector()));
 	}
 
@@ -261,7 +261,7 @@ extends MappingHintGroupTypeItemProvider {
 
 		newChildDescriptors.add
 		(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
+				(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
 						MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
 
 	}

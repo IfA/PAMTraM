@@ -247,7 +247,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		ContainerSelector oldModelConnectionMatcher = containerSelector;
 		containerSelector = newModelConnectionMatcher;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER, oldModelConnectionMatcher, newModelConnectionMatcher);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, oldModelConnectionMatcher, newModelConnectionMatcher);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -263,14 +263,14 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		if (newModelConnectionMatcher != containerSelector) {
 			NotificationChain msgs = null;
 			if (containerSelector != null)
-				msgs = ((InternalEObject)containerSelector).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER, null, msgs);
+				msgs = ((InternalEObject)containerSelector).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, null, msgs);
 			if (newModelConnectionMatcher != null)
-				msgs = ((InternalEObject)newModelConnectionMatcher).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER, null, msgs);
+				msgs = ((InternalEObject)newModelConnectionMatcher).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, null, msgs);
 			msgs = basicSetContainerSelector(newModelConnectionMatcher, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER, newModelConnectionMatcher, newModelConnectionMatcher));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, newModelConnectionMatcher, newModelConnectionMatcher));
 	}
 
 	/**
@@ -404,7 +404,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
 				return basicSetLocalCondition(null, msgs);
-			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
+			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
 				return basicSetContainerSelector(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -425,7 +425,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
-			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
+			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
 				return getContainerSelector();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -448,7 +448,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)newValue);
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
+			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
 				setContainerSelector((ContainerSelector)newValue);
 				return;
 		}
@@ -472,7 +472,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)null);
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
+			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
 				setContainerSelector((ContainerSelector)null);
 				return;
 		}
@@ -493,7 +493,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 				return localCondition != null;
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				return sharedCondition != null;
-			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
+			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
 				return containerSelector != null;
 		}
 		return super.eIsSet(featureID);

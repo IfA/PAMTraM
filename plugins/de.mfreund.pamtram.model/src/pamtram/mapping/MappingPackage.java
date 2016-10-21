@@ -634,7 +634,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 3;
+	int MAPPING_HINT_GROUP__CONTAINER_SELECTOR = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Hint Group</em>' class.

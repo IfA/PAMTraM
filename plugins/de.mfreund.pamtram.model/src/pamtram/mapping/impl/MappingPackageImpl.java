@@ -1761,7 +1761,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		instantiableMappingHintGroupEClass = createEClass(INSTANTIABLE_MAPPING_HINT_GROUP);
 
 		mappingHintGroupEClass = createEClass(MAPPING_HINT_GROUP);
-		createEReference(mappingHintGroupEClass, MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER);
+		createEReference(mappingHintGroupEClass, MAPPING_HINT_GROUP__CONTAINER_SELECTOR);
 
 		mappingHintBaseTypeEClass = createEClass(MAPPING_HINT_BASE_TYPE);
 

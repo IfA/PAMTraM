@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -24,6 +25,8 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.AttributeParameter;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -52,14 +55,14 @@ extends MappingHintItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addExpressionPropertyDescriptor(object);
-			addResultModifierPropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
+			this.addExpressionPropertyDescriptor(object);
+			this.addResultModifierPropertyDescriptor(object);
+			this.addTargetPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 
@@ -71,19 +74,19 @@ extends MappingHintItemProvider {
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeMapping_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_target_feature", "_UI_AttributeMapping_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_AttributeMapping_target_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_target_feature", "_UI_AttributeMapping_type"),
+						MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -119,16 +122,31 @@ extends MappingHintItemProvider {
 					target=((MappingHintGroupImporter)attrMapping.eContainer()).getHintGroup().getTargetSection();
 				}
 
+				if (target == null) {
+					return new ArrayList<>();
+				}
 
 				List<Object> choiceOfValues = new ArrayList<>();
 
-				// iterate over all elements and return the attributes as
-				// possible options
-				Iterator<EObject> it = target.eAllContents();
-				while (it.hasNext()) {
-					EObject next = it.next();
-					if (next instanceof pamtram.metamodel.Attribute) {
-						choiceOfValues.add(next);
+				if (target.isLibraryEntry() && target.eContainer().eContainer() instanceof LibraryEntry) {
+
+					LibraryEntry libEntry = (LibraryEntry) target.eContainer().eContainer();
+					choiceOfValues.addAll(
+							libEntry.getParameters().parallelStream().filter(p -> p instanceof AttributeParameter)
+							.map(p -> ((AttributeParameter) p).getAttribute()).collect(Collectors.toList()));
+					choiceOfValues.addAll(libEntry.getResourceParameters().parallelStream().map(p -> p.getAttribute())
+							.collect(Collectors.toList()));
+
+				} else {
+
+					// iterate over all elements and return the attributes as
+					// possible options
+					Iterator<EObject> it = target.eAllContents();
+					while (it.hasNext()) {
+						EObject next = it.next();
+						if (next instanceof pamtram.metamodel.Attribute) {
+							choiceOfValues.add(next);
+						}
 					}
 				}
 
@@ -144,19 +162,19 @@ extends MappingHintItemProvider {
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExpressionHint_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
-				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ExpressionHint_expression_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
+						MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -166,19 +184,19 @@ extends MappingHintItemProvider {
 	 * @generated
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_ModifiableHint_resultModifier_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -191,11 +209,11 @@ extends MappingHintItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	@Override
@@ -233,7 +251,7 @@ extends MappingHintItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMapping"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/AttributeMapping"));
 	}
 
 	/**
@@ -244,7 +262,7 @@ extends MappingHintItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -292,14 +310,14 @@ extends MappingHintItemProvider {
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeMapping.class)) {
 			case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -325,29 +343,29 @@ extends MappingHintItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createAttributeMappingSourceElement()));
+						MappingFactory.eINSTANCE.createAttributeMappingSourceElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createFixedValue()));
+						MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
+						MappingFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createAttributeMappingGlobalSourceElement()));
+						MappingFactory.eINSTANCE.createAttributeMappingGlobalSourceElement()));
 	}
 
 }

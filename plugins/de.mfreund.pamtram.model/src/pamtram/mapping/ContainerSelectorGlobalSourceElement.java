@@ -13,9 +13,9 @@ import pamtram.metamodel.SourceSectionReference;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getModelConnectionHintGlobalSourceElement()
+ * @see pamtram.mapping.MappingPackage#getContainerSelectorGlobalSourceElement()
  * @model
  * @generated
  */
-public interface ModelConnectionHintGlobalSourceElement extends GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ModelConnectionHintSourceInterface {
+public interface ContainerSelectorGlobalSourceElement extends GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ContainerSelectorSourceInterface {
 } // ModelConnectionHintGlobalSourceElement

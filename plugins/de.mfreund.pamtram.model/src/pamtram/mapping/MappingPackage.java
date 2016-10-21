@@ -1626,14 +1626,14 @@ public interface MappingPackage extends EPackage {
 	int EXPORTED_MAPPING_HINT_GROUP = 26;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintImpl <em>Model Connection Hint</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorImpl <em>Model Connection Hint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModelConnectionHintImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHint()
+	 * @see pamtram.mapping.impl.ContainerSelectorImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelector()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT = 27;
+	int CONTAINER_SELECTOR = 27;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
@@ -1716,24 +1716,24 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 40;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModelConnectionHintSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceElement()
+	 * @see pamtram.mapping.impl.ContainerSelectorSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorSourceElement()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT = 29;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT = 29;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl <em>Model Connection Hint Target Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl <em>Model Connection Hint Target Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintTargetAttribute()
+	 * @see pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorTargetAttribute()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE = 30;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE = 30;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}' class.
@@ -2240,7 +2240,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT__NAME = MAPPING_HINT_BASE_TYPE__NAME;
+	int CONTAINER_SELECTOR__NAME = MAPPING_HINT_BASE_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target Attributes</b></em>' containment reference list.
@@ -2249,7 +2249,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 0;
+	int CONTAINER_SELECTOR__TARGET_ATTRIBUTES = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -2258,7 +2258,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT__SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 1;
+	int CONTAINER_SELECTOR__SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint</em>' class.
@@ -2267,7 +2267,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_FEATURE_COUNT = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 2;
+	int CONTAINER_SELECTOR_FEATURE_COUNT = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attributes</em>' operation.
@@ -2276,7 +2276,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 0;
+	int CONTAINER_SELECTOR___GET_SOURCE_ATTRIBUTES = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -2285,7 +2285,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 1;
+	int CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get External Source Elements</em>' operation.
@@ -2294,7 +2294,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 2;
+	int CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Model Connection Hint</em>' class.
@@ -2303,7 +2303,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_OPERATION_COUNT = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 3;
+	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2393,7 +2393,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT__NAME = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT__NAME = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2402,7 +2402,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT__SOURCE = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT__SOURCE = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -2411,7 +2411,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT__MODIFIER = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT__MODIFIER = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint Source Element</em>' class.
@@ -2420,7 +2420,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT_FEATURE_COUNT = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT_FEATURE_COUNT = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -2429,7 +2429,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
 	 * The operation id for the '<em>Get Mapping</em>' operation.
@@ -2438,7 +2438,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_MAPPING = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT___GET_MAPPING = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
 
 	/**
 	 * The operation id for the '<em>Validate Source Attribute Matches Section Or Contained Section</em>' operation.
@@ -2447,7 +2447,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2456,7 +2456,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Model Connection Hint Source Element</em>' class.
@@ -2465,7 +2465,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT_OPERATION_COUNT = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT_OPERATION_COUNT = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2474,7 +2474,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__NAME = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__NAME = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2483,7 +2483,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -2492,7 +2492,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint Target Attribute</em>' class.
@@ -2501,7 +2501,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE_FEATURE_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE_FEATURE_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -2510,7 +2510,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___GET_MAPPING_HINT_GROUP = MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE___GET_MAPPING_HINT_GROUP = MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
 	 * The operation id for the '<em>Get Mapping</em>' operation.
@@ -2519,7 +2519,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___GET_MAPPING = MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE___GET_MAPPING = MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
 
 	/**
 	 * The operation id for the '<em>Source Matches Possible Container Type</em>' operation.
@@ -2528,7 +2528,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2 = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2 = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Model Connection Hint Target Attribute</em>' class.
@@ -2537,7 +2537,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3118,14 +3118,14 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.ContainerSelectorSourceInterface <em>Model Connection Hint Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.ModelConnectionHintSourceInterface
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceInterface()
+	 * @see pamtram.mapping.ContainerSelectorSourceInterface
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorSourceInterface()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE = 42;
+	int CONTAINER_SELECTOR_SOURCE_INTERFACE = 42;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3134,7 +3134,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE__NAME = MAPPING_HINT_SOURCE_INTERFACE__NAME;
+	int CONTAINER_SELECTOR_SOURCE_INTERFACE__NAME = MAPPING_HINT_SOURCE_INTERFACE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint Source Interface</em>' class.
@@ -3143,7 +3143,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE_FEATURE_COUNT = MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+	int CONTAINER_SELECTOR_SOURCE_INTERFACE_FEATURE_COUNT = MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -3152,7 +3152,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
+	int CONTAINER_SELECTOR_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
 
 	/**
 	 * The number of operations of the '<em>Model Connection Hint Source Interface</em>' class.
@@ -3161,7 +3161,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE_OPERATION_COUNT = MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
+	int CONTAINER_SELECTOR_SOURCE_INTERFACE_OPERATION_COUNT = MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl <em>External Modified Attribute Element Type</em>}' class.
@@ -3337,14 +3337,14 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintExternalSourceElementImpl <em>Model Connection Hint External Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorExternalSourceElementImpl <em>Model Connection Hint External Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModelConnectionHintExternalSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintExternalSourceElement()
+	 * @see pamtram.mapping.impl.ContainerSelectorExternalSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorExternalSourceElement()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = 45;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3353,7 +3353,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT__NAME = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT__NAME = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -3362,7 +3362,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -3371,7 +3371,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT__MODIFIER = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT__MODIFIER = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint External Source Element</em>' class.
@@ -3380,7 +3380,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -3389,7 +3389,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
 	 * The operation id for the '<em>Get Mapping</em>' operation.
@@ -3398,7 +3398,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
 
 	/**
 	 * The operation id for the '<em>Source Attribute Matches Container Section</em>' operation.
@@ -3407,7 +3407,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -3416,7 +3416,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Model Connection Hint External Source Element</em>' class.
@@ -3425,7 +3425,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMatcherExternalSourceElementImpl <em>Attribute Matcher External Source Element</em>}' class.
@@ -4248,14 +4248,14 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintGlobalSourceElementImpl <em>Model Connection Hint Global Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorGlobalSourceElementImpl <em>Model Connection Hint Global Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModelConnectionHintGlobalSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintGlobalSourceElement()
+	 * @see pamtram.mapping.impl.ContainerSelectorGlobalSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorGlobalSourceElement()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT = 56;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT = 56;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4264,7 +4264,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT__NAME = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT__NAME = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -4273,7 +4273,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT__SOURCE = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT__SOURCE = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -4282,7 +4282,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT__MODIFIER = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT__MODIFIER = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.
@@ -4291,7 +4291,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTOR = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTOR = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint Global Source Element</em>' class.
@@ -4300,7 +4300,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -4309,7 +4309,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
 	 * The operation id for the '<em>Get Mapping</em>' operation.
@@ -4318,7 +4318,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT___GET_MAPPING = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT___GET_MAPPING = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -4327,7 +4327,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Model Connection Hint Global Source Element</em>' class.
@@ -4336,7 +4336,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
@@ -5149,66 +5149,66 @@ public interface MappingPackage extends EPackage {
 	EClass getExportedMappingHintGroup();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHint <em>Model Connection Hint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ContainerSelector <em>Model Connection Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model Connection Hint</em>'.
-	 * @see pamtram.mapping.ModelConnectionHint
+	 * @see pamtram.mapping.ContainerSelector
 	 * @generated
 	 */
-	EClass getModelConnectionHint();
+	EClass getContainerSelector();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ModelConnectionHint#getTargetAttributes <em>Target Attributes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ContainerSelector#getTargetAttributes <em>Target Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Target Attributes</em>'.
-	 * @see pamtram.mapping.ModelConnectionHint#getTargetAttributes()
-	 * @see #getModelConnectionHint()
+	 * @see pamtram.mapping.ContainerSelector#getTargetAttributes()
+	 * @see #getContainerSelector()
 	 * @generated
 	 */
-	EReference getModelConnectionHint_TargetAttributes();
+	EReference getContainerSelector_TargetAttributes();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ModelConnectionHint#getSourceElements <em>Source Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ContainerSelector#getSourceElements <em>Source Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
-	 * @see pamtram.mapping.ModelConnectionHint#getSourceElements()
-	 * @see #getModelConnectionHint()
+	 * @see pamtram.mapping.ContainerSelector#getSourceElements()
+	 * @see #getContainerSelector()
 	 * @generated
 	 */
-	EReference getModelConnectionHint_SourceElements();
+	EReference getContainerSelector_SourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ModelConnectionHint#getSourceAttributes() <em>Get Source Attributes</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.ContainerSelector#getSourceAttributes() <em>Get Source Attributes</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Source Attributes</em>' operation.
-	 * @see pamtram.mapping.ModelConnectionHint#getSourceAttributes()
+	 * @see pamtram.mapping.ContainerSelector#getSourceAttributes()
 	 * @generated
 	 */
-	EOperation getModelConnectionHint__GetSourceAttributes();
+	EOperation getContainerSelector__GetSourceAttributes();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ModelConnectionHint#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.ContainerSelector#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
-	 * @see pamtram.mapping.ModelConnectionHint#getLocalSourceElements()
+	 * @see pamtram.mapping.ContainerSelector#getLocalSourceElements()
 	 * @generated
 	 */
-	EOperation getModelConnectionHint__GetLocalSourceElements();
+	EOperation getContainerSelector__GetLocalSourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ModelConnectionHint#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.ContainerSelector#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get External Source Elements</em>' operation.
-	 * @see pamtram.mapping.ModelConnectionHint#getExternalSourceElements()
+	 * @see pamtram.mapping.ContainerSelector#getExternalSourceElements()
 	 * @generated
 	 */
-	EOperation getModelConnectionHint__GetExternalSourceElements();
+	EOperation getContainerSelector__GetExternalSourceElements();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingSourceElement <em>Attribute Mapping Source Element</em>}'.
@@ -5221,34 +5221,34 @@ public interface MappingPackage extends EPackage {
 	EClass getAttributeMappingSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintSourceElement <em>Model Connection Hint Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ContainerSelectorSourceElement <em>Model Connection Hint Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model Connection Hint Source Element</em>'.
-	 * @see pamtram.mapping.ModelConnectionHintSourceElement
+	 * @see pamtram.mapping.ContainerSelectorSourceElement
 	 * @generated
 	 */
-	EClass getModelConnectionHintSourceElement();
+	EClass getContainerSelectorSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintTargetAttribute <em>Model Connection Hint Target Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ContainerSelectorTargetAttribute <em>Model Connection Hint Target Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model Connection Hint Target Attribute</em>'.
-	 * @see pamtram.mapping.ModelConnectionHintTargetAttribute
+	 * @see pamtram.mapping.ContainerSelectorTargetAttribute
 	 * @generated
 	 */
-	EClass getModelConnectionHintTargetAttribute();
+	EClass getContainerSelectorTargetAttribute();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ModelConnectionHintTargetAttribute#sourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Source Matches Possible Container Type</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.ContainerSelectorTargetAttribute#sourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Source Matches Possible Container Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Source Matches Possible Container Type</em>' operation.
-	 * @see pamtram.mapping.ModelConnectionHintTargetAttribute#sourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.ContainerSelectorTargetAttribute#sourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getModelConnectionHintTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2();
+	EOperation getContainerSelectorTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintType <em>Hint Type</em>}'.
@@ -5456,14 +5456,14 @@ public interface MappingPackage extends EPackage {
 	EOperation getMappingHintSourceInterface__GetSourceAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ContainerSelectorSourceInterface <em>Model Connection Hint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model Connection Hint Source Interface</em>'.
-	 * @see pamtram.mapping.ModelConnectionHintSourceInterface
+	 * @see pamtram.mapping.ContainerSelectorSourceInterface
 	 * @generated
 	 */
-	EClass getModelConnectionHintSourceInterface();
+	EClass getContainerSelectorSourceInterface();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingExternalSourceElement <em>Attribute Mapping External Source Element</em>}'.
@@ -5496,14 +5496,14 @@ public interface MappingPackage extends EPackage {
 	EOperation getExternalModifiedAttributeElementType__SourceAttributeMatchesContainerSection__DiagnosticChain_Map_2();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintExternalSourceElement <em>Model Connection Hint External Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ContainerSelectorExternalSourceElement <em>Model Connection Hint External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model Connection Hint External Source Element</em>'.
-	 * @see pamtram.mapping.ModelConnectionHintExternalSourceElement
+	 * @see pamtram.mapping.ContainerSelectorExternalSourceElement
 	 * @generated
 	 */
-	EClass getModelConnectionHintExternalSourceElement();
+	EClass getContainerSelectorExternalSourceElement();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherExternalSourceElement <em>Attribute Matcher External Source Element</em>}'.
@@ -5639,14 +5639,14 @@ public interface MappingPackage extends EPackage {
 	EClass getAttributeMappingGlobalSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintGlobalSourceElement <em>Model Connection Hint Global Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ContainerSelectorGlobalSourceElement <em>Model Connection Hint Global Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model Connection Hint Global Source Element</em>'.
-	 * @see pamtram.mapping.ModelConnectionHintGlobalSourceElement
+	 * @see pamtram.mapping.ContainerSelectorGlobalSourceElement
 	 * @generated
 	 */
-	EClass getModelConnectionHintGlobalSourceElement();
+	EClass getContainerSelectorGlobalSourceElement();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -6350,14 +6350,14 @@ public interface MappingPackage extends EPackage {
 		EClass EXPORTED_MAPPING_HINT_GROUP = eINSTANCE.getExportedMappingHintGroup();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintImpl <em>Model Connection Hint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ContainerSelectorImpl <em>Model Connection Hint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ModelConnectionHintImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHint()
+		 * @see pamtram.mapping.impl.ContainerSelectorImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelector()
 		 * @generated
 		 */
-		EClass MODEL_CONNECTION_HINT = eINSTANCE.getModelConnectionHint();
+		EClass CONTAINER_SELECTOR = eINSTANCE.getContainerSelector();
 
 		/**
 		 * The meta object literal for the '<em><b>Target Attributes</b></em>' containment reference list feature.
@@ -6365,7 +6365,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES = eINSTANCE.getModelConnectionHint_TargetAttributes();
+		EReference CONTAINER_SELECTOR__TARGET_ATTRIBUTES = eINSTANCE.getContainerSelector_TargetAttributes();
 
 		/**
 		 * The meta object literal for the '<em><b>Source Elements</b></em>' containment reference list feature.
@@ -6373,7 +6373,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_CONNECTION_HINT__SOURCE_ELEMENTS = eINSTANCE.getModelConnectionHint_SourceElements();
+		EReference CONTAINER_SELECTOR__SOURCE_ELEMENTS = eINSTANCE.getContainerSelector_SourceElements();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Source Attributes</b></em>' operation.
@@ -6381,7 +6381,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = eINSTANCE.getModelConnectionHint__GetSourceAttributes();
+		EOperation CONTAINER_SELECTOR___GET_SOURCE_ATTRIBUTES = eINSTANCE.getContainerSelector__GetSourceAttributes();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
@@ -6389,7 +6389,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getModelConnectionHint__GetLocalSourceElements();
+		EOperation CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getContainerSelector__GetLocalSourceElements();
 
 		/**
 		 * The meta object literal for the '<em><b>Get External Source Elements</b></em>' operation.
@@ -6397,7 +6397,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_CONNECTION_HINT___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getModelConnectionHint__GetExternalSourceElements();
+		EOperation CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getContainerSelector__GetExternalSourceElements();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
@@ -6410,24 +6410,24 @@ public interface MappingPackage extends EPackage {
 		EClass ATTRIBUTE_MAPPING_SOURCE_ELEMENT = eINSTANCE.getAttributeMappingSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ContainerSelectorSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ModelConnectionHintSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceElement()
+		 * @see pamtram.mapping.impl.ContainerSelectorSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorSourceElement()
 		 * @generated
 		 */
-		EClass MODEL_CONNECTION_HINT_SOURCE_ELEMENT = eINSTANCE.getModelConnectionHintSourceElement();
+		EClass CONTAINER_SELECTOR_SOURCE_ELEMENT = eINSTANCE.getContainerSelectorSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl <em>Model Connection Hint Target Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl <em>Model Connection Hint Target Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintTargetAttribute()
+		 * @see pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorTargetAttribute()
 		 * @generated
 		 */
-		EClass MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE = eINSTANCE.getModelConnectionHintTargetAttribute();
+		EClass CONTAINER_SELECTOR_TARGET_ATTRIBUTE = eINSTANCE.getContainerSelectorTargetAttribute();
 
 		/**
 		 * The meta object literal for the '<em><b>Source Matches Possible Container Type</b></em>' operation.
@@ -6435,7 +6435,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getModelConnectionHintTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2();
+		EOperation CONTAINER_SELECTOR_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getContainerSelectorTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
@@ -6620,14 +6620,14 @@ public interface MappingPackage extends EPackage {
 		EOperation MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = eINSTANCE.getMappingHintSourceInterface__GetSourceAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.ContainerSelectorSourceInterface <em>Model Connection Hint Source Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.ModelConnectionHintSourceInterface
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceInterface()
+		 * @see pamtram.mapping.ContainerSelectorSourceInterface
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorSourceInterface()
 		 * @generated
 		 */
-		EClass MODEL_CONNECTION_HINT_SOURCE_INTERFACE = eINSTANCE.getModelConnectionHintSourceInterface();
+		EClass CONTAINER_SELECTOR_SOURCE_INTERFACE = eINSTANCE.getContainerSelectorSourceInterface();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingExternalSourceElementImpl <em>Attribute Mapping External Source Element</em>}' class.
@@ -6658,14 +6658,14 @@ public interface MappingPackage extends EPackage {
 		EOperation EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getExternalModifiedAttributeElementType__SourceAttributeMatchesContainerSection__DiagnosticChain_Map_2();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintExternalSourceElementImpl <em>Model Connection Hint External Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ContainerSelectorExternalSourceElementImpl <em>Model Connection Hint External Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ModelConnectionHintExternalSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintExternalSourceElement()
+		 * @see pamtram.mapping.impl.ContainerSelectorExternalSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorExternalSourceElement()
 		 * @generated
 		 */
-		EClass MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getModelConnectionHintExternalSourceElement();
+		EClass CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getContainerSelectorExternalSourceElement();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMatcherExternalSourceElementImpl <em>Attribute Matcher External Source Element</em>}' class.
@@ -6792,14 +6792,14 @@ public interface MappingPackage extends EPackage {
 		EClass ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT = eINSTANCE.getAttributeMappingGlobalSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintGlobalSourceElementImpl <em>Model Connection Hint Global Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ContainerSelectorGlobalSourceElementImpl <em>Model Connection Hint Global Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ModelConnectionHintGlobalSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintGlobalSourceElement()
+		 * @see pamtram.mapping.impl.ContainerSelectorGlobalSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorGlobalSourceElement()
 		 * @generated
 		 */
-		EClass MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT = eINSTANCE.getModelConnectionHintGlobalSourceElement();
+		EClass CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT = eINSTANCE.getContainerSelectorGlobalSourceElement();
 
 	}
 

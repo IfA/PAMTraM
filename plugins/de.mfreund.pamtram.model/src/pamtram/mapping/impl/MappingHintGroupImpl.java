@@ -35,7 +35,7 @@ import pamtram.condition.ComplexCondition;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ContainerSelector;
 import pamtram.metamodel.TargetSection;
 
 /**
@@ -99,7 +99,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelConnectionHint modelConnectionMatcher;
+	protected ContainerSelector modelConnectionMatcher;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -234,7 +234,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public ModelConnectionHint getModelConnectionMatcher() {
+	public ContainerSelector getModelConnectionMatcher() {
 		return modelConnectionMatcher;
 	}
 
@@ -243,8 +243,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetModelConnectionMatcher(ModelConnectionHint newModelConnectionMatcher, NotificationChain msgs) {
-		ModelConnectionHint oldModelConnectionMatcher = modelConnectionMatcher;
+	public NotificationChain basicSetModelConnectionMatcher(ContainerSelector newModelConnectionMatcher, NotificationChain msgs) {
+		ContainerSelector oldModelConnectionMatcher = modelConnectionMatcher;
 		modelConnectionMatcher = newModelConnectionMatcher;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER, oldModelConnectionMatcher, newModelConnectionMatcher);
@@ -259,7 +259,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public void setModelConnectionMatcher(ModelConnectionHint newModelConnectionMatcher) {
+	public void setModelConnectionMatcher(ContainerSelector newModelConnectionMatcher) {
 		if (newModelConnectionMatcher != modelConnectionMatcher) {
 			NotificationChain msgs = null;
 			if (modelConnectionMatcher != null)
@@ -449,7 +449,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 				setSharedCondition((ComplexCondition)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
-				setModelConnectionMatcher((ModelConnectionHint)newValue);
+				setModelConnectionMatcher((ContainerSelector)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -473,7 +473,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 				setSharedCondition((ComplexCondition)null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
-				setModelConnectionMatcher((ModelConnectionHint)null);
+				setModelConnectionMatcher((ContainerSelector)null);
 				return;
 		}
 		super.eUnset(featureID);

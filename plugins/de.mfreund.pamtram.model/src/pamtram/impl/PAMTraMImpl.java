@@ -54,8 +54,8 @@ import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.impl.MappingFactoryImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
@@ -579,7 +579,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 								concreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceSection())) {
 		
 							if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
-									setting.getEObject() instanceof ModelConnectionHintTargetAttribute) {
+									setting.getEObject() instanceof ContainerSelectorTargetAttribute) {
 								// do nothing as ModelConnectionHints are handled below separately
 							} else {
 								// redirect the reference (we can always use the 'last' of the concrete objects as we just added it above
@@ -604,7 +604,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				 * as ModelConnectionHints will get treated differently (see below), we store the ModelConnectionHintTargetAttributes
 				 * holding the referneces to the Attributes in the abstract section and will delete these later
 				 */
-				ArrayList<ModelConnectionHintTargetAttribute> mchTargetAttributesToDelete = new ArrayList<>();
+				ArrayList<ContainerSelectorTargetAttribute> mchTargetAttributesToDelete = new ArrayList<>();
 		
 				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
 				for (EObject referencedObject : refsToAbstractSection.keySet()) {
@@ -635,28 +635,28 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 						 * if we are dealing with a model ModelConnectionHintTargetAttribute
 						 */
 						if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
-								setting.getEObject() instanceof ModelConnectionHintTargetAttribute) {
+								setting.getEObject() instanceof ContainerSelectorTargetAttribute) {
 		
 							// in this case, we must not simply redirect but we create a new ModelConnectionHintTargetAttribute
-							ModelConnectionHintTargetAttribute original = (ModelConnectionHintTargetAttribute) setting.getEObject();
+							ContainerSelectorTargetAttribute original = (ContainerSelectorTargetAttribute) setting.getEObject();
 		
 							for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap.get(referencedObject)) {
-								ModelConnectionHintTargetAttribute copy = MappingFactoryImpl.eINSTANCE.createModelConnectionHintTargetAttribute();
+								ContainerSelectorTargetAttribute copy = MappingFactoryImpl.eINSTANCE.createContainerSelectorTargetAttribute();
 								copy.setName(original.getName());
 								copy.getModifier().addAll(original.getModifier());
 								copy.setSource((TargetSectionAttribute) concreteTargetSectionAttribute);
 		
-								((ModelConnectionHint) (setting.getEObject().eContainer())).getTargetAttributes().add(copy);								
+								((ContainerSelector) (setting.getEObject().eContainer())).getTargetAttributes().add(copy);								
 							}
 		
 		
-							mchTargetAttributesToDelete.add((ModelConnectionHintTargetAttribute) setting.getEObject());
+							mchTargetAttributesToDelete.add((ContainerSelectorTargetAttribute) setting.getEObject());
 						}
 					}
 		
 				}
 		
-				for (ModelConnectionHintTargetAttribute mchTargetAttribute : mchTargetAttributesToDelete) {
+				for (ContainerSelectorTargetAttribute mchTargetAttribute : mchTargetAttributesToDelete) {
 					EcoreUtil.delete(mchTargetAttribute);
 				}
 			}
@@ -811,8 +811,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		
 				// Finally, we add the copied hints to the concrete hint group
 				for (MappingHintBaseType copiedHint : copiedHints) {
-					if(copiedHint instanceof ModelConnectionHint) {
-						((MappingHintGroup) concreteHintGroup).setModelConnectionMatcher((ModelConnectionHint) copiedHint);	
+					if(copiedHint instanceof ContainerSelector) {
+						((MappingHintGroup) concreteHintGroup).setModelConnectionMatcher((ContainerSelector) copiedHint);	
 					} else {
 						concreteHintGroup.getMappingHints().add((MappingHint) copiedHint);					
 					}

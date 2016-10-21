@@ -282,12 +282,12 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _MatchToLowerCaseConverter = new EcoreExecutorType(MappingPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _MatchToUpperCaseConverter = new EcoreExecutorType(MappingPackage.Literals.MATCH_TO_UPPER_CASE_CONVERTER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _Matcher = new EcoreExecutorType(MappingPackage.Literals.MATCHER, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHint = new EcoreExecutorType(MappingPackage.Literals.MODEL_CONNECTION_HINT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintExternalSourceElement = new EcoreExecutorType(MappingPackage.Literals.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintGlobalSourceElement = new EcoreExecutorType(MappingPackage.Literals.MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintSourceElement = new EcoreExecutorType(MappingPackage.Literals.MODEL_CONNECTION_HINT_SOURCE_ELEMENT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintSourceInterface = new EcoreExecutorType(MappingPackage.Literals.MODEL_CONNECTION_HINT_SOURCE_INTERFACE, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintTargetAttribute = new EcoreExecutorType(MappingPackage.Literals.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHint = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintExternalSourceElement = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintGlobalSourceElement = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintSourceElement = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_SOURCE_ELEMENT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintSourceInterface = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_SOURCE_INTERFACE, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintTargetAttribute = new EcoreExecutorType(MappingPackage.Literals.CONTAINER_SELECTOR_TARGET_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ModifiableHint = new EcoreExecutorType(MappingPackage.Literals.MODIFIABLE_HINT, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _ModifiedAttributeElementType = new EcoreExecutorType(MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._ModifiedAttributeElementType_S, TypeParameters._ModifiedAttributeElementType_C, TypeParameters._ModifiedAttributeElementType_R, TypeParameters._ModifiedAttributeElementType_A);
 		public static final /*@NonNull*/ EcoreExecutorType _ReferenceTargetSelector = new EcoreExecutorType(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR, PACKAGE, 0);
@@ -966,13 +966,13 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _Matcher__ReferenceTargetSelector__matcher = new ExecutorPropertyWithImplementation("ReferenceTargetSelector", Types._Matcher, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER));
 
-		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__sourceElements = new EcoreExecutorProperty(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS, Types._ModelConnectionHint, 0);
-		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__targetAttributes = new EcoreExecutorProperty(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES, Types._ModelConnectionHint, 1);
+		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__sourceElements = new EcoreExecutorProperty(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS, Types._ModelConnectionHint, 0);
+		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__targetAttributes = new EcoreExecutorProperty(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES, Types._ModelConnectionHint, 1);
 		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHint__MappingHintGroup__modelConnectionMatcher = new ExecutorPropertyWithImplementation("MappingHintGroup", Types._ModelConnectionHint, 2, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER));
 
-		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements = new ExecutorPropertyWithImplementation("ModelConnectionHint", Types._ModelConnectionHintSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS));
+		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHintSourceInterface__ModelConnectionHint__sourceElements = new ExecutorPropertyWithImplementation("ModelConnectionHint", Types._ModelConnectionHintSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS));
 
-		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHintTargetAttribute__ModelConnectionHint__targetAttributes = new ExecutorPropertyWithImplementation("ModelConnectionHint", Types._ModelConnectionHintTargetAttribute, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES));
+		public static final /*@NonNull*/ ExecutorProperty _ModelConnectionHintTargetAttribute__ModelConnectionHint__targetAttributes = new ExecutorPropertyWithImplementation("ModelConnectionHint", Types._ModelConnectionHintTargetAttribute, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES));
 
 		public static final /*@NonNull*/ ExecutorProperty _ModifiableHint__resultModifier = new EcoreExecutorProperty(MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER, Types._ModifiableHint, 0);
 

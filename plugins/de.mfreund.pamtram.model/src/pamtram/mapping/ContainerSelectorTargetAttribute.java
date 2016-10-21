@@ -16,11 +16,11 @@ import pamtram.metamodel.TargetSectionReference;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getModelConnectionHintTargetAttribute()
+ * @see pamtram.mapping.MappingPackage#getContainerSelectorTargetAttribute()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceMatchesPossibleContainerType'"
  * @generated
  */
-public interface ModelConnectionHintTargetAttribute extends ModifiedAttributeElementType<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
+public interface ContainerSelectorTargetAttribute extends ModifiedAttributeElementType<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 
 	/**
 	 * <!-- begin-user-doc -->

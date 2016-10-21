@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -41,13 +41,13 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ModelConnectionHintTargetAttribute {
+public class ContainerSelectorTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ContainerSelectorTargetAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConnectionHintTargetAttributeImpl() {
+	protected ContainerSelectorTargetAttributeImpl() {
 		super();
 	}
 
@@ -58,7 +58,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE;
+		return MappingPackage.Literals.CONTAINER_SELECTOR_TARGET_ATTRIBUTE;
 	}
 
 	/**
@@ -267,7 +267,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2:
+			case MappingPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2:
 				return sourceMatchesPossibleContainerType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -267,14 +267,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				return validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP:
 				return validateExportedMappingHintGroup((ExportedMappingHintGroup)value, diagnostics, context);
-			case MappingPackage.MODEL_CONNECTION_HINT:
-				return validateModelConnectionHint((ModelConnectionHint)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR:
+				return validateModelConnectionHint((ContainerSelector)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
 				return validateAttributeMappingSourceElement((AttributeMappingSourceElement)value, diagnostics, context);
-			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT:
-				return validateModelConnectionHintSourceElement((ModelConnectionHintSourceElement)value, diagnostics, context);
-			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE:
-				return validateModelConnectionHintTargetAttribute((ModelConnectionHintTargetAttribute)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR_SOURCE_ELEMENT:
+				return validateModelConnectionHintSourceElement((ContainerSelectorSourceElement)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE:
+				return validateModelConnectionHintTargetAttribute((ContainerSelectorTargetAttribute)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_TYPE:
 				return validateMappingHintType((MappingHintType)value, diagnostics, context);
 			case MappingPackage.HINT_IMPORTER_MAPPING_HINT:
@@ -297,14 +297,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				return validateAttributeMappingSourceInterface((AttributeMappingSourceInterface)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE:
 				return validateMappingHintSourceInterface((MappingHintSourceInterface)value, diagnostics, context);
-			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_INTERFACE:
-				return validateModelConnectionHintSourceInterface((ModelConnectionHintSourceInterface)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR_SOURCE_INTERFACE:
+				return validateModelConnectionHintSourceInterface((ContainerSelectorSourceInterface)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
 				return validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
 				return validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
-			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT:
-				return validateModelConnectionHintExternalSourceElement((ModelConnectionHintExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT:
+				return validateModelConnectionHintExternalSourceElement((ContainerSelectorExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
 				return validateAttributeMatcherExternalSourceElement((AttributeMatcherExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER:
@@ -325,8 +325,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				return validateAttributeMatcherGlobalSourceElement((AttributeMatcherGlobalSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT:
 				return validateAttributeMappingGlobalSourceElement((AttributeMappingGlobalSourceElement)value, diagnostics, context);
-			case MappingPackage.MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT:
-				return validateModelConnectionHintGlobalSourceElement((ModelConnectionHintGlobalSourceElement)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT:
+				return validateModelConnectionHintGlobalSourceElement((ContainerSelectorGlobalSourceElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -858,7 +858,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConnectionHint(ModelConnectionHint modelConnectionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelConnectionHint(ContainerSelector modelConnectionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modelConnectionHint, diagnostics, context);
 	}
 
@@ -887,7 +887,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConnectionHintSourceElement(ModelConnectionHintSourceElement modelConnectionHintSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelConnectionHintSourceElement(ContainerSelectorSourceElement modelConnectionHintSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(modelConnectionHintSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(modelConnectionHintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelConnectionHintSourceElement, diagnostics, context);
@@ -907,7 +907,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConnectionHintTargetAttribute(ModelConnectionHintTargetAttribute modelConnectionHintTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelConnectionHintTargetAttribute(ContainerSelectorTargetAttribute modelConnectionHintTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(modelConnectionHintTargetAttribute, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(modelConnectionHintTargetAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelConnectionHintTargetAttribute, diagnostics, context);
@@ -927,7 +927,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConnectionHintTargetAttribute_sourceMatchesPossibleContainerType(ModelConnectionHintTargetAttribute modelConnectionHintTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelConnectionHintTargetAttribute_sourceMatchesPossibleContainerType(ContainerSelectorTargetAttribute modelConnectionHintTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return modelConnectionHintTargetAttribute.sourceMatchesPossibleContainerType(diagnostics, context);
 	}
 
@@ -1088,7 +1088,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConnectionHintSourceInterface(ModelConnectionHintSourceInterface modelConnectionHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelConnectionHintSourceInterface(ContainerSelectorSourceInterface modelConnectionHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modelConnectionHintSourceInterface, diagnostics, context);
 	}
 
@@ -1145,7 +1145,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConnectionHintExternalSourceElement(ModelConnectionHintExternalSourceElement modelConnectionHintExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelConnectionHintExternalSourceElement(ContainerSelectorExternalSourceElement modelConnectionHintExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(modelConnectionHintExternalSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(modelConnectionHintExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelConnectionHintExternalSourceElement, diagnostics, context);
@@ -1294,7 +1294,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConnectionHintGlobalSourceElement(ModelConnectionHintGlobalSourceElement modelConnectionHintGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelConnectionHintGlobalSourceElement(ContainerSelectorGlobalSourceElement modelConnectionHintGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modelConnectionHintGlobalSourceElement, diagnostics, context);
 	}
 

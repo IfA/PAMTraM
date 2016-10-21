@@ -29,13 +29,13 @@ public interface MappingHintGroup extends MappingHintGroupType, InstantiableMapp
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model Connection Matcher</em>' containment reference.
-	 * @see #setModelConnectionMatcher(ModelConnectionHint)
+	 * @see #setModelConnectionMatcher(ContainerSelector)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroup_ModelConnectionMatcher()
 	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroup!modelConnectionMatcher'"
 	 * @generated
 	 */
-	ModelConnectionHint getModelConnectionMatcher();
+	ContainerSelector getModelConnectionMatcher();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.MappingHintGroup#getModelConnectionMatcher <em>Model Connection Matcher</em>}' containment reference.
@@ -45,6 +45,6 @@ public interface MappingHintGroup extends MappingHintGroupType, InstantiableMapp
 	 * @see #getModelConnectionMatcher()
 	 * @generated
 	 */
-	void setModelConnectionMatcher(ModelConnectionHint value);
+	void setModelConnectionMatcher(ContainerSelector value);
 
 } // MappingHintGroup

@@ -3,31 +3,31 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
+
 import pamtram.metamodel.ActualSourceSectionAttribute;
 
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Model Connection Hint</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>ContainerSelector</b></em>'. <!-- end-user-doc
+ * -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.ModelConnectionHint#getTargetAttributes <em>Target Attributes</em>}</li>
- *   <li>{@link pamtram.mapping.ModelConnectionHint#getSourceElements <em>Source Elements</em>}</li>
+ * <li>{@link pamtram.mapping.ContainerSelector#getTargetAttributes <em>Target Attributes</em>}</li>
+ * <li>{@link pamtram.mapping.ContainerSelector#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getModelConnectionHint()
+ * @see pamtram.mapping.MappingPackage#getContainerSelector()
  * @model
  * @generated
  */
-public interface ModelConnectionHint extends MappingHintBaseType {
+public interface ContainerSelector extends MappingHintBaseType {
 
 	/**
 	 * Returns the value of the '<em><b>Target Attributes</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.ModelConnectionHintTargetAttribute}.
+	 * The list contents are of type {@link pamtram.mapping.ContainerSelectorTargetAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Attributes</em>' containment reference list isn't clear,
@@ -35,16 +35,16 @@ public interface ModelConnectionHint extends MappingHintBaseType {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Attributes</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getModelConnectionHint_TargetAttributes()
+	 * @see pamtram.mapping.MappingPackage#getContainerSelector_TargetAttributes()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModelConnectionHint!targetAttributes'"
 	 * @generated
 	 */
-	EList<ModelConnectionHintTargetAttribute> getTargetAttributes();
+	EList<ContainerSelectorTargetAttribute> getTargetAttributes();
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.ModelConnectionHintSourceInterface}.
+	 * The list contents are of type {@link pamtram.mapping.ContainerSelectorSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Elements</em>' containment reference list isn't clear,
@@ -52,12 +52,12 @@ public interface ModelConnectionHint extends MappingHintBaseType {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getModelConnectionHint_SourceElements()
+	 * @see pamtram.mapping.MappingPackage#getContainerSelector_SourceElements()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModelConnectionHint!sourceElements'"
 	 * @generated
 	 */
-	EList<ModelConnectionHintSourceInterface> getSourceElements();
+	EList<ContainerSelectorSourceInterface> getSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,7 +75,7 @@ public interface ModelConnectionHint extends MappingHintBaseType {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\tEList<ModelConnectionHintSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ModelConnectionHintSourceElement>();\r\n\t\t\r\n\t\tfor(ModelConnectionHintSourceInterface i : this.getSourceElements()){\r\n\t\t\tif(i instanceof ModelConnectionHintSourceElement){\r\n\t\t\t\telements.add((ModelConnectionHintSourceElement) i);\r\n\t\t\t}\r\n\t\t}\r\n\t\t\r\n\t\treturn elements;'"
 	 * @generated
 	 */
-	EList<ModelConnectionHintSourceElement> getLocalSourceElements();
+	EList<ContainerSelectorSourceElement> getLocalSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,6 +84,6 @@ public interface ModelConnectionHint extends MappingHintBaseType {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<ModelConnectionHintExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();\r\n\r\nfor(ModelConnectionHintSourceInterface i : this.getSourceElements()){\r\n\tif(i instanceof ModelConnectionHintExternalSourceElement){\r\n\t\telements.add((ModelConnectionHintExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
 	 * @generated
 	 */
-	EList<ModelConnectionHintExternalSourceElement> getExternalSourceElements();
+	EList<ContainerSelectorExternalSourceElement> getExternalSourceElements();
 
 } // ModelConnectionHint

@@ -63,12 +63,12 @@ import pamtram.mapping.MappingType;
 import pamtram.mapping.MatchToLowerCaseConverter;
 import pamtram.mapping.MatchToUpperCaseConverter;
 import pamtram.mapping.Matcher;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintExternalSourceElement;
-import pamtram.mapping.ModelConnectionHintGlobalSourceElement;
-import pamtram.mapping.ModelConnectionHintSourceElement;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorExternalSourceElement;
+import pamtram.mapping.ContainerSelectorGlobalSourceElement;
+import pamtram.mapping.ContainerSelectorSourceElement;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.StringAppender;
@@ -1276,7 +1276,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelConnectionHint() {
+	public EClass getContainerSelector() {
 		return modelConnectionHintEClass;
 	}
 
@@ -1285,7 +1285,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelConnectionHint_TargetAttributes() {
+	public EReference getContainerSelector_TargetAttributes() {
 		return (EReference)modelConnectionHintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1294,7 +1294,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelConnectionHint_SourceElements() {
+	public EReference getContainerSelector_SourceElements() {
 		return (EReference)modelConnectionHintEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1303,7 +1303,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelConnectionHint__GetSourceAttributes() {
+	public EOperation getContainerSelector__GetSourceAttributes() {
 		return modelConnectionHintEClass.getEOperations().get(0);
 	}
 
@@ -1312,7 +1312,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelConnectionHint__GetLocalSourceElements() {
+	public EOperation getContainerSelector__GetLocalSourceElements() {
 		return modelConnectionHintEClass.getEOperations().get(1);
 	}
 
@@ -1321,7 +1321,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelConnectionHint__GetExternalSourceElements() {
+	public EOperation getContainerSelector__GetExternalSourceElements() {
 		return modelConnectionHintEClass.getEOperations().get(2);
 	}
 
@@ -1339,7 +1339,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelConnectionHintSourceElement() {
+	public EClass getContainerSelectorSourceElement() {
 		return modelConnectionHintSourceElementEClass;
 	}
 
@@ -1348,7 +1348,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelConnectionHintTargetAttribute() {
+	public EClass getContainerSelectorTargetAttribute() {
 		return modelConnectionHintTargetAttributeEClass;
 	}
 
@@ -1357,7 +1357,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelConnectionHintTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2() {
+	public EOperation getContainerSelectorTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2() {
 		return modelConnectionHintTargetAttributeEClass.getEOperations().get(0);
 	}
 
@@ -1546,7 +1546,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelConnectionHintSourceInterface() {
+	public EClass getContainerSelectorSourceInterface() {
 		return modelConnectionHintSourceInterfaceEClass;
 	}
 
@@ -1582,7 +1582,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelConnectionHintExternalSourceElement() {
+	public EClass getContainerSelectorExternalSourceElement() {
 		return modelConnectionHintExternalSourceElementEClass;
 	}
 
@@ -1708,7 +1708,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelConnectionHintGlobalSourceElement() {
+	public EClass getContainerSelectorGlobalSourceElement() {
 		return modelConnectionHintGlobalSourceElementEClass;
 	}
 
@@ -1845,19 +1845,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		exportedMappingHintGroupEClass = createEClass(EXPORTED_MAPPING_HINT_GROUP);
 
-		modelConnectionHintEClass = createEClass(MODEL_CONNECTION_HINT);
-		createEReference(modelConnectionHintEClass, MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES);
-		createEReference(modelConnectionHintEClass, MODEL_CONNECTION_HINT__SOURCE_ELEMENTS);
-		createEOperation(modelConnectionHintEClass, MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES);
-		createEOperation(modelConnectionHintEClass, MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS);
-		createEOperation(modelConnectionHintEClass, MODEL_CONNECTION_HINT___GET_EXTERNAL_SOURCE_ELEMENTS);
+		modelConnectionHintEClass = createEClass(CONTAINER_SELECTOR);
+		createEReference(modelConnectionHintEClass, CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
+		createEReference(modelConnectionHintEClass, CONTAINER_SELECTOR__SOURCE_ELEMENTS);
+		createEOperation(modelConnectionHintEClass, CONTAINER_SELECTOR___GET_SOURCE_ATTRIBUTES);
+		createEOperation(modelConnectionHintEClass, CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS);
+		createEOperation(modelConnectionHintEClass, CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS);
 
 		attributeMappingSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_SOURCE_ELEMENT);
 
-		modelConnectionHintSourceElementEClass = createEClass(MODEL_CONNECTION_HINT_SOURCE_ELEMENT);
+		modelConnectionHintSourceElementEClass = createEClass(CONTAINER_SELECTOR_SOURCE_ELEMENT);
 
-		modelConnectionHintTargetAttributeEClass = createEClass(MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE);
-		createEOperation(modelConnectionHintTargetAttributeEClass, MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2);
+		modelConnectionHintTargetAttributeEClass = createEClass(CONTAINER_SELECTOR_TARGET_ATTRIBUTE);
+		createEOperation(modelConnectionHintTargetAttributeEClass, CONTAINER_SELECTOR_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2);
 
 		mappingHintTypeEClass = createEClass(MAPPING_HINT_TYPE);
 
@@ -1890,14 +1890,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintSourceInterfaceEClass = createEClass(MAPPING_HINT_SOURCE_INTERFACE);
 		createEOperation(mappingHintSourceInterfaceEClass, MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE);
 
-		modelConnectionHintSourceInterfaceEClass = createEClass(MODEL_CONNECTION_HINT_SOURCE_INTERFACE);
+		modelConnectionHintSourceInterfaceEClass = createEClass(CONTAINER_SELECTOR_SOURCE_INTERFACE);
 
 		attributeMappingExternalSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT);
 
 		externalModifiedAttributeElementTypeEClass = createEClass(EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
 		createEOperation(externalModifiedAttributeElementTypeEClass, EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2);
 
-		modelConnectionHintExternalSourceElementEClass = createEClass(MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT);
+		modelConnectionHintExternalSourceElementEClass = createEClass(CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT);
 
 		attributeMatcherExternalSourceElementEClass = createEClass(ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT);
 
@@ -1922,7 +1922,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		attributeMappingGlobalSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT);
 
-		modelConnectionHintGlobalSourceElementEClass = createEClass(MODEL_CONNECTION_HINT_GLOBAL_SOURCE_ELEMENT);
+		modelConnectionHintGlobalSourceElementEClass = createEClass(CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT);
 	}
 
 	/**
@@ -2213,7 +2213,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		modelConnectionHintSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getModelConnectionHintSourceInterface());
+		g1 = createEGenericType(this.getContainerSelectorSourceInterface());
 		modelConnectionHintSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getModifiedAttributeElementType());
 		g2 = createEGenericType(theMetamodelPackage.getTargetSection());
@@ -2245,14 +2245,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		fixedValueEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		fixedValueEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
 		fixedValueEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
-		fixedValueEClass.getESuperTypes().add(this.getModelConnectionHintSourceInterface());
+		fixedValueEClass.getESuperTypes().add(this.getContainerSelectorSourceInterface());
 		fixedValueEClass.getESuperTypes().add(theMetamodelPackage.getInstancePointerSourceInterface());
 		fixedValueEClass.getESuperTypes().add(theMetamodelPackage.getValueConstraintSourceInterface());
 		globalAttributeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
-		globalAttributeImporterEClass.getESuperTypes().add(this.getModelConnectionHintSourceInterface());
+		globalAttributeImporterEClass.getESuperTypes().add(this.getContainerSelectorSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(theMetamodelPackage.getInstancePointerSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(theMetamodelPackage.getValueConstraintSourceInterface());
 		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
@@ -2290,7 +2290,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		modelConnectionHintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getModelConnectionHintSourceInterface());
+		g1 = createEGenericType(this.getContainerSelectorSourceInterface());
 		modelConnectionHintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
 		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
@@ -2364,7 +2364,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		modelConnectionHintGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getModelConnectionHintSourceInterface());
+		g1 = createEGenericType(this.getContainerSelectorSourceInterface());
 		modelConnectionHintGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
@@ -2407,7 +2407,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(instantiableMappingHintGroupEClass, InstantiableMappingHintGroup.class, "InstantiableMappingHintGroup", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappingHintGroupEClass, MappingHintGroup.class, "MappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMappingHintGroup_ModelConnectionMatcher(), this.getModelConnectionHint(), null, "modelConnectionMatcher", null, 0, 1, MappingHintGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingHintGroup_ModelConnectionMatcher(), this.getContainerSelector(), null, "modelConnectionMatcher", null, 0, 1, MappingHintGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappingHintBaseTypeEClass, MappingHintBaseType.class, "MappingHintBaseType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2580,23 +2580,23 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(exportedMappingHintGroupEClass, ExportedMappingHintGroup.class, "ExportedMappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(modelConnectionHintEClass, ModelConnectionHint.class, "ModelConnectionHint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelConnectionHint_TargetAttributes(), this.getModelConnectionHintTargetAttribute(), null, "targetAttributes", null, 1, -1, ModelConnectionHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelConnectionHint_SourceElements(), this.getModelConnectionHintSourceInterface(), null, "sourceElements", null, 1, -1, ModelConnectionHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(modelConnectionHintEClass, ContainerSelector.class, "ModelConnectionHint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContainerSelector_TargetAttributes(), this.getContainerSelectorTargetAttribute(), null, "targetAttributes", null, 1, -1, ContainerSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContainerSelector_SourceElements(), this.getContainerSelectorSourceInterface(), null, "sourceElements", null, 1, -1, ContainerSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getModelConnectionHint__GetSourceAttributes(), theMetamodelPackage.getActualSourceSectionAttribute(), "getSourceAttributes", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		initEOperation(getContainerSelector__GetSourceAttributes(), theMetamodelPackage.getActualSourceSectionAttribute(), "getSourceAttributes", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getModelConnectionHint__GetLocalSourceElements(), this.getModelConnectionHintSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		initEOperation(getContainerSelector__GetLocalSourceElements(), this.getContainerSelectorSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getModelConnectionHint__GetExternalSourceElements(), this.getModelConnectionHintExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		initEOperation(getContainerSelector__GetExternalSourceElements(), this.getContainerSelectorExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(attributeMappingSourceElementEClass, AttributeMappingSourceElement.class, "AttributeMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(modelConnectionHintSourceElementEClass, ModelConnectionHintSourceElement.class, "ModelConnectionHintSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modelConnectionHintSourceElementEClass, ContainerSelectorSourceElement.class, "ModelConnectionHintSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(modelConnectionHintTargetAttributeEClass, ModelConnectionHintTargetAttribute.class, "ModelConnectionHintTargetAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modelConnectionHintTargetAttributeEClass, ContainerSelectorTargetAttribute.class, "ModelConnectionHintTargetAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = initEOperation(getModelConnectionHintTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "sourceMatchesPossibleContainerType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getContainerSelectorTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "sourceMatchesPossibleContainerType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2647,7 +2647,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEOperation(getMappingHintSourceInterface__GetSourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttribute", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(modelConnectionHintSourceInterfaceEClass, ModelConnectionHintSourceInterface.class, "ModelConnectionHintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modelConnectionHintSourceInterfaceEClass, ContainerSelectorSourceInterface.class, "ModelConnectionHintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(attributeMappingExternalSourceElementEClass, AttributeMappingExternalSourceElement.class, "AttributeMappingExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2662,7 +2662,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(modelConnectionHintExternalSourceElementEClass, ModelConnectionHintExternalSourceElement.class, "ModelConnectionHintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modelConnectionHintExternalSourceElementEClass, ContainerSelectorExternalSourceElement.class, "ModelConnectionHintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(attributeMatcherExternalSourceElementEClass, AttributeMatcherExternalSourceElement.class, "AttributeMatcherExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2687,7 +2687,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(attributeMappingGlobalSourceElementEClass, AttributeMappingGlobalSourceElement.class, "AttributeMappingGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(modelConnectionHintGlobalSourceElementEClass, ModelConnectionHintGlobalSourceElement.class, "ModelConnectionHintGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modelConnectionHintGlobalSourceElementEClass, ContainerSelectorGlobalSourceElement.class, "ModelConnectionHintGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

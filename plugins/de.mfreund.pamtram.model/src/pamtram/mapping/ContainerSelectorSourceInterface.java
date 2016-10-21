@@ -9,9 +9,9 @@ package pamtram.mapping;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getModelConnectionHintSourceInterface()
+ * @see pamtram.mapping.MappingPackage#getContainerSelectorSourceInterface()
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface ModelConnectionHintSourceInterface extends MappingHintSourceInterface {
+public interface ContainerSelectorSourceInterface extends MappingHintSourceInterface {
 } // ModelConnectionHintSourceInterface

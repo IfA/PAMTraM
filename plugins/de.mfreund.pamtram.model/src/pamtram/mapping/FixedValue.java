@@ -22,7 +22,7 @@ import pamtram.metamodel.InstancePointerSourceInterface;
  * @model
  * @generated
  */
-public interface FixedValue extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ModelConnectionHintSourceInterface, InstancePointerSourceInterface, ValueConstraintSourceInterface {
+public interface FixedValue extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ContainerSelectorSourceInterface, InstancePointerSourceInterface, ValueConstraintSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -22,7 +22,7 @@ import pamtram.metamodel.InstancePointerSourceInterface;
  * @model
  * @generated
  */
-public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ModelConnectionHintSourceInterface, InstancePointerSourceInterface, ValueConstraintSourceInterface {
+public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ContainerSelectorSourceInterface, InstancePointerSourceInterface, ValueConstraintSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Global Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

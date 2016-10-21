@@ -426,7 +426,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModel.0/@metaModelSections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1" modifier="//@mappingModel.0/@modifierSets.10"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1" modifier="//@mappingModel.0/@modifierSets.10"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -442,7 +442,7 @@
         </mappingHints>
         <modelConnectionMatcher>
           <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModel.0/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1" modifier="//@mappingModel.0/@modifierSets.10 //@mappingModel.0/@modifierSets.6"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1" modifier="//@mappingModel.0/@modifierSets.10 //@mappingModel.0/@modifierSets.6"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>

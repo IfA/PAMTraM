@@ -520,18 +520,18 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxArrayNameMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ArrayId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
-          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel.0/@metaModelSections.3/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="PanelId" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
+        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModel.0/@metaModelSections.3/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="PanelId" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetSection="//@targetSectionModel.0/@metaModelSections.6">
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelNameMapping" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="outputId" source="//@sourceSectionModel.0/@metaModelSections.5/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
-          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel.0/@metaModelSections.3/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="PanelId" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
+        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModel.0/@metaModelSections.3/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="PanelId" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBox" targetSection="//@targetSectionModel.0/@metaModelSections.2">
@@ -543,9 +543,9 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="CheckBoxId" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
-          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="CheckBoxArrayName" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="ArrayId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="CheckBoxArrayName" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="ArrayId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModel.0/@metaModelSections.4">

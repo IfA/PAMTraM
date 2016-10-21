@@ -484,9 +484,9 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualDropDownRepresentationNameMapping" target="//@targetSectionModel.0/@metaModelSections.2/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
-          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -500,9 +500,9 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ElementId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
-          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="virtualDropDownRepresentationName" source="//@targetSectionModel.0/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="DropDownId" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
+        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="virtualDropDownRepresentationName" source="//@targetSectionModel.0/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="DropDownId" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModel.0/@metaModelSections.4">

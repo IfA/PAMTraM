@@ -25,7 +25,6 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -132,8 +131,10 @@ extends MappingHintItemProvider {
 
 					LibraryEntry libEntry = (LibraryEntry) target.eContainer().eContainer();
 					choiceOfValues.addAll(
-							libEntry.getParameters().parallelStream().filter(p -> p instanceof AttributeParameter)
-							.map(p -> ((AttributeParameter) p).getAttribute()).collect(Collectors.toList()));
+							libEntry.getParameters().parallelStream()
+									.filter(p -> p instanceof pamtram.metamodel.AttributeParameter)
+									.map(p -> ((pamtram.metamodel.AttributeParameter) p).getAttribute())
+									.collect(Collectors.toList()));
 					choiceOfValues.addAll(libEntry.getResourceParameters().parallelStream().map(p -> p.getAttribute())
 							.collect(Collectors.toList()));
 

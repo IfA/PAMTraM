@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.MappingFactory;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -152,7 +152,7 @@ extends MatcherItemProvider {
 			public Collection<?> getChoiceOfValues(Object object) {
 				//the parent MappingInstanceSelector
 				Collection<TargetSectionAttribute> choices=new LinkedList<TargetSectionAttribute>();
-				Collection<TargetSectionClass>refClasses=((MappingInstanceSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
+				Collection<TargetSectionClass>refClasses=((ReferenceTargetSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
 
 				/*
 				 * Only show attributes that belong to an Class that was modeled as the reference's value

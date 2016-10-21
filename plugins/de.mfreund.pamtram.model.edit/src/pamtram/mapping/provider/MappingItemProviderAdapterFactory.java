@@ -142,15 +142,15 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MappingInstanceSelector} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ReferenceTargetSelector} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MappingInstanceSelectorItemProvider mappingInstanceSelectorItemProvider;
+	protected ReferenceTargetSelectorItemProvider mappingInstanceSelectorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.MappingInstanceSelector}.
+	 * This creates an adapter for a {@link pamtram.mapping.ReferenceTargetSelector}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -158,7 +158,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	@Override
 	public Adapter createMappingInstanceSelectorAdapter() {
 		if (mappingInstanceSelectorItemProvider == null) {
-			mappingInstanceSelectorItemProvider = new MappingInstanceSelectorItemProvider(this);
+			mappingInstanceSelectorItemProvider = new ReferenceTargetSelectorItemProvider(this);
 		}
 
 		return mappingInstanceSelectorItemProvider;

@@ -25,7 +25,7 @@ import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
@@ -281,7 +281,7 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createMappingInstanceSelector()));
+				 MappingFactory.eINSTANCE.createReferenceTargetSelector()));
 	}
 
 	/**
@@ -323,7 +323,7 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 		newChildDescriptors.add
 		(this.createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createMappingInstanceSelector()));
+						MappingFactory.eINSTANCE.createReferenceTargetSelector()));
 
 	}
 
@@ -337,8 +337,8 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 			if(!attributeMapping.getSourceElements().isEmpty()) {
 				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Source Attribute)";
 			}
-		} else if(child instanceof MappingInstanceSelector) {
-			MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) child;
+		} else if(child instanceof ReferenceTargetSelector) {
+			ReferenceTargetSelector mappingInstanceSelector = (ReferenceTargetSelector) child;
 			if(mappingInstanceSelector.getMatcher() instanceof ClassMatcher) {
 				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Class Matcher)";
 			} else if(mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {

@@ -65,7 +65,7 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
@@ -766,9 +766,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				/*
 				 * If a MappingInstanceSelector is selected, select the target reference that it points to.
 				 */
-			} else if(item.getData() instanceof MappingInstanceSelector) {
+			} else if(item.getData() instanceof ReferenceTargetSelector) {
 
-				MappingInstanceSelector selector = (MappingInstanceSelector) item.getData();
+				ReferenceTargetSelector selector = (ReferenceTargetSelector) item.getData();
 
 				NonContainmentReference<?, ?, ?, ?> reference = selector.getAffectedReference();
 

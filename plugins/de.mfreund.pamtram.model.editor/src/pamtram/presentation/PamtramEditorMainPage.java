@@ -66,9 +66,9 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.ContainerParameter;
@@ -715,9 +715,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					target = ((AttributeMapping) importer.eContainer()).getTarget();
 				} else if(importer.eContainer() instanceof AttributeMatcher) {
 					target = ((AttributeMatcher) importer.eContainer()).getTarget();
-				} else if(importer.eContainer() instanceof ModelConnectionHint) {
-					if(!((ModelConnectionHint) importer.eContainer()).getTargetAttributes().isEmpty()) {
-						target = ((ModelConnectionHint) importer.eContainer()).getTargetAttributes().get(0).getSource();
+				} else if(importer.eContainer() instanceof ContainerSelector) {
+					if(!((ContainerSelector) importer.eContainer()).getTargetAttributes().isEmpty()) {
+						target = ((ContainerSelector) importer.eContainer()).getTargetAttributes().get(0).getSource();
 					}
 				} else if(importer.eContainer() instanceof InstancePointer) {
 					target = ((InstancePointer) importer.eContainer()).getTarget();
@@ -807,18 +807,18 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				 * If a ModelConnectionHint is selected, Select the source and target item
 				 * associated with the selected matcher.
 				 */
-			} else if(item.getData() instanceof ModelConnectionHint) {
+			} else if(item.getData() instanceof ContainerSelector) {
 
-				ModelConnectionHint hint = (ModelConnectionHint) item.getData();
+				ContainerSelector hint = (ContainerSelector) item.getData();
 
 				ArrayList<Attribute<?, ?, ?, ?>> sources = new ArrayList<>();
 				ArrayList<Attribute<?, ?, ?, ?>> targets = new ArrayList<>();
 
-				for(ModelConnectionHintSourceInterface sourceElement : hint.getSourceElements() ){
+				for(ContainerSelectorSourceInterface sourceElement : hint.getSourceElements() ){
 					sources.add(sourceElement.getSourceAttribute());
 				}
 
-				for(ModelConnectionHintTargetAttribute a : hint.getTargetAttributes()){
+				for(ContainerSelectorTargetAttribute a : hint.getTargetAttributes()){
 					targets.add(a.getSource());
 				}
 

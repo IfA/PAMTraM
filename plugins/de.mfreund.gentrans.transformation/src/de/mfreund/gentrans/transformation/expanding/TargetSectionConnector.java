@@ -36,9 +36,9 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.metamodel.FileTypeEnum;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
@@ -56,9 +56,9 @@ public class TargetSectionConnector extends CancelableElement {
 
 	/**
 	 * This list stores those {@link ModelConnectionPath ModelConnectionPaths} that have beepreviously selected
-	 * by the user for a given {@link ModelConnectionHint}.
+	 * by the user for a given {@link ContainerSelector}.
 	 */
-	private final LinkedHashMap<ModelConnectionHint, ModelConnectionPath> standardPaths;
+	private final LinkedHashMap<ContainerSelector, ModelConnectionPath> standardPaths;
 
 	/**
 	 * The {@link TargetSectionRegistry} that is used when finding instances to which sections
@@ -78,7 +78,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 	/**
 	 * The {@link AttributeValueModifierExecutor} that is used to modify attribute values. This is necessary to
-	 * calculate the values of {@link ModelConnectionHintTargetAttribute ModelConnectionHintTargetAttributes} that
+	 * calculate the values of {@link ContainerSelectorTargetAttribute ModelConnectionHintTargetAttributes} that
 	 * are evaluated here.
 	 */
 	private final AttributeValueModifierExecutor attributeValuemodifier;
@@ -111,7 +111,7 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @param attributeValuemodifier
 	 *            An {@link AttributeValueModifierExecutor} that is used to
 	 *            modify attribute values. This is necessary to calculate the
-	 *            values of {@link ModelConnectionHintTargetAttribute
+	 *            values of {@link ContainerSelectorTargetAttribute
 	 *            ModelConnectionHintTargetAttributes} that are evaluated here.
 	 * @param targetModelRegistry
 	 *            The {@link TargetModelRegistry} that is used to manage the
@@ -219,7 +219,7 @@ public class TargetSectionConnector extends CancelableElement {
 			return true;
 		}
 
-		if (((MappingHintGroup) hintGroup).getModelConnectionMatcher() != null) {// link using matcher
+		if (((MappingHintGroup) hintGroup).getContainerSelector() != null) {// link using matcher
 
 			for (final MappingInstanceStorage selMap : mappingInstances) {
 
@@ -238,8 +238,8 @@ public class TargetSectionConnector extends CancelableElement {
 							section,
 							mapping.getName(),
 							hintGroup,
-							((MappingHintGroup) hintGroup).getModelConnectionMatcher(),
-							selMap.getHintValues().getHintValues(((MappingHintGroup) hintGroup).getModelConnectionMatcher()));
+							((MappingHintGroup) hintGroup).getContainerSelector(),
+							selMap.getHintValues().getHintValues(((MappingHintGroup) hintGroup).getContainerSelector()));
 					if (this.isCanceled()) {
 
 						return false;
@@ -889,21 +889,21 @@ public class TargetSectionConnector extends CancelableElement {
 	 * Try to link the given list of 'rootInstances' (and therefore entire sections of the
 	 * target model) to other objects of the target model.
 	 * <p>
-	 * This method is used for connecting sections using a given {@link ModelConnectionHint}.
+	 * This method is used for connecting sections using a given {@link ContainerSelector}.
 	 *
 	 * @param rootInstances A list of {@link EObjectWrapper elements} to connect.
 	 * @param section The {@link TargetSection} that shall be connected.
 	 * @param mappingName The name of the {@link Mapping} that is used.
 	 * @param mappingGroup The {@link MappingHintGroupType} that is used.
-	 * @param connectionHint The {@link ModelConnectionHint} to be used to connect the section.
-	 * @param modelConnectionHintValues A list of values that are to be used by the given {@link ModelConnectionHint}.
+	 * @param connectionHint The {@link ContainerSelector} to be used to connect the section.
+	 * @param modelConnectionHintValues A list of values that are to be used by the given {@link ContainerSelector}.
 	 */
 	public void linkToTargetModelUsingModelConnectionHint(
 			final List<EObjectWrapper> rootInstances,
 			final TargetSection section, final String mappingName,
 			final MappingHintGroupType mappingGroup,
-			final ModelConnectionHint connectionHint,
-			final LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> modelConnectionHintValues) {// connectionHint.targetAttribute.~owningClass
+			final ContainerSelector connectionHint,
+			final LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> modelConnectionHintValues) {// connectionHint.targetAttribute.~owningClass
 
 		// nothing to connect
 		if (rootInstances == null || rootInstances.isEmpty()) {
@@ -912,7 +912,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 		// check for connections
 		int size = 0;
-		for (final ModelConnectionHintTargetAttribute attr : connectionHint.getTargetAttributes()) {
+		for (final ContainerSelectorTargetAttribute attr : connectionHint.getTargetAttributes()) {
 
 			size += this.targetSectionRegistry.getConnections(section.getEClass(),
 					attr.getSource().getOwningClass().getEClass(),
@@ -931,10 +931,10 @@ public class TargetSectionConnector extends CancelableElement {
 
 		// now search for target attributes
 
-		final Map<ModelConnectionHintTargetAttribute, List<EObjectWrapper>> containerInstancesByTargetAttribute =
+		final Map<ContainerSelectorTargetAttribute, List<EObjectWrapper>> containerInstancesByTargetAttribute =
 				new LinkedHashMap<>();
 
-		for (final ModelConnectionHintTargetAttribute targetAttr : connectionHint.getTargetAttributes()) {
+		for (final ContainerSelectorTargetAttribute targetAttr : connectionHint.getTargetAttributes()) {
 
 			containerInstancesByTargetAttribute.put(targetAttr,
 					this.targetSectionRegistry.getFlattenedPamtramClassInstances(targetAttr.getSource().getOwningClass()));// owningClass
@@ -947,7 +947,7 @@ public class TargetSectionConnector extends CancelableElement {
 				new LinkedHashMap<>();
 		final LinkedHashMap<String, LinkedHashSet<EObjectWrapper>> rootInstancesByHintVal =
 				new LinkedHashMap<>();
-		LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> connectionHintValuesCopy;
+		LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> connectionHintValuesCopy;
 
 		// again, we need to handle the special case, when there is only one
 		// hintValue
@@ -960,7 +960,7 @@ public class TargetSectionConnector extends CancelableElement {
 			connectionHintValuesCopy = modelConnectionHintValues;
 		}
 
-		for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> hintVal : connectionHintValuesCopy) {
+		for (final Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> hintVal : connectionHintValuesCopy) {
 
 			StringBuilder hintValBuilder = new StringBuilder();
 
@@ -992,7 +992,7 @@ public class TargetSectionConnector extends CancelableElement {
 			// instances have same order as hintValues
 			rootInstancesByHintVal.get(hintValAsString).add(rootInstances.remove(0));
 
-			for (final Entry<ModelConnectionHintTargetAttribute, List<EObjectWrapper>> entry : containerInstancesByTargetAttribute.entrySet()) {
+			for (final Entry<ContainerSelectorTargetAttribute, List<EObjectWrapper>> entry : containerInstancesByTargetAttribute.entrySet()) {
 
 				final String modifiedHintVal = this.attributeValuemodifier.
 						applyAttributeValueModifiers(hintValAsString, entry.getKey().getModifier());

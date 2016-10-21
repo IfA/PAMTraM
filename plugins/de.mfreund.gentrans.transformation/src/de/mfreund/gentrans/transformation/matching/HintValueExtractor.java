@@ -35,8 +35,8 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSection;
@@ -143,8 +143,8 @@ public class HintValueExtractor extends ValueExtractor {
 		List<MappingHintBaseType> mappingHints = new ArrayList<>();
 		for (MappingHintGroupType hintGroup : mappingInstance.getMappingHintGroups()) {
 			if(hintGroup instanceof MappingHintGroup &&
-					((MappingHintGroup) hintGroup).getModelConnectionMatcher() != null) {
-				mappingHints.add(((MappingHintGroup) hintGroup).getModelConnectionMatcher());
+					((MappingHintGroup) hintGroup).getContainerSelector() != null) {
+				mappingHints.add(((MappingHintGroup) hintGroup).getContainerSelector());
 			}
 			mappingHints.addAll(hintGroup.getMappingHints());
 		}
@@ -222,9 +222,9 @@ public class HintValueExtractor extends ValueExtractor {
 				hintValue = this.extractHintValue((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher(), matchedSectionDescriptor);
 			}
 
-		} else if(hint instanceof ModelConnectionHint) {
+		} else if(hint instanceof ContainerSelector) {
 
-			hintValue = this.extractHintValue((ModelConnectionHint) hint, matchedSectionDescriptor);
+			hintValue = this.extractHintValue((ContainerSelector) hint, matchedSectionDescriptor);
 
 		} else if(hint instanceof CardinalityMapping) {
 
@@ -332,22 +332,22 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link ModelConnectionHint}.
+	 * This extracts and returns the hint value for the given {@link ContainerSelector}.
 	 *
-	 * @param modelConnectionHint The {@link ModelConnectionHint} for that the hint values shall be extracted.
+	 * @param modelConnectionHint The {@link ContainerSelector} for that the hint values shall be extracted.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
 	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
-	private Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> extractHintValue(ModelConnectionHint modelConnectionHint, MatchedSectionDescriptor matchedSectionDescriptor) {
+	private Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> extractHintValue(ContainerSelector modelConnectionHint, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// This keeps track of the extracted hint value parts
 		//
-		Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
+		Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
 
 		// Extract the hint value part based on its type
 		//
-		for (ModelConnectionHintSourceInterface modelConnectionHintSourceInterface : modelConnectionHint.getSourceElements()) {
+		for (ContainerSelectorSourceInterface modelConnectionHintSourceInterface : modelConnectionHint.getSourceElements()) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
@@ -429,8 +429,8 @@ public class HintValueExtractor extends ValueExtractor {
 			if (((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher) {
 				mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((ReferenceTargetSelector) hint, false);
 			}
-		} else if (hint instanceof ModelConnectionHint) {
-			mappingInstance.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) hint, false);
+		} else if (hint instanceof ContainerSelector) {
+			mappingInstance.getHintValues().getModelConnectionHintValues().init((ContainerSelector) hint, false);
 		}
 	}
 

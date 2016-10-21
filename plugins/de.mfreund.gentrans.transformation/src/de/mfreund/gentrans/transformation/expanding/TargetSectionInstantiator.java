@@ -552,10 +552,10 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 				final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
 
-				if (mhGrp.getModelConnectionMatcher() != null && mhGrp.getTargetSection().equals(targetSectionClass)) {
+				if (mhGrp.getContainerSelector() != null && mhGrp.getTargetSection().equals(targetSectionClass)) {
 
 					hintFound = true;
-					cardinality = hintValues.getHintValues(mhGrp.getModelConnectionMatcher()).size();
+					cardinality = hintValues.getHintValues(mhGrp.getContainerSelector()).size();
 				}
 			}
 

@@ -21,7 +21,7 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ContainerSelector;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.TargetSection;
@@ -181,7 +181,7 @@ public interface IAmbiguityResolvingStrategy {
 
 	/**
 	 * Resolve ambiguities that arise when selecting the {@link EObjectWrapper container} for a given 'element' during
-	 * the '<em>joining</em>' step of the transformation. This method is either called if no {@link ModelConnectionHint}
+	 * the '<em>joining</em>' step of the transformation. This method is either called if no {@link ContainerSelector}
 	 * has been defined for the given 'element' or if the evaluation of the defined ModelConnectionHint delivered
 	 * multiple possible container elements.
 	 *
@@ -192,7 +192,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @param hintGroup
 	 *            The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @param modelConnectionHint
-	 *            The {@link ModelConnectionHint} that produced the ambiguous choices. This is '<em><b>null</b></em>' if
+	 *            The {@link ContainerSelector} that produced the ambiguous choices. This is '<em><b>null</b></em>' if
 	 *            no ModelConnectionHint was defined for the given '<em>element</em>'.
 	 * @param hintValue
 	 *            The target attribute value that has been calculated by the given 'modelConnectionHint' and that is
@@ -207,7 +207,7 @@ public interface IAmbiguityResolvingStrategy {
 			List<EObjectWrapper> choices,
 			List<EObjectWrapper> sectionInstances,
 			MappingHintGroupType hintGroup,
-			ModelConnectionHint modelConnectionHint,
+			ContainerSelector modelConnectionHint,
 			String hintValue) throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();

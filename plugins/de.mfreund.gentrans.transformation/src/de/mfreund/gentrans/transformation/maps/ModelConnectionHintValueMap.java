@@ -1,20 +1,20 @@
 package de.mfreund.gentrans.transformation.maps;
 
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
  * This class represents a map that allows to collect hint values for 
- * {@link ModelConnectionHint ModelConnectionHints}.
+ * {@link ContainerSelector ModelConnectionHints}.
  * <p />
  * Thereby, the stored hint values are associated with the <em>ModelConnectionHint</em>, the 
- * <em>{@link ModelConnectionHintSourceInterface}</em> of the hint and the 
+ * <em>{@link ContainerSelectorSourceInterface}</em> of the hint and the 
  * <em>{@link SourceSectionClass}</em> that they belong to.
  * 
  * @author mfreund
  */
-public class ModelConnectionHintValueMap extends AttributeBasedHintValueMap<ModelConnectionHint, ModelConnectionHintSourceInterface> {
+public class ModelConnectionHintValueMap extends AttributeBasedHintValueMap<ContainerSelector, ContainerSelectorSourceInterface> {
 
 	private static final long serialVersionUID = -3933991238187309467L;
 

@@ -17,7 +17,7 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ContainerSelector;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -81,7 +81,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 
 	@Override
 	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices, List<EObjectWrapper> element,
-			MappingHintGroupType hintGroup, ModelConnectionHint modelConnectionHint, String hintValue) {
+			MappingHintGroupType hintGroup, ContainerSelector modelConnectionHint, String hintValue) {
 
 		if (choices == null || choices.isEmpty()) {
 			return new ArrayList<>();

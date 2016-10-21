@@ -18,8 +18,8 @@ import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
@@ -46,7 +46,7 @@ public class HintValueStorage {
 	private final MappingInstanceSelectorHintValueMap mappingInstanceSelectorHintValues;
 
 	/**
-	 * This keeps track of hint values for {@link ModelConnectionHint ModelConnectionHints}.
+	 * This keeps track of hint values for {@link ContainerSelector ModelConnectionHints}.
 	 */
 	private final ModelConnectionHintValueMap modelConnectionHintValues;
 
@@ -67,7 +67,7 @@ public class HintValueStorage {
 	 * 
 	 * @param hint The hint for which the stored values shall be returned. The concrete type of this needs to be one of 
 	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
-	 * {@link ReferenceTargetSelector}, or {@link ModelConnectionHint}.
+	 * {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @return The stored values for the given hint. The concrete return type is in line with the type of the <em>hint</em> according to
 	 * the concrete implementation of the {@link HintValueMap} type.
 	 */
@@ -78,8 +78,8 @@ public class HintValueStorage {
 			return getHintValues((CardinalityMapping) hint);
 		} else if(hint instanceof ReferenceTargetSelector) {
 			return getHintValues((ReferenceTargetSelector) hint);
-		} else if(hint instanceof ModelConnectionHint) {
-			return getHintValues((ModelConnectionHint) hint);
+		} else if(hint instanceof ContainerSelector) {
+			return getHintValues((ContainerSelector) hint);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
@@ -93,7 +93,7 @@ public class HintValueStorage {
 	 * 
 	 * @param hint The hint for which the stored values shall be returned. The concrete type of this needs to be one of 
 	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
-	 * {@link ReferenceTargetSelector}, or {@link ModelConnectionHint}.
+	 * {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @return A cloned copy of the stored values for the given hint. The concrete return type is in line with the type of the <em>hint</em> according to
 	 * the concrete implementation of the {@link HintValueMap} type.
 	 */
@@ -104,8 +104,8 @@ public class HintValueStorage {
 			return getHintValuesCloned((CardinalityMapping) hint);
 		} else if(hint instanceof ReferenceTargetSelector) {
 			return getHintValuesCloned((ReferenceTargetSelector) hint);
-		} else if(hint instanceof ModelConnectionHint) {
-			return getHintValuesCloned((ModelConnectionHint) hint);
+		} else if(hint instanceof ContainerSelector) {
+			return getHintValuesCloned((ContainerSelector) hint);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
@@ -225,7 +225,7 @@ public class HintValueStorage {
 	 * @param hint The hint for which the stored values shall be returned.
 	 * @return The stored values for the given hint.
 	 */
-	public LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> getHintValues(ModelConnectionHint hint) {
+	public LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> getHintValues(ContainerSelector hint) {
 		return modelConnectionHintValues.getHintValues(hint);
 	}
 	
@@ -235,10 +235,10 @@ public class HintValueStorage {
 	 * @param hint The hint for which the stored values shall be returned.
 	 * @return A cloned copy of the list of stored values for the given hint.
 	 */
-	public LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> getHintValuesCloned(ModelConnectionHint hint) {
+	public LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> getHintValuesCloned(ContainerSelector hint) {
 		return new LinkedList<>(modelConnectionHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
-			Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
-			for (ModelConnectionHintSourceInterface key : oldHintValue.keySet()) {
+			Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+			for (ContainerSelectorSourceInterface key : oldHintValue.keySet()) {
 				newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
 			}
 			return newHintValue;
@@ -250,7 +250,7 @@ public class HintValueStorage {
 	 * 
 	 * @param hint The hint for that the value shall be added. The concrete type of this needs to be one of 
 	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
-	 * {@link ReferenceTargetSelector}, or {@link ModelConnectionHint}.
+	 * {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @param value The value to be added. The concrete type needs to be in line with the type of the <em>hint</em> according to
 	 * the concrete implementation of the {@link HintValueMap} type.
 	 * @throws ClassCastException if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
@@ -265,8 +265,8 @@ public class HintValueStorage {
 			addHintValue((MappedAttributeValueExpander) hint, (String) value);
 		} else if(hint instanceof ReferenceTargetSelector) {
 			addHintValue((ReferenceTargetSelector) hint, (Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) value);
-		} else if(hint instanceof ModelConnectionHint) {
-			addHintValue((ModelConnectionHint) hint, (Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>) value);
+		} else if(hint instanceof ContainerSelector) {
+			addHintValue((ContainerSelector) hint, (Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>) value);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
@@ -305,10 +305,10 @@ public class HintValueStorage {
 	/**
 	 * This adds a hint value to the storage.
 	 * 
-	 * @param hint The {@link ModelConnectionHint} for that the value shall be added.
+	 * @param hint The {@link ContainerSelector} for that the value shall be added.
 	 * @param value The value to be added.
 	 */
-	public void addHintValue(ModelConnectionHint hint, Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> value) {
+	public void addHintValue(ContainerSelector hint, Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> value) {
 		modelConnectionHintValues.addHintValue(hint, value);
 	}
 
@@ -348,11 +348,11 @@ public class HintValueStorage {
 	/**
 	 * This adds a hint value to the storage.
 	 * 
-	 * @param hint The {@link ModelConnectionHint} for that the value shall be added.
+	 * @param hint The {@link ContainerSelector} for that the value shall be added.
 	 * @param clazz The {@link SourceSectionClass} for that the value shall be added.
 	 * @param value The value to be added.
 	 */
-	public void addHintValue(ModelConnectionHint hint, SourceSectionClass clazz, Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> value) {
+	public void addHintValue(ContainerSelector hint, SourceSectionClass clazz, Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> value) {
 		modelConnectionHintValues.addHintValue(hint, clazz, value);
 	}
 
@@ -375,7 +375,7 @@ public class HintValueStorage {
 	 * 
 	 * @param hint The hint for that the value shall be added. The concrete type of this needs to be one of 
 	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
-	 * {@link ReferenceTargetSelector}, or {@link ModelConnectionHint}.
+	 * {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @param values The values to be added. The concrete type needs to be in line with the type of the <em>hint</em> according to
 	 * the concrete implementation of the {@link HintValueMap} type.
 	 * @throws ClassCastException if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
@@ -390,8 +390,8 @@ public class HintValueStorage {
 			addHintValues((MappedAttributeValueExpander) hint, (LinkedList<String>) values);
 		} else if(hint instanceof ReferenceTargetSelector) {
 			addHintValues((ReferenceTargetSelector) hint, (LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>) values);
-		} else if(hint instanceof ModelConnectionHint) {
-			addHintValues((ModelConnectionHint) hint, (LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>) values);
+		} else if(hint instanceof ContainerSelector) {
+			addHintValues((ContainerSelector) hint, (LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>>) values);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
@@ -430,10 +430,10 @@ public class HintValueStorage {
 	/**
 	 * This adds a list of hint value to the storage.
 	 * 
-	 * @param hint The {@link ModelConnectionHint} for that the value shall be added.
+	 * @param hint The {@link ContainerSelector} for that the value shall be added.
 	 * @param values The values to be added.
 	 */
-	public void addHintValues(ModelConnectionHint hint, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> values) {
+	public void addHintValues(ContainerSelector hint, LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> values) {
 		modelConnectionHintValues.addHintValues(hint, values);
 	}
 
@@ -442,7 +442,7 @@ public class HintValueStorage {
 	 * 
 	 * @param hint The hint for that the value shall be set. The concrete type of this needs to be one of 
 	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
-	 * {@link ReferenceTargetSelector}, or {@link ModelConnectionHint}.
+	 * {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @param values The values to be set. The concrete type needs to be in line with the type of the <em>hint</em> according to
 	 * the concrete implementation of the {@link HintValueMap} type.
 	 * @throws ClassCastException if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
@@ -457,8 +457,8 @@ public class HintValueStorage {
 			setHintValues((MappedAttributeValueExpander) hint, (LinkedList<String>) values);
 		} else if(hint instanceof ReferenceTargetSelector) {
 			setHintValues((ReferenceTargetSelector) hint, (LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>) values);
-		} else if(hint instanceof ModelConnectionHint) {
-			setHintValues((ModelConnectionHint) hint, (LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>) values);
+		} else if(hint instanceof ContainerSelector) {
+			setHintValues((ContainerSelector) hint, (LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>>) values);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
@@ -497,10 +497,10 @@ public class HintValueStorage {
 	/**
 	 * This sets the list of stored hint values for the given hint.
 	 * 
-	 * @param hint The {@link ModelConnectionHint} for that the values shall be set.
+	 * @param hint The {@link ContainerSelector} for that the values shall be set.
 	 * @param values The values to be set.
 	 */
-	public void setHintValues(ModelConnectionHint hint, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> values) {
+	public void setHintValues(ContainerSelector hint, LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> values) {
 		modelConnectionHintValues.setHintValues(hint, values);
 	}
 
@@ -540,11 +540,11 @@ public class HintValueStorage {
 	/**
 	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
 	 * 
-	 * @param hint The {@link ModelConnectionHint} for that the values shall be set.
+	 * @param hint The {@link ContainerSelector} for that the values shall be set.
 	 * @param clazz The {@link SourceSectionClass} for that the values shall be set.
 	 * @param values The values to be set.
 	 */
-	public void setHintValues(ModelConnectionHint hint, SourceSectionClass clazz, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> values) {
+	public void setHintValues(ContainerSelector hint, SourceSectionClass clazz, LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> values) {
 		modelConnectionHintValues.setHintValues(hint, clazz, values);
 	}
 
@@ -553,7 +553,7 @@ public class HintValueStorage {
 	 * 
 	 * @param hint The hint for which the hint values shall be retrieved and removed.  The concrete type of this needs to be one of 
 	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
-	 * {@link ReferenceTargetSelector}, or {@link ModelConnectionHint}.
+	 * {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @return The removed hint values. The concrete type is in line with the type of the <em>hint</em> according to
 	 * the concrete implementation of the {@link HintValueMap} type.
 	 */
@@ -565,7 +565,7 @@ public class HintValueStorage {
 			return getCardinalityMappingHintValues().remove(hint).get(null);
 		} else if(hint instanceof ReferenceTargetSelector) {
 			return getMappingInstanceSelectorHintValues().remove(hint).get(null);
-		} else if(hint instanceof ModelConnectionHint) {
+		} else if(hint instanceof ContainerSelector) {
 			return getModelConnectionHintValues().remove(hint).get(null);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
@@ -577,7 +577,7 @@ public class HintValueStorage {
 	 * 
 	 * @param hint The hint for which the first hint value shall be retrieved and removed..  The concrete type of this needs to be one of 
 	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
-	 * {@link ReferenceTargetSelector}, or {@link ModelConnectionHint}.
+	 * {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @return The removed hint value. The concrete type is in line with the type of the <em>hint</em> according to
 	 * the concrete implementation of the {@link HintValueMap} type.
 	 */
@@ -591,8 +591,8 @@ public class HintValueStorage {
 			return removeHintValue((MappedAttributeValueExpander) hint);
 		} else if(hint instanceof ReferenceTargetSelector) {
 			return removeHintValue((ReferenceTargetSelector) hint);
-		} else if(hint instanceof ModelConnectionHint) {
-			return removeHintValue((ModelConnectionHint) hint);
+		} else if(hint instanceof ContainerSelector) {
+			return removeHintValue((ContainerSelector) hint);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
@@ -634,7 +634,7 @@ public class HintValueStorage {
 	 * @param hint The hint for which the first hint value shall be retrieved and removed.
 	 * @return The removed hint value.
 	 */
-	public Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> removeHintValue(ModelConnectionHint hint) {
+	public Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> removeHintValue(ContainerSelector hint) {
 		return modelConnectionHintValues.removeHintValue(hint);
 	}
 
@@ -643,7 +643,7 @@ public class HintValueStorage {
 	 * 
 	 * @param hint The hint that shall be checked. The concrete type of this needs to be one of 
 	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
-	 * {@link ReferenceTargetSelector}, or {@link ModelConnectionHint}.
+	 * {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @return '<em><b>true</b></em>' if the given <em>hint</em> is contained in the storage, '<em><b>false</b></em>' otherwise
 	 * @throws ClassCastException if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
 	 */
@@ -654,7 +654,7 @@ public class HintValueStorage {
 			return getCardinalityMappingHintValues().containsKey(hint);
 		} else if(hint instanceof ReferenceTargetSelector) {
 			return getMappingInstanceSelectorHintValues().containsKey(hint);
-		} else if(hint instanceof ModelConnectionHint) {
+		} else if(hint instanceof ContainerSelector) {
 			return getModelConnectionHintValues().containsKey(hint);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");

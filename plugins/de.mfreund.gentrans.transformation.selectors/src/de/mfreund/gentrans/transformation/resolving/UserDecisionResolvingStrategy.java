@@ -22,8 +22,8 @@ import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDi
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -310,12 +310,13 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
-			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector referenceTargetSelector, EObjectWrapper sourceElement)
 					throws AmbiguityResolvingException {
 
 		String dialogMessage;
-		if(mappingInstanceSelector != null) {
-			dialogMessage = "The MappingInstanceSelector '" + mappingInstanceSelector.getName() + " of Mapping" + ((Mapping) hintGroup.eContainer()).getName() + "(Group: "
+		if(referenceTargetSelector != null) {
+			dialogMessage = "The ReferenceTargetSelector '" + referenceTargetSelector.getName() + " of Mapping"
+					+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: "
 					+ hintGroup.getName() + ")' has a Matcher that points to a target element with more than one instance. "
 					+ "Please choose to which element the Reference '" + reference.getName()
 					+ "' of the " + (sourceElement != null ? "following element should point to:\n\n" + sourceElement.toString() : "affected elements should point to.");

@@ -25,7 +25,7 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.CreateLibraryEntryCommand;
 import pamtram.metamodel.AttributeParameter;
@@ -132,7 +132,7 @@ public class ImportLibraryElementWizard extends Wizard {
 											MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION,
 											((ContainerParameter) parameter).getClass_()));
 						} else if(parameter instanceof ExternalReferenceParameter) {
-							MappingInstanceSelector selector = MappingFactory.eINSTANCE.createMappingInstanceSelector();
+							ReferenceTargetSelector selector = MappingFactory.eINSTANCE.createReferenceTargetSelector();
 							mappingHints.add(selector);
 							// set the affected reference of the mapping instance selector
 							selector.setAffectedReference(((ExternalReferenceParameter) parameter).getReference());

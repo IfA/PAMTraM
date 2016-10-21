@@ -47,14 +47,14 @@ public class ContainerSelectorTargetAttributeItemProvider extends ModifiedAttrib
 	}
 
 	/**
-	 * This returns ModelConnectionHintTargetAttribute.gif.
+	 * This returns ContainerSelectorTargetAttribute.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHintTargetAttribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerSelectorTargetAttribute"));
 	}
 
 	/**
@@ -80,9 +80,9 @@ public class ContainerSelectorTargetAttributeItemProvider extends ModifiedAttrib
 		String label = ((ContainerSelectorTargetAttribute)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ModelConnectionHintTargetAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ContainerSelectorTargetAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ModelConnectionHintTargetAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ContainerSelectorTargetAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

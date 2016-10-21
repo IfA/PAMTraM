@@ -423,7 +423,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContainerSelectorItemProvider modelConnectionHintItemProvider;
+	protected ContainerSelectorItemProvider containerSelectorItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelector}.
@@ -432,12 +432,12 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintAdapter() {
-		if (modelConnectionHintItemProvider == null) {
-			modelConnectionHintItemProvider = new ContainerSelectorItemProvider(this);
+	public Adapter createContainerSelectorAdapter() {
+		if (containerSelectorItemProvider == null) {
+			containerSelectorItemProvider = new ContainerSelectorItemProvider(this);
 		}
 
-		return modelConnectionHintItemProvider;
+		return containerSelectorItemProvider;
 	}
 
 	/**
@@ -469,7 +469,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContainerSelectorSourceElementItemProvider modelConnectionHintSourceElementItemProvider;
+	protected ContainerSelectorSourceElementItemProvider containerSelectorSourceElementItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorSourceElement}.
@@ -478,12 +478,12 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintSourceElementAdapter() {
-		if (modelConnectionHintSourceElementItemProvider == null) {
-			modelConnectionHintSourceElementItemProvider = new ContainerSelectorSourceElementItemProvider(this);
+	public Adapter createContainerSelectorSourceElementAdapter() {
+		if (containerSelectorSourceElementItemProvider == null) {
+			containerSelectorSourceElementItemProvider = new ContainerSelectorSourceElementItemProvider(this);
 		}
 
-		return modelConnectionHintSourceElementItemProvider;
+		return containerSelectorSourceElementItemProvider;
 	}
 
 	/**
@@ -492,7 +492,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContainerSelectorTargetAttributeItemProvider modelConnectionHintTargetAttributeItemProvider;
+	protected ContainerSelectorTargetAttributeItemProvider containerSelectorTargetAttributeItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorTargetAttribute}.
@@ -501,12 +501,12 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintTargetAttributeAdapter() {
-		if (modelConnectionHintTargetAttributeItemProvider == null) {
-			modelConnectionHintTargetAttributeItemProvider = new ContainerSelectorTargetAttributeItemProvider(this);
+	public Adapter createContainerSelectorTargetAttributeAdapter() {
+		if (containerSelectorTargetAttributeItemProvider == null) {
+			containerSelectorTargetAttributeItemProvider = new ContainerSelectorTargetAttributeItemProvider(this);
 		}
 
-		return modelConnectionHintTargetAttributeItemProvider;
+		return containerSelectorTargetAttributeItemProvider;
 	}
 
 	/**
@@ -676,7 +676,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContainerSelectorExternalSourceElementItemProvider modelConnectionHintExternalSourceElementItemProvider;
+	protected ContainerSelectorExternalSourceElementItemProvider containerSelectorExternalSourceElementItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorExternalSourceElement}.
@@ -685,12 +685,12 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintExternalSourceElementAdapter() {
-		if (modelConnectionHintExternalSourceElementItemProvider == null) {
-			modelConnectionHintExternalSourceElementItemProvider = new ContainerSelectorExternalSourceElementItemProvider(this);
+	public Adapter createContainerSelectorExternalSourceElementAdapter() {
+		if (containerSelectorExternalSourceElementItemProvider == null) {
+			containerSelectorExternalSourceElementItemProvider = new ContainerSelectorExternalSourceElementItemProvider(this);
 		}
 
-		return modelConnectionHintExternalSourceElementItemProvider;
+		return containerSelectorExternalSourceElementItemProvider;
 	}
 
 	/**
@@ -860,7 +860,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContainerSelectorGlobalSourceElementItemProvider modelConnectionHintGlobalSourceElementItemProvider;
+	protected ContainerSelectorGlobalSourceElementItemProvider containerSelectorGlobalSourceElementItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelectorGlobalSourceElement}.
@@ -869,12 +869,12 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelConnectionHintGlobalSourceElementAdapter() {
-		if (modelConnectionHintGlobalSourceElementItemProvider == null) {
-			modelConnectionHintGlobalSourceElementItemProvider = new ContainerSelectorGlobalSourceElementItemProvider(this);
+	public Adapter createContainerSelectorGlobalSourceElementAdapter() {
+		if (containerSelectorGlobalSourceElementItemProvider == null) {
+			containerSelectorGlobalSourceElementItemProvider = new ContainerSelectorGlobalSourceElementItemProvider(this);
 		}
 
-		return modelConnectionHintGlobalSourceElementItemProvider;
+		return containerSelectorGlobalSourceElementItemProvider;
 	}
 
 	/**
@@ -991,10 +991,10 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (stringPrependerItemProvider != null) stringPrependerItemProvider.dispose();
 		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
-		if (modelConnectionHintItemProvider != null) modelConnectionHintItemProvider.dispose();
+		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
 		if (attributeMappingSourceElementItemProvider != null) attributeMappingSourceElementItemProvider.dispose();
-		if (modelConnectionHintSourceElementItemProvider != null) modelConnectionHintSourceElementItemProvider.dispose();
-		if (modelConnectionHintTargetAttributeItemProvider != null) modelConnectionHintTargetAttributeItemProvider.dispose();
+		if (containerSelectorSourceElementItemProvider != null) containerSelectorSourceElementItemProvider.dispose();
+		if (containerSelectorTargetAttributeItemProvider != null) containerSelectorTargetAttributeItemProvider.dispose();
 		if (localMappedAttributeValueExpanderItemProvider != null) localMappedAttributeValueExpanderItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
@@ -1002,7 +1002,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (globalAttributeItemProvider != null) globalAttributeItemProvider.dispose();
 		if (globalAttributeImporterItemProvider != null) globalAttributeImporterItemProvider.dispose();
 		if (attributeMappingExternalSourceElementItemProvider != null) attributeMappingExternalSourceElementItemProvider.dispose();
-		if (modelConnectionHintExternalSourceElementItemProvider != null) modelConnectionHintExternalSourceElementItemProvider.dispose();
+		if (containerSelectorExternalSourceElementItemProvider != null) containerSelectorExternalSourceElementItemProvider.dispose();
 		if (attributeMatcherExternalSourceElementItemProvider != null) attributeMatcherExternalSourceElementItemProvider.dispose();
 		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();
 		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
@@ -1010,7 +1010,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (matchToUpperCaseConverterItemProvider != null) matchToUpperCaseConverterItemProvider.dispose();
 		if (attributeMatcherGlobalSourceElementItemProvider != null) attributeMatcherGlobalSourceElementItemProvider.dispose();
 		if (attributeMappingGlobalSourceElementItemProvider != null) attributeMappingGlobalSourceElementItemProvider.dispose();
-		if (modelConnectionHintGlobalSourceElementItemProvider != null) modelConnectionHintGlobalSourceElementItemProvider.dispose();
+		if (containerSelectorGlobalSourceElementItemProvider != null) containerSelectorGlobalSourceElementItemProvider.dispose();
 	}
 
 }

@@ -47,14 +47,14 @@ public class ContainerSelectorSourceElementItemProvider extends LocalModifiedAtt
 	}
 
 	/**
-	 * This returns ModelConnectionHintSourceElement.gif.
+	 * This returns ContainerSelectorSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHintSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerSelectorSourceElement"));
 	}
 
 	/**
@@ -80,9 +80,9 @@ public class ContainerSelectorSourceElementItemProvider extends LocalModifiedAtt
 		String label = ((ContainerSelectorSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ModelConnectionHintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ContainerSelectorSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ModelConnectionHintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ContainerSelectorSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

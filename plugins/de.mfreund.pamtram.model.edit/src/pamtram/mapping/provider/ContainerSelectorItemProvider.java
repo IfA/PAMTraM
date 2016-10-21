@@ -96,14 +96,14 @@ extends MappingHintBaseTypeItemProvider {
 	}
 
 	/**
-	 * This returns ModelConnectionHint.gif.
+	 * This returns ContainerSelector.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHint"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerSelector"));
 	}
 
 	/**

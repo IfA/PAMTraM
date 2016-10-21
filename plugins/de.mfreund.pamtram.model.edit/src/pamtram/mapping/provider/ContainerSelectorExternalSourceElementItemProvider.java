@@ -47,14 +47,14 @@ public class ContainerSelectorExternalSourceElementItemProvider extends External
 	}
 
 	/**
-	 * This returns ModelConnectionHintExternalSourceElement.gif.
+	 * This returns ContainerSelectorExternalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHintExternalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerSelectorExternalSourceElement"));
 	}
 
 	/**
@@ -80,9 +80,9 @@ public class ContainerSelectorExternalSourceElementItemProvider extends External
 		String label = ((ContainerSelectorExternalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ModelConnectionHintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ContainerSelectorExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ModelConnectionHintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ContainerSelectorExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

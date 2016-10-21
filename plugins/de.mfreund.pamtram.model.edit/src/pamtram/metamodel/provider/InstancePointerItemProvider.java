@@ -59,13 +59,13 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addResultModifierPropertyDescriptor(object);
-			this.addTargetPropertyDescriptor(object);
+			addResultModifierPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -75,19 +75,19 @@ extends ExpressionHintItemProvider {
 	 * @generated
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_ModifiableHint_resultModifier_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModifiableHint_resultModifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -97,19 +97,19 @@ extends ExpressionHintItemProvider {
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_InstancePointer_target_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_target_feature", "_UI_InstancePointer_type"),
-						MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_InstancePointer_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_target_feature", "_UI_InstancePointer_type"),
+				 MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -122,11 +122,11 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS);
+			childrenFeatures.add(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
@@ -150,7 +150,7 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/InstancePointer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstancePointer"));
 	}
 
 	/**
@@ -161,7 +161,7 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -173,11 +173,11 @@ extends ExpressionHintItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((InstancePointer)object).getExpression();
-		StyledString styledLabel = new StyledString();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(this.getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -191,11 +191,11 @@ extends ExpressionHintItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(InstancePointer.class)) {
 			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);

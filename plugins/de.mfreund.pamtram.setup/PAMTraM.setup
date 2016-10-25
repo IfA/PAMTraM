@@ -15,7 +15,7 @@
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-Doomph.redirection.setups"
-      value="=https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/setup/PAMTraM.setup->${clone.location.pamtram.setup|uri}/de.mfreund.pamtram.setup/PAMTraM.setup"
+      value="=https://eats3.et.tu-dresden.de/eclipse/pamtram/setup/PAMTraM.setup->${clone.location.pamtram.setup|uri}/de.mfreund.pamtram.setup/PAMTraM.setup"
       vm="true"/>
   <setupTask
       xsi:type="setup:EclipseIniTask"
@@ -78,7 +78,7 @@
     <repository
         url="http://eclipse.sonarlint.org"/>
     <repository
-        url="https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/updates"/>
+        url="https://eats3.et.tu-dresden.de/eclipse/updates"/>
     <repository
         url="http://download.eclipse.org/windowbuilder/WB/release/4.6/"/>
   </setupTask>
@@ -514,6 +514,15 @@
           value="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons.ui${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location eclipse commons ui">
+        <description></description>
+      </setupTask>
+      <setupTask
+          xsi:type="setup:VariableTask"
+          id="clone.location.commons.update-site"
+          name="clone.location.commons.update-site"
+          value="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons.update-site${clone.append.suffix|trimRight}"
+          defaultValue=""
+          label="Clone location eclipse commons update-site">
         <description></description>
       </setupTask>
       <description>Definition of clone locations for projects</description>
@@ -1430,6 +1439,37 @@
         </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.feature.git' repository.</description>
       </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.commons.update-site"
+          location="${clone.location.commons.update-site}"
+          remoteURI="${clone.origin.commons}/de.tud.et.ifa.agtele.eclipse.commons.update-site.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
+        <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.update-site.git' repository.</description>
+      </setupTask>
       <description>Clone all necessary git repositories.</description>
     </setupTask>
     <setupTask
@@ -1493,6 +1533,8 @@
           rootFolder="${clone.location.commons.ui}"/>
       <sourceLocator
           rootFolder="${clone.location.commons.feature}"/>
+      <sourceLocator
+          rootFolder="${clone.location.commons.update-site}"/>
     </setupTask>
     <setupTask
         xsi:type="setup.workingsets:WorkingSetTask"
@@ -1601,6 +1643,9 @@
           <operand
               xsi:type="predicates:NamePredicate"
               pattern="de.tud.et.ifa.agtele.eclipse.commons.feature"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.tud.et.ifa.agtele.eclipse.commons.update-site"/>
         </predicate>
       </workingSet>
       <description>Add projects to working sets.</description>

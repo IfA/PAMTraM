@@ -17,6 +17,11 @@
       [Enter License Description here.]
    </license>
 
+   <url>
+      <discovery label="Eclipse-Commons Update Site" url="https://eats3.et.tu-dresden.de/eclipse/eclipse-commons/updates/"/>
+      <discovery label="Eclipse-Commons Update Site" url="https://eats3.et.tu-dresden.de/eclipse/eclipse-commons/updates"/>
+   </url>
+
    <includes
          id="org.eclipse.xsd"
          version="0.0.0"/>

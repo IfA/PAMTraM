@@ -18,6 +18,7 @@
    </license>
 
    <url>
+      <update label="PAMTraM Update Site" url="https://eats3.et.tu-dresden.de/eclipse/pamtram/updates/"/>
       <discovery label="Eclipse-Commons Update Site" url="https://eats3.et.tu-dresden.de/eclipse/eclipse-commons/updates/"/>
       <discovery label="Eclipse-Commons Update Site" url="https://eats3.et.tu-dresden.de/eclipse/eclipse-commons/updates"/>
    </url>

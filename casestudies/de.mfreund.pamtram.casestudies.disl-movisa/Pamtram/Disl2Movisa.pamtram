@@ -3062,10 +3062,10 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.6/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="name" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="CommandPartMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.7">
@@ -3091,11 +3091,11 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.7/@attributes.0" modifier="//@mappingModel.0/@modifierSets.13"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.6/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.7/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelTextDefinition" targetSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
@@ -3123,11 +3123,11 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.8/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.6/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.8/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetSection="//@targetSectionModel.0/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="id2signalName" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
@@ -3146,10 +3146,10 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.9/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="name" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetSection="//@targetSectionModel.0/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="id2signalName" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
@@ -3176,11 +3176,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" expression="10+(x-1)*130" target="//@targetSectionModel.0/@metaModelSections.10/@references.0/@value.0/@references.0/@value.0/@attributes.2">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.0/@metaModelSections.10/@attributes.0" modifier="//@mappingModel.0/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.9/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.10/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelTextDefinition" targetSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
@@ -3202,10 +3202,10 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.11/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="name" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetSection="//@targetSectionModel.0/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="id2signalName" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
@@ -3226,11 +3226,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" expression="10+(x-1)*130" target="//@targetSectionModel.0/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@attributes.2">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.0/@metaModelSections.12/@attributes.0" modifier="//@mappingModel.0/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.12/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.12/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="ChoiceGroupWidgetMapping -> Dropdown" sourceSection="//@sourceSectionModel.0/@metaModelSections.13">
@@ -3243,10 +3243,10 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.13/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="name" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="ChoiceGroupPartMapping -> Dropdown" sourceSection="//@sourceSectionModel.0/@metaModelSections.14">
@@ -3266,11 +3266,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" expression="10+(x-1)*130" target="//@targetSectionModel.0/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@attributes.2">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.0/@metaModelSections.14/@attributes.0" modifier="//@mappingModel.0/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.15/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.14/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="ChoiceGroupVariableFieldPartMapping -> Dropdown" sourceSection="//@sourceSectionModel.0/@metaModelSections.15">
@@ -3284,11 +3284,11 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.15/@attributes.0" modifier="//@mappingModel.0/@modifierSets.13"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.16/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.15/@attributes.0" modifier="//@mappingModel.0/@modifierSets.14"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
@@ -3316,11 +3316,11 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.15/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.21"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetSection="//@targetSectionModel.0/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="id2signalName" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
@@ -3339,10 +3339,10 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.13/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="name" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="ChoiceGroupPartMapping -> Radiobutton" sourceSection="//@sourceSectionModel.0/@metaModelSections.14">
@@ -3362,11 +3362,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" expression="10+(x-1)*130" target="//@targetSectionModel.0/@metaModelSections.20/@references.0/@value.0/@references.0/@value.0/@attributes.2">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.0/@metaModelSections.14/@attributes.0" modifier="//@mappingModel.0/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.19/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.14/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="ChoiceGroupVariableFieldPartMapping -> Radiobutton" sourceSection="//@sourceSectionModel.0/@metaModelSections.15">
@@ -3375,11 +3375,11 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.15/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.19/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.15/@attributes.0" modifier="//@mappingModel.0/@modifierSets.14"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModel.0/@metaModelSections.11">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.11/@attributes.0">
@@ -3400,11 +3400,11 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.15/@attributes.0" modifier="//@mappingModel.0/@modifierSets.13"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="Name" source="//@targetSectionModel.0/@metaModelSections.21/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.15/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="ChoiceGroupChangedRuleMapping -> Radiobutton" sourceSection="//@sourceSectionModel.0/@metaModelSections.16">
@@ -3423,11 +3423,11 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="Name" source="//@targetSectionModel.0/@metaModelSections.21/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetSection="//@targetSectionModel.0/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="id2signalName" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
@@ -3446,10 +3446,10 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.17/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="name" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="VariableBoxPartMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.18">
@@ -3465,11 +3465,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" expression="10+(x-1)*130" target="//@targetSectionModel.0/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@attributes.2">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.0/@metaModelSections.18/@attributes.0" modifier="//@mappingModel.0/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.12/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="genericWidget" source="//@sourceSectionModel.0/@metaModelSections.18/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="VariableBoxValueChangedRuleMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.19">
@@ -3488,11 +3488,11 @@
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector">
+        <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="widgetId" source="//@targetSectionModel.0/@metaModelSections.12/@attributes.2"/>
           <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="widgetId" source="//@sourceSectionModel.0/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetSection="//@targetSectionModel.0/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="id2signalName" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">

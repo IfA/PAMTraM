@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="PAMTraM Update Site" url="https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/updates">
+   <description name="PAMTraM Update Site" url="https://eats3.et.tu-dresden.de/eclipse/updates/">
       This is the update site for the various plug-ins required for developing and executing model-to-model transformation with PAMTraM and GenTrans.
    </description>
    <feature url="features/de.mfreund.pamtram.feature_1.6.0.qualifier.jar" id="de.mfreund.pamtram.feature" version="1.6.0.qualifier">

@@ -54,7 +54,9 @@ import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ConnectionHintTargetAttribute;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.GlobalAttribute;
@@ -65,11 +67,8 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorSourceInterface;
-import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.InstancePointer;
@@ -828,9 +827,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				 * If a ConnectionHintTargetAttribute is selected, select its specified
 				 * target attribute.
 				 */
-			} else if(item.getData() instanceof ConnectionHintTargetAttribute){
-				ConnectionHintTargetAttribute a = (ConnectionHintTargetAttribute) item.getData();
-				this.setSourceTargetViewerSelections(null, a.getTargetAttribute());
+			} else if (item.getData() instanceof ContainerSelectorTargetAttribute) {
+				ContainerSelectorTargetAttribute a = (ContainerSelectorTargetAttribute) item.getData();
+				this.setSourceTargetViewerSelections(null, a.getSource());
 
 				/*
 				 * If a MappedAttributeValueExpander is selected, select ist source attribute and

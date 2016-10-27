@@ -3289,11 +3289,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualNavigationButtonRepresentationNameMapping" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
@@ -3391,17 +3391,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualNavigationButtonRepresentationNameMapping" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ButtonAnimation" targetSection="//@targetSectionModel.1/@metaModelSections.2">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="ButtonName" source="//@targetSectionModel.2/@metaModelSections.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="SimpleContainerMapping" sourceSection="//@sourceSectionModel.1/@metaModelSections.3">
@@ -3415,10 +3415,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionSimpleContainerMapping" expression="(id-1)*4" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="dynamicSimpleContainerMapping" sourceSection="//@sourceSectionModel.1/@metaModelSections.4">
@@ -3432,16 +3432,16 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionSimpleContainerMapping" expression="(id-1)*4" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainerAnimation" targetSection="//@targetSectionModel.1/@metaModelSections.5">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
   </mappingModel>
@@ -3487,11 +3487,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ButtonSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@attributes.0">
@@ -3534,18 +3534,18 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ButtonSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ButtonAnimation" targetSection="//@targetSectionModel.1/@metaModelSections.2">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="ButtonName" source="//@targetSectionModel.2/@metaModelSections.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="CheckBoxArrayMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.5">
@@ -3559,11 +3559,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xValueCheckBoxArrayMapping" expression="(id-1)*4" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="dynamicCheckBoxArrayMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.6">
@@ -3577,17 +3577,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xValueCheckBoxArrayMapping" expression="(id-1)*4" target="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="associatedWith" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBoxAnimation" targetSection="//@targetSectionModel.2/@metaModelSections.3">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="CheckBoxArrayName" source="//@targetSectionModel.2/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="RadioButtonGroupMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.9">
@@ -3601,11 +3601,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualRadioButtonGroupRepresentationNameMapping" target="//@targetSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="dynamicRadioButtonGroupMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.10">
@@ -3619,17 +3619,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualRadioButtonGroupRepresentationNameMapping" target="//@targetSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButtonAnimation" targetSection="//@targetSectionModel.2/@metaModelSections.5">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModel.2/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="DropDownMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.9">
@@ -3656,11 +3656,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="DropDownSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.7/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
@@ -3688,17 +3688,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="DropDownSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.7/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDownAnimation" targetSection="//@targetSectionModel.2/@metaModelSections.8">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="DropDownName" source="//@targetSectionModel.2/@metaModelSections.7/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
@@ -3726,11 +3726,11 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@attributes.0">
@@ -3768,11 +3768,11 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@attributes.0">
@@ -3780,10 +3780,10 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputAnimation" targetSection="//@targetSectionModel.2/@metaModelSections.13">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="InputName" source="//@targetSectionModel.2/@metaModelSections.12/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
@@ -3821,12 +3821,12 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="CheckBoxArrayName" source="//@targetSectionModel.2/@metaModelSections.1/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
@@ -3864,18 +3864,18 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="CheckBoxArrayName" source="//@targetSectionModel.2/@metaModelSections.1/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBoxAnimation" targetSection="//@targetSectionModel.2/@metaModelSections.3">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="CheckBoxName" source="//@targetSectionModel.2/@metaModelSections.2/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
@@ -3908,10 +3908,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="RadioButtonSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.6/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModel.2/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@attributes.0">
@@ -3954,16 +3954,16 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="RadioButtonSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.6/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModel.2/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButtonAnimation" targetSection="//@targetSectionModel.2/@metaModelSections.5">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="RadioButtonName" source="//@targetSectionModel.2/@metaModelSections.6/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
@@ -3977,10 +3977,10 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModel.2/@metaModelSections.7/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10 //@mappingModel.0/@modifierSets.6"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@attributes.0">
@@ -4012,17 +4012,17 @@
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputAnimation" targetSection="//@targetSectionModel.2/@metaModelSections.13">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="InputName" source="//@targetSectionModel.2/@metaModelSections.12/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
@@ -4055,17 +4055,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="SliderNameMapping" target="//@targetSectionModel.2/@metaModelSections.10/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SliderAnimation" targetSection="//@targetSectionModel.2/@metaModelSections.11">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="SliderName" source="//@targetSectionModel.2/@metaModelSections.10/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="SliderMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.2">
@@ -4097,11 +4097,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="SliderNameMapping" target="//@targetSectionModel.2/@metaModelSections.10/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
   </mappingModel>
@@ -4129,11 +4129,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualTextLAbelRepresentationNameMapping" target="//@targetSectionModel.3/@metaModelSections.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher name="">
+        <containerSelector name="">
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@attributes.0">
@@ -4162,17 +4162,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualTextLAbelRepresentationNameMapping" target="//@targetSectionModel.3/@metaModelSections.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher name="">
+        <containerSelector name="">
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelAnimation" targetSection="//@targetSectionModel.3/@metaModelSections.1">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="TextLabelName" source="//@targetSectionModel.3/@metaModelSections.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="ImageMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.2">
@@ -4191,11 +4191,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ImageNameMapping" target="//@targetSectionModel.3/@metaModelSections.2/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher name="">
+        <containerSelector name="">
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetSection="//@targetSectionModel.3/@metaModelSections.3">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ImageNameMapping" target="//@targetSectionModel.3/@metaModelSections.3/@attributes.0">
@@ -4230,17 +4230,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ImageNameMapping" target="//@targetSectionModel.3/@metaModelSections.2/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher name="">
+        <containerSelector name="">
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ImageAnimation" targetSection="//@targetSectionModel.3/@metaModelSections.4">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="ImageName" source="//@targetSectionModel.3/@metaModelSections.2/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="TrendMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.2">
@@ -4254,11 +4254,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionTrendMapping" expression="(id-1)*4" target="//@targetSectionModel.3/@metaModelSections.5/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="dynamicTrendMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.3">
@@ -4272,17 +4272,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionTrendMapping" expression="(id-1)*4" target="//@targetSectionModel.3/@metaModelSections.5/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TrendAnimation" targetSection="//@targetSectionModel.3/@metaModelSections.6">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="TrendName" source="//@targetSectionModel.3/@metaModelSections.5/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="GaugeMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.2">
@@ -4296,11 +4296,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionGaugeMapping" expression="(id-1)*4" target="//@targetSectionModel.3/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="dynamicGaugeMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.3">
@@ -4314,17 +4314,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionGaugeMapping" expression="(id-1)*4" target="//@targetSectionModel.3/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GaugeAnimation" targetSection="//@targetSectionModel.3/@metaModelSections.8">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="GaugeName" source="//@targetSectionModel.3/@metaModelSections.7/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="guidanceMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.4">
@@ -4342,7 +4342,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ToolTipTextNameMapping" target="//@targetSectionModel.3/@metaModelSections.9/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="virtualButtonRepresentationName" source="//@targetSectionModel.2/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
           <targetAttributes name="virtualAlarmControlRepresentationName" source="//@targetSectionModel.3/@metaModelSections.10/@references.0/@value.0/@attributes.0"/>
           <targetAttributes name="virtualCheckBoxArrayRepresentationName" source="//@targetSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
@@ -4356,7 +4356,7 @@
           <targetAttributes name="virtualSliderRepresentationName" source="//@targetSectionModel.2/@metaModelSections.10/@references.0/@value.0/@attributes.0"/>
           <targetAttributes name="virtualTextLAbelRepresentationName" source="//@targetSectionModel.3/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10 //@mappingModel.0/@modifierSets.6"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="AlarmMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.0">
@@ -4370,11 +4370,11 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xValueAlarmControlMapping" expression="(id-1)*4" target="//@targetSectionModel.3/@metaModelSections.10/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="dynamicAlarmMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.1">
@@ -4388,17 +4388,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="xValueAlarmControlMapping" expression="(id-1)*4" target="//@targetSectionModel.3/@metaModelSections.10/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.7"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="PanelName" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0"/>
           <targetAttributes name="ContainerName" source="//@targetSectionModel.1/@metaModelSections.4/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AlarmControlAnimation" targetSection="//@targetSectionModel.3/@metaModelSections.11">
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="AlarmControlName" source="//@targetSectionModel.3/@metaModelSections.10/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
   </mappingModel>

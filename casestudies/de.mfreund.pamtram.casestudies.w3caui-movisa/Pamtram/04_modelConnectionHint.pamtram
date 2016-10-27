@@ -36,10 +36,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ContainerSelector" name="connectToSimpleContainer">
+        <containerSelector xsi:type="mapping:ContainerSelector" name="connectToSimpleContainer">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="Name" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="AbstractInteractionUnitMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">

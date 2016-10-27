@@ -424,10 +424,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="RadioButtonSignalNameMapping" target="//@targetSectionModel.0/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModel.0/@metaModelSections.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1" modifier="//@mappingModel.0/@modifierSets.10"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <mapping name="DropDownElementMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
@@ -440,10 +440,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.0/@metaModelSections.3/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher>
+        <containerSelector>
           <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModel.0/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1" modifier="//@mappingModel.0/@modifierSets.10 //@mappingModel.0/@modifierSets.6"/>
-        </modelConnectionMatcher>
+        </containerSelector>
       </mappingHintGroups>
     </mapping>
     <modifierSets name="getNumber">

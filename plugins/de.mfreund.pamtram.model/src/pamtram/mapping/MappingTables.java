@@ -919,7 +919,7 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _ContainerSelector__sourceElements = new EcoreExecutorProperty(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS, Types._ContainerSelector, 0);
 		public static final /*@NonNull*/ ExecutorProperty _ContainerSelector__targetAttributes = new EcoreExecutorProperty(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES, Types._ContainerSelector, 1);
-		public static final /*@NonNull*/ ExecutorProperty _ContainerSelector__MappingHintGroup__modelConnectionMatcher = new ExecutorPropertyWithImplementation("MappingHintGroup", Types._ContainerSelector, 2, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR));
+		public static final /*@NonNull*/ ExecutorProperty _ContainerSelector__MappingHintGroup__containerSelector = new ExecutorPropertyWithImplementation("MappingHintGroup", Types._ContainerSelector, 2, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR));
 
 		public static final /*@NonNull*/ ExecutorProperty _ContainerSelectorSourceInterface__ContainerSelector__sourceElements = new ExecutorPropertyWithImplementation("ContainerSelector", Types._ContainerSelectorSourceInterface, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS));
 
@@ -951,7 +951,7 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _MappingHint__MappingHintGroupType__mappingHints = new ExecutorPropertyWithImplementation("MappingHintGroupType", Types._MappingHint, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS));
 
-		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroup__modelConnectionMatcher = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, Types._MappingHintGroup, 0);
+		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroup__containerSelector = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, Types._MappingHintGroup, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupImporter__container = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__CONTAINER, Types._MappingHintGroupImporter, 0);
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupImporter__hintGroup = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP, Types._MappingHintGroupImporter, 1);
@@ -4202,7 +4202,7 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ContainerSelector = {
 			MappingTables.Properties._ContainerSelector__sourceElements,
 			MappingTables.Properties._ContainerSelector__targetAttributes,
-			MappingTables.Properties._ContainerSelector__MappingHintGroup__modelConnectionMatcher
+			MappingTables.Properties._ContainerSelector__MappingHintGroup__containerSelector
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ContainerSelectorExternalSourceElement = {
@@ -4357,9 +4357,9 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MappingHintBaseType = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MappingHintGroup = {
+			MappingTables.Properties._MappingHintGroup__containerSelector,
 			MappingTables.Properties._MappingHintGroupType__extend,
 			MappingTables.Properties._MappingHintGroupType__mappingHints,
-			MappingTables.Properties._MappingHintGroup__modelConnectionMatcher,
 			MappingTables.Properties._MappingHintGroupType__targetSection,
 			MappingTables.Properties._MappingHintGroupType__Mapping__mappingHintGroups,
 			MappingTables.Properties._MappingHintGroupType__MappingHintGroupType__extend

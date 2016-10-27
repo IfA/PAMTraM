@@ -49,7 +49,7 @@ import pamtram.metamodel.TargetSection;
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getSharedCondition <em>Shared Condition</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getModelConnectionMatcher <em>Model Connection Matcher</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getContainerSelector <em>Container Selector</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,7 +92,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	protected ComplexCondition sharedCondition;
 	/**
-	 * The cached value of the '{@link #getContainerSelector() <em>Model Connection Matcher</em>}' containment reference.
+	 * The cached value of the '{@link #getContainerSelector() <em>Container Selector</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContainerSelector()
@@ -243,11 +243,11 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainerSelector(ContainerSelector newModelConnectionMatcher, NotificationChain msgs) {
-		ContainerSelector oldModelConnectionMatcher = containerSelector;
-		containerSelector = newModelConnectionMatcher;
+	public NotificationChain basicSetContainerSelector(ContainerSelector newContainerSelector, NotificationChain msgs) {
+		ContainerSelector oldContainerSelector = containerSelector;
+		containerSelector = newContainerSelector;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, oldModelConnectionMatcher, newModelConnectionMatcher);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, oldContainerSelector, newContainerSelector);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -259,18 +259,18 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @generated
 	 */
 	@Override
-	public void setContainerSelector(ContainerSelector newModelConnectionMatcher) {
-		if (newModelConnectionMatcher != containerSelector) {
+	public void setContainerSelector(ContainerSelector newContainerSelector) {
+		if (newContainerSelector != containerSelector) {
 			NotificationChain msgs = null;
 			if (containerSelector != null)
 				msgs = ((InternalEObject)containerSelector).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, null, msgs);
-			if (newModelConnectionMatcher != null)
-				msgs = ((InternalEObject)newModelConnectionMatcher).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, null, msgs);
-			msgs = basicSetContainerSelector(newModelConnectionMatcher, msgs);
+			if (newContainerSelector != null)
+				msgs = ((InternalEObject)newContainerSelector).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, null, msgs);
+			msgs = basicSetContainerSelector(newContainerSelector, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, newModelConnectionMatcher, newModelConnectionMatcher));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, newContainerSelector, newContainerSelector));
 	}
 
 	/**

@@ -628,7 +628,7 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP__SHARED_CONDITION = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Model Connection Matcher</b></em>' containment reference.
+	 * The feature id for the '<em><b>Container Selector</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5022,10 +5022,10 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHintGroup();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.mapping.MappingHintGroup#getModelConnectionMatcher <em>Model Connection Matcher</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.mapping.MappingHintGroup#getContainerSelector <em>Container Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Model Connection Matcher</em>'.
+	 * @return the meta object for the containment reference '<em>Container Selector</em>'.
 	 * @see pamtram.mapping.MappingHintGroup#getContainerSelector()
 	 * @see #getMappingHintGroup()
 	 * @generated
@@ -6244,7 +6244,7 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT_GROUP = eINSTANCE.getMappingHintGroup();
 
 		/**
-		 * The meta object literal for the '<em><b>Model Connection Matcher</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Container Selector</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -12,7 +12,7 @@ package pamtram.mapping;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.MappingHintGroup#getModelConnectionMatcher <em>Model Connection Matcher</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingHintGroup#getContainerSelector <em>Container Selector</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMappingHintGroup()
@@ -21,27 +21,27 @@ package pamtram.mapping;
  */
 public interface MappingHintGroup extends MappingHintGroupType, InstantiableMappingHintGroup {
 	/**
-	 * Returns the value of the '<em><b>Model Connection Matcher</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Container Selector</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Connection Matcher</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Model Connection Matcher</em>' containment reference.
+	 * @return the value of the '<em>Container Selector</em>' containment reference.
 	 * @see #setContainerSelector(ContainerSelector)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroup_ContainerSelector()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroup!modelConnectionMatcher'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroup!containerSelector'"
 	 * @generated
 	 */
 	ContainerSelector getContainerSelector();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.MappingHintGroup#getModelConnectionMatcher <em>Model Connection Matcher</em>}' containment reference.
+	 * Sets the value of the '{@link pamtram.mapping.MappingHintGroup#getContainerSelector <em>Container Selector</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Model Connection Matcher</em>' containment reference.
+	 * @param value the new value of the '<em>Container Selector</em>' containment reference.
 	 * @see #getContainerSelector()
 	 * @generated
 	 */

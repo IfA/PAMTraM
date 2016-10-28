@@ -30,8 +30,8 @@ These terms will be replaced, once it has been decided, which public license to 
 
    <url>
       <update label="PAMTraM Update Site" url="https://eats3.et.tu-dresden.de/eclipse/updates/"/>
-      <discovery label="Eclipse-Commons Update Site" url="https://eats3.et.tu-dresden.de/eclipse/eclipse-commons/updates/"/>
-      <discovery label="Eclipse-Commons Update Site" url="https://eats3.et.tu-dresden.de/eclipse/eclipse-commons/updates"/>
+      <discovery label="Eclipse-Commons Update Site" url="https://eats3.et.tu-dresden.de/projects/eclipse-commons/updates/"/>
+      <discovery label="Eclipse-Commons Update Site" url="https://eats3.et.tu-dresden.de/projects/eclipse-commons/updates"/>
    </url>
 
    <includes

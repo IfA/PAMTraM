@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.PamtramPackage;
-import pamtram.mapping.commands.ReplacingDragAndDropAddCommand;
+import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;

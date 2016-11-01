@@ -1,4 +1,4 @@
-package pamtram.mapping.commands;
+package pamtram.commands;
 
 import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;

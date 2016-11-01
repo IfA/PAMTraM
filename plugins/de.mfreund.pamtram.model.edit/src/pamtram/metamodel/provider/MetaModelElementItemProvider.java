@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.commands.BasicDragAndDropCompoundCommand;
+import pamtram.commands.BasicDragAndDropCompoundCommand;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.MetaModelElement;

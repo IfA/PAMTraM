@@ -20,12 +20,12 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
+import pamtram.commands.BasicDragAndDropSetCommand;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.mapping.provider.ExpressionHintItemProvider;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.InstancePointer;

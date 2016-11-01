@@ -1,4 +1,4 @@
-package pamtram.mapping.commands;
+package pamtram.commands;
 
 import java.util.ArrayList;
 import java.util.Collection;

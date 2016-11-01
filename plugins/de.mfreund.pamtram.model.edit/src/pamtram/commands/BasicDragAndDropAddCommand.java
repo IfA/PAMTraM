@@ -1,21 +1,25 @@
-package pamtram.mapping.commands;
+package pamtram.commands;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DragAndDropFeedback;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.dnd.DND;
 
 /**
- * A CompoundCommand that provides DragAndDropFeedback and can thus be returned by
+ * An AddCommand that provides DragAndDropFeedback and can thus be returned by
  * e.g. the 'createDragAndDropCommand' function in EMF item providers.
  *
  */
-public class BasicDragAndDropCompoundCommand extends CompoundCommand implements
+public class BasicDragAndDropAddCommand extends AddCommand implements
 		DragAndDropFeedback {
 
-	public BasicDragAndDropCompoundCommand() {
-		super();
+	public BasicDragAndDropAddCommand(EditingDomain domain, EObject owner,
+			EStructuralFeature feature, Collection<?> value) {
+		super(domain, owner, feature, value);
 	}
 
 	@Override

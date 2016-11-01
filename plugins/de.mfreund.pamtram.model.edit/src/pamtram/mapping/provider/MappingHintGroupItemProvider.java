@@ -19,13 +19,13 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
+import pamtram.commands.BasicDragAndDropSetCommand;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroup} object.

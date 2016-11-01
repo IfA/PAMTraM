@@ -4,10 +4,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import pamtram.commands.GenericConvertCommand.IConverter;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.commands.GenericConvertCommand.IConverter;
 
 public class HintGroupToExportedHintGroupConverter implements
 		IConverter<MappingHintGroup, ExportedMappingHintGroup> {

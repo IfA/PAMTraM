@@ -29,7 +29,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.mapping.commands.BasicDragAndDropCompoundCommand;
+import pamtram.commands.BasicDragAndDropCompoundCommand;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;

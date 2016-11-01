@@ -13,7 +13,7 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 
 import pamtram.DeactivatableElement;
-import pamtram.mapping.commands.SetDeactivationStatusCommand;
+import pamtram.commands.SetDeactivationStatusCommand;
 import pamtram.presentation.PamtramEditor;
 
 /**

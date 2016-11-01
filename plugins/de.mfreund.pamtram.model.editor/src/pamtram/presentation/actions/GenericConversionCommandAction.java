@@ -10,8 +10,8 @@ import org.eclipse.emf.edit.ui.action.StaticSelectionCommandAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPart;
 
-import pamtram.mapping.commands.GenericConvertCommand;
-import pamtram.mapping.commands.GenericConvertCommand.IConverter;
+import pamtram.commands.GenericConvertCommand;
+import pamtram.commands.GenericConvertCommand.IConverter;
 
 /**
  * A generic action that uses the GenericConversionCommand to convert an instance of a source type to an instance of the

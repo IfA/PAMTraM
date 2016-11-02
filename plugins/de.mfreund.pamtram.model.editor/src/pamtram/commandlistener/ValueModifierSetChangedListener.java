@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -190,7 +189,7 @@ PamtramChildCommandStackListener {
 			for (Setting setting : crossReferences) {
 				EObject object = setting.getEObject();
 				EReference feature = (EReference) setting.getEStructuralFeature();
-				if(object.equals(this.owner)) {
+				if (object == null || object.equals(this.owner)) {
 					continue;
 				}
 				// again, this should be safe (see above)
@@ -336,18 +335,13 @@ PamtramChildCommandStackListener {
 			composedAdapterFactory.dispose();
 
 			// when the user (de)selects an entry, the list of selected entries is updated
-			table.addSelectionListener(new SelectionListener2() {
-
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					TableItem item = (TableItem) e.item;
-					if(item.getChecked()) {
-						ValueModifierSetAdaptionDialog.this.selectedItems.add((EObject) item.getData());
-					} else {
-						ValueModifierSetAdaptionDialog.this.selectedItems.remove(item.getData());
-					}
+			table.addSelectionListener((SelectionListener2) e -> {
+				TableItem item = (TableItem) e.item;
+				if(item.getChecked()) {
+					ValueModifierSetAdaptionDialog.this.selectedItems.add((EObject) item.getData());
+				} else {
+					ValueModifierSetAdaptionDialog.this.selectedItems.remove(item.getData());
 				}
-
 			});
 
 			objectColumn.pack();

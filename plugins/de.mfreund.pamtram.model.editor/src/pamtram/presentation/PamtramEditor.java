@@ -522,14 +522,48 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		@Override
 		public void notifyChanged(Notification msg) {
 			super.notifyChanged(msg);
-			if(msg.getEventType() == Notification.ADD) {
-				if(msg.getNewValue() instanceof Resource && !((Resource) msg.getNewValue()).equals(PamtramEditor.this.pamtram.eResource())) {
-					PamtramEditor.this.libraryResources.add((Resource) msg.getNewValue());
-					PamtramEditor.this.editingDomain.getResourceToReadOnlyMap().put((Resource) msg.getNewValue(), Boolean.TRUE);
+
+			Resource resource;
+
+			if(msg.getEventType() == Notification.ADD && msg.getNewValue() instanceof Resource) {
+				resource = (Resource) msg.getNewValue();
+			} else if(msg.getEventType() == Notification.REMOVE && msg.getOldValue() instanceof Resource) {
+				resource = (Resource) msg.getOldValue();
+			} else {
+				return;
+			}
+
+			Resource pamtramResource = PamtramEditor.this.pamtram.eResource();
+
+			if(pamtramResource.equals(resource)) {
+				return;
+			}
+
+			// Check if the changed resource is a library resource
+			//
+			if(resource.isLoaded()) {
+				if (resource.getContents().isEmpty()
+						|| !(resource.getContents().get(0) instanceof LibraryEntry)) {
+					return;
 				}
-			} else if(msg.getEventType() == Notification.REMOVE) {
+			} else {
+				URI relativeURI = resource.getURI().deresolve(pamtramResource.getURI());
+						if (relativeURI == null || relativeURI.isEmpty() || relativeURI.equals(resource.getURI())
+								|| !"lib".equals(relativeURI.segment(0))) {
+					return;
+				}
+			}
+
+			if (msg.getEventType() == Notification.ADD) {
+
+				PamtramEditor.this.libraryResources.add((Resource) msg.getNewValue());
+				PamtramEditor.this.editingDomain.getResourceToReadOnlyMap().put((Resource) msg.getNewValue(), Boolean.TRUE);
+
+			} else if (msg.getEventType() == Notification.REMOVE) {
+
 				PamtramEditor.this.libraryResources.remove(msg.getOldValue());
 				PamtramEditor.this.editingDomain.getResourceToReadOnlyMap().remove(msg.getOldValue());
+
 			}
 		}
 	};
@@ -871,19 +905,19 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				IFile file = null;
 				try {
 
-			IFile[] files;
-			if (pamtram.eResource().getURI().isFile()) {
-				files = ResourcesPlugin.getWorkspace().getRoot()
-						.findFilesForLocationURI(new java.net.URI(pamtram.eResource().getURI().toString()));
-			} else {
-				files = ResourcesPlugin.getWorkspace().getRoot()
-						.findFilesForLocationURI(
-								new java.net.URI(URI
-										.createFileURI(
-												ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString()
+					IFile[] files;
+					if (pamtram.eResource().getURI().isFile()) {
+						files = ResourcesPlugin.getWorkspace().getRoot()
+								.findFilesForLocationURI(new java.net.URI(pamtram.eResource().getURI().toString()));
+					} else {
+						files = ResourcesPlugin.getWorkspace().getRoot()
+								.findFilesForLocationURI(
+										new java.net.URI(URI
+												.createFileURI(
+														ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString()
 														+ pamtram.eResource().getURI().toPlatformString(true))
-										.toString()));
-			}
+												.toString()));
+					}
 
 					if(files.length == 0) {
 						return null;

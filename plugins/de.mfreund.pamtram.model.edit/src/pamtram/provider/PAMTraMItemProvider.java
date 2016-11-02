@@ -58,6 +58,8 @@ public class PAMTraMItemProvider
 			super.getPropertyDescriptors(object);
 
 			addContextMetaModelPackagePropertyDescriptor(object);
+			addSharedSourceSectionModelPropertyDescriptor(object);
+			addSharedTargetSectionModelPropertyDescriptor(object);
 			addSourceSectionsPropertyDescriptor(object);
 			addTargetSectionsPropertyDescriptor(object);
 			addMappingsPropertyDescriptor(object);
@@ -82,6 +84,50 @@ public class PAMTraMItemProvider
 				 getString("_UI_PAMTraM_contextMetaModelPackage_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_contextMetaModelPackage_feature", "_UI_PAMTraM_type"),
 				 PamtramPackage.Literals.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Shared Source Section Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSharedSourceSectionModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_sharedSourceSectionModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedSourceSectionModel_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Shared Target Section Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSharedTargetSectionModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_sharedTargetSectionModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedTargetSectionModel_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL,
 				 true,
 				 false,
 				 true,

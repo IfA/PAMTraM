@@ -89,6 +89,14 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='boolean result = this.getResultModifier().isEmpty() ||\r\n\t\t!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"ValueConstraints that are part of a SourceSection must not\"\r\n\t\t\t+ \" specify a ResultModifier!\'\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, MetamodelValidator.DIAGNOSTIC_SOURCE,\r\n\t\t\tMetamodelValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,\r\n\t\t\terrorMessage, new Object[] { this,\r\n\t\t\t\t\tMappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER }));\r\n}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateNoResultModifierInSourceSections(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.eContainer() instanceof <%pamtram.metamodel.ActualSourceSectionAttribute%>) {\r\n\treturn true;\r\n}\r\n\r\nif(!(this.eContainer() instanceof <%pamtram.condition.AttributeCondition%>)) {\r\n\tthrow new UnsupportedOperationException();\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EObject%> container = this;\r\n\r\nwhile(!(container instanceof <%pamtram.mapping.Mapping%>)) {\r\n\tif(container == null) {\r\n\t\treturn false;\r\n\t}\r\n\tcontainer = container.eContainer();\r\n}\r\n\r\n// The SourceSection of the Mapping that contains the constraint\r\n//\r\n<%pamtram.metamodel.SourceSection%> localSection = ((Mapping) container).getSourceSection();\r\n\r\nif(getSourceElements().parallelStream().allMatch(s -> s instanceof <%pamtram.mapping.FixedValue%> || s instanceof <%pamtram.mapping.GlobalAttributeImporter%> ||\r\n\t\t(s instanceof <%pamtram.metamodel.ValueConstraintSourceElement%> &&\r\n\t\t((ValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||\r\n\t\t(s instanceof <%pamtram.metamodel.ValueConstraintExternalSourceElement%> &&\r\n\t\t\t\t((ValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {\r\n\treturn true;\r\n}\r\n\r\n// A constraint is also \'local\' if an InstancePointer with local or external SourceAttributes exist\r\n//\r\nreturn getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(\r\n\t\tinstancePointer -> instancePointer.getSourceElements().parallelStream().filter(\r\n\t\t\t\ts -> s instanceof <%pamtram.metamodel.InstancePointerSourceElement%> || \r\n\t\t\t\ts instanceof <%pamtram.metamodel.InstancePointerExternalSourceElement%>)\r\n\t\t).findAny().isPresent();'"
 	 * @generated

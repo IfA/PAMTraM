@@ -87,6 +87,7 @@ public class PamtramTables
     public static final /*@NonInvalid*/ java.lang.String STR_It_32_only_32_allowed_32_to_32_reference_32_shared_32_conditions_32_that_32_are_32_model_32_in = "It only allowed to reference shared conditions that are model inside the ConditionModel!";
     public static final /*@NonInvalid*/ java.lang.String STR_Please_32_specify_32_at_32_most_32_one_32_o_local_32_or_32_shared_e_32_condition_33 = "Please specify at most one (local or shared) condition!";
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_ApplicationDependency = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.PamtramTables.CLSSid_ApplicationDependency);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_PAMTraM = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.PamtramTables.CLSSid_PAMTraM);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_ComplexCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ConditionModel = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_ConditionModel);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_EPackage = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_EPackage);
@@ -313,18 +314,22 @@ public class PamtramTables
 		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__mappingModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL, Types._PAMTraM, 4);
 		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__mappings = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__MAPPINGS, Types._PAMTraM, 5);
 		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__modifierSets = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__MODIFIER_SETS, Types._PAMTraM, 6);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sourceSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL, Types._PAMTraM, 7);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sourceSections = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS, Types._PAMTraM, 8);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__targetSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL, Types._PAMTraM, 9);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__targetSections = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS, Types._PAMTraM, 10);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sharedSourceSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL, Types._PAMTraM, 7);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sharedTargetSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL, Types._PAMTraM, 8);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sourceSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL, Types._PAMTraM, 9);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sourceSections = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS, Types._PAMTraM, 10);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__targetSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL, Types._PAMTraM, 11);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__targetSections = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS, Types._PAMTraM, 12);
 
 		public static final /*@NonNull*/ ExecutorProperty _SectionModel__metaModelPackage = new EcoreExecutorProperty(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE, Types._SectionModel, 0);
 		public static final /*@NonNull*/ ExecutorProperty _SectionModel__metaModelSections = new EcoreExecutorProperty(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, Types._SectionModel, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _SourceSectionModel__PAMTraM__sourceSectionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._SourceSectionModel, 0, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL));
+		public static final /*@NonNull*/ ExecutorProperty _SourceSectionModel__PAMTraM__sharedSourceSectionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._SourceSectionModel, 0, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL));
+		public static final /*@NonNull*/ ExecutorProperty _SourceSectionModel__PAMTraM__sourceSectionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._SourceSectionModel, 1, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL));
 
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionModel__libraryElements = new EcoreExecutorProperty(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS, Types._TargetSectionModel, 0);
-		public static final /*@NonNull*/ ExecutorProperty _TargetSectionModel__PAMTraM__targetSectionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._TargetSectionModel, 1, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL));
+		public static final /*@NonNull*/ ExecutorProperty _TargetSectionModel__PAMTraM__sharedTargetSectionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._TargetSectionModel, 1, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL));
+		public static final /*@NonNull*/ ExecutorProperty _TargetSectionModel__PAMTraM__targetSectionModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._TargetSectionModel, 2, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL));
 		static {
 			Init.initEnd();
 		}
@@ -827,6 +832,8 @@ public class PamtramTables
 			PamtramTables.Properties._PAMTraM__mappingModel,
 			PamtramTables.Properties._PAMTraM__mappings,
 			PamtramTables.Properties._PAMTraM__modifierSets,
+			PamtramTables.Properties._PAMTraM__sharedSourceSectionModel,
+			PamtramTables.Properties._PAMTraM__sharedTargetSectionModel,
 			PamtramTables.Properties._PAMTraM__sourceSectionModel,
 			PamtramTables.Properties._PAMTraM__sourceSections,
 			PamtramTables.Properties._PAMTraM__targetSectionModel,
@@ -843,6 +850,7 @@ public class PamtramTables
 			PamtramTables.Properties._SectionModel__metaModelPackage,
 			PamtramTables.Properties._SectionModel__metaModelSections,
 			PamtramTables.Properties._NamedElement__name,
+			PamtramTables.Properties._SourceSectionModel__PAMTraM__sharedSourceSectionModel,
 			PamtramTables.Properties._SourceSectionModel__PAMTraM__sourceSectionModel
 		};
 
@@ -851,6 +859,7 @@ public class PamtramTables
 			PamtramTables.Properties._SectionModel__metaModelPackage,
 			PamtramTables.Properties._SectionModel__metaModelSections,
 			PamtramTables.Properties._NamedElement__name,
+			PamtramTables.Properties._TargetSectionModel__PAMTraM__sharedTargetSectionModel,
 			PamtramTables.Properties._TargetSectionModel__PAMTraM__targetSectionModel
 		};
 

@@ -22,7 +22,9 @@ import pamtram.metamodel.TargetSection;
  * <ul>
  *   <li>{@link pamtram.PAMTraM#getContextMetaModelPackage <em>Context Meta Model Package</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getSourceSectionModel <em>Source Section Model</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getSharedSourceSectionModel <em>Shared Source Section Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getTargetSectionModel <em>Target Section Model</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getSharedTargetSectionModel <em>Shared Target Section Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getMappingModel <em>Mapping Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getSourceSections <em>Source Sections</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getTargetSections <em>Target Sections</em>}</li>
@@ -65,11 +67,27 @@ public interface PAMTraM extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Section Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSectionModel()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!sourceSectionModel'"
 	 * @generated
 	 */
 	EList<SourceSectionModel> getSourceSectionModel();
+
+	/**
+	 * Returns the value of the '<em><b>Shared Source Section Model</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.SourceSectionModel}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Shared Source Section Model</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Shared Source Section Model</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_SharedSourceSectionModel()
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!sharedSourceSectionModel'"
+	 * @generated
+	 */
+	EList<SourceSectionModel> getSharedSourceSectionModel();
 
 	/**
 	 * Returns the value of the '<em><b>Target Section Model</b></em>' containment reference list.
@@ -82,11 +100,27 @@ public interface PAMTraM extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Section Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSectionModel()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!targetSectionModel'"
 	 * @generated
 	 */
 	EList<TargetSectionModel> getTargetSectionModel();
+
+	/**
+	 * Returns the value of the '<em><b>Shared Target Section Model</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.TargetSectionModel}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Shared Target Section Model</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Shared Target Section Model</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_SharedTargetSectionModel()
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!sharedTargetSectionModel'"
+	 * @generated
+	 */
+	EList<TargetSectionModel> getSharedTargetSectionModel();
 
 	/**
 	 * Returns the value of the '<em><b>Mapping Model</b></em>' containment reference list.
@@ -117,7 +151,7 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Source Sections</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSections()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<SourceSection> sourceSections = this.getSourceSectionModel().parallelStream()\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,\r\n\t\tsourceSections.size(), sourceSections.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<SourceSection> sourceSections = Stream\r\n\t\t.concat(this.getSourceSectionModel().parallelStream(),\r\n\t\t\t\tthis.getSharedSourceSectionModel().parallelStream())\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,\r\n\t\tsourceSections.size(), sourceSections.toArray());'"
 	 * @generated
 	 */
 	EList<SourceSection> getSourceSections();
@@ -134,7 +168,7 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Target Sections</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSections()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<TargetSection> targetSections = this.getTargetSectionModel().parallelStream()\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,\r\n\t\ttargetSections.size(), targetSections.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<TargetSection> targetSections = Stream\r\n\t\t.concat(this.getTargetSectionModel().parallelStream(),\r\n\t\t\t\tthis.getSharedTargetSectionModel().parallelStream())\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,\r\n\t\ttargetSections.size(), targetSections.toArray());'"
 	 * @generated
 	 */
 	EList<TargetSection> getTargetSections();

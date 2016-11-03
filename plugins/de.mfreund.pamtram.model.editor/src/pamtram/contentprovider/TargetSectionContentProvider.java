@@ -28,7 +28,7 @@ public class TargetSectionContentProvider extends AdapterFactoryContentProvider 
 		if(object instanceof PAMTraM) {
 			return Stream
 					.concat(((PAMTraM) object).getTargetSectionModel().stream(),
-					((PAMTraM) object).getSharedTargetSectionModel().stream()).collect(Collectors.toList()).toArray();
+							((PAMTraM) object).getSharedTargetSectionModel().stream()).collect(Collectors.toList()).toArray();
 		}
 		return super.getElements(object);
 	}
@@ -49,8 +49,9 @@ public class TargetSectionContentProvider extends AdapterFactoryContentProvider 
 
 		if(feature.equals(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
-				feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
-				feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
 			return false;
 		}
 

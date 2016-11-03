@@ -12,7 +12,7 @@ import pamtram.metamodel.LibraryEntry;
 /**
  * A content provider for a viewer that displays the {@link TargetSectionModel TargetSectionModels} and the
  * contained {@link LibraryEntry LibraryEntries}.
- * 
+ *
  * @author mfreund
  */
 public class LibraryEntryContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
@@ -28,7 +28,7 @@ public class LibraryEntryContentProvider extends AdapterFactoryContentProvider i
 		return super.getElements(object);
 	}
 
-	/* extend the content provider in a way that only library elements 
+	/* extend the content provider in a way that only library elements
 	 * but no classic target section are returned as children of a mapping model
 	 */
 	@Override
@@ -38,17 +38,19 @@ public class LibraryEntryContentProvider extends AdapterFactoryContentProvider i
 		}
 		return super.getElements(object);
 	}
-	
+
 	@Override
 	public boolean isValidFeature(EStructuralFeature feature) {
 
 		if(feature.equals(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
-				feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)) {
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)) {
 			return false;
 		}
-		
+
 		return true;
 	}
 }

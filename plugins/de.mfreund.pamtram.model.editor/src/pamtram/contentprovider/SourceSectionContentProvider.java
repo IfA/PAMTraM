@@ -38,8 +38,9 @@ public class SourceSectionContentProvider extends AdapterFactoryContentProvider 
 	public boolean isValidFeature(EStructuralFeature feature) {
 
 		if(feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL) ||
-				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL) ||
-				feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL)) {
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL)) {
 			return false;
 		}
 

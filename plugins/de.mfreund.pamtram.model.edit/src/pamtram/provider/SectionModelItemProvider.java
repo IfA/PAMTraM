@@ -71,12 +71,12 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addMetaModelPackagePropertyDescriptor(object);
+			addMetaModelPackagePropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -109,11 +109,11 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS);
+			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -214,14 +214,14 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-						MetamodelFactory.eINSTANCE.createSourceSection()));
+				 MetamodelFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-						MetamodelFactory.eINSTANCE.createTargetSection()));
+				 MetamodelFactory.eINSTANCE.createTargetSection()));
 	}
 
 	/**

@@ -38,10 +38,13 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
+import pamtram.PamtramPackage;
 import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.presentation.actions.CreateSharedSectionModelChildAction;
+import pamtram.presentation.actions.CreateSharedSectionModelSiblingAction;
 import pamtram.presentation.actions.CutClassAndPasteAsNewSectionAction;
 import pamtram.presentation.actions.GenericConversionCommandAction;
 
@@ -333,8 +336,19 @@ implements ISelectionChangedListener {
 			for (Object descriptor : descriptors) {
 
 				if(this.isValidDescriptor(descriptor, provider)) {
-					actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
+					if (descriptor instanceof CommandParameter
+							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
+							&& (((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
+						actions.add(
+								new CreateSharedSectionModelChildAction(this.activeEditorPart, selection, descriptor));
+					} else {
+						actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
+					}
 				}
+
 			}
 		}
 		return actions;
@@ -383,7 +397,17 @@ implements ISelectionChangedListener {
 			for (Object descriptor : descriptors) {
 
 				if(this.isValidDescriptor(descriptor, provider)) {
-					actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
+					if (descriptor instanceof CommandParameter
+							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
+							&& (((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
+						actions.add(new CreateSharedSectionModelSiblingAction(this.activeEditorPart, selection,
+								descriptor));
+					} else {
+						actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
+					}
 				}
 
 			}

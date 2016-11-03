@@ -6,10 +6,13 @@ package pamtram.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,6 +27,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
+import pamtram.SectionModel;
+import pamtram.commands.CreateSharedSectionModelCommand;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
@@ -54,12 +59,12 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addContextMetaModelPackagePropertyDescriptor(object);
+			addContextMetaModelPackagePropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -69,19 +74,19 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 * @generated
 	 */
 	protected void addContextMetaModelPackagePropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_PAMTraM_contextMetaModelPackage_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_contextMetaModelPackage_feature", "_UI_PAMTraM_type"),
-						PamtramPackage.Literals.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_contextMetaModelPackage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_contextMetaModelPackage_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,16 +99,16 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
@@ -127,7 +132,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/PAMTraM"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PAMTraM"));
 	}
 
 	/**
@@ -138,7 +143,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -149,7 +154,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return new StyledString(this.getString("_UI_PAMTraM_type"));
+		return new StyledString(getString("_UI_PAMTraM_type"));
 	}
 
 	/**
@@ -161,7 +166,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(PAMTraM.class)) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
@@ -170,7 +175,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 			case PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL:
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -188,40 +193,40 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL,
-						PamtramFactory.eINSTANCE.createSourceSectionModel()));
+				 PamtramFactory.eINSTANCE.createSourceSectionModel()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL,
-						PamtramFactory.eINSTANCE.createSourceSectionModel()));
+				 PamtramFactory.eINSTANCE.createSourceSectionModel()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL,
-						PamtramFactory.eINSTANCE.createTargetSectionModel()));
+				 PamtramFactory.eINSTANCE.createTargetSectionModel()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL,
-						PamtramFactory.eINSTANCE.createTargetSectionModel()));
+				 PamtramFactory.eINSTANCE.createTargetSectionModel()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL,
-						PamtramFactory.eINSTANCE.createMappingModel()));
+				 PamtramFactory.eINSTANCE.createMappingModel()));
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL,
-						PamtramFactory.eINSTANCE.createConditionModel()));
+				 PamtramFactory.eINSTANCE.createConditionModel()));
 	}
 
 	/**
 	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -238,6 +243,21 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
+	}
+
+	@Override
+	protected Command createCreateChildCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+			Object value, int index, Collection<?> collection) {
+
+		// If a shared SectionModel shall be created, use the custom CreateSharedSectionModelCommand that will persist
+		// the the SectionModel in a new resource
+		//
+		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)) {
+			return new CreateSharedSectionModelCommand(domain, (PAMTraM) owner, (SectionModel<?, ?, ?, ?>) value,
+					collection, this);
+		}
+		return super.createCreateChildCommand(domain, owner, feature, value, index, collection);
 	}
 
 }

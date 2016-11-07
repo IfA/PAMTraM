@@ -1,5 +1,8 @@
 package pamtram.contentprovider;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -23,7 +26,10 @@ public class LibraryEntryContentProvider extends AdapterFactoryContentProvider i
 	@Override
 	public Object[] getElements(Object object) {
 		if(object instanceof PAMTraM) {
-			return ((PAMTraM) object).getTargetSectionModel().toArray();
+			return Stream
+					.concat(((PAMTraM) object).getTargetSectionModel().stream(),
+							((PAMTraM) object).getSharedTargetSectionModel().stream())
+					.collect(Collectors.toList()).toArray();
 		}
 		return super.getElements(object);
 	}
@@ -46,8 +52,7 @@ public class LibraryEntryContentProvider extends AdapterFactoryContentProvider i
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)) {
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)) {
 			return false;
 		}
 

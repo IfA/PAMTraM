@@ -19,5 +19,6 @@ Require-Bundle: org.eclipse.core.runtime,
  de.mfreund.pamtram.model.edit;bundle-version="1.6.0",
  de.mfreund.pamtram;bundle-version="1.6.0",
  de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="0.2.1",
- de.tud.et.ifa.agtele.eclipse.commons;bundle-version="0.1.1"
+ de.tud.et.ifa.agtele.eclipse.commons;bundle-version="0.1.1",
+ org.eclipse.ui.navigator;bundle-version="3.6.100"
 Bundle-ActivationPolicy: lazy

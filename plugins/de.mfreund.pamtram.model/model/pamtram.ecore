@@ -414,8 +414,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencingMappings"
           upperBound="-1" eType="#//mapping/MappingType" changeable="false" volatile="true"
           transient="true" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="pamtram::mapping::MappingType.allInstances()->select(m | self = m.sourceSection)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="get" value="&#xD;&#xA;List&lt;&lt;%pamtram.mapping.Mapping%>> mappings = new &lt;%java.util.ArrayList%>&lt;>();&#xD;&#xA;&#xD;&#xA;if (this.eResource() != null) {&#xD;&#xA;&#xD;&#xA;&#x9;mappings = this.eResource().getResourceSet().getResources().stream()&#xD;&#xA;&#x9;&#x9;&#x9;.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)&#xD;&#xA;&#x9;&#x9;&#x9;.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())&#xD;&#xA;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;List&lt;Mapping> referencingMappings = mappings.parallelStream().filter(m -> this.equals(m.getSourceSection())).collect(Collectors.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%>&lt;>(this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,&#xD;&#xA;&#x9;&#x9;referencingMappings.size(), referencingMappings.toArray());"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/SourceSectionClass"/>
@@ -436,8 +436,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencingMappingHintGroups"
           upperBound="-1" eType="#//mapping/MappingHintGroupType" changeable="false"
           volatile="true" transient="true" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="pamtram::mapping::MappingHintGroupType.allInstances()->select(mhg | self = mhg.targetSection)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="get" value="&#xD;&#xA;List&lt;&lt;%pamtram.mapping.Mapping%>> mappings = new &lt;%java.util.ArrayList%>&lt;>();&#xD;&#xA;&#xD;&#xA;if (this.eResource() != null) {&#xD;&#xA;&#xD;&#xA;&#x9;mappings = this.eResource().getResourceSet().getResources().stream()&#xD;&#xA;&#x9;&#x9;&#x9;.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)&#xD;&#xA;&#x9;&#x9;&#x9;.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())&#xD;&#xA;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;List&lt;MappingHintGroupType> referencingHintGroups = mappings.parallelStream().flatMap(m -> m.getMappingHintGroups().parallelStream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%>&lt;>(this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,&#xD;&#xA;&#x9;&#x9;referencingHintGroups.size(), referencingHintGroups.toArray());"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//metamodel/FileAttribute"/>

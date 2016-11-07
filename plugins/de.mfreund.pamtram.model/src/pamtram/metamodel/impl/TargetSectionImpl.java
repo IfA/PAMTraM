@@ -3,10 +3,11 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -16,11 +17,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
@@ -28,7 +29,7 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.pivot.values.SetValue;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.MetamodelPackage;
@@ -155,36 +156,21 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<MappingHintGroupType> getReferencingMappingHintGroups() {
-		/**
-		 * 
-		 * mapping::MappingHintGroupType.allInstances()
-		 * ->select(mhg | self = mhg.targetSection)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MetamodelTables.CLSSid_MappingHintGroupType, null);
-		final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, MetamodelTables.SET_CLSSid_MappingHintGroupType, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0);
-		/*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(MetamodelTables.SET_CLSSid_MappingHintGroupType);
-		/*@NonNull*/ Iterator<Object> ITERATOR_mhg = allInstances.iterator();
-		/*@Thrown*/ SetValue select;
-		while (true) {
-		    if (!ITERATOR_mhg.hasNext()) {
-		        select = accumulator;
-		        break;
-		    }
-		    /*@NonInvalid*/ MappingHintGroupType mhg = (MappingHintGroupType)ITERATOR_mhg.next();
-		    /**
-		     * self = mhg.targetSection
-		     */
-		    final /*@Thrown*/ TargetSection targetSection = mhg.getTargetSection();
-		    final /*@Thrown*/ boolean eq = this.equals(targetSection);
-		    //
-		    if (eq == ValueUtil.TRUE_VALUE) {
-		        accumulator.add(mhg);
-		    }
+		
+		List<Mapping> mappings = new ArrayList<>();
+		
+		if (this.eResource() != null) {
+		
+			mappings = this.eResource().getResourceSet().getResources().stream()
+					.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)
+					.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())
+					.collect(Collectors.toList());
 		}
-		final /*@Thrown*/ List<MappingHintGroupType> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(MappingHintGroupType.class, select);
-		return (EList<MappingHintGroupType>)ECORE_select;
+		
+		List<MappingHintGroupType> referencingHintGroups = mappings.parallelStream().flatMap(m -> m.getMappingHintGroups().parallelStream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());
+		
+		return new UnmodifiableEList<>(this, MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
+				referencingHintGroups.size(), referencingHintGroups.toArray());
 	}
 
 	/**
@@ -500,7 +486,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 			switch (baseOperationID) {
 				case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS: return MetamodelPackage.TARGET_SECTION___EXTENDS_ONLY_VALID_SECTIONS;
 				case MetamodelPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
-				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2: return MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2;
 				default: return -1;
 			}
 		}
@@ -516,13 +502,13 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP_2:
 				return isReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case MetamodelPackage.TARGET_SECTION___EXTENDS_ONLY_VALID_SECTIONS:
 				return extendsOnlyValidSections();
 			case MetamodelPackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.TARGET_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2:
 				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

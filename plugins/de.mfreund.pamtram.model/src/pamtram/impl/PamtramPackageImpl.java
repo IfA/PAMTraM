@@ -488,7 +488,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map() {
+	public EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2() {
 		return conditionalElementEClass.getEOperations().get(0);
 	}
 
@@ -497,7 +497,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map() {
+	public EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2() {
 		return conditionalElementEClass.getEOperations().get(1);
 	}
 
@@ -587,8 +587,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		conditionalElementEClass = createEClass(CONDITIONAL_ELEMENT);
 		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__LOCAL_CONDITION);
 		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__SHARED_CONDITION);
-		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
+		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2);
+		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2);
 
 		conditionModelEClass = createEClass(CONDITION_MODEL);
 		createEReference(conditionModelEClass, CONDITION_MODEL__CONDITION);
@@ -747,7 +747,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getConditionalElement_LocalCondition(), theConditionPackage.getComplexCondition(), null, "localCondition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConditionalElement_SharedCondition(), theConditionPackage.getComplexCondition(), null, "sharedCondition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "eitherModelOrReferCondition", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "eitherModelOrReferCondition", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -756,7 +756,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());

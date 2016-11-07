@@ -192,8 +192,6 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_TargetSectionClass = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_TargetSectionClass);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueConstraint = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_ValueConstraint);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueConstraintSourceInterface = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_ValueConstraintSourceInterface);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_MappingHintGroupType = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_MappingHintGroupType);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_MappingType = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_MappingType);
 
 	/**
 	 *	The type parameters for templated types and operations.

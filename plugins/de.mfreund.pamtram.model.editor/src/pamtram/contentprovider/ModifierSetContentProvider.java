@@ -52,7 +52,9 @@ public class ModifierSetContentProvider extends AdapterFactoryContentProvider im
 		if(feature.equals(PamtramPackage.Literals.MAPPING_MODEL__MAPPING) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
-				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)) {
 			return false;
 		}
 

@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.action.ControlAction;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
+import org.eclipse.emf.edit.ui.action.DeleteAction;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
@@ -38,12 +39,16 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
+import pamtram.PamtramPackage;
 import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.presentation.actions.CreateSharedSectionModelChildAction;
+import pamtram.presentation.actions.CreateSharedSectionModelSiblingAction;
 import pamtram.presentation.actions.CutClassAndPasteAsNewSectionAction;
 import pamtram.presentation.actions.GenericConversionCommandAction;
+import pamtram.presentation.actions.PamtramDeleteAction;
 
 /**
  * This is the action bar contributor for the Pamtram model editor.
@@ -333,8 +338,19 @@ implements ISelectionChangedListener {
 			for (Object descriptor : descriptors) {
 
 				if(this.isValidDescriptor(descriptor, provider)) {
-					actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
+					if (descriptor instanceof CommandParameter
+							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
+							&& (((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
+						actions.add(
+								new CreateSharedSectionModelChildAction(this.activeEditorPart, selection, descriptor));
+					} else {
+						actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
+					}
 				}
+
 			}
 		}
 		return actions;
@@ -383,7 +399,17 @@ implements ISelectionChangedListener {
 			for (Object descriptor : descriptors) {
 
 				if(this.isValidDescriptor(descriptor, provider)) {
-					actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
+					if (descriptor instanceof CommandParameter
+							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
+							&& (((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
+						actions.add(new CreateSharedSectionModelSiblingAction(this.activeEditorPart, selection,
+								descriptor));
+					} else {
+						actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
+					}
 				}
 
 			}
@@ -520,6 +546,14 @@ implements ISelectionChangedListener {
 	@Override
 	protected boolean removeAllReferencesOnDelete() {
 		return true;
+	}
+
+	@Override
+	protected DeleteAction createDeleteAction() {
+
+		// Use the special PamtramDeleteAction which allows to also delete shared SectionModels
+		//
+		return new PamtramDeleteAction(this.removeAllReferencesOnDelete());
 	}
 
 }

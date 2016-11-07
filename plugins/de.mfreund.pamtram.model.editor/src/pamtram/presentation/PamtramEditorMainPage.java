@@ -30,9 +30,11 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
 
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
+import de.mfreund.pamtram.wizards.ImportSharedSectionModelWizard;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.CardinalityCondition;
@@ -267,8 +269,29 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 		this.sourceViewerGroup = new MinimizableTreeViewerGroup(
 				this.sourceSash, this.adapterFactory, this.editor.getEditingDomain(),
-				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections", null, null, true, true
-				);
+				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections", null, null, true, true) {
+
+			@Override
+			protected void createAdditionalToolbarItems(org.eclipse.swt.widgets.ToolBar toolbar) {
+
+				// import shared SectionModels
+				ToolItem item = new ToolItem(toolbar, SWT.PUSH);
+				item.setImage(BundleContentHelper.getBundleImage(PamtramEditorMainPage.this.bundleID,
+						"icons/import_wiz.gif"));
+				item.setToolTipText("Import Shared SectionModel");
+				item.addSelectionListener((SelectionListener2) e -> {
+					// create the wizard
+					WizardDialog wizardDialog = new WizardDialog(UIHelper.getShell(),
+							new ImportSharedSectionModelWizard(PamtramEditorMainPage.this.editor.pamtram,
+									PamtramEditorMainPage.this.editor.getEditingDomain(),
+									ImportSharedSectionModelWizard.SectionModelType.SOURCE));
+					wizardDialog.create();
+					wizardDialog.open();
+				});
+
+				super.createAdditionalToolbarItems(toolbar);
+			}
+		};
 		this.sourceViewer = this.sourceViewerGroup.getViewer();
 		this.sourceViewer.setContentProvider(new SourceSectionContentProvider(this.adapterFactory));
 		this.sourceViewer.setInput(this.editor.pamtram);
@@ -376,8 +399,29 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 		this.targetViewerGroup = new MinimizableTreeViewerGroup(
 				this.targetSash, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
-				"Target Sections", null, null, true, true
-				);
+				"Target Sections", null, null, true, true) {
+
+			@Override
+			protected void createAdditionalToolbarItems(org.eclipse.swt.widgets.ToolBar toolbar) {
+
+				// import shared SectionModels
+				ToolItem item = new ToolItem(toolbar, SWT.PUSH);
+				item.setImage(BundleContentHelper.getBundleImage(PamtramEditorMainPage.this.bundleID,
+						"icons/import_wiz.gif"));
+				item.setToolTipText("Import Shared SectionModel");
+				item.addSelectionListener((SelectionListener2) e -> {
+					// create the wizard
+					WizardDialog wizardDialog = new WizardDialog(UIHelper.getShell(),
+							new ImportSharedSectionModelWizard(PamtramEditorMainPage.this.editor.pamtram,
+									PamtramEditorMainPage.this.editor.getEditingDomain(),
+									ImportSharedSectionModelWizard.SectionModelType.TARGET));
+					wizardDialog.create();
+					wizardDialog.open();
+				});
+
+				super.createAdditionalToolbarItems(toolbar);
+			}
+		};
 		this.targetViewer = this.targetViewerGroup.getViewer();
 
 		this.targetViewer.setContentProvider(new TargetSectionContentProvider(this.adapterFactory));

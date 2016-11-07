@@ -12,7 +12,7 @@ import pamtram.condition.ComplexCondition;
 /**
  * A content provider for a viewer that displays the {@link ConditionModel ConditionModels} and the
  * contained {@link ComplexCondition conditions}.
- * 
+ *
  * @author mfreund
  */
 public class ConditionContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
@@ -30,13 +30,15 @@ public class ConditionContentProvider extends AdapterFactoryContentProvider impl
 
 	@Override
 	public boolean isValidFeature(EStructuralFeature feature) {
-		
+
 		if(feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL) ||
-				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)) {
 			return false;
 		}
-		
+
 		return true;
 	}
 }

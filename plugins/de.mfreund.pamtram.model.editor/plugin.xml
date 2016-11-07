@@ -69,6 +69,11 @@ null
             id="de.mfreund.pamtram.commands.DeactivationCommand"
             name="Deactivate">
       </command>
+      <command
+            defaultHandler="pamtram.handlers.ExportSectionModelHandler"
+            id="pamtram.commands.ExportSectionModelHandler"
+            name="ExportSectionModel">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -77,7 +82,28 @@ null
             class="pamtram.contributions.DeactivateMenuContribution"
             locationURI="popup:pamtram.presentation.PamtramEditorID">
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:pamtram.presentation.PamtramEditorID">
+         <command
+               commandId="pamtram.commands.ExportSectionModelHandler"
+               label="PAMTraM: Export Section Model"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
-
-null
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="pamtram.util.SharedSectionModelResourceFactory"
+            type="source">
+      </parser>
+      <parser
+            class="pamtram.util.SharedSectionModelResourceFactory"
+            type="target">
+      </parser>
+   </extension>
 </plugin>

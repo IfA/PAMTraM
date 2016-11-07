@@ -161,13 +161,31 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M__SOURCE_SECTION_MODEL = 1;
 
 	/**
+	 * The feature id for the '<em><b>Shared Source Section Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL = 2;
+
+	/**
 	 * The feature id for the '<em><b>Target Section Model</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__TARGET_SECTION_MODEL = 2;
+	int PAM_TRA_M__TARGET_SECTION_MODEL = 3;
+
+	/**
+	 * The feature id for the '<em><b>Shared Target Section Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__SHARED_TARGET_SECTION_MODEL = 4;
 
 	/**
 	 * The feature id for the '<em><b>Mapping Model</b></em>' containment reference list.
@@ -176,7 +194,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MAPPING_MODEL = 3;
+	int PAM_TRA_M__MAPPING_MODEL = 5;
 
 	/**
 	 * The feature id for the '<em><b>Source Sections</b></em>' reference list.
@@ -185,7 +203,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__SOURCE_SECTIONS = 4;
+	int PAM_TRA_M__SOURCE_SECTIONS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Target Sections</b></em>' reference list.
@@ -194,7 +212,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__TARGET_SECTIONS = 5;
+	int PAM_TRA_M__TARGET_SECTIONS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
@@ -203,7 +221,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MAPPINGS = 6;
+	int PAM_TRA_M__MAPPINGS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Active Mappings</b></em>' reference list.
@@ -212,7 +230,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__ACTIVE_MAPPINGS = 7;
+	int PAM_TRA_M__ACTIVE_MAPPINGS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Global Values</b></em>' reference list.
@@ -221,7 +239,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__GLOBAL_VALUES = 8;
+	int PAM_TRA_M__GLOBAL_VALUES = 10;
 
 	/**
 	 * The feature id for the '<em><b>Modifier Sets</b></em>' reference list.
@@ -230,7 +248,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MODIFIER_SETS = 9;
+	int PAM_TRA_M__MODIFIER_SETS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Condition Model</b></em>' containment reference list.
@@ -239,7 +257,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__CONDITION_MODEL = 10;
+	int PAM_TRA_M__CONDITION_MODEL = 12;
 
 	/**
 	 * The number of structural features of the '<em>PAM Tra M</em>' class.
@@ -248,7 +266,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_FEATURE_COUNT = 11;
+	int PAM_TRA_M_FEATURE_COUNT = 13;
 
 	/**
 	 * The operation id for the '<em>Merge Extends</em>' operation.
@@ -531,7 +549,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1 = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MAPPING_MODEL___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2 = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
@@ -540,7 +558,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1 = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int MAPPING_MODEL___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2 = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Active Mappings</em>' operation.
@@ -604,7 +622,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1 = 0;
+	int CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2 = 0;
 
 	/**
 	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
@@ -613,7 +631,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1 = 1;
+	int CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2 = 1;
 
 	/**
 	 * The number of operations of the '<em>Conditional Element</em>' class.
@@ -745,6 +763,17 @@ public interface PamtramPackage extends EPackage {
 	EReference getPAMTraM_SourceSectionModel();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedSourceSectionModel <em>Shared Source Section Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Shared Source Section Model</em>'.
+	 * @see pamtram.PAMTraM#getSharedSourceSectionModel()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_SharedSourceSectionModel();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getTargetSectionModel <em>Target Section Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -754,6 +783,17 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPAMTraM_TargetSectionModel();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedTargetSectionModel <em>Shared Target Section Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Shared Target Section Model</em>'.
+	 * @see pamtram.PAMTraM#getSharedTargetSectionModel()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_SharedTargetSectionModel();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getMappingModel <em>Mapping Model</em>}'.
@@ -1009,7 +1049,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.ConditionalElement#eitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_1();
+	EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.ConditionalElement#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Reference Only Conditions From Condition Model</em>}' operation.
@@ -1019,7 +1059,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.ConditionalElement#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_1();
+	EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.ConditionModel <em>Condition Model</em>}'.
@@ -1128,12 +1168,28 @@ public interface PamtramPackage extends EPackage {
 		EReference PAM_TRA_M__SOURCE_SECTION_MODEL = eINSTANCE.getPAMTraM_SourceSectionModel();
 
 		/**
+		 * The meta object literal for the '<em><b>Shared Source Section Model</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL = eINSTANCE.getPAMTraM_SharedSourceSectionModel();
+
+		/**
 		 * The meta object literal for the '<em><b>Target Section Model</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference PAM_TRA_M__TARGET_SECTION_MODEL = eINSTANCE.getPAMTraM_TargetSectionModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Shared Target Section Model</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__SHARED_TARGET_SECTION_MODEL = eINSTANCE.getPAMTraM_SharedTargetSectionModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Mapping Model</b></em>' containment reference list feature.
@@ -1335,7 +1391,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_1();
+		EOperation CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2();
 
 		/**
 		 * The meta object literal for the '<em><b>Reference Only Conditions From Condition Model</b></em>' operation.
@@ -1343,7 +1399,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_1();
+		EOperation CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.ConditionModelImpl <em>Condition Model</em>}' class.

@@ -3,10 +3,11 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -15,11 +16,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
@@ -27,7 +28,7 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.pivot.values.SetValue;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
@@ -142,34 +143,21 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<MappingType> getReferencingMappings() {
-		/**
-		 * mapping::MappingType.allInstances()->select(m | self = m.sourceSection)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingType_0 = idResolver.getClass(MetamodelTables.CLSSid_MappingType, null);
-		final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, MetamodelTables.SET_CLSSid_MappingType, TYP_pamtram_c_c_mapping_c_c_MappingType_0);
-		/*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(MetamodelTables.SET_CLSSid_MappingType);
-		/*@NonNull*/ Iterator<Object> ITERATOR_m = allInstances.iterator();
-		/*@Thrown*/ SetValue select;
-		while (true) {
-		    if (!ITERATOR_m.hasNext()) {
-		        select = accumulator;
-		        break;
-		    }
-		    /*@NonInvalid*/ MappingType m = (MappingType)ITERATOR_m.next();
-		    /**
-		     * self = m.sourceSection
-		     */
-		    final /*@Thrown*/ SourceSection sourceSection = m.getSourceSection();
-		    final /*@Thrown*/ boolean eq = this.equals(sourceSection);
-		    //
-		    if (eq == ValueUtil.TRUE_VALUE) {
-		        accumulator.add(m);
-		    }
+		
+		List<Mapping> mappings = new ArrayList<>();
+		
+		if (this.eResource() != null) {
+		
+			mappings = this.eResource().getResourceSet().getResources().stream()
+					.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)
+					.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())
+					.collect(Collectors.toList());
 		}
-		final /*@Thrown*/ List<MappingType> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(MappingType.class, select);
-		return (EList<MappingType>)ECORE_select;
+		
+		List<Mapping> referencingMappings = mappings.parallelStream().filter(m -> this.equals(m.getSourceSection())).collect(Collectors.toList());
+		
+		return new UnmodifiableEList<>(this, MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
+				referencingMappings.size(), referencingMappings.toArray());
 	}
 
 	/**
@@ -436,7 +424,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 			switch (baseOperationID) {
 				case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS: return MetamodelPackage.SOURCE_SECTION___EXTENDS_ONLY_VALID_SECTIONS;
 				case MetamodelPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.SOURCE_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
-				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1: return MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1;
+				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2: return MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2;
 				default: return -1;
 			}
 		}
@@ -452,13 +440,13 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_2:
 				return isReferencedByMapping((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case MetamodelPackage.SOURCE_SECTION___EXTENDS_ONLY_VALID_SECTIONS:
 				return extendsOnlyValidSections();
 			case MetamodelPackage.SOURCE_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2:
 				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

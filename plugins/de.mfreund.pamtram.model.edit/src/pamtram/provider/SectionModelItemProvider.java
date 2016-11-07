@@ -14,9 +14,12 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -69,14 +72,30 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List<IItemPropertyDescriptor> getPropertyDescriptorsGen(Object object) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetaModelPackagePropertyDescriptor(object);
+			this.addMetaModelPackagePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
+	}
+
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 *
+	 * <!-- begin-user-doc --> Re-initialize the property descriptors every time to add/hide the
+	 * 'SectionModelFilePropertyDescriptor' based on the currently selected object <!-- end-user-doc -->
+	 */
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+
+		this.itemPropertyDescriptors = null;
+		this.getPropertyDescriptorsGen(object);
+
+		this.addSectionModelFilePropertyDescriptor(object);
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -100,6 +119,43 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for shared SectionModels that displays the path to the file containing the
+	 * SectionModel.
+	 */
+	protected void addSectionModelFilePropertyDescriptor(Object object) {
+
+		// We only need this property descriptor for shared SectionModels
+		//
+		if (!(object instanceof SectionModel<?, ?, ?, ?>) || ((SectionModel<?, ?, ?, ?>) object).eContainer() != null) {
+			return;
+		}
+
+		// As the SectionModel file is not represented by an EStructuralFeature, we need to create our own
+		// ItemPropertyDescriptor for a 'virtual' feature (see https://www.eclipse.org/forums/index.php/t/124870/)
+		//
+		EAttribute sectionModelFile = EcoreFactory.eINSTANCE.createEAttribute();
+		sectionModelFile.setEType(EcorePackage.eINSTANCE.getEString());
+		IItemPropertyDescriptor descriptor = new ItemPropertyDescriptor(this.adapterFactory, "SectionModel File",
+				"The file containing this shared SectionModel", sectionModelFile, false) {
+
+			@Override
+			public Object getPropertyValue(Object object) {
+
+				// Simply return the value of the containing resource as URI
+				//
+				return ((SectionModel<?, ?, ?, ?>) object).eResource().getURI();
+			}
+
+			@Override
+			public String getId(Object object) {
+				return "sectionModelFile";
+			}
+		};
+		this.itemPropertyDescriptors.add(descriptor);
+	}
+
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -109,11 +165,11 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS);
+			this.childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -137,7 +193,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -214,14 +270,14 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createSourceSection()));
+						MetamodelFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createTargetSection()));
+						MetamodelFactory.eINSTANCE.createTargetSection()));
 	}
 
 	/**

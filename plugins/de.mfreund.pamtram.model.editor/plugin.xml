@@ -95,4 +95,15 @@ null
          </command>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="pamtram.util.SharedSectionModelResourceFactory"
+            type="source">
+      </parser>
+      <parser
+            class="pamtram.util.SharedSectionModelResourceFactory"
+            type="target">
+      </parser>
+   </extension>
 </plugin>

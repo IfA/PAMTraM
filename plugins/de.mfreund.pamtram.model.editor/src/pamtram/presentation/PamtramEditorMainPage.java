@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -26,16 +27,24 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
 
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import de.mfreund.pamtram.wizards.ImportSharedSectionModelWizard;
+import de.mfreund.pamtram.wizards.ImportSharedSectionModelWizard.SectionModelType;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
+import de.tud.et.ifa.agtele.ui.widgets.MinimizableSashForm;
+import de.tud.et.ifa.agtele.ui.widgets.MinimizableTreeViewerGroup;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
+import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupOption;
+import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupToolbarOption;
+import pamtram.PAMTraM;
+import pamtram.SectionModel;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.CardinalityCondition;
 import pamtram.condition.ComplexCondition;
@@ -74,6 +83,7 @@ import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -81,8 +91,6 @@ import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.presentation.widgets.MinimizableSashForm;
-import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
 
 /**
  * The main page of the {@link PamtramEditor} that allows to configure source sections, mappings, and target sections.
@@ -90,8 +98,6 @@ import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
  * @author mfreund
  */
 public class PamtramEditorMainPage extends SashForm implements IPersistable {
-
-	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
 
 	/**
 	 * This is the editor that this view is hosted in.
@@ -269,29 +275,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 		this.sourceViewerGroup = new MinimizableTreeViewerGroup(
 				this.sourceSash, this.adapterFactory, this.editor.getEditingDomain(),
-				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections", null, null, true, true) {
+				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections",
+				TreeViewerGroup.TOOLBAR_ADD_BUTTON(), TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON(),
+				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
+						this.editor.getEditingDomain(), SectionModelType.SOURCE));
 
-			@Override
-			protected void createAdditionalToolbarItems(org.eclipse.swt.widgets.ToolBar toolbar) {
-
-				// import shared SectionModels
-				ToolItem item = new ToolItem(toolbar, SWT.PUSH);
-				item.setImage(BundleContentHelper.getBundleImage(PamtramEditorMainPage.this.bundleID,
-						"icons/import_wiz.gif"));
-				item.setToolTipText("Import Shared SectionModel");
-				item.addSelectionListener((SelectionListener2) e -> {
-					// create the wizard
-					WizardDialog wizardDialog = new WizardDialog(UIHelper.getShell(),
-							new ImportSharedSectionModelWizard(PamtramEditorMainPage.this.editor.pamtram,
-									PamtramEditorMainPage.this.editor.getEditingDomain(),
-									ImportSharedSectionModelWizard.SectionModelType.SOURCE));
-					wizardDialog.create();
-					wizardDialog.open();
-				});
-
-				super.createAdditionalToolbarItems(toolbar);
-			}
-		};
 		this.sourceViewer = this.sourceViewerGroup.getViewer();
 		this.sourceViewer.setContentProvider(new SourceSectionContentProvider(this.adapterFactory));
 		this.sourceViewer.setInput(this.editor.pamtram);
@@ -306,8 +294,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		this.conditionViewerGroup = new MinimizableTreeViewerGroup(
 				this.sourceSash, this.adapterFactory, this.editor.getEditingDomain(),
-				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Conditions", null, null, true, true
-				);
+				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Conditions", TreeViewerGroup.TOOLBAR_ADD_BUTTON(),
+				TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON());
 		this.conditionViewer = this.conditionViewerGroup.getViewer();
 		this.conditionViewer.setContentProvider(new ConditionContentProvider(this.adapterFactory));
 		this.conditionViewer.setInput(this.editor.pamtram);
@@ -337,8 +325,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		this.mappingViewerGroup = new MinimizableTreeViewerGroup(
 				this.mappingSash, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
-				"Mappings", null, null, true, true
-				);
+				"Mappings", TreeViewerGroup.TOOLBAR_ADD_BUTTON(), TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON());
 		this.mappingViewer = this.mappingViewerGroup.getViewer();
 		/*
 		 * We add a special content adapter that will refresh the viewer when an element
@@ -364,7 +351,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		this.globalElementsViewerGroup = new MinimizableTreeViewerGroup(
 				this.mappingSash, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
-				"Modifier Sets and Global Values", null, null, true, true);
+				"Modifier Sets and Global Values", TreeViewerGroup.TOOLBAR_ADD_BUTTON(),
+				TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON());
 		this.globalElementsViewer = this.globalElementsViewerGroup.getViewer();
 
 		this.globalElementsViewer.setContentProvider(new ModifierSetContentProvider(this.adapterFactory));
@@ -399,29 +387,10 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 		this.targetViewerGroup = new MinimizableTreeViewerGroup(
 				this.targetSash, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
-				"Target Sections", null, null, true, true) {
+				"Target Sections", TreeViewerGroup.TOOLBAR_ADD_BUTTON(), TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON(),
+				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
+						this.editor.getEditingDomain(), SectionModelType.TARGET));
 
-			@Override
-			protected void createAdditionalToolbarItems(org.eclipse.swt.widgets.ToolBar toolbar) {
-
-				// import shared SectionModels
-				ToolItem item = new ToolItem(toolbar, SWT.PUSH);
-				item.setImage(BundleContentHelper.getBundleImage(PamtramEditorMainPage.this.bundleID,
-						"icons/import_wiz.gif"));
-				item.setToolTipText("Import Shared SectionModel");
-				item.addSelectionListener((SelectionListener2) e -> {
-					// create the wizard
-					WizardDialog wizardDialog = new WizardDialog(UIHelper.getShell(),
-							new ImportSharedSectionModelWizard(PamtramEditorMainPage.this.editor.pamtram,
-									PamtramEditorMainPage.this.editor.getEditingDomain(),
-									ImportSharedSectionModelWizard.SectionModelType.TARGET));
-					wizardDialog.create();
-					wizardDialog.open();
-				});
-
-				super.createAdditionalToolbarItems(toolbar);
-			}
-		};
 		this.targetViewer = this.targetViewerGroup.getViewer();
 
 		this.targetViewer.setContentProvider(new TargetSectionContentProvider(this.adapterFactory));
@@ -437,26 +406,10 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 		this.libTargetViewerGroup = new MinimizableTreeViewerGroup(
 				this.targetSash, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
-				"Library Element Target Sections", null, null, true, false){
-			@Override
-			protected void createAdditionalToolbarItems(org.eclipse.swt.widgets.ToolBar toolbar) {
+				"Library Element Target Sections", TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON(),
+				new TreeViewerGroupToolbarImportLibraryEntryButtonOption(this.editor.pamtram,
+						this.editor.getEditingDomain()));
 
-				// import library entries
-				ToolItem item = new ToolItem(toolbar, SWT.PUSH);
-				item.setImage(BundleContentHelper.getBundleImage(PamtramEditorMainPage.this.bundleID, "icons/import_wiz.gif"));
-				item.setToolTipText("Import Library Item");
-				item.addSelectionListener((SelectionListener2) e -> {
-					// create the wizard
-					WizardDialog wizardDialog = new WizardDialog(
-							new Shell(),
-							new ImportLibraryElementWizard(PamtramEditorMainPage.this.editor.pamtram, PamtramEditorMainPage.this.editor.getEditingDomain()));
-					wizardDialog.create();
-					wizardDialog.open();
-				});
-
-				super.createAdditionalToolbarItems(toolbar);
-			};
-		};
 		this.libTargetViewer = this.libTargetViewerGroup.getViewer();
 
 		this.libTargetViewer.setContentProvider(new LibraryEntryContentProvider(this.adapterFactory));
@@ -989,6 +942,127 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				}
 			}
 		}
+	}
+
+	/**
+	 * An abstract base class that adds a {@link ToolItem} that will trigger the importing of some elements into a given
+	 * {@link PAMTraM} model.
+	 *
+	 * @author mfreund
+	 */
+	public abstract static class TreeViewerGroupToolbarImportButtonOption implements TreeViewerGroupToolbarOption {
+
+		/**
+		 * The added item.
+		 */
+		protected ToolItem item;
+
+
+		/**
+		 * The tool-tip text for the import button.
+		 */
+		protected String toolTipText;
+
+		/**
+		 * The {@link SelectionListener2} that is be called when the created <em>Import</em> tool item is clicked by the
+		 * user.
+		 */
+		protected SelectionListener2 selectionListener;
+
+		/**
+		 * This creates an instance.
+		 *
+		 * @param toolTipText
+		 *            The tool-tip text for the import button.
+		 * @param listener
+		 *            The {@link SelectionListener2} to be called when the created <em>Import</em> tool item is clicked
+		 *            by the user.
+		 *
+		 */
+		public TreeViewerGroupToolbarImportButtonOption(String toolTipText, SelectionListener2 listener) {
+			this.toolTipText = toolTipText;
+			this.selectionListener = listener;
+		}
+
+		@Override
+		public void addToolbarControls(TreeViewerGroup group, ToolBar toolbar, TreeViewerGroupOption[] options) {
+
+			this.item = new ToolItem(toolbar, SWT.PUSH);
+			this.item.setImage(BundleContentHelper.getBundleImage(PamtramEditorPlugin.getPlugin().getSymbolicName(),
+					"icons/import_wiz.gif"));
+			this.item.setToolTipText(this.toolTipText);
+			this.item.addSelectionListener(this.selectionListener);
+
+		}
+
+		@Override
+		public void dispose() {
+
+			this.item.dispose();
+		}
+	}
+
+	/**
+	 * A {@link TreeViewerGroupToolbarImportButtonOption} that allows to import shared {@link SectionModel
+	 * SectionModels}.
+	 */
+	public static class TreeViewerGroupToolbarImportSharedSectionModelButtonOption
+	extends TreeViewerGroupToolbarImportButtonOption {
+
+
+		/**
+		 * This creates an instance.
+		 *
+		 * @param pamtram
+		 *            The {@link PAMTraM} instance into which elements shall be imported.
+		 * @param editingDomain
+		 *            The {@link EditingDomain} that shall be used to import elements.
+		 * @param sectionModelType
+		 *            The {@link SectionModelType type} of SectionModel to be imported (source or target).
+		 */
+		public TreeViewerGroupToolbarImportSharedSectionModelButtonOption(PAMTraM pamtram,
+				EditingDomain editingDomain, SectionModelType sectionModelType) {
+
+			super("Import Shared SectionModel", (SelectionListener2) e -> {
+
+				// create the wizard that allows to import shared SourceSectionModels
+				//
+				WizardDialog wizardDialog = new WizardDialog(UIHelper.getShell(),
+						new ImportSharedSectionModelWizard(pamtram, editingDomain, sectionModelType));
+				wizardDialog.create();
+				wizardDialog.open();
+			});
+		}
+
+	}
+
+	/**
+	 * A {@link TreeViewerGroupToolbarImportButtonOption} that allows to import {@link LibraryEntry LibraryEntries}.
+	 */
+	public static class TreeViewerGroupToolbarImportLibraryEntryButtonOption
+	extends TreeViewerGroupToolbarImportButtonOption {
+
+		/**
+		 * This creates an instance.
+		 *
+		 * @param pamtram
+		 *            The {@link PAMTraM} instance into which elements shall be imported.
+		 * @param editingDomain
+		 *            The {@link EditingDomain} that shall be used to import elements.
+		 */
+		public TreeViewerGroupToolbarImportLibraryEntryButtonOption(PAMTraM pamtram,
+				EditingDomain editingDomain) {
+			super("Import Library Entry", (SelectionListener2) e -> {
+
+				// create the wizard that allows to import LibraryEntries
+				//
+				WizardDialog wizardDialog = new WizardDialog(new Shell(),
+						new ImportLibraryElementWizard(pamtram, editingDomain));
+				wizardDialog.create();
+				wizardDialog.open();
+			});
+		}
+
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 /**
  *
  */
-package pamtram.presentation.actions;
+package pamtram.actions;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.CommandParameter;
-import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
+import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.widgets.Shell;
@@ -23,13 +23,13 @@ import pamtram.SectionModel;
 import pamtram.commands.CreateSharedSectionModelCommand;
 
 /**
- * A special {@link CreateSiblingAction} that allows to create shared {@link SectionModel SectionModels}. Before the
+ * A special {@link CreateChildAction} that allows to create shared {@link SectionModel SectionModels}. Before the
  * action is executed, the user is asked to specify a location for the new shared section model to be created via a
  * {@link SaveAsDialog}.
  *
  * @author mfreund
  */
-public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
+public class CreateSharedSectionModelChildAction extends CreateChildAction {
 
 	private static final String SOURCE_FILE_ENDING = ".pamtram.source";
 
@@ -42,7 +42,7 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 	 * @param selection
 	 * @param descriptor
 	 */
-	public CreateSharedSectionModelSiblingAction(IEditorPart editorPart, ISelection selection, Object descriptor) {
+	public CreateSharedSectionModelChildAction(IEditorPart editorPart, ISelection selection, Object descriptor) {
 		super(editorPart, selection, descriptor);
 	}
 
@@ -66,8 +66,8 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 
 		IPath newPath = ((FileEditorInput) UIHelper.getCurrentEditorInput()).getPath().removeLastSegments(1)
 				.append(feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
-						? CreateSharedSectionModelSiblingAction.SOURCE_FILE_ENDING
-								: CreateSharedSectionModelSiblingAction.TARGET_FILE_ENDING);
+						? CreateSharedSectionModelChildAction.SOURCE_FILE_ENDING
+								: CreateSharedSectionModelChildAction.TARGET_FILE_ENDING);
 		IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(newPath);
 
 		// Ask the user for the new location of the exported SectionModel
@@ -78,10 +78,10 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 		dialog.setTitle("Export SectionModel");
 		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)) {
 			dialog.setMessage("Specify the location for the shared SourceSectionModel (*"
-					+ CreateSharedSectionModelSiblingAction.SOURCE_FILE_ENDING + ")");
+					+ CreateSharedSectionModelChildAction.SOURCE_FILE_ENDING + ")");
 		} else {
 			dialog.setMessage("Specify the location for the shared TargetSectionModel (*"
-					+ CreateSharedSectionModelSiblingAction.TARGET_FILE_ENDING + ")");
+					+ CreateSharedSectionModelChildAction.TARGET_FILE_ENDING + ")");
 		}
 		dialog.setBlockOnOpen(true);
 		dialog.open();
@@ -94,14 +94,14 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 		// Validate the file name
 		//
 		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
-				&& !newPath.toString().endsWith(CreateSharedSectionModelSiblingAction.SOURCE_FILE_ENDING)) {
+				&& !newPath.toString().endsWith(CreateSharedSectionModelChildAction.SOURCE_FILE_ENDING)) {
 			this.showError("Please specify a valid file name (*"
-					+ CreateSharedSectionModelSiblingAction.SOURCE_FILE_ENDING + ")");
+					+ CreateSharedSectionModelChildAction.SOURCE_FILE_ENDING + ")");
 			return;
 		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
-				&& !newPath.toString().endsWith(CreateSharedSectionModelSiblingAction.TARGET_FILE_ENDING)) {
+				&& !newPath.toString().endsWith(CreateSharedSectionModelChildAction.TARGET_FILE_ENDING)) {
 			this.showError("Please specify a valid file name (*"
-					+ CreateSharedSectionModelSiblingAction.TARGET_FILE_ENDING + ")");
+					+ CreateSharedSectionModelChildAction.TARGET_FILE_ENDING + ")");
 			return;
 		}
 
@@ -123,5 +123,4 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 		Shell shell = UIHelper.getShell();
 		MessageDialog.openError(shell, "ERROR", errorMessage);
 	}
-
 }

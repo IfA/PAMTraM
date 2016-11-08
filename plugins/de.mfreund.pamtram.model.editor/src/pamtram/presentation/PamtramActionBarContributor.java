@@ -40,15 +40,15 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 import pamtram.PamtramPackage;
+import pamtram.actions.CreateSharedSectionModelChildAction;
+import pamtram.actions.CreateSharedSectionModelSiblingAction;
+import pamtram.actions.CutClassAndPasteAsNewSectionAction;
+import pamtram.actions.GenericConversionCommandAction;
+import pamtram.actions.PamtramDeleteAction;
 import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.presentation.actions.CreateSharedSectionModelChildAction;
-import pamtram.presentation.actions.CreateSharedSectionModelSiblingAction;
-import pamtram.presentation.actions.CutClassAndPasteAsNewSectionAction;
-import pamtram.presentation.actions.GenericConversionCommandAction;
-import pamtram.presentation.actions.PamtramDeleteAction;
 
 /**
  * This is the action bar contributor for the Pamtram model editor.

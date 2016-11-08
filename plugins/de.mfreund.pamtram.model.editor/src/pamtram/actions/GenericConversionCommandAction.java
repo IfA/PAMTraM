@@ -1,4 +1,4 @@
-package pamtram.presentation.actions;
+package pamtram.actions;
 
 import java.util.Collection;
 

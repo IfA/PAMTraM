@@ -43,6 +43,8 @@ import de.tud.et.ifa.agtele.ui.widgets.MinimizableSashForm;
 import de.tud.et.ifa.agtele.ui.widgets.MinimizableTreeViewerGroup;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupOption;
+import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupToolbarAddButtonOption;
+import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupToolbarCollapseAllButtonOption;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupToolbarOption;
 import pamtram.PAMTraM;
 import pamtram.SectionModel;
@@ -268,7 +270,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		this.sourceViewerGroup = new MinimizableTreeViewerGroup(
 				this.sourceSash, this.adapterFactory, this.editor.getEditingDomain(),
 				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections",
-				TreeViewerGroup.TOOLBAR_ADD_BUTTON(), TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON(),
+				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
 						this.editor.getEditingDomain(), SectionModelType.SOURCE));
 
@@ -286,8 +288,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		this.conditionViewerGroup = new MinimizableTreeViewerGroup(
 				this.sourceSash, this.adapterFactory, this.editor.getEditingDomain(),
-				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Conditions", TreeViewerGroup.TOOLBAR_ADD_BUTTON(),
-				TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON());
+				PamtramEditorPlugin.getPlugin().getDialogSettings(), "Conditions",
+				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption());
 		this.conditionViewer = this.conditionViewerGroup.getViewer();
 		this.conditionViewer.setContentProvider(new ConditionContentProvider(this.adapterFactory));
 		this.conditionViewer.setInput(this.editor.pamtram);
@@ -312,7 +314,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		this.mappingViewerGroup = new MinimizableTreeViewerGroup(
 				this.mappingSash, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
-				"Mappings", TreeViewerGroup.TOOLBAR_ADD_BUTTON(), TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON());
+				"Mappings", new TreeViewerGroupToolbarAddButtonOption(),
+				new TreeViewerGroupToolbarCollapseAllButtonOption());
 		this.mappingViewer = this.mappingViewerGroup.getViewer();
 		/*
 		 * We add a special content adapter that will refresh the viewer when an element
@@ -338,8 +341,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		this.globalElementsViewerGroup = new MinimizableTreeViewerGroup(
 				this.mappingSash, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
-				"Modifier Sets and Global Values", TreeViewerGroup.TOOLBAR_ADD_BUTTON(),
-				TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON());
+				"Modifier Sets and Global Values", new TreeViewerGroupToolbarAddButtonOption(),
+				new TreeViewerGroupToolbarCollapseAllButtonOption());
 		this.globalElementsViewer = this.globalElementsViewerGroup.getViewer();
 
 		this.globalElementsViewer.setContentProvider(new ModifierSetContentProvider(this.adapterFactory));
@@ -368,7 +371,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 		this.targetViewerGroup = new MinimizableTreeViewerGroup(
 				this.targetSash, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
-				"Target Sections", TreeViewerGroup.TOOLBAR_ADD_BUTTON(), TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON(),
+				"Target Sections", new TreeViewerGroupToolbarAddButtonOption(),
+				new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
 						this.editor.getEditingDomain(), SectionModelType.TARGET));
 
@@ -387,7 +391,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		//
 		this.libTargetViewerGroup = new MinimizableTreeViewerGroup(
 				this.targetSash, this.adapterFactory, this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
-				"Library Element Target Sections", TreeViewerGroup.TOOLBAR_COLLAPSE_ALL_BUTTON(),
+				"Library Element Target Sections", new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportLibraryEntryButtonOption(this.editor.pamtram,
 						this.editor.getEditingDomain()));
 

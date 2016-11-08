@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
+<booleanAttribute key="enableHistory" value="false"/>
+<booleanAttribute key="enableStatistics" value="true"/>
+<booleanAttribute key="enableUser" value="true"/>
+<booleanAttribute key="handleExpanding" value="false"/>
+<stringAttribute key="logLevel" value="INFO"/>
+<intAttribute key="maxPathLength" value="0"/>
+<stringAttribute key="pamtramFile" value="STGML2Movisa_enhanced.pamtram"/>
+<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.autoprobe"/>
+<booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
+<listAttribute key="srcFiles">
+<listEntry value="beispiel_ver_0_2_3.xml"/>
+</listAttribute>
+<booleanAttribute key="storeTransformation" value="false"/>
+<stringAttribute key="targetFile" value="out.xmi"/>
+<stringAttribute key="targetLibBundle" value="de.tud.et.ifa.agtele.genlibrary.movisalibrary"/>
+<stringAttribute key="targetLibContext" value="de.tud.et.ifa.agtele.genlibrary.movisalibrary.processor.impl.MovisaLibraryContext"/>
+<stringAttribute key="targetLibParser" value=""/>
+<stringAttribute key="targetLibPath" value=""/>
+<stringAttribute key="transformationModel" value=""/>
+<intAttribute key="weightingFactor" value="50"/>
+</launchConfiguration>

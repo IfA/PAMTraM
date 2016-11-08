@@ -120,6 +120,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -2198,12 +2199,12 @@ IViewerProvider, IGotoMarker, IPersistable {
 	/**
 	 * This always returns true because it is not currently supported. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isSaveAsAllowed() {
 
-		return true;
+		return super.isSaveAsAllowed();
 	}
 
 	/**
@@ -2229,11 +2230,14 @@ IViewerProvider, IGotoMarker, IPersistable {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
 
+		ClonableEditor.editingDomains.remove(((IFileEditorInput) editorInput).getFile().toString());
 		this.editingDomain.getResourceSet().getResources().get(0).setURI(uri);
+		ClonableEditor.editingDomains.put(((IFileEditorInput) editorInput).getFile().toString(), this.editingDomain);
+
 		this.setInputWithNotify(editorInput);
 		this.setPartName(editorInput.getName());
 		IProgressMonitor progressMonitor = this.getActionBars().getStatusLineManager() != null

@@ -38,6 +38,8 @@ import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
+import de.tud.et.ifa.agtele.ui.widgets.MinimizableSashForm;
+import de.tud.et.ifa.agtele.ui.widgets.MinimizableTreeViewerGroup;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupOption;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupToolbarOption;
@@ -89,8 +91,6 @@ import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.presentation.widgets.MinimizableSashForm;
-import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
 
 /**
  * The main page of the {@link PamtramEditor} that allows to configure source sections, mappings, and target sections.
@@ -98,8 +98,6 @@ import pamtram.presentation.widgets.MinimizableTreeViewerGroup;
  * @author mfreund
  */
 public class PamtramEditorMainPage extends SashForm implements IPersistable {
-
-	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
 
 	/**
 	 * This is the editor that this view is hosted in.

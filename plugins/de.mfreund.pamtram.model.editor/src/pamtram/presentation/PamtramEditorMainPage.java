@@ -16,6 +16,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -80,6 +81,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.InstancePointer;
@@ -120,7 +122,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	protected TreeViewerGroup sourceViewerGroup;
 
 	/**
-	 * This is the the viewer for the condtions.
+	 * This is the the viewer for the conditions.
 	 */
 	protected TreeViewer conditionViewer = null;
 
@@ -155,9 +157,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	protected TreeViewer mappingViewer;
 
 	/**
-	 * This is the group for the att val modifier set tree viewer.
+	 * This is the group for the {@link ValueModifierSet} set tree viewer.
 	 */
-	protected Group attValModGroup;
+	protected Group valueModifierSetGroup;
 
 	/**
 	 * The {@link TreeViewerGroup} for the att val modifier sets.
@@ -244,13 +246,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		this.adapterFactory = adapterFactory;
 		this.editor = editor;
 
-		{
-			GridData data = new GridData();
-			data.verticalAlignment = GridData.FILL;
-			data.grabExcessVerticalSpace = true;
-			data.horizontalAlignment = GridData.FILL;
-			this.setLayoutData(data);
-		}
+		GridDataFactory.fillDefaults().grab(true, false).align(GridData.FILL, GridData.FILL).applyTo(this);
+
 		this.createSourceViewer();
 		this.createMappingViewer();
 		this.createTargetViewer();
@@ -258,18 +255,13 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 
 	/**
-	 * Create the viewer for the source sections.
+	 * Create the viewers for the source sections and conditions.
 	 */
 	private void createSourceViewer() {
 
 		this.sourceSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
-		{
-			GridData data = new GridData();
-			data.verticalAlignment = GridData.FILL;
-			data.grabExcessVerticalSpace = true;
-			data.horizontalAlignment = GridData.FILL;
-			this.sourceSash.setLayoutData(data);
-		}
+
+		GridDataFactory.fillDefaults().grab(true, false).align(GridData.FILL, GridData.FILL).applyTo(this.sourceSash);
 
 		// Create the viewer for the source sections.
 		//
@@ -283,7 +275,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		this.sourceViewer = this.sourceViewerGroup.getViewer();
 		this.sourceViewer.setContentProvider(new SourceSectionContentProvider(this.adapterFactory));
 		this.sourceViewer.setInput(this.editor.pamtram);
-		this.sourceViewer.getTree().addSelectionListener(new SourceViewerSelectionListener());
+		this.sourceViewer.getTree().addSelectionListener(new SourceViewerSelectionListener(this.sourceViewer));
 		this.sourceViewer.getTree().addMouseListener(new SetViewerMouseListener(this.editor, this.sourceViewer));
 
 		new AdapterFactoryTreeEditor(this.sourceViewer.getTree(), this.adapterFactory);
@@ -307,18 +299,13 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	}
 
 	/**
-	 * Create the viewer for the mappings.
+	 * Create the viewers for the mappings and global elements.
 	 */
 	private void createMappingViewer() {
 
 		this.mappingSash = new MinimizableSashForm(this,SWT.NONE | SWT.VERTICAL);
-		{
-			GridData data = new GridData();
-			data.verticalAlignment = GridData.FILL;
-			data.grabExcessVerticalSpace = true;
-			data.horizontalAlignment = GridData.FILL;
-			this.mappingSash.setLayoutData(data);
-		}
+
+		GridDataFactory.fillDefaults().grab(true, false).align(GridData.FILL, GridData.FILL).applyTo(this.mappingSash);
 
 		// Create the viewer for the source sections.
 		//
@@ -339,7 +326,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		 */
 		this.mappingViewer.setContentProvider(new MappingContentProvider(this.adapterFactory));
 		this.mappingViewer.setInput(this.editor.pamtram);
-		this.mappingViewer.getTree().addSelectionListener(new MappingViewerSelectionListener());
+		this.mappingViewer.getTree().addSelectionListener(new MappingViewerSelectionListener(this.mappingViewer));
 		this.mappingViewer.getTree().addMouseListener(new SetViewerMouseListener(this.editor, this.mappingViewer));
 
 		new AdapterFactoryTreeEditor(this.mappingViewer.getTree(), this.adapterFactory);
@@ -369,19 +356,13 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	}
 
 	/**
-	 * Create the viewer for the target sections.
+	 * Create the viewers for the target sections and library entries.
 	 */
 	private void createTargetViewer() {
 
 		this.targetSash = new MinimizableSashForm(this, SWT.NONE | SWT.VERTICAL);
-		{
-			GridData data = new GridData();
-			data.verticalAlignment = GridData.FILL;
-			data.grabExcessVerticalSpace = true;
-			data.horizontalAlignment = GridData.FILL;
-			this.targetSash.setLayoutData(data);
-		}
 
+		GridDataFactory.fillDefaults().grab(true, false).align(GridData.FILL, GridData.FILL).applyTo(this.targetSash);
 
 		// Create the viewer for the target sections.
 		//
@@ -395,7 +376,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		this.targetViewer.setContentProvider(new TargetSectionContentProvider(this.adapterFactory));
 		this.targetViewer.setInput(this.editor.pamtram);
-		this.targetViewer.getTree().addSelectionListener(new TargetViewerSelectionListener());
+		this.targetViewer.getTree().addSelectionListener(new TargetViewerSelectionListener(this.targetViewer));
 		this.targetViewer.getTree().addMouseListener(new SetViewerMouseListener(this.editor, this.targetViewer));
 
 		new AdapterFactoryTreeEditor(this.targetViewer.getTree(), this.adapterFactory);
@@ -433,26 +414,24 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 */
 	private final class SourceViewerSelectionListener extends SetViewerSelectionListener {
 
-		private SourceViewerSelectionListener() {
-			super(PamtramEditorMainPage.this.editor, PamtramEditorMainPage.this.sourceViewer);
+		private SourceViewerSelectionListener(TreeViewer viewer) {
+			super(PamtramEditorMainPage.this.editor, viewer);
 		}
 
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			super.widgetSelected(e);
 
-			if(((TreeItem) e.item).getData() instanceof MetaModelSectionReference) {
+			// if a non containment reference has been selected while holding down the
+			// control key, jump to the referenced class
+			if (((TreeItem) e.item).getData() instanceof MetaModelSectionReference && e.stateMask == SWT.CTRL) {
 
 				MetaModelSectionReference reference = (MetaModelSectionReference) ((TreeItem) e.item).getData();
 
 				EList<pamtram.metamodel.SourceSectionClass> referencedElements = reference.getValue();
 
-				// if a non containment reference has been selected while holding down the
-				// control key, jump to the referenced class
-				if (e.stateMask == SWT.CTRL) {
-					PamtramEditorMainPage.this.sourceViewer.setSelection(
-							new StructuredSelection(referencedElements.toArray()));
-				}
+				PamtramEditorMainPage.this.sourceViewer.setSelection(
+						new StructuredSelection(referencedElements.toArray()));
 			}
 		}
 	}
@@ -474,8 +453,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		 */
 		private Mapping currentMapping;
 
-		private MappingViewerSelectionListener() {
-			super(PamtramEditorMainPage.this.editor, PamtramEditorMainPage.this.mappingViewer);
+		private MappingViewerSelectionListener(TreeViewer viewer) {
+			super(PamtramEditorMainPage.this.editor, viewer);
 		}
 
 		@Override
@@ -920,7 +899,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 */
 	private final class TargetViewerSelectionListener extends SetViewerSelectionListener {
 
-		private TargetViewerSelectionListener() {
+		private TargetViewerSelectionListener(TreeViewer viewer) {
 			super(PamtramEditorMainPage.this.editor, PamtramEditorMainPage.this.targetViewer);
 		}
 
@@ -930,16 +909,15 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 			// if a non containment reference has been selected while holding down the
 			// control key, jump to the referenced class
-			if(((TreeItem) e.item).getData() instanceof TargetSectionNonContainmentReference) {
+			if (((TreeItem) e.item).getData() instanceof TargetSectionNonContainmentReference
+					&& e.stateMask == SWT.CTRL) {
 
 				TargetSectionNonContainmentReference reference = (TargetSectionNonContainmentReference) ((TreeItem) e.item).getData();
 
 				EList<pamtram.metamodel.TargetSectionClass> referencedElements = reference.getValue();
 
-				if(reference != null && e.stateMask == SWT.CTRL) {
-					PamtramEditorMainPage.this.targetViewer.setSelection(
-							new StructuredSelection(referencedElements.toArray()));
-				}
+				PamtramEditorMainPage.this.targetViewer.setSelection(
+						new StructuredSelection(referencedElements.toArray()));
 			}
 		}
 	}

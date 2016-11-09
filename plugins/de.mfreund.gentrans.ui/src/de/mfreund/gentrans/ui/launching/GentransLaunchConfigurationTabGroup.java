@@ -5,11 +5,23 @@ import org.eclipse.debug.ui.CommonTab;
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
 
-public class GentransLaunchConfigurationTabGroup extends
-AbstractLaunchConfigurationTabGroup {
+/**
+ * An {@link AbstractLaunchConfigurationTabGroup} to host the various {@link ILaunchConfigurationTab tabs} necessary to
+ * customize a GenTrans transformation.
+ * <p />
+ * This will host a {@link GentransLaunchMainTab}, a {@link GentransLaunchAmbiguityTab}, a
+ * {@link GentransLaunchLibraryTab} and a {@link CommonTab}.
+ *
+ * @author mfreund
+ */
+public class GentransLaunchConfigurationTabGroup extends AbstractLaunchConfigurationTabGroup {
 
+	/**
+	 * This creates an instance.
+	 *
+	 */
 	public GentransLaunchConfigurationTabGroup() {
-		// TODO Auto-generated constructor stub
+		// nothing to be done here
 	}
 
 	@Override
@@ -21,7 +33,7 @@ AbstractLaunchConfigurationTabGroup {
 				new GentransLaunchLibraryTab(context),
 				new CommonTab()
 		};
-		setTabs(tabs);
+		this.setTabs(tabs);
 	}
 
 }

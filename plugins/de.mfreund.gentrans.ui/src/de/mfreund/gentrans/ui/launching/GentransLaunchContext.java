@@ -3,6 +3,7 @@ package de.mfreund.gentrans.ui.launching;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
@@ -12,7 +13,7 @@ import org.eclipse.core.runtime.CoreException;
 
 /**
  * A bean to describe all settings necessary to launch a new generic transformation.
- * 
+ *
  * @author mfreund
  */
 class GentransLaunchContext {
@@ -23,25 +24,10 @@ class GentransLaunchContext {
 	private final IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
 	/**
-	 * Add basic 'Bean' behavior (cf. http://www.vogella.com/tutorials/EclipseDataBinding/article.html#databinding_pojovsbean).	
+	 * Add basic 'Bean' behavior (cf. http://www.vogella.com/tutorials/EclipseDataBinding/article.html#databinding_pojovsbean).
 	 */
-	private final PropertyChangeSupport changeSupport = 
+	private final PropertyChangeSupport changeSupport =
 			new PropertyChangeSupport(this);
-
-	public void addPropertyChangeListener(PropertyChangeListener 
-			listener) {
-		changeSupport.addPropertyChangeListener(listener);
-	}
-
-	public void removePropertyChangeListener(PropertyChangeListener 
-			listener) {
-		changeSupport.removePropertyChangeListener(listener);
-	}
-
-	protected void firePropertyChange(String propertyName, Object oldValue,
-			Object newValue) {
-		changeSupport.firePropertyChange(propertyName, oldValue, newValue);
-	}
 
 	/**
 	 * The name of the project that this generic transformation works on.
@@ -49,9 +35,35 @@ class GentransLaunchContext {
 	private String project = "";
 
 	/**
-	 * Whether the '<em>HistoryResolvingStrategy</em>' shall be applied to resolve ambiguites.
+	 * Whether the '<em>HistoryResolvingStrategy</em>' shall be applied to resolve ambiguities.
 	 */
 	private boolean enableHistory = false;
+
+	/**
+	 * The name of the {@link #enableHistory} property.
+	 */
+	public static final String PROPERTY_NAME_ENABLE_HISTORY = "enableHistory";
+
+	/**
+	 * Whether the '<em>StatisticsResolvingStrategy</em>' shall be applied to resolve ambiguities.
+	 */
+	private boolean enableStatistics = false;
+
+	/**
+	 * The name of the {@link #enableStatistics} property.
+	 */
+	public static final String PROPERTY_NAME_ENABLE_STATISTICS = "enableStatistics";
+
+	/**
+	 * The weighting factor (in percent) to be used by the '<em>StatisticsResolvingStrategy</em>' (for statistics that
+	 * can applied on the meta-model and on the mapping level).
+	 */
+	private int weightingFactor = 50;
+
+	/**
+	 * The name of the {@link #weightingFactor} property.
+	 */
+	public static final String PROPERTY_NAME_WEIGHTING_FACTOR = "weightingFactor";
 
 	/**
 	 * Whether the '<em>UserDecisionResolvingStrategy</em>' shall be applied to resolve ambiguities.
@@ -59,45 +71,129 @@ class GentransLaunchContext {
 	private boolean enableUser = false;
 
 	/**
+	 * The name of the {@link #enableUser} property.
+	 */
+	public static final String PROPERTY_NAME_ENABLE_USER = "enableUser";
+
+	/**
 	 * Whether a specific transformation model shall be used.
 	 */
 	private boolean useSpecificTransformationModel = false;
 
 	/**
+	 * The name of the {@link #useSpecificTransformationModel} property.
+	 */
+	public static final String PROPERTY_NAME_USE_SPECIFIC_TRANSFORMATION_MODEL = "useSpecificTransformationModel";
+
+	/**
 	 * The name of the transformation to use.
 	 */
 	private String transformationModelToUse = "";
-	
+
+	/**
+	 * The name of the {@link #transformationModelToUse} property.
+	 */
+	public static final String PROPERTY_NAME_TRANSFORMATION_MODEL_TO_USE = "transformationModelToUse";
+
 	/**
 	 * Whether the UserDecisionResolvingStratety shall also handle expanding ambiguities.
 	 */
 	private boolean handleExpandingAmbiguities = false;
 
-	private ArrayList<String> modelsToChooseFrom = new ArrayList<>();
+	/**
+	 * The name of the {@link #handleExpandingAmbiguities} property.
+	 */
+	public static final String PROPERTY_NAME_HANDLE_EXPANDING_AMBIGUITIES = "handleExpandingAmbiguities";
+
+	/**
+	 * The list of transformation models that the user can choose from.
+	 */
+	private List<String> modelsToChooseFrom = new ArrayList<>();
+
+	/**
+	 * The name of the {@link #modelsToChooseFrom} property.
+	 */
+	public static final String PROPERTY_NAME_MODELS_TO_CHOOSE_FROM = "modelsToChooseFrom";
+
+	/**
+	 * The path to the target library to be used in the transformation.
+	 */
+	private String targetLibraryPath;
+
+	/**
+	 * The name of the {@link #targetLibraryPath} property.
+	 */
+	public static final String PROPERTY_NAME_TARGET_LIBRARY_PATH = "targetLibraryPath";
+
+	/**
+	 * The path to the target library bundle to be used in the transformation.
+	 */
+	private String targetLibraryBundle;
+
+	/**
+	 * The name of the {@link #targetLibraryBundle} property.
+	 */
+	public static final String PROPERTY_NAME_TARGET_LIBRARY_BUNDLE = "targetLibraryBundle";
+
+	/**
+	 * The path to the target library context to be used in the transformation.
+	 */
+	private String targetLibraryContext;
+
+	/**
+	 * The name of the {@link #targetLibraryContext} property.
+	 */
+	public static final String PROPERTY_NAME_TARGET_LIBRARY_CONTEXT = "targetLibraryContext";
+
+	/**
+	 * The path to the target library path parser to be used in the transformation.
+	 */
+	private String targetLibraryPathParser;
+
+	/**
+	 * The name of the {@link #targetLibraryPathParser} property.
+	 */
+	public static final String PROPERTY_NAME_TARGET_LIBRARY_PATH_PARSER = "targetLibraryPathParser";
+
+	public void addPropertyChangeListener(PropertyChangeListener
+			listener) {
+		this.changeSupport.addPropertyChangeListener(listener);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener
+			listener) {
+		this.changeSupport.removePropertyChangeListener(listener);
+	}
+
+	protected void firePropertyChange(String propertyName, Object oldValue,
+			Object newValue) {
+		this.changeSupport.firePropertyChange(propertyName, oldValue, newValue);
+	}
 
 	/**
 	 * @return the project
 	 */
 	public String getProject() {
-		return project;
+		return this.project;
 	}
 
 	/**
 	 * @param project the project to set
 	 */
 	public void setProject(String project) {
-		firePropertyChange("project", this.project, project);
+		this.firePropertyChange("project", this.project, project);
 
 		// update the list of possible transformation models to choose from based on the changed selection
 		ArrayList<String> transformationModels = new ArrayList<>();
 		try {
-			IResource[] transformationFolders = workspaceRoot.getProject(project).getFolder("Pamtram").getFolder("transformation").members();
+			IResource[] transformationFolders = this.workspaceRoot.getProject(project).getFolder("Pamtram").getFolder("transformation").members();
 			for (IResource iResource : transformationFolders) {
 				if(iResource instanceof IFolder && ((IFolder) iResource).getFile(iResource.getName() + ".transformation").exists()) {
 					transformationModels.add(iResource.getName());
 				}
 			}
 		} catch (CoreException e) {
+			// we simply do nothing
 		}
 		this.setModelsToChooseFrom(transformationModels);
 		this.project = project;
@@ -107,29 +203,68 @@ class GentransLaunchContext {
 	 * @return the enableHistory
 	 */
 	public boolean isEnableHistory() {
-		return enableHistory;
+		return this.enableHistory;
 	}
 
 	/**
 	 * @param enableHistory the enableHistory to set
 	 */
 	public void setEnableHistory(boolean enableHistory) {
-		firePropertyChange("enableHistory", this.enableHistory, enableHistory);
+		this.firePropertyChange("enableHistory", this.enableHistory, enableHistory);
 		this.enableHistory = enableHistory;
+	}
+
+	/**
+	 * @return the enableStatistics
+	 */
+	public boolean isEnableStatistics() {
+
+		return this.enableStatistics;
+	}
+
+	/**
+	 * @param enableStatistics
+	 *            the enableHistory to set
+	 */
+	public void setEnableStatistics(boolean enableStatistics) {
+
+		this.firePropertyChange("enableStatistics", this.enableStatistics, enableStatistics);
+		this.enableStatistics = enableStatistics;
+	}
+
+	/**
+	 * This is the getter for the {@link #weightingFactor}.
+	 *
+	 * @return the {@link #weightingFactor}.
+	 */
+	public int getWeightingFactor() {
+
+		return this.weightingFactor;
+	}
+
+	/**
+	 * This is the setter for the {@link #weightingFactor}.
+	 *
+	 * @param weightingFactor
+	 *            the {@link #weightingFactor} to set.
+	 */
+	public void setWeightingFactor(int weightingFactor) {
+
+		this.weightingFactor = weightingFactor;
 	}
 
 	/**
 	 * @return the enableUser
 	 */
 	public boolean isEnableUser() {
-		return enableUser;
+		return this.enableUser;
 	}
 
 	/**
 	 * @param enableUser the enableUser to set
 	 */
 	public void setEnableUser(boolean enableUser) {
-		firePropertyChange("enableUser", this.enableUser, enableUser);
+		this.firePropertyChange("enableUser", this.enableUser, enableUser);
 		this.enableUser = enableUser;
 	}
 
@@ -137,17 +272,17 @@ class GentransLaunchContext {
 	 * @return the useSpecificTransformationModel
 	 */
 	public boolean isUseSpecificTransformationModel() {
-		return useSpecificTransformationModel;
+		return this.useSpecificTransformationModel;
 	}
 
 	/**
 	 * @param useSpecificTransformationModel the useSpecificTransformationModel to set
 	 */
 	public void setUseSpecificTransformationModel(boolean useSpecificTransformationModel) {
-		firePropertyChange("useSpecificTransformationModel", this.useSpecificTransformationModel, useSpecificTransformationModel);
+		this.firePropertyChange("useSpecificTransformationModel", this.useSpecificTransformationModel, useSpecificTransformationModel);
 		if(!useSpecificTransformationModel) {
 			// reset the selection of the transformation model to use
-			setTransformationModelToUse("");
+			this.setTransformationModelToUse("");
 		}
 		this.useSpecificTransformationModel = useSpecificTransformationModel;
 	}
@@ -156,37 +291,135 @@ class GentransLaunchContext {
 	 * @return the transformationModelToUse
 	 */
 	public String getTransformationModelToUse() {
-		return transformationModelToUse;
+		return this.transformationModelToUse;
 	}
 
 	/**
 	 * @param transformationModelToUse the transformationModelToUse to set
 	 */
 	public void setTransformationModelToUse(String transformationModelToUse) {
-		firePropertyChange("transformationModelToUse", this.transformationModelToUse, transformationModelToUse);
+		this.firePropertyChange("transformationModelToUse", this.transformationModelToUse, transformationModelToUse);
 		this.transformationModelToUse = transformationModelToUse;
 	}
 
 	/**
 	 * @return the modelsToChooseFrom
 	 */
-	public ArrayList<String> getModelsToChooseFrom() {
-		return modelsToChooseFrom;
+	public List<String> getModelsToChooseFrom() {
+		return this.modelsToChooseFrom;
 	}
 
 	/**
 	 * @param modelsToChooseFrom the modelsToChooseFrom to set
 	 */
-	public void setModelsToChooseFrom(ArrayList<String> modelsToChooseFrom) {
-		firePropertyChange("modelsToChooseFrom", this.modelsToChooseFrom, modelsToChooseFrom);
+	public void setModelsToChooseFrom(List<String> modelsToChooseFrom) {
+		this.firePropertyChange("modelsToChooseFrom", this.modelsToChooseFrom, modelsToChooseFrom);
 		this.modelsToChooseFrom = modelsToChooseFrom;
 	}
 
+	/**
+	 * This is the getter for the {@link #handleExpandingAmbiguities}.
+	 *
+	 * @return the {@link #handleExpandingAmbiguities}.
+	 */
 	public boolean isHandleExpandingAmbiguities() {
-		return handleExpandingAmbiguities;
+
+		return this.handleExpandingAmbiguities;
 	}
 
+	/**
+	 * This is the setter for the {@link #handleExpandingAmbiguities}.
+	 *
+	 * @param handleExpandingAmbiguities
+	 *            the {@link #handleExpandingAmbiguities} to set.
+	 */
 	public void setHandleExpandingAmbiguities(boolean handleExpandingAmbiguities) {
+
 		this.handleExpandingAmbiguities = handleExpandingAmbiguities;
 	}
+
+	/**
+	 * This is the getter for the {@link #targetLibraryPath}.
+	 *
+	 * @return the {@link #targetLibraryPath}.
+	 */
+	public String getTargetLibraryPath() {
+
+		return this.targetLibraryPath;
+	}
+
+	/**
+	 * This is the setter for the {@link #targetLibraryPath}.
+	 *
+	 * @param targetLibraryPath
+	 *            the {@link #targetLibraryPath} to set.
+	 */
+	public void setTargetLibraryPath(String targetLibraryPath) {
+
+		this.targetLibraryPath = targetLibraryPath;
+	}
+
+	/**
+	 * This is the getter for the {@link #targetLibraryBundle}.
+	 *
+	 * @return the {@link #targetLibraryBundle}.
+	 */
+	public String getTargetLibraryBundle() {
+
+		return this.targetLibraryBundle;
+	}
+
+	/**
+	 * This is the setter for the {@link #targetLibraryBundle}.
+	 *
+	 * @param targetLibraryBundle
+	 *            the {@link #targetLibraryBundle} to set.
+	 */
+	public void setTargetLibraryBundle(String targetLibraryBundle) {
+
+		this.targetLibraryBundle = targetLibraryBundle;
+	}
+
+	/**
+	 * This is the getter for the {@link #targetLibraryContext}.
+	 *
+	 * @return the {@link #targetLibraryContext}.
+	 */
+	public String getTargetLibraryContext() {
+
+		return this.targetLibraryContext;
+	}
+
+	/**
+	 * This is the setter for the {@link #targetLibraryContext}.
+	 *
+	 * @param targetLibraryContext
+	 *            the {@link #targetLibraryContext} to set.
+	 */
+	public void setTargetLibraryContext(String targetLibraryContext) {
+
+		this.targetLibraryContext = targetLibraryContext;
+	}
+
+	/**
+	 * This is the getter for the {@link #targetLibraryPathParser}.
+	 *
+	 * @return the {@link #targetLibraryPathParser}.
+	 */
+	public String getTargetLibraryPathParser() {
+
+		return this.targetLibraryPathParser;
+	}
+
+	/**
+	 * This is the setter for the {@link #targetLibraryPathParser}.
+	 *
+	 * @param targetLibraryPathParser
+	 *            the {@link #targetLibraryPathParser} to set.
+	 */
+	public void setTargetLibraryPathParser(String targetLibraryPathParser) {
+
+		this.targetLibraryPathParser = targetLibraryPathParser;
+	}
+
 }

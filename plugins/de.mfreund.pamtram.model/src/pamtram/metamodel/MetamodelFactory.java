@@ -94,6 +94,15 @@ public interface MetamodelFactory extends EFactory {
 	ExternalReferenceParameter createExternalReferenceParameter();
 
 	/**
+	 * Returns a new object of class '<em>Resource Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Resource Parameter</em>'.
+	 * @generated
+	 */
+	ResourceParameter createResourceParameter();
+
+	/**
 	 * Returns a new object of class '<em>Library Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,31 +148,31 @@ public interface MetamodelFactory extends EFactory {
 	MetaModelSectionReference createMetaModelSectionReference();
 
 	/**
-	 * Returns a new object of class '<em>Source Section Attribute</em>'.
+	 * Returns a new object of class '<em>Actual Source Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Attribute</em>'.
+	 * @return a new object of class '<em>Actual Source Section Attribute</em>'.
 	 * @generated
 	 */
-	SourceSectionAttribute createSourceSectionAttribute();
+	ActualSourceSectionAttribute createActualSourceSectionAttribute();
 
 	/**
-	 * Returns a new object of class '<em>Actual Attribute</em>'.
+	 * Returns a new object of class '<em>Actual Target Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Actual Attribute</em>'.
+	 * @return a new object of class '<em>Actual Target Section Attribute</em>'.
 	 * @generated
 	 */
-	ActualAttribute createActualAttribute();
+	ActualTargetSectionAttribute createActualTargetSectionAttribute();
 
 	/**
-	 * Returns a new object of class '<em>Virtual Attribute</em>'.
+	 * Returns a new object of class '<em>Virtual Target Section Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Virtual Attribute</em>'.
+	 * @return a new object of class '<em>Virtual Target Section Attribute</em>'.
 	 * @generated
 	 */
-	VirtualAttribute createVirtualAttribute();
+	VirtualTargetSectionAttribute createVirtualTargetSectionAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Equality Matcher</em>'.
@@ -229,6 +238,24 @@ public interface MetamodelFactory extends EFactory {
 	InstancePointer createInstancePointer();
 
 	/**
+	 * Returns a new object of class '<em>Instance Pointer Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Pointer Source Element</em>'.
+	 * @generated
+	 */
+	InstancePointerSourceElement createInstancePointerSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Instance Pointer External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Pointer External Source Element</em>'.
+	 * @generated
+	 */
+	InstancePointerExternalSourceElement createInstancePointerExternalSourceElement();
+
+	/**
 	 * Returns a new object of class '<em>Range Bound</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -236,6 +263,24 @@ public interface MetamodelFactory extends EFactory {
 	 * @generated
 	 */
 	RangeBound createRangeBound();
+
+	/**
+	 * Returns a new object of class '<em>Value Constraint Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Constraint Source Element</em>'.
+	 * @generated
+	 */
+	ValueConstraintSourceElement createValueConstraintSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Value Constraint External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Constraint External Source Element</em>'.
+	 * @generated
+	 */
+	ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -9,9 +9,10 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
-import pamtram.ReferenceableElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.ValueConstraintSourceInterface;
+import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 
@@ -116,8 +117,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createCardinalityMappingAdapter();
 			}
 			@Override
-			public Adapter caseMappingInstanceSelector(MappingInstanceSelector object) {
-				return createMappingInstanceSelectorAdapter();
+			public Adapter caseReferenceTargetSelector(ReferenceTargetSelector object) {
+				return createReferenceTargetSelectorAdapter();
 			}
 			@Override
 			public Adapter caseMatcher(Matcher object) {
@@ -140,12 +141,12 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createClassMatcherAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueModifierSet(AttributeValueModifierSet object) {
-				return createAttributeValueModifierSetAdapter();
+			public Adapter caseValueModifierSet(ValueModifierSet object) {
+				return createValueModifierSetAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueModifier(AttributeValueModifier object) {
-				return createAttributeValueModifierAdapter();
+			public Adapter caseValueModifier(ValueModifier object) {
+				return createValueModifierAdapter();
 			}
 			@Override
 			public Adapter caseSubstringReplacer(SubstringReplacer object) {
@@ -180,20 +181,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createExportedMappingHintGroupAdapter();
 			}
 			@Override
-			public Adapter caseModelConnectionHint(ModelConnectionHint object) {
-				return createModelConnectionHintAdapter();
+			public Adapter caseContainerSelector(ContainerSelector object) {
+				return createContainerSelectorAdapter();
 			}
 			@Override
 			public Adapter caseAttributeMappingSourceElement(AttributeMappingSourceElement object) {
 				return createAttributeMappingSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseModelConnectionHintSourceElement(ModelConnectionHintSourceElement object) {
-				return createModelConnectionHintSourceElementAdapter();
+			public Adapter caseContainerSelectorSourceElement(ContainerSelectorSourceElement object) {
+				return createContainerSelectorSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseModelConnectionHintTargetAttribute(ModelConnectionHintTargetAttribute object) {
-				return createModelConnectionHintTargetAttributeAdapter();
+			public Adapter caseContainerSelectorTargetAttribute(ContainerSelectorTargetAttribute object) {
+				return createContainerSelectorTargetAttributeAdapter();
 			}
 			@Override
 			public Adapter caseMappingHintType(MappingHintType object) {
@@ -240,8 +241,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappingHintSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseModelConnectionHintSourceInterface(ModelConnectionHintSourceInterface object) {
-				return createModelConnectionHintSourceInterfaceAdapter();
+			public Adapter caseContainerSelectorSourceInterface(ContainerSelectorSourceInterface object) {
+				return createContainerSelectorSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement object) {
@@ -252,8 +253,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createExternalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseModelConnectionHintExternalSourceElement(ModelConnectionHintExternalSourceElement object) {
-				return createModelConnectionHintExternalSourceElementAdapter();
+			public Adapter caseContainerSelectorExternalSourceElement(ContainerSelectorExternalSourceElement object) {
+				return createContainerSelectorExternalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseAttributeMatcherExternalSourceElement(AttributeMatcherExternalSourceElement object) {
@@ -284,6 +285,22 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMatchToUpperCaseConverterAdapter();
 			}
 			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
+				return createGlobalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMatcherGlobalSourceElement(AttributeMatcherGlobalSourceElement object) {
+				return createAttributeMatcherGlobalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement object) {
+				return createAttributeMappingGlobalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseContainerSelectorGlobalSourceElement(ContainerSelectorGlobalSourceElement object) {
+				return createContainerSelectorGlobalSourceElementAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -296,8 +313,12 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createConditionalElementAdapter();
 			}
 			@Override
-			public Adapter caseReferenceableElement(ReferenceableElement object) {
-				return createReferenceableElementAdapter();
+			public Adapter caseInstancePointerSourceInterface(InstancePointerSourceInterface object) {
+				return createInstancePointerSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
+				return createValueConstraintSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -418,16 +439,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingInstanceSelector <em>Instance Selector</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ReferenceTargetSelector <em>Reference Target Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.MappingInstanceSelector
+	 * @see pamtram.mapping.ReferenceTargetSelector
 	 * @generated
 	 */
-	public Adapter createMappingInstanceSelectorAdapter() {
+	public Adapter createReferenceTargetSelectorAdapter() {
 		return null;
 	}
 
@@ -502,16 +523,30 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeValueModifier <em>Attribute Value Modifier</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ValueModifierSet <em>Value Modifier Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeValueModifier
+	 * @see pamtram.mapping.ValueModifierSet
 	 * @generated
 	 */
-	public Adapter createAttributeValueModifierAdapter() {
+	public Adapter createValueModifierSetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ValueModifier <em>Value Modifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ValueModifier
+	 * @generated
+	 */
+	public Adapter createValueModifierAdapter() {
 		return null;
 	}
 
@@ -600,20 +635,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeValueModifierSet <em>Attribute Value Modifier Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeValueModifierSet
-	 * @generated
-	 */
-	public Adapter createAttributeValueModifierSetAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintGroup <em>Hint Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -698,16 +719,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModelConnectionHint <em>Model Connection Hint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelector <em>Container Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ModelConnectionHint
+	 * @see pamtram.mapping.ContainerSelector
 	 * @generated
 	 */
-	public Adapter createModelConnectionHintAdapter() {
+	public Adapter createContainerSelectorAdapter() {
 		return null;
 	}
 
@@ -726,30 +747,30 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModelConnectionHintSourceElement <em>Model Connection Hint Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorSourceElement <em>Container Selector Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ModelConnectionHintSourceElement
+	 * @see pamtram.mapping.ContainerSelectorSourceElement
 	 * @generated
 	 */
-	public Adapter createModelConnectionHintSourceElementAdapter() {
+	public Adapter createContainerSelectorSourceElementAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModelConnectionHintTargetAttribute <em>Model Connection Hint Target Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorTargetAttribute <em>Container Selector Target Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ModelConnectionHintTargetAttribute
+	 * @see pamtram.mapping.ContainerSelectorTargetAttribute
 	 * @generated
 	 */
-	public Adapter createModelConnectionHintTargetAttributeAdapter() {
+	public Adapter createContainerSelectorTargetAttributeAdapter() {
 		return null;
 	}
 
@@ -908,16 +929,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorSourceInterface <em>Container Selector Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ModelConnectionHintSourceInterface
+	 * @see pamtram.mapping.ContainerSelectorSourceInterface
 	 * @generated
 	 */
-	public Adapter createModelConnectionHintSourceInterfaceAdapter() {
+	public Adapter createContainerSelectorSourceInterfaceAdapter() {
 		return null;
 	}
 
@@ -950,16 +971,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModelConnectionHintExternalSourceElement <em>Model Connection Hint External Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorExternalSourceElement <em>Container Selector External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ModelConnectionHintExternalSourceElement
+	 * @see pamtram.mapping.ContainerSelectorExternalSourceElement
 	 * @generated
 	 */
-	public Adapter createModelConnectionHintExternalSourceElementAdapter() {
+	public Adapter createContainerSelectorExternalSourceElementAdapter() {
 		return null;
 	}
 
@@ -1062,6 +1083,62 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.GlobalModifiedAttributeElementType <em>Global Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.GlobalModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createGlobalModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherGlobalSourceElement <em>Attribute Matcher Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.AttributeMatcherGlobalSourceElement
+	 * @generated
+	 */
+	public Adapter createAttributeMatcherGlobalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingGlobalSourceElement <em>Attribute Mapping Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.AttributeMappingGlobalSourceElement
+	 * @generated
+	 */
+	public Adapter createAttributeMappingGlobalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorGlobalSourceElement <em>Container Selector Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ContainerSelectorGlobalSourceElement
+	 * @generated
+	 */
+	public Adapter createContainerSelectorGlobalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1104,16 +1181,30 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.ReferenceableElement <em>Referenceable Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.ReferenceableElement
+	 * @see pamtram.metamodel.InstancePointerSourceInterface
 	 * @generated
 	 */
-	public Adapter createReferenceableElementAdapter() {
+	public Adapter createInstancePointerSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.ValueConstraintSourceInterface
+	 * @generated
+	 */
+	public Adapter createValueConstraintSourceInterfaceAdapter() {
 		return null;
 	}
 

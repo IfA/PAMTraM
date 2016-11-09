@@ -57,6 +57,6 @@ public interface MappedAttributeValueExpander extends HintImporterMappingHint {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this instanceof LocalMappedAttributeValueExpander) {\r\n\treturn ((LocalMappedAttributeValueExpander) this).getModifier();\r\n} else if(this instanceof ExternalMappedAttributeValueExpander) {\r\n\treturn ((ExternalMappedAttributeValueExpander) this).getModifier();\r\n} else {\r\n\treturn null;\r\n}'"
 	 * @generated
 	 */
-	EList<AttributeValueModifierSet> getModifiers();
+	EList<ValueModifierSet> getModifiers();
 
 } // MappedAttributeValueExpander

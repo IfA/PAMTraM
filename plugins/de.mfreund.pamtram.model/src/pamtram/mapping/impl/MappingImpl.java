@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -28,8 +28,8 @@ import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -55,8 +55,8 @@ import pamtram.mapping.MappingTables;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.MappingImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingImpl#getConditionRef <em>Condition Ref</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingImpl#getLocalCondition <em>Local Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingImpl#getSharedCondition <em>Shared Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getGlobalVariables <em>Global Variables</em>}</li>
@@ -67,24 +67,24 @@ import pamtram.mapping.MappingTables;
  */
 public class MappingImpl extends MappingTypeImpl implements Mapping {
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondition()
+	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComplexCondition condition;
+	protected ComplexCondition localCondition;
 
 	/**
-	 * The cached value of the '{@link #getConditionRef() <em>Condition Ref</em>}' reference.
+	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConditionRef()
+	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComplexCondition conditionRef;
+	protected ComplexCondition sharedCondition;
 
 	/**
 	 * The cached value of the '{@link #getMappingHintGroups() <em>Mapping Hint Groups</em>}' containment reference list.
@@ -160,8 +160,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition getCondition() {
-		return condition;
+	public ComplexCondition getLocalCondition() {
+		return localCondition;
 	}
 
 	/**
@@ -169,11 +169,11 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondition(ComplexCondition newCondition, NotificationChain msgs) {
-		ComplexCondition oldCondition = condition;
-		condition = newCondition;
+	public NotificationChain basicSetLocalCondition(ComplexCondition newLocalCondition, NotificationChain msgs) {
+		ComplexCondition oldLocalCondition = localCondition;
+		localCondition = newLocalCondition;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__CONDITION, oldCondition, newCondition);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__LOCAL_CONDITION, oldLocalCondition, newLocalCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -184,18 +184,18 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCondition(ComplexCondition newCondition) {
-		if (newCondition != condition) {
+	public void setLocalCondition(ComplexCondition newLocalCondition) {
+		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
-			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING__CONDITION, null, msgs);
-			if (newCondition != null)
-				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING__CONDITION, null, msgs);
-			msgs = basicSetCondition(newCondition, msgs);
+			if (localCondition != null)
+				msgs = ((InternalEObject)localCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING__LOCAL_CONDITION, null, msgs);
+			if (newLocalCondition != null)
+				msgs = ((InternalEObject)newLocalCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING__LOCAL_CONDITION, null, msgs);
+			msgs = basicSetLocalCondition(newLocalCondition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__CONDITION, newCondition, newCondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
 	}
 
 	/**
@@ -203,16 +203,16 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition getConditionRef() {
-		if (conditionRef != null && conditionRef.eIsProxy()) {
-			InternalEObject oldConditionRef = (InternalEObject)conditionRef;
-			conditionRef = (ComplexCondition)eResolveProxy(oldConditionRef);
-			if (conditionRef != oldConditionRef) {
+	public ComplexCondition getSharedCondition() {
+		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
+			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
+			if (sharedCondition != oldSharedCondition) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING__CONDITION_REF, oldConditionRef, conditionRef));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING__SHARED_CONDITION, oldSharedCondition, sharedCondition));
 			}
 		}
-		return conditionRef;
+		return sharedCondition;
 	}
 
 	/**
@@ -220,8 +220,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexCondition basicGetConditionRef() {
-		return conditionRef;
+	public ComplexCondition basicGetSharedCondition() {
+		return sharedCondition;
 	}
 
 	/**
@@ -229,11 +229,11 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConditionRef(ComplexCondition newConditionRef) {
-		ComplexCondition oldConditionRef = conditionRef;
-		conditionRef = newConditionRef;
+	public void setSharedCondition(ComplexCondition newSharedCondition) {
+		ComplexCondition oldSharedCondition = sharedCondition;
+		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__CONDITION_REF, oldConditionRef, conditionRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__SHARED_CONDITION, oldSharedCondition, sharedCondition));
 	}
 
 	/**
@@ -358,14 +358,14 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		 *       in
 		 *         'Mapping::containsHintGroups'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
 		try {
-		    final /*@NonNull*/ /*@Thrown*/ List<MappingHintGroupType> mappingHintGroups = this.getMappingHintGroups();
-		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_mappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, mappingHintGroups);
-		    final /*@Thrown*/ boolean isEmpty = ClassUtil.nonNullState(CollectionIsEmptyOperation.INSTANCE.evaluate(BOXED_mappingHintGroups).booleanValue());
-		    final /*@Nullable*/ /*@Thrown*/ Boolean status = BooleanNotOperation.INSTANCE.evaluate(isEmpty);
+		    final /*@Thrown*/ List<MappingHintGroupType> mappingHintGroups = this.getMappingHintGroups();
+		    final /*@Thrown*/ OrderedSetValue BOXED_mappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, mappingHintGroups);
+		    final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(BOXED_mappingHintGroups).booleanValue();
+		    final /*@Thrown*/ Boolean status = BooleanNotOperation.INSTANCE.evaluate(isEmpty);
 		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
@@ -375,14 +375,14 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		/*@NonInvalid*/ String message_0;
 		if (ne) {
 		    message_0 = MappingTables.STR_The_32_mapping_32_does_32_not_32_contain_32_any_32_hint_32_groups_33;
 		}
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MappingTables.STR_Mapping_c_c_containsHintGroups, this, null, diagnostics, context, message_0, MappingTables.INT_2, CAUGHT_status, MappingTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_Mapping_c_c_containsHintGroups, this, null, diagnostics, context, message_0, MappingTables.INT_2, CAUGHT_status, MappingTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -417,43 +417,43 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		 *       in
 		 *         'Mapping::containsDeactivatedHintGroups'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
 		try {
 		    final /*@Thrown*/ boolean deactivated = this.isDeactivated();
 		    final /*@Thrown*/ boolean eq = !deactivated;
-		    /*@Nullable*/ /*@Thrown*/ Boolean status;
+		    /*@Thrown*/ Boolean status;
 		    if (eq) {
-		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_0;
+		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_0;
 		        try {
-		            final /*@NonNull*/ /*@Thrown*/ List<MappingHintGroupType> mappingHintGroups = this.getMappingHintGroups();
-		            final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_mappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, mappingHintGroups);
-		            final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_mappingHintGroups));
-		            final /*@NonNull*/ /*@Thrown*/ List<MappingHintGroupType> getActiveMappingHintGroups = this.getActiveMappingHintGroups();
-		            final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_getActiveMappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, getActiveMappingHintGroups);
-		            final /*@NonNull*/ /*@Thrown*/ IntegerValue size_0 = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_getActiveMappingHintGroups));
+		            final /*@Thrown*/ List<MappingHintGroupType> mappingHintGroups = this.getMappingHintGroups();
+		            final /*@Thrown*/ OrderedSetValue BOXED_mappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, mappingHintGroups);
+		            final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_mappingHintGroups);
+		            final /*@Thrown*/ List<MappingHintGroupType> getActiveMappingHintGroups = this.getActiveMappingHintGroups();
+		            final /*@Thrown*/ OrderedSetValue BOXED_getActiveMappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, getActiveMappingHintGroups);
+		            final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_getActiveMappingHintGroups);
 		            final /*@Thrown*/ boolean eq_0 = size.equals(size_0);
 		            CAUGHT_eq_0 = eq_0;
 		        }
 		        catch (Exception e) {
 		            CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
 		        }
-		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_1;
+		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_1;
 		        try {
-		            final /*@NonNull*/ /*@Thrown*/ List<MappingHintGroupImporter> importedMappingHintGroups = this.getImportedMappingHintGroups();
-		            final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_importedMappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupImporter, importedMappingHintGroups);
-		            final /*@NonNull*/ /*@Thrown*/ IntegerValue size_1 = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_importedMappingHintGroups));
-		            final /*@NonNull*/ /*@Thrown*/ List<MappingHintGroupImporter> getActiveImportedMappingHintGroups = this.getActiveImportedMappingHintGroups();
-		            final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_getActiveImportedMappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupImporter, getActiveImportedMappingHintGroups);
-		            final /*@NonNull*/ /*@Thrown*/ IntegerValue size_2 = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_getActiveImportedMappingHintGroups));
+		            final /*@Thrown*/ List<MappingHintGroupImporter> importedMappingHintGroups = this.getImportedMappingHintGroups();
+		            final /*@Thrown*/ OrderedSetValue BOXED_importedMappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupImporter, importedMappingHintGroups);
+		            final /*@Thrown*/ IntegerValue size_1 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_importedMappingHintGroups);
+		            final /*@Thrown*/ List<MappingHintGroupImporter> getActiveImportedMappingHintGroups = this.getActiveImportedMappingHintGroups();
+		            final /*@Thrown*/ OrderedSetValue BOXED_getActiveImportedMappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupImporter, getActiveImportedMappingHintGroups);
+		            final /*@Thrown*/ IntegerValue size_2 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_getActiveImportedMappingHintGroups);
 		            final /*@Thrown*/ boolean eq_1 = size_1.equals(size_2);
 		            CAUGHT_eq_1 = eq_1;
 		        }
 		        catch (Exception e) {
 		            CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
 		        }
-		        final /*@Nullable*/ /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_eq_0, CAUGHT_eq_1);
+		        final /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_eq_0, CAUGHT_eq_1);
 		        status = and;
 		    }
 		    else {
@@ -468,14 +468,14 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		/*@NonInvalid*/ String message_0;
 		if (ne) {
 		    message_0 = MappingTables.STR_The_32_mapping_32_contains_32_deactivated_32_hint_32_groups_32_that_32_will_32_not_32_be_32_us;
 		}
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MappingTables.STR_Mapping_c_c_containsDeactivatedHintGroups, this, null, diagnostics, context, message_0, MappingTables.INT_2, CAUGHT_status, MappingTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_Mapping_c_c_containsDeactivatedHintGroups, this, null, diagnostics, context, message_0, MappingTables.INT_2, CAUGHT_status, MappingTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -491,28 +491,28 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = self.conditionRef->size() +
-		 *       self.condition->size() = 1
+		 *       status : OclAny[1] = self.sharedCondition->size() +
+		 *       self.localCondition->size() <= 1
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
-		 *         then 'As this Instance is a ConditionElement and you want to add a condition, you either have to model a condition or reference an already existing one!'
+		 *         then 'Please specify at most one (local or shared) condition!'
 		 *         else null
 		 *         endif
 		 *       in
 		 *         'ConditionalElement::eitherModelOrReferCondition'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef = this.getConditionRef();
-		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
-		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition condition = this.getCondition();
-		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet_0 = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, condition));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size_0 = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue sum = ClassUtil.nonNullState((IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0));
-		    final /*@Thrown*/ boolean status = sum.equals(PamtramTables.INT_1);
+		    final /*@Thrown*/ ComplexCondition sharedCondition = this.getSharedCondition();
+		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, sharedCondition);
+		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
+		    final /*@Thrown*/ ComplexCondition localCondition = this.getLocalCondition();
+		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, localCondition);
+		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
+		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
+		    final /*@Thrown*/ boolean status = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, sum, PamtramTables.INT_1).booleanValue();
 		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
@@ -522,14 +522,14 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		/*@NonInvalid*/ String message_0;
 		if (ne) {
-		    message_0 = PamtramTables.STR_As_32_this_32_Instance_32_is_32_a_32_ConditionElement_32_and_32_you_32_want_32_to_32_add_32_a_32_con;
+		    message_0 = PamtramTables.STR_Please_32_specify_32_at_32_most_32_one_32_o_local_32_or_32_shared_e_32_condition_33;
 		}
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PamtramTables.STR_ConditionalElement_c_c_eitherModelOrReferCondition, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PamtramTables.STR_ConditionalElement_c_c_eitherModelOrReferCondition, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -545,34 +545,34 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = if self.conditionRef->size() = 1
+		 *       status : OclAny[1] = if self.sharedCondition->size() = 1
 		 *       then
-		 *         self.conditionRef.oclContainer()
+		 *         self.sharedCondition.oclContainer()
 		 *         .oclIsTypeOf(ConditionModel)
 		 *       else true
 		 *       endif
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
-		 *         then 'It only allowed to reference Condition-Instances that are model inside the ConditionModel!'
+		 *         then 'It only allowed to reference shared conditions that are model inside the ConditionModel!'
 		 *         else null
 		 *         endif
 		 *       in
 		 *         'ConditionalElement::referenceOnlyConditionsFromConditionModel'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
 		try {
-		    final /*@Nullable*/ /*@Thrown*/ ComplexCondition conditionRef_0 = this.getConditionRef();
-		    final /*@NonNull*/ /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PamtramTables.SET_CLSSid_ComplexCondition, conditionRef_0));
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(oclAsSet));
+		    final /*@Thrown*/ ComplexCondition sharedCondition_0 = this.getSharedCondition();
+		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, sharedCondition_0);
+		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
 		    final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
 		    /*@Thrown*/ boolean status;
 		    if (eq) {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(PamtramTables.CLSSid_ConditionModel, null);
-		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, conditionRef_0);
-		        final /*@Thrown*/ boolean oclIsTypeOf = ClassUtil.nonNullState(OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_ConditionModel).booleanValue());
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(PamtramTables.CLSSid_ConditionModel, null);
+		        final /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, sharedCondition_0);
+		        final /*@Thrown*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_ConditionModel).booleanValue();
 		        status = oclIsTypeOf;
 		    }
 		    else {
@@ -587,14 +587,14 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		/*@NonInvalid*/ String message_0;
 		if (ne) {
-		    message_0 = PamtramTables.STR_It_32_only_32_allowed_32_to_32_reference_32_Condition_m_Instances_32_that_32_are_32_model_32;
+		    message_0 = PamtramTables.STR_It_32_only_32_allowed_32_to_32_reference_32_shared_32_conditions_32_that_32_are_32_model_32_in;
 		}
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PamtramTables.STR_ConditionalElement_c_c_referenceOnlyConditionsFromConditionModel, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PamtramTables.STR_ConditionalElement_c_c_referenceOnlyConditionsFromConditionModel, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -606,8 +606,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				return basicSetCondition(null, msgs);
+			case MappingPackage.MAPPING__LOCAL_CONDITION:
+				return basicSetLocalCondition(null, msgs);
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return ((InternalEList<?>)getMappingHintGroups()).basicRemove(otherEnd, msgs);
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
@@ -626,11 +626,11 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				return getCondition();
-			case MappingPackage.MAPPING__CONDITION_REF:
-				if (resolve) return getConditionRef();
-				return basicGetConditionRef();
+			case MappingPackage.MAPPING__LOCAL_CONDITION:
+				return getLocalCondition();
+			case MappingPackage.MAPPING__SHARED_CONDITION:
+				if (resolve) return getSharedCondition();
+				return basicGetSharedCondition();
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return getMappingHintGroups();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
@@ -652,11 +652,11 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				setCondition((ComplexCondition)newValue);
+			case MappingPackage.MAPPING__LOCAL_CONDITION:
+				setLocalCondition((ComplexCondition)newValue);
 				return;
-			case MappingPackage.MAPPING__CONDITION_REF:
-				setConditionRef((ComplexCondition)newValue);
+			case MappingPackage.MAPPING__SHARED_CONDITION:
+				setSharedCondition((ComplexCondition)newValue);
 				return;
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				getMappingHintGroups().clear();
@@ -685,11 +685,11 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				setCondition((ComplexCondition)null);
+			case MappingPackage.MAPPING__LOCAL_CONDITION:
+				setLocalCondition((ComplexCondition)null);
 				return;
-			case MappingPackage.MAPPING__CONDITION_REF:
-				setConditionRef((ComplexCondition)null);
+			case MappingPackage.MAPPING__SHARED_CONDITION:
+				setSharedCondition((ComplexCondition)null);
 				return;
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				getMappingHintGroups().clear();
@@ -715,10 +715,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING__CONDITION:
-				return condition != null;
-			case MappingPackage.MAPPING__CONDITION_REF:
-				return conditionRef != null;
+			case MappingPackage.MAPPING__LOCAL_CONDITION:
+				return localCondition != null;
+			case MappingPackage.MAPPING__SHARED_CONDITION:
+				return sharedCondition != null;
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return mappingHintGroups != null && !mappingHintGroups.isEmpty();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
@@ -740,8 +740,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.MAPPING__CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION;
-				case MappingPackage.MAPPING__CONDITION_REF: return PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF;
+				case MappingPackage.MAPPING__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
+				case MappingPackage.MAPPING__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
 				default: return -1;
 			}
 		}
@@ -757,8 +757,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION: return MappingPackage.MAPPING__CONDITION;
-				case PamtramPackage.CONDITIONAL_ELEMENT__CONDITION_REF: return MappingPackage.MAPPING__CONDITION_REF;
+				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return MappingPackage.MAPPING__LOCAL_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return MappingPackage.MAPPING__SHARED_CONDITION;
 				default: return -1;
 			}
 		}
@@ -774,8 +774,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
-				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2: return MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2;
+				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2: return MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2;
 				default: return -1;
 			}
 		}
@@ -795,13 +795,13 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getActiveMappingHintGroups();
 			case MappingPackage.MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS:
 				return getActiveImportedMappingHintGroups();
-			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_2:
 				return containsHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_2:
 				return containsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2:
 				return eitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2:
 				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

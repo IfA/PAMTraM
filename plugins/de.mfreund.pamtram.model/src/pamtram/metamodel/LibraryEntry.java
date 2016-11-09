@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getId <em>Id</em>}</li>
+ *   <li>{@link pamtram.metamodel.LibraryEntry#getResourceParameters <em>Resource Parameters</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry()
@@ -79,13 +80,13 @@ public interface LibraryEntry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path</em>' containment reference.
-	 * @see #setPath(VirtualAttribute)
+	 * @see #setPath(VirtualTargetSectionAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_Path()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!path'"
 	 * @generated
 	 */
-	VirtualAttribute getPath();
+	VirtualTargetSectionAttribute getPath();
 
 	/**
 	 * Sets the value of the '{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}' containment reference.
@@ -95,7 +96,7 @@ public interface LibraryEntry extends EObject {
 	 * @see #getPath()
 	 * @generated
 	 */
-	void setPath(VirtualAttribute value);
+	void setPath(VirtualTargetSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' containment reference.
@@ -106,13 +107,13 @@ public interface LibraryEntry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' containment reference.
-	 * @see #setId(VirtualAttribute)
+	 * @see #setId(VirtualTargetSectionAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_Id()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!id'"
 	 * @generated
 	 */
-	VirtualAttribute getId();
+	VirtualTargetSectionAttribute getId();
 
 	/**
 	 * Sets the value of the '{@link pamtram.metamodel.LibraryEntry#getId <em>Id</em>}' containment reference.
@@ -122,7 +123,24 @@ public interface LibraryEntry extends EObject {
 	 * @see #getId()
 	 * @generated
 	 */
-	void setId(VirtualAttribute value);
+	void setId(VirtualTargetSectionAttribute value);
+
+	/**
+	 * Returns the value of the '<em><b>Resource Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.metamodel.ResourceParameter}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resource Parameters</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resource Parameters</em>' containment reference list.
+	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_ResourceParameters()
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!resourceParameters'"
+	 * @generated
+	 */
+	EList<ResourceParameter> getResourceParameters();
 
 	/**
 	 * Returns the value of the '<em><b>Original Library Entry</b></em>' reference.

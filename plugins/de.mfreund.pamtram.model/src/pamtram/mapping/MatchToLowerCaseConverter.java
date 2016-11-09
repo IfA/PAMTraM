@@ -19,7 +19,7 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface MatchToLowerCaseConverter extends AttributeValueModifier {
+public interface MatchToLowerCaseConverter extends ValueModifier {
 	/**
 	 * Returns the value of the '<em><b>Regex</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -4,7 +4,10 @@ package pamtram.metamodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -14,7 +17,7 @@ import pamtram.metamodel.VirtualAttribute;
  *
  * @generated
  */
-public class VirtualAttributeImpl extends TargetSectionAttributeImpl implements VirtualAttribute {
+public abstract class VirtualAttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends AttributeImpl<S, C, R, A> implements VirtualAttribute<S, C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

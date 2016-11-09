@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -23,7 +23,6 @@ import org.eclipse.ocl.pivot.library.oclany.OclAnyToStringOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -119,24 +118,24 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 		 *       in
 		 *         'MetaModelSectionReference::valuesMatchReferenceType'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
 		try {
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		    final /*@NonNull*/ /*@Thrown*/ EReference eReference = this.getEReference();
-		    final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, eReference));
+		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
+		    final /*@Thrown*/ EReference eReference = this.getEReference();
+		    final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, eReference);
 		    final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
-		    /*@Nullable*/ /*@Thrown*/ Boolean status;
+		    /*@Thrown*/ Boolean status;
 		    if (eq) {
 		        status = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        final /*@NonNull*/ /*@Thrown*/ List<SourceSectionClass> value = this.getValue();
-		        final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_value = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_SourceSectionClass, value);
-		        /*@Nullable*/ /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-		        /*@Nullable*/ Iterator<?> ITERATOR_c = BOXED_value.iterator();
-		        /*@Nullable*/ /*@Thrown*/ Boolean forAll;
+		        final /*@Thrown*/ List<SourceSectionClass> value = this.getValue();
+		        final /*@Thrown*/ OrderedSetValue BOXED_value = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_SourceSectionClass, value);
+		        /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
+		        /*@NonNull*/ Iterator<Object> ITERATOR_c = BOXED_value.iterator();
+		        /*@Thrown*/ Boolean forAll;
 		        while (true) {
 		            if (!ITERATOR_c.hasNext()) {
 		                if (accumulator == ValueUtil.TRUE_VALUE) {
@@ -147,18 +146,14 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 		                }
 		                break;
 		            }
-		            /*@Nullable*/ /*@NonInvalid*/ SourceSectionClass c = (SourceSectionClass)ITERATOR_c.next();
+		            /*@NonInvalid*/ SourceSectionClass c = (SourceSectionClass)ITERATOR_c.next();
 		            /**
 		             * self.eReference.eReferenceType.isSuperTypeOf(c.eClass)
 		             */
-		            /*@NonNull*/ /*@Caught*/ Object CAUGHT_isSuperTypeOf;
+		            /*@Caught*/ /*@NonNull*/ Object CAUGHT_isSuperTypeOf;
 		            try {
-		                @SuppressWarnings("null")
-		                final /*@NonNull*/ /*@Thrown*/ EClass eReferenceType = eReference.getEReferenceType();
-		                if (c == null) {
-		                    throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram/metamodel\'::Class::eClass\'");
-		                }
-		                final /*@NonNull*/ /*@Thrown*/ EClass eClass = c.getEClass();
+		                final /*@Thrown*/ EClass eReferenceType = eReference.getEReferenceType();
+		                final /*@Thrown*/ EClass eClass = c.getEClass();
 		                final /*@Thrown*/ boolean isSuperTypeOf = eReferenceType.isSuperTypeOf(eClass);
 		                CAUGHT_isSuperTypeOf = isSuperTypeOf;
 		            }
@@ -187,37 +182,33 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 		catch (Exception e) {
 		    CAUGHT_status = ValueUtil.createInvalidValue(e);
 		}
-		/*@Nullable*/ /*@Caught*/ Object CAUGHT_message_0;
+		/*@Caught*/ /*@Nullable*/ Object CAUGHT_message_0;
 		try {
 		    if (CAUGHT_status instanceof InvalidValueException) {
 		        throw (InvalidValueException)CAUGHT_status;
 		    }
 		    final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		    /*@Nullable*/ /*@Thrown*/ String message_0;
+		    /*@Thrown*/ String message_0;
 		    if (ne) {
-		        final /*@NonNull*/ /*@Thrown*/ EReference eReference_2 = this.getEReference();
-		        final /*@NonNull*/ /*@Thrown*/ List<SourceSectionClass> value_0 = this.getValue();
-		        final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_value_0 = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_SourceSectionClass, value_0);
-		        /*@NonNull*/ /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(MetamodelTables.ORD_CLSSid_SourceSectionClass);
-		        /*@Nullable*/ Iterator<?> ITERATOR_c_0 = BOXED_value_0.iterator();
-		        /*@NonNull*/ /*@Thrown*/ OrderedSetValue select;
+		        final /*@Thrown*/ EReference eReference_2 = this.getEReference();
+		        final /*@Thrown*/ List<SourceSectionClass> value_0 = this.getValue();
+		        final /*@Thrown*/ OrderedSetValue BOXED_value_0 = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_SourceSectionClass, value_0);
+		        /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(MetamodelTables.ORD_CLSSid_SourceSectionClass);
+		        /*@NonNull*/ Iterator<Object> ITERATOR_c_0 = BOXED_value_0.iterator();
+		        /*@Thrown*/ OrderedSetValue select;
 		        while (true) {
 		            if (!ITERATOR_c_0.hasNext()) {
 		                select = accumulator_0;
 		                break;
 		            }
-		            /*@Nullable*/ /*@NonInvalid*/ SourceSectionClass c_0 = (SourceSectionClass)ITERATOR_c_0.next();
+		            /*@NonInvalid*/ SourceSectionClass c_0 = (SourceSectionClass)ITERATOR_c_0.next();
 		            /**
 		             * not self.eReference.eReferenceType.isSuperTypeOf(c.eClass)
 		             */
-		            @SuppressWarnings("null")
-		            final /*@NonNull*/ /*@Thrown*/ EClass eReferenceType_0 = eReference_2.getEReferenceType();
-		            if (c_0 == null) {
-		                throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram/metamodel\'::Class::eClass\'");
-		            }
-		            final /*@NonNull*/ /*@Thrown*/ EClass eClass_0 = c_0.getEClass();
+		            final /*@Thrown*/ EClass eReferenceType_0 = eReference_2.getEReferenceType();
+		            final /*@Thrown*/ EClass eClass_0 = c_0.getEClass();
 		            final /*@Thrown*/ boolean isSuperTypeOf_0 = eReferenceType_0.isSuperTypeOf(eClass_0);
-		            final /*@Nullable*/ /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isSuperTypeOf_0);
+		            final /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isSuperTypeOf_0);
 		            if (not == null) {
 		                throw new InvalidValueException("Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean[1]) : OrderedSet(T)\'");
 		            }
@@ -226,12 +217,12 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 		                accumulator_0.add(c_0);
 		            }
 		        }
-		        final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(select));
-		        final /*@NonNull*/ /*@Thrown*/ String toString = ClassUtil.nonNullState(OclAnyToStringOperation.INSTANCE.evaluate(size));
-		        final /*@NonNull*/ /*@Thrown*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(toString, MetamodelTables.STR__32_of_32_the_32_selected_32_target_32_Classes_32_o_Value_e_32_are_32_not_32_allowed_32_by_32_the_32_s));
-		        final /*@Nullable*/ /*@Thrown*/ String name = eReference_2.getName();
-		        final /*@NonNull*/ /*@Thrown*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, name));
-		        final /*@NonNull*/ /*@Thrown*/ String sum_1 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_0, MetamodelTables.STR__39_33));
+		        final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
+		        final /*@Thrown*/ String toString = OclAnyToStringOperation.INSTANCE.evaluate(size);
+		        final /*@Thrown*/ String sum = StringConcatOperation.INSTANCE.evaluate(toString, MetamodelTables.STR__32_of_32_the_32_selected_32_target_32_Classes_32_o_Value_e_32_are_32_not_32_allowed_32_by_32_the_32_s);
+		        final /*@Thrown*/ String name = eReference_2.getName();
+		        final /*@Thrown*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, name);
+		        final /*@Thrown*/ String sum_1 = StringConcatOperation.INSTANCE.evaluate(sum_0, MetamodelTables.STR__39_33);
 		        message_0 = sum_1;
 		    }
 		    else {
@@ -242,7 +233,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 		catch (Exception e) {
 		    CAUGHT_message_0 = ValueUtil.createInvalidValue(e);
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_MetaModelSectionReference_c_c_valuesMatchReferenceType, this, null, diagnostics, context, CAUGHT_message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_MetaModelSectionReference_c_c_valuesMatchReferenceType, this, null, diagnostics, context, CAUGHT_message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -315,7 +306,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_2:
 				return valuesMatchReferenceType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

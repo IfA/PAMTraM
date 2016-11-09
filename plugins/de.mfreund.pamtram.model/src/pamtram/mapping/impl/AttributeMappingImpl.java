@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -35,7 +35,7 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.MappingHintGroupType;
@@ -58,7 +58,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getResultModifier <em>Result Modifier</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getSourceAttributeMappings <em>Source Attribute Mappings</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,7 +90,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> resultModifier;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -103,14 +103,14 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	protected TargetSectionAttribute target;
 
 	/**
-	 * The cached value of the '{@link #getSourceAttributeMappings() <em>Source Attribute Mappings</em>}' containment reference list.
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceAttributeMappings()
+	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeMappingSourceInterface> sourceAttributeMappings;
+	protected EList<AttributeMappingSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,11 +185,11 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeMappingSourceInterface> getSourceAttributeMappings() {
-		if (sourceAttributeMappings == null) {
-			sourceAttributeMappings = new EObjectContainmentEList<AttributeMappingSourceInterface>(AttributeMappingSourceInterface.class, this, MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
+	public EList<AttributeMappingSourceInterface> getSourceElements() {
+		if (sourceElements == null) {
+			sourceElements = new EObjectContainmentEList<AttributeMappingSourceInterface>(AttributeMappingSourceInterface.class, this, MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
 		}
-		return sourceAttributeMappings;
+		return sourceElements;
 	}
 
 	/**
@@ -221,9 +221,9 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -237,7 +237,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	public EList<AttributeMappingSourceElement> getLocalSourceElements() {
 				EList<AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingSourceElement>();
 				
-				for(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){
+				for(AttributeMappingSourceInterface i : this.getSourceElements()){
 					if(i instanceof AttributeMappingSourceElement){
 						elements.add((AttributeMappingSourceElement) i);
 					}
@@ -255,7 +255,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	public EList<AttributeMappingExternalSourceElement> getExternalSourceElements() {
 		EList<AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingExternalSourceElement>();
 		
-		for(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){
+		for(AttributeMappingSourceInterface i : this.getSourceElements()){
 			if(i instanceof AttributeMappingExternalSourceElement){
 				elements.add((AttributeMappingExternalSourceElement) i);
 			}
@@ -280,15 +280,15 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		 *         self.target.oclType() = OclVoid or
 		 *         self.oclContainer()
 		 *         .oclAsType(MappingHintGroupType)
-		 *         .targetMMSection.oclType() = OclVoid
+		 *         .targetSection.oclType() = OclVoid
 		 *       then true
 		 *       else
 		 *         self.target.getContainingSection() =
 		 *         self.oclContainer()
-		 *         .oclAsType(MappingHintGroupType).targetMMSection or
+		 *         .oclAsType(MappingHintGroupType).targetSection or
 		 *         self.oclContainer()
 		 *         .oclAsType(MappingHintGroupType)
-		 *         .targetMMSection.oclAsType(metamodel::Section(S, C, R, A))
+		 *         .targetSection.oclAsType(metamodel::Section(S, C, R, A))
 		 *         .extend->includes(self.target.getContainingSection())
 		 *       endif
 		 *     in
@@ -302,77 +302,77 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		 *       in
 		 *         'AttributeMapping::targetAttributeMatchesSection'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
-		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
 		try {
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
+		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq;
 		    try {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid = idResolver.getClass(TypeId.OCL_VOID, null);
-		        final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target = this.getTarget();
-		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, target));
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid = idResolver.getClass(TypeId.OCL_VOID, null);
+		        final /*@Thrown*/ TargetSectionAttribute target = this.getTarget();
+		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, target);
 		        final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid.getTypeId();
 		        CAUGHT_eq = eq;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		    }
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_0;
+		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_0;
 		    try {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
-		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		        final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType));
-		        final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetMMSection();
-		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, targetMMSection));
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
+		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
+		        final /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType));
+		        final /*@Thrown*/ TargetSection targetSection = oclAsType.getTargetSection();
+		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, targetSection);
 		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_0.getTypeId();
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_eq_0);
+		    final /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_eq_0);
 		    if (or == null) {
 		        throw new InvalidValueException("Null if condition");
 		    }
-		    /*@Nullable*/ /*@Thrown*/ Boolean status;
+		    /*@Thrown*/ Boolean status;
 		    if (or) {
 		        status = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_1;
+		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_1;
 		        try {
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
-		            final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target_0 = this.getTarget();
-		            final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)target_0).getContainingSection();
-		            final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		            final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		            final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection_0 = oclAsType_0.getTargetMMSection();
-		            final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(targetMMSection_0);
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
+		            final /*@Thrown*/ TargetSectionAttribute target_0 = this.getTarget();
+		            final /*@Thrown*/ Object getContainingSection = ((MetaModelElement)target_0).getContainingSection();
+		            final /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
+		            final /*@Thrown*/ MappingHintGroupType oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
+		            final /*@Thrown*/ TargetSection targetSection_0 = oclAsType_0.getTargetSection();
+		            final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(targetSection_0);
 		            CAUGHT_eq_1 = eq_1;
 		        }
 		        catch (Exception e) {
 		            CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
 		        }
-		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_includes;
+		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_includes;
 		        try {
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Section, null);
-		            final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_1 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		            final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_1 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_1, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
-		            final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection_1 = oclAsType_1.getTargetMMSection();
-		            final /*@NonNull*/ /*@Thrown*/ Section oclAsType_2 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, targetMMSection_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e));
-		            final /*@NonNull*/ /*@Thrown*/ List<? extends Object> extend = oclAsType_2.getExtend();
-		            final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend);
-		            final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target_1 = this.getTarget();
-		            final /*@NonNull*/ /*@Thrown*/ Object getContainingSection_0 = ((MetaModelElement)target_1).getContainingSection();
-		            final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(BOXED_extend, getContainingSection_0).booleanValue());
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Section, null);
+		            final /*@NonInvalid*/ Object oclContainer_1 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
+		            final /*@Thrown*/ MappingHintGroupType oclAsType_1 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_1, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
+		            final /*@Thrown*/ TargetSection targetSection_1 = oclAsType_1.getTargetSection();
+		            final /*@Thrown*/ Section oclAsType_2 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, targetSection_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e));
+		            final /*@Thrown*/ List<Object> extend = oclAsType_2.getExtend();
+		            final /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend);
+		            final /*@Thrown*/ TargetSectionAttribute target_1 = this.getTarget();
+		            final /*@Thrown*/ Object getContainingSection_0 = ((MetaModelElement)target_1).getContainingSection();
+		            final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_extend, getContainingSection_0).booleanValue();
 		            CAUGHT_includes = includes;
 		        }
 		        catch (Exception e) {
 		            CAUGHT_includes = ValueUtil.createInvalidValue(e);
 		        }
-		        final /*@Nullable*/ /*@Thrown*/ Boolean or_0 = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_1, CAUGHT_includes);
+		        final /*@Thrown*/ Boolean or_0 = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_1, CAUGHT_includes);
 		        status = or_0;
 		    }
 		    CAUGHT_status = status;
@@ -384,24 +384,24 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		/*@NonInvalid*/ String message_0;
 		if (ne) {
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_2 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
-		    final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target_2 = this.getTarget();
-		    final /*@Nullable*/ /*@Thrown*/ String name = target_2.getName();
-		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_target_32_attribute_32_39, name));
-		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr));
-		    final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		    final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_3 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_2, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_2));
-		    final /*@Nullable*/ /*@Thrown*/ String name_0 = oclAsType_3.getName();
-		    final /*@NonNull*/ /*@NonInvalid*/ String sum_1 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_0, name_0));
-		    final /*@NonNull*/ /*@NonInvalid*/ String sum_2 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__33));
+		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_2 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
+		    final /*@Thrown*/ TargetSectionAttribute target_2 = this.getTarget();
+		    final /*@Thrown*/ String name = target_2.getName();
+		    final /*@NonInvalid*/ String sum = StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_target_32_attribute_32_39, name);
+		    final /*@NonInvalid*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr);
+		    final /*@NonInvalid*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
+		    final /*@Thrown*/ MappingHintGroupType oclAsType_3 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_2, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_2));
+		    final /*@Thrown*/ String name_0 = oclAsType_3.getName();
+		    final /*@NonInvalid*/ String sum_1 = StringConcatOperation.INSTANCE.evaluate(sum_0, name_0);
+		    final /*@NonInvalid*/ String sum_2 = StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__33);
 		    message_0 = sum_2;
 		}
 		else {
 		    message_0 = null;
 		}
-		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MappingTables.STR_AttributeMapping_c_c_targetAttributeMatchesSection, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_status, MappingTables.INT_0).booleanValue());
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_AttributeMapping_c_c_targetAttributeMatchesSection, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_status, MappingTables.INT_0).booleanValue();
 		return Boolean.TRUE == logDiagnostic;
 	}
 
@@ -413,8 +413,8 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				return ((InternalEList<?>)getSourceAttributeMappings()).basicRemove(otherEnd, msgs);
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
+				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -434,8 +434,8 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				return getSourceAttributeMappings();
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
+				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -454,14 +454,14 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER:
 				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				setTarget((TargetSectionAttribute)newValue);
 				return;
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				getSourceAttributeMappings().clear();
-				getSourceAttributeMappings().addAll((Collection<? extends AttributeMappingSourceInterface>)newValue);
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
+				getSourceElements().clear();
+				getSourceElements().addAll((Collection<? extends AttributeMappingSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -484,8 +484,8 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				setTarget((TargetSectionAttribute)null);
 				return;
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				getSourceAttributeMappings().clear();
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
+				getSourceElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -505,8 +505,8 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				return resultModifier != null && !resultModifier.isEmpty();
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				return target != null;
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				return sourceAttributeMappings != null && !sourceAttributeMappings.isEmpty();
+			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
+				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -578,7 +578,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				return getLocalSourceElements();
 			case MappingPackage.ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
-			case MappingPackage.ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2:
 				return targetAttributeMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface ModifiableHint extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Result Modifier</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifierSet}.
+	 * The list contents are of type {@link pamtram.mapping.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result Modifier</em>' reference list isn't clear,
@@ -37,6 +37,6 @@ public interface ModifiableHint extends EObject {
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModifiableHint!resultModifier'"
 	 * @generated
 	 */
-	EList<AttributeValueModifierSet> getResultModifier();
+	EList<ValueModifierSet> getResultModifier();
 
 } // ModifiableHint

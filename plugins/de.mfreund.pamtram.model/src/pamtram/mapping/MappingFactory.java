@@ -38,7 +38,7 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeMapping createAttributeMapping();
-	
+
 	/**
 	 * Returns a new object of class '<em>Attribute Mapping</em>' that
 	 * already contains a source element.
@@ -56,27 +56,27 @@ public interface MappingFactory extends EFactory {
 	CardinalityMapping createCardinalityMapping();
 
 	/**
-	 * Returns a new object of class '<em>Instance Selector</em>'.
+	 * Returns a new object of class '<em>Reference Target Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Selector</em>'.
+	 * @return a new object of class '<em>Reference Target Selector</em>'.
 	 * @generated
 	 */
-	MappingInstanceSelector createMappingInstanceSelector();
-	
+	ReferenceTargetSelector createReferenceTargetSelector();
+
 	/**
 	 * Returns a new object of class '<em>Instance Selector</em>' that
 	 * already contains a class matcher.
 	 * @return a new object of class '<em>Instance Selector</em>'.
 	 */
-	MappingInstanceSelector createMappingInstanceSelectorWithClassMatcher();
-	
+	ReferenceTargetSelector createMappingInstanceSelectorWithClassMatcher();
+
 	/**
 	 * Returns a new object of class '<em>Instance Selector</em>' that
 	 * already contains an attribute matcher.
 	 * @return a new object of class '<em>Instance Selector</em>'.
 	 */
-	MappingInstanceSelector createMappingInstanceSelectorWithAttributeMatcher();
+	ReferenceTargetSelector createMappingInstanceSelectorWithAttributeMatcher();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Matcher</em>'.
@@ -86,7 +86,7 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeMatcher createAttributeMatcher();
-	
+
 	/**
 	 * Returns a new object of class '<em>Attribute Matcher</em>' that
 	 * already contains a source element.
@@ -113,6 +113,15 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ClassMatcher createClassMatcher();
+
+	/**
+	 * Returns a new object of class '<em>Value Modifier Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Modifier Set</em>'.
+	 * @generated
+	 */
+	ValueModifierSet createValueModifierSet();
 
 	/**
 	 * Returns a new object of class '<em>Substring Replacer</em>'.
@@ -151,15 +160,6 @@ public interface MappingFactory extends EFactory {
 	StringPrepender createStringPrepender();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Value Modifier Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Value Modifier Set</em>'.
-	 * @generated
-	 */
-	AttributeValueModifierSet createAttributeValueModifierSet();
-
-	/**
 	 * Returns a new object of class '<em>Hint Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -187,20 +187,20 @@ public interface MappingFactory extends EFactory {
 	ExportedMappingHintGroup createExportedMappingHintGroup();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint</em>'.
+	 * Returns a new object of class '<em>Container Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint</em>'.
+	 * @return a new object of class '<em>Container Selector</em>'.
 	 * @generated
 	 */
-	ModelConnectionHint createModelConnectionHint();
-	
+	ContainerSelector createContainerSelector();
+
 	/**
 	 * Returns a new object of class '<em>Model Connection Hint</em>' that
 	 * already contains a source element and a target attribute.
 	 * @return a new object of class '<em>Model Connection Hint</em>'.
 	 */
-	ModelConnectionHint createModelConnectionHintWithSourceAndTarget();
+	ContainerSelector createContainerSelectorWithSourceAndTarget();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Mapping Source Element</em>'.
@@ -212,22 +212,22 @@ public interface MappingFactory extends EFactory {
 	AttributeMappingSourceElement createAttributeMappingSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint Source Element</em>'.
+	 * Returns a new object of class '<em>Container Selector Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint Source Element</em>'.
+	 * @return a new object of class '<em>Container Selector Source Element</em>'.
 	 * @generated
 	 */
-	ModelConnectionHintSourceElement createModelConnectionHintSourceElement();
+	ContainerSelectorSourceElement createContainerSelectorSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint Target Attribute</em>'.
+	 * Returns a new object of class '<em>Container Selector Target Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint Target Attribute</em>'.
+	 * @return a new object of class '<em>Container Selector Target Attribute</em>'.
 	 * @generated
 	 */
-	ModelConnectionHintTargetAttribute createModelConnectionHintTargetAttribute();
+	ContainerSelectorTargetAttribute createContainerSelectorTargetAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Local Mapped Attribute Value Expander</em>'.
@@ -293,13 +293,13 @@ public interface MappingFactory extends EFactory {
 	AttributeMappingExternalSourceElement createAttributeMappingExternalSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint External Source Element</em>'.
+	 * Returns a new object of class '<em>Container Selector External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint External Source Element</em>'.
+	 * @return a new object of class '<em>Container Selector External Source Element</em>'.
 	 * @generated
 	 */
-	ModelConnectionHintExternalSourceElement createModelConnectionHintExternalSourceElement();
+	ContainerSelectorExternalSourceElement createContainerSelectorExternalSourceElement();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Matcher External Source Element</em>'.
@@ -345,6 +345,33 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	MatchToUpperCaseConverter createMatchToUpperCaseConverter();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Matcher Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Matcher Global Source Element</em>'.
+	 * @generated
+	 */
+	AttributeMatcherGlobalSourceElement createAttributeMatcherGlobalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Mapping Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Mapping Global Source Element</em>'.
+	 * @generated
+	 */
+	AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Container Selector Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Container Selector Global Source Element</em>'.
+	 * @generated
+	 */
+	ContainerSelectorGlobalSourceElement createContainerSelectorGlobalSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

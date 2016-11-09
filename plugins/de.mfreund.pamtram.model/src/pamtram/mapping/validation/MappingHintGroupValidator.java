@@ -4,7 +4,7 @@
  */
 package pamtram.mapping.validation;
 
-import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ContainerSelector;
 
 /**
  * A sample validator interface for {@link pamtram.mapping.MappingHintGroup}.
@@ -15,5 +15,5 @@ import pamtram.mapping.ModelConnectionHint;
 public interface MappingHintGroupValidator {
 	boolean validate();
 
-	boolean validateModelConnectionMatcher(ModelConnectionHint value);
+	boolean validateModelConnectionMatcher(ContainerSelector value);
 }

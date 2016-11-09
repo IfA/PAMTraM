@@ -8,9 +8,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.ActualTargetSectionAttribute;
 import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintExternalSourceElement;
+import pamtram.metamodel.ValueConstraintSourceElement;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainerParameter;
@@ -19,6 +21,8 @@ import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.InstancePointer;
+import pamtram.metamodel.InstancePointerExternalSourceElement;
+import pamtram.metamodel.InstancePointerSourceElement;
 import pamtram.metamodel.FileTypeEnum;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelSectionReference;
@@ -27,8 +31,9 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
 import pamtram.metamodel.RangeConstraint;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.ResourceParameter;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SubstringMatcher;
@@ -36,7 +41,7 @@ import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,14 +95,15 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.ATTRIBUTE_PARAMETER: return createAttributeParameter();
 			case MetamodelPackage.CONTAINER_PARAMETER: return createContainerParameter();
 			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER: return createExternalReferenceParameter();
+			case MetamodelPackage.RESOURCE_PARAMETER: return createResourceParameter();
 			case MetamodelPackage.LIBRARY_ENTRY: return createLibraryEntry();
 			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
 			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: return createSourceSectionAttribute();
-			case MetamodelPackage.ACTUAL_ATTRIBUTE: return createActualAttribute();
-			case MetamodelPackage.VIRTUAL_ATTRIBUTE: return createVirtualAttribute();
+			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
+			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
+			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
 			case MetamodelPackage.EQUALITY_MATCHER: return createEqualityMatcher();
 			case MetamodelPackage.SUBSTRING_MATCHER: return createSubstringMatcher();
 			case MetamodelPackage.BEGINNING_MATCHER: return createBeginningMatcher();
@@ -105,7 +111,11 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.REG_EX_MATCHER: return createRegExMatcher();
 			case MetamodelPackage.RANGE_CONSTRAINT: return createRangeConstraint();
 			case MetamodelPackage.INSTANCE_POINTER: return createInstancePointer();
+			case MetamodelPackage.INSTANCE_POINTER_SOURCE_ELEMENT: return createInstancePointerSourceElement();
+			case MetamodelPackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: return createInstancePointerExternalSourceElement();
 			case MetamodelPackage.RANGE_BOUND: return createRangeBound();
+			case MetamodelPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: return createValueConstraintSourceElement();
+			case MetamodelPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createValueConstraintExternalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -121,8 +131,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eDataType.getClassifierID()) {
 			case MetamodelPackage.FILE_TYPE_ENUM:
 				return createFileTypeEnumFromString(eDataType, initialValue);
-			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
-				return createAttributeValueConstraintTypeFromString(eDataType, initialValue);
+			case MetamodelPackage.VALUE_CONSTRAINT_TYPE:
+				return createValueConstraintTypeFromString(eDataType, initialValue);
 			case MetamodelPackage.CARDINALITY_TYPE:
 				return createCardinalityTypeFromString(eDataType, initialValue);
 			default:
@@ -140,8 +150,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eDataType.getClassifierID()) {
 			case MetamodelPackage.FILE_TYPE_ENUM:
 				return convertFileTypeEnumToString(eDataType, instanceValue);
-			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
-				return convertAttributeValueConstraintTypeToString(eDataType, instanceValue);
+			case MetamodelPackage.VALUE_CONSTRAINT_TYPE:
+				return convertValueConstraintTypeToString(eDataType, instanceValue);
 			case MetamodelPackage.CARDINALITY_TYPE:
 				return convertCardinalityTypeToString(eDataType, instanceValue);
 			default:
@@ -234,6 +244,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ResourceParameter createResourceParameter() {
+		ResourceParameterImpl resourceParameter = new ResourceParameterImpl();
+		return resourceParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LibraryEntry createLibraryEntry() {
 		LibraryEntryImpl libraryEntry = new LibraryEntryImpl();
 		return libraryEntry;
@@ -284,9 +304,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute createSourceSectionAttribute() {
-		SourceSectionAttributeImpl sourceSectionAttribute = new SourceSectionAttributeImpl();
-		return sourceSectionAttribute;
+	public ActualSourceSectionAttribute createActualSourceSectionAttribute() {
+		ActualSourceSectionAttributeImpl actualSourceSectionAttribute = new ActualSourceSectionAttributeImpl();
+		return actualSourceSectionAttribute;
 	}
 
 	/**
@@ -294,9 +314,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualAttribute createActualAttribute() {
-		ActualAttributeImpl actualAttribute = new ActualAttributeImpl();
-		return actualAttribute;
+	public ActualTargetSectionAttribute createActualTargetSectionAttribute() {
+		ActualTargetSectionAttributeImpl actualTargetSectionAttribute = new ActualTargetSectionAttributeImpl();
+		return actualTargetSectionAttribute;
 	}
 
 	/**
@@ -304,9 +324,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VirtualAttribute createVirtualAttribute() {
-		VirtualAttributeImpl virtualAttribute = new VirtualAttributeImpl();
-		return virtualAttribute;
+	public VirtualTargetSectionAttribute createVirtualTargetSectionAttribute() {
+		VirtualTargetSectionAttributeImpl virtualTargetSectionAttribute = new VirtualTargetSectionAttributeImpl();
+		return virtualTargetSectionAttribute;
 	}
 
 	/**
@@ -384,9 +404,49 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public InstancePointerSourceElement createInstancePointerSourceElement() {
+		InstancePointerSourceElementImpl instancePointerSourceElement = new InstancePointerSourceElementImpl();
+		return instancePointerSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstancePointerExternalSourceElement createInstancePointerExternalSourceElement() {
+		InstancePointerExternalSourceElementImpl instancePointerExternalSourceElement = new InstancePointerExternalSourceElementImpl();
+		return instancePointerExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RangeBound createRangeBound() {
 		RangeBoundImpl rangeBound = new RangeBoundImpl();
 		return rangeBound;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueConstraintSourceElement createValueConstraintSourceElement() {
+		ValueConstraintSourceElementImpl valueConstraintSourceElement = new ValueConstraintSourceElementImpl();
+		return valueConstraintSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement() {
+		ValueConstraintExternalSourceElementImpl valueConstraintExternalSourceElement = new ValueConstraintExternalSourceElementImpl();
+		return valueConstraintExternalSourceElement;
 	}
 
 	/**
@@ -414,8 +474,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueConstraintType createAttributeValueConstraintTypeFromString(EDataType eDataType, String initialValue) {
-		AttributeValueConstraintType result = AttributeValueConstraintType.get(initialValue);
+	public ValueConstraintType createValueConstraintTypeFromString(EDataType eDataType, String initialValue) {
+		ValueConstraintType result = ValueConstraintType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -425,7 +485,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertAttributeValueConstraintTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertValueConstraintTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

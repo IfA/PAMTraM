@@ -7,7 +7,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.HintImporterMappingHint;
@@ -98,7 +98,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttribut
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AttributeValueModifierSet> getModifiers() {
+	public EList<ValueModifierSet> getModifiers() {
 		if(this instanceof LocalMappedAttributeValueExpander) {
 			return ((LocalMappedAttributeValueExpander) this).getModifier();
 		} else if(this instanceof ExternalMappedAttributeValueExpander) {

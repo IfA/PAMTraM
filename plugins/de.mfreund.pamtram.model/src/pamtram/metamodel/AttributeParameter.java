@@ -31,13 +31,13 @@ public interface AttributeParameter extends LibraryParameter<AbstractAttributePa
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute</em>' containment reference.
-	 * @see #setAttribute(ActualAttribute)
+	 * @see #setAttribute(ActualTargetSectionAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getAttributeParameter_Attribute()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!AttributeParameter!attribute'"
 	 * @generated
 	 */
-	ActualAttribute getAttribute();
+	ActualTargetSectionAttribute getAttribute();
 
 	/**
 	 * Sets the value of the '{@link pamtram.metamodel.AttributeParameter#getAttribute <em>Attribute</em>}' containment reference.
@@ -47,6 +47,6 @@ public interface AttributeParameter extends LibraryParameter<AbstractAttributePa
 	 * @see #getAttribute()
 	 * @generated
 	 */
-	void setAttribute(ActualAttribute value);
+	void setAttribute(ActualTargetSectionAttribute value);
 
 } // AttributeParameter

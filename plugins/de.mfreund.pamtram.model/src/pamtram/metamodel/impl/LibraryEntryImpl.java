@@ -17,7 +17,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.metamodel.ResourceParameter;
+import pamtram.metamodel.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +33,7 @@ import pamtram.metamodel.VirtualAttribute;
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getPath <em>Path</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getId <em>Id</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getResourceParameters <em>Resource Parameters</em>}</li>
  * </ul>
  *
  * @generated
@@ -85,7 +87,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected VirtualAttribute path;
+	protected VirtualTargetSectionAttribute path;
 
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' containment reference.
@@ -95,7 +97,17 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected VirtualAttribute id;
+	protected VirtualTargetSectionAttribute id;
+
+	/**
+	 * The cached value of the '{@link #getResourceParameters() <em>Resource Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourceParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ResourceParameter> resourceParameters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,7 +170,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public VirtualAttribute getPath() {
+	public VirtualTargetSectionAttribute getPath() {
 		return path;
 	}
 
@@ -167,8 +179,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPath(VirtualAttribute newPath, NotificationChain msgs) {
-		VirtualAttribute oldPath = path;
+	public NotificationChain basicSetPath(VirtualTargetSectionAttribute newPath, NotificationChain msgs) {
+		VirtualTargetSectionAttribute oldPath = path;
 		path = newPath;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__PATH, oldPath, newPath);
@@ -182,7 +194,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPath(VirtualAttribute newPath) {
+	public void setPath(VirtualTargetSectionAttribute newPath) {
 		if (newPath != path) {
 			NotificationChain msgs = null;
 			if (path != null)
@@ -201,7 +213,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VirtualAttribute getId() {
+	public VirtualTargetSectionAttribute getId() {
 		return id;
 	}
 
@@ -210,8 +222,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetId(VirtualAttribute newId, NotificationChain msgs) {
-		VirtualAttribute oldId = id;
+	public NotificationChain basicSetId(VirtualTargetSectionAttribute newId, NotificationChain msgs) {
+		VirtualTargetSectionAttribute oldId = id;
 		id = newId;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__ID, oldId, newId);
@@ -225,7 +237,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(VirtualAttribute newId) {
+	public void setId(VirtualTargetSectionAttribute newId) {
 		if (newId != id) {
 			NotificationChain msgs = null;
 			if (id != null)
@@ -237,6 +249,18 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__ID, newId, newId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ResourceParameter> getResourceParameters() {
+		if (resourceParameters == null) {
+			resourceParameters = new EObjectContainmentEList<ResourceParameter>(ResourceParameter.class, this, MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
+		}
+		return resourceParameters;
 	}
 
 	/**
@@ -293,6 +317,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return basicSetPath(null, msgs);
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
 				return basicSetId(null, msgs);
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				return ((InternalEList<?>)getResourceParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -316,6 +342,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return getPath();
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
 				return getId();
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				return getResourceParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -340,10 +368,14 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)newValue);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
-				setPath((VirtualAttribute)newValue);
+				setPath((VirtualTargetSectionAttribute)newValue);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
-				setId((VirtualAttribute)newValue);
+				setId((VirtualTargetSectionAttribute)newValue);
+				return;
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				getResourceParameters().clear();
+				getResourceParameters().addAll((Collection<? extends ResourceParameter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -367,10 +399,13 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)null);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
-				setPath((VirtualAttribute)null);
+				setPath((VirtualTargetSectionAttribute)null);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
-				setId((VirtualAttribute)null);
+				setId((VirtualTargetSectionAttribute)null);
+				return;
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				getResourceParameters().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -394,6 +429,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return path != null;
 			case MetamodelPackage.LIBRARY_ENTRY__ID:
 				return id != null;
+			case MetamodelPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
+				return resourceParameters != null && !resourceParameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

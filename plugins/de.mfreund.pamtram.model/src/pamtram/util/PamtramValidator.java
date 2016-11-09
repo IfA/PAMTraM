@@ -24,7 +24,7 @@ import pamtram.TargetSectionModel;
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
  * @see pamtram.PamtramPackage
- * @generated NOT
+ * @generated not
  */
 public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	/**
@@ -46,20 +46,20 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "pamtram";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Section Models Have Same EPackage' of 'PAM Tra M'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Either Model Or Refer Condition' of 'Conditional Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PAM_TRA_M__SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE = 1;
+	public static final int CONDITIONAL_ELEMENT__EITHER_MODEL_OR_REFER_CONDITION = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Section Models Have Same EPackage' of 'PAM Tra M'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Reference Only Conditions From Condition Model' of 'Conditional Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PAM_TRA_M__TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE = 2;
+	public static final int CONDITIONAL_ELEMENT__REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -125,8 +125,6 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 				return validateConditionalElement((ConditionalElement)value, diagnostics, context);
 			case PamtramPackage.CONDITION_MODEL:
 				return validateConditionModel((ConditionModel)value, diagnostics, context);
-			case PamtramPackage.REFERENCEABLE_ELEMENT:
-				return validateReferenceableElement((ReferenceableElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -156,16 +154,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validatePAMTraM(PAMTraM pamTraM, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(pamTraM, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(pamTraM, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(pamTraM, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(pamTraM, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(pamTraM, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(pamTraM, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(pamTraM, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(pamTraM, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(pamTraM, diagnostics, context);
-		return result;
+		return validate_EveryDefaultConstraint(pamTraM, diagnostics, context);
 	}
 
 	/**
@@ -201,7 +190,18 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingModel(MappingModel mappingModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingModel, diagnostics, context);
+		if (!validate_NoCircularContainment(mappingModel, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -210,7 +210,38 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateConditionalElement(ConditionalElement conditionalElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(conditionalElement, diagnostics, context);
+		if (!validate_NoCircularContainment(conditionalElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(conditionalElement, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the eitherModelOrReferCondition constraint of '<em>Conditional Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConditionalElement_eitherModelOrReferCondition(ConditionalElement conditionalElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return conditionalElement.eitherModelOrReferCondition(diagnostics, context);
+	}
+
+	/**
+	 * Validates the referenceOnlyConditionsFromConditionModel constraint of '<em>Conditional Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConditionalElement_referenceOnlyConditionsFromConditionModel(ConditionalElement conditionalElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return conditionalElement.referenceOnlyConditionsFromConditionModel(diagnostics, context);
 	}
 
 	/**
@@ -220,15 +251,6 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateConditionModel(ConditionModel conditionModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(conditionModel, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateReferenceableElement(ReferenceableElement referenceableElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(referenceableElement, diagnostics, context);
 	}
 
 	/**

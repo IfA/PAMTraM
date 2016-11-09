@@ -6,9 +6,9 @@ package pamtram.mapping.validation;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ValueModifierSet;
 
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * A sample validator interface for {@link pamtram.mapping.GlobalAttribute}.
@@ -19,6 +19,6 @@ import pamtram.metamodel.SourceSectionAttribute;
 public interface GlobalAttributeValidator {
 	boolean validate();
 
-	boolean validateSource(SourceSectionAttribute value);
-	boolean validateModifier(EList<AttributeValueModifierSet> value);
+	boolean validateSource(ActualSourceSectionAttribute value);
+	boolean validateModifier(EList<ValueModifierSet> value);
 }

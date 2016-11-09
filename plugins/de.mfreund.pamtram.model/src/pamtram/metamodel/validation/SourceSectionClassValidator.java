@@ -6,7 +6,7 @@ package pamtram.metamodel.validation;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
@@ -21,7 +21,7 @@ public interface SourceSectionClassValidator {
 	boolean validate();
 
 	boolean validateReferences(EList<SourceSectionReference> value);
-	boolean validateAttributes(EList<SourceSectionAttribute> value);
+	boolean validateAttributes(EList<ActualSourceSectionAttribute> value);
 	boolean validateContainer(SourceSectionClass value);
 	boolean validateOwningContainmentReference(SourceSectionContainmentReference value);
 }

@@ -58,13 +58,22 @@ public interface ConditionFactory extends EFactory {
 	AttributeCondition createAttributeCondition();
 
 	/**
-	 * Returns a new object of class '<em>Section Condition</em>'.
+	 * Returns a new object of class '<em>Cardinality Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Section Condition</em>'.
+	 * @return a new object of class '<em>Cardinality Condition</em>'.
 	 * @generated
 	 */
-	SectionCondition createSectionCondition();
+	CardinalityCondition createCardinalityCondition();
+
+	/**
+	 * Returns a new object of class '<em>Application Dependency</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Application Dependency</em>'.
+	 * @generated
+	 */
+	ApplicationDependency createApplicationDependency();
 
 	/**
 	 * Returns the package supported by this factory.

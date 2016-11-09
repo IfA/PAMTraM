@@ -3,17 +3,16 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import pamtram.impl.NamedElementImpl;
 
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.impl.NamedElementImpl;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
+import pamtram.metamodel.MultipleReferencesValueConstraint;
+import pamtram.metamodel.ValueConstraintType;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +27,7 @@ import pamtram.metamodel.MultipleReferencesAttributeValueConstraint;
  *
  * @generated
  */
-public abstract class MultipleReferencesAttributeValueConstraintImpl extends NamedElementImpl implements MultipleReferencesAttributeValueConstraint {
+public abstract class MultipleReferencesAttributeValueConstraintImpl extends NamedElementImpl implements MultipleReferencesValueConstraint {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -37,7 +36,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AttributeValueConstraintType TYPE_EDEFAULT = AttributeValueConstraintType.INCLUSION;
+	protected static final ValueConstraintType TYPE_EDEFAULT = ValueConstraintType.INCLUSION;
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,7 +45,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 * @generated
 	 * @ordered
 	 */
-	protected AttributeValueConstraintType type = TYPE_EDEFAULT;
+	protected ValueConstraintType type = MultipleReferencesAttributeValueConstraintImpl.TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,7 +63,8 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT;
+
+		return MetamodelPackage.Literals.MULTIPLE_REFERENCES_VALUE_CONSTRAINT;
 	}
 
 	/**
@@ -72,8 +72,9 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueConstraintType getType() {
-		return type;
+	@Override
+	public ValueConstraintType getType() {
+		return this.type;
 	}
 
 	/**
@@ -81,11 +82,13 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(AttributeValueConstraintType newType) {
-		AttributeValueConstraintType oldType = type;
-		type = newType == null ? TYPE_EDEFAULT : newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT__TYPE, oldType, type));
+	@Override
+	public void setType(ValueConstraintType newType) {
+		ValueConstraintType oldType = this.type;
+		this.type = newType == null ? MultipleReferencesAttributeValueConstraintImpl.TYPE_EDEFAULT : newType;
+		if (this.eNotificationRequired()) {
+			this.eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE, oldType, this.type));
+		}
 	}
 
 	/**
@@ -93,6 +96,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkConstraint(final String attrValue, final EList<String> refValue) {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!MultipleReferencesAttributeValueConstraint!checkConstraint(String,http://www.eclipse.org/ocl/2015/Library!OrderedSet[String]_1)
 	}
@@ -105,8 +109,8 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
-				return getType();
+			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+				return this.getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,8 +123,8 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
-				setType((AttributeValueConstraintType)newValue);
+			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+				this.setType((ValueConstraintType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,8 +138,8 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
-				setType(TYPE_EDEFAULT);
+			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+				this.setType(MultipleReferencesAttributeValueConstraintImpl.TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -149,8 +153,8 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT__TYPE:
-				return type != TYPE_EDEFAULT;
+			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+				return this.type != MultipleReferencesAttributeValueConstraintImpl.TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -164,8 +168,8 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST:
-				return checkConstraint((String)arguments.get(0), (EList<String>)arguments.get(1));
+			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST:
+				return this.checkConstraint((String)arguments.get(0), (EList<String>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -177,11 +181,13 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (this.eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (type: ");
-		result.append(type);
+		result.append(this.type);
 		result.append(')');
 		return result.toString();
 	}

@@ -16,7 +16,7 @@ import pamtram.metamodel.TargetSection;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.MappingHintGroupType#getTargetMMSection <em>Target MM Section</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingHintGroupType#getTargetSection <em>Target Section</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getMappingHints <em>Mapping Hints</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getExtend <em>Extend</em>}</li>
  * </ul>
@@ -27,31 +27,31 @@ import pamtram.metamodel.TargetSection;
  */
 public interface MappingHintGroupType extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Target MM Section</b></em>' reference.
+	 * Returns the value of the '<em><b>Target Section</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target MM Section</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target MM Section</em>' reference.
-	 * @see #setTargetMMSection(TargetSection)
-	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_TargetMMSection()
+	 * @return the value of the '<em>Target Section</em>' reference.
+	 * @see #setTargetSection(TargetSection)
+	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_TargetSection()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupType!targetMMSection'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupType!targetSection'"
 	 * @generated
 	 */
-	TargetSection getTargetMMSection();
+	TargetSection getTargetSection();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.MappingHintGroupType#getTargetMMSection <em>Target MM Section</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.MappingHintGroupType#getTargetSection <em>Target Section</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target MM Section</em>' reference.
-	 * @see #getTargetMMSection()
+	 * @param value the new value of the '<em>Target Section</em>' reference.
+	 * @see #getTargetSection()
 	 * @generated
 	 */
-	void setTargetMMSection(TargetSection value);
+	void setTargetSection(TargetSection value);
 
 	/**
 	 * Returns the value of the '<em><b>Mapping Hints</b></em>' containment reference list.

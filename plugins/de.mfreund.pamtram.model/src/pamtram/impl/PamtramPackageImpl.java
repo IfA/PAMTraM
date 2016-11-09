@@ -21,7 +21,6 @@ import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
-import pamtram.ReferenceableElement;
 import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
@@ -102,13 +101,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * @generated
 	 */
 	private EClass conditionModelEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass referenceableElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -262,7 +254,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_TargetSectionModel() {
+	public EReference getPAMTraM_SharedSourceSectionModel() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -271,7 +263,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_MappingModel() {
+	public EReference getPAMTraM_TargetSectionModel() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -280,7 +272,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SourceSections() {
+	public EReference getPAMTraM_SharedTargetSectionModel() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -289,7 +281,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_TargetSections() {
+	public EReference getPAMTraM_MappingModel() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -298,7 +290,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_Mappings() {
+	public EReference getPAMTraM_SourceSections() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -307,7 +299,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ActiveMappings() {
+	public EReference getPAMTraM_TargetSections() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -316,7 +308,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_GlobalValues() {
+	public EReference getPAMTraM_Mappings() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -325,7 +317,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ModifierSets() {
+	public EReference getPAMTraM_ActiveMappings() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -334,8 +326,26 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ConditionModel() {
+	public EReference getPAMTraM_GlobalValues() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPAMTraM_ModifierSets() {
+		return (EReference)pamTraMEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPAMTraM_ConditionModel() {
+		return (EReference)pamTraMEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -460,7 +470,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConditionalElement_Condition() {
+	public EReference getConditionalElement_LocalCondition() {
 		return (EReference)conditionalElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -469,7 +479,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConditionalElement_ConditionRef() {
+	public EReference getConditionalElement_SharedCondition() {
 		return (EReference)conditionalElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -478,7 +488,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map() {
+	public EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2() {
 		return conditionalElementEClass.getEOperations().get(0);
 	}
 
@@ -487,7 +497,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map() {
+	public EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2() {
 		return conditionalElementEClass.getEOperations().get(1);
 	}
 
@@ -507,15 +517,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 */
 	public EReference getConditionModel_Condition() {
 		return (EReference)conditionModelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getReferenceableElement() {
-		return referenceableElementEClass;
 	}
 
 	/**
@@ -555,7 +556,9 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		pamTraMEClass = createEClass(PAM_TRA_M);
 		createEReference(pamTraMEClass, PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE);
 		createEReference(pamTraMEClass, PAM_TRA_M__SOURCE_SECTION_MODEL);
+		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL);
 		createEReference(pamTraMEClass, PAM_TRA_M__TARGET_SECTION_MODEL);
+		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_TARGET_SECTION_MODEL);
 		createEReference(pamTraMEClass, PAM_TRA_M__MAPPING_MODEL);
 		createEReference(pamTraMEClass, PAM_TRA_M__SOURCE_SECTIONS);
 		createEReference(pamTraMEClass, PAM_TRA_M__TARGET_SECTIONS);
@@ -582,15 +585,13 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEOperation(mappingModelEClass, MAPPING_MODEL___GET_ACTIVE_MAPPINGS);
 
 		conditionalElementEClass = createEClass(CONDITIONAL_ELEMENT);
-		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__CONDITION);
-		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__CONDITION_REF);
-		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
+		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__LOCAL_CONDITION);
+		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__SHARED_CONDITION);
+		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2);
+		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2);
 
 		conditionModelEClass = createEClass(CONDITION_MODEL);
 		createEReference(conditionModelEClass, CONDITION_MODEL__CONDITION);
-
-		referenceableElementEClass = createEClass(REFERENCEABLE_ELEMENT);
 	}
 
 	/**
@@ -698,6 +699,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		targetSectionModelEClass.getEGenericSuperTypes().add(g1);
 		mappingModelEClass.getESuperTypes().add(this.getNamedElement());
 		mappingModelEClass.getESuperTypes().add(this.getDeactivatableElement());
+		mappingModelEClass.getESuperTypes().add(this.getConditionalElement());
 		conditionModelEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
@@ -709,15 +711,17 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEClass(pamTraMEClass, PAMTraM.class, "PAMTraM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPAMTraM_ContextMetaModelPackage(), ecorePackage.getEPackage(), null, "contextMetaModelPackage", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_SourceSectionModel(), this.getSourceSectionModel(), null, "sourceSectionModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_TargetSectionModel(), this.getTargetSectionModel(), null, "targetSectionModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SourceSectionModel(), this.getSourceSectionModel(), null, "sourceSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SharedSourceSectionModel(), this.getSourceSectionModel(), null, "sharedSourceSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_TargetSectionModel(), this.getTargetSectionModel(), null, "targetSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SharedTargetSectionModel(), this.getTargetSectionModel(), null, "sharedTargetSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_MappingModel(), this.getMappingModel(), null, "mappingModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_SourceSections(), theMetamodelPackage.getSourceSection(), null, "sourceSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_TargetSections(), theMetamodelPackage.getTargetSection(), null, "targetSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_Mappings(), theMappingPackage.getMapping(), null, "mappings", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_ActiveMappings(), theMappingPackage.getMapping(), null, "activeMappings", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_GlobalValues(), theMappingPackage.getFixedValue(), null, "globalValues", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_ModifierSets(), theMappingPackage.getAttributeValueModifierSet(), null, "modifierSets", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_ModifierSets(), theMappingPackage.getValueModifierSet(), null, "modifierSets", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_ConditionModel(), this.getConditionModel(), null, "conditionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getPAMTraM__MergeExtends(), null, "mergeExtends", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -734,16 +738,16 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEClass(mappingModelEClass, MappingModel.class, "MappingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingModel_Mapping(), theMappingPackage.getMapping(), null, "mapping", null, 1, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappingModel_ModifierSets(), theMappingPackage.getAttributeValueModifierSet(), null, "modifierSets", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingModel_ModifierSets(), theMappingPackage.getValueModifierSet(), null, "modifierSets", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingModel_GlobalValues(), theMappingPackage.getFixedValue(), null, "globalValues", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getMappingModel__GetActiveMappings(), theMappingPackage.getMapping(), "getActiveMappings", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(conditionalElementEClass, ConditionalElement.class, "ConditionalElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConditionalElement_Condition(), theConditionPackage.getComplexCondition(), null, "condition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConditionalElement_ConditionRef(), theConditionPackage.getComplexCondition(), null, "conditionRef", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditionalElement_LocalCondition(), theConditionPackage.getComplexCondition(), null, "localCondition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditionalElement_SharedCondition(), theConditionPackage.getComplexCondition(), null, "sharedCondition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "eitherModelOrReferCondition", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "eitherModelOrReferCondition", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -752,7 +756,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "referenceOnlyConditionsFromConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -763,8 +767,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEClass(conditionModelEClass, ConditionModel.class, "ConditionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionModel_Condition(), theConditionPackage.getComplexCondition(), null, "condition", null, 0, -1, ConditionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(referenceableElementEClass, ReferenceableElement.class, "ReferenceableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

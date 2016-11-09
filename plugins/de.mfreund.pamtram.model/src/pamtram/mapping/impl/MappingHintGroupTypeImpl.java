@@ -28,7 +28,7 @@ import pamtram.metamodel.TargetSection;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getTargetMMSection <em>Target MM Section</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getTargetSection <em>Target Section</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getMappingHints <em>Mapping Hints</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getExtend <em>Extend</em>}</li>
  * </ul>
@@ -37,14 +37,14 @@ import pamtram.metamodel.TargetSection;
  */
 public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implements MappingHintGroupType {
 	/**
-	 * The cached value of the '{@link #getTargetMMSection() <em>Target MM Section</em>}' reference.
+	 * The cached value of the '{@link #getTargetSection() <em>Target Section</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetMMSection()
+	 * @see #getTargetSection()
 	 * @generated
 	 * @ordered
 	 */
-	protected TargetSection targetMMSection;
+	protected TargetSection targetSection;
 
 	/**
 	 * The cached value of the '{@link #getMappingHints() <em>Mapping Hints</em>}' containment reference list.
@@ -91,16 +91,16 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * @generated
 	 */
 	@Override
-	public TargetSection getTargetMMSection() {
-		if (targetMMSection != null && targetMMSection.eIsProxy()) {
-			InternalEObject oldTargetMMSection = (InternalEObject)targetMMSection;
-			targetMMSection = (TargetSection)eResolveProxy(oldTargetMMSection);
-			if (targetMMSection != oldTargetMMSection) {
+	public TargetSection getTargetSection() {
+		if (targetSection != null && targetSection.eIsProxy()) {
+			InternalEObject oldTargetSection = (InternalEObject)targetSection;
+			targetSection = (TargetSection)eResolveProxy(oldTargetSection);
+			if (targetSection != oldTargetSection) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, oldTargetMMSection, targetMMSection));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION, oldTargetSection, targetSection));
 			}
 		}
-		return targetMMSection;
+		return targetSection;
 	}
 
 	/**
@@ -108,8 +108,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSection basicGetTargetMMSection() {
-		return targetMMSection;
+	public TargetSection basicGetTargetSection() {
+		return targetSection;
 	}
 
 	/**
@@ -117,20 +117,20 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetMMSectionGen(TargetSection newTargetMMSection) {
-		TargetSection oldTargetMMSection = targetMMSection;
-		targetMMSection = newTargetMMSection;
+	public void setTargetSectionGen(TargetSection newTargetSection) {
+		TargetSection oldTargetSection = targetSection;
+		targetSection = newTargetSection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, oldTargetMMSection, targetMMSection));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION, oldTargetSection, targetSection));
 	}
 
 	/**
 	 * Before setting the {@link newTargetMMSection}, update the name.
 	 */
 	@Override
-	public void setTargetMMSection(TargetSection newTargetMMSection) {
-		setNameDerived(targetMMSection, newTargetMMSection, null, null);
-		setTargetMMSectionGen(newTargetMMSection);
+	public void setTargetSection(TargetSection newTargetMMSection) {
+		setNameDerived(targetSection, newTargetMMSection, null, null);
+		setTargetSectionGen(newTargetMMSection);
 	}
 
 	/**
@@ -180,9 +180,9 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION:
-				if (resolve) return getTargetMMSection();
-				return basicGetTargetMMSection();
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION:
+				if (resolve) return getTargetSection();
+				return basicGetTargetSection();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				return getMappingHints();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:
@@ -200,8 +200,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION:
-				setTargetMMSection((TargetSection)newValue);
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION:
+				setTargetSection((TargetSection)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				getMappingHints().clear();
@@ -223,8 +223,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION:
-				setTargetMMSection((TargetSection)null);
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION:
+				setTargetSection((TargetSection)null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				getMappingHints().clear();
@@ -244,8 +244,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION:
-				return targetMMSection != null;
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION:
+				return targetSection != null;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				return mappingHints != null && !mappingHints.isEmpty();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:

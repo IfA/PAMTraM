@@ -6,7 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -22,7 +22,7 @@ import pamtram.metamodel.MetamodelPackage;
  *
  * @generated
  */
-public class BeginningMatcherImpl extends SingleReferenceAttributeValueConstraintImpl implements
+public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl implements
 		BeginningMatcher {
 	/**
 	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
@@ -90,8 +90,8 @@ public class BeginningMatcherImpl extends SingleReferenceAttributeValueConstrain
 			condition = attrValue.toLowerCase().startsWith(refValue.toLowerCase());
 		}
 
-		return (condition && type.equals(AttributeValueConstraintType.INCLUSION))
-				|| (!condition && type.equals(AttributeValueConstraintType.EXCLUSION));
+		return (condition && type.equals(ValueConstraintType.INCLUSION))
+				|| (!condition && type.equals(ValueConstraintType.EXCLUSION));
 	}
 
 	/**

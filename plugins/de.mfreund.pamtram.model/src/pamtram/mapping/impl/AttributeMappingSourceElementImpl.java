@@ -3,8 +3,10 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
@@ -45,6 +47,7 @@ public class AttributeMappingSourceElementImpl extends LocalModifiedAttributeEle
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public SourceSectionAttribute getSourceAttribute() {
 		return this.getSource();
 	}

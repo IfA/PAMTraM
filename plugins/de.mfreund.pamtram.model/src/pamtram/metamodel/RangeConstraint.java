@@ -19,7 +19,7 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface RangeConstraint extends MultipleReferencesAttributeValueConstraint {
+public interface RangeConstraint extends MultipleReferencesValueConstraint {
 	/**
 	 * Returns the value of the '<em><b>Upper Bound</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

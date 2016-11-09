@@ -57,7 +57,7 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 
 	/**
 	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifierSet}.
+	 * The list contents are of type {@link pamtram.mapping.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Modifier</em>' reference list isn't clear,
@@ -69,7 +69,7 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModifiedAttributeElementType{S,C,R,A}!modifier'"
 	 * @generated
 	 */
-	EList<AttributeValueModifierSet> getModifier();
+	EList<ValueModifierSet> getModifier();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,5 +79,14 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 * @generated
 	 */
 	NamedElement getMappingHintGroup();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EObject ret = this.eContainer;\r\nwhile(!(ret instanceof Mapping)) {\r\n\tret = ret.eContainer();\r\n\tif(ret instanceof PAMTraM) {\r\n\t\t// something went wrong\r\n\t\treturn null;\r\n\t}\r\n}\r\nreturn (Mapping) ret;'"
+	 * @generated
+	 */
+	Mapping getMapping();
 
 } // ModifiedAttributeElementType

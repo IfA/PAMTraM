@@ -19,7 +19,7 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface FileAttribute extends VirtualAttribute {
+public interface FileAttribute extends VirtualTargetSectionAttribute {
 
 	/**
 	 * Returns the value of the '<em><b>File Type</b></em>' attribute.

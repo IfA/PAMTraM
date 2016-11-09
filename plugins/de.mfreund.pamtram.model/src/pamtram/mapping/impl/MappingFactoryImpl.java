@@ -58,21 +58,21 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.MAPPING_HINT_GROUP: return createMappingHintGroup();
 			case MappingPackage.ATTRIBUTE_MAPPING: return createAttributeMapping();
 			case MappingPackage.CARDINALITY_MAPPING: return createCardinalityMapping();
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR: return createMappingInstanceSelector();
+			case MappingPackage.REFERENCE_TARGET_SELECTOR: return createReferenceTargetSelector();
 			case MappingPackage.ATTRIBUTE_MATCHER: return createAttributeMatcher();
 			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createAttributeMatcherSourceElement();
 			case MappingPackage.CLASS_MATCHER: return createClassMatcher();
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET: return createAttributeValueModifierSet();
+			case MappingPackage.VALUE_MODIFIER_SET: return createValueModifierSet();
 			case MappingPackage.SUBSTRING_REPLACER: return createSubstringReplacer();
 			case MappingPackage.STRING_APPENDER: return createStringAppender();
 			case MappingPackage.UNIQUE_NUMBER_APPENDER: return createUniqueNumberAppender();
 			case MappingPackage.STRING_PREPENDER: return createStringPrepender();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: return createMappingHintGroupImporter();
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: return createExportedMappingHintGroup();
-			case MappingPackage.MODEL_CONNECTION_HINT: return createModelConnectionHint();
+			case MappingPackage.CONTAINER_SELECTOR: return createContainerSelector();
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: return createAttributeMappingSourceElement();
-			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT: return createModelConnectionHintSourceElement();
-			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE: return createModelConnectionHintTargetAttribute();
+			case MappingPackage.CONTAINER_SELECTOR_SOURCE_ELEMENT: return createContainerSelectorSourceElement();
+			case MappingPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE: return createContainerSelectorTargetAttribute();
 			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER: return createLocalMappedAttributeValueExpander();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
@@ -80,12 +80,15 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.GLOBAL_ATTRIBUTE: return createGlobalAttribute();
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER: return createGlobalAttributeImporter();
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createAttributeMappingExternalSourceElement();
-			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: return createModelConnectionHintExternalSourceElement();
+			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT: return createContainerSelectorExternalSourceElement();
 			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: return createAttributeMatcherExternalSourceElement();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createExternalMappedAttributeValuePrepender();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: return createExternalMappedAttributeValueAppender();
 			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: return createMatchToLowerCaseConverter();
 			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER: return createMatchToUpperCaseConverter();
+			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: return createAttributeMatcherGlobalSourceElement();
+			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: return createAttributeMappingGlobalSourceElement();
+			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT: return createContainerSelectorGlobalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -115,7 +118,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 */
 	public AttributeMapping createAttributeMappingWithSource() {
 		AttributeMapping attributeMapping = createAttributeMapping();
-		attributeMapping.getSourceAttributeMappings().add(
+		attributeMapping.getSourceElements().add(
 				new AttributeMappingSourceElementImpl());
 		return attributeMapping;
 	}
@@ -135,23 +138,23 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingInstanceSelector createMappingInstanceSelector() {
-		MappingInstanceSelectorImpl mappingInstanceSelector = new MappingInstanceSelectorImpl();
-		return mappingInstanceSelector;
+	public ReferenceTargetSelector createReferenceTargetSelector() {
+		ReferenceTargetSelectorImpl referenceTargetSelector = new ReferenceTargetSelectorImpl();
+		return referenceTargetSelector;
 	}
 	
 	/**
 	 */
 	@Override
-	public MappingInstanceSelector createMappingInstanceSelectorWithClassMatcher() {
-		MappingInstanceSelector mappingInstanceSelector = createMappingInstanceSelector();
+	public ReferenceTargetSelector createMappingInstanceSelectorWithClassMatcher() {
+		ReferenceTargetSelector mappingInstanceSelector = createReferenceTargetSelector();
 		mappingInstanceSelector.setMatcher(createClassMatcher());
 		return mappingInstanceSelector;
 	}
 	
 	@Override
-	public MappingInstanceSelector createMappingInstanceSelectorWithAttributeMatcher() {
-		MappingInstanceSelector mappingInstanceSelector = createMappingInstanceSelector();
+	public ReferenceTargetSelector createMappingInstanceSelectorWithAttributeMatcher() {
+		ReferenceTargetSelector mappingInstanceSelector = createReferenceTargetSelector();
 		mappingInstanceSelector.setMatcher(createAttributeMatcherWithSource());
 		return mappingInstanceSelector;
 	}
@@ -171,7 +174,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	@Override
 	public AttributeMatcher createAttributeMatcherWithSource() {
 		AttributeMatcher attributeMatcher = createAttributeMatcher();
-		attributeMatcher.getSourceAttributes().add(
+		attributeMatcher.getSourceElements().add(
 				new AttributeMatcherSourceElementImpl());
 		return attributeMatcher;
 	}
@@ -194,6 +197,16 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ClassMatcher createClassMatcher() {
 		ClassMatcherImpl classMatcher = new ClassMatcherImpl();
 		return classMatcher;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueModifierSet createValueModifierSet() {
+		ValueModifierSetImpl valueModifierSet = new ValueModifierSetImpl();
+		return valueModifierSet;
 	}
 
 	/**
@@ -241,16 +254,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueModifierSet createAttributeValueModifierSet() {
-		AttributeValueModifierSetImpl attributeValueModifierSet = new AttributeValueModifierSetImpl();
-		return attributeValueModifierSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public MappingHintGroup createMappingHintGroup() {
 		MappingHintGroupImpl mappingHintGroup = new MappingHintGroupImpl();
 		return mappingHintGroup;
@@ -281,19 +284,19 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHint createModelConnectionHint() {
-		ModelConnectionHintImpl modelConnectionHint = new ModelConnectionHintImpl();
-		return modelConnectionHint;
+	public ContainerSelector createContainerSelector() {
+		ContainerSelectorImpl containerSelector = new ContainerSelectorImpl();
+		return containerSelector;
 	}
 	
 	/**
 	 */
-	public ModelConnectionHint createModelConnectionHintWithSourceAndTarget() {
-		ModelConnectionHint modelConnectionHint = createModelConnectionHint();
+	public ContainerSelector createContainerSelectorWithSourceAndTarget() {
+		ContainerSelector modelConnectionHint = createContainerSelector();
 		modelConnectionHint.getTargetAttributes().add(
-				new ModelConnectionHintTargetAttributeImpl());
+				new ContainerSelectorTargetAttributeImpl());
 		modelConnectionHint.getSourceElements().add(
-				new ModelConnectionHintSourceElementImpl());
+				new ContainerSelectorSourceElementImpl());
 		return modelConnectionHint;
 	}
 
@@ -312,9 +315,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHintSourceElement createModelConnectionHintSourceElement() {
-		ModelConnectionHintSourceElementImpl modelConnectionHintSourceElement = new ModelConnectionHintSourceElementImpl();
-		return modelConnectionHintSourceElement;
+	public ContainerSelectorSourceElement createContainerSelectorSourceElement() {
+		ContainerSelectorSourceElementImpl containerSelectorSourceElement = new ContainerSelectorSourceElementImpl();
+		return containerSelectorSourceElement;
 	}
 
 	/**
@@ -322,9 +325,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHintTargetAttribute createModelConnectionHintTargetAttribute() {
-		ModelConnectionHintTargetAttributeImpl modelConnectionHintTargetAttribute = new ModelConnectionHintTargetAttributeImpl();
-		return modelConnectionHintTargetAttribute;
+	public ContainerSelectorTargetAttribute createContainerSelectorTargetAttribute() {
+		ContainerSelectorTargetAttributeImpl containerSelectorTargetAttribute = new ContainerSelectorTargetAttributeImpl();
+		return containerSelectorTargetAttribute;
 	}
 
 	/**
@@ -402,9 +405,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHintExternalSourceElement createModelConnectionHintExternalSourceElement() {
-		ModelConnectionHintExternalSourceElementImpl modelConnectionHintExternalSourceElement = new ModelConnectionHintExternalSourceElementImpl();
-		return modelConnectionHintExternalSourceElement;
+	public ContainerSelectorExternalSourceElement createContainerSelectorExternalSourceElement() {
+		ContainerSelectorExternalSourceElementImpl containerSelectorExternalSourceElement = new ContainerSelectorExternalSourceElementImpl();
+		return containerSelectorExternalSourceElement;
 	}
 
 	/**
@@ -455,6 +458,36 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public MatchToUpperCaseConverter createMatchToUpperCaseConverter() {
 		MatchToUpperCaseConverterImpl matchToUpperCaseConverter = new MatchToUpperCaseConverterImpl();
 		return matchToUpperCaseConverter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeMatcherGlobalSourceElement createAttributeMatcherGlobalSourceElement() {
+		AttributeMatcherGlobalSourceElementImpl attributeMatcherGlobalSourceElement = new AttributeMatcherGlobalSourceElementImpl();
+		return attributeMatcherGlobalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement() {
+		AttributeMappingGlobalSourceElementImpl attributeMappingGlobalSourceElement = new AttributeMappingGlobalSourceElementImpl();
+		return attributeMappingGlobalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContainerSelectorGlobalSourceElement createContainerSelectorGlobalSourceElement() {
+		ContainerSelectorGlobalSourceElementImpl containerSelectorGlobalSourceElement = new ContainerSelectorGlobalSourceElementImpl();
+		return containerSelectorGlobalSourceElement;
 	}
 
 	/**

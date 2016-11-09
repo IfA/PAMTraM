@@ -3,13 +3,13 @@
 package pamtram.condition.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -18,9 +18,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
-
-import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.mapping.Mapping;
+import pamtram.metamodel.ValueConstraint;
+import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,7 +46,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueConstraint> valueConstraint;
+	protected EList<ValueConstraint> valueConstraint;
 
 	/**
 	 * The cached value of the '{@link #getConditionAttributeRef() <em>Condition Attribute Ref</em>}' reference.
@@ -55,7 +56,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSectionAttribute conditionAttributeRef;
+	protected ActualSourceSectionAttribute conditionAttributeRef;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,9 +82,9 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AttributeValueConstraint> getValueConstraint() {
+	public EList<ValueConstraint> getValueConstraint() {
 		if (valueConstraint == null) {
-			valueConstraint = new EObjectContainmentEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
+			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
 		}
 		return valueConstraint;
 	}
@@ -93,10 +94,10 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute getConditionAttributeRef() {
+	public ActualSourceSectionAttribute getConditionAttributeRef() {
 		if (conditionAttributeRef != null && conditionAttributeRef.eIsProxy()) {
 			InternalEObject oldConditionAttributeRef = (InternalEObject)conditionAttributeRef;
-			conditionAttributeRef = (SourceSectionAttribute)eResolveProxy(oldConditionAttributeRef);
+			conditionAttributeRef = (ActualSourceSectionAttribute)eResolveProxy(oldConditionAttributeRef);
 			if (conditionAttributeRef != oldConditionAttributeRef) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, oldConditionAttributeRef, conditionAttributeRef));
@@ -110,7 +111,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute basicGetConditionAttributeRef() {
+	public ActualSourceSectionAttribute basicGetConditionAttributeRef() {
 		return conditionAttributeRef;
 	}
 
@@ -119,8 +120,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConditionAttributeRef(SourceSectionAttribute newConditionAttributeRef) {
-		SourceSectionAttribute oldConditionAttributeRef = conditionAttributeRef;
+	public void setConditionAttributeRef(ActualSourceSectionAttribute newConditionAttributeRef) {
+		ActualSourceSectionAttribute oldConditionAttributeRef = conditionAttributeRef;
 		conditionAttributeRef = newConditionAttributeRef;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, oldConditionAttributeRef, conditionAttributeRef));
@@ -168,10 +169,10 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		switch (featureID) {
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
 				getValueConstraint().clear();
-				getValueConstraint().addAll((Collection<? extends AttributeValueConstraint>)newValue);
+				getValueConstraint().addAll((Collection<? extends ValueConstraint>)newValue);
 				return;
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
-				setConditionAttributeRef((SourceSectionAttribute)newValue);
+				setConditionAttributeRef((ActualSourceSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,7 +190,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 				getValueConstraint().clear();
 				return;
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
-				setConditionAttributeRef((SourceSectionAttribute)null);
+				setConditionAttributeRef((ActualSourceSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -209,6 +210,43 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 				return conditionAttributeRef != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	@Override
+	public boolean isLocalCondition() {
+		
+		if(getConditionAttributeRef() == null) {
+			return false;
+		}
+		
+		// The SourceSection that the condition references
+		//
+		SourceSection referencedSection = getConditionAttributeRef().getContainingSection();
+		
+		EObject container = this;
+		
+		while(!(container instanceof Mapping)) {
+			if(container == null) {
+				return false;
+			}
+			container = container.eContainer();
+		}
+		
+		// The SourceSection of the Mapping that contains the condition
+		//
+		SourceSection localSection = ((Mapping) container).getSourceSection();
+		
+		if(referencedSection.equals(localSection)) {
+			return true;
+		}
+		
+		// A condition is also 'local' if an InstancePointer with local or external SourceAttributes exist
+		//
+		return getAdditionalConditionSpecification().parallelStream().flatMap(
+				instancePointer -> instancePointer.getSourceElements().parallelStream().filter(
+						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
+						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+				).findAny().isPresent();
 	}
 
 } //AttributeConditionImpl

@@ -14,7 +14,7 @@ import pamtram.condition.Or;
  *
  * @generated
  */
-public class OrImpl extends MultipleConditionOperatorImpl implements Or {
+public class OrImpl extends VariadicConditionImpl implements Or {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

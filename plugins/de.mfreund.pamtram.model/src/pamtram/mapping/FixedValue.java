@@ -3,7 +3,8 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
-import pamtram.ReferenceableElement;
+import pamtram.metamodel.ValueConstraintSourceInterface;
+import pamtram.metamodel.InstancePointerSourceInterface;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ import pamtram.ReferenceableElement;
  * @model
  * @generated
  */
-public interface FixedValue extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ModelConnectionHintSourceInterface, ReferenceableElement {
+public interface FixedValue extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ContainerSelectorSourceInterface, InstancePointerSourceInterface, ValueConstraintSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

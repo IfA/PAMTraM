@@ -80,8 +80,8 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createConditionAdapter();
 			}
 			@Override
-			public Adapter caseMultipleConditionOperator(MultipleConditionOperator object) {
-				return createMultipleConditionOperatorAdapter();
+			public Adapter caseVariadicCondition(VariadicCondition object) {
+				return createVariadicConditionAdapter();
 			}
 			@Override
 			public Adapter caseAnd(And object) {
@@ -92,8 +92,8 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createOrAdapter();
 			}
 			@Override
-			public Adapter caseSingleConditionOperator(SingleConditionOperator object) {
-				return createSingleConditionOperatorAdapter();
+			public Adapter caseUnaryCondition(UnaryCondition object) {
+				return createUnaryConditionAdapter();
 			}
 			@Override
 			public Adapter caseNot(Not object) {
@@ -104,8 +104,12 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeConditionAdapter();
 			}
 			@Override
-			public Adapter caseSectionCondition(SectionCondition object) {
-				return createSectionConditionAdapter();
+			public Adapter caseCardinalityCondition(CardinalityCondition object) {
+				return createCardinalityConditionAdapter();
+			}
+			@Override
+			public Adapter caseApplicationDependency(ApplicationDependency object) {
+				return createApplicationDependencyAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -160,16 +164,16 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.condition.MultipleConditionOperator <em>Multiple Condition Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.VariadicCondition <em>Variadic Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.condition.MultipleConditionOperator
+	 * @see pamtram.condition.VariadicCondition
 	 * @generated
 	 */
-	public Adapter createMultipleConditionOperatorAdapter() {
+	public Adapter createVariadicConditionAdapter() {
 		return null;
 	}
 
@@ -202,16 +206,16 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.condition.SingleConditionOperator <em>Single Condition Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.UnaryCondition <em>Unary Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.condition.SingleConditionOperator
+	 * @see pamtram.condition.UnaryCondition
 	 * @generated
 	 */
-	public Adapter createSingleConditionOperatorAdapter() {
+	public Adapter createUnaryConditionAdapter() {
 		return null;
 	}
 
@@ -244,16 +248,30 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.condition.SectionCondition <em>Section Condition</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.CardinalityCondition <em>Cardinality Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.condition.SectionCondition
+	 * @see pamtram.condition.CardinalityCondition
 	 * @generated
 	 */
-	public Adapter createSectionConditionAdapter() {
+	public Adapter createCardinalityConditionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.condition.ApplicationDependency <em>Application Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.condition.ApplicationDependency
+	 * @generated
+	 */
+	public Adapter createApplicationDependencyAdapter() {
 		return null;
 	}
 

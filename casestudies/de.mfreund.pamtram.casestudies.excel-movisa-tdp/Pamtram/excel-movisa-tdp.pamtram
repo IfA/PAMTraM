@@ -10,65 +10,65 @@
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractMBTCPItem" abstract="true">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Variablenname">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Variablenname">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Variablenname"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Datentyp">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Datentyp">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Datentyp"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Kommentar">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Kommentar">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Kommentar"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Min">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Min">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Min"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Max">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Max">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Max"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Fractiondigits">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Fractiondigits">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Fractiondigits"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Coils" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
         <valueConstraint xsi:type="metamodel:BeginningMatcher" name="0xxxxx" expression="0"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="AccessMode">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="r"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="DiscreteInput" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
         <valueConstraint xsi:type="metamodel:BeginningMatcher" name="0xxxxx" expression="0"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="AccessMode">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="rw"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="HoldingRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
         <valueConstraint xsi:type="metamodel:BeginningMatcher" name="4xxxxx" expression="4"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="AccessMode">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="r"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSection" name="InputRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
         <valueConstraint xsi:type="metamodel:BeginningMatcher" name="4xxxxx" expression="4"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="AccessMode">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="rw"/>
       </attributes>
@@ -87,16 +87,16 @@
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="ModbusTcpItem" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="BaseType" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="BaseType" value="">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem/BaseType"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="ReferenceAddress">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ReferenceAddress">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem/ReferenceAddress"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Type">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Type">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem/Type"/>
       </attributes>
     </metaModelSections>
@@ -105,117 +105,117 @@
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="OpcXmlDaServer">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaServer"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="LocaleId" value="de-DE">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="LocaleId" value="de-DE">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaServer/LocaleId"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="OpcXmlDaItem">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name" value="">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="ItemName" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ItemName" value="">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem/ItemName"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="ItemPath" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ItemPath" value="">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem/ItemPath"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="ItemType" value="">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ItemType" value="">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem/ItemType"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel name="TDP">
-    <mapping name="VariablenMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TDP" targetMMSection="//@targetSectionModel.0/@metaModelSections.0"/>
+    <mapping name="VariablenMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TDP" targetSection="//@targetSectionModel.0/@metaModelSections.0"/>
     </mapping>
   </mappingModel>
   <mappingModel name="Modbus TCP">
-    <mapping name="MBTCP Server Mapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ModbusTcpServer" targetMMSection="//@targetSectionModel.1/@metaModelSections.0"/>
+    <mapping name="MBTCP Server Mapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ModbusTcpServer" targetSection="//@targetSectionModel.1/@metaModelSections.0"/>
     </mapping>
-    <mapping name="AbstractMBTCPItemMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.2" abstract="true">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ModbusTcpItem" targetMMSection="//@targetSectionModel.1/@metaModelSections.1">
+    <mapping name="AbstractMBTCPItemMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.2" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ModbusTcpItem" targetSection="//@targetSectionModel.1/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="TypeMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping name="CoilsMapping (MBTCP)" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.3">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Coils" targetMMSection="//@targetSectionModel.1/@metaModelSections.1" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
+    <mapping name="CoilsMapping (MBTCP)" sourceSection="//@sourceSectionModel.0/@metaModelSections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Coils" targetSection="//@targetSectionModel.1/@metaModelSections.1" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="Coils" value="Coils"/>
+          <sourceElements xsi:type="mapping:FixedValue" name="Coils" value="Coils"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping name="DiscreteInputMapping (MBTCP)" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.4">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DiscreteInput" targetMMSection="//@targetSectionModel.1/@metaModelSections.1" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
+    <mapping name="DiscreteInputMapping (MBTCP)" sourceSection="//@sourceSectionModel.0/@metaModelSections.4">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DiscreteInput" targetSection="//@targetSectionModel.1/@metaModelSections.1" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="DiscreteInput" value="DiscreteInput"/>
+          <sourceElements xsi:type="mapping:FixedValue" name="DiscreteInput" value="DiscreteInput"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping name="HoldingRegisterMapping (MBTCP)" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.5">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="HoldingRegister" targetMMSection="//@targetSectionModel.1/@metaModelSections.1" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
+    <mapping name="HoldingRegisterMapping (MBTCP)" sourceSection="//@sourceSectionModel.0/@metaModelSections.5">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="HoldingRegister" targetSection="//@targetSectionModel.1/@metaModelSections.1" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="HoldingRegister" value="HoldingRegister"/>
+          <sourceElements xsi:type="mapping:FixedValue" name="HoldingRegister" value="HoldingRegister"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModel.0/@metaModelSections.5/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModel.0/@metaModelSections.5/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping name="InputRegisterMapping (MBTCP)" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.6">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetMMSection="//@targetSectionModel.1/@metaModelSections.1" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
+    <mapping name="InputRegisterMapping (MBTCP)" sourceSection="//@sourceSectionModel.0/@metaModelSections.6">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetSection="//@targetSectionModel.1/@metaModelSections.1" extend="//@mappingModel.1/@mapping.1/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:FixedValue" name="InputRegister" value="InputRegister"/>
+          <sourceElements xsi:type="mapping:FixedValue" name="InputRegister" value="InputRegister"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModel.1/@metaModelSections.1/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModel.0/@metaModelSections.6/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModel.0/@metaModelSections.6/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
   </mappingModel>
   <mappingModel name="OPC XML DA">
-    <mapping name="OPC XML DA ServerMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpcXmlDaServer" targetMMSection="//@targetSectionModel.2/@metaModelSections.0"/>
+    <mapping name="OPC XML DA ServerMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpcXmlDaServer" targetSection="//@targetSectionModel.2/@metaModelSections.0"/>
     </mapping>
-    <mapping name="AbstractXMLDAItemMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.2" abstract="true">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpcXmlDaItem" targetMMSection="//@targetSectionModel.2/@metaModelSections.1">
+    <mapping name="AbstractXMLDAItemMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.2" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpcXmlDaItem" targetSection="//@targetSectionModel.2/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ItemTypeMapping" target="//@targetSectionModel.2/@metaModelSections.1/@attributes.3">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.2/@modifierSets.1"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.2/@modifierSets.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.2/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ItemNameMapping" target="//@targetSectionModel.2/@metaModelSections.1/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ItemPathMapping" target="//@targetSectionModel.2/@metaModelSections.1/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0" modifier="//@mappingModel.2/@modifierSets.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping name="CoilsMapping (XMLDA)" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.3">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Coils" targetMMSection="//@targetSectionModel.2/@metaModelSections.1" extend="//@mappingModel.2/@mapping.1/@mappingHintGroups.0"/>
+    <mapping name="CoilsMapping (XMLDA)" sourceSection="//@sourceSectionModel.0/@metaModelSections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Coils" targetSection="//@targetSectionModel.2/@metaModelSections.1" extend="//@mappingModel.2/@mapping.1/@mappingHintGroups.0"/>
     </mapping>
-    <mapping name="DiscreteInputMapping (XMLDA)" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.4">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DiscreteInput" targetMMSection="//@targetSectionModel.2/@metaModelSections.1" extend="//@mappingModel.2/@mapping.1/@mappingHintGroups.0"/>
+    <mapping name="DiscreteInputMapping (XMLDA)" sourceSection="//@sourceSectionModel.0/@metaModelSections.4">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DiscreteInput" targetSection="//@targetSectionModel.2/@metaModelSections.1" extend="//@mappingModel.2/@mapping.1/@mappingHintGroups.0"/>
     </mapping>
-    <mapping name="HoldingRegisterMapping (XMLDA)" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.5">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="HoldingRegister" targetMMSection="//@targetSectionModel.2/@metaModelSections.1" extend="//@mappingModel.2/@mapping.1/@mappingHintGroups.0"/>
+    <mapping name="HoldingRegisterMapping (XMLDA)" sourceSection="//@sourceSectionModel.0/@metaModelSections.5">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="HoldingRegister" targetSection="//@targetSectionModel.2/@metaModelSections.1" extend="//@mappingModel.2/@mapping.1/@mappingHintGroups.0"/>
     </mapping>
-    <mapping name="InputRegisterMapping (XMLDA)" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.6">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetMMSection="//@targetSectionModel.2/@metaModelSections.1" extend="//@mappingModel.2/@mapping.1/@mappingHintGroups.0"/>
+    <mapping name="InputRegisterMapping (XMLDA)" sourceSection="//@sourceSectionModel.0/@metaModelSections.6">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetSection="//@targetSectionModel.2/@metaModelSections.1" extend="//@mappingModel.2/@mapping.1/@mappingHintGroups.0"/>
     </mapping>
     <modifierSets name="preprend &quot;Schneider/&quot;">
       <modifier xsi:type="mapping:StringPrepender" name="Schneider/" string="Schneider/"/>

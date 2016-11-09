@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.action.ControlAction;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
+import org.eclipse.emf.edit.ui.action.DeleteAction;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
@@ -22,7 +23,6 @@ import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IContributionManager;
-import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
@@ -38,14 +38,17 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
+
+import pamtram.PamtramPackage;
+import pamtram.actions.CreateSharedSectionModelChildAction;
+import pamtram.actions.CreateSharedSectionModelSiblingAction;
+import pamtram.actions.CutClassAndPasteAsNewSectionAction;
+import pamtram.actions.GenericConversionCommandAction;
+import pamtram.actions.PamtramDeleteAction;
 import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
-import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.presentation.actions.CutClassAndPasteAsNewSectionAction;
-import pamtram.presentation.actions.GenericConversionCommandAction;
 
 /**
  * This is the action bar contributor for the Pamtram model editor.
@@ -54,8 +57,8 @@ import pamtram.presentation.actions.GenericConversionCommandAction;
  * @generated
  */
 public class PamtramActionBarContributor
-	extends EditingDomainActionBarContributor
-	implements ISelectionChangedListener {
+extends EditingDomainActionBarContributor
+implements ISelectionChangedListener {
 	/**
 	 * This keeps track of the active editor.
 	 * <!-- begin-user-doc -->
@@ -79,17 +82,17 @@ public class PamtramActionBarContributor
 	 * @generated
 	 */
 	protected IAction showPropertiesViewAction =
-		new Action(PamtramEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
-			@Override
-			public void run() {
-				try {
-					getPage().showView("org.eclipse.ui.views.PropertySheet");
-				}
-				catch (PartInitException exception) {
-					PamtramEditorPlugin.INSTANCE.log(exception);
-				}
+			new Action(PamtramEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+		@Override
+		public void run() {
+			try {
+				PamtramActionBarContributor.this.getPage().showView("org.eclipse.ui.views.PropertySheet");
 			}
-		};
+			catch (PartInitException exception) {
+				PamtramEditorPlugin.INSTANCE.log(exception);
+			}
+		}
+	};
 
 	/**
 	 * This action refreshes the viewer of the current editor if the editor
@@ -99,22 +102,22 @@ public class PamtramActionBarContributor
 	 * @generated
 	 */
 	protected IAction refreshViewerAction =
-		new Action(PamtramEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
-			@Override
-			public boolean isEnabled() {
-				return activeEditorPart instanceof IViewerProvider;
-			}
+			new Action(PamtramEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+		@Override
+		public boolean isEnabled() {
+			return PamtramActionBarContributor.this.activeEditorPart instanceof IViewerProvider;
+		}
 
-			@Override
-			public void run() {
-				if (activeEditorPart instanceof IViewerProvider) {
-					Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
-					if (viewer != null) {
-						viewer.refresh();
-					}
+		@Override
+		public void run() {
+			if (PamtramActionBarContributor.this.activeEditorPart instanceof IViewerProvider) {
+				Viewer viewer = ((IViewerProvider)PamtramActionBarContributor.this.activeEditorPart).getViewer();
+				if (viewer != null) {
+					viewer.refresh();
 				}
 			}
-		};
+		}
+	};
 
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
@@ -140,7 +143,7 @@ public class PamtramActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> createSiblingActions;	
+	protected Collection<IAction> createSiblingActions;
 
 	/**
 	 * This is the menu manager into which menu contribution items should be added for CreateSibling actions.
@@ -149,12 +152,12 @@ public class PamtramActionBarContributor
 	 * @generated
 	 */
 	protected IMenuManager createSiblingMenuManager;
-	
+
 	/**
 	 * Other Menu Actions
 	 */
 	protected Collection<IAction> otherActions;
-	
+
 	/**
 	 * This is the menu manager into which menu contribution items should be added for "other actions" actions.
 	 */
@@ -167,11 +170,11 @@ public class PamtramActionBarContributor
 	 * @generated
 	 */
 	public PamtramActionBarContributor() {
-		super(ADDITIONS_LAST_STYLE);
-		loadResourceAction = new LoadResourceAction();
-		validateAction = new ValidateAction();
-		liveValidationAction = new DiagnosticDecorator.LiveValidator.LiveValidationAction(PamtramEditorPlugin.getPlugin().getDialogSettings());
-		controlAction = new ControlAction();
+		super(EditingDomainActionBarContributor.ADDITIONS_LAST_STYLE);
+		this.loadResourceAction = new LoadResourceAction();
+		this.validateAction = new ValidateAction();
+		this.liveValidationAction = new DiagnosticDecorator.LiveValidator.LiveValidationAction(PamtramEditorPlugin.getPlugin().getDialogSettings());
+		this.controlAction = new ControlAction();
 	}
 
 	/**
@@ -205,30 +208,25 @@ public class PamtramActionBarContributor
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
-		submenuManager.insertBefore("additions", createChildMenuManager);
+		this.createChildMenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		submenuManager.insertBefore("additions", this.createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-		submenuManager.insertBefore("additions", createSiblingMenuManager);
+		this.createSiblingMenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		submenuManager.insertBefore("additions", this.createSiblingMenuManager);
 
 		// Prepare for other actions item addition or removal.
-		//		
-		otherActionsMenuManager = new MenuManager("other actions");
-		submenuManager.insertBefore("additions", otherActionsMenuManager);
-		
+		//
+		this.otherActionsMenuManager = new MenuManager("other actions");
+		submenuManager.insertBefore("additions", this.otherActionsMenuManager);
+
 		// Force an update because Eclipse hides empty menus now.
 		//
 		submenuManager.addMenuListener
-			(new IMenuListener() {
-				 @Override
-				public void menuAboutToShow(IMenuManager menuManager) {
-					 menuManager.updateAll(true);
-				 }
-			 });
+		(menuManager1 -> menuManager1.updateAll(true));
 
-		addGlobalActions(submenuManager);
+		this.addGlobalActions(submenuManager);
 	}
 
 	/**
@@ -240,24 +238,24 @@ public class PamtramActionBarContributor
 	@Override
 	public void setActiveEditor(IEditorPart part) {
 		super.setActiveEditor(part);
-		activeEditorPart = part;
+		this.activeEditorPart = part;
 
 		// Switch to the new selection provider.
 		//
-		if (selectionProvider != null) {
-			selectionProvider.removeSelectionChangedListener(this);
+		if (this.selectionProvider != null) {
+			this.selectionProvider.removeSelectionChangedListener(this);
 		}
 		if (part == null) {
-			selectionProvider = null;
+			this.selectionProvider = null;
 		}
 		else {
-			selectionProvider = part.getSite().getSelectionProvider();
-			selectionProvider.addSelectionChangedListener(this);
+			this.selectionProvider = part.getSite().getSelectionProvider();
+			this.selectionProvider.addSelectionChangedListener(this);
 
 			// Fake a selection changed event to update the menus.
 			//
-			if (selectionProvider.getSelection() != null) {
-				selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection()));
+			if (this.selectionProvider.getSelection() != null) {
+				this.selectionChanged(new SelectionChangedEvent(this.selectionProvider, this.selectionProvider.getSelection()));
 			}
 		}
 	}
@@ -273,14 +271,14 @@ public class PamtramActionBarContributor
 	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
 		//
-		if (createChildMenuManager != null) {
-			depopulateManager(createChildMenuManager, createChildActions);
+		if (this.createChildMenuManager != null) {
+			this.depopulateManager(this.createChildMenuManager, this.createChildActions);
 		}
-		if (createSiblingMenuManager != null) {
-			depopulateManager(createSiblingMenuManager, createSiblingActions);
+		if (this.createSiblingMenuManager != null) {
+			this.depopulateManager(this.createSiblingMenuManager, this.createSiblingActions);
 		}
-		if(otherActionsMenuManager != null){
-			depopulateManager(otherActionsMenuManager, otherActions);
+		if(this.otherActionsMenuManager != null){
+			this.depopulateManager(this.otherActionsMenuManager, this.otherActions);
 		}
 
 		// Query the new selection for appropriate new child/sibling descriptors
@@ -292,32 +290,32 @@ public class PamtramActionBarContributor
 		if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
 			Object object = ((IStructuredSelection)selection).getFirstElement();
 
-			EditingDomain domain = ((IEditingDomainProvider)activeEditorPart).getEditingDomain();
+			EditingDomain domain = ((IEditingDomainProvider)this.activeEditorPart).getEditingDomain();
 
 			newChildDescriptors = domain.getNewChildDescriptors(object, null);
 			newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
 			otherActionsDescriptor=object;
-			
+
 		}
 
 		// Generate actions for selection; populate and redraw the menus.
 		//
-		createChildActions = generateCreateChildActions(newChildDescriptors, selection);
-		createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
-		otherActions=generateOtherActionsActions(otherActionsDescriptor, selection);
+		this.createChildActions = this.generateCreateChildActions(newChildDescriptors, selection);
+		this.createSiblingActions = this.generateCreateSiblingActions(newSiblingDescriptors, selection);
+		this.otherActions=this.generateOtherActionsActions(otherActionsDescriptor, selection);
 
-		
-		if (createChildMenuManager != null) {
-			populateManager(createChildMenuManager, createChildActions, null);
-			createChildMenuManager.update(true);
+
+		if (this.createChildMenuManager != null) {
+			this.populateManager(this.createChildMenuManager, this.createChildActions, null);
+			this.createChildMenuManager.update(true);
 		}
-		if (createSiblingMenuManager != null) {
-			populateManager(createSiblingMenuManager, createSiblingActions, null);
-			createSiblingMenuManager.update(true);
+		if (this.createSiblingMenuManager != null) {
+			this.populateManager(this.createSiblingMenuManager, this.createSiblingActions, null);
+			this.createSiblingMenuManager.update(true);
 		}
-		if(otherActionsMenuManager != null){
-			populateManager(otherActionsMenuManager, otherActions, null);
-			otherActionsMenuManager.update(true);
+		if(this.otherActionsMenuManager != null){
+			this.populateManager(this.otherActionsMenuManager, this.otherActions, null);
+			this.otherActionsMenuManager.update(true);
 		}
 	}
 
@@ -329,40 +327,53 @@ public class PamtramActionBarContributor
 	 * @generated NOT
 	 */
 	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
-		Collection<IAction> actions = new ArrayList<IAction>();
+		Collection<IAction> actions = new ArrayList<>();
 		if (descriptors != null) {
-			
+
 			IContentProvider provider = null;
-			if(activeEditorPart instanceof PamtramEditor && ((PamtramEditor) activeEditorPart).getViewer() instanceof ContentViewer) {
-				provider = ((ContentViewer) (((PamtramEditor) activeEditorPart).getViewer())).getContentProvider();
+			if(this.activeEditorPart instanceof PamtramEditor && ((PamtramEditor) this.activeEditorPart).getViewer() instanceof ContentViewer) {
+				provider = ((ContentViewer) ((PamtramEditor) this.activeEditorPart).getViewer()).getContentProvider();
 			}
-			
+
 			for (Object descriptor : descriptors) {
-				
-				if(isValidDescriptor(descriptor, provider)) {				
-					actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
+
+				if(this.isValidDescriptor(descriptor, provider)) {
+					if (descriptor instanceof CommandParameter
+							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
+							&& (((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
+						actions.add(
+								new CreateSharedSectionModelChildAction(this.activeEditorPart, selection, descriptor));
+					} else {
+						actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
+					}
 				}
+
 			}
 		}
 		return actions;
 	}
-	
+
 	protected Collection<IAction> generateOtherActionsActions(final Object descriptor, ISelection selection) {
-		Collection<IAction> actions = new ArrayList<IAction>();
+
+		Collection<IAction> actions = new ArrayList<>();
 		if(descriptor instanceof MappingHintGroup){
 			actions.add(
-					new GenericConversionCommandAction<MappingHintGroup, ExportedMappingHintGroup>(
-							activeEditorPart, 
-							selection, 
+					new GenericConversionCommandAction<>(
+							this.activeEditorPart,
+							selection,
 							"Convert to exported MappingHintGroup",
 							MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
 							(MappingHintGroup) descriptor,
 							new HintGroupToExportedHintGroupConverter()));
 		} else if(descriptor instanceof pamtram.metamodel.Class){
 			// the section may be 'null' if the class is not part of a target section but of a library element
-			pamtram.metamodel.Class section = ((MetaModelElement) descriptor).getContainingSection();
+			pamtram.metamodel.Class<?, ?, ?, ?> section = ((pamtram.metamodel.Class<?, ?, ?, ?>) descriptor)
+					.getContainingSection();
 			if(section != null && !section.equals(descriptor)){
-				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.metamodel.Class) descriptor));				
+				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.metamodel.Class<?, ?, ?, ?>) descriptor));
 			}
 		}
 		return actions;
@@ -377,50 +388,60 @@ public class PamtramActionBarContributor
 	 * @generated NOT
 	 */
 	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
-		Collection<IAction> actions = new ArrayList<IAction>();
+		Collection<IAction> actions = new ArrayList<>();
 		if (descriptors != null) {
-			
+
 			IContentProvider provider = null;
-			if(activeEditorPart instanceof PamtramEditor && ((PamtramEditor) activeEditorPart).getViewer() instanceof ContentViewer) {
-				provider = ((ContentViewer) (((PamtramEditor) activeEditorPart).getViewer())).getContentProvider();
+			if(this.activeEditorPart instanceof PamtramEditor && ((PamtramEditor) this.activeEditorPart).getViewer() instanceof ContentViewer) {
+				provider = ((ContentViewer) ((PamtramEditor) this.activeEditorPart).getViewer()).getContentProvider();
 			}
-			
+
 			for (Object descriptor : descriptors) {
-				
-				if(isValidDescriptor(descriptor, provider)) {
-					actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));					
+
+				if(this.isValidDescriptor(descriptor, provider)) {
+					if (descriptor instanceof CommandParameter
+							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
+							&& (((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
+						actions.add(new CreateSharedSectionModelSiblingAction(this.activeEditorPart, selection,
+								descriptor));
+					} else {
+						actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
+					}
 				}
-			
+
 			}
 		}
 		return actions;
 	}
-	
+
 	/**
 	 * This is used by {@link #generateCreateChildActions(Collection, ISelection)} and {@link #generateCreateSiblingActions(Collection, ISelection)}
 	 * to perform additional checks if an action corresponding to the given <em>descriptor</em> is valid for the active <em>content provider</em>.
-	 * 
+	 *
 	 * @param descriptor The {@link CommandParameter} that describes an action to be executed.
 	 * @param provider The {@link IContentProvider content provider} that is associated with the active viewer.
 	 * @return '<em><b>true</b></em>' if the descriptor is valid for the active viewer; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isValidDescriptor(Object descriptor, IContentProvider provider) {
-		
+
 		if(descriptor == null || provider == null) {
 			return false;
 		}
-		
-		if(!(descriptor instanceof CommandParameter) || 
+
+		if(!(descriptor instanceof CommandParameter) ||
 				!(((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature)) {
 			return true;
 		}
-		
+
 		CommandParameter commandParam = (CommandParameter) descriptor;
-		
+
 		if(provider instanceof IFeatureValidator) {
 			return ((IFeatureValidator) provider).isValidFeature((EStructuralFeature) commandParam.getFeature());
 		}
-		
+
 		return true;
 	}
 
@@ -445,7 +466,7 @@ public class PamtramActionBarContributor
 			}
 		}
 	}
-		
+
 	/**
 	 * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
 	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection.
@@ -456,10 +477,10 @@ public class PamtramActionBarContributor
 	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
 		if (actions != null) {
 			IContributionItem[] items = manager.getItems();
-			for (int i = 0; i < items.length; i++) {
+			for (IContributionItem item : items) {
 				// Look into SubContributionItems
 				//
-				IContributionItem contributionItem = items[i];
+				IContributionItem contributionItem = item;
 				while (contributionItem instanceof SubContributionItem) {
 					contributionItem = ((SubContributionItem)contributionItem).getInnerItem();
 				}
@@ -487,15 +508,15 @@ public class PamtramActionBarContributor
 		MenuManager submenuManager = null;
 
 		submenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
-		populateManager(submenuManager, createChildActions, null);
+		this.populateManager(submenuManager, this.createChildActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 
 		submenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-		populateManager(submenuManager, createSiblingActions, null);
+		this.populateManager(submenuManager, this.createSiblingActions, null);
 		menuManager.insertBefore("edit", submenuManager);
-		
+
 		submenuManager = new MenuManager("other actions");
-		populateManager(submenuManager, otherActions, null);
+		this.populateManager(submenuManager, this.otherActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 	}
 
@@ -508,10 +529,10 @@ public class PamtramActionBarContributor
 	@Override
 	protected void addGlobalActions(IMenuManager menuManager) {
 		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
-		menuManager.insertAfter("ui-actions", showPropertiesViewAction);
+		menuManager.insertAfter("ui-actions", this.showPropertiesViewAction);
 
-		refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());		
-		menuManager.insertAfter("ui-actions", refreshViewerAction);
+		this.refreshViewerAction.setEnabled(this.refreshViewerAction.isEnabled());
+		menuManager.insertAfter("ui-actions", this.refreshViewerAction);
 
 		super.addGlobalActions(menuManager);
 	}
@@ -525,6 +546,14 @@ public class PamtramActionBarContributor
 	@Override
 	protected boolean removeAllReferencesOnDelete() {
 		return true;
+	}
+
+	@Override
+	protected DeleteAction createDeleteAction() {
+
+		// Use the special PamtramDeleteAction which allows to also delete shared SectionModels
+		//
+		return new PamtramDeleteAction(this.removeAllReferencesOnDelete());
 	}
 
 }

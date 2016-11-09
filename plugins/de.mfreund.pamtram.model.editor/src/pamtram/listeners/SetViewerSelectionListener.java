@@ -45,10 +45,7 @@ public class SetViewerSelectionListener implements SelectionListener2 {
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
-		editor.setCurrentViewer(viewer);			
+		this.editor.setCurrentViewer(this.viewer);			
 	}
-
-	@Override
-	public void widgetDefaultSelected(SelectionEvent e) {}
 
 }

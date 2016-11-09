@@ -10,14 +10,13 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
-import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.FixedValue;
+import pamtram.mapping.ValueModifierSet;
 
 /**
- * A content provider for a viewer that displays the {@link MappingModel MappingModels} and the
- * contained {@link AttributeValueModifierSet AttributeValueModifierSets} as well as the
- * {@link FixedValue GlobalValues}.
- * 
+ * A content provider for a viewer that displays the {@link MappingModel MappingModels} and the contained
+ * {@link ValueModifierSet ValueModifierSets} as well as the {@link FixedValue GlobalValues}.
+ *
  * @author mfreund
  */
 public class ModifierSetContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
@@ -46,17 +45,19 @@ public class ModifierSetContentProvider extends AdapterFactoryContentProvider im
 		}
 		return super.getElements(object);
 	}
-	
+
 	@Override
 	public boolean isValidFeature(EStructuralFeature feature) {
 
 		if(feature.equals(PamtramPackage.Literals.MAPPING_MODEL__MAPPING) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL) ||
 				feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL) ||
-				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)) {
+				feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)) {
 			return false;
 		}
-		
+
 		return true;
 	}
 }

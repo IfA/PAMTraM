@@ -112,6 +112,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
 import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
 import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
@@ -629,7 +630,18 @@ public class MappingEditor
 
 		// Create the command stack that will notify this editor as commands are executed.
 		//
-		BasicCommandStack commandStack = new BasicCommandStack();
+		BasicCommandStack commandStack =
+			new BasicCommandStack() {
+				@Override
+				public void execute(Command command) {
+					// Cancel live validation before executing a command that will trigger a new round of validation.
+					//
+					if (!(command instanceof AbstractCommand.NonDirtying)) {
+						DiagnosticDecorator.Styled.cancel(editingDomain);
+					}
+					super.execute(command);
+				}
+			};
 
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		//

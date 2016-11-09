@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
 
@@ -43,6 +43,15 @@ public class AttributeValueRepresentation {
 	public AttributeValueRepresentation(SourceSectionAttribute attribute, String value) {
 		this.attribute = attribute;
 		this.attributeValues.add(value != null ? value : "");
+	}
+
+	/**
+	 * This is the getter for the {@link #attribute}.
+	 * 
+	 * @return The {@link SourceSectionAttribute} that this represents.
+	 */
+	public SourceSectionAttribute getAttribute() {
+		return this.attribute;
 	}
 
 	/**
@@ -133,7 +142,7 @@ public class AttributeValueRepresentation {
 	}
 
 	@Override
-	protected Object clone() {
+	public Object clone() {
 		/*
 		 * Create a new instance and copy every attribute value separately.
 		 */

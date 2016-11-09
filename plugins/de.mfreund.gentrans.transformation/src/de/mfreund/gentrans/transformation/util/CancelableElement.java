@@ -1,13 +1,13 @@
 package de.mfreund.gentrans.transformation.util;
 
 /**
- * This provides an <em>abstract</em> default implementation of the {@link ICancellable} interface that
+ * This provides an <em>abstract</em> default implementation of the {@link ICancelable} interface that
  * stores its status (canceled/not canceled) in a simple boolean field.
  * 
  * @author mfreund
  *
  */
-public abstract class CancellableElement implements ICancellable {
+public abstract class CancelableElement implements ICancelable {
 
 	/**
 	 * This keeps track of the element's status.
@@ -20,7 +20,7 @@ public abstract class CancellableElement implements ICancellable {
 	}
 
 	@Override
-	public boolean isCancelled() {
+	public boolean isCanceled() {
 		return canceled;
 	}
 

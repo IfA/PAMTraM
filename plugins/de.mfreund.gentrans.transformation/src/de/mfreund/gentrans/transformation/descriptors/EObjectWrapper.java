@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.FileAttribute;
 import pamtram.metamodel.FileTypeEnum;
@@ -28,8 +29,8 @@ import pamtram.metamodel.VirtualAttribute;
  * as well as <em>actual</em> ones) via the methods {@link #setAttributeValue(TargetSectionAttribute, String)} and
  * {@link #getAttributeValue(TargetSectionAttribute)}.
  * <p />
- * <b>Note:</b>The wrapped EObject is available via the {@link #eObject} field. 
- * 
+ * <b>Note:</b>The wrapped EObject is available via the {@link #eObject} field.
+ *
  * @author mfreund
  */
 public class EObjectWrapper {
@@ -40,24 +41,24 @@ public class EObjectWrapper {
 	private EObject eObject;
 
 	/**
-	 * The {@link AttributeValueRegistry} that values to be {@link #setAttributeValue(TargetSectionAttribute, String) set} 
+	 * The {@link AttributeValueRegistry} that values to be {@link #setAttributeValue(TargetSectionAttribute, String) set}
 	 * will be registered in.
 	 */
 	private final AttributeValueRegistry attrValRegistry;
 
 	/**
-	 * As values of {@link VirtualAttribute VirtualAttributes} cannot bestored in the actual {@link #eObject}, they are stored 
+	 * As values of {@link VirtualAttribute VirtualAttributes} cannot bestored in the actual {@link #eObject}, they are stored
 	 * in a separate map.
 	 */
-	private final LinkedHashMap<VirtualAttribute, String> virtualAttributeValues;
-	
+	private final LinkedHashMap<VirtualAttribute<?, ?, ?, ?>, String> virtualAttributeValues;
+
 	/**
 	 * This creates an instance that wraps the given 'eObject'.
 	 *
 	 * @param eObject
 	 *            The {@link EObject} to be wrapped.
 	 * @param attrValRegistry
-	 *           The {@link AttributeValueRegistry} that values to be {@link #setAttributeValue(TargetSectionAttribute, String) set} 
+	 *           The {@link AttributeValueRegistry} that values to be {@link #setAttributeValue(TargetSectionAttribute, String) set}
 	 * will be registered in.
 	 */
 	public EObjectWrapper(EObject eObject,
@@ -74,7 +75,7 @@ public class EObjectWrapper {
 	 * @return The actual {@link EObject} that is wrapped by this.
 	 */
 	public EObject getEObject() {
-		return eObject;
+		return this.eObject;
 	}
 
 	/**
@@ -97,10 +98,10 @@ public class EObjectWrapper {
 	 */
 	public String getAttributeValue(final TargetSectionAttribute attr) {
 		if (attr instanceof VirtualAttribute) {
-			return virtualAttributeValues.get(attr);
+			return this.virtualAttributeValues.get(attr);
 		} else if (attr instanceof ActualAttribute) {
-			return convertAttributeValue(eObject,
-					((ActualAttribute) attr).getAttribute());
+			return EObjectWrapper.convertAttributeValue(this.eObject,
+					((ActualAttribute<?, ?, ?, ?>) attr).getAttribute());
 		}
 		return null;
 	}
@@ -116,10 +117,10 @@ public class EObjectWrapper {
 	 * @return '<em><b>true</b><em>' if the given 'value' has been registered before for the given 'attr', '<em><b>false</b></em>'
 	 * otherwise.
 	 */
-	boolean attributeValueExists(final TargetSectionAttribute attr,
+	public boolean attributeValueExists(final TargetSectionAttribute attr,
 			final String value) {
 
-		return attrValRegistry.attributeValueExists(attr, value,eObject.eClass());
+		return this.attrValRegistry.attributeValueExists(attr, value,this.eObject.eClass());
 	}
 
 	/**
@@ -133,12 +134,12 @@ public class EObjectWrapper {
 	 * @param value A String representation of the value to be set.
 	 * @throws IllegalArgumentException
 	 */
-	void setAttributeValue(final TargetSectionAttribute attr,
+	public void setAttributeValue(final TargetSectionAttribute attr,
 			final String value) {
 		if (attr instanceof ActualAttribute) {
-			setAttributeValue((ActualAttribute) attr, value);
+			this.setAttributeValue((ActualAttribute<?, ?, ?, ?>) attr, value);
 		} else if (attr instanceof VirtualAttribute) {
-			setAttributeValue((VirtualAttribute) attr, value);
+			this.setAttributeValue((VirtualAttribute<?, ?, ?, ?>) attr, value);
 		}
 
 	}
@@ -155,7 +156,7 @@ public class EObjectWrapper {
 	 *             defined by 'attr'.
 	 * @throws IllegalArgumentException If the given 'value' cannot be converted to the data type defined by 'attr'.
 	 */
-	void setAttributeValue(final ActualAttribute attr, final String value)
+	void setAttributeValue(final ActualAttribute<?, ?, ?, ?> attr, final String value)
 			throws IllegalArgumentException {
 
 		// convert the string representation of the value to the correct data type
@@ -163,7 +164,7 @@ public class EObjectWrapper {
 		try {
 			valueObject = attr.getAttribute().getEType().getEPackage().getEFactoryInstance().createFromString(attr.getAttribute().getEAttributeType(), value);
 		} catch (Exception e) {
-			
+
 			// if an integer-based value is represented as boolean (e.g. as it was used by an 'expression'), try to set this instead
 			//
 			if(value.endsWith(".0")) {
@@ -180,12 +181,12 @@ public class EObjectWrapper {
 		if(attr.getAttribute().isMany()) {
 			ArrayList<Object> valueObjectList = new ArrayList<>();
 			valueObjectList.add(valueObject);
-			eObject.eSet(attr.getAttribute(), valueObjectList);
+			this.eObject.eSet(attr.getAttribute(), valueObjectList);
 		} else {
-			eObject.eSet(attr.getAttribute(), valueObject);
+			this.eObject.eSet(attr.getAttribute(), valueObject);
 		}
 
-		attrValRegistry.registerValue(attr, eObject.eClass(), value);
+		this.attrValRegistry.registerValue(attr, this.eObject.eClass(), value);
 
 	}
 
@@ -197,10 +198,10 @@ public class EObjectWrapper {
 	 * @param value
 	 *           The value to be set.
 	 */
-	void setAttributeValue(final VirtualAttribute attr, final String value) {
-		virtualAttributeValues.put(attr, value);
+	void setAttributeValue(final VirtualAttribute<?, ?, ?, ?> attr, final String value) {
+		this.virtualAttributeValues.put(attr, value);
 
-		attrValRegistry.registerValue(attr, eObject.eClass(), value);
+		this.attrValRegistry.registerValue(attr, this.eObject.eClass(), value);
 	}
 
 	/**
@@ -214,7 +215,7 @@ public class EObjectWrapper {
 		String returnString = eObject.eClass().getName() + " (HashCode: "
 				+ eObject.hashCode() + ")";
 		for (final EAttribute a : eObject.eClass().getEAllAttributes()) {
-			final String val = convertAttributeValue(eObject, a);
+			final String val = EObjectWrapper.convertAttributeValue(eObject, a);
 			if (val != null) {
 				returnString += "\n   " + a.getName() + ": " + val;
 			}
@@ -225,7 +226,7 @@ public class EObjectWrapper {
 	}
 
 	/**
-	 * Static helper method for converting an attribute value of the given 'eObject' to a String 
+	 * Static helper method for converting an attribute value of the given 'eObject' to a String
 	 * representation.
 	 *
 	 * @param eObject
@@ -244,7 +245,7 @@ public class EObjectWrapper {
 		final Object srcAttr = eObject.eGet(attr);
 		try {
 			if(!attr.isMany()) {
-				return attr.getEType().getEPackage().getEFactoryInstance().convertToString(attr.getEAttributeType(), srcAttr);				
+				return attr.getEType().getEPackage().getEFactoryInstance().convertToString(attr.getEAttributeType(), srcAttr);
 			} else {
 				String ret = "";
 				Iterator<?> it = ((EList<?>) srcAttr).iterator();
@@ -270,44 +271,46 @@ public class EObjectWrapper {
 	 */
 	@Override
 	public String toString() {
-		String returnString = asString(eObject);
+		String returnString = EObjectWrapper.asString(this.eObject);
 
-		for (final VirtualAttribute a : virtualAttributeValues.keySet()) {
+		for (final VirtualAttribute<?, ?, ?, ?> a : this.virtualAttributeValues.keySet()) {
 			returnString += "\n   " + a.getName() + "(v): "
-					+ virtualAttributeValues.get(a);
+					+ this.virtualAttributeValues.get(a);
 		}
 
 		return returnString;
 	}
-	
+
 	/**
 	 * If this represents a {@link TargetSection}, return the value of the {@link FileAttribute} associated
 	 * with this via the {@link TargetSection#getFile() file} reference.
-	 * 
+	 *
 	 * @return The value of the {@link FileAttribute} or an empty String if this either does not represent
-	 * a {@link TargetSection} or if the {@link TargetSection#getFile() file} reference has not been set. 
+	 * a {@link TargetSection} or if the {@link TargetSection#getFile() file} reference has not been set.
 	 */
 	public String getFile() {
-		for (Entry<VirtualAttribute, String> entry : virtualAttributeValues.entrySet()) {
+
+		for (Entry<VirtualAttribute<?, ?, ?, ?>, String> entry : this.virtualAttributeValues.entrySet()) {
 			if(entry.getKey() instanceof FileAttribute) {
-				return (entry.getValue() != null ? entry.getValue() : "");
+				return entry.getValue() != null ? entry.getValue() : "";
 			}
 		}
 		return "";
 	}
-	
+
 	/**
-	 * If this represents a {@link TargetSection}, return the {@link FileAttribute#getFileType() fileType} of the 
+	 * If this represents a {@link TargetSection}, return the {@link FileAttribute#getFileType() fileType} of the
 	 * {@link FileAttribute} associated with this via the {@link TargetSection#getFile() file} reference.
-	 * 
-	 * @return The value of the {@link FileAttribute#getFileType()} or the default value {@link FileTypeEnum#XMI} 
-	 * if this either does not represent a {@link TargetSection}, if the {@link TargetSection#getFile() file} 
-	 * reference has not been set, or if no {@link FileAttribute#getFileType()} fileType has been set. 
+	 *
+	 * @return The value of the {@link FileAttribute#getFileType()} or the default value {@link FileTypeEnum#XMI}
+	 * if this either does not represent a {@link TargetSection}, if the {@link TargetSection#getFile() file}
+	 * reference has not been set, or if no {@link FileAttribute#getFileType()} fileType has been set.
 	 */
 	public FileTypeEnum getFileType() {
-		for (Entry<VirtualAttribute, String> entry : virtualAttributeValues.entrySet()) {
+
+		for (Entry<VirtualAttribute<?, ?, ?, ?>, String> entry : this.virtualAttributeValues.entrySet()) {
 			if(entry.getKey() instanceof FileAttribute) {
-				return (((FileAttribute) (entry.getKey())).getFileType() == null ? FileTypeEnum.XMI : ((FileAttribute) (entry.getKey())).getFileType());
+				return ((FileAttribute) entry.getKey()).getFileType() == null ? FileTypeEnum.XMI : ((FileAttribute) entry.getKey()).getFileType();
 			}
 		}
 		return FileTypeEnum.XMI;

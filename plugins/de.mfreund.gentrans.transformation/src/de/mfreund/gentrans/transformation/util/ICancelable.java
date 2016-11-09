@@ -9,7 +9,7 @@ package de.mfreund.gentrans.transformation.util;
  * 
  * @author mfreund
  */
-public interface ICancellable {
+public interface ICancelable {
 
 	/**
 	 * This cancels the element/algorithm that implements this interface.
@@ -21,5 +21,5 @@ public interface ICancellable {
 	 * 
 	 * @return '<em><b>true</b></em>' if the element has been {@link #cancel() canceled}; '<em><b>false</b></em>' otherwise.
 	 */
-	public abstract boolean isCancelled();
+	public abstract boolean isCanceled();
 }

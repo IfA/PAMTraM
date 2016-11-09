@@ -307,9 +307,9 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		// add a simple mapping to the mapping model
 		Mapping mapping = mappingFactory.createMapping();
 		MappingHintGroup  mappingHintGroup = mappingFactory.createMappingHintGroup();
-		mapping.setSourceMMSection(pamtram.getSourceSectionModel().get(0).getMetaModelSections().get(0));
+		mapping.setSourceSection(pamtram.getSourceSectionModel().get(0).getMetaModelSections().get(0));
 		mapping.getMappingHintGroups().add(mappingHintGroup);
-		mappingHintGroup.setTargetMMSection(pamtram.getTargetSectionModel().get(0).getMetaModelSections().get(0));
+		mappingHintGroup.setTargetSection(pamtram.getTargetSectionModel().get(0).getMetaModelSections().get(0));
 		pamtram.getMappingModel().get(0).getMapping().add(mapping);
 
 		return pamtram;

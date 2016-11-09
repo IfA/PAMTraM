@@ -4,11 +4,11 @@
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
     <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
       </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
@@ -17,17 +17,17 @@
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Button">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
-    <mapping name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
+    <mapping name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModel.0/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" expression="id+id2+1" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.0"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id2" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id2" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>

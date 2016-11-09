@@ -19,17 +19,17 @@
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
     <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel">
       <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="VisAppModel">
+      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name" value="VisAppModel">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
-    <mapping name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.0"/>
+    <mapping name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModel.0/@metaModelSections.0"/>
     </mapping>
-    <mapping name="AbstractInteractionUnitMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetMMSection="//@targetSectionModel.0/@metaModelSections.0"/>
+    <mapping name="AbstractInteractionUnitMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetSection="//@targetSectionModel.0/@metaModelSections.0"/>
     </mapping>
     <modifierSets name="getNumber">
       <modifier xsi:type="mapping:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>

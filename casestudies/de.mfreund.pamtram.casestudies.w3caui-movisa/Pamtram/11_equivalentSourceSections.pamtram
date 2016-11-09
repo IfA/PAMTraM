@@ -5,8 +5,18 @@
     <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="role">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation2">
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="role">
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
       </attributes>
       <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
@@ -20,9 +30,15 @@
       <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Comment">
-        <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
-      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel (Root)">
+      <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel (Root)">
+      <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel (Root)">
+      <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
@@ -30,10 +46,15 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModel.0/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.1"/>
+          <sourceElements xsi:type="mapping:FixedValue" name="-orginal" value="-orginal"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="CommentMapping" resultModifier="//@mappingModel.0/@modifierSets.1" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.1">
-          <sourceElements xsi:type="mapping:FixedValue" name="testButton" value="testButton"/>
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1"/>
+      </mappingHintGroups>
+    </mapping>
+    <mapping name="ConfirmationButtonMapping2" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button2" targetSection="//@targetSectionModel.0/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.1" modifier="//@mappingModel.0/@modifierSets.1"/>
+          <sourceElements xsi:type="mapping:FixedValue" name="-equivalent" value="-equivalent"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>

@@ -142,8 +142,10 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.editors.ClonableEditor;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
+import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.commandlistener.PamtramCommandStackListener;
@@ -893,43 +895,10 @@ IViewerProvider, IGotoMarker, IPersistable {
 		}
 
 		// no editor has been found so we open a new one
-		IFile file = null;
-		try {
-
-			IFile[] files;
-			if (pamtram.eResource().getURI().isFile()) {
-				files = ResourcesPlugin.getWorkspace().getRoot()
-						.findFilesForLocationURI(new java.net.URI(pamtram.eResource().getURI().toString()));
-			} else {
-				files = ResourcesPlugin.getWorkspace().getRoot()
-						.findFilesForLocationURI(
-								new java.net.URI(URI
-										.createFileURI(
-												ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString()
-												+ pamtram.eResource().getURI().toPlatformString(true))
-										.toString()));
-			}
-
-			if (files.length == 0) {
-				return null;
-			}
-
-			file = files[0];
-
-		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
-			return null;
-		}
+		IFile file = ResourceHelper.getFileForResource(pamtram.eResource());
 
 		try {
-			// get the active workbench window
-			IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-
-			IEditorPart editorPart = workbenchWindow.getActivePage().openEditor(new FileEditorInput(file),
-					"pamtram.presentation.PamtramEditorID");
-
-			return (PamtramEditor) editorPart;
-
+			return (PamtramEditor) UIHelper.openEditor(file, "pamtram.presentation.PamtramEditorID");
 		} catch (PartInitException e) {
 			e.printStackTrace();
 			return null;

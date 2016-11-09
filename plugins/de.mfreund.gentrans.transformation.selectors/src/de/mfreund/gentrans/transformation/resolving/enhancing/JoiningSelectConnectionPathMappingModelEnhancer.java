@@ -45,6 +45,23 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 	private TargetSection sectionToConnect;
 
 	/**
+	 * The first reference create as part of
+	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionContainmentReference, TargetSectionClass)}
+	 * to be connected to the 'rootSection' in the end). After the execution of this method, this will hold the
+	 * {@link TargetSectionContainmentReference} that represents the first reference of the path.
+	 */
+	private TargetSectionContainmentReference firstReference = null;
+
+	/**
+	 * The final class created as part of
+	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionContainmentReference, TargetSectionClass)}
+	 * to be set as 'container' for the 'sectionToConnect'). After the execution of this method, this will hold the
+	 * {@link TargetSectionClass} that represents the final class of the path (Note that the final class is the second
+	 * but last class because the last class already exists in the mapping model).
+	 */
+	private TargetSectionClass finalClass = null;
+
+	/**
 	 * This creates an instance.
 	 *
 	 * @param pamtramModel
@@ -77,29 +94,21 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 			rootSection.setEClass(selectedPath.getPathRootClass());
 		}
 
-		// The first created reference (this needs to be connected to the 'rootSection' in the end
-		//
-		TargetSectionContainmentReference firstReference = null;
-
-		// The final created class (this needs to be set as 'container' for the 'sectionToConnect'
-		//
-		TargetSectionClass finalClass = null;
-
 		// Instantiate the intermediate elements
 		//
-		this.instantiateIntermediatePathElements(selectedPath, firstReference, finalClass);
+		this.instantiateIntermediatePathElements(selectedPath);
 
 		if (editor == null) {
 
 			// Use the 'classic' way to add the new elements as we can not use any command stack
 			//
-			if (!rootSectionOptional.isPresent()) {
-				rootSection.getReferences().add(firstReference);
-				this.pamtramModel.getTargetSectionModel().get(0).getMetaModelSections().add(rootSection);
-			} else {
-				rootSection.getReferences().add(firstReference);
+			if (this.firstReference != null) {
+				rootSection.getReferences().add(this.firstReference);
 			}
-			this.sectionToConnect.setContainer(finalClass);
+			if (!rootSectionOptional.isPresent()) {
+				this.pamtramModel.getTargetSectionModel().get(0).getMetaModelSections().add(rootSection);
+			}
+			this.sectionToConnect.setContainer(this.finalClass);
 
 			// finally, we save the model
 			try {
@@ -120,17 +129,21 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 			// Use a command to add the new elements
 			//
 			CompoundCommand addCommand = new CompoundCommand();
+			if (this.firstReference != null) {
+				if (!rootSectionOptional.isPresent()) {
+					rootSection.getReferences().add(this.firstReference);
+				} else {
+					addCommand.append(new AddCommand(editor.getEditingDomain(), rootSection,
+							MetamodelPackage.Literals.CLASS__REFERENCES, this.firstReference));
+				}
+			}
 			if (!rootSectionOptional.isPresent()) {
-				rootSection.getReferences().add(firstReference);
 				addCommand.append(
 						new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModel().get(0),
 								PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, rootSection));
-			} else {
-				addCommand.append(new AddCommand(editor.getEditingDomain(), rootSection,
-						MetamodelPackage.Literals.CLASS__REFERENCES, firstReference));
 			}
 			addCommand.append(new SetCommand(editor.getEditingDomain(), sectionToConnectMatch,
-					MetamodelPackage.Literals.CLASS__CONTAINER, finalClass));
+					MetamodelPackage.Literals.CLASS__CONTAINER, this.finalClass));
 			editor.getEditingDomain().getCommandStack().execute(addCommand);
 
 		}
@@ -142,16 +155,8 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 	 * creating the required {@link TargetSectionClass TargetSectionClasses} and
 	 * {@link TargetSectionContainmentReference TargetSectionContainmentReferences}.
 	 *
-	 * @param firstReference
-	 *            After the execution of this method, this will hold the {@link TargetSectionContainmentReference} that
-	 *            represents the first reference of the path.
-	 * @param finalClass
-	 *            After the execution of this method, this will hold the {@link TargetSectionClass} that represents the
-	 *            final class of the path (Note that the final class is the second but last class because the last class
-	 *            already exists in the mapping model).
 	 */
-	private void instantiateIntermediatePathElements(ModelConnectionPath path,
-			TargetSectionContainmentReference firstReference, TargetSectionClass finalClass) {
+	private void instantiateIntermediatePathElements(ModelConnectionPath path) {
 
 		TargetSectionClass currentClass = null;
 
@@ -170,7 +175,7 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 			// we are at the beginning
 			//
 			if (i == path.getPathElements().size() - 2) {
-				firstReference = ref;
+				this.firstReference = ref;
 			} else {
 				currentClass.getReferences().add(ref);
 			}
@@ -182,7 +187,7 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 
 			// we have reached the end
 			if (i - 2 == 1) {
-				finalClass = currentClass;
+				this.finalClass = currentClass;
 			}
 		}
 

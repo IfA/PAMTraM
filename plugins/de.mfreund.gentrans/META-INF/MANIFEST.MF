@@ -2,19 +2,19 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GenTrans
 Bundle-SymbolicName: de.mfreund.gentrans;singleton:=true
-Bundle-Version: 1.6.0.qualifier
+Bundle-Version: 1.7.0.qualifier
 Bundle-Activator: de.mfreund.gentrans.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.debug.core,
  org.eclipse.emf.ecore.xmi,
- de.mfreund.gentrans.transformation;bundle-version="1.6.0",
- de.mfreund.pamtram;bundle-version="1.6.0",
- de.mfreund.pamtram.model;bundle-version="1.6.0",
- de.mfreund.gentrans.transformation.resolving.user;bundle-version="1.6.0",
- de.mfreund.gentrans.transformation.resolving.history;bundle-version="1.0.3",
- de.tud.et.ifa.agtele.eclipse.commons;bundle-version="0.1.1",
- de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="0.2.1",
- de.mfreund.gentrans.transformation.resolving.statistics
+ de.mfreund.gentrans.transformation;bundle-version="1.7.0",
+ de.mfreund.pamtram;bundle-version="1.7.0",
+ de.mfreund.pamtram.model;bundle-version="1.7.0",
+ de.mfreund.gentrans.transformation.resolving.user;bundle-version="1.7.0",
+ de.mfreund.gentrans.transformation.resolving.history;bundle-version="1.1.0",
+ de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",
+ de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.0.0",
+ de.mfreund.gentrans.transformation.resolving.statistics;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

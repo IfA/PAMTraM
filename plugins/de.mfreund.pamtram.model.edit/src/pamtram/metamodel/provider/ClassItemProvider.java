@@ -102,12 +102,12 @@ extends MetaModelElementItemProvider {
 	 * <!-- end-user-doc -->
 	 */
 	protected void addEClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Class_eClass_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_Class_eClass_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
 						MetamodelPackage.Literals.CLASS__ECLASS,
 						true,
 						false,
@@ -122,11 +122,11 @@ extends MetaModelElementItemProvider {
 				Class section = ((pamtram.metamodel.Class) object).getContainingSection();
 				SectionModel sectionModel = section.getContainingSectionModel();
 
-				List<EClass> choiceOfValues = new LinkedList<EClass>();
+				List<EClass> choiceOfValues = new LinkedList<>();
 
 				/*
 				 * If we have a container parameter with a specified source, we do not need to scan package contents.
-				 * Instead, the user may only select the eClass of the specified source element. 
+				 * Instead, the user may only select the eClass of the specified source element.
 				 */
 				if(section.eContainer() instanceof ContainerParameter &&
 						((ContainerParameter) section.eContainer()).getSource() != null) {
@@ -134,11 +134,11 @@ extends MetaModelElementItemProvider {
 					return choiceOfValues;
 				}
 
-				List<EPackage> packagesToScan=new LinkedList<EPackage>();
+				List<EPackage> packagesToScan=new LinkedList<>();
 
 				packagesToScan.add(sectionModel.getMetaModelPackage());
 
-				List<EClass> documentRoot=new LinkedList<EClass>();//this should only contain one element but we need to implement this in a generic way...												
+				List<EClass> documentRoot=new LinkedList<>();//this should only contain one element but we need to implement this in a generic way...
 
 				while(packagesToScan.size()>0){
 					EPackage pkg=packagesToScan.remove(0);
@@ -153,7 +153,7 @@ extends MetaModelElementItemProvider {
 							EClass cl=(EClass)c;
 							if(!documentRoot.contains(cl)){
 								// abstract EClasses are only allowed for abstract sections
-								if(!cl.isAbstract() || (object instanceof Section<?, ?, ?, ?> && ((Section<?,?,?,?>) object).isAbstract())) {
+								if(!cl.isAbstract() || object instanceof Section<?, ?, ?, ?> && ((Section<?,?,?,?>) object).isAbstract()) {
 									choiceOfValues.add((EClass) c);
 								}
 							}
@@ -164,7 +164,7 @@ extends MetaModelElementItemProvider {
 				if(section.equals(object)){ // top level-section
 					return choiceOfValues;
 				} else { //not a top-level section
-					List<EClass> newChoiceOfValues = new LinkedList<EClass>();
+					List<EClass> newChoiceOfValues = new LinkedList<>();
 					pamtram.metamodel.Reference ref=(Reference) ((pamtram.metamodel.Class)object).eContainer();
 					if(ref.getEReference() != null){
 						if(!(ref.getEReference().getEType() instanceof EClass)) {
@@ -183,7 +183,7 @@ extends MetaModelElementItemProvider {
 
 					}
 
-				} 
+				}
 				return super.getChoiceOfValues(object);
 			}
 
@@ -290,7 +290,7 @@ extends MetaModelElementItemProvider {
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
-	 * The label of the class is composed of its name and the 
+	 * The label of the class is composed of its name and the
 	 * name of the associated eClass.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -304,8 +304,8 @@ extends MetaModelElementItemProvider {
 		StyledString styledLabel = new StyledString();
 
 		if (label != null && label.length() > 0) {
-			styledLabel.append(label); 
-		} 
+			styledLabel.append(label);
+		}
 
 		if(eClass != null && eClass.getEPackage() != null) {
 			styledLabel.append(styledLabel.toString().equals("") ?
@@ -352,47 +352,47 @@ extends MetaModelElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
+						MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
+						MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference()));
+						MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createMetaModelSectionReference()));
+						MetamodelFactory.eINSTANCE.createMetaModelSectionReference()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
+						MetamodelFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
 
 		/*
 		 * A 'FileAttribute' must only be added as child of a 'TargetSection'
 		 */
-//		newChildDescriptors.add
-//			(createChildParameter
-//				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-//				 MetamodelFactory.eINSTANCE.createFileAttribute()));
+		//		newChildDescriptors.add
+		//			(createChildParameter
+		//				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
+		//				 MetamodelFactory.eINSTANCE.createFileAttribute()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
+				MetamodelFactory.eINSTANCE.createActualSourceSectionAttribute()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createActualAttribute()));
+						MetamodelFactory.eINSTANCE.createActualTargetSectionAttribute()));
 	}
 
 	@Override
@@ -417,7 +417,7 @@ extends MetaModelElementItemProvider {
 		}
 		return super.createAddCommand(domain, owner, feature, collection, index);
 	}
-	
+
 	@Override
 	protected Command createRemoveCommand(EditingDomain domain, EObject owner, EReference feature,
 			Collection<?> collection) {
@@ -437,7 +437,7 @@ extends MetaModelElementItemProvider {
 		}
 		return super.createRemoveCommand(domain, owner, feature, collection);
 	}
-	
+
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
 			int operation, Collection<?> collection) {

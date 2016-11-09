@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -18,9 +17,8 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 
@@ -130,23 +128,16 @@ public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAt
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
 
-				//the parent Mapping Hint Group
-				EObject parent= ((EObject) object).eContainer();
-				// the parent mapping
-				Mapping mapping;
-				while(true){
-					if(parent instanceof MappingHintGroupType){
-						mapping=(Mapping)((MappingHintGroupType) parent).eContainer();
-						break;
-					} else if(parent instanceof MappingHintGroupImporter){
-						mapping=(Mapping)((MappingHintGroupImporter) parent).eContainer();
-						break;
-					}else {
-						parent=parent.eContainer();
-					}
+				// the parent Mapping
+				//
+				Mapping mapping = ((ModifiedAttributeElementType<?,?,?,?>) object).getMapping();
+				
+				if(mapping == null || mapping.getSourceSection() == null) {
+					return new ArrayList<>();
 				}
+				
 				// the container section
-				SourceSectionClass container = mapping.getSourceMMSection().getContainer();
+				SourceSectionClass container = mapping.getSourceSection().getContainer();
 
 				List<Object> choiceOfValues = new ArrayList<>();
 
@@ -163,6 +154,7 @@ public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAt
 						}
 					}
 				}					
+				
 				return choiceOfValues;
 			}
 		});

@@ -49,7 +49,6 @@ public class ConditionItemProvider
 
 			addValuePropertyDescriptor(object);
 			addComparatorPropertyDescriptor(object);
-			addDefaultSettingPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -68,28 +67,6 @@ public class ConditionItemProvider
 				 getString("_UI_Condition_comparator_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Condition_comparator_feature", "_UI_Condition_type"),
 				 ConditionPackage.Literals.CONDITION__COMPARATOR,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Default Setting feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDefaultSettingPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Condition_defaultSetting_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Condition_defaultSetting_feature", "_UI_Condition_type"),
-				 ConditionPackage.Literals.CONDITION__DEFAULT_SETTING,
 				 true,
 				 false,
 				 false,
@@ -204,7 +181,6 @@ public class ConditionItemProvider
 		switch (notification.getFeatureID(Condition.class)) {
 			case ConditionPackage.CONDITION__VALUE:
 			case ConditionPackage.CONDITION__COMPARATOR:
-			case ConditionPackage.CONDITION__DEFAULT_SETTING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:

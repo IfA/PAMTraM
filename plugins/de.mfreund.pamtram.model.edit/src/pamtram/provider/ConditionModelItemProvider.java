@@ -174,7 +174,12 @@ public class ConditionModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
-				 ConditionFactory.eINSTANCE.createSectionCondition()));
+				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 
 }

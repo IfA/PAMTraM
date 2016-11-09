@@ -266,6 +266,29 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ResourceParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ResourceParameterItemProvider resourceParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.ResourceParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createResourceParameterAdapter() {
+		if (resourceParameterItemProvider == null) {
+			resourceParameterItemProvider = new ResourceParameterItemProvider(this);
+		}
+
+		return resourceParameterItemProvider;
+	}
+
+	/**
 	 * This creates an adapter for a {@link pamtram.metamodel.LibraryEntry}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,72 +392,72 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.SourceSectionAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ActualSourceSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SourceSectionAttributeItemProvider sourceSectionAttributeItemProvider;
+	protected ActualSourceSectionAttributeItemProvider actualSourceSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.SourceSectionAttribute}.
+	 * This creates an adapter for a {@link pamtram.metamodel.ActualSourceSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSourceSectionAttributeAdapter() {
-		if (sourceSectionAttributeItemProvider == null) {
-			sourceSectionAttributeItemProvider = new SourceSectionAttributeItemProvider(this);
+	public Adapter createActualSourceSectionAttributeAdapter() {
+		if (actualSourceSectionAttributeItemProvider == null) {
+			actualSourceSectionAttributeItemProvider = new ActualSourceSectionAttributeItemProvider(this);
 		}
 
-		return sourceSectionAttributeItemProvider;
+		return actualSourceSectionAttributeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ActualAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ActualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActualAttributeItemProvider actualAttributeItemProvider;
+	protected ActualTargetSectionAttributeItemProvider actualTargetSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.ActualAttribute}.
+	 * This creates an adapter for a {@link pamtram.metamodel.ActualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createActualAttributeAdapter() {
-		if (actualAttributeItemProvider == null) {
-			actualAttributeItemProvider = new ActualAttributeItemProvider(this);
+	public Adapter createActualTargetSectionAttributeAdapter() {
+		if (actualTargetSectionAttributeItemProvider == null) {
+			actualTargetSectionAttributeItemProvider = new ActualTargetSectionAttributeItemProvider(this);
 		}
 
-		return actualAttributeItemProvider;
+		return actualTargetSectionAttributeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.VirtualAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.VirtualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VirtualAttributeItemProvider virtualAttributeItemProvider;
+	protected VirtualTargetSectionAttributeItemProvider virtualTargetSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.VirtualAttribute}.
+	 * This creates an adapter for a {@link pamtram.metamodel.VirtualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createVirtualAttributeAdapter() {
-		if (virtualAttributeItemProvider == null) {
-			virtualAttributeItemProvider = new VirtualAttributeItemProvider(this);
+	public Adapter createVirtualTargetSectionAttributeAdapter() {
+		if (virtualTargetSectionAttributeItemProvider == null) {
+			virtualTargetSectionAttributeItemProvider = new VirtualTargetSectionAttributeItemProvider(this);
 		}
 
-		return virtualAttributeItemProvider;
+		return virtualTargetSectionAttributeItemProvider;
 	}
 
 	/**
@@ -599,6 +622,52 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ValueConstraintSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValueConstraintSourceElementItemProvider valueConstraintSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.ValueConstraintSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValueConstraintSourceElementAdapter() {
+		if (valueConstraintSourceElementItemProvider == null) {
+			valueConstraintSourceElementItemProvider = new ValueConstraintSourceElementItemProvider(this);
+		}
+
+		return valueConstraintSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ValueConstraintExternalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValueConstraintExternalSourceElementItemProvider valueConstraintExternalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.ValueConstraintExternalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValueConstraintExternalSourceElementAdapter() {
+		if (valueConstraintExternalSourceElementItemProvider == null) {
+			valueConstraintExternalSourceElementItemProvider = new ValueConstraintExternalSourceElementItemProvider(this);
+		}
+
+		return valueConstraintExternalSourceElementItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.InstancePointer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -619,6 +688,52 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 		}
 
 		return instancePointerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.InstancePointerSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InstancePointerSourceElementItemProvider instancePointerSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.InstancePointerSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInstancePointerSourceElementAdapter() {
+		if (instancePointerSourceElementItemProvider == null) {
+			instancePointerSourceElementItemProvider = new InstancePointerSourceElementItemProvider(this);
+		}
+
+		return instancePointerSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.InstancePointerExternalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InstancePointerExternalSourceElementItemProvider instancePointerExternalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.InstancePointerExternalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInstancePointerExternalSourceElementAdapter() {
+		if (instancePointerExternalSourceElementItemProvider == null) {
+			instancePointerExternalSourceElementItemProvider = new InstancePointerExternalSourceElementItemProvider(this);
+		}
+
+		return instancePointerExternalSourceElementItemProvider;
 	}
 
 	/**

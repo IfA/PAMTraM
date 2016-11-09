@@ -6,23 +6,18 @@ package pamtram.mapping.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.PamtramPackage;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingType;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
-import pamtram.metamodel.SourceSectionClass;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -33,7 +28,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class MappingTypeItemProvider
-	extends NamedElementItemProvider {
+extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -56,7 +51,7 @@ public class MappingTypeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addDeactivatedPropertyDescriptor(object);
-			addSourceMMSectionPropertyDescriptor(object);
+			addSourceSectionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -84,19 +79,19 @@ public class MappingTypeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Source MM Section feature.
+	 * This adds a property descriptor for the Source Section feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourceMMSectionPropertyDescriptor(Object object) {
+	protected void addSourceSectionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MappingType_sourceMMSection_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature", "_UI_MappingType_type"),
-				 MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION,
+				 getString("_UI_MappingType_sourceSection_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceSection_feature", "_UI_MappingType_type"),
+				 MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION,
 				 true,
 				 false,
 				 true,

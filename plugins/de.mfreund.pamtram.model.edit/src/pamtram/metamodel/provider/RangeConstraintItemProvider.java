@@ -25,7 +25,7 @@ import pamtram.metamodel.RangeConstraint;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RangeConstraintItemProvider extends MultipleReferencesAttributeValueConstraintItemProvider {
+public class RangeConstraintItemProvider extends MultipleReferencesValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

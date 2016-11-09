@@ -4,14 +4,14 @@ package pamtram.metamodel.provider;
 
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import org.eclipse.emf.edit.provider.StyledString.Fragment;
+
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -20,8 +20,7 @@ import pamtram.metamodel.VirtualAttribute;
  * <!-- end-user-doc -->
  * @generated
  */
-public class VirtualAttributeItemProvider
-extends TargetSectionAttributeItemProvider {
+public class VirtualAttributeItemProvider extends AttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,38 +67,24 @@ extends TargetSectionAttributeItemProvider {
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-
+	
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-
-		VirtualAttribute attribute = (VirtualAttribute) object;
-
-		StyledString styledLabel = new StyledString();
-
-		if(attribute.getName() == null || attribute.getName().isEmpty()) {
-			styledLabel.append((StyledString) super.getStyledText(object));
+		String label = ((VirtualAttribute<?, ?, ?, ?>)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_VirtualAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
-			while(it.hasNext()) {
-				Fragment next = it.next();
-				if(next.getString().equals(attribute.getName())) {
-					// use the 'qualifier styler' for the label
-					styledLabel.append(next.getString(), StyledString.Style.QUALIFIER_STYLER);
-				} else {
-					// every other fragment is added as is
-					styledLabel.append(next.getString(), next.getStyle());
-				}
-			}
+			styledLabel.append(getString("_UI_VirtualAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
-
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

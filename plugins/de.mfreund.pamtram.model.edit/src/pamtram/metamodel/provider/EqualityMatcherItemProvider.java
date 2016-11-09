@@ -5,6 +5,7 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -13,8 +14,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.metamodel.AttributeValueConstraintType;
+import pamtram.metamodel.ValueConstraintType;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -25,7 +25,7 @@ import pamtram.metamodel.MetamodelPackage;
  * @generated
  */
 public class EqualityMatcherItemProvider
-extends SingleReferenceAttributeValueConstraintItemProvider {
+extends SingleReferenceValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -81,10 +81,10 @@ extends SingleReferenceAttributeValueConstraintItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		AttributeValueConstraintType constraintType = ((EqualityMatcher) object).getType();
-		if(constraintType.equals(AttributeValueConstraintType.INCLUSION)) {
+		ValueConstraintType constraintType = ((EqualityMatcher) object).getType();
+		if(constraintType.equals(ValueConstraintType.INCLUSION)) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/EqualityMatcher_Inclusion"));			
-		} else if(constraintType.equals(AttributeValueConstraintType.EXCLUSION)) {
+		} else if(constraintType.equals(ValueConstraintType.EXCLUSION)) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/EqualityMatcher_Exclusion"));			
 		} else {
 			return null;
@@ -110,16 +110,20 @@ extends SingleReferenceAttributeValueConstraintItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
+		
+		initializeLabelRelatedChildrenFeatureNotifications(object);
 
 		String label = ((EqualityMatcher)object).getName();
 		String value = ((EqualityMatcher)object).getExpression();
 
 		StyledString styledLabel = new StyledString();
 
-		if(value != null) {
+		if(value != null && !value.isEmpty()) {
 			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
 		} else {
-			styledLabel.append(label == null || label.length() == 0 ? "" : label);
+			
+			List<String> sources = ((EqualityMatcher)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
 
 		return styledLabel;

@@ -19,7 +19,7 @@ import pamtram.condition.And;
  * @generated
  */
 public class AndItemProvider
-	extends MultipleConditionOperatorItemProvider {
+	extends VariadicConditionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

@@ -53,7 +53,7 @@ extends NamedElementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addDeactivatedPropertyDescriptor(object);
-			addConditionRefPropertyDescriptor(object);
+			addSharedConditionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -81,19 +81,19 @@ extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Condition Ref feature.
+	 * This adds a property descriptor for the Shared Condition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConditionRefPropertyDescriptor(Object object) {
+	protected void addSharedConditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConditionalElement_conditionRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_conditionRef_feature", "_UI_ConditionalElement_type"),
-				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF,
+				 getString("_UI_ConditionalElement_sharedCondition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
+				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION,
 				 true,
 				 false,
 				 true,
@@ -114,7 +114,7 @@ extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION);
+			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
 		}
 		return childrenFeatures;
 	}
@@ -195,7 +195,7 @@ extends NamedElementItemProvider {
 			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__DEACTIVATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__CONDITION:
+			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__LOCAL_CONDITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -215,28 +215,33 @@ extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
-				 ConditionFactory.eINSTANCE.createSectionCondition()));
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 
 	/**

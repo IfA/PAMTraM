@@ -15,7 +15,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.commands.ReplacingDragAndDropAddCommand;
+
+import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSection;

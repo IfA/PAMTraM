@@ -28,20 +28,20 @@ import pamtram.provider.PamtramEditPlugin;
  * This is the item provider adapter for the (virtual) ParameterDescription object.
  * The concepts are copied from the EMF book (Section 19.2.2).
  */
-public class ParameterDescriptionItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
-	
+public class ParameterDescriptionItemProvider
+extends ItemProviderAdapter
+implements
+IEditingDomainItemProvider,
+IStructuredItemContentProvider,
+ITreeItemContentProvider,
+IItemLabelProvider,
+IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 */
 	public ParameterDescriptionItemProvider(AdapterFactory adapterFactory, LibraryEntry libraryEntry) {
-		/* 
+		/*
 		 * As this item provider is not going to get created via the usual 'adapterFactory.adapt(...)' mechanism
 		 * but instead via a direct call of the constructor, we need to explicitly add the item provider to the
 		 * 'eAdapters' of the library entry.
@@ -57,31 +57,32 @@ public class ParameterDescriptionItemProvider
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			/* The 'parameters' feature of the 'LibraryEntry' shall be treated as if it belongs
 			 * to this item provider.
 			 */
-			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
+			this.childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
+			this.childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
-	
+
 	/**
 	 * This returns the children of the real parent object, instead of the children of this virtual parent object.
 	 */
 	@Override
 	public Collection<?> getChildren(Object object) {
-		return super.getChildren(target);
+		return super.getChildren(this.target);
 	}
-	
+
 	/**
 	 * This returns the child descriptors of the real parent object, instead of the children of this virtual parent object.
 	 */
 	@Override
 	public Collection<?> getNewChildDescriptors(Object object,
 			EditingDomain editingDomain, Object sibling) {
-		return super.getNewChildDescriptors(target, editingDomain, sibling);
+		return super.getNewChildDescriptors(this.target, editingDomain, sibling);
 	}
 
 	/**
@@ -89,17 +90,17 @@ public class ParameterDescriptionItemProvider
 	 */
 	@Override
 	public Object getParent(Object object) {
-		return target;
+		return this.target;
 	}
-	
+
 	/**
 	 * This returns LibraryEntry.gif.
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LibraryEntry"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/LibraryEntry"));
 	}
-	
+
 	/**
 	 * This returns the label text for the adapted class.
 	 */
@@ -107,21 +108,21 @@ public class ParameterDescriptionItemProvider
 	public String getText(Object object) {
 		return "ParameterDescription";
 	}
-	
+
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		/*
 		 * Handle only those notifications for which this object is the virtual parent.
 		 */
 		switch (notification.getFeatureID(LibraryEntry.class)) {
 			case MetamodelPackage.LIBRARY_ENTRY__PARAMETERS:
-				 fireNotifyChanged(new NotificationWrapper(this, notification)); return;
+				this.fireNotifyChanged(new NotificationWrapper(this, notification)); return;
 		}
 	}
 
@@ -140,7 +141,7 @@ public class ParameterDescriptionItemProvider
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 	}
-	
+
 	/**
 	 * Treat any command as if it was executed on the real parent and not on this virtual parent.
 	 */
@@ -148,9 +149,9 @@ public class ParameterDescriptionItemProvider
 	public Command createCommand(Object object, EditingDomain domain,
 			Class<? extends Command> commandClass,
 			CommandParameter commandParameter) {
-		commandParameter.setOwner(target);
-		return super.createCommand(target, domain, commandClass, commandParameter);
+		commandParameter.setOwner(this.target);
+		return super.createCommand(this.target, domain, commandClass, commandParameter);
 	}
-	
+
 
 }

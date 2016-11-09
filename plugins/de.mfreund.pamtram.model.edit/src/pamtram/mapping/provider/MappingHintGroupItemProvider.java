@@ -19,13 +19,13 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
+import pamtram.commands.BasicDragAndDropSetCommand;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
+import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroup} object.
@@ -57,7 +57,7 @@ extends MappingHintGroupTypeItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addDeactivatedPropertyDescriptor(object);
-			addConditionRefPropertyDescriptor(object);
+			addSharedConditionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -85,19 +85,19 @@ extends MappingHintGroupTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Condition Ref feature.
+	 * This adds a property descriptor for the Shared Condition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConditionRefPropertyDescriptor(Object object) {
+	protected void addSharedConditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConditionalElement_conditionRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_conditionRef_feature", "_UI_ConditionalElement_type"),
-				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF,
+				 getString("_UI_ConditionalElement_sharedCondition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
+				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION,
 				 true,
 				 false,
 				 true,
@@ -118,8 +118,8 @@ extends MappingHintGroupTypeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER);
+			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
+			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR);
 		}
 		return childrenFeatures;
 	}
@@ -193,8 +193,8 @@ extends MappingHintGroupTypeItemProvider {
 			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__CONDITION:
-			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
+			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
+			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -214,33 +214,38 @@ extends MappingHintGroupTypeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION,
-				 ConditionFactory.eINSTANCE.createSectionCondition()));
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-				 MappingFactory.eINSTANCE.createModelConnectionHint()));
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
+				 MappingFactory.eINSTANCE.createContainerSelector()));
 	}
 
 	/**
@@ -252,12 +257,12 @@ extends MappingHintGroupTypeItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 
-		collectNewChildDescriptorsGen(newChildDescriptors, object);
+		this.collectNewChildDescriptorsGen(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-						MappingFactory.eINSTANCE.createModelConnectionHintWithSourceAndTarget()));
+		(this.createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
+						MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
 
 	}
 
@@ -266,8 +271,8 @@ extends MappingHintGroupTypeItemProvider {
 			Object child, Collection<?> selection) {
 
 		// provide labels for the custom child descriptors
-		if(child instanceof ModelConnectionHint) {
-			ModelConnectionHint modelConnectionHint = (ModelConnectionHint) child;
+		if(child instanceof ContainerSelector) {
+			ContainerSelector modelConnectionHint = (ContainerSelector) child;
 			if(!modelConnectionHint.getSourceElements().isEmpty() &&
 					!modelConnectionHint.getTargetAttributes().isEmpty()) {
 				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Source and Target Attribute)";
@@ -281,10 +286,10 @@ extends MappingHintGroupTypeItemProvider {
 			int operation, Collection<?> collection) {
 
 		if(collection.size() == 1) {
-			Object object = (Object) collection.iterator().next();
+			Object object = collection.iterator().next();
 			if(object instanceof ComplexCondition) {
 				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-						PamtramPackage.Literals.CONDITIONAL_ELEMENT__CONDITION_REF, object, 0);
+						PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, object, 0);
 			}
 		}
 		

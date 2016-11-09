@@ -165,26 +165,49 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.condition.SectionCondition} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.condition.CardinalityCondition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SectionConditionItemProvider sectionConditionItemProvider;
+	protected CardinalityConditionItemProvider cardinalityConditionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.condition.SectionCondition}.
+	 * This creates an adapter for a {@link pamtram.condition.CardinalityCondition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSectionConditionAdapter() {
-		if (sectionConditionItemProvider == null) {
-			sectionConditionItemProvider = new SectionConditionItemProvider(this);
+	public Adapter createCardinalityConditionAdapter() {
+		if (cardinalityConditionItemProvider == null) {
+			cardinalityConditionItemProvider = new CardinalityConditionItemProvider(this);
 		}
 
-		return sectionConditionItemProvider;
+		return cardinalityConditionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.condition.ApplicationDependency} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ApplicationDependencyItemProvider applicationDependencyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.condition.ApplicationDependency}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createApplicationDependencyAdapter() {
+		if (applicationDependencyItemProvider == null) {
+			applicationDependencyItemProvider = new ApplicationDependencyItemProvider(this);
+		}
+
+		return applicationDependencyItemProvider;
 	}
 
 	/**
@@ -290,7 +313,8 @@ public class ConditionItemProviderAdapterFactory extends ConditionAdapterFactory
 		if (orItemProvider != null) orItemProvider.dispose();
 		if (notItemProvider != null) notItemProvider.dispose();
 		if (attributeConditionItemProvider != null) attributeConditionItemProvider.dispose();
-		if (sectionConditionItemProvider != null) sectionConditionItemProvider.dispose();
+		if (cardinalityConditionItemProvider != null) cardinalityConditionItemProvider.dispose();
+		if (applicationDependencyItemProvider != null) applicationDependencyItemProvider.dispose();
 	}
 
 }

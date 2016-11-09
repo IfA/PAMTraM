@@ -5,33 +5,35 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.metamodel.AttributeValueConstraintType;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.MappingModel;
+import pamtram.condition.ComplexCondition;
+import pamtram.condition.ConditionPackage;
+import pamtram.mapping.MappingFactory;
+import pamtram.mapping.MappingPackage;
+import pamtram.mapping.provider.ExpressionHintItemProvider;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeBound;
-
 import pamtram.provider.PamtramEditPlugin;
-
-import pamtram.util.PamtramItemProviderAdapter;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.RangeBound} object.
@@ -39,15 +41,8 @@ import pamtram.util.PamtramItemProviderAdapter;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RangeBoundItemProvider 
-	extends PamtramItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource,
-		IItemStyledLabelProvider {
+public class RangeBoundItemProvider
+extends ExpressionHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -69,27 +64,26 @@ public class RangeBoundItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addBoundReferenceValuePropertyDescriptor(object);
+			addResultModifierPropertyDescriptor(object);
 			addBoundTypePropertyDescriptor(object);
-			addExpressionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Bound Reference Value feature.
+	 * This adds a property descriptor for the Result Modifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBoundReferenceValuePropertyDescriptor(Object object) {
+	protected void addResultModifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_RangeBound_boundReferenceValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeBound_boundReferenceValue_feature", "_UI_RangeBound_type"),
-				 MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE,
+				 getString("_UI_ModifiableHint_resultModifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
 				 true,
 				 false,
 				 true,
@@ -121,28 +115,6 @@ public class RangeBoundItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Expression feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addExpressionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RangeBound_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeBound_expression_feature", "_UI_RangeBound_type"),
-				 MetamodelPackage.Literals.RANGE_BOUND__EXPRESSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -155,6 +127,7 @@ public class RangeBoundItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -193,25 +166,32 @@ public class RangeBoundItemProvider
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		AttributeValueConstraintType labelValue = ((RangeBound)object).getBoundType();
-		String label = labelValue == null ? null : labelValue.toString();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER); 
+		this.initializeLabelRelatedChildrenFeatureNotifications(object);
+
+		String value = ((RangeBound)object).getExpression();
+
+		StyledString styledLabel = new StyledString();
+		styledLabel.append(this.getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
+
+		if(value != null && !value.isEmpty()) {
+			styledLabel.append(value, StyledString.Style.COUNTER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_RangeBound_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+
+			List<String> sources = ((RangeBound)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
+
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -226,10 +206,10 @@ public class RangeBoundItemProvider
 
 		switch (notification.getFeatureID(RangeBound.class)) {
 			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
-			case MetamodelPackage.RANGE_BOUND__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -241,16 +221,68 @@ public class RangeBoundItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
+		if(!(object instanceof EObject)) {
+			return;
+		}
+
+		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of
+		// Conditions
+		//
+		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
+				MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
+
+			newChildDescriptors.add
+			(this.createChildParameter
+					(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
+							MetamodelFactory.eINSTANCE.createInstancePointer()));
+		}
+
+		// Do not allow to add local/external source attributes below
+		// Conditions that are located inside a ConditionModel or that are MappingModel conditions
+		//
+		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
+				MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
+
+			// Do not allow to add local/external source attributes below
+			// AttributeConditions that are located inside a ConditionModel
+			//
+			ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object, ConditionPackage.eINSTANCE.getComplexCondition());
+			if (condition == null
+					|| !condition.isConditionModelCondition() && !(condition.eContainer() instanceof MappingModel)) {
+
+				newChildDescriptors.add
+				(this.createChildParameter
+						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+								MetamodelFactory.eINSTANCE.createValueConstraintSourceElement()));
+
+				newChildDescriptors.add
+				(this.createChildParameter
+						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+								MetamodelFactory.eINSTANCE.createValueConstraintExternalSourceElement()));
+			}
+
+			// Do not allow to add global attribute importers below
+			// Conditions that are MappingModel conditions
+			//
+			if (condition == null || !(condition.eContainer() instanceof MappingModel)) {
+				newChildDescriptors.add
+				(this.createChildParameter
+						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+								MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+			}
+		}
+
 		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
-				 MetamodelFactory.eINSTANCE.createInstancePointer()));
+		(this.createChildParameter
+				(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+						MappingFactory.eINSTANCE.createFixedValue()));
 	}
 
 	/**
@@ -262,6 +294,29 @@ public class RangeBoundItemProvider
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
+	}
+
+	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+			Collection<?> collection, int index) {
+
+		if(feature.equals(MetamodelPackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
+				!AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping())
+				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.createAddCommand(domain, owner, feature, collection, index);
+	}
+
+	@Override
+	public AbstractCommand createDragAndDropCommand(EditingDomain domain, Collection<EObject> collection,
+			EObject parent, EReference ref) {
+		if(ref.equals(MetamodelPackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
+				!AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping())
+				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.createDragAndDropCommand(domain, collection, parent, ref);
 	}
 
 }

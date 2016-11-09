@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PAMTraM Edit
 Bundle-SymbolicName: de.mfreund.pamtram.model.edit;singleton:=true
-Bundle-Version: 1.6.0.qualifier
+Bundle-Version: 1.7.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: pamtram.provider.PamtramEditPlugin$Implementation
 Bundle-Vendor: Matthias Freund,
@@ -10,25 +10,26 @@ Bundle-Vendor: Matthias Freund,
  TU Dresden
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: pamtram.condition.provider,
+Export-Package: pamtram.commands,
+ pamtram.condition.provider,
  pamtram.converter,
- pamtram.mapping.commands,
  pamtram.mapping.provider,
  pamtram.metamodel.provider,
  pamtram.provider,
  pamtram.util
 Require-Bundle: org.eclipse.core.runtime,
- de.mfreund.pamtram.model;bundle-version="1.6.0";visibility:=reexport,
+ de.mfreund.pamtram.model;bundle-version="1.7.0";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
- de.tud.et.ifa.agtele.genlibrary;bundle-version="1.0.12";visibility:=reexport,
+ de.tud.et.ifa.agtele.genlibrary;bundle-version="1.2.0";visibility:=reexport,
  org.eclipse.swt,
  org.eclipse.core.resources,
- de.tud.et.ifa.agtele.genlibrary.edit;bundle-version="1.0.10";visibility:=reexport,
+ de.tud.et.ifa.agtele.genlibrary.edit;bundle-version="1.1.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.common,
  org.eclipse.xsd,
- de.tud.et.ifa.agtele.eclipse.commons;bundle-version="0.1.1",
- de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="0.2.1",
+ de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",
+ de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.0.0",
  org.eclipse.jface,
- org.eclipse.ui.ide;bundle-version="3.11.0"
+ org.eclipse.ui.ide;bundle-version="3.11.0",
+ de.mfreund.pamtram;bundle-version="1.7.0"
 Bundle-ActivationPolicy: lazy

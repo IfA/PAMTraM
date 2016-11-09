@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.MappingModel;
 import pamtram.PamtramPackage;
+import pamtram.condition.ConditionFactory;
 import pamtram.mapping.MappingFactory;
 
 /**
@@ -49,6 +50,7 @@ public class MappingModelItemProvider
 			super.getPropertyDescriptors(object);
 
 			addDeactivatedPropertyDescriptor(object);
+			addSharedConditionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -76,6 +78,28 @@ public class MappingModelItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Shared Condition feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSharedConditionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConditionalElement_sharedCondition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
+				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -87,6 +111,7 @@ public class MappingModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__MAPPING);
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS);
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES);
@@ -168,6 +193,7 @@ public class MappingModelItemProvider
 			case PamtramPackage.MAPPING_MODEL__DEACTIVATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case PamtramPackage.MAPPING_MODEL__LOCAL_CONDITION:
 			case PamtramPackage.MAPPING_MODEL__MAPPING:
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
@@ -190,13 +216,43 @@ public class MappingModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createAnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createOr()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createNot()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createAttributeCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__MAPPING,
 				 MappingFactory.eINSTANCE.createMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS,
-				 MappingFactory.eINSTANCE.createAttributeValueModifierSet()));
+				 MappingFactory.eINSTANCE.createValueModifierSet()));
 
 		newChildDescriptors.add
 			(createChildParameter

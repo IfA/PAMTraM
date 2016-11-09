@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -23,9 +20,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.MappingFactory;
-import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -61,7 +57,7 @@ extends MatcherItemProvider {
 
 			addExpressionPropertyDescriptor(object);
 			addResultModifierPropertyDescriptor(object);
-			addTargetAttributePropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,6 +107,28 @@ extends MatcherItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeMatcher_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_target_feature", "_UI_AttributeMatcher_type"),
+				 MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Target Attribute feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,7 +140,7 @@ extends MatcherItemProvider {
 						getResourceLocator(),
 						getString("_UI_AttributeMatcher_targetAttribute_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_targetAttribute_feature", "_UI_AttributeMatcher_type"),
-						MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE,
+						MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET,
 						true,
 						false,
 						true,
@@ -134,7 +152,7 @@ extends MatcherItemProvider {
 			public Collection<?> getChoiceOfValues(Object object) {
 				//the parent MappingInstanceSelector
 				Collection<TargetSectionAttribute> choices=new LinkedList<TargetSectionAttribute>();
-				Collection<TargetSectionClass>refClasses=((MappingInstanceSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
+				Collection<TargetSectionClass>refClasses=((ReferenceTargetSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
 
 				/*
 				 * Only show attributes that belong to an Class that was modeled as the reference's value
@@ -162,7 +180,7 @@ extends MatcherItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES);
+			childrenFeatures.add(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -171,8 +189,8 @@ extends MatcherItemProvider {
 	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
 		if(labelRelatedChildrenFeatures == null) {
 			labelRelatedChildrenFeatures = new ArrayList<>();
-			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMatcher_SourceAttributes());
-			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMatcher_TargetAttribute());
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMatcher_SourceElements());
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMatcher_Target());
 		}
 		return labelRelatedChildrenFeatures;
 	}
@@ -226,7 +244,7 @@ extends MatcherItemProvider {
 		AttributeMatcher am = ((AttributeMatcher)object);
 		StyledString styledLabel = new StyledString();
 
-		String label = (am.getTargetAttribute() != null ? am.getTargetAttribute().getName() : null);
+		String label = (am.getTarget() != null ? am.getTarget().getName() : null);
 
 		if(label != null) {
 			styledLabel.append(label);
@@ -236,7 +254,7 @@ extends MatcherItemProvider {
 			styledLabel.append(" == " + am.getExpression(), StyledString.Style.COUNTER_STYLER);
 		} else {
 			ArrayList<String> sources = new ArrayList<>();
-			for (AttributeMatcherSourceInterface source : am.getSourceAttributes()) {
+			for (AttributeMatcherSourceInterface source : am.getSourceElements()) {
 				sources.add(source.getName());
 			} 
 			styledLabel.append(" == " + String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
@@ -259,7 +277,7 @@ extends MatcherItemProvider {
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES:
+			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -285,23 +303,28 @@ extends MatcherItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
+				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMatcherSourceElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
+				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
+				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
+				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMatcherExternalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createAttributeMatcherGlobalSourceElement()));
 	}
 
 }

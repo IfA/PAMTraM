@@ -5,6 +5,7 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -24,7 +25,7 @@ import pamtram.metamodel.SubstringMatcher;
  * @generated
  */
 public class SubstringMatcherItemProvider
-	extends SingleReferenceAttributeValueConstraintItemProvider {
+	extends SingleReferenceValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -99,17 +100,26 @@ public class SubstringMatcherItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
+		initializeLabelRelatedChildrenFeatureNotifications(object);
+
 		String label = ((SubstringMatcher)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SubstringMatcher_type"), StyledString.Style.QUALIFIER_STYLER); 
+		String value = ((SubstringMatcher)object).getExpression();
+
+		StyledString styledLabel = new StyledString();
+		styledLabel.append(getString("_UI_SubstringMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
+
+		if(value != null && !value.isEmpty()) {
+			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_SubstringMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			
+			List<String> sources = ((SubstringMatcher)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
+
 		return styledLabel;
 	}
 

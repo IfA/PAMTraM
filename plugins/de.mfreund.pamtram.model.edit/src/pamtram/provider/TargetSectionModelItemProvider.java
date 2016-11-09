@@ -22,8 +22,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
-import pamtram.mapping.commands.DeleteLibraryEntryCommand;
-import pamtram.mapping.commands.ReplacingDragAndDropAddCommand;
+import pamtram.commands.DeleteLibraryEntryCommand;
+import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
@@ -47,18 +47,17 @@ extends SectionModelItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT call 'super.getPropertyDescriptors' every time to add/hide the
+	 *            'SectionModelFilePropertyDescriptor' based on the currently selected object
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
 
-		}
-		return itemPropertyDescriptors;
+		this.itemPropertyDescriptors = null;
+		super.getPropertyDescriptors(object);
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -71,11 +70,11 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
+			this.childrenFeatures.add(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -99,7 +98,7 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionModel"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/TargetSectionModel"));
 	}
 
 	/**
@@ -110,7 +109,7 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -133,11 +132,11 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSectionModel.class)) {
 			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -157,7 +156,7 @@ extends SectionModelItemProvider {
 
 	/**
 	 * If one or more library entries are to be deleted, this does not use the default command but instead
-	 * the custom {@link DeleteLibraryEntryCommand} that also removes the resource that holds the 
+	 * the custom {@link DeleteLibraryEntryCommand} that also removes the resource that holds the
 	 * original {@link LibraryEntry}.
 	 */
 	@Override
@@ -171,7 +170,7 @@ extends SectionModelItemProvider {
 					throw new RuntimeException("Internal Error! This can only delete LibraryEntries...");
 				} else {
 					// create a DeleteLibraryEntryCommand for every entry to be deleted
-					compoundCommand.append(new DeleteLibraryEntryCommand(domain, ((TargetSectionModel) owner), ((pamtram.metamodel.LibraryEntry) object)));
+					compoundCommand.append(new DeleteLibraryEntryCommand(domain, (TargetSectionModel) owner, (pamtram.metamodel.LibraryEntry) object));
 				}
 			}
 			return compoundCommand;
@@ -183,22 +182,22 @@ extends SectionModelItemProvider {
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
 			int operation, Collection<?> collection) {
-		
+
 		/*
 		 *  Allow to drop Classes onto this SectionModel.
 		 */
-		
+
 		if(collection.isEmpty()) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		HashMap<EObject, EObject> targetSectionClassMap = new HashMap<>();
-		
+
 		for (Object object : collection) {
-	
+
 			if(object instanceof TargetSectionClass) {
 				if(object instanceof TargetSection) {
-					targetSectionClassMap.put((TargetSectionClass) object, (TargetSectionClass) object);					
+					targetSectionClassMap.put((TargetSectionClass) object, (TargetSectionClass) object);
 				} else {
 					targetSectionClassMap.put((TargetSectionClass) object, MetamodelFactory.eINSTANCE.createTargetSection());
 				}
@@ -206,9 +205,9 @@ extends SectionModelItemProvider {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
-		
-		return  new ReplacingDragAndDropAddCommand(domain, (EObject) owner, PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, 
+
+		return  new ReplacingDragAndDropAddCommand(domain, (EObject) owner, PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
 				(Collection<EObject>) targetSectionClassMap.keySet(), targetSectionClassMap.values());
-		
+
 	}
 }

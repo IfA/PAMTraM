@@ -3,34 +3,43 @@
 		This updates the contents of the update site on the web server.
     </description>
 	
-	<!-- the folder that shall contain the update site -->
-	<property name="update-site-url" location="G:\staff\matthias\projects\pamtram\updates"/>
+	<!-- the URl of the server -->
+	<property name="server-url" value="sftp://root@eats3.et.tu-dresden.de/"/>
+	
+	<!-- the folder (on the server) that shall contain the update site -->
+	<property name="remote-path" value="/srv/projects/pamtram/eclipse/updates/"/>
 	
 	<!-- whether to delete the local update site files at the end -->
 	<property name="delete-local" value="true" />
-	
-	<!-- ================================= 
-	          target: dir.check              
-	         ================================= -->
-	<target name="dir.check">
-		<!-- check if the folder representing the update site exists -->
-		<condition property="dir.exists">
-			<available file="${update-site-url}" type="dir"/>
-		</condition>
-	</target>
 
 	<!-- ================================= 
 	          target: publish              
 	         ================================= -->
-	<target name="publish" depends="dir.check" if="dir.exists">
+	<target name="publish">
 
 		<echo>Publishing to update site...</echo>
 		
 		<!-- copy the 'features' and 'plugins' folder as well as 'artifacts.jar' and 'content.jar'
 			to the specified directory representing the update site -->
-		<copy todir="${update-site-url}">
-			<fileset refid="update-site" />
-		</copy>
+		
+		<exec executable="WinSCP.com"> <!-- WinSCP.com is expected to be on the Windows path! -->
+			<arg value="/command" />
+			<!-- open a connection to the server -->
+			<arg value="open ${server-url}" />
+			
+			<!-- force overwrite -->
+			<arg value="option confirm off" />
+			
+			<!-- copy the files -->
+			<arg value="put ${basedir}\content.jar ${remote-path}" />
+			<arg value="put ${basedir}\artifacts.jar ${remote-path}" />
+			<arg value="put ${basedir}\features/ ${remote-path}" />
+			<arg value="put ${basedir}\plugins/ ${remote-path}" />
+			
+			<!-- close the connection -->
+			<arg value="close" />
+			<arg value="exit" />
+		</exec>
 	</target>
 	
 	<!-- ================================= 

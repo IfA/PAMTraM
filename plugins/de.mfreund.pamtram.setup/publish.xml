@@ -3,28 +3,36 @@
 		This updates the setup on the web server.
     </description>
 	
-	<!-- the folder that shall contain the setup -->
-	<property name="setup-url" location="G:\staff\matthias\projects\pamtram\setup"/>
+	<!-- the URl of the server -->
+	<property name="server-url" value="sftp://root@eats3.et.tu-dresden.de/"/>
 	
-	<!-- ================================= 
-	          target: dir.check              
-	         ================================= -->
-	<target name="dir.check">
-		<!-- check if the folder representing the setup folder exists -->
-		<condition property="dir.exists">
-			<available file="${setup-url}" type="dir"/>
-		</condition>
-	</target>
+	<!-- the folder (on the server) that shall contain the update site -->
+	<property name="remote-path" value="/srv/eclipse/setups/"/>
 
 	<!-- ================================= 
 	          target: publish              
 	         ================================= -->
-	<target name="publish" depends="dir.check" if="dir.exists">
+	<target name="publish">
 
-		<echo>Publishing to setup folder...</echo>
-		
-		<!-- copy the 'features' and 'plugins' folder as well as 'artifacts.jar' and 'content.jar'
-			to the specified directory representing the update site -->
-		<copy todir="${setup-url}" file="PAMTraM.setup" />
-	</target>
+			<echo>Publishing to update site...</echo>
+			
+			<!-- copy the 'features' and 'plugins' folder as well as 'artifacts.jar' and 'content.jar'
+				to the specified directory representing the update site -->
+			
+			<exec executable="WinSCP.com"> <!-- WinSCP.com is expected to be on the Windows path! -->
+				<arg value="/command" />
+				<!-- open a connection to the server -->
+				<arg value="open ${server-url}" />
+				
+				<!-- force overwrite -->
+				<arg value="option confirm off" />
+				
+				<!-- copy the file -->
+				<arg value="put ${basedir}\PAMTraM.setup ${remote-path}" />
+				
+				<!-- close the connection -->
+				<arg value="close" />
+				<arg value="exit" />
+			</exec>
+		</target>
 </project>

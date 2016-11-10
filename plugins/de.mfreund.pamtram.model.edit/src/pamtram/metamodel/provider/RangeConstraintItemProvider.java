@@ -8,13 +8,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeConstraint;
@@ -44,13 +43,13 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addUpperBoundPropertyDescriptor(object);
-			addLowerBoundPropertyDescriptor(object);
+			this.addUpperBoundPropertyDescriptor(object);
+			this.addLowerBoundPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -60,19 +59,19 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	 * @generated
 	 */
 	protected void addUpperBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RangeConstraint_upperBound_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_upperBound_feature", "_UI_RangeConstraint_type"),
-				 MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_RangeConstraint_upperBound_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_upperBound_feature", "_UI_RangeConstraint_type"),
+						MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
+						true,
+						false,
+						false,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -82,19 +81,19 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	 * @generated
 	 */
 	protected void addLowerBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RangeConstraint_lowerBound_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_lowerBound_feature", "_UI_RangeConstraint_type"),
-				 MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add
+		(this.createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_RangeConstraint_lowerBound_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_lowerBound_feature", "_UI_RangeConstraint_type"),
+						MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
+						true,
+						false,
+						false,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -107,12 +106,12 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND);
+			this.childrenFeatures.add(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND);
+			this.childrenFeatures.add(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -136,7 +135,7 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RangeConstraint"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/RangeConstraint"));
 	}
 
 	/**
@@ -147,9 +146,9 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString)this.getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -159,14 +158,14 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((RangeConstraint)object).getName();
-    	StyledString styledLabel = new StyledString();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_RangeConstraint_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_RangeConstraint_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_RangeConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_RangeConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -177,12 +176,12 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(RangeConstraint.class)) {
 			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
 			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -200,36 +199,37 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
-				 MetamodelFactory.eINSTANCE.createRangeBound()));
+						MetamodelFactory.eINSTANCE.createRangeBound()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(this.createChildParameter
 				(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
-				 MetamodelFactory.eINSTANCE.createRangeBound()));
+						MetamodelFactory.eINSTANCE.createRangeBound()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
 
-		boolean qualify =
-			childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND ||
-			childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
+		// Object childFeature = feature;
+		// Object childObject = child;
+		//
+		// boolean qualify =
+		// childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND ||
+		// childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND;
+		//
+		// if (qualify) {
+		// return getString
+		// ("_UI_CreateChild_text2",
+		// new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		// }
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
 

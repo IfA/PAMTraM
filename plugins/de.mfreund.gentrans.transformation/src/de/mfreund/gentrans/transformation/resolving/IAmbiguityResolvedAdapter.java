@@ -84,7 +84,7 @@ public interface IAmbiguityResolvedAdapter {
 
 	/**
 	 * This method is called when a
-	 * {@link IAmbiguityResolvingStrategy#joiningSelectContainerInstance(List, List, pamtram.mapping.MappingHintGroupType, pamtram.mapping.ModelConnectionHint, String)
+	 * {@link IAmbiguityResolvingStrategy#joiningSelectContainerInstance(List, List, pamtram.mapping.MappingHintGroupType, pamtram.mapping.ContainerSelector, String)
 	 * joiningSelectContainerInstance} or
 	 * {@link IAmbiguityResolvingStrategy#joiningSelectConnectionPathAndContainerInstance(java.util.Map, pamtram.metamodel.TargetSection, List, pamtram.mapping.MappingHintGroupType)
 	 * joiningSelectConnectionPathAndContainerInstance} ambiguity has been resolved.
@@ -123,7 +123,7 @@ public interface IAmbiguityResolvedAdapter {
 
 	/**
 	 * This method is called when a
-	 * {@link IAmbiguityResolvingStrategy#linkingSelectTargetInstance(List, pamtram.metamodel.TargetSectionNonContainmentReference, pamtram.mapping.MappingHintGroupType, pamtram.mapping.MappingInstanceSelector, EObjectWrapper)
+	 * {@link IAmbiguityResolvingStrategy#linkingSelectTargetInstance(List, pamtram.metamodel.TargetSectionNonContainmentReference, pamtram.mapping.MappingHintGroupType, pamtram.mapping.ReferenceTargetSelector, EObjectWrapper)
 	 * linkingSelectTargetInstance} or
 	 * {@link IAmbiguityResolvingStrategy#linkingSelectTargetSectionAndInstance(java.util.Map, pamtram.metamodel.TargetSectionNonContainmentReference, pamtram.mapping.MappingHintGroupType)
 	 * linkingSelectTargetSectionAndInstance} ambiguity has been resolved.

@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.resolving.wizards;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.swt.widgets.Dialog;
 
@@ -10,20 +11,21 @@ import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.gentrans.transformation.resolving.enhancing.MappingModelEnhancer;
 
 /**
- * This represents a {@link Runnable} that will spawn an {@link GenericSelectionDialog} that allows a
- * user to select between multiple options during an execution of a {@link GenericTransformationJob generic transformation}.
+ * This represents a {@link Runnable} that will spawn an {@link GenericSelectionDialog} that allows a user to select
+ * between multiple options during an execution of a {@link GenericTransformationJob generic transformation}.
  * <p />
- * Clients can overwrite the {@link #initializeDialog()} method if a sub-class of {@link GenericSelectionDialog} shall be used
- * as dialog.
+ * Clients can overwrite the {@link #initializeDialog()} method if a sub-class of {@link GenericSelectionDialog} shall
+ * be used as dialog.
  *
  * @author mfreund
- * @param <SelectionType> The type of the elements that will be returned by the dialog after the user's selection.
+ * @param <SelectionType>
+ *            The type of the elements that will be returned by the dialog after the user's selection.
  */
 public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogRunner {
 
 	/**
-	 * The index of the option that shall be default selected in the dialog or '<em>null</em>' if no option shall
-	 * be default selected.
+	 * The index of the option that shall be default selected in the dialog or '<em>null</em>' if no option shall be
+	 * default selected.
 	 */
 	protected final int standardSelection;
 
@@ -71,8 +73,6 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 		this.selection = Arrays.asList(options.get(standardSelection));
 	}
 
-
-
 	/**
 	 * This is the getter for the {@link #options}.
 	 *
@@ -108,16 +108,17 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	}
 
 	/**
-	 * Returns a String representation for the given '<em>option</em>' that will be displayed to the user
-	 * in the dialog.
+	 * Returns a String representation for the given '<em>option</em>' that will be displayed to the user in the dialog.
 	 * <p />
 	 * Note: The default implementation simply returns 'option.toString()'.
 	 *
-	 * @param option The option for that the String representation shall be returned.
-	 * @return The String representation for the given '<em>option</em>' that will be displayed to the user
-	 * in the dialog.
+	 * @param option
+	 *            The option for that the String representation shall be returned.
+	 * @return The String representation for the given '<em>option</em>' that will be displayed to the user in the
+	 *         dialog.
 	 */
 	protected String getStringRepresentation(SelectionType option) {
+
 		return option.toString();
 	}
 
@@ -126,15 +127,9 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 *
 	 * @return A list of String representations for the list of {@link #options}.
 	 */
-	protected ArrayList<String> getStringRepresentations() {
+	protected List<String> getStringRepresentations() {
 
-		final ArrayList<String> optionsAsString = new ArrayList<>(this.options.size());
-
-		for (SelectionType option : this.options) {
-			optionsAsString.add(this.getStringRepresentation(option));
-		}
-
-		return optionsAsString;
+		return this.options.stream().map(this::getStringRepresentation).collect(Collectors.toList());
 	}
 
 	@Override
@@ -148,7 +143,7 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	protected void evaluateResults() {
 
 		this.selection = new ArrayList<>();
-		if(this.multiSelectionAllowed) {
+		if (this.multiSelectionAllowed) {
 			for (Integer index : ((GenericSelectionDialog) this.dialog).getSelection()) {
 				this.selection.add(this.options.get(index));
 			}

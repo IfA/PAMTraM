@@ -4,29 +4,31 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.swt.widgets.Dialog;
 
+import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.resolving.enhancing.MappingModelEnhancer;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 /**
- * A {@link GenericSelectionDialogRunner} that will spawn a {@link PathAndInstanceSelectorDialog} in order to enable
- * the user to select between a 'path' as well as an 'instance' to be used.
+ * A {@link GenericSelectionDialogRunner} that will spawn a {@link PathAndInstanceSelectorDialog} in order to enable the
+ * user to select between a 'path' as well as an 'instance' to be used.
  *
  */
-public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<String> {
+public class PathAndInstanceSelectorRunner<PathType> extends GenericSelectionDialogRunner<PathType> {
 
 	/**
-	 * For each path in {@link GenericSelectionDialogRunner#options} this list keeps a list of
-	 * instances represent by an identifier.
+	 * For each path in {@link GenericSelectionDialogRunner#options} this list keeps a list of instances represent by an
+	 * identifier.
 	 */
-	private final List<List<String>> instances;
+	private final List<List<EObjectWrapper>> instances;
 
 	/**
 	 * The instances that have been selected by the user (this will be a subset of {@link #instances}).
 	 */
-	private Set<String> selectedInstances;
+	private Set<EObjectWrapper> selectedInstances;
 
 	/**
 	 * This creates an instance without allowing for multi-selection.
@@ -43,9 +45,9 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	 *            A {@link SelectionListener2} that will be called when the
 	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
 	 */
-	public PathAndInstanceSelectorRunner(final String message,
-			final List<String> paths, final List<List<String>> instances,
-			final MappingModelEnhancer<GenericSelectionDialogRunner<String>> enhanceMappingModelListener) {
+	public PathAndInstanceSelectorRunner(final String message, final List<PathType> paths,
+			final List<List<EObjectWrapper>> instances,
+			final MappingModelEnhancer<GenericSelectionDialogRunner<PathType>> enhanceMappingModelListener) {
 
 		this(message, paths, instances, false, enhanceMappingModelListener);
 	}
@@ -65,9 +67,9 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	 *            A {@link SelectionListener2} that will be called when the
 	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
 	 */
-	public PathAndInstanceSelectorRunner(final String message,
-			final List<String> paths, final List<List<String>> instances, boolean multiSelectionAllowed,
-			final MappingModelEnhancer<GenericSelectionDialogRunner<String>> enhanceMappingModelListener) {
+	public PathAndInstanceSelectorRunner(final String message, final List<PathType> paths,
+			final List<List<EObjectWrapper>> instances, boolean multiSelectionAllowed,
+			final MappingModelEnhancer<GenericSelectionDialogRunner<PathType>> enhanceMappingModelListener) {
 
 		super(message, 0, multiSelectionAllowed, paths, enhanceMappingModelListener);
 
@@ -82,8 +84,10 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	 *
 	 * @return selected Instance after run() was called
 	 */
-	public String getSingleInstance() {
-		return this.selectedInstances == null || this.selectedInstances.isEmpty() ? null : this.selectedInstances.iterator().next();
+	public EObjectWrapper getSingleInstance() {
+
+		return this.selectedInstances == null || this.selectedInstances.isEmpty() ? null
+				: this.selectedInstances.iterator().next();
 	}
 
 	/**
@@ -91,7 +95,8 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	 *
 	 * @return selected Instances after run() was called
 	 */
-	public Set<String> getInstances() {
+	public Set<EObjectWrapper> getInstances() {
+
 		return this.selectedInstances;
 	}
 
@@ -102,28 +107,50 @@ public class PathAndInstanceSelectorRunner extends GenericSelectionDialogRunner<
 	 *
 	 * @return The single selected path after the dialog has finished.
 	 */
-	public String getPath() {
+	public PathType getPath() {
+
 		return this.getSingleSelection();
 	}
 
 	@Override
 	protected void initializeDialog() {
 
-		this.dialog = new PathAndInstanceSelectorDialog(this.message, this.options, this.instances,
-				this.multiSelectionAllowed, this.enhanceMappingModelListener);
+		this.dialog = new PathAndInstanceSelectorDialog(this.message, this.getStringRepresentations(),
+				this.getInstanceStringRepresentations(), this.multiSelectionAllowed, this.enhanceMappingModelListener);
+	}
+
+	/**
+	 * Returns a list of lists of String representations for the {@link #instances}.
+	 *
+	 * @return A list of lists of String representations for the list of {@link #instances}.
+	 */
+	protected List<List<String>> getInstanceStringRepresentations() {
+
+		return this.instances.stream().map(l -> l.stream().map(i -> i.toString()).collect(Collectors.toList()))
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	protected void evaluateResults() {
 
-		String path = ((PathAndInstanceSelectorDialog) this.dialog).getPath();
-		this.selection = Arrays.asList(path);
-		if(!this.multiSelectionAllowed) {
-			this.selectedInstances = new HashSet<>(Arrays.asList(((PathAndInstanceSelectorDialog) this.dialog).getSingleInstance()));
+		int pathIndex = ((PathAndInstanceSelectorDialog) this.dialog).getSingleSelection();
+
+		this.selection = Arrays.asList(this.options.get(pathIndex));
+
+		List<EObjectWrapper> wrappers = this.instances.get(pathIndex);
+
+		if (!this.multiSelectionAllowed) {
+
+			this.selectedInstances = new HashSet<>(Arrays.asList(wrappers.parallelStream()
+					.filter(i -> i.toString().equals(((PathAndInstanceSelectorDialog) this.dialog).getSingleInstance()))
+					.findAny().get()));
+
 		} else {
+
 			this.selectedInstances = new HashSet<>();
 			for (String instance : ((PathAndInstanceSelectorDialog) this.dialog).getInstances()) {
-				this.selectedInstances.add(instance);
+				this.selectedInstances
+						.add(wrappers.parallelStream().filter(i -> i.toString().equals(instance)).findAny().get());
 			}
 		}
 	}

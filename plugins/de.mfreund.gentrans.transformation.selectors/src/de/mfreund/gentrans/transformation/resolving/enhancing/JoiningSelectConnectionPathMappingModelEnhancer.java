@@ -37,7 +37,7 @@ import pamtram.presentation.PamtramEditor;
  * @author mfreund
  */
 public class JoiningSelectConnectionPathMappingModelEnhancer
-extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> {
+		extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> {
 
 	/**
 	 * The {@link TargetSection} that shall be connected via the selected path.
@@ -82,7 +82,8 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 
 		ModelConnectionPath selectedPath = this.dialogRunner.getSingleSelection();
 
-		Optional<TargetSection> rootSectionOptional = pamtramToEnhance.getTargetSections().parallelStream().filter(t -> selectedPath.getPathRootClass().equals(t.getEClass())).findAny();
+		Optional<TargetSection> rootSectionOptional = pamtramToEnhance.getTargetSections().parallelStream()
+				.filter(t -> selectedPath.getPathRootClass().equals(t.getEClass())).findAny();
 
 		// The root element of the path (either an already existing element from the pamtram model or a newly created).
 		//
@@ -108,7 +109,7 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 			if (!rootSectionOptional.isPresent()) {
 				this.pamtramModel.getTargetSectionModel().get(0).getMetaModelSections().add(rootSection);
 			}
-			this.sectionToConnect.setContainer(this.finalClass);
+			this.sectionToConnect.setContainer(this.finalClass == null ? rootSection : this.finalClass);
 
 			// finally, we save the model
 			try {
@@ -143,7 +144,8 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 								PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, rootSection));
 			}
 			addCommand.append(new SetCommand(editor.getEditingDomain(), sectionToConnectMatch,
-					MetamodelPackage.Literals.CLASS__CONTAINER, this.finalClass));
+					MetamodelPackage.Literals.CLASS__CONTAINER,
+					this.finalClass == null ? rootSection : this.finalClass));
 			editor.getEditingDomain().getCommandStack().execute(addCommand);
 
 		}
@@ -194,4 +196,3 @@ extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> 
 	}
 
 }
-

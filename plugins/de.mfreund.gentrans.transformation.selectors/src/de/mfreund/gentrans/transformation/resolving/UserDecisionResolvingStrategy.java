@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Display;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
@@ -230,6 +231,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
+		JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer enhancer = new JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer(
+				this.pamtramModel, section);
 		final PathAndInstanceSelectorRunner<ModelConnectionPath> dialog = new PathAndInstanceSelectorRunner<>(
 				sectionInstances.size() + " Instance" + (sectionInstances.size() > 1 ? "s" : "")
 						+ " of the TargetSection '" + section.getName() + "', created by the mapping '"
@@ -240,7 +243,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						+ " to be put at a sensible position in the target model. "
 						+ "Please choose one of the possible connections to other existing target model elements"
 						+ " below.",
-				new ArrayList<>(choices.keySet()), new ArrayList<>(choices.values()), null);
+				new ArrayList<>(choices.keySet()), new ArrayList<>(choices.values()), enhancer);
 
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {

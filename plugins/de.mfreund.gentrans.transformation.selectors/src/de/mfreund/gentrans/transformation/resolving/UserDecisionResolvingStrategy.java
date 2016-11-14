@@ -15,6 +15,7 @@ import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathMappingModelEnhancer;
+import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectContainerInstanceMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
@@ -22,6 +23,7 @@ import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDi
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.metamodel.TargetSection;
@@ -282,8 +284,14 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 							: "this " + sectionInstances.size() + "element")
 					+ " should be inserted.\n\n" + "Attribute value: " + hintValue;
 		}
+
+		JoiningSelectContainerInstanceMappingModelEnhancer enhancer = hintGroup instanceof MappingHintGroup
+				? new JoiningSelectContainerInstanceMappingModelEnhancer(this.pamtramModel,
+						(MappingHintGroup) hintGroup)
+				: null;
+
 		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(message, 0,
-				false, choices, null);
+				false, choices, enhancer);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new AmbiguityResolvingException(new UserAbortException());

@@ -28,14 +28,14 @@ import de.tud.et.ifa.agtele.ui.util.UIHelper;
 public abstract class AbstractDialog extends Dialog {
 
 	/**
-	 * This keeps track of the last location where a dialog was situated (possibly after being moved by the user). We use
-	 * this to open each new dialog at the same exact position.
+	 * This keeps track of the last location where a dialog was situated (possibly after being moved by the user). We
+	 * use this to open each new dialog at the same exact position.
 	 */
 	protected static Point lastLocation;
 
 	/**
-	 * This keeps track of the last size of a dialog (possibly after being resized by the user). We use
-	 * this to open each new dialog with the same exact size.
+	 * This keeps track of the last size of a dialog (possibly after being resized by the user). We use this to open
+	 * each new dialog with the same exact size.
 	 */
 	protected static Point lastSize;
 
@@ -60,14 +60,14 @@ public abstract class AbstractDialog extends Dialog {
 	protected Button abortTransFormationButton;
 
 	/**
-	 * This is the {@link Label} that dispalys the {@link #message} to the user and that is placed at the top
-	 * of the dialog.
+	 * This is the {@link Label} that dispalys the {@link #message} to the user and that is placed at the top of the
+	 * dialog.
 	 */
 	protected Label dialogMessage;
 
 	/**
-	 * This is the {@link Composite} that holds the {@link #okButton} and the {@link #abortTransFormationButton}
-	 * and that is placed at the bottom of the dialog.
+	 * This is the {@link Composite} that holds the {@link #okButton} and the {@link #abortTransFormationButton} and
+	 * that is placed at the bottom of the dialog.
 	 */
 	protected Composite buttonComposite;
 
@@ -151,13 +151,16 @@ public abstract class AbstractDialog extends Dialog {
 		this.shell.redraw();
 
 		this.shell.addControlListener(new ControlAdapter() {
+
 			@Override
 			public void controlMoved(final ControlEvent e) {
+
 				AbstractDialog.lastLocation = AbstractDialog.this.shell.getLocation();
 			}
 
 			@Override
 			public void controlResized(final ControlEvent e) {
+
 				gd_dialogMessage.widthHint = AbstractDialog.this.shell.getClientArea().width
 						- 2 * gridLayout.marginWidth;
 				AbstractDialog.this.shell.layout(true);
@@ -175,8 +178,7 @@ public abstract class AbstractDialog extends Dialog {
 		final GridLayout gl_composite = new GridLayout(3, true);
 		gl_composite.verticalSpacing = 0;
 		this.buttonComposite.setLayout(gl_composite);
-		final GridData gd_composite = new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 1, 1);
+		final GridData gd_composite = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
 		gd_composite.widthHint = 564;
 		this.buttonComposite.setLayoutData(gd_composite);
 
@@ -185,8 +187,7 @@ public abstract class AbstractDialog extends Dialog {
 			AbstractDialog.this.transformationStopRequested = true;
 			AbstractDialog.this.shell.dispose();
 		});
-		final GridData gd_abortTransFormationButton = new GridData(SWT.LEFT,
-				SWT.FILL, true, false, 1, 1);
+		final GridData gd_abortTransFormationButton = new GridData(SWT.LEFT, SWT.FILL, true, false, 1, 1);
 		gd_abortTransFormationButton.minimumWidth = 80;
 		gd_abortTransFormationButton.minimumHeight = 35;
 		this.abortTransFormationButton.setLayoutData(gd_abortTransFormationButton);
@@ -200,12 +201,16 @@ public abstract class AbstractDialog extends Dialog {
 		this.enhanceMappingModelButton.setLayoutData(gd_enhanceMappingModelButton);
 		if (this.enhanceMappingModelListener != null) {
 			this.enhanceMappingModelButton.addSelectionListener(this.enhanceMappingModelListener);
+			this.enhanceMappingModelButton.addSelectionListener((SelectionListener2) e -> {
+				AbstractDialog.this.transformationStopRequested = true;
+				AbstractDialog.this.shell.dispose();
+			});
 		} else {
 			this.enhanceMappingModelButton.setEnabled(false);
 		}
 		this.enhanceMappingModelButton.setText("Enhance PAMTraM Model");
-		this.enhanceMappingModelButton.setToolTipText(
-				"Enhance the PAMTraM model (e.g. by creating additional mapping hints) to prevent this "
+		this.enhanceMappingModelButton
+				.setToolTipText("Enhance the PAMTraM model (e.g. by creating additional mapping hints) to prevent this "
 						+ "user interaction in future executions of the transformation...");
 
 		this.okButton = new Button(this.buttonComposite, SWT.NONE);
@@ -229,10 +234,11 @@ public abstract class AbstractDialog extends Dialog {
 	}
 
 	/**
-	 * This is called as part of {@link #createContents()} to create the contents between the displayed message
-	 * (top) and the ok/abort buttons (bottom).
+	 * This is called as part of {@link #createContents()} to create the contents between the displayed message (top)
+	 * and the ok/abort buttons (bottom).
 	 * <p />
 	 * Clients must overwrite this to insert specific contents.
+	 *
 	 * @param parent
 	 */
 	protected abstract void createInnerContents(Shell parent);
@@ -241,9 +247,10 @@ public abstract class AbstractDialog extends Dialog {
 	 * Whether the user has requested the termination of the transformation.
 	 *
 	 * @return '<em><b>true</b></em>' if the button "Abort Transformation" was clicked during run();
-	 * '<em><b>false</b></em>' otherwise
+	 *         '<em><b>false</b></em>' otherwise
 	 */
 	public boolean isTransformationStopRequested() {
+
 		return this.transformationStopRequested;
 	}
 

@@ -144,9 +144,8 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 
 		this.selection = new ArrayList<>();
 		if (this.multiSelectionAllowed) {
-			for (Integer index : ((GenericSelectionDialog) this.dialog).getSelection()) {
-				this.selection.add(this.options.get(index));
-			}
+			((GenericSelectionDialog) this.dialog).getSelection().stream()
+					.forEach(i -> this.selection.add(this.options.get(i)));
 		} else {
 			this.selection.add(this.options.get(((GenericSelectionDialog) this.dialog).getSingleSelection()));
 		}

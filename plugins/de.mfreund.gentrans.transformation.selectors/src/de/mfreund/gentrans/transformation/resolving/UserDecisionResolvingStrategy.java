@@ -263,14 +263,24 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup,
 			ContainerSelector modelConnectionHint, String hintValue) throws AmbiguityResolvingException {
 
-		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(
-				"The ModelConnectionHint '" + modelConnectionHint.getName() + " (Mapping :"
-						+ ((Mapping) hintGroup.eContainer()).getName() + ", Group: " + hintGroup.getName()
-						+ ")' points to a non-unique Attribute. Please choose under which elements "
-						+ (sectionInstances.size() > 1 ? "theese " + sectionInstances.size() + "elements"
-								: "this " + sectionInstances.size() + "element")
-						+ " should be inserted.\n\n" + "Attribute value: " + hintValue,
-				0, false, choices, null);
+		String message;
+		if (modelConnectionHint == null) {
+			message = "Instances created by the group '" + hintGroup.getName() + " (Mapping :"
+					+ ((Mapping) hintGroup.eContainer()).getName()
+					+ ")' can be connected to multiple container instances. Please choose under which elements "
+					+ (sectionInstances.size() > 1 ? "these " + sectionInstances.size() + " elements"
+							: "this " + sectionInstances.size() + "element")
+					+ " should be inserted.";
+		} else {
+			message = "The ModelConnectionHint '" + modelConnectionHint.getName() + " (Mapping :"
+					+ ((Mapping) hintGroup.eContainer()).getName() + ", Group: " + hintGroup.getName()
+					+ ")' points to a non-unique Attribute. Please choose under which elements "
+					+ (sectionInstances.size() > 1 ? "these " + sectionInstances.size() + " elements"
+							: "this " + sectionInstances.size() + "element")
+					+ " should be inserted.\n\n" + "Attribute value: " + hintValue;
+		}
+		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(message, 0,
+				false, choices, null);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
 			throw new AmbiguityResolvingException(new UserAbortException());

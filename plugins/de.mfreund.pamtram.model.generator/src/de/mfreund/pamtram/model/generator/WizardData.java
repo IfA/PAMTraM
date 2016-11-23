@@ -2,7 +2,6 @@ package de.mfreund.pamtram.model.generator;
 
 import java.util.List;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -24,11 +23,6 @@ public class WizardData {
 	 * added.
 	 */
 	private Resource targetModelResource;
-
-	/**
-	 * The {@link IPath} of the model containing the source {@link #sourceElements} based on which the Sections are created.
-	 */
-	private IPath sourceModelPath;
 
 	/**
 	 * The {@link SectionType type} of the Sections to be created (<em>source</em> or <em>target</em>).
@@ -153,26 +147,6 @@ public class WizardData {
 	public WizardData setSourceElements(List<EObject> sourceElements) {
 
 		this.sourceElements = sourceElements;
-
-		return this;
-	}
-
-	/**
-	 * @return the {@link #getSourceModelPath}
-	 */
-	public IPath getSourceModelPath() {
-		return this.sourceModelPath;
-	}
-
-	/**
-	 * This is the setter for the {@link #sourceModelPath}.
-	 *
-	 * @param sourceModelPath
-	 *            the {@link #sourceModelPath} to set.
-	 * @return The {@link WizardData}.
-	 */
-	public WizardData setSourceModelPath(IPath sourceModelPath) {
-		this.sourceModelPath = sourceModelPath;
 
 		return this;
 	}

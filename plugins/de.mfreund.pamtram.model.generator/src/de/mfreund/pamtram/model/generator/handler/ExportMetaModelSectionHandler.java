@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -18,17 +17,19 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.FileEditorInput;
 
 import de.mfreund.pamtram.model.generator.GeneratorWizard;
 import de.mfreund.pamtram.model.generator.WizardData;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
+import pamtram.metamodel.Section;
 
+/**
+ * An {@link AbstractHandler} that uses a {@link GeneratorWizard} to create {@link Section Sections} based on one or
+ * multiple {@link EObject EObjects} selected by the user.
+ *
+ * @author mfreund
+ */
 public class ExportMetaModelSectionHandler extends AbstractHandler {
 
 	private IWorkbenchWindow workbenchWindow;
@@ -36,17 +37,9 @@ public class ExportMetaModelSectionHandler extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		boolean includeCrossReferences = Integer.parseInt(event.getParameter(
-				"de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter")) == 1;
-
-		// get the active workbench window
-		this.workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-
-		// get the selection service (necessary for determining the selected element)
-		ISelectionService service = this.workbenchWindow.getSelectionService();
-
-		// get the selected element from the current editor window
-		IStructuredSelection selection = (IStructuredSelection) service.getSelection();
+		// Get the selected element(s) from the current editor window
+		//
+		IStructuredSelection selection = (IStructuredSelection) UIHelper.getCurrentSelection();
 
 		// First, we unwrap the selection to get rid of all the 'WrappedItemProvider' stuff that may be returned by
 		// 'getSelection()'; cf. https://www.eclipse.org/forums/index.php/t/803088/
@@ -60,21 +53,26 @@ public class ExportMetaModelSectionHandler extends AbstractHandler {
 			return null;
 		}
 
-		// get the package that the eObject belongs to
+		// Get the package that the eObject belongs to
+		//
 		EPackage ePackage = (EPackage) EcoreUtil.getRootContainer(selected.get(0).eClass());
 
-		// get the active editor
-		IEditorPart editor = this.workbenchWindow.getActivePage().getActiveEditor();
-		IEditorInput editorInput = editor.getEditorInput();
+		// Whether cross references shall be regarded in the creation process
+		//
+		boolean includeCrossReferences = false;
+		try {
+			includeCrossReferences = Integer.parseInt(event.getParameter(
+					"de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter")) == 1;
+		} catch (NumberFormatException e) {
+		}
 
-		// get the path of the open file
-		IPath sourcepath = ((FileEditorInput) editorInput).getPath();
-
-		// initialize the data used for the wizard
+		// Initialize the data used for the wizard
+		//
 		WizardData wizardData = new WizardData().setSourceElements(selected).setEPackage(ePackage)
-				.setSourceModelPath(sourcepath).setIncludeCrossReferences(includeCrossReferences);
+				.setIncludeCrossReferences(includeCrossReferences);
 
-		// create the wizard
+		// Create the wizard
+		//
 		WizardDialog wizardDialog = new WizardDialog(
 				new Shell(),
 				new GeneratorWizard(wizardData));
@@ -98,7 +96,6 @@ public class ExportMetaModelSectionHandler extends AbstractHandler {
 			return false;
 
 		}
-
 
 		return super.isEnabled();
 

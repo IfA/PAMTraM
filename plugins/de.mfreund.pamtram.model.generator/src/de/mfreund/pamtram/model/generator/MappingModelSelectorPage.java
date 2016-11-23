@@ -1,10 +1,12 @@
 package de.mfreund.pamtram.model.generator;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -21,6 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.PAMTraM;
 import pamtram.SectionModel;
@@ -96,9 +99,20 @@ public class MappingModelSelectorPage extends WizardPage {
 		FileFieldEditor fileFieldEditor;
 		fileFieldEditor = new FileFieldEditor("fileSelect", "Select file...", container);
 		fileFieldEditor.setFileExtensions(new String[] {"*.pamtram"});
+
 		// set the initial browse path
-		fileFieldEditor.setFilterPath(
-				this.wizardData.getSourceModelPath().removeLastSegments(1).append("Pamtram").toFile());
+		if (this.wizardData.getSourceElements() != null && !this.wizardData.getSourceElements().isEmpty()
+				&& this.wizardData.getSourceElements().get(0).eResource() != null) {
+
+			Resource resource = this.wizardData.getSourceElements().get(0).eResource();
+			File initialBrowsePath = new File(ResourceHelper
+					.convertPlatformToFileURI(resource.getURI().trimSegments(2).appendSegment("Pamtram"))
+					.toFileString());
+			if (!initialBrowsePath.exists()) {
+				initialBrowsePath = new File(ResourcesPlugin.getWorkspace().getRoot().getLocationURI());
+			}
+			fileFieldEditor.setFilterPath(initialBrowsePath);
+		}
 
 		// set listener that is triggered when the user has selected a file
 		//
@@ -303,7 +317,7 @@ public class MappingModelSelectorPage extends WizardPage {
 				.map(SourceSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet());
 		sourcePackages
-				.addAll(pamtram.getSharedSourceSectionModel().stream().map(SourceSectionModel::getMetaModelPackage)
+		.addAll(pamtram.getSharedSourceSectionModel().stream().map(SourceSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet()));
 		// get the target packages
 		Set<EPackage> targetPackages = pamtram.getTargetSectionModel().stream()

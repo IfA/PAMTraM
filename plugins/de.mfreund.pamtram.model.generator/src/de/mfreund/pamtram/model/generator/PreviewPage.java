@@ -103,8 +103,8 @@ public class PreviewPage extends WizardPage {
 			try {
 				// create the metamodel section
 				this.createMetaModelSection(
-						this.wizardData.getEObjects(),
-						this.wizardData.getePackage(),
+						this.wizardData.getSourceElements(),
+						this.wizardData.getEPackage(),
 						this.wizardData.getSectionType()
 						);
 				this.setPageComplete(true);
@@ -113,11 +113,11 @@ public class PreviewPage extends WizardPage {
 			}
 			this.getWizard().getContainer().updateButtons();
 
-			if(this.wizardData.getCreatedEObjects() != null) {
-				this.viewer.setInput(this.wizardData.getCreatedEObjects().toArray());
+			if(this.wizardData.getCreatedSections() != null) {
+				this.viewer.setInput(this.wizardData.getCreatedSections().toArray());
 				// expand the tree so that the tree item map can be generated
 				this.viewer.expandAll();
-				for (pamtram.metamodel.Class<?, ?, ?, ?> clazz : this.wizardData.getCreatedEObjects()) {
+				for (pamtram.metamodel.Class<?, ?, ?, ?> clazz : this.wizardData.getCreatedSections()) {
 					this.viewer.setSubtreeChecked(clazz, true);
 				}
 				// collapse the tree (NOTE: 'collapseAll()' cannot be used as this disposes the tree items)
@@ -143,7 +143,7 @@ public class PreviewPage extends WizardPage {
 
 		List<Section<?, ?, ?, ?>> created = generator.generate();
 
-		this.wizardData.setCreatedEObjects(created);
+		this.wizardData.setCreatedSections(created);
 
 	}
 

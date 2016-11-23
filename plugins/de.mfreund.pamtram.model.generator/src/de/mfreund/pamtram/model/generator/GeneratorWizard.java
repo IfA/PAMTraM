@@ -75,7 +75,7 @@ public class GeneratorWizard extends Wizard {
 		//
 		for(MetaModelElement<?, ?, ?, ?> element : this.two.getElementsToExclude()) {
 
-			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(element, this.wizardData.getCreatedEObjects());
+			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(element, this.wizardData.getCreatedSections());
 			for (Setting setting : crossReferences) {
 				if(setting.getEStructuralFeature().isMany()) {
 					List<EObject> values = new BasicEList<>(
@@ -88,14 +88,14 @@ public class GeneratorWizard extends Wizard {
 				}
 			}
 
-			this.wizardData.getCreatedEObjects().remove(element);
+			this.wizardData.getCreatedSections().remove(element);
 			EcoreUtil.remove(element);
 		}
 
 		// merge duplicate items
 		//
 		List<Section<?, ?, ?, ?>> sectionsToAdd =
-				this.wizardData.getGenerator().mergeDuplicates(this.wizardData.getCreatedEObjects());
+				this.wizardData.getGenerator().mergeDuplicates(this.wizardData.getCreatedSections());
 
 
 		/*
@@ -134,7 +134,7 @@ public class GeneratorWizard extends Wizard {
 
 		MessageDialog.openInformation(new Shell(), "Export Result",
 				sectionsToAdd.size() + " sections have been added to the PAMTraM model. There were " +
-						(this.wizardData.getCreatedEObjects().size() - sectionsToAdd.size()) + " sections that have been identified as duplicates of " +
+						(this.wizardData.getCreatedSections().size() - sectionsToAdd.size()) + " sections that have been identified as duplicates of " +
 				"existing sections. Those have not added but merged with the existing ones.");
 
 		return true;
@@ -145,7 +145,7 @@ public class GeneratorWizard extends Wizard {
 
 		// the wizard can finish if the eobjects to be created are set
 		// (this is necessary to disable the finish button on the first page)
-		List<Section<?, ?, ?, ?>> createdEObjects = this.wizardData.getCreatedEObjects();
+		List<Section<?, ?, ?, ?>> createdEObjects = this.wizardData.getCreatedSections();
 		return createdEObjects != null && !createdEObjects.isEmpty();
 	}
 

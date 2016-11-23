@@ -19,16 +19,40 @@ import pamtram.presentation.PamtramEditor;
  */
 public class WizardData {
 
+	/**
+	 * The {@link Resource} containing the target {@link #pamtram} model into which the generated Sections shall be
+	 * added.
+	 */
 	private Resource targetModelResource;
+
+	/**
+	 * The {@link IPath} of the model containing the source {@link #sourceElements} based on which the Sections are created.
+	 */
 	private IPath sourceModelPath;
-	private String bundleId = "de.mfreund.pamtram.model.generator";
+
+	/**
+	 * The {@link SectionType type} of the Sections to be created (<em>source</em> or <em>target</em>).
+	 */
 	private SectionType sectionType;
+
+	/**
+	 * The {@link EPackage} describing the {@link #sourceElements}.
+	 */
 	private EPackage ePackage;
 
-	private List<EObject> eObjects;
+	/**
+	 * The list of source {@link EObject EObjects} based on which the Sections are created.
+	 */
+	private List<EObject> sourceElements;
 
-	private List<Section<?, ?, ?, ?>> createdEObjects;
+	/**
+	 * The {@link Section Sections} that have been created based on the {@link #sourceElements}.
+	 */
+	private List<Section<?, ?, ?, ?>> createdSections;
 
+	/**
+	 * Whether cross
+	 */
 	private boolean includeCrossReferences;
 
 	/**
@@ -51,68 +75,125 @@ public class WizardData {
 	 */
 	private MetaModelSectionGenerator generator;
 
+	/**
+	 *
+	 * @return the {@link #targetModelResource}
+	 */
 	public Resource getTargetModelResource() {
 		return this.targetModelResource;
 	}
 
+	/**
+	 *
+	 * @param targetModelResource
+	 *            the {@link #targetModelResource}
+	 * @return The {@link WizardData} element.
+	 */
 	public WizardData setTargetModelResource(Resource targetModelResource) {
 		this.targetModelResource = targetModelResource;
 
 		return this;
 	}
 
-	public String getBundleId() {
-		return this.bundleId;
-	}
-
+	/**
+	 *
+	 * @return the {@link #sectionType}
+	 */
 	public SectionType getSectionType() {
 		return this.sectionType;
 	}
 
+	/**
+	 *
+	 * @param sectionType
+	 *            the {@link #sectionType}
+	 * @return The {@link WizardData} element.
+	 */
 	public WizardData setSectionType(SectionType sectionType) {
 		this.sectionType = sectionType;
 
 		return this;
 	}
 
-	public EPackage getePackage() {
+	/**
+	 * @return the {@link #ePackage}
+	 */
+	public EPackage getEPackage() {
 		return this.ePackage;
 	}
 
-	public WizardData setePackage(EPackage ePackage) {
+	/**
+	 * This is the setter for the {@link #ePackage}.
+	 *
+	 * @param ePackage
+	 *            the {@link #ePackage} to set.
+	 * @return The {@link WizardData}.
+	 */
+	public WizardData setEPackage(EPackage ePackage) {
 		this.ePackage = ePackage;
 
 		return this;
 	}
 
-	public List<EObject> getEObjects() {
+	/**
+	 * @return the {@link #sourceElements}
+	 */
+	public List<EObject> getSourceElements() {
 
-		return this.eObjects;
+		return this.sourceElements;
 	}
 
-	public WizardData setEObjects(List<EObject> eObjects) {
+	/**
+	 * This is the setter for the {@link #sourceElements}.
+	 *
+	 * @param sourceElements
+	 *            the {@link #sourceElements} to set.
+	 * @return The {@link WizardData}.
+	 */
+	public WizardData setSourceElements(List<EObject> sourceElements) {
 
-		this.eObjects = eObjects;
+		this.sourceElements = sourceElements;
 
 		return this;
 	}
 
+	/**
+	 * @return the {@link #getSourceModelPath}
+	 */
 	public IPath getSourceModelPath() {
 		return this.sourceModelPath;
 	}
 
+	/**
+	 * This is the setter for the {@link #sourceModelPath}.
+	 *
+	 * @param sourceModelPath
+	 *            the {@link #sourceModelPath} to set.
+	 * @return The {@link WizardData}.
+	 */
 	public WizardData setSourceModelPath(IPath sourceModelPath) {
 		this.sourceModelPath = sourceModelPath;
 
 		return this;
 	}
 
-	public List<Section<?, ?, ?, ?>> getCreatedEObjects() {
-		return this.createdEObjects;
+	/**
+	 * @return the {@link #createdSections}
+	 */
+	public List<Section<?, ?, ?, ?>> getCreatedSections() {
+		return this.createdSections;
 	}
 
-	public WizardData setCreatedEObjects(List<Section<?, ?, ?, ?>> created) {
-		this.createdEObjects = created;
+	/**
+	 * This is the setter for the {@link #createdSections}.
+	 *
+	 * @param createdEObjects
+	 *            the {@link #createdSections} to set.
+	 * @return The {@link WizardData}.
+	 */
+	public WizardData setCreatedSections(List<Section<?, ?, ?, ?>> createdEObjects) {
+
+		this.createdSections = createdEObjects;
 		return this;
 	}
 
@@ -129,6 +210,7 @@ public class WizardData {
 	 *
 	 * @param includeCrossReferences
 	 *            the {@link #includeCrossReferences} to set.
+	 * @return The {@link WizardData}.
 	 */
 	public WizardData setIncludeCrossReferences(boolean includeCrossReferences) {
 

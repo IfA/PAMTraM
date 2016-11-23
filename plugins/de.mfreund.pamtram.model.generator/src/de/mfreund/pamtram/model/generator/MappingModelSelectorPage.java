@@ -297,7 +297,7 @@ public class MappingModelSelectorPage extends WizardPage {
 	 */
 	private void checkPackage() {
 
-		EPackage ePackage = this.wizardData.getePackage();
+		EPackage ePackage = this.wizardData.getEPackage();
 
 		PAMTraM pamtram = this.wizardData.getPamtram();
 
@@ -393,7 +393,7 @@ public class MappingModelSelectorPage extends WizardPage {
 								this.wizardData.getPamtram().getSharedTargetSectionModel().stream());
 
 				this.sectionModels = sectionModelStream
-						.filter(s -> this.wizardData.getePackage().equals(s.getMetaModelPackage()))
+						.filter(s -> this.wizardData.getEPackage().equals(s.getMetaModelPackage()))
 						.collect(Collectors.toList());
 
 				String prefix = this.wizardData.getSectionType() == SectionType.SOURCE ? "SourceSectionModel "

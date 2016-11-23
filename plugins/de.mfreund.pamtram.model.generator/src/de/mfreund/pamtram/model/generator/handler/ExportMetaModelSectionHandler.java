@@ -71,7 +71,7 @@ public class ExportMetaModelSectionHandler extends AbstractHandler {
 		IPath sourcepath = ((FileEditorInput) editorInput).getPath();
 
 		// initialize the data used for the wizard
-		WizardData wizardData = new WizardData().setEObjects(selected).setePackage(ePackage)
+		WizardData wizardData = new WizardData().setSourceElements(selected).setEPackage(ePackage)
 				.setSourceModelPath(sourcepath).setIncludeCrossReferences(includeCrossReferences);
 
 		// create the wizard

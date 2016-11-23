@@ -12,6 +12,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TreePath;
@@ -27,7 +28,6 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
-import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerContentProvider;
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerLabelProvider;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.PAMTraM;
@@ -231,7 +231,9 @@ public class PreviewPage extends WizardPage {
 		table.setLinesVisible(true);
 
 		// use a simple array content provider to dipslay the array of attribute and their values
-		this.propertiesViewer.setContentProvider(new ResultPageTableViewerContentProvider());
+		this.propertiesViewer
+				.setContentProvider((IStructuredContentProvider) inputElement -> inputElement instanceof List<?>
+						? ((List<?>) inputElement).toArray() : new Object[0]);
 		this.propertiesViewer.setLabelProvider(new ResultPageTableViewerLabelProvider());
 		this.propertiesViewer.addCheckStateListener(event -> {
 			Attribute<?, ?, ?, ?> att = (Attribute<?, ?, ?, ?>) event.getElement();

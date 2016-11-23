@@ -16,8 +16,11 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
  * A {@link GenericSelectionDialogRunner} that will spawn a {@link PathAndInstanceSelectorDialog} in order to enable the
  * user to select between a 'path' as well as an 'instance' to be used.
  *
+ * @param <T>
+ *            The concrete type of the <em>path</em> elements displayed in the {@link PathAndInstanceSelectorDialog}.
+ *
  */
-public class PathAndInstanceSelectorRunner<PathType> extends GenericSelectionDialogRunner<PathType> {
+public class PathAndInstanceSelectorRunner<T> extends GenericSelectionDialogRunner<T> {
 
 	/**
 	 * For each path in {@link GenericSelectionDialogRunner#options} this list keeps a list of instances represent by an
@@ -45,9 +48,9 @@ public class PathAndInstanceSelectorRunner<PathType> extends GenericSelectionDia
 	 *            A {@link SelectionListener2} that will be called when the
 	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
 	 */
-	public PathAndInstanceSelectorRunner(final String message, final List<PathType> paths,
+	public PathAndInstanceSelectorRunner(final String message, final List<T> paths,
 			final List<List<EObjectWrapper>> instances,
-			final MappingModelEnhancer<GenericSelectionDialogRunner<PathType>> enhanceMappingModelListener) {
+			final MappingModelEnhancer<GenericSelectionDialogRunner<T>> enhanceMappingModelListener) {
 
 		this(message, paths, instances, false, enhanceMappingModelListener);
 	}
@@ -67,9 +70,9 @@ public class PathAndInstanceSelectorRunner<PathType> extends GenericSelectionDia
 	 *            A {@link SelectionListener2} that will be called when the
 	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
 	 */
-	public PathAndInstanceSelectorRunner(final String message, final List<PathType> paths,
+	public PathAndInstanceSelectorRunner(final String message, final List<T> paths,
 			final List<List<EObjectWrapper>> instances, boolean multiSelectionAllowed,
-			final MappingModelEnhancer<GenericSelectionDialogRunner<PathType>> enhanceMappingModelListener) {
+			final MappingModelEnhancer<GenericSelectionDialogRunner<T>> enhanceMappingModelListener) {
 
 		super(message, 0, multiSelectionAllowed, paths, enhanceMappingModelListener);
 
@@ -107,7 +110,7 @@ public class PathAndInstanceSelectorRunner<PathType> extends GenericSelectionDia
 	 *
 	 * @return The single selected path after the dialog has finished.
 	 */
-	public PathType getPath() {
+	public T getPath() {
 
 		return this.getSingleSelection();
 	}
@@ -126,7 +129,7 @@ public class PathAndInstanceSelectorRunner<PathType> extends GenericSelectionDia
 	 */
 	protected List<List<String>> getInstanceStringRepresentations() {
 
-		return this.instances.stream().map(l -> l.stream().map(i -> i.toString()).collect(Collectors.toList()))
+		return this.instances.stream().map(l -> l.stream().map(EObjectWrapper::toString).collect(Collectors.toList()))
 				.collect(Collectors.toList());
 	}
 
@@ -150,7 +153,7 @@ public class PathAndInstanceSelectorRunner<PathType> extends GenericSelectionDia
 			this.selectedInstances = new HashSet<>();
 			for (String instance : ((PathAndInstanceSelectorDialog) this.dialog).getInstances()) {
 				this.selectedInstances
-						.add(wrappers.parallelStream().filter(i -> i.toString().equals(instance)).findAny().get());
+				.add(wrappers.parallelStream().filter(i -> i.toString().equals(instance)).findAny().get());
 			}
 		}
 	}

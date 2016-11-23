@@ -1,5 +1,7 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
@@ -31,13 +33,13 @@ public abstract class AbstractDialog extends Dialog {
 	 * This keeps track of the last location where a dialog was situated (possibly after being moved by the user). We
 	 * use this to open each new dialog at the same exact position.
 	 */
-	protected static Point lastLocation;
+	private static Point lastLocation;
 
 	/**
 	 * This keeps track of the last size of a dialog (possibly after being resized by the user). We use this to open
 	 * each new dialog with the same exact size.
 	 */
-	protected static Point lastSize;
+	private static Point lastSize;
 
 	/**
 	 * This is the {@link Button} that allows the user to confirm his selection.
@@ -127,6 +129,46 @@ public abstract class AbstractDialog extends Dialog {
 	}
 
 	/**
+	 * The setter for the {@link #lastLocation}.
+	 *
+	 * @param lastLocation
+	 */
+	protected static synchronized void setLastLocation(Point lastLocation) {
+
+		AbstractDialog.lastLocation = lastLocation;
+	}
+
+	/**
+	 * The getter for the {@link #lastLocation}.
+	 *
+	 * @param lastLocation
+	 */
+	protected static synchronized Point getLastLocation() {
+
+		return AbstractDialog.lastLocation;
+	}
+
+	/**
+	 * The setter for the {@link #lastSize}.
+	 *
+	 * @param lastSize
+	 */
+	protected static synchronized void setLastSize(Point lastSize) {
+
+		AbstractDialog.lastSize = lastSize;
+	}
+
+	/**
+	 * The getter for the {@link #lastSize}.
+	 *
+	 * @param lastSize
+	 */
+	protected static synchronized Point getLastSize() {
+
+		return AbstractDialog.lastSize;
+	}
+
+	/**
 	 * Create the contents of the dialog.
 	 */
 	protected void createContents() {
@@ -136,17 +178,12 @@ public abstract class AbstractDialog extends Dialog {
 		this.shell.setMinimumSize(new Point(300, 350));
 		this.shell.setSize(900, 600);
 		this.shell.setText("Please select..");
+		GridLayoutFactory.swtDefaults().margins(5, 0).applyTo(this.shell);
 
 		// Create the message at the top of the dialog
 		//
-		final GridLayout gridLayout = new GridLayout(1, false);
-		gridLayout.marginHeight = 0;
-		this.shell.setLayout(gridLayout);
-
 		this.dialogMessage = new Label(this.shell, SWT.WRAP);
-		final GridData gd_dialogMessage = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-		gd_dialogMessage.widthHint = this.shell.getSize().x - 10;
-		this.dialogMessage.setLayoutData(gd_dialogMessage);
+		GridDataFactory.swtDefaults().hint(this.shell.getSize().x - 10, SWT.DEFAULT).applyTo(this.dialogMessage);
 		this.dialogMessage.setText(this.message);
 		this.shell.redraw();
 
@@ -155,16 +192,16 @@ public abstract class AbstractDialog extends Dialog {
 			@Override
 			public void controlMoved(final ControlEvent e) {
 
-				AbstractDialog.lastLocation = AbstractDialog.this.shell.getLocation();
+				AbstractDialog.setLastLocation(AbstractDialog.this.shell.getLocation());
 			}
 
 			@Override
 			public void controlResized(final ControlEvent e) {
 
-				gd_dialogMessage.widthHint = AbstractDialog.this.shell.getClientArea().width
-						- 2 * gridLayout.marginWidth;
+				((GridData) AbstractDialog.this.dialogMessage.getLayoutData()).widthHint = AbstractDialog.this.shell
+						.getClientArea().width - 2 * ((GridLayout) AbstractDialog.this.shell.getLayout()).marginWidth;
 				AbstractDialog.this.shell.layout(true);
-				AbstractDialog.lastSize = AbstractDialog.this.shell.getSize();
+				AbstractDialog.setLastSize(AbstractDialog.this.shell.getSize());
 			}
 		});
 
@@ -175,30 +212,25 @@ public abstract class AbstractDialog extends Dialog {
 		// Create the buttons at the bottom of the dialog
 		//
 		this.buttonComposite = new Composite(this.shell, SWT.NONE);
-		final GridLayout gl_composite = new GridLayout(3, true);
-		gl_composite.verticalSpacing = 0;
-		this.buttonComposite.setLayout(gl_composite);
-		final GridData gd_composite = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-		gd_composite.widthHint = 564;
-		this.buttonComposite.setLayoutData(gd_composite);
+		GridLayoutFactory.swtDefaults().numColumns(3).equalWidth(true).spacing(5, 0).applyTo(this.buttonComposite);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).hint(564, SWT.DEFAULT)
+				.applyTo(this.buttonComposite);
 
 		this.abortTransFormationButton = new Button(this.buttonComposite, SWT.NONE);
 		this.abortTransFormationButton.addSelectionListener((SelectionListener2) e -> {
 			AbstractDialog.this.transformationStopRequested = true;
 			AbstractDialog.this.shell.dispose();
 		});
-		final GridData gd_abortTransFormationButton = new GridData(SWT.LEFT, SWT.FILL, true, false, 1, 1);
-		gd_abortTransFormationButton.minimumWidth = 80;
-		gd_abortTransFormationButton.minimumHeight = 35;
-		this.abortTransFormationButton.setLayoutData(gd_abortTransFormationButton);
+
+		GridDataFactory.swtDefaults().align(SWT.LEFT, SWT.CENTER).grab(true, false).minSize(80, 35)
+				.applyTo(this.abortTransFormationButton);
 		this.abortTransFormationButton.setAlignment(SWT.LEFT);
 		this.abortTransFormationButton.setText("Abort transformation");
 
 		this.enhanceMappingModelButton = new Button(this.buttonComposite, SWT.NONE);
-		GridData gd_enhanceMappingModelButton = new GridData(SWT.CENTER, SWT.CENTER, true, false, 1, 1);
-		gd_enhanceMappingModelButton.minimumHeight = 35;
-		gd_enhanceMappingModelButton.minimumWidth = 80;
-		this.enhanceMappingModelButton.setLayoutData(gd_enhanceMappingModelButton);
+		GridDataFactory.swtDefaults().align(SWT.CENTER, SWT.CENTER).grab(true, false).minSize(80, 35)
+				.applyTo(this.enhanceMappingModelButton);
+
 		if (this.enhanceMappingModelListener != null) {
 			this.enhanceMappingModelButton.addSelectionListener(this.enhanceMappingModelListener);
 			this.enhanceMappingModelButton.addSelectionListener((SelectionListener2) e -> {
@@ -210,14 +242,13 @@ public abstract class AbstractDialog extends Dialog {
 		}
 		this.enhanceMappingModelButton.setText("Enhance PAMTraM Model");
 		this.enhanceMappingModelButton
-				.setToolTipText("Enhance the PAMTraM model (e.g. by creating additional mapping hints) to prevent this "
-						+ "user interaction in future executions of the transformation...");
+		.setToolTipText("Enhance the PAMTraM model (e.g. by creating additional mapping hints) to prevent this "
+				+ "user interaction in future executions of the transformation...");
 
 		this.okButton = new Button(this.buttonComposite, SWT.NONE);
-		GridData gd_okButton = new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1);
-		gd_okButton.minimumHeight = 35;
-		gd_okButton.minimumWidth = 80;
-		this.okButton.setLayoutData(gd_okButton);
+		GridDataFactory.swtDefaults().align(SWT.RIGHT, SWT.CENTER).grab(true, false).minSize(80, 35)
+				.applyTo(this.okButton);
+
 		this.okButton.addSelectionListener((SelectionListener2) e -> AbstractDialog.this.shell.dispose());
 		this.okButton.setText("OK");
 		this.okButton.setSelection(true);

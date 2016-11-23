@@ -18,10 +18,10 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.MappingModelEnhanc
  * be used as dialog.
  *
  * @author mfreund
- * @param <SelectionType>
+ * @param <T>
  *            The type of the elements that will be returned by the dialog after the user's selection.
  */
-public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogRunner {
+public class GenericSelectionDialogRunner<T> extends AbstractDialogRunner {
 
 	/**
 	 * The index of the option that shall be default selected in the dialog or '<em>null</em>' if no option shall be
@@ -37,12 +37,12 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	/**
 	 * The options to be presented to the user in the dialog.
 	 */
-	protected final List<SelectionType> options;
+	protected final List<T> options;
 
 	/**
 	 * The options that have been selected by the user (this will be a subset of {@link #options}).
 	 */
-	protected List<SelectionType> selection;
+	protected List<T> selection;
 
 	/**
 	 * This creates an instance.
@@ -61,8 +61,8 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
 	 */
 	public GenericSelectionDialogRunner(final String message, final int standardSelection,
-			final boolean multiSelectionAllowed, final List<SelectionType> options,
-			final MappingModelEnhancer<GenericSelectionDialogRunner<SelectionType>> enhanceMappingModelListener) {
+			final boolean multiSelectionAllowed, final List<T> options,
+			final MappingModelEnhancer<GenericSelectionDialogRunner<T>> enhanceMappingModelListener) {
 
 		super(message, enhanceMappingModelListener);
 
@@ -78,7 +78,7 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 *
 	 * @return the {@link #options}.
 	 */
-	public List<SelectionType> getOptions() {
+	public List<T> getOptions() {
 
 		return this.options;
 	}
@@ -88,7 +88,7 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 *
 	 * @return The {@link #selection}.
 	 */
-	public List<SelectionType> getSelection() {
+	public List<T> getSelection() {
 
 		this.evaluateResults();
 		return this.selection == null ? new ArrayList<>() : this.selection;
@@ -101,7 +101,7 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 *
 	 * @return The single element selected by the user.
 	 */
-	public SelectionType getSingleSelection() {
+	public T getSingleSelection() {
 
 		this.evaluateResults();
 		return this.selection == null || this.selection.isEmpty() ? null : this.selection.iterator().next();
@@ -117,7 +117,7 @@ public class GenericSelectionDialogRunner<SelectionType> extends AbstractDialogR
 	 * @return The String representation for the given '<em>option</em>' that will be displayed to the user in the
 	 *         dialog.
 	 */
-	protected String getStringRepresentation(SelectionType option) {
+	protected String getStringRepresentation(T option) {
 
 		return option.toString();
 	}

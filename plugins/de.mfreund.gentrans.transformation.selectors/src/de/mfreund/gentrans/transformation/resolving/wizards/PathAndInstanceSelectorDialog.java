@@ -5,18 +5,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 
+import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
+import de.tud.et.ifa.agtele.ui.listeners.MouseDoubleClickListener;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 /**
@@ -111,44 +109,31 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 
 		// Create the sash form that will contain the two lists for paths and instances
 		//
-		final SashForm sashForm = new SashForm(this.shell, SWT.NONE);
-		final GridData gd_sashForm = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
-		gd_sashForm.minimumHeight = 200;
-		gd_sashForm.minimumWidth = 200;
-		sashForm.setLayoutData(gd_sashForm);
+		SashForm sashForm = new SashForm(this.shell, SWT.NONE);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(200, 200).applyTo(sashForm);
 
 		// Create the group that will display the list of paths to the user
 		//
-		final Group grpPossiblePaths = new Group(sashForm, SWT.NONE);
+		Group grpPossiblePaths = new Group(sashForm, SWT.NONE);
 		grpPossiblePaths.setText("Possible Paths");
 		grpPossiblePaths.setLayout(new FillLayout(SWT.HORIZONTAL));
 
 		// Create the list viewer for the list of paths
 		//
-		final ListViewer pathListViewer = new ListViewer(grpPossiblePaths, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		ListViewer pathListViewer = new ListViewer(grpPossiblePaths, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		this.pathList = pathListViewer.getList();
-		this.pathList.addKeyListener(new KeyAdapter() {
-
-			@Override
-			public void keyPressed(final KeyEvent e) {
-
-				if (e.keyCode == SWT.KeyDown) {
-					PathAndInstanceSelectorDialog.this.pathList
-							.select(PathAndInstanceSelectorDialog.this.pathList.getSelectionIndex() + 1);
-				} else if (e.keyCode == SWT.KeyUp) {
-					PathAndInstanceSelectorDialog.this.pathList
-							.select(PathAndInstanceSelectorDialog.this.pathList.getSelectionIndex() - 1);
-				}
+		this.pathList.addKeyListener((KeyPressedListener) e -> {
+			if (e.keyCode == SWT.KeyDown) {
+				PathAndInstanceSelectorDialog.this.pathList
+				.select(PathAndInstanceSelectorDialog.this.pathList.getSelectionIndex() + 1);
+			} else if (e.keyCode == SWT.KeyUp) {
+				PathAndInstanceSelectorDialog.this.pathList
+				.select(PathAndInstanceSelectorDialog.this.pathList.getSelectionIndex() - 1);
 			}
-		});
-		this.pathList.addMouseListener(new MouseAdapter() {
 
-			@Override
-			public void mouseDoubleClick(final MouseEvent e) {
-
-				PathAndInstanceSelectorDialog.this.shell.dispose();
-			}
 		});
+		this.pathList
+		.addMouseListener((MouseDoubleClickListener) e -> PathAndInstanceSelectorDialog.this.shell.dispose());
 		this.pathList.setItems(this.options.toArray(new String[1]));
 
 		pathListViewer.addSelectionChangedListener(event -> {
@@ -174,31 +159,18 @@ public class PathAndInstanceSelectorDialog extends GenericSelectionDialog {
 		final ListViewer instancesListViewer = new ListViewer(grpPossibleInstances,
 				SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | (this.multiSelectionAllowed ? SWT.MULTI : 0));
 		this.instancesList = instancesListViewer.getList();
-		this.instancesList.addKeyListener(new KeyAdapter() {
+		this.instancesList.addKeyListener((KeyPressedListener) e -> {
 
-			@Override
-			public void keyPressed(final KeyEvent e) {
-
-				if (e.keyCode == SWT.KeyDown) {
-					PathAndInstanceSelectorDialog.this.instancesList
-							.select(PathAndInstanceSelectorDialog.this.instancesList.getSelectionIndex() + 1);
-				} else if (e.keyCode == SWT.KeyUp) {
-					PathAndInstanceSelectorDialog.this.instancesList
-							.select(PathAndInstanceSelectorDialog.this.instancesList.getSelectionIndex() - 1);
-				}
+			if (e.keyCode == SWT.KeyDown) {
+				PathAndInstanceSelectorDialog.this.instancesList
+				.select(PathAndInstanceSelectorDialog.this.instancesList.getSelectionIndex() + 1);
+			} else if (e.keyCode == SWT.KeyUp) {
+				PathAndInstanceSelectorDialog.this.instancesList
+				.select(PathAndInstanceSelectorDialog.this.instancesList.getSelectionIndex() - 1);
 			}
 		});
-		this.instancesList.addMouseListener(new MouseAdapter() {
-
-			/**
-			 * close Dialog on double clicked
-			 */
-			@Override
-			public void mouseDoubleClick(final MouseEvent e) {
-
-				PathAndInstanceSelectorDialog.this.shell.dispose();
-			}
-		});
+		this.instancesList
+				.addMouseListener((MouseDoubleClickListener) e -> PathAndInstanceSelectorDialog.this.shell.dispose());
 		this.instancesList.setItems(this.instances.get(0).toArray(new String[1]));
 		this.instancesList.setSelection(0);
 		this.pathList.setSelection(0);

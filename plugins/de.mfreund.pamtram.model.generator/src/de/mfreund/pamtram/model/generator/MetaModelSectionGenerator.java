@@ -25,6 +25,7 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
+import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSectionClass;
@@ -126,14 +127,11 @@ public class MetaModelSectionGenerator {
 	 *            The {@link EObject source object} for which the structure shall be created.
 	 * @return The created {@link Section section}.
 	 */
-	@SuppressWarnings("unchecked")
-	private Class<?, ?, ?, ?> createMetaModelClass(EObject source) {
+	protected Class<?, ?, ?, ?> createMetaModelClass(EObject source) {
 
 		if (this.created.containsKey(source)) {
 			return this.created.get(source);
 		}
-
-		EClass eClass = source.eClass();
 
 		// the class as the root element of the section
 		Class<?, ?, ?, ?> clazz;
@@ -146,8 +144,8 @@ public class MetaModelSectionGenerator {
 			clazz = isSection ? MetamodelFactory.eINSTANCE.createTargetSection()
 					: MetamodelFactory.eINSTANCE.createTargetSectionClass();
 		}
-		clazz.setEClass(eClass);
-		clazz.setName(eClass.getName());
+		clazz.setEClass(source.eClass());
+		clazz.setName(source.eClass().getName());
 
 		// add the attributes to the class
 		this.createAttributes(source, clazz);
@@ -155,140 +153,16 @@ public class MetaModelSectionGenerator {
 		// add the class to the map of created elements
 		this.created.put(source, clazz);
 
-		ArrayList<EReference> eAllContainments = new ArrayList<>();
-		ArrayList<EReference> eAllNonContainments = new ArrayList<>();
-
-		for (EReference eReference : eClass.getEAllReferences()) {
-			if (eReference.isContainment()) {
-				eAllContainments.add(eReference);
-			} else {
-				eAllNonContainments.add(eReference);
-			}
-		}
-
-		// plunge deeper by evaluating the containment references
-		for (EReference eContainment : eAllContainments) {
-			// create a 'containment reference' object
-			ContainmentReference<?, ?, ?, ?> containmentReference;
-			if (this.sectionType == SectionType.SOURCE) {
-				containmentReference = MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference();
-			} else {
-				containmentReference = MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference();
-			}
-			containmentReference.setEReference(eContainment);
-			containmentReference.setName(eContainment.getName());
-
-			// get the objects contained via the containment reference
-			if (source.eGet(eContainment) == null) {
-				continue;
-			}
-			ArrayList<EObject> contained = new ArrayList<>();
-			if (eContainment.isMany()) {
-				contained.addAll((Collection<? extends EObject>) source.eGet(eContainment));
-			} else {
-				contained.add((EObject) source.eGet(eContainment));
-			}
-			for (EObject eObject : contained) {
-
-				// check if an uncontained section representing the eObject already exists
-				// (this might be the case if it has been created by a non-containment reference)
-				Class<?, ?, ?, ?> existing = this.created.get(eObject);
-				if (existing != null && this.dangling.contains(existing)) {
-					// link the existing class
-					((EList<Class<?, ?, ?, ?>>) containmentReference.getValue()).add(existing);
-					this.dangling.remove(existing);
-				} else {
-					// create a new (part) metamodel section beginning at the object and link it to the current section
-					((EList<Class<?, ?, ?, ?>>) containmentReference.getValue())
-					.add(this.createMetaModelClass(eObject));
-				}
-			}
-
-			// add the created reference to the list of references of the current class
-			// and thus complete the metamodel section
-			if (!containmentReference.getValue().isEmpty()) {
-				((EList<Reference<?, ?, ?, ?>>) clazz.getReferences()).add(containmentReference);
-			} else {
-				EcoreUtil.remove(containmentReference);
-			}
-		}
-
-		// handle the non-containment references
-		for (EReference eNonContainment : eAllNonContainments) {
-
-			// create a 'non containment reference' object
-			Reference<?, ?, ?, ?> nonContainmentReference;
-			if (this.sectionType == SectionType.SOURCE) {
-				nonContainmentReference = MetamodelFactory.eINSTANCE.createMetaModelSectionReference();
-			} else {
-				nonContainmentReference = MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference();
-			}
-			nonContainmentReference.setEReference(eNonContainment);
-			nonContainmentReference.setName(eNonContainment.getName());
-
-			if (source.eGet(eNonContainment) == null) { // no referenced object
-				continue;
-			}
-
-			List<EObject> referenced = new ArrayList<>();
-			if (eNonContainment.isMany()) {
-				referenced.addAll((Collection<? extends EObject>) source.eGet(eNonContainment));
-			} else {
-				referenced.add((EObject) source.eGet(eNonContainment));
-			}
-
-			// If 'includeCrossReferences' is set to 'false', we do not create any new Sections. Consequently, we filter
-			// all elements, that are not part of the current section
-			//
-			if (!this.includeCrossReferences && this.sources.parallelStream()
-					.filter(s -> EcoreUtil.isAncestor(s, source)).findAny().isPresent()) {
-
-				EObject rootElement = this.sources.parallelStream().filter(s -> EcoreUtil.isAncestor(s, source))
-						.findAny().get();
-				referenced = referenced.parallelStream().filter(r -> EcoreUtil.isAncestor(rootElement, r))
-						.collect(Collectors.toList());
-			}
-
-			// get the objects referenced by the non-containment reference
-			for (EObject eObject : referenced) {
-
-				// check if a section representing the eObject already exists
-				Class<?, ?, ?, ?> existing = this.created.get(eObject);
-				if (existing != null) {
-					// link the existing class
-					if (this.sectionType == SectionType.SOURCE) {
-						((MetaModelSectionReference) nonContainmentReference).getValue()
-								.add((SourceSectionClass) existing);
-					} else {
-						((TargetSectionNonContainmentReference) nonContainmentReference).getValue()
-								.add((TargetSectionClass) existing);
-					}
-				} else {
-					// create a new metamodel section beginning at the object and link it to the mapping model
-					Class<?, ?, ?, ?> metaModelSection = this.createMetaModelClass(eObject);
-					if (metaModelSection instanceof Section<?, ?, ?, ?>) {
-						this.dangling.add((Section<?, ?, ?, ?>) metaModelSection);
-					}
-					if (this.sectionType == SectionType.SOURCE) {
-						((MetaModelSectionReference) nonContainmentReference).getValue()
-						.add((SourceSectionClass) metaModelSection);
-					} else {
-						((TargetSectionNonContainmentReference) nonContainmentReference).getValue()
-						.add((TargetSectionClass) metaModelSection);
-					}
-				}
-			}
-
-			// link the created metamodel section to the current section
-			((EList<Reference<?, ?, ?, ?>>) clazz.getReferences()).add(nonContainmentReference);
-
-		}
+		// add the references to the class (this will iterate downward in the containment hierarchy and also create new
+		// sections for elements referenced via non-containment references if 'includeCrossReferences' is set to 'true')
+		//
+		this.createReferences(source, clazz);
 
 		return clazz;
 	}
 
 	/**
-	 * This method is responsible for the creation of the attributes inside a {@link Class section}.
+	 * This method is responsible for the creation of the attributes inside a {@link Class}.
 	 *
 	 * @param source
 	 *            The {@link EObject source element} for which the {@link Attribute attributes} shall be created.
@@ -296,7 +170,7 @@ public class MetaModelSectionGenerator {
 	 *            The {@link Class} to which the created attributes shall be added.
 	 */
 	@SuppressWarnings("unchecked")
-	private void createAttributes(EObject source, Class<?, ?, ?, ?> clazz) {
+	protected void createAttributes(EObject source, Class<?, ?, ?, ?> clazz) {
 
 		EClass eClass = clazz.getEClass();
 
@@ -327,6 +201,170 @@ public class MetaModelSectionGenerator {
 			}
 			((EList<Attribute<?, ?, ?, ?>>) clazz.getAttributes()).add(attribute);
 		}
+	}
+
+	/**
+	 * This method is responsible for the creation of the references inside a {@link Class}.
+	 *
+	 * @param source
+	 *            The source {@link EObject} for which the references shall be created.
+	 * @param parentClass
+	 *            The parent {@link Class} for the references to be created.
+	 */
+	protected void createReferences(EObject source, Class<?, ?, ?, ?> parent) {
+
+		// plunge deeper by evaluating the containment references
+		//
+		source.eClass().getEAllContainments().stream()
+		.forEach(ref -> this.createContainmentReference(source, parent, ref));
+
+		// handle the non-containment references
+		//
+		source.eClass().getEAllReferences().stream().filter(r -> !r.isContainment())
+		.forEach(ref -> this.createNonContainmentReference(source, parent, ref));
+	}
+
+	/**
+	 * Creates a {@link ContainmentReference} element for the given source {@link EObject}.
+	 *
+	 * @param source
+	 *            The source {@link EObject} for which the reference shall be created.
+	 * @param parentClass
+	 *            The parent {@link Class} for the reference to be created.
+	 * @param reference
+	 *            The containment {@link EReference} for which the {@link ContainmentReference} shall be created.
+	 */
+	@SuppressWarnings("unchecked")
+	protected void createContainmentReference(EObject source, Class<?, ?, ?, ?> parentClass,
+			EReference reference) {
+
+		// create a 'containment reference' object
+		//
+		ContainmentReference<?, ?, ?, ?> containmentReference;
+		if (this.sectionType == SectionType.SOURCE) {
+			containmentReference = MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference();
+		} else {
+			containmentReference = MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference();
+		}
+		containmentReference.setEReference(reference);
+		containmentReference.setName(reference.getName());
+
+		// get the objects contained via the containment reference
+		//
+		if (source.eGet(reference) == null) {
+			return;
+		}
+		ArrayList<EObject> contained = new ArrayList<>();
+		if (reference.isMany()) {
+			contained.addAll((Collection<? extends EObject>) source.eGet(reference));
+		} else {
+			contained.add((EObject) source.eGet(reference));
+		}
+		for (EObject eObject : contained) {
+
+			// check if an uncontained section representing the eObject already exists
+			// (this might be the case if it has been created by a non-containment reference)
+			Class<?, ?, ?, ?> existing = this.created.get(eObject);
+			if (existing != null && this.dangling.contains(existing)) {
+				// link the existing class
+				((EList<Class<?, ?, ?, ?>>) containmentReference.getValue()).add(existing);
+				this.dangling.remove(existing);
+			} else {
+				// create a new (part) metamodel section beginning at the object and link it to the current section
+				((EList<Class<?, ?, ?, ?>>) containmentReference.getValue())
+				.add(this.createMetaModelClass(eObject));
+			}
+		}
+
+		// add the created reference to the list of references of the current class
+		// and thus complete the metamodel section
+		if (!containmentReference.getValue().isEmpty()) {
+			((EList<Reference<?, ?, ?, ?>>) parentClass.getReferences()).add(containmentReference);
+		} else {
+			EcoreUtil.remove(containmentReference);
+		}
+	}
+
+	/**
+	 * Creates a {@link NonContainmentReference} element for the given source {@link EObject}.
+	 *
+	 * @param source
+	 *            The source {@link EObject} for which the reference shall be created.
+	 * @param parentClass
+	 *            The parent {@link Class} for the reference to be created.
+	 * @param reference
+	 *            The non-containment {@link EReference} for which the {@link NonContainmentReference} shall be created.
+	 */
+	@SuppressWarnings("unchecked")
+	protected void createNonContainmentReference(EObject source, Class<?, ?, ?, ?> parent,
+			EReference reference) {
+
+		// create a 'non containment reference' object
+		Reference<?, ?, ?, ?> nonContainmentReference;
+		if (this.sectionType == SectionType.SOURCE) {
+			nonContainmentReference = MetamodelFactory.eINSTANCE.createMetaModelSectionReference();
+		} else {
+			nonContainmentReference = MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference();
+		}
+		nonContainmentReference.setEReference(reference);
+		nonContainmentReference.setName(reference.getName());
+
+		if (source.eGet(reference) == null) { // no referenced object
+			return;
+		}
+
+		List<EObject> referenced = new ArrayList<>();
+		if (reference.isMany()) {
+			referenced.addAll((Collection<? extends EObject>) source.eGet(reference));
+		} else {
+			referenced.add((EObject) source.eGet(reference));
+		}
+
+		// If 'includeCrossReferences' is set to 'false', we do not create any new Sections. Consequently, we filter
+		// all elements, that are not part of the current section
+		//
+		if (!this.includeCrossReferences && this.sources.parallelStream()
+				.filter(s -> EcoreUtil.isAncestor(s, source)).findAny().isPresent()) {
+
+			EObject rootElement = this.sources.parallelStream().filter(s -> EcoreUtil.isAncestor(s, source))
+					.findAny().get();
+			referenced = referenced.parallelStream().filter(r -> EcoreUtil.isAncestor(rootElement, r))
+					.collect(Collectors.toList());
+		}
+
+		// get the objects referenced by the non-containment reference
+		for (EObject eObject : referenced) {
+
+			// check if a section representing the eObject already exists
+			Class<?, ?, ?, ?> existing = this.created.get(eObject);
+			if (existing != null) {
+				// link the existing class
+				if (this.sectionType == SectionType.SOURCE) {
+					((MetaModelSectionReference) nonContainmentReference).getValue()
+					.add((SourceSectionClass) existing);
+				} else {
+					((TargetSectionNonContainmentReference) nonContainmentReference).getValue()
+					.add((TargetSectionClass) existing);
+				}
+			} else {
+				// create a new metamodel section beginning at the object and link it to the mapping model
+				Class<?, ?, ?, ?> metaModelSection = this.createMetaModelClass(eObject);
+				if (metaModelSection instanceof Section<?, ?, ?, ?>) {
+					this.dangling.add((Section<?, ?, ?, ?>) metaModelSection);
+				}
+				if (this.sectionType == SectionType.SOURCE) {
+					((MetaModelSectionReference) nonContainmentReference).getValue()
+					.add((SourceSectionClass) metaModelSection);
+				} else {
+					((TargetSectionNonContainmentReference) nonContainmentReference).getValue()
+					.add((TargetSectionClass) metaModelSection);
+				}
+			}
+		}
+
+		// link the created metamodel section to the current section
+		//
+		((EList<Reference<?, ?, ?, ?>>) parent.getReferences()).add(nonContainmentReference);
 	}
 
 	/**
@@ -400,49 +438,48 @@ public class MetaModelSectionGenerator {
 		List<Section<?, ?, ?, ?>> potentialMatches = sectionsToCompare.stream()
 				.filter(s -> EMFCompareUtil.isMatch(s, createdSection)).collect(Collectors.toList());
 
-		if (!potentialMatches.isEmpty()) {
-
-			// merge with the first match by replacing all cross-references
-			//
-			Class<?, ?, ?, ?> match = potentialMatches.get(0);
-
-			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(createdSection,
-					referencingSections);
-
-			for (Setting setting : crossReferences) {
-
-				if (setting.getEStructuralFeature().isMany()) {
-
-					@SuppressWarnings("unchecked")
-					List<EObject> values = new ArrayList<>((EList<EObject>) setting.get(true));
-
-					List<EObject> descendants = values.stream().filter(v -> EcoreUtil.isAncestor(createdSection, v))
-							.collect(Collectors.toList());
-
-					for (EObject descendant : descendants) {
-						String relativeFragmentPath = EcoreUtil.getRelativeURIFragmentPath(createdSection, descendant);
-						int index = values.indexOf(descendant);
-						values.remove(descendant);
-						values.add(index, relativeFragmentPath.isEmpty() ? match
-								: EcoreUtil.getEObject(match, relativeFragmentPath));
-					}
-
-					setting.set(values);
-				} else {
-
-					EObject value = (EObject) setting.get(true);
-
-					String relativeFragmentPath = EcoreUtil.getRelativeURIFragmentPath(createdSection, value);
-
-					setting.set(
-							relativeFragmentPath.isEmpty() ? match : EcoreUtil.getEObject(match, relativeFragmentPath));
-				}
-			}
-
-			return true;
+		if (potentialMatches.isEmpty()) {
+			return false;
 		}
 
-		return false;
+		// merge with the first match by replacing all cross-references
+		//
+		Class<?, ?, ?, ?> match = potentialMatches.get(0);
+
+		Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(createdSection,
+				referencingSections);
+
+		for (Setting setting : crossReferences) {
+
+			if (setting.getEStructuralFeature().isMany()) {
+
+				@SuppressWarnings("unchecked")
+				List<EObject> values = new ArrayList<>((EList<EObject>) setting.get(true));
+
+				List<EObject> descendants = values.stream().filter(v -> EcoreUtil.isAncestor(createdSection, v))
+						.collect(Collectors.toList());
+
+				for (EObject descendant : descendants) {
+					String relativeFragmentPath = EcoreUtil.getRelativeURIFragmentPath(createdSection, descendant);
+					int index = values.indexOf(descendant);
+					values.remove(descendant);
+					values.add(index, relativeFragmentPath.isEmpty() ? match
+							: EcoreUtil.getEObject(match, relativeFragmentPath));
+				}
+
+				setting.set(values);
+			} else {
+
+				EObject value = (EObject) setting.get(true);
+
+				String relativeFragmentPath = EcoreUtil.getRelativeURIFragmentPath(createdSection, value);
+
+				setting.set(
+						relativeFragmentPath.isEmpty() ? match : EcoreUtil.getEObject(match, relativeFragmentPath));
+			}
+		}
+
+		return true;
 	}
 
 }

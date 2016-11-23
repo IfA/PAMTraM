@@ -27,9 +27,7 @@ import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.ValueConstraintType;
@@ -259,10 +257,11 @@ public class MetaModelSectionGenerator {
 				if (existing != null) {
 					// link the existing class
 					if (this.sectionType == SectionType.SOURCE) {
-						((MetaModelSectionReference) nonContainmentReference).getValue().add((SourceSection) existing);
+						((MetaModelSectionReference) nonContainmentReference).getValue()
+								.add((SourceSectionClass) existing);
 					} else {
 						((TargetSectionNonContainmentReference) nonContainmentReference).getValue()
-						.add((TargetSection) existing);
+								.add((TargetSectionClass) existing);
 					}
 				} else {
 					// create a new metamodel section beginning at the object and link it to the mapping model

@@ -1,6 +1,6 @@
 package de.mfreund.pamtram.model.generator;
 
-import java.util.LinkedList;
+import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
@@ -14,7 +14,7 @@ import pamtram.presentation.PamtramEditor;
 
 /**
  * This POJO incorporates all necessary data that is collected in the course of the {@link GeneratorWizard}.
- * 
+ *
  * @author mfreund
  */
 public class WizardData {
@@ -24,8 +24,12 @@ public class WizardData {
 	private String bundleId = "de.mfreund.pamtram.model.generator";
 	private SectionType sectionType;
 	private EPackage ePackage;
-	private EObject eObject;
-	private LinkedList<Section<?, ?, ?, ?>> createdEObjects;
+
+	private List<EObject> eObjects;
+
+	private List<Section<?, ?, ?, ?>> createdEObjects;
+
+	private boolean includeCrossReferences;
 
 	/**
 	 * The {@link PAMTraM} instance into that the generated section shall be stored.
@@ -48,7 +52,7 @@ public class WizardData {
 	private MetaModelSectionGenerator generator;
 
 	public Resource getTargetModelResource() {
-		return targetModelResource;
+		return this.targetModelResource;
 	}
 
 	public WizardData setTargetModelResource(Resource targetModelResource) {
@@ -58,11 +62,11 @@ public class WizardData {
 	}
 
 	public String getBundleId() {
-		return bundleId;
+		return this.bundleId;
 	}
 
 	public SectionType getSectionType() {
-		return sectionType;
+		return this.sectionType;
 	}
 
 	public WizardData setSectionType(SectionType sectionType) {
@@ -72,7 +76,7 @@ public class WizardData {
 	}
 
 	public EPackage getePackage() {
-		return ePackage;
+		return this.ePackage;
 	}
 
 	public WizardData setePackage(EPackage ePackage) {
@@ -81,18 +85,20 @@ public class WizardData {
 		return this;
 	}
 
-	public EObject geteObject() {
-		return eObject;
+	public List<EObject> getEObjects() {
+
+		return this.eObjects;
 	}
 
-	public WizardData seteObject(EObject eObject) {
-		this.eObject = eObject;
+	public WizardData setEObjects(List<EObject> eObjects) {
+
+		this.eObjects = eObjects;
 
 		return this;
 	}
 
 	public IPath getSourceModelPath() {
-		return sourceModelPath;
+		return this.sourceModelPath;
 	}
 
 	public WizardData setSourceModelPath(IPath sourceModelPath) {
@@ -101,19 +107,40 @@ public class WizardData {
 		return this;
 	}
 
-	public LinkedList<Section<?, ?, ?, ?>> getCreatedEObjects() {
-		return createdEObjects;
+	public List<Section<?, ?, ?, ?>> getCreatedEObjects() {
+		return this.createdEObjects;
 	}
 
-	public void setCreatedEObjects(LinkedList<Section<?, ?, ?, ?>> created) {
+	public WizardData setCreatedEObjects(List<Section<?, ?, ?, ?>> created) {
 		this.createdEObjects = created;
+		return this;
+	}
+
+	/**
+	 * @return the {@link #includeCrossReferences}
+	 */
+	public boolean isIncludeCrossReferences() {
+
+		return this.includeCrossReferences;
+	}
+
+	/**
+	 * This is the setter for the {@link #includeCrossReferences}.
+	 *
+	 * @param includeCrossReferences
+	 *            the {@link #includeCrossReferences} to set.
+	 */
+	public WizardData setIncludeCrossReferences(boolean includeCrossReferences) {
+
+		this.includeCrossReferences = includeCrossReferences;
+		return this;
 	}
 
 	/**
 	 * @return the pamtram
 	 */
 	public PAMTraM getPamtram() {
-		return pamtram;
+		return this.pamtram;
 	}
 
 	/**
@@ -127,7 +154,7 @@ public class WizardData {
 	 * @return the editor
 	 */
 	public PamtramEditor getEditor() {
-		return editor;
+		return this.editor;
 	}
 
 	/**
@@ -141,7 +168,7 @@ public class WizardData {
 	 * @return the generator
 	 */
 	public MetaModelSectionGenerator getGenerator() {
-		return generator;
+		return this.generator;
 	}
 
 	/**
@@ -155,7 +182,7 @@ public class WizardData {
 	 * @return the sectionModel
 	 */
 	public SectionModel<?, ?, ?, ?> getSectionModel() {
-		return sectionModel;
+		return this.sectionModel;
 	}
 
 	/**

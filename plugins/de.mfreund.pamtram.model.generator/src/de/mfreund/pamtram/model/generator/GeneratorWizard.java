@@ -146,7 +146,7 @@ public class GeneratorWizard extends Wizard {
 		// the wizard can finish if the eobjects to be created are set
 		// (this is necessary to disable the finish button on the first page)
 		List<Section<?, ?, ?, ?>> createdEObjects = this.wizardData.getCreatedSections();
-		return createdEObjects != null && !createdEObjects.isEmpty();
+		return createdEObjects != null && !createdEObjects.isEmpty() && super.canFinish();
 	}
 
 	@Override

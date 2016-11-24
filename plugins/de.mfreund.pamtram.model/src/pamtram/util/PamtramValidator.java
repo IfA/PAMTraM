@@ -4,6 +4,7 @@ package pamtram.util;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
@@ -46,20 +47,20 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "pamtram";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Either Model Or Refer Condition' of 'Conditional Element'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Either Model Or Refer Condition' of 'Conditional Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONDITIONAL_ELEMENT__EITHER_MODEL_OR_REFER_CONDITION = 1;
+	public static final int CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Reference Only Conditions From Condition Model' of 'Conditional Element'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Only Conditions From Condition Model' of 'Conditional Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONDITIONAL_ELEMENT__REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 2;
+	public static final int CONDITIONAL_ELEMENT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -201,6 +202,8 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(mappingModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_validateEitherModelOrReferCondition(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
 		return result;
 	}
 
@@ -221,6 +224,8 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(conditionalElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(conditionalElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_validateEitherModelOrReferCondition(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(conditionalElement, diagnostics, context);
 		return result;
 	}
 
@@ -231,7 +236,25 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateConditionalElement_eitherModelOrReferCondition(ConditionalElement conditionalElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return conditionalElement.eitherModelOrReferCondition(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "eitherModelOrReferCondition", getObjectLabel(conditionalElement, context) },
+						 new Object[] { conditionalElement },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -241,7 +264,45 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateConditionalElement_referenceOnlyConditionsFromConditionModel(ConditionalElement conditionalElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return conditionalElement.referenceOnlyConditionsFromConditionModel(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "referenceOnlyConditionsFromConditionModel", getObjectLabel(conditionalElement, context) },
+						 new Object[] { conditionalElement },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateEitherModelOrReferCondition constraint of '<em>Conditional Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConditionalElement_validateEitherModelOrReferCondition(ConditionalElement conditionalElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return conditionalElement.validateEitherModelOrReferCondition(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateReferenceOnlyConditionsFromConditionModel constraint of '<em>Conditional Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(ConditionalElement conditionalElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return conditionalElement.validateReferenceOnlyConditionsFromConditionModel(diagnostics, context);
 	}
 
 	/**

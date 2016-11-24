@@ -534,40 +534,40 @@ public interface PamtramPackage extends EPackage {
 	int MAPPING_MODEL__GLOBAL_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Active Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_MODEL__ACTIVE_MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Mapping Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int MAPPING_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
-	 * The operation id for the '<em>Either Model Or Refer Condition</em>' operation.
+	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2 = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MAPPING_MODEL___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2 = NAMED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Active Mappings</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_MODEL___GET_ACTIVE_MAPPINGS = NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int MAPPING_MODEL___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Mapping Model</em>' class.
@@ -576,7 +576,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int MAPPING_MODEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.ConditionalElementImpl <em>Conditional Element</em>}' class.
@@ -616,22 +616,22 @@ public interface PamtramPackage extends EPackage {
 	int CONDITIONAL_ELEMENT_FEATURE_COUNT = 2;
 
 	/**
-	 * The operation id for the '<em>Either Model Or Refer Condition</em>' operation.
+	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2 = 0;
+	int CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
-	 * The operation id for the '<em>Reference Only Conditions From Condition Model</em>' operation.
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2 = 1;
+	int CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = 1;
 
 	/**
 	 * The number of operations of the '<em>Conditional Element</em>' class.
@@ -1000,14 +1000,15 @@ public interface PamtramPackage extends EPackage {
 	EReference getMappingModel_GlobalValues();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.MappingModel#getActiveMappings() <em>Get Active Mappings</em>}' operation.
+	 * Returns the meta object for the reference list '{@link pamtram.MappingModel#getActiveMappings <em>Active Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Active Mappings</em>' operation.
+	 * @return the meta object for the reference list '<em>Active Mappings</em>'.
 	 * @see pamtram.MappingModel#getActiveMappings()
+	 * @see #getMappingModel()
 	 * @generated
 	 */
-	EOperation getMappingModel__GetActiveMappings();
+	EReference getMappingModel_ActiveMappings();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.ConditionalElement <em>Conditional Element</em>}'.
@@ -1042,24 +1043,24 @@ public interface PamtramPackage extends EPackage {
 	EReference getConditionalElement_SharedCondition();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.ConditionalElement#eitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Either Model Or Refer Condition</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.ConditionalElement#validateEitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Either Model Or Refer Condition</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Either Model Or Refer Condition</em>' operation.
-	 * @see pamtram.ConditionalElement#eitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Either Model Or Refer Condition</em>' operation.
+	 * @see pamtram.ConditionalElement#validateEitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2();
+	EOperation getConditionalElement__ValidateEitherModelOrReferCondition__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.ConditionalElement#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Reference Only Conditions From Condition Model</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.ConditionalElement#validateReferenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Only Conditions From Condition Model</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Reference Only Conditions From Condition Model</em>' operation.
-	 * @see pamtram.ConditionalElement#referenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * @see pamtram.ConditionalElement#validateReferenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2();
+	EOperation getConditionalElement__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.ConditionModel <em>Condition Model</em>}'.
@@ -1352,12 +1353,12 @@ public interface PamtramPackage extends EPackage {
 		EReference MAPPING_MODEL__GLOBAL_VALUES = eINSTANCE.getMappingModel_GlobalValues();
 
 		/**
-		 * The meta object literal for the '<em><b>Get Active Mappings</b></em>' operation.
+		 * The meta object literal for the '<em><b>Active Mappings</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MAPPING_MODEL___GET_ACTIVE_MAPPINGS = eINSTANCE.getMappingModel__GetActiveMappings();
+		EReference MAPPING_MODEL__ACTIVE_MAPPINGS = eINSTANCE.getMappingModel_ActiveMappings();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.ConditionalElementImpl <em>Conditional Element</em>}' class.
@@ -1386,20 +1387,20 @@ public interface PamtramPackage extends EPackage {
 		EReference CONDITIONAL_ELEMENT__SHARED_CONDITION = eINSTANCE.getConditionalElement_SharedCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Either Model Or Refer Condition</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Either Model Or Refer Condition</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getConditionalElement__EitherModelOrReferCondition__DiagnosticChain_Map_2();
+		EOperation CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConditionalElement__ValidateEitherModelOrReferCondition__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Reference Only Conditions From Condition Model</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Reference Only Conditions From Condition Model</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getConditionalElement__ReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map_2();
+		EOperation CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConditionalElement__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.ConditionModelImpl <em>Condition Model</em>}' class.

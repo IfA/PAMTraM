@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -17,21 +18,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.ocl.pivot.values.OrderedSetValue;
+
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MetamodelTables;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.util.MetamodelValidator;
@@ -140,7 +130,6 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public EList<MappingType> getReferencingMappings() {
 		
@@ -165,70 +154,25 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReferencedByMapping(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv isReferencedByMapping:
-		 *   let severity : Integer[1] = 2
-		 *   in
-		 *     let status : OclAny[1] = self.referencingMappings->size() > 0
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The section is not referenced by any mapping!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'SourceSection::isReferencedByMapping'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    final /*@Thrown*/ List<MappingType> referencingMappings = this.getReferencingMappings();
-		    final /*@Thrown*/ OrderedSetValue BOXED_referencingMappings = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_MappingType, referencingMappings);
-		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_referencingMappings);
-		    final /*@Thrown*/ boolean status = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, size, MetamodelTables.INT_0).booleanValue();
-		    CAUGHT_status = status;
-		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = MetamodelTables.STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_mapping_33;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_SourceSection_c_c_isReferencedByMapping, this, null, diagnostics, context, message_0, MetamodelTables.INT_2, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * This method is only necessary as OCL does not seem to get along with generic types (the same logic implemented
-	 * in OCL lead to 'UnsupportedOperationException' errors when trying to use 'self.extend->...').
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	@Override
-	public boolean extendsOnlyValidSections() {
-		if(this.getEClass() == null) {
-			return true;
+	public boolean validateIsReferencedByMapping(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = !this.getReferencingMappings().isEmpty();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The section is not referenced by any mapping!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.WARNING,
+					MetamodelValidator.DIAGNOSTIC_SOURCE,
+							MetamodelValidator.SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING,
+							errorMessage,
+					new Object[] { this, MetamodelPackage.Literals.SOURCE_SECTION }));
+		
 		}
-
-		for (SourceSection extend : this.getExtend()) {
-			if(!extend.isAbstract() || extend.getEClass() != null && !(this.getEClass() == extend.getEClass()) && !(this.getEClass().getEAllSuperTypes().contains(extend.getEClass()))) {
-				return false;
-			}
-		}
-
-		return true;
+		
+		return result;
 	}
 
 	/**
@@ -236,6 +180,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateContainerMatchesExtendContainer(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if(this.getContainer() == null) {
 			return true;
@@ -265,44 +210,30 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean extendsValidSections(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv extendsValidSections:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let status : OclAny[?] = self.extendsOnlyValidSections()
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The section extends a section that is either not abstract or that references an EClass of a different (super-)type!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'Section::extendsValidSections'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    final /*@Thrown*/ boolean status = this.extendsOnlyValidSections();
-		    CAUGHT_status = status;
+	@Override
+	public boolean validateExtendsValidSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		if(this.getEClass() == null) {
+			return true;
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		
+		boolean result = this.getExtend().parallelStream().noneMatch(e -> !e.isAbstract() || e.getEClass() != null
+				&& this.getEClass() != e.getEClass() && !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The section extends a section that is either not abstract or that references an EClass of a different (super-)type!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MetamodelValidator.DIAGNOSTIC_SOURCE,
+							MetamodelValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
+							errorMessage,
+					new Object[] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
+		
 		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = MetamodelTables.STR_The_32_section_32_extends_32_a_32_section_32_that_32_is_32_either_32_not_32_abstract_32_or_32_tha;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_Section_c_c_extendsValidSections, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -422,9 +353,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
-				case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS: return MetamodelPackage.SOURCE_SECTION___EXTENDS_ONLY_VALID_SECTIONS;
 				case MetamodelPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.SOURCE_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
-				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2: return MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2;
+				case MetamodelPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.SOURCE_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -440,14 +370,12 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_2:
-				return isReferencedByMapping((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.SOURCE_SECTION___EXTENDS_ONLY_VALID_SECTIONS:
-				return extendsOnlyValidSections();
+			case MetamodelPackage.SOURCE_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP:
+				return validateIsReferencedByMapping((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MetamodelPackage.SOURCE_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2:
-				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MetamodelPackage.SOURCE_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+				return validateExtendsValidSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

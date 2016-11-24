@@ -5,6 +5,7 @@ package pamtram.metamodel.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -13,15 +14,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MetamodelTables;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.util.MetamodelValidator;
@@ -126,31 +121,10 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * This method is only necessary as OCL does not seem to get along with generic types (the same logic implemented
-	 * in OCL lead to 'UnsupportedOperationException' errors when trying to use 'self.extend->...').
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean extendsOnlyValidSections() {
-		if(this.getEClass() == null) {
-			return true;
-		}
-		
-		for (S extend : this.getExtend()) {
-			if(!extend.isAbstract() || extend.getEClass() != null && !(this.getEClass() == extend.getEClass()) && !(this.getEClass().getEAllSuperTypes().contains(extend.getEClass()))) {
-				return false;
-			}
-		}
-		
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateContainerMatchesExtendContainer(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if(this.getContainer() == null) {
 			return true;
@@ -180,44 +154,30 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean extendsValidSections(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv extendsValidSections:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let status : OclAny[?] = self.extendsOnlyValidSections()
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The section extends a section that is either not abstract or that references an EClass of a different (super-)type!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'Section::extendsValidSections'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    final /*@Thrown*/ boolean status = this.extendsOnlyValidSections();
-		    CAUGHT_status = status;
+	@Override
+	public boolean validateExtendsValidSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		if(this.getEClass() == null) {
+			return true;
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		
+		boolean result = this.getExtend().parallelStream().noneMatch(e -> !e.isAbstract() || e.getEClass() != null
+				&& this.getEClass() != e.getEClass() && !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The section extends a section that is either not abstract or that references an EClass of a different (super-)type!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MetamodelValidator.DIAGNOSTIC_SOURCE,
+							MetamodelValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
+							errorMessage,
+					new Object[] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
+		
 		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = MetamodelTables.STR_The_32_section_32_extends_32_a_32_section_32_that_32_is_32_either_32_not_32_abstract_32_or_32_tha;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_Section_c_c_extendsValidSections, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -299,12 +259,10 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS:
-				return extendsOnlyValidSections();
 			case MetamodelPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_2:
-				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MetamodelPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+				return validateExtendsValidSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

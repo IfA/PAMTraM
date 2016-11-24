@@ -56,36 +56,25 @@ public class PamtramTables
 	 *	Constants used by auto-generated code.
 	 */
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_TMPLid_ = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.ids.IdManager.getTemplateParameterId(0));
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.RootPackageId PACKid_$metamodel$ = org.eclipse.ocl.pivot.ids.IdManager.getRootPackageId("$metamodel$");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://mfreund.de/pamtram", null, pamtram.PamtramPackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://mfreund.de/pamtram/condition", null, pamtram.condition.ConditionPackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://mfreund.de/pamtram/mapping", null, pamtram.mapping.MappingPackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://mfreund.de/pamtram/metamodel", null, pamtram.metamodel.MetamodelPackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ApplicationDependency = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ApplicationDependency", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class = pamtram.PamtramTables.PACKid_$metamodel$.getClassId("Class", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ComplexCondition = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ConditionModel = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionModel", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ConditionalElement = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionalElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_EPackage = pamtram.PamtramTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EPackage", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_FixedValue = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("FixedValue", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_LibraryEntry = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("LibraryEntry", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Mapping = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("Mapping", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappingModel = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("MappingModel", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_OclElement = pamtram.PamtramTables.PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_PAMTraM = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("PAMTraM", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSection = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSection", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSectionModel = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("SourceSectionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSection = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSection", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSectionModel = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("TargetSectionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ValueModifierSet = pamtram.PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ValueModifierSet", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_1 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("1");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_4 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("4");
-    public static final /*@NonInvalid*/ java.lang.String STR_ConditionalElement_c_c_eitherModelOrReferCondition = "ConditionalElement::eitherModelOrReferCondition";
-    public static final /*@NonInvalid*/ java.lang.String STR_ConditionalElement_c_c_referenceOnlyConditionsFromConditionModel = "ConditionalElement::referenceOnlyConditionsFromConditionModel";
-    public static final /*@NonInvalid*/ java.lang.String STR_It_32_only_32_allowed_32_to_32_reference_32_shared_32_conditions_32_that_32_are_32_model_32_in = "It only allowed to reference shared conditions that are model inside the ConditionModel!";
-    public static final /*@NonInvalid*/ java.lang.String STR_Please_32_specify_32_at_32_most_32_one_32_o_local_32_or_32_shared_e_32_condition_33 = "Please specify at most one (local or shared) condition!";
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_ApplicationDependency = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.PamtramTables.CLSSid_ApplicationDependency);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_PAMTraM = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.PamtramTables.CLSSid_PAMTraM);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_ComplexCondition);
@@ -100,10 +89,6 @@ public class PamtramTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_TargetSection = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_TargetSection);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_TargetSectionModel = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_TargetSectionModel);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueModifierSet = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.PamtramTables.CLSSid_ValueModifierSet);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_FixedValue = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.PamtramTables.CLSSid_FixedValue);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_Mapping = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.PamtramTables.CLSSid_Mapping);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_ValueModifierSet = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(pamtram.PamtramTables.CLSSid_ValueModifierSet);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(pamtram.PamtramTables.CLSSid_ComplexCondition);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -267,9 +252,6 @@ public class PamtramTables
 			Parameters.init();
 		}
 
-		public static final /*@NonNull*/ ExecutorOperation _MappingModel__getActiveMappings = new ExecutorOperation("getActiveMappings", TypeUtil.EMPTY_PARAMETER_TYPES, Types._MappingModel,
-			0, TemplateParameters.EMPTY_LIST, null);
-
 		public static final /*@NonNull*/ ExecutorOperation _PAMTraM__mergeExtends = new ExecutorOperation("mergeExtends", TypeUtil.EMPTY_PARAMETER_TYPES, Types._PAMTraM,
 			0, TemplateParameters.EMPTY_LIST, null);
 
@@ -300,10 +282,11 @@ public class PamtramTables
 
 		public static final /*@NonNull*/ ExecutorProperty _DeactivatableElement__deactivated = new EcoreExecutorProperty(PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED, Types._DeactivatableElement, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _MappingModel__globalValues = new EcoreExecutorProperty(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES, Types._MappingModel, 0);
-		public static final /*@NonNull*/ ExecutorProperty _MappingModel__mapping = new EcoreExecutorProperty(PamtramPackage.Literals.MAPPING_MODEL__MAPPING, Types._MappingModel, 1);
-		public static final /*@NonNull*/ ExecutorProperty _MappingModel__modifierSets = new EcoreExecutorProperty(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS, Types._MappingModel, 2);
-		public static final /*@NonNull*/ ExecutorProperty _MappingModel__PAMTraM__mappingModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._MappingModel, 3, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL));
+		public static final /*@NonNull*/ ExecutorProperty _MappingModel__activeMappings = new EcoreExecutorProperty(PamtramPackage.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS, Types._MappingModel, 0);
+		public static final /*@NonNull*/ ExecutorProperty _MappingModel__globalValues = new EcoreExecutorProperty(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES, Types._MappingModel, 1);
+		public static final /*@NonNull*/ ExecutorProperty _MappingModel__mapping = new EcoreExecutorProperty(PamtramPackage.Literals.MAPPING_MODEL__MAPPING, Types._MappingModel, 2);
+		public static final /*@NonNull*/ ExecutorProperty _MappingModel__modifierSets = new EcoreExecutorProperty(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS, Types._MappingModel, 3);
+		public static final /*@NonNull*/ ExecutorProperty _MappingModel__PAMTraM__mappingModel = new ExecutorPropertyWithImplementation("PAMTraM", Types._MappingModel, 4, new EcoreLibraryOppositeProperty(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL));
 
 		public static final /*@NonNull*/ ExecutorProperty _NamedElement__name = new EcoreExecutorProperty(PamtramPackage.Literals.NAMED_ELEMENT__NAME, Types._NamedElement, 0);
 
@@ -547,9 +530,7 @@ public class PamtramTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__MappingModel = {
-			PamtramTables.Operations._MappingModel__getActiveMappings /* getActiveMappings() */
-		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__MappingModel = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__ConditionalElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__DeactivatableElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MappingModel__NamedElement = {};
@@ -810,6 +791,7 @@ public class PamtramTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MappingModel = {
+			PamtramTables.Properties._MappingModel__activeMappings,
 			PamtramTables.Properties._DeactivatableElement__deactivated,
 			PamtramTables.Properties._MappingModel__globalValues,
 			PamtramTables.Properties._ConditionalElement__localCondition,

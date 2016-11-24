@@ -313,7 +313,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_2 = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+	int VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_11 = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Variadic Condition</em>' class.
@@ -413,7 +413,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_2 = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_2;
+	int AND___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_11 = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_11;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -513,7 +513,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_2 = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_2;
+	int OR___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_11 = VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_11;
 
 	/**
 	 * The number of operations of the '<em>Or</em>' class.
@@ -604,7 +604,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_2 = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+	int UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_11 = COMPLEX_CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Unary Condition</em>' class.
@@ -695,7 +695,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_2 = UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_2;
+	int NOT___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_11 = UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_11;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -713,7 +713,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_2 = UNARY_CONDITION_OPERATION_COUNT + 1;
+	int NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_11 = UNARY_CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Not</em>' class.
@@ -1203,7 +1203,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.VariadicCondition#minimalNumberOfArgs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map_2();
+	EOperation getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map_11();
 
 	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getValue <em>Value</em>}'.
@@ -1276,7 +1276,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.UnaryCondition#exactlyOneArg(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map_2();
+	EOperation getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map_11();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Not <em>Not</em>}'.
@@ -1306,7 +1306,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.Not#referenceOnlyConditionsFromConditionModelOrFromConditionalElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_2();
+	EOperation getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_11();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.AttributeCondition <em>Attribute Condition</em>}'.
@@ -1523,7 +1523,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map_2();
+		EOperation VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_11 = eINSTANCE.getVariadicCondition__MinimalNumberOfArgs__DiagnosticChain_Map_11();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1585,7 +1585,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map_2();
+		EOperation UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_11 = eINSTANCE.getUnaryCondition__ExactlyOneArg__DiagnosticChain_Map_11();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.
@@ -1611,7 +1611,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_2();
+		EOperation NOT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP_11 = eINSTANCE.getNot__ReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map_11();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.AttributeConditionImpl <em>Attribute Condition</em>}' class.

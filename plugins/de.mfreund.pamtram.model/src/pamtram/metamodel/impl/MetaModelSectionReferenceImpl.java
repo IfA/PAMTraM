@@ -122,10 +122,10 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
 		try {
-		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
+		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid = idResolver.getClass(TypeId.OCL_VOID, null);
 		    final /*@Thrown*/ EReference eReference = this.getEReference();
 		    final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, eReference);
-		    final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
+		    final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid.getTypeId();
 		    /*@Thrown*/ Boolean status;
 		    if (eq) {
 		        status = ValueUtil.TRUE_VALUE;
@@ -306,7 +306,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.META_MODEL_SECTION_REFERENCE___VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_11:
 				return valuesMatchReferenceType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

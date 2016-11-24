@@ -19,6 +19,7 @@ import pamtram.mapping.Mapping;
  *   <li>{@link pamtram.MappingModel#getMapping <em>Mapping</em>}</li>
  *   <li>{@link pamtram.MappingModel#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.MappingModel#getGlobalValues <em>Global Values</em>}</li>
+ *   <li>{@link pamtram.MappingModel#getActiveMappings <em>Active Mappings</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getMappingModel()
@@ -78,10 +79,14 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 	EList<FixedValue> getGlobalValues();
 
 	/**
+	 * Returns the value of the '<em><b>Active Mappings</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.Mapping}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<Mapping> mappings = getMapping();\r\nEList<Mapping> activeMappings = new BasicEList<>();\r\nfor (Mapping mapping : mappings) {\r\n\tif(!mapping.isDeactivated() && !mapping.isAbstract()) {\r\n\t\tactiveMappings.add(mapping);\r\n\t}\r\n}\r\nreturn activeMappings;'"
+	 * @return the value of the '<em>Active Mappings</em>' reference list.
+	 * @see pamtram.PamtramPackage#getMappingModel_ActiveMappings()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><Mapping> mappings = this.getMapping().parallelStream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());'"
 	 * @generated
 	 */
 	EList<Mapping> getActiveMappings();

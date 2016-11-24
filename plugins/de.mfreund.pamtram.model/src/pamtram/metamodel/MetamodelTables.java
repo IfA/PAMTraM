@@ -79,14 +79,13 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_AttributeParameter = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("AttributeParameter", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_CardinalityCondition = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("CardinalityCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_CardinalityMapping = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("CardinalityMapping", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Class", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class = pamtram.metamodel.MetamodelTables.PACKid_$metamodel$.getClassId("Class", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ClassMatcher = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ClassMatcher", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class_0 = pamtram.metamodel.MetamodelTables.PACKid_$metamodel$.getClassId("Class", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Class_0 = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Class", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ComplexCondition = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Condition = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("Condition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ContainerParameter = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ContainerParameter", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ContainmentReference = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("ContainmentReference", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ContainmentReference_0 = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ContainmentReference", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_EAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_EClass = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EClass", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_EObject = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EObject", 0);
@@ -105,19 +104,15 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MappingType = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappingType", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MetaModelSectionReference = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("MetaModelSectionReference", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ModifiedAttributeElementType = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ModifiedAttributeElementType", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_NonContainmentReference = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("NonContainmentReference", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_OclElement = pamtram.metamodel.MetamodelTables.PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_PAMTraM = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("PAMTraM", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_RangeBound = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("RangeBound", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_RangeConstraint = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("RangeConstraint", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Reference = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Reference", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ReferenceTargetSelector = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("ReferenceTargetSelector", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ResourceParameter = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib.getClassId("ResourceParameter", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ResourceParameter_0 = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ResourceParameter", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Section = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Section", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SectionModel = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("SectionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SingleReferenceValueConstraint = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SingleReferenceValueConstraint", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSection = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSection", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSectionAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSectionClass = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TargetSection = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSection", 0);
@@ -127,42 +122,20 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ValueConstraint = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ValueConstraint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ValueConstraintSourceInterface = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ValueConstraintSourceInterface", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_VirtualTargetSectionAttribute = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("VirtualTargetSectionAttribute", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.DataTypeId DATAid_EInt = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_CardinalityType = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("CardinalityType");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_FileTypeEnum = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("FileTypeEnum");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_ValueConstraintType = pamtram.metamodel.MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("ValueConstraintType");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_1 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("1");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_2 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("2");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_4 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("4");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_TMPLid__1 = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.ids.IdManager.getTemplateParameterId(0));
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_TMPLid__2 = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.ids.IdManager.getTemplateParameterId(1));
     public static final /*@NonInvalid*/ java.lang.String STR_ActualAttribute_c_c_attributeMatchesParentEClass = "ActualAttribute::attributeMatchesParentEClass";
-    public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_cardinalityIsValid = "Class::cardinalityIsValid";
-    public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_containerIsValid = "Class::containerIsValid";
-    public static final /*@NonInvalid*/ java.lang.String STR_Class_c_c_eClassMatchesParentEReference = "Class::eClassMatchesParentEReference";
-    public static final /*@NonInvalid*/ java.lang.String STR_ContainmentReference_c_c_eReferenceIsContainment = "ContainmentReference::eReferenceIsContainment";
     public static final /*@NonInvalid*/ java.lang.String STR_InstancePointer_c_c_noModifiedAttributeElementTypesInConditionModel = "InstancePointer::noModifiedAttributeElementTypesInConditionModelConditions";
     public static final /*@NonInvalid*/ java.lang.String STR_MetaModelSectionReference_c_c_valuesMatchReferenceType = "MetaModelSectionReference::valuesMatchReferenceType";
     public static final /*@NonInvalid*/ java.lang.String STR_ModifiedAttributeElementTypes_32_are_32_not_32_allowed_32_as_32_part_32_of_32_Conditi = "ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!";
-    public static final /*@NonInvalid*/ java.lang.String STR_NonContainmentReference_c_c_eReferenceIsNonContainment = "NonContainmentReference::eReferenceIsNonContainment";
-    public static final /*@NonInvalid*/ java.lang.String STR_Reference_c_c_eReferenceMatchesParentEClass = "Reference::eReferenceMatchesParentEClass";
-    public static final /*@NonInvalid*/ java.lang.String STR_Section_c_c_extendsValidSections = "Section::extendsValidSections";
-    public static final /*@NonInvalid*/ java.lang.String STR_SourceSection_c_c_isReferencedByMapping = "SourceSection::isReferencedByMapping";
-    public static final /*@NonInvalid*/ java.lang.String STR_TargetSection_c_c_isReferencedByMappingHintGroup = "TargetSection::isReferencedByMappingHintGroup";
-    public static final /*@NonInvalid*/ java.lang.String STR_The_32_39_container_39_32_refrence_32_must_32_point_32_to_32_the_32_containing_32_Class_33 = "The \'container\' refrence must point to the containing Class!";
-    public static final /*@NonInvalid*/ java.lang.String STR_The_32_cardinality_32_of_32_a_32_Class_32_must_32_be_32_specified_32_as_32_39_CardinalityType = "The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!";
     public static final /*@NonInvalid*/ java.lang.String STR_The_32_eAttribute_32_39 = "The eAttribute \'";
-    public static final /*@NonInvalid*/ java.lang.String STR_The_32_eClass_32_39 = "The eClass \'";
-    public static final /*@NonInvalid*/ java.lang.String STR_The_32_eReference_32_39 = "The eReference \'";
-    public static final /*@NonInvalid*/ java.lang.String STR_The_32_section_32_extends_32_a_32_section_32_that_32_is_32_either_32_not_32_abstract_32_or_32_tha = "The section extends a section that is either not abstract or that references an EClass of a different (super-)type!";
-    public static final /*@NonInvalid*/ java.lang.String STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_hint_32_group_32_and_32_will_32_not_32_be_32 = "The section is not referenced by any hint group and will not be instantiated!";
-    public static final /*@NonInvalid*/ java.lang.String STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_mapping_33 = "The section is not referenced by any mapping!";
     public static final /*@NonInvalid*/ java.lang.String STR__32_of_32_the_32_selected_32_target_32_Classes_32_o_Value_e_32_are_32_not_32_allowed_32_by_32_the_32_s = " of the selected target Classes (Value) are not allowed by the selected eReference \'";
-    public static final /*@NonInvalid*/ java.lang.String STR__39_32_is_32_no_32_containment_32_reference_33 = "\' is no containment reference!";
-    public static final /*@NonInvalid*/ java.lang.String STR__39_32_is_32_no_32_non_m_containment_32_reference_33 = "\' is no non-containment reference!";
     public static final /*@NonInvalid*/ java.lang.String STR__39_32_is_32_not_32_allowed_32_by_32_the_32_containing_32_Class_33 = "\' is not allowed by the containing Class!";
-    public static final /*@NonInvalid*/ java.lang.String STR__39_32_is_32_not_32_allowed_32_by_32_the_32_containing_32_reference_33 = "\' is not allowed by the containing reference!";
     public static final /*@NonInvalid*/ java.lang.String STR__39_33 = "\'!";
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_AttributeCondition = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_AttributeCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_AttributeMapping = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_AttributeMapping);
@@ -179,9 +152,7 @@ public class MetamodelTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_PAMTraM = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_PAMTraM);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_ReferenceTargetSelector = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_ReferenceTargetSelector);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_TargetSection = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_TargetSection);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationLiteralId ELITid_ONE = pamtram.metamodel.MetamodelTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_EAttribute = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_EAttribute);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_EReference = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_EReference);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_InstancePointer = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_InstancePointer);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_InstancePointerSourceInterface = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_InstancePointerSourceInterface);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_LibraryParameter = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.metamodel.MetamodelTables.CLSSid_LibraryParameter);
@@ -846,9 +817,6 @@ public class MetamodelTables
 			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _RangeBound__isLocalConstraint = new ExecutorOperation("isLocalConstraint", TypeUtil.EMPTY_PARAMETER_TYPES, Types._RangeBound,
-			0, TemplateParameters.EMPTY_LIST, null);
-
-		public static final /*@NonNull*/ ExecutorOperation _Section__extendsOnlyValidSections = new ExecutorOperation("extendsOnlyValidSections", TypeUtil.EMPTY_PARAMETER_TYPES, Types._Section,
 			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _SingleReferenceValueConstraint__checkConstraint = new ExecutorOperation("checkConstraint", Parameters._String___String, Types._SingleReferenceValueConstraint,
@@ -2718,9 +2686,7 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Section__Section = {
-			MetamodelTables.Operations._Section__extendsOnlyValidSections /* extendsOnlyValidSections() */
-		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Section__Section = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Section__Class = {
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
@@ -2834,9 +2800,7 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSection__Section = {
-			MetamodelTables.Operations._Section__extendsOnlyValidSections /* extendsOnlyValidSections() */
-		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSection__Section = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSection__SourceSectionClass = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SourceSectionAttribute__SourceSectionAttribute = {};
@@ -3066,9 +3030,7 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _TargetSection__Section = {
-			MetamodelTables.Operations._Section__extendsOnlyValidSections /* extendsOnlyValidSections() */
-		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _TargetSection__Section = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _TargetSection__TargetSectionClass = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _TargetSectionAttribute__TargetSectionAttribute = {};

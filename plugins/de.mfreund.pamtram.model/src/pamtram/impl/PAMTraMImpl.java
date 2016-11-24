@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -30,19 +29,11 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.pivot.values.SequenceValue;
-
 import pamtram.ConditionModel;
 import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
-import pamtram.PamtramTables;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeMapping;
@@ -299,34 +290,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 */
 	@Override
 	public EList<Mapping> getMappings() {
-		/**
-		 * self.mappingModel->collect(s | s.mapping)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@Thrown*/ List<MappingModel> mappingModel = this.getMappingModel();
-		final /*@Thrown*/ OrderedSetValue BOXED_mappingModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_MappingModel, mappingModel);
-		/*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_Mapping);
-		/*@NonNull*/ Iterator<Object> ITERATOR_s = BOXED_mappingModel.iterator();
-		/*@Thrown*/ SequenceValue collect;
-		while (true) {
-		    if (!ITERATOR_s.hasNext()) {
-		        collect = accumulator;
-		        break;
-		    }
-		    /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
-		    /**
-		     * s.mapping
-		     */
-		    final /*@Thrown*/ List<Mapping> mapping = s.getMapping();
-		    final /*@Thrown*/ OrderedSetValue BOXED_mapping = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_Mapping, mapping);
-		    //
-		    for (Object value : BOXED_mapping.flatten().getElements()) {
-		        accumulator.add(value);
-		    }
-		}
-		final /*@Thrown*/ List<Mapping> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Mapping.class, collect);
-		return (EList<Mapping>)ECORE_collect;
+		List<Mapping> mappings = this.getMappingModel().parallelStream()
+				.flatMap(s -> s.getMapping().parallelStream()).collect(Collectors.toList());
+		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MAPPINGS,
+				mappings.size(), mappings.toArray());
 	}
 
 	/**
@@ -337,55 +304,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Mapping> getActiveMappings() {
-		/**
-		 * 
-		 * self.mappingModel->select(m | m.deactivated = false)
-		 * ->collect(m | m.getActiveMappings())
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@Thrown*/ List<MappingModel> mappingModel = this.getMappingModel();
-		final /*@Thrown*/ OrderedSetValue BOXED_mappingModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_MappingModel, mappingModel);
-		/*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(PamtramTables.ORD_CLSSid_MappingModel);
-		/*@NonNull*/ Iterator<Object> ITERATOR_m = BOXED_mappingModel.iterator();
-		/*@Thrown*/ OrderedSetValue select;
-		while (true) {
-		    if (!ITERATOR_m.hasNext()) {
-		        select = accumulator;
-		        break;
-		    }
-		    /*@NonInvalid*/ MappingModel m = (MappingModel)ITERATOR_m.next();
-		    /**
-		     * m.deactivated = false
-		     */
-		    final /*@Thrown*/ boolean deactivated = m.isDeactivated();
-		    final /*@Thrown*/ boolean eq = !deactivated;
-		    //
-		    if (eq == ValueUtil.TRUE_VALUE) {
-		        accumulator.add(m);
-		    }
-		}
-		/*@Thrown*/ SequenceValue.Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_Mapping);
-		/*@NonNull*/ Iterator<Object> ITERATOR_m_0 = select.iterator();
-		/*@Thrown*/ SequenceValue collect;
-		while (true) {
-		    if (!ITERATOR_m_0.hasNext()) {
-		        collect = accumulator_0;
-		        break;
-		    }
-		    /*@NonInvalid*/ MappingModel m_0 = (MappingModel)ITERATOR_m_0.next();
-		    /**
-		     * m.getActiveMappings()
-		     */
-		    final /*@Thrown*/ List<Mapping> getActiveMappings = m_0.getActiveMappings();
-		    final /*@Thrown*/ OrderedSetValue BOXED_getActiveMappings = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_Mapping, getActiveMappings);
-		    //
-		    for (Object value : BOXED_getActiveMappings.flatten().getElements()) {
-		        accumulator_0.add(value);
-		    }
-		}
-		final /*@Thrown*/ List<Mapping> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Mapping.class, collect);
-		return (EList<Mapping>)ECORE_collect;
+		List<Mapping> mappings = this.getMappingModel().parallelStream().filter(m -> !m.isDeactivated())
+				.flatMap(s -> s.getActiveMappings().parallelStream()).collect(Collectors.toList());
+		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,
+				mappings.size(), mappings.toArray());
 	}
 
 	/**
@@ -396,34 +318,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	@SuppressWarnings("unchecked")
 	public EList<FixedValue> getGlobalValues() {
-		/**
-		 * self.mappingModel->collect(s | s.globalValues)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@Thrown*/ List<MappingModel> mappingModel = this.getMappingModel();
-		final /*@Thrown*/ OrderedSetValue BOXED_mappingModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_MappingModel, mappingModel);
-		/*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_FixedValue);
-		/*@NonNull*/ Iterator<Object> ITERATOR_s = BOXED_mappingModel.iterator();
-		/*@Thrown*/ SequenceValue collect;
-		while (true) {
-		    if (!ITERATOR_s.hasNext()) {
-		        collect = accumulator;
-		        break;
-		    }
-		    /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
-		    /**
-		     * s.globalValues
-		     */
-		    final /*@Thrown*/ List<FixedValue> globalValues = s.getGlobalValues();
-		    final /*@Thrown*/ OrderedSetValue BOXED_globalValues = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_FixedValue, globalValues);
-		    //
-		    for (Object value : BOXED_globalValues.flatten().getElements()) {
-		        accumulator.add(value);
-		    }
-		}
-		final /*@Thrown*/ List<FixedValue> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(FixedValue.class, collect);
-		return (EList<FixedValue>)ECORE_collect;
+		List<FixedValue> globalValues = this.getMappingModel().parallelStream()
+				.flatMap(s -> s.getGlobalValues().parallelStream()).collect(Collectors.toList());
+		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__GLOBAL_VALUES,
+				globalValues.size(), globalValues.toArray());
 	}
 
 	/**
@@ -434,34 +332,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	@SuppressWarnings("unchecked")
 	public EList<ValueModifierSet> getModifierSets() {
-		/**
-		 * self.mappingModel->collect(s | s.modifierSets)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@Thrown*/ List<MappingModel> mappingModel = this.getMappingModel();
-		final /*@Thrown*/ OrderedSetValue BOXED_mappingModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_MappingModel, mappingModel);
-		/*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_ValueModifierSet);
-		/*@NonNull*/ Iterator<Object> ITERATOR_s = BOXED_mappingModel.iterator();
-		/*@Thrown*/ SequenceValue collect;
-		while (true) {
-		    if (!ITERATOR_s.hasNext()) {
-		        collect = accumulator;
-		        break;
-		    }
-		    /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
-		    /**
-		     * s.modifierSets
-		     */
-		    final /*@Thrown*/ List<ValueModifierSet> modifierSets = s.getModifierSets();
-		    final /*@Thrown*/ OrderedSetValue BOXED_modifierSets = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_ValueModifierSet, modifierSets);
-		    //
-		    for (Object value : BOXED_modifierSets.flatten().getElements()) {
-		        accumulator.add(value);
-		    }
-		}
-		final /*@Thrown*/ List<ValueModifierSet> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(ValueModifierSet.class, collect);
-		return (EList<ValueModifierSet>)ECORE_collect;
+		List<ValueModifierSet> modifierSets = this.getMappingModel().parallelStream()
+				.flatMap(s -> s.getModifierSets().parallelStream()).collect(Collectors.toList());
+		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MODIFIER_SETS,
+				modifierSets.size(), modifierSets.toArray());
 	}
 
 	/**

@@ -5,45 +5,29 @@ package pamtram.metamodel.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
-import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
-import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
-import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
-import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MetamodelTables;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.util.MetamodelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -186,8 +170,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public void setEClass(EClass newEClass) {
-		setNameDerived(eClass, newEClass, null, null);
-		setEClassGen(newEClass);
+		this.setNameDerived(this.eClass, newEClass, null, null);
+		this.setEClassGen(newEClass);
 	}
 
 	/**
@@ -250,7 +234,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public C getContainer() {
-		C container = getContainerGen();
+		C container = this.getContainerGen();
 		if (container == null && !(this instanceof Section)) {
 			return this.getOwningContainmentReference().getOwningClass();
 		} else {
@@ -400,7 +384,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 		// recursively iterate over all referenced classes
 		for (C clazz : classes) {
-			if(clazz.equals(this) || isReferencedBy(clazz, referencedClasses)) {
+			if(clazz.equals(this) || this.isReferencedBy(clazz, referencedClasses)) {
 				return true;
 			} else {
 				if(!referencedClasses.contains(clazz)) {
@@ -417,75 +401,35 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean containerIsValid(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv containerIsValid:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[1] = if
-		 *         self.oclIsKindOf(Section(S, C, R, A)) = true or self.container = null
-		 *       then true
-		 *       else self.container = self.oclContainer().oclContainer()
-		 *       endif
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The \'container\' refrence must point to the containing Class!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'Class::containerIsValid'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Section, null);
-		    final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, this, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e).booleanValue();
-		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq;
-		    try {
-		        final /*@Thrown*/ Object container = this.getContainer();
-		        final /*@Thrown*/ boolean eq = container == null;
-		        CAUGHT_eq = eq;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(oclIsKindOf, CAUGHT_eq);
-		    if (or == null) {
-		        throw new InvalidValueException("Null if condition");
-		    }
-		    /*@Thrown*/ boolean status;
-		    if (or) {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    else {
-		        final /*@Thrown*/ Object container_0 = this.getContainer();
-		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		        final /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, oclContainer);
-		        final /*@Thrown*/ boolean eq_0 = (container_0 != null) ? container_0.equals(oclContainer_0) : (oclContainer_0 == null);
-		        status = eq_0;
-		    }
-		    CAUGHT_status = status;
+	@Override
+	public boolean validateEClassMatchesParentEReference(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {
+			return true;
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		
+		Reference<?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();
+		
+		if(parentReference.getEReference() == null) {
+			return true;
 		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
+		
+		boolean result = parentReference.getEReference().getEReferenceType().isSuperTypeOf(this.getEClass());
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The eClass '" + this.eClass().getName() + "' is not allowed by the containing reference!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MetamodelValidator.DIAGNOSTIC_SOURCE,
+							MetamodelValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,
+							errorMessage,
+					new Object[] { this, MetamodelPackage.Literals.CLASS__ECLASS }));
+		
 		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = MetamodelTables.STR_The_32_39_container_39_32_refrence_32_must_32_point_32_to_32_the_32_containing_32_Class_33;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_containerIsValid, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -493,133 +437,35 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean cardinalityIsValid(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv cardinalityIsValid:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[?] = if self =
-		 *         self.getContainingSection() or
-		 *         self.eClass.oclType() = OclVoid
-		 *       then true
-		 *       else
-		 *         let
-		 *           parentEReference : ecore::EReference[1] = self.oclContainer()
-		 *           .oclAsType(Reference(S, C, R, A)).eReference
-		 *         in
-		 *           if parentEReference.oclType() = OclVoid
-		 *           then true
-		 *           else
-		 *             not (self.cardinality <> CardinalityType::ONE and
-		 *               self.oclContainer()
-		 *               .oclAsType(Reference(S, C, R, A))
-		 *               .eReference.oclAsType(ecore::EReference).upperBound = 1
-		 *             )
-		 *           endif
-		 *       endif
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'Class::cardinalityIsValid'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
-		try {
-		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq;
-		    try {
-		        final /*@Thrown*/ Object getContainingSection = ((MetaModelElement)this).getContainingSection();
-		        final /*@Thrown*/ boolean eq = this.equals(getContainingSection);
-		        CAUGHT_eq = eq;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
-		    }
-		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_0;
-		    try {
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		        final /*@Thrown*/ EClass eClass = this.getEClass();
-		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, eClass);
-		        final /*@Thrown*/ boolean eq_0 = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
-		        CAUGHT_eq_0 = eq_0;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_eq_0);
-		    if (or == null) {
-		        throw new InvalidValueException("Null if condition");
-		    }
-		    /*@Thrown*/ Boolean status;
-		    if (or) {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    else {
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
-		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		        final /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_S_44_C_44_R_44_A_e_0));
-		        final /*@Thrown*/ EReference parentEReference = oclAsType.getEReference();
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_1 = idResolver.getClass(TypeId.OCL_VOID, null);
-		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, parentEReference);
-		        final /*@Thrown*/ boolean eq_1 = oclType_0.getTypeId() == TYP_OclVoid_1.getTypeId();
-		        /*@Thrown*/ Boolean symbol_0;
-		        if (eq_1) {
-		            symbol_0 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            /*@Caught*/ /*@NonNull*/ Object CAUGHT_ne;
-		            try {
-		                final /*@Thrown*/ CardinalityType cardinality = this.getCardinality();
-		                final /*@Thrown*/ EnumerationLiteralId BOXED_cardinality = MetamodelTables.ENUMid_CardinalityType.getEnumerationLiteralId(ClassUtil.nonNullState(cardinality.getName()));
-		                final /*@Thrown*/ boolean ne = BOXED_cardinality != MetamodelTables.ELITid_ONE;
-		                CAUGHT_ne = ne;
-		            }
-		            catch (Exception e) {
-		                CAUGHT_ne = ValueUtil.createInvalidValue(e);
-		            }
-		            /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_2;
-		            try {
-		                final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference_0 = idResolver.getClass(MetamodelTables.CLSSid_EReference, null);
-		                final /*@Thrown*/ EReference eReference = oclAsType.getEReference();
-		                final /*@Thrown*/ EReference oclAsType_1 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, eReference, TYP_ecore_c_c_EReference_0));
-		                final /*@Thrown*/ int upperBound = oclAsType_1.getUpperBound();
-		                final /*@Thrown*/ IntegerValue BOXED_upperBound = ValueUtil.integerValueOf(upperBound);
-		                final /*@Thrown*/ boolean eq_2 = MetamodelTables.INT_1.equals(BOXED_upperBound);
-		                CAUGHT_eq_2 = eq_2;
-		            }
-		            catch (Exception e) {
-		                CAUGHT_eq_2 = ValueUtil.createInvalidValue(e);
-		            }
-		            final /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_eq_2);
-		            final /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(and);
-		            symbol_0 = not;
-		        }
-		        status = symbol_0;
-		    }
-		    CAUGHT_status = status;
+	@Override
+	public boolean validateCardinalityIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {
+			return true;
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		
+		Reference<?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();
+		
+		if(parentReference.getEReference() == null) {
+			return true;
 		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
+		
+		boolean result = !(this.cardinality != CardinalityType.ONE && parentReference.getEReference().getUpperBound() == 1);
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The cardinality of a Class must be specified as 'CardinalityType::ONE' when the upper bound of the containing Reference is '1'!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MetamodelValidator.DIAGNOSTIC_SOURCE,
+							MetamodelValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,
+							errorMessage,
+					new Object[] { this, MetamodelPackage.Literals.CLASS__CARDINALITY }));
+		
 		}
-		final /*@Thrown*/ boolean ne_0 = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne_0) {
-		    message_0 = MetamodelTables.STR_The_32_cardinality_32_of_32_a_32_Class_32_must_32_be_32_specified_32_as_32_39_CardinalityType;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_cardinalityIsValid, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -627,117 +473,25 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eClassMatchesParentEReference(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv eClassMatchesParentEReference:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[?] = if self =
-		 *         self.getContainingSection() or
-		 *         self.eClass.oclType() = OclVoid
-		 *       then true
-		 *       else
-		 *         let
-		 *           parentEReference : ecore::EReference[1] = self.oclContainer()
-		 *           .oclAsType(Reference(S, C, R, A)).eReference
-		 *         in
-		 *           if parentEReference.oclType() = OclVoid
-		 *           then true
-		 *           else
-		 *             parentEReference.oclAsType(ecore::EReference)
-		 *             .eReferenceType.isSuperTypeOf(
-		 *               self.eClass.oclAsType(ecore::EClass))
-		 *           endif
-		 *       endif
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The eClass \'' + self.eClass.name + '\' is not allowed by the containing reference!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'Class::eClassMatchesParentEReference'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq;
-		    try {
-		        final /*@Thrown*/ Object getContainingSection = ((MetaModelElement)this).getContainingSection();
-		        final /*@Thrown*/ boolean eq = this.equals(getContainingSection);
-		        CAUGHT_eq = eq;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
-		    }
-		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_0;
-		    try {
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid = idResolver.getClass(TypeId.OCL_VOID, null);
-		        final /*@Thrown*/ EClass eClass = this.getEClass();
-		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, eClass);
-		        final /*@Thrown*/ boolean eq_0 = oclType.getTypeId() == TYP_OclVoid.getTypeId();
-		        CAUGHT_eq_0 = eq_0;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_eq_0);
-		    if (or == null) {
-		        throw new InvalidValueException("Null if condition");
-		    }
-		    /*@Thrown*/ boolean status;
-		    if (or) {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    else {
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_S_44_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
-		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		        final /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_S_44_C_44_R_44_A_e));
-		        final /*@Thrown*/ EReference parentEReference = oclAsType.getEReference();
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, parentEReference);
-		        final /*@Thrown*/ boolean eq_1 = oclType_0.getTypeId() == TYP_OclVoid_0.getTypeId();
-		        /*@Thrown*/ boolean symbol_0;
-		        if (eq_1) {
-		            symbol_0 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass = idResolver.getClass(MetamodelTables.CLSSid_EClass, null);
-		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference = idResolver.getClass(MetamodelTables.CLSSid_EReference, null);
-		            final /*@Thrown*/ EReference oclAsType_0 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, parentEReference, TYP_ecore_c_c_EReference));
-		            final /*@Thrown*/ EClass eReferenceType = oclAsType_0.getEReferenceType();
-		            final /*@Thrown*/ EClass eClass_0 = this.getEClass();
-		            final /*@Thrown*/ EClass oclAsType_1 = ClassUtil.nonNullState((EClass)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, eClass_0, TYP_ecore_c_c_EClass));
-		            final /*@Thrown*/ boolean isSuperTypeOf = eReferenceType.isSuperTypeOf(oclAsType_1);
-		            symbol_0 = isSuperTypeOf;
-		        }
-		        status = symbol_0;
-		    }
-		    CAUGHT_status = status;
+	@Override
+	public boolean validateContainerIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this instanceof Section<?, ?, ?, ?> || this.getContainer() == null ? true : this.getContainer().equals(this.eContainer().eContainer());
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The 'container' refrence must point to the containing Class!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MetamodelValidator.DIAGNOSTIC_SOURCE,
+							MetamodelValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,
+							errorMessage,
+					new Object[] { this, MetamodelPackage.Literals.CLASS__CONTAINER }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    final /*@Thrown*/ EClass eClass_1 = this.getEClass();
-		    final /*@Thrown*/ String name = eClass_1.getName();
-		    final /*@NonInvalid*/ String sum = StringConcatOperation.INSTANCE.evaluate(MetamodelTables.STR_The_32_eClass_32_39, name);
-		    final /*@NonInvalid*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, MetamodelTables.STR__39_32_is_32_not_32_allowed_32_by_32_the_32_containing_32_reference_33);
-		    message_0 = sum_0;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_eClassMatchesParentEReference, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -893,12 +647,12 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return getOwningContainmentReference();
 			case MetamodelPackage.CLASS___IS_REFERENCED_BY__CLASS_ELIST:
 				return isReferencedBy((C)arguments.get(0), (EList<C>)arguments.get(1));
-			case MetamodelPackage.CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
-				return containerIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
-				return cardinalityIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_2:
-				return eClassMatchesParentEReference((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MetamodelPackage.CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP:
+				return validateEClassMatchesParentEReference((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MetamodelPackage.CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP:
+				return validateCardinalityIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MetamodelPackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP:
+				return validateContainerIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

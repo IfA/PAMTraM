@@ -52,29 +52,29 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
         eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
         derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.mappingModel->collect(s | s.mapping)"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="List&lt;Mapping> mappings = this.getMappingModel().parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMapping().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeMappings" upperBound="-1"
         eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
         derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.mappingModel->select(m | m.deactivated = false)->collect(m | m.getActiveMappings())"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="List&lt;Mapping> mappings = this.getMappingModel().parallelStream().filter(m -> !m.isDeactivated())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getActiveMappings().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalValues" upperBound="-1"
         eType="#//mapping/FixedValue" changeable="false" volatile="true" transient="true"
         derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.mappingModel->collect(s | s.globalValues)"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="&lt;%java.util.List%>&lt;FixedValue> globalValues = this.getMappingModel().parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getGlobalValues().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_VALUES,&#xD;&#xA;&#x9;&#x9;globalValues.size(), globalValues.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
         eType="#//mapping/ValueModifierSet" changeable="false" volatile="true" transient="true"
         derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.mappingModel->collect(s | s.modifierSets)"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="&lt;%java.util.List%>&lt;ValueModifierSet> modifierSets = this.getMappingModel().parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getModifierSets().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MODIFIER_SETS,&#xD;&#xA;&#x9;&#x9;modifierSets.size(), modifierSets.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionModel" upperBound="-1"
@@ -139,26 +139,48 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MappingModel" eSuperTypes="#//NamedElement #//DeactivatableElement #//ConditionalElement">
-    <eOperations name="getActiveMappings" upperBound="-1" eType="#//mapping/Mapping">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="EList&lt;Mapping> mappings = getMapping();&#xD;&#xA;EList&lt;Mapping> activeMappings = new BasicEList&lt;>();&#xD;&#xA;for (Mapping mapping : mappings) {&#xD;&#xA;&#x9;if(!mapping.isDeactivated() &amp;&amp; !mapping.isAbstract()) {&#xD;&#xA;&#x9;&#x9;activeMappings.add(mapping);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return activeMappings;"/>
-      </eAnnotations>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
         upperBound="-1" eType="#//mapping/Mapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
         eType="#//mapping/ValueModifierSet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalValues" upperBound="-1"
         eType="#//mapping/FixedValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activeMappings" upperBound="-1"
+        eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="&lt;%java.util.List%>&lt;Mapping> mappings = this.getMapping().parallelStream().filter(m -> !m.isDeactivated() &amp;&amp; !m.isAbstract()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalElement" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="eitherModelOrReferCondition referenceOnlyConditionsFromConditionModel"/>
     </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="eitherModelOrReferCondition" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'Please specify at most one (local or shared) condition!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;(self.sharedCondition->size()+self.localCondition->size()) &lt;= 1&#xD;&#xA;}.status"/>
-      <details key="referenceOnlyConditionsFromConditionModel" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'It only allowed to reference shared conditions that are model inside the ConditionModel!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;&#x9;if self.sharedCondition->size() = 1 then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.sharedCondition.oclContainer().oclIsTypeOf(pamtram::ConditionModel) else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
-    </eAnnotations>
+    <eOperations name="validateEitherModelOrReferCondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="&#xD;&#xA;boolean result = !(this.getLocalCondition() != null &amp;&amp; this.getSharedCondition() != null);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;Please specify at most one (local or shared) condition!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;PamtramValidator.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%pamtram.util.PamtramValidator%>.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="validateReferenceOnlyConditionsFromConditionModel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="&#xD;&#xA;boolean result = this.getSharedCondition() == null || this.eContainer() instanceof &lt;%pamtram.ConditionModel%>;&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;It is only allowed to reference shared conditions that are model inside the ConditionModel!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;PamtramValidator.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%pamtram.util.PamtramValidator%>.CONDITIONAL_ELEMENT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localCondition" eType="#//condition/ComplexCondition"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondition" eType="#//condition/ComplexCondition"/>
@@ -238,11 +260,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eClassMatchesParentEReference variableCardinalityIsValid containerIsValid"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="eClassMatchesParentEReference" value="Tuple {&#xD;&#xA;&#x9;message : String = 'The eClass \'' + self.eClass.name + '\' is not allowed by the containing reference!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self = self.getContainingSection() or self.eClass.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let parentEReference = self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference in&#xD;&#xA;&#x9;&#x9;&#x9;if parentEReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;parentEReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) &#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
-        <details key="cardinalityIsValid" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self = self.getContainingSection() or self.eClass.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let parentEReference = self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference in &#xD;&#xA;&#x9;&#x9;&#x9;if parentEReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;not ((self.cardinality &lt;> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound = 1))&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
-        <details key="containerIsValid" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The \'container\' refrence must point to the containing Class!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.oclIsKindOf(Section) = true or self.container = null then true else self.container = self.oclContainer().oclContainer() endif&#xD;&#xA;}.status"/>
-      </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//metamodel/Section">
           <eTypeArguments eTypeParameter="#//metamodel/Class/S"/>
@@ -313,6 +330,42 @@
           <eGenericType eTypeParameter="#//metamodel/Class/C"/>
         </eParameters>
       </eOperations>
+      <eOperations name="validateEClassMatchesParentEReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.metamodel.Reference%>&lt;?, ?, ?, ?> parentReference = (Reference&lt;?, ?, ?, ?>) this.eContainer();&#xD;&#xA;&#xD;&#xA;if(parentReference.getEReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = parentReference.getEReference().getEReferenceType().isSuperTypeOf(this.getEClass());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eClass '&quot; + this.eClass().getName() + &quot;' is not allowed by the containing reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MetamodelValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.CLASS__ECLASS }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="validateCardinalityIsValid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.metamodel.Reference%>&lt;?, ?, ?, ?> parentReference = (Reference&lt;?, ?, ?, ?>) this.eContainer();&#xD;&#xA;&#xD;&#xA;if(parentReference.getEReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = !(this.cardinality != &lt;%pamtram.metamodel.CardinalityType%>.ONE &amp;&amp; parentReference.getEReference().getUpperBound() == 1);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The cardinality of a Class must be specified as 'CardinalityType::ONE' when the upper bound of the containing Reference is '1'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MetamodelValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.CLASS__CARDINALITY }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="validateContainerIsValid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;boolean result = this instanceof &lt;%pamtram.metamodel.Section%>&lt;?, ?, ?, ?> || this.getContainer() == null ? true : this.getContainer().equals(this.eContainer().eContainer());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The 'container' refrence must point to the containing Class!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MetamodelValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.CLASS__CONTAINER }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" lowerBound="1"
@@ -338,9 +391,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="Section" abstract="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="extendsValidSections containerMatchesExtendContainer"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="extendsValidSections" value="Tuple {&#xD;&#xA;&#x9;message : String = 'The section extends a section that is either not abstract or that references an EClass of a different (super-)type!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = self.extendsOnlyValidSections()&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//metamodel/Section">
@@ -374,14 +424,21 @@
           <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
         </eBounds>
       </eTypeParameters>
-      <eOperations name="extendsOnlyValidSections" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this.getEClass() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for (S extend : this.getExtend()) {&#xD;&#xA;&#x9;if(!extend.isAbstract() || extend.getEClass() != null &amp;&amp; !(this.getEClass() == extend.getEClass()) &amp;&amp; !(this.getEClass().getEAllSuperTypes().contains(extend.getEClass()))) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return true;"/>
-        </eAnnotations>
-      </eOperations>
       <eOperations name="validateContainerMatchesExtendContainer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="if(this.getContainer() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getExtend().parallelStream().allMatch(&#xD;&#xA;&#x9;&#x9;e -> e.getContainer() == null || e.getContainer() == this.getContainer());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;String errorMessage = &quot;The section extends a section that specifies a different container!&quot;;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;diagnostics.add&#xD;&#xA;&#x9;&#x9;(new BasicDiagnostic&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9; &lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;MetamodelValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,&#xD;&#xA;&#x9;&#x9;&#x9; errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9; new Object [] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.SECTION__EXTEND }));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="validateExtendsValidSections" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;if(this.getEClass() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getExtend().parallelStream().noneMatch(e -> !e.isAbstract() || e.getEClass() != null&#xD;&#xA;&#x9;&#x9;&amp;&amp; this.getEClass() != e.getEClass() &amp;&amp; !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The section extends a section that is either not abstract or that references an EClass of a different (super-)type!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MetamodelValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.SECTION__EXTEND }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -408,9 +465,18 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="isReferencedByMapping"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="isReferencedByMapping" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The section is not referenced by any mapping!',&#xD;&#xA;&#x9;severity : Integer = 2,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.referencingMappings->size() > 0&#xD;&#xA;}.status"/>
-      </eAnnotations>
+      <eOperations name="validateIsReferencedByMapping" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;boolean result = !this.getReferencingMappings().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The section is not referenced by any mapping!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.WARNING,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MetamodelValidator.SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.SOURCE_SECTION }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencingMappings"
           upperBound="-1" eType="#//mapping/MappingType" changeable="false" volatile="true"
           transient="true" derived="true">
@@ -430,9 +496,18 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="isReferencedByMappingHintGroup"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="isReferencedByMappingHintGroup" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The section is not referenced by any hint group and will not be instantiated!',&#xD;&#xA;&#x9;severity : Integer = 2,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.referencingMappingHintGroups->size() > 0&#xD;&#xA;}.status"/>
-      </eAnnotations>
+      <eOperations name="validateIsReferencedByMappingHintGroup" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;boolean result = !this.getReferencingMappingHintGroups().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The section is not referenced by any hint group and will not be instantiated!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.WARNING,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MetamodelValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.TARGET_SECTION }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencingMappingHintGroups"
           upperBound="-1" eType="#//mapping/MappingHintGroupType" changeable="false"
           volatile="true" transient="true" derived="true">
@@ -539,9 +614,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceMatchesParentEClass"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="eReferenceMatchesParentEClass" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eReference \'' + self.eReference.name + '\' is not allowed by the containing Class!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.isLibraryEntry() or self.eReference.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else &#xD;&#xA;&#x9;&#x9;&#x9;let parentEClass = self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass in&#xD;&#xA;&#x9;&#x9;&#x9;if parentEClass.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;parentEClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference)&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
-      </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//metamodel/Section">
           <eTypeArguments eTypeParameter="#//metamodel/Reference/S"/>
@@ -574,6 +646,18 @@
           <eTypeArguments eTypeParameter="#//metamodel/Reference/A"/>
         </eBounds>
       </eTypeParameters>
+      <eOperations name="validateEReferenceMatchesParentEClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof &lt;%pamtram.metamodel.Class%>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EClass%> parentEClass = ((Class&lt;?, ?, ?, ?>) this.eContainer()).eClass();&#xD;&#xA;&#xD;&#xA;boolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is not allowed by the containing Class!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MetamodelValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eReference" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" changeable="false"
@@ -591,9 +675,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceIsContainment"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="eReferenceIsContainment" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eReference \'' + self.eReference.name + '\' is no containment reference!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.eReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.eReference.containment=true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
-      </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//metamodel/Section">
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/S"/>
@@ -626,6 +707,18 @@
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/A"/>
         </eBounds>
       </eTypeParameters>
+      <eOperations name="validateEReferenceIsContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no containment reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MetamodelValidator.CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
           containment="true">
         <eGenericType eTypeParameter="#//metamodel/ContainmentReference/C"/>
@@ -641,9 +734,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceIsNonContainment"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="eReferenceIsNonContainment" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eReference \'' + self.eReference.name + '\' is no non-containment reference!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.eReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.eReference.containment=false&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
-      </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//metamodel/Section">
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/S"/>
@@ -676,6 +766,18 @@
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/A"/>
         </eBounds>
       </eTypeParameters>
+      <eOperations name="validateEReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no non-containment reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MetamodelValidator.NON_CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.metamodel.MetamodelPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1">
         <eGenericType eTypeParameter="#//metamodel/NonContainmentReference/C"/>
       </eStructuralFeatures>

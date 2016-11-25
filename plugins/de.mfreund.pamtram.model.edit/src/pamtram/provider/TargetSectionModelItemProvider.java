@@ -70,11 +70,11 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
+			childrenFeatures.add(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
@@ -98,7 +98,7 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/TargetSectionModel"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionModel"));
 	}
 
 	/**
@@ -109,7 +109,7 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -132,11 +132,11 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSectionModel.class)) {
 			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);

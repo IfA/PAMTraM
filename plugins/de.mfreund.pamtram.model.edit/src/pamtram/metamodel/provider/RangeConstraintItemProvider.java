@@ -8,13 +8,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RangeConstraint;
@@ -149,7 +148,7 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -166,7 +165,7 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 			styledLabel.append(getString("_UI_RangeConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -211,25 +210,26 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
 
-		boolean qualify =
-			childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND ||
-			childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
+		// Object childFeature = feature;
+		// Object childObject = child;
+		//
+		// boolean qualify =
+		// childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND ||
+		// childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND;
+		//
+		// if (qualify) {
+		// return getString
+		// ("_UI_CreateChild_text2",
+		// new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		// }
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
 

@@ -65,7 +65,7 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 			pamtram = (PAMTraM) contents.get(0);
 		}
 
-		return checkInvolvedEPackages(pamtram, project, registry);
+		return PamtramEPackageHelper.checkInvolvedEPackages(pamtram, project, registry);
 	}
 
 	/**
@@ -92,7 +92,6 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 		for (TargetSectionModel	targetSectionModel : pamtram.getTargetSectionModel()) {
 			ePackagesToCheck.add(targetSectionModel.getMetaModelPackage());
 		}
-		ePackagesToCheck.addAll(pamtram.getContextMetaModelPackage());
 
 		// collect the nsUris of all ePackages that are proxies (which means they have not been
 		// registered) and that thus need to be registered manually
@@ -169,7 +168,7 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 		 * @return The set of {@link EPackage EPackages} that have been registered during an 'EPackageCheck'.
 		 */
 		public HashSet<EPackage> getRegisteredPackages() {
-			return registeredPackages == null ? new HashSet<>() : registeredPackages;
+			return this.registeredPackages == null ? new HashSet<>() : this.registeredPackages;
 		}
 		
 		/**

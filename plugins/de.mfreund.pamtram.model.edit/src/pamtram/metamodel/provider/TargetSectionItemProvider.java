@@ -19,8 +19,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -35,7 +35,6 @@ import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.impl.MetamodelPackageImpl;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.TargetSection} object.
@@ -101,19 +100,19 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 * @generated NOT
 	 */
 	protected void addExtendPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_extend_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(),
+						this.getString("_UI_Section_extend_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
 						MetamodelPackage.Literals.SECTION__EXTEND,
 						true,
 						false,
 						true,
 						null,
 						null,
-						null) 
+						null)
 		{
 
 			@Override
@@ -165,11 +164,11 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 	@Override
 	protected Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
-		if(labelRelatedChildrenFeatures == null) {
-			labelRelatedChildrenFeatures = new ArrayList<>();
-			labelRelatedChildrenFeatures.add(MetamodelPackageImpl.eINSTANCE.getSection_Extend());
+		if(this.labelRelatedChildrenFeatures == null) {
+			this.labelRelatedChildrenFeatures = new ArrayList<>();
+			this.labelRelatedChildrenFeatures.add(MetamodelPackage.eINSTANCE.getSection_Extend());
 		}
-		return labelRelatedChildrenFeatures;
+		return this.labelRelatedChildrenFeatures;
 	}
 
 	/**
@@ -204,7 +203,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 
-		initializeLabelRelatedChildrenFeatureNotifications(object);
+		this.initializeLabelRelatedChildrenFeatureNotifications(object);
 
 		Section section = (Section) object;
 
@@ -259,8 +258,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 	@Override
 	public void notifyChanged(Notification notification) {
-		handleLabelRelatedChildrenFeatureChangeNotification(notification);
-		notifyChangedGen(notification);
+		this.handleLabelRelatedChildrenFeatureChangeNotification(notification);
+		this.notifyChangedGen(notification);
 	}
 
 	/**
@@ -281,28 +280,29 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
 
-		boolean qualify =
-			childFeature == MetamodelPackage.Literals.CLASS__ATTRIBUTES ||
-			childFeature == MetamodelPackage.Literals.TARGET_SECTION__FILE;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
+		// Object childFeature = feature;
+		// Object childObject = child;
+		//
+		// boolean qualify =
+		// childFeature == MetamodelPackage.Literals.CLASS__ATTRIBUTES ||
+		// childFeature == MetamodelPackage.Literals.TARGET_SECTION__FILE;
+		//
+		// if (qualify) {
+		// return getString
+		// ("_UI_CreateChild_text2",
+		// new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		// }
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
-	
+
 	@Override
 	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
 			Collection<?> collection, int index) {
@@ -342,21 +342,21 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		if(feature == MetamodelPackage.Literals.TARGET_SECTION__FILE) {
 			if(value.equals(SetCommand.UNSET_VALUE)) {
 				CompoundCommand command = new CompoundCommand();
-				if(((EList<Object>) (owner.eGet(MetamodelPackage.Literals.CLASS__ATTRIBUTES))).contains(value)) {
-					command.append(new RemoveCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));									
+				if(((EList<Object>) owner.eGet(MetamodelPackage.Literals.CLASS__ATTRIBUTES)).contains(value)) {
+					command.append(new RemoveCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));
 				}
 				command.append(new SetCommand(domain, owner, feature, SetCommand.UNSET_VALUE));
-				return command;		
+				return command;
 			} else {
 				CompoundCommand command = new CompoundCommand();
-				command.append(new AddCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));				
+				command.append(new AddCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));
 				command.append(new SetCommand(domain, owner, feature, value));
-				return command;				
+				return command;
 			}
 		}
 		return super.createSetCommand(domain, owner, feature, value);
 	}
-	
+
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
 			int operation, Collection<?> collection) {
@@ -367,7 +367,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		 */
 		Collection<Object> collectionWithoutFile = new ArrayList<>();
 		FileAttribute file = null;
-		
+
 		for (Object object : collection) {
 			if(object instanceof FileAttribute) {
 				file = (FileAttribute) object;
@@ -375,19 +375,19 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 				collectionWithoutFile.add(object);
 			}
 		}
-		
+
 		if(file == null) {
 			return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 		}
-		
+
 		if(owner instanceof TargetSection && ((TargetSection) owner).getFile() != null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		BasicDragAndDropCompoundCommand command = new BasicDragAndDropCompoundCommand();
 		command.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, collectionWithoutFile));
-		command.append(createRemoveCommand(domain, file.eContainer(), MetamodelPackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
-		command.append(createSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, file));
+		command.append(this.createRemoveCommand(domain, file.eContainer(), MetamodelPackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
+		command.append(this.createSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, file));
 		return command;
 	}
 

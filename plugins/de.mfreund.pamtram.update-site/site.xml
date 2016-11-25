@@ -4,7 +4,11 @@
       This is the update site for the various plug-ins required for developing and executing model-to-model transformation with PAMTraM and GenTrans.
    </description>
    <feature url="features/de.mfreund.pamtram.feature_1.7.0.qualifier.jar" id="de.mfreund.pamtram.feature" version="1.7.0.qualifier">
-      <category name="de.mfreund.pamtram.category.pamtram"/>
+      <category name="de.mfreund.pamtram.category"/>
    </feature>
-   <category-def name="de.mfreund.pamtram.category.pamtram" label="PAMTraM"/>
+   <category-def name="de.mfreund.pamtram.category" label="PAMTraM">
+      <description>
+         This is the update site for the various plug-ins required for developing and executing model-to-model transformation with PAMTraM and GenTrans.
+      </description>
+   </category-def>
 </site>

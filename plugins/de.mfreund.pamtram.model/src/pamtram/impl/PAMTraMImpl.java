@@ -20,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -68,7 +67,6 @@ import pamtram.metamodel.impl.MetamodelPackageImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getContextMetaModelPackage <em>Context Meta Model Package</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getSourceSectionModel <em>Source Section Model</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getSharedSourceSectionModel <em>Shared Source Section Model</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getTargetSectionModel <em>Target Section Model</em>}</li>
@@ -86,16 +84,6 @@ import pamtram.metamodel.impl.MetamodelPackageImpl;
  * @generated
  */
 public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM {
-	/**
-	 * The cached value of the '{@link #getContextMetaModelPackage() <em>Context Meta Model Package</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContextMetaModelPackage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EPackage> contextMetaModelPackage;
-
 	/**
 	 * The cached value of the '{@link #getSourceSectionModel() <em>Source Section Model</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -173,19 +161,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	protected EClass eStaticClass() {
 		return PamtramPackage.Literals.PAM_TRA_M;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<EPackage> getContextMetaModelPackage() {
-		if (contextMetaModelPackage == null) {
-			contextMetaModelPackage = new EObjectResolvingEList<EPackage>(EPackage.class, this, PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE);
-		}
-		return contextMetaModelPackage;
 	}
 
 	/**
@@ -834,8 +809,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
-				return getContextMetaModelPackage();
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
 				return getSourceSectionModel();
 			case PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL:
@@ -873,10 +846,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
-				getContextMetaModelPackage().clear();
-				getContextMetaModelPackage().addAll((Collection<? extends EPackage>)newValue);
-				return;
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
 				getSourceSectionModel().clear();
 				getSourceSectionModel().addAll((Collection<? extends SourceSectionModel>)newValue);
@@ -913,9 +882,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
-				getContextMetaModelPackage().clear();
-				return;
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
 				getSourceSectionModel().clear();
 				return;
@@ -946,8 +912,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
-				return contextMetaModelPackage != null && !contextMetaModelPackage.isEmpty();
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
 				return sourceSectionModel != null && !sourceSectionModel.isEmpty();
 			case PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL:

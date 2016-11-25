@@ -236,7 +236,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ContextMetaModelPackage() {
+	public EReference getPAMTraM_SourceSectionModel() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -245,7 +245,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SourceSectionModel() {
+	public EReference getPAMTraM_SharedSourceSectionModel() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -254,7 +254,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SharedSourceSectionModel() {
+	public EReference getPAMTraM_TargetSectionModel() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -263,7 +263,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_TargetSectionModel() {
+	public EReference getPAMTraM_SharedTargetSectionModel() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -272,7 +272,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SharedTargetSectionModel() {
+	public EReference getPAMTraM_MappingModel() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -281,7 +281,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_MappingModel() {
+	public EReference getPAMTraM_SourceSections() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -290,7 +290,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SourceSections() {
+	public EReference getPAMTraM_TargetSections() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -299,7 +299,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_TargetSections() {
+	public EReference getPAMTraM_Mappings() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -308,7 +308,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_Mappings() {
+	public EReference getPAMTraM_ActiveMappings() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -317,7 +317,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ActiveMappings() {
+	public EReference getPAMTraM_GlobalValues() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -326,7 +326,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_GlobalValues() {
+	public EReference getPAMTraM_ModifierSets() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -335,17 +335,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ModifierSets() {
-		return (EReference)pamTraMEClass.getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getPAMTraM_ConditionModel() {
-		return (EReference)pamTraMEClass.getEStructuralFeatures().get(12);
+		return (EReference)pamTraMEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -554,7 +545,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEAttribute(deactivatableElementEClass, DEACTIVATABLE_ELEMENT__DEACTIVATED);
 
 		pamTraMEClass = createEClass(PAM_TRA_M);
-		createEReference(pamTraMEClass, PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE);
 		createEReference(pamTraMEClass, PAM_TRA_M__SOURCE_SECTION_MODEL);
 		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL);
 		createEReference(pamTraMEClass, PAM_TRA_M__TARGET_SECTION_MODEL);
@@ -710,7 +700,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEAttribute(getDeactivatableElement_Deactivated(), ecorePackage.getEBoolean(), "deactivated", "false", 1, 1, DeactivatableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pamTraMEClass, PAMTraM.class, "PAMTraM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPAMTraM_ContextMetaModelPackage(), ecorePackage.getEPackage(), null, "contextMetaModelPackage", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_SourceSectionModel(), this.getSourceSectionModel(), null, "sourceSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_SharedSourceSectionModel(), this.getSourceSectionModel(), null, "sharedSourceSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_TargetSectionModel(), this.getTargetSectionModel(), null, "targetSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

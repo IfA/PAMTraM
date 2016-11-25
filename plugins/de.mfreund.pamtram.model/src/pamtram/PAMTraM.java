@@ -4,7 +4,6 @@ package pamtram;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
@@ -20,7 +19,6 @@ import pamtram.metamodel.TargetSection;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.PAMTraM#getContextMetaModelPackage <em>Context Meta Model Package</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getSourceSectionModel <em>Source Section Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getSharedSourceSectionModel <em>Shared Source Section Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getTargetSectionModel <em>Target Section Model</em>}</li>
@@ -40,22 +38,6 @@ import pamtram.metamodel.TargetSection;
  * @generated
  */
 public interface PAMTraM extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Context Meta Model Package</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EPackage}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Context Meta Model Package</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context Meta Model Package</em>' reference list.
-	 * @see pamtram.PamtramPackage#getPAMTraM_ContextMetaModelPackage()
-	 * @model
-	 * @generated
-	 */
-	EList<EPackage> getContextMetaModelPackage();
-
 	/**
 	 * Returns the value of the '<em><b>Source Section Model</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.SourceSectionModel}.

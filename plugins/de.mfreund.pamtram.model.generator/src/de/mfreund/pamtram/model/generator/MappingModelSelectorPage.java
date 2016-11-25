@@ -1,31 +1,34 @@
 package de.mfreund.pamtram.model.generator;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.PAMTraM;
 import pamtram.SectionModel;
+import pamtram.SourceSectionModel;
+import pamtram.TargetSectionModel;
 import pamtram.metamodel.Section;
 import pamtram.presentation.PamtramEditor;
 
@@ -86,153 +89,93 @@ public class MappingModelSelectorPage extends WizardPage {
 	@Override
 	public void createControl(Composite parent) {
 
-		GridLayout gl;
-		GridData gd;
-
 		// container to host the file selector
 		Composite container = new Composite(parent, SWT.NONE);
 
 		// define a grid layout
-		gl = new GridLayout();
-		int numColumns = 2;
-		gl.numColumns = numColumns;
-		container.setLayout(gl);
+		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(container);
 
 		// create a file selector
 		FileFieldEditor fileFieldEditor;
 		fileFieldEditor = new FileFieldEditor("fileSelect", "Select file...", container);
-		// restrict the file extension
 		fileFieldEditor.setFileExtensions(new String[] {"*.pamtram"});
+
 		// set the initial browse path
-		fileFieldEditor.setFilterPath(
-				this.wizardData.getSourceModelPath().removeLastSegments(1).toFile());
+		if (this.wizardData.getSourceElements() != null && !this.wizardData.getSourceElements().isEmpty()
+				&& this.wizardData.getSourceElements().get(0).eResource() != null) {
+
+			Resource resource = this.wizardData.getSourceElements().get(0).eResource();
+			File initialBrowsePath = new File(ResourceHelper
+					.convertPlatformToFileURI(resource.getURI().trimSegments(2).appendSegment("Pamtram"))
+					.toFileString());
+			if (!initialBrowsePath.exists()) {
+				initialBrowsePath = new File(ResourcesPlugin.getWorkspace().getRoot().getLocationURI());
+			}
+			fileFieldEditor.setFilterPath(initialBrowsePath);
+		}
 
 		// set listener that is triggered when the user has selected a file
+		//
 		fileFieldEditor.setPropertyChangeListener(event -> {
+
 			// reset the UI
+			//
 			MappingModelSelectorPage.this.setErrorMessage(null);
 			MappingModelSelectorPage.this.setPageComplete(false);
 
-			// get the selected file
-			Object file = event.getNewValue();
-
-			if(file instanceof String && ((String) file).endsWith(".pamtram")) {
-				try {
-					// delete the old model
-					if(MappingModelSelectorPage.this.wizardData.getEditor() == null && MappingModelSelectorPage.this.wizardData.getPamtram() != null) {
-						MappingModelSelectorPage.this.wizardData.getPamtram().eResource().unload();
-						MappingModelSelectorPage.this.wizardData.setPamtram(null);
-					} else {
-						MappingModelSelectorPage.this.wizardData.setEditor(null);
-					}
-
-					PamtramEditor editor = PamtramEditor.getEditor((String) file, true);
-
-					// we may use an exising editor and its editing domain for our work
-					if(editor != null) {
-						MappingModelSelectorPage.this.wizardData.setEditor(editor);
-						MappingModelSelectorPage.this.wizardData.setPamtram(editor.getPamtram());
-
-						// we have to load everything by ourselves
-					} else {
-
-						// set the resource of the new model
-						MappingModelSelectorPage.this.setResource((String) file);
-						// load the new model
-						MappingModelSelectorPage.this.loadModel();
-					}
-					MappingModelSelectorPage.this.checkPackage();
-
-					MappingModelSelectorPage.this.updateSectionTypeButtons();
-				} catch (Exception e) {
-					MappingModelSelectorPage.this.setErrorMessage(e.getMessage());
-					e.printStackTrace();
-				}
+			// update the modelSelectionList
+			//
+			if (event.getNewValue() instanceof String) {
+				this.mappingModelSelectionChanged((String) event.getNewValue());
 
 			}
 
 		});
 
-		// separator
-		Label separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = numColumns + 1;
-		separator.setLayoutData(gd);
+		// Create a separator
+		//
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1)
+		.applyTo(new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL));
 
 		Label sectionTypeLabel = new Label(container, SWT.NONE);
 		sectionTypeLabel.setText("Type of metamodel section to be created:");
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = numColumns + 1;
-		sectionTypeLabel.setLayoutData(gd);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1).applyTo(sectionTypeLabel);
 
 		// radio button for selecting 'source' as section type
+		//
 		this.sourceButton = new Button(container, SWT.RADIO);
 		this.sourceButton.setText("Source");
 		this.sourceButton.setEnabled(false);
-		this.sourceButton.addSelectionListener(new SelectionListener() {
-
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				MappingModelSelectorPage.this.wizardData.setSectionType(SectionType.SOURCE);
-				MappingModelSelectorPage.this.updateSectionModelList();
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {
-				this.widgetSelected(arg0);
-			}
+		this.sourceButton.addSelectionListener((SelectionListener2) e -> {
+			MappingModelSelectorPage.this.wizardData.setSectionType(SectionType.SOURCE);
+			MappingModelSelectorPage.this.updateSectionModelList();
 		});
 
 		// radio button for selecting 'target' as section type
 		this.targetButton = new Button(container, SWT.RADIO);
 		this.targetButton.setText("Target");
 		this.targetButton.setEnabled(false);
-		this.targetButton.addSelectionListener(new SelectionListener() {
-
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				MappingModelSelectorPage.this.wizardData.setSectionType(SectionType.TARGET);
-				MappingModelSelectorPage.this.updateSectionModelList();
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {
-				this.widgetSelected(arg0);
-
-			}
+		this.targetButton.addSelectionListener((SelectionListener2) e -> {
+			MappingModelSelectorPage.this.wizardData.setSectionType(SectionType.TARGET);
+			MappingModelSelectorPage.this.updateSectionModelList();
 		});
 
-		// separator
-		Label separator2 = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = numColumns + 1;
-		separator2.setLayoutData(gd);
+		// Create a separator
+		//
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1)
+		.applyTo(new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL));
 
 		Label modelSelectionLabel = new Label(container, SWT.NONE);
 		modelSelectionLabel.setText("Target Source/TargetSectionModel:");
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = numColumns + 1;
-		modelSelectionLabel.setLayoutData(gd);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1).applyTo(modelSelectionLabel);
 
 		// list for selecting the target Source/TargetSectionModel
+		//
 		this.modelSelectionList = new List(container, SWT.NONE);
 		this.modelSelectionList.setToolTipText("Please specify the Source/TargetSectionModel into that the generated section(s) shall be added...");
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = numColumns + 1;
-		this.modelSelectionList.setLayoutData(gd);
-		this.modelSelectionList.addSelectionListener((SelectionListener2) e -> {
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1).applyTo(this.modelSelectionList);
 
-			if (MappingModelSelectorPage.this.wizardData.getPamtram() == null
-					|| MappingModelSelectorPage.this.wizardData.getSectionType() == SectionType.NONE
-					|| MappingModelSelectorPage.this.wizardData.getSectionType() == SectionType.BOTH) {
-				MappingModelSelectorPage.this.wizardData.setSectionModel(null);
-			} else {
-				MappingModelSelectorPage.this.wizardData.setSectionModel(
-						this.sectionModels.get(MappingModelSelectorPage.this.modelSelectionList.getSelectionIndex()));
-
-			}
-			MappingModelSelectorPage.this.getContainer().updateButtons();
-		});
+		this.modelSelectionList.addSelectionListener((SelectionListener2) e -> this.sectionModelSelectionChanged());
 
 		// fill the wizard page
 		this.setControl(container);
@@ -241,12 +184,80 @@ public class MappingModelSelectorPage extends WizardPage {
 	}
 
 	/**
+	 * This is called whenever the user selects a new {@link PAMTraM} model as target for the created sections. It
+	 * updates the {@link #wizardData} as well as the list of available {@link #modelSelectionList}.
+	 *
+	 * @param pamtramPath
+	 *            The absolute full path to the {@link PAMTraM} model selected by the user.
+	 */
+	private void mappingModelSelectionChanged(String pamtramPath) {
+
+		if (!pamtramPath.endsWith("pamtram")) {
+			return;
+		}
+
+		try {
+			// delete the old model
+			if (MappingModelSelectorPage.this.wizardData.getEditor() == null
+					&& MappingModelSelectorPage.this.wizardData.getPamtram() != null) {
+				MappingModelSelectorPage.this.wizardData.getPamtram().eResource().unload();
+				MappingModelSelectorPage.this.wizardData.setPamtram(null);
+			} else {
+				MappingModelSelectorPage.this.wizardData.setEditor(null);
+			}
+
+			PamtramEditor editor = PamtramEditor.getEditor(pamtramPath, true);
+
+			// we may use an exising editor and its editing domain for our work
+			if (editor != null) {
+				MappingModelSelectorPage.this.wizardData.setEditor(editor);
+				MappingModelSelectorPage.this.wizardData.setPamtram(editor.getPamtram());
+
+				// we have to load everything by ourselves
+			} else {
+
+				// set the resource of the new model
+				MappingModelSelectorPage.this.setResource(pamtramPath);
+				// load the new model
+				MappingModelSelectorPage.this.loadModel();
+			}
+			MappingModelSelectorPage.this.checkPackage();
+
+			MappingModelSelectorPage.this.updateSectionTypeButtons();
+		} catch (Exception e) {
+			MappingModelSelectorPage.this.setErrorMessage(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * This is called whenever the user changed the selection in the {@link #modelSelectionList}. It updates the
+	 * {@link #wizardData} as well as the <em>canFinish</em> state of the dialog.
+	 *
+	 */
+	private void sectionModelSelectionChanged() {
+
+		if (MappingModelSelectorPage.this.wizardData.getPamtram() == null
+				|| MappingModelSelectorPage.this.wizardData.getSectionType() == SectionType.NONE
+				|| MappingModelSelectorPage.this.wizardData.getSectionType() == SectionType.BOTH) {
+			MappingModelSelectorPage.this.wizardData.setSectionModel(null);
+		} else {
+			MappingModelSelectorPage.this.wizardData.setSectionModel(
+					this.sectionModels.get(MappingModelSelectorPage.this.modelSelectionList.getSelectionIndex()));
+
+		}
+		MappingModelSelectorPage.this.getContainer().updateButtons();
+	}
+
+	/**
 	 * Get the target resource based on its resource path. If no resource exists, create a new one.
 	 *
 	 * @param resourcePath
 	 *            The absolute path of the resource.
+	 * @throws IOException
+	 *             If the specified resource could not be created.
 	 */
-	private void setResource(String resourcePath) {
+	private void setResource(String resourcePath) throws IOException {
 
 		Resource targetModelResource;
 		// get the target resource (if the resource does not exist, create a new one first)
@@ -257,21 +268,23 @@ public class MappingModelSelectorPage extends WizardPage {
 		}
 		// return without performing the action if the resource is null
 		if (targetModelResource == null) {
-			throw new RuntimeException("Resource could not be created!");
+			throw new IOException("Resource could not be created!");
 		}
 
 		// save the (newly created) resource so that it can be loaded
-		try {
-			targetModelResource.save(null);
-		} catch (IOException e1) {
-			throw new RuntimeException(e1);
-		}
+		targetModelResource.save(null);
 
 		this.wizardData.setTargetModelResource(targetModelResource);
 	}
 
-	// load the target model (the PAMTraM instance)
-	private void loadModel() throws Exception {
+	/**
+	 * Load the target model (the PAMTraM instance).
+	 *
+	 * @throws IOException
+	 *             If the {@link WizardData#getTargetModelResource() target model resource} does not contain a
+	 *             {@link PAMTraM} model.
+	 */
+	private void loadModel() throws IOException {
 
 		String modelPath = this.wizardData.getTargetModelResource().getURI().toFileString();
 
@@ -284,12 +297,10 @@ public class MappingModelSelectorPage extends WizardPage {
 		XMIResource pamtramResource =
 				(XMIResource) resourceSet.getResource(pamtramUri, true);
 		if(!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
-			throw new RuntimeException("The pamtram file does not seem to contain a pamtram instance. Aborting...");
+			throw new IOException("The pamtram file does not seem to contain a pamtram instance. Aborting...");
 		}
 		this.wizardData.setPamtram((PAMTraM) pamtramResource.getContents().get(0));
 	}
-
-
 
 	/**
 	 * Check the packages declared in the {@link PAMTraM} instance and whether the metamodel section to be generated can
@@ -297,19 +308,23 @@ public class MappingModelSelectorPage extends WizardPage {
 	 */
 	private void checkPackage() {
 
-		EPackage ePackage = this.wizardData.getePackage();
+		EPackage ePackage = this.wizardData.getEPackage();
 
 		PAMTraM pamtram = this.wizardData.getPamtram();
 
 		// get the source packages
-		Set<EPackage> sourcePackages = pamtram.getSourceSectionModel().stream().map(s -> s.getMetaModelPackage())
+		Set<EPackage> sourcePackages = pamtram.getSourceSectionModel().stream()
+				.map(SourceSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet());
-		sourcePackages.addAll(pamtram.getSharedSourceSectionModel().stream().map(s -> s.getMetaModelPackage())
+		sourcePackages
+		.addAll(pamtram.getSharedSourceSectionModel().stream().map(SourceSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet()));
 		// get the target packages
-		Set<EPackage> targetPackages = pamtram.getTargetSectionModel().stream().map(s -> s.getMetaModelPackage())
+		Set<EPackage> targetPackages = pamtram.getTargetSectionModel().stream()
+				.map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet());
-		targetPackages.addAll(pamtram.getSharedTargetSectionModel().stream().map(s -> s.getMetaModelPackage())
+		targetPackages.addAll(pamtram.getSharedTargetSectionModel().stream()
+				.map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet()));
 
 		boolean source = sourcePackages.parallelStream().anyMatch(s -> s.getNsURI().equals(ePackage.getNsURI()));
@@ -339,7 +354,9 @@ public class MappingModelSelectorPage extends WizardPage {
 	 * after a new {@link PAMTraM} resource has been specified as target model.
 	 */
 	private void updateSectionTypeButtons() {
+
 		// configure the radio buttons
+		//
 		switch (this.wizardData.getSectionType()) {
 			case NONE:
 				this.sourceButton.setEnabled(false);
@@ -380,27 +397,37 @@ public class MappingModelSelectorPage extends WizardPage {
 		this.modelSelectionList.setItems(new String[]{});
 
 		// update the list of section models to choose
-
+		//
 		PAMTraM pamtram = this.wizardData.getPamtram();
 		if(pamtram == null || this.wizardData.getSectionType() == SectionType.NONE || this.wizardData.getSectionType() == SectionType.BOTH) {
 			return;
 		}
 
+		// Collect a SectionModels from the PAMTraM instance
+		//
 		Stream<SectionModel<?, ?, ?, ?>> sectionModelStream = this.wizardData.getSectionType() == SectionType.SOURCE
 				? Stream.concat(this.wizardData.getPamtram().getSourceSectionModel().stream(),
 						this.wizardData.getPamtram().getSharedSourceSectionModel().stream())
 						: Stream.concat(this.wizardData.getPamtram().getTargetSectionModel().stream(),
 								this.wizardData.getPamtram().getSharedTargetSectionModel().stream());
 
+				// Filter those packages with the correct MetaModelPackage
+				//
 				this.sectionModels = sectionModelStream
-						.filter(s -> this.wizardData.getePackage().equals(s.getMetaModelPackage()))
+						.filter(s -> this.wizardData.getEPackage().equals(s.getMetaModelPackage()))
 						.collect(Collectors.toList());
 
+				// Update the list
+				//
 				String prefix = this.wizardData.getSectionType() == SectionType.SOURCE ? "SourceSectionModel "
 						: "TargetSectionModel ";
-				for (SectionModel<?, ?, ?, ?> sectionModel : this.sectionModels) {
-					this.modelSelectionList.add(prefix + (sectionModel.getName() != null ? sectionModel.getName() : ""));
-				}
+				this.sectionModels.stream().forEach(sectionModel -> this.modelSelectionList
+						.add(prefix + (sectionModel.getName() != null ? sectionModel.getName() : "")));
+
+				// Select the first entry
+				//
+				this.modelSelectionList.select(0);
+				this.sectionModelSelectionChanged();
 	}
 
 	@Override

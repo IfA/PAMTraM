@@ -7,6 +7,11 @@
             defaultHandler="de.mfreund.pamtram.model.generator.handler.ExportMetaModelSectionHandler"
             id="de.mfreund.pamtram.model.generator.exportMetaModelSection"
             name="exportMetaModelSection">
+         <commandParameter
+               id="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter"
+               name="IncludeCrossReferences"
+               optional="false">
+         </commandParameter>
       </command>
    </extension>
    <extension
@@ -31,6 +36,36 @@
                   </iterate>
                </with>
             </visibleWhen>
+            <parameter
+                  name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter"
+                  value="0">
+            </parameter>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
+               label="PAMTraM: Export MetaModelSection (including cross references)"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="or">
+                     <adapt
+                           type="org.eclipse.emf.ecore.EObject">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+            <parameter
+                  name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter"
+                  value="1">
+            </parameter>
          </command>
       </menuContribution>
    </extension>

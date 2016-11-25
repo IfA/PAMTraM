@@ -74,8 +74,6 @@
         name="de.tud.et.ifa.agtele.eclipse.commons.feature.feature.group"
         optional="true"/>
     <repository
-        url="http://download.eclipse.org/epsilon/updates/"/>
-    <repository
         url="http://eclipse.sonarlint.org"/>
     <repository
         url="https://eats3.et.tu-dresden.de/eclipse/updates"/>

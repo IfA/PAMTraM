@@ -31,16 +31,16 @@ import pamtram.presentation.PamtramEditor;
 
 /**
  * A concrete {@link MappingModelEnhancer} that can be used during
- * {@link UserDecisionResolvingStrategy#joiningSelectConnectionPath(List, pamtram.metamodel.TargetSection)
- * joiningSelectConnectionPath} ambiguities.
+ * {@link UserDecisionResolvingStrategy#joiningSelectConnectionPathAndContainerInstance(java.util.Map, pamtram.metamodel.TargetSection, List, pamtram.mapping.MappingHintGroupType)
+ * joiningSelectConnectionPathAndContainerInstance} ambiguities.
  *
  * @author mfreund
  */
-public class JoiningSelectConnectionPathMappingModelEnhancer
+public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 		extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> {
 
 	/**
-	 * The {@link TargetSection} that shall be connected via the selected path.
+	 * The {@link TargetSection} that shall be connected via the selected path to the selected instance.
 	 */
 	private TargetSection sectionToConnect;
 
@@ -66,9 +66,10 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 	 *
 	 * @param pamtramModel
 	 * @param sectionToConnect
-	 *            The {@link TargetSection} that shall be connected via the selected path.
+	 *            The {@link TargetSection} that shall be connected via the selected path to the selected instance.
 	 */
-	public JoiningSelectConnectionPathMappingModelEnhancer(PAMTraM pamtramModel, TargetSection sectionToConnect) {
+	public JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer(PAMTraM pamtramModel,
+			TargetSection sectionToConnect) {
 		super(pamtramModel);
 		this.sectionToConnect = sectionToConnect;
 	}

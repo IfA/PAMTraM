@@ -3,17 +3,18 @@ package de.mfreund.gentrans.transformation.resolving.wizards;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 
+import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 /**
@@ -27,11 +28,6 @@ public class GenericSelectionDialog extends AbstractDialog {
 	 * The list of options that will be presented to the user.
 	 */
 	protected final List<String> options;
-
-	/**
-	 * The {@link org.eclipse.swt.widgets.List} that will present the {@link #options} to the user.
-	 */
-	protected org.eclipse.swt.widgets.List listWidget;
 
 	/**
 	 * The set of indexes representing those of the {@link #options} that have been selected by the user.
@@ -108,41 +104,37 @@ public class GenericSelectionDialog extends AbstractDialog {
 
 		// Create the group that will display the list of options to the user
 		//
-		final Group grpOptions = new Group(parent, SWT.NONE);
-		final GridData gd_possiblePaths = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
-		gd_possiblePaths.minimumHeight = 200;
-		gd_possiblePaths.minimumWidth = 200;
+		Group grpOptions = new Group(parent, SWT.NONE);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(200, 200).applyTo(grpOptions);
 		grpOptions.setText("Possible choices");
 		grpOptions.setLayout(new FillLayout(SWT.HORIZONTAL));
-		grpOptions.setLayoutData(gd_possiblePaths);
 
 		// Create the list viewer for the list of options
 		//
-		final ListViewer listViewer = new ListViewer(grpOptions,
+		ListViewer listViewer = new ListViewer(grpOptions,
 				SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | (this.multiSelectionAllowed ? SWT.MULTI : 0));
+		org.eclipse.swt.widgets.List listWidget = listViewer.getList();
+
 		listViewer.addSelectionChangedListener(event -> {
-			GenericSelectionDialog.this.selectedItems = new HashSet<>();
-			for (int index : GenericSelectionDialog.this.listWidget.getSelectionIndices()) {
-				GenericSelectionDialog.this.selectedItems.add(index);
-			}
-			GenericSelectionDialog.this.listWidget.showSelection();
+
+			this.selectedItems = IntStream.of(listWidget.getSelectionIndices()).mapToObj(i -> (Integer) i)
+					.collect(Collectors.toSet());
+
+			listWidget.showSelection();
 		});
+
 		listViewer.addDoubleClickListener(event -> GenericSelectionDialog.this.shell.dispose());
-		this.listWidget = listViewer.getList();
-		this.listWidget.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(final KeyEvent e) {
-				if (e.keyCode == SWT.KeyDown) {
-					GenericSelectionDialog.this.listWidget.select(GenericSelectionDialog.this.listWidget.getSelectionIndex() + 1);
-				} else if (e.keyCode == SWT.KeyUp) {
-					GenericSelectionDialog.this.listWidget.select(GenericSelectionDialog.this.listWidget.getSelectionIndex() - 1);
-				}
+		listWidget.addKeyListener((KeyPressedListener) e -> {
+			if (e.keyCode == SWT.KeyDown) {
+				listWidget.select(listWidget.getSelectionIndex() + 1);
+			} else if (e.keyCode == SWT.KeyUp) {
+				listWidget.select(listWidget.getSelectionIndex() - 1);
 			}
 		});
 
-		this.listWidget.setItems(this.options.toArray(new String[this.options.size()]));
-		this.listWidget.setSelection(this.standardSelectionIndex);
-		this.listWidget.showSelection();
+		listWidget.setItems(this.options.toArray(new String[this.options.size()]));
+		listWidget.setSelection(this.standardSelectionIndex);
+		listWidget.showSelection();
 	}
 
 	/**

@@ -74,7 +74,7 @@ public abstract class MappingModelEnhancer<D extends AbstractDialogRunner> imple
 	protected PamtramEditor getEditor() {
 
 		if (this.editor == null) {
-			this.editor = PamtramEditor.getEditor(this.pamtramModel, false);
+			this.editor = PamtramEditor.getEditor(this.pamtramModel, true);
 		}
 		return this.editor;
 	}

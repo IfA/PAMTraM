@@ -192,12 +192,6 @@ These terms will be replaced, once it has been decided, which public license to 
          unpack="false"/>
 
    <plugin
-         id="de.mfreund.pamtram.examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="de.mfreund.gentrans.transformation.resolving.statistics"
          download-size="0"
          install-size="0"

@@ -2,7 +2,7 @@
 <feature
       id="de.mfreund.pamtram.feature"
       label="PAMTraM Feature"
-      version="1.7.0.qualifier"
+      version="1.8.0.qualifier"
       provider-name="Matthias Freund, Institute of Automation, TU Dresden">
 
    <description url="http://www.example.com/description">
@@ -50,23 +50,19 @@ These terms will be replaced, once it has been decided, which public license to 
          id="org.eclipse.emf.edit"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.ocl.examples"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.debug.core"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.10.1" match="greaterOrEqual"/>
       <import plugin="de.mfreund.gentrans.transformation" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="de.mfreund.pamtram" version="1.7.0" match="greaterOrEqual"/>
-      <import plugin="de.mfreund.pamtram.model" version="1.7.0" match="greaterOrEqual"/>
+      <import plugin="de.mfreund.pamtram.model" version="1.8.0" match="greaterOrEqual"/>
       <import plugin="de.mfreund.gentrans.transformation.resolving.user" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.resources" version="3.8.100" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xsd"/>
       <import plugin="org.eclipse.ui.console" version="3.5.200" match="greaterOrEqual"/>
-      <import plugin="de.mfreund.pamtram.model.edit" version="1.7.0" match="greaterOrEqual"/>
+      <import plugin="de.mfreund.pamtram.model.edit" version="1.8.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide" version="3.10.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.1" match="greaterOrEqual"/>
       <import plugin="de.mfreund.pamtram.transformation.model" version="1.0.2" match="greaterOrEqual"/>
@@ -79,10 +75,7 @@ These terms will be replaced, once it has been decided, which public license to 
       <import plugin="org.eclipse.jface.databinding"/>
       <import plugin="com.ibm.icu"/>
       <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.ocl.pivot" version="1.0.1" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ocl.examples.codegen" version="2.0.1" match="greaterOrEqual"/>
       <import plugin="de.tud.et.ifa.agtele.genlibrary" version="1.2.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ocl.xtext.oclinecore" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.swt"/>
       <import plugin="de.tud.et.ifa.agtele.genlibrary.edit" version="1.1.0" match="greaterOrEqual"/>
@@ -95,9 +88,9 @@ These terms will be replaced, once it has been decided, which public license to 
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.compare" version="3.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.console" version="3.6.100" match="greaterOrEqual"/>
-      <import plugin="de.mfreund.gentrans.transformation.resolving.history" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="de.mfreund.gentrans.transformation.resolving.history" version="1.2.0" match="greaterOrEqual"/>
       <import plugin="de.mfreund.gentrans.transformation.resolving.statistics" version="1.0.0" match="greaterOrEqual"/>
-      <import feature="de.tud.et.ifa.agtele.eclipse.commons.feature" version="1.0.0"/>
+      <import feature="de.tud.et.ifa.agtele.eclipse.commons.feature" version="1.0.1"/>
    </requires>
 
    <plugin
@@ -197,12 +190,6 @@ These terms will be replaced, once it has been decided, which public license to 
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
-   <plugin
-         id="de.mfreund.pamtram.examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
 
    <plugin
          id="de.mfreund.gentrans.transformation.resolving.statistics"

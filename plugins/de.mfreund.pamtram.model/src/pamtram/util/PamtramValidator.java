@@ -8,9 +8,11 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 
-import pamtram.*;
+import pamtram.ConditionModel;
+import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.NamedElement;
@@ -21,11 +23,10 @@ import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Validator</b> for the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc -->
+ * 
  * @see pamtram.PamtramPackage
- * @generated not
+ * @generated
  */
 public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	/**
@@ -76,7 +77,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
+	protected static final int DIAGNOSTIC_CODE_COUNT = PamtramValidator.GENERATED_DIAGNOSTIC_CODE_COUNT;
 
 	/**
 	 * Creates an instance of the switch.
@@ -96,7 +97,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 */
 	@Override
 	protected EPackage getEPackage() {
-	  return PamtramPackage.eINSTANCE;
+		return PamtramPackage.eINSTANCE;
 	}
 
 	/**
@@ -109,23 +110,23 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
 			case PamtramPackage.NAMED_ELEMENT:
-				return validateNamedElement((NamedElement)value, diagnostics, context);
+				return this.validateNamedElement((NamedElement)value, diagnostics, context);
 			case PamtramPackage.DEACTIVATABLE_ELEMENT:
-				return validateDeactivatableElement((DeactivatableElement)value, diagnostics, context);
+				return this.validateDeactivatableElement((DeactivatableElement)value, diagnostics, context);
 			case PamtramPackage.PAM_TRA_M:
-				return validatePAMTraM((PAMTraM)value, diagnostics, context);
+				return this.validatePAMTraM((PAMTraM)value, diagnostics, context);
 			case PamtramPackage.SECTION_MODEL:
-				return validateSectionModel((SectionModel<?, ?, ?, ?>)value, diagnostics, context);
+				return this.validateSectionModel((SectionModel<?, ?, ?, ?>)value, diagnostics, context);
 			case PamtramPackage.SOURCE_SECTION_MODEL:
-				return validateSourceSectionModel((SourceSectionModel)value, diagnostics, context);
+				return this.validateSourceSectionModel((SourceSectionModel)value, diagnostics, context);
 			case PamtramPackage.TARGET_SECTION_MODEL:
-				return validateTargetSectionModel((TargetSectionModel)value, diagnostics, context);
+				return this.validateTargetSectionModel((TargetSectionModel)value, diagnostics, context);
 			case PamtramPackage.MAPPING_MODEL:
-				return validateMappingModel((MappingModel)value, diagnostics, context);
+				return this.validateMappingModel((MappingModel)value, diagnostics, context);
 			case PamtramPackage.CONDITIONAL_ELEMENT:
-				return validateConditionalElement((ConditionalElement)value, diagnostics, context);
+				return this.validateConditionalElement((ConditionalElement)value, diagnostics, context);
 			case PamtramPackage.CONDITION_MODEL:
-				return validateConditionModel((ConditionModel)value, diagnostics, context);
+				return this.validateConditionModel((ConditionModel)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -137,7 +138,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateNamedElement(NamedElement namedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(namedElement, diagnostics, context);
+		return this.validate_EveryDefaultConstraint(namedElement, diagnostics, context);
 	}
 
 	/**
@@ -146,7 +147,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateDeactivatableElement(DeactivatableElement deactivatableElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(deactivatableElement, diagnostics, context);
+		return this.validate_EveryDefaultConstraint(deactivatableElement, diagnostics, context);
 	}
 
 	/**
@@ -155,7 +156,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validatePAMTraM(PAMTraM pamTraM, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(pamTraM, diagnostics, context);
+		return this.validate_EveryDefaultConstraint(pamTraM, diagnostics, context);
 	}
 
 	/**
@@ -164,7 +165,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSectionModel(SectionModel<?, ?, ?, ?> sectionModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sectionModel, diagnostics, context);
+		return this.validate_EveryDefaultConstraint(sectionModel, diagnostics, context);
 	}
 
 	/**
@@ -173,7 +174,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSourceSectionModel(SourceSectionModel sourceSectionModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sourceSectionModel, diagnostics, context);
+		return this.validate_EveryDefaultConstraint(sourceSectionModel, diagnostics, context);
 	}
 
 	/**
@@ -182,7 +183,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTargetSectionModel(TargetSectionModel targetSectionModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(targetSectionModel, diagnostics, context);
+		return this.validate_EveryDefaultConstraint(targetSectionModel, diagnostics, context);
 	}
 
 	/**
@@ -191,19 +192,43 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingModel(MappingModel mappingModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(mappingModel, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_validateEitherModelOrReferCondition(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
+		if (!this.validate_NoCircularContainment(mappingModel, diagnostics, context)) {
+			return false;
+		}
+		boolean result = this.validate_EveryMultiplicityConforms(mappingModel, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryDataValueConforms(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryReferenceIsContained(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryBidirectionalReferenceIsPaired(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryProxyResolves(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_UniqueID(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryKeyUnique(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryMapEntryUnique(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validateConditionalElement_eitherModelOrReferCondition(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validateConditionalElement_validateEitherModelOrReferCondition(mappingModel, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -213,19 +238,43 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateConditionalElement(ConditionalElement conditionalElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(conditionalElement, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_validateEitherModelOrReferCondition(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(conditionalElement, diagnostics, context);
+		if (!this.validate_NoCircularContainment(conditionalElement, diagnostics, context)) {
+			return false;
+		}
+		boolean result = this.validate_EveryMultiplicityConforms(conditionalElement, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryDataValueConforms(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryReferenceIsContained(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryBidirectionalReferenceIsPaired(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryProxyResolves(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_UniqueID(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryKeyUnique(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validate_EveryMapEntryUnique(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validateConditionalElement_eitherModelOrReferCondition(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validateConditionalElement_referenceOnlyConditionsFromConditionModel(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validateConditionalElement_validateEitherModelOrReferCondition(conditionalElement, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= this.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(conditionalElement, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -243,14 +292,14 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+				(this.createDiagnostic
 						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "eitherModelOrReferCondition", getObjectLabel(conditionalElement, context) },
-						 new Object[] { conditionalElement },
-						 context));
+								PamtramValidator.DIAGNOSTIC_SOURCE,
+								0,
+								"_UI_GenericConstraint_diagnostic",
+								new Object[] { "eitherModelOrReferCondition", EObjectValidator.getObjectLabel(conditionalElement, context) },
+								new Object[] { conditionalElement },
+								context));
 			}
 			return false;
 		}
@@ -271,14 +320,14 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+				(this.createDiagnostic
 						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "referenceOnlyConditionsFromConditionModel", getObjectLabel(conditionalElement, context) },
-						 new Object[] { conditionalElement },
-						 context));
+								PamtramValidator.DIAGNOSTIC_SOURCE,
+								0,
+								"_UI_GenericConstraint_diagnostic",
+								new Object[] { "referenceOnlyConditionsFromConditionModel", EObjectValidator.getObjectLabel(conditionalElement, context) },
+								new Object[] { conditionalElement },
+								context));
 			}
 			return false;
 		}
@@ -311,7 +360,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateConditionModel(ConditionModel conditionModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(conditionModel, diagnostics, context);
+		return this.validate_EveryDefaultConstraint(conditionModel, diagnostics, context);
 	}
 
 	/**

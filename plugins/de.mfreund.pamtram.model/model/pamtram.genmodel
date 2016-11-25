@@ -48,11 +48,19 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//MappingModel/mapping"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//MappingModel/modifierSets"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//MappingModel/globalValues"/>
-      <genOperations ecoreOperation="pamtram.ecore#//MappingModel/getActiveMappings"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//MappingModel/activeMappings"/>
     </genClasses>
     <genClasses image="false" ecoreClass="pamtram.ecore#//ConditionalElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/localCondition"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/sharedCondition"/>
+      <genOperations ecoreOperation="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition">
+        <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition/diagnostics"/>
+        <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="pamtram.ecore#//ConditionalElement/validateReferenceOnlyConditionsFromConditionModel">
+        <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateReferenceOnlyConditionsFromConditionModel/diagnostics"/>
+        <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateReferenceOnlyConditionsFromConditionModel/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//ConditionModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionModel/condition"/>
@@ -104,6 +112,18 @@
           <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/isReferencedBy/referencingClass"/>
           <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/isReferencedBy/referencedClasses"/>
         </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/Class/validateEClassMatchesParentEReference">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/validateEClassMatchesParentEReference/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/validateEClassMatchesParentEReference/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/Class/validateCardinalityIsValid">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/validateCardinalityIsValid/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/validateCardinalityIsValid/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/Class/validateContainerIsValid">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/validateContainerIsValid/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/validateContainerIsValid/context"/>
+        </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/Section">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/Section/S"/>
@@ -113,19 +133,30 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/Section/abstract"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Section/extend"/>
-        <genOperations ecoreOperation="pamtram.ecore#//metamodel/Section/extendsOnlyValidSections"/>
         <genOperations ecoreOperation="pamtram.ecore#//metamodel/Section/validateContainerMatchesExtendContainer">
           <genParameters ecoreParameter="pamtram.ecore#//metamodel/Section/validateContainerMatchesExtendContainer/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//metamodel/Section/validateContainerMatchesExtendContainer/context"/>
         </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/Section/validateExtendsValidSections">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Section/validateExtendsValidSections/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Section/validateExtendsValidSections/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/SourceSection">
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/SourceSection/referencingMappings"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/SourceSection/validateIsReferencedByMapping">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/SourceSection/validateIsReferencedByMapping/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/SourceSection/validateIsReferencedByMapping/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/TargetSection">
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/TargetSection/referencingMappingHintGroups"/>
         <genFeatures property="None" createChild="true" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/TargetSection/file"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/TargetSection/validateIsReferencedByMappingHintGroup">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/TargetSection/validateIsReferencedByMappingHintGroup/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/TargetSection/validateIsReferencedByMappingHintGroup/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/FileAttribute">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/FileAttribute/fileType"/>
@@ -169,6 +200,10 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Reference/eReference"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Reference/owningClass"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/Reference/validateEReferenceMatchesParentEClass">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Reference/validateEReferenceMatchesParentEClass/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Reference/validateEReferenceMatchesParentEClass/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/ContainmentReference">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/ContainmentReference/S"/>
@@ -176,6 +211,10 @@
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/ContainmentReference/R"/>
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/ContainmentReference/A"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ContainmentReference/value"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/ContainmentReference/validateEReferenceIsContainment">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/ContainmentReference/validateEReferenceIsContainment/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/ContainmentReference/validateEReferenceIsContainment/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/NonContainmentReference">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/NonContainmentReference/S"/>
@@ -184,6 +223,10 @@
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/NonContainmentReference/A"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/NonContainmentReference/value"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/NonContainmentReference/validateEReferenceIsNonContainment">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/NonContainmentReference/validateEReferenceIsNonContainment/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/NonContainmentReference/validateEReferenceIsNonContainment/context"/>
+        </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/SourceSectionReference">
         <genOperations ecoreOperation="pamtram.ecore#//metamodel/SourceSectionReference/getValuesGeneric"/>
@@ -197,6 +240,10 @@
       <genClasses ecoreClass="pamtram.ecore#//metamodel/MetaModelSectionReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/MetaModelSectionReference/value"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/MetaModelSectionReference/validateValuesMatchReferenceType">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/MetaModelSectionReference/validateValuesMatchReferenceType/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/MetaModelSectionReference/validateValuesMatchReferenceType/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/Attribute">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/Attribute/S"/>
@@ -212,6 +259,10 @@
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/ActualAttribute/A"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ActualAttribute/attribute"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/ActualAttribute/validateAttributeMatchesParentEClass">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/ActualAttribute/validateAttributeMatchesParentEClass/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/ActualAttribute/validateAttributeMatchesParentEClass/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/VirtualAttribute">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/VirtualAttribute/S"/>
@@ -254,6 +305,10 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/InstancePointer/target"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/InstancePointer/sourceElements"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/InstancePointer/validateNoModifiedAttributeElementTypesInConditionModelConditions">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/InstancePointer/validateNoModifiedAttributeElementTypesInConditionModelConditions/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/InstancePointer/validateNoModifiedAttributeElementTypesInConditionModelConditions/context"/>
+        </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/InstancePointerSourceInterface"/>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/InstancePointerSourceElement"/>
@@ -324,6 +379,10 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//condition/VariadicCondition/sharedCondParts"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/VariadicCondition/referencesOnlyValidConditions"/>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/VariadicCondition/validateMinimalNumberOfArgs">
+          <genParameters ecoreParameter="pamtram.ecore#//condition/VariadicCondition/validateMinimalNumberOfArgs/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//condition/VariadicCondition/validateMinimalNumberOfArgs/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/And"/>
       <genClasses ecoreClass="pamtram.ecore#//condition/Or"/>
@@ -331,9 +390,16 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/UnaryCondition/localCondPart"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//condition/UnaryCondition/sharedCondPart"/>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/UnaryCondition/validateExactlyOneArg">
+          <genParameters ecoreParameter="pamtram.ecore#//condition/UnaryCondition/validateExactlyOneArg/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//condition/UnaryCondition/validateExactlyOneArg/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/Not">
-        <genOperations ecoreOperation="pamtram.ecore#//condition/Not/referencesOnlyValidConditions"/>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/Not/validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements">
+          <genParameters ecoreParameter="pamtram.ecore#//condition/Not/validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//condition/Not/validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/AttributeCondition">
         <genFeatures children="true" createChild="true" propertySortChoices="true"
@@ -363,6 +429,14 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/Mapping/abstract"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/getActiveMappingHintGroups"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/getActiveImportedMappingHintGroups"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/validateContainsHintGroups">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateContainsHintGroups/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateContainsHintGroups/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/validateContainsDeactivatedHintGroups">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateContainsDeactivatedHintGroups/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateContainsDeactivatedHintGroups/context"/>
+        </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintGroupType">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -390,17 +464,49 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/AttributeMapping/sourceElements"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/AttributeMapping/getLocalSourceElements"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/AttributeMapping/getExternalSourceElements"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/AttributeMapping/validateTargetAttributeMatchesSection">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/AttributeMapping/validateTargetAttributeMatchesSection/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/AttributeMapping/validateTargetAttributeMatchesSection/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/CardinalityMapping">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/CardinalityMapping/source"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/CardinalityMapping/target"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateSourceClassMatchesSection">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateSourceClassMatchesSection/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateSourceClassMatchesSection/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateTargetClassMatchesSection">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateTargetClassMatchesSection/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateTargetClassMatchesSection/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateSourceClassIsVariableCardinality">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateSourceClassIsVariableCardinality/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateSourceClassIsVariableCardinality/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateTargetClassIsVariableCardinality">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateTargetClassIsVariableCardinality/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateTargetClassIsVariableCardinality/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateNoCardinalityMappingForSourceSectionRoot">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateNoCardinalityMappingForSourceSectionRoot/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateNoCardinalityMappingForSourceSectionRoot/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ReferenceTargetSelector">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ReferenceTargetSelector/affectedReference"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ReferenceTargetSelector/matcher"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/ReferenceTargetSelector/validateAffectedReferenceIsNonContainment">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/ReferenceTargetSelector/validateAffectedReferenceIsNonContainment/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/ReferenceTargetSelector/validateAffectedReferenceIsNonContainment/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/ReferenceTargetSelector/validateAffectedReferenceMatchesSection">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/ReferenceTargetSelector/validateAffectedReferenceMatchesSection/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/ReferenceTargetSelector/validateAffectedReferenceMatchesSection/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/Matcher"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcher">
@@ -409,6 +515,10 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/AttributeMatcher/sourceElements"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/AttributeMatcher/getLocalSourceElements"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/AttributeMatcher/getExternalSourceElements"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/AttributeMatcher/validateTargetMatchesAffectedReferenceType">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/AttributeMatcher/validateTargetMatchesAffectedReferenceType/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/AttributeMatcher/validateTargetMatchesAffectedReferenceType/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcherSourceElement"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/AttributeMatcherSourceInterface"/>
@@ -473,7 +583,12 @@
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMappingSourceElement"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorSourceElement"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorTargetAttribute"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorTargetAttribute">
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/ContainerSelectorTargetAttribute/validateSourceMatchesPossibleContainerType">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/ContainerSelectorTargetAttribute/validateSourceMatchesPossibleContainerType/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/ContainerSelectorTargetAttribute/validateSourceMatchesPossibleContainerType/context"/>
+        </genOperations>
+      </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintType"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/HintImporterMappingHint"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappedAttributeValueExpander">
@@ -493,6 +608,10 @@
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/GlobalAttribute/source"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/GlobalAttribute/modifier"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/GlobalAttribute/validateSourceAttributeHasUpperBoundOne">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/GlobalAttribute/validateSourceAttributeHasUpperBoundOne/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/GlobalAttribute/validateSourceAttributeHasUpperBoundOne/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/GlobalAttributeImporter">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -509,6 +628,10 @@
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//mapping/ExternalModifiedAttributeElementType/C"/>
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//mapping/ExternalModifiedAttributeElementType/R"/>
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//mapping/ExternalModifiedAttributeElementType/A"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/ExternalModifiedAttributeElementType/validateSourceAttributeMatchesContainerSection">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/ExternalModifiedAttributeElementType/validateSourceAttributeMatchesContainerSection/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/ExternalModifiedAttributeElementType/validateSourceAttributeMatchesContainerSection/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorExternalSourceElement"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcherExternalSourceElement"/>

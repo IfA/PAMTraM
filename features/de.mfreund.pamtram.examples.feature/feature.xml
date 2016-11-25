@@ -44,7 +44,7 @@ These terms will be replaced, once it has been decided, which public license to 
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.emf.common.ui" version="2.10.0" match="greaterOrEqual"/>
-      <import feature="de.mfreund.pamtram.feature" version="1.7.0" match="greaterOrEqual"/>
+      <import feature="de.mfreund.pamtram.feature" version="1.8.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

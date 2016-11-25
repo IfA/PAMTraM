@@ -15,7 +15,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//DeactivatableElement/deactivated"/>
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//PAMTraM">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/contextMetaModelPackage"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sourceSectionModel"/>
       <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
           ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedSourceSectionModel"/>

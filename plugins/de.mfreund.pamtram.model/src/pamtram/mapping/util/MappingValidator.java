@@ -9,8 +9,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
-
+import pamtram.mapping.*;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingGlobalSourceElement;
@@ -73,11 +72,10 @@ import pamtram.util.PamtramValidator;
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc -->
- * 
  * @see pamtram.mapping.MappingPackage
  * @generated
  */
-public class MappingValidator extends OCLinEcoreEObjectValidator {
+public class MappingValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -230,7 +228,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final int DIAGNOSTIC_CODE_COUNT = MappingValidator.GENERATED_DIAGNOSTIC_CODE_COUNT;
+	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
 	/**
 	 * The cached base package validator.
@@ -248,7 +246,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public MappingValidator() {
 		super();
-		this.pamtramValidator = PamtramValidator.INSTANCE;
+		pamtramValidator = PamtramValidator.INSTANCE;
 	}
 
 	/**
@@ -259,7 +257,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 */
 	@Override
 	protected EPackage getEPackage() {
-		return MappingPackage.eINSTANCE;
+	  return MappingPackage.eINSTANCE;
 	}
 
 	/**
@@ -272,119 +270,119 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
 			case MappingPackage.MAPPING_TYPE:
-				return this.validateMappingType((MappingType)value, diagnostics, context);
+				return validateMappingType((MappingType)value, diagnostics, context);
 			case MappingPackage.MAPPING:
-				return this.validateMapping((Mapping)value, diagnostics, context);
+				return validateMapping((Mapping)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE:
-				return this.validateMappingHintGroupType((MappingHintGroupType)value, diagnostics, context);
+				return validateMappingHintGroupType((MappingHintGroupType)value, diagnostics, context);
 			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP:
-				return this.validateInstantiableMappingHintGroup((InstantiableMappingHintGroup)value, diagnostics, context);
+				return validateInstantiableMappingHintGroup((InstantiableMappingHintGroup)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP:
-				return this.validateMappingHintGroup((MappingHintGroup)value, diagnostics, context);
+				return validateMappingHintGroup((MappingHintGroup)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_BASE_TYPE:
-				return this.validateMappingHintBaseType((MappingHintBaseType)value, diagnostics, context);
+				return validateMappingHintBaseType((MappingHintBaseType)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT:
-				return this.validateMappingHint((MappingHint)value, diagnostics, context);
+				return validateMappingHint((MappingHint)value, diagnostics, context);
 			case MappingPackage.EXPRESSION_HINT:
-				return this.validateExpressionHint((ExpressionHint)value, diagnostics, context);
+				return validateExpressionHint((ExpressionHint)value, diagnostics, context);
 			case MappingPackage.MODIFIABLE_HINT:
-				return this.validateModifiableHint((ModifiableHint)value, diagnostics, context);
+				return validateModifiableHint((ModifiableHint)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING:
-				return this.validateAttributeMapping((AttributeMapping)value, diagnostics, context);
+				return validateAttributeMapping((AttributeMapping)value, diagnostics, context);
 			case MappingPackage.CARDINALITY_MAPPING:
-				return this.validateCardinalityMapping((CardinalityMapping)value, diagnostics, context);
+				return validateCardinalityMapping((CardinalityMapping)value, diagnostics, context);
 			case MappingPackage.REFERENCE_TARGET_SELECTOR:
-				return this.validateReferenceTargetSelector((ReferenceTargetSelector)value, diagnostics, context);
+				return validateReferenceTargetSelector((ReferenceTargetSelector)value, diagnostics, context);
 			case MappingPackage.MATCHER:
-				return this.validateMatcher((Matcher)value, diagnostics, context);
+				return validateMatcher((Matcher)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER:
-				return this.validateAttributeMatcher((AttributeMatcher)value, diagnostics, context);
+				return validateAttributeMatcher((AttributeMatcher)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT:
-				return this.validateAttributeMatcherSourceElement((AttributeMatcherSourceElement)value, diagnostics, context);
+				return validateAttributeMatcherSourceElement((AttributeMatcherSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_INTERFACE:
-				return this.validateAttributeMatcherSourceInterface((AttributeMatcherSourceInterface)value, diagnostics, context);
+				return validateAttributeMatcherSourceInterface((AttributeMatcherSourceInterface)value, diagnostics, context);
 			case MappingPackage.CLASS_MATCHER:
-				return this.validateClassMatcher((ClassMatcher)value, diagnostics, context);
+				return validateClassMatcher((ClassMatcher)value, diagnostics, context);
 			case MappingPackage.VALUE_MODIFIER_SET:
-				return this.validateValueModifierSet((ValueModifierSet)value, diagnostics, context);
+				return validateValueModifierSet((ValueModifierSet)value, diagnostics, context);
 			case MappingPackage.VALUE_MODIFIER:
-				return this.validateValueModifier((ValueModifier)value, diagnostics, context);
+				return validateValueModifier((ValueModifier)value, diagnostics, context);
 			case MappingPackage.SUBSTRING_REPLACER:
-				return this.validateSubstringReplacer((SubstringReplacer)value, diagnostics, context);
+				return validateSubstringReplacer((SubstringReplacer)value, diagnostics, context);
 			case MappingPackage.STRING_APPENDER:
-				return this.validateStringAppender((StringAppender)value, diagnostics, context);
+				return validateStringAppender((StringAppender)value, diagnostics, context);
 			case MappingPackage.UNIQUE_NUMBER_APPENDER:
-				return this.validateUniqueNumberAppender((UniqueNumberAppender)value, diagnostics, context);
+				return validateUniqueNumberAppender((UniqueNumberAppender)value, diagnostics, context);
 			case MappingPackage.STRING_PREPENDER:
-				return this.validateStringPrepender((StringPrepender)value, diagnostics, context);
+				return validateStringPrepender((StringPrepender)value, diagnostics, context);
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return this.validateModifiedAttributeElementType((ModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
+				return validateModifiedAttributeElementType((ModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return this.validateLocalModifiedAttributeElementType((LocalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
+				return validateLocalModifiedAttributeElementType((LocalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER:
-				return this.validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
+				return validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP:
-				return this.validateExportedMappingHintGroup((ExportedMappingHintGroup)value, diagnostics, context);
+				return validateExportedMappingHintGroup((ExportedMappingHintGroup)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR:
-				return this.validateContainerSelector((ContainerSelector)value, diagnostics, context);
+				return validateContainerSelector((ContainerSelector)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
-				return this.validateAttributeMappingSourceElement((AttributeMappingSourceElement)value, diagnostics, context);
+				return validateAttributeMappingSourceElement((AttributeMappingSourceElement)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR_SOURCE_ELEMENT:
-				return this.validateContainerSelectorSourceElement((ContainerSelectorSourceElement)value, diagnostics, context);
+				return validateContainerSelectorSourceElement((ContainerSelectorSourceElement)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE:
-				return this.validateContainerSelectorTargetAttribute((ContainerSelectorTargetAttribute)value, diagnostics, context);
+				return validateContainerSelectorTargetAttribute((ContainerSelectorTargetAttribute)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_TYPE:
-				return this.validateMappingHintType((MappingHintType)value, diagnostics, context);
+				return validateMappingHintType((MappingHintType)value, diagnostics, context);
 			case MappingPackage.HINT_IMPORTER_MAPPING_HINT:
-				return this.validateHintImporterMappingHint((HintImporterMappingHint)value, diagnostics, context);
+				return validateHintImporterMappingHint((HintImporterMappingHint)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER:
-				return this.validateMappedAttributeValueExpander((MappedAttributeValueExpander)value, diagnostics, context);
+				return validateMappedAttributeValueExpander((MappedAttributeValueExpander)value, diagnostics, context);
 			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER:
-				return this.validateLocalMappedAttributeValueExpander((LocalMappedAttributeValueExpander)value, diagnostics, context);
+				return validateLocalMappedAttributeValueExpander((LocalMappedAttributeValueExpander)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER:
-				return this.validateMappedAttributeValuePrepender((MappedAttributeValuePrepender)value, diagnostics, context);
+				return validateMappedAttributeValuePrepender((MappedAttributeValuePrepender)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER:
-				return this.validateMappedAttributeValueAppender((MappedAttributeValueAppender)value, diagnostics, context);
+				return validateMappedAttributeValueAppender((MappedAttributeValueAppender)value, diagnostics, context);
 			case MappingPackage.FIXED_VALUE:
-				return this.validateFixedValue((FixedValue)value, diagnostics, context);
+				return validateFixedValue((FixedValue)value, diagnostics, context);
 			case MappingPackage.GLOBAL_ATTRIBUTE:
-				return this.validateGlobalAttribute((GlobalAttribute)value, diagnostics, context);
+				return validateGlobalAttribute((GlobalAttribute)value, diagnostics, context);
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER:
-				return this.validateGlobalAttributeImporter((GlobalAttributeImporter)value, diagnostics, context);
+				return validateGlobalAttributeImporter((GlobalAttributeImporter)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_INTERFACE:
-				return this.validateAttributeMappingSourceInterface((AttributeMappingSourceInterface)value, diagnostics, context);
+				return validateAttributeMappingSourceInterface((AttributeMappingSourceInterface)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE:
-				return this.validateMappingHintSourceInterface((MappingHintSourceInterface)value, diagnostics, context);
+				return validateMappingHintSourceInterface((MappingHintSourceInterface)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR_SOURCE_INTERFACE:
-				return this.validateContainerSelectorSourceInterface((ContainerSelectorSourceInterface)value, diagnostics, context);
+				return validateContainerSelectorSourceInterface((ContainerSelectorSourceInterface)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
-				return this.validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
+				return validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return this.validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
+				return validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT:
-				return this.validateContainerSelectorExternalSourceElement((ContainerSelectorExternalSourceElement)value, diagnostics, context);
+				return validateContainerSelectorExternalSourceElement((ContainerSelectorExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
-				return this.validateAttributeMatcherExternalSourceElement((AttributeMatcherExternalSourceElement)value, diagnostics, context);
+				return validateAttributeMatcherExternalSourceElement((AttributeMatcherExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER:
-				return this.validateExternalMappedAttributeValueExpander((ExternalMappedAttributeValueExpander)value, diagnostics, context);
+				return validateExternalMappedAttributeValueExpander((ExternalMappedAttributeValueExpander)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER:
-				return this.validateExternalMappedAttributeValuePrepender((ExternalMappedAttributeValuePrepender)value, diagnostics, context);
+				return validateExternalMappedAttributeValuePrepender((ExternalMappedAttributeValuePrepender)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER:
-				return this.validateExternalMappedAttributeValueAppender((ExternalMappedAttributeValueAppender)value, diagnostics, context);
+				return validateExternalMappedAttributeValueAppender((ExternalMappedAttributeValueAppender)value, diagnostics, context);
 			case MappingPackage.EXPANDABLE_HINT:
-				return this.validateExpandableHint((ExpandableHint)value, diagnostics, context);
+				return validateExpandableHint((ExpandableHint)value, diagnostics, context);
 			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER:
-				return this.validateMatchToLowerCaseConverter((MatchToLowerCaseConverter)value, diagnostics, context);
+				return validateMatchToLowerCaseConverter((MatchToLowerCaseConverter)value, diagnostics, context);
 			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER:
-				return this.validateMatchToUpperCaseConverter((MatchToUpperCaseConverter)value, diagnostics, context);
+				return validateMatchToUpperCaseConverter((MatchToUpperCaseConverter)value, diagnostics, context);
 			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return this.validateGlobalModifiedAttributeElementType((GlobalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
+				return validateGlobalModifiedAttributeElementType((GlobalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT:
-				return this.validateAttributeMatcherGlobalSourceElement((AttributeMatcherGlobalSourceElement)value, diagnostics, context);
+				return validateAttributeMatcherGlobalSourceElement((AttributeMatcherGlobalSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT:
-				return this.validateAttributeMappingGlobalSourceElement((AttributeMappingGlobalSourceElement)value, diagnostics, context);
+				return validateAttributeMappingGlobalSourceElement((AttributeMappingGlobalSourceElement)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT:
-				return this.validateContainerSelectorGlobalSourceElement((ContainerSelectorGlobalSourceElement)value, diagnostics, context);
+				return validateContainerSelectorGlobalSourceElement((ContainerSelectorGlobalSourceElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -396,7 +394,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingType(MappingType mappingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(mappingType, diagnostics, context);
+		return validate_EveryDefaultConstraint(mappingType, diagnostics, context);
 	}
 
 	/**
@@ -405,55 +403,23 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMapping(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(mapping, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(mapping, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateMapping_containsHintGroups(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateMapping_containsDeactivatedHintGroups(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateMapping_validateContainsHintGroups(mapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateMapping_validateContainsDeactivatedHintGroups(mapping, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(mapping, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMapping_containsHintGroups(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMapping_containsDeactivatedHintGroups(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMapping_validateContainsHintGroups(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMapping_validateContainsDeactivatedHintGroups(mapping, diagnostics, context);
 		return result;
 	}
 
@@ -471,14 +437,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "containsHintGroups", EObjectValidator.getObjectLabel(mapping, context) },
-								new Object[] { mapping },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "containsHintGroups", getObjectLabel(mapping, context) },
+						 new Object[] { mapping },
+						 context));
 			}
 			return false;
 		}
@@ -499,14 +465,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "containsDeactivatedHintGroups", EObjectValidator.getObjectLabel(mapping, context) },
-								new Object[] { mapping },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "containsDeactivatedHintGroups", getObjectLabel(mapping, context) },
+						 new Object[] { mapping },
+						 context));
 			}
 			return false;
 		}
@@ -539,7 +505,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintGroupType(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(mappingHintGroupType, diagnostics, context);
+		return validate_EveryDefaultConstraint(mappingHintGroupType, diagnostics, context);
 	}
 
 	/**
@@ -548,43 +514,19 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInstantiableMappingHintGroup(InstantiableMappingHintGroup instantiableMappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(instantiableMappingHintGroup, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(instantiableMappingHintGroup, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instantiableMappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instantiableMappingHintGroup, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(instantiableMappingHintGroup, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instantiableMappingHintGroup, diagnostics, context);
 		return result;
 	}
 
@@ -594,43 +536,19 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintGroup(MappingHintGroup mappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(mappingHintGroup, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(mappingHintGroup, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(mappingHintGroup, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
 		return result;
 	}
 
@@ -640,7 +558,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintBaseType(MappingHintBaseType mappingHintBaseType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(mappingHintBaseType, diagnostics, context);
+		return validate_EveryDefaultConstraint(mappingHintBaseType, diagnostics, context);
 	}
 
 	/**
@@ -649,43 +567,19 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHint(MappingHint mappingHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(mappingHint, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHint, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(mappingHint, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
 		return result;
 	}
 
@@ -695,7 +589,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateExpressionHint(ExpressionHint expressionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(expressionHint, diagnostics, context);
+		return validate_EveryDefaultConstraint(expressionHint, diagnostics, context);
 	}
 
 	/**
@@ -704,7 +598,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateModifiableHint(ModifiableHint modifiableHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(modifiableHint, diagnostics, context);
+		return validate_EveryDefaultConstraint(modifiableHint, diagnostics, context);
 	}
 
 	/**
@@ -713,49 +607,21 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMapping(AttributeMapping attributeMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(attributeMapping, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(attributeMapping, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateAttributeMapping_targetAttributeMatchesSection(attributeMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateAttributeMapping_validateTargetAttributeMatchesSection(attributeMapping, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(attributeMapping, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeMapping_targetAttributeMatchesSection(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeMapping_validateTargetAttributeMatchesSection(attributeMapping, diagnostics, context);
 		return result;
 	}
 
@@ -773,14 +639,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "targetAttributeMatchesSection", EObjectValidator.getObjectLabel(attributeMapping, context) },
-								new Object[] { attributeMapping },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "targetAttributeMatchesSection", getObjectLabel(attributeMapping, context) },
+						 new Object[] { attributeMapping },
+						 context));
 			}
 			return false;
 		}
@@ -803,73 +669,29 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(cardinalityMapping, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(cardinalityMapping, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_targetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_validateSourceClassMatchesSection(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_validateTargetClassMatchesSection(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_validateSourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_validateTargetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateCardinalityMapping_validateNoCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(cardinalityMapping, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_targetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateSourceClassMatchesSection(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateTargetClassMatchesSection(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateSourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateTargetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateNoCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
 		return result;
 	}
 
@@ -887,14 +709,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "sourceClassMatchesSection", EObjectValidator.getObjectLabel(cardinalityMapping, context) },
-								new Object[] { cardinalityMapping },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceClassMatchesSection", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
 			}
 			return false;
 		}
@@ -915,14 +737,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "sourceClassIsVariableCardinality", EObjectValidator.getObjectLabel(cardinalityMapping, context) },
-								new Object[] { cardinalityMapping },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceClassIsVariableCardinality", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
 			}
 			return false;
 		}
@@ -943,14 +765,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "targetClassMatchesSection", EObjectValidator.getObjectLabel(cardinalityMapping, context) },
-								new Object[] { cardinalityMapping },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "targetClassMatchesSection", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
 			}
 			return false;
 		}
@@ -971,14 +793,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "targetClassIsVariableCardinality", EObjectValidator.getObjectLabel(cardinalityMapping, context) },
-								new Object[] { cardinalityMapping },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "targetClassIsVariableCardinality", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
 			}
 			return false;
 		}
@@ -999,14 +821,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "noCardinalityMappingForSourceSectionRoot", EObjectValidator.getObjectLabel(cardinalityMapping, context) },
-								new Object[] { cardinalityMapping },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "noCardinalityMappingForSourceSectionRoot", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
 			}
 			return false;
 		}
@@ -1069,55 +891,23 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateReferenceTargetSelector(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(referenceTargetSelector, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(referenceTargetSelector, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateReferenceTargetSelector_affectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateReferenceTargetSelector_affectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateReferenceTargetSelector_validateAffectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateReferenceTargetSelector_validateAffectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(referenceTargetSelector, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateAffectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateAffectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
 		return result;
 	}
 
@@ -1135,14 +925,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "affectedReferenceIsNonContainment", EObjectValidator.getObjectLabel(referenceTargetSelector, context) },
-								new Object[] { referenceTargetSelector },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "affectedReferenceIsNonContainment", getObjectLabel(referenceTargetSelector, context) },
+						 new Object[] { referenceTargetSelector },
+						 context));
 			}
 			return false;
 		}
@@ -1163,14 +953,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "affectedReferenceMatchesSection", EObjectValidator.getObjectLabel(referenceTargetSelector, context) },
-								new Object[] { referenceTargetSelector },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "affectedReferenceMatchesSection", getObjectLabel(referenceTargetSelector, context) },
+						 new Object[] { referenceTargetSelector },
+						 context));
 			}
 			return false;
 		}
@@ -1203,7 +993,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMatcher(Matcher matcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(matcher, diagnostics, context);
+		return validate_EveryDefaultConstraint(matcher, diagnostics, context);
 	}
 
 	/**
@@ -1212,37 +1002,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMatcher(AttributeMatcher attributeMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(attributeMatcher, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(attributeMatcher, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(attributeMatcher, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(attributeMatcher, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(attributeMatcher, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(attributeMatcher, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(attributeMatcher, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(attributeMatcher, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateAttributeMatcher_targetMatchesAffectedReferenceType(attributeMatcher, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateAttributeMatcher_validateTargetMatchesAffectedReferenceType(attributeMatcher, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(attributeMatcher, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeMatcher_targetMatchesAffectedReferenceType(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeMatcher_validateTargetMatchesAffectedReferenceType(attributeMatcher, diagnostics, context);
 		return result;
 	}
 
@@ -1260,14 +1030,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "targetMatchesAffectedReferenceType", EObjectValidator.getObjectLabel(attributeMatcher, context) },
-								new Object[] { attributeMatcher },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "targetMatchesAffectedReferenceType", getObjectLabel(attributeMatcher, context) },
+						 new Object[] { attributeMatcher },
+						 context));
 			}
 			return false;
 		}
@@ -1290,37 +1060,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMatcherSourceElement(AttributeMatcherSourceElement attributeMatcherSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(attributeMatcherSourceElement, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(attributeMatcherSourceElement, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(attributeMatcherSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(attributeMatcherSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(attributeMatcherSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(attributeMatcherSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(attributeMatcherSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(attributeMatcherSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(attributeMatcherSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(attributeMatcherSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1330,7 +1080,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMatcherSourceInterface(AttributeMatcherSourceInterface attributeMatcherSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(attributeMatcherSourceInterface, diagnostics, context);
+		return validate_EveryDefaultConstraint(attributeMatcherSourceInterface, diagnostics, context);
 	}
 
 	/**
@@ -1339,7 +1089,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateClassMatcher(ClassMatcher classMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(classMatcher, diagnostics, context);
+		return validate_EveryDefaultConstraint(classMatcher, diagnostics, context);
 	}
 
 	/**
@@ -1348,7 +1098,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateValueModifierSet(ValueModifierSet valueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(valueModifierSet, diagnostics, context);
+		return validate_EveryDefaultConstraint(valueModifierSet, diagnostics, context);
 	}
 
 	/**
@@ -1357,7 +1107,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateValueModifier(ValueModifier valueModifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(valueModifier, diagnostics, context);
+		return validate_EveryDefaultConstraint(valueModifier, diagnostics, context);
 	}
 
 	/**
@@ -1366,7 +1116,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSubstringReplacer(SubstringReplacer substringReplacer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(substringReplacer, diagnostics, context);
+		return validate_EveryDefaultConstraint(substringReplacer, diagnostics, context);
 	}
 
 	/**
@@ -1375,7 +1125,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateStringAppender(StringAppender stringAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(stringAppender, diagnostics, context);
+		return validate_EveryDefaultConstraint(stringAppender, diagnostics, context);
 	}
 
 	/**
@@ -1384,7 +1134,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateUniqueNumberAppender(UniqueNumberAppender uniqueNumberAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(uniqueNumberAppender, diagnostics, context);
+		return validate_EveryDefaultConstraint(uniqueNumberAppender, diagnostics, context);
 	}
 
 	/**
@@ -1393,7 +1143,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateStringPrepender(StringPrepender stringPrepender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(stringPrepender, diagnostics, context);
+		return validate_EveryDefaultConstraint(stringPrepender, diagnostics, context);
 	}
 
 	/**
@@ -1402,7 +1152,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateModifiedAttributeElementType(ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(modifiedAttributeElementType, diagnostics, context);
+		return validate_EveryDefaultConstraint(modifiedAttributeElementType, diagnostics, context);
 	}
 
 	/**
@@ -1411,37 +1161,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(localModifiedAttributeElementType, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(localModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(localModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(localModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(localModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(localModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(localModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(localModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(localModifiedAttributeElementType, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
 		return result;
 	}
 
@@ -1459,14 +1189,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "sourceAttributeMatchesSectionOrContainedSection", EObjectValidator.getObjectLabel(localModifiedAttributeElementType, context) },
-								new Object[] { localModifiedAttributeElementType },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceAttributeMatchesSectionOrContainedSection", getObjectLabel(localModifiedAttributeElementType, context) },
+						 new Object[] { localModifiedAttributeElementType },
+						 context));
 			}
 			return false;
 		}
@@ -1489,43 +1219,19 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintGroupImporter(MappingHintGroupImporter mappingHintGroupImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(mappingHintGroupImporter, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(mappingHintGroupImporter, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHintGroupImporter, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHintGroupImporter, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(mappingHintGroupImporter, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHintGroupImporter, diagnostics, context);
 		return result;
 	}
 
@@ -1535,7 +1241,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateExportedMappingHintGroup(ExportedMappingHintGroup exportedMappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(exportedMappingHintGroup, diagnostics, context);
+		return validate_EveryDefaultConstraint(exportedMappingHintGroup, diagnostics, context);
 	}
 
 	/**
@@ -1544,7 +1250,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainerSelector(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(containerSelector, diagnostics, context);
+		return validate_EveryDefaultConstraint(containerSelector, diagnostics, context);
 	}
 
 	/**
@@ -1553,37 +1259,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMappingSourceElement(AttributeMappingSourceElement attributeMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(attributeMappingSourceElement, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(attributeMappingSourceElement, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(attributeMappingSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(attributeMappingSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(attributeMappingSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(attributeMappingSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(attributeMappingSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(attributeMappingSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(attributeMappingSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(attributeMappingSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1593,37 +1279,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainerSelectorSourceElement(ContainerSelectorSourceElement containerSelectorSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(containerSelectorSourceElement, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(containerSelectorSourceElement, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(containerSelectorSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(containerSelectorSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(containerSelectorSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(containerSelectorSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(containerSelectorSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(containerSelectorSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(containerSelectorSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(containerSelectorSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(containerSelectorSourceElement, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(containerSelectorSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(containerSelectorSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1633,37 +1299,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainerSelectorTargetAttribute(ContainerSelectorTargetAttribute containerSelectorTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(containerSelectorTargetAttribute, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(containerSelectorTargetAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(containerSelectorTargetAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(containerSelectorTargetAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(containerSelectorTargetAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(containerSelectorTargetAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(containerSelectorTargetAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(containerSelectorTargetAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateContainerSelectorTargetAttribute_sourceMatchesPossibleContainerType(containerSelectorTargetAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateContainerSelectorTargetAttribute_validateSourceMatchesPossibleContainerType(containerSelectorTargetAttribute, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(containerSelectorTargetAttribute, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainerSelectorTargetAttribute_sourceMatchesPossibleContainerType(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainerSelectorTargetAttribute_validateSourceMatchesPossibleContainerType(containerSelectorTargetAttribute, diagnostics, context);
 		return result;
 	}
 
@@ -1681,14 +1327,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "sourceMatchesPossibleContainerType", EObjectValidator.getObjectLabel(containerSelectorTargetAttribute, context) },
-								new Object[] { containerSelectorTargetAttribute },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceMatchesPossibleContainerType", getObjectLabel(containerSelectorTargetAttribute, context) },
+						 new Object[] { containerSelectorTargetAttribute },
+						 context));
 			}
 			return false;
 		}
@@ -1711,7 +1357,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintType(MappingHintType mappingHintType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(mappingHintType, diagnostics, context);
+		return validate_EveryDefaultConstraint(mappingHintType, diagnostics, context);
 	}
 
 	/**
@@ -1720,7 +1366,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateHintImporterMappingHint(HintImporterMappingHint hintImporterMappingHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(hintImporterMappingHint, diagnostics, context);
+		return validate_EveryDefaultConstraint(hintImporterMappingHint, diagnostics, context);
 	}
 
 	/**
@@ -1729,7 +1375,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappedAttributeValueExpander(MappedAttributeValueExpander mappedAttributeValueExpander, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(mappedAttributeValueExpander, diagnostics, context);
+		return validate_EveryDefaultConstraint(mappedAttributeValueExpander, diagnostics, context);
 	}
 
 	/**
@@ -1738,37 +1384,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateLocalMappedAttributeValueExpander(LocalMappedAttributeValueExpander localMappedAttributeValueExpander, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(localMappedAttributeValueExpander, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(localMappedAttributeValueExpander, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(localMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(localMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(localMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(localMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(localMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(localMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(localMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(localMappedAttributeValueExpander, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
 		return result;
 	}
 
@@ -1778,37 +1404,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappedAttributeValuePrepender(MappedAttributeValuePrepender mappedAttributeValuePrepender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(mappedAttributeValuePrepender, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(mappedAttributeValuePrepender, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(mappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(mappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(mappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(mappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(mappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(mappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(mappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(mappedAttributeValuePrepender, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
 		return result;
 	}
 
@@ -1818,37 +1424,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappedAttributeValueAppender(MappedAttributeValueAppender mappedAttributeValueAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(mappedAttributeValueAppender, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(mappedAttributeValueAppender, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(mappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(mappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(mappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(mappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(mappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(mappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(mappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(mappedAttributeValueAppender, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
 		return result;
 	}
 
@@ -1858,7 +1444,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateFixedValue(FixedValue fixedValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(fixedValue, diagnostics, context);
+		return validate_EveryDefaultConstraint(fixedValue, diagnostics, context);
 	}
 
 	/**
@@ -1867,37 +1453,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateGlobalAttribute(GlobalAttribute globalAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(globalAttribute, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(globalAttribute, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(globalAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(globalAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(globalAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(globalAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(globalAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(globalAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(globalAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateGlobalAttribute_sourceAttributeHasUpperBoundOne(globalAttribute, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateGlobalAttribute_validateSourceAttributeHasUpperBoundOne(globalAttribute, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(globalAttribute, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateGlobalAttribute_sourceAttributeHasUpperBoundOne(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateGlobalAttribute_validateSourceAttributeHasUpperBoundOne(globalAttribute, diagnostics, context);
 		return result;
 	}
 
@@ -1915,14 +1481,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "sourceAttributeHasUpperBoundOne", EObjectValidator.getObjectLabel(globalAttribute, context) },
-								new Object[] { globalAttribute },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceAttributeHasUpperBoundOne", getObjectLabel(globalAttribute, context) },
+						 new Object[] { globalAttribute },
+						 context));
 			}
 			return false;
 		}
@@ -1945,7 +1511,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateGlobalAttributeImporter(GlobalAttributeImporter globalAttributeImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(globalAttributeImporter, diagnostics, context);
+		return validate_EveryDefaultConstraint(globalAttributeImporter, diagnostics, context);
 	}
 
 	/**
@@ -1954,7 +1520,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMappingSourceInterface(AttributeMappingSourceInterface attributeMappingSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(attributeMappingSourceInterface, diagnostics, context);
+		return validate_EveryDefaultConstraint(attributeMappingSourceInterface, diagnostics, context);
 	}
 
 	/**
@@ -1963,7 +1529,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintSourceInterface(MappingHintSourceInterface mappingHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(mappingHintSourceInterface, diagnostics, context);
+		return validate_EveryDefaultConstraint(mappingHintSourceInterface, diagnostics, context);
 	}
 
 	/**
@@ -1972,7 +1538,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainerSelectorSourceInterface(ContainerSelectorSourceInterface containerSelectorSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(containerSelectorSourceInterface, diagnostics, context);
+		return validate_EveryDefaultConstraint(containerSelectorSourceInterface, diagnostics, context);
 	}
 
 	/**
@@ -1981,37 +1547,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement attributeMappingExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(attributeMappingExternalSourceElement, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(attributeMappingExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(attributeMappingExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(attributeMappingExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(attributeMappingExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(attributeMappingExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(attributeMappingExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(attributeMappingExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(attributeMappingExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(attributeMappingExternalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -2021,37 +1567,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(externalModifiedAttributeElementType, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(externalModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(externalModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(externalModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(externalModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(externalModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(externalModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(externalModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(externalModifiedAttributeElementType, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
 		return result;
 	}
 
@@ -2069,14 +1595,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-				(this.createDiagnostic
+					(createDiagnostic
 						(Diagnostic.ERROR,
-								MappingValidator.DIAGNOSTIC_SOURCE,
-								0,
-								"_UI_GenericConstraint_diagnostic",
-								new Object[] { "sourceAttributeMatchesContainerSection", EObjectValidator.getObjectLabel(externalModifiedAttributeElementType, context) },
-								new Object[] { externalModifiedAttributeElementType },
-								context));
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceAttributeMatchesContainerSection", getObjectLabel(externalModifiedAttributeElementType, context) },
+						 new Object[] { externalModifiedAttributeElementType },
+						 context));
 			}
 			return false;
 		}
@@ -2099,37 +1625,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainerSelectorExternalSourceElement(ContainerSelectorExternalSourceElement containerSelectorExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(containerSelectorExternalSourceElement, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(containerSelectorExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(containerSelectorExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(containerSelectorExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(containerSelectorExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(containerSelectorExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(containerSelectorExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(containerSelectorExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(containerSelectorExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(containerSelectorExternalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -2139,37 +1645,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMatcherExternalSourceElement(AttributeMatcherExternalSourceElement attributeMatcherExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(attributeMatcherExternalSourceElement, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(attributeMatcherExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(attributeMatcherExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(attributeMatcherExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(attributeMatcherExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(attributeMatcherExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(attributeMatcherExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(attributeMatcherExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(attributeMatcherExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(attributeMatcherExternalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -2179,37 +1665,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateExternalMappedAttributeValueExpander(ExternalMappedAttributeValueExpander externalMappedAttributeValueExpander, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(externalMappedAttributeValueExpander, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(externalMappedAttributeValueExpander, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(externalMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(externalMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(externalMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(externalMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(externalMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(externalMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(externalMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(externalMappedAttributeValueExpander, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
 		return result;
 	}
 
@@ -2219,37 +1685,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateExternalMappedAttributeValuePrepender(ExternalMappedAttributeValuePrepender externalMappedAttributeValuePrepender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(externalMappedAttributeValuePrepender, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(externalMappedAttributeValuePrepender, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(externalMappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(externalMappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(externalMappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(externalMappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(externalMappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(externalMappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(externalMappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(externalMappedAttributeValuePrepender, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
 		return result;
 	}
 
@@ -2259,37 +1705,17 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateExternalMappedAttributeValueAppender(ExternalMappedAttributeValueAppender externalMappedAttributeValueAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!this.validate_NoCircularContainment(externalMappedAttributeValueAppender, diagnostics, context)) {
-			return false;
-		}
-		boolean result = this.validate_EveryMultiplicityConforms(externalMappedAttributeValueAppender, diagnostics, context);
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryDataValueConforms(externalMappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryReferenceIsContained(externalMappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryBidirectionalReferenceIsPaired(externalMappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryProxyResolves(externalMappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_UniqueID(externalMappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryKeyUnique(externalMappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validate_EveryMapEntryUnique(externalMappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= this.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
-		}
+		if (!validate_NoCircularContainment(externalMappedAttributeValueAppender, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
 		return result;
 	}
 
@@ -2299,7 +1725,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateExpandableHint(ExpandableHint expandableHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(expandableHint, diagnostics, context);
+		return validate_EveryDefaultConstraint(expandableHint, diagnostics, context);
 	}
 
 	/**
@@ -2308,7 +1734,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMatchToLowerCaseConverter(MatchToLowerCaseConverter matchToLowerCaseConverter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(matchToLowerCaseConverter, diagnostics, context);
+		return validate_EveryDefaultConstraint(matchToLowerCaseConverter, diagnostics, context);
 	}
 
 	/**
@@ -2317,7 +1743,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMatchToUpperCaseConverter(MatchToUpperCaseConverter matchToUpperCaseConverter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(matchToUpperCaseConverter, diagnostics, context);
+		return validate_EveryDefaultConstraint(matchToUpperCaseConverter, diagnostics, context);
 	}
 
 	/**
@@ -2326,7 +1752,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(globalModifiedAttributeElementType, diagnostics, context);
+		return validate_EveryDefaultConstraint(globalModifiedAttributeElementType, diagnostics, context);
 	}
 
 	/**
@@ -2335,7 +1761,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMatcherGlobalSourceElement(AttributeMatcherGlobalSourceElement attributeMatcherGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(attributeMatcherGlobalSourceElement, diagnostics, context);
+		return validate_EveryDefaultConstraint(attributeMatcherGlobalSourceElement, diagnostics, context);
 	}
 
 	/**
@@ -2344,7 +1770,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement attributeMappingGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(attributeMappingGlobalSourceElement, diagnostics, context);
+		return validate_EveryDefaultConstraint(attributeMappingGlobalSourceElement, diagnostics, context);
 	}
 
 	/**
@@ -2353,7 +1779,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainerSelectorGlobalSourceElement(ContainerSelectorGlobalSourceElement containerSelectorGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return this.validate_EveryDefaultConstraint(containerSelectorGlobalSourceElement, diagnostics, context);
+		return validate_EveryDefaultConstraint(containerSelectorGlobalSourceElement, diagnostics, context);
 	}
 
 	/**

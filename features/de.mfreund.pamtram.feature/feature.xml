@@ -50,10 +50,6 @@ These terms will be replaced, once it has been decided, which public license to 
          id="org.eclipse.emf.edit"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.ocl.examples"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.debug.core"/>
@@ -79,10 +75,7 @@ These terms will be replaced, once it has been decided, which public license to 
       <import plugin="org.eclipse.jface.databinding"/>
       <import plugin="com.ibm.icu"/>
       <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.ocl.pivot" version="1.0.1" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ocl.examples.codegen" version="2.0.1" match="greaterOrEqual"/>
       <import plugin="de.tud.et.ifa.agtele.genlibrary" version="1.2.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ocl.xtext.oclinecore" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.swt"/>
       <import plugin="de.tud.et.ifa.agtele.genlibrary.edit" version="1.1.0" match="greaterOrEqual"/>

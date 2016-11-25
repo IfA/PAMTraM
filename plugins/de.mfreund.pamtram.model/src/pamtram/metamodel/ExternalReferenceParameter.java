@@ -34,7 +34,6 @@ public interface ExternalReferenceParameter extends LibraryParameter<AbstractExt
 	 * @see #setReference(TargetSectionNonContainmentReference)
 	 * @see pamtram.metamodel.MetamodelPackage#getExternalReferenceParameter_Reference()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ExternalReferenceParameter!reference'"
 	 * @generated
 	 */
 	TargetSectionNonContainmentReference getReference();

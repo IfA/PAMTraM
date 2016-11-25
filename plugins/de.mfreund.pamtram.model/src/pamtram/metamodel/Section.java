@@ -40,7 +40,6 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	 * @see #setAbstract(boolean)
 	 * @see pamtram.metamodel.MetamodelPackage#getSection_Abstract()
 	 * @model default="false" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Section{S,C,R,A}!abstract'"
 	 * @generated
 	 */
 	boolean isAbstract();
@@ -65,18 +64,10 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extend</em>' reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getSection_Extend()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Section{S,C,R,A}!extend'"
+	 * @model
 	 * @generated
 	 */
 	EList<S> getExtend();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nfor (S extend : this.getExtend()) {\r\n\tif(!extend.isAbstract() || extend.getEClass() != null && !(this.getEClass() == extend.getEClass()) && !(this.getEClass().getEAllSuperTypes().contains(extend.getEClass()))) {\r\n\t\treturn false;\r\n\t}\r\n}\r\n\r\nreturn true;'"
-	 * @generated
-	 */
-	boolean extendsOnlyValidSections();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,8 +80,8 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='/**\n * \n * inv extendsValidSections:\n *   let severity : Integer[1] = 4\n *   in\n *     let status : OclAny[?] = self.extendsOnlyValidSections()\n *     in\n *       let\n *         message : String[?] = if status <> true\n *         then \'The section extends a section that is either not abstract or that references an EClass of a different (super-)type!\'\n *         else null\n *         endif\n *       in\n *         \'Section::extendsValidSections\'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)\n \052/\nfinal /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.evaluation.Executor%> executor = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getExecutor(this);\n/*@Caught\052/ /*@NonNull\052/ <%java.lang.Object%> CAUGHT_status;\ntry {\n    final /*@Thrown\052/ boolean status = this.extendsOnlyValidSections();\n    CAUGHT_status = status;\n}\ncatch (<%java.lang.Exception%> e) {\n    CAUGHT_status = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createInvalidValue(e);\n}\nif (CAUGHT_status instanceof <%org.eclipse.ocl.pivot.values.InvalidValueException%>) {\n    throw (<%org.eclipse.ocl.pivot.values.InvalidValueException%>)CAUGHT_status;\n}\nfinal /*@Thrown\052/ boolean ne = CAUGHT_status == Boolean.FALSE;\n/*@NonInvalid\052/ <%java.lang.String%> message_0;\nif (ne) {\n    message_0 = <%pamtram.metamodel.MetamodelTables%>.STR_The_32_section_32_extends_32_a_32_section_32_that_32_is_32_either_32_not_32_abstract_32_or_32_tha;\n}\nelse {\n    message_0 = null;\n}\nfinal /*@NonInvalid\052/ boolean logDiagnostic = <%org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation%>.INSTANCE.evaluate(executor, <%org.eclipse.ocl.pivot.ids.TypeId%>.BOOLEAN, <%pamtram.metamodel.MetamodelTables%>.STR_Section_c_c_extendsValidSections, this, null, diagnostics, context, message_0, <%pamtram.metamodel.MetamodelTables%>.INT_4, CAUGHT_status, <%pamtram.metamodel.MetamodelTables%>.INT_0).booleanValue();\nreturn Boolean.TRUE == logDiagnostic;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getExtend().parallelStream().noneMatch(e -> !e.isAbstract() || e.getEClass() != null\r\n\t\t&& this.getEClass() != e.getEClass() && !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The section extends a section that is either not abstract or that references an EClass of a different (super-)type!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.metamodel.MetamodelPackage%>.Literals.SECTION__EXTEND }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
-	boolean extendsValidSections(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateExtendsValidSections(DiagnosticChain diagnostics, Map<?, ?> context);
 } // Section

@@ -4,11 +4,12 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -16,28 +17,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
-import org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation;
-import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
-import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
-import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
-import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.pivot.values.SetValue;
+import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.PamtramPackage;
-import pamtram.PamtramTables;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -45,7 +27,8 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.MappingTables;
+import pamtram.mapping.util.MappingValidator;
+import pamtram.util.PamtramValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -342,48 +325,24 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean containsHintGroups(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv containsHintGroups:
-		 *   let severity : Integer[1] = 2
-		 *   in
-		 *     let status : OclAny[?] = not self.mappingHintGroups->isEmpty()
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The mapping does not contain any hint groups!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'Mapping::containsHintGroups'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
-		try {
-		    final /*@Thrown*/ List<MappingHintGroupType> mappingHintGroups = this.getMappingHintGroups();
-		    final /*@Thrown*/ OrderedSetValue BOXED_mappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, mappingHintGroups);
-		    final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(BOXED_mappingHintGroups).booleanValue();
-		    final /*@Thrown*/ Boolean status = BooleanNotOperation.INSTANCE.evaluate(isEmpty);
-		    CAUGHT_status = status;
+	public boolean validateContainsHintGroups(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = !this.getMappingHintGroups().isEmpty();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The mapping does not contain any hint groups!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.WARNING,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.MAPPING__VALIDATE_CONTAINS_HINT_GROUPS,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.MAPPING }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = MappingTables.STR_The_32_mapping_32_does_32_not_32_contain_32_any_32_hint_32_groups_33;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_Mapping_c_c_containsHintGroups, this, null, diagnostics, context, message_0, MappingTables.INT_2, CAUGHT_status, MappingTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -391,92 +350,24 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean containsDeactivatedHintGroups(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv containsDeactivatedHintGroups:
-		 *   let severity : Integer[1] = 2
-		 *   in
-		 *     let
-		 *       status : OclAny[?] = if self.deactivated = false
-		 *       then
-		 *         self.mappingHintGroups->size() =
-		 *         self.getActiveMappingHintGroups()
-		 *         ->size() and
-		 *         self.importedMappingHintGroups->size() =
-		 *         self.getActiveImportedMappingHintGroups()
-		 *         ->size()
-		 *       else true
-		 *       endif
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The mapping contains deactivated hint groups that will not be used in a transformation!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'Mapping::containsDeactivatedHintGroups'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
-		try {
-		    final /*@Thrown*/ boolean deactivated = this.isDeactivated();
-		    final /*@Thrown*/ boolean eq = !deactivated;
-		    /*@Thrown*/ Boolean status;
-		    if (eq) {
-		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_0;
-		        try {
-		            final /*@Thrown*/ List<MappingHintGroupType> mappingHintGroups = this.getMappingHintGroups();
-		            final /*@Thrown*/ OrderedSetValue BOXED_mappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, mappingHintGroups);
-		            final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_mappingHintGroups);
-		            final /*@Thrown*/ List<MappingHintGroupType> getActiveMappingHintGroups = this.getActiveMappingHintGroups();
-		            final /*@Thrown*/ OrderedSetValue BOXED_getActiveMappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, getActiveMappingHintGroups);
-		            final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_getActiveMappingHintGroups);
-		            final /*@Thrown*/ boolean eq_0 = size.equals(size_0);
-		            CAUGHT_eq_0 = eq_0;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
-		        }
-		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_1;
-		        try {
-		            final /*@Thrown*/ List<MappingHintGroupImporter> importedMappingHintGroups = this.getImportedMappingHintGroups();
-		            final /*@Thrown*/ OrderedSetValue BOXED_importedMappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupImporter, importedMappingHintGroups);
-		            final /*@Thrown*/ IntegerValue size_1 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_importedMappingHintGroups);
-		            final /*@Thrown*/ List<MappingHintGroupImporter> getActiveImportedMappingHintGroups = this.getActiveImportedMappingHintGroups();
-		            final /*@Thrown*/ OrderedSetValue BOXED_getActiveImportedMappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupImporter, getActiveImportedMappingHintGroups);
-		            final /*@Thrown*/ IntegerValue size_2 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_getActiveImportedMappingHintGroups);
-		            final /*@Thrown*/ boolean eq_1 = size_1.equals(size_2);
-		            CAUGHT_eq_1 = eq_1;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
-		        }
-		        final /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_eq_0, CAUGHT_eq_1);
-		        status = and;
-		    }
-		    else {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    CAUGHT_status = status;
+	public boolean validateContainsDeactivatedHintGroups(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this.isDeactivated() ? this.getMappingHintGroups().size() == this.getActiveMappingHintGroups().size() && this.getImportedMappingHintGroups().size() == this.getActiveImportedMappingHintGroups().size() : true;
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The mapping contains deactivated hint groups that will not be used in a transformation!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.WARNING,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.MAPPING__VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.MAPPING }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = MappingTables.STR_The_32_mapping_32_contains_32_deactivated_32_hint_32_groups_32_that_32_will_32_not_32_be_32_us;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_Mapping_c_c_containsDeactivatedHintGroups, this, null, diagnostics, context, message_0, MappingTables.INT_2, CAUGHT_status, MappingTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -484,53 +375,24 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv eitherModelOrReferCondition:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[1] = self.sharedCondition->size() +
-		 *       self.localCondition->size() <= 1
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'Please specify at most one (local or shared) condition!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'ConditionalElement::eitherModelOrReferCondition'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    final /*@Thrown*/ ComplexCondition sharedCondition = this.getSharedCondition();
-		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, sharedCondition);
-		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
-		    final /*@Thrown*/ ComplexCondition localCondition = this.getLocalCondition();
-		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, localCondition);
-		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
-		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
-		    final /*@Thrown*/ boolean status = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, sum, PamtramTables.INT_1).booleanValue();
-		    CAUGHT_status = status;
+	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "Please specify at most one (local or shared) condition!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					PamtramValidator.DIAGNOSTIC_SOURCE,
+							PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,
+							errorMessage,
+					new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = PamtramTables.STR_Please_32_specify_32_at_32_most_32_one_32_o_local_32_or_32_shared_e_32_condition_33;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PamtramTables.STR_ConditionalElement_c_c_eitherModelOrReferCondition, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -538,64 +400,24 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean referenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv referenceOnlyConditionsFromConditionModel:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[1] = if self.sharedCondition->size() = 1
-		 *       then
-		 *         self.sharedCondition.oclContainer()
-		 *         .oclIsTypeOf(ConditionModel)
-		 *       else true
-		 *       endif
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'It only allowed to reference shared conditions that are model inside the ConditionModel!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'ConditionalElement::referenceOnlyConditionsFromConditionModel'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    final /*@Thrown*/ ComplexCondition sharedCondition_0 = this.getSharedCondition();
-		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PamtramTables.SET_CLSSid_ComplexCondition, sharedCondition_0);
-		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
-		    final /*@Thrown*/ boolean eq = size.equals(PamtramTables.INT_1);
-		    /*@Thrown*/ boolean status;
-		    if (eq) {
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_ConditionModel = idResolver.getClass(PamtramTables.CLSSid_ConditionModel, null);
-		        final /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, sharedCondition_0);
-		        final /*@Thrown*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_ConditionModel).booleanValue();
-		        status = oclIsTypeOf;
-		    }
-		    else {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    CAUGHT_status = status;
+	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this.getSharedCondition() == null || this.eContainer() instanceof ConditionModel;
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "It is only allowed to reference shared conditions that are model inside the ConditionModel!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					PamtramValidator.DIAGNOSTIC_SOURCE,
+							PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,
+							errorMessage,
+					new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = PamtramTables.STR_It_32_only_32_allowed_32_to_32_reference_32_shared_32_conditions_32_that_32_are_32_model_32_in;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PamtramTables.STR_ConditionalElement_c_c_referenceOnlyConditionsFromConditionModel, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -774,8 +596,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2: return MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2;
-				case PamtramPackage.CONDITIONAL_ELEMENT___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2: return MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2;
+				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -795,14 +617,14 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getActiveMappingHintGroups();
 			case MappingPackage.MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS:
 				return getActiveImportedMappingHintGroups();
-			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_2:
-				return containsHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_2:
-				return containsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP_2:
-				return eitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP_2:
-				return referenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MappingPackage.MAPPING___VALIDATE_CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
+				return validateContainsHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING___VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
+				return validateContainsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
+				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

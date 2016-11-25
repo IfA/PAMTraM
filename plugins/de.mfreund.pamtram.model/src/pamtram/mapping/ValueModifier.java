@@ -19,7 +19,6 @@ public interface ValueModifier extends NamedElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" valueRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ValueModifier!modifyValue(String)'"
 	 * @generated
 	 */
 	String modifyValue(String value);

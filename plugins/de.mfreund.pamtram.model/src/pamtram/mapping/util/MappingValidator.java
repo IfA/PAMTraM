@@ -3,23 +3,79 @@
 package pamtram.mapping.util;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
-
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.mapping.*;
+import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingExternalSourceElement;
+import pamtram.mapping.AttributeMappingGlobalSourceElement;
+import pamtram.mapping.AttributeMappingSourceElement;
+import pamtram.mapping.AttributeMappingSourceInterface;
+import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherExternalSourceElement;
+import pamtram.mapping.AttributeMatcherGlobalSourceElement;
+import pamtram.mapping.AttributeMatcherSourceElement;
+import pamtram.mapping.AttributeMatcherSourceInterface;
+import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.ClassMatcher;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorExternalSourceElement;
+import pamtram.mapping.ContainerSelectorGlobalSourceElement;
+import pamtram.mapping.ContainerSelectorSourceElement;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
+import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.ExportedMappingHintGroup;
+import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExternalMappedAttributeValueAppender;
+import pamtram.mapping.ExternalMappedAttributeValueExpander;
+import pamtram.mapping.ExternalMappedAttributeValuePrepender;
+import pamtram.mapping.ExternalModifiedAttributeElementType;
+import pamtram.mapping.FixedValue;
+import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.GlobalModifiedAttributeElementType;
+import pamtram.mapping.HintImporterMappingHint;
+import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.LocalMappedAttributeValueExpander;
+import pamtram.mapping.LocalModifiedAttributeElementType;
+import pamtram.mapping.MappedAttributeValueAppender;
+import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.MappedAttributeValuePrepender;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintBaseType;
+import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.MappingHintType;
+import pamtram.mapping.MappingPackage;
+import pamtram.mapping.MappingType;
+import pamtram.mapping.MatchToLowerCaseConverter;
+import pamtram.mapping.MatchToUpperCaseConverter;
+import pamtram.mapping.Matcher;
+import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.ModifiedAttributeElementType;
+import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.StringAppender;
+import pamtram.mapping.StringPrepender;
+import pamtram.mapping.SubstringReplacer;
+import pamtram.mapping.UniqueNumberAppender;
+import pamtram.mapping.ValueModifier;
+import pamtram.mapping.ValueModifierSet;
 import pamtram.util.PamtramValidator;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Validator</b> for the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc -->
  * @see pamtram.mapping.MappingPackage
- * @generated not
+ * @generated
  */
-public class MappingValidator extends OCLinEcoreEObjectValidator {
+public class MappingValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -39,92 +95,92 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "pamtram.mapping";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Contains Hint Groups' of 'Mapping'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Contains Hint Groups' of 'Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MAPPING__CONTAINS_HINT_GROUPS = 1;
+	public static final int MAPPING__VALIDATE_CONTAINS_HINT_GROUPS = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Contains Deactivated Hint Groups' of 'Mapping'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Contains Deactivated Hint Groups' of 'Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MAPPING__CONTAINS_DEACTIVATED_HINT_GROUPS = 2;
+	public static final int MAPPING__VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS = 2;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Attribute Matches Section' of 'Attribute Mapping'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Attribute Matches Section' of 'Attribute Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION = 3;
+	public static final int ATTRIBUTE_MAPPING__VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'No Cardinality Mapping For Source Section Root' of 'Cardinality Mapping'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Class Matches Section' of 'Cardinality Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT = 4;
+	public static final int CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_MATCHES_SECTION = 4;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Class Matches Section' of 'Cardinality Mapping'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Class Matches Section' of 'Cardinality Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__SOURCE_CLASS_MATCHES_SECTION = 5;
+	public static final int CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION = 5;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Class Matches Section' of 'Cardinality Mapping'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Class Is Variable Cardinality' of 'Cardinality Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__TARGET_CLASS_MATCHES_SECTION = 6;
+	public static final int CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY = 6;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Class Is Variable Cardinality' of 'Cardinality Mapping'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Class Is Variable Cardinality' of 'Cardinality Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__TARGET_CLASS_IS_VARIABLE_CARDINALITY = 7;
+	public static final int CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_IS_VARIABLE_CARDINALITY = 7;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Class Is Variable Cardinality' of 'Cardinality Mapping'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate No Cardinality Mapping For Source Section Root' of 'Cardinality Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__SOURCE_CLASS_IS_VARIABLE_CARDINALITY = 8;
+	public static final int CARDINALITY_MAPPING__VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT = 8;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Matches Section' of 'Reference Target Selector'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Affected Reference Is Non Containment' of 'Reference Target Selector'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION = 9;
+	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT = 9;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Is Non Containment' of 'Reference Target Selector'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Affected Reference Matches Section' of 'Reference Target Selector'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT = 10;
+	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION = 10;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Matches Affected Reference Type' of 'Attribute Matcher'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Matches Affected Reference Type' of 'Attribute Matcher'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ATTRIBUTE_MATCHER__TARGET_MATCHES_AFFECTED_REFERENCE_TYPE = 11;
+	public static final int ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE = 11;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Section Or Contained Section' of 'Local Modified Attribute Element Type'.
@@ -135,28 +191,28 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	public static final int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 12;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Matches Possible Container Type' of 'Container Selector Target Attribute'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Matches Possible Container Type' of 'Container Selector Target Attribute'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE = 13;
+	public static final int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE = 13;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Attribute Has Upper Bound One' of 'Global Attribute'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Has Upper Bound One' of 'Global Attribute'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int GLOBAL_ATTRIBUTE__SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 14;
+	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 14;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Attribute Matches Container Section' of 'External Modified Attribute Element Type'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Container Section' of 'External Modified Attribute Element Type'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 15;
+	public static final int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 15;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -358,8 +414,12 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMapping_containsHintGroups(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMapping_containsDeactivatedHintGroups(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMapping_validateContainsHintGroups(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMapping_validateContainsDeactivatedHintGroups(mapping, diagnostics, context);
 		return result;
 	}
 
@@ -370,7 +430,25 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMapping_containsHintGroups(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return mapping.containsHintGroups(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "containsHintGroups", getObjectLabel(mapping, context) },
+						 new Object[] { mapping },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -380,7 +458,45 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMapping_containsDeactivatedHintGroups(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return mapping.containsDeactivatedHintGroups(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "containsDeactivatedHintGroups", getObjectLabel(mapping, context) },
+						 new Object[] { mapping },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateContainsHintGroups constraint of '<em>Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMapping_validateContainsHintGroups(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return mapping.validateContainsHintGroups(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateContainsDeactivatedHintGroups constraint of '<em>Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMapping_validateContainsDeactivatedHintGroups(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return mapping.validateContainsDeactivatedHintGroups(diagnostics, context);
 	}
 
 	/**
@@ -409,6 +525,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instantiableMappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instantiableMappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instantiableMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instantiableMappingHintGroup, diagnostics, context);
 		return result;
 	}
 
@@ -429,6 +547,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
 		return result;
 	}
 
@@ -458,6 +578,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHint, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHint, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHint, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
 		return result;
 	}
 
@@ -496,7 +618,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(attributeMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(attributeMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateAttributeMapping_targetAttributeMatchesSection(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeMapping_validateTargetAttributeMatchesSection(attributeMapping, diagnostics, context);
 		return result;
 	}
 
@@ -507,7 +632,35 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMapping_targetAttributeMatchesSection(AttributeMapping attributeMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return attributeMapping.targetAttributeMatchesSection(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "targetAttributeMatchesSection", getObjectLabel(attributeMapping, context) },
+						 new Object[] { attributeMapping },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateTargetAttributeMatchesSection constraint of '<em>Attribute Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeMapping_validateTargetAttributeMatchesSection(AttributeMapping attributeMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return attributeMapping.validateTargetAttributeMatchesSection(diagnostics, context);
 	}
 
 	/**
@@ -527,11 +680,18 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_targetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateSourceClassMatchesSection(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateTargetClassMatchesSection(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateSourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateTargetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateNoCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
 		return result;
 	}
 
@@ -542,7 +702,25 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_sourceClassMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return cardinalityMapping.sourceClassMatchesSection(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceClassMatchesSection", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -552,7 +730,25 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_sourceClassIsVariableCardinality(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return cardinalityMapping.sourceClassIsVariableCardinality(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceClassIsVariableCardinality", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -562,7 +758,25 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_targetClassMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return cardinalityMapping.targetClassMatchesSection(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "targetClassMatchesSection", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -572,7 +786,25 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_targetClassIsVariableCardinality(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return cardinalityMapping.targetClassIsVariableCardinality(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "targetClassIsVariableCardinality", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -582,7 +814,75 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return cardinalityMapping.noCardinalityMappingForSourceSectionRoot(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "noCardinalityMappingForSourceSectionRoot", getObjectLabel(cardinalityMapping, context) },
+						 new Object[] { cardinalityMapping },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateSourceClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMapping_validateSourceClassMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityMapping.validateSourceClassMatchesSection(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateTargetClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMapping_validateTargetClassMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityMapping.validateTargetClassMatchesSection(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateSourceClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMapping_validateSourceClassIsVariableCardinality(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityMapping.validateSourceClassIsVariableCardinality(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateTargetClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMapping_validateTargetClassIsVariableCardinality(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityMapping.validateTargetClassIsVariableCardinality(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateNoCardinalityMappingForSourceSectionRoot constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMapping_validateNoCardinalityMappingForSourceSectionRoot(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityMapping.validateNoCardinalityMappingForSourceSectionRoot(diagnostics, context);
 	}
 
 	/**
@@ -602,8 +902,12 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateAffectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateAffectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
 		return result;
 	}
 
@@ -614,7 +918,25 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateReferenceTargetSelector_affectedReferenceIsNonContainment(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return referenceTargetSelector.affectedReferenceIsNonContainment(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "affectedReferenceIsNonContainment", getObjectLabel(referenceTargetSelector, context) },
+						 new Object[] { referenceTargetSelector },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -624,7 +946,45 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateReferenceTargetSelector_affectedReferenceMatchesSection(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return referenceTargetSelector.affectedReferenceMatchesSection(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "affectedReferenceMatchesSection", getObjectLabel(referenceTargetSelector, context) },
+						 new Object[] { referenceTargetSelector },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateAffectedReferenceIsNonContainment constraint of '<em>Reference Target Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateReferenceTargetSelector_validateAffectedReferenceIsNonContainment(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return referenceTargetSelector.validateAffectedReferenceIsNonContainment(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateAffectedReferenceMatchesSection constraint of '<em>Reference Target Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateReferenceTargetSelector_validateAffectedReferenceMatchesSection(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return referenceTargetSelector.validateAffectedReferenceMatchesSection(diagnostics, context);
 	}
 
 	/**
@@ -652,6 +1012,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validateAttributeMatcher_targetMatchesAffectedReferenceType(attributeMatcher, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeMatcher_validateTargetMatchesAffectedReferenceType(attributeMatcher, diagnostics, context);
 		return result;
 	}
 
@@ -662,7 +1023,35 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMatcher_targetMatchesAffectedReferenceType(AttributeMatcher attributeMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return attributeMatcher.targetMatchesAffectedReferenceType(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "targetMatchesAffectedReferenceType", getObjectLabel(attributeMatcher, context) },
+						 new Object[] { attributeMatcher },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateTargetMatchesAffectedReferenceType constraint of '<em>Attribute Matcher</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeMatcher_validateTargetMatchesAffectedReferenceType(AttributeMatcher attributeMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return attributeMatcher.validateTargetMatchesAffectedReferenceType(diagnostics, context);
 	}
 
 	/**
@@ -841,6 +1230,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroupImporter, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroupImporter, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHintGroupImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHintGroupImporter, diagnostics, context);
 		return result;
 	}
 
@@ -918,6 +1309,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containerSelectorTargetAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containerSelectorTargetAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= validateContainerSelectorTargetAttribute_sourceMatchesPossibleContainerType(containerSelectorTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainerSelectorTargetAttribute_validateSourceMatchesPossibleContainerType(containerSelectorTargetAttribute, diagnostics, context);
 		return result;
 	}
 
@@ -928,7 +1320,35 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainerSelectorTargetAttribute_sourceMatchesPossibleContainerType(ContainerSelectorTargetAttribute containerSelectorTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return containerSelectorTargetAttribute.sourceMatchesPossibleContainerType(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceMatchesPossibleContainerType", getObjectLabel(containerSelectorTargetAttribute, context) },
+						 new Object[] { containerSelectorTargetAttribute },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateSourceMatchesPossibleContainerType constraint of '<em>Container Selector Target Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateContainerSelectorTargetAttribute_validateSourceMatchesPossibleContainerType(ContainerSelectorTargetAttribute containerSelectorTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return containerSelectorTargetAttribute.validateSourceMatchesPossibleContainerType(diagnostics, context);
 	}
 
 	/**
@@ -1043,6 +1463,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(globalAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(globalAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGlobalAttribute_sourceAttributeHasUpperBoundOne(globalAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateGlobalAttribute_validateSourceAttributeHasUpperBoundOne(globalAttribute, diagnostics, context);
 		return result;
 	}
 
@@ -1053,7 +1474,35 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateGlobalAttribute_sourceAttributeHasUpperBoundOne(GlobalAttribute globalAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return globalAttribute.sourceAttributeHasUpperBoundOne(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceAttributeHasUpperBoundOne", getObjectLabel(globalAttribute, context) },
+						 new Object[] { globalAttribute },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateSourceAttributeHasUpperBoundOne constraint of '<em>Global Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGlobalAttribute_validateSourceAttributeHasUpperBoundOne(GlobalAttribute globalAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return globalAttribute.validateSourceAttributeHasUpperBoundOne(diagnostics, context);
 	}
 
 	/**
@@ -1108,6 +1557,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMappingExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1127,6 +1577,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalModifiedAttributeElementType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalModifiedAttributeElementType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
 		return result;
 	}
 
@@ -1137,7 +1588,35 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return externalModifiedAttributeElementType.sourceAttributeMatchesContainerSection(diagnostics, context);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "sourceAttributeMatchesContainerSection", getObjectLabel(externalModifiedAttributeElementType, context) },
+						 new Object[] { externalModifiedAttributeElementType },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateSourceAttributeMatchesContainerSection constraint of '<em>External Modified Attribute Element Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return externalModifiedAttributeElementType.validateSourceAttributeMatchesContainerSection(diagnostics, context);
 	}
 
 	/**
@@ -1156,6 +1635,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containerSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containerSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1175,6 +1655,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMatcherExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMatcherExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1194,6 +1675,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalMappedAttributeValueExpander, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalMappedAttributeValueExpander, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
 		return result;
 	}
 
@@ -1213,6 +1695,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalMappedAttributeValuePrepender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalMappedAttributeValuePrepender, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
 		return result;
 	}
 
@@ -1232,6 +1715,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalMappedAttributeValueAppender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalMappedAttributeValueAppender, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
 		return result;
 	}
 

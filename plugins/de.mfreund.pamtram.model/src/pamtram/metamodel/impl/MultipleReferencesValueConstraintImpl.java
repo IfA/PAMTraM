@@ -97,8 +97,10 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean checkConstraint(final String attrValue, final EList<String> refValue) {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!MultipleReferencesValueConstraint!checkConstraint(String,http://www.eclipse.org/ocl/2015/Library!OrderedSet[String]_1)
+	public boolean checkConstraint(String attrValue, EList<String> refValue) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

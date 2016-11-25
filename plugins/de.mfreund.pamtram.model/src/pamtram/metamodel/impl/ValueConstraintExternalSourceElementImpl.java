@@ -51,7 +51,9 @@ public class ValueConstraintExternalSourceElementImpl extends ExternalModifiedAt
 	 */
 	@Override
 	public SourceSectionAttribute getSourceAttribute() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintSourceInterface!getSourceAttribute()
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

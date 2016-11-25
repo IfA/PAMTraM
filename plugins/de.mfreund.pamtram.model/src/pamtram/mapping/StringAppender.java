@@ -33,7 +33,6 @@ public interface StringAppender extends ValueModifier {
 	 * @see #setString(String)
 	 * @see pamtram.mapping.MappingPackage#getStringAppender_String()
 	 * @model default="" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!StringAppender!string'"
 	 * @generated
 	 */
 	String getString();

@@ -6,27 +6,18 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
-import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.ocl.pivot.values.SetValue;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.condition.ConditionTables;
 import pamtram.condition.UnaryCondition;
+import pamtram.condition.util.ConditionValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -168,53 +159,24 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean exactlyOneArg(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv exactlyOneArg:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[1] = self.localCondPart->size() +
-		 *       self.sharedCondPart->size() = 1
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'Please specify exactly one (local or shared) condition part!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'UnaryCondition::exactlyOneArg'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    final /*@Thrown*/ ComplexCondition localCondPart = this.getLocalCondPart();
-		    final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, ConditionTables.SET_CLSSid_ComplexCondition, localCondPart);
-		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
-		    final /*@Thrown*/ ComplexCondition sharedCondPart = this.getSharedCondPart();
-		    final /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, ConditionTables.SET_CLSSid_ComplexCondition, sharedCondPart);
-		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
-		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
-		    final /*@Thrown*/ boolean status = sum.equals(ConditionTables.INT_1);
-		    CAUGHT_status = status;
+	public boolean validateExactlyOneArg(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this.getLocalCondPart() != null ^ this.getSharedCondPart() != null;
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "Please specify exactly one (local or shared) condition part!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					ConditionValidator.DIAGNOSTIC_SOURCE,
+							ConditionValidator.UNARY_CONDITION__VALIDATE_EXACTLY_ONE_ARG,
+							errorMessage,
+					new Object[] { this, ConditionPackage.Literals.UNARY_CONDITION }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = ConditionTables.STR_Please_32_specify_32_exactly_32_one_32_o_local_32_or_32_shared_e_32_condition_32_part_33;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, ConditionTables.STR_UnaryCondition_c_c_exactlyOneArg, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -310,8 +272,8 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.UNARY_CONDITION___EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP_2:
-				return exactlyOneArg((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case ConditionPackage.UNARY_CONDITION___VALIDATE_EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP:
+				return validateExactlyOneArg((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

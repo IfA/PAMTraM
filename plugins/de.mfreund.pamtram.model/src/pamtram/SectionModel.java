@@ -38,7 +38,6 @@ public interface SectionModel<S extends Section<S, C, R, A>, C extends pamtram.m
 	 * @see #setMetaModelPackage(EPackage)
 	 * @see pamtram.PamtramPackage#getSectionModel_MetaModelPackage()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!SectionModel{S,C,R,A}!metaModelPackage'"
 	 * @generated
 	 */
 	EPackage getMetaModelPackage();
@@ -64,7 +63,6 @@ public interface SectionModel<S extends Section<S, C, R, A>, C extends pamtram.m
 	 * @return the value of the '<em>Meta Model Sections</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getSectionModel_MetaModelSections()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!SectionModel{S,C,R,A}!metaModelSections'"
 	 * @generated
 	 */
 	EList<S> getMetaModelSections();

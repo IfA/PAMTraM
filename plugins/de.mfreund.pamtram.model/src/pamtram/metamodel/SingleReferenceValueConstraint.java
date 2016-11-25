@@ -39,7 +39,6 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 * @return the value of the '<em>Constraint Reference Value Additional Specification</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceValueConstraint!constraintReferenceValueAdditionalSpecification'"
 	 * @generated
 	 */
 	EList<InstancePointer> getConstraintReferenceValueAdditionalSpecification();
@@ -56,7 +55,6 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getSingleReferenceValueConstraint_SourceElements()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceValueConstraint!sourceElements'"
 	 * @generated
 	 */
 	EList<ValueConstraintSourceInterface> getSourceElements();
@@ -65,7 +63,6 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" attrValueRequired="true" refValueRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceValueConstraint!checkConstraint(String,String)'"
 	 * @generated
 	 */
 	boolean checkConstraint(String attrValue, String refValue);

@@ -142,8 +142,10 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean checkCondition(final ComplexCondition condition) {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!checkCondition(http://mfreund.de/pamtram/condition!ComplexCondition)
+	public boolean checkCondition(ComplexCondition condition) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

@@ -32,7 +32,6 @@ public interface RangeConstraint extends MultipleReferencesValueConstraint {
 	 * @see #setUpperBound(RangeBound)
 	 * @see pamtram.metamodel.MetamodelPackage#getRangeConstraint_UpperBound()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeConstraint!upperBound'"
 	 * @generated
 	 */
 	RangeBound getUpperBound();
@@ -59,7 +58,6 @@ public interface RangeConstraint extends MultipleReferencesValueConstraint {
 	 * @see #setLowerBound(RangeBound)
 	 * @see pamtram.metamodel.MetamodelPackage#getRangeConstraint_LowerBound()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeConstraint!lowerBound'"
 	 * @generated
 	 */
 	RangeBound getLowerBound();

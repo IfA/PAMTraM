@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PAMTraM Model
 Bundle-SymbolicName: de.mfreund.pamtram.model;singleton:=true
-Bundle-Version: 1.7.0.qualifier
+Bundle-Version: 1.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: Matthias Freund,
  Institute of Automation,
@@ -23,10 +23,7 @@ Export-Package: pamtram,
  pamtram.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.ocl.pivot;bundle-version="1.0.1";visibility:=reexport,
- org.eclipse.ocl.examples.codegen;bundle-version="2.0.1";visibility:=reexport,
  de.tud.et.ifa.agtele.genlibrary;bundle-version="1.2.0";visibility:=reexport,
  de.mfreund.pamtram;bundle-version="1.7.0",
- org.eclipse.ocl.xtext.oclinecore;bundle-version="1.0.0",
  de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

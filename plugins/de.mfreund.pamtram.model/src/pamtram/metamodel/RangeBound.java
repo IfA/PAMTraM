@@ -40,7 +40,7 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 	 * @see pamtram.metamodel.ValueConstraintType
 	 * @see #setBoundType(ValueConstraintType)
 	 * @see pamtram.metamodel.MetamodelPackage#getRangeBound_BoundType()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeBound!boundType'"
+	 * @model
 	 * @generated
 	 */
 	ValueConstraintType getBoundType();
@@ -68,7 +68,6 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 	 * @return the value of the '<em>Bound Reference Value Additional Specification</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getRangeBound_BoundReferenceValueAdditionalSpecification()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeBound!boundReferenceValueAdditionalSpecification'"
 	 * @generated
 	 */
 	EList<InstancePointer> getBoundReferenceValueAdditionalSpecification();
@@ -85,7 +84,6 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getRangeBound_SourceElements()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!RangeBound!sourceElements'"
 	 * @generated
 	 */
 	EList<ValueConstraintSourceInterface> getSourceElements();

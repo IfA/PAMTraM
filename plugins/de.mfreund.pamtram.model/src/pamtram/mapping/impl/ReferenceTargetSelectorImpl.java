@@ -3,42 +3,24 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
-import org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation;
-import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
-import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import pamtram.mapping.ExportedMappingHintGroup;
+
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.MappingTables;
 import pamtram.mapping.Matcher;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.Section;
+import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.util.MappingValidator;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
@@ -134,14 +116,14 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
 	}
-	
+
 	/**
 	 * Before setting the {@link newAffectedReference}, update the name
 	 */
 	@Override
 	public void setAffectedReference(TargetSectionNonContainmentReference newAffectedReference) {
-		setNameDerived(affectedReference, newAffectedReference, null, null);
-		setAffectedReferenceGen(newAffectedReference);
+		this.setNameDerived(this.affectedReference, newAffectedReference, null, null);
+		this.setAffectedReferenceGen(newAffectedReference);
 	}
 
 	/**
@@ -194,170 +176,25 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean affectedReferenceMatchesSection(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv affectedReferenceMatchesSection:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[?] = if self.affectedReference.oclType() = OclVoid
-		 *       then true
-		 *       else
-		 *         let
-		 *           targetMMSection : metamodel::TargetSection[1] = if
-		 *             self.oclContainer()
-		 *             .oclIsKindOf(MappingHintGroupType)
-		 *           then
-		 *             self.oclContainer()
-		 *             .oclAsType(MappingHintGroupType).targetSection
-		 *           else
-		 *             self.oclContainer()
-		 *             .oclAsType(MappingHintGroupImporter).hintGroup.targetSection
-		 *           endif
-		 *         in
-		 *           if targetMMSection.oclType() = OclVoid
-		 *           then true
-		 *           else
-		 *             self.affectedReference.getContainingSection() = targetMMSection or
-		 *             targetMMSection.oclAsType(metamodel::Section(S, C, R, A))
-		 *             .extend->includes(self.affectedReference.getContainingSection())
-		 *           endif
-		 *       endif
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then
-		 *           let
-		 *             hintGroupName : String[?] = if
-		 *               self.oclContainer()
-		 *               .oclIsKindOf(MappingHintGroupType)
-		 *             then
-		 *               self.oclContainer()
-		 *               .oclAsType(MappingHintGroupType).name
-		 *             else
-		 *               self.oclContainer()
-		 *               .oclAsType(MappingHintGroupImporter).hintGroup.name
-		 *             endif
-		 *           in 'The affected reference \'' + self.affectedReference.name + '\' is not part of the target section referenced by parent hint group \'' + hintGroupName + '\'!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'ReferenceTargetSelector::affectedReferenceMatchesSection'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
-		try {
-		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		    final /*@Thrown*/ TargetSectionNonContainmentReference affectedReference = this.getAffectedReference();
-		    final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, affectedReference);
-		    final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
-		    /*@Thrown*/ Boolean status;
-		    if (eq) {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    else {
-		        /*@Caught*/ /*@NonNull*/ Object CAUGHT_targetMMSection;
-		        try {
-		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
-		            final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		            final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0).booleanValue();
-		            /*@Thrown*/ TargetSection targetMMSection;
-		            if (oclIsKindOf) {
-		                final /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		                final /*@Thrown*/ TargetSection targetSection = oclAsType.getTargetSection();
-		                targetMMSection = targetSection;
-		            }
-		            else {
-		                final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupImporter, null);
-		                final /*@Thrown*/ MappingHintGroupImporter oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupImporter)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter));
-		                final /*@Thrown*/ ExportedMappingHintGroup hintGroup = oclAsType_0.getHintGroup();
-		                final /*@Thrown*/ TargetSection targetSection_0 = hintGroup.getTargetSection();
-		                targetMMSection = targetSection_0;
-		            }
-		            CAUGHT_targetMMSection = targetMMSection;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_targetMMSection = ValueUtil.createInvalidValue(e);
-		        }
-		        if (CAUGHT_targetMMSection instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_targetMMSection;
-		        }
-		        final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, CAUGHT_targetMMSection);
-		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_0.getTypeId();
-		        /*@Thrown*/ Boolean symbol_0;
-		        if (eq_0) {
-		            symbol_0 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            /*@Caught*/ /*@NonNull*/ Object CAUGHT_eq_1;
-		            try {
-		                final /*@Thrown*/ Object getContainingSection = ((MetaModelElement)affectedReference).getContainingSection();
-		                final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(CAUGHT_targetMMSection);
-		                CAUGHT_eq_1 = eq_1;
-		            }
-		            catch (Exception e) {
-		                CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
-		            }
-		            /*@Caught*/ /*@NonNull*/ Object CAUGHT_includes;
-		            try {
-		                final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Section, null);
-		                final /*@Thrown*/ Section oclAsType_1 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, CAUGHT_targetMMSection, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0));
-		                final /*@Thrown*/ List<Object> extend = oclAsType_1.getExtend();
-		                final /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend);
-		                final /*@Thrown*/ Object getContainingSection_0 = ((MetaModelElement)affectedReference).getContainingSection();
-		                final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_extend, getContainingSection_0).booleanValue();
-		                CAUGHT_includes = includes;
-		            }
-		            catch (Exception e) {
-		                CAUGHT_includes = ValueUtil.createInvalidValue(e);
-		            }
-		            final /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_1, CAUGHT_includes);
-		            symbol_0 = or;
-		        }
-		        status = symbol_0;
-		    }
-		    CAUGHT_status = status;
+	@Override
+	public boolean validateAffectedReferenceIsNonContainment(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this.getAffectedReference() == null || this.getAffectedReference().getEReference() == null ? true : !this.getAffectedReference().getEReference().isContainment();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The affected reference '" + this.getAffectedReference().getName() + "' is no non-containment reference!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_2 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
-		    final /*@NonInvalid*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		    final /*@Thrown*/ boolean oclIsKindOf_0 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, oclContainer_2, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_2).booleanValue();
-		    /*@Thrown*/ String hintGroupName;
-		    if (oclIsKindOf_0) {
-		        final /*@Thrown*/ MappingHintGroupType oclAsType_2 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_2, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_2));
-		        final /*@Thrown*/ String name = oclAsType_2.getName();
-		        hintGroupName = name;
-		    }
-		    else {
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupImporter, null);
-		        final /*@Thrown*/ MappingHintGroupImporter oclAsType_3 = ClassUtil.nonNullState((MappingHintGroupImporter)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_2, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter_0));
-		        final /*@Thrown*/ ExportedMappingHintGroup hintGroup_0 = oclAsType_3.getHintGroup();
-		        final /*@Thrown*/ String name_0 = hintGroup_0.getName();
-		        hintGroupName = name_0;
-		    }
-		    final /*@Thrown*/ TargetSectionNonContainmentReference affectedReference_2 = this.getAffectedReference();
-		    final /*@Thrown*/ String name_1 = affectedReference_2.getName();
-		    final /*@NonInvalid*/ String sum = StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_affected_32_reference_32_39, name_1);
-		    final /*@NonInvalid*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr_0);
-		    final /*@NonInvalid*/ String sum_1 = StringConcatOperation.INSTANCE.evaluate(sum_0, hintGroupName);
-		    final /*@NonInvalid*/ String sum_2 = StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__39_33);
-		    message_0 = sum_2;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_ReferenceTargetSelector_c_c_affectedReferenceMatchesSection, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_status, MappingTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -365,65 +202,32 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean affectedReferenceIsNonContainment(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv affectedReferenceIsNonContainment:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[?] = if self.affectedReference.oclType() = OclVoid
-		 *       then true
-		 *       else
-		 *         not self.affectedReference.eReference.oclAsType(ecore::EReference).containment
-		 *       endif
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The affected reference \' + self.affectedReference.name + \' is no non-containment reference!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'ReferenceTargetSelector::affectedReferenceIsNonContainment'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
-		try {
-		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		    final /*@Thrown*/ TargetSectionNonContainmentReference affectedReference = this.getAffectedReference();
-		    final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, affectedReference);
-		    final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
-		    /*@Thrown*/ Boolean status;
-		    if (eq) {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    else {
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference = idResolver.getClass(MappingTables.CLSSid_EReference, null);
-		        final /*@Thrown*/ EReference eReference = affectedReference.getEReference();
-		        final /*@Thrown*/ EReference oclAsType = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, eReference, TYP_ecore_c_c_EReference));
-		        final /*@Thrown*/ Boolean containment = oclAsType.isContainment();
-		        final /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(containment);
-		        status = not;
-		    }
-		    CAUGHT_status = status;
+	@Override
+	public boolean validateAffectedReferenceMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		if(this.getAffectedReference() == null) {
+			return true;
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		
+		TargetSection targetSection = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getTargetSection();
+		
+		boolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());
+		
+		if (!result && diagnostics != null) {
+		
+			String hintGroupName = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getName() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getName();
+			String errorMessage = "The affected reference '" + this.getAffectedReference().getName() + "' is not part of the target section referenced by parent hint group '" + hintGroupName + "'!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));
+		
 		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = MappingTables.STR_The_32_affected_32_reference_32_39_32_p_32_self_affectedReference_name_32_p_32_39_32_is_32_no;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MappingTables.STR_ReferenceTargetSelector_c_c_affectedReferenceIsNonContainment, this, null, diagnostics, context, message_0, MappingTables.INT_4, CAUGHT_status, MappingTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -518,10 +322,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.REFERENCE_TARGET_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2:
-				return affectedReferenceMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.REFERENCE_TARGET_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_2:
-				return affectedReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MappingPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
+				return validateAffectedReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
+				return validateAffectedReferenceMatchesSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

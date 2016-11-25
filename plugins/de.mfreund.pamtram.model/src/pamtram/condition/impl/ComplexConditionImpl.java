@@ -44,7 +44,9 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	 * @generated
 	 */
 	public boolean isLocalCondition() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!ComplexCondition!isLocalCondition()
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

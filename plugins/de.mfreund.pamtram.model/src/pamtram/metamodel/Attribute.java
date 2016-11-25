@@ -34,7 +34,6 @@ public interface Attribute<S extends Section<S, C, R, A>, C extends pamtram.meta
 	 * @see pamtram.metamodel.MetamodelPackage#getAttribute_OwningClass()
 	 * @see pamtram.metamodel.Class#getAttributes
 	 * @model opposite="attributes" transient="false" changeable="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Attribute{S,C,R,A}!owningClass'"
 	 * @generated
 	 */
 	C getOwningClass();

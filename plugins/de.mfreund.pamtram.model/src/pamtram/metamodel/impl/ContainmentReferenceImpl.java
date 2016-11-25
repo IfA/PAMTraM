@@ -5,29 +5,23 @@ package pamtram.metamodel.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MetamodelTables;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.util.MetamodelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,6 +71,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<C> getValue() {
 		if (value == null) {
 			value = new EObjectContainmentEList<C>(pamtram.metamodel.Class.class, this, MetamodelPackage.CONTAINMENT_REFERENCE__VALUE);
@@ -89,65 +84,25 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eReferenceIsContainment(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv eReferenceIsContainment:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[1] = if self.eReference.oclType() = OclVoid
-		 *       then true
-		 *       else self.eReference.containment = true
-		 *       endif
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'The eReference \'' + self.eReference.name + '\' is no containment reference!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'ContainmentReference::eReferenceIsContainment'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
-		    final /*@Thrown*/ EReference eReference_0 = this.getEReference();
-		    final /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = (org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(executor, eReference_0);
-		    final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
-		    /*@Thrown*/ boolean status;
-		    if (eq) {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    else {
-		        final /*@Thrown*/ Boolean containment = eReference_0.isContainment();
-		        final /*@Thrown*/ boolean eq_0 = containment;
-		        status = eq_0;
-		    }
-		    CAUGHT_status = status;
+	@Override
+	public boolean validateEReferenceIsContainment(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this.getEReference() == null ? true : this.getEReference().isContainment();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The eReference '" + this.getEReference().getName() + "' is no containment reference!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MetamodelValidator.DIAGNOSTIC_SOURCE,
+							MetamodelValidator.CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,
+							errorMessage,
+					new Object[] { this, MetamodelPackage.Literals.REFERENCE__EREFERENCE }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    final /*@Thrown*/ EReference eReference_1 = this.getEReference();
-		    final /*@Thrown*/ String name = eReference_1.getName();
-		    final /*@NonInvalid*/ String sum = StringConcatOperation.INSTANCE.evaluate(MetamodelTables.STR_The_32_eReference_32_39, name);
-		    final /*@NonInvalid*/ String sum_0 = StringConcatOperation.INSTANCE.evaluate(sum, MetamodelTables.STR__39_32_is_32_no_32_containment_32_reference_33);
-		    message_0 = sum_0;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_ContainmentReference_c_c_eReferenceIsContainment, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -233,8 +188,8 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_2:
-				return eReferenceIsContainment((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MetamodelPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
+				return validateEReferenceIsContainment((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

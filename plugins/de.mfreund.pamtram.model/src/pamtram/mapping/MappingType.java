@@ -35,7 +35,6 @@ public interface MappingType extends NamedElement, DeactivatableElement {
 	 * @see #setSourceSection(SourceSection)
 	 * @see pamtram.mapping.MappingPackage#getMappingType_SourceSection()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingType!sourceSection'"
 	 * @generated
 	 */
 	SourceSection getSourceSection();

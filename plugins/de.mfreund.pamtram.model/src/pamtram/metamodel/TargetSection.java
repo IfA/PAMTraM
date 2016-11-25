@@ -55,7 +55,7 @@ public interface TargetSection extends TargetSectionClass, Section<TargetSection
 	 * @return the value of the '<em>File</em>' reference.
 	 * @see #setFile(FileAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getTargetSection_File()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!TargetSection!file'"
+	 * @model
 	 * @generated
 	 */
 	FileAttribute getFile();

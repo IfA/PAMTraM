@@ -64,29 +64,18 @@ public class ConditionTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ConditionModel = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionModel", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ConditionalElement = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("ConditionalElement", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_InstancePointer = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("InstancePointer", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Not = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("Not", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SourceSectionClass = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_UnaryCondition = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("UnaryCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ValueConstraint = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ValueConstraint", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_VariadicCondition = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("VariadicCondition", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.DataTypeId DATAid_EInt = pamtram.condition.ConditionTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_ComparatorEnum = pamtram.condition.ConditionTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getEnumerationId("ComparatorEnum");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_1 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("1");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_4 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("4");
-    public static final /*@NonInvalid*/ java.lang.String STR_At_32_least_32_two_32_o_local_32_or_32_shared_e_32_condition_32_parts_32_need_32_to_32_be_32_specif = "At least two (local or shared) condition parts need to be specified!";
-    public static final /*@NonInvalid*/ java.lang.String STR_Not_c_c_referenceOnlyConditionsFromConditionModelOrFromConditionalE = "Not::referenceOnlyConditionsFromConditionModelOrFromConditionalElements";
-    public static final /*@NonInvalid*/ java.lang.String STR_Please_32_specify_32_exactly_32_one_32_o_local_32_or_32_shared_e_32_condition_32_part_33 = "Please specify exactly one (local or shared) condition part!";
-    public static final /*@NonInvalid*/ java.lang.String STR_Reference_32_only_32_Conditions_32_that_32_placed_32_inside_32_ConditionModel_32_or_32_w = "Reference only Conditions that placed inside ConditionModel or where the Container is Kind of ConditionalElement!";
-    public static final /*@NonInvalid*/ java.lang.String STR_UnaryCondition_c_c_exactlyOneArg = "UnaryCondition::exactlyOneArg";
-    public static final /*@NonInvalid*/ java.lang.String STR_VariadicCondition_c_c_minimalNumberOfArgs = "VariadicCondition::minimalNumberOfArgs";
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_ConditionalElement = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ConditionalElement);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_UnaryCondition = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_UnaryCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_VariadicCondition = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_VariadicCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ComplexCondition);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_InstancePointer = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_InstancePointer);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_ValueConstraint = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ValueConstraint);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_ComplexCondition = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(pamtram.condition.ConditionTables.CLSSid_ComplexCondition);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -284,9 +273,6 @@ public class ConditionTables
 			2, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _Condition__checkCondition = new ExecutorOperation("checkCondition", Parameters._ComplexCondition, Types._Condition,
-			0, TemplateParameters.EMPTY_LIST, null);
-
-		public static final /*@NonNull*/ ExecutorOperation _Not__referencesOnlyValidConditions = new ExecutorOperation("referencesOnlyValidConditions", TypeUtil.EMPTY_PARAMETER_TYPES, Types._Not,
 			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _VariadicCondition__referencesOnlyValidConditions = new ExecutorOperation("referencesOnlyValidConditions", TypeUtil.EMPTY_PARAMETER_TYPES, Types._VariadicCondition,
@@ -752,9 +738,7 @@ public class ConditionTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Not__Not = {
-			ConditionTables.Operations._Not__referencesOnlyValidConditions /* referencesOnlyValidConditions() */
-		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Not__Not = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Not__ComplexCondition = {
 			ConditionTables.Operations._ComplexCondition__isConditionModelCondition /* isConditionModelCondition() */,
 			ConditionTables.Operations._ComplexCondition__isLocalCondition /* isLocalCondition() */,

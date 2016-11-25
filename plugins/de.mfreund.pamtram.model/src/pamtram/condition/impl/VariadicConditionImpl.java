@@ -8,7 +8,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
@@ -18,23 +20,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
-import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.ConditionModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.condition.ConditionTables;
 import pamtram.condition.VariadicCondition;
+import pamtram.condition.util.ConditionValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -138,54 +128,24 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean minimalNumberOfArgs(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv minimalNumberOfArgs:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[1] = self.localCondParts->size() +
-		 *       self.sharedCondParts->size() > 1
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'At least two (local or shared) condition parts need to be specified!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'VariadicCondition::minimalNumberOfArgs'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_status;
-		try {
-		    final /*@Thrown*/ List<ComplexCondition> localCondParts = this.getLocalCondParts();
-		    final /*@Thrown*/ OrderedSetValue BOXED_localCondParts = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, localCondParts);
-		    final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_localCondParts);
-		    final /*@Thrown*/ List<ComplexCondition> sharedCondParts = this.getSharedCondParts();
-		    final /*@Thrown*/ OrderedSetValue BOXED_sharedCondParts = idResolver.createOrderedSetOfAll(ConditionTables.ORD_CLSSid_ComplexCondition, sharedCondParts);
-		    final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_sharedCondParts);
-		    final /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
-		    final /*@Thrown*/ boolean status = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, sum, ConditionTables.INT_1).booleanValue();
-		    CAUGHT_status = status;
+	public boolean validateMinimalNumberOfArgs(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this.getLocalCondParts().size() + this.getSharedCondParts().size() > 1;
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "At least two (local or shared) condition parts need to be specified!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					ConditionValidator.DIAGNOSTIC_SOURCE,
+							ConditionValidator.VARIADIC_CONDITION__VALIDATE_MINIMAL_NUMBER_OF_ARGS,
+							errorMessage,
+					new Object[] { this, ConditionPackage.Literals.VARIADIC_CONDITION }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = ConditionTables.STR_At_32_least_32_two_32_o_local_32_or_32_shared_e_32_condition_32_parts_32_need_32_to_32_be_32_specif;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, ConditionTables.STR_VariadicCondition_c_c_minimalNumberOfArgs, this, null, diagnostics, context, message_0, ConditionTables.INT_4, CAUGHT_status, ConditionTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -284,8 +244,8 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		switch (operationID) {
 			case ConditionPackage.VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS:
 				return referencesOnlyValidConditions();
-			case ConditionPackage.VARIADIC_CONDITION___MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP_11:
-				return minimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case ConditionPackage.VARIADIC_CONDITION___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
+				return validateMinimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

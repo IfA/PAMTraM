@@ -41,7 +41,6 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @see #setEClass(EClass)
 	 * @see pamtram.metamodel.MetamodelPackage#getClass_EClass()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Class{S,C,R,A}!eClass'"
 	 * @generated
 	 */
 	EClass getEClass();
@@ -71,7 +70,6 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @see #setCardinality(CardinalityType)
 	 * @see pamtram.metamodel.MetamodelPackage#getClass_Cardinality()
 	 * @model default="ONE" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Class{S,C,R,A}!cardinality'"
 	 * @generated
 	 */
 	CardinalityType getCardinality();
@@ -100,7 +98,6 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @see pamtram.metamodel.MetamodelPackage#getClass_References()
 	 * @see pamtram.metamodel.Reference#getOwningClass
 	 * @model opposite="owningClass" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Class{S,C,R,A}!references'"
 	 * @generated
 	 */
 	EList<R> getReferences();
@@ -116,7 +113,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @return the value of the '<em>Container</em>' reference.
 	 * @see #setContainer(Class)
 	 * @see pamtram.metamodel.MetamodelPackage#getClass_Container()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Class{S,C,R,A}!container'"
+	 * @model
 	 * @generated
 	 */
 	C getContainer();
@@ -144,7 +141,6 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @see pamtram.metamodel.MetamodelPackage#getClass_Attributes()
 	 * @see pamtram.metamodel.Attribute#getOwningClass
 	 * @model opposite="owningClass" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Class{S,C,R,A}!attributes'"
 	 * @generated
 	 */
 	EList<A> getAttributes();

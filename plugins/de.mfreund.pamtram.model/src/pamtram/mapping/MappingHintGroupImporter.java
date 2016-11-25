@@ -38,7 +38,6 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * @see #setHintGroup(ExportedMappingHintGroup)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupImporter_HintGroup()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupImporter!hintGroup'"
 	 * @generated
 	 */
 	ExportedMappingHintGroup getHintGroup();
@@ -67,7 +66,6 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * @see #setContainer(TargetSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupImporter_Container()
 	 * @model unsettable="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupImporter!container'"
 	 * @generated
 	 */
 	TargetSectionClass getContainer();
@@ -121,7 +119,6 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * @see #unsetMappingHints()
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupImporter_MappingHints()
 	 * @model containment="true" unsettable="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupImporter!mappingHints'"
 	 * @generated
 	 */
 	EList<MappingHintType> getMappingHints();

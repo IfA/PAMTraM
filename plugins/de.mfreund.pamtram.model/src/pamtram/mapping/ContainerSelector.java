@@ -37,7 +37,6 @@ public interface ContainerSelector extends MappingHintBaseType {
 	 * @return the value of the '<em>Target Attributes</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getContainerSelector_TargetAttributes()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ContainerSelector!targetAttributes'"
 	 * @generated
 	 */
 	EList<ContainerSelectorTargetAttribute> getTargetAttributes();
@@ -54,7 +53,6 @@ public interface ContainerSelector extends MappingHintBaseType {
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getContainerSelector_SourceElements()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ContainerSelector!sourceElements'"
 	 * @generated
 	 */
 	EList<ContainerSelectorSourceInterface> getSourceElements();
@@ -63,7 +61,6 @@ public interface ContainerSelector extends MappingHintBaseType {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ContainerSelector!getSourceAttributes()'"
 	 * @generated
 	 */
 	EList<ActualSourceSectionAttribute> getSourceAttributes();

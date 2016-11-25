@@ -38,7 +38,6 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @see #setTargetSection(TargetSection)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_TargetSection()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupType!targetSection'"
 	 * @generated
 	 */
 	TargetSection getTargetSection();
@@ -65,7 +64,6 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @return the value of the '<em>Mapping Hints</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_MappingHints()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupType!mappingHints'"
 	 * @generated
 	 */
 	EList<MappingHint> getMappingHints();
@@ -81,7 +79,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extend</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_Extend()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupType!extend'"
+	 * @model
 	 * @generated
 	 */
 	EList<MappingHintGroupType> getExtend();

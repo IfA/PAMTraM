@@ -51,7 +51,7 @@ public interface PAMTraM extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Context Meta Model Package</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_ContextMetaModelPackage()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!contextMetaModelPackage'"
+	 * @model
 	 * @generated
 	 */
 	EList<EPackage> getContextMetaModelPackage();
@@ -68,7 +68,6 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Source Section Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSectionModel()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!sourceSectionModel'"
 	 * @generated
 	 */
 	EList<SourceSectionModel> getSourceSectionModel();
@@ -84,7 +83,7 @@ public interface PAMTraM extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shared Source Section Model</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SharedSourceSectionModel()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!sharedSourceSectionModel'"
+	 * @model
 	 * @generated
 	 */
 	EList<SourceSectionModel> getSharedSourceSectionModel();
@@ -101,7 +100,6 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Target Section Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSectionModel()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!targetSectionModel'"
 	 * @generated
 	 */
 	EList<TargetSectionModel> getTargetSectionModel();
@@ -117,7 +115,7 @@ public interface PAMTraM extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shared Target Section Model</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SharedTargetSectionModel()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!sharedTargetSectionModel'"
+	 * @model
 	 * @generated
 	 */
 	EList<TargetSectionModel> getSharedTargetSectionModel();
@@ -134,7 +132,6 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Mapping Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_MappingModel()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!mappingModel'"
 	 * @generated
 	 */
 	EList<MappingModel> getMappingModel();
@@ -253,7 +250,6 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Condition Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_ConditionModel()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!conditionModel'"
 	 * @generated
 	 */
 	EList<ConditionModel> getConditionModel();

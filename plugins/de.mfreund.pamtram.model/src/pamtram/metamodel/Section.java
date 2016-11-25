@@ -40,7 +40,6 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	 * @see #setAbstract(boolean)
 	 * @see pamtram.metamodel.MetamodelPackage#getSection_Abstract()
 	 * @model default="false" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Section{S,C,R,A}!abstract'"
 	 * @generated
 	 */
 	boolean isAbstract();
@@ -65,7 +64,7 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extend</em>' reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getSection_Extend()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Section{S,C,R,A}!extend'"
+	 * @model
 	 * @generated
 	 */
 	EList<S> getExtend();

@@ -34,7 +34,6 @@ public interface AttributeParameter extends LibraryParameter<AbstractAttributePa
 	 * @see #setAttribute(ActualTargetSectionAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getAttributeParameter_Attribute()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!AttributeParameter!attribute'"
 	 * @generated
 	 */
 	ActualTargetSectionAttribute getAttribute();

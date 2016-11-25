@@ -139,7 +139,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 			return true;
 		}
 		
-		EClass parentEClass = ((Class<?, ?, ?, ?>) this.eContainer()).eClass();
+		EClass parentEClass = ((Class<?, ?, ?, ?>) this.eContainer()).getEClass();
 		
 		boolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());
 		

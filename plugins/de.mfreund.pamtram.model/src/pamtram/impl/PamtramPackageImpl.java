@@ -803,11 +803,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	protected void createEcoreAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore";	
 		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-		   });	
-		addAnnotation
 		  (conditionalElementEClass, 
 		   source, 
 		   new String[] {

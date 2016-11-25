@@ -33,7 +33,7 @@ public interface NamedElement extends EObject, IDerivedNameSetter {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see pamtram.PamtramPackage#getNamedElement_Name()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!NamedElement!name'"
+	 * @model
 	 * @generated
 	 */
 	String getName();

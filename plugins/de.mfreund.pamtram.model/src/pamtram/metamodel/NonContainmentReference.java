@@ -36,7 +36,7 @@ public interface NonContainmentReference<S extends Section<S, C, R, A>, C extend
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getNonContainmentReference_Value()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!NonContainmentReference{S,C,R,A}!value'"
+	 * @model
 	 * @generated
 	 */
 	EList<C> getValue();

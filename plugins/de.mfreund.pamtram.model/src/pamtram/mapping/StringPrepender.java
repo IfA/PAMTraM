@@ -33,7 +33,6 @@ public interface StringPrepender extends ValueModifier {
 	 * @see #setString(String)
 	 * @see pamtram.mapping.MappingPackage#getStringPrepender_String()
 	 * @model default="" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!StringPrepender!string'"
 	 * @generated
 	 */
 	String getString();

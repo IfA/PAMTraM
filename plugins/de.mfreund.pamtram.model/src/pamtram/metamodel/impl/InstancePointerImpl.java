@@ -4,12 +4,12 @@ package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -19,22 +19,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
-import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
-import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.MappingPackage;
@@ -43,7 +27,7 @@ import pamtram.mapping.impl.ExpressionHintImpl;
 import pamtram.metamodel.InstancePointer;
 import pamtram.metamodel.InstancePointerSourceInterface;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.MetamodelTables;
+import pamtram.metamodel.util.MetamodelValidator;
 import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
@@ -178,122 +162,24 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean noModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		/**
-		 * 
-		 * inv noModifiedAttributeElementTypesInConditionModelConditions:
-		 *   let severity : Integer[1] = 4
-		 *   in
-		 *     let
-		 *       status : OclAny[?] = if
-		 *         self.oclContainer()
-		 *         .oclIsKindOf(condition::ComplexCondition) and
-		 *         self.oclContainer()
-		 *         .oclAsType(condition::ComplexCondition)
-		 *         .isConditionModelCondition()
-		 *       then
-		 *         not self.sourceElements->exists(
-		 *           self.oclIsTypeOf(mapping::ModifiedAttributeElementType(S, C, R, A)))
-		 *       else true
-		 *       endif
-		 *     in
-		 *       let
-		 *         message : String[?] = if status <> true
-		 *         then 'ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!'
-		 *         else null
-		 *         endif
-		 *       in
-		 *         'InstancePointer::noModifiedAttributeElementTypesInConditionModelConditions'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
-		 */
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		/*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
-		try {
-		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_oclIsKindOf;
-		    try {
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_condition_c_c_ComplexCondition = idResolver.getClass(MetamodelTables.CLSSid_ComplexCondition, null);
-		        final /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		        final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, oclContainer, TYP_pamtram_c_c_condition_c_c_ComplexCondition).booleanValue();
-		        CAUGHT_oclIsKindOf = oclIsKindOf;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
-		    }
-		    /*@Caught*/ /*@NonNull*/ Object CAUGHT_isConditionModelCondition;
-		    try {
-		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_condition_c_c_ComplexCondition_0 = idResolver.getClass(MetamodelTables.CLSSid_ComplexCondition, null);
-		        final /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
-		        final /*@Thrown*/ ComplexCondition oclAsType = ClassUtil.nonNullState((ComplexCondition)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, oclContainer_0, TYP_pamtram_c_c_condition_c_c_ComplexCondition_0));
-		        final /*@Thrown*/ boolean isConditionModelCondition = oclAsType.isConditionModelCondition();
-		        CAUGHT_isConditionModelCondition = isConditionModelCondition;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_isConditionModelCondition = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_oclIsKindOf, CAUGHT_isConditionModelCondition);
-		    if (and == null) {
-		        throw new InvalidValueException("Null if condition");
-		    }
-		    /*@Thrown*/ Boolean status;
-		    if (and) {
-		        final /*@Thrown*/ List<InstancePointerSourceInterface> sourceElements = this.getSourceElements();
-		        final /*@Thrown*/ OrderedSetValue BOXED_sourceElements = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_InstancePointerSourceInterface, sourceElements);
-		        /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-		        /*@NonNull*/ Iterator<Object> ITERATOR__1 = BOXED_sourceElements.iterator();
-		        /*@Thrown*/ boolean exists;
-		        while (true) {
-		            if (!ITERATOR__1.hasNext()) {
-		                if (accumulator == ValueUtil.FALSE_VALUE) {
-		                    exists = ValueUtil.FALSE_VALUE;
-		                }
-		                else {
-		                    throw (InvalidValueException)accumulator;
-		                }
-		                break;
-		            }
-		            /*@NonInvalid*/ InstancePointerSourceInterface _1 = (InstancePointerSourceInterface)ITERATOR__1.next();
-		            /**
-		             * 
-		             * self.oclIsTypeOf(mapping::ModifiedAttributeElementType(S, C, R, A))
-		             */
-		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_ModifiedAttributeElementType_o_S_44_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_ModifiedAttributeElementType, null);
-		            final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE.evaluate(executor, this, TYP_pamtram_c_c_mapping_c_c_ModifiedAttributeElementType_o_S_44_C_44_R_44_A_e).booleanValue();
-		            //
-		            if (oclIsTypeOf == ValueUtil.TRUE_VALUE) {					// Normal successful body evaluation result
-		                exists = ValueUtil.TRUE_VALUE;
-		                break;														// Stop immediately 
-		            }
-		            else if (oclIsTypeOf == ValueUtil.FALSE_VALUE) {				// Normal unsuccessful body evaluation result
-		                ;															// Carry on
-		            }
-		            else {															// Impossible badly typed result
-		                accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
-		            }
-		        }
-		        final /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(exists);
-		        status = not;
-		    }
-		    else {
-		        status = ValueUtil.TRUE_VALUE;
-		    }
-		    CAUGHT_status = status;
+	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.mapping.ModifiedAttributeElementType) : true;
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MetamodelValidator.DIAGNOSTIC_SOURCE,
+							MetamodelValidator.INSTANCE_POINTER__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,
+							errorMessage,
+					new Object[] { this, MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS }));
+		
 		}
-		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
-		}
-		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
-		/*@NonInvalid*/ String message_0;
-		if (ne) {
-		    message_0 = MetamodelTables.STR_ModifiedAttributeElementTypes_32_are_32_not_32_allowed_32_as_32_part_32_of_32_Conditi;
-		}
-		else {
-		    message_0 = null;
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, MetamodelTables.STR_InstancePointer_c_c_noModifiedAttributeElementTypesInConditionModel, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue();
-		return Boolean.TRUE == logDiagnostic;
+		
+		return result;
 	}
 
 	/**
@@ -433,8 +319,8 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.INSTANCE_POINTER___NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP_11:
-				return noModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MetamodelPackage.INSTANCE_POINTER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
+				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

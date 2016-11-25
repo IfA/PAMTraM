@@ -243,8 +243,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 */
 	@Override
-	public boolean checkConstraint(final String attrValue, final String refValue) {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!SingleReferenceValueConstraint!checkConstraint(String,String)
+	public boolean checkConstraint(String attrValue, String refValue) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

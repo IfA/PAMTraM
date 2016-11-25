@@ -38,7 +38,6 @@ public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A
 	 * @return the value of the '<em>Instance Selector</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getGlobalModifiedAttributeElementType_InstanceSelector()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!GlobalModifiedAttributeElementType{S,C,R,A}!instanceSelector'"
 	 * @generated
 	 */
 	EList<InstancePointer> getInstanceSelector();

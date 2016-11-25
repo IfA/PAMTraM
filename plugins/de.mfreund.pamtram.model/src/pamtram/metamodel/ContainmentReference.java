@@ -37,7 +37,6 @@ public interface ContainmentReference<S extends Section<S, C, R, A>, C extends p
 	 * @return the value of the '<em>Value</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getContainmentReference_Value()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ContainmentReference{S,C,R,A}!value'"
 	 * @generated
 	 */
 	EList<C> getValue();

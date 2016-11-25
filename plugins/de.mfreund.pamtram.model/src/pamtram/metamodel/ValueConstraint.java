@@ -36,7 +36,6 @@ public interface ValueConstraint extends NamedElement {
 	 * @see #setType(ValueConstraintType)
 	 * @see pamtram.metamodel.MetamodelPackage#getValueConstraint_Type()
 	 * @model default="INCLUSION" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ValueConstraint!type'"
 	 * @generated
 	 */
 	ValueConstraintType getType();

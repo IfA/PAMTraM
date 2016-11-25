@@ -33,7 +33,6 @@ public interface SubstringReplacer extends ValueModifier {
 	 * @see #setRegex(String)
 	 * @see pamtram.mapping.MappingPackage#getSubstringReplacer_Regex()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!SubstringReplacer!regex'"
 	 * @generated
 	 */
 	String getRegex();
@@ -60,7 +59,6 @@ public interface SubstringReplacer extends ValueModifier {
 	 * @see #setReplacement(String)
 	 * @see pamtram.mapping.MappingPackage#getSubstringReplacer_Replacement()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!SubstringReplacer!replacement'"
 	 * @generated
 	 */
 	String getReplacement();

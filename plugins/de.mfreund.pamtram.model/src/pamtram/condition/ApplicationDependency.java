@@ -38,7 +38,6 @@ public interface ApplicationDependency extends Condition {
 	 * @see #setConditionalElement(ConditionalElement)
 	 * @see pamtram.condition.ConditionPackage#getApplicationDependency_ConditionalElement()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!ApplicationDependency!conditionalElement'"
 	 * @generated
 	 */
 	ConditionalElement getConditionalElement();

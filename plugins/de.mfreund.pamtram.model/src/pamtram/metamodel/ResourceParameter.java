@@ -34,7 +34,6 @@ public interface ResourceParameter extends NamedElement {
 	 * @see #setAttribute(VirtualTargetSectionAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getResourceParameter_Attribute()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ResourceParameter!attribute'"
 	 * @generated
 	 */
 	VirtualTargetSectionAttribute getAttribute();
@@ -61,7 +60,6 @@ public interface ResourceParameter extends NamedElement {
 	 * @see #setOriginalParameter(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)
 	 * @see pamtram.metamodel.MetamodelPackage#getResourceParameter_OriginalParameter()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ResourceParameter!originalParameter'"
 	 * @generated
 	 */
 	de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter getOriginalParameter();

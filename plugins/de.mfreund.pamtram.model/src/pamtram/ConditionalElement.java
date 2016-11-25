@@ -39,7 +39,6 @@ public interface ConditionalElement extends EObject {
 	 * @see #setLocalCondition(ComplexCondition)
 	 * @see pamtram.PamtramPackage#getConditionalElement_LocalCondition()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!ConditionalElement!localCondition'"
 	 * @generated
 	 */
 	ComplexCondition getLocalCondition();
@@ -65,7 +64,7 @@ public interface ConditionalElement extends EObject {
 	 * @return the value of the '<em>Shared Condition</em>' reference.
 	 * @see #setSharedCondition(ComplexCondition)
 	 * @see pamtram.PamtramPackage#getConditionalElement_SharedCondition()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!ConditionalElement!sharedCondition'"
+	 * @model
 	 * @generated
 	 */
 	ComplexCondition getSharedCondition();

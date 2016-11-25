@@ -35,7 +35,6 @@ public interface GlobalAttributeImporter extends NamedElement, AttributeMappingS
 	 * @see #setGlobalAttribute(GlobalAttribute)
 	 * @see pamtram.mapping.MappingPackage#getGlobalAttributeImporter_GlobalAttribute()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!GlobalAttributeImporter!globalAttribute'"
 	 * @generated
 	 */
 	GlobalAttribute getGlobalAttribute();

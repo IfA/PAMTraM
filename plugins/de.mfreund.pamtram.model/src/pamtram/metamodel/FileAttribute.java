@@ -35,7 +35,6 @@ public interface FileAttribute extends VirtualTargetSectionAttribute {
 	 * @see #setFileType(FileTypeEnum)
 	 * @see pamtram.metamodel.MetamodelPackage#getFileAttribute_FileType()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!FileAttribute!fileType'"
 	 * @generated
 	 */
 	FileTypeEnum getFileType();

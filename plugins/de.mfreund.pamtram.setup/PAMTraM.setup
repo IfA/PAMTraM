@@ -523,6 +523,15 @@
           label="Clone location eclipse commons update-site">
         <description></description>
       </setupTask>
+      <setupTask
+          xsi:type="setup:VariableTask"
+          id="clone.location.pamtram.examples.feature"
+          name="clone.location.pamtram.examples.feature"
+          value="${clone.location.pamtram}\de.mfreund.pamtram.examples.feature${clone.append.suffix|trimRight}"
+          defaultValue=""
+          label="Clone location pamtram.examples.feature project">
+        <description></description>
+      </setupTask>
       <description>Definition of clone locations for projects</description>
     </setupTask>
     <setupTask
@@ -1468,6 +1477,37 @@
         </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.update-site.git' repository.</description>
       </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.examples.feature"
+          location="${clone.location.pamtram.examples.feature}"
+          remoteURI="${clone.origin.pamtram}/de.mfreund.pamtram.examples.feature.git">
+        <configSections
+            name="gitflow &quot;prefix&quot;">
+          <properties
+              key="feature"
+              value="feature/"/>
+          <properties
+              key="release"
+              value="release/"/>
+          <properties
+              key="hotfix"
+              value="hotfix/"/>
+          <properties
+              key="versiontag"
+              value=""/>
+        </configSections>
+        <configSections
+            name="gitflow &quot;branch&quot;">
+          <properties
+              key="develop"
+              value="develop"/>
+          <properties
+              key="master"
+              value="master"/>
+        </configSections>
+        <description>Clone the 'de.mfreund.pamtram.examples.feature.git' repository.</description>
+      </setupTask>
       <description>Clone all necessary git repositories.</description>
     </setupTask>
     <setupTask
@@ -1533,6 +1573,8 @@
           rootFolder="${clone.location.commons.feature}"/>
       <sourceLocator
           rootFolder="${clone.location.commons.update-site}"/>
+      <sourceLocator
+          rootFolder="${clone.location.pamtram.examples.feature}"/>
     </setupTask>
     <setupTask
         xsi:type="setup.workingsets:WorkingSetTask"
@@ -1590,6 +1632,9 @@
           <operand
               xsi:type="predicates:NamePredicate"
               pattern="de.mfreund.pamtram.update-site"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram.examples.feature"/>
         </predicate>
       </workingSet>
       <workingSet

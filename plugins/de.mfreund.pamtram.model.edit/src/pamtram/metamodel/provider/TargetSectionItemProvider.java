@@ -61,14 +61,14 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addAbstractPropertyDescriptor(object);
-			this.addExtendPropertyDescriptor(object);
-			this.addReferencingMappingHintGroupsPropertyDescriptor(object);
+			addAbstractPropertyDescriptor(object);
+			addExtendPropertyDescriptor(object);
+			addReferencingMappingHintGroupsPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -78,19 +78,19 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_Section_abstract_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-						MetamodelPackage.Literals.SECTION__ABSTRACT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Section_abstract_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+				 MetamodelPackage.Literals.SECTION__ABSTRACT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -147,19 +147,19 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 * @generated
 	 */
 	protected void addReferencingMappingHintGroupsPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(this.createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
-						MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
-						false,
-						false,
-						false,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
+				 MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	@Override
@@ -245,12 +245,12 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSection.class)) {
 			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
 			case MetamodelPackage.TARGET_SECTION__FILE:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -274,9 +274,9 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(this.createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.TARGET_SECTION__FILE,
-						MetamodelFactory.eINSTANCE.createFileAttribute()));
+				 MetamodelFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**

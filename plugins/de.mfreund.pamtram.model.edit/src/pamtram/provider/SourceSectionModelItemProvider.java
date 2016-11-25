@@ -62,7 +62,7 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/SourceSectionModel"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionModel"));
 	}
 
 	/**
@@ -73,7 +73,7 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -96,7 +96,7 @@ extends SectionModelItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

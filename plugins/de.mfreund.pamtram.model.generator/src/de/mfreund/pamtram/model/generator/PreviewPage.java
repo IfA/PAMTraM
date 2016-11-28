@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.wizard.WizardPage;
@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
+import org.eclipse.ui.views.properties.PropertyEditingSupport;
 
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerLabelProvider;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
@@ -177,20 +178,22 @@ public class PreviewPage extends WizardPage {
 		tree.addSelectionListener(new ResultPageTreeViewerSelectionListener());
 
 		// create the properties viewer
-		this.propertiesViewer = CheckboxTableViewer.newCheckList(container, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
-		this.createTableViewerColumn("Property", 100);
-		this.createTableViewerColumn("Value", 150);
+		this.propertiesViewer = CheckboxTableViewer.newCheckList(container,
+				SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
+		this.createTableViewerColumn("Property", 100, "name");
+		TableViewerColumn valueColumn = this.createTableViewerColumn("Value", 150, "value");
+
+		// Enable editing of attribute values
+		//
+		valueColumn.setEditingSupport(new PropertyEditingSupport(this.propertiesViewer,
+				new AdapterFactoryContentProvider(this.adapterFactory), "value"));
 
 		// the table that the viewer operates on
 		final Table table = this.propertiesViewer.getTable();
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		// use a simple array content provider to dipslay the array of attribute
-		// and their values
-		this.propertiesViewer
-				.setContentProvider((IStructuredContentProvider) inputElement -> inputElement instanceof List<?>
-						? ((List<?>) inputElement).toArray() : new Object[0]);
+		this.propertiesViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
 
 		this.propertiesViewer.setLabelProvider(new ResultPageTableViewerLabelProvider());
 		this.propertiesViewer.addCheckStateListener(event -> {
@@ -242,9 +245,11 @@ public class PreviewPage extends WizardPage {
 	 *            The title of the column.
 	 * @param width
 	 *            The width of the column
+	 * @param propertyID
+	 *            The id of the property to display.
 	 * @return The created {@link TableViewerColumn}.
 	 */
-	private TableViewerColumn createTableViewerColumn(String title, int width) {
+	private TableViewerColumn createTableViewerColumn(String title, int width, String propertyID) {
 
 		final TableViewerColumn viewerColumn = new TableViewerColumn(this.propertiesViewer, SWT.NONE);
 		final TableColumn column = viewerColumn.getColumn();
@@ -252,6 +257,7 @@ public class PreviewPage extends WizardPage {
 		column.setWidth(width);
 		column.setResizable(true);
 		column.setMoveable(true);
+
 		return viewerColumn;
 	}
 
@@ -295,7 +301,7 @@ public class PreviewPage extends WizardPage {
 				lines.addAll(((pamtram.metamodel.Class<?, ?, ?, ?>) e.item.getData()).getAttributes());
 			}
 
-			PreviewPage.this.propertiesViewer.setInput(lines);
+			PreviewPage.this.propertiesViewer.setInput(e.item.getData());
 
 			// set the 'checked' states of the attributes
 			//

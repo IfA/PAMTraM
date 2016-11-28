@@ -33,13 +33,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeItem;
-import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 import org.eclipse.ui.views.properties.PropertyEditingSupport;
 
@@ -48,6 +45,7 @@ import de.mfreund.pamtram.util.NullComparator;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
+import de.tud.et.ifa.agtele.ui.widgets.EnhancedContainerCheckedTreeViewer;
 import pamtram.PAMTraM;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Class;
@@ -179,7 +177,7 @@ public class PreviewPage extends WizardPage {
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(container);
 
 		// the viewer field is an already configured TreeViewer
-		this.viewer = new PreviewPageTreeViewer(container, SWT.H_SCROLL | SWT.V_SCROLL | SWT.MULTI);
+		this.viewer = new EnhancedContainerCheckedTreeViewer(container, SWT.H_SCROLL | SWT.V_SCROLL | SWT.MULTI);
 
 		this.viewer.setContentProvider(new EObjectTreeContentProvider() {
 
@@ -507,88 +505,6 @@ public class PreviewPage extends WizardPage {
 			return true;
 		}
 
-	}
-
-	/**
-	 * A special {@link ContainerCheckedTreeViewer} that - compared to the
-	 * original one - modifies the {@link #doCheckStateChanged(Object)} method
-	 * in a way that parents are not automatically unchecked if all children are
-	 * unchecked.
-	 *
-	 * @author mfreund
-	 */
-	private class PreviewPageTreeViewer extends ContainerCheckedTreeViewer {
-
-		/**
-		 * This creates an instance.
-		 *
-		 * @param parent
-		 * @param style
-		 */
-		private PreviewPageTreeViewer(Composite parent, int style) {
-			super(parent, style);
-		}
-
-		@Override
-		protected void doCheckStateChanged(Object element) {
-			// Copied from 'ContainerCheckedTreeViewer'
-			//
-			Widget item = this.findItem(element);
-			if (item instanceof TreeItem) {
-				TreeItem treeItem = (TreeItem) item;
-				treeItem.setGrayed(false);
-				this.updateChildrenItems(treeItem);
-				this.updateParentItems(treeItem.getParentItem());
-			}
-		}
-
-		/**
-		 * Updates the check state of all created children
-		 */
-		private void updateChildrenItems(TreeItem parent) {
-			// Copied from 'ContainerCheckedTreeViewer'
-			//
-			Item[] children = this.getChildren(parent);
-			boolean state = parent.getChecked();
-			for (Item element : children) {
-				TreeItem curr = (TreeItem) element;
-				if (curr.getData() != null && (curr.getChecked() != state || curr.getGrayed())) {
-					curr.setChecked(state);
-					curr.setGrayed(false);
-					this.updateChildrenItems(curr);
-				}
-			}
-		}
-
-		/**
-		 * Updates the check / gray state of all parent items
-		 */
-		private void updateParentItems(TreeItem item) {
-			// Copied from 'ContainerCheckedTreeViewer' and modified
-			//
-			//
-			if (item != null) {
-				Item[] children = this.getChildren(item);
-
-				boolean containsChecked = false;
-				boolean containsUnchecked = false;
-				for (Item element : children) {
-					TreeItem curr = (TreeItem) element;
-					containsChecked |= curr.getChecked();
-					containsUnchecked |= !curr.getChecked() || curr.getGrayed();
-				}
-				// Begin modified
-				//
-				if (containsChecked) {
-					// Do not uncheck a parent automatically
-					item.setChecked(true);
-				}
-				// End modified
-				//
-				item.setGrayed(containsUnchecked);
-				this.updateParentItems(item.getParentItem());
-			}
-		}
 	}
 
 	/**

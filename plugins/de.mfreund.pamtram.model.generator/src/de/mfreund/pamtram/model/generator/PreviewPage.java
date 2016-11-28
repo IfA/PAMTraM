@@ -2,9 +2,13 @@ package de.mfreund.pamtram.model.generator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -20,9 +24,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 import org.eclipse.ui.views.properties.PropertyEditingSupport;
 
@@ -61,12 +68,18 @@ public class PreviewPage extends WizardPage {
 	protected CheckboxTableViewer propertiesViewer;
 
 	/**
-	 * This keeps track of those {@link MetaModelElement MetaModelElements} that
-	 * have been unchecked by the user (either in the {@link #viewer} or in the
-	 * {@link #propertiesViewer} and that thus will not be included in the
-	 * section that will finally be added to the pamtram model.
+	 * This keeps track of all {@link MetaModelElement MetaModelElements}
+	 * displayed in the {@link #viewer}.
 	 */
-	protected List<MetaModelElement<?, ?, ?, ?>> elementsToExclude = new ArrayList<>();
+	protected Set<MetaModelElement<?, ?, ?, ?>> elements;
+
+	/**
+	 * This keeps track of those {@link Attribute Attributes} that have been
+	 * unchecked by the user in the {@link #propertiesViewer} and that thus will
+	 * not be included in the section that will finally be added to the pamtram
+	 * model.
+	 */
+	protected Set<MetaModelElement<?, ?, ?, ?>> attributesToExclude = new HashSet<>();
 
 	/**
 	 * This is the one adapter factory used for providing views of the model.
@@ -119,6 +132,11 @@ public class PreviewPage extends WizardPage {
 				for (Section<?, ?, ?, ?> clazz : this.wizardData.getCreatedSections()) {
 					this.viewer.setSubtreeChecked(clazz, true);
 				}
+
+				this.elements = Arrays.asList(this.viewer.getCheckedElements()).parallelStream()
+						.filter(e -> e instanceof MetaModelElement<?, ?, ?, ?>)
+						.map(e -> (MetaModelElement<?, ?, ?, ?>) e).collect(Collectors.toSet());
+
 				// collapse the tree (NOTE: 'collapseAll()' cannot be used as
 				// this disposes the tree items)
 				this.viewer.setExpandedTreePaths(new TreePath[] {});
@@ -140,7 +158,7 @@ public class PreviewPage extends WizardPage {
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(container);
 
 		// the viewer field is an already configured TreeViewer
-		this.viewer = new ContainerCheckedTreeViewer(container, SWT.H_SCROLL | SWT.V_SCROLL);
+		this.viewer = new PreviewPageTreeViewer(container, SWT.H_SCROLL | SWT.V_SCROLL);
 
 		this.viewer.setContentProvider(new EObjectTreeContentProvider() {
 
@@ -152,21 +170,6 @@ public class PreviewPage extends WizardPage {
 			}
 		});
 		this.viewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
-
-		this.viewer.addCheckStateListener(event -> {
-			if (event.getElement() instanceof MetaModelElement) {
-				MetaModelElement<?, ?, ?, ?> element = (MetaModelElement<?, ?, ?, ?>) event.getElement();
-				if (event.getChecked()) {
-					if (PreviewPage.this.elementsToExclude.contains(element)) {
-						PreviewPage.this.elementsToExclude.remove(element);
-					}
-				} else {
-					if (!PreviewPage.this.elementsToExclude.contains(element)) {
-						PreviewPage.this.elementsToExclude.add(element);
-					}
-				}
-			}
-		});
 
 		// the tree that the viewer operates on
 		final Tree tree = (Tree) this.viewer.getControl();
@@ -180,8 +183,8 @@ public class PreviewPage extends WizardPage {
 		// create the properties viewer
 		this.propertiesViewer = CheckboxTableViewer.newCheckList(container,
 				SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
-		this.createTableViewerColumn("Property", 100, "name");
-		TableViewerColumn valueColumn = this.createTableViewerColumn("Value", 150, "value");
+		this.createTableViewerColumn("Property", 100);
+		TableViewerColumn valueColumn = this.createTableViewerColumn("Value", 150);
 
 		// Enable editing of attribute values
 		//
@@ -208,12 +211,12 @@ public class PreviewPage extends WizardPage {
 		this.propertiesViewer.addCheckStateListener(event -> {
 			Attribute<?, ?, ?, ?> att = (Attribute<?, ?, ?, ?>) event.getElement();
 			if (event.getChecked()) {
-				if (PreviewPage.this.elementsToExclude.contains(att)) {
-					PreviewPage.this.elementsToExclude.remove(att);
+				if (PreviewPage.this.attributesToExclude.contains(att)) {
+					PreviewPage.this.attributesToExclude.remove(att);
 				}
 			} else {
-				if (!PreviewPage.this.elementsToExclude.contains(att)) {
-					PreviewPage.this.elementsToExclude.add(att);
+				if (!PreviewPage.this.attributesToExclude.contains(att)) {
+					PreviewPage.this.attributesToExclude.add(att);
 				}
 			}
 		});
@@ -258,7 +261,7 @@ public class PreviewPage extends WizardPage {
 	 *            The id of the property to display.
 	 * @return The created {@link TableViewerColumn}.
 	 */
-	private TableViewerColumn createTableViewerColumn(String title, int width, String propertyID) {
+	private TableViewerColumn createTableViewerColumn(String title, int width) {
 
 		final TableViewerColumn viewerColumn = new TableViewerColumn(this.propertiesViewer, SWT.NONE);
 		final TableColumn column = viewerColumn.getColumn();
@@ -271,12 +274,22 @@ public class PreviewPage extends WizardPage {
 	}
 
 	/**
-	 * This is the getter for the {@link #elementsToExclude}.
+	 * This returns all {@link MetaModelElement MetaModelElements} that shall
+	 * not be included in the generated sections because they have been
+	 * unchecked by the user in the {@link #viewer} or in the
+	 * {@link #propertiesViewer}.
 	 *
-	 * @return the {@link #elementsToExclude}.
+	 * @return The {@link MetaModelElement MetaModelElements} to exclude from
+	 *         the generated {@link Section Section(s)}.
 	 */
-	public List<MetaModelElement<?, ?, ?, ?>> getElementsToExclude() {
-		return this.elementsToExclude;
+	public Set<MetaModelElement<?, ?, ?, ?>> getElementsToExclude() {
+
+		List<Object> checkedTreeElements = Arrays.asList(this.viewer.getCheckedElements());
+		Set<MetaModelElement<?, ?, ?, ?>> treeElementsToExclued = this.elements.parallelStream()
+				.filter(e -> !checkedTreeElements.contains(e)).collect(Collectors.toSet());
+
+		return Stream.concat(treeElementsToExclued.parallelStream(), this.attributesToExclude.parallelStream())
+				.collect(Collectors.toSet());
 	}
 
 	@Override
@@ -287,6 +300,88 @@ public class PreviewPage extends WizardPage {
 		//
 		return this.wizardData.getCreatedSections() != null && !this.wizardData.getCreatedSections().isEmpty()
 				&& this.viewer.getCheckedElements().length > 0;
+	}
+
+	/**
+	 * A special {@link ContainerCheckedTreeViewer} that - compared to the
+	 * original one - modifies the {@link #doCheckStateChanged(Object)} method
+	 * in a way that parents are not automatically unchecked if all children are
+	 * unchecked.
+	 *
+	 * @author mfreund
+	 */
+	private class PreviewPageTreeViewer extends ContainerCheckedTreeViewer {
+
+		/**
+		 * This creates an instance.
+		 *
+		 * @param parent
+		 * @param style
+		 */
+		private PreviewPageTreeViewer(Composite parent, int style) {
+			super(parent, style);
+		}
+
+		@Override
+		protected void doCheckStateChanged(Object element) {
+			// Copied from 'ContainerCheckedTreeViewer'
+			//
+			Widget item = this.findItem(element);
+			if (item instanceof TreeItem) {
+				TreeItem treeItem = (TreeItem) item;
+				treeItem.setGrayed(false);
+				this.updateChildrenItems(treeItem);
+				this.updateParentItems(treeItem.getParentItem());
+			}
+		}
+
+		/**
+		 * Updates the check state of all created children
+		 */
+		private void updateChildrenItems(TreeItem parent) {
+			// Copied from 'ContainerCheckedTreeViewer'
+			//
+			Item[] children = this.getChildren(parent);
+			boolean state = parent.getChecked();
+			for (Item element : children) {
+				TreeItem curr = (TreeItem) element;
+				if (curr.getData() != null && (curr.getChecked() != state || curr.getGrayed())) {
+					curr.setChecked(state);
+					curr.setGrayed(false);
+					this.updateChildrenItems(curr);
+				}
+			}
+		}
+
+		/**
+		 * Updates the check / gray state of all parent items
+		 */
+		private void updateParentItems(TreeItem item) {
+			// Copied from 'ContainerCheckedTreeViewer' and modified
+			//
+			//
+			if (item != null) {
+				Item[] children = this.getChildren(item);
+
+				boolean containsChecked = false;
+				boolean containsUnchecked = false;
+				for (Item element : children) {
+					TreeItem curr = (TreeItem) element;
+					containsChecked |= curr.getChecked();
+					containsUnchecked |= !curr.getChecked() || curr.getGrayed();
+				}
+				// Begin modified
+				//
+				if (containsChecked) {
+					// Do not uncheck a parent automatically
+					item.setChecked(true);
+				}
+				// End modified
+				//
+				item.setGrayed(containsUnchecked);
+				this.updateParentItems(item.getParentItem());
+			}
+		}
 	}
 
 	/**
@@ -314,11 +409,19 @@ public class PreviewPage extends WizardPage {
 
 			// set the 'checked' states of the attributes
 			//
-			lines.stream().forEach(att -> {
-				if (!PreviewPage.this.elementsToExclude.contains(att)) {
-					PreviewPage.this.propertiesViewer.setChecked(att, true);
-				}
-			});
+			lines.stream().forEach(att -> PreviewPage.this.propertiesViewer.setChecked(att,
+					!PreviewPage.this.attributesToExclude.contains(att)));
+
+			if (e.item.getData() instanceof EObject) {
+
+				// PreviewPage.this.propertiesViewer.getTable()
+				// .setEnabled(!PreviewPage.this.elementsToExclude.contains(e.item.getData())
+				// && !EcoreUtil
+				// .isAncestor(PreviewPage.this.elementsToExclude, (EObject)
+				// e.item.getData()));
+				PreviewPage.this.propertiesViewer.getTable()
+						.setEnabled(PreviewPage.this.viewer.getChecked(e.item.getData()));
+			}
 
 			PreviewPage.this.getContainer().updateButtons();
 		}

@@ -193,7 +193,16 @@ public class PreviewPage extends WizardPage {
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		this.propertiesViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+		this.propertiesViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory) {
+
+			@Override
+			public Object[] getElements(Object object) {
+
+				return Arrays.asList(super.getElements(object)).parallelStream()
+						.filter(c -> c instanceof Attribute<?, ?, ?, ?>).collect(Collectors.toList()).toArray();
+			}
+
+		});
 
 		this.propertiesViewer.setLabelProvider(new ResultPageTableViewerLabelProvider());
 		this.propertiesViewer.addCheckStateListener(event -> {

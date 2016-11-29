@@ -102,7 +102,8 @@ public class ClassMergeAction<S extends Section<S, C, R, A>, C extends pamtram.m
 
 		// Finally, we delete the merged elements and update/refresh the viewers
 		//
-		Set<EObject> elementsToDelete = merger.getMergedElements();
+		Set<EObject> elementsToDelete = merger.getMergedElements().values().stream().flatMap(Set::stream)
+				.collect(Collectors.toSet());
 		elementsToDelete.addAll(merger.getDeletedElements());
 
 		elementsToDelete.stream().forEach(EcoreUtil::delete);

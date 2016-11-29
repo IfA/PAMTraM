@@ -12,10 +12,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ContentViewer;
@@ -28,22 +30,27 @@ import pamtram.metamodel.Class;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionReference;
 import pamtram.metamodel.ValueConstraint;
 
 /**
  * An {@link Action} that can be used to merge multiple {@link Class Classes}.
  *
  * @author mfreund
+ * @param <S>
+ * @param <C>
+ * @param <R>
+ * @param <A>
  */
-public class ClassMergeAction extends Action {
+public class ClassMergeAction<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+		extends Action {
 
 	/**
 	 * The set of {@link Class elements} to be merged.
 	 */
-	protected Set<pamtram.metamodel.Class<?, ?, ?, ?>> elementsToMerge = new HashSet<>();
+	protected Set<C> elementsToMerge = new HashSet<>();
 
 	/**
 	 * The list of {@link ContentViewer ContentViewers} to be refreshed after the merge.
@@ -60,6 +67,7 @@ public class ClassMergeAction extends Action {
 	 * @param viewersToUpdate
 	 *            The list of {@link ContentViewer ContentViewers} to be refreshed after the merge.
 	 */
+	@SuppressWarnings("unchecked")
 	public ClassMergeAction(String text, IStructuredSelection selection, List<ContentViewer> viewersToUpdate) {
 
 		super(text);
@@ -74,10 +82,9 @@ public class ClassMergeAction extends Action {
 		// And if all selected elements represent the same EClass
 		//
 		this.elementsToMerge = Stream.of(selection.toArray())
-				.filter(e -> e instanceof pamtram.metamodel.Class<?, ?, ?, ?>)
-				.map(e -> (pamtram.metamodel.Class<?, ?, ?, ?>) e).collect(Collectors.toSet());
-		Set<EClass> eClasses = this.elementsToMerge.parallelStream().map(pamtram.metamodel.Class<?, ?, ?, ?>::getEClass)
+				.filter(e -> e instanceof pamtram.metamodel.Class<?, ?, ?, ?>).map(e -> (C) e)
 				.collect(Collectors.toSet());
+		Set<EClass> eClasses = this.elementsToMerge.parallelStream().map(C::getEClass).collect(Collectors.toSet());
 
 		enabled = enabled && eClasses.size() == 1;
 
@@ -87,45 +94,33 @@ public class ClassMergeAction extends Action {
 	@Override
 	public void run() {
 
-		Set<pamtram.metamodel.Class<?, ?, ?, ?>> mergedElements = new HashSet<>();
-
-		Iterator<pamtram.metamodel.Class<?, ?, ?, ?>> it = this.elementsToMerge.iterator();
-
-		pamtram.metamodel.Class<?, ?, ?, ?> class1 = it.next();
-
-		it.forEachRemaining(class2 -> {
-
-			boolean mergeResult = false;
-
-			if (class1 instanceof SourceSectionClass && class2 instanceof SourceSectionClass) {
-
-				mergeResult = this.merge((SourceSectionClass) class1, (SourceSectionClass) class2);
-			} else if (class1 instanceof TargetSectionClass && class2 instanceof TargetSectionClass) {
-
-				mergeResult = this.merge((TargetSectionClass) class1, (TargetSectionClass) class2);
-			}
-
-			if (mergeResult) {
-				mergedElements.add(class2);
-			} else {
-				MessageDialog.openError(UIHelper.getShell(), "Error", "Error while merging the selected elements!");
-			}
-
-		});
-
-		// Delete the merged elements and update/refresh the viewers
+		// First, we check if we can safely merge the selected elements
 		//
-		mergedElements.stream().forEach(EcoreUtil::delete);
+		if (!this.canMerge(this.elementsToMerge)) {
+			MessageDialog.openError(UIHelper.getShell(), "Error", "The selected elements cannot be merged!");
+			return;
+		}
+
+		// Now, we merge the elements
+		//
+		this.merge(this.elementsToMerge);
+
+		// Finally, we delete the merged elements and update/refresh the viewers
+		//
+		Set<C> classesToDelete = new HashSet<>(this.elementsToMerge);
+		classesToDelete.remove(this.elementsToMerge.iterator().next());
+
+		classesToDelete.stream().forEach(EcoreUtil::delete);
 
 		this.viewersToUpdate.stream().forEach(v -> {
 
 			if (v.getInput() instanceof Object[]) {
 				List<Object> input = new ArrayList<>(Arrays.asList((Object[]) v.getInput()));
-				input.removeAll(mergedElements);
+				input.removeAll(classesToDelete);
 				v.setInput(input);
 			} else if (v.getInput() instanceof Collection<?>) {
 				List<Object> input = new ArrayList<>((Collection<?>) v.getInput());
-				input.removeAll(mergedElements);
+				input.removeAll(classesToDelete);
 				v.setInput(input);
 			}
 
@@ -134,51 +129,149 @@ public class ClassMergeAction extends Action {
 
 	}
 
-	private <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> boolean merge(
-			C left, C right) {
+	private boolean merge(Set<C> elements) {
 
-		for (A rightAttribute : right.getAttributes()) {
+		Iterator<C> it = elements.iterator();
 
-			Optional<A> leftAttribute = left.getAttributes().parallelStream()
-					.filter(a -> a.getName().equals(rightAttribute.getName())).findAny();
+		C class1 = it.next();
 
-			// Simply add the attribute
-			//
-			if (!leftAttribute.isPresent()) {
-				left.getAttributes().add(rightAttribute);
-				continue;
-			}
-
-			// Merge the attributes
-			//
-			if (leftAttribute.get() instanceof SourceSectionAttribute) {
-
-				List<ValueConstraint> leftConstraints = ((SourceSectionAttribute) leftAttribute.get())
-						.getValueConstraint();
-				List<ValueConstraint> rightConstraints = ((SourceSectionAttribute) rightAttribute).getValueConstraint();
-
-				if (leftConstraints.isEmpty() && rightConstraints.isEmpty()) {
-					// nothing to be done
-				} else if (!leftConstraints.isEmpty() || !rightConstraints.isEmpty()
-						|| leftConstraints.size() != rightConstraints.size()) {
-					leftConstraints.clear();
-				} else {
-					for (int i = 0; i < leftConstraints.size(); i++) {
-						System.out.println(leftConstraints.get(i).equals(rightConstraints.get(i)));
-					}
-				}
-			} else if (leftAttribute.get() instanceof TargetSectionAttribute) {
-
-				String leftValue = ((TargetSectionAttribute) leftAttribute.get()).getValue();
-				String rightValue = ((TargetSectionAttribute) rightAttribute).getValue();
-
-				if (!NullComparator.compare(leftValue, rightValue)) {
-					((TargetSectionAttribute) leftAttribute.get()).setValue(null);
-				}
-
-			} else {
+		while (it.hasNext()) {
+			if (!this.mergeClass(class1, it.next())) {
 				return false;
 			}
+		}
+
+		return true;
+
+	}
+
+	private boolean canMerge(Set<C> elements) {
+	
+		// Create a self-contained copy of all elements that we can safely try to merge without having to think about
+		// any consequences if the merge fails
+		//
+		Set<C> copiedElements = new HashSet<>(EcoreUtil.copyAll(elements));
+	
+		return this.merge(copiedElements);
+	
+	}
+
+	private boolean mergeClass(C left, C right) {
+
+		// Merge the attributes first
+		//
+		if (!this.mergeAttributes(left, right)) {
+			return false;
+		}
+
+		// Now, merge the references
+		//
+		return this.mergeReferences(left, right);
+
+	}
+
+	private boolean mergeAttributes(C left, C right) {
+
+		return right.getAttributes().stream().allMatch(rightAttribute -> this.mergeAttribute(left, rightAttribute));
+	}
+
+	private boolean mergeReferences(C left, C right) {
+
+		return right.getReferences().stream().allMatch(rightReference -> this.mergeReference(left, rightReference));
+	}
+
+	/**
+	 *
+	 *
+	 * @param left
+	 * @param rightAttribute
+	 * @return
+	 */
+	private boolean mergeAttribute(C left, A rightAttribute) {
+
+		Optional<A> leftAttribute = left.getAttributes().parallelStream()
+				.filter(a -> a.getName().equals(rightAttribute.getName())).findAny();
+
+		// Simply add the attribute
+		//
+		if (!leftAttribute.isPresent()) {
+			left.getAttributes().add(rightAttribute);
+			return true;
+		}
+
+		EqualityHelper equalityHelper = new EqualityHelper();
+
+		// Merge the attributes
+		//
+		if (leftAttribute.get() instanceof SourceSectionAttribute) {
+
+			List<ValueConstraint> leftConstraints = ((SourceSectionAttribute) leftAttribute.get()).getValueConstraint();
+			List<ValueConstraint> rightConstraints = ((SourceSectionAttribute) rightAttribute).getValueConstraint();
+
+			if (leftConstraints.isEmpty() && rightConstraints.isEmpty()) {
+				// nothing to be done
+			} else if (leftConstraints.size() != rightConstraints.size()) {
+				// delete all constraints
+				leftConstraints.clear();
+			} else {
+				// delete those constraints that are not equal
+				Set<ValueConstraint> constraintsToDelete = IntStream.range(0, leftConstraints.size())
+						.filter(i -> !equalityHelper.equals(leftConstraints.get(i), rightConstraints.get(i)))
+						.mapToObj(leftConstraints::get).collect(Collectors.toSet());
+
+				leftConstraints.removeAll(constraintsToDelete);
+			}
+		} else if (leftAttribute.get() instanceof TargetSectionAttribute) {
+
+			String leftValue = ((TargetSectionAttribute) leftAttribute.get()).getValue();
+			String rightValue = ((TargetSectionAttribute) rightAttribute).getValue();
+
+			if (!NullComparator.compare(leftValue, rightValue)) {
+				((TargetSectionAttribute) leftAttribute.get()).setValue(null);
+			}
+
+		} else {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 *
+	 *
+	 * @param left
+	 * @param rightReference
+	 */
+	private boolean mergeReference(C left, R rightReference) {
+
+		Optional<R> leftReference = left.getReferences().parallelStream()
+				.filter(l -> l.getClass() == rightReference.getClass()
+						&& l.getEReference().equals(rightReference.getEReference()))
+				.findAny();
+
+		// Simply add the reference
+		//
+		if (!leftReference.isPresent()) {
+			left.getReferences().add(rightReference);
+			return true;
+		}
+
+		// Simply add the values
+		//
+		if (leftReference.get().getValuesGeneric().isEmpty()) {
+			leftReference.get().addValuesGeneric(rightReference.getValuesGeneric());
+			return true;
+		}
+
+		// Try to merge the references
+		//
+		if (leftReference.get() instanceof SourceSectionReference) {
+
+		} else if (leftReference.get() instanceof TargetSectionReference) {
+
+		} else {
+			return false;
 		}
 
 		return true;

@@ -2,37 +2,39 @@
  */
 package pamtram.metamodel;
 
+import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Reference</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.metamodel.Reference#getEReference <em>EReference</em>}</li>
- *   <li>{@link pamtram.metamodel.Reference#getOwningClass <em>Owning Class</em>}</li>
+ * <li>{@link pamtram.metamodel.Reference#getEReference <em>EReference</em>}</li>
+ * <li>{@link pamtram.metamodel.Reference#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getReference()
- * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceMatchesParentEClass'"
+ * @model abstract="true" annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceMatchesParentEClass'"
  * @generated
  */
-public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElement<S, C, R, A> {
+public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+		extends MetaModelElement<S, C, R, A> {
+
 	/**
-	 * Returns the value of the '<em><b>EReference</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>EReference</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>EReference</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>EReference</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>EReference</em>' reference.
 	 * @see #setEReference(EReference)
 	 * @see pamtram.metamodel.MetamodelPackage#getReference_EReference()
@@ -42,24 +44,25 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.meta
 	EReference getEReference();
 
 	/**
-	 * Sets the value of the '{@link pamtram.metamodel.Reference#getEReference <em>EReference</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>EReference</em>' reference.
+	 * Sets the value of the '{@link pamtram.metamodel.Reference#getEReference <em>EReference</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @param value
+	 *            the new value of the '<em>EReference</em>' reference.
 	 * @see #getEReference()
 	 * @generated
 	 */
 	void setEReference(EReference value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.Class#getReferences <em>References</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference. It is bidirectional and its opposite
+	 * is '{@link pamtram.metamodel.Class#getReferences <em>References</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Owning Class</em>' container reference.
 	 * @see pamtram.metamodel.MetamodelPackage#getReference_OwningClass()
 	 * @see pamtram.metamodel.Class#getReferences
@@ -69,11 +72,38 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.meta
 	C getOwningClass();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof <%pamtram.metamodel.Class%>)) {\r\n\treturn true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EClass%> parentEClass = ((Class<?, ?, ?, ?>) this.eContainer()).getEClass();\r\n\r\nboolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eReference \'\" + this.getEReference().getName() + \"\' is not allowed by the containing Class!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.metamodel.MetamodelPackage%>.Literals.REFERENCE__EREFERENCE }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.isLibraryEntry() ||
+	 *        this.getEReference() == null || !(this.eContainer() instanceof <%pamtram.metamodel.Class%>)) {\r\n\treturn
+	 *        true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EClass%> parentEClass = ((Class<?, ?, ?, ?>)
+	 *        this.eContainer()).getEClass();\r\n\r\nboolean result = parentEClass == null ? true :
+	 *        parentEClass.getEAllReferences().contains(this.getEReference());\r\n\r\nif (!result && diagnostics !=
+	 *        null) {\r\n\r\n\tString errorMessage = \"The eReference \'\" + this.getEReference().getName() + \"\' is
+	 *        not allowed by the containing Class!\";\r\n\r\n\tdiagnostics.add(new
+	 *        <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.metamodel.util.MetamodelValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew
+	 *        Object[] { this, <%pamtram.metamodel.MetamodelPackage%>.Literals.REFERENCE__EREFERENCE
+	 *        }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateEReferenceMatchesParentEClass(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<C> getValuesGeneric();
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @model valuesMany="true"
+	 * @generated
+	 */
+	void addValuesGeneric(EList<C> values);
+
+	void addValuesGeneric(List<C> values);
 
 } // Reference

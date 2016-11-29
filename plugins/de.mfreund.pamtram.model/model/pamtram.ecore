@@ -646,6 +646,14 @@
           </eGenericType>
         </eParameters>
       </eOperations>
+      <eOperations name="getValuesGeneric" upperBound="-1">
+        <eGenericType eTypeParameter="#//metamodel/Reference/C"/>
+      </eOperations>
+      <eOperations name="addValuesGeneric">
+        <eParameters name="values" upperBound="-1">
+          <eGenericType eTypeParameter="#//metamodel/Reference/C"/>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eReference" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" changeable="false"
@@ -777,11 +785,6 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionReference" abstract="true">
-      <eOperations name="getValuesGeneric" upperBound="-1" eType="#//metamodel/SourceSectionClass">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#x9;&#x9;&#x9;&#x9;EList&lt;SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList&lt;SourceSectionClass>();&#xA;&#x9;&#x9;&#x9;&#x9;if(this instanceof SourceSectionContainmentReference){&#xA;&#x9;&#x9;&#x9;&#x9; secs.addAll(((SourceSectionContainmentReference) this).getValue());&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;} else if(this instanceof MetaModelSectionReference){&#xA;&#x9;&#x9;&#x9;&#x9; secs.addAll(((MetaModelSectionReference) this).getValue());&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;return secs;"/>
-        </eAnnotations>
-      </eOperations>
       <eGenericSuperTypes eClassifier="#//metamodel/Reference">
         <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
@@ -790,11 +793,6 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionReference" abstract="true">
-      <eOperations name="getValuesGeneric" upperBound="-1" eType="#//metamodel/TargetSectionClass">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;TargetSectionClass> secs= new org.eclipse.emf.common.util.BasicEList&lt;TargetSectionClass>();&#xA;if(this instanceof TargetSectionContainmentReference){&#xA; secs.addAll(((TargetSectionContainmentReference) this).getValue());&#xA;&#xA;} else if(this instanceof TargetSectionNonContainmentReference){&#xA; secs.addAll(((TargetSectionNonContainmentReference) this).getValue());&#xA;}&#xA;return secs;"/>
-        </eAnnotations>
-      </eOperations>
       <eGenericSuperTypes eClassifier="#//metamodel/Reference">
         <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>

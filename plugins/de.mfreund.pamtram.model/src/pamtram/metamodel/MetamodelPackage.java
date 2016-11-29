@@ -2224,13 +2224,31 @@ public interface MetamodelPackage extends EPackage {
 	int REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE___GET_VALUES_GENERIC = META_MODEL_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE___ADD_VALUES_GENERIC__ELIST = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 1;
+	int REFERENCE_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2312,6 +2330,24 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
@@ -2413,6 +2449,24 @@ public interface MetamodelPackage extends EPackage {
 	int NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
 	 * The operation id for the '<em>Validate EReference Is Non Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2509,7 +2563,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC = REFERENCE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The number of operations of the '<em>Source Section Reference</em>' class.
@@ -2518,7 +2581,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 1;
+	int SOURCE_SECTION_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2599,7 +2662,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE___GET_VALUES_GENERIC = REFERENCE_OPERATION_COUNT + 0;
+	int TARGET_SECTION_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The number of operations of the '<em>Target Section Reference</em>' class.
@@ -2608,7 +2680,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 1;
+	int TARGET_SECTION_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2692,6 +2764,24 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2701,22 +2791,13 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Get Values Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Target Section Containment Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = CONTAINMENT_REFERENCE_OPERATION_COUNT + 1;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2800,6 +2881,24 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
 	 * The operation id for the '<em>Validate EReference Is Non Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2809,22 +2908,13 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Get Values Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = NON_CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Target Section Non Containment Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE_OPERATION_COUNT = NON_CONTAINMENT_REFERENCE_OPERATION_COUNT + 1;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE_OPERATION_COUNT = NON_CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2908,6 +2998,24 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2917,22 +3025,13 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Get Values Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Source Section Containment Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = CONTAINMENT_REFERENCE_OPERATION_COUNT + 1;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3023,6 +3122,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int META_MODEL_SECTION_REFERENCE___GET_VALUES_GENERIC = SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int META_MODEL_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = SOURCE_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
@@ -5842,6 +5950,26 @@ public interface MetamodelPackage extends EPackage {
 	EOperation getReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.Reference#getValuesGeneric() <em>Get Values Generic</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Values Generic</em>' operation.
+	 * @see pamtram.metamodel.Reference#getValuesGeneric()
+	 * @generated
+	 */
+	EOperation getReference__GetValuesGeneric();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.Reference#addValuesGeneric(org.eclipse.emf.common.util.EList) <em>Add Values Generic</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Add Values Generic</em>' operation.
+	 * @see pamtram.metamodel.Reference#addValuesGeneric(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getReference__AddValuesGeneric__EList();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.ContainmentReference <em>Containment Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5914,16 +6042,6 @@ public interface MetamodelPackage extends EPackage {
 	EClass getSourceSectionReference();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.SourceSectionReference#getValuesGeneric() <em>Get Values Generic</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Values Generic</em>' operation.
-	 * @see pamtram.metamodel.SourceSectionReference#getValuesGeneric()
-	 * @generated
-	 */
-	EOperation getSourceSectionReference__GetValuesGeneric();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionReference <em>Target Section Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5932,16 +6050,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTargetSectionReference();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.TargetSectionReference#getValuesGeneric() <em>Get Values Generic</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Values Generic</em>' operation.
-	 * @see pamtram.metamodel.TargetSectionReference#getValuesGeneric()
-	 * @generated
-	 */
-	EOperation getTargetSectionReference__GetValuesGeneric();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionContainmentReference <em>Target Section Containment Reference</em>}'.
@@ -7082,6 +7190,22 @@ public interface MetamodelPackage extends EPackage {
 		EOperation REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Values Generic</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation REFERENCE___GET_VALUES_GENERIC = eINSTANCE.getReference__GetValuesGeneric();
+
+		/**
+		 * The meta object literal for the '<em><b>Add Values Generic</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation REFERENCE___ADD_VALUES_GENERIC__ELIST = eINSTANCE.getReference__AddValuesGeneric__EList();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7144,14 +7268,6 @@ public interface MetamodelPackage extends EPackage {
 		EClass SOURCE_SECTION_REFERENCE = eINSTANCE.getSourceSectionReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Get Values Generic</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC = eINSTANCE.getSourceSectionReference__GetValuesGeneric();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionReferenceImpl <em>Target Section Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7160,14 +7276,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TARGET_SECTION_REFERENCE = eINSTANCE.getTargetSectionReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Values Generic</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TARGET_SECTION_REFERENCE___GET_VALUES_GENERIC = eINSTANCE.getTargetSectionReference__GetValuesGeneric();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionContainmentReferenceImpl <em>Target Section Containment Reference</em>}' class.

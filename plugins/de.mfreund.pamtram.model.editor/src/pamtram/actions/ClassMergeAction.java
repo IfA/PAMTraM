@@ -25,6 +25,7 @@ import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
+import pamtram.util.ClassMerger;
 
 /**
  * An {@link Action} that can be used to merge multiple {@link Class Classes}.

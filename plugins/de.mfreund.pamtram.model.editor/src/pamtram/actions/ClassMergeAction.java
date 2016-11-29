@@ -30,9 +30,7 @@ import pamtram.metamodel.Class;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionReference;
 import pamtram.metamodel.ValueConstraint;
 
 /**
@@ -146,14 +144,14 @@ public class ClassMergeAction<S extends Section<S, C, R, A>, C extends pamtram.m
 	}
 
 	private boolean canMerge(Set<C> elements) {
-	
+
 		// Create a self-contained copy of all elements that we can safely try to merge without having to think about
 		// any consequences if the merge fails
 		//
 		Set<C> copiedElements = new HashSet<>(EcoreUtil.copyAll(elements));
-	
+
 		return this.merge(copiedElements);
-	
+
 	}
 
 	private boolean mergeClass(C left, C right) {
@@ -172,12 +170,14 @@ public class ClassMergeAction<S extends Section<S, C, R, A>, C extends pamtram.m
 
 	private boolean mergeAttributes(C left, C right) {
 
-		return right.getAttributes().stream().allMatch(rightAttribute -> this.mergeAttribute(left, rightAttribute));
+		return new ArrayList<>(right.getAttributes()).stream()
+				.allMatch(rightAttribute -> this.mergeAttribute(left, rightAttribute));
 	}
 
 	private boolean mergeReferences(C left, C right) {
 
-		return right.getReferences().stream().allMatch(rightReference -> this.mergeReference(left, rightReference));
+		return new ArrayList<>(right.getReferences()).stream()
+				.allMatch(rightReference -> this.mergeReference(left, rightReference));
 	}
 
 	/**
@@ -257,23 +257,35 @@ public class ClassMergeAction<S extends Section<S, C, R, A>, C extends pamtram.m
 			return true;
 		}
 
-		// Simply add the values
+		// Nothing to be done
 		//
-		if (leftReference.get().getValuesGeneric().isEmpty()) {
-			leftReference.get().addValuesGeneric(rightReference.getValuesGeneric());
+		if (rightReference.getValuesGeneric().isEmpty()) {
 			return true;
 		}
 
-		// Try to merge the references
+		// For a single-valued reference, we cannot simply add the values (unless the 'size == 1'-constraint is already
+		// violated). Consequently, we try to merge the values...
 		//
-		if (leftReference.get() instanceof SourceSectionReference) {
+		if (!leftReference.get().getEReference().isMany() && leftReference.get().getValuesGeneric().size() == 1) {
 
-		} else if (leftReference.get() instanceof TargetSectionReference) {
+			Set<C> valuesToMerge = Stream
+					.concat(leftReference.get().getValuesGeneric().stream(), rightReference.getValuesGeneric().stream())
+					.collect(Collectors.toSet());
 
-		} else {
-			return false;
+			if (this.canMerge(valuesToMerge)) {
+
+				this.merge(valuesToMerge);
+				return true;
+
+			} else {
+
+				return false;
+			}
 		}
 
+		// In any other case, we simply add the values
+		//
+		leftReference.get().addValuesGeneric(rightReference.getValuesGeneric());
 		return true;
 	}
 

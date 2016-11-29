@@ -1,11 +1,13 @@
 /**
- * 
+ *
  */
 package pamtram.actions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -32,21 +34,19 @@ import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.ValueConstraint;
 
 /**
- * An {@link Action} that can be used to merge multiple {@link Class
- * Classes}.
+ * An {@link Action} that can be used to merge multiple {@link Class Classes}.
  *
  * @author mfreund
  */
 public class ClassMergeAction extends Action {
 
 	/**
-	 * The list of {@link Class elements} selected by the user to be merged.
+	 * The set of {@link Class elements} to be merged.
 	 */
-	protected List<pamtram.metamodel.Class<?, ?, ?, ?>> selectedElements = new ArrayList<>();
+	protected Set<pamtram.metamodel.Class<?, ?, ?, ?>> elementsToMerge = new HashSet<>();
 
 	/**
-	 * The list of {@link ContentViewer ContentViewers} to be refreshed
-	 * after the merge.
+	 * The list of {@link ContentViewer ContentViewers} to be refreshed after the merge.
 	 */
 	protected List<ContentViewer> viewersToUpdate;
 
@@ -56,11 +56,9 @@ public class ClassMergeAction extends Action {
 	 * @param text
 	 *            The String used as text for the action.
 	 * @param selection
-	 *            The {@link IStructuredSelection selected elements} to be
-	 *            merged.
+	 *            The {@link IStructuredSelection selected elements} to be merged.
 	 * @param viewersToUpdate
-	 *            The list of {@link ContentViewer ContentViewers} to be
-	 *            refreshed after the merge.
+	 *            The list of {@link ContentViewer ContentViewers} to be refreshed after the merge.
 	 */
 	public ClassMergeAction(String text, IStructuredSelection selection, List<ContentViewer> viewersToUpdate) {
 
@@ -75,11 +73,11 @@ public class ClassMergeAction extends Action {
 
 		// And if all selected elements represent the same EClass
 		//
-		this.selectedElements = Stream.of(selection.toArray())
+		this.elementsToMerge = Stream.of(selection.toArray())
 				.filter(e -> e instanceof pamtram.metamodel.Class<?, ?, ?, ?>)
-				.map(e -> (pamtram.metamodel.Class<?, ?, ?, ?>) e).collect(Collectors.toList());
-		Set<EClass> eClasses = this.selectedElements.parallelStream()
-				.map(pamtram.metamodel.Class<?, ?, ?, ?>::getEClass).collect(Collectors.toSet());
+				.map(e -> (pamtram.metamodel.Class<?, ?, ?, ?>) e).collect(Collectors.toSet());
+		Set<EClass> eClasses = this.elementsToMerge.parallelStream().map(pamtram.metamodel.Class<?, ?, ?, ?>::getEClass)
+				.collect(Collectors.toSet());
 
 		enabled = enabled && eClasses.size() == 1;
 
@@ -89,56 +87,50 @@ public class ClassMergeAction extends Action {
 	@Override
 	public void run() {
 
-		// Merge the elements
-		//
-		boolean result = false;
+		Set<pamtram.metamodel.Class<?, ?, ?, ?>> mergedElements = new HashSet<>();
 
-		pamtram.metamodel.Class<?, ?, ?, ?> class1 = this.selectedElements.get(0);
+		Iterator<pamtram.metamodel.Class<?, ?, ?, ?>> it = this.elementsToMerge.iterator();
 
-		for (Class<?, ?, ?, ?> class2 : this.selectedElements) {
-			if (class1.equals(class2)) {
-				continue;
-			}
+		pamtram.metamodel.Class<?, ?, ?, ?> class1 = it.next();
+
+		it.forEachRemaining(class2 -> {
+
+			boolean mergeResult = false;
 
 			if (class1 instanceof SourceSectionClass && class2 instanceof SourceSectionClass) {
 
-				result = this.merge((SourceSectionClass) class1, (SourceSectionClass) class2);
+				mergeResult = this.merge((SourceSectionClass) class1, (SourceSectionClass) class2);
 			} else if (class1 instanceof TargetSectionClass && class2 instanceof TargetSectionClass) {
 
-				result = this.merge((TargetSectionClass) class1, (TargetSectionClass) class2);
+				mergeResult = this.merge((TargetSectionClass) class1, (TargetSectionClass) class2);
 			}
 
-			// If the merge was successful, delete the merged element and
-			// update/refresh the viewers
-			//
-			if (result) {
-
-				EcoreUtil.delete(class2);
-
-				this.viewersToUpdate.stream().forEach(v -> {
-
-					if (v.getInput() instanceof Object[]) {
-						List<Object> input = new ArrayList<>(Arrays.asList((Object[]) v.getInput()));
-						input.remove(class2);
-						v.setInput(input);
-					} else if (v.getInput() instanceof Collection<?>) {
-						List<Object> input = new ArrayList<>((Collection<?>) v.getInput());
-						input.remove(class2);
-						v.setInput(input);
-					}
-
-					v.refresh();
-				});
-
+			if (mergeResult) {
+				mergedElements.add(class2);
 			} else {
-				break;
+				MessageDialog.openError(UIHelper.getShell(), "Error", "Error while merging the selected elements!");
 			}
-		}
 
-		if (!result) {
+		});
 
-			MessageDialog.openError(UIHelper.getShell(), "Error", "Error while merging the selected elements!");
-		}
+		// Delete the merged elements and update/refresh the viewers
+		//
+		mergedElements.stream().forEach(EcoreUtil::delete);
+
+		this.viewersToUpdate.stream().forEach(v -> {
+
+			if (v.getInput() instanceof Object[]) {
+				List<Object> input = new ArrayList<>(Arrays.asList((Object[]) v.getInput()));
+				input.removeAll(mergedElements);
+				v.setInput(input);
+			} else if (v.getInput() instanceof Collection<?>) {
+				List<Object> input = new ArrayList<>((Collection<?>) v.getInput());
+				input.removeAll(mergedElements);
+				v.setInput(input);
+			}
+
+			v.refresh();
+		});
 
 	}
 
@@ -163,8 +155,7 @@ public class ClassMergeAction extends Action {
 
 				List<ValueConstraint> leftConstraints = ((SourceSectionAttribute) leftAttribute.get())
 						.getValueConstraint();
-				List<ValueConstraint> rightConstraints = ((SourceSectionAttribute) rightAttribute)
-						.getValueConstraint();
+				List<ValueConstraint> rightConstraints = ((SourceSectionAttribute) rightAttribute).getValueConstraint();
 
 				if (leftConstraints.isEmpty() && rightConstraints.isEmpty()) {
 					// nothing to be done

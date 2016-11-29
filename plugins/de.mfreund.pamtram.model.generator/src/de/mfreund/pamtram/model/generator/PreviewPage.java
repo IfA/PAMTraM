@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,6 +19,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TreePath;
@@ -31,6 +33,8 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
+import org.eclipse.ui.views.properties.IPropertyDescriptor;
+import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertyEditingSupport;
 
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerLabelProvider;
@@ -39,47 +43,46 @@ import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.EnhancedContainerCheckedTreeViewer;
 import pamtram.actions.ClassMergeAction;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 
 /**
- * This {@link WizardPage} will display a preview of a generated source or
- * target {@link Section} that will get inserted into a pamtram model.
+ * This {@link WizardPage} will display a preview of a generated source or target {@link Section} that will get inserted
+ * into a pamtram model.
  *
  * @author mfreund
  */
 public class PreviewPage extends WizardPage {
 
 	/**
-	 * The {@link WizardData} that stores all relevant information gathered in
-	 * the course of the wizard.
+	 * The {@link WizardData} that stores all relevant information gathered in the course of the wizard.
 	 */
 	protected WizardData wizardData;
 
 	/**
-	 * The {@link ContainerCheckedTreeViewer} that will display the preview of
-	 * the generated section in a tree view.
+	 * The {@link ContainerCheckedTreeViewer} that will display the preview of the generated section in a tree view.
 	 */
 	protected ContainerCheckedTreeViewer viewer;
 
 	/**
-	 * The {@link CheckboxTableViewer} that will display the preview of the
-	 * attributes of the element currently selected in the {@link #viewer}.
+	 * The {@link CheckboxTableViewer} that will display the preview of the attributes of the element currently selected
+	 * in the {@link #viewer}.
 	 */
 	protected CheckboxTableViewer propertiesViewer;
 
 	/**
-	 * This keeps track of all {@link MetaModelElement MetaModelElements}
-	 * displayed in the {@link #viewer}.
+	 * This keeps track of all {@link MetaModelElement MetaModelElements} displayed in the {@link #viewer}.
 	 */
 	protected Set<MetaModelElement<?, ?, ?, ?>> elements;
 
 	/**
-	 * This keeps track of those {@link Attribute Attributes} that have been
-	 * unchecked by the user in the {@link #propertiesViewer} and that thus will
-	 * not be included in the section that will finally be added to the pamtram
-	 * model.
+	 * This keeps track of those {@link Attribute Attributes} that have been unchecked by the user in the
+	 * {@link #propertiesViewer} and that thus will not be included in the section that will finally be added to the
+	 * pamtram model.
 	 */
 	protected Set<MetaModelElement<?, ?, ?, ?>> attributesToExclude = new HashSet<>();
 
@@ -92,8 +95,7 @@ public class PreviewPage extends WizardPage {
 	 * This creates an instance.
 	 *
 	 * @param wizardData
-	 *            The {@link WizardData} that stores all relevant information
-	 *            gathered in the course of the wizard.
+	 *            The {@link WizardData} that stores all relevant information gathered in the course of the wizard.
 	 */
 	public PreviewPage(WizardData wizardData) {
 		super("Preview");
@@ -213,8 +215,8 @@ public class PreviewPage extends WizardPage {
 
 		// Enable editing of attribute values
 		//
-		valueColumn.setEditingSupport(new PropertyEditingSupport(this.propertiesViewer,
-				new AdapterFactoryContentProvider(this.adapterFactory), "value"));
+		valueColumn.setEditingSupport(new PreviewPagePropertyEditingSupport(this.propertiesViewer,
+				new AdapterFactoryContentProvider(this.adapterFactory)));
 
 		// the table that the viewer operates on
 		final Table table = this.propertiesViewer.getTable();
@@ -255,8 +257,7 @@ public class PreviewPage extends WizardPage {
 	}
 
 	/**
-	 * Create the {@link Section Section(s)} with the help of a
-	 * {@link MetaModelSectionGenerator} and store them in the
+	 * Create the {@link Section Section(s)} with the help of a {@link MetaModelSectionGenerator} and store them in the
 	 * {@link #wizardData}.
 	 *
 	 */
@@ -275,8 +276,7 @@ public class PreviewPage extends WizardPage {
 	}
 
 	/**
-	 * This creates a {@link TableViewerColumn} in the
-	 * {@link #propertiesViewer}.
+	 * This creates a {@link TableViewerColumn} in the {@link #propertiesViewer}.
 	 *
 	 * @param title
 	 *            The title of the column.
@@ -299,13 +299,10 @@ public class PreviewPage extends WizardPage {
 	}
 
 	/**
-	 * This returns all {@link MetaModelElement MetaModelElements} that shall
-	 * not be included in the generated sections because they have been
-	 * unchecked by the user in the {@link #viewer} or in the
-	 * {@link #propertiesViewer}.
+	 * This returns all {@link MetaModelElement MetaModelElements} that shall not be included in the generated sections
+	 * because they have been unchecked by the user in the {@link #viewer} or in the {@link #propertiesViewer}.
 	 *
-	 * @return The {@link MetaModelElement MetaModelElements} to exclude from
-	 *         the generated {@link Section Section(s)}.
+	 * @return The {@link MetaModelElement MetaModelElements} to exclude from the generated {@link Section Section(s)}.
 	 */
 	public Set<MetaModelElement<?, ?, ?, ?>> getElementsToExclude() {
 
@@ -328,9 +325,97 @@ public class PreviewPage extends WizardPage {
 	}
 
 	/**
-	 * A {@link SelectionListener2 SelectionListener} that will update the
-	 * {@link PreviewPage#propertiesViewer} based on the selection in the
-	 * {@link PreviewPage#viewer}.
+	 * A special {@link PropertyEditingSupport} that allows to edit the values of {@link SourceSectionAttribute
+	 * SourceSectionAttributes} and {@link TargetSectionAttribute TargetSectionAttributes}.
+	 * <p />
+	 * As {@link TargetSectionAttribute TargetSectionAttributes} are not equipped with a <em>value</em> attribute, the
+	 * <em>expression</em> of an associated {@link EqualityMatcher} is used as value instead.
+	 *
+	 * @author mfreund
+	 */
+	private class PreviewPagePropertyEditingSupport extends PropertyEditingSupport {
+
+		/**
+		 * This creates an instance.
+		 *
+		 * @param viewer
+		 *            The {@link ColumnViewer} for that this editing support is defined.
+		 * @param propertySourceProvider
+		 *            The {@link IPropertySourceProvider} that is used to retrieve and set property values.
+		 */
+		private PreviewPagePropertyEditingSupport(ColumnViewer viewer, IPropertySourceProvider propertySourceProvider) {
+			super(viewer, propertySourceProvider, "value");
+		}
+
+		@Override
+		protected boolean canEdit(Object object) {
+
+			return object instanceof SourceSectionAttribute
+					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
+					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityMatcher
+					|| super.canEdit(object);
+		}
+
+		@Override
+		protected org.eclipse.jface.viewers.CellEditor getCellEditor(Object object) {
+
+			if (object instanceof SourceSectionAttribute
+					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
+					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityMatcher) {
+
+				Optional<IPropertyDescriptor> expressionDescriptor = Arrays
+						.asList(this.propertySourceProvider
+								.getPropertySource(((SourceSectionAttribute) object).getValueConstraint().get(0))
+								.getPropertyDescriptors())
+						.stream().filter(d -> "expression".equals(d.getId())).findAny();
+
+				return expressionDescriptor.isPresent()
+						? expressionDescriptor.get().createPropertyEditor((Composite) this.getViewer().getControl())
+						: super.getCellEditor(object);
+
+			} else {
+
+				return super.getCellEditor(object);
+			}
+
+		}
+
+		@Override
+		protected Object getValue(Object object) {
+
+			if (object instanceof SourceSectionAttribute
+					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
+					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityMatcher) {
+
+				return ((EqualityMatcher) ((SourceSectionAttribute) object).getValueConstraint().get(0))
+						.getExpression();
+
+			} else {
+				return super.getValue(object);
+			}
+		}
+
+		@Override
+		protected void setValue(Object object, Object value) {
+
+			if (object instanceof SourceSectionAttribute && value instanceof String
+					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
+					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityMatcher) {
+
+				((EqualityMatcher) ((SourceSectionAttribute) object).getValueConstraint().get(0))
+						.setExpression((String) value);
+
+				// We need to refresh the viewer manually so that the displayed value will be updated
+				PreviewPage.this.propertiesViewer.refresh();
+			} else {
+				super.setValue(object, value);
+			}
+		}
+	}
+
+	/**
+	 * A {@link SelectionListener2 SelectionListener} that will update the {@link PreviewPage#propertiesViewer} based on
+	 * the selection in the {@link PreviewPage#viewer}.
 	 *
 	 * @author mfreund
 	 *

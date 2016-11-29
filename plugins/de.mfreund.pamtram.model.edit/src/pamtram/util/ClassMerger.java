@@ -4,9 +4,12 @@
 package pamtram.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -42,8 +45,10 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	/**
 	 * After a call to {@link #merge()} this contains all the {@link EObject elements} that have been merged into other
 	 * elements and that can now be deleted from the model.
+	 * <p />
+	 * The key of this map represents the element into which the associated set of values has been merged.
 	 */
-	protected Set<EObject> mergedElements;
+	protected Map<EObject, Set<EObject>> mergedElements;
 
 	/**
 	 * After a call to {@link #merge()} this contains all the {@link EObject elements} that have been deleted during the
@@ -70,7 +75,7 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	 */
 	public ClassMerger(Set<C> elementsToMerge) {
 		this.elementsToMerge = elementsToMerge;
-		this.mergedElements = new HashSet<>();
+		this.mergedElements = new HashMap<>();
 		this.deletedElements = new HashSet<>();
 		this.subMergers = new ArrayList<>();
 
@@ -115,10 +120,13 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	/**
 	 * @return the {@link #mergedElements}
 	 */
-	public Set<EObject> getMergedElements() {
+	public Map<EObject, Set<EObject>> getMergedElements() {
 
-		Set<EObject> ret = new HashSet<>(this.mergedElements);
-		ret.addAll(this.subMergers.stream().flatMap(s -> s.getMergedElements().stream()).collect(Collectors.toSet()));
+		Map<EObject, Set<EObject>> ret = new HashMap<>();
+		ret.putAll(this.mergedElements);
+
+		ret.putAll(this.subMergers.stream().flatMap(s -> s.getMergedElements().entrySet().stream())
+				.collect(Collectors.toMap(Entry::getKey, Entry::getValue)));
 		return ret;
 	}
 
@@ -138,13 +146,16 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 
 		C class1 = it.next();
 
+		Set<EObject> merged = new HashSet<>();
 		while (it.hasNext()) {
 			C class2 = it.next();
 			if (!this.mergeClass(class1, class2)) {
 				return false;
 			}
-			this.mergedElements.add(class2);
+
+			merged.add(class2);
 		}
+		this.mergedElements.put(class1, merged);
 
 		return true;
 	}
@@ -251,7 +262,12 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 			return false;
 		}
 
-		this.mergedElements.add(rightAttribute);
+		Set<EObject> merged = new HashSet<>();
+		if (this.mergedElements.containsKey(leftAttribute.get())) {
+			merged.addAll(this.mergedElements.get(leftAttribute.get()));
+		}
+		merged.add(rightAttribute);
+		this.mergedElements.put(leftAttribute.get(), merged);
 
 		return true;
 	}
@@ -308,7 +324,13 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 		// In any other case, we simply add the values
 		//
 		leftReference.get().addValuesGeneric(rightReference.getValuesGeneric());
-		this.mergedElements.addAll(rightReference.getValuesGeneric());
+
+		Set<EObject> merged = new HashSet<>();
+		if (this.mergedElements.containsKey(leftReference.get())) {
+			merged.addAll(this.mergedElements.get(leftReference.get()));
+		}
+		merged.addAll(rightReference.getValuesGeneric());
+		this.mergedElements.put(leftReference.get(), merged);
 
 		return true;
 	}

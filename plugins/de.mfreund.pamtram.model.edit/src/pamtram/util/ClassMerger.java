@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 
 import de.mfreund.pamtram.util.NullComparator;
+import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.Reference;
@@ -183,8 +184,17 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	 */
 	private boolean mergeAttribute(C left, A rightAttribute) {
 
-		Optional<A> leftAttribute = left.getAttributes().parallelStream()
-				.filter(a -> a.getName().equals(rightAttribute.getName())).findAny();
+		Optional<A> leftAttribute;
+
+		if (rightAttribute instanceof ActualAttribute<?, ?, ?, ?>) {
+			leftAttribute = left.getAttributes().parallelStream()
+					.filter(a -> a instanceof ActualAttribute<?, ?, ?, ?> && ((ActualAttribute<?, ?, ?, ?>) a)
+							.getAttribute().equals(((ActualAttribute<?, ?, ?, ?>) rightAttribute).getAttribute()))
+					.findAny();
+		} else {
+			leftAttribute = left.getAttributes().parallelStream()
+					.filter(a -> a.getName().equals(rightAttribute.getName())).findAny();
+		}
 
 		// Simply add the attribute
 		//
@@ -197,8 +207,19 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 
 		// Merge the attributes
 		//
+		String mergedName;
+		if (leftAttribute.get().getName().isEmpty()) {
+			mergedName = rightAttribute.getName();
+		} else if (rightAttribute.getName().isEmpty()) {
+			mergedName = leftAttribute.get().getName();
+		} else {
+			mergedName = ClassMerger.longestCommonSubstring(leftAttribute.get().getName(), rightAttribute.getName());
+		}
+		leftAttribute.get().setName(mergedName);
+
 		if (leftAttribute.get() instanceof SourceSectionAttribute) {
 
+			// TODO find a better algorithm to merge constraints?
 			List<ValueConstraint> leftConstraints = ((SourceSectionAttribute) leftAttribute.get()).getValueConstraint();
 			List<ValueConstraint> rightConstraints = ((SourceSectionAttribute) rightAttribute).getValueConstraint();
 
@@ -290,5 +311,35 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 		this.mergedElements.addAll(rightReference.getValuesGeneric());
 
 		return true;
+	}
+
+	/**
+	 * Find the longest common substring of two Strings. Copied from <a href=
+	 * "https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring#Java">Wikipedia</a>.
+	 *
+	 * @param S1
+	 * @param S2
+	 * @return
+	 */
+	private static String longestCommonSubstring(String S1, String S2) {
+
+		int Start = 0;
+		int Max = 0;
+		for (int i = 0; i < S1.length(); i++) {
+			for (int j = 0; j < S2.length(); j++) {
+				int x = 0;
+				while (S1.charAt(i + x) == S2.charAt(j + x)) {
+					x++;
+					if (i + x >= S1.length() || j + x >= S2.length()) {
+						break;
+					}
+				}
+				if (x > Max) {
+					Max = x;
+					Start = i;
+				}
+			}
+		}
+		return S1.substring(Start, Start + Max);
 	}
 }

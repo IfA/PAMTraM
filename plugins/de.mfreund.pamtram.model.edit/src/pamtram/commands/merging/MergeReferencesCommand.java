@@ -104,7 +104,16 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		CompoundCommand command = new CompoundCommand();
+		CompoundCommand command = new CompoundCommand() {
+
+			@Override
+			public Collection<?> getAffectedObjects() {
+
+				// Returning the set of referencesToMerge results in a correct selection of elements in the viewers
+				//
+				return new ArrayList<>(referencesToMerge);
+			}
+		};
 
 		command.setLabel(MergeMetaModelElementsCommand.LABEL);
 		command.setDescription(MergeMetaModelElementsCommand.DESCRIPTION);

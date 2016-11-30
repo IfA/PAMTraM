@@ -4,7 +4,6 @@
 package pamtram.commands.merging;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
@@ -95,7 +94,16 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		CompoundCommand command = new CompoundCommand();
+		CompoundCommand command = new CompoundCommand() {
+
+			@Override
+			public Collection<?> getAffectedObjects() {
+
+				// Returning the set of classesToMerge results in a correct selection of elements in the viewers
+				//
+				return new ArrayList<>(classesToMerge);
+			}
+		};
 
 		command.setLabel(MergeMetaModelElementsCommand.LABEL);
 		command.setDescription(MergeMetaModelElementsCommand.DESCRIPTION);
@@ -117,12 +125,6 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 		}
 
 		return command;
-	}
-
-	@Override
-	public Collection<?> getAffectedObjects() {
-
-		return Arrays.asList(this.left);
 	}
 
 	@Override

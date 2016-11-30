@@ -5,6 +5,9 @@ package pamtram.presentation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -42,16 +45,17 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 import pamtram.PamtramPackage;
-import pamtram.actions.ClassMergeAction;
 import pamtram.actions.CreateSharedSectionModelChildAction;
 import pamtram.actions.CreateSharedSectionModelSiblingAction;
 import pamtram.actions.CutClassAndPasteAsNewSectionAction;
 import pamtram.actions.GenericConversionCommandAction;
+import pamtram.actions.MetaModelElementMergeAction;
 import pamtram.actions.PamtramDeleteAction;
 import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -380,18 +384,27 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 			if (section != null && !section.equals(descriptor)) {
 				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.metamodel.Class<?, ?, ?, ?>) descriptor));
 			}
-		} else if (selection instanceof StructuredSelection && ((StructuredSelection) selection).size() > 1
-				&& Arrays.asList(((StructuredSelection) selection).toArray()).stream()
-						.allMatch(e -> e instanceof pamtram.metamodel.Class)) {
+		} else if (selection instanceof StructuredSelection && ((StructuredSelection) selection).size() > 1) {
 
-			if (((StructuredSelection) selection).getFirstElement() instanceof SourceSectionClass) {
-				actions.add(
-						new ClassMergeAction<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>(
-								this.activeEditorPart, (IStructuredSelection) selection));
-			} else if (((StructuredSelection) selection).getFirstElement() instanceof TargetSectionClass) {
-				actions.add(
-						new ClassMergeAction<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>(
-								this.activeEditorPart, (IStructuredSelection) selection));
+			List<Object> selectedElements = Arrays.asList(((StructuredSelection) selection).toArray());
+
+			Set<Class<? extends Object>> types = selectedElements.parallelStream().map(e -> e.getClass())
+					.collect(Collectors.toSet());
+
+			if (types.size() == 1 && MetaModelElement.class.isAssignableFrom(types.iterator().next())) {
+				Class<? extends Object> metaModelElementClass = types.iterator().next();
+
+				if (SourceSectionClass.class.isAssignableFrom(metaModelElementClass)
+						|| SourceSectionReference.class.isAssignableFrom(metaModelElementClass)) {
+					actions.add(
+							new MetaModelElementMergeAction<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>(
+									this.activeEditorPart, (IStructuredSelection) selection));
+				} else if (TargetSectionClass.class.isAssignableFrom(metaModelElementClass)
+						|| TargetSectionReference.class.isAssignableFrom(metaModelElementClass)) {
+					actions.add(
+							new MetaModelElementMergeAction<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>(
+									this.activeEditorPart, (IStructuredSelection) selection));
+				}
 			}
 		}
 

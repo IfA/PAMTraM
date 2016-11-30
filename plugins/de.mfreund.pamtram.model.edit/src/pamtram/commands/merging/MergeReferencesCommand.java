@@ -4,7 +4,6 @@
 package pamtram.commands.merging;
 
 import java.util.Iterator;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,7 +26,7 @@ import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 
 /**
- * A concrete {@link MergeMetaModelElementsCommand} that allows to merge a {@link Reference} into a {@link Class}.
+ * A concrete {@link MergeMetaModelElementsCommand} that allows to merge two {@link Reference References}.
  *
  * @author mfreund
  * @param <S>
@@ -36,7 +35,7 @@ import pamtram.metamodel.Section;
  * @param <A>
  */
 public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
-		extends MergeMetaModelElementsCommand<C, R, S, C, R, A> {
+		extends MergeMetaModelElementsCommand<R, R, S, C, R, A> {
 
 	/**
 	 * This constructs an instance.
@@ -53,7 +52,7 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
 	 *            the resource set associated with the given <em>domain</em>.
 	 */
-	public MergeReferencesCommand(EditingDomain domain, C left, R right, Set<EObject> elementsOfInterest) {
+	public MergeReferencesCommand(EditingDomain domain, R left, R right, Set<EObject> elementsOfInterest) {
 		super(domain, left, right, elementsOfInterest);
 	}
 
@@ -99,9 +98,6 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		@SuppressWarnings("unchecked")
-		C containerClass = (C) referencesToMerge.iterator().next().eContainer();
-
 		CompoundCommand command = new CompoundCommand();
 
 		command.setLabel(MergeMetaModelElementsCommand.LABEL);
@@ -111,9 +107,11 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 		//
 		Iterator<R> it = referencesToMerge.iterator();
 
+		R reference1 = it.next();
+
 		while (it.hasNext()) {
-			R reference = it.next();
-			command.append(new MergeReferencesCommand<>(domain, containerClass, reference, elementsOfInterest));
+			R reference2 = it.next();
+			command.append(new MergeReferencesCommand<>(domain, reference1, reference2, elementsOfInterest));
 		}
 
 		return command;
@@ -122,57 +120,45 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	protected boolean prepare() {
 
-		Optional<R> leftReference = this.left.getReferences().parallelStream().filter(
-				l -> l.getClass() == this.right.getClass() && l.getEReference().equals(this.right.getEReference()))
-				.findAny();
-
-		// Simply add the reference
-		//
-		if (!leftReference.isPresent()) {
-			this.append(
-					new AddCommand(this.domain, this.left, MetamodelPackage.Literals.CLASS__REFERENCES, this.right));
-
-			return super.prepare();
-		}
-
 		// Nothing to be done
 		//
 		if (this.right.getValuesGeneric().isEmpty()) {
-			return true;
+			return super.prepare();
 		}
 
 		// For a single-valued reference, we cannot simply add the values (unless the 'size == 1'-constraint is
 		// already
 		// violated). Consequently, we try to merge the values...
 		//
-		if (!leftReference.get().getEReference().isMany() && leftReference.get().getValuesGeneric().size() == 1) {
+		if (!this.left.getEReference().isMany() && this.left.getValuesGeneric().size() == 1) {
 
 			Set<C> valuesToMerge = Stream
-					.concat(leftReference.get().getValuesGeneric().stream(), this.right.getValuesGeneric().stream())
+					.concat(this.left.getValuesGeneric().stream(), this.right.getValuesGeneric().stream())
 					.collect(Collectors.toSet());
 
 			// Initialize the various sub-commands
 			//
 			this.append(MergeClassesCommand.create(this.domain, valuesToMerge, this.elementsOfInterest));
 
-			this.prepareRedirectCrossReferencesCommand(this.right, leftReference.get());
+			this.prepareRedirectCrossReferencesCommand(this.right, this.left);
 
 			return super.prepare();
 		}
 
 		// In any other case, we simply add the values
 		//
-		if (leftReference.get() instanceof ContainmentReference<?, ?, ?, ?>) {
-
-			this.append(new AddCommand(this.domain, leftReference.get(),
-					MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
-		} else if (leftReference.get() instanceof NonContainmentReference<?, ?, ?, ?>) {
-			this.append(new AddCommand(this.domain, leftReference.get(),
+		if (this.left instanceof ContainmentReference<?, ?, ?, ?>) {
+			this.append(new AddCommand(this.domain, this.left, MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+					this.right.getValuesGeneric()));
+		} else if (this.left instanceof NonContainmentReference<?, ?, ?, ?>) {
+			this.append(new AddCommand(this.domain, this.left,
 					MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
 
 		} else {
 			return false;
 		}
+
+		this.prepareRedirectCrossReferencesCommand(this.right, this.left);
 
 		return super.prepare();
 	}

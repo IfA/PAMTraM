@@ -128,12 +128,12 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 		// Merge the attributes first
 		//
 		new ArrayList<>(this.right.getAttributes()).stream().forEach(rightAttribute -> this
-				.append(new MergeAttributesCommand<>(this.domain, this.left, rightAttribute, this.elementsOfInterest)));
+				.append(new MergeAttributeIntoClassCommand<>(this.domain, this.left, rightAttribute, this.elementsOfInterest)));
 
 		// Now, merge the references
 		//
 		new ArrayList<>(this.right.getReferences()).stream().forEach(rightReference -> this
-				.append(new MergeReferencesCommand<>(this.domain, this.left, rightReference, this.elementsOfInterest)));
+				.append(new MergeReferenceIntoClassCommand<>(this.domain, this.left, rightReference, this.elementsOfInterest)));
 
 		this.prepareRedirectCrossReferencesCommand(this.right, this.left);
 

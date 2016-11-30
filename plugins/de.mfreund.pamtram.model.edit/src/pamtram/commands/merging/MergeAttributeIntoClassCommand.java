@@ -38,7 +38,7 @@ import pamtram.metamodel.ValueConstraint;
  * @param <R>
  * @param <A>
  */
-public class MergeAttributesCommand<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends MergeMetaModelElementsCommand<C, A, S, C, R, A> {
 
 	/**
@@ -56,7 +56,7 @@ public class MergeAttributesCommand<S extends Section<S, C, R, A>, C extends pam
 	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
 	 *            the resource set associated with the given <em>domain</em>.
 	 */
-	public MergeAttributesCommand(EditingDomain domain, C left, A right, Set<EObject> elementsOfInterest) {
+	public MergeAttributeIntoClassCommand(EditingDomain domain, C left, A right, Set<EObject> elementsOfInterest) {
 		super(domain, left, right, elementsOfInterest);
 	}
 

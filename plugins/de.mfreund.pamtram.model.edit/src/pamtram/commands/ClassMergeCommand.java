@@ -49,6 +49,12 @@ public class ClassMergeCommand<S extends Section<S, C, R, A>, C extends pamtram.
 	protected Set<C> elementsToMerge;
 
 	/**
+	 * The set of {@link EObject elements} that need to be consulted when
+	 * {@link #redirectCrossReferences(EObject, EObject) redirecting cross-references} after merging elements.
+	 */
+	protected Set<EObject> elementsOfInterest;
+
+	/**
 	 * The {@link ClassMerger} that is used to merge the {@link #elementsToMerge}.
 	 */
 	protected ClassMerger<S, C, R, A> merger;
@@ -56,18 +62,52 @@ public class ClassMergeCommand<S extends Section<S, C, R, A>, C extends pamtram.
 	/**
 	 * This constructs an instance of the generic command to convert an instance of a source type to an instance of the
 	 * target type.
-	 *
+	 * <p />
 	 * The actual conversion is performed by an instance of 'IConverter' that is called when the command is invoked.
+	 * <p />
+	 * Note: When using this constructor, the {@link #elementsOfInterest} are determined from all resources in the
+	 * <em>domain</em>'s resource set.
 	 *
 	 * @param domain
 	 *            The editing domain that the command operated on.
 	 * @param elementsToMerge
 	 *            The set of {@link Class elements} to merge.
+	 *
+	 * @see ClassMergeCommand#ClassMergeCommand(EditingDomain, Set, Set)
 	 */
 	public ClassMergeCommand(EditingDomain domain, Set<C> elementsToMerge) {
 		super(domain, ClassMergeCommand.LABEL, ClassMergeCommand.DESCRIPTION);
 
 		this.elementsToMerge = elementsToMerge;
+	}
+
+	/**
+	 * This constructs an instance of the generic command to convert an instance of a source type to an instance of the
+	 * target type.
+	 * <p />
+	 * The actual conversion is performed by an instance of 'IConverter' that is called when the command is invoked.
+	 * <p />
+	 * Note: This constructor should be used when merging elements that are not contained in a resource, otherwise
+	 * {@link ClassMergeCommand#ClassMergeCommand(EditingDomain, Set, Set) ClassMergeCommand(EditingDomain, Set, Set)}
+	 * should be used as this determines the {@link #elementsOfInterest} from all resources in the <em>domain</em>'s
+	 * resource set.
+	 *
+	 * @param domain
+	 *            The editing domain that the command operated on.
+	 * @param elementsToMerge
+	 *            The set of {@link Class elements} to merge.
+	 * @param elementsOfInterest
+	 *            The set of {@link EObject elements} that need to be consulted when
+	 *            {@link #redirectCrossReferences(EObject, EObject) redirecting cross-references} after merging
+	 *            elements.
+	 *
+	 * @see ClassMergeCommand#ClassMergeCommand(EditingDomain, Set)
+	 */
+	public ClassMergeCommand(EditingDomain domain, Set<C> elementsToMerge, Set<EObject> elementsOfInterest) {
+		super(domain, ClassMergeCommand.LABEL, ClassMergeCommand.DESCRIPTION);
+
+		this.elementsToMerge = elementsToMerge;
+		this.elementsOfInterest = elementsOfInterest;
 	}
 
 	@Override
@@ -106,15 +146,19 @@ public class ClassMergeCommand<S extends Section<S, C, R, A>, C extends pamtram.
 
 		// Determine all cross references...
 		//
-		Collection<Setting> usages = EcoreUtil.UsageCrossReferencer.find(mergedElement, this.domain.getResourceSet());
+		Collection<Setting> usages;
+
+		if (this.elementsOfInterest != null) {
+			usages = EcoreUtil.UsageCrossReferencer.find(mergedElement, this.elementsOfInterest);
+		} else {
+			usages = EcoreUtil.UsageCrossReferencer.find(mergedElement, this.domain.getResourceSet());
+		}
 
 		// ... and redirect them
 		//
-		usages.stream()
-				.filter(usage -> !usage.getEStructuralFeature().isDerived()
-						&& !usage.getEStructuralFeature().isTransient()
-						&& usage.getEStructuralFeature() instanceof EReference)
-				.forEach(usage -> {
+		usages.stream().filter(usage -> !usage.getEStructuralFeature().isDerived()
+				&& !usage.getEStructuralFeature().isTransient() && usage.getEStructuralFeature() instanceof EReference)
+				.filter(usage -> !EcoreUtil.isAncestor(this.elementsToMerge, usage.getEObject())).forEach(usage -> {
 
 					if (usage.getEStructuralFeature().isMany()) {
 						((Collection<EObject>) usage.get(true)).add(newElement);

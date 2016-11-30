@@ -1,22 +1,36 @@
 package de.mfreund.pamtram.model.generator;
 
+import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 import pamtram.PAMTraM;
 import pamtram.SectionModel;
+import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
+import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.presentation.PamtramEditor;
+import pamtram.provider.PamtramItemProviderAdapterFactory;
 
 /**
  * This POJO incorporates all necessary data that is collected in the course of the {@link GeneratorWizard}.
  *
  * @author mfreund
  */
-public class WizardData {
+public class WizardData implements IEditingDomainProvider {
 
 	/**
 	 * The {@link Resource} containing the target {@link #pamtram} model into which the generated Sections shall be
@@ -60,7 +74,8 @@ public class WizardData {
 	private SectionModel<?, ?, ?, ?> sectionModel;
 
 	/**
-	 * The {@link PamtramEditor} used to edit the given {@link #pamtram}. If there is currently no editor used, this will be '<em>null</em>'.
+	 * The {@link PamtramEditor} used to edit the given {@link #pamtram}. If there is currently no editor used, this
+	 * will be '<em>null</em>'.
 	 */
 	private PamtramEditor editor;
 
@@ -70,10 +85,42 @@ public class WizardData {
 	private MetaModelSectionGenerator generator;
 
 	/**
+	 * An {@link EditingDomain} that can be used to apply changes to the {@link #createdSections} via its
+	 * {@link CommandStack}.
+	 */
+	private AdapterFactoryEditingDomain editingDomain;
+
+	/**
+	 * This creates an instance.
+	 *
+	 */
+	public WizardData() {
+
+		// Create an adapter factory that yields item providers and that is used for the editing domain.
+		//
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new PamtramItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new MetamodelItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new GenLibraryItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+
+		// Initialize the editing domain
+		//
+		this.editingDomain = new AdapterFactoryEditingDomain(adapterFactory, new BasicCommandStack(),
+				new HashMap<Resource, Boolean>());
+	}
+
+	/**
 	 *
 	 * @return the {@link #targetModelResource}
 	 */
 	public Resource getTargetModelResource() {
+
 		return this.targetModelResource;
 	}
 
@@ -84,6 +131,7 @@ public class WizardData {
 	 * @return The {@link WizardData} element.
 	 */
 	public WizardData setTargetModelResource(Resource targetModelResource) {
+
 		this.targetModelResource = targetModelResource;
 
 		return this;
@@ -94,6 +142,7 @@ public class WizardData {
 	 * @return the {@link #sectionType}
 	 */
 	public SectionType getSectionType() {
+
 		return this.sectionType;
 	}
 
@@ -104,6 +153,7 @@ public class WizardData {
 	 * @return The {@link WizardData} element.
 	 */
 	public WizardData setSectionType(SectionType sectionType) {
+
 		this.sectionType = sectionType;
 
 		return this;
@@ -113,6 +163,7 @@ public class WizardData {
 	 * @return the {@link #ePackage}
 	 */
 	public EPackage getEPackage() {
+
 		return this.ePackage;
 	}
 
@@ -124,6 +175,7 @@ public class WizardData {
 	 * @return The {@link WizardData}.
 	 */
 	public WizardData setEPackage(EPackage ePackage) {
+
 		this.ePackage = ePackage;
 
 		return this;
@@ -155,6 +207,7 @@ public class WizardData {
 	 * @return the {@link #createdSections}
 	 */
 	public List<Section<?, ?, ?, ?>> getCreatedSections() {
+
 		return this.createdSections;
 	}
 
@@ -196,13 +249,16 @@ public class WizardData {
 	 * @return the pamtram
 	 */
 	public PAMTraM getPamtram() {
+
 		return this.pamtram;
 	}
 
 	/**
-	 * @param pamtram the pamtram to set
+	 * @param pamtram
+	 *            the pamtram to set
 	 */
 	public void setPamtram(PAMTraM pamtram) {
+
 		this.pamtram = pamtram;
 	}
 
@@ -210,13 +266,16 @@ public class WizardData {
 	 * @return the editor
 	 */
 	public PamtramEditor getEditor() {
+
 		return this.editor;
 	}
 
 	/**
-	 * @param editor the editor to set
+	 * @param editor
+	 *            the editor to set
 	 */
 	public void setEditor(PamtramEditor editor) {
+
 		this.editor = editor;
 	}
 
@@ -224,13 +283,16 @@ public class WizardData {
 	 * @return the generator
 	 */
 	public MetaModelSectionGenerator getGenerator() {
+
 		return this.generator;
 	}
 
 	/**
-	 * @param generator the generator to set
+	 * @param generator
+	 *            the generator to set
 	 */
 	public void setGenerator(MetaModelSectionGenerator generator) {
+
 		this.generator = generator;
 	}
 
@@ -238,14 +300,23 @@ public class WizardData {
 	 * @return the sectionModel
 	 */
 	public SectionModel<?, ?, ?, ?> getSectionModel() {
+
 		return this.sectionModel;
 	}
 
 	/**
-	 * @param sectionModel the sectionModel to set
+	 * @param sectionModel
+	 *            the sectionModel to set
 	 */
 	public void setSectionModel(SectionModel<?, ?, ?, ?> sectionModel) {
+
 		this.sectionModel = sectionModel;
+	}
+
+	@Override
+	public EditingDomain getEditingDomain() {
+
+		return this.editingDomain;
 	}
 
 }

@@ -101,7 +101,22 @@ public class ClassMergeAction<S extends Section<S, C, R, A>, C extends pamtram.m
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		return new ClassMergeCommand<>(editingDomain, elementsToMerge);
+		return this.doCreateClassMergeCommand(elementsToMerge);
+	}
+
+	/**
+	 * This creates the actual {@link ClassMergeCommand} that will perform the merging.
+	 * <p />
+	 * Clients should override this instead of {@link #createActionCommand(EditingDomain, Collection)} as checks to the
+	 * validity of the given set of <em>elementsToMerge</em> are already performed there.
+	 *
+	 *
+	 * @param elementsToMerge
+	 * @return
+	 */
+	protected ClassMergeCommand<S, C, R, A> doCreateClassMergeCommand(Set<C> elementsToMerge) {
+
+		return new ClassMergeCommand<>(this.editingDomain, elementsToMerge);
 	}
 
 }

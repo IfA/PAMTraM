@@ -16,15 +16,15 @@ import org.eclipse.emf.edit.ui.action.StaticSelectionCommandAction;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 
-import pamtram.commands.ClassMergeCommand;
+import pamtram.commands.merging.MergeClassesCommand;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
 
 /**
- * A {@link StaticSelectionCommandAction} that can be used to merge multiple {@link Class Classes} via the
- * {@link ClassMergeCommand}.
+ * A {@link StaticSelectionCommandAction} that can be used to merge multiple {@link Class Classes} via a
+ * {@link MergeClassesCommand}.
  *
  * @param <S>
  * @param <C>
@@ -121,9 +121,9 @@ public class ClassMergeAction<S extends Section<S, C, R, A>, C extends pamtram.m
 	 * @param elementsToMerge
 	 * @return
 	 */
-	protected ClassMergeCommand<S, C, R, A> doCreateClassMergeCommand(Set<C> elementsToMerge) {
+	protected Command doCreateClassMergeCommand(Set<C> elementsToMerge) {
 
-		return new ClassMergeCommand<>(this.editingDomain, elementsToMerge);
+		return MergeClassesCommand.create(this.editingDomain, elementsToMerge, null);
 	}
 
 }

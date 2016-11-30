@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.EObject;
@@ -46,8 +45,7 @@ import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerLabelPro
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.EnhancedContainerCheckedTreeViewer;
-import pamtram.actions.ClassMergeAction;
-import pamtram.commands.merging.MergeClassesCommand;
+import pamtram.actions.MetaModelElementMergeAction;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelElement;
@@ -135,26 +133,24 @@ public class PreviewPage extends WizardPage {
 			//
 			if (this.wizardData.getSectionType().equals(SectionType.SOURCE)) {
 				menuMgr.add(
-						new ClassMergeAction<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>(
+						new MetaModelElementMergeAction<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>(
 								this.wizardData.getEditingDomain(), selection) {
 
 							@Override
-							protected Command doCreateClassMergeCommand(Set<SourceSectionClass> elementsToMerge) {
+							protected Set<EObject> getElementsOfInterest() {
 
-								return MergeClassesCommand.create(this.editingDomain, elementsToMerge,
-										new HashSet<>(PreviewPage.this.wizardData.getCreatedSections()));
+								return new HashSet<>(PreviewPage.this.wizardData.getCreatedSections());
 							}
 						});
 			} else if (this.wizardData.getSectionType().equals(SectionType.TARGET)) {
 				menuMgr.add(
-						new ClassMergeAction<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>(
+						new MetaModelElementMergeAction<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>(
 								this.wizardData.getEditingDomain(), selection) {
 
 							@Override
-							protected Command doCreateClassMergeCommand(Set<TargetSectionClass> elementsToMerge) {
+							protected Set<EObject> getElementsOfInterest() {
 
-								return MergeClassesCommand.create(this.editingDomain, elementsToMerge,
-										new HashSet<>(PreviewPage.this.wizardData.getCreatedSections()));
+								return new HashSet<>(PreviewPage.this.wizardData.getCreatedSections());
 							}
 						});
 			}

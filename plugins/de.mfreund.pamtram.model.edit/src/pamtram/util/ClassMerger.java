@@ -316,6 +316,14 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 			this.subMergers.add(subMerger);
 
 			if (subMerger.canMerge()) {
+
+				Set<EObject> merged = new HashSet<>();
+				if (this.mergedElements.containsKey(leftReference.get())) {
+					merged.addAll(this.mergedElements.get(leftReference.get()));
+				}
+				merged.add(rightReference);
+				this.mergedElements.put(leftReference.get(), merged);
+
 				subMerger.mergeClasses(valuesToMerge);
 				return true;
 
@@ -333,7 +341,7 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 		if (this.mergedElements.containsKey(leftReference.get())) {
 			merged.addAll(this.mergedElements.get(leftReference.get()));
 		}
-		merged.addAll(rightReference.getValuesGeneric());
+		merged.add(rightReference);
 		this.mergedElements.put(leftReference.get(), merged);
 
 		return true;

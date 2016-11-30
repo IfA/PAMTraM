@@ -9,7 +9,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -20,6 +23,7 @@ import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ColumnViewer;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TreePath;
@@ -46,8 +50,14 @@ import pamtram.metamodel.Attribute;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.Section;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionReference;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionReference;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 
 /**
@@ -90,6 +100,49 @@ public class PreviewPage extends WizardPage {
 	 * This is the one adapter factory used for providing views of the model.
 	 */
 	protected ComposedAdapterFactory adapterFactory;
+
+	/**
+	 * A {@link CommandStackListener} that refreshes the {@link #viewer} and the {@link #propertiesViewer} once a
+	 * command is executed on the {@link CommandStack} associated with the {@link #wizardData} (via the incorporated
+	 * {@link EditingDomain}).
+	 */
+	protected CommandStackListener refreshViewersListener = event -> {
+
+		PreviewPage.this.viewer.refresh();
+		PreviewPage.this.propertiesViewer.refresh();
+
+	};
+
+	/**
+	 * An {@link ISelectionChangedListener} that creates a context menu for the {@link #viewer} based on the current
+	 * selection.
+	 */
+	protected ISelectionChangedListener createContextMenuListener = event -> {
+
+		if (event.getSelection() instanceof IStructuredSelection) {
+
+			IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+
+			// Create a context menu
+			//
+			MenuManager menuMgr = new MenuManager();
+			Menu menu = menuMgr.createContextMenu(PreviewPage.this.viewer.getControl());
+			this.viewer.getControl().setMenu(menu);
+
+			// Add an action that allows merging the selected elements
+			//
+			if (this.wizardData.getSectionType().equals(SectionType.SOURCE)) {
+				menuMgr.add(
+						new ClassMergeAction<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>(
+								this.wizardData.getEditingDomain(), selection));
+			} else if (this.wizardData.getSectionType().equals(SectionType.TARGET)) {
+				menuMgr.add(
+						new ClassMergeAction<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>(
+								this.wizardData.getEditingDomain(), selection));
+			}
+		}
+
+	};
 
 	/**
 	 * This creates an instance.
@@ -152,6 +205,17 @@ public class PreviewPage extends WizardPage {
 			this.getWizard().getContainer().updateButtons();
 		}
 
+		// Update the listeners
+		//
+		if (visible) {
+			this.wizardData.getEditingDomain().getCommandStack().addCommandStackListener(this.refreshViewersListener);
+			this.viewer.addSelectionChangedListener(this.createContextMenuListener);
+		} else {
+			this.wizardData.getEditingDomain().getCommandStack()
+					.removeCommandStackListener(this.refreshViewersListener);
+			this.viewer.removeSelectionChangedListener(this.createContextMenuListener);
+		}
+
 		super.setVisible(visible);
 	}
 
@@ -177,26 +241,6 @@ public class PreviewPage extends WizardPage {
 		});
 
 		this.viewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
-
-		this.viewer.addSelectionChangedListener(event -> {
-
-			if (event.getSelection() instanceof IStructuredSelection) {
-
-				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-
-				// Create a context menu
-				//
-				MenuManager menuMgr = new MenuManager();
-				Menu menu = menuMgr.createContextMenu(PreviewPage.this.viewer.getControl());
-				this.viewer.getControl().setMenu(menu);
-
-				// Add an action that allows merging the selected elements
-				//
-				menuMgr.add(new ClassMergeAction("Merge selected Elements", selection,
-						Arrays.asList(this.viewer, this.propertiesViewer)));
-			}
-
-		});
 
 		// the tree that the viewer operates on
 		final Tree tree = (Tree) this.viewer.getControl();

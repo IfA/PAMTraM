@@ -3,7 +3,11 @@
  */
 package pamtram.commands.merging;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,6 +18,8 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import pamtram.metamodel.Attribute;
@@ -111,10 +117,21 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 
 		while (it.hasNext()) {
 			R reference2 = it.next();
+
 			command.append(new MergeReferencesCommand<>(domain, reference1, reference2, elementsOfInterest));
+
+			// After merging the reference, it needs to be deleted as it is now unused
+			//
+			command.append(DeleteCommand.create(domain, reference2));
 		}
 
 		return command;
+	}
+
+	@Override
+	public Collection<?> getAffectedObjects() {
+
+		return Arrays.asList(this.left);
 	}
 
 	@Override
@@ -123,7 +140,7 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 		// Nothing to be done
 		//
 		if (this.right.getValuesGeneric().isEmpty()) {
-			return super.prepare();
+			return true;
 		}
 
 		// For a single-valued reference, we cannot simply add the values (unless the 'size == 1'-constraint is
@@ -148,8 +165,12 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 		// In any other case, we simply add the values
 		//
 		if (this.left instanceof ContainmentReference<?, ?, ?, ?>) {
+
+			List<C> values = new ArrayList<>(this.right.getValuesGeneric());
+			this.append(new RemoveCommand(this.domain, this.right,
+					MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
 			this.append(new AddCommand(this.domain, this.left, MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-					this.right.getValuesGeneric()));
+					values));
 		} else if (this.left instanceof NonContainmentReference<?, ?, ?, ?>) {
 			this.append(new AddCommand(this.domain, this.left,
 					MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));

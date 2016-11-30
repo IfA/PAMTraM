@@ -4,6 +4,8 @@
 package pamtram.commands.merging;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,6 +15,7 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
@@ -82,17 +85,11 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 	public static <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
 			EditingDomain domain, Set<C> classesToMerge, Set<EObject> elementsOfInterest) {
 
-		// The classes can only be merged if they all represent the same EClass ...
+		// The classes can only be merged if they all represent the same EClass
 		//
 		Set<EClass> eClasses = classesToMerge.parallelStream().map(C::getEClass).collect(Collectors.toSet());
 
 		boolean enabled = eClasses.size() == 1;
-
-		// ... and if they all are either Sections, have the same container or no container at all
-		//
-		enabled = enabled && (classesToMerge.stream().allMatch(e -> e instanceof Section<?, ?, ?, ?>)
-				|| classesToMerge.stream().allMatch(e -> e.eContainer() == null)
-				|| classesToMerge.stream().map(EObject::eContainer).collect(Collectors.toSet()).size() == 1);
 
 		if (!enabled) {
 			return UnexecutableCommand.INSTANCE;
@@ -111,10 +108,21 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 
 		while (it.hasNext()) {
 			C class2 = it.next();
+
 			command.append(new MergeClassesCommand<>(domain, class1, class2, elementsOfInterest));
+
+			// After merging the class, it needs to be deleted as it is now unused
+			//
+			command.append(DeleteCommand.create(domain, class2));
 		}
 
 		return command;
+	}
+
+	@Override
+	public Collection<?> getAffectedObjects() {
+
+		return Arrays.asList(this.left);
 	}
 
 	@Override
@@ -127,13 +135,13 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 
 		// Merge the attributes first
 		//
-		new ArrayList<>(this.right.getAttributes()).stream().forEach(rightAttribute -> this
-				.append(new MergeAttributeIntoClassCommand<>(this.domain, this.left, rightAttribute, this.elementsOfInterest)));
+		new ArrayList<>(this.right.getAttributes()).stream().forEach(rightAttribute -> this.append(
+				new MergeAttributeIntoClassCommand<>(this.domain, this.left, rightAttribute, this.elementsOfInterest)));
 
 		// Now, merge the references
 		//
-		new ArrayList<>(this.right.getReferences()).stream().forEach(rightReference -> this
-				.append(new MergeReferenceIntoClassCommand<>(this.domain, this.left, rightReference, this.elementsOfInterest)));
+		new ArrayList<>(this.right.getReferences()).stream().forEach(rightReference -> this.append(
+				new MergeReferenceIntoClassCommand<>(this.domain, this.left, rightReference, this.elementsOfInterest)));
 
 		this.prepareRedirectCrossReferencesCommand(this.right, this.left);
 

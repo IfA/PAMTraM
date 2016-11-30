@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
@@ -78,6 +79,10 @@ public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		// Simply add the attribute
 		//
 		if (!leftAttribute.isPresent()) {
+			if (this.right.eContainer() instanceof Class<?, ?, ?, ?>) {
+				this.append(new RemoveCommand(this.domain, this.right.eContainer(),
+						MetamodelPackage.Literals.CLASS__ATTRIBUTES, this.right));
+			}
 			this.append(
 					new AddCommand(this.domain, this.left, MetamodelPackage.Literals.CLASS__ATTRIBUTES, this.right));
 			return super.prepare();

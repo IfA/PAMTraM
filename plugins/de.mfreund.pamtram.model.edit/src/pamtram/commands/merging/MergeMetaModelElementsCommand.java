@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
@@ -138,9 +137,6 @@ public abstract class MergeMetaModelElementsCommand<L extends MetaModelElement<S
 
 				});
 
-		// Finally, we can create a command that deletes the now unused merged element
-		//
-		this.append(DeleteCommand.create(this.domain, mergedElement));
 	}
 
 	/**

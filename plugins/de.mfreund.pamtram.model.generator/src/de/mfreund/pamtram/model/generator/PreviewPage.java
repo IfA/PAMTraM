@@ -46,6 +46,7 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.EnhancedContainerCheckedTreeViewer;
 import pamtram.actions.ClassMergeAction;
+import pamtram.commands.ClassMergeCommand;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelElement;
@@ -134,11 +135,29 @@ public class PreviewPage extends WizardPage {
 			if (this.wizardData.getSectionType().equals(SectionType.SOURCE)) {
 				menuMgr.add(
 						new ClassMergeAction<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>(
-								this.wizardData.getEditingDomain(), selection));
+								this.wizardData.getEditingDomain(), selection) {
+
+							@Override
+							protected ClassMergeCommand<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> doCreateClassMergeCommand(
+									Set<SourceSectionClass> elementsToMerge) {
+
+								return new ClassMergeCommand<>(this.editingDomain, elementsToMerge,
+										new HashSet<>(PreviewPage.this.wizardData.getCreatedSections()));
+							}
+						});
 			} else if (this.wizardData.getSectionType().equals(SectionType.TARGET)) {
 				menuMgr.add(
 						new ClassMergeAction<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>(
-								this.wizardData.getEditingDomain(), selection));
+								this.wizardData.getEditingDomain(), selection) {
+
+							@Override
+							protected ClassMergeCommand<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> doCreateClassMergeCommand(
+									Set<TargetSectionClass> elementsToMerge) {
+
+								return new ClassMergeCommand<>(this.editingDomain, elementsToMerge,
+										new HashSet<>(PreviewPage.this.wizardData.getCreatedSections()));
+							}
+						});
 			}
 		}
 

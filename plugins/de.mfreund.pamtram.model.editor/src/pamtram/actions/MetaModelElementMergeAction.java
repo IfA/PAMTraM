@@ -76,6 +76,10 @@ public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extend
 	@Override
 	protected Command createActionCommand(EditingDomain editingDomain, Collection<?> collection) {
 
+		if (collection.isEmpty()) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		Object firstElement = collection.iterator().next();
 
 		if (firstElement instanceof Class<?, ?, ?, ?>) {
@@ -101,7 +105,7 @@ public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extend
 	protected Command createMergeClassesCommand(EditingDomain editingDomain, Collection<?> collection) {
 
 		// This action is only enabled if more than one element of the correct type 'C' are
-		// selected.
+		// selected ...
 		//
 		boolean enabled = collection.size() > 1 && collection.stream().allMatch(e -> {
 			try {
@@ -112,6 +116,12 @@ public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extend
 				return false;
 			}
 		});
+
+		// ... and if they all are either Sections, have the same container or no container at all
+		//
+		enabled = enabled && (collection.stream().allMatch(e -> e instanceof Section<?, ?, ?, ?>)
+				|| collection.stream().allMatch(e -> ((EObject) e).eContainer() == null)
+				|| collection.stream().map(e -> ((EObject) e).eContainer()).collect(Collectors.toSet()).size() == 1);
 
 		if (!enabled) {
 			return UnexecutableCommand.INSTANCE;

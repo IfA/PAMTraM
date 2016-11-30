@@ -3,11 +3,14 @@
  */
 package pamtram.commands;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AbstractOverrideableCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -74,6 +77,11 @@ public class ClassMergeCommand<S extends Section<S, C, R, A>, C extends pamtram.
 		//
 		this.merger.merge();
 
+		// Redirect all references to 'mergedElements' to the elements they have been merged into
+		//
+		this.merger.getMergedElements().entrySet().stream().forEach(merged -> merged.getValue().stream()
+				.forEach(mergedElement -> this.redirectCrossReferences(mergedElement, merged.getKey())));
+
 		// Finally, we delete the merged elements and update/refresh the viewers
 		//
 		Set<EObject> elementsToDelete = this.merger.getMergedElements().values().stream().flatMap(Set::stream)
@@ -82,6 +90,38 @@ public class ClassMergeCommand<S extends Section<S, C, R, A>, C extends pamtram.
 
 		elementsToDelete.stream().forEach(EcoreUtil::delete);
 
+	}
+
+	/**
+	 * After merging elements, this can be used to redirect all cross references to the given <em>mergedElement</em> to
+	 * the element they have been merged into.
+	 *
+	 * @param mergedElement
+	 *            The {@link EObject element} that has been merged into the <em>newElement</em>.
+	 * @param newElement
+	 *            The {@link EObject element} into which the <em>mergedElement</em> has been merged into.
+	 */
+	@SuppressWarnings("unchecked")
+	protected void redirectCrossReferences(EObject mergedElement, EObject newElement) {
+
+		// Determine all cross references...
+		//
+		Collection<Setting> usages = EcoreUtil.UsageCrossReferencer.find(mergedElement, this.domain.getResourceSet());
+
+		// ... and redirect them
+		//
+		usages.stream()
+				.filter(usage -> !usage.getEStructuralFeature().isDerived()
+						&& !usage.getEStructuralFeature().isTransient()
+						&& usage.getEStructuralFeature() instanceof EReference)
+				.forEach(usage -> {
+
+					if (usage.getEStructuralFeature().isMany()) {
+						((Collection<EObject>) usage.get(true)).add(newElement);
+					} else {
+						usage.set(newElement);
+					}
+				});
 	}
 
 	@Override

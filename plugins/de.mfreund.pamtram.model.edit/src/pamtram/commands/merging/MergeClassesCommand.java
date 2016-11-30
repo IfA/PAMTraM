@@ -59,10 +59,10 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 	}
 
 	/**
-	 * Factory method to create a command that will merge multiple given <em>classes</em>.
+	 * Factory method to create a command that will merge multiple given <em>classesToMerge</em>.
 	 * <p />
 	 * Note: This will return a compound command that contains one {@link MergeClassesCommand} for each (except the
-	 * first) <em>classes</em> to be merged.
+	 * first) <em>classesToMerge</em> to be merged.
 	 *
 	 * @param <S>
 	 * @param <C>
@@ -82,7 +82,7 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 	public static <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
 			EditingDomain domain, Set<C> classesToMerge, Set<EObject> elementsOfInterest) {
 
-		// The classes can only be merge if they all represent the same EClass ...
+		// The classes can only be merged if they all represent the same EClass ...
 		//
 		Set<EClass> eClasses = classesToMerge.parallelStream().map(C::getEClass).collect(Collectors.toSet());
 

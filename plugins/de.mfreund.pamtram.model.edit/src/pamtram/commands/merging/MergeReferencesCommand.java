@@ -3,12 +3,17 @@
  */
 package pamtram.commands.merging;
 
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
@@ -50,6 +55,68 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 	 */
 	public MergeReferencesCommand(EditingDomain domain, C left, R right, Set<EObject> elementsOfInterest) {
 		super(domain, left, right, elementsOfInterest);
+	}
+
+	/**
+	 * Factory method to create a command that will merge multiple given <em>referencesToMerge</em>.
+	 * <p />
+	 * Note: This will return a compound command that contains one {@link MergeReferencesCommand} for each
+	 * <em>referencesToMerge</em> to be merged.
+	 *
+	 * @param <S>
+	 * @param <C>
+	 * @param <R>
+	 * @param <A>
+	 * @param domain
+	 *            The editing domain that the command operated on.
+	 * @param referencesToMerge
+	 *            The set of {@link Reference References} to be merged.
+	 * @param elementsOfInterest
+	 *            The set of {@link EObject elements} that need to be consulted when
+	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
+	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
+	 *            the resource set associated with the given <em>domain</em>.
+	 * @return The created command.
+	 */
+	public static <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
+			EditingDomain domain, Set<R> referencesToMerge, Set<EObject> elementsOfInterest) {
+
+		// The references can only be merged if they all represent the same EReference ...
+		//
+		Set<EReference> eReferences = referencesToMerge.parallelStream().map(Reference::getEReference)
+				.collect(Collectors.toSet());
+
+		boolean enabled = eReferences.size() == 1;
+
+		// ... and if they all are contained in the same Class
+		//
+		enabled = enabled
+				&& referencesToMerge.stream().map(EObject::eContainer).collect(Collectors.toSet()).size() == 1;
+
+		enabled = enabled && referencesToMerge.iterator().next().eContainer() instanceof Class<?, ?, ?, ?>;
+
+		if (!enabled) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		@SuppressWarnings("unchecked")
+		C containerClass = (C) referencesToMerge.iterator().next().eContainer();
+
+		CompoundCommand command = new CompoundCommand();
+
+		command.setLabel(MergeMetaModelElementsCommand.LABEL);
+		command.setDescription(MergeMetaModelElementsCommand.DESCRIPTION);
+
+		// Initialize the various sub-commands
+		//
+		Iterator<R> it = referencesToMerge.iterator();
+
+		while (it.hasNext()) {
+			R reference = it.next();
+			command.append(new MergeReferencesCommand<>(domain, containerClass, reference, elementsOfInterest));
+		}
+
+		return command;
 	}
 
 	@Override

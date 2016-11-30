@@ -387,11 +387,11 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 			if (((StructuredSelection) selection).getFirstElement() instanceof SourceSectionClass) {
 				actions.add(
 						new ClassMergeAction<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>(
-								"Merge selected elements", (IStructuredSelection) selection, new ArrayList<>()));
+								this.activeEditorPart, (IStructuredSelection) selection));
 			} else if (((StructuredSelection) selection).getFirstElement() instanceof TargetSectionClass) {
 				actions.add(
 						new ClassMergeAction<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>(
-								"Merge selected elements", (IStructuredSelection) selection, new ArrayList<>()));
+								this.activeEditorPart, (IStructuredSelection) selection));
 			}
 		}
 

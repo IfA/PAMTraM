@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.EObject;
@@ -46,7 +47,7 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.EnhancedContainerCheckedTreeViewer;
 import pamtram.actions.ClassMergeAction;
-import pamtram.commands.ClassMergeCommand;
+import pamtram.commands.merging.MergeClassesCommand;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelElement;
@@ -138,10 +139,9 @@ public class PreviewPage extends WizardPage {
 								this.wizardData.getEditingDomain(), selection) {
 
 							@Override
-							protected ClassMergeCommand<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> doCreateClassMergeCommand(
-									Set<SourceSectionClass> elementsToMerge) {
+							protected Command doCreateClassMergeCommand(Set<SourceSectionClass> elementsToMerge) {
 
-								return new ClassMergeCommand<>(this.editingDomain, elementsToMerge,
+								return MergeClassesCommand.create(this.editingDomain, elementsToMerge,
 										new HashSet<>(PreviewPage.this.wizardData.getCreatedSections()));
 							}
 						});
@@ -151,10 +151,9 @@ public class PreviewPage extends WizardPage {
 								this.wizardData.getEditingDomain(), selection) {
 
 							@Override
-							protected ClassMergeCommand<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> doCreateClassMergeCommand(
-									Set<TargetSectionClass> elementsToMerge) {
+							protected Command doCreateClassMergeCommand(Set<TargetSectionClass> elementsToMerge) {
 
-								return new ClassMergeCommand<>(this.editingDomain, elementsToMerge,
+								return MergeClassesCommand.create(this.editingDomain, elementsToMerge,
 										new HashSet<>(PreviewPage.this.wizardData.getCreatedSections()));
 							}
 						});

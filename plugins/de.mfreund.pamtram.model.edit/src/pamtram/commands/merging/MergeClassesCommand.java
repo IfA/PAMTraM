@@ -4,14 +4,18 @@
 package pamtram.commands.merging;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import pamtram.PamtramPackage;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.Class;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
@@ -43,10 +47,55 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
 	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
 	 *            the resource set associated with the given <em>domain</em>.
+	 * 
+	 * @see #create(EditingDomain, Set, Set)
 	 */
 	public MergeClassesCommand(EditingDomain domain, C left, C right, Set<EObject> elementsOfInterest) {
 
 		super(domain, left, right, elementsOfInterest);
+	}
+
+	/**
+	 * Factory method to create a command that will merge multiple given <em>classes</em>.
+	 * <p />
+	 * Note: This will return a compound command that contains one {@link MergeClassesCommand} for each (except the
+	 * first) <em>classes</em> to be merged.
+	 *
+	 * @param <S>
+	 * @param <C>
+	 * @param <R>
+	 * @param <A>
+	 * @param domain
+	 *            The editing domain that the command operated on.
+	 * @param classes
+	 *            The set of {@link Class Classes} to be merged.
+	 * @param elementsOfInterest
+	 *            The set of {@link EObject elements} that need to be consulted when
+	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
+	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
+	 *            the resource set associated with the given <em>domain</em>.
+	 * @return The created command.
+	 */
+	public static <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
+			EditingDomain domain, Set<C> classes, Set<EObject> elementsOfInterest) {
+
+		CompoundCommand command = new CompoundCommand();
+
+		command.setLabel(MergeMetaModelElementsCommand.LABEL);
+		command.setDescription(MergeMetaModelElementsCommand.DESCRIPTION);
+
+		// Initialize the various sub-commands
+		//
+		Iterator<C> it = classes.iterator();
+
+		C class1 = it.next();
+
+		while (it.hasNext()) {
+			C class2 = it.next();
+			command.append(new MergeClassesCommand<>(domain, class1, class2, elementsOfInterest));
+		}
+
+		return command;
 	}
 
 	@Override

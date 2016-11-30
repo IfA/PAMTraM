@@ -3,7 +3,11 @@
 package pamtram.presentation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -35,6 +39,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -44,74 +49,83 @@ import pamtram.actions.CreateSharedSectionModelChildAction;
 import pamtram.actions.CreateSharedSectionModelSiblingAction;
 import pamtram.actions.CutClassAndPasteAsNewSectionAction;
 import pamtram.actions.GenericConversionCommandAction;
+import pamtram.actions.MetaModelElementMergeAction;
 import pamtram.actions.PamtramDeleteAction;
 import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionReference;
+import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionReference;
 
 /**
- * This is the action bar contributor for the Pamtram model editor.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the action bar contributor for the Pamtram model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+ *
  * @generated
  */
-public class PamtramActionBarContributor
-extends EditingDomainActionBarContributor
-implements ISelectionChangedListener {
+public class PamtramActionBarContributor extends EditingDomainActionBarContributor
+		implements ISelectionChangedListener {
+
 	/**
-	 * This keeps track of the active editor.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This keeps track of the active editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected IEditorPart activeEditorPart;
 
 	/**
-	 * This keeps track of the current selection provider.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This keeps track of the current selection provider. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected ISelectionProvider selectionProvider;
 
 	/**
-	 * This action opens the Properties view.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This action opens the Properties view. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
-	protected IAction showPropertiesViewAction =
-			new Action(PamtramEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+	protected IAction showPropertiesViewAction = new Action(
+			PamtramEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+
 		@Override
 		public void run() {
+
 			try {
 				PamtramActionBarContributor.this.getPage().showView("org.eclipse.ui.views.PropertySheet");
-			}
-			catch (PartInitException exception) {
+			} catch (PartInitException exception) {
 				PamtramEditorPlugin.INSTANCE.log(exception);
 			}
 		}
 	};
 
 	/**
-	 * This action refreshes the viewer of the current editor if the editor
-	 * implements {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This action refreshes the viewer of the current editor if the editor implements
+	 * {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
-	protected IAction refreshViewerAction =
-			new Action(PamtramEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+	protected IAction refreshViewerAction = new Action(
+			PamtramEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+
 		@Override
 		public boolean isEnabled() {
+
 			return PamtramActionBarContributor.this.activeEditorPart instanceof IViewerProvider;
 		}
 
 		@Override
 		public void run() {
+
 			if (PamtramActionBarContributor.this.activeEditorPart instanceof IViewerProvider) {
-				Viewer viewer = ((IViewerProvider)PamtramActionBarContributor.this.activeEditorPart).getViewer();
+				Viewer viewer = ((IViewerProvider) PamtramActionBarContributor.this.activeEditorPart).getViewer();
 				if (viewer != null) {
 					viewer.refresh();
 				}
@@ -121,34 +135,32 @@ implements ISelectionChangedListener {
 
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
-	 * generated for the current selection by the item provider.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected Collection<IAction> createChildActions;
 
 	/**
-	 * This is the menu manager into which menu contribution items should be added for CreateChild actions.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This is the menu manager into which menu contribution items should be added for CreateChild actions. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected IMenuManager createChildMenuManager;
 
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to each descriptor
-	 * generated for the current selection by the item provider.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected Collection<IAction> createSiblingActions;
 
 	/**
-	 * This is the menu manager into which menu contribution items should be added for CreateSibling actions.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This is the menu manager into which menu contribution items should be added for CreateSibling actions. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected IMenuManager createSiblingMenuManager;
@@ -164,42 +176,42 @@ implements ISelectionChangedListener {
 	protected IMenuManager otherActionsMenuManager;
 
 	/**
-	 * This creates an instance of the contributor.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This creates an instance of the contributor. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public PamtramActionBarContributor() {
 		super(EditingDomainActionBarContributor.ADDITIONS_LAST_STYLE);
 		this.loadResourceAction = new LoadResourceAction();
 		this.validateAction = new ValidateAction();
-		this.liveValidationAction = new DiagnosticDecorator.LiveValidator.LiveValidationAction(PamtramEditorPlugin.getPlugin().getDialogSettings());
+		this.liveValidationAction = new DiagnosticDecorator.LiveValidator.LiveValidationAction(
+				PamtramEditorPlugin.getPlugin().getDialogSettings());
 		this.controlAction = new ControlAction();
 	}
 
 	/**
-	 * This adds Separators for editor additions to the tool bar.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds Separators for editor additions to the tool bar. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+
 		toolBarManager.add(new Separator("pamtram-settings"));
 		toolBarManager.add(new Separator("pamtram-additions"));
 	}
 
 	/**
-	 * This adds to the menu bar a menu and some separators for editor additions,
-	 * as well as the sub-menus for object creation items.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds to the menu bar a menu and some separators for editor additions, as well as the sub-menus for object
+	 * creation items. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	public void contributeToMenu(IMenuManager menuManager) {
+
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_PamtramEditor_menu"), "pamtramMenuID");
+		IMenuManager submenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_PamtramEditor_menu"),
+				"pamtramMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));
@@ -208,12 +220,14 @@ implements ISelectionChangedListener {
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		this.createChildMenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		this.createChildMenuManager = new MenuManager(
+				PamtramEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		submenuManager.insertBefore("additions", this.createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		this.createSiblingMenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		this.createSiblingMenuManager = new MenuManager(
+				PamtramEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", this.createSiblingMenuManager);
 
 		// Prepare for other actions item addition or removal.
@@ -223,20 +237,20 @@ implements ISelectionChangedListener {
 
 		// Force an update because Eclipse hides empty menus now.
 		//
-		submenuManager.addMenuListener
-		(menuManager1 -> menuManager1.updateAll(true));
+		submenuManager.addMenuListener(menuManager1 -> menuManager1.updateAll(true));
 
 		this.addGlobalActions(submenuManager);
 	}
 
 	/**
-	 * When the active editor changes, this remembers the change and registers with it as a selection provider.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * When the active editor changes, this remembers the change and registers with it as a selection provider. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setActiveEditor(IEditorPart part) {
+
 		super.setActiveEditor(part);
 		this.activeEditorPart = part;
 
@@ -247,28 +261,27 @@ implements ISelectionChangedListener {
 		}
 		if (part == null) {
 			this.selectionProvider = null;
-		}
-		else {
+		} else {
 			this.selectionProvider = part.getSite().getSelectionProvider();
 			this.selectionProvider.addSelectionChangedListener(this);
 
 			// Fake a selection changed event to update the menus.
 			//
 			if (this.selectionProvider.getSelection() != null) {
-				this.selectionChanged(new SelectionChangedEvent(this.selectionProvider, this.selectionProvider.getSelection()));
+				this.selectionChanged(
+						new SelectionChangedEvent(this.selectionProvider, this.selectionProvider.getSelection()));
 			}
 		}
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionChangedListener},
-	 * handling {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for the children and siblings
-	 * that can be added to the selected object and updating the menus accordingly.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionChangedListener}, handling
+	 * {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for the children and siblings that can be
+	 * added to the selected object and updating the menus accordingly. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
+
 		// Remove any menu items for old selection.
 		//
 		if (this.createChildMenuManager != null) {
@@ -277,7 +290,7 @@ implements ISelectionChangedListener {
 		if (this.createSiblingMenuManager != null) {
 			this.depopulateManager(this.createSiblingMenuManager, this.createSiblingActions);
 		}
-		if(this.otherActionsMenuManager != null){
+		if (this.otherActionsMenuManager != null) {
 			this.depopulateManager(this.otherActionsMenuManager, this.otherActions);
 		}
 
@@ -285,16 +298,16 @@ implements ISelectionChangedListener {
 		//
 		Collection<?> newChildDescriptors = null;
 		Collection<?> newSiblingDescriptors = null;
-		Object otherActionsDescriptor=null;
+		Object otherActionsDescriptor = null;
 		ISelection selection = event.getSelection();
-		if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
-			Object object = ((IStructuredSelection)selection).getFirstElement();
+		if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1) {
+			Object object = ((IStructuredSelection) selection).getFirstElement();
 
-			EditingDomain domain = ((IEditingDomainProvider)this.activeEditorPart).getEditingDomain();
+			EditingDomain domain = ((IEditingDomainProvider) this.activeEditorPart).getEditingDomain();
 
 			newChildDescriptors = domain.getNewChildDescriptors(object, null);
 			newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
-			otherActionsDescriptor=object;
+			otherActionsDescriptor = object;
 
 		}
 
@@ -302,8 +315,7 @@ implements ISelectionChangedListener {
 		//
 		this.createChildActions = this.generateCreateChildActions(newChildDescriptors, selection);
 		this.createSiblingActions = this.generateCreateSiblingActions(newSiblingDescriptors, selection);
-		this.otherActions=this.generateOtherActionsActions(otherActionsDescriptor, selection);
-
+		this.otherActions = this.generateOtherActionsActions(otherActionsDescriptor, selection);
 
 		if (this.createChildMenuManager != null) {
 			this.populateManager(this.createChildMenuManager, this.createChildActions, null);
@@ -313,37 +325,39 @@ implements ISelectionChangedListener {
 			this.populateManager(this.createSiblingMenuManager, this.createSiblingActions, null);
 			this.createSiblingMenuManager.update(true);
 		}
-		if(this.otherActionsMenuManager != null){
+		if (this.otherActionsMenuManager != null) {
 			this.populateManager(this.otherActionsMenuManager, this.otherActions, null);
 			this.otherActionsMenuManager.update(true);
 		}
 	}
 
 	/**
-	 * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction} for each object in <code>descriptors</code>,
-	 * and returns the collection of these actions.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction} for each object in
+	 * <code>descriptors</code>, and returns the collection of these actions. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated NOT
 	 */
 	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
+
 		Collection<IAction> actions = new ArrayList<>();
 		if (descriptors != null) {
 
 			IContentProvider provider = null;
-			if(this.activeEditorPart instanceof PamtramEditor && ((PamtramEditor) this.activeEditorPart).getViewer() instanceof ContentViewer) {
+			if (this.activeEditorPart instanceof PamtramEditor
+					&& ((PamtramEditor) this.activeEditorPart).getViewer() instanceof ContentViewer) {
 				provider = ((ContentViewer) ((PamtramEditor) this.activeEditorPart).getViewer()).getContentProvider();
 			}
 
 			for (Object descriptor : descriptors) {
 
-				if(this.isValidDescriptor(descriptor, provider)) {
+				if (this.isValidDescriptor(descriptor, provider)) {
 					if (descriptor instanceof CommandParameter
 							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
 							&& (((CommandParameter) descriptor).getFeature()
 									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
 									|| ((CommandParameter) descriptor).getFeature()
-									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
 						actions.add(
 								new CreateSharedSectionModelChildAction(this.activeEditorPart, selection, descriptor));
 					} else {
@@ -359,52 +373,71 @@ implements ISelectionChangedListener {
 	protected Collection<IAction> generateOtherActionsActions(final Object descriptor, ISelection selection) {
 
 		Collection<IAction> actions = new ArrayList<>();
-		if(descriptor instanceof MappingHintGroup){
-			actions.add(
-					new GenericConversionCommandAction<>(
-							this.activeEditorPart,
-							selection,
-							"Convert to exported MappingHintGroup",
-							MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
-							(MappingHintGroup) descriptor,
-							new HintGroupToExportedHintGroupConverter()));
-		} else if(descriptor instanceof pamtram.metamodel.Class){
+		if (descriptor instanceof MappingHintGroup) {
+			actions.add(new GenericConversionCommandAction<>(this.activeEditorPart, selection,
+					"Convert to exported MappingHintGroup", MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
+					(MappingHintGroup) descriptor, new HintGroupToExportedHintGroupConverter()));
+		} else if (descriptor instanceof pamtram.metamodel.Class) {
 			// the section may be 'null' if the class is not part of a target section but of a library element
 			pamtram.metamodel.Class<?, ?, ?, ?> section = ((pamtram.metamodel.Class<?, ?, ?, ?>) descriptor)
 					.getContainingSection();
-			if(section != null && !section.equals(descriptor)){
+			if (section != null && !section.equals(descriptor)) {
 				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.metamodel.Class<?, ?, ?, ?>) descriptor));
 			}
+		} else if (selection instanceof StructuredSelection && ((StructuredSelection) selection).size() > 1) {
+
+			List<Object> selectedElements = Arrays.asList(((StructuredSelection) selection).toArray());
+
+			Set<Class<? extends Object>> types = selectedElements.parallelStream().map(e -> e.getClass())
+					.collect(Collectors.toSet());
+
+			if (types.size() == 1 && MetaModelElement.class.isAssignableFrom(types.iterator().next())) {
+				Class<? extends Object> metaModelElementClass = types.iterator().next();
+
+				if (SourceSectionClass.class.isAssignableFrom(metaModelElementClass)
+						|| SourceSectionReference.class.isAssignableFrom(metaModelElementClass)) {
+					actions.add(
+							new MetaModelElementMergeAction<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>(
+									this.activeEditorPart, (IStructuredSelection) selection));
+				} else if (TargetSectionClass.class.isAssignableFrom(metaModelElementClass)
+						|| TargetSectionReference.class.isAssignableFrom(metaModelElementClass)) {
+					actions.add(
+							new MetaModelElementMergeAction<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>(
+									this.activeEditorPart, (IStructuredSelection) selection));
+				}
+			}
 		}
+
 		return actions;
 	}
 
-
 	/**
-	 * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each object in <code>descriptors</code>,
-	 * and returns the collection of these actions.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each object in
+	 * <code>descriptors</code>, and returns the collection of these actions. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated NOT
 	 */
 	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
+
 		Collection<IAction> actions = new ArrayList<>();
 		if (descriptors != null) {
 
 			IContentProvider provider = null;
-			if(this.activeEditorPart instanceof PamtramEditor && ((PamtramEditor) this.activeEditorPart).getViewer() instanceof ContentViewer) {
+			if (this.activeEditorPart instanceof PamtramEditor
+					&& ((PamtramEditor) this.activeEditorPart).getViewer() instanceof ContentViewer) {
 				provider = ((ContentViewer) ((PamtramEditor) this.activeEditorPart).getViewer()).getContentProvider();
 			}
 
 			for (Object descriptor : descriptors) {
 
-				if(this.isValidDescriptor(descriptor, provider)) {
+				if (this.isValidDescriptor(descriptor, provider)) {
 					if (descriptor instanceof CommandParameter
 							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
 							&& (((CommandParameter) descriptor).getFeature()
 									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
 									|| ((CommandParameter) descriptor).getFeature()
-									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
 						actions.add(new CreateSharedSectionModelSiblingAction(this.activeEditorPart, selection,
 								descriptor));
 					} else {
@@ -418,27 +451,31 @@ implements ISelectionChangedListener {
 	}
 
 	/**
-	 * This is used by {@link #generateCreateChildActions(Collection, ISelection)} and {@link #generateCreateSiblingActions(Collection, ISelection)}
-	 * to perform additional checks if an action corresponding to the given <em>descriptor</em> is valid for the active <em>content provider</em>.
+	 * This is used by {@link #generateCreateChildActions(Collection, ISelection)} and
+	 * {@link #generateCreateSiblingActions(Collection, ISelection)} to perform additional checks if an action
+	 * corresponding to the given <em>descriptor</em> is valid for the active <em>content provider</em>.
 	 *
-	 * @param descriptor The {@link CommandParameter} that describes an action to be executed.
-	 * @param provider The {@link IContentProvider content provider} that is associated with the active viewer.
-	 * @return '<em><b>true</b></em>' if the descriptor is valid for the active viewer; '<em><b>false</b></em>' otherwise.
+	 * @param descriptor
+	 *            The {@link CommandParameter} that describes an action to be executed.
+	 * @param provider
+	 *            The {@link IContentProvider content provider} that is associated with the active viewer.
+	 * @return '<em><b>true</b></em>' if the descriptor is valid for the active viewer; '<em><b>false</b></em>'
+	 *         otherwise.
 	 */
 	private boolean isValidDescriptor(Object descriptor, IContentProvider provider) {
 
-		if(descriptor == null || provider == null) {
+		if (descriptor == null || provider == null) {
 			return false;
 		}
 
-		if(!(descriptor instanceof CommandParameter) ||
-				!(((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature)) {
+		if (!(descriptor instanceof CommandParameter)
+				|| !(((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature)) {
 			return true;
 		}
 
 		CommandParameter commandParam = (CommandParameter) descriptor;
 
-		if(provider instanceof IFeatureValidator) {
+		if (provider instanceof IFeatureValidator) {
 			return ((IFeatureValidator) provider).isValidFeature((EStructuralFeature) commandParam.getFeature());
 		}
 
@@ -447,20 +484,20 @@ implements ISelectionChangedListener {
 
 	/**
 	 * This populates the specified <code>manager</code> with {@link org.eclipse.jface.action.ActionContributionItem}s
-	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection,
-	 * by inserting them before the specified contribution item <code>contributionID</code>.
-	 * If <code>contributionID</code> is <code>null</code>, they are simply added.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection, by
+	 * inserting them before the specified contribution item <code>contributionID</code>. If <code>contributionID</code>
+	 * is <code>null</code>, they are simply added. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
+	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
+			String contributionID) {
+
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {
 					manager.insertBefore(contributionID, action);
-				}
-				else {
+				} else {
 					manager.add(action);
 				}
 			}
@@ -469,12 +506,13 @@ implements ISelectionChangedListener {
 
 	/**
 	 * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
-	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
+
 		if (actions != null) {
 			IContributionItem[] items = manager.getItems();
 			for (IContributionItem item : items) {
@@ -482,13 +520,13 @@ implements ISelectionChangedListener {
 				//
 				IContributionItem contributionItem = item;
 				while (contributionItem instanceof SubContributionItem) {
-					contributionItem = ((SubContributionItem)contributionItem).getInnerItem();
+					contributionItem = ((SubContributionItem) contributionItem).getInnerItem();
 				}
 
 				// Delete the ActionContributionItems with matching action.
 				//
 				if (contributionItem instanceof ActionContributionItem) {
-					IAction action = ((ActionContributionItem)contributionItem).getAction();
+					IAction action = ((ActionContributionItem) contributionItem).getAction();
 					if (actions.contains(action)) {
 						manager.remove(contributionItem);
 					}
@@ -498,12 +536,11 @@ implements ISelectionChangedListener {
 	}
 
 	/**
-	 * This populates the pop-up menu before it appears.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This populates the pop-up menu before it appears. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	public void menuAboutToShow(IMenuManager menuManager) {
+
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
@@ -521,13 +558,13 @@ implements ISelectionChangedListener {
 	}
 
 	/**
-	 * This inserts global actions before the "additions-end" separator.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This inserts global actions before the "additions-end" separator. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected void addGlobalActions(IMenuManager menuManager) {
+
 		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
 		menuManager.insertAfter("ui-actions", this.showPropertiesViewAction);
 
@@ -538,13 +575,14 @@ implements ISelectionChangedListener {
 	}
 
 	/**
-	 * This ensures that a delete action will clean up all references to deleted objects.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This ensures that a delete action will clean up all references to deleted objects. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected boolean removeAllReferencesOnDelete() {
+
 		return true;
 	}
 

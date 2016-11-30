@@ -6,9 +6,12 @@ package pamtram.commands.merging;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -47,7 +50,7 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
 	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
 	 *            the resource set associated with the given <em>domain</em>.
-	 * 
+	 *
 	 * @see #create(EditingDomain, Set, Set)
 	 */
 	public MergeClassesCommand(EditingDomain domain, C left, C right, Set<EObject> elementsOfInterest) {
@@ -67,7 +70,7 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 	 * @param <A>
 	 * @param domain
 	 *            The editing domain that the command operated on.
-	 * @param classes
+	 * @param classesToMerge
 	 *            The set of {@link Class Classes} to be merged.
 	 * @param elementsOfInterest
 	 *            The set of {@link EObject elements} that need to be consulted when
@@ -77,7 +80,23 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 	 * @return The created command.
 	 */
 	public static <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
-			EditingDomain domain, Set<C> classes, Set<EObject> elementsOfInterest) {
+			EditingDomain domain, Set<C> classesToMerge, Set<EObject> elementsOfInterest) {
+
+		// The classes can only be merge if they all represent the same EClass ...
+		//
+		Set<EClass> eClasses = classesToMerge.parallelStream().map(C::getEClass).collect(Collectors.toSet());
+
+		boolean enabled = eClasses.size() == 1;
+
+		// ... and if they all are either Sections, have the same container or no container at all
+		//
+		enabled = enabled && (classesToMerge.stream().allMatch(e -> e instanceof Section<?, ?, ?, ?>)
+				|| classesToMerge.stream().allMatch(e -> e.eContainer() == null)
+				|| classesToMerge.stream().map(EObject::eContainer).collect(Collectors.toSet()).size() == 1);
+
+		if (!enabled) {
+			return UnexecutableCommand.INSTANCE;
+		}
 
 		CompoundCommand command = new CompoundCommand();
 
@@ -86,7 +105,7 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 
 		// Initialize the various sub-commands
 		//
-		Iterator<C> it = classes.iterator();
+		Iterator<C> it = classesToMerge.iterator();
 
 		C class1 = it.next();
 

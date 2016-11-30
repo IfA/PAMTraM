@@ -3,7 +3,6 @@
  */
 package pamtram.commands.merging;
 
-import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -87,14 +86,7 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 
 			// Initialize the various sub-commands
 			//
-			Iterator<C> it = valuesToMerge.iterator();
-
-			C class1 = it.next();
-
-			while (it.hasNext()) {
-				C class2 = it.next();
-				this.append(new MergeClassesCommand<>(this.domain, class1, class2, this.elementsOfInterest));
-			}
+			this.append(MergeClassesCommand.create(this.domain, valuesToMerge, this.elementsOfInterest));
 
 			this.prepareRedirectCrossReferencesCommand(this.right, leftReference.get());
 

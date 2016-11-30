@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.StaticSelectionCommandAction;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -74,7 +72,7 @@ public class ClassMergeAction<S extends Section<S, C, R, A>, C extends pamtram.m
 	protected Command createActionCommand(EditingDomain editingDomain, Collection<?> collection) {
 
 		// This action is only enabled if more than one element of the correct type 'C' are
-		// selected ...
+		// selected.
 		//
 		boolean enabled = collection.size() > 1 && collection.stream().allMatch(e -> {
 			try {
@@ -90,23 +88,8 @@ public class ClassMergeAction<S extends Section<S, C, R, A>, C extends pamtram.m
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		// ... and if all selected elements represent the same EClass ...
-		//
 		@SuppressWarnings("unchecked")
 		Set<C> elementsToMerge = collection.stream().map(e -> (C) e).collect(Collectors.toSet());
-		Set<EClass> eClasses = elementsToMerge.parallelStream().map(C::getEClass).collect(Collectors.toSet());
-
-		enabled = eClasses.size() == 1;
-
-		// ... and if all elements are either Sections, have the same container or no container at all
-		//
-		enabled = enabled && (elementsToMerge.stream().allMatch(e -> e instanceof Section<?, ?, ?, ?>)
-				|| elementsToMerge.stream().allMatch(e -> e.eContainer() == null)
-				|| elementsToMerge.stream().map(EObject::eContainer).collect(Collectors.toSet()).size() == 1);
-
-		if (!enabled) {
-			return UnexecutableCommand.INSTANCE;
-		}
 
 		return this.doCreateClassMergeCommand(elementsToMerge);
 	}

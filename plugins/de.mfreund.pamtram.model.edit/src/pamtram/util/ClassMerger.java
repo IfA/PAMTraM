@@ -162,6 +162,10 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamo
 
 	private boolean mergeClass(C left, C right) {
 
+		// Merge the names of the class
+		//
+		left.setName(ClassMerger.longestCommonSubstring(left.getName(), right.getName()));
+
 		// Merge the attributes first
 		//
 		if (!this.mergeAttributes(left, right)) {

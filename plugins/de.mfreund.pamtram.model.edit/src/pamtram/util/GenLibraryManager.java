@@ -131,11 +131,13 @@ public class GenLibraryManager {
 	 *            The target model into that the given library item shall be inserted.
 	 * @param libraryEntry
 	 *            The {@link LibraryEntry} to be inserted into the target model.
+	 * @param libPath
+	 *            The path to the library to be used to retrieve the LibraryEntry.
 	 * @return The {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} that has been inserted in the
 	 *         target model.
 	 */
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertIntoTargetModel(EObject targetModel,
-			LibraryEntry libraryEntry) {
+			LibraryEntry libraryEntry, String libPath) {
 
 		/*
 		 * We need to create a self-contained copy of the library entry and pass it to the LibraryPlugin. Otherwise, the
@@ -151,8 +153,14 @@ public class GenLibraryManager {
 			return null;
 		}
 
-		this.getLibraryPlugin(((EPackage) rootPackage).getNsURI()).insertIntoTargetModel(targetModel,
-				originalLibraryEntry, libraryEntry.getPath().getValue());
+		LibraryPlugin plugin = this.getLibraryPlugin(((EPackage) rootPackage).getNsURI());
+
+		if (plugin == null) {
+			return null;
+		}
+
+		plugin.setLibPath(libPath);
+		plugin.insertIntoTargetModel(targetModel, originalLibraryEntry, libraryEntry.getPath().getValue());
 
 		return originalLibraryEntry;
 	}
@@ -166,13 +174,15 @@ public class GenLibraryManager {
 	 *            The target model into that the given library item shall be inserted.
 	 * @param libraryEntry
 	 *            The {@link LibraryEntry} to be inserted into the target model.
+	 * @param libPath
+	 *            The path to the library to be used to retrieve the LibraryEntry.
 	 * @param path
 	 *            The classpath of the '<em>libraryEntry</em>' to be inserted.
 	 * @return The {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} that has been inserted in the
 	 *         target model.
 	 */
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertIntoTargetModel(EObject targetModel,
-			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libraryEntry, String path) {
+			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libraryEntry, String libPath, String path) {
 
 		/*
 		 * We need to create a self-contained copy of the library entry and pass it to the LibraryPlugin. Otherwise, the
@@ -188,8 +198,14 @@ public class GenLibraryManager {
 			return null;
 		}
 
-		this.getLibraryPlugin(((EPackage) rootPackage).getNsURI()).insertIntoTargetModel(targetModel,
-				originalLibraryEntry, path);
+		LibraryPlugin plugin = this.getLibraryPlugin(((EPackage) rootPackage).getNsURI());
+
+		if (plugin == null) {
+			return null;
+		}
+
+		plugin.setLibPath(libPath);
+		plugin.insertIntoTargetModel(targetModel, originalLibraryEntry, path);
 
 		return originalLibraryEntry;
 	}

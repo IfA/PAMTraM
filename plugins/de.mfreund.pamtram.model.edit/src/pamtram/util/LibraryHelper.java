@@ -410,7 +410,7 @@ public class LibraryHelper {
 			// first, determine the LibraryFileEntry and LibraryEntry to be converted
 			// libFileEntry = getLibraryFileEntry(libraryFile, path);
 			// libEntry = getLibraryEntry(libFileEntry);
-			this.libEntry = this.manager.getLibraryEntry(this.ePackageURI, this.libPath, this.path, false);
+			this.libEntry = this.manager.getLibraryEntry(this.ePackageURI, this.path, false);
 
 			// storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"), resourceSet);
 

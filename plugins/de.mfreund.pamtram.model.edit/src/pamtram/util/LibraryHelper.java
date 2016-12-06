@@ -325,11 +325,6 @@ public class LibraryHelper {
 	private class LibraryElementConverter {
 
 		/**
-		 * The path to the library to be used to retrieve the LibraryEntry.
-		 */
-		private String libPath;
-
-		/**
 		 * The namespace URI of the {@link EPackage} identifying the {@link LibraryPlugin} to be used for the
 		 * conversion.
 		 */
@@ -390,13 +385,13 @@ public class LibraryHelper {
 		public LibraryElementConverter(String libPath, String ePackageURI, String path, URI uri,
 				ResourceSet resourceSet) throws InstantiationException, IllegalAccessException {
 
-			this.libPath = libPath;
 			this.ePackageURI = ePackageURI;
 			this.path = path;
 			this.uri = uri;
 			this.resourceSet = resourceSet;
 
 			this.manager = new GenLibraryManager();
+			this.manager.addLibPath(libPath);
 		}
 
 		/**

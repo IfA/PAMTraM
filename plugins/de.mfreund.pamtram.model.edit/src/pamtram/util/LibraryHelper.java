@@ -205,8 +205,8 @@ public class LibraryHelper {
 	 * {@link AbstractAttributeParameter}, {@link AbstractContainerParameter} and
 	 * {@link AbstractExternalReferenceParameter} that it encounters.
 	 *
-	 * @param libPath
-	 *            The path to the library to be used to retrieve the LibraryEntry.
+	 * @param manager
+	 *            The {@link GenLibraryManager} to be used for the conversion.
 	 * @param ePackageURI
 	 *            The namespace URI of the {@link EPackage} identifying the {@link LibraryPlugin} to be used for the
 	 *            conversion.
@@ -221,13 +221,13 @@ public class LibraryHelper {
 	 *             If something goes wrong during loading the libraryFile or the XMI file inside the library file
 	 *             representing the LibraryEntry.
 	 */
-	public static LibraryEntry convertToLibraryElement(String libPath, String ePackageURI, String path, URI uri,
-			ResourceSet resourceSet) throws IOException {
+	public static LibraryEntry convertToLibraryElement(GenLibraryManager manager, String ePackageURI, String path,
+			URI uri, ResourceSet resourceSet) throws IOException {
 
 		// TODO maybe use a factory pattern for this?
 		LibraryElementConverter converter;
 		try {
-			converter = new LibraryHelper().new LibraryElementConverter(libPath, ePackageURI, path, uri, resourceSet);
+			converter = new LibraryHelper().new LibraryElementConverter(manager, ePackageURI, path, uri, resourceSet);
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 			return null;
@@ -368,8 +368,8 @@ public class LibraryHelper {
 		/**
 		 * This constructs an instance of the LibraryElementConverter.
 		 *
-		 * @param libPath
-		 *            The path to the library to be used to retrieve the LibraryEntry.
+		 * @param manager
+		 *            The {@link GenLibraryManager} to be used for the conversion.
 		 * @param ePackageURI
 		 *            The namespace URI of the {@link EPackage} identifying the {@link LibraryPlugin} to be used for the
 		 *            conversion.
@@ -382,7 +382,7 @@ public class LibraryHelper {
 		 * @throws IllegalAccessException
 		 * @throws InstantiationException
 		 */
-		public LibraryElementConverter(String libPath, String ePackageURI, String path, URI uri,
+		public LibraryElementConverter(GenLibraryManager manager, String ePackageURI, String path, URI uri,
 				ResourceSet resourceSet) throws InstantiationException, IllegalAccessException {
 
 			this.ePackageURI = ePackageURI;
@@ -390,8 +390,7 @@ public class LibraryHelper {
 			this.uri = uri;
 			this.resourceSet = resourceSet;
 
-			this.manager = new GenLibraryManager();
-			this.manager.addLibPath(libPath);
+			this.manager = manager;
 		}
 
 		/**

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -113,9 +114,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	public static final String ATTRIBUTE_NAME_HANDLE_EXPANDING = "handleExpanding";
 
 	/**
-	 * The name of the 'targetLibPath' attribute.
+	 * The name of the 'libraryPaths' attribute.
 	 */
-	public static final String ATTRIBUTE_NAME_TARGET_LIB_PATH = "targetLibPath";
+	public static final String ATTRIBUTE_NAME_LIB_PATHS = "libraryPaths";
 
 	/**
 	 * The file extension for stored transformations including the '.' before the actual extension.
@@ -153,21 +154,23 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		// get the associated files from the launch configuration
 		//
-		final String project = configuration.getAttribute("project", "");
+		final String project = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, "");
 		ArrayList<String> sourceFiles = new ArrayList<>();
-		for (String sourceFile : configuration.getAttribute("srcFiles", new ArrayList<>())) {
+		for (String sourceFile : configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES,
+				new ArrayList<>())) {
 			sourceFiles.add(project + IPath.SEPARATOR + GentransLaunchingDelegate.SOURCE_FOLDER_NAME + IPath.SEPARATOR
 					+ sourceFile);
 		}
 		String pamtramFile = project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME + IPath.SEPARATOR
-				+ configuration.getAttribute("pamtramFile", "");
+				+ configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, "");
 		String targetBasePath = project + IPath.SEPARATOR + GentransLaunchingDelegate.TARGET_FOLDER_NAME;
-		String defaultTargetModel = configuration.getAttribute("targetFile", "out.xmi");
+		String defaultTargetModel = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE,
+				"out.xmi");
 
 		// determine the name of the transformation file from the current date
 		//
 		String transformationFile = null;
-		if (configuration.getAttribute("storeTransformation", false)) {
+		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION, false)) {
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 			String currentDate = df.format(Calendar.getInstance().getTime());
 			transformationFile = project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME
@@ -178,11 +181,11 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		// get the settings
 		//
-		int maxPathLength = configuration.getAttribute("maxPathLength", -1);
+		int maxPathLength = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
 		boolean rememberAmbiguousMappingChoice = configuration.getAttribute("rememberAmbiguousMappingChoice", true);
 		Level logLevel = Level.ALL;
 		try {
-			String level = configuration.getAttribute("logLevel", "SEVERE");
+			String level = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, "SEVERE");
 			logLevel = Level.parse(level);
 		} catch (Exception e) {
 			Logger.getLogger(GentransLaunchingDelegate.class.getName()).log(Level.SEVERE, e.getMessage(), e);
@@ -208,7 +211,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// Create and run the transformation job
 		//
 		GenericTransformationJob job = new GenericTransformationJob("GenTrans", sourceFiles, pamtramFile,
-				targetBasePath, defaultTargetModel, transformationFile, configuration.getAttribute("targetLibPath", ""),
+				targetBasePath, defaultTargetModel, transformationFile,
+				configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, new ArrayList<>()),
 				resolvingStrategy, maxPathLength, rememberAmbiguousMappingChoice, logLevel);
 
 		job.setUser(true);
@@ -355,14 +359,22 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 */
 	private void validateLibraryTab(ILaunchConfiguration configuration) throws CoreException {
 
-		String targetLibPath = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PATH, "");
+		List<String> libraryPaths = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS,
+				new ArrayList<>());
 
-		if (targetLibPath.isEmpty()) {
+		if (libraryPaths.isEmpty()) {
 			// do nothing as this is not necessary if no library entries are used
-		} else if (!new File(targetLibPath).exists()) {
-			throw new GentransLaunchingDelegateValidationException("Target library path does not exist!");
-		} else if (!new File(targetLibPath).isDirectory()) {
-			throw new GentransLaunchingDelegateValidationException("Target library path does not represent a folder!");
+			return;
+		}
+
+		for (String libraryPath : libraryPaths) {
+
+			if (!new File(libraryPath).exists()) {
+				throw new GentransLaunchingDelegateValidationException("Target library path does not exist!");
+			} else if (!new File(libraryPath).isDirectory()) {
+				throw new GentransLaunchingDelegateValidationException(
+						"Target library path does not represent a folder!");
+			}
 		}
 
 	}

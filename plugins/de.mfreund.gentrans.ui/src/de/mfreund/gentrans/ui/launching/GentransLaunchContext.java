@@ -116,14 +116,14 @@ class GentransLaunchContext {
 	public static final String PROPERTY_NAME_MODELS_TO_CHOOSE_FROM = "modelsToChooseFrom";
 
 	/**
-	 * The path to the target library to be used in the transformation.
+	 * The list of paths to the libraries to be used in the transformation.
 	 */
-	private String targetLibraryPath;
+	private List<String> libraryPaths;
 
 	/**
-	 * The name of the {@link #targetLibraryPath} property.
+	 * The name of the {@link #libraryPaths} property.
 	 */
-	public static final String PROPERTY_NAME_TARGET_LIBRARY_PATH = "targetLibraryPath";
+	public static final String PROPERTY_NAME_LIBRARY_PATHS = "libraryPaths";
 
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 
@@ -330,24 +330,24 @@ class GentransLaunchContext {
 	}
 
 	/**
-	 * This is the getter for the {@link #targetLibraryPath}.
+	 * This is the getter for the {@link #libraryPaths}.
 	 *
-	 * @return the {@link #targetLibraryPath}.
+	 * @return the {@link #libraryPaths}.
 	 */
-	public String getTargetLibraryPath() {
+	public List<String> getLibraryPaths() {
 
-		return this.targetLibraryPath;
+		return this.libraryPaths;
 	}
 
 	/**
-	 * This is the setter for the {@link #targetLibraryPath}.
+	 * This is the setter for the {@link #libraryPaths}.
 	 *
-	 * @param targetLibraryPath
-	 *            the {@link #targetLibraryPath} to set.
+	 * @param libraryPaths
+	 *            the {@link #libraryPaths} to set.
 	 */
-	public void setTargetLibraryPath(String targetLibraryPath) {
+	public void setLibraryPaths(List<String> libraryPaths) {
 
-		this.targetLibraryPath = targetLibraryPath;
+		this.libraryPaths = libraryPaths;
 	}
 
 }

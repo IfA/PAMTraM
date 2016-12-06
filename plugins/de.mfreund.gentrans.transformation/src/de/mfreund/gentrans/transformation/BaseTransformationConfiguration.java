@@ -1,5 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
@@ -45,10 +47,10 @@ public class BaseTransformationConfiguration {
 	protected boolean onlyAskOnceOnAmbiguousMappings;
 
 	/**
-	 * The path to the library to be used to retrieve the entries for the instantiation of {@link LibraryEntry
-	 * LibraryEntries}.
+	 * The list of paths to the libraries to be used to retrieve the entries for the instantiation of
+	 * {@link LibraryEntry LibraryEntries}.
 	 */
-	protected String libPath;
+	protected List<String> libPaths;
 
 	/**
 	 * The {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the execution
@@ -75,7 +77,7 @@ public class BaseTransformationConfiguration {
 		this.withTransformationModelPath(null);
 		this.withMaxPathLength(-1);
 		this.withOnlyAskOnceOnAmbiguousMappings(true);
-		this.withLibPath(null);
+		this.withLibPaths(null);
 		this.withAmbiguityResolvingStrategy(null);
 		this.withLogLevel(null);
 	}
@@ -153,17 +155,17 @@ public class BaseTransformationConfiguration {
 	}
 
 	/**
-	 * Set the {@link #libPath}.
+	 * Set the {@link #libPaths}.
 	 * <p />
 	 * Note: This may be set to '<em>null</em>' if no library entries shall be instantiated during the transformation.
 	 *
-	 * @param libPath
-	 *            The path to the library to be used to retrieve the LibraryEntry.
-	 * @return The {@link BaseTransformationConfiguration} after setting the {@link #libPath}.
+	 * @param libPaths
+	 *            The list of paths to the libraries to be used to retrieve the LibraryEntry.
+	 * @return The {@link BaseTransformationConfiguration} after setting the {@link #libPaths}.
 	 */
-	public BaseTransformationConfiguration withLibPath(String libPath) {
+	public BaseTransformationConfiguration withLibPaths(List<String> libPaths) {
 
-		this.libPath = libPath;
+		this.libPaths = libPaths == null ? new ArrayList<>() : libPaths;
 		return this;
 	}
 
@@ -240,13 +242,13 @@ public class BaseTransformationConfiguration {
 	}
 
 	/**
-	 * The getter for the {@link #libPath}.
+	 * The getter for the {@link #libPaths}.
 	 *
 	 * @return the libPath
 	 */
-	public String getLibPath() {
+	public List<String> getLibPaths() {
 
-		return this.libPath;
+		return this.libPaths;
 	}
 
 	/**

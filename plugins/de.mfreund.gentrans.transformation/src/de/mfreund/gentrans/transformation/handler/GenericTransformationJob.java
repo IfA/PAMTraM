@@ -51,8 +51,8 @@ public class GenericTransformationJob extends Job {
 	 *            This is the file path where an instance of {@link Transformation} that contains information about the
 	 *            execution will be stored after the transformation. If this is set to '<em>null</em>', the
 	 *            transformation model will not be stored.
-	 * @param libPath
-	 *            The path to the library to be used to retrieve the LibraryEntry.
+	 * @param libPaths
+	 *            The list of paths to the libraries to be used to retrieve the LibraryEntry.
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during
 	 *            the execution of the transformation. If this is '<em>null</em>', the
@@ -65,7 +65,7 @@ public class GenericTransformationJob extends Job {
 	 */
 	public GenericTransformationJob(final String jobName, final String sourceFilePath, final String pamtramPath,
 			final String targetBasePath, final String defaultTargetModel, final String transformationModelPath,
-			String libPath, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, int maxPathLength,
+			List<String> libPaths, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, int maxPathLength,
 			boolean rememberAmbiguousMappingChoice, Level logLevel) {
 
 		super(jobName);
@@ -75,7 +75,7 @@ public class GenericTransformationJob extends Job {
 		BaseTransformationConfiguration baseConfig = new BaseTransformationConfiguration()
 				.withAmbiguityResolvingStrategy(ambiguityResolvingStrategy).withDefaultTargetModel(defaultTargetModel)
 				.withTransformationModelPath(transformationModelPath).withMaxPathLength(maxPathLength)
-				.withOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice).withLibPath(libPath)
+				.withOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice).withLibPaths(libPaths)
 				.withLogLevel(logLevel);
 
 		this.genTransRunner = GenericTransformationRunnerFactory.eINSTANCE
@@ -105,8 +105,8 @@ public class GenericTransformationJob extends Job {
 	 *            This is the file path where an instance of {@link Transformation} that contains information about the
 	 *            execution will be stored after the transformation. If this is set to '<em>null</em>', the
 	 *            transformation model will not be stored.
-	 * @param targetLibraryContextDescriptor
-	 *            The descriptor for the target library context to be used during the transformation.
+	 * @param libPaths
+	 *            The list of paths to the libraries to be used to retrieve the LibraryEntry.
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during
 	 *            the execution of the transformation. If this is '<em>null</em>', the
@@ -122,7 +122,7 @@ public class GenericTransformationJob extends Job {
 	 *            {@link Level#ALL} to ensure logging of all messages and {@link Level#OFF} to prevent any logging.
 	 */
 	public GenericTransformationJob(final String jobName, List<String> sourceFilePaths, String pamtramPath,
-			String targetBasePath, String defaultTargetModel, String transformationModelPath, String libPath,
+			String targetBasePath, String defaultTargetModel, String transformationModelPath, List<String> libPaths,
 			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, int maxPathLength,
 			boolean rememberAmbiguousMappingChoice, Level logLevel) {
 
@@ -131,7 +131,7 @@ public class GenericTransformationJob extends Job {
 		BaseTransformationConfiguration baseConfig = new BaseTransformationConfiguration()
 				.withAmbiguityResolvingStrategy(ambiguityResolvingStrategy).withDefaultTargetModel(defaultTargetModel)
 				.withTransformationModelPath(transformationModelPath).withMaxPathLength(maxPathLength)
-				.withOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice).withLibPath(libPath)
+				.withOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice).withLibPaths(libPaths)
 				.withLogLevel(logLevel);
 
 		this.genTransRunner = GenericTransformationRunnerFactory.eINSTANCE

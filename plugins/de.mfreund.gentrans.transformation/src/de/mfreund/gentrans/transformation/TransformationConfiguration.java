@@ -104,7 +104,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		this.transformationModelPath = baseConfig.getTransformationModelPath();
 		this.maxPathLength = baseConfig.getMaxPathLength();
 		this.onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
-		this.libPath = baseConfig.getLibPath();
+		this.libPaths = baseConfig.getLibPaths();
 		this.ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
 
 		// Initialize the mandatory parameters
@@ -179,9 +179,9 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	}
 
 	@Override
-	public TransformationConfiguration withLibPath(String libPath) {
+	public TransformationConfiguration withLibPaths(List<String> libPaths) {
 
-		super.withLibPath(libPath);
+		super.withLibPaths(libPaths);
 		return this;
 	}
 

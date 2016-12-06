@@ -730,7 +730,10 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * used in during the transformation.
 		 */
 		GenLibraryManager manager = new GenLibraryManager();
-		manager.addLibPath(this.transformationConfig.getLibPath());
+		this.transformationConfig.getLibPaths().stream().forEach(libPath -> {
+			this.transformationConfig.getLogger().fine("Registering library path '" + libPath + "'...");
+			manager.addLibPath(libPath);
+		});
 
 		List<LibraryEntryInstantiator> libEntryInstantiators = expandingResult.getLibEntryInstantiatorMap().entrySet()
 				.parallelStream().map(Entry::getValue).collect(Collectors.toList());

@@ -726,9 +726,11 @@ public class GenericTransformationRunner extends CancelableElement {
 		}
 
 		/*
-		 * Create a GenLibraryManager that proxies calls to the LibraryPlugin.
+		 * Create a GenLibraryManager that proxies calls to the LibraryPlugin and register all libraries that are to be
+		 * used in during the transformation.
 		 */
 		GenLibraryManager manager = new GenLibraryManager();
+		manager.addLibPath(this.transformationConfig.getLibPath());
 
 		List<LibraryEntryInstantiator> libEntryInstantiators = expandingResult.getLibEntryInstantiatorMap().entrySet()
 				.parallelStream().map(Entry::getValue).collect(Collectors.toList());
@@ -740,8 +742,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		 */
 		return libEntryInstantiators.stream().allMatch(libraryEntryInstantiator -> {
 
-			boolean successful = libraryEntryInstantiator.instantiate(this.transformationConfig.getLibPath(), manager,
-					calculator, expandingResult.getTargetSectionRegistry());
+			boolean successful = libraryEntryInstantiator.instantiate(manager, calculator,
+					expandingResult.getTargetSectionRegistry());
 			if (!successful) {
 				this.transformationConfig.getLogger().severe("Failed to instantiate library entry '"
 						+ libraryEntryInstantiator.getLibraryEntry().getPath().getValue() + "'!");

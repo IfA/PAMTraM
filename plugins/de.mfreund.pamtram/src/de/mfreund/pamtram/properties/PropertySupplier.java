@@ -13,15 +13,15 @@ import org.eclipse.core.runtime.QualifiedName;
 public abstract class PropertySupplier {
 
 	/**
-	 * This property is used to specify the path to the folder that contains the target library to be used for this
-	 * project.
+	 * This property is used to specify the paths to the folders that contain the libraries to be used for this project.
+	 * If multiple paths are specified, these are separated by a ';'.
 	 */
-	public static final String PROP_LIBRARY_TARGET_PATH = "LIBRARY-TARGET-PATH";
+	public static final String PROP_LIBRARY_PATHS = "LIBRARY-PATHS";
 
 	/**
-	 * This represents the default value for the {@link #PROP_LIBRARY_TARGET_PATH} property.
+	 * This represents the default value for the {@link #PROP_LIBRARY_PATHS} property.
 	 */
-	public static final String DEFAULT_LIBRARY_TARGET_PATH = "";
+	public static final String DEFAULT_LIBRARY_PATHS = "";
 
 	/*
 	 * More properties can be defined here...
@@ -66,8 +66,8 @@ public abstract class PropertySupplier {
 
 		// return the default value if necessary
 		switch (propertyName) {
-			case PROP_LIBRARY_TARGET_PATH:
-				propertyValue = PropertySupplier.DEFAULT_LIBRARY_TARGET_PATH;
+			case PROP_LIBRARY_PATHS:
+				propertyValue = PropertySupplier.DEFAULT_LIBRARY_PATHS;
 				break;
 			default:
 				break;

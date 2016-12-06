@@ -123,6 +123,9 @@ public class LibraryEntryInstantiator {
 	/**
 	 * This instantiates the {@link #libraryEntry} in a given target model.
 	 *
+	 *
+	 * @param libPath
+	 *            The path to the library to be used to retrieve the LibraryEntry.
 	 * @param manager
 	 *            The {@link GenLibraryManager} that proxies calls to the {@link LibraryPlugin}.
 	 * @param calculator
@@ -131,7 +134,7 @@ public class LibraryEntryInstantiator {
 	 *            The {@link TargetSectionRegistry} that has registered the target sections.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	public boolean instantiate(GenLibraryManager manager, AttributeValueCalculator calculator,
+	public boolean instantiate(String libPath, GenLibraryManager manager, AttributeValueCalculator calculator,
 			TargetSectionRegistry targetSectionRegistry) {
 
 		EObject targetModel = EcoreUtil.getRootContainer(this.transformationHelper.getEObject());
@@ -172,7 +175,7 @@ public class LibraryEntryInstantiator {
 			// move upwards in the classpath hierarchy until an entry is found.
 			//
 			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry moreSpecificEntry = this.getMoreSpecificEntry(
-					this.libraryEntry, this.libraryEntry.getPath().getValue(), resultingPath, manager);
+					libPath, this.libraryEntry, this.libraryEntry.getPath().getValue(), resultingPath, manager);
 
 			if (moreSpecificEntry != null) {
 				libEntryToInsert = moreSpecificEntry;
@@ -199,7 +202,7 @@ public class LibraryEntryInstantiator {
 		 * Finally, insert the library entry into the target model as all parameters have been filled out
 		 */
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertedEntry = manager
-				.insertIntoTargetModel(targetModel, libEntryToInsert, resultingPath);
+				.insertIntoTargetModel(targetModel, libEntryToInsert, libPath, resultingPath);
 
 		/*
 		 * Now, we update the eObject wrapped by the 'transformationHelper' so this will point to the right element if
@@ -367,6 +370,8 @@ public class LibraryEntryInstantiator {
 	 * resulting classpath for that an entry could be determined is stored in the {@link LibraryEntry#getPath()}
 	 * variable of the 'oldEntry' and can be evaulated by clients.
 	 *
+	 * @param libPath
+	 *            The path to the library to be used to retrieve the LibraryEntry.
 	 * @param oldEntry
 	 *            The existing {@link LibraryEntry} that shall be replaced.
 	 * @param oldPath
@@ -379,8 +384,8 @@ public class LibraryEntryInstantiator {
 	 *         '<em>newPath</em>' with all parameter values extracted from the '<em>oldEntry</em>'. If there is specific
 	 *         entry with matching parameters for the given '<em>newPath</em>', this returns '<em><b>null</b></em>'.
 	 */
-	private de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getMoreSpecificEntry(LibraryEntry oldEntry,
-			String oldPath, String newPath, GenLibraryManager manager) {
+	private de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getMoreSpecificEntry(String libPath,
+			LibraryEntry oldEntry, String oldPath, String newPath, GenLibraryManager manager) {
 
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry newEntry;
 
@@ -393,7 +398,7 @@ public class LibraryEntryInstantiator {
 		int i = newPathSegments.length - 1;
 		do {
 
-			newEntry = manager.getLibraryEntry(this.ePackageURI, resultPath, false);
+			newEntry = manager.getLibraryEntry(libPath, this.ePackageURI, resultPath, false);
 
 			// An entry for the given path has been found. Now, we need to check if the parameters
 			// match.

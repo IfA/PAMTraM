@@ -1,22 +1,29 @@
 package de.mfreund.pamtram.ui.properties;
 
 import java.io.File;
+import java.util.Arrays;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.preference.DirectoryFieldEditor;
+import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 import de.mfreund.pamtram.properties.PropertySupplier;
+import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 /**
  * A {@link PropertyPage} to display the properties for a PAMTraM project.
@@ -24,11 +31,18 @@ import de.mfreund.pamtram.properties.PropertySupplier;
  * @author mfreund
  */
 public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPage {
+	public PropertiesPage() {
+	}
 
 	/**
-	 * A text field to specify the full path to the folder that holds the target library.
+	 * The {@link FileFieldEditor} that allows the user to select new library locations.
 	 */
-	private Text targetPathText;
+	private DirectoryFieldEditor libraryPathSelector;
+
+	/**
+	 * This displays all selected library paths to the user.
+	 */
+	private List libraryPathList;
 
 	@Override
 	protected Control createContents(Composite parent) {
@@ -39,32 +53,66 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		GridLayoutFactory.swtDefaults().numColumns(2).equalWidth(true).applyTo(comp);
 		comp.setFont(parent.getFont());
 
-		// a group to host all library related settings
+		// a group to confiure all libraries that are to be used
 		//
-		Group libraryGroup = new Group(comp, SWT.NONE);
-		libraryGroup.setText("Library Properties");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(libraryGroup);
-		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(libraryGroup);
+		Group libraryPathsGroup = new Group(comp, SWT.NONE);
+		libraryPathsGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		libraryPathsGroup.setText("Library Location(s)");
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1)
+				.applyTo(libraryPathsGroup);
+		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(libraryPathsGroup);
 
-		// a group to host all target related settings
-		//
-		Group targetGroup = new Group(libraryGroup, SWT.NONE);
-		targetGroup.setText("Target");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(targetGroup);
-		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(targetGroup);
+		Composite directoryEditorComposite = new Composite(libraryPathsGroup, SWT.NONE);
+		directoryEditorComposite.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.NORMAL));
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(3, 1)
+				.applyTo(directoryEditorComposite);
+		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(directoryEditorComposite);
 
-		// create a label for the specification of the path to the folder that holds the target library
+		// create drop-down list for the source file selection (based on the project)
 		//
-		Label targetPathLabel = new Label(targetGroup, SWT.NONE);
-		targetPathLabel.setText("Library folder path:");
-		GridDataFactory.swtDefaults().applyTo(targetPathLabel);
+		this.libraryPathSelector = new DirectoryFieldEditor("libraryPathSelect", "Add Library Location:",
+				directoryEditorComposite);
+		this.libraryPathSelector.setPropertyChangeListener(e -> this.handleAddLibrarySelected());
 
-		// create a text field for the specification of the path to the folder that holds the target library
+		// a composite to display the selected source files as well as buttons to add/remove/reorder files
 		//
-		this.targetPathText = new Text(targetGroup, SWT.NONE);
-		this.targetPathText.setMessage("Full path to the folder that holds the target library");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetPathText);
-		this.targetPathText.addModifyListener(e -> PropertiesPage.this.isValid());
+		ScrolledComposite scrolledComposite = new ScrolledComposite(libraryPathsGroup, SWT.V_SCROLL);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2, 3).applyTo(scrolledComposite);
+
+		// a list to display the selected source files
+		//
+		this.libraryPathList = new List(scrolledComposite, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
+		this.libraryPathList.addKeyListener((KeyPressedListener) e -> {
+			if (e.keyCode == SWT.DEL && this.libraryPathList.getSelectionIndex() != -1) {
+
+				this.handleDelLibraryButtonPressed();
+			}
+		});
+		scrolledComposite.setContent(this.libraryPathList);
+		scrolledComposite.setMinSize(this.libraryPathList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+
+		// a button that allows to delete elements from the 'sourceFileList'
+		//
+		Button delSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
+		delSourceFileButton.setText("Del...");
+		delSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDelLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(delSourceFileButton);
+
+		// a button that allows to move elements up in the 'sourceFileList'
+		//
+		Button upSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
+		upSourceFileButton.setText("Up...");
+		upSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleUpLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(upSourceFileButton);
+
+		// a button that allows to move elements down in the 'sourceFileList'
+		//
+		Button downSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
+		downSourceFileButton.setText("Down...");
+		downSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDownLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(downSourceFileButton);
 
 		// Finally, initialize all properties.
 		//
@@ -93,8 +141,8 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		IResource resource = (IResource) this.getElement();
 		try {
 			resource.setPersistentProperty(
-					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_PATH),
-					this.targetPathText.getText());
+					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_PATHS),
+					String.join(";", this.libraryPathList.getItems()));
 		} catch (CoreException e) {
 			e.printStackTrace();
 			return false;
@@ -110,7 +158,7 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		/*
 		 * Initialize the text fields with the default values.
 		 */
-		this.targetPathText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_PATH);
+		this.libraryPathList.setItems(PropertySupplier.DEFAULT_LIBRARY_PATHS.split(";"));
 	}
 
 	/**
@@ -123,8 +171,8 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		IResource resource = (IResource) this.getElement();
 
 		try {
-			this.targetPathText
-					.setText(PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PATH, resource));
+			this.libraryPathList.setItems(
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_PATHS, resource).split(";"));
 		} catch (CoreException e) {
 			e.printStackTrace();
 			return false;
@@ -141,17 +189,99 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	public boolean isValid() {
 
 		this.setErrorMessage(null);
-		String targetLibPath = this.targetPathText.getText();
-		if (targetLibPath.isEmpty()) {
-			// nothing to be done
-		} else if (!new File(targetLibPath).exists()) {
-			this.setErrorMessage("Target library path does not exist!");
-			return false;
-		} else if (!new File(targetLibPath).isDirectory()) {
-			this.setErrorMessage("Target library path does not represent a folder!");
-			return false;
+
+		// validate the specified library paths
+		//
+		java.util.List<String> libraryPaths = Arrays.asList(this.libraryPathList.getItems());
+
+		if (libraryPaths.isEmpty()) {
+			// do nothing as this is not necessary if no library entries are used
+			return true;
+		}
+
+		for (String libraryPath : libraryPaths) {
+
+			if (!new File(libraryPath).exists()) {
+				this.setErrorMessage("Library path '" + libraryPath + "' does not exist!");
+				return false;
+			} else if (!new File(libraryPath).isDirectory()) {
+				this.setErrorMessage("Library path '" + libraryPath + "' does not represent a folder!");
+				return false;
+			}
 		}
 
 		return true;
+	}
+
+	/**
+	 * Add the file specified in the {@link #libraryPathSelector} to the {@link #libraryPathList}.
+	 */
+	private void handleAddLibrarySelected() {
+
+		if (this.libraryPathSelector.getStringValue().isEmpty()) {
+			return;
+		}
+
+		this.libraryPathList.add(this.libraryPathSelector.getStringValue());
+		this.libraryPathList.deselectAll();
+		this.libraryPathList.select(this.libraryPathList.getItemCount() - 1);
+		this.libraryPathSelector.setStringValue(null);
+	}
+
+	/**
+	 * Delete all elements that are selected in the {@link #libraryPathList}.
+	 */
+	private void handleDelLibraryButtonPressed() {
+
+		int selected = this.libraryPathList.getSelectionIndex();
+		this.libraryPathList.remove(this.libraryPathList.getSelectionIndices());
+		this.libraryPathList.select(selected > this.libraryPathList.getItemCount() - 1
+				? this.libraryPathList.getItemCount() - 1 : selected);
+	}
+
+	/**
+	 * Move all elements that are selected in the {@link #libraryPathList} up.
+	 */
+	private void handleUpLibraryButtonPressed() {
+
+		for (int selected : this.libraryPathList.getSelectionIndices()) {
+			if (selected == 0) {
+				return;
+			}
+			String[] items = this.libraryPathList.getItems();
+			String prevItem = this.libraryPathList.getItem(selected - 1);
+			items[selected - 1] = this.libraryPathList.getItem(selected);
+			items[selected] = prevItem;
+			int[] currentSel = this.libraryPathList.getSelectionIndices();
+			this.libraryPathList.setItems(items);
+			this.libraryPathList.select(currentSel);
+			this.libraryPathList.deselect(selected);
+			this.libraryPathList.select(selected - 1);
+		}
+
+	}
+
+	/**
+	 * Move all elements that are selected in the {@link #libraryPathList} down.
+	 */
+	private void handleDownLibraryButtonPressed() {
+
+		int[] selections = this.libraryPathList.getSelectionIndices();
+		for (int i = selections.length - 1; i >= 0; i--) {
+			int sel = selections[i];
+			if (sel == this.libraryPathList.getItemCount() - 1) {
+				return;
+			}
+			String[] items = this.libraryPathList.getItems();
+			String nextItem = this.libraryPathList.getItem(sel + 1);
+			items[sel + 1] = this.libraryPathList.getItem(sel);
+			items[sel] = nextItem;
+			int[] currentSel = this.libraryPathList.getSelectionIndices();
+			this.libraryPathList.setItems(items);
+			this.libraryPathList.select(currentSel);
+			this.libraryPathList.deselect(sel);
+			this.libraryPathList.select(sel + 1);
+		}
+
 	}
 }

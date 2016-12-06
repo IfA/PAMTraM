@@ -1,12 +1,9 @@
 package de.mfreund.pamtram.wizards;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.CreateChildCommand;
@@ -15,7 +12,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.wizard.Wizard;
 
 import de.mfreund.pamtram.pages.ImportLibraryElementWizardMainPage;
-import de.mfreund.pamtram.properties.PropertySupplier;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
@@ -32,6 +28,7 @@ import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
+import pamtram.util.GenLibraryManager;
 import pamtram.util.LibraryHelper;
 
 /**
@@ -85,17 +82,15 @@ public class ImportLibraryElementWizard extends Wizard {
 		for (LibraryFileEntry entry : this.one.getLibEntriesToImport()) {
 			try {
 
-				// determine the project for the pamtram instance
-				IWorkspace workspace = ResourcesPlugin.getWorkspace();
-				IProject project = workspace.getRoot()
-						.getProject(this.pamtram.eResource().getURI().trimSegments(2).lastSegment());
+				GenLibraryManager manager = new GenLibraryManager();
 
-				// TODO let the user select a library path
-				String libPath = PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PATH,
-						project);
+				// We simply use the parent of the chosen library file as library location
+				//
+				String libraryLocation = new File(this.one.getLibraryFile()).getParent();
+				manager.addLibPath(libraryLocation);
 
 				// first, create the library element
-				LibraryEntry libElement = LibraryHelper.convertToLibraryElement(libPath,
+				LibraryEntry libElement = LibraryHelper.convertToLibraryElement(manager,
 						this.one.getTargetSectionModel().getMetaModelPackage().getNsURI(), entry.getKey(),
 						this.pamtram.eResource().getURI().trimSegments(1).appendSegment("lib"),
 						this.editingDomain.getResourceSet());
@@ -150,7 +145,7 @@ public class ImportLibraryElementWizard extends Wizard {
 					compoundCommand.append(createMappingCommand);
 				}
 
-			} catch (IOException | RuntimeException | CoreException e) {
+			} catch (IOException | RuntimeException e) {
 				e.printStackTrace();
 				return false;
 			}

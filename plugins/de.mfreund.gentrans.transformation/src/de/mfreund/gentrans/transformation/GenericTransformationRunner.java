@@ -167,6 +167,9 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		if (transformationResult != null && transformationResult.getOverallResult() && !this.isCanceled()) {
 
+			this.writePamtramMessage("Storing target model(s).");
+			monitor.subTask("Storing target model(s).");
+
 			/*
 			 * create the target models
 			 */
@@ -731,7 +734,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 */
 		GenLibraryManager manager = new GenLibraryManager();
 		this.transformationConfig.getLibPaths().stream().forEach(libPath -> {
-			this.transformationConfig.getLogger().fine("Registering library path '" + libPath + "'...");
+			this.transformationConfig.getLogger().info("Registering library location '" + libPath + "'...");
 			manager.addLibPath(libPath);
 		});
 

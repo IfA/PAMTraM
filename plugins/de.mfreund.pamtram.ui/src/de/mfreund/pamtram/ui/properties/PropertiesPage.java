@@ -1,24 +1,29 @@
 package de.mfreund.pamtram.ui.properties;
 
 import java.io.File;
+import java.util.Arrays;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.preference.DirectoryFieldEditor;
+import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
-import org.osgi.framework.Bundle;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 import de.mfreund.pamtram.properties.PropertySupplier;
+import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 /**
  * A {@link PropertyPage} to display the properties for a PAMTraM project.
@@ -26,26 +31,18 @@ import de.mfreund.pamtram.properties.PropertySupplier;
  * @author mfreund
  */
 public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPage {
+	public PropertiesPage() {
+	}
 
 	/**
-	 * A text field to specify the full path to the folder that holds the target library.
+	 * The {@link FileFieldEditor} that allows the user to select new library locations.
 	 */
-	private Text targetPathText;
+	private DirectoryFieldEditor libraryPathSelector;
 
 	/**
-	 * A text field to specify the bundle that represents the specific target library.
+	 * This displays all selected library paths to the user.
 	 */
-	private Text targetBundleText;
-
-	/**
-	 * A text field to specify the concrete library context of the specific target library.
-	 */
-	private Text targetLibContextText;
-
-	/**
-	 * A text field to specify the concrete library path parser of the specific target library.
-	 */
-	private Text targetLibParserText;
+	private List libraryPathList;
 
 	@Override
 	protected Control createContents(Composite parent) {
@@ -56,71 +53,66 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		GridLayoutFactory.swtDefaults().numColumns(2).equalWidth(true).applyTo(comp);
 		comp.setFont(parent.getFont());
 
-		// a group to host all library related settings
+		// a group to confiure all libraries that are to be used
 		//
-		Group libraryGroup = new Group(comp, SWT.NONE);
-		libraryGroup.setText("Library Properties");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(libraryGroup);
-		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(libraryGroup);
+		Group libraryPathsGroup = new Group(comp, SWT.NONE);
+		libraryPathsGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		libraryPathsGroup.setText("Library Location(s)");
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1)
+				.applyTo(libraryPathsGroup);
+		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(libraryPathsGroup);
 
-		// a group to host all target related settings
-		//
-		Group targetGroup = new Group(libraryGroup, SWT.NONE);
-		targetGroup.setText("Target");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(targetGroup);
-		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(targetGroup);
+		Composite directoryEditorComposite = new Composite(libraryPathsGroup, SWT.NONE);
+		directoryEditorComposite.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.NORMAL));
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(3, 1)
+				.applyTo(directoryEditorComposite);
+		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(directoryEditorComposite);
 
-		// create a label for the specification of the path to the folder that holds the target library
+		// create drop-down list for the source file selection (based on the project)
 		//
-		Label targetPathLabel = new Label(targetGroup, SWT.NONE);
-		targetPathLabel.setText("Library folder path:");
-		GridDataFactory.swtDefaults().applyTo(targetPathLabel);
+		this.libraryPathSelector = new DirectoryFieldEditor("libraryPathSelect", "Add Library Location:",
+				directoryEditorComposite);
+		this.libraryPathSelector.setPropertyChangeListener(e -> this.handleAddLibrarySelected());
 
-		// create a text field for the specification of the path to the folder that holds the target library
+		// a composite to display the selected source files as well as buttons to add/remove/reorder files
 		//
-		this.targetPathText = new Text(targetGroup, SWT.NONE);
-		this.targetPathText.setMessage("Full path to the folder that holds the target library");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetPathText);
-		this.targetPathText.addModifyListener(e -> PropertiesPage.this.isValid());
+		ScrolledComposite scrolledComposite = new ScrolledComposite(libraryPathsGroup, SWT.V_SCROLL);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2, 3).applyTo(scrolledComposite);
 
-		// create a label for the specification of the bundle that represents the specific target library
+		// a list to display the selected source files
 		//
-		Label targetBundleLabel = new Label(targetGroup, SWT.NONE);
-		targetBundleLabel.setText("Bundle ID:");
-		GridDataFactory.swtDefaults().applyTo(targetBundleLabel);
+		this.libraryPathList = new List(scrolledComposite, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
+		this.libraryPathList.addKeyListener((KeyPressedListener) e -> {
+			if (e.keyCode == SWT.DEL && this.libraryPathList.getSelectionIndex() != -1) {
 
-		// create a text field for the specification of the bundle that represents the specific target library
-		//
-		this.targetBundleText = new Text(targetGroup, SWT.NONE);
-		this.targetBundleText.setMessage("Bundle identifier of the plug-in hosting the concrete LibraryContext and PathParser");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetBundleText);
-		this.targetBundleText.addModifyListener(e -> PropertiesPage.this.isValid());
+				this.handleDelLibraryButtonPressed();
+			}
+		});
+		scrolledComposite.setContent(this.libraryPathList);
+		scrolledComposite.setMinSize(this.libraryPathList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
-		// create a label for the specification of the concrete library context of the specific target library
+		// a button that allows to delete elements from the 'sourceFileList'
 		//
-		Label targetLibContextLabel = new Label(targetGroup, SWT.NONE);
-		targetLibContextLabel.setText("Library Context ID:");
-		GridDataFactory.swtDefaults().applyTo(targetLibContextLabel);
+		Button delSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
+		delSourceFileButton.setText("Del...");
+		delSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDelLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(delSourceFileButton);
 
-		// create a text field for the specification of the concrete library context of the specific target library
+		// a button that allows to move elements up in the 'sourceFileList'
 		//
-		this.targetLibContextText = new Text(targetGroup, SWT.NONE);
-		this.targetLibContextText.setMessage("Fully qualified name of the concrete LibraryContext");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetLibContextText);
-		this.targetLibContextText.addModifyListener(e -> PropertiesPage.this.isValid());
+		Button upSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
+		upSourceFileButton.setText("Up...");
+		upSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleUpLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(upSourceFileButton);
 
-		// create a label for the specification of the concrete library path parser of the specific target library
+		// a button that allows to move elements down in the 'sourceFileList'
 		//
-		Label targetLibParserLabel = new Label(targetGroup, SWT.NONE);
-		targetLibParserLabel.setText("Library Path Parser ID:");
-		GridDataFactory.swtDefaults().applyTo(targetLibParserLabel);
-
-		// create a text field for the specification of the concrete library path parser of the specific target library
-		//
-		this.targetLibParserText = new Text(targetGroup, SWT.NONE);
-		this.targetLibParserText.setMessage("Fully qualified name of the concrete PathParser (Leave empty to use default parser...)");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetLibParserText);
-		this.targetLibParserText.addModifyListener(e -> PropertiesPage.this.isValid());
+		Button downSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
+		downSourceFileButton.setText("Down...");
+		downSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDownLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(downSourceFileButton);
 
 		// Finally, initialize all properties.
 		//
@@ -145,20 +137,12 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	 * @return <em>True</em> if everything went well, <em>false</em> otherwise.
 	 */
 	private boolean storeValues() {
+
 		IResource resource = (IResource) this.getElement();
 		try {
 			resource.setPersistentProperty(
-					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_PATH),
-					this.targetPathText.getText());
-			resource.setPersistentProperty(
-					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE),
-					this.targetBundleText.getText());
-			resource.setPersistentProperty(
-					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_CONTEXT),
-					this.targetLibContextText.getText());
-			resource.setPersistentProperty(
-					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_PARSER),
-					this.targetLibParserText.getText());
+					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_PATHS),
+					String.join(";", this.libraryPathList.getItems()));
 		} catch (CoreException e) {
 			e.printStackTrace();
 			return false;
@@ -174,10 +158,7 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		/*
 		 * Initialize the text fields with the default values.
 		 */
-		this.targetPathText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_PATH);
-		this.targetBundleText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_BUNDLE);
-		this.targetLibContextText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_CONTEXT);
-		this.targetLibParserText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_PARSER);
+		this.libraryPathList.setItems(PropertySupplier.DEFAULT_LIBRARY_PATHS.split(";"));
 	}
 
 	/**
@@ -186,17 +167,12 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	 * @return <em>True</em> if everything went well, <em>false</em> otherwise.
 	 */
 	private boolean initializeValues() {
+
 		IResource resource = (IResource) this.getElement();
 
 		try {
-			this.targetPathText.setText(
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PATH, resource));
-			this.targetBundleText.setText(
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE, resource));
-			this.targetLibContextText.setText(
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_CONTEXT, resource));
-			this.targetLibParserText.setText(
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PARSER, resource));
+			this.libraryPathList.setItems(
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_PATHS, resource).split(";"));
 		} catch (CoreException e) {
 			e.printStackTrace();
 			return false;
@@ -213,51 +189,99 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	public boolean isValid() {
 
 		this.setErrorMessage(null);
-		String targetLibPath = this.targetPathText.getText();
-		if(targetLibPath.isEmpty()) {
-			// nothing to be done
-		} else if(!new File(targetLibPath).exists()) {
-			this.setErrorMessage("Target library path does not exist!");
-			return false;
-		} else if(!new File(targetLibPath).isDirectory()) {
-			this.setErrorMessage("Target library path does not represent a folder!");
-			return false;
-		}
-		try {
 
-			String targetLibBundle = this.targetBundleText.getText();
-			Bundle bundle;
-			if(!targetLibBundle.isEmpty()) {
-				if((bundle = Platform.getBundle(targetLibBundle)) == null) {
-					this.setErrorMessage("Bundle '" + targetLibBundle + "' cannot be resolved!" );
-					return false;
-				}
-				String targetLibContext = this.targetLibContextText.getText();
-				if(targetLibContext.isEmpty()) {
-					this.setErrorMessage("No target library context has been specified!");
-					return false;
-				} else {
-					try {
-						bundle.loadClass(targetLibContext);
-					} catch (NoClassDefFoundError e) {
-						this.setErrorMessage("The target library context could not be resolved!");
-						return false;
-					}
-				}
-				String targetLibParser = this.targetLibParserText.getText();
-				if(!targetLibParser.isEmpty()) {
-					try {
-						bundle.loadClass(targetLibParser);
-					} catch (NoClassDefFoundError e) {
-						this.setErrorMessage("The target library parser could not be resolved!");
-						return false;
-					}
-				}
-			}
-		} catch(Exception e) {
-			this.setErrorMessage(e.getMessage());
-			return false;
+		// validate the specified library paths
+		//
+		java.util.List<String> libraryPaths = Arrays.asList(this.libraryPathList.getItems());
+
+		if (libraryPaths.isEmpty()) {
+			// do nothing as this is not necessary if no library entries are used
+			return true;
 		}
+
+		for (String libraryPath : libraryPaths) {
+
+			if (!new File(libraryPath).exists()) {
+				this.setErrorMessage("Library path '" + libraryPath + "' does not exist!");
+				return false;
+			} else if (!new File(libraryPath).isDirectory()) {
+				this.setErrorMessage("Library path '" + libraryPath + "' does not represent a folder!");
+				return false;
+			}
+		}
+
 		return true;
+	}
+
+	/**
+	 * Add the file specified in the {@link #libraryPathSelector} to the {@link #libraryPathList}.
+	 */
+	private void handleAddLibrarySelected() {
+
+		if (this.libraryPathSelector.getStringValue().isEmpty()) {
+			return;
+		}
+
+		this.libraryPathList.add(this.libraryPathSelector.getStringValue());
+		this.libraryPathList.deselectAll();
+		this.libraryPathList.select(this.libraryPathList.getItemCount() - 1);
+		this.libraryPathSelector.setStringValue(null);
+	}
+
+	/**
+	 * Delete all elements that are selected in the {@link #libraryPathList}.
+	 */
+	private void handleDelLibraryButtonPressed() {
+
+		int selected = this.libraryPathList.getSelectionIndex();
+		this.libraryPathList.remove(this.libraryPathList.getSelectionIndices());
+		this.libraryPathList.select(selected > this.libraryPathList.getItemCount() - 1
+				? this.libraryPathList.getItemCount() - 1 : selected);
+	}
+
+	/**
+	 * Move all elements that are selected in the {@link #libraryPathList} up.
+	 */
+	private void handleUpLibraryButtonPressed() {
+
+		for (int selected : this.libraryPathList.getSelectionIndices()) {
+			if (selected == 0) {
+				return;
+			}
+			String[] items = this.libraryPathList.getItems();
+			String prevItem = this.libraryPathList.getItem(selected - 1);
+			items[selected - 1] = this.libraryPathList.getItem(selected);
+			items[selected] = prevItem;
+			int[] currentSel = this.libraryPathList.getSelectionIndices();
+			this.libraryPathList.setItems(items);
+			this.libraryPathList.select(currentSel);
+			this.libraryPathList.deselect(selected);
+			this.libraryPathList.select(selected - 1);
+		}
+
+	}
+
+	/**
+	 * Move all elements that are selected in the {@link #libraryPathList} down.
+	 */
+	private void handleDownLibraryButtonPressed() {
+
+		int[] selections = this.libraryPathList.getSelectionIndices();
+		for (int i = selections.length - 1; i >= 0; i--) {
+			int sel = selections[i];
+			if (sel == this.libraryPathList.getItemCount() - 1) {
+				return;
+			}
+			String[] items = this.libraryPathList.getItems();
+			String nextItem = this.libraryPathList.getItem(sel + 1);
+			items[sel + 1] = this.libraryPathList.getItem(sel);
+			items[sel] = nextItem;
+			int[] currentSel = this.libraryPathList.getSelectionIndices();
+			this.libraryPathList.setItems(items);
+			this.libraryPathList.select(currentSel);
+			this.libraryPathList.deselect(sel);
+			this.libraryPathList.select(sel + 1);
+		}
+
 	}
 }

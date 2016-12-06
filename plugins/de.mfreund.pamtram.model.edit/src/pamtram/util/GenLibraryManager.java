@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.LibraryImplementationRegistry;
 import de.tud.et.ifa.agtele.genlibrary.processor.impl.LibraryPluginImpl;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
@@ -32,6 +31,13 @@ public class GenLibraryManager {
 	private Map<String, LibraryPlugin> libraryPlugins;
 
 	/**
+	 * This creates an instance.
+	 */
+	public GenLibraryManager() {
+		this.libraryPlugins = new HashMap<>();
+	}
+
+	/**
 	 * This returns the instance of {@link LibraryPlugin} that is used for retrieving and instantiating library entries
 	 * for the given <em>ePackageURI</em>.
 	 *
@@ -47,28 +53,6 @@ public class GenLibraryManager {
 					LibraryImplementationRegistry.getInstance().createLibraryPlugin(ePackageURI));
 		}
 		return this.libraryPlugins.get(ePackageURI);
-	}
-
-	/**
-	 * This constructs an instance.
-	 *
-	 * @param libraryContextDescriptor
-	 *            The {@link LibraryContextDescriptor} to be used by this manager.
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 */
-	@Deprecated
-	public GenLibraryManager(LibraryContextDescriptor libraryContextDescriptor)
-			throws InstantiationException, IllegalAccessException {
-
-		this.libraryPlugins = new HashMap<>();
-	}
-
-	/**
-	 * This creates an instance.
-	 */
-	public GenLibraryManager() {
-		this.libraryPlugins = new HashMap<>();
 	}
 
 	/**

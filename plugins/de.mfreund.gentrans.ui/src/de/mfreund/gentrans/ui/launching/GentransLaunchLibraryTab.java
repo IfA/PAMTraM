@@ -1,35 +1,41 @@
 package de.mfreund.gentrans.ui.launching;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.BeanProperties;
-import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
 import org.eclipse.debug.ui.ILaunchConfigurationTab2;
 import org.eclipse.jface.bindings.Binding;
+import org.eclipse.jface.databinding.swt.ISWTObservableList;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.preference.DirectoryFieldEditor;
+import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wb.swt.SWTResourceManager;
-import org.osgi.framework.Bundle;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
 import de.mfreund.pamtram.properties.PropertySupplier;
+import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**
@@ -41,26 +47,6 @@ import de.tud.et.ifa.agtele.ui.util.UIHelper;
 public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
 	/**
-	 * A text field to specify the full path to the folder that holds the target library.
-	 */
-	private Text targetPathText;
-
-	/**
-	 * A text field to specify the bundle that represents the specific target library.
-	 */
-	private Text targetBundleText;
-
-	/**
-	 * A text field to specify the concrete library context of the specific target library.
-	 */
-	private Text targetLibContextText;
-
-	/**
-	 * A text field to specify the concrete library path parser of the specific target library.
-	 */
-	private Text targetLibParserText;
-
-	/**
 	 * The domain model that this tab operates on.
 	 */
 	private GentransLaunchContext context;
@@ -70,6 +56,16 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	 * the {@link #context}.
 	 */
 	private DataBindingContext bindingContext;
+
+	/**
+	 * The {@link FileFieldEditor} that allows the user to select new library locations.
+	 */
+	private DirectoryFieldEditor libraryPathSelector;
+
+	/**
+	 * This displays all selected library paths to the user.
+	 */
+	private List libraryPathList;
 
 	/**
 	 * This creates an instance.
@@ -95,63 +91,66 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(this.getControl(), this.getHelpContextId());
 		GridLayoutFactory.swtDefaults().numColumns(2).equalWidth(true).applyTo(comp);
 
-		// a group to host all target related settings
+		// a group to confiure all libraries that are to be used
 		//
-		Group targetGroup = new Group(comp, SWT.NONE);
-		targetGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
-		targetGroup.setText("Target");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(targetGroup);
-		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(targetGroup);
+		Group libraryPathsGroup = new Group(comp, SWT.NONE);
+		libraryPathsGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		libraryPathsGroup.setText("Library Location(s)");
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1)
+				.applyTo(libraryPathsGroup);
+		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(libraryPathsGroup);
 
-		// create a label for the specification of the path to the folder that holds the target library
-		//
-		Label targetPathLabel = new Label(targetGroup, SWT.NONE);
-		targetPathLabel.setText("Library folder path:");
+		Composite directoryEditorComposite = new Composite(libraryPathsGroup, SWT.NONE);
+		directoryEditorComposite.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.NORMAL));
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(3, 1)
+				.applyTo(directoryEditorComposite);
+		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(directoryEditorComposite);
 
-		// create a text field for the specification of the path to the folder that holds the target library
+		// create drop-down list for the source file selection (based on the project)
 		//
-		this.targetPathText = new Text(targetGroup, SWT.NONE);
-		this.targetPathText.setMessage("Full path to the folder that holds the target library");
-		this.targetPathText.addModifyListener(e -> GentransLaunchLibraryTab.this.updateLaunchConfigurationDialog());
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetPathText);
+		this.libraryPathSelector = new DirectoryFieldEditor("libraryPathSelect", "Add Library Location:",
+				directoryEditorComposite);
+		this.libraryPathSelector.setPropertyChangeListener(e -> this.handleAddLibrarySelected());
 
-		// create a label for the specification of the bundle that represents the specific target library
+		// a composite to display the selected source files as well as buttons to add/remove/reorder files
 		//
-		Label targetBundleLabel = new Label(targetGroup, SWT.NONE);
-		targetBundleLabel.setText("Bundle ID:");
+		ScrolledComposite scrolledComposite = new ScrolledComposite(libraryPathsGroup, SWT.V_SCROLL);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2, 3).applyTo(scrolledComposite);
 
-		// create a text field for the specification of the bundle that represents the specific target library
+		// a list to display the selected source files
 		//
-		this.targetBundleText = new Text(targetGroup, SWT.NONE);
-		this.targetBundleText.setMessage("Bundle identifier of the plug-in hosting the concrete LibraryContext and PathParser");
-		this.targetBundleText.addModifyListener(e -> GentransLaunchLibraryTab.this.updateLaunchConfigurationDialog());
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetBundleText);
+		this.libraryPathList = new List(scrolledComposite, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
+		this.libraryPathList.addKeyListener((KeyPressedListener) e -> {
+			if (e.keyCode == SWT.DEL && this.libraryPathList.getSelectionIndex() != -1) {
 
-		// create a label for the specification of the concrete library context of the specific target library
-		//
-		Label targetLibContextLabel = new Label(targetGroup, SWT.NONE);
-		targetLibContextLabel.setText("Library Context ID:");
+				this.handleDelLibraryButtonPressed();
+			}
+		});
+		scrolledComposite.setContent(this.libraryPathList);
+		scrolledComposite.setMinSize(this.libraryPathList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
-		// create a text field for the specification of the concrete library context of the specific target library
+		// a button that allows to delete elements from the 'sourceFileList'
 		//
-		this.targetLibContextText = new Text(targetGroup, SWT.NONE);
-		this.targetLibContextText.setMessage("Fully qualified name of the concrete LibraryContext");
-		this.targetLibContextText
-		.addModifyListener(e -> GentransLaunchLibraryTab.this.updateLaunchConfigurationDialog());
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetLibContextText);
+		Button delSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
+		delSourceFileButton.setText("Del...");
+		delSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDelLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(delSourceFileButton);
 
-		// create a label for the specification of the concrete library path parser of the specific target library
+		// a button that allows to move elements up in the 'sourceFileList'
 		//
-		Label targetLibParserLabel = new Label(targetGroup, SWT.NONE);
-		targetLibParserLabel.setText("Library Path Parser ID:");
+		Button upSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
+		upSourceFileButton.setText("Up...");
+		upSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleUpLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(upSourceFileButton);
 
-		// create a text field for the specification of the concrete library path parser of the specific target library
+		// a button that allows to move elements down in the 'sourceFileList'
 		//
-		this.targetLibParserText = new Text(targetGroup, SWT.NONE);
-		this.targetLibParserText.setMessage("Fully qualified name of the concrete PathParser (Leave empty to use default parser...)");
-		this.targetLibParserText
-		.addModifyListener(e -> GentransLaunchLibraryTab.this.updateLaunchConfigurationDialog());
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(this.targetLibParserText);
+		Button downSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
+		downSourceFileButton.setText("Down...");
+		downSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDownLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(downSourceFileButton);
 
 		// After we have created all widgets, we can initialize the data bindings among the widgets and between widgets
 		// and the context
@@ -165,7 +164,7 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		ISelection sel = UIHelper.getCurrentSelection();
 
 		// nothing can be done if the user did not select anything
-		if(sel.isEmpty() || !(sel instanceof TreeSelection)) {
+		if (sel.isEmpty() || !(sel instanceof TreeSelection)) {
 			return;
 		}
 
@@ -181,18 +180,10 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	public void initializeFrom(ILaunchConfiguration configuration) {
 
 		try {
-			// set the target lib path
-			this.targetPathText
-					.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PATH, ""));
-			// set the target bundle
-			this.targetBundleText.setText(
-					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_BUNDLE, ""));
-			// set the target context class
-			this.targetLibContextText.setText(
-					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_CONTEXT, ""));
-			// set the target parser class
-			this.targetLibParserText.setText(
-					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PARSER, ""));
+			// set the library paths
+			this.libraryPathList.setItems(
+					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, new ArrayList<>())
+							.toArray(new String[] {}));
 		} catch (CoreException e) {
 			this.setErrorMessage(e.getMessage());
 		}
@@ -204,21 +195,13 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 
 		// set the target lib path
-		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PATH,
-				this.targetPathText.getText());
-		// set the target bundle
-		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_BUNDLE,
-				this.targetBundleText.getText());
-		// set the target context class
-		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_CONTEXT,
-				this.targetLibContextText.getText());
-		// set the target parser class
-		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PARSER,
-				this.targetLibParserText.getText());
+		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS,
+				Arrays.asList(this.libraryPathList.getItems()));
 	}
 
 	@Override
 	public String getName() {
+
 		return "Library";
 	}
 
@@ -228,77 +211,39 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		this.setErrorMessage(null);
 		this.setWarningMessage(null);
 
-		// validate the specified target library path
+		// validate the specified library paths
 		//
-		String targetLibPath = this.targetPathText.getText();
+		java.util.List<String> libraryPaths = Arrays.asList(this.libraryPathList.getItems());
 
-		if(targetLibPath.isEmpty()) {
-			this.setWarningMessage("No target library path has been specified!");
+		if (libraryPaths.isEmpty()) {
+			// do nothing as this is not necessary if no library entries are used
 			return true;
-		} else if(!new File(targetLibPath).exists()) {
-			this.setErrorMessage("Target library path does not exist!");
-			return false;
-		} else if(!new File(targetLibPath).isDirectory()) {
-			this.setErrorMessage("Target library path does not represent a folder!");
-			return false;
 		}
 
-		// validate the specified target library bundle
-		//
-		try {
-			String targetLibBundle = launchConfig
-					.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_BUNDLE, "");
-			Bundle bundle;
-			if(!targetLibBundle.isEmpty()) {
-				if((bundle = Platform.getBundle(targetLibBundle)) == null) {
-					this.setErrorMessage("Bundle '" + targetLibBundle + "' cannot be resolved!" );
-					return false;
-				}
+		for (String libraryPath : libraryPaths) {
 
-				// validate the specified target library context
-				//
-				String targetLibContext = launchConfig
-						.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_CONTEXT, "");
-				if(targetLibContext.isEmpty()) {
-					this.setWarningMessage("No target library context has been specified!");
-				} else {
-					try {
-						bundle.loadClass(targetLibContext);
-					} catch (Exception e) {
-						this.setErrorMessage("The target library context could not be resolved!");
-						return false;
-					}
-				}
-
-				// validate the specified target library path parser
-				//
-				String targetLibParser = launchConfig
-						.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PARSER, "");
-				if(!targetLibParser.isEmpty()) {
-					try {
-						bundle.loadClass(targetLibParser);
-					} catch (Exception e) {
-						this.setErrorMessage("The target library parser could not be resolved!");
-						return false;
-					}
-				}
-			} else {
-				this.setWarningMessage("No bundle for the library context and path parser has been specified");
+			if (!new File(libraryPath).exists()) {
+				this.setErrorMessage("Library path '" + libraryPath + "' does not exist!");
+				return false;
+			} else if (!new File(libraryPath).isDirectory()) {
+				this.setErrorMessage("Library path '" + libraryPath + "' does not represent a folder!");
+				return false;
 			}
-		} catch(Exception e) {
-			this.setErrorMessage(e.getMessage());
-			return false;
 		}
+
 		return true;
 	}
 
-	/** Initializes the values of a launch configuration based on the current selection
+	/**
+	 * Initializes the values of a launch configuration based on the current selection
 	 *
-	 * @param workingCopy a launch configuration to be initialized
-	 * @param selection the current selection
+	 * @param workingCopy
+	 *            a launch configuration to be initialized
+	 * @param selection
+	 *            the current selection
 	 */
-	private void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy,
-			TreeSelection selection) throws CoreException {
+	private void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy, TreeSelection selection)
+			throws CoreException {
 
 		// the selected element
 		Object el = selection.getFirstElement();
@@ -306,34 +251,20 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		IProject project;
 
 		// determine the project based on the selection
-		if(el instanceof IProject) {
+		if (el instanceof IProject) {
 			project = (IProject) el;
-		} else if(el instanceof IFile) {
+		} else if (el instanceof IFile) {
 			project = ((IFile) el).getProject();
 		} else {
 			return;
 		}
 
 		// check if the project has the pamtram nature assigned
-		if(project.hasNature("de.mfreund.pamtram.pamtramNature")) {
+		if (project.hasNature("de.mfreund.pamtram.pamtramNature")) {
 
-			// set the target lib path
-			workingCopy.setAttribute(
-					GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PATH,
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PATH, project));
-
-			// set the target bundle
-			workingCopy.setAttribute(
-					GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_BUNDLE,
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE, project));
-			// set the target context class
-			workingCopy.setAttribute(
-					GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_CONTEXT,
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_CONTEXT, project));
-			// set the target parser class
-			workingCopy.setAttribute(
-					GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_LIB_PARSER,
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PARSER, project));
+			// set the library paths
+			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, Arrays.asList(
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_PATHS, project).split(";")));
 
 		} else {
 			return;
@@ -355,36 +286,95 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
 		// The various observable values for widget properties
 		//
-		IObservableValue<String> observeTextTargetPathTextObserveWidget = WidgetProperties.text()
-				.observe(this.targetPathText);
-		IObservableValue<String> observeTextTargetBundleTextObserveWidget = WidgetProperties.text()
-				.observe(this.targetBundleText);
-		IObservableValue<String> observeTextTargetLibContextTextObserveWidget = WidgetProperties.text()
-				.observe(this.targetLibContextText);
-		IObservableValue<String> observeTextTargetLibParserTextObserveWidget = WidgetProperties.text()
-				.observe(this.targetLibParserText);
+		ISWTObservableList observeTextTargetPathTextObserveWidget = WidgetProperties.items()
+				.observe(this.libraryPathList);
 
 		// The various observable values for bean properties
 		//
-		IObservableValue<String> targetLibraryPathContextObserveValue = BeanProperties
-				.value(GentransLaunchContext.PROPERTY_NAME_TARGET_LIBRARY_PATH).observe(this.context);
-		IObservableValue<String> targetLibraryBundleContextObserveValue = BeanProperties
-				.value(GentransLaunchContext.PROPERTY_NAME_TARGET_LIBRARY_BUNDLE).observe(this.context);
-		IObservableValue<String> targetLibraryContextContextObserveValue = BeanProperties
-				.value(GentransLaunchContext.PROPERTY_NAME_TARGET_LIBRARY_CONTEXT).observe(this.context);
-		IObservableValue<String> targetLibraryPathParserContextObserveValue = BeanProperties
-				.value(GentransLaunchContext.PROPERTY_NAME_TARGET_LIBRARY_PATH_PARSER).observe(this.context);
+		IObservableList<String> targetLibraryPathContextObserveValue = BeanProperties
+				.list(GentransLaunchContext.PROPERTY_NAME_LIBRARY_PATHS).observe(this.context);
 
 		// Enable the bindings between widgets and the context
 		//
-		this.bindingContext.bindValue(observeTextTargetPathTextObserveWidget, targetLibraryPathContextObserveValue,
-				null, null);
-		this.bindingContext.bindValue(observeTextTargetBundleTextObserveWidget, targetLibraryBundleContextObserveValue,
-				null, null);
-		this.bindingContext.bindValue(observeTextTargetLibContextTextObserveWidget,
-				targetLibraryContextContextObserveValue, null, null);
-		this.bindingContext.bindValue(observeTextTargetLibParserTextObserveWidget,
-				targetLibraryPathParserContextObserveValue, null, null);
+		this.bindingContext.bindList(observeTextTargetPathTextObserveWidget, targetLibraryPathContextObserveValue, null,
+				null);
+	}
+
+	/**
+	 * Add the file specified in the {@link #libraryPathSelector} to the {@link #libraryPathList}.
+	 */
+	private void handleAddLibrarySelected() {
+
+		if (this.libraryPathSelector.getStringValue().isEmpty()) {
+			this.updateLaunchConfigurationDialog();
+			return;
+		}
+
+		this.libraryPathList.add(this.libraryPathSelector.getStringValue());
+		this.libraryPathList.deselectAll();
+		this.libraryPathList.select(this.libraryPathList.getItemCount() - 1);
+		this.libraryPathSelector.setStringValue(null);
+		this.updateLaunchConfigurationDialog();
+	}
+
+	/**
+	 * Delete all elements that are selected in the {@link #libraryPathList}.
+	 */
+	private void handleDelLibraryButtonPressed() {
+
+		int selected = this.libraryPathList.getSelectionIndex();
+		this.libraryPathList.remove(this.libraryPathList.getSelectionIndices());
+		this.libraryPathList.select(selected > this.libraryPathList.getItemCount() - 1
+				? this.libraryPathList.getItemCount() - 1 : selected);
+		this.updateLaunchConfigurationDialog();
+	}
+
+	/**
+	 * Move all elements that are selected in the {@link #libraryPathList} up.
+	 */
+	private void handleUpLibraryButtonPressed() {
+
+		for (int selected : this.libraryPathList.getSelectionIndices()) {
+			if (selected == 0) {
+				return;
+			}
+			String[] items = this.libraryPathList.getItems();
+			String prevItem = this.libraryPathList.getItem(selected - 1);
+			items[selected - 1] = this.libraryPathList.getItem(selected);
+			items[selected] = prevItem;
+			int[] currentSel = this.libraryPathList.getSelectionIndices();
+			this.libraryPathList.setItems(items);
+			this.libraryPathList.select(currentSel);
+			this.libraryPathList.deselect(selected);
+			this.libraryPathList.select(selected - 1);
+		}
+
+		this.updateLaunchConfigurationDialog();
+	}
+
+	/**
+	 * Move all elements that are selected in the {@link #libraryPathList} down.
+	 */
+	private void handleDownLibraryButtonPressed() {
+
+		int[] selections = this.libraryPathList.getSelectionIndices();
+		for (int i = selections.length - 1; i >= 0; i--) {
+			int sel = selections[i];
+			if (sel == this.libraryPathList.getItemCount() - 1) {
+				return;
+			}
+			String[] items = this.libraryPathList.getItems();
+			String nextItem = this.libraryPathList.getItem(sel + 1);
+			items[sel + 1] = this.libraryPathList.getItem(sel);
+			items[sel] = nextItem;
+			int[] currentSel = this.libraryPathList.getSelectionIndices();
+			this.libraryPathList.setItems(items);
+			this.libraryPathList.select(currentSel);
+			this.libraryPathList.deselect(sel);
+			this.libraryPathList.select(sel + 1);
+		}
+
+		this.updateLaunchConfigurationDialog();
 	}
 
 }

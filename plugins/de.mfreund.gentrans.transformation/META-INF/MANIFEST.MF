@@ -21,8 +21,16 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/exp4j-0.3.11.jar,
  .
 Export-Package: de.mfreund.gentrans.transformation,
+ de.mfreund.gentrans.transformation.calculation,
+ de.mfreund.gentrans.transformation.condition,
  de.mfreund.gentrans.transformation.descriptors,
+ de.mfreund.gentrans.transformation.expanding,
  de.mfreund.gentrans.transformation.handler,
  de.mfreund.gentrans.transformation.library,
- de.mfreund.gentrans.transformation.resolving
+ de.mfreund.gentrans.transformation.logging,
+ de.mfreund.gentrans.transformation.maps,
+ de.mfreund.gentrans.transformation.matching,
+ de.mfreund.gentrans.transformation.registries,
+ de.mfreund.gentrans.transformation.resolving,
+ de.mfreund.gentrans.transformation.util
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

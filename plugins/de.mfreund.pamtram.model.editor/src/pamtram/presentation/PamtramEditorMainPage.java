@@ -84,17 +84,17 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ValueModifierSet;
-import pamtram.structure.Attribute;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.NonContainmentReference;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.NonContainmentReference;
 
 /**
  * The main page of the {@link PamtramEditor} that allows to configure source sections, mappings, and target sections.
@@ -497,7 +497,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				/*
 				 * This keeps track of the elements in the target viewer that correspond to the currently selected element.
 				 */
-				LinkedList<pamtram.structure.Class<?, ?, ?, ?>> targets = new LinkedList<>();
+				LinkedList<pamtram.structure.generic.Class<?, ?, ?, ?>> targets = new LinkedList<>();
 
 				/*
 				 * This keeps track of the elements in the library target viewer that correspond to the currently selected element.
@@ -734,7 +734,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				List<Object> sources = new LinkedList<>();
 				sources.add(mapping.getSource());
-				pamtram.structure.Class<?, ?, ?, ?> target = mapping.getTarget();
+				pamtram.structure.generic.Class<?, ?, ?, ?> target = mapping.getTarget();
 
 				if(mapping.getSharedCondition() != null) {
 					sources.add(mapping.getSharedCondition());

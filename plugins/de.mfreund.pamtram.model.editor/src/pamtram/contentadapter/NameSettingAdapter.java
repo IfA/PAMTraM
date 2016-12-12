@@ -10,12 +10,12 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
-import pamtram.structure.Class;
-import pamtram.structure.ContainmentReference;
 import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.NonContainmentReference;
-import pamtram.structure.Reference;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
 
 /**
  * This will probably be handled by the generated model code in the future.
@@ -43,7 +43,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 		// handle notifications by notifier type
 		if(notifier instanceof Reference) {
 			handleReferenceNotification(n);
-		} else if(notifier instanceof pamtram.structure.Class) {
+		} else if(notifier instanceof pamtram.structure.generic.Class) {
 			handleClassNotification(n);
 		}
 
@@ -59,7 +59,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 
 			if(n.getEventType() == Notification.ADD) {
 
-				pamtram.structure.Class<?,?,?,?> clazz = (Class<?, ?, ?, ?>) n.getNewValue();
+				pamtram.structure.generic.Class<?,?,?,?> clazz = (Class<?, ?, ?, ?>) n.getNewValue();
 				
 				if(ref.getEReference() != null && clazz.getEClass() == null) {
 					// set the type of the reference as default value for the eClass reference
@@ -77,7 +77,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 			if (n.getFeature() == StructurePackage.Literals.CLASS__REFERENCES){
 				
 				// the notifying class
-				pamtram.structure.Class<?,?,?,?> c = (Class<?,?,?,?>) n.getNotifier();
+				pamtram.structure.generic.Class<?,?,?,?> c = (Class<?,?,?,?>) n.getNotifier();
 
 				if(n.getNewValue() instanceof MetaModelSectionReference) {
 					

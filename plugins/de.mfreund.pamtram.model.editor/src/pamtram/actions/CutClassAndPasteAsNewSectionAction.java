@@ -11,11 +11,11 @@ import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.structure.Class;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Section;
 import pamtram.structure.SourceSectionContainmentReference;
 import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.Section;
 
 /**
  * An {@link Action} that allows to cut a {@link Class} from a modeled {@link Section}, convert it to a {@link Section}

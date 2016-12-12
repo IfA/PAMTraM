@@ -55,7 +55,6 @@ import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.MetaModelElement;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
@@ -64,6 +63,7 @@ import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionReference;
+import pamtram.structure.generic.MetaModelElement;
 
 /**
  * This is the action bar contributor for the Pamtram model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -377,12 +377,12 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 			actions.add(new GenericConversionCommandAction<>(this.activeEditorPart, selection,
 					"Convert to exported MappingHintGroup", MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
 					(MappingHintGroup) descriptor, new HintGroupToExportedHintGroupConverter()));
-		} else if (descriptor instanceof pamtram.structure.Class) {
+		} else if (descriptor instanceof pamtram.structure.generic.Class) {
 			// the section may be 'null' if the class is not part of a target section but of a library element
-			pamtram.structure.Class<?, ?, ?, ?> section = ((pamtram.structure.Class<?, ?, ?, ?>) descriptor)
+			pamtram.structure.generic.Class<?, ?, ?, ?> section = ((pamtram.structure.generic.Class<?, ?, ?, ?>) descriptor)
 					.getContainingSection();
 			if (section != null && !section.equals(descriptor)) {
-				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.structure.Class<?, ?, ?, ?>) descriptor));
+				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.structure.generic.Class<?, ?, ?, ?>) descriptor));
 			}
 		} else if (selection instanceof StructuredSelection && ((StructuredSelection) selection).size() > 1) {
 

@@ -152,8 +152,8 @@ import pamtram.commandlistener.PamtramCommandStackListener;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.contentadapter.PamtramContentAdapter;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
-import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
+import pamtram.structure.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.util.PamtramEPackageHelper;
 import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
@@ -614,7 +614,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 
 			if (!visitor.getRemovedResources().isEmpty()) {
 				boolean exit = false;
-				EList<pamtram.metamodel.LibraryEntry> libEntries = new BasicEList<>();
+				EList<pamtram.structure.LibraryEntry> libEntries = new BasicEList<>();
 				for (TargetSectionModel targetSectionModel : PamtramEditor.this.pamtram.getTargetSectionModel()) {
 					libEntries.addAll(targetSectionModel.getLibraryElements());
 				}
@@ -623,7 +623,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 					//
 					if (resource.getURI().lastSegment().equals("data.xmi")) {
 						String path = resource.getURI().trimSegments(1).lastSegment();
-						for (pamtram.metamodel.LibraryEntry libraryEntry : libEntries) {
+						for (pamtram.structure.LibraryEntry libraryEntry : libEntries) {
 							if (libraryEntry.getPath().equals(path)) {
 								exit = true;
 								break;

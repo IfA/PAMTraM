@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.metamodel.presentation;
+package pamtram.structure.presentation;
 
 
 import java.io.IOException;
@@ -111,7 +111,6 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
-import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
@@ -120,6 +119,7 @@ import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
 import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import pamtram.presentation.PamtramEditorPlugin;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
+import pamtram.structure.provider.MetamodelItemProviderAdapterFactory;
 
 
 /**

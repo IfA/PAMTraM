@@ -11,11 +11,11 @@ import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSectionContainmentReference;
-import pamtram.metamodel.TargetSectionContainmentReference;
+import pamtram.structure.Class;
+import pamtram.structure.MetamodelPackage;
+import pamtram.structure.Section;
+import pamtram.structure.SourceSectionContainmentReference;
+import pamtram.structure.TargetSectionContainmentReference;
 
 /**
  * An {@link Action} that allows to cut a {@link Class} from a modeled {@link Section}, convert it to a {@link Section}

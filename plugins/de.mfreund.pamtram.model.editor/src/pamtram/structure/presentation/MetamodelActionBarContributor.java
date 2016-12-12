@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.metamodel.presentation;
+package pamtram.structure.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;

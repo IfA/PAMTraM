@@ -117,9 +117,9 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemP
 import org.eclipse.emf.common.command.AbstractCommand;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
-import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.presentation.PamtramEditorPlugin;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
+import pamtram.structure.provider.MetamodelItemProviderAdapterFactory;
 
 
 /**

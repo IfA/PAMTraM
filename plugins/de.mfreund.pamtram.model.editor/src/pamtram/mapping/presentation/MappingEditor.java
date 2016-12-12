@@ -117,9 +117,10 @@ import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSup
 import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
 import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
 import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
-import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
+
 import pamtram.presentation.PamtramEditorPlugin;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
+import pamtram.structure.provider.MetamodelItemProviderAdapterFactory;
 
 
 /**

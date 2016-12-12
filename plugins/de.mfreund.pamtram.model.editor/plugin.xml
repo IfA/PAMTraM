@@ -37,12 +37,12 @@ null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated pamtram -->
       <editor
-            id="pamtram.metamodel.presentation.MetamodelEditorID"
+            id="pamtram.structure.presentation.MetamodelEditorID"
             name="%_UI_MetamodelEditor_label"
             icon="icons/full/obj16/MetamodelModelFile.gif"
             extensions="metamodel"
-            class="pamtram.metamodel.presentation.MetamodelEditor"
-            contributorClass="pamtram.metamodel.presentation.MetamodelActionBarContributor">
+            class="pamtram.structure.presentation.MetamodelEditor"
+            contributorClass="pamtram.structure.presentation.MetamodelActionBarContributor">
       </editor>
    </extension>
 

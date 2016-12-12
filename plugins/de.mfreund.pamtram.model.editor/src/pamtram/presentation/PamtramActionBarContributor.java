@@ -55,15 +55,15 @@ import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionReference;
+import pamtram.structure.MetaModelElement;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionReference;
 
 /**
  * This is the action bar contributor for the Pamtram model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -377,12 +377,12 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 			actions.add(new GenericConversionCommandAction<>(this.activeEditorPart, selection,
 					"Convert to exported MappingHintGroup", MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
 					(MappingHintGroup) descriptor, new HintGroupToExportedHintGroupConverter()));
-		} else if (descriptor instanceof pamtram.metamodel.Class) {
+		} else if (descriptor instanceof pamtram.structure.Class) {
 			// the section may be 'null' if the class is not part of a target section but of a library element
-			pamtram.metamodel.Class<?, ?, ?, ?> section = ((pamtram.metamodel.Class<?, ?, ?, ?>) descriptor)
+			pamtram.structure.Class<?, ?, ?, ?> section = ((pamtram.structure.Class<?, ?, ?, ?>) descriptor)
 					.getContainingSection();
 			if (section != null && !section.equals(descriptor)) {
-				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.metamodel.Class<?, ?, ?, ?>) descriptor));
+				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.structure.Class<?, ?, ?, ?>) descriptor));
 			}
 		} else if (selection instanceof StructuredSelection && ((StructuredSelection) selection).size() > 1) {
 

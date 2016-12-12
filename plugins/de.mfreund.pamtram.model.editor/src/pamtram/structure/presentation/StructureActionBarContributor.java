@@ -43,7 +43,7 @@ import pamtram.presentation.PamtramEditorPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MetamodelActionBarContributor
+public class StructureActionBarContributor
 	extends EditingDomainActionBarContributor
 	implements ISelectionChangedListener {
 	/**
@@ -146,7 +146,7 @@ public class MetamodelActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelActionBarContributor() {
+	public StructureActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();

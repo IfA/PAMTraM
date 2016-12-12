@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.condition.presentation;
+package pamtram.structure.presentation;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -119,11 +119,11 @@ import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 
 /**
- * This is an example of a Condition model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is an example of a Metamodel model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class ConditionEditor extends MultiPageEditorPart
+public class StructureEditor extends MultiPageEditorPart
 		implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 
 	/**
@@ -227,18 +227,18 @@ public class ConditionEditor extends MultiPageEditorPart
 		public void partActivated(IWorkbenchPart p) {
 
 			if (p instanceof ContentOutline) {
-				if (((ContentOutline) p).getCurrentPage() == ConditionEditor.this.contentOutlinePage) {
-					ConditionEditor.this.getActionBarContributor().setActiveEditor(ConditionEditor.this);
+				if (((ContentOutline) p).getCurrentPage() == StructureEditor.this.contentOutlinePage) {
+					StructureEditor.this.getActionBarContributor().setActiveEditor(StructureEditor.this);
 
-					ConditionEditor.this.setCurrentViewer(ConditionEditor.this.contentOutlineViewer);
+					StructureEditor.this.setCurrentViewer(StructureEditor.this.contentOutlineViewer);
 				}
 			} else if (p instanceof PropertySheet) {
-				if (ConditionEditor.this.propertySheetPages.contains(((PropertySheet) p).getCurrentPage())) {
-					ConditionEditor.this.getActionBarContributor().setActiveEditor(ConditionEditor.this);
-					ConditionEditor.this.handleActivate();
+				if (StructureEditor.this.propertySheetPages.contains(((PropertySheet) p).getCurrentPage())) {
+					StructureEditor.this.getActionBarContributor().setActiveEditor(StructureEditor.this);
+					StructureEditor.this.handleActivate();
 				}
-			} else if (p == ConditionEditor.this) {
-				ConditionEditor.this.handleActivate();
+			} else if (p == StructureEditor.this) {
+				StructureEditor.this.handleActivate();
 			}
 		}
 
@@ -319,16 +319,16 @@ public class ConditionEditor extends MultiPageEditorPart
 					case Resource.RESOURCE__ERRORS:
 					case Resource.RESOURCE__WARNINGS: {
 						Resource resource = (Resource) notification.getNotifier();
-						Diagnostic diagnostic = ConditionEditor.this.analyzeResourceProblems(resource, null);
+						Diagnostic diagnostic = StructureEditor.this.analyzeResourceProblems(resource, null);
 						if (diagnostic.getSeverity() != Diagnostic.OK) {
-							ConditionEditor.this.resourceToDiagnosticMap.put(resource, diagnostic);
+							StructureEditor.this.resourceToDiagnosticMap.put(resource, diagnostic);
 						} else {
-							ConditionEditor.this.resourceToDiagnosticMap.remove(resource);
+							StructureEditor.this.resourceToDiagnosticMap.remove(resource);
 						}
 
-						if (ConditionEditor.this.updateProblemIndication) {
-							ConditionEditor.this.getSite().getShell().getDisplay()
-									.asyncExec(() -> ConditionEditor.this.updateProblemIndication());
+						if (StructureEditor.this.updateProblemIndication) {
+							StructureEditor.this.getSite().getShell().getDisplay()
+									.asyncExec(() -> StructureEditor.this.updateProblemIndication());
 						}
 						break;
 					}
@@ -348,10 +348,10 @@ public class ConditionEditor extends MultiPageEditorPart
 		protected void unsetTarget(Resource target) {
 
 			this.basicUnsetTarget(target);
-			ConditionEditor.this.resourceToDiagnosticMap.remove(target);
-			if (ConditionEditor.this.updateProblemIndication) {
-				ConditionEditor.this.getSite().getShell().getDisplay()
-						.asyncExec(() -> ConditionEditor.this.updateProblemIndication());
+			StructureEditor.this.resourceToDiagnosticMap.remove(target);
+			if (StructureEditor.this.updateProblemIndication) {
+				StructureEditor.this.getSite().getShell().getDisplay()
+						.asyncExec(() -> StructureEditor.this.updateProblemIndication());
 			}
 		}
 	};
@@ -366,7 +366,7 @@ public class ConditionEditor extends MultiPageEditorPart
 		try {
 			class ResourceDeltaVisitor implements IResourceDeltaVisitor {
 
-				protected ResourceSet resourceSet = ConditionEditor.this.editingDomain.getResourceSet();
+				protected ResourceSet resourceSet = StructureEditor.this.editingDomain.getResourceSet();
 
 				protected Collection<Resource> changedResources = new ArrayList<>();
 
@@ -385,11 +385,11 @@ public class ConditionEditor extends MultiPageEditorPart
 								} else {
 									if ((delta.getFlags() & IResourceDelta.MARKERS) != 0) {
 										DiagnosticDecorator.Styled.DiagnosticAdapter.update(resource,
-												ConditionEditor.this.markerHelper.getMarkerDiagnostics(resource,
+												StructureEditor.this.markerHelper.getMarkerDiagnostics(resource,
 														(IFile) delta.getResource(), false));
 									}
 									if ((delta.getFlags() & IResourceDelta.CONTENT) != 0) {
-										if (!ConditionEditor.this.savedResources.remove(resource)) {
+										if (!StructureEditor.this.savedResources.remove(resource)) {
 											this.changedResources.add(resource);
 										}
 									}
@@ -417,19 +417,19 @@ public class ConditionEditor extends MultiPageEditorPart
 			delta.accept(visitor);
 
 			if (!visitor.getRemovedResources().isEmpty()) {
-				ConditionEditor.this.getSite().getShell().getDisplay().asyncExec(() -> {
-					ConditionEditor.this.removedResources.addAll(visitor.getRemovedResources());
-					if (!ConditionEditor.this.isDirty()) {
-						ConditionEditor.this.getSite().getPage().closeEditor(ConditionEditor.this, false);
+				StructureEditor.this.getSite().getShell().getDisplay().asyncExec(() -> {
+					StructureEditor.this.removedResources.addAll(visitor.getRemovedResources());
+					if (!StructureEditor.this.isDirty()) {
+						StructureEditor.this.getSite().getPage().closeEditor(StructureEditor.this, false);
 					}
 				});
 			}
 
 			if (!visitor.getChangedResources().isEmpty()) {
-				ConditionEditor.this.getSite().getShell().getDisplay().asyncExec(() -> {
-					ConditionEditor.this.changedResources.addAll(visitor.getChangedResources());
-					if (ConditionEditor.this.getSite().getPage().getActiveEditor() == ConditionEditor.this) {
-						ConditionEditor.this.handleActivate();
+				StructureEditor.this.getSite().getShell().getDisplay().asyncExec(() -> {
+					StructureEditor.this.changedResources.addAll(visitor.getChangedResources());
+					if (StructureEditor.this.getSite().getPage().getActiveEditor() == StructureEditor.this) {
+						StructureEditor.this.handleActivate();
 					}
 				});
 			}
@@ -457,7 +457,7 @@ public class ConditionEditor extends MultiPageEditorPart
 
 		if (!this.removedResources.isEmpty()) {
 			if (this.handleDirtyConflict()) {
-				this.getSite().getPage().closeEditor(ConditionEditor.this, false);
+				this.getSite().getPage().closeEditor(StructureEditor.this, false);
 			} else {
 				this.removedResources.clear();
 				this.changedResources.clear();
@@ -567,7 +567,7 @@ public class ConditionEditor extends MultiPageEditorPart
 	protected boolean handleDirtyConflict() {
 
 		return MessageDialog.openQuestion(this.getSite().getShell(),
-				ConditionEditor.getString("_UI_FileConflict_label"), ConditionEditor.getString("_WARN_FileConflict"));
+				StructureEditor.getString("_UI_FileConflict_label"), StructureEditor.getString("_WARN_FileConflict"));
 	}
 
 	/**
@@ -575,7 +575,7 @@ public class ConditionEditor extends MultiPageEditorPart
 	 * 
 	 * @generated
 	 */
-	public ConditionEditor() {
+	public StructureEditor() {
 		super();
 		this.initializeEditingDomain();
 	}
@@ -609,7 +609,7 @@ public class ConditionEditor extends MultiPageEditorPart
 				// Cancel live validation before executing a command that will trigger a new round of validation.
 				//
 				if (!(command instanceof AbstractCommand.NonDirtying)) {
-					DiagnosticDecorator.Styled.cancel(ConditionEditor.this.editingDomain);
+					DiagnosticDecorator.Styled.cancel(StructureEditor.this.editingDomain);
 				}
 				super.execute(command);
 			}
@@ -618,16 +618,16 @@ public class ConditionEditor extends MultiPageEditorPart
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with
 		// focus.
 		//
-		commandStack.addCommandStackListener(event -> ConditionEditor.this.getContainer().getDisplay().asyncExec(() -> {
-			ConditionEditor.this.firePropertyChange(IEditorPart.PROP_DIRTY);
+		commandStack.addCommandStackListener(event -> StructureEditor.this.getContainer().getDisplay().asyncExec(() -> {
+			StructureEditor.this.firePropertyChange(IEditorPart.PROP_DIRTY);
 
 			// Try to select the affected objects.
 			//
 			Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
 			if (mostRecentCommand != null) {
-				ConditionEditor.this.setSelectionToViewer(mostRecentCommand.getAffectedObjects());
+				StructureEditor.this.setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 			}
-			for (Iterator<PropertySheetPage> i = ConditionEditor.this.propertySheetPages.iterator(); i.hasNext();) {
+			for (Iterator<PropertySheetPage> i = StructureEditor.this.propertySheetPages.iterator(); i.hasNext();) {
 				PropertySheetPage propertySheetPage = i.next();
 				if (propertySheetPage.getControl().isDisposed()) {
 					i.remove();
@@ -668,8 +668,8 @@ public class ConditionEditor extends MultiPageEditorPart
 			Runnable runnable = () -> {
 				// Try to select the items in the current content viewer of the editor.
 				//
-				if (ConditionEditor.this.currentViewer != null) {
-					ConditionEditor.this.currentViewer.setSelection(new StructuredSelection(theSelection.toArray()),
+				if (StructureEditor.this.currentViewer != null) {
+					StructureEditor.this.currentViewer.setSelection(new StructuredSelection(theSelection.toArray()),
 							true);
 				}
 			};
@@ -768,7 +768,7 @@ public class ConditionEditor extends MultiPageEditorPart
 			if (this.selectionChangedListener == null) {
 				// Create the listener on demand.
 				//
-				this.selectionChangedListener = selectionChangedEvent -> ConditionEditor.this
+				this.selectionChangedListener = selectionChangedEvent -> StructureEditor.this
 						.setSelection(selectionChangedEvent.getSelection());
 			}
 
@@ -870,13 +870,13 @@ public class ConditionEditor extends MultiPageEditorPart
 		if (hasErrors || !resource.getWarnings().isEmpty()) {
 			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
 					"de.mfreund.pamtram.model.editor", 0,
-					ConditionEditor.getString("_UI_CreateModelError_message", resource.getURI()),
+					StructureEditor.getString("_UI_CreateModelError_message", resource.getURI()),
 					new Object[] { exception == null ? (Object) resource : exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
 			return basicDiagnostic;
 		} else if (exception != null) {
 			return new BasicDiagnostic(Diagnostic.ERROR, "de.mfreund.pamtram.model.editor", 0,
-					ConditionEditor.getString("_UI_CreateModelError_message", resource.getURI()),
+					StructureEditor.getString("_UI_CreateModelError_message", resource.getURI()),
 					new Object[] { exception });
 		} else {
 			return Diagnostic.OK_INSTANCE;
@@ -923,9 +923,9 @@ public class ConditionEditor extends MultiPageEditorPart
 
 			this.createContextMenuFor(this.selectionViewer);
 			int pageIndex = this.addPage(tree);
-			this.setPageText(pageIndex, ConditionEditor.getString("_UI_SelectionPage_label"));
+			this.setPageText(pageIndex, StructureEditor.getString("_UI_SelectionPage_label"));
 
-			this.getSite().getShell().getDisplay().asyncExec(() -> ConditionEditor.this.setActivePage(0));
+			this.getSite().getShell().getDisplay().asyncExec(() -> StructureEditor.this.setActivePage(0));
 		}
 
 		// Ensures that this editor will only display the page's tab
@@ -940,13 +940,13 @@ public class ConditionEditor extends MultiPageEditorPart
 
 				if (!this.guard) {
 					this.guard = true;
-					ConditionEditor.this.hideTabs();
+					StructureEditor.this.hideTabs();
 					this.guard = false;
 				}
 			}
 		});
 
-		this.getSite().getShell().getDisplay().asyncExec(() -> ConditionEditor.this.updateProblemIndication());
+		this.getSite().getShell().getDisplay().asyncExec(() -> StructureEditor.this.updateProblemIndication());
 	}
 
 	/**
@@ -976,7 +976,7 @@ public class ConditionEditor extends MultiPageEditorPart
 	protected void showTabs() {
 
 		if (this.getPageCount() > 1) {
-			this.setPageText(0, ConditionEditor.getString("_UI_SelectionPage_label"));
+			this.setPageText(0, StructureEditor.getString("_UI_SelectionPage_label"));
 			if (this.getContainer() instanceof CTabFolder) {
 				((CTabFolder) this.getContainer()).setTabHeight(SWT.DEFAULT);
 				Point point = this.getContainer().getSize();
@@ -1036,38 +1036,38 @@ public class ConditionEditor extends MultiPageEditorPart
 				public void createControl(Composite parent) {
 
 					super.createControl(parent);
-					ConditionEditor.this.contentOutlineViewer = this.getTreeViewer();
-					ConditionEditor.this.contentOutlineViewer.addSelectionChangedListener(this);
+					StructureEditor.this.contentOutlineViewer = this.getTreeViewer();
+					StructureEditor.this.contentOutlineViewer.addSelectionChangedListener(this);
 
 					// Set up the tree viewer.
 					//
-					ConditionEditor.this.contentOutlineViewer
-							.setContentProvider(new AdapterFactoryContentProvider(ConditionEditor.this.adapterFactory));
-					ConditionEditor.this.contentOutlineViewer.setLabelProvider(
+					StructureEditor.this.contentOutlineViewer
+							.setContentProvider(new AdapterFactoryContentProvider(StructureEditor.this.adapterFactory));
+					StructureEditor.this.contentOutlineViewer.setLabelProvider(
 							new DelegatingStyledCellLabelProvider(new DecoratingColumLabelProvider.StyledLabelProvider(
 									new AdapterFactoryLabelProvider.StyledLabelProvider(
-											ConditionEditor.this.adapterFactory,
-											ConditionEditor.this.contentOutlineViewer),
-									new DiagnosticDecorator.Styled(ConditionEditor.this.editingDomain,
-											ConditionEditor.this.contentOutlineViewer,
+											StructureEditor.this.adapterFactory,
+											StructureEditor.this.contentOutlineViewer),
+									new DiagnosticDecorator.Styled(StructureEditor.this.editingDomain,
+											StructureEditor.this.contentOutlineViewer,
 											PamtramEditorPlugin.getPlugin().getDialogSettings()))));
-					ConditionEditor.this.contentOutlineViewer
-							.setInput(ConditionEditor.this.editingDomain.getResourceSet());
+					StructureEditor.this.contentOutlineViewer
+							.setInput(StructureEditor.this.editingDomain.getResourceSet());
 
-					new ColumnViewerInformationControlToolTipSupport(ConditionEditor.this.contentOutlineViewer,
+					new ColumnViewerInformationControlToolTipSupport(StructureEditor.this.contentOutlineViewer,
 							new DiagnosticDecorator.Styled.EditingDomainLocationListener(
-									ConditionEditor.this.editingDomain, ConditionEditor.this.contentOutlineViewer));
+									StructureEditor.this.editingDomain, StructureEditor.this.contentOutlineViewer));
 
 					// Make sure our popups work.
 					//
-					ConditionEditor.this.createContextMenuFor(ConditionEditor.this.contentOutlineViewer);
+					StructureEditor.this.createContextMenuFor(StructureEditor.this.contentOutlineViewer);
 
-					if (!ConditionEditor.this.editingDomain.getResourceSet().getResources().isEmpty()) {
+					if (!StructureEditor.this.editingDomain.getResourceSet().getResources().isEmpty()) {
 						// Select the root object in the view.
 						//
-						ConditionEditor.this.contentOutlineViewer.setSelection(
+						StructureEditor.this.contentOutlineViewer.setSelection(
 								new StructuredSelection(
-										ConditionEditor.this.editingDomain.getResourceSet().getResources().get(0)),
+										StructureEditor.this.editingDomain.getResourceSet().getResources().get(0)),
 								true);
 					}
 				}
@@ -1077,14 +1077,14 @@ public class ConditionEditor extends MultiPageEditorPart
 						IStatusLineManager statusLineManager) {
 
 					super.makeContributions(menuManager, toolBarManager, statusLineManager);
-					ConditionEditor.this.contentOutlineStatusLineManager = statusLineManager;
+					StructureEditor.this.contentOutlineStatusLineManager = statusLineManager;
 				}
 
 				@Override
 				public void setActionBars(IActionBars actionBars) {
 
 					super.setActionBars(actionBars);
-					ConditionEditor.this.getActionBarContributor().shareGlobalActions(this, actionBars);
+					StructureEditor.this.getActionBarContributor().shareGlobalActions(this, actionBars);
 				}
 			}
 
@@ -1093,7 +1093,7 @@ public class ConditionEditor extends MultiPageEditorPart
 			// Listen to selection so that we can handle it is a special way.
 			//
 			this.contentOutlinePage.addSelectionChangedListener(
-					event -> ConditionEditor.this.handleContentOutlineSelection(event.getSelection()));
+					event -> StructureEditor.this.handleContentOutlineSelection(event.getSelection()));
 		}
 
 		return this.contentOutlinePage;
@@ -1112,15 +1112,15 @@ public class ConditionEditor extends MultiPageEditorPart
 			@Override
 			public void setSelectionToViewer(List<?> selection) {
 
-				ConditionEditor.this.setSelectionToViewer(selection);
-				ConditionEditor.this.setFocus();
+				StructureEditor.this.setSelectionToViewer(selection);
+				StructureEditor.this.setFocus();
 			}
 
 			@Override
 			public void setActionBars(IActionBars actionBars) {
 
 				super.setActionBars(actionBars);
-				ConditionEditor.this.getActionBarContributor().shareGlobalActions(this, actionBars);
+				StructureEditor.this.getActionBarContributor().shareGlobalActions(this, actionBars);
 			}
 		};
 		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(this.adapterFactory));
@@ -1196,18 +1196,18 @@ public class ConditionEditor extends MultiPageEditorPart
 				// Save the resources to the file system.
 				//
 				boolean first = true;
-				for (Resource resource : ConditionEditor.this.editingDomain.getResourceSet().getResources()) {
-					if ((first || !resource.getContents().isEmpty() || ConditionEditor.this.isPersisted(resource))
-							&& !ConditionEditor.this.editingDomain.isReadOnly(resource)) {
+				for (Resource resource : StructureEditor.this.editingDomain.getResourceSet().getResources()) {
+					if ((first || !resource.getContents().isEmpty() || StructureEditor.this.isPersisted(resource))
+							&& !StructureEditor.this.editingDomain.isReadOnly(resource)) {
 						try {
 							long timeStamp = resource.getTimeStamp();
 							resource.save(saveOptions);
 							if (resource.getTimeStamp() != timeStamp) {
-								ConditionEditor.this.savedResources.add(resource);
+								StructureEditor.this.savedResources.add(resource);
 							}
 						} catch (Exception exception) {
-							ConditionEditor.this.resourceToDiagnosticMap.put(resource,
-									ConditionEditor.this.analyzeResourceProblems(resource, exception));
+							StructureEditor.this.resourceToDiagnosticMap.put(resource,
+									StructureEditor.this.analyzeResourceProblems(resource, exception));
 						}
 						first = false;
 					}
@@ -1414,17 +1414,17 @@ public class ConditionEditor extends MultiPageEditorPart
 				Collection<?> collection = ((IStructuredSelection) selection).toList();
 				switch (collection.size()) {
 					case 0: {
-						statusLineManager.setMessage(ConditionEditor.getString("_UI_NoObjectSelected"));
+						statusLineManager.setMessage(StructureEditor.getString("_UI_NoObjectSelected"));
 						break;
 					}
 					case 1: {
 						String text = new AdapterFactoryItemDelegator(this.adapterFactory)
 								.getText(collection.iterator().next());
-						statusLineManager.setMessage(ConditionEditor.getString("_UI_SingleObjectSelected", text));
+						statusLineManager.setMessage(StructureEditor.getString("_UI_SingleObjectSelected", text));
 						break;
 					}
 					default: {
-						statusLineManager.setMessage(ConditionEditor.getString("_UI_MultiObjectSelected",
+						statusLineManager.setMessage(StructureEditor.getString("_UI_MultiObjectSelected",
 								Integer.toString(collection.size())));
 						break;
 					}

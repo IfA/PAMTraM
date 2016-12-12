@@ -39,10 +39,10 @@ null
       <editor
             id="pamtram.structure.presentation.MetamodelEditorID"
             name="%_UI_MetamodelEditor_label"
-            icon="icons/full/obj16/MetamodelModelFile.gif"
+            icon="icons/full/obj16/StructureModelFile.gif"
             extensions="metamodel"
-            class="pamtram.structure.presentation.MetamodelEditor"
-            contributorClass="pamtram.structure.presentation.MetamodelActionBarContributor">
+            class="pamtram.structure.presentation.StructureEditor"
+            contributorClass="pamtram.structure.presentation.StructureActionBarContributor">
       </editor>
    </extension>
 

@@ -12,7 +12,7 @@ import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 import pamtram.structure.Class;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Section;
 import pamtram.structure.SourceSectionContainmentReference;
 import pamtram.structure.TargetSectionContainmentReference;
@@ -54,7 +54,7 @@ public class CutClassAndPasteAsNewSectionAction extends Action {
 				objectsOldContainer.addAll(ref.getValue());
 				objectsOldContainer.remove(this.oldElement);
 
-				ref.eSet(ref.eClass().getEStructuralFeature(MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE), objectsOldContainer);
+				ref.eSet(ref.eClass().getEStructuralFeature(StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE), objectsOldContainer);
 
 				objectsNewContainer.addAll(model.getMetaModelSections());
 				objectsNewContainer.add(this.oldElement);
@@ -66,7 +66,7 @@ public class CutClassAndPasteAsNewSectionAction extends Action {
 				objectsOldContainer.addAll(ref.getValue());
 				objectsOldContainer.remove(this.oldElement);
 
-				ref.eSet(ref.eClass().getEStructuralFeature(MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE), objectsOldContainer);
+				ref.eSet(ref.eClass().getEStructuralFeature(StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE), objectsOldContainer);
 
 				objectsNewContainer.addAll(model.getMetaModelSections());
 				objectsNewContainer.add(this.oldElement);

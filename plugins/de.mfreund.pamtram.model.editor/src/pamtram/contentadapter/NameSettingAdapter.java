@@ -13,7 +13,7 @@ import pamtram.PamtramPackage;
 import pamtram.structure.Class;
 import pamtram.structure.ContainmentReference;
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.Reference;
 
@@ -55,7 +55,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 		// the notifying reference
 		Reference<?,?,?,?> ref = (Reference<?,?,?,?>) n.getNotifier();
 
-		if (n.getFeature() == MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE){
+		if (n.getFeature() == StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE){
 
 			if(n.getEventType() == Notification.ADD) {
 
@@ -74,7 +74,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 
 		if(n.getEventType() == Notification.ADD) {
 
-			if (n.getFeature() == MetamodelPackage.Literals.CLASS__REFERENCES){
+			if (n.getFeature() == StructurePackage.Literals.CLASS__REFERENCES){
 				
 				// the notifying class
 				pamtram.structure.Class<?,?,?,?> c = (Class<?,?,?,?>) n.getNotifier();

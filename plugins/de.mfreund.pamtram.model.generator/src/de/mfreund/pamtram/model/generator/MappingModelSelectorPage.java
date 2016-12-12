@@ -29,8 +29,8 @@ import pamtram.PAMTraM;
 import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.metamodel.Section;
 import pamtram.presentation.PamtramEditor;
+import pamtram.structure.Section;
 
 /**
  * A {@link WizardPage} that allows to select a {@link PAMTraM} model as well as an incorporated {@link SectionModel}.

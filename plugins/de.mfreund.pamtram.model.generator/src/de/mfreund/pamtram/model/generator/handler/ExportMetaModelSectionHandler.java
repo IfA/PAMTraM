@@ -22,7 +22,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import de.mfreund.pamtram.model.generator.GeneratorWizard;
 import de.mfreund.pamtram.model.generator.WizardData;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
-import pamtram.metamodel.Section;
+import pamtram.structure.Section;
 
 /**
  * An {@link AbstractHandler} that uses a {@link GeneratorWizard} to create {@link Section Sections} based on one or

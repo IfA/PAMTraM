@@ -19,9 +19,9 @@ import org.eclipse.ui.PlatformUI;
 
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.Section;
+import pamtram.structure.Class;
+import pamtram.structure.MetaModelElement;
+import pamtram.structure.Section;
 
 /**
  * A {@link Wizard} that allows to create new {@link Section Sections} in a {@link PAMTraM} model based on a set of

@@ -17,21 +17,21 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
-import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.ActualTargetSectionAttribute;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.ContainmentReference;
-import pamtram.metamodel.EqualityMatcher;
-import pamtram.metamodel.MetaModelSectionReference;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.ValueConstraintType;
+import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.ActualTargetSectionAttribute;
+import pamtram.structure.Attribute;
+import pamtram.structure.Class;
+import pamtram.structure.ContainmentReference;
+import pamtram.structure.EqualityMatcher;
+import pamtram.structure.MetaModelSectionReference;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.NonContainmentReference;
+import pamtram.structure.Reference;
+import pamtram.structure.Section;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.ValueConstraintType;
 
 /**
  * This class is responsible for the generation of {@link Section MetaModelSections} from excerpts of a model.
@@ -138,11 +138,11 @@ public class MetaModelSectionGenerator {
 		boolean isSection = !this.sources.parallelStream()
 				.anyMatch(s -> EcoreUtil.isAncestor(s, source) && s != source);
 		if (this.sectionType == SectionType.SOURCE) {
-			clazz = isSection ? MetamodelFactory.eINSTANCE.createSourceSection()
-					: MetamodelFactory.eINSTANCE.createSourceSectionClass();
+			clazz = isSection ? StructureFactory.eINSTANCE.createSourceSection()
+					: StructureFactory.eINSTANCE.createSourceSectionClass();
 		} else {
-			clazz = isSection ? MetamodelFactory.eINSTANCE.createTargetSection()
-					: MetamodelFactory.eINSTANCE.createTargetSectionClass();
+			clazz = isSection ? StructureFactory.eINSTANCE.createTargetSection()
+					: StructureFactory.eINSTANCE.createTargetSectionClass();
 		}
 		clazz.setEClass(source.eClass());
 		clazz.setName(source.eClass().getName());
@@ -178,17 +178,17 @@ public class MetaModelSectionGenerator {
 		for (EAttribute eAttribute : eAttributes) {
 			Attribute<?, ?, ?, ?> attribute;
 			if (this.sectionType == SectionType.SOURCE) {
-				attribute = MetamodelFactory.eINSTANCE.createActualSourceSectionAttribute();
+				attribute = StructureFactory.eINSTANCE.createActualSourceSectionAttribute();
 				((ActualSourceSectionAttribute) attribute).setAttribute(eAttribute);
 			} else {
-				attribute = MetamodelFactory.eINSTANCE.createActualTargetSectionAttribute();
+				attribute = StructureFactory.eINSTANCE.createActualTargetSectionAttribute();
 				((ActualTargetSectionAttribute) attribute).setAttribute(eAttribute);
 			}
 			attribute.setName(eAttribute.getName());
 			Object attributeValue = source.eGet(eAttribute);
 			if (attributeValue != null) {
 				if (this.sectionType == SectionType.SOURCE) {
-					EqualityMatcher attValConstraint = MetamodelFactory.eINSTANCE.createEqualityMatcher();
+					EqualityMatcher attValConstraint = StructureFactory.eINSTANCE.createEqualityMatcher();
 					attValConstraint.setCaseSensitive(true);
 					attValConstraint.setName(eAttribute.getName() + "_Constraint");
 					attValConstraint.setType(ValueConstraintType.INCLUSION);
@@ -242,9 +242,9 @@ public class MetaModelSectionGenerator {
 		//
 		ContainmentReference<?, ?, ?, ?> containmentReference;
 		if (this.sectionType == SectionType.SOURCE) {
-			containmentReference = MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference();
+			containmentReference = StructureFactory.eINSTANCE.createSourceSectionContainmentReference();
 		} else {
-			containmentReference = MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference();
+			containmentReference = StructureFactory.eINSTANCE.createTargetSectionContainmentReference();
 		}
 		containmentReference.setEReference(reference);
 		containmentReference.setName(reference.getName());
@@ -302,9 +302,9 @@ public class MetaModelSectionGenerator {
 		// create a 'non containment reference' object
 		Reference<?, ?, ?, ?> nonContainmentReference;
 		if (this.sectionType == SectionType.SOURCE) {
-			nonContainmentReference = MetamodelFactory.eINSTANCE.createMetaModelSectionReference();
+			nonContainmentReference = StructureFactory.eINSTANCE.createMetaModelSectionReference();
 		} else {
-			nonContainmentReference = MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference();
+			nonContainmentReference = StructureFactory.eINSTANCE.createTargetSectionNonContainmentReference();
 		}
 		nonContainmentReference.setEReference(reference);
 		nonContainmentReference.setName(reference.getName());

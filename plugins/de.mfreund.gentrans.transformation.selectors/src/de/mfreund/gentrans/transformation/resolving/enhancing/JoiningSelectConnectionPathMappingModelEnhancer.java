@@ -24,10 +24,10 @@ import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.presentation.PamtramEditor;
 import pamtram.structure.StructureFactory;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.generic.GenericPackage;
 
 /**
  * A concrete {@link MappingModelEnhancer} that can be used during
@@ -135,7 +135,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 					rootSection.getReferences().add(this.firstReference);
 				} else {
 					addCommand.append(new AddCommand(editor.getEditingDomain(), rootSection,
-							StructurePackage.Literals.CLASS__REFERENCES, this.firstReference));
+							GenericPackage.Literals.CLASS__REFERENCES, this.firstReference));
 				}
 			}
 			if (!rootSectionOptional.isPresent()) {
@@ -144,8 +144,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 								PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, rootSection));
 			}
 			addCommand.append(new SetCommand(editor.getEditingDomain(), sectionToConnectMatch,
-					StructurePackage.Literals.CLASS__CONTAINER,
-					this.finalClass == null ? rootSection : this.finalClass));
+					GenericPackage.Literals.CLASS__CONTAINER, this.finalClass == null ? rootSection : this.finalClass));
 			editor.getEditingDomain().getCommandStack().execute(addCommand);
 
 		}

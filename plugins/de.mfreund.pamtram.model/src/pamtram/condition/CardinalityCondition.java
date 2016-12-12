@@ -2,7 +2,7 @@
  */
 package pamtram.condition;
 
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.SourceSectionClass;
 
 /**
  * <!-- begin-user-doc -->

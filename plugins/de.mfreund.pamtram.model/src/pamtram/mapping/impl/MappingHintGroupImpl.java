@@ -22,8 +22,8 @@ import pamtram.condition.ComplexCondition;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.structure.TargetSection;
 import pamtram.mapping.ContainerSelector;
-import pamtram.metamodel.TargetSection;
 import pamtram.util.PamtramValidator;
 
 /**

@@ -25,7 +25,7 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.TargetSection;
+import pamtram.structure.TargetSection;
 import pamtram.util.PamtramValidator;
 
 /**

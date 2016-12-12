@@ -3,7 +3,8 @@
 package pamtram.condition;
 
 import org.eclipse.emf.common.util.EList;
-import pamtram.metamodel.InstancePointer;
+
+import pamtram.structure.InstancePointer;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import pamtram.metamodel.InstancePointer;
 public interface Condition extends ComplexCondition {
 	/**
 	 * Returns the value of the '<em><b>Additional Condition Specification</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.InstancePointer}.
+	 * The list contents are of type {@link pamtram.structure.InstancePointer}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Additional Condition Specification</em>' containment reference list isn't clear,

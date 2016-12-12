@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.Mapping;
-import pamtram.metamodel.ValueConstraint;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.SourceSection;
+import pamtram.structure.ValueConstraint;
 
 /**
  * <!-- begin-user-doc -->
@@ -244,8 +244,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		//
 		return getAdditionalConditionSpecification().parallelStream().flatMap(
 				instancePointer -> instancePointer.getSourceElements().parallelStream().filter(
-						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
-						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+						s -> s instanceof pamtram.structure.InstancePointerSourceElement || 
+						s instanceof pamtram.structure.InstancePointerExternalSourceElement)
 				).findAny().isPresent();
 	}
 

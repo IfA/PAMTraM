@@ -28,8 +28,8 @@ import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.impl.MetamodelPackageImpl;
+import pamtram.structure.MetamodelPackage;
+import pamtram.structure.impl.MetamodelPackageImpl;
 import pamtram.util.PamtramValidator;
 
 /**

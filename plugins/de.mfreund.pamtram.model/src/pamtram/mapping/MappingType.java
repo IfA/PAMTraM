@@ -4,7 +4,7 @@ package pamtram.mapping;
 
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
-import pamtram.metamodel.SourceSection;
+import pamtram.structure.SourceSection;
 
 /**
  * <!-- begin-user-doc -->

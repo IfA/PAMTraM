@@ -30,7 +30,7 @@ import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.structure.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -251,16 +251,16 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public boolean validateTargetMatchesAffectedReferenceType(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(!(this.eContainer() instanceof ReferenceTargetSelector) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.metamodel.Class<?, ?, ?, ?>)) {
+		if(!(this.eContainer() instanceof ReferenceTargetSelector) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.structure.Class<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		boolean result = ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().isSuperTypeOf(((pamtram.metamodel.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass());
+		boolean result = ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().isSuperTypeOf(((pamtram.structure.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass());
 		
 		if (!result && diagnostics != null) {
 		
 			String errorMessage = "The type of the class containing the target attribute ('" + 
-					((pamtram.metamodel.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass().getName() + "') is not allowed by the affected reference of the parent ReferenceTargetSelector that " +
+					((pamtram.structure.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass().getName() + "') is not allowed by the affected reference of the parent ReferenceTargetSelector that " +
 					"requires a (sub-)type of '" + ((pamtram.mapping.ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().getName() + "'!";
 		
 			diagnostics.add(new BasicDiagnostic

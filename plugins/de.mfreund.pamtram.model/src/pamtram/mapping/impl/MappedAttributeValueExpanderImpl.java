@@ -8,12 +8,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.mapping.ValueModifierSet;
+import pamtram.structure.SourceSectionAttribute;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.LocalMappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->

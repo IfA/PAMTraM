@@ -76,8 +76,8 @@ import pamtram.mapping.StringPrepender;
 import pamtram.mapping.SubstringReplacer;
 import pamtram.mapping.UniqueNumberAppender;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.impl.MetamodelPackageImpl;
+import pamtram.structure.MetamodelPackage;
+import pamtram.structure.impl.MetamodelPackageImpl;
 
 /**
  * <!-- begin-user-doc -->

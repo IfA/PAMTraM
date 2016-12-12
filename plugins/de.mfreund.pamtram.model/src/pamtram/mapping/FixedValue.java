@@ -3,8 +3,8 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
-import pamtram.metamodel.ValueConstraintSourceInterface;
-import pamtram.metamodel.InstancePointerSourceInterface;
+import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.ValueConstraintSourceInterface;
 
 /**
  * <!-- begin-user-doc -->

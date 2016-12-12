@@ -15,10 +15,10 @@ import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionReference;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,20 +66,20 @@ public class ContainerSelectorTargetAttributeImpl extends ModifiedAttributeEleme
 	@Override
 	public boolean validateSourceMatchesPossibleContainerType(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(!(this.eContainer().eContainer() instanceof MappingHintGroupType) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.metamodel.Class<?, ?, ?, ?>)) {
+		if(!(this.eContainer().eContainer() instanceof MappingHintGroupType) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.structure.Class<?, ?, ?, ?>)) {
 			return true;
 		}
 		
 		TargetSection targetSection = ((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection();
 		
-		boolean result = this.getSource() == null || targetSection == null ? true : ((pamtram.metamodel.Class<?, ?, ?, ?>) this.getSource().eContainer()).getEClass().getEAllContainments().parallelStream().anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));
+		boolean result = this.getSource() == null || targetSection == null ? true : ((pamtram.structure.Class<?, ?, ?, ?>) this.getSource().eContainer()).getEClass().getEAllContainments().parallelStream().anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));
 		
 		if (!result && diagnostics != null) {
 		
 			String errorMessage = "The type of the parent hint group's target section ('" + 
 				((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection().getEClass().getName() + 
 				"') cannot be connected to (contained in) the type of the class containing the target attribute ('" + 
-				((pamtram.metamodel.Class<?, ?, ?, ?>) this.getSource().eContainer()).getName() + "')!";
+				((pamtram.structure.Class<?, ?, ?, ?>) this.getSource().eContainer()).getName() + "')!";
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,

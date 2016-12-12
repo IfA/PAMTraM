@@ -12,10 +12,10 @@ import org.eclipse.emf.ecore.EClass;
 import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSection;
+import pamtram.structure.Attribute;
+import pamtram.structure.Reference;
+import pamtram.structure.Section;
+import pamtram.structure.SourceSection;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +24,7 @@ import pamtram.metamodel.SourceSection;
  *
  * @generated
  */
-public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementTypeImpl<S, C, R, A> implements LocalModifiedAttributeElementType<S, C, R, A> {
+public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementTypeImpl<S, C, R, A> implements LocalModifiedAttributeElementType<S, C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionNonContainmentReference;
 
@@ -66,7 +66,7 @@ extends NonContainmentReferenceItemProvider {
 						getResourceLocator(),
 						getString("_UI_TargetSectionNonContainmentReference_value_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionNonContainmentReference_value_feature", "_UI_TargetSectionNonContainmentReference_type"),
-						MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
+						StructurePackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
 						true,
 						false,
 						true,

@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.LibraryEntry;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for the (virtual) ParameterDescription object.
@@ -62,8 +62,8 @@ IItemPropertySource {
 			/* The 'parameters' feature of the 'LibraryEntry' shall be treated as if it belongs
 			 * to this item provider.
 			 */
-			this.childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
-			this.childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
+			this.childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__PARAMETERS);
+			this.childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
 		}
 		return this.childrenFeatures;
 	}
@@ -121,7 +121,7 @@ IItemPropertySource {
 		 * Handle only those notifications for which this object is the virtual parent.
 		 */
 		switch (notification.getFeatureID(LibraryEntry.class)) {
-			case MetamodelPackage.LIBRARY_ENTRY__PARAMETERS:
+			case StructurePackage.LIBRARY_ENTRY__PARAMETERS:
 				this.fireNotifyChanged(new NotificationWrapper(this, notification)); return;
 		}
 	}

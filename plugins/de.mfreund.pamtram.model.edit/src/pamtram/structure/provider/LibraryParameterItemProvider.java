@@ -18,7 +18,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.LibraryParameter} object.
@@ -68,7 +68,7 @@ public class LibraryParameterItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LibraryParameter_source_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryParameter_source_feature", "_UI_LibraryParameter_type"),
-				 MetamodelPackage.Literals.LIBRARY_PARAMETER__SOURCE,
+				 StructurePackage.Literals.LIBRARY_PARAMETER__SOURCE,
 				 true,
 				 false,
 				 true,
@@ -90,7 +90,7 @@ public class LibraryParameterItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LibraryParameter_originalParameter_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryParameter_originalParameter_feature", "_UI_LibraryParameter_type"),
-				 MetamodelPackage.Literals.LIBRARY_PARAMETER__ORIGINAL_PARAMETER,
+				 StructurePackage.Literals.LIBRARY_PARAMETER__ORIGINAL_PARAMETER,
 				 true,
 				 false,
 				 true,

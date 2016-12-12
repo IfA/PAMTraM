@@ -31,8 +31,8 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.provider.ExpressionHintItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.RangeBound;
 
 /**
@@ -105,7 +105,7 @@ extends ExpressionHintItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_RangeBound_boundType_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RangeBound_boundType_feature", "_UI_RangeBound_type"),
-				 MetamodelPackage.Literals.RANGE_BOUND__BOUND_TYPE,
+				 StructurePackage.Literals.RANGE_BOUND__BOUND_TYPE,
 				 true,
 				 false,
 				 false,
@@ -126,8 +126,8 @@ extends ExpressionHintItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS);
+			childrenFeatures.add(StructurePackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			childrenFeatures.add(StructurePackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -205,11 +205,11 @@ extends ExpressionHintItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RangeBound.class)) {
-			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
+			case StructurePackage.RANGE_BOUND__BOUND_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
+			case StructurePackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case StructurePackage.RANGE_BOUND__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -236,19 +236,19 @@ extends ExpressionHintItemProvider {
 		// Conditions
 		//
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
-				MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
+				StructurePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			newChildDescriptors.add
 			(this.createChildParameter
-					(MetamodelPackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
-							MetamodelFactory.eINSTANCE.createInstancePointer()));
+					(StructurePackage.Literals.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
+							StructureFactory.eINSTANCE.createInstancePointer()));
 		}
 
 		// Do not allow to add local/external source attributes below
 		// Conditions that are located inside a ConditionModel or that are MappingModel conditions
 		//
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
-				MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
+				StructurePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			// Do not allow to add local/external source attributes below
 			// AttributeConditions that are located inside a ConditionModel
@@ -259,13 +259,13 @@ extends ExpressionHintItemProvider {
 
 				newChildDescriptors.add
 				(this.createChildParameter
-						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-								MetamodelFactory.eINSTANCE.createValueConstraintSourceElement()));
+						(StructurePackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+								StructureFactory.eINSTANCE.createValueConstraintSourceElement()));
 
 				newChildDescriptors.add
 				(this.createChildParameter
-						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
-								MetamodelFactory.eINSTANCE.createValueConstraintExternalSourceElement()));
+						(StructurePackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+								StructureFactory.eINSTANCE.createValueConstraintExternalSourceElement()));
 			}
 
 			// Do not allow to add global attribute importers below
@@ -274,14 +274,14 @@ extends ExpressionHintItemProvider {
 			if (condition == null || !(condition.eContainer() instanceof MappingModel)) {
 				newChildDescriptors.add
 				(this.createChildParameter
-						(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+						(StructurePackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
 								MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 			}
 		}
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
+				(StructurePackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS,
 						MappingFactory.eINSTANCE.createFixedValue()));
 	}
 
@@ -300,7 +300,7 @@ extends ExpressionHintItemProvider {
 	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
 			Collection<?> collection, int index) {
 
-		if(feature.equals(MetamodelPackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
+		if(feature.equals(StructurePackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
 				!AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping())
 				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;
@@ -311,7 +311,7 @@ extends ExpressionHintItemProvider {
 	@Override
 	public AbstractCommand createDragAndDropCommand(EditingDomain domain, Collection<EObject> collection,
 			EObject parent, EReference ref) {
-		if(ref.equals(MetamodelPackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
+		if(ref.equals(StructurePackage.eINSTANCE.getRangeBound_BoundReferenceValueAdditionalSpecification()) &&
 				!AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping())
 				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;

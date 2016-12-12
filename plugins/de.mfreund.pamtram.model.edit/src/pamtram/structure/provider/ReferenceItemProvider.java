@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.structure.Class;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 
 /**
@@ -66,7 +66,7 @@ extends MetaModelElementItemProvider {
 						getResourceLocator(),
 						getString("_UI_Reference_eReference_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
-						MetamodelPackage.Literals.REFERENCE__EREFERENCE,
+						StructurePackage.Literals.REFERENCE__EREFERENCE,
 						true,
 						false,
 						true,

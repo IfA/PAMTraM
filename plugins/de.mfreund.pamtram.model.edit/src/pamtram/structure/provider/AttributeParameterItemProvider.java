@@ -13,7 +13,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.structure.AttributeParameter;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.AttributeParameter} object.
@@ -59,7 +59,7 @@ public class AttributeParameterItemProvider extends LibraryParameterItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE);
+			childrenFeatures.add(StructurePackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE);
 		}
 		return childrenFeatures;
 	}
@@ -130,7 +130,7 @@ public class AttributeParameterItemProvider extends LibraryParameterItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeParameter.class)) {
-			case MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

@@ -20,8 +20,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.ResourceParameter;
 
 /**
@@ -71,7 +71,7 @@ public class ResourceParameterItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ResourceParameter_originalParameter_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ResourceParameter_originalParameter_feature", "_UI_ResourceParameter_type"),
-				 MetamodelPackage.Literals.RESOURCE_PARAMETER__ORIGINAL_PARAMETER,
+				 StructurePackage.Literals.RESOURCE_PARAMETER__ORIGINAL_PARAMETER,
 				 true,
 				 false,
 				 true,
@@ -92,7 +92,7 @@ public class ResourceParameterItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE);
+			childrenFeatures.add(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE);
 		}
 		return childrenFeatures;
 	}
@@ -162,7 +162,7 @@ public class ResourceParameterItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ResourceParameter.class)) {
-			case MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -182,13 +182,13 @@ public class ResourceParameterItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
-				 MetamodelFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
+				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
+				 StructureFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
-				 MetamodelFactory.eINSTANCE.createFileAttribute()));
+				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
+				 StructureFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**

@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Section;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
@@ -68,7 +68,7 @@ public class SectionItemProvider extends ClassItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Section_abstract_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-				 MetamodelPackage.Literals.SECTION__ABSTRACT,
+				 StructurePackage.Literals.SECTION__ABSTRACT,
 				 true,
 				 false,
 				 false,
@@ -90,7 +90,7 @@ public class SectionItemProvider extends ClassItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Section_extend_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
-				 MetamodelPackage.Literals.SECTION__EXTEND,
+				 StructurePackage.Literals.SECTION__EXTEND,
 				 true,
 				 false,
 				 true,
@@ -163,7 +163,7 @@ public class SectionItemProvider extends ClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Section.class)) {
-			case MetamodelPackage.SECTION__ABSTRACT:
+			case StructurePackage.SECTION__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

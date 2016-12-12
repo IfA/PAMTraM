@@ -13,8 +13,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.SourceSectionAttribute;
 
 /**
@@ -61,7 +61,7 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+			childrenFeatures.add(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -115,7 +115,7 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSectionAttribute.class)) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case StructurePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -135,33 +135,33 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createEqualityMatcher()));
+				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				 StructureFactory.eINSTANCE.createEqualityMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createSubstringMatcher()));
+				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				 StructureFactory.eINSTANCE.createSubstringMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createBeginningMatcher()));
+				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				 StructureFactory.eINSTANCE.createBeginningMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createEndingMatcher()));
+				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				 StructureFactory.eINSTANCE.createEndingMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createRegExMatcher()));
+				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				 StructureFactory.eINSTANCE.createRegExMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createRangeConstraint()));
+				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				 StructureFactory.eINSTANCE.createRangeConstraint()));
 	}
 
 }

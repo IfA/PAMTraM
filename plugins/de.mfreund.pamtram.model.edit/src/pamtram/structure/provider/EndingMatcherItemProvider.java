@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.structure.EndingMatcher;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.EndingMatcher} object.
@@ -66,7 +66,7 @@ public class EndingMatcherItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CaseSensitiveConstraint_caseSensitive_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_CaseSensitiveConstraint_caseSensitive_feature", "_UI_CaseSensitiveConstraint_type"),
-				 MetamodelPackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE,
+				 StructurePackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE,
 				 true,
 				 false,
 				 false,
@@ -136,7 +136,7 @@ public class EndingMatcherItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(EndingMatcher.class)) {
-			case MetamodelPackage.ENDING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.ENDING_MATCHER__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

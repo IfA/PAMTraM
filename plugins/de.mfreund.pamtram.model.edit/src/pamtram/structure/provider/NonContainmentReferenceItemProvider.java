@@ -18,7 +18,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.structure.Class;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.impl.ReferenceImpl;
 
 /**
@@ -70,7 +70,7 @@ extends ReferenceItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_NonContainmentReference_value_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NonContainmentReference_value_feature", "_UI_NonContainmentReference_type"),
-				 MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
+				 StructurePackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
 				 true,
 				 false,
 				 true,
@@ -93,7 +93,7 @@ extends ReferenceItemProvider {
 						getResourceLocator(),
 						getString("_UI_Reference_eReference_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
-						MetamodelPackage.Literals.REFERENCE__EREFERENCE,
+						StructurePackage.Literals.REFERENCE__EREFERENCE,
 						true,
 						false,
 						true,

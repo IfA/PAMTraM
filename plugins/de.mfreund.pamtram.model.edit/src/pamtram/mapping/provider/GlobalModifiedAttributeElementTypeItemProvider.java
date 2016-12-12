@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.MetamodelFactory;
+import pamtram.structure.StructureFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.GlobalModifiedAttributeElementType} object.
@@ -142,7 +142,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR,
-				 MetamodelFactory.eINSTANCE.createInstancePointer()));
+				 StructureFactory.eINSTANCE.createInstancePointer()));
 	}
 
 }

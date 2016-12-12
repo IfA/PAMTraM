@@ -19,7 +19,7 @@ import pamtram.structure.Attribute;
 import pamtram.structure.Class;
 import pamtram.structure.ContainmentReference;
 import pamtram.structure.MetaModelElement;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
@@ -67,10 +67,10 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		if (!leftReference.isPresent()) {
 			if (this.right.eContainer() instanceof Class<?, ?, ?, ?>) {
 				this.append(new RemoveCommand(this.domain, this.right.eContainer(),
-						MetamodelPackage.Literals.CLASS__REFERENCES, this.right));
+						StructurePackage.Literals.CLASS__REFERENCES, this.right));
 			}
 			this.append(
-					new AddCommand(this.domain, this.left, MetamodelPackage.Literals.CLASS__REFERENCES, this.right));
+					new AddCommand(this.domain, this.left, StructurePackage.Literals.CLASS__REFERENCES, this.right));
 
 			return super.prepare();
 		}
@@ -105,12 +105,12 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		if (leftReference.get() instanceof ContainmentReference<?, ?, ?, ?>) {
 			List<C> values = new ArrayList<>(this.right.getValuesGeneric());
 			this.append(new RemoveCommand(this.domain, this.right,
-					MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
+					StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
 			this.append(new AddCommand(this.domain, leftReference.get(),
-					MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
+					StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
 		} else if (leftReference.get() instanceof NonContainmentReference<?, ?, ?, ?>) {
 			this.append(new AddCommand(this.domain, leftReference.get(),
-					MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
+					StructurePackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
 
 		} else {
 			return false;

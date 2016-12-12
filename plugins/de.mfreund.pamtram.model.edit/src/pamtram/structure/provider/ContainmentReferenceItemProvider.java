@@ -20,8 +20,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.structure.Class;
 import pamtram.structure.ContainmentReference;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.impl.ReferenceImpl;
 
 /**
@@ -69,7 +69,7 @@ extends ReferenceItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE);
+			childrenFeatures.add(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -101,7 +101,7 @@ extends ReferenceItemProvider {
 						getResourceLocator(),
 						getString("_UI_Reference_eReference_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
-						MetamodelPackage.Literals.REFERENCE__EREFERENCE,
+						StructurePackage.Literals.REFERENCE__EREFERENCE,
 						true,
 						false,
 						true,
@@ -176,7 +176,7 @@ extends ReferenceItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ContainmentReference.class)) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.CONTAINMENT_REFERENCE__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -196,25 +196,25 @@ extends ReferenceItemProvider {
 
 		newChildDescriptors.add
 		(createChildParameter
-				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-						MetamodelFactory.eINSTANCE.createSourceSectionClass()));
+				(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+						StructureFactory.eINSTANCE.createSourceSectionClass()));
 
 		// SourceSections may only be top-level elements in sections
 		//		newChildDescriptors.add
 		//			(createChildParameter
-		//				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-		//				 MetamodelFactory.eINSTANCE.createSourceSection()));
+		//				(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+		//				 StructureFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
 		(createChildParameter
-				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-						MetamodelFactory.eINSTANCE.createTargetSectionClass()));
+				(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+						StructureFactory.eINSTANCE.createTargetSectionClass()));
 
 		// TargetSections may only be top-level elements in sections
 		//		newChildDescriptors.add
 		//			(createChildParameter
-		//				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-		//				 MetamodelFactory.eINSTANCE.createTargetSection()));
+		//				(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+		//				 StructureFactory.eINSTANCE.createTargetSection()));
 	}
 
 }

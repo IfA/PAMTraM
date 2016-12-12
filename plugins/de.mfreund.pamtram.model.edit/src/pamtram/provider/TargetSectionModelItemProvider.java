@@ -24,7 +24,7 @@ import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
 import pamtram.commands.DeleteLibraryEntryCommand;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
-import pamtram.structure.MetamodelFactory;
+import pamtram.structure.StructureFactory;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
 
@@ -199,7 +199,7 @@ extends SectionModelItemProvider {
 				if(object instanceof TargetSection) {
 					targetSectionClassMap.put((TargetSectionClass) object, (TargetSectionClass) object);
 				} else {
-					targetSectionClassMap.put((TargetSectionClass) object, MetamodelFactory.eINSTANCE.createTargetSection());
+					targetSectionClassMap.put((TargetSectionClass) object, StructureFactory.eINSTANCE.createTargetSection());
 				}
 			} else {
 				return UnexecutableCommand.INSTANCE;

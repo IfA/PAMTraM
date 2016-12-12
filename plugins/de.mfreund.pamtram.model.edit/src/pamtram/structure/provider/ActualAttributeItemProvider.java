@@ -14,7 +14,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.structure.ActualAttribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.ActualAttribute} object.
@@ -62,7 +62,7 @@ public class ActualAttributeItemProvider extends AttributeItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_ActualAttribute_attribute_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
-				 MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
+				 StructurePackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
 				 true,
 				 false,
 				 true,

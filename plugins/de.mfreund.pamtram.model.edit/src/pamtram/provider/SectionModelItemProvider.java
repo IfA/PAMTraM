@@ -47,7 +47,7 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
-import pamtram.structure.MetamodelFactory;
+import pamtram.structure.StructureFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SectionModel} object.
@@ -271,12 +271,12 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createSourceSection()));
+				 StructureFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createTargetSection()));
+				 StructureFactory.eINSTANCE.createTargetSection()));
 	}
 
 	/**

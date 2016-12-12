@@ -31,8 +31,8 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.SingleReferenceValueConstraint;
 
 /**
@@ -83,7 +83,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 				 getResourceLocator(),
 				 getString("_UI_ValueConstraint_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ValueConstraint_type_feature", "_UI_ValueConstraint_type"),
-				 MetamodelPackage.Literals.VALUE_CONSTRAINT__TYPE,
+				 StructurePackage.Literals.VALUE_CONSTRAINT__TYPE,
 				 true,
 				 false,
 				 false,
@@ -148,8 +148,8 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
-			childrenFeatures.add(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
+			childrenFeatures.add(StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			childrenFeatures.add(StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -175,7 +175,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 		 * automatically as its 'Notify' property in the genmodel is set to 'true'
 		 */
 		return Arrays.asList(
-				MetamodelPackage.eINSTANCE.getSingleReferenceValueConstraint_SourceElements());
+				StructurePackage.eINSTANCE.getSingleReferenceValueConstraint_SourceElements());
 
 	}
 
@@ -219,12 +219,12 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SingleReferenceValueConstraint.class)) {
-			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
-			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
+			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
+			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
+			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -259,19 +259,19 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 		// Conditions
 		//
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
-				MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
+				StructurePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			newChildDescriptors.add
 			(this.createChildParameter
-					(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
-							MetamodelFactory.eINSTANCE.createInstancePointer()));
+					(StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
+							StructureFactory.eINSTANCE.createInstancePointer()));
 		}
 
 		// Do not allow to add local/external source attributes or GlobalAttributeImporters below
 		// SourceSectionAttributes as these are only supported as part of Conditions
 		//
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
-				MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
+				StructurePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			// Do not allow to add local/external source attributes below
 			// Conditions that are located inside a ConditionModel or that are MappingModel conditions
@@ -282,13 +282,13 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 				newChildDescriptors.add
 				(this.createChildParameter
-						(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
-								MetamodelFactory.eINSTANCE.createValueConstraintSourceElement()));
+						(StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+								StructureFactory.eINSTANCE.createValueConstraintSourceElement()));
 
 				newChildDescriptors.add
 				(this.createChildParameter
-						(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
-								MetamodelFactory.eINSTANCE.createValueConstraintExternalSourceElement()));
+						(StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+								StructureFactory.eINSTANCE.createValueConstraintExternalSourceElement()));
 
 			}
 
@@ -298,14 +298,14 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 			if (condition == null || !(condition.eContainer() instanceof MappingModel)) {
 				newChildDescriptors.add
 				(this.createChildParameter
-						(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+						(StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
 								MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 			}
 		}
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
+				(StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
 						MappingFactory.eINSTANCE.createFixedValue()));
 	}
 
@@ -324,7 +324,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
 			Collection<?> collection, int index) {
 
-		if (feature.equals(MetamodelPackage.eINSTANCE
+		if (feature.equals(StructurePackage.eINSTANCE
 				.getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification()) &&
 				!AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping())
 				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
@@ -337,7 +337,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	public AbstractCommand createDragAndDropCommand(EditingDomain domain, Collection<EObject> collection,
 			EObject parent, EReference ref) {
 
-		if (ref.equals(MetamodelPackage.eINSTANCE
+		if (ref.equals(StructurePackage.eINSTANCE
 				.getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification())
 				&&
 				!AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping())

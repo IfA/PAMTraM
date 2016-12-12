@@ -13,7 +13,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.structure.ContainerParameter;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.ContainerParameter} object.
@@ -59,7 +59,7 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.CONTAINER_PARAMETER__CLASS);
+			childrenFeatures.add(StructurePackage.Literals.CONTAINER_PARAMETER__CLASS);
 		}
 		return childrenFeatures;
 	}
@@ -130,7 +130,7 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ContainerParameter.class)) {
-			case MetamodelPackage.CONTAINER_PARAMETER__CLASS:
+			case StructurePackage.CONTAINER_PARAMETER__CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

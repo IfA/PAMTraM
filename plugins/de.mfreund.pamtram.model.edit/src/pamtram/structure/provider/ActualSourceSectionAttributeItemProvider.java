@@ -15,7 +15,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.structure.Attribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.ActualSourceSectionAttribute} object.
@@ -63,7 +63,7 @@ extends SourceSectionAttributeItemProvider {
 						this.getResourceLocator(),
 						this.getString("_UI_SourceSectionAttribute_attribute_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
-						MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
+						StructurePackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
 						true,
 						false,
 						true,

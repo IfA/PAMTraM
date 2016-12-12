@@ -30,8 +30,8 @@ import pamtram.mapping.provider.ExpressionHintItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.InstancePointer;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.InstancePointer} object.
@@ -103,7 +103,7 @@ extends ExpressionHintItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_InstancePointer_target_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InstancePointer_target_feature", "_UI_InstancePointer_type"),
-				 MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
+				 StructurePackage.Literals.INSTANCE_POINTER__TARGET,
 				 true,
 				 false,
 				 true,
@@ -124,7 +124,7 @@ extends ExpressionHintItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS);
+			childrenFeatures.add(StructurePackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -194,7 +194,7 @@ extends ExpressionHintItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InstancePointer.class)) {
-			case MetamodelPackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+			case StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -230,18 +230,18 @@ extends ExpressionHintItemProvider {
 
 			newChildDescriptors.add
 			(this.createChildParameter
-					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
-							MetamodelFactory.eINSTANCE.createInstancePointerSourceElement()));
+					(StructurePackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
+							StructureFactory.eINSTANCE.createInstancePointerSourceElement()));
 
 			newChildDescriptors.add
 			(this.createChildParameter
-					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
-							MetamodelFactory.eINSTANCE.createInstancePointerExternalSourceElement()));
+					(StructurePackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
+							StructureFactory.eINSTANCE.createInstancePointerExternalSourceElement()));
 		}
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
+				(StructurePackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 						MappingFactory.eINSTANCE.createFixedValue()));
 
 		// GlobalAttributeImporters not allowed in MappingModelConditions
@@ -249,7 +249,7 @@ extends ExpressionHintItemProvider {
 		if (parentCondition != null && !(parentCondition.eContainer() instanceof MappingModel)) {
 			newChildDescriptors.add
 			(this.createChildParameter
-					(MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
+					(StructurePackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS,
 							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 		}
 	}
@@ -270,7 +270,7 @@ extends ExpressionHintItemProvider {
 			int operation, Collection<?> collection) {
 
 		if(collection.size() == 1 && collection.iterator().next() instanceof ActualSourceSectionAttribute) {
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.INSTANCE_POINTER__TARGET,
+			return new BasicDragAndDropSetCommand(domain, (EObject) owner, StructurePackage.Literals.INSTANCE_POINTER__TARGET,
 					collection.iterator().next(), 0);
 		}
 

@@ -25,7 +25,7 @@ import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.Attribute;
 import pamtram.structure.FileAttribute;
 import pamtram.structure.MetaModelElement;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.TargetSection;
 
@@ -168,8 +168,8 @@ public class MetaModelElementItemProvider
 		
 		BasicDragAndDropCompoundCommand command = new BasicDragAndDropCompoundCommand();
 		command.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, collectionWithoutFile));
-		command.append(targetSectionItemProvider.createRemoveCommand(domain, file.eContainer(), MetamodelPackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
-		command.append(targetSectionItemProvider.createSetCommand(domain, targetSection, MetamodelPackage.Literals.TARGET_SECTION__FILE, file));
+		command.append(targetSectionItemProvider.createRemoveCommand(domain, file.eContainer(), StructurePackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
+		command.append(targetSectionItemProvider.createSetCommand(domain, targetSection, StructurePackage.Literals.TARGET_SECTION__FILE, file));
 		return command;
 	}
 }

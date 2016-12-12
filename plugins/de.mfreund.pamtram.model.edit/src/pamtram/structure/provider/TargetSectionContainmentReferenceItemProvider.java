@@ -17,8 +17,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.commands.ReplacingDragAndDropAddCommand;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
 
@@ -130,7 +130,7 @@ extends ContainmentReferenceItemProvider {
 	
 			if(object instanceof TargetSectionClass) {
 				if(object instanceof TargetSection) {
-					targetSectionClassMap.put((TargetSectionClass) object, MetamodelFactory.eINSTANCE.createTargetSectionClass());					
+					targetSectionClassMap.put((TargetSectionClass) object, StructureFactory.eINSTANCE.createTargetSectionClass());					
 				} else {
 					targetSectionClassMap.put((TargetSectionClass) object, (TargetSectionClass) object);
 				}
@@ -139,7 +139,7 @@ extends ContainmentReferenceItemProvider {
 			}
 		}
 		
-		return  new ReplacingDragAndDropAddCommand(domain, (EObject) owner, MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, 
+		return  new ReplacingDragAndDropAddCommand(domain, (EObject) owner, StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE, 
 				(Collection<EObject>) targetSectionClassMap.keySet(), targetSectionClassMap.values());
 		
 	}

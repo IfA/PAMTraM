@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.structure.EqualityMatcher;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.ValueConstraintType;
 
 /**
@@ -66,7 +66,7 @@ extends SingleReferenceValueConstraintItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_CaseSensitiveConstraint_caseSensitive_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_CaseSensitiveConstraint_caseSensitive_feature", "_UI_CaseSensitiveConstraint_type"),
-				 MetamodelPackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE,
+				 StructurePackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE,
 				 true,
 				 false,
 				 false,
@@ -142,7 +142,7 @@ extends SingleReferenceValueConstraintItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(EqualityMatcher.class)) {
-			case MetamodelPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.EQUALITY_MATCHER__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

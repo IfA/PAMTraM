@@ -31,8 +31,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.commands.BasicDragAndDropCompoundCommand;
 import pamtram.structure.FileAttribute;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Section;
 import pamtram.structure.TargetSection;
 
@@ -84,7 +84,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Section_abstract_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-				 MetamodelPackage.Literals.SECTION__ABSTRACT,
+				 StructurePackage.Literals.SECTION__ABSTRACT,
 				 true,
 				 false,
 				 false,
@@ -106,7 +106,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 						this.getResourceLocator(),
 						this.getString("_UI_Section_extend_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
-						MetamodelPackage.Literals.SECTION__EXTEND,
+						StructurePackage.Literals.SECTION__EXTEND,
 						true,
 						false,
 						true,
@@ -153,7 +153,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
-				 MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
+				 StructurePackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
 				 false,
 				 false,
 				 false,
@@ -166,7 +166,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	protected Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
 		if(this.labelRelatedChildrenFeatures == null) {
 			this.labelRelatedChildrenFeatures = new ArrayList<>();
-			this.labelRelatedChildrenFeatures.add(MetamodelPackage.eINSTANCE.getSection_Extend());
+			this.labelRelatedChildrenFeatures.add(StructurePackage.eINSTANCE.getSection_Extend());
 		}
 		return this.labelRelatedChildrenFeatures;
 	}
@@ -248,8 +248,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSection.class)) {
-			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
-			case MetamodelPackage.TARGET_SECTION__FILE:
+			case StructurePackage.TARGET_SECTION__ABSTRACT:
+			case StructurePackage.TARGET_SECTION__FILE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -275,8 +275,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION__FILE,
-				 MetamodelFactory.eINSTANCE.createFileAttribute()));
+				(StructurePackage.Literals.TARGET_SECTION__FILE,
+				 StructureFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**
@@ -292,8 +292,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		// Object childObject = child;
 		//
 		// boolean qualify =
-		// childFeature == MetamodelPackage.Literals.CLASS__ATTRIBUTES ||
-		// childFeature == MetamodelPackage.Literals.TARGET_SECTION__FILE;
+		// childFeature == StructurePackage.Literals.CLASS__ATTRIBUTES ||
+		// childFeature == StructurePackage.Literals.TARGET_SECTION__FILE;
 		//
 		// if (qualify) {
 		// return getString
@@ -310,13 +310,13 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		/*
 		 * If a 'FileAttribute' is added, we also need to set the 'file' reference.
 		 */
-		if(feature == MetamodelPackage.Literals.CLASS__ATTRIBUTES) {
+		if(feature == StructurePackage.Literals.CLASS__ATTRIBUTES) {
 			for (Object object : collection) {
 				if(object instanceof FileAttribute && owner instanceof TargetSection) {
 					if(((TargetSection) owner).getFile() == null) {
 						CompoundCommand command = new CompoundCommand();
 						command.append(new AddCommand(domain, owner, feature, collection, index));
-						command.append(new SetCommand(domain, owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, object));
+						command.append(new SetCommand(domain, owner, StructurePackage.Literals.TARGET_SECTION__FILE, object));
 						return command;
 					} else {
 						/*
@@ -339,17 +339,17 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		/*
 		 * If a 'FileAttribute' is created, we also need to add it to the 'attributes' reference.
 		 */
-		if(feature == MetamodelPackage.Literals.TARGET_SECTION__FILE) {
+		if(feature == StructurePackage.Literals.TARGET_SECTION__FILE) {
 			if(value.equals(SetCommand.UNSET_VALUE)) {
 				CompoundCommand command = new CompoundCommand();
-				if(((EList<Object>) owner.eGet(MetamodelPackage.Literals.CLASS__ATTRIBUTES)).contains(value)) {
-					command.append(new RemoveCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));
+				if(((EList<Object>) owner.eGet(StructurePackage.Literals.CLASS__ATTRIBUTES)).contains(value)) {
+					command.append(new RemoveCommand(domain, owner, StructurePackage.Literals.CLASS__ATTRIBUTES, value));
 				}
 				command.append(new SetCommand(domain, owner, feature, SetCommand.UNSET_VALUE));
 				return command;
 			} else {
 				CompoundCommand command = new CompoundCommand();
-				command.append(new AddCommand(domain, owner, MetamodelPackage.Literals.CLASS__ATTRIBUTES, value));
+				command.append(new AddCommand(domain, owner, StructurePackage.Literals.CLASS__ATTRIBUTES, value));
 				command.append(new SetCommand(domain, owner, feature, value));
 				return command;
 			}
@@ -386,8 +386,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 		BasicDragAndDropCompoundCommand command = new BasicDragAndDropCompoundCommand();
 		command.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, collectionWithoutFile));
-		command.append(this.createRemoveCommand(domain, file.eContainer(), MetamodelPackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
-		command.append(this.createSetCommand(domain, (EObject) owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, file));
+		command.append(this.createRemoveCommand(domain, file.eContainer(), StructurePackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
+		command.append(this.createSetCommand(domain, (EObject) owner, StructurePackage.Literals.TARGET_SECTION__FILE, file));
 		return command;
 	}
 

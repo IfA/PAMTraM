@@ -14,8 +14,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.RangeConstraint;
 
 /**
@@ -65,7 +65,7 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 				 getResourceLocator(),
 				 getString("_UI_RangeConstraint_upperBound_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_upperBound_feature", "_UI_RangeConstraint_type"),
-				 MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
+				 StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
 				 true,
 				 false,
 				 false,
@@ -87,7 +87,7 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 				 getResourceLocator(),
 				 getString("_UI_RangeConstraint_lowerBound_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_lowerBound_feature", "_UI_RangeConstraint_type"),
-				 MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
+				 StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
 				 true,
 				 false,
 				 false,
@@ -108,8 +108,8 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND);
-			childrenFeatures.add(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND);
+			childrenFeatures.add(StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND);
+			childrenFeatures.add(StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND);
 		}
 		return childrenFeatures;
 	}
@@ -179,8 +179,8 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RangeConstraint.class)) {
-			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
-			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -200,13 +200,13 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
-				 MetamodelFactory.eINSTANCE.createRangeBound()));
+				(StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
+				 StructureFactory.eINSTANCE.createRangeBound()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
-				 MetamodelFactory.eINSTANCE.createRangeBound()));
+				(StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
+				 StructureFactory.eINSTANCE.createRangeBound()));
 	}
 
 	/**
@@ -222,8 +222,8 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 		// Object childObject = child;
 		//
 		// boolean qualify =
-		// childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND ||
-		// childFeature == MetamodelPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND;
+		// childFeature == StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND ||
+		// childFeature == StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND;
 		//
 		// if (qualify) {
 		// return getString

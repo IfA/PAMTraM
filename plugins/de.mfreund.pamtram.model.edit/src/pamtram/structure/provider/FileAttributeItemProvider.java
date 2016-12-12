@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
 import pamtram.structure.FileAttribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -67,7 +67,7 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 				 getResourceLocator(),
 				 getString("_UI_FileAttribute_fileType_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FileAttribute_fileType_feature", "_UI_FileAttribute_type"),
-				 MetamodelPackage.Literals.FILE_ATTRIBUTE__FILE_TYPE,
+				 StructurePackage.Literals.FILE_ATTRIBUTE__FILE_TYPE,
 				 true,
 				 false,
 				 false,
@@ -142,7 +142,7 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FileAttribute.class)) {
-			case MetamodelPackage.FILE_ATTRIBUTE__FILE_TYPE:
+			case StructurePackage.FILE_ATTRIBUTE__FILE_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

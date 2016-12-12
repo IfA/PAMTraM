@@ -18,10 +18,10 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Section;
 import pamtram.structure.SourceSection;
-import pamtram.structure.impl.MetamodelPackageImpl;
+import pamtram.structure.impl.StructurePackageImpl;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -73,7 +73,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Section_abstract_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-				 MetamodelPackage.Literals.SECTION__ABSTRACT,
+				 StructurePackage.Literals.SECTION__ABSTRACT,
 				 true,
 				 false,
 				 false,
@@ -95,7 +95,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 						getResourceLocator(),
 						getString("_UI_Section_extend_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
-						MetamodelPackage.Literals.SECTION__EXTEND,
+						StructurePackage.Literals.SECTION__EXTEND,
 						true,
 						false,
 						true,
@@ -140,7 +140,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_SourceSection_referencingMappings_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature", "_UI_SourceSection_type"),
-				 MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
+				 StructurePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
 				 false,
 				 false,
 				 false,
@@ -153,7 +153,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	protected Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
 		if(labelRelatedChildrenFeatures == null) {
 			labelRelatedChildrenFeatures = new ArrayList<>();
-			labelRelatedChildrenFeatures.add(MetamodelPackageImpl.eINSTANCE.getSection_Extend());
+			labelRelatedChildrenFeatures.add(StructurePackageImpl.eINSTANCE.getSection_Extend());
 		}
 		return labelRelatedChildrenFeatures;
 	}
@@ -235,7 +235,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSection.class)) {
-			case MetamodelPackage.SOURCE_SECTION__ABSTRACT:
+			case StructurePackage.SOURCE_SECTION__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

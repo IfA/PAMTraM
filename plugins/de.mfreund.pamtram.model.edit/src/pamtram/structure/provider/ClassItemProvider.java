@@ -32,8 +32,8 @@ import pamtram.SectionModel;
 import pamtram.structure.Class;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.FileAttribute;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
 import pamtram.structure.TargetSection;
@@ -87,7 +87,7 @@ extends MetaModelElementItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Class_eClass_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
-				 MetamodelPackage.Literals.CLASS__ECLASS,
+				 StructurePackage.Literals.CLASS__ECLASS,
 				 true,
 				 false,
 				 true,
@@ -108,7 +108,7 @@ extends MetaModelElementItemProvider {
 						this.getResourceLocator(),
 						this.getString("_UI_Class_eClass_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
-						MetamodelPackage.Literals.CLASS__ECLASS,
+						StructurePackage.Literals.CLASS__ECLASS,
 						true,
 						false,
 						true,
@@ -203,7 +203,7 @@ extends MetaModelElementItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Class_cardinality_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
-				 MetamodelPackage.Literals.CLASS__CARDINALITY,
+				 StructurePackage.Literals.CLASS__CARDINALITY,
 				 true,
 				 false,
 				 false,
@@ -225,7 +225,7 @@ extends MetaModelElementItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Class_container_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
-				 MetamodelPackage.Literals.CLASS__CONTAINER,
+				 StructurePackage.Literals.CLASS__CONTAINER,
 				 true,
 				 false,
 				 true,
@@ -246,8 +246,8 @@ extends MetaModelElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.CLASS__REFERENCES);
-			childrenFeatures.add(MetamodelPackage.Literals.CLASS__ATTRIBUTES);
+			childrenFeatures.add(StructurePackage.Literals.CLASS__REFERENCES);
+			childrenFeatures.add(StructurePackage.Literals.CLASS__ATTRIBUTES);
 		}
 		return childrenFeatures;
 	}
@@ -329,11 +329,11 @@ extends MetaModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(pamtram.structure.Class.class)) {
-			case MetamodelPackage.CLASS__CARDINALITY:
+			case StructurePackage.CLASS__CARDINALITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MetamodelPackage.CLASS__REFERENCES:
-			case MetamodelPackage.CLASS__ATTRIBUTES:
+			case StructurePackage.CLASS__REFERENCES:
+			case StructurePackage.CLASS__ATTRIBUTES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -353,46 +353,46 @@ extends MetaModelElementItemProvider {
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.CLASS__REFERENCES,
-						MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
+				(StructurePackage.Literals.CLASS__REFERENCES,
+						StructureFactory.eINSTANCE.createTargetSectionContainmentReference()));
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.CLASS__REFERENCES,
-						MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
+				(StructurePackage.Literals.CLASS__REFERENCES,
+						StructureFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.CLASS__REFERENCES,
-						MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference()));
+				(StructurePackage.Literals.CLASS__REFERENCES,
+						StructureFactory.eINSTANCE.createSourceSectionContainmentReference()));
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.CLASS__REFERENCES,
-						MetamodelFactory.eINSTANCE.createMetaModelSectionReference()));
+				(StructurePackage.Literals.CLASS__REFERENCES,
+						StructureFactory.eINSTANCE.createMetaModelSectionReference()));
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-						MetamodelFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
+				(StructurePackage.Literals.CLASS__ATTRIBUTES,
+						StructureFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
 
 		/*
 		 * A 'FileAttribute' must only be added as child of a 'TargetSection'
 		 */
 		//		newChildDescriptors.add
 		//			(createChildParameter
-		//				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-		//				 MetamodelFactory.eINSTANCE.createFileAttribute()));
+		//				(StructurePackage.Literals.CLASS__ATTRIBUTES,
+		//				 StructureFactory.eINSTANCE.createFileAttribute()));
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				MetamodelFactory.eINSTANCE.createActualSourceSectionAttribute()));
+				(StructurePackage.Literals.CLASS__ATTRIBUTES,
+				StructureFactory.eINSTANCE.createActualSourceSectionAttribute()));
 
 		newChildDescriptors.add
 		(this.createChildParameter
-				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-						MetamodelFactory.eINSTANCE.createActualTargetSectionAttribute()));
+				(StructurePackage.Literals.CLASS__ATTRIBUTES,
+						StructureFactory.eINSTANCE.createActualTargetSectionAttribute()));
 	}
 
 	@Override
@@ -402,7 +402,7 @@ extends MetaModelElementItemProvider {
 		/*
 		 * We must not add a 'FileAttribute' to anything but a TargetSection.
 		 */
-		if(feature == MetamodelPackage.Literals.CLASS__ATTRIBUTES) {
+		if(feature == StructurePackage.Literals.CLASS__ATTRIBUTES) {
 			for (Object object : collection) {
 				if(object instanceof FileAttribute && !(owner instanceof TargetSection)) {
 					/*
@@ -425,11 +425,11 @@ extends MetaModelElementItemProvider {
 		/*
 		 * If a 'FileAttribute' is removed, we also need to reset the 'file' reference.
 		 */
-		if(feature == MetamodelPackage.Literals.CLASS__ATTRIBUTES) {
+		if(feature == StructurePackage.Literals.CLASS__ATTRIBUTES) {
 			for (Object object : collection) {
 				if(object instanceof FileAttribute && owner instanceof TargetSection) {
 					CompoundCommand command = new CompoundCommand();
-					command.append(new SetCommand(domain, owner, MetamodelPackage.Literals.TARGET_SECTION__FILE, SetCommand.UNSET_VALUE));
+					command.append(new SetCommand(domain, owner, StructurePackage.Literals.TARGET_SECTION__FILE, SetCommand.UNSET_VALUE));
 					command.append(super.createRemoveCommand(domain, owner, feature, collection));
 					return command;
 				}

@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.SourceSectionClass;
 
 /**
@@ -65,7 +65,7 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 						getResourceLocator(),
 						getString("_UI_MetaModelSectionReference_value_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_MetaModelSectionReference_value_feature", "_UI_MetaModelSectionReference_type"),
-						MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE,
+						StructurePackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE,
 						true,
 						false,
 						true,

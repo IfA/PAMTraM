@@ -23,7 +23,7 @@ import pamtram.structure.ActualAttribute;
 import pamtram.structure.Attribute;
 import pamtram.structure.Class;
 import pamtram.structure.MetaModelElement;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
 import pamtram.structure.SourceSectionAttribute;
@@ -81,10 +81,10 @@ public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		if (!leftAttribute.isPresent()) {
 			if (this.right.eContainer() instanceof Class<?, ?, ?, ?>) {
 				this.append(new RemoveCommand(this.domain, this.right.eContainer(),
-						MetamodelPackage.Literals.CLASS__ATTRIBUTES, this.right));
+						StructurePackage.Literals.CLASS__ATTRIBUTES, this.right));
 			}
 			this.append(
-					new AddCommand(this.domain, this.left, MetamodelPackage.Literals.CLASS__ATTRIBUTES, this.right));
+					new AddCommand(this.domain, this.left, StructurePackage.Literals.CLASS__ATTRIBUTES, this.right));
 			return super.prepare();
 		}
 
@@ -133,7 +133,7 @@ public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C ext
 
 			if (!NullComparator.compare(leftValue, rightValue)) {
 				this.append(new SetCommand(this.domain, leftAttribute.get(),
-						MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, null));
+						StructurePackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, null));
 			}
 
 		} else {

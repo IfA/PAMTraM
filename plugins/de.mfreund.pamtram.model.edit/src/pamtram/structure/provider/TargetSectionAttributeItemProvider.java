@@ -13,7 +13,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSectionAttribute;
 
 /**
@@ -63,7 +63,7 @@ public class TargetSectionAttributeItemProvider extends AttributeItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_TargetSectionAttribute_unique_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionAttribute_unique_feature", "_UI_TargetSectionAttribute_type"),
-				 MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__UNIQUE,
+				 StructurePackage.Literals.TARGET_SECTION_ATTRIBUTE__UNIQUE,
 				 true,
 				 false,
 				 false,
@@ -85,7 +85,7 @@ public class TargetSectionAttributeItemProvider extends AttributeItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_TargetSectionAttribute_value_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionAttribute_value_feature", "_UI_TargetSectionAttribute_type"),
-				 MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE,
+				 StructurePackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE,
 				 true,
 				 false,
 				 false,
@@ -145,8 +145,8 @@ public class TargetSectionAttributeItemProvider extends AttributeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSectionAttribute.class)) {
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__VALUE:
+			case StructurePackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+			case StructurePackage.TARGET_SECTION_ATTRIBUTE__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -34,7 +34,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.LibraryEntry;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
@@ -108,7 +108,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 				 getResourceLocator(),
 				 getString("_UI_LibraryEntry_libraryFile_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature", "_UI_LibraryEntry_type"),
-				 MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
+				 StructurePackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
 				 true,
 				 false,
 				 false,
@@ -174,11 +174,11 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
-			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY);
-			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH);
-			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__ID);
-			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
+			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__PARAMETERS);
+			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY);
+			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__PATH);
+			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__ID);
+			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
 		}
 		return childrenFeatures;
 	}
@@ -216,13 +216,13 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 			LibraryEntry libraryEntry = (LibraryEntry) object;
 			children = new ArrayList<>();
 			// add an ItemProvider for the Path
-			children.add(wrap(libraryEntry, MetamodelPackage.Literals.LIBRARY_ENTRY__PATH, libraryEntry.getPath(), CommandParameter.NO_INDEX));
+			children.add(wrap(libraryEntry, StructurePackage.Literals.LIBRARY_ENTRY__PATH, libraryEntry.getPath(), CommandParameter.NO_INDEX));
 			// add an ItemProvider for the ID
-			children.add(wrap(libraryEntry, MetamodelPackage.Literals.LIBRARY_ENTRY__ID, libraryEntry.getId(), CommandParameter.NO_INDEX));
+			children.add(wrap(libraryEntry, StructurePackage.Literals.LIBRARY_ENTRY__ID, libraryEntry.getId(), CommandParameter.NO_INDEX));
 			// add an ItemProvider for the virtual ParameterDescription
 			children.add(new ParameterDescriptionItemProvider(adapterFactory, libraryEntry));
 			// add an ItemProvider for the LibraryEntry (for some reason, the 'wrap(...)' method needs to be used
-			children.add(wrap(libraryEntry, MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, libraryEntry.getOriginalLibraryEntry(), CommandParameter.NO_INDEX));
+			children.add(wrap(libraryEntry, StructurePackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, libraryEntry.getOriginalLibraryEntry(), CommandParameter.NO_INDEX));
 		}
 		return children;
 	}
@@ -271,12 +271,12 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 		 * Do not handle notifications that affect the virtual ParameterDescription.
 		 */
 		switch (notification.getFeatureID(LibraryEntry.class)) {
-		case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
-		case MetamodelPackage.LIBRARY_ENTRY__PATH:
-		case MetamodelPackage.LIBRARY_ENTRY__ID:
+		case StructurePackage.LIBRARY_ENTRY__LIBRARY_FILE:
+		case StructurePackage.LIBRARY_ENTRY__PATH:
+		case StructurePackage.LIBRARY_ENTRY__ID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
+		case StructurePackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -321,7 +321,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	@Override
 	protected Object createWrapper(EObject object, EStructuralFeature feature,
 			Object value, int index) {
-		if(feature.equals(MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY)) {
+		if(feature.equals(StructurePackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY)) {
 			// Instead of displaying the original LibrarEntry itself, we show only the LibraryItem inside the LibraryEntry
 			return new DelegatingWrapperItemProvider(
 					((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) value).getLibraryItem(), 

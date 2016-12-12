@@ -28,8 +28,8 @@ import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
-import pamtram.structure.MetamodelPackage;
-import pamtram.structure.impl.MetamodelPackageImpl;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.impl.StructurePackageImpl;
 import pamtram.util.PamtramValidator;
 
 /**
@@ -152,7 +152,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		GenLibraryPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		MetamodelPackageImpl theMetamodelPackage = (MetamodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) instanceof MetamodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) : MetamodelPackage.eINSTANCE);
+		StructurePackageImpl theMetamodelPackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 
@@ -608,7 +608,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
+		StructurePackage theMetamodelPackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 		ConditionPackage theConditionPackage = (ConditionPackage)EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 

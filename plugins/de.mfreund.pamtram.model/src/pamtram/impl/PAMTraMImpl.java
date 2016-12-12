@@ -57,7 +57,7 @@ import pamtram.structure.Section;
 import pamtram.structure.SourceSection;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.impl.MetamodelPackageImpl;
+import pamtram.structure.impl.StructurePackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -356,7 +356,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			if(section.isAbstract() && sourceSettings.containsKey(section)) {
 				LinkedList<Section> concreteSections = new LinkedList<>();
 				for (Setting setting : sourceSettings.get(section)) {
-					if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {
+					if(setting.getEStructuralFeature().equals(StructurePackageImpl.eINSTANCE.getSection_Extend())) {
 						concreteSections.add((Section) setting.getEObject());
 					}
 				}
@@ -368,7 +368,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			if(section.isAbstract() && targetSettings.containsKey(section)) {
 				LinkedList<Section> concreteSections = new LinkedList<>();
 				for (Setting setting : targetSettings.get(section)) {
-					if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {
+					if(setting.getEStructuralFeature().equals(StructurePackageImpl.eINSTANCE.getSection_Extend())) {
 						concreteSections.add((Section) setting.getEObject());
 					}
 				}

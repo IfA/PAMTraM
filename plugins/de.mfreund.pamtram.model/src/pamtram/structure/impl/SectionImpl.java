@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.structure.Attribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
 import pamtram.structure.util.StructureValidator;
@@ -80,7 +80,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.SECTION;
+		return StructurePackage.Literals.SECTION;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SECTION__ABSTRACT, oldAbstract, abstract_));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.SECTION__ABSTRACT, oldAbstract, abstract_));
 	}
 
 	/**
@@ -114,7 +114,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public EList<S> getExtend() {
 		if (extend == null) {
-			extend = new EObjectResolvingEList<S>(Section.class, this, MetamodelPackage.SECTION__EXTEND);
+			extend = new EObjectResolvingEList<S>(Section.class, this, StructurePackage.SECTION__EXTEND);
 		}
 		return extend;
 	}
@@ -143,7 +143,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 					 StructureValidator.DIAGNOSTIC_SOURCE,
 					StructureValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
 					 errorMessage,
-					 new Object [] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
+					 new Object [] { this, StructurePackage.Literals.SECTION__EXTEND }));
 			}
 		
 		return result;
@@ -173,7 +173,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
+					new Object[] { this, StructurePackage.Literals.SECTION__EXTEND }));
 		
 		}
 		
@@ -188,9 +188,9 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.SECTION__ABSTRACT:
+			case StructurePackage.SECTION__ABSTRACT:
 				return isAbstract();
-			case MetamodelPackage.SECTION__EXTEND:
+			case StructurePackage.SECTION__EXTEND:
 				return getExtend();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -205,10 +205,10 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.SECTION__ABSTRACT:
+			case StructurePackage.SECTION__ABSTRACT:
 				setAbstract((Boolean)newValue);
 				return;
-			case MetamodelPackage.SECTION__EXTEND:
+			case StructurePackage.SECTION__EXTEND:
 				getExtend().clear();
 				getExtend().addAll((Collection<? extends S>)newValue);
 				return;
@@ -224,10 +224,10 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SECTION__ABSTRACT:
+			case StructurePackage.SECTION__ABSTRACT:
 				setAbstract(ABSTRACT_EDEFAULT);
 				return;
-			case MetamodelPackage.SECTION__EXTEND:
+			case StructurePackage.SECTION__EXTEND:
 				getExtend().clear();
 				return;
 		}
@@ -242,9 +242,9 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SECTION__ABSTRACT:
+			case StructurePackage.SECTION__ABSTRACT:
 				return abstract_ != ABSTRACT_EDEFAULT;
-			case MetamodelPackage.SECTION__EXTEND:
+			case StructurePackage.SECTION__EXTEND:
 				return extend != null && !extend.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -259,9 +259,9 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateExtendsValidSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

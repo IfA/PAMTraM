@@ -35,7 +35,7 @@ import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.RangeBound;
 import pamtram.structure.SourceSection;
 import pamtram.structure.ValueConstraintExternalSourceElement;
@@ -127,7 +127,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.RANGE_BOUND;
+		return StructurePackage.Literals.RANGE_BOUND;
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.RANGE_BOUND__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -163,7 +163,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 		ValueConstraintType oldBoundType = boundType;
 		boundType = newBoundType == null ? BOUND_TYPE_EDEFAULT : newBoundType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.RANGE_BOUND__BOUND_TYPE, oldBoundType, boundType));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.RANGE_BOUND__BOUND_TYPE, oldBoundType, boundType));
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public EList<InstancePointer> getBoundReferenceValueAdditionalSpecification() {
 		if (boundReferenceValueAdditionalSpecification == null) {
-			boundReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			boundReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, StructurePackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
 		}
 		return boundReferenceValueAdditionalSpecification;
 	}
@@ -187,7 +187,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public EList<ValueConstraintSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<ValueConstraintSourceInterface>(ValueConstraintSourceInterface.class, this, MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<ValueConstraintSourceInterface>(ValueConstraintSourceInterface.class, this, StructurePackage.RANGE_BOUND__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
@@ -200,7 +200,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if(this.getSourceElements().isEmpty() || 
-				!AgteleEcoreUtil.hasAncestorOfKind(this, MetamodelPackage.eINSTANCE.getActualSourceSectionAttribute())) {
+				!AgteleEcoreUtil.hasAncestorOfKind(this, StructurePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 			return true;
 		}
 		
@@ -217,7 +217,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 					 StructureValidator.DIAGNOSTIC_SOURCE,
 					 StructureValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,
 					 errorMessage,
-					 new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
+					 new Object [] { this,  StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
 			}
 		
 		return result;
@@ -254,7 +254,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 					 StructureValidator.DIAGNOSTIC_SOURCE,
 					 StructureValidator.RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
 					 errorMessage,
-					 new Object [] { this,  MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS }));
+					 new Object [] { this,  StructurePackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS }));
 			}
 		
 		return result;
@@ -313,9 +313,9 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case StructurePackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				return ((InternalEList<?>)getBoundReferenceValueAdditionalSpecification()).basicRemove(otherEnd, msgs);
-			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
+			case StructurePackage.RANGE_BOUND__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -329,13 +329,13 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER:
+			case StructurePackage.RANGE_BOUND__RESULT_MODIFIER:
 				return getResultModifier();
-			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
+			case StructurePackage.RANGE_BOUND__BOUND_TYPE:
 				return getBoundType();
-			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case StructurePackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				return getBoundReferenceValueAdditionalSpecification();
-			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
+			case StructurePackage.RANGE_BOUND__SOURCE_ELEMENTS:
 				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -350,18 +350,18 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER:
+			case StructurePackage.RANGE_BOUND__RESULT_MODIFIER:
 				getResultModifier().clear();
 				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
+			case StructurePackage.RANGE_BOUND__BOUND_TYPE:
 				setBoundType((ValueConstraintType)newValue);
 				return;
-			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case StructurePackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				getBoundReferenceValueAdditionalSpecification().clear();
 				getBoundReferenceValueAdditionalSpecification().addAll((Collection<? extends InstancePointer>)newValue);
 				return;
-			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
+			case StructurePackage.RANGE_BOUND__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				getSourceElements().addAll((Collection<? extends ValueConstraintSourceInterface>)newValue);
 				return;
@@ -377,16 +377,16 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER:
+			case StructurePackage.RANGE_BOUND__RESULT_MODIFIER:
 				getResultModifier().clear();
 				return;
-			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
+			case StructurePackage.RANGE_BOUND__BOUND_TYPE:
 				setBoundType(BOUND_TYPE_EDEFAULT);
 				return;
-			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case StructurePackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				getBoundReferenceValueAdditionalSpecification().clear();
 				return;
-			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
+			case StructurePackage.RANGE_BOUND__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				return;
 		}
@@ -401,13 +401,13 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER:
+			case StructurePackage.RANGE_BOUND__RESULT_MODIFIER:
 				return resultModifier != null && !resultModifier.isEmpty();
-			case MetamodelPackage.RANGE_BOUND__BOUND_TYPE:
+			case StructurePackage.RANGE_BOUND__BOUND_TYPE:
 				return boundType != BOUND_TYPE_EDEFAULT;
-			case MetamodelPackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case StructurePackage.RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				return boundReferenceValueAdditionalSpecification != null && !boundReferenceValueAdditionalSpecification.isEmpty();
-			case MetamodelPackage.RANGE_BOUND__SOURCE_ELEMENTS:
+			case StructurePackage.RANGE_BOUND__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -422,7 +422,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableHint.class) {
 			switch (derivedFeatureID) {
-				case MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER;
+				case StructurePackage.RANGE_BOUND__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -438,7 +438,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableHint.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER: return MetamodelPackage.RANGE_BOUND__RESULT_MODIFIER;
+				case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER: return StructurePackage.RANGE_BOUND__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -453,11 +453,11 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.RANGE_BOUND___IS_LOCAL_CONSTRAINT:
+			case StructurePackage.RANGE_BOUND___IS_LOCAL_CONSTRAINT:
 				return isLocalConstraint();
 		}
 		return super.eInvoke(operationID, arguments);

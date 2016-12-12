@@ -11,7 +11,7 @@ import pamtram.SectionModel;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getMetaModelElement()
+ * @see pamtram.structure.StructurePackage#getMetaModelElement()
  * @model abstract="true"
  * @generated
  */

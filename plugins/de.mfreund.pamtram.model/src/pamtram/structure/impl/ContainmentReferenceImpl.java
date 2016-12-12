@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.structure.Attribute;
 import pamtram.structure.ContainmentReference;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
 import pamtram.structure.util.StructureValidator;
@@ -63,7 +63,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.CONTAINMENT_REFERENCE;
+		return StructurePackage.Literals.CONTAINMENT_REFERENCE;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public EList<C> getValue() {
 		if (value == null) {
-			value = new EObjectContainmentEList<C>(pamtram.structure.Class.class, this, MetamodelPackage.CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectContainmentEList<C>(pamtram.structure.Class.class, this, StructurePackage.CONTAINMENT_REFERENCE__VALUE);
 		}
 		return value;
 	}
@@ -98,7 +98,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.REFERENCE__EREFERENCE }));
+					new Object[] { this, StructurePackage.Literals.REFERENCE__EREFERENCE }));
 		
 		}
 		
@@ -113,7 +113,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.CONTAINMENT_REFERENCE__VALUE:
 				return ((InternalEList<?>)getValue()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -127,7 +127,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.CONTAINMENT_REFERENCE__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -142,7 +142,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.CONTAINMENT_REFERENCE__VALUE:
 				getValue().clear();
 				getValue().addAll((Collection<? extends C>)newValue);
 				return;
@@ -158,7 +158,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.CONTAINMENT_REFERENCE__VALUE:
 				getValue().clear();
 				return;
 		}
@@ -173,7 +173,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.CONTAINMENT_REFERENCE__VALUE:
 				return value != null && !value.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -188,7 +188,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
 				return validateEReferenceIsContainment((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

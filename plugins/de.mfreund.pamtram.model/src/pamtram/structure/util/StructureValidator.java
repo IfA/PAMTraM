@@ -34,7 +34,7 @@ import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.MetaModelElement;
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.RangeBound;
@@ -68,7 +68,7 @@ import pamtram.structure.VirtualTargetSectionAttribute;
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * @see pamtram.structure.MetamodelPackage
+ * @see pamtram.structure.StructurePackage
  * @generated
  */
 public class StructureValidator extends EObjectValidator {
@@ -277,7 +277,7 @@ public class StructureValidator extends EObjectValidator {
 	 */
 	@Override
 	protected EPackage getEPackage() {
-	  return MetamodelPackage.eINSTANCE;
+	  return StructurePackage.eINSTANCE;
 	}
 
 	/**
@@ -289,109 +289,109 @@ public class StructureValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case MetamodelPackage.META_MODEL_ELEMENT:
+			case StructurePackage.META_MODEL_ELEMENT:
 				return validateMetaModelElement((MetaModelElement<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.CLASS:
+			case StructurePackage.CLASS:
 				return validateClass((pamtram.structure.Class<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.SECTION:
+			case StructurePackage.SECTION:
 				return validateSection((Section<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION:
+			case StructurePackage.SOURCE_SECTION:
 				return validateSourceSection((SourceSection)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION:
+			case StructurePackage.TARGET_SECTION:
 				return validateTargetSection((TargetSection)value, diagnostics, context);
-			case MetamodelPackage.FILE_ATTRIBUTE:
+			case StructurePackage.FILE_ATTRIBUTE:
 				return validateFileAttribute((FileAttribute)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_CLASS:
+			case StructurePackage.SOURCE_SECTION_CLASS:
 				return validateSourceSectionClass((SourceSectionClass)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_CLASS:
+			case StructurePackage.TARGET_SECTION_CLASS:
 				return validateTargetSectionClass((TargetSectionClass)value, diagnostics, context);
-			case MetamodelPackage.LIBRARY_PARAMETER:
+			case StructurePackage.LIBRARY_PARAMETER:
 				return validateLibraryParameter((LibraryParameter<?>)value, diagnostics, context);
-			case MetamodelPackage.ATTRIBUTE_PARAMETER:
+			case StructurePackage.ATTRIBUTE_PARAMETER:
 				return validateAttributeParameter((AttributeParameter)value, diagnostics, context);
-			case MetamodelPackage.CONTAINER_PARAMETER:
+			case StructurePackage.CONTAINER_PARAMETER:
 				return validateContainerParameter((ContainerParameter)value, diagnostics, context);
-			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER:
+			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER:
 				return validateExternalReferenceParameter((ExternalReferenceParameter)value, diagnostics, context);
-			case MetamodelPackage.RESOURCE_PARAMETER:
+			case StructurePackage.RESOURCE_PARAMETER:
 				return validateResourceParameter((ResourceParameter)value, diagnostics, context);
-			case MetamodelPackage.LIBRARY_ENTRY:
+			case StructurePackage.LIBRARY_ENTRY:
 				return validateLibraryEntry((LibraryEntry)value, diagnostics, context);
-			case MetamodelPackage.REFERENCE:
+			case StructurePackage.REFERENCE:
 				return validateReference((Reference<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.CONTAINMENT_REFERENCE:
+			case StructurePackage.CONTAINMENT_REFERENCE:
 				return validateContainmentReference((ContainmentReference<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE:
+			case StructurePackage.NON_CONTAINMENT_REFERENCE:
 				return validateNonContainmentReference((NonContainmentReference<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_REFERENCE:
+			case StructurePackage.SOURCE_SECTION_REFERENCE:
 				return validateSourceSectionReference((SourceSectionReference)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_REFERENCE:
+			case StructurePackage.TARGET_SECTION_REFERENCE:
 				return validateTargetSectionReference((TargetSectionReference)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE:
+			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE:
 				return validateTargetSectionContainmentReference((TargetSectionContainmentReference)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE:
+			case StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE:
 				return validateTargetSectionNonContainmentReference((TargetSectionNonContainmentReference)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE:
+			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE:
 				return validateSourceSectionContainmentReference((SourceSectionContainmentReference)value, diagnostics, context);
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE:
+			case StructurePackage.META_MODEL_SECTION_REFERENCE:
 				return validateMetaModelSectionReference((MetaModelSectionReference)value, diagnostics, context);
-			case MetamodelPackage.ATTRIBUTE:
+			case StructurePackage.ATTRIBUTE:
 				return validateAttribute((Attribute<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.ACTUAL_ATTRIBUTE:
+			case StructurePackage.ACTUAL_ATTRIBUTE:
 				return validateActualAttribute((ActualAttribute<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.VIRTUAL_ATTRIBUTE:
+			case StructurePackage.VIRTUAL_ATTRIBUTE:
 				return validateVirtualAttribute((VirtualAttribute<?, ?, ?, ?>)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE:
+			case StructurePackage.SOURCE_SECTION_ATTRIBUTE:
 				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
-			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE:
+			case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE:
 				return validateActualSourceSectionAttribute((ActualSourceSectionAttribute)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE:
+			case StructurePackage.TARGET_SECTION_ATTRIBUTE:
 				return validateTargetSectionAttribute((TargetSectionAttribute)value, diagnostics, context);
-			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE:
+			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE:
 				return validateActualTargetSectionAttribute((ActualTargetSectionAttribute)value, diagnostics, context);
-			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE:
+			case StructurePackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE:
 				return validateVirtualTargetSectionAttribute((VirtualTargetSectionAttribute)value, diagnostics, context);
-			case MetamodelPackage.EQUALITY_MATCHER:
+			case StructurePackage.EQUALITY_MATCHER:
 				return validateEqualityMatcher((EqualityMatcher)value, diagnostics, context);
-			case MetamodelPackage.VALUE_CONSTRAINT:
+			case StructurePackage.VALUE_CONSTRAINT:
 				return validateValueConstraint((ValueConstraint)value, diagnostics, context);
-			case MetamodelPackage.SUBSTRING_MATCHER:
+			case StructurePackage.SUBSTRING_MATCHER:
 				return validateSubstringMatcher((SubstringMatcher)value, diagnostics, context);
-			case MetamodelPackage.BEGINNING_MATCHER:
+			case StructurePackage.BEGINNING_MATCHER:
 				return validateBeginningMatcher((BeginningMatcher)value, diagnostics, context);
-			case MetamodelPackage.ENDING_MATCHER:
+			case StructurePackage.ENDING_MATCHER:
 				return validateEndingMatcher((EndingMatcher)value, diagnostics, context);
-			case MetamodelPackage.REG_EX_MATCHER:
+			case StructurePackage.REG_EX_MATCHER:
 				return validateRegExMatcher((RegExMatcher)value, diagnostics, context);
-			case MetamodelPackage.CASE_SENSITIVE_CONSTRAINT:
+			case StructurePackage.CASE_SENSITIVE_CONSTRAINT:
 				return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
-			case MetamodelPackage.RANGE_CONSTRAINT:
+			case StructurePackage.RANGE_CONSTRAINT:
 				return validateRangeConstraint((RangeConstraint)value, diagnostics, context);
-			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT:
+			case StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT:
 				return validateMultipleReferencesValueConstraint((MultipleReferencesValueConstraint)value, diagnostics, context);
-			case MetamodelPackage.INSTANCE_POINTER:
+			case StructurePackage.INSTANCE_POINTER:
 				return validateInstancePointer((InstancePointer)value, diagnostics, context);
-			case MetamodelPackage.INSTANCE_POINTER_SOURCE_INTERFACE:
+			case StructurePackage.INSTANCE_POINTER_SOURCE_INTERFACE:
 				return validateInstancePointerSourceInterface((InstancePointerSourceInterface)value, diagnostics, context);
-			case MetamodelPackage.INSTANCE_POINTER_SOURCE_ELEMENT:
+			case StructurePackage.INSTANCE_POINTER_SOURCE_ELEMENT:
 				return validateInstancePointerSourceElement((InstancePointerSourceElement)value, diagnostics, context);
-			case MetamodelPackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT:
+			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT:
 				return validateInstancePointerExternalSourceElement((InstancePointerExternalSourceElement)value, diagnostics, context);
-			case MetamodelPackage.RANGE_BOUND:
+			case StructurePackage.RANGE_BOUND:
 				return validateRangeBound((RangeBound)value, diagnostics, context);
-			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT:
+			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT:
 				return validateSingleReferenceValueConstraint((SingleReferenceValueConstraint)value, diagnostics, context);
-			case MetamodelPackage.VALUE_CONSTRAINT_SOURCE_INTERFACE:
+			case StructurePackage.VALUE_CONSTRAINT_SOURCE_INTERFACE:
 				return validateValueConstraintSourceInterface((ValueConstraintSourceInterface)value, diagnostics, context);
-			case MetamodelPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT:
+			case StructurePackage.VALUE_CONSTRAINT_SOURCE_ELEMENT:
 				return validateValueConstraintSourceElement((ValueConstraintSourceElement)value, diagnostics, context);
-			case MetamodelPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT:
+			case StructurePackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT:
 				return validateValueConstraintExternalSourceElement((ValueConstraintExternalSourceElement)value, diagnostics, context);
-			case MetamodelPackage.FILE_TYPE_ENUM:
+			case StructurePackage.FILE_TYPE_ENUM:
 				return validateFileTypeEnum((FileTypeEnum)value, diagnostics, context);
-			case MetamodelPackage.VALUE_CONSTRAINT_TYPE:
+			case StructurePackage.VALUE_CONSTRAINT_TYPE:
 				return validateValueConstraintType((ValueConstraintType)value, diagnostics, context);
-			case MetamodelPackage.CARDINALITY_TYPE:
+			case StructurePackage.CARDINALITY_TYPE:
 				return validateCardinalityType((CardinalityType)value, diagnostics, context);
 			default:
 				return true;

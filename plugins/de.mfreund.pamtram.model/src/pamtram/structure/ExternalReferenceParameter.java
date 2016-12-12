@@ -17,7 +17,7 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenc
  *   <li>{@link pamtram.structure.ExternalReferenceParameter#getReference <em>Reference</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getExternalReferenceParameter()
+ * @see pamtram.structure.StructurePackage#getExternalReferenceParameter()
  * @model
  * @generated
  */
@@ -32,7 +32,7 @@ public interface ExternalReferenceParameter extends LibraryParameter<AbstractExt
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference</em>' containment reference.
 	 * @see #setReference(TargetSectionNonContainmentReference)
-	 * @see pamtram.structure.MetamodelPackage#getExternalReferenceParameter_Reference()
+	 * @see pamtram.structure.StructurePackage#getExternalReferenceParameter_Reference()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

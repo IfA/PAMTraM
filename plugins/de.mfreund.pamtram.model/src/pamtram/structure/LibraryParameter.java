@@ -18,7 +18,7 @@ import pamtram.NamedElement;
  *   <li>{@link pamtram.structure.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getLibraryParameter()
+ * @see pamtram.structure.StructurePackage#getLibraryParameter()
  * @model abstract="true"
  * @generated
  */
@@ -33,7 +33,7 @@ public interface LibraryParameter<ParameterType> extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(EObject)
-	 * @see pamtram.structure.MetamodelPackage#getLibraryParameter_Source()
+	 * @see pamtram.structure.StructurePackage#getLibraryParameter_Source()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface LibraryParameter<ParameterType> extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Original Parameter</em>' reference.
 	 * @see #setOriginalParameter(Object)
-	 * @see pamtram.structure.MetamodelPackage#getLibraryParameter_OriginalParameter()
+	 * @see pamtram.structure.StructurePackage#getLibraryParameter_OriginalParameter()
 	 * @model kind="reference" required="true"
 	 * @generated
 	 */

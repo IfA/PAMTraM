@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.structure.BeginningMatcher;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.ValueConstraintType;
 
 /**
@@ -58,7 +58,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.BEGINNING_MATCHER;
+		return StructurePackage.Literals.BEGINNING_MATCHER;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 		boolean oldCaseSensitive = caseSensitive;
 		caseSensitive = newCaseSensitive;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.BEGINNING_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.BEGINNING_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.BEGINNING_MATCHER__CASE_SENSITIVE:
 				return isCaseSensitive();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.BEGINNING_MATCHER__CASE_SENSITIVE:
 				setCaseSensitive((Boolean)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.BEGINNING_MATCHER__CASE_SENSITIVE:
 				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
 				return;
 		}
@@ -147,7 +147,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.BEGINNING_MATCHER__CASE_SENSITIVE:
 				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

@@ -14,7 +14,7 @@ package pamtram.structure;
  *   <li>{@link pamtram.structure.CaseSensitiveConstraint#isCaseSensitive <em>Case Sensitive</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getCaseSensitiveConstraint()
+ * @see pamtram.structure.StructurePackage#getCaseSensitiveConstraint()
  * @model interface="true" abstract="true"
  * @generated
  */
@@ -30,7 +30,7 @@ public interface CaseSensitiveConstraint extends SingleReferenceValueConstraint 
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Case Sensitive</em>' attribute.
 	 * @see #setCaseSensitive(boolean)
-	 * @see pamtram.structure.MetamodelPackage#getCaseSensitiveConstraint_CaseSensitive()
+	 * @see pamtram.structure.StructurePackage#getCaseSensitiveConstraint_CaseSensitive()
 	 * @model default="true" required="true"
 	 * @generated
 	 */

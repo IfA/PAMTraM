@@ -25,8 +25,8 @@ import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.RangeBound;
 import pamtram.structure.RangeConstraint;
 import pamtram.structure.RegExMatcher;
@@ -50,16 +50,16 @@ import pamtram.structure.VirtualTargetSectionAttribute;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFactory {
+public class StructureFactoryImpl extends EFactoryImpl implements StructureFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MetamodelFactory init() {
+	public static StructureFactory init() {
 		try {
-			MetamodelFactory theMetamodelFactory = (MetamodelFactory)EPackage.Registry.INSTANCE.getEFactory(MetamodelPackage.eNS_URI);
+			StructureFactory theMetamodelFactory = (StructureFactory)EPackage.Registry.INSTANCE.getEFactory(StructurePackage.eNS_URI);
 			if (theMetamodelFactory != null) {
 				return theMetamodelFactory;
 			}
@@ -67,7 +67,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new MetamodelFactoryImpl();
+		return new StructureFactoryImpl();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelFactoryImpl() {
+	public StructureFactoryImpl() {
 		super();
 	}
 
@@ -88,35 +88,35 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MetamodelPackage.SOURCE_SECTION: return createSourceSection();
-			case MetamodelPackage.TARGET_SECTION: return createTargetSection();
-			case MetamodelPackage.FILE_ATTRIBUTE: return createFileAttribute();
-			case MetamodelPackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
-			case MetamodelPackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
-			case MetamodelPackage.ATTRIBUTE_PARAMETER: return createAttributeParameter();
-			case MetamodelPackage.CONTAINER_PARAMETER: return createContainerParameter();
-			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER: return createExternalReferenceParameter();
-			case MetamodelPackage.RESOURCE_PARAMETER: return createResourceParameter();
-			case MetamodelPackage.LIBRARY_ENTRY: return createLibraryEntry();
-			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
-			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
-			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
-			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
-			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
-			case MetamodelPackage.EQUALITY_MATCHER: return createEqualityMatcher();
-			case MetamodelPackage.SUBSTRING_MATCHER: return createSubstringMatcher();
-			case MetamodelPackage.BEGINNING_MATCHER: return createBeginningMatcher();
-			case MetamodelPackage.ENDING_MATCHER: return createEndingMatcher();
-			case MetamodelPackage.REG_EX_MATCHER: return createRegExMatcher();
-			case MetamodelPackage.RANGE_CONSTRAINT: return createRangeConstraint();
-			case MetamodelPackage.INSTANCE_POINTER: return createInstancePointer();
-			case MetamodelPackage.INSTANCE_POINTER_SOURCE_ELEMENT: return createInstancePointerSourceElement();
-			case MetamodelPackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: return createInstancePointerExternalSourceElement();
-			case MetamodelPackage.RANGE_BOUND: return createRangeBound();
-			case MetamodelPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: return createValueConstraintSourceElement();
-			case MetamodelPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createValueConstraintExternalSourceElement();
+			case StructurePackage.SOURCE_SECTION: return createSourceSection();
+			case StructurePackage.TARGET_SECTION: return createTargetSection();
+			case StructurePackage.FILE_ATTRIBUTE: return createFileAttribute();
+			case StructurePackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
+			case StructurePackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
+			case StructurePackage.ATTRIBUTE_PARAMETER: return createAttributeParameter();
+			case StructurePackage.CONTAINER_PARAMETER: return createContainerParameter();
+			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER: return createExternalReferenceParameter();
+			case StructurePackage.RESOURCE_PARAMETER: return createResourceParameter();
+			case StructurePackage.LIBRARY_ENTRY: return createLibraryEntry();
+			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
+			case StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
+			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
+			case StructurePackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
+			case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
+			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
+			case StructurePackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
+			case StructurePackage.EQUALITY_MATCHER: return createEqualityMatcher();
+			case StructurePackage.SUBSTRING_MATCHER: return createSubstringMatcher();
+			case StructurePackage.BEGINNING_MATCHER: return createBeginningMatcher();
+			case StructurePackage.ENDING_MATCHER: return createEndingMatcher();
+			case StructurePackage.REG_EX_MATCHER: return createRegExMatcher();
+			case StructurePackage.RANGE_CONSTRAINT: return createRangeConstraint();
+			case StructurePackage.INSTANCE_POINTER: return createInstancePointer();
+			case StructurePackage.INSTANCE_POINTER_SOURCE_ELEMENT: return createInstancePointerSourceElement();
+			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: return createInstancePointerExternalSourceElement();
+			case StructurePackage.RANGE_BOUND: return createRangeBound();
+			case StructurePackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: return createValueConstraintSourceElement();
+			case StructurePackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createValueConstraintExternalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -130,11 +130,11 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case MetamodelPackage.FILE_TYPE_ENUM:
+			case StructurePackage.FILE_TYPE_ENUM:
 				return createFileTypeEnumFromString(eDataType, initialValue);
-			case MetamodelPackage.VALUE_CONSTRAINT_TYPE:
+			case StructurePackage.VALUE_CONSTRAINT_TYPE:
 				return createValueConstraintTypeFromString(eDataType, initialValue);
-			case MetamodelPackage.CARDINALITY_TYPE:
+			case StructurePackage.CARDINALITY_TYPE:
 				return createCardinalityTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -149,11 +149,11 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case MetamodelPackage.FILE_TYPE_ENUM:
+			case StructurePackage.FILE_TYPE_ENUM:
 				return convertFileTypeEnumToString(eDataType, instanceValue);
-			case MetamodelPackage.VALUE_CONSTRAINT_TYPE:
+			case StructurePackage.VALUE_CONSTRAINT_TYPE:
 				return convertValueConstraintTypeToString(eDataType, instanceValue);
-			case MetamodelPackage.CARDINALITY_TYPE:
+			case StructurePackage.CARDINALITY_TYPE:
 				return convertCardinalityTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -515,8 +515,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelPackage getMetamodelPackage() {
-		return (MetamodelPackage)getEPackage();
+	public StructurePackage getMetamodelPackage() {
+		return (StructurePackage)getEPackage();
 	}
 
 	/**
@@ -526,8 +526,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * @generated
 	 */
 	@Deprecated
-	public static MetamodelPackage getPackage() {
-		return MetamodelPackage.eINSTANCE;
+	public static StructurePackage getPackage() {
+		return StructurePackage.eINSTANCE;
 	}
 
-} //MetamodelFactoryImpl
+} //StructureFactoryImpl

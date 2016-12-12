@@ -9,7 +9,7 @@ import pamtram.mapping.MappingHintSourceInterface;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getValueConstraintSourceInterface()
+ * @see pamtram.structure.StructurePackage#getValueConstraintSourceInterface()
  * @model interface="true" abstract="true"
  * @generated
  */

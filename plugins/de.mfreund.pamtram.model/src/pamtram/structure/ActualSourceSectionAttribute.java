@@ -8,7 +8,7 @@ package pamtram.structure;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getActualSourceSectionAttribute()
+ * @see pamtram.structure.StructurePackage#getActualSourceSectionAttribute()
  * @model
  * @generated
  */

@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.structure.FileAttribute;
 import pamtram.structure.FileTypeEnum;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.FILE_ATTRIBUTE;
+		return StructurePackage.Literals.FILE_ATTRIBUTE;
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 		FileTypeEnum oldFileType = fileType;
 		fileType = newFileType == null ? FILE_TYPE_EDEFAULT : newFileType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.FILE_ATTRIBUTE__FILE_TYPE, oldFileType, fileType));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.FILE_ATTRIBUTE__FILE_TYPE, oldFileType, fileType));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.FILE_ATTRIBUTE__FILE_TYPE:
+			case StructurePackage.FILE_ATTRIBUTE__FILE_TYPE:
 				return getFileType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -106,7 +106,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.FILE_ATTRIBUTE__FILE_TYPE:
+			case StructurePackage.FILE_ATTRIBUTE__FILE_TYPE:
 				setFileType((FileTypeEnum)newValue);
 				return;
 		}
@@ -121,7 +121,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.FILE_ATTRIBUTE__FILE_TYPE:
+			case StructurePackage.FILE_ATTRIBUTE__FILE_TYPE:
 				setFileType(FILE_TYPE_EDEFAULT);
 				return;
 		}
@@ -136,7 +136,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.FILE_ATTRIBUTE__FILE_TYPE:
+			case StructurePackage.FILE_ATTRIBUTE__FILE_TYPE:
 				return fileType != FILE_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

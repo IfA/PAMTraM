@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
@@ -58,7 +58,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE;
+		return StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	 */
 	public EList<ValueConstraint> getValueConstraint() {
 		if (valueConstraint == null) {
-			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, StructurePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
 		}
 		return valueConstraint;
 	}
@@ -81,7 +81,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case StructurePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				return ((InternalEList<?>)getValueConstraint()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -95,7 +95,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case StructurePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				return getValueConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -110,7 +110,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case StructurePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				getValueConstraint().clear();
 				getValueConstraint().addAll((Collection<? extends ValueConstraint>)newValue);
 				return;
@@ -126,7 +126,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case StructurePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				getValueConstraint().clear();
 				return;
 		}
@@ -141,7 +141,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case StructurePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				return valueConstraint != null && !valueConstraint.isEmpty();
 		}
 		return super.eIsSet(featureID);

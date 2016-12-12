@@ -76,8 +76,8 @@ import pamtram.mapping.StringPrepender;
 import pamtram.mapping.SubstringReplacer;
 import pamtram.mapping.UniqueNumberAppender;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.structure.MetamodelPackage;
-import pamtram.structure.impl.MetamodelPackageImpl;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.impl.StructurePackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -536,7 +536,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		// Obtain or create and register interdependencies
 		PamtramPackageImpl thePamtramPackage = (PamtramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) instanceof PamtramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) : PamtramPackage.eINSTANCE);
-		MetamodelPackageImpl theMetamodelPackage = (MetamodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) instanceof MetamodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) : MetamodelPackage.eINSTANCE);
+		StructurePackageImpl theMetamodelPackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 
 		// Create package meta-data objects
@@ -1950,7 +1950,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
+		StructurePackage theMetamodelPackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter modifiedAttributeElementTypeEClass_S = addETypeParameter(modifiedAttributeElementTypeEClass, "S");

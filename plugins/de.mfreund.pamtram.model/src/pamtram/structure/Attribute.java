@@ -15,7 +15,7 @@ package pamtram.structure;
  *   <li>{@link pamtram.structure.Attribute#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getAttribute()
+ * @see pamtram.structure.StructurePackage#getAttribute()
  * @model abstract="true"
  * @generated
  */
@@ -31,7 +31,7 @@ public interface Attribute<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
-	 * @see pamtram.structure.MetamodelPackage#getAttribute_OwningClass()
+	 * @see pamtram.structure.StructurePackage#getAttribute_OwningClass()
 	 * @see pamtram.structure.Class#getAttributes
 	 * @model opposite="attributes" transient="false" changeable="false"
 	 * @generated

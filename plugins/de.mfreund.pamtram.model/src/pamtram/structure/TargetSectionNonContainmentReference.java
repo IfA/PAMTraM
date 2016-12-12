@@ -10,7 +10,7 @@ package pamtram.structure;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getTargetSectionNonContainmentReference()
+ * @see pamtram.structure.StructurePackage#getTargetSectionNonContainmentReference()
  * @model
  * @generated
  */

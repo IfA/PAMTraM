@@ -6,7 +6,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
@@ -40,7 +40,7 @@ public class SourceSectionContainmentReferenceImpl extends
 	@Override
 	protected EClass eStaticClass() {
 
-		return MetamodelPackage.Literals.SOURCE_SECTION_CONTAINMENT_REFERENCE;
+		return StructurePackage.Literals.SOURCE_SECTION_CONTAINMENT_REFERENCE;
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class SourceSectionContainmentReferenceImpl extends
 
 		if (this.value == null) {
 			this.value = new EObjectContainmentEList<>(SourceSectionClass.class, this,
-					MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE);
+					StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE);
 		}
 		return this.value;
 	}

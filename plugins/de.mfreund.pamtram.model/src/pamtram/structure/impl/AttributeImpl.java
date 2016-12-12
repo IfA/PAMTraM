@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import pamtram.structure.Attribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
 
@@ -42,7 +42,7 @@ public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pam
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.ATTRIBUTE;
+		return StructurePackage.Literals.ATTRIBUTE;
 	}
 
 	/**
@@ -52,7 +52,7 @@ public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pam
 	 */
 	@SuppressWarnings("unchecked")
 	public C getOwningClass() {
-		if (eContainerFeatureID() != MetamodelPackage.ATTRIBUTE__OWNING_CLASS) return null;
+		if (eContainerFeatureID() != StructurePackage.ATTRIBUTE__OWNING_CLASS) return null;
 		return (C)eInternalContainer();
 	}
 
@@ -65,10 +65,10 @@ public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
+			case StructurePackage.ATTRIBUTE__OWNING_CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return eBasicSetContainer(otherEnd, MetamodelPackage.ATTRIBUTE__OWNING_CLASS, msgs);
+				return eBasicSetContainer(otherEnd, StructurePackage.ATTRIBUTE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -81,8 +81,8 @@ public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
-				return eBasicSetContainer(null, MetamodelPackage.ATTRIBUTE__OWNING_CLASS, msgs);
+			case StructurePackage.ATTRIBUTE__OWNING_CLASS:
+				return eBasicSetContainer(null, StructurePackage.ATTRIBUTE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -95,8 +95,8 @@ public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
-				return eInternalContainer().eInverseRemove(this, MetamodelPackage.CLASS__ATTRIBUTES, pamtram.structure.Class.class, msgs);
+			case StructurePackage.ATTRIBUTE__OWNING_CLASS:
+				return eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__ATTRIBUTES, pamtram.structure.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -109,7 +109,7 @@ public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
+			case StructurePackage.ATTRIBUTE__OWNING_CLASS:
 				return getOwningClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -123,7 +123,7 @@ public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
+			case StructurePackage.ATTRIBUTE__OWNING_CLASS:
 				return getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);

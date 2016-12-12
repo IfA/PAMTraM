@@ -4,7 +4,7 @@ package pamtram.structure.impl;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import pamtram.structure.ContainerParameter;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -55,7 +55,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.CONTAINER_PARAMETER;
+		return StructurePackage.Literals.CONTAINER_PARAMETER;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 		TargetSection oldClass = class_;
 		class_ = newClass;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONTAINER_PARAMETER__CLASS, oldClass, newClass);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StructurePackage.CONTAINER_PARAMETER__CLASS, oldClass, newClass);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -102,14 +102,14 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 		if (newClass != class_) {
 			NotificationChain msgs = null;
 			if (class_ != null)
-				msgs = ((InternalEObject)class_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.CONTAINER_PARAMETER__CLASS, null, msgs);
+				msgs = ((InternalEObject)class_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StructurePackage.CONTAINER_PARAMETER__CLASS, null, msgs);
 			if (newClass != null)
-				msgs = ((InternalEObject)newClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.CONTAINER_PARAMETER__CLASS, null, msgs);
+				msgs = ((InternalEObject)newClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StructurePackage.CONTAINER_PARAMETER__CLASS, null, msgs);
 			msgs = basicSetClass(newClass, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONTAINER_PARAMETER__CLASS, newClass, newClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CONTAINER_PARAMETER__CLASS, newClass, newClass));
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINER_PARAMETER__CLASS:
+			case StructurePackage.CONTAINER_PARAMETER__CLASS:
 				return basicSetClass(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -134,7 +134,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINER_PARAMETER__CLASS:
+			case StructurePackage.CONTAINER_PARAMETER__CLASS:
 				return getClass_();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -148,7 +148,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINER_PARAMETER__CLASS:
+			case StructurePackage.CONTAINER_PARAMETER__CLASS:
 				setClass((TargetSection)newValue);
 				return;
 		}
@@ -163,7 +163,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINER_PARAMETER__CLASS:
+			case StructurePackage.CONTAINER_PARAMETER__CLASS:
 				setClass((TargetSection)null);
 				return;
 		}
@@ -178,7 +178,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.CONTAINER_PARAMETER__CLASS:
+			case StructurePackage.CONTAINER_PARAMETER__CLASS:
 				return class_ != null;
 		}
 		return super.eIsSet(featureID);

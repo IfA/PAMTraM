@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link pamtram.structure.LibraryEntry#getResourceParameters <em>Resource Parameters</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getLibraryEntry()
+ * @see pamtram.structure.StructurePackage#getLibraryEntry()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface LibraryEntry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameters</em>' containment reference list.
-	 * @see pamtram.structure.MetamodelPackage#getLibraryEntry_Parameters()
+	 * @see pamtram.structure.StructurePackage#getLibraryEntry_Parameters()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -53,7 +53,7 @@ public interface LibraryEntry extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Library File</em>' attribute.
 	 * @see #setLibraryFile(String)
-	 * @see pamtram.structure.MetamodelPackage#getLibraryEntry_LibraryFile()
+	 * @see pamtram.structure.StructurePackage#getLibraryEntry_LibraryFile()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -79,7 +79,7 @@ public interface LibraryEntry extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path</em>' containment reference.
 	 * @see #setPath(VirtualTargetSectionAttribute)
-	 * @see pamtram.structure.MetamodelPackage#getLibraryEntry_Path()
+	 * @see pamtram.structure.StructurePackage#getLibraryEntry_Path()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -105,7 +105,7 @@ public interface LibraryEntry extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' containment reference.
 	 * @see #setId(VirtualTargetSectionAttribute)
-	 * @see pamtram.structure.MetamodelPackage#getLibraryEntry_Id()
+	 * @see pamtram.structure.StructurePackage#getLibraryEntry_Id()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -131,7 +131,7 @@ public interface LibraryEntry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resource Parameters</em>' containment reference list.
-	 * @see pamtram.structure.MetamodelPackage#getLibraryEntry_ResourceParameters()
+	 * @see pamtram.structure.StructurePackage#getLibraryEntry_ResourceParameters()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -147,7 +147,7 @@ public interface LibraryEntry extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Original Library Entry</em>' reference.
 	 * @see #setOriginalLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)
-	 * @see pamtram.structure.MetamodelPackage#getLibraryEntry_OriginalLibraryEntry()
+	 * @see pamtram.structure.StructurePackage#getLibraryEntry_OriginalLibraryEntry()
 	 * @model required="true"
 	 * @generated
 	 */

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingType;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Section;
 import pamtram.structure.SourceSection;
 import pamtram.structure.util.StructureValidator;
@@ -86,7 +86,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.SOURCE_SECTION;
+		return StructurePackage.Literals.SOURCE_SECTION;
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SOURCE_SECTION__ABSTRACT, oldAbstract, abstract_));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.SOURCE_SECTION__ABSTRACT, oldAbstract, abstract_));
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@Override
 	public EList<SourceSection> getExtend() {
 		if (extend == null) {
-			extend = new EObjectResolvingEList<SourceSection>(SourceSection.class, this, MetamodelPackage.SOURCE_SECTION__EXTEND);
+			extend = new EObjectResolvingEList<SourceSection>(SourceSection.class, this, StructurePackage.SOURCE_SECTION__EXTEND);
 		}
 		return extend;
 	}
@@ -145,7 +145,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 		List<Mapping> referencingMappings = mappings.parallelStream().filter(m -> this.equals(m.getSourceSection())).collect(Collectors.toList());
 		
-		return new UnmodifiableEList<>(this, MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
+		return new UnmodifiableEList<>(this, StructurePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
 				referencingMappings.size(), referencingMappings.toArray());
 	}
 
@@ -168,7 +168,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.SOURCE_SECTION }));
+					new Object[] { this, StructurePackage.Literals.SOURCE_SECTION }));
 		
 		}
 		
@@ -199,7 +199,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 					 StructureValidator.DIAGNOSTIC_SOURCE,
 					StructureValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
 					 errorMessage,
-					 new Object [] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
+					 new Object [] { this, StructurePackage.Literals.SECTION__EXTEND }));
 			}
 		
 		return result;
@@ -229,7 +229,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
+					new Object[] { this, StructurePackage.Literals.SECTION__EXTEND }));
 		
 		}
 		
@@ -244,11 +244,11 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION__ABSTRACT:
+			case StructurePackage.SOURCE_SECTION__ABSTRACT:
 				return isAbstract();
-			case MetamodelPackage.SOURCE_SECTION__EXTEND:
+			case StructurePackage.SOURCE_SECTION__EXTEND:
 				return getExtend();
-			case MetamodelPackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
+			case StructurePackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
 				return getReferencingMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -263,10 +263,10 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION__ABSTRACT:
+			case StructurePackage.SOURCE_SECTION__ABSTRACT:
 				setAbstract((Boolean)newValue);
 				return;
-			case MetamodelPackage.SOURCE_SECTION__EXTEND:
+			case StructurePackage.SOURCE_SECTION__EXTEND:
 				getExtend().clear();
 				getExtend().addAll((Collection<? extends SourceSection>)newValue);
 				return;
@@ -282,10 +282,10 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION__ABSTRACT:
+			case StructurePackage.SOURCE_SECTION__ABSTRACT:
 				setAbstract(ABSTRACT_EDEFAULT);
 				return;
-			case MetamodelPackage.SOURCE_SECTION__EXTEND:
+			case StructurePackage.SOURCE_SECTION__EXTEND:
 				getExtend().clear();
 				return;
 		}
@@ -300,11 +300,11 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION__ABSTRACT:
+			case StructurePackage.SOURCE_SECTION__ABSTRACT:
 				return abstract_ != ABSTRACT_EDEFAULT;
-			case MetamodelPackage.SOURCE_SECTION__EXTEND:
+			case StructurePackage.SOURCE_SECTION__EXTEND:
 				return extend != null && !extend.isEmpty();
-			case MetamodelPackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
+			case StructurePackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
 				return !getReferencingMappings().isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -319,8 +319,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (derivedFeatureID) {
-				case MetamodelPackage.SOURCE_SECTION__ABSTRACT: return MetamodelPackage.SECTION__ABSTRACT;
-				case MetamodelPackage.SOURCE_SECTION__EXTEND: return MetamodelPackage.SECTION__EXTEND;
+				case StructurePackage.SOURCE_SECTION__ABSTRACT: return StructurePackage.SECTION__ABSTRACT;
+				case StructurePackage.SOURCE_SECTION__EXTEND: return StructurePackage.SECTION__EXTEND;
 				default: return -1;
 			}
 		}
@@ -336,8 +336,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (baseFeatureID) {
-				case MetamodelPackage.SECTION__ABSTRACT: return MetamodelPackage.SOURCE_SECTION__ABSTRACT;
-				case MetamodelPackage.SECTION__EXTEND: return MetamodelPackage.SOURCE_SECTION__EXTEND;
+				case StructurePackage.SECTION__ABSTRACT: return StructurePackage.SOURCE_SECTION__ABSTRACT;
+				case StructurePackage.SECTION__EXTEND: return StructurePackage.SOURCE_SECTION__EXTEND;
 				default: return -1;
 			}
 		}
@@ -353,8 +353,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
-				case MetamodelPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.SOURCE_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
-				case MetamodelPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.SOURCE_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				case StructurePackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return StructurePackage.SOURCE_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
+				case StructurePackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return StructurePackage.SOURCE_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -370,11 +370,11 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.SOURCE_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP:
 				return validateIsReferencedByMapping((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.SOURCE_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.SOURCE_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.SOURCE_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.SOURCE_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateExtendsValidSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

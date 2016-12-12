@@ -18,7 +18,7 @@
       <!-- @generated pamtram -->
       <package
             uri="http://mfreund.de/pamtram/metamodel"
-            class="pamtram.structure.MetamodelPackage"
+            class="pamtram.structure.StructurePackage"
             genModel="model/pamtram.genmodel"/>
    </extension>
 

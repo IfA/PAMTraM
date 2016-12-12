@@ -15,7 +15,7 @@ package pamtram.structure;
  *   <li>{@link pamtram.structure.FileAttribute#getFileType <em>File Type</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getFileAttribute()
+ * @see pamtram.structure.StructurePackage#getFileAttribute()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface FileAttribute extends VirtualTargetSectionAttribute {
 	 * @return the value of the '<em>File Type</em>' attribute.
 	 * @see pamtram.structure.FileTypeEnum
 	 * @see #setFileType(FileTypeEnum)
-	 * @see pamtram.structure.MetamodelPackage#getFileAttribute_FileType()
+	 * @see pamtram.structure.StructurePackage#getFileAttribute_FileType()
 	 * @model required="true"
 	 * @generated
 	 */

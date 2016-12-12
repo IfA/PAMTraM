@@ -23,7 +23,7 @@ import pamtram.structure.Attribute;
 import pamtram.structure.CardinalityType;
 import pamtram.structure.ContainmentReference;
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
@@ -123,7 +123,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.CLASS;
+		return StructurePackage.Literals.CLASS;
 	}
 
 	/**
@@ -138,7 +138,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			eClass = (EClass)eResolveProxy(oldEClass);
 			if (eClass != oldEClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CLASS__ECLASS, oldEClass, eClass));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.CLASS__ECLASS, oldEClass, eClass));
 			}
 		}
 		return eClass;
@@ -162,7 +162,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		EClass oldEClass = eClass;
 		eClass = newEClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CLASS__ECLASS, oldEClass, eClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CLASS__ECLASS, oldEClass, eClass));
 	}
 
 	/**
@@ -194,7 +194,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		CardinalityType oldCardinality = cardinality;
 		cardinality = newCardinality == null ? CARDINALITY_EDEFAULT : newCardinality;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CLASS__CARDINALITY, oldCardinality, cardinality));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CLASS__CARDINALITY, oldCardinality, cardinality));
 	}
 
 	/**
@@ -205,7 +205,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public EList<R> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentWithInverseEList<R>(Reference.class, this, MetamodelPackage.CLASS__REFERENCES, MetamodelPackage.REFERENCE__OWNING_CLASS);
+			references = new EObjectContainmentWithInverseEList<R>(Reference.class, this, StructurePackage.CLASS__REFERENCES, StructurePackage.REFERENCE__OWNING_CLASS);
 		}
 		return references;
 	}
@@ -222,7 +222,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			container = (C)eResolveProxy(oldContainer);
 			if (container != oldContainer) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CLASS__CONTAINER, oldContainer, container));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.CLASS__CONTAINER, oldContainer, container));
 			}
 		}
 		return container;
@@ -261,7 +261,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		C oldContainer = container;
 		container = newContainer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CLASS__CONTAINER, oldContainer, container));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CLASS__CONTAINER, oldContainer, container));
 	}
 
 	/**
@@ -272,7 +272,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public EList<A> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<A>(Attribute.class, this, MetamodelPackage.CLASS__ATTRIBUTES, MetamodelPackage.ATTRIBUTE__OWNING_CLASS);
+			attributes = new EObjectContainmentWithInverseEList<A>(Attribute.class, this, StructurePackage.CLASS__ATTRIBUTES, StructurePackage.ATTRIBUTE__OWNING_CLASS);
 		}
 		return attributes;
 	}
@@ -425,7 +425,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.CLASS__ECLASS }));
+					new Object[] { this, StructurePackage.Literals.CLASS__ECLASS }));
 		
 		}
 		
@@ -461,7 +461,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.CLASS__CARDINALITY }));
+					new Object[] { this, StructurePackage.Literals.CLASS__CARDINALITY }));
 		
 		}
 		
@@ -487,7 +487,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.CLASS__CONTAINER }));
+					new Object[] { this, StructurePackage.Literals.CLASS__CONTAINER }));
 		
 		}
 		
@@ -503,9 +503,9 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.CLASS__REFERENCES:
+			case StructurePackage.CLASS__REFERENCES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getReferences()).basicAdd(otherEnd, msgs);
-			case MetamodelPackage.CLASS__ATTRIBUTES:
+			case StructurePackage.CLASS__ATTRIBUTES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttributes()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -519,9 +519,9 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.CLASS__REFERENCES:
+			case StructurePackage.CLASS__REFERENCES:
 				return ((InternalEList<?>)getReferences()).basicRemove(otherEnd, msgs);
-			case MetamodelPackage.CLASS__ATTRIBUTES:
+			case StructurePackage.CLASS__ATTRIBUTES:
 				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -535,17 +535,17 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.CLASS__ECLASS:
+			case StructurePackage.CLASS__ECLASS:
 				if (resolve) return getEClass();
 				return basicGetEClass();
-			case MetamodelPackage.CLASS__CARDINALITY:
+			case StructurePackage.CLASS__CARDINALITY:
 				return getCardinality();
-			case MetamodelPackage.CLASS__REFERENCES:
+			case StructurePackage.CLASS__REFERENCES:
 				return getReferences();
-			case MetamodelPackage.CLASS__CONTAINER:
+			case StructurePackage.CLASS__CONTAINER:
 				if (resolve) return getContainer();
 				return basicGetContainer();
-			case MetamodelPackage.CLASS__ATTRIBUTES:
+			case StructurePackage.CLASS__ATTRIBUTES:
 				return getAttributes();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -560,20 +560,20 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.CLASS__ECLASS:
+			case StructurePackage.CLASS__ECLASS:
 				setEClass((EClass)newValue);
 				return;
-			case MetamodelPackage.CLASS__CARDINALITY:
+			case StructurePackage.CLASS__CARDINALITY:
 				setCardinality((CardinalityType)newValue);
 				return;
-			case MetamodelPackage.CLASS__REFERENCES:
+			case StructurePackage.CLASS__REFERENCES:
 				getReferences().clear();
 				getReferences().addAll((Collection<? extends R>)newValue);
 				return;
-			case MetamodelPackage.CLASS__CONTAINER:
+			case StructurePackage.CLASS__CONTAINER:
 				setContainer((C)newValue);
 				return;
-			case MetamodelPackage.CLASS__ATTRIBUTES:
+			case StructurePackage.CLASS__ATTRIBUTES:
 				getAttributes().clear();
 				getAttributes().addAll((Collection<? extends A>)newValue);
 				return;
@@ -589,19 +589,19 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.CLASS__ECLASS:
+			case StructurePackage.CLASS__ECLASS:
 				setEClass((EClass)null);
 				return;
-			case MetamodelPackage.CLASS__CARDINALITY:
+			case StructurePackage.CLASS__CARDINALITY:
 				setCardinality(CARDINALITY_EDEFAULT);
 				return;
-			case MetamodelPackage.CLASS__REFERENCES:
+			case StructurePackage.CLASS__REFERENCES:
 				getReferences().clear();
 				return;
-			case MetamodelPackage.CLASS__CONTAINER:
+			case StructurePackage.CLASS__CONTAINER:
 				setContainer((C)null);
 				return;
-			case MetamodelPackage.CLASS__ATTRIBUTES:
+			case StructurePackage.CLASS__ATTRIBUTES:
 				getAttributes().clear();
 				return;
 		}
@@ -616,15 +616,15 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.CLASS__ECLASS:
+			case StructurePackage.CLASS__ECLASS:
 				return eClass != null;
-			case MetamodelPackage.CLASS__CARDINALITY:
+			case StructurePackage.CLASS__CARDINALITY:
 				return cardinality != CARDINALITY_EDEFAULT;
-			case MetamodelPackage.CLASS__REFERENCES:
+			case StructurePackage.CLASS__REFERENCES:
 				return references != null && !references.isEmpty();
-			case MetamodelPackage.CLASS__CONTAINER:
+			case StructurePackage.CLASS__CONTAINER:
 				return container != null;
-			case MetamodelPackage.CLASS__ATTRIBUTES:
+			case StructurePackage.CLASS__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -639,19 +639,19 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.CLASS___IS_CONTAINER_FOR__CLASS:
+			case StructurePackage.CLASS___IS_CONTAINER_FOR__CLASS:
 				return isContainerFor((C)arguments.get(0));
-			case MetamodelPackage.CLASS___IS_CONTAINED_IN__CLASS:
+			case StructurePackage.CLASS___IS_CONTAINED_IN__CLASS:
 				return isContainedIn((C)arguments.get(0));
-			case MetamodelPackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE:
+			case StructurePackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE:
 				return getOwningContainmentReference();
-			case MetamodelPackage.CLASS___IS_REFERENCED_BY__CLASS_ELIST:
+			case StructurePackage.CLASS___IS_REFERENCED_BY__CLASS_ELIST:
 				return isReferencedBy((C)arguments.get(0), (EList<C>)arguments.get(1));
-			case MetamodelPackage.CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP:
 				return validateEClassMatchesParentEReference((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP:
 				return validateCardinalityIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP:
 				return validateContainerIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -9,7 +9,7 @@ package pamtram.structure;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getVirtualTargetSectionAttribute()
+ * @see pamtram.structure.StructurePackage#getVirtualTargetSectionAttribute()
  * @model
  * @generated
  */

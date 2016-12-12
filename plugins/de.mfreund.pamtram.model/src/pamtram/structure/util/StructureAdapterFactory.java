@@ -34,7 +34,7 @@ import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.MetaModelElement;
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.RangeBound;
@@ -68,7 +68,7 @@ import pamtram.structure.VirtualTargetSectionAttribute;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see pamtram.structure.MetamodelPackage
+ * @see pamtram.structure.StructurePackage
  * @generated
  */
 public class StructureAdapterFactory extends AdapterFactoryImpl {
@@ -78,7 +78,7 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static MetamodelPackage modelPackage;
+	protected static StructurePackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -88,7 +88,7 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 */
 	public StructureAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = MetamodelPackage.eINSTANCE;
+			modelPackage = StructurePackage.eINSTANCE;
 		}
 	}
 

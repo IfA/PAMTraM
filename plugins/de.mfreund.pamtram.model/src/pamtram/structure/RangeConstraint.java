@@ -15,7 +15,7 @@ package pamtram.structure;
  *   <li>{@link pamtram.structure.RangeConstraint#getLowerBound <em>Lower Bound</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getRangeConstraint()
+ * @see pamtram.structure.StructurePackage#getRangeConstraint()
  * @model
  * @generated
  */
@@ -30,7 +30,7 @@ public interface RangeConstraint extends MultipleReferencesValueConstraint {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Upper Bound</em>' containment reference.
 	 * @see #setUpperBound(RangeBound)
-	 * @see pamtram.structure.MetamodelPackage#getRangeConstraint_UpperBound()
+	 * @see pamtram.structure.StructurePackage#getRangeConstraint_UpperBound()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -56,7 +56,7 @@ public interface RangeConstraint extends MultipleReferencesValueConstraint {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Lower Bound</em>' containment reference.
 	 * @see #setLowerBound(RangeBound)
-	 * @see pamtram.structure.MetamodelPackage#getRangeConstraint_LowerBound()
+	 * @see pamtram.structure.StructurePackage#getRangeConstraint_LowerBound()
 	 * @model containment="true"
 	 * @generated
 	 */

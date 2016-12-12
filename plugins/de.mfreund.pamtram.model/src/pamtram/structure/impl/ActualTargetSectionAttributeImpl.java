@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.structure.ActualAttribute;
 import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -59,7 +59,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.ACTUAL_TARGET_SECTION_ATTRIBUTE;
+		return StructurePackage.Literals.ACTUAL_TARGET_SECTION_ATTRIBUTE;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 			attribute = (EAttribute)eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
 			}
 		}
 		return attribute;
@@ -98,7 +98,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 		EAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
 	}
 	
 	/**
@@ -134,7 +134,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE }));
+					new Object[] { this, StructurePackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE }));
 		
 		}
 		
@@ -149,7 +149,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
+			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
 		}
@@ -164,7 +164,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
+			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)newValue);
 				return;
 		}
@@ -179,7 +179,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
+			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)null);
 				return;
 		}
@@ -194,7 +194,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
+			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE:
 				return attribute != null;
 		}
 		return super.eIsSet(featureID);
@@ -209,7 +209,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ActualAttribute.class) {
 			switch (derivedFeatureID) {
-				case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE: return MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE;
+				case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE: return StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -225,7 +225,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ActualAttribute.class) {
 			switch (baseFeatureID) {
-				case MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE: return MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE;
+				case StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE: return StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -241,7 +241,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ActualAttribute.class) {
 			switch (baseOperationID) {
-				case MetamodelPackage.ACTUAL_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+				case StructurePackage.ACTUAL_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP: return StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -257,7 +257,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
 				return validateAttributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

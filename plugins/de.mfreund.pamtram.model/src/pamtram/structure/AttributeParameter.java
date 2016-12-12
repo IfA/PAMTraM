@@ -17,7 +17,7 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParamet
  *   <li>{@link pamtram.structure.AttributeParameter#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getAttributeParameter()
+ * @see pamtram.structure.StructurePackage#getAttributeParameter()
  * @model
  * @generated
  */
@@ -32,7 +32,7 @@ public interface AttributeParameter extends LibraryParameter<AbstractAttributePa
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute</em>' containment reference.
 	 * @see #setAttribute(ActualTargetSectionAttribute)
-	 * @see pamtram.structure.MetamodelPackage#getAttributeParameter_Attribute()
+	 * @see pamtram.structure.StructurePackage#getAttributeParameter_Attribute()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

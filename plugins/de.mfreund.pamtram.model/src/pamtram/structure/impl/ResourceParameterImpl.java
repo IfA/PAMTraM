@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.ResourceParameter;
 import pamtram.structure.VirtualTargetSectionAttribute;
 
@@ -65,7 +65,7 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.RESOURCE_PARAMETER;
+		return StructurePackage.Literals.RESOURCE_PARAMETER;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 		VirtualTargetSectionAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE, oldAttribute, newAttribute);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE, oldAttribute, newAttribute);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -101,14 +101,14 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 		if (newAttribute != attribute) {
 			NotificationChain msgs = null;
 			if (attribute != null)
-				msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE, null, msgs);
+				msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE, null, msgs);
 			if (newAttribute != null)
-				msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE, null, msgs);
+				msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE, null, msgs);
 			msgs = basicSetAttribute(newAttribute, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE, newAttribute, newAttribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE, newAttribute, newAttribute));
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 			originalParameter = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)eResolveProxy(oldOriginalParameter);
 			if (originalParameter != oldOriginalParameter) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
 			}
 		}
 		return originalParameter;
@@ -146,7 +146,7 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter oldOriginalParameter = originalParameter;
 		originalParameter = newOriginalParameter;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
 				return basicSetAttribute(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -171,9 +171,9 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
 				return getAttribute();
-			case MetamodelPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
+			case StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
 				if (resolve) return getOriginalParameter();
 				return basicGetOriginalParameter();
 		}
@@ -188,10 +188,10 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
 				setAttribute((VirtualTargetSectionAttribute)newValue);
 				return;
-			case MetamodelPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
+			case StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
 				setOriginalParameter((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)newValue);
 				return;
 		}
@@ -206,10 +206,10 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
 				setAttribute((VirtualTargetSectionAttribute)null);
 				return;
-			case MetamodelPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
+			case StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
 				setOriginalParameter((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)null);
 				return;
 		}
@@ -224,9 +224,9 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
 				return attribute != null;
-			case MetamodelPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
+			case StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
 				return originalParameter != null;
 		}
 		return super.eIsSet(featureID);

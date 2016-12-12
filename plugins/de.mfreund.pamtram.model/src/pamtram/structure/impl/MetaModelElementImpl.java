@@ -17,7 +17,7 @@ import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.MetaModelElement;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.ResourceParameter;
 import pamtram.structure.Section;
@@ -49,7 +49,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.META_MODEL_ELEMENT;
+		return StructurePackage.Literals.META_MODEL_ELEMENT;
 	}
 
 	/**
@@ -140,11 +140,11 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION:
+			case StructurePackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION:
 				return getContainingSection();
-			case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL:
+			case StructurePackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL:
 				return getContainingSectionModel();
-			case MetamodelPackage.META_MODEL_ELEMENT___IS_LIBRARY_ENTRY:
+			case StructurePackage.META_MODEL_ELEMENT___IS_LIBRARY_ENTRY:
 				return isLibraryEntry();
 		}
 		return super.eInvoke(operationID, arguments);

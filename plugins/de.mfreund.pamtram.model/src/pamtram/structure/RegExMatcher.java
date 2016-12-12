@@ -8,7 +8,7 @@ package pamtram.structure;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getRegExMatcher()
+ * @see pamtram.structure.StructurePackage#getRegExMatcher()
  * @model
  * @generated
  */

@@ -9,17 +9,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see pamtram.structure.MetamodelPackage
+ * @see pamtram.structure.StructurePackage
  * @generated
  */
-public interface MetamodelFactory extends EFactory {
+public interface StructureFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	MetamodelFactory eINSTANCE = pamtram.structure.impl.MetamodelFactoryImpl.init();
+	StructureFactory eINSTANCE = pamtram.structure.impl.StructureFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Source Section</em>'.
@@ -289,8 +289,8 @@ public interface MetamodelFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	MetamodelPackage getMetamodelPackage();
+	StructurePackage getMetamodelPackage();
 
 
 
-} //MetamodelFactory
+} //StructureFactory

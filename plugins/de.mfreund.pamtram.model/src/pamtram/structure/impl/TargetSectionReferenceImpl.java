@@ -4,7 +4,7 @@ package pamtram.structure.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
@@ -34,7 +34,7 @@ public abstract class TargetSectionReferenceImpl extends ReferenceImpl<TargetSec
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.TARGET_SECTION_REFERENCE;
+		return StructurePackage.Literals.TARGET_SECTION_REFERENCE;
 	}
 
 } //TargetSectionReferenceImpl

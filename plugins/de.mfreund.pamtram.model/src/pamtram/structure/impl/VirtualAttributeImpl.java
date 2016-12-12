@@ -5,7 +5,7 @@ package pamtram.structure.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.structure.Attribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
 import pamtram.structure.VirtualAttribute;
@@ -34,7 +34,7 @@ public abstract class VirtualAttributeImpl<S extends Section<S, C, R, A>, C exte
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.VIRTUAL_ATTRIBUTE;
+		return StructurePackage.Literals.VIRTUAL_ATTRIBUTE;
 	}
 
 } //VirtualAttributeImpl

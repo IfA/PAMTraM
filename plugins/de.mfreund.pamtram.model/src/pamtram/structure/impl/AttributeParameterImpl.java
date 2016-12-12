@@ -5,7 +5,7 @@ package pamtram.structure.impl;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import pamtram.structure.ActualTargetSectionAttribute;
 import pamtram.structure.AttributeParameter;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -55,7 +55,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.ATTRIBUTE_PARAMETER;
+		return StructurePackage.Literals.ATTRIBUTE_PARAMETER;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 		ActualTargetSectionAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, oldAttribute, newAttribute);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, oldAttribute, newAttribute);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -102,14 +102,14 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 		if (newAttribute != attribute) {
 			NotificationChain msgs = null;
 			if (attribute != null)
-				msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, null, msgs);
+				msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, null, msgs);
 			if (newAttribute != null)
-				msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, null, msgs);
+				msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, null, msgs);
 			msgs = basicSetAttribute(newAttribute, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, newAttribute, newAttribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, newAttribute, newAttribute));
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
 				return basicSetAttribute(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -134,7 +134,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
 				return getAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -148,7 +148,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
 				setAttribute((ActualTargetSectionAttribute)newValue);
 				return;
 		}
@@ -163,7 +163,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
 				setAttribute((ActualTargetSectionAttribute)null);
 				return;
 		}
@@ -178,7 +178,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
 				return attribute != null;
 		}
 		return super.eIsSet(featureID);

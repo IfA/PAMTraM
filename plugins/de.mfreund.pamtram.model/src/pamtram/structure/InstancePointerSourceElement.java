@@ -10,7 +10,7 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getInstancePointerSourceElement()
+ * @see pamtram.structure.StructurePackage#getInstancePointerSourceElement()
  * @model
  * @generated
  */

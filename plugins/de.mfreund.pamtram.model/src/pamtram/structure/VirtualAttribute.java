@@ -9,7 +9,7 @@ package pamtram.structure;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getVirtualAttribute()
+ * @see pamtram.structure.StructurePackage#getVirtualAttribute()
  * @model abstract="true"
  * @generated
  */

@@ -24,12 +24,12 @@ import pamtram.mapping.MappingPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see pamtram.structure.MetamodelFactory
+ * @see pamtram.structure.StructureFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' genlib='http://www.et.tu-dresden.de/ifa/agtele/genlib'"
  * @generated
  */
-public interface MetamodelPackage extends EPackage {
+public interface StructurePackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -60,14 +60,14 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	MetamodelPackage eINSTANCE = pamtram.structure.impl.MetamodelPackageImpl.init();
+	StructurePackage eINSTANCE = pamtram.structure.impl.StructurePackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.MetaModelElementImpl <em>Meta Model Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.MetaModelElementImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getMetaModelElement()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelElement()
 	 * @generated
 	 */
 	int META_MODEL_ELEMENT = 0;
@@ -131,7 +131,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ClassImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getClass_()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getClass_()
 	 * @generated
 	 */
 	int CLASS = 1;
@@ -303,7 +303,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.SectionImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getSection()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSection()
 	 * @generated
 	 */
 	int SECTION = 2;
@@ -511,7 +511,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.SourceSectionClassImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSectionClass()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionClass()
 	 * @generated
 	 */
 	int SOURCE_SECTION_CLASS = 6;
@@ -683,7 +683,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.SourceSectionImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSection()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSection()
 	 * @generated
 	 */
 	int SOURCE_SECTION = 3;
@@ -909,7 +909,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.TargetSectionClassImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionClass()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionClass()
 	 * @generated
 	 */
 	int TARGET_SECTION_CLASS = 7;
@@ -1081,7 +1081,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.TargetSectionImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSection()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSection()
 	 * @generated
 	 */
 	int TARGET_SECTION = 4;
@@ -1316,7 +1316,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.LibraryParameterImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getLibraryParameter()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryParameter()
 	 * @generated
 	 */
 	int LIBRARY_PARAMETER = 8;
@@ -1326,7 +1326,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.AttributeParameterImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getAttributeParameter()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getAttributeParameter()
 	 * @generated
 	 */
 	int ATTRIBUTE_PARAMETER = 9;
@@ -1336,7 +1336,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ContainerParameterImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getContainerParameter()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getContainerParameter()
 	 * @generated
 	 */
 	int CONTAINER_PARAMETER = 10;
@@ -1346,7 +1346,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ExternalReferenceParameterImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getExternalReferenceParameter()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getExternalReferenceParameter()
 	 * @generated
 	 */
 	int EXTERNAL_REFERENCE_PARAMETER = 11;
@@ -1356,7 +1356,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.LibraryEntryImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getLibraryEntry()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryEntry()
 	 * @generated
 	 */
 	int LIBRARY_ENTRY = 13;
@@ -1366,7 +1366,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ReferenceImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getReference()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getReference()
 	 * @generated
 	 */
 	int REFERENCE = 14;
@@ -1376,7 +1376,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ContainmentReferenceImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getContainmentReference()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getContainmentReference()
 	 * @generated
 	 */
 	int CONTAINMENT_REFERENCE = 15;
@@ -1386,7 +1386,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.NonContainmentReferenceImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getNonContainmentReference()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getNonContainmentReference()
 	 * @generated
 	 */
 	int NON_CONTAINMENT_REFERENCE = 16;
@@ -1396,7 +1396,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.SourceSectionReferenceImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSectionReference()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionReference()
 	 * @generated
 	 */
 	int SOURCE_SECTION_REFERENCE = 17;
@@ -1406,7 +1406,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.TargetSectionReferenceImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionReference()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionReference()
 	 * @generated
 	 */
 	int TARGET_SECTION_REFERENCE = 18;
@@ -1416,7 +1416,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.TargetSectionContainmentReferenceImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionContainmentReference()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionContainmentReference()
 	 * @generated
 	 */
 	int TARGET_SECTION_CONTAINMENT_REFERENCE = 19;
@@ -1426,7 +1426,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.TargetSectionNonContainmentReferenceImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionNonContainmentReference()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionNonContainmentReference()
 	 * @generated
 	 */
 	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE = 20;
@@ -1436,7 +1436,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.SourceSectionContainmentReferenceImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSectionContainmentReference()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionContainmentReference()
 	 * @generated
 	 */
 	int SOURCE_SECTION_CONTAINMENT_REFERENCE = 21;
@@ -1446,7 +1446,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.MetaModelSectionReferenceImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getMetaModelSectionReference()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelSectionReference()
 	 * @generated
 	 */
 	int META_MODEL_SECTION_REFERENCE = 22;
@@ -1456,7 +1456,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.AttributeImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getAttribute()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getAttribute()
 	 * @generated
 	 */
 	int ATTRIBUTE = 23;
@@ -1530,7 +1530,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.TargetSectionAttributeImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionAttribute()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionAttribute()
 	 * @generated
 	 */
 	int TARGET_SECTION_ATTRIBUTE = 28;
@@ -1621,7 +1621,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ActualTargetSectionAttributeImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getActualTargetSectionAttribute()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getActualTargetSectionAttribute()
 	 * @generated
 	 */
 	int ACTUAL_TARGET_SECTION_ATTRIBUTE = 29;
@@ -1631,7 +1631,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.VirtualTargetSectionAttributeImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getVirtualTargetSectionAttribute()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualTargetSectionAttribute()
 	 * @generated
 	 */
 	int VIRTUAL_TARGET_SECTION_ATTRIBUTE = 30;
@@ -1722,7 +1722,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.FileAttributeImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getFileAttribute()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getFileAttribute()
 	 * @generated
 	 */
 	int FILE_ATTRIBUTE = 5;
@@ -2029,7 +2029,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ResourceParameterImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getResourceParameter()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getResourceParameter()
 	 * @generated
 	 */
 	int RESOURCE_PARAMETER = 12;
@@ -3155,7 +3155,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ActualAttributeImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getActualAttribute()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getActualAttribute()
 	 * @generated
 	 */
 	int ACTUAL_ATTRIBUTE = 24;
@@ -3246,7 +3246,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.VirtualAttributeImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getVirtualAttribute()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualAttribute()
 	 * @generated
 	 */
 	int VIRTUAL_ATTRIBUTE = 25;
@@ -3319,7 +3319,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.SourceSectionAttributeImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSectionAttribute()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionAttribute()
 	 * @generated
 	 */
 	int SOURCE_SECTION_ATTRIBUTE = 26;
@@ -3401,7 +3401,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ActualSourceSectionAttributeImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getActualSourceSectionAttribute()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getActualSourceSectionAttribute()
 	 * @generated
 	 */
 	int ACTUAL_SOURCE_SECTION_ATTRIBUTE = 27;
@@ -3600,7 +3600,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.ValueConstraint
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraint()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraint()
 	 * @generated
 	 */
 	int VALUE_CONSTRAINT = 32;
@@ -3646,7 +3646,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.SingleReferenceValueConstraintImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getSingleReferenceValueConstraint()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSingleReferenceValueConstraint()
 	 * @generated
 	 */
 	int SINGLE_REFERENCE_VALUE_CONSTRAINT = 45;
@@ -3773,7 +3773,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.CaseSensitiveConstraint
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getCaseSensitiveConstraint()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
 	int CASE_SENSITIVE_CONSTRAINT = 37;
@@ -3909,7 +3909,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.EqualityMatcherImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getEqualityMatcher()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getEqualityMatcher()
 	 * @generated
 	 */
 	int EQUALITY_MATCHER = 31;
@@ -4045,7 +4045,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.SubstringMatcherImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getSubstringMatcher()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSubstringMatcher()
 	 * @generated
 	 */
 	int SUBSTRING_MATCHER = 33;
@@ -4181,7 +4181,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.BeginningMatcherImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getBeginningMatcher()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getBeginningMatcher()
 	 * @generated
 	 */
 	int BEGINNING_MATCHER = 34;
@@ -4317,7 +4317,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.EndingMatcherImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getEndingMatcher()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getEndingMatcher()
 	 * @generated
 	 */
 	int ENDING_MATCHER = 35;
@@ -4453,7 +4453,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.RegExMatcherImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getRegExMatcher()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getRegExMatcher()
 	 * @generated
 	 */
 	int REG_EX_MATCHER = 36;
@@ -4580,7 +4580,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.MultipleReferencesValueConstraintImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getMultipleReferencesValueConstraint()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getMultipleReferencesValueConstraint()
 	 * @generated
 	 */
 	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT = 39;
@@ -4635,7 +4635,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.RangeConstraintImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getRangeConstraint()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getRangeConstraint()
 	 * @generated
 	 */
 	int RANGE_CONSTRAINT = 38;
@@ -4708,7 +4708,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.InstancePointerImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getInstancePointer()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointer()
 	 * @generated
 	 */
 	int INSTANCE_POINTER = 40;
@@ -4781,7 +4781,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.InstancePointerSourceInterface
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getInstancePointerSourceInterface()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceInterface()
 	 * @generated
 	 */
 	int INSTANCE_POINTER_SOURCE_INTERFACE = 41;
@@ -4827,7 +4827,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.InstancePointerSourceElementImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getInstancePointerSourceElement()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceElement()
 	 * @generated
 	 */
 	int INSTANCE_POINTER_SOURCE_ELEMENT = 42;
@@ -4918,7 +4918,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.InstancePointerExternalSourceElementImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getInstancePointerExternalSourceElement()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerExternalSourceElement()
 	 * @generated
 	 */
 	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT = 43;
@@ -5009,7 +5009,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.RangeBoundImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getRangeBound()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getRangeBound()
 	 * @generated
 	 */
 	int RANGE_BOUND = 44;
@@ -5109,7 +5109,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.ValueConstraintSourceInterface
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraintSourceInterface()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceInterface()
 	 * @generated
 	 */
 	int VALUE_CONSTRAINT_SOURCE_INTERFACE = 46;
@@ -5155,7 +5155,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ValueConstraintSourceElementImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraintSourceElement()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceElement()
 	 * @generated
 	 */
 	int VALUE_CONSTRAINT_SOURCE_ELEMENT = 47;
@@ -5246,7 +5246,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ValueConstraintExternalSourceElementImpl
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraintExternalSourceElement()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintExternalSourceElement()
 	 * @generated
 	 */
 	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = 48;
@@ -5337,7 +5337,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.FileTypeEnum
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getFileTypeEnum()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getFileTypeEnum()
 	 * @generated
 	 */
 	int FILE_TYPE_ENUM = 49;
@@ -5347,7 +5347,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.ValueConstraintType
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraintType()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintType()
 	 * @generated
 	 */
 	int VALUE_CONSTRAINT_TYPE = 50;
@@ -5357,7 +5357,7 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.CardinalityType
-	 * @see pamtram.structure.impl.MetamodelPackageImpl#getCardinalityType()
+	 * @see pamtram.structure.impl.StructurePackageImpl#getCardinalityType()
 	 * @generated
 	 */
 	int CARDINALITY_TYPE = 51;
@@ -6695,7 +6695,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	MetamodelFactory getMetamodelFactory();
+	StructureFactory getMetamodelFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -6716,7 +6716,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.MetaModelElementImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getMetaModelElement()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelElement()
 		 * @generated
 		 */
 		EClass META_MODEL_ELEMENT = eINSTANCE.getMetaModelElement();
@@ -6750,7 +6750,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ClassImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getClass_()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getClass_()
 		 * @generated
 		 */
 		EClass CLASS = eINSTANCE.getClass_();
@@ -6856,7 +6856,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.SectionImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getSection()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSection()
 		 * @generated
 		 */
 		EClass SECTION = eINSTANCE.getSection();
@@ -6898,7 +6898,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.SourceSectionImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSection()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSection()
 		 * @generated
 		 */
 		EClass SOURCE_SECTION = eINSTANCE.getSourceSection();
@@ -6924,7 +6924,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.TargetSectionImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSection()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSection()
 		 * @generated
 		 */
 		EClass TARGET_SECTION = eINSTANCE.getTargetSection();
@@ -6958,7 +6958,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.FileAttributeImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getFileAttribute()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getFileAttribute()
 		 * @generated
 		 */
 		EClass FILE_ATTRIBUTE = eINSTANCE.getFileAttribute();
@@ -6976,7 +6976,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.SourceSectionClassImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSectionClass()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionClass()
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_CLASS = eINSTANCE.getSourceSectionClass();
@@ -6986,7 +6986,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.TargetSectionClassImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionClass()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionClass()
 		 * @generated
 		 */
 		EClass TARGET_SECTION_CLASS = eINSTANCE.getTargetSectionClass();
@@ -6996,7 +6996,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.LibraryParameterImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getLibraryParameter()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryParameter()
 		 * @generated
 		 */
 		EClass LIBRARY_PARAMETER = eINSTANCE.getLibraryParameter();
@@ -7022,7 +7022,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.AttributeParameterImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getAttributeParameter()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getAttributeParameter()
 		 * @generated
 		 */
 		EClass ATTRIBUTE_PARAMETER = eINSTANCE.getAttributeParameter();
@@ -7040,7 +7040,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ContainerParameterImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getContainerParameter()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getContainerParameter()
 		 * @generated
 		 */
 		EClass CONTAINER_PARAMETER = eINSTANCE.getContainerParameter();
@@ -7058,7 +7058,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ExternalReferenceParameterImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getExternalReferenceParameter()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getExternalReferenceParameter()
 		 * @generated
 		 */
 		EClass EXTERNAL_REFERENCE_PARAMETER = eINSTANCE.getExternalReferenceParameter();
@@ -7076,7 +7076,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ResourceParameterImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getResourceParameter()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getResourceParameter()
 		 * @generated
 		 */
 		EClass RESOURCE_PARAMETER = eINSTANCE.getResourceParameter();
@@ -7102,7 +7102,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.LibraryEntryImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getLibraryEntry()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryEntry()
 		 * @generated
 		 */
 		EClass LIBRARY_ENTRY = eINSTANCE.getLibraryEntry();
@@ -7160,7 +7160,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ReferenceImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getReference()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getReference()
 		 * @generated
 		 */
 		EClass REFERENCE = eINSTANCE.getReference();
@@ -7210,7 +7210,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ContainmentReferenceImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getContainmentReference()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getContainmentReference()
 		 * @generated
 		 */
 		EClass CONTAINMENT_REFERENCE = eINSTANCE.getContainmentReference();
@@ -7236,7 +7236,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.NonContainmentReferenceImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getNonContainmentReference()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getNonContainmentReference()
 		 * @generated
 		 */
 		EClass NON_CONTAINMENT_REFERENCE = eINSTANCE.getNonContainmentReference();
@@ -7262,7 +7262,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.SourceSectionReferenceImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSectionReference()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionReference()
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_REFERENCE = eINSTANCE.getSourceSectionReference();
@@ -7272,7 +7272,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.TargetSectionReferenceImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionReference()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionReference()
 		 * @generated
 		 */
 		EClass TARGET_SECTION_REFERENCE = eINSTANCE.getTargetSectionReference();
@@ -7282,7 +7282,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.TargetSectionContainmentReferenceImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionContainmentReference()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionContainmentReference()
 		 * @generated
 		 */
 		EClass TARGET_SECTION_CONTAINMENT_REFERENCE = eINSTANCE.getTargetSectionContainmentReference();
@@ -7292,7 +7292,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.TargetSectionNonContainmentReferenceImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionNonContainmentReference()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionNonContainmentReference()
 		 * @generated
 		 */
 		EClass TARGET_SECTION_NON_CONTAINMENT_REFERENCE = eINSTANCE.getTargetSectionNonContainmentReference();
@@ -7302,7 +7302,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.SourceSectionContainmentReferenceImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSectionContainmentReference()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionContainmentReference()
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_CONTAINMENT_REFERENCE = eINSTANCE.getSourceSectionContainmentReference();
@@ -7312,7 +7312,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.MetaModelSectionReferenceImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getMetaModelSectionReference()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelSectionReference()
 		 * @generated
 		 */
 		EClass META_MODEL_SECTION_REFERENCE = eINSTANCE.getMetaModelSectionReference();
@@ -7338,7 +7338,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.AttributeImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getAttribute()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getAttribute()
 		 * @generated
 		 */
 		EClass ATTRIBUTE = eINSTANCE.getAttribute();
@@ -7356,7 +7356,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ActualAttributeImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getActualAttribute()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getActualAttribute()
 		 * @generated
 		 */
 		EClass ACTUAL_ATTRIBUTE = eINSTANCE.getActualAttribute();
@@ -7382,7 +7382,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.VirtualAttributeImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getVirtualAttribute()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualAttribute()
 		 * @generated
 		 */
 		EClass VIRTUAL_ATTRIBUTE = eINSTANCE.getVirtualAttribute();
@@ -7392,7 +7392,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.SourceSectionAttributeImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getSourceSectionAttribute()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionAttribute()
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_ATTRIBUTE = eINSTANCE.getSourceSectionAttribute();
@@ -7410,7 +7410,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ActualSourceSectionAttributeImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getActualSourceSectionAttribute()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getActualSourceSectionAttribute()
 		 * @generated
 		 */
 		EClass ACTUAL_SOURCE_SECTION_ATTRIBUTE = eINSTANCE.getActualSourceSectionAttribute();
@@ -7420,7 +7420,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.TargetSectionAttributeImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getTargetSectionAttribute()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionAttribute()
 		 * @generated
 		 */
 		EClass TARGET_SECTION_ATTRIBUTE = eINSTANCE.getTargetSectionAttribute();
@@ -7446,7 +7446,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ActualTargetSectionAttributeImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getActualTargetSectionAttribute()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getActualTargetSectionAttribute()
 		 * @generated
 		 */
 		EClass ACTUAL_TARGET_SECTION_ATTRIBUTE = eINSTANCE.getActualTargetSectionAttribute();
@@ -7456,7 +7456,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.VirtualTargetSectionAttributeImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getVirtualTargetSectionAttribute()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualTargetSectionAttribute()
 		 * @generated
 		 */
 		EClass VIRTUAL_TARGET_SECTION_ATTRIBUTE = eINSTANCE.getVirtualTargetSectionAttribute();
@@ -7466,7 +7466,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.EqualityMatcherImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getEqualityMatcher()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getEqualityMatcher()
 		 * @generated
 		 */
 		EClass EQUALITY_MATCHER = eINSTANCE.getEqualityMatcher();
@@ -7476,7 +7476,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.ValueConstraint
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraint()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraint()
 		 * @generated
 		 */
 		EClass VALUE_CONSTRAINT = eINSTANCE.getValueConstraint();
@@ -7494,7 +7494,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.SubstringMatcherImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getSubstringMatcher()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSubstringMatcher()
 		 * @generated
 		 */
 		EClass SUBSTRING_MATCHER = eINSTANCE.getSubstringMatcher();
@@ -7504,7 +7504,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.BeginningMatcherImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getBeginningMatcher()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getBeginningMatcher()
 		 * @generated
 		 */
 		EClass BEGINNING_MATCHER = eINSTANCE.getBeginningMatcher();
@@ -7514,7 +7514,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.EndingMatcherImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getEndingMatcher()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getEndingMatcher()
 		 * @generated
 		 */
 		EClass ENDING_MATCHER = eINSTANCE.getEndingMatcher();
@@ -7524,7 +7524,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.RegExMatcherImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getRegExMatcher()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getRegExMatcher()
 		 * @generated
 		 */
 		EClass REG_EX_MATCHER = eINSTANCE.getRegExMatcher();
@@ -7534,7 +7534,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.CaseSensitiveConstraint
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getCaseSensitiveConstraint()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getCaseSensitiveConstraint()
 		 * @generated
 		 */
 		EClass CASE_SENSITIVE_CONSTRAINT = eINSTANCE.getCaseSensitiveConstraint();
@@ -7552,7 +7552,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.RangeConstraintImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getRangeConstraint()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getRangeConstraint()
 		 * @generated
 		 */
 		EClass RANGE_CONSTRAINT = eINSTANCE.getRangeConstraint();
@@ -7578,7 +7578,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.MultipleReferencesValueConstraintImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getMultipleReferencesValueConstraint()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getMultipleReferencesValueConstraint()
 		 * @generated
 		 */
 		EClass MULTIPLE_REFERENCES_VALUE_CONSTRAINT = eINSTANCE.getMultipleReferencesValueConstraint();
@@ -7596,7 +7596,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.InstancePointerImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getInstancePointer()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointer()
 		 * @generated
 		 */
 		EClass INSTANCE_POINTER = eINSTANCE.getInstancePointer();
@@ -7630,7 +7630,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.InstancePointerSourceInterface
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getInstancePointerSourceInterface()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceInterface()
 		 * @generated
 		 */
 		EClass INSTANCE_POINTER_SOURCE_INTERFACE = eINSTANCE.getInstancePointerSourceInterface();
@@ -7640,7 +7640,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.InstancePointerSourceElementImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getInstancePointerSourceElement()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceElement()
 		 * @generated
 		 */
 		EClass INSTANCE_POINTER_SOURCE_ELEMENT = eINSTANCE.getInstancePointerSourceElement();
@@ -7650,7 +7650,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.InstancePointerExternalSourceElementImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getInstancePointerExternalSourceElement()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerExternalSourceElement()
 		 * @generated
 		 */
 		EClass INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getInstancePointerExternalSourceElement();
@@ -7660,7 +7660,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.RangeBoundImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getRangeBound()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getRangeBound()
 		 * @generated
 		 */
 		EClass RANGE_BOUND = eINSTANCE.getRangeBound();
@@ -7718,7 +7718,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.SingleReferenceValueConstraintImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getSingleReferenceValueConstraint()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSingleReferenceValueConstraint()
 		 * @generated
 		 */
 		EClass SINGLE_REFERENCE_VALUE_CONSTRAINT = eINSTANCE.getSingleReferenceValueConstraint();
@@ -7784,7 +7784,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.ValueConstraintSourceInterface
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraintSourceInterface()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceInterface()
 		 * @generated
 		 */
 		EClass VALUE_CONSTRAINT_SOURCE_INTERFACE = eINSTANCE.getValueConstraintSourceInterface();
@@ -7794,7 +7794,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ValueConstraintSourceElementImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraintSourceElement()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceElement()
 		 * @generated
 		 */
 		EClass VALUE_CONSTRAINT_SOURCE_ELEMENT = eINSTANCE.getValueConstraintSourceElement();
@@ -7804,7 +7804,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ValueConstraintExternalSourceElementImpl
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraintExternalSourceElement()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintExternalSourceElement()
 		 * @generated
 		 */
 		EClass VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getValueConstraintExternalSourceElement();
@@ -7814,7 +7814,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.FileTypeEnum
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getFileTypeEnum()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getFileTypeEnum()
 		 * @generated
 		 */
 		EEnum FILE_TYPE_ENUM = eINSTANCE.getFileTypeEnum();
@@ -7824,7 +7824,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.ValueConstraintType
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getValueConstraintType()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintType()
 		 * @generated
 		 */
 		EEnum VALUE_CONSTRAINT_TYPE = eINSTANCE.getValueConstraintType();
@@ -7834,11 +7834,11 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.CardinalityType
-		 * @see pamtram.structure.impl.MetamodelPackageImpl#getCardinalityType()
+		 * @see pamtram.structure.impl.StructurePackageImpl#getCardinalityType()
 		 * @generated
 		 */
 		EEnum CARDINALITY_TYPE = eINSTANCE.getCardinalityType();
 
 	}
 
-} //MetamodelPackage
+} //StructurePackage

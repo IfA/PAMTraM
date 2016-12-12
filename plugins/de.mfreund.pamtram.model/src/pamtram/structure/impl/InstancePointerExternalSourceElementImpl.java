@@ -14,7 +14,7 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceInterface;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
@@ -44,7 +44,7 @@ public class InstancePointerExternalSourceElementImpl extends ExternalModifiedAt
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT;
+		return StructurePackage.Literals.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class InstancePointerExternalSourceElementImpl extends ExternalModifiedAt
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MetamodelPackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -87,7 +87,7 @@ public class InstancePointerExternalSourceElementImpl extends ExternalModifiedAt
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);

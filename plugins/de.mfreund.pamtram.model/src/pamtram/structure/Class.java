@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link pamtram.structure.Class#getAttributes <em>Attributes</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getClass_()
+ * @see pamtram.structure.StructurePackage#getClass_()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eClassMatchesParentEReference variableCardinalityIsValid containerIsValid'"
  * @generated
@@ -39,7 +39,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>EClass</em>' reference.
 	 * @see #setEClass(EClass)
-	 * @see pamtram.structure.MetamodelPackage#getClass_EClass()
+	 * @see pamtram.structure.StructurePackage#getClass_EClass()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -68,7 +68,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @return the value of the '<em>Cardinality</em>' attribute.
 	 * @see pamtram.structure.CardinalityType
 	 * @see #setCardinality(CardinalityType)
-	 * @see pamtram.structure.MetamodelPackage#getClass_Cardinality()
+	 * @see pamtram.structure.StructurePackage#getClass_Cardinality()
 	 * @model default="ONE" required="true"
 	 * @generated
 	 */
@@ -95,7 +95,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>References</em>' containment reference list.
-	 * @see pamtram.structure.MetamodelPackage#getClass_References()
+	 * @see pamtram.structure.StructurePackage#getClass_References()
 	 * @see pamtram.structure.Reference#getOwningClass
 	 * @model opposite="owningClass" containment="true"
 	 * @generated
@@ -112,7 +112,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Container</em>' reference.
 	 * @see #setContainer(Class)
-	 * @see pamtram.structure.MetamodelPackage#getClass_Container()
+	 * @see pamtram.structure.StructurePackage#getClass_Container()
 	 * @model
 	 * @generated
 	 */
@@ -138,7 +138,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
-	 * @see pamtram.structure.MetamodelPackage#getClass_Attributes()
+	 * @see pamtram.structure.StructurePackage#getClass_Attributes()
 	 * @see pamtram.structure.Attribute#getOwningClass
 	 * @model opposite="owningClass" containment="true"
 	 * @generated
@@ -184,7 +184,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.Reference%><?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();\r\n\r\nif(parentReference.getEReference() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = parentReference.getEReference().getEReferenceType().isSuperTypeOf(this.getEClass());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eClass \'\" + this.eClass().getName() + \"\' is not allowed by the containing reference!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.MetamodelPackage%>.Literals.CLASS__ECLASS }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.Reference%><?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();\r\n\r\nif(parentReference.getEReference() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = parentReference.getEReference().getEReferenceType().isSuperTypeOf(this.getEClass());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eClass \'\" + this.eClass().getName() + \"\' is not allowed by the containing reference!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.CLASS__ECLASS }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateEClassMatchesParentEReference(DiagnosticChain diagnostics, Map<?, ?> context);
@@ -192,7 +192,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.Reference%><?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();\r\n\r\nif(parentReference.getEReference() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = !(this.cardinality != <%pamtram.structure.CardinalityType%>.ONE && parentReference.getEReference().getUpperBound() == 1);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.MetamodelPackage%>.Literals.CLASS__CARDINALITY }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.Reference%><?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();\r\n\r\nif(parentReference.getEReference() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = !(this.cardinality != <%pamtram.structure.CardinalityType%>.ONE && parentReference.getEReference().getUpperBound() == 1);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.CLASS__CARDINALITY }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateCardinalityIsValid(DiagnosticChain diagnostics, Map<?, ?> context);
@@ -200,7 +200,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this instanceof <%pamtram.structure.Section%><?, ?, ?, ?> || this.getContainer() == null ? true : this.getContainer().equals(this.eContainer().eContainer());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The \'container\' refrence must point to the containing Class!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.MetamodelPackage%>.Literals.CLASS__CONTAINER }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this instanceof <%pamtram.structure.Section%><?, ?, ?, ?> || this.getContainer() == null ? true : this.getContainer().equals(this.eContainer().eContainer());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The \'container\' refrence must point to the containing Class!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.CLASS__CONTAINER }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateContainerIsValid(DiagnosticChain diagnostics, Map<?, ?> context);

@@ -4,7 +4,7 @@ package pamtram.structure.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.VirtualTargetSectionAttribute;
 
 /**
@@ -31,7 +31,7 @@ public class VirtualTargetSectionAttributeImpl extends TargetSectionAttributeImp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.VIRTUAL_TARGET_SECTION_ATTRIBUTE;
+		return StructurePackage.Literals.VIRTUAL_TARGET_SECTION_ATTRIBUTE;
 	}
 
 } //VirtualAttributeImpl

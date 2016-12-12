@@ -42,8 +42,8 @@ import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.MetaModelElement;
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.MetamodelFactory;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.RangeBound;
@@ -80,7 +80,7 @@ import pamtram.structure.util.StructureValidator;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPackage {
+public class StructurePackageImpl extends EPackageImpl implements StructurePackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -456,12 +456,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see pamtram.structure.MetamodelPackage#eNS_URI
+	 * @see pamtram.structure.StructurePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private MetamodelPackageImpl() {
-		super(eNS_URI, MetamodelFactory.eINSTANCE);
+	private StructurePackageImpl() {
+		super(eNS_URI, StructureFactory.eINSTANCE);
 	}
 
 	/**
@@ -474,7 +474,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link MetamodelPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link StructurePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -483,11 +483,11 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static MetamodelPackage init() {
-		if (isInited) return (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
+	public static StructurePackage init() {
+		if (isInited) return (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 
 		// Obtain or create and register package
-		MetamodelPackageImpl theMetamodelPackage = (MetamodelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MetamodelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MetamodelPackageImpl());
+		StructurePackageImpl theMetamodelPackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StructurePackageImpl());
 
 		isInited = true;
 
@@ -525,7 +525,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(MetamodelPackage.eNS_URI, theMetamodelPackage);
+		EPackage.Registry.INSTANCE.put(StructurePackage.eNS_URI, theMetamodelPackage);
 		return theMetamodelPackage;
 	}
 
@@ -1686,8 +1686,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelFactory getMetamodelFactory() {
-		return (MetamodelFactory)getEFactoryInstance();
+	public StructureFactory getMetamodelFactory() {
+		return (StructureFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -3151,4 +3151,4 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   });
 	}
 
-} //MetamodelPackageImpl
+} //StructurePackageImpl

@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.structure.Attribute;
 import pamtram.structure.Class;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
 import pamtram.structure.util.StructureValidator;
@@ -67,7 +67,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	protected EClass eStaticClass() {
 
-		return MetamodelPackage.Literals.REFERENCE;
+		return StructurePackage.Literals.REFERENCE;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 			if (this.eReference != oldEReference) {
 				if (this.eNotificationRequired()) {
 					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							MetamodelPackage.REFERENCE__EREFERENCE, oldEReference, this.eReference));
+							StructurePackage.REFERENCE__EREFERENCE, oldEReference, this.eReference));
 				}
 			}
 		}
@@ -111,7 +111,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 		EReference oldEReference = this.eReference;
 		this.eReference = newEReference;
 		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.REFERENCE__EREFERENCE,
+			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.REFERENCE__EREFERENCE,
 					oldEReference, this.eReference));
 		}
 	}
@@ -135,7 +135,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@SuppressWarnings("unchecked")
 	public C getOwningClass() {
 
-		if (this.eContainerFeatureID() != MetamodelPackage.REFERENCE__OWNING_CLASS) {
+		if (this.eContainerFeatureID() != StructurePackage.REFERENCE__OWNING_CLASS) {
 			return null;
 		}
 		return (C) this.eInternalContainer();
@@ -165,7 +165,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
 					StructureValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS, errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.REFERENCE__EREFERENCE }));
+					new Object[] { this, StructurePackage.Literals.REFERENCE__EREFERENCE }));
 
 		}
 
@@ -203,11 +203,11 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 
 		switch (featureID) {
-			case MetamodelPackage.REFERENCE__OWNING_CLASS:
+			case StructurePackage.REFERENCE__OWNING_CLASS:
 				if (this.eInternalContainer() != null) {
 					msgs = this.eBasicRemoveFromContainer(msgs);
 				}
-				return this.eBasicSetContainer(otherEnd, MetamodelPackage.REFERENCE__OWNING_CLASS, msgs);
+				return this.eBasicSetContainer(otherEnd, StructurePackage.REFERENCE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -221,8 +221,8 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 
 		switch (featureID) {
-			case MetamodelPackage.REFERENCE__OWNING_CLASS:
-				return this.eBasicSetContainer(null, MetamodelPackage.REFERENCE__OWNING_CLASS, msgs);
+			case StructurePackage.REFERENCE__OWNING_CLASS:
+				return this.eBasicSetContainer(null, StructurePackage.REFERENCE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -236,8 +236,8 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 
 		switch (this.eContainerFeatureID()) {
-			case MetamodelPackage.REFERENCE__OWNING_CLASS:
-				return this.eInternalContainer().eInverseRemove(this, MetamodelPackage.CLASS__REFERENCES,
+			case StructurePackage.REFERENCE__OWNING_CLASS:
+				return this.eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__REFERENCES,
 						pamtram.structure.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -252,12 +252,12 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 
 		switch (featureID) {
-			case MetamodelPackage.REFERENCE__EREFERENCE:
+			case StructurePackage.REFERENCE__EREFERENCE:
 				if (resolve) {
 					return this.getEReference();
 				}
 				return this.basicGetEReference();
-			case MetamodelPackage.REFERENCE__OWNING_CLASS:
+			case StructurePackage.REFERENCE__OWNING_CLASS:
 				return this.getOwningClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -272,7 +272,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public void eSet(int featureID, Object newValue) {
 
 		switch (featureID) {
-			case MetamodelPackage.REFERENCE__EREFERENCE:
+			case StructurePackage.REFERENCE__EREFERENCE:
 				this.setEReference((EReference) newValue);
 				return;
 		}
@@ -288,7 +288,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public void eUnset(int featureID) {
 
 		switch (featureID) {
-			case MetamodelPackage.REFERENCE__EREFERENCE:
+			case StructurePackage.REFERENCE__EREFERENCE:
 				this.setEReference((EReference) null);
 				return;
 		}
@@ -304,9 +304,9 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public boolean eIsSet(int featureID) {
 
 		switch (featureID) {
-			case MetamodelPackage.REFERENCE__EREFERENCE:
+			case StructurePackage.REFERENCE__EREFERENCE:
 				return this.eReference != null;
-			case MetamodelPackage.REFERENCE__OWNING_CLASS:
+			case StructurePackage.REFERENCE__OWNING_CLASS:
 				return this.getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);
@@ -322,12 +322,12 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 
 		switch (operationID) {
-			case MetamodelPackage.REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
 				return this.validateEReferenceMatchesParentEClass((DiagnosticChain) arguments.get(0),
 						(Map<?, ?>) arguments.get(1));
-			case MetamodelPackage.REFERENCE___GET_VALUES_GENERIC:
+			case StructurePackage.REFERENCE___GET_VALUES_GENERIC:
 				return this.getValuesGeneric();
-			case MetamodelPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST:
+			case StructurePackage.REFERENCE___ADD_VALUES_GENERIC__ELIST:
 				this.addValuesGeneric((EList<C>) arguments.get(0));
 				return null;
 		}

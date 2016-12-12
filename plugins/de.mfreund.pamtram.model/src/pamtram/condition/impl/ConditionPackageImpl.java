@@ -31,8 +31,8 @@ import pamtram.condition.util.ConditionValidator;
 import pamtram.impl.PamtramPackageImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
-import pamtram.structure.MetamodelPackage;
-import pamtram.structure.impl.MetamodelPackageImpl;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.impl.StructurePackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -169,7 +169,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Obtain or create and register interdependencies
 		PamtramPackageImpl thePamtramPackage = (PamtramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) instanceof PamtramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) : PamtramPackage.eINSTANCE);
-		MetamodelPackageImpl theMetamodelPackage = (MetamodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) instanceof MetamodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) : MetamodelPackage.eINSTANCE);
+		StructurePackageImpl theMetamodelPackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 
 		// Create package meta-data objects
@@ -568,7 +568,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
+		StructurePackage theMetamodelPackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 
 		// Create type parameters
 

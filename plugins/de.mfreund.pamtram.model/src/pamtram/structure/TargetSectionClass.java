@@ -8,7 +8,7 @@ package pamtram.structure;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getTargetSectionClass()
+ * @see pamtram.structure.StructurePackage#getTargetSectionClass()
  * @model
  * @generated
  */

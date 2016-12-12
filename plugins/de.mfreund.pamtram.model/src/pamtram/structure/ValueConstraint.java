@@ -16,7 +16,7 @@ import pamtram.NamedElement;
  * <li>{@link pamtram.structure.ValueConstraint#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getAttributeValueConstraint()
+ * @see pamtram.structure.StructurePackage#getAttributeValueConstraint()
  * @model interface="true" abstract="true"
  * @generated
  */
@@ -34,7 +34,7 @@ public interface ValueConstraint extends NamedElement {
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see pamtram.structure.ValueConstraintType
 	 * @see #setType(ValueConstraintType)
-	 * @see pamtram.structure.MetamodelPackage#getValueConstraint_Type()
+	 * @see pamtram.structure.StructurePackage#getValueConstraint_Type()
 	 * @model default="INCLUSION" required="true"
 	 * @generated
 	 */

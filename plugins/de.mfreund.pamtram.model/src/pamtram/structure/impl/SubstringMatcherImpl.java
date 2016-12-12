@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.SubstringMatcher;
 import pamtram.structure.ValueConstraintType;
 
@@ -58,7 +58,7 @@ public class SubstringMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.SUBSTRING_MATCHER;
+		return StructurePackage.Literals.SUBSTRING_MATCHER;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class SubstringMatcherImpl extends SingleReferenceValueConstraintImpl imp
 		boolean oldCaseSensitive = caseSensitive;
 		caseSensitive = newCaseSensitive;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SUBSTRING_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.SUBSTRING_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class SubstringMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
 				return isCaseSensitive();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class SubstringMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
 				setCaseSensitive((Boolean)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class SubstringMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
 				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
 				return;
 		}
@@ -147,7 +147,7 @@ public class SubstringMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
 				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

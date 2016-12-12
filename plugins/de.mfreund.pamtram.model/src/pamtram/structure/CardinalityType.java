@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Cardinality Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see pamtram.structure.MetamodelPackage#getCardinalityType()
+ * @see pamtram.structure.StructurePackage#getCardinalityType()
  * @model
  * @generated
  */

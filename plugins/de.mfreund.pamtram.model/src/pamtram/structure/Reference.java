@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EReference;
  * <li>{@link pamtram.structure.Reference#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getReference()
+ * @see pamtram.structure.StructurePackage#getReference()
  * @model abstract="true" annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceMatchesParentEClass'"
  * @generated
  */
@@ -37,7 +37,7 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 *
 	 * @return the value of the '<em>EReference</em>' reference.
 	 * @see #setEReference(EReference)
-	 * @see pamtram.structure.MetamodelPackage#getReference_EReference()
+	 * @see pamtram.structure.StructurePackage#getReference_EReference()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -64,7 +64,7 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 * <!-- end-user-doc -->
 	 *
 	 * @return the value of the '<em>Owning Class</em>' container reference.
-	 * @see pamtram.structure.MetamodelPackage#getReference_OwningClass()
+	 * @see pamtram.structure.StructurePackage#getReference_OwningClass()
 	 * @see pamtram.structure.Class#getReferences
 	 * @model opposite="references" transient="false" changeable="false"
 	 * @generated
@@ -82,7 +82,7 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 *        null) {\r\n\r\n\tString errorMessage = \"The eReference \'\" + this.getEReference().getName() + \"\' is
 	 *        not allowed by the containing Class!\";\r\n\r\n\tdiagnostics.add(new
 	 *        <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMetamodelValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew
-	 *        Object[] { this, <%pamtram.structure.MetamodelPackage%>.Literals.REFERENCE__EREFERENCE
+	 *        Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.REFERENCE__EREFERENCE
 	 *        }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */

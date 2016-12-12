@@ -4,7 +4,7 @@ package pamtram.structure.impl;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import pamtram.structure.ExternalReferenceParameter;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSectionNonContainmentReference;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -55,7 +55,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER;
+		return StructurePackage.Literals.EXTERNAL_REFERENCE_PARAMETER;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 		TargetSectionNonContainmentReference oldReference = reference;
 		reference = newReference;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, oldReference, newReference);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, oldReference, newReference);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -102,14 +102,14 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 		if (newReference != reference) {
 			NotificationChain msgs = null;
 			if (reference != null)
-				msgs = ((InternalEObject)reference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, null, msgs);
+				msgs = ((InternalEObject)reference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, null, msgs);
 			if (newReference != null)
-				msgs = ((InternalEObject)newReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, null, msgs);
+				msgs = ((InternalEObject)newReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, null, msgs);
 			msgs = basicSetReference(newReference, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, newReference, newReference));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, newReference, newReference));
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
 				return basicSetReference(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -134,7 +134,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
 				return getReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -148,7 +148,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
 				setReference((TargetSectionNonContainmentReference)newValue);
 				return;
 		}
@@ -163,7 +163,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
 				setReference((TargetSectionNonContainmentReference)null);
 				return;
 		}
@@ -178,7 +178,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
 				return reference != null;
 		}
 		return super.eIsSet(featureID);

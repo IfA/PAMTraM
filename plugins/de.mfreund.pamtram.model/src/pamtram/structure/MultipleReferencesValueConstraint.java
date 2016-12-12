@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getMultipleReferencesValueConstraint()
+ * @see pamtram.structure.StructurePackage#getMultipleReferencesValueConstraint()
  * @model abstract="true"
  * @generated
  */

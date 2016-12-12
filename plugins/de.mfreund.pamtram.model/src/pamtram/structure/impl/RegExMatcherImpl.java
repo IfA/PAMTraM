@@ -4,7 +4,7 @@ package pamtram.structure.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.RegExMatcher;
 import pamtram.structure.ValueConstraintType;
 
@@ -30,7 +30,7 @@ public class RegExMatcherImpl extends SingleReferenceValueConstraintImpl impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.REG_EX_MATCHER;
+		return StructurePackage.Literals.REG_EX_MATCHER;
 	}
 
 	@Override

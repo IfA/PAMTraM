@@ -9,7 +9,7 @@ package pamtram.structure;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getEqualityMatcher()
+ * @see pamtram.structure.StructurePackage#getEqualityMatcher()
  * @model
  * @generated
  */

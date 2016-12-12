@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.impl.NamedElementImpl;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
 import pamtram.structure.ValueConstraintType;
 
@@ -64,7 +64,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@Override
 	protected EClass eStaticClass() {
 
-		return MetamodelPackage.Literals.MULTIPLE_REFERENCES_VALUE_CONSTRAINT;
+		return StructurePackage.Literals.MULTIPLE_REFERENCES_VALUE_CONSTRAINT;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 		ValueConstraintType oldType = this.type;
 		this.type = newType == null ? MultipleReferencesAttributeValueConstraintImpl.TYPE_EDEFAULT : newType;
 		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE, oldType, this.type));
+			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE, oldType, this.type));
 		}
 	}
 
@@ -109,7 +109,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+			case StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
 				return this.getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -123,7 +123,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+			case StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
 				this.setType((ValueConstraintType)newValue);
 				return;
 		}
@@ -138,7 +138,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+			case StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
 				this.setType(MultipleReferencesAttributeValueConstraintImpl.TYPE_EDEFAULT);
 				return;
 		}
@@ -153,7 +153,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+			case StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
 				return this.type != MultipleReferencesAttributeValueConstraintImpl.TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -168,7 +168,7 @@ public abstract class MultipleReferencesAttributeValueConstraintImpl extends Nam
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST:
+			case StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST:
 				return this.checkConstraint((String)arguments.get(0), (EList<String>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

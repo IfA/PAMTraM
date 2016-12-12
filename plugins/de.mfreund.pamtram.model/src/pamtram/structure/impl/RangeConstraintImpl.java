@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.RangeBound;
 import pamtram.structure.RangeConstraint;
 import pamtram.structure.ValueConstraintType;
@@ -66,7 +66,7 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.RANGE_CONSTRAINT;
+		return StructurePackage.Literals.RANGE_CONSTRAINT;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 		RangeBound oldUpperBound = upperBound;
 		upperBound = newUpperBound;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND, oldUpperBound, newUpperBound);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND, oldUpperBound, newUpperBound);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -102,14 +102,14 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 		if (newUpperBound != upperBound) {
 			NotificationChain msgs = null;
 			if (upperBound != null)
-				msgs = ((InternalEObject)upperBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND, null, msgs);
+				msgs = ((InternalEObject)upperBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND, null, msgs);
 			if (newUpperBound != null)
-				msgs = ((InternalEObject)newUpperBound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND, null, msgs);
+				msgs = ((InternalEObject)newUpperBound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND, null, msgs);
 			msgs = basicSetUpperBound(newUpperBound, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND, newUpperBound, newUpperBound));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND, newUpperBound, newUpperBound));
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 		RangeBound oldLowerBound = lowerBound;
 		lowerBound = newLowerBound;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND, oldLowerBound, newLowerBound);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND, oldLowerBound, newLowerBound);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -145,14 +145,14 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 		if (newLowerBound != lowerBound) {
 			NotificationChain msgs = null;
 			if (lowerBound != null)
-				msgs = ((InternalEObject)lowerBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND, null, msgs);
+				msgs = ((InternalEObject)lowerBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND, null, msgs);
 			if (newLowerBound != null)
-				msgs = ((InternalEObject)newLowerBound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND, null, msgs);
+				msgs = ((InternalEObject)newLowerBound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND, null, msgs);
 			msgs = basicSetLowerBound(newLowerBound, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND, newLowerBound, newLowerBound));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND, newLowerBound, newLowerBound));
 	}
 
 	/**
@@ -163,9 +163,9 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
 				return basicSetUpperBound(null, msgs);
-			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
 				return basicSetLowerBound(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -179,9 +179,9 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
 				return getUpperBound();
-			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
 				return getLowerBound();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -195,10 +195,10 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
 				setUpperBound((RangeBound)newValue);
 				return;
-			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
 				setLowerBound((RangeBound)newValue);
 				return;
 		}
@@ -213,10 +213,10 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
 				setUpperBound((RangeBound)null);
 				return;
-			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
 				setLowerBound((RangeBound)null);
 				return;
 		}
@@ -231,9 +231,9 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
 				return upperBound != null;
-			case MetamodelPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
 				return lowerBound != null;
 		}
 		return super.eIsSet(featureID);

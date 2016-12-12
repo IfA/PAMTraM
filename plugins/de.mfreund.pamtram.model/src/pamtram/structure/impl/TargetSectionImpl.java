@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.structure.FileAttribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Section;
 import pamtram.structure.TargetSection;
 import pamtram.structure.util.StructureValidator;
@@ -98,7 +98,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.TARGET_SECTION;
+		return StructurePackage.Literals.TARGET_SECTION;
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TARGET_SECTION__ABSTRACT, oldAbstract, abstract_));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_SECTION__ABSTRACT, oldAbstract, abstract_));
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@Override
 	public EList<TargetSection> getExtend() {
 		if (extend == null) {
-			extend = new EObjectResolvingEList<TargetSection>(TargetSection.class, this, MetamodelPackage.TARGET_SECTION__EXTEND);
+			extend = new EObjectResolvingEList<TargetSection>(TargetSection.class, this, StructurePackage.TARGET_SECTION__EXTEND);
 		}
 		return extend;
 	}
@@ -158,7 +158,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		
 		List<MappingHintGroupType> referencingHintGroups = mappings.parallelStream().flatMap(m -> m.getMappingHintGroups().parallelStream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());
 		
-		return new UnmodifiableEList<>(this, MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
+		return new UnmodifiableEList<>(this, StructurePackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
 				referencingHintGroups.size(), referencingHintGroups.toArray());
 	}
 
@@ -174,7 +174,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 			file = (FileAttribute)eResolveProxy(oldFile);
 			if (file != oldFile) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TARGET_SECTION__FILE, oldFile, file));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.TARGET_SECTION__FILE, oldFile, file));
 			}
 		}
 		return file;
@@ -199,7 +199,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		FileAttribute oldFile = file;
 		file = newFile;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TARGET_SECTION__FILE, oldFile, file));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_SECTION__FILE, oldFile, file));
 	}
 
 	/**
@@ -220,7 +220,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.TARGET_SECTION }));
+					new Object[] { this, StructurePackage.Literals.TARGET_SECTION }));
 		
 		}
 		
@@ -251,7 +251,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 					 StructureValidator.DIAGNOSTIC_SOURCE,
 					StructureValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
 					 errorMessage,
-					 new Object [] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
+					 new Object [] { this, StructurePackage.Literals.SECTION__EXTEND }));
 			}
 		
 		return result;
@@ -281,7 +281,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
+					new Object[] { this, StructurePackage.Literals.SECTION__EXTEND }));
 		
 		}
 		
@@ -296,13 +296,13 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
+			case StructurePackage.TARGET_SECTION__ABSTRACT:
 				return isAbstract();
-			case MetamodelPackage.TARGET_SECTION__EXTEND:
+			case StructurePackage.TARGET_SECTION__EXTEND:
 				return getExtend();
-			case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
+			case StructurePackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return getReferencingMappingHintGroups();
-			case MetamodelPackage.TARGET_SECTION__FILE:
+			case StructurePackage.TARGET_SECTION__FILE:
 				if (resolve) return getFile();
 				return basicGetFile();
 		}
@@ -318,14 +318,14 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
+			case StructurePackage.TARGET_SECTION__ABSTRACT:
 				setAbstract((Boolean)newValue);
 				return;
-			case MetamodelPackage.TARGET_SECTION__EXTEND:
+			case StructurePackage.TARGET_SECTION__EXTEND:
 				getExtend().clear();
 				getExtend().addAll((Collection<? extends TargetSection>)newValue);
 				return;
-			case MetamodelPackage.TARGET_SECTION__FILE:
+			case StructurePackage.TARGET_SECTION__FILE:
 				setFile((FileAttribute)newValue);
 				return;
 		}
@@ -340,13 +340,13 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
+			case StructurePackage.TARGET_SECTION__ABSTRACT:
 				setAbstract(ABSTRACT_EDEFAULT);
 				return;
-			case MetamodelPackage.TARGET_SECTION__EXTEND:
+			case StructurePackage.TARGET_SECTION__EXTEND:
 				getExtend().clear();
 				return;
-			case MetamodelPackage.TARGET_SECTION__FILE:
+			case StructurePackage.TARGET_SECTION__FILE:
 				setFile((FileAttribute)null);
 				return;
 		}
@@ -361,13 +361,13 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
+			case StructurePackage.TARGET_SECTION__ABSTRACT:
 				return abstract_ != ABSTRACT_EDEFAULT;
-			case MetamodelPackage.TARGET_SECTION__EXTEND:
+			case StructurePackage.TARGET_SECTION__EXTEND:
 				return extend != null && !extend.isEmpty();
-			case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
+			case StructurePackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return !getReferencingMappingHintGroups().isEmpty();
-			case MetamodelPackage.TARGET_SECTION__FILE:
+			case StructurePackage.TARGET_SECTION__FILE:
 				return file != null;
 		}
 		return super.eIsSet(featureID);
@@ -382,8 +382,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (derivedFeatureID) {
-				case MetamodelPackage.TARGET_SECTION__ABSTRACT: return MetamodelPackage.SECTION__ABSTRACT;
-				case MetamodelPackage.TARGET_SECTION__EXTEND: return MetamodelPackage.SECTION__EXTEND;
+				case StructurePackage.TARGET_SECTION__ABSTRACT: return StructurePackage.SECTION__ABSTRACT;
+				case StructurePackage.TARGET_SECTION__EXTEND: return StructurePackage.SECTION__EXTEND;
 				default: return -1;
 			}
 		}
@@ -399,8 +399,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (baseFeatureID) {
-				case MetamodelPackage.SECTION__ABSTRACT: return MetamodelPackage.TARGET_SECTION__ABSTRACT;
-				case MetamodelPackage.SECTION__EXTEND: return MetamodelPackage.TARGET_SECTION__EXTEND;
+				case StructurePackage.SECTION__ABSTRACT: return StructurePackage.TARGET_SECTION__ABSTRACT;
+				case StructurePackage.SECTION__EXTEND: return StructurePackage.TARGET_SECTION__EXTEND;
 				default: return -1;
 			}
 		}
@@ -416,8 +416,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
-				case MetamodelPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
-				case MetamodelPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				case StructurePackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return StructurePackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
+				case StructurePackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return StructurePackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -433,11 +433,11 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
 				return validateIsReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MetamodelPackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateExtendsValidSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

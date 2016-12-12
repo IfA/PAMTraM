@@ -33,7 +33,7 @@ import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.MetaModelElement;
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.RangeBound;
@@ -72,7 +72,7 @@ import pamtram.structure.VirtualTargetSectionAttribute;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see pamtram.structure.MetamodelPackage
+ * @see pamtram.structure.StructurePackage
  * @generated
  */
 public class StructureSwitch<T> extends Switch<T> {
@@ -82,7 +82,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static MetamodelPackage modelPackage;
+	protected static StructurePackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -92,7 +92,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 */
 	public StructureSwitch() {
 		if (modelPackage == null) {
-			modelPackage = MetamodelPackage.eINSTANCE;
+			modelPackage = StructurePackage.eINSTANCE;
 		}
 	}
 
@@ -119,14 +119,14 @@ public class StructureSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case MetamodelPackage.META_MODEL_ELEMENT: {
+			case StructurePackage.META_MODEL_ELEMENT: {
 				MetaModelElement<?, ?, ?, ?> metaModelElement = (MetaModelElement<?, ?, ?, ?>)theEObject;
 				T result = caseMetaModelElement(metaModelElement);
 				if (result == null) result = caseNamedElement(metaModelElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.CLASS: {
+			case StructurePackage.CLASS: {
 				pamtram.structure.Class<?, ?, ?, ?> class_ = (pamtram.structure.Class<?, ?, ?, ?>)theEObject;
 				T result = caseClass(class_);
 				if (result == null) result = caseMetaModelElement(class_);
@@ -134,7 +134,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SECTION: {
+			case StructurePackage.SECTION: {
 				Section<?, ?, ?, ?> section = (Section<?, ?, ?, ?>)theEObject;
 				T result = caseSection(section);
 				if (result == null) result = caseClass(section);
@@ -143,7 +143,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SOURCE_SECTION: {
+			case StructurePackage.SOURCE_SECTION: {
 				SourceSection sourceSection = (SourceSection)theEObject;
 				T result = caseSourceSection(sourceSection);
 				if (result == null) result = caseSourceSectionClass(sourceSection);
@@ -154,7 +154,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.TARGET_SECTION: {
+			case StructurePackage.TARGET_SECTION: {
 				TargetSection targetSection = (TargetSection)theEObject;
 				T result = caseTargetSection(targetSection);
 				if (result == null) result = caseTargetSectionClass(targetSection);
@@ -165,7 +165,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.FILE_ATTRIBUTE: {
+			case StructurePackage.FILE_ATTRIBUTE: {
 				FileAttribute fileAttribute = (FileAttribute)theEObject;
 				T result = caseFileAttribute(fileAttribute);
 				if (result == null) result = caseVirtualTargetSectionAttribute(fileAttribute);
@@ -177,7 +177,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SOURCE_SECTION_CLASS: {
+			case StructurePackage.SOURCE_SECTION_CLASS: {
 				SourceSectionClass sourceSectionClass = (SourceSectionClass)theEObject;
 				T result = caseSourceSectionClass(sourceSectionClass);
 				if (result == null) result = caseClass(sourceSectionClass);
@@ -186,7 +186,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.TARGET_SECTION_CLASS: {
+			case StructurePackage.TARGET_SECTION_CLASS: {
 				TargetSectionClass targetSectionClass = (TargetSectionClass)theEObject;
 				T result = caseTargetSectionClass(targetSectionClass);
 				if (result == null) result = caseClass(targetSectionClass);
@@ -195,14 +195,14 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.LIBRARY_PARAMETER: {
+			case StructurePackage.LIBRARY_PARAMETER: {
 				LibraryParameter<?> libraryParameter = (LibraryParameter<?>)theEObject;
 				T result = caseLibraryParameter(libraryParameter);
 				if (result == null) result = caseNamedElement(libraryParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.ATTRIBUTE_PARAMETER: {
+			case StructurePackage.ATTRIBUTE_PARAMETER: {
 				AttributeParameter attributeParameter = (AttributeParameter)theEObject;
 				T result = caseAttributeParameter(attributeParameter);
 				if (result == null) result = caseLibraryParameter(attributeParameter);
@@ -210,7 +210,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.CONTAINER_PARAMETER: {
+			case StructurePackage.CONTAINER_PARAMETER: {
 				ContainerParameter containerParameter = (ContainerParameter)theEObject;
 				T result = caseContainerParameter(containerParameter);
 				if (result == null) result = caseLibraryParameter(containerParameter);
@@ -218,7 +218,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER: {
+			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER: {
 				ExternalReferenceParameter externalReferenceParameter = (ExternalReferenceParameter)theEObject;
 				T result = caseExternalReferenceParameter(externalReferenceParameter);
 				if (result == null) result = caseLibraryParameter(externalReferenceParameter);
@@ -226,20 +226,20 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.RESOURCE_PARAMETER: {
+			case StructurePackage.RESOURCE_PARAMETER: {
 				ResourceParameter resourceParameter = (ResourceParameter)theEObject;
 				T result = caseResourceParameter(resourceParameter);
 				if (result == null) result = caseNamedElement(resourceParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.LIBRARY_ENTRY: {
+			case StructurePackage.LIBRARY_ENTRY: {
 				LibraryEntry libraryEntry = (LibraryEntry)theEObject;
 				T result = caseLibraryEntry(libraryEntry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.REFERENCE: {
+			case StructurePackage.REFERENCE: {
 				Reference<?, ?, ?, ?> reference = (Reference<?, ?, ?, ?>)theEObject;
 				T result = caseReference(reference);
 				if (result == null) result = caseMetaModelElement(reference);
@@ -247,7 +247,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.CONTAINMENT_REFERENCE: {
+			case StructurePackage.CONTAINMENT_REFERENCE: {
 				ContainmentReference<?, ?, ?, ?> containmentReference = (ContainmentReference<?, ?, ?, ?>)theEObject;
 				T result = caseContainmentReference(containmentReference);
 				if (result == null) result = caseReference(containmentReference);
@@ -256,7 +256,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE: {
+			case StructurePackage.NON_CONTAINMENT_REFERENCE: {
 				NonContainmentReference<?, ?, ?, ?> nonContainmentReference = (NonContainmentReference<?, ?, ?, ?>)theEObject;
 				T result = caseNonContainmentReference(nonContainmentReference);
 				if (result == null) result = caseReference(nonContainmentReference);
@@ -265,7 +265,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SOURCE_SECTION_REFERENCE: {
+			case StructurePackage.SOURCE_SECTION_REFERENCE: {
 				SourceSectionReference sourceSectionReference = (SourceSectionReference)theEObject;
 				T result = caseSourceSectionReference(sourceSectionReference);
 				if (result == null) result = caseReference(sourceSectionReference);
@@ -274,7 +274,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.TARGET_SECTION_REFERENCE: {
+			case StructurePackage.TARGET_SECTION_REFERENCE: {
 				TargetSectionReference targetSectionReference = (TargetSectionReference)theEObject;
 				T result = caseTargetSectionReference(targetSectionReference);
 				if (result == null) result = caseReference(targetSectionReference);
@@ -283,7 +283,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE: {
+			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE: {
 				TargetSectionContainmentReference targetSectionContainmentReference = (TargetSectionContainmentReference)theEObject;
 				T result = caseTargetSectionContainmentReference(targetSectionContainmentReference);
 				if (result == null) result = caseContainmentReference(targetSectionContainmentReference);
@@ -294,7 +294,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: {
+			case StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: {
 				TargetSectionNonContainmentReference targetSectionNonContainmentReference = (TargetSectionNonContainmentReference)theEObject;
 				T result = caseTargetSectionNonContainmentReference(targetSectionNonContainmentReference);
 				if (result == null) result = caseNonContainmentReference(targetSectionNonContainmentReference);
@@ -305,7 +305,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: {
+			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: {
 				SourceSectionContainmentReference sourceSectionContainmentReference = (SourceSectionContainmentReference)theEObject;
 				T result = caseSourceSectionContainmentReference(sourceSectionContainmentReference);
 				if (result == null) result = caseContainmentReference(sourceSectionContainmentReference);
@@ -316,7 +316,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: {
+			case StructurePackage.META_MODEL_SECTION_REFERENCE: {
 				MetaModelSectionReference metaModelSectionReference = (MetaModelSectionReference)theEObject;
 				T result = caseMetaModelSectionReference(metaModelSectionReference);
 				if (result == null) result = caseSourceSectionReference(metaModelSectionReference);
@@ -326,7 +326,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.ATTRIBUTE: {
+			case StructurePackage.ATTRIBUTE: {
 				Attribute<?, ?, ?, ?> attribute = (Attribute<?, ?, ?, ?>)theEObject;
 				T result = caseAttribute(attribute);
 				if (result == null) result = caseMetaModelElement(attribute);
@@ -334,7 +334,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.ACTUAL_ATTRIBUTE: {
+			case StructurePackage.ACTUAL_ATTRIBUTE: {
 				ActualAttribute<?, ?, ?, ?> actualAttribute = (ActualAttribute<?, ?, ?, ?>)theEObject;
 				T result = caseActualAttribute(actualAttribute);
 				if (result == null) result = caseAttribute(actualAttribute);
@@ -343,7 +343,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.VIRTUAL_ATTRIBUTE: {
+			case StructurePackage.VIRTUAL_ATTRIBUTE: {
 				VirtualAttribute<?, ?, ?, ?> virtualAttribute = (VirtualAttribute<?, ?, ?, ?>)theEObject;
 				T result = caseVirtualAttribute(virtualAttribute);
 				if (result == null) result = caseAttribute(virtualAttribute);
@@ -352,7 +352,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: {
+			case StructurePackage.SOURCE_SECTION_ATTRIBUTE: {
 				SourceSectionAttribute sourceSectionAttribute = (SourceSectionAttribute)theEObject;
 				T result = caseSourceSectionAttribute(sourceSectionAttribute);
 				if (result == null) result = caseAttribute(sourceSectionAttribute);
@@ -361,7 +361,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: {
+			case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: {
 				ActualSourceSectionAttribute actualSourceSectionAttribute = (ActualSourceSectionAttribute)theEObject;
 				T result = caseActualSourceSectionAttribute(actualSourceSectionAttribute);
 				if (result == null) result = caseSourceSectionAttribute(actualSourceSectionAttribute);
@@ -372,7 +372,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE: {
+			case StructurePackage.TARGET_SECTION_ATTRIBUTE: {
 				TargetSectionAttribute targetSectionAttribute = (TargetSectionAttribute)theEObject;
 				T result = caseTargetSectionAttribute(targetSectionAttribute);
 				if (result == null) result = caseAttribute(targetSectionAttribute);
@@ -381,7 +381,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: {
+			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: {
 				ActualTargetSectionAttribute actualTargetSectionAttribute = (ActualTargetSectionAttribute)theEObject;
 				T result = caseActualTargetSectionAttribute(actualTargetSectionAttribute);
 				if (result == null) result = caseTargetSectionAttribute(actualTargetSectionAttribute);
@@ -392,7 +392,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: {
+			case StructurePackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: {
 				VirtualTargetSectionAttribute virtualTargetSectionAttribute = (VirtualTargetSectionAttribute)theEObject;
 				T result = caseVirtualTargetSectionAttribute(virtualTargetSectionAttribute);
 				if (result == null) result = caseTargetSectionAttribute(virtualTargetSectionAttribute);
@@ -403,7 +403,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.EQUALITY_MATCHER: {
+			case StructurePackage.EQUALITY_MATCHER: {
 				EqualityMatcher equalityMatcher = (EqualityMatcher)theEObject;
 				T result = caseEqualityMatcher(equalityMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(equalityMatcher);
@@ -415,14 +415,14 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.VALUE_CONSTRAINT: {
+			case StructurePackage.VALUE_CONSTRAINT: {
 				ValueConstraint valueConstraint = (ValueConstraint)theEObject;
 				T result = caseValueConstraint(valueConstraint);
 				if (result == null) result = caseNamedElement(valueConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SUBSTRING_MATCHER: {
+			case StructurePackage.SUBSTRING_MATCHER: {
 				SubstringMatcher substringMatcher = (SubstringMatcher)theEObject;
 				T result = caseSubstringMatcher(substringMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(substringMatcher);
@@ -434,7 +434,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.BEGINNING_MATCHER: {
+			case StructurePackage.BEGINNING_MATCHER: {
 				BeginningMatcher beginningMatcher = (BeginningMatcher)theEObject;
 				T result = caseBeginningMatcher(beginningMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(beginningMatcher);
@@ -446,7 +446,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.ENDING_MATCHER: {
+			case StructurePackage.ENDING_MATCHER: {
 				EndingMatcher endingMatcher = (EndingMatcher)theEObject;
 				T result = caseEndingMatcher(endingMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(endingMatcher);
@@ -458,7 +458,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.REG_EX_MATCHER: {
+			case StructurePackage.REG_EX_MATCHER: {
 				RegExMatcher regExMatcher = (RegExMatcher)theEObject;
 				T result = caseRegExMatcher(regExMatcher);
 				if (result == null) result = caseSingleReferenceValueConstraint(regExMatcher);
@@ -469,7 +469,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.CASE_SENSITIVE_CONSTRAINT: {
+			case StructurePackage.CASE_SENSITIVE_CONSTRAINT: {
 				CaseSensitiveConstraint caseSensitiveConstraint = (CaseSensitiveConstraint)theEObject;
 				T result = caseCaseSensitiveConstraint(caseSensitiveConstraint);
 				if (result == null) result = caseSingleReferenceValueConstraint(caseSensitiveConstraint);
@@ -480,7 +480,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.RANGE_CONSTRAINT: {
+			case StructurePackage.RANGE_CONSTRAINT: {
 				RangeConstraint rangeConstraint = (RangeConstraint)theEObject;
 				T result = caseRangeConstraint(rangeConstraint);
 				if (result == null) result = caseMultipleReferencesValueConstraint(rangeConstraint);
@@ -489,7 +489,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT: {
+			case StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT: {
 				MultipleReferencesValueConstraint multipleReferencesValueConstraint = (MultipleReferencesValueConstraint)theEObject;
 				T result = caseMultipleReferencesValueConstraint(multipleReferencesValueConstraint);
 				if (result == null) result = caseValueConstraint(multipleReferencesValueConstraint);
@@ -497,7 +497,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.INSTANCE_POINTER: {
+			case StructurePackage.INSTANCE_POINTER: {
 				InstancePointer instancePointer = (InstancePointer)theEObject;
 				T result = caseInstancePointer(instancePointer);
 				if (result == null) result = caseExpressionHint(instancePointer);
@@ -505,7 +505,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.INSTANCE_POINTER_SOURCE_INTERFACE: {
+			case StructurePackage.INSTANCE_POINTER_SOURCE_INTERFACE: {
 				InstancePointerSourceInterface instancePointerSourceInterface = (InstancePointerSourceInterface)theEObject;
 				T result = caseInstancePointerSourceInterface(instancePointerSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(instancePointerSourceInterface);
@@ -513,7 +513,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.INSTANCE_POINTER_SOURCE_ELEMENT: {
+			case StructurePackage.INSTANCE_POINTER_SOURCE_ELEMENT: {
 				InstancePointerSourceElement instancePointerSourceElement = (InstancePointerSourceElement)theEObject;
 				T result = caseInstancePointerSourceElement(instancePointerSourceElement);
 				if (result == null) result = caseLocalModifiedAttributeElementType(instancePointerSourceElement);
@@ -524,7 +524,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: {
+			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: {
 				InstancePointerExternalSourceElement instancePointerExternalSourceElement = (InstancePointerExternalSourceElement)theEObject;
 				T result = caseInstancePointerExternalSourceElement(instancePointerExternalSourceElement);
 				if (result == null) result = caseExternalModifiedAttributeElementType(instancePointerExternalSourceElement);
@@ -535,7 +535,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.RANGE_BOUND: {
+			case StructurePackage.RANGE_BOUND: {
 				RangeBound rangeBound = (RangeBound)theEObject;
 				T result = caseRangeBound(rangeBound);
 				if (result == null) result = caseExpressionHint(rangeBound);
@@ -543,7 +543,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT: {
+			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT: {
 				SingleReferenceValueConstraint singleReferenceValueConstraint = (SingleReferenceValueConstraint)theEObject;
 				T result = caseSingleReferenceValueConstraint(singleReferenceValueConstraint);
 				if (result == null) result = caseValueConstraint(singleReferenceValueConstraint);
@@ -553,7 +553,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.VALUE_CONSTRAINT_SOURCE_INTERFACE: {
+			case StructurePackage.VALUE_CONSTRAINT_SOURCE_INTERFACE: {
 				ValueConstraintSourceInterface valueConstraintSourceInterface = (ValueConstraintSourceInterface)theEObject;
 				T result = caseValueConstraintSourceInterface(valueConstraintSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintSourceInterface);
@@ -561,7 +561,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: {
+			case StructurePackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: {
 				ValueConstraintSourceElement valueConstraintSourceElement = (ValueConstraintSourceElement)theEObject;
 				T result = caseValueConstraintSourceElement(valueConstraintSourceElement);
 				if (result == null) result = caseLocalModifiedAttributeElementType(valueConstraintSourceElement);
@@ -572,7 +572,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: {
+			case StructurePackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: {
 				ValueConstraintExternalSourceElement valueConstraintExternalSourceElement = (ValueConstraintExternalSourceElement)theEObject;
 				T result = caseValueConstraintExternalSourceElement(valueConstraintExternalSourceElement);
 				if (result == null) result = caseExternalModifiedAttributeElementType(valueConstraintExternalSourceElement);

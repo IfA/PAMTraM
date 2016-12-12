@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.structure.EndingMatcher;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.ValueConstraintType;
 
 /**
@@ -58,7 +58,7 @@ public class EndingMatcherImpl extends SingleReferenceValueConstraintImpl implem
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.ENDING_MATCHER;
+		return StructurePackage.Literals.ENDING_MATCHER;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class EndingMatcherImpl extends SingleReferenceValueConstraintImpl implem
 		boolean oldCaseSensitive = caseSensitive;
 		caseSensitive = newCaseSensitive;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ENDING_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.ENDING_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class EndingMatcherImpl extends SingleReferenceValueConstraintImpl implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.ENDING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.ENDING_MATCHER__CASE_SENSITIVE:
 				return isCaseSensitive();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -116,7 +116,7 @@ public class EndingMatcherImpl extends SingleReferenceValueConstraintImpl implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.ENDING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.ENDING_MATCHER__CASE_SENSITIVE:
 				setCaseSensitive((Boolean)newValue);
 				return;
 		}
@@ -131,7 +131,7 @@ public class EndingMatcherImpl extends SingleReferenceValueConstraintImpl implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ENDING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.ENDING_MATCHER__CASE_SENSITIVE:
 				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
 				return;
 		}
@@ -146,7 +146,7 @@ public class EndingMatcherImpl extends SingleReferenceValueConstraintImpl implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.ENDING_MATCHER__CASE_SENSITIVE:
+			case StructurePackage.ENDING_MATCHER__CASE_SENSITIVE:
 				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

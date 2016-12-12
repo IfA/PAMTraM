@@ -4,7 +4,7 @@ package pamtram.structure.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
@@ -34,7 +34,7 @@ public abstract class SourceSectionReferenceImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.SOURCE_SECTION_REFERENCE;
+		return StructurePackage.Literals.SOURCE_SECTION_REFERENCE;
 	}
 
 } // SourceSectionReferenceImpl

@@ -10,7 +10,7 @@ import pamtram.mapping.ExternalModifiedAttributeElementType;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getInstancePointerExternalSourceElement()
+ * @see pamtram.structure.StructurePackage#getInstancePointerExternalSourceElement()
  * @model
  * @generated
  */

@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.structure.Attribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
@@ -60,7 +60,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE;
+		return StructurePackage.Literals.NON_CONTAINMENT_REFERENCE;
 	}
 
 	/**
@@ -71,7 +71,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public EList<C> getValue() {
 		if (value == null) {
-			value = new EObjectResolvingEList<C>(pamtram.structure.Class.class, this, MetamodelPackage.NON_CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectResolvingEList<C>(pamtram.structure.Class.class, this, StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE);
 		}
 		return value;
 	}
@@ -95,7 +95,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 					StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.NON_CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,
 							errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.REFERENCE__EREFERENCE }));
+					new Object[] { this, StructurePackage.Literals.REFERENCE__EREFERENCE }));
 		
 		}
 		
@@ -110,7 +110,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -125,7 +125,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE:
 				getValue().clear();
 				getValue().addAll((Collection<? extends C>)newValue);
 				return;
@@ -141,7 +141,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE:
 				getValue().clear();
 				return;
 		}
@@ -156,7 +156,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE__VALUE:
+			case StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE:
 				return value != null && !value.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -171,7 +171,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
 				return validateEReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 
 import pamtram.structure.Attribute;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.Reference;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
@@ -39,7 +39,7 @@ public class TargetSectionClassImpl extends ClassImpl<TargetSection, TargetSecti
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.TARGET_SECTION_CLASS;
+		return StructurePackage.Literals.TARGET_SECTION_CLASS;
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class TargetSectionClassImpl extends ClassImpl<TargetSection, TargetSecti
 	@Override
 	public EList<TargetSectionReference> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentWithInverseEList<TargetSectionReference>(TargetSectionReference.class, this, MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES, MetamodelPackage.REFERENCE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Reference.class; } };
+			references = new EObjectContainmentWithInverseEList<TargetSectionReference>(TargetSectionReference.class, this, StructurePackage.TARGET_SECTION_CLASS__REFERENCES, StructurePackage.REFERENCE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Reference.class; } };
 		}
 		return references;
 	}
@@ -76,7 +76,7 @@ public class TargetSectionClassImpl extends ClassImpl<TargetSection, TargetSecti
 	@Override
 	public EList<TargetSectionAttribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<TargetSectionAttribute>(TargetSectionAttribute.class, this, MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES, MetamodelPackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
+			attributes = new EObjectContainmentWithInverseEList<TargetSectionAttribute>(TargetSectionAttribute.class, this, StructurePackage.TARGET_SECTION_CLASS__ATTRIBUTES, StructurePackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
 		}
 		return attributes;
 	}

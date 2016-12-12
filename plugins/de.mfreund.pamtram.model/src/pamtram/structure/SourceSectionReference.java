@@ -7,7 +7,7 @@ package pamtram.structure;
  * end-user-doc -->
  *
  *
- * @see pamtram.structure.MetamodelPackage#getSourceSectionReference()
+ * @see pamtram.structure.StructurePackage#getSourceSectionReference()
  * @model abstract="true"
  * @generated
  */

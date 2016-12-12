@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.MetamodelPackage;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.util.StructureValidator;
 
@@ -59,7 +59,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 	@Override
 	protected EClass eStaticClass() {
 
-		return MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE;
+		return StructurePackage.Literals.META_MODEL_SECTION_REFERENCE;
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 
 		if (this.value == null) {
 			this.value = new EObjectResolvingEList<>(SourceSectionClass.class, this,
-					MetamodelPackage.META_MODEL_SECTION_REFERENCE__VALUE);
+					StructurePackage.META_MODEL_SECTION_REFERENCE__VALUE);
 		}
 		return this.value;
 	}
@@ -98,7 +98,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 
 			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
 					StructureValidator.META_MODEL_SECTION_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE, errorMessage,
-					new Object[] { this, MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE }));
+					new Object[] { this, StructurePackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE }));
 
 		}
 
@@ -114,7 +114,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 
 		switch (featureID) {
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE__VALUE:
+			case StructurePackage.META_MODEL_SECTION_REFERENCE__VALUE:
 				return this.getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -130,7 +130,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 	public void eSet(int featureID, Object newValue) {
 
 		switch (featureID) {
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE__VALUE:
+			case StructurePackage.META_MODEL_SECTION_REFERENCE__VALUE:
 				this.getValue().clear();
 				this.getValue().addAll((Collection<? extends SourceSectionClass>) newValue);
 				return;
@@ -147,7 +147,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 	public void eUnset(int featureID) {
 
 		switch (featureID) {
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE__VALUE:
+			case StructurePackage.META_MODEL_SECTION_REFERENCE__VALUE:
 				this.getValue().clear();
 				return;
 		}
@@ -163,7 +163,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 	public boolean eIsSet(int featureID) {
 
 		switch (featureID) {
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE__VALUE:
+			case StructurePackage.META_MODEL_SECTION_REFERENCE__VALUE:
 				return this.value != null && !this.value.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -178,7 +178,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 
 		switch (operationID) {
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.META_MODEL_SECTION_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
 				return this.validateValuesMatchReferenceType((DiagnosticChain) arguments.get(0),
 						(Map<?, ?>) arguments.get(1));
 		}

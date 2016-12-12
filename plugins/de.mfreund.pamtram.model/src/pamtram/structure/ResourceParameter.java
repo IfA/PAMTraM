@@ -17,7 +17,7 @@ import pamtram.NamedElement;
  *   <li>{@link pamtram.structure.ResourceParameter#getOriginalParameter <em>Original Parameter</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.MetamodelPackage#getResourceParameter()
+ * @see pamtram.structure.StructurePackage#getResourceParameter()
  * @model
  * @generated
  */
@@ -32,7 +32,7 @@ public interface ResourceParameter extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute</em>' containment reference.
 	 * @see #setAttribute(VirtualTargetSectionAttribute)
-	 * @see pamtram.structure.MetamodelPackage#getResourceParameter_Attribute()
+	 * @see pamtram.structure.StructurePackage#getResourceParameter_Attribute()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -58,7 +58,7 @@ public interface ResourceParameter extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Original Parameter</em>' reference.
 	 * @see #setOriginalParameter(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)
-	 * @see pamtram.structure.MetamodelPackage#getResourceParameter_OriginalParameter()
+	 * @see pamtram.structure.StructurePackage#getResourceParameter_OriginalParameter()
 	 * @model required="true"
 	 * @generated
 	 */

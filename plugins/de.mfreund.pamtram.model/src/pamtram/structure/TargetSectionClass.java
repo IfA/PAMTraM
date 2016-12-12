@@ -12,5 +12,5 @@ package pamtram.structure;
  * @model
  * @generated
  */
-public interface TargetSectionClass extends pamtram.structure.Class<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
+public interface TargetSectionClass extends pamtram.structure.generic.Class<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 } // TargetSectionClass

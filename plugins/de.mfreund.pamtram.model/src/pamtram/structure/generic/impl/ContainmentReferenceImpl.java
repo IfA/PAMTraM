@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import pamtram.structure.Attribute;
-import pamtram.structure.ContainmentReference;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -31,12 +31,12 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.ContainmentReferenceImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ContainmentReferenceImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements ContainmentReference<S, C, R, A> {
+public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements ContainmentReference<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public EList<C> getValue() {
 		if (value == null) {
-			value = new EObjectContainmentEList<C>(pamtram.structure.Class.class, this, StructurePackage.CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectContainmentEList<C>(pamtram.structure.generic.Class.class, this, StructurePackage.CONTAINMENT_REFERENCE__VALUE);
 		}
 		return value;
 	}

@@ -9,6 +9,7 @@ import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionReference;
+import pamtram.structure.generic.impl.ReferenceImpl;
 
 /**
  * <!-- begin-user-doc -->

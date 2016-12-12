@@ -1,9 +1,10 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.generic;
 
 import pamtram.NamedElement;
 import pamtram.SectionModel;
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +16,7 @@ import pamtram.SectionModel;
  * @model abstract="true"
  * @generated
  */
-public interface MetaModelElement<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement {
+public interface MetaModelElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement {
 
 	/**
 	 * <!-- begin-user-doc -->

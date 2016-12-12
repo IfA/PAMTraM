@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import pamtram.structure.Attribute;
-import pamtram.structure.Class;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -31,13 +31,13 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.ReferenceImpl#getEReference <em>EReference</em>}</li>
- *   <li>{@link pamtram.structure.impl.ReferenceImpl#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ReferenceImpl#getEReference <em>EReference</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ReferenceImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends MetaModelElementImpl<S, C, R, A> implements Reference<S, C, R, A> {
 
 	/**
@@ -131,7 +131,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public boolean validateEReferenceMatchesParentEClass(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof pamtram.structure.Class)) {
+		if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof pamtram.structure.generic.Class)) {
 			return true;
 		}
 		
@@ -214,7 +214,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case StructurePackage.REFERENCE__OWNING_CLASS:
-				return eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__REFERENCES, pamtram.structure.Class.class, msgs);
+				return eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__REFERENCES, pamtram.structure.generic.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}

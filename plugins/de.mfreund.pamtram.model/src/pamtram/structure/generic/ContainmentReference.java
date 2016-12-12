@@ -1,10 +1,12 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.generic;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+
+import pamtram.structure.StructurePackage;
 
 
 /**
@@ -16,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.ContainmentReference#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.structure.generic.ContainmentReference#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getContainmentReference()
@@ -24,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceIsContainment'"
  * @generated
  */
-public interface ContainmentReference<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Reference<S, C, R, A> {
+public interface ContainmentReference<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Reference<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference list.

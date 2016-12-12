@@ -2,6 +2,8 @@
  */
 package pamtram.structure;
 
+import pamtram.structure.generic.Reference;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Target Section Reference</b></em>'.

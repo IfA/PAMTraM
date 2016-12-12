@@ -1,14 +1,14 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.generic.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.structure.Attribute;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
-import pamtram.structure.VirtualAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
+import pamtram.structure.generic.VirtualAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +17,7 @@ import pamtram.structure.VirtualAttribute;
  *
  * @generated
  */
-public abstract class VirtualAttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends AttributeImpl<S, C, R, A> implements VirtualAttribute<S, C, R, A> {
+public abstract class VirtualAttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends AttributeImpl<S, C, R, A> implements VirtualAttribute<S, C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,11 +1,14 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.generic;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+
+import pamtram.structure.CardinalityType;
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,11 +19,11 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.Class#getEClass <em>EClass</em>}</li>
- *   <li>{@link pamtram.structure.Class#getCardinality <em>Cardinality</em>}</li>
- *   <li>{@link pamtram.structure.Class#getReferences <em>References</em>}</li>
- *   <li>{@link pamtram.structure.Class#getContainer <em>Container</em>}</li>
- *   <li>{@link pamtram.structure.Class#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getEClass <em>EClass</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getCardinality <em>Cardinality</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getReferences <em>References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getContainer <em>Container</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getAttributes <em>Attributes</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getClass_()
@@ -46,7 +49,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	EClass getEClass();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.Class#getEClass <em>EClass</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.generic.Class#getEClass <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>EClass</em>' reference.
@@ -75,7 +78,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	CardinalityType getCardinality();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.Class#getCardinality <em>Cardinality</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.structure.generic.Class#getCardinality <em>Cardinality</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cardinality</em>' attribute.
@@ -87,7 +90,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 
 	/**
 	 * Returns the value of the '<em><b>References</b></em>' containment reference list.
-	 * It is bidirectional and its opposite is '{@link pamtram.structure.Reference#getOwningClass <em>Owning Class</em>}'.
+	 * It is bidirectional and its opposite is '{@link pamtram.structure.generic.Reference#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>References</em>' containment reference list isn't clear,
@@ -96,7 +99,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>References</em>' containment reference list.
 	 * @see pamtram.structure.StructurePackage#getClass_References()
-	 * @see pamtram.structure.Reference#getOwningClass
+	 * @see pamtram.structure.generic.Reference#getOwningClass
 	 * @model opposite="owningClass" containment="true"
 	 * @generated
 	 */
@@ -119,7 +122,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	C getContainer();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.Class#getContainer <em>Container</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.generic.Class#getContainer <em>Container</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Container</em>' reference.
@@ -130,7 +133,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
-	 * It is bidirectional and its opposite is '{@link pamtram.structure.Attribute#getOwningClass <em>Owning Class</em>}'.
+	 * It is bidirectional and its opposite is '{@link pamtram.structure.generic.Attribute#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
@@ -139,7 +142,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see pamtram.structure.StructurePackage#getClass_Attributes()
-	 * @see pamtram.structure.Attribute#getOwningClass
+	 * @see pamtram.structure.generic.Attribute#getOwningClass
 	 * @model opposite="owningClass" containment="true"
 	 * @generated
 	 */

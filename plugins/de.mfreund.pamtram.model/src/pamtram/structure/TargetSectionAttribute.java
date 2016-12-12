@@ -2,8 +2,7 @@
  */
 package pamtram.structure;
 
-
-
+import pamtram.structure.generic.Attribute;
 
 /**
  * <!-- begin-user-doc -->

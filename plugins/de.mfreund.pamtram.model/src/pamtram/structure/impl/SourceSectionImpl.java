@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingType;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Section;
 import pamtram.structure.SourceSection;
 import pamtram.structure.util.StructureValidator;
 

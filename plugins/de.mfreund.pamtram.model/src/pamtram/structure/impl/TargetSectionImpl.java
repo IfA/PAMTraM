@@ -23,8 +23,8 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.structure.FileAttribute;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Section;
 import pamtram.structure.TargetSection;
+import pamtram.structure.generic.Section;
 import pamtram.structure.util.StructureValidator;
 
 /**

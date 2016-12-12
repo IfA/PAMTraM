@@ -12,15 +12,12 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.structure.ActualAttribute;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.Attribute;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.BeginningMatcher;
 import pamtram.structure.CaseSensitiveConstraint;
 import pamtram.structure.ContainerParameter;
-import pamtram.structure.ContainmentReference;
 import pamtram.structure.EndingMatcher;
 import pamtram.structure.EqualityMatcher;
 import pamtram.structure.ExternalReferenceParameter;
@@ -31,17 +28,13 @@ import pamtram.structure.InstancePointerSourceElement;
 import pamtram.structure.InstancePointerSourceInterface;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetaModelElement;
 import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
-import pamtram.structure.NonContainmentReference;
 import pamtram.structure.RangeBound;
 import pamtram.structure.RangeConstraint;
-import pamtram.structure.Reference;
 import pamtram.structure.RegExMatcher;
 import pamtram.structure.ResourceParameter;
-import pamtram.structure.Section;
 import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
@@ -59,8 +52,15 @@ import pamtram.structure.ValueConstraint;
 import pamtram.structure.ValueConstraintExternalSourceElement;
 import pamtram.structure.ValueConstraintSourceElement;
 import pamtram.structure.ValueConstraintSourceInterface;
-import pamtram.structure.VirtualAttribute;
 import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
+import pamtram.structure.generic.VirtualAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -127,7 +127,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case StructurePackage.CLASS: {
-				pamtram.structure.Class<?, ?, ?, ?> class_ = (pamtram.structure.Class<?, ?, ?, ?>)theEObject;
+				pamtram.structure.generic.Class<?, ?, ?, ?> class_ = (pamtram.structure.generic.Class<?, ?, ?, ?>)theEObject;
 				T result = caseClass(class_);
 				if (result == null) result = caseMetaModelElement(class_);
 				if (result == null) result = caseNamedElement(class_);
@@ -598,7 +598,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseMetaModelElement(MetaModelElement<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseMetaModelElement(MetaModelElement<S, C, R, A> object) {
 		return null;
 	}
 
@@ -613,7 +613,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseClass(pamtram.structure.Class<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseClass(pamtram.structure.generic.Class<S, C, R, A> object) {
 		return null;
 	}
 
@@ -628,7 +628,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseSection(Section<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseSection(Section<S, C, R, A> object) {
 		return null;
 	}
 
@@ -808,7 +808,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseReference(Reference<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseReference(Reference<S, C, R, A> object) {
 		return null;
 	}
 
@@ -823,7 +823,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseContainmentReference(ContainmentReference<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseContainmentReference(ContainmentReference<S, C, R, A> object) {
 		return null;
 	}
 
@@ -838,7 +838,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
 		return null;
 	}
 
@@ -943,7 +943,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseAttribute(Attribute<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseAttribute(Attribute<S, C, R, A> object) {
 		return null;
 	}
 
@@ -958,7 +958,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseActualAttribute(ActualAttribute<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseActualAttribute(ActualAttribute<S, C, R, A> object) {
 		return null;
 	}
 
@@ -973,7 +973,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseVirtualAttribute(VirtualAttribute<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseVirtualAttribute(VirtualAttribute<S, C, R, A> object) {
 		return null;
 	}
 
@@ -1393,7 +1393,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 
@@ -1408,7 +1408,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 
@@ -1423,7 +1423,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 

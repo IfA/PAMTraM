@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -13,11 +13,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import pamtram.structure.Attribute;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.NonContainmentReference;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -28,12 +28,12 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.NonContainmentReferenceImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.NonContainmentReferenceImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements NonContainmentReference<S, C, R, A> {
+public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements NonContainmentReference<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -71,7 +71,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public EList<C> getValue() {
 		if (value == null) {
-			value = new EObjectResolvingEList<C>(pamtram.structure.Class.class, this, StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectResolvingEList<C>(pamtram.structure.generic.Class.class, this, StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE);
 		}
 		return value;
 	}

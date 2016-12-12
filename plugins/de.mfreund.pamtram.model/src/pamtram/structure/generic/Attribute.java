@@ -1,7 +1,8 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.generic;
 
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,18 +13,18 @@ package pamtram.structure;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.Attribute#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Attribute#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getAttribute()
  * @model abstract="true"
  * @generated
  */
-public interface Attribute<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElement<S, C, R, A> {
+public interface Attribute<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElement<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link pamtram.structure.Class#getAttributes <em>Attributes</em>}'.
+	 * It is bidirectional and its opposite is '{@link pamtram.structure.generic.Class#getAttributes <em>Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
@@ -32,7 +33,7 @@ public interface Attribute<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
 	 * @see pamtram.structure.StructurePackage#getAttribute_OwningClass()
-	 * @see pamtram.structure.Class#getAttributes
+	 * @see pamtram.structure.generic.Class#getAttributes
 	 * @model opposite="attributes" transient="false" changeable="false"
 	 * @generated
 	 */

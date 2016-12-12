@@ -12,10 +12,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.Attribute;
 import pamtram.structure.InstancePointer;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import pamtram.structure.Section;
  *
  * @generated
  */
-public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementTypeImpl<S, C, R, A> implements GlobalModifiedAttributeElementType<S, C, R, A> {
+public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementTypeImpl<S, C, R, A> implements GlobalModifiedAttributeElementType<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getInstanceSelector() <em>Instance Selector</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

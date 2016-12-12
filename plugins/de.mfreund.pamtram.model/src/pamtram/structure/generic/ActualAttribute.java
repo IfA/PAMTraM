@@ -1,10 +1,12 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.generic;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EAttribute;
+
+import pamtram.structure.StructurePackage;
 
 
 /**
@@ -16,7 +18,7 @@ import org.eclipse.emf.ecore.EAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.ActualAttribute#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.structure.generic.ActualAttribute#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getActualAttribute()
@@ -24,7 +26,7 @@ import org.eclipse.emf.ecore.EAttribute;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
  * @generated
  */
-public interface ActualAttribute<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Attribute<S, C, R, A> {
+public interface ActualAttribute<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Attribute<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
@@ -43,7 +45,7 @@ public interface ActualAttribute<S extends Section<S, C, R, A>, C extends pamtra
 	EAttribute getAttribute();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.ActualAttribute#getAttribute <em>Attribute</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.generic.ActualAttribute#getAttribute <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Attribute</em>' reference.

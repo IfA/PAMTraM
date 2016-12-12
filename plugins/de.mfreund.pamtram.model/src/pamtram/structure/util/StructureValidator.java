@@ -11,16 +11,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
 import pamtram.mapping.util.MappingValidator;
-import pamtram.structure.ActualAttribute;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.Attribute;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.BeginningMatcher;
 import pamtram.structure.CardinalityType;
 import pamtram.structure.CaseSensitiveConstraint;
 import pamtram.structure.ContainerParameter;
-import pamtram.structure.ContainmentReference;
 import pamtram.structure.EndingMatcher;
 import pamtram.structure.EqualityMatcher;
 import pamtram.structure.ExternalReferenceParameter;
@@ -32,17 +29,13 @@ import pamtram.structure.InstancePointerSourceElement;
 import pamtram.structure.InstancePointerSourceInterface;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetaModelElement;
 import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
-import pamtram.structure.NonContainmentReference;
 import pamtram.structure.RangeBound;
 import pamtram.structure.RangeConstraint;
-import pamtram.structure.Reference;
 import pamtram.structure.RegExMatcher;
 import pamtram.structure.ResourceParameter;
-import pamtram.structure.Section;
 import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
@@ -61,8 +54,15 @@ import pamtram.structure.ValueConstraintExternalSourceElement;
 import pamtram.structure.ValueConstraintSourceElement;
 import pamtram.structure.ValueConstraintSourceInterface;
 import pamtram.structure.ValueConstraintType;
-import pamtram.structure.VirtualAttribute;
 import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
+import pamtram.structure.generic.VirtualAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -292,7 +292,7 @@ public class StructureValidator extends EObjectValidator {
 			case StructurePackage.META_MODEL_ELEMENT:
 				return validateMetaModelElement((MetaModelElement<?, ?, ?, ?>)value, diagnostics, context);
 			case StructurePackage.CLASS:
-				return validateClass((pamtram.structure.Class<?, ?, ?, ?>)value, diagnostics, context);
+				return validateClass((pamtram.structure.generic.Class<?, ?, ?, ?>)value, diagnostics, context);
 			case StructurePackage.SECTION:
 				return validateSection((Section<?, ?, ?, ?>)value, diagnostics, context);
 			case StructurePackage.SOURCE_SECTION:
@@ -412,7 +412,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClass(pamtram.structure.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateClass(pamtram.structure.generic.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(class_, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(class_, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(class_, diagnostics, context);
@@ -437,7 +437,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClass_containerIsValid(pamtram.structure.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateClass_containerIsValid(pamtram.structure.generic.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -465,7 +465,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClass_validateEClassMatchesParentEReference(pamtram.structure.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateClass_validateEClassMatchesParentEReference(pamtram.structure.generic.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return class_.validateEClassMatchesParentEReference(diagnostics, context);
 	}
 
@@ -475,7 +475,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClass_validateCardinalityIsValid(pamtram.structure.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateClass_validateCardinalityIsValid(pamtram.structure.generic.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return class_.validateCardinalityIsValid(diagnostics, context);
 	}
 
@@ -485,7 +485,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClass_validateContainerIsValid(pamtram.structure.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateClass_validateContainerIsValid(pamtram.structure.generic.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return class_.validateContainerIsValid(diagnostics, context);
 	}
 
@@ -495,7 +495,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClass_eClassMatchesParentEReference(pamtram.structure.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateClass_eClassMatchesParentEReference(pamtram.structure.generic.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -523,7 +523,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClass_variableCardinalityIsValid(pamtram.structure.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateClass_variableCardinalityIsValid(pamtram.structure.generic.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message

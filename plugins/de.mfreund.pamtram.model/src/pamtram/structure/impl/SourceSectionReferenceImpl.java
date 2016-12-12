@@ -5,6 +5,7 @@ package pamtram.structure.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.structure.StructurePackage;
+import pamtram.structure.generic.impl.ReferenceImpl;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;

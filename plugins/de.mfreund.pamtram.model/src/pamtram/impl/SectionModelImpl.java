@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
-import pamtram.structure.Attribute;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import pamtram.structure.Section;
  *
  * @generated
  */
-public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements SectionModel<S, C, R, A> {
+public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements SectionModel<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getMetaModelPackage() <em>Meta Model Package</em>}' reference.
 	 * <!-- begin-user-doc -->

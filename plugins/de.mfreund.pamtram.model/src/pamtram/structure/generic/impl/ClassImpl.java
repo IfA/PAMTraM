@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import pamtram.structure.Attribute;
 import pamtram.structure.CardinalityType;
-import pamtram.structure.ContainmentReference;
 import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.NonContainmentReference;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -37,16 +37,16 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.ClassImpl#getEClass <em>EClass</em>}</li>
- *   <li>{@link pamtram.structure.impl.ClassImpl#getCardinality <em>Cardinality</em>}</li>
- *   <li>{@link pamtram.structure.impl.ClassImpl#getReferences <em>References</em>}</li>
- *   <li>{@link pamtram.structure.impl.ClassImpl#getContainer <em>Container</em>}</li>
- *   <li>{@link pamtram.structure.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getEClass <em>EClass</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getCardinality <em>Cardinality</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getReferences <em>References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElementImpl<S, C, R, A> implements pamtram.structure.Class<S, C, R, A> {
+public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElementImpl<S, C, R, A> implements pamtram.structure.generic.Class<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->

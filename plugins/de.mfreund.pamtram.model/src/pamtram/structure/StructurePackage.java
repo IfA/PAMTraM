@@ -63,10 +63,10 @@ public interface StructurePackage extends EPackage {
 	StructurePackage eINSTANCE = pamtram.structure.impl.StructurePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.MetaModelElementImpl <em>Meta Model Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.MetaModelElementImpl <em>Meta Model Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.MetaModelElementImpl
+	 * @see pamtram.structure.generic.impl.MetaModelElementImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelElement()
 	 * @generated
 	 */
@@ -127,10 +127,10 @@ public interface StructurePackage extends EPackage {
 	int META_MODEL_ELEMENT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ClassImpl <em>Class</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.ClassImpl <em>Class</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ClassImpl
+	 * @see pamtram.structure.generic.impl.ClassImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getClass_()
 	 * @generated
 	 */
@@ -299,10 +299,10 @@ public interface StructurePackage extends EPackage {
 	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SectionImpl <em>Section</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.SectionImpl <em>Section</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SectionImpl
+	 * @see pamtram.structure.generic.impl.SectionImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSection()
 	 * @generated
 	 */
@@ -1362,30 +1362,30 @@ public interface StructurePackage extends EPackage {
 	int LIBRARY_ENTRY = 13;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ReferenceImpl <em>Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.ReferenceImpl <em>Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ReferenceImpl
+	 * @see pamtram.structure.generic.impl.ReferenceImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getReference()
 	 * @generated
 	 */
 	int REFERENCE = 14;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ContainmentReferenceImpl
+	 * @see pamtram.structure.generic.impl.ContainmentReferenceImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getContainmentReference()
 	 * @generated
 	 */
 	int CONTAINMENT_REFERENCE = 15;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.NonContainmentReferenceImpl <em>Non Containment Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.NonContainmentReferenceImpl <em>Non Containment Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.NonContainmentReferenceImpl
+	 * @see pamtram.structure.generic.impl.NonContainmentReferenceImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getNonContainmentReference()
 	 * @generated
 	 */
@@ -1452,10 +1452,10 @@ public interface StructurePackage extends EPackage {
 	int META_MODEL_SECTION_REFERENCE = 22;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.AttributeImpl <em>Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.AttributeImpl <em>Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.AttributeImpl
+	 * @see pamtram.structure.generic.impl.AttributeImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getAttribute()
 	 * @generated
 	 */
@@ -3151,10 +3151,10 @@ public interface StructurePackage extends EPackage {
 	int META_MODEL_SECTION_REFERENCE_OPERATION_COUNT = SOURCE_SECTION_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ActualAttributeImpl
+	 * @see pamtram.structure.generic.impl.ActualAttributeImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getActualAttribute()
 	 * @generated
 	 */
@@ -3242,10 +3242,10 @@ public interface StructurePackage extends EPackage {
 	int ACTUAL_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.VirtualAttributeImpl
+	 * @see pamtram.structure.generic.impl.VirtualAttributeImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualAttribute()
 	 * @generated
 	 */
@@ -5364,228 +5364,228 @@ public interface StructurePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.MetaModelElement <em>Meta Model Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.MetaModelElement <em>Meta Model Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Meta Model Element</em>'.
-	 * @see pamtram.structure.MetaModelElement
+	 * @see pamtram.structure.generic.MetaModelElement
 	 * @generated
 	 */
 	EClass getMetaModelElement();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.MetaModelElement#getContainingSection() <em>Get Containing Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.MetaModelElement#getContainingSection() <em>Get Containing Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Containing Section</em>' operation.
-	 * @see pamtram.structure.MetaModelElement#getContainingSection()
+	 * @see pamtram.structure.generic.MetaModelElement#getContainingSection()
 	 * @generated
 	 */
 	EOperation getMetaModelElement__GetContainingSection();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.MetaModelElement#getContainingSectionModel() <em>Get Containing Section Model</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.MetaModelElement#getContainingSectionModel() <em>Get Containing Section Model</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Containing Section Model</em>' operation.
-	 * @see pamtram.structure.MetaModelElement#getContainingSectionModel()
+	 * @see pamtram.structure.generic.MetaModelElement#getContainingSectionModel()
 	 * @generated
 	 */
 	EOperation getMetaModelElement__GetContainingSectionModel();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.MetaModelElement#isLibraryEntry() <em>Is Library Entry</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.MetaModelElement#isLibraryEntry() <em>Is Library Entry</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Is Library Entry</em>' operation.
-	 * @see pamtram.structure.MetaModelElement#isLibraryEntry()
+	 * @see pamtram.structure.generic.MetaModelElement#isLibraryEntry()
 	 * @generated
 	 */
 	EOperation getMetaModelElement__IsLibraryEntry();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.Class <em>Class</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.Class <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Class</em>'.
-	 * @see pamtram.structure.Class
+	 * @see pamtram.structure.generic.Class
 	 * @generated
 	 */
 	EClass getClass_();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.Class#getEClass <em>EClass</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.generic.Class#getEClass <em>EClass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>EClass</em>'.
-	 * @see pamtram.structure.Class#getEClass()
+	 * @see pamtram.structure.generic.Class#getEClass()
 	 * @see #getClass_()
 	 * @generated
 	 */
 	EReference getClass_EClass();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.Class#getCardinality <em>Cardinality</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.structure.generic.Class#getCardinality <em>Cardinality</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Cardinality</em>'.
-	 * @see pamtram.structure.Class#getCardinality()
+	 * @see pamtram.structure.generic.Class#getCardinality()
 	 * @see #getClass_()
 	 * @generated
 	 */
 	EAttribute getClass_Cardinality();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.Class#getReferences <em>References</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.generic.Class#getReferences <em>References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>References</em>'.
-	 * @see pamtram.structure.Class#getReferences()
+	 * @see pamtram.structure.generic.Class#getReferences()
 	 * @see #getClass_()
 	 * @generated
 	 */
 	EReference getClass_References();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.Class#getContainer <em>Container</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.generic.Class#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Container</em>'.
-	 * @see pamtram.structure.Class#getContainer()
+	 * @see pamtram.structure.generic.Class#getContainer()
 	 * @see #getClass_()
 	 * @generated
 	 */
 	EReference getClass_Container();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.Class#getAttributes <em>Attributes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.generic.Class#getAttributes <em>Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
-	 * @see pamtram.structure.Class#getAttributes()
+	 * @see pamtram.structure.generic.Class#getAttributes()
 	 * @see #getClass_()
 	 * @generated
 	 */
 	EReference getClass_Attributes();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Class#isContainerFor(pamtram.structure.Class) <em>Is Container For</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isContainerFor(pamtram.structure.generic.Class) <em>Is Container For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Is Container For</em>' operation.
-	 * @see pamtram.structure.Class#isContainerFor(pamtram.structure.Class)
+	 * @see pamtram.structure.generic.Class#isContainerFor(pamtram.structure.generic.Class)
 	 * @generated
 	 */
 	EOperation getClass__IsContainerFor__Class();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Class#isContainedIn(pamtram.structure.Class) <em>Is Contained In</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isContainedIn(pamtram.structure.generic.Class) <em>Is Contained In</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Is Contained In</em>' operation.
-	 * @see pamtram.structure.Class#isContainedIn(pamtram.structure.Class)
+	 * @see pamtram.structure.generic.Class#isContainedIn(pamtram.structure.generic.Class)
 	 * @generated
 	 */
 	EOperation getClass__IsContainedIn__Class();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Class#getOwningContainmentReference() <em>Get Owning Containment Reference</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#getOwningContainmentReference() <em>Get Owning Containment Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Owning Containment Reference</em>' operation.
-	 * @see pamtram.structure.Class#getOwningContainmentReference()
+	 * @see pamtram.structure.generic.Class#getOwningContainmentReference()
 	 * @generated
 	 */
 	EOperation getClass__GetOwningContainmentReference();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Class#isReferencedBy(pamtram.structure.Class, org.eclipse.emf.common.util.EList) <em>Is Referenced By</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isReferencedBy(pamtram.structure.generic.Class, org.eclipse.emf.common.util.EList) <em>Is Referenced By</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Is Referenced By</em>' operation.
-	 * @see pamtram.structure.Class#isReferencedBy(pamtram.structure.Class, org.eclipse.emf.common.util.EList)
+	 * @see pamtram.structure.generic.Class#isReferencedBy(pamtram.structure.generic.Class, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
 	EOperation getClass__IsReferencedBy__Class_EList();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Class#validateEClassMatchesParentEReference(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EClass Matches Parent EReference</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#validateEClassMatchesParentEReference(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EClass Matches Parent EReference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate EClass Matches Parent EReference</em>' operation.
-	 * @see pamtram.structure.Class#validateEClassMatchesParentEReference(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.Class#validateEClassMatchesParentEReference(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getClass__ValidateEClassMatchesParentEReference__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Class#validateCardinalityIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Cardinality Is Valid</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#validateCardinalityIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Cardinality Is Valid</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Cardinality Is Valid</em>' operation.
-	 * @see pamtram.structure.Class#validateCardinalityIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.Class#validateCardinalityIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getClass__ValidateCardinalityIsValid__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Class#validateContainerIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Container Is Valid</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#validateContainerIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Container Is Valid</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Container Is Valid</em>' operation.
-	 * @see pamtram.structure.Class#validateContainerIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.Class#validateContainerIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getClass__ValidateContainerIsValid__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.Section <em>Section</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.Section <em>Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Section</em>'.
-	 * @see pamtram.structure.Section
+	 * @see pamtram.structure.generic.Section
 	 * @generated
 	 */
 	EClass getSection();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.Section#isAbstract <em>Abstract</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.structure.generic.Section#isAbstract <em>Abstract</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Abstract</em>'.
-	 * @see pamtram.structure.Section#isAbstract()
+	 * @see pamtram.structure.generic.Section#isAbstract()
 	 * @see #getSection()
 	 * @generated
 	 */
 	EAttribute getSection_Abstract();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.structure.Section#getExtend <em>Extend</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Section#getExtend <em>Extend</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Extend</em>'.
-	 * @see pamtram.structure.Section#getExtend()
+	 * @see pamtram.structure.generic.Section#getExtend()
 	 * @see #getSection()
 	 * @generated
 	 */
 	EReference getSection_Extend();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Section#validateContainerMatchesExtendContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Container Matches Extend Container</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Section#validateContainerMatchesExtendContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Container Matches Extend Container</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Container Matches Extend Container</em>' operation.
-	 * @see pamtram.structure.Section#validateContainerMatchesExtendContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.Section#validateContainerMatchesExtendContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSection__ValidateContainerMatchesExtendContainer__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Section#validateExtendsValidSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Extends Valid Sections</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Section#validateExtendsValidSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Extends Valid Sections</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Extends Valid Sections</em>' operation.
-	 * @see pamtram.structure.Section#validateExtendsValidSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.Section#validateExtendsValidSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSection__ValidateExtendsValidSections__DiagnosticChain_Map();
@@ -5908,125 +5908,125 @@ public interface StructurePackage extends EPackage {
 	EReference getLibraryEntry_OriginalLibraryEntry();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.Reference <em>Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.Reference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Reference</em>'.
-	 * @see pamtram.structure.Reference
+	 * @see pamtram.structure.generic.Reference
 	 * @generated
 	 */
 	EClass getReference();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.Reference#getEReference <em>EReference</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.generic.Reference#getEReference <em>EReference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>EReference</em>'.
-	 * @see pamtram.structure.Reference#getEReference()
+	 * @see pamtram.structure.generic.Reference#getEReference()
 	 * @see #getReference()
 	 * @generated
 	 */
 	EReference getReference_EReference();
 
 	/**
-	 * Returns the meta object for the container reference '{@link pamtram.structure.Reference#getOwningClass <em>Owning Class</em>}'.
+	 * Returns the meta object for the container reference '{@link pamtram.structure.generic.Reference#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Owning Class</em>'.
-	 * @see pamtram.structure.Reference#getOwningClass()
+	 * @see pamtram.structure.generic.Reference#getOwningClass()
 	 * @see #getReference()
 	 * @generated
 	 */
 	EReference getReference_OwningClass();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Reference#validateEReferenceMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Matches Parent EClass</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Reference#validateEReferenceMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Matches Parent EClass</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate EReference Matches Parent EClass</em>' operation.
-	 * @see pamtram.structure.Reference#validateEReferenceMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.Reference#validateEReferenceMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Reference#getValuesGeneric() <em>Get Values Generic</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Reference#getValuesGeneric() <em>Get Values Generic</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Values Generic</em>' operation.
-	 * @see pamtram.structure.Reference#getValuesGeneric()
+	 * @see pamtram.structure.generic.Reference#getValuesGeneric()
 	 * @generated
 	 */
 	EOperation getReference__GetValuesGeneric();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.Reference#addValuesGeneric(org.eclipse.emf.common.util.EList) <em>Add Values Generic</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Reference#addValuesGeneric(org.eclipse.emf.common.util.EList) <em>Add Values Generic</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Add Values Generic</em>' operation.
-	 * @see pamtram.structure.Reference#addValuesGeneric(org.eclipse.emf.common.util.EList)
+	 * @see pamtram.structure.generic.Reference#addValuesGeneric(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
 	EOperation getReference__AddValuesGeneric__EList();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ContainmentReference <em>Containment Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.ContainmentReference <em>Containment Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Containment Reference</em>'.
-	 * @see pamtram.structure.ContainmentReference
+	 * @see pamtram.structure.generic.ContainmentReference
 	 * @generated
 	 */
 	EClass getContainmentReference();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.ContainmentReference#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.generic.ContainmentReference#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Value</em>'.
-	 * @see pamtram.structure.ContainmentReference#getValue()
+	 * @see pamtram.structure.generic.ContainmentReference#getValue()
 	 * @see #getContainmentReference()
 	 * @generated
 	 */
 	EReference getContainmentReference_Value();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.ContainmentReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Containment</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.ContainmentReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Containment</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate EReference Is Containment</em>' operation.
-	 * @see pamtram.structure.ContainmentReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.ContainmentReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.NonContainmentReference <em>Non Containment Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.NonContainmentReference <em>Non Containment Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Non Containment Reference</em>'.
-	 * @see pamtram.structure.NonContainmentReference
+	 * @see pamtram.structure.generic.NonContainmentReference
 	 * @generated
 	 */
 	EClass getNonContainmentReference();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.structure.NonContainmentReference#getValue <em>Value</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.NonContainmentReference#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Value</em>'.
-	 * @see pamtram.structure.NonContainmentReference#getValue()
+	 * @see pamtram.structure.generic.NonContainmentReference#getValue()
 	 * @see #getNonContainmentReference()
 	 * @generated
 	 */
 	EReference getNonContainmentReference_Value();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.NonContainmentReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Non Containment</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.NonContainmentReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Non Containment</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate EReference Is Non Containment</em>' operation.
-	 * @see pamtram.structure.NonContainmentReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.NonContainmentReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getNonContainmentReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
@@ -6113,63 +6113,63 @@ public interface StructurePackage extends EPackage {
 	EOperation getMetaModelSectionReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.Attribute <em>Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute</em>'.
-	 * @see pamtram.structure.Attribute
+	 * @see pamtram.structure.generic.Attribute
 	 * @generated
 	 */
 	EClass getAttribute();
 
 	/**
-	 * Returns the meta object for the container reference '{@link pamtram.structure.Attribute#getOwningClass <em>Owning Class</em>}'.
+	 * Returns the meta object for the container reference '{@link pamtram.structure.generic.Attribute#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Owning Class</em>'.
-	 * @see pamtram.structure.Attribute#getOwningClass()
+	 * @see pamtram.structure.generic.Attribute#getOwningClass()
 	 * @see #getAttribute()
 	 * @generated
 	 */
 	EReference getAttribute_OwningClass();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ActualAttribute <em>Actual Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.ActualAttribute <em>Actual Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Actual Attribute</em>'.
-	 * @see pamtram.structure.ActualAttribute
+	 * @see pamtram.structure.generic.ActualAttribute
 	 * @generated
 	 */
 	EClass getActualAttribute();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.ActualAttribute#getAttribute <em>Attribute</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.generic.ActualAttribute#getAttribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Attribute</em>'.
-	 * @see pamtram.structure.ActualAttribute#getAttribute()
+	 * @see pamtram.structure.generic.ActualAttribute#getAttribute()
 	 * @see #getActualAttribute()
 	 * @generated
 	 */
 	EReference getActualAttribute_Attribute();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.ActualAttribute#validateAttributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Attribute Matches Parent EClass</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.ActualAttribute#validateAttributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Attribute Matches Parent EClass</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Attribute Matches Parent EClass</em>' operation.
-	 * @see pamtram.structure.ActualAttribute#validateAttributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.ActualAttribute#validateAttributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getActualAttribute__ValidateAttributeMatchesParentEClass__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.VirtualAttribute <em>Virtual Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.VirtualAttribute <em>Virtual Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Virtual Attribute</em>'.
-	 * @see pamtram.structure.VirtualAttribute
+	 * @see pamtram.structure.generic.VirtualAttribute
 	 * @generated
 	 */
 	EClass getVirtualAttribute();
@@ -6712,10 +6712,10 @@ public interface StructurePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.MetaModelElementImpl <em>Meta Model Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.MetaModelElementImpl <em>Meta Model Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.MetaModelElementImpl
+		 * @see pamtram.structure.generic.impl.MetaModelElementImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelElement()
 		 * @generated
 		 */
@@ -6746,10 +6746,10 @@ public interface StructurePackage extends EPackage {
 		EOperation META_MODEL_ELEMENT___IS_LIBRARY_ENTRY = eINSTANCE.getMetaModelElement__IsLibraryEntry();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ClassImpl <em>Class</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ClassImpl <em>Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ClassImpl
+		 * @see pamtram.structure.generic.impl.ClassImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getClass_()
 		 * @generated
 		 */
@@ -6852,10 +6852,10 @@ public interface StructurePackage extends EPackage {
 		EOperation CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ValidateContainerIsValid__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SectionImpl <em>Section</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.SectionImpl <em>Section</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SectionImpl
+		 * @see pamtram.structure.generic.impl.SectionImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getSection()
 		 * @generated
 		 */
@@ -7156,10 +7156,10 @@ public interface StructurePackage extends EPackage {
 		EReference LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = eINSTANCE.getLibraryEntry_OriginalLibraryEntry();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ReferenceImpl <em>Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ReferenceImpl <em>Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ReferenceImpl
+		 * @see pamtram.structure.generic.impl.ReferenceImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getReference()
 		 * @generated
 		 */
@@ -7206,10 +7206,10 @@ public interface StructurePackage extends EPackage {
 		EOperation REFERENCE___ADD_VALUES_GENERIC__ELIST = eINSTANCE.getReference__AddValuesGeneric__EList();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ContainmentReferenceImpl
+		 * @see pamtram.structure.generic.impl.ContainmentReferenceImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getContainmentReference()
 		 * @generated
 		 */
@@ -7232,10 +7232,10 @@ public interface StructurePackage extends EPackage {
 		EOperation CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.NonContainmentReferenceImpl <em>Non Containment Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.NonContainmentReferenceImpl <em>Non Containment Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.NonContainmentReferenceImpl
+		 * @see pamtram.structure.generic.impl.NonContainmentReferenceImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getNonContainmentReference()
 		 * @generated
 		 */
@@ -7334,10 +7334,10 @@ public interface StructurePackage extends EPackage {
 		EOperation META_MODEL_SECTION_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMetaModelSectionReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.AttributeImpl <em>Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.AttributeImpl <em>Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.AttributeImpl
+		 * @see pamtram.structure.generic.impl.AttributeImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getAttribute()
 		 * @generated
 		 */
@@ -7352,10 +7352,10 @@ public interface StructurePackage extends EPackage {
 		EReference ATTRIBUTE__OWNING_CLASS = eINSTANCE.getAttribute_OwningClass();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ActualAttributeImpl
+		 * @see pamtram.structure.generic.impl.ActualAttributeImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getActualAttribute()
 		 * @generated
 		 */
@@ -7378,10 +7378,10 @@ public interface StructurePackage extends EPackage {
 		EOperation ACTUAL_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getActualAttribute__ValidateAttributeMatchesParentEClass__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.VirtualAttributeImpl
+		 * @see pamtram.structure.generic.impl.VirtualAttributeImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualAttribute()
 		 * @generated
 		 */

@@ -18,6 +18,8 @@ Export-Package: pamtram,
  pamtram.mapping.impl,
  pamtram.mapping.util,
  pamtram.structure,
+ pamtram.structure.generic,
+ pamtram.structure.generic.impl,
  pamtram.structure.impl,
  pamtram.structure.util,
  pamtram.util

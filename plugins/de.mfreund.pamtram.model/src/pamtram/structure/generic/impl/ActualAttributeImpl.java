@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import pamtram.structure.ActualAttribute;
-import pamtram.structure.Attribute;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -30,12 +30,12 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.ActualAttributeImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ActualAttributeImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends AttributeImpl<S, C, R, A> implements ActualAttribute<S, C, R, A> {
+public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends AttributeImpl<S, C, R, A> implements ActualAttribute<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -110,11 +110,11 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	 */
 	public boolean validateAttributeMatchesParentEClass(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this.isLibraryEntry() || this.getAttribute() == null || !(this.eContainer() instanceof pamtram.structure.Class<?, ?, ?, ?>)) {
+		if(this.isLibraryEntry() || this.getAttribute() == null || !(this.eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		EClass parentEClass = ((pamtram.structure.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
+		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
 		
 		boolean result = parentEClass == null ? true : parentEClass.getEAllAttributes().contains(this.getAttribute());
 		

@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.generic;
 
 import java.util.List;
 import java.util.Map;
@@ -9,6 +9,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 
+import pamtram.structure.StructurePackage;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
  *
@@ -16,8 +18,8 @@ import org.eclipse.emf.ecore.EReference;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.Reference#getEReference <em>EReference</em>}</li>
- *   <li>{@link pamtram.structure.Reference#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Reference#getEReference <em>EReference</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Reference#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getReference()
@@ -25,7 +27,7 @@ import org.eclipse.emf.ecore.EReference;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceMatchesParentEClass'"
  * @generated
  */
-public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends MetaModelElement<S, C, R, A> {
 
 	/**
@@ -45,7 +47,7 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 	EReference getEReference();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.Reference#getEReference <em>EReference</em>}' reference. <!--
+	 * Sets the value of the '{@link pamtram.structure.generic.Reference#getEReference <em>EReference</em>}' reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @param value
@@ -57,7 +59,7 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link pamtram.structure.Class#getReferences <em>References</em>}'.
+	 * It is bidirectional and its opposite is '{@link pamtram.structure.generic.Class#getReferences <em>References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear, there really should be more of a
@@ -66,7 +68,7 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
 	 * @see pamtram.structure.StructurePackage#getReference_OwningClass()
-	 * @see pamtram.structure.Class#getReferences
+	 * @see pamtram.structure.generic.Class#getReferences
 	 * @model opposite="references" transient="false" changeable="false"
 	 * @generated
 	 */

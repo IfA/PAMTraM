@@ -2,7 +2,7 @@
  */
 package pamtram.structure;
 
-
+import pamtram.structure.generic.NonContainmentReference;
 
 /**
  * <!-- begin-user-doc -->

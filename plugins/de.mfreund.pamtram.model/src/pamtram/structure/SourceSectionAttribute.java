@@ -4,6 +4,8 @@ package pamtram.structure;
 
 import org.eclipse.emf.common.util.EList;
 
+import pamtram.structure.generic.Attribute;
+
 
 /**
  * <!-- begin-user-doc -->

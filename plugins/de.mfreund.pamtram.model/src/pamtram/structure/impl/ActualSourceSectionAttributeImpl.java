@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import pamtram.structure.ActualAttribute;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -116,11 +116,11 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 	 */
 	public boolean validateAttributeMatchesParentEClass(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this.isLibraryEntry() || this.getAttribute() == null || !(this.eContainer() instanceof pamtram.structure.Class<?, ?, ?, ?>)) {
+		if(this.isLibraryEntry() || this.getAttribute() == null || !(this.eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		EClass parentEClass = ((pamtram.structure.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
+		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
 		
 		boolean result = parentEClass == null ? true : parentEClass.getEAllAttributes().contains(this.getAttribute());
 		

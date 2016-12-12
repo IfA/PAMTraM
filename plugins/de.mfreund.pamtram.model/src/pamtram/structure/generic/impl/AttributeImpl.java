@@ -1,16 +1,16 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.generic.impl;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 
-import pamtram.structure.Attribute;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,12 +20,12 @@ import pamtram.structure.Section;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.AttributeImpl#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.AttributeImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElementImpl<S, C, R, A> implements Attribute<S, C, R, A> {
+public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElementImpl<S, C, R, A> implements Attribute<S, C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,7 +96,7 @@ public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pam
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case StructurePackage.ATTRIBUTE__OWNING_CLASS:
-				return eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__ATTRIBUTES, pamtram.structure.Class.class, msgs);
+				return eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__ATTRIBUTES, pamtram.structure.generic.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}

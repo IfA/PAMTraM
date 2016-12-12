@@ -17,6 +17,7 @@ import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.SourceSectionReference;
 import pamtram.structure.ValueConstraint;
+import pamtram.structure.generic.impl.AttributeImpl;
 
 /**
  * <!-- begin-user-doc -->

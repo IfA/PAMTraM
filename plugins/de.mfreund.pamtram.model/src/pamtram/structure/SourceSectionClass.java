@@ -12,7 +12,7 @@ package pamtram.structure;
  * @model
  * @generated
  */
-public interface SourceSectionClass extends pamtram.structure.Class<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
+public interface SourceSectionClass extends pamtram.structure.generic.Class<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 	
 	
 } // SourceSectionClass

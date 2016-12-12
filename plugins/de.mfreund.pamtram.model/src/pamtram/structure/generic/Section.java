@@ -1,10 +1,12 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.generic;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+
+import pamtram.structure.StructurePackage;
 
 
 /**
@@ -16,8 +18,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.Section#isAbstract <em>Abstract</em>}</li>
- *   <li>{@link pamtram.structure.Section#getExtend <em>Extend</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Section#isAbstract <em>Abstract</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Section#getExtend <em>Extend</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getSection()
@@ -25,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='extendsValidSections containerMatchesExtendContainer'"
  * @generated
  */
-public interface Section<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends pamtram.structure.Class<S, C, R, A> {
+public interface Section<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends pamtram.structure.generic.Class<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Abstract</b></em>' attribute.
@@ -45,7 +47,7 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.struct
 	boolean isAbstract();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.Section#isAbstract <em>Abstract</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.structure.generic.Section#isAbstract <em>Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Abstract</em>' attribute.

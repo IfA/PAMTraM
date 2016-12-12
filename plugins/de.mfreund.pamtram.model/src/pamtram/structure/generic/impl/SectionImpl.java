@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -15,10 +15,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import pamtram.structure.Attribute;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -29,13 +29,13 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.SectionImpl#isAbstract <em>Abstract</em>}</li>
- *   <li>{@link pamtram.structure.impl.SectionImpl#getExtend <em>Extend</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.SectionImpl#isAbstract <em>Abstract</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.SectionImpl#getExtend <em>Extend</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ClassImpl<S, C, R, A> implements Section<S, C, R, A> {
+public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ClassImpl<S, C, R, A> implements Section<S, C, R, A> {
 	/**
 	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->

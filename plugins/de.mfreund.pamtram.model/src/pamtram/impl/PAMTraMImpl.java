@@ -50,13 +50,13 @@ import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.impl.MappingFactoryImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
-import pamtram.structure.Attribute;
-import pamtram.structure.MetaModelElement;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
 import pamtram.structure.SourceSection;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.structure.impl.StructurePackageImpl;
 
 /**

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.structure.generic.Section;
 
 
 /**

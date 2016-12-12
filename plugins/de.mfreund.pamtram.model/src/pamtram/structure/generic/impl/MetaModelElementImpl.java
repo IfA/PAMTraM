@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -10,20 +10,20 @@ import org.eclipse.emf.ecore.EObject;
 
 import pamtram.SectionModel;
 import pamtram.impl.NamedElementImpl;
-import pamtram.structure.Attribute;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetaModelElement;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Reference;
 import pamtram.structure.ResourceParameter;
-import pamtram.structure.Section;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionNonContainmentReference;
 import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +32,7 @@ import pamtram.structure.VirtualTargetSectionAttribute;
  *
  * @generated
  */
-public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements MetaModelElement<S, C, R, A> {
+public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements MetaModelElement<S, C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

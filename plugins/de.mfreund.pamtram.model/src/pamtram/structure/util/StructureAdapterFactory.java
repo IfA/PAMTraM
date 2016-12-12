@@ -13,15 +13,12 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.structure.ActualAttribute;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.Attribute;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.BeginningMatcher;
 import pamtram.structure.CaseSensitiveConstraint;
 import pamtram.structure.ContainerParameter;
-import pamtram.structure.ContainmentReference;
 import pamtram.structure.EndingMatcher;
 import pamtram.structure.EqualityMatcher;
 import pamtram.structure.ExternalReferenceParameter;
@@ -32,17 +29,13 @@ import pamtram.structure.InstancePointerSourceElement;
 import pamtram.structure.InstancePointerSourceInterface;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetaModelElement;
 import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
-import pamtram.structure.NonContainmentReference;
 import pamtram.structure.RangeBound;
 import pamtram.structure.RangeConstraint;
-import pamtram.structure.Reference;
 import pamtram.structure.RegExMatcher;
 import pamtram.structure.ResourceParameter;
-import pamtram.structure.Section;
 import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
@@ -60,8 +53,15 @@ import pamtram.structure.ValueConstraint;
 import pamtram.structure.ValueConstraintExternalSourceElement;
 import pamtram.structure.ValueConstraintSourceElement;
 import pamtram.structure.ValueConstraintSourceInterface;
-import pamtram.structure.VirtualAttribute;
 import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
+import pamtram.structure.generic.VirtualAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,15 +120,15 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	protected StructureSwitch<Adapter> modelSwitch =
 		new StructureSwitch<Adapter>() {
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseMetaModelElement(MetaModelElement<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseMetaModelElement(MetaModelElement<S, C, R, A> object) {
 				return createMetaModelElementAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseClass(pamtram.structure.Class<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseClass(pamtram.structure.generic.Class<S, C, R, A> object) {
 				return createClassAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseSection(Section<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseSection(Section<S, C, R, A> object) {
 				return createSectionAdapter();
 			}
 			@Override
@@ -176,15 +176,15 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createLibraryEntryAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseReference(Reference<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseReference(Reference<S, C, R, A> object) {
 				return createReferenceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseContainmentReference(ContainmentReference<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseContainmentReference(ContainmentReference<S, C, R, A> object) {
 				return createContainmentReferenceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
 				return createNonContainmentReferenceAdapter();
 			}
 			@Override
@@ -212,15 +212,15 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createMetaModelSectionReferenceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseAttribute(Attribute<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseAttribute(Attribute<S, C, R, A> object) {
 				return createAttributeAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseActualAttribute(ActualAttribute<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseActualAttribute(ActualAttribute<S, C, R, A> object) {
 				return createActualAttributeAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseVirtualAttribute(VirtualAttribute<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseVirtualAttribute(VirtualAttribute<S, C, R, A> object) {
 				return createVirtualAttributeAdapter();
 			}
 			@Override
@@ -332,15 +332,15 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createMappingHintSourceInterfaceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
 				return createModifiedAttributeElementTypeAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
 				return createLocalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
 				return createExternalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
@@ -364,13 +364,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.MetaModelElement <em>Meta Model Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.MetaModelElement <em>Meta Model Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.MetaModelElement
+	 * @see pamtram.structure.generic.MetaModelElement
 	 * @generated
 	 */
 	public Adapter createMetaModelElementAdapter() {
@@ -378,13 +378,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.Class <em>Class</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.Class <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.Class
+	 * @see pamtram.structure.generic.Class
 	 * @generated
 	 */
 	public Adapter createClassAdapter() {
@@ -392,13 +392,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.Section <em>Section</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.Section <em>Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.Section
+	 * @see pamtram.structure.generic.Section
 	 * @generated
 	 */
 	public Adapter createSectionAdapter() {
@@ -560,13 +560,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.Reference <em>Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.Reference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.Reference
+	 * @see pamtram.structure.generic.Reference
 	 * @generated
 	 */
 	public Adapter createReferenceAdapter() {
@@ -574,13 +574,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ContainmentReference <em>Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.ContainmentReference <em>Containment Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.ContainmentReference
+	 * @see pamtram.structure.generic.ContainmentReference
 	 * @generated
 	 */
 	public Adapter createContainmentReferenceAdapter() {
@@ -588,13 +588,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.NonContainmentReference <em>Non Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.NonContainmentReference <em>Non Containment Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.NonContainmentReference
+	 * @see pamtram.structure.generic.NonContainmentReference
 	 * @generated
 	 */
 	public Adapter createNonContainmentReferenceAdapter() {
@@ -686,13 +686,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.Attribute <em>Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.Attribute
+	 * @see pamtram.structure.generic.Attribute
 	 * @generated
 	 */
 	public Adapter createAttributeAdapter() {
@@ -700,13 +700,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ActualAttribute <em>Actual Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.ActualAttribute <em>Actual Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.ActualAttribute
+	 * @see pamtram.structure.generic.ActualAttribute
 	 * @generated
 	 */
 	public Adapter createActualAttributeAdapter() {
@@ -714,13 +714,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.VirtualAttribute <em>Virtual Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.VirtualAttribute <em>Virtual Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.VirtualAttribute
+	 * @see pamtram.structure.generic.VirtualAttribute
 	 * @generated
 	 */
 	public Adapter createVirtualAttributeAdapter() {

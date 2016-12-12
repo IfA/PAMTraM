@@ -12,6 +12,7 @@ import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionNonContainmentReference;
 import pamtram.structure.TargetSectionReference;
+import pamtram.structure.generic.impl.NonContainmentReferenceImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Target Section Non Containment

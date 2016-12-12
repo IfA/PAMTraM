@@ -2,6 +2,7 @@
  */
 package pamtram.structure;
 
+import pamtram.structure.generic.VirtualAttribute;
 
 /**
  * <!-- begin-user-doc -->

@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:structure="http://mfreund.de/pamtram/structure">
   <sourceSectionModel name="mm1">
     <metaModelPackage href="http://mm1#/"/>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Library">
+    <metaModelSections xsi:type="structure:SourceSection" name="Library">
       <eClass href="http://mm1#//Library"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
         <attribute href="http://mm1#//Library/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Member" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
+    <metaModelSections xsi:type="structure:SourceSection" name="Member" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
       <eClass href="http://mm1#//Member"/>
-      <references xsi:type="metamodel:MetaModelSectionReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.2">
+      <references xsi:type="structure:MetaModelSectionReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.2">
         <eReference href="http://mm1#//Member/loans"/>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="memberName">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="memberName">
         <attribute href="http://mm1#//Member/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Book" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
+    <metaModelSections xsi:type="structure:SourceSection" name="Book" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
       <eClass href="http://mm1#//Book"/>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="bookName">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="bookName">
         <attribute href="http://mm1#//Book/name"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel name="mm2">
     <metaModelPackage href="http://mm2#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Library">
+    <metaModelSections xsi:type="structure:TargetSection" name="Library">
       <eClass href="http://mm2#//Library"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
         <attribute href="http://mm2#//Library/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Book" cardinality="ONE__INFINITY">
+    <metaModelSections xsi:type="structure:TargetSection" name="Book" cardinality="ONE__INFINITY">
       <eClass href="http://mm2#//Book"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
         <attribute href="http://mm2#//Book/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Member" cardinality="ONE__INFINITY">
+    <metaModelSections xsi:type="structure:TargetSection" name="Member" cardinality="ONE__INFINITY">
       <eClass href="http://mm2#//Member"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
         <attribute href="http://mm2#//Member/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Loan" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.3">
+    <metaModelSections xsi:type="structure:TargetSection" name="Loan" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.3">
       <eClass href="http://mm2#//Loan"/>
-      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="member">
+      <references xsi:type="structure:TargetSectionNonContainmentReference" name="member">
         <eReference href="http://mm2#//Loan/member"/>
       </references>
-      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="book">
+      <references xsi:type="structure:TargetSectionNonContainmentReference" name="book">
         <eReference href="http://mm2#//Loan/book"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
         <attribute href="http://mm2#//Loan/name"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
-    <mapping name="LibraryMapping" deactivated="true" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Library" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
+    <mapping name="LibraryMapping" deactivated="true" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Library" targetSection="//@targetSectionModel.0/@metaModelSections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping name="BookMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.2">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Book" targetMMSection="//@targetSectionModel.0/@metaModelSections.1">
+    <mapping name="BookMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Book" targetSection="//@targetSectionModel.0/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping name="MemberMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Member" targetMMSection="//@targetSectionModel.0/@metaModelSections.2">
+    <mapping name="MemberMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Member" targetSection="//@targetSectionModel.0/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="loanName" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="loanName" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Loan" targetMMSection="//@targetSectionModel.0/@metaModelSections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Loan" targetSection="//@targetSectionModel.0/@metaModelSections.3">
         <mappingHints xsi:type="mapping:AttributeMapping" name="loanNameMapping" target="//@targetSectionModel.0/@metaModelSections.3/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="loanName" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="bookName" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="loanName" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="bookName" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="member" affectedReference="//@targetSectionModel.0/@metaModelSections.3/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="loanName" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="member" affectedReference="//@targetSectionModel.0/@metaModelSections.3/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="loanName" source="//@sourceSectionModel.0/@metaModelSections.1/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="book" affectedReference="//@targetSectionModel.0/@metaModelSections.3/@references.1">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="loanName" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="book" affectedReference="//@targetSectionModel.0/@metaModelSections.3/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="loanName" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>

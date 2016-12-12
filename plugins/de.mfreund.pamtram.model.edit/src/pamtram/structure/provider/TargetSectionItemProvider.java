@@ -37,16 +37,16 @@ import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.TargetSection} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link pamtram.structure.TargetSection} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetSectionItemProvider(AdapterFactory adapterFactory) {
@@ -54,37 +54,41 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addAbstractPropertyDescriptor(object);
-			this.addExtendPropertyDescriptor(object);
-			this.addReferencingMappingHintGroupsPropertyDescriptor(object);
+			addAbstractPropertyDescriptor(object);
+			addExtendPropertyDescriptor(object);
+			addReferencingMappingHintGroupsPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Abstract feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_Section_abstract_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature",
-						"_UI_Section_type"),
-				GenericPackage.Literals.SECTION__ABSTRACT, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Section_abstract_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+				 GenericPackage.Literals.SECTION__ABSTRACT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -127,20 +131,25 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Referencing Mapping Hint Groups feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Referencing Mapping Hint Groups feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addReferencingMappingHintGroupsPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
-				this.getString("_UI_PropertyDescriptor_description",
-						"_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
-				StructurePackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS, false, false, false, null,
-				null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
+				 StructurePackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	@Override
@@ -225,13 +234,12 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSection.class)) {
 			case StructurePackage.TARGET_SECTION__ABSTRACT:
 			case StructurePackage.TARGET_SECTION__FILE:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -245,18 +253,19 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.TARGET_SECTION__FILE,
-				StructureFactory.eINSTANCE.createFileAttribute()));
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.TARGET_SECTION__FILE,
+				 StructureFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**

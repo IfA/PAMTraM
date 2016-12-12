@@ -25,16 +25,16 @@ import pamtram.structure.generic.Section;
 import pamtram.structure.generic.impl.GenericPackageImpl;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.SourceSection} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link pamtram.structure.SourceSection} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- *
  * @generated
  */
 public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SourceSectionItemProvider(AdapterFactory adapterFactory) {
@@ -42,37 +42,41 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addAbstractPropertyDescriptor(object);
-			this.addExtendPropertyDescriptor(object);
-			this.addReferencingMappingsPropertyDescriptor(object);
+			addAbstractPropertyDescriptor(object);
+			addExtendPropertyDescriptor(object);
+			addReferencingMappingsPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Abstract feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_Section_abstract_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature",
-						"_UI_Section_type"),
-				GenericPackage.Literals.SECTION__ABSTRACT, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Section_abstract_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+				 GenericPackage.Literals.SECTION__ABSTRACT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -121,13 +125,19 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 * @generated
 	 */
 	protected void addReferencingMappingsPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_SourceSection_referencingMappings_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature",
-						"_UI_SourceSection_type"),
-				StructurePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS, false, false, false, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SourceSection_referencingMappings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature", "_UI_SourceSection_type"),
+				 StructurePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	@Override
@@ -152,14 +162,13 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -212,12 +221,11 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSection.class)) {
 			case StructurePackage.SOURCE_SECTION__ABSTRACT:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -231,14 +239,13 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

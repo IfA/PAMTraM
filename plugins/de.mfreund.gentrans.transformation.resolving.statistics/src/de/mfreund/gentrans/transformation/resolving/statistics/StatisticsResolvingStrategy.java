@@ -26,9 +26,9 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionNonContainmentReference;
 
 /**
  * This class implements a concrete {@link AbstractAmbiguityResolvingStrategy} that performs statistical evaluations of

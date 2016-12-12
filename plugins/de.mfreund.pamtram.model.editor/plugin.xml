@@ -32,20 +32,20 @@
       </editor>
    </extension>
 
-null
-null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated pamtram -->
       <editor
-            id="pamtram.structure.presentation.MetamodelEditorID"
-            name="%_UI_MetamodelEditor_label"
+            id="pamtram.structure.presentation.StructureEditorID"
+            name="%_UI_StructureEditor_label"
             icon="icons/full/obj16/StructureModelFile.gif"
-            extensions="metamodel"
+            extensions="structure"
             class="pamtram.structure.presentation.StructureEditor"
             contributorClass="pamtram.structure.presentation.StructureActionBarContributor">
       </editor>
    </extension>
 
+null
+null
 null
 null
    <extension point="org.eclipse.ui.editors">

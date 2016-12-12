@@ -38,7 +38,7 @@ import org.eclipse.ui.PartInitException;
 import pamtram.presentation.PamtramEditorPlugin;
 
 /**
- * This is the action bar contributor for the Metamodel model editor.
+ * This is the action bar contributor for the Structure model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -162,8 +162,8 @@ public class StructureActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		toolBarManager.add(new Separator("metamodel-settings"));
-		toolBarManager.add(new Separator("metamodel-additions"));
+		toolBarManager.add(new Separator("structure-settings"));
+		toolBarManager.add(new Separator("structure-additions"));
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class StructureActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_MetamodelEditor_menu"), "pamtram.metamodelMenuID");
+		IMenuManager submenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_StructureEditor_menu"), "pamtram.structureMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));

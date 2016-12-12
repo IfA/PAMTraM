@@ -35,21 +35,21 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
 import pamtram.mapping.FixedValue;
-import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.MetaModelSectionReference;
-import pamtram.metamodel.MultipleReferencesValueConstraint;
-import pamtram.metamodel.RangeBound;
-import pamtram.metamodel.RangeConstraint;
-import pamtram.metamodel.RegExMatcher;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SingleReferenceValueConstraint;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
-import pamtram.metamodel.ValueConstraint;
-import pamtram.metamodel.ValueConstraintType;
+import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.CardinalityType;
+import pamtram.structure.MetaModelSectionReference;
+import pamtram.structure.MultipleReferencesValueConstraint;
+import pamtram.structure.RangeBound;
+import pamtram.structure.RangeConstraint;
+import pamtram.structure.RegExMatcher;
+import pamtram.structure.Section;
+import pamtram.structure.SingleReferenceValueConstraint;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
+import pamtram.structure.ValueConstraint;
+import pamtram.structure.ValueConstraintType;
 
 /**
  * This class can be used to match a list of {@link #sourceSections} against a {@link #containmentTree}.

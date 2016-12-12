@@ -45,16 +45,16 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.LibraryParameter;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionContainmentReference;
-import pamtram.metamodel.TargetSectionReference;
+import pamtram.structure.ActualAttribute;
+import pamtram.structure.AttributeParameter;
+import pamtram.structure.CardinalityType;
+import pamtram.structure.LibraryEntry;
+import pamtram.structure.LibraryParameter;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionReference;
 
 /**
  * Class for instantiating target model sections using the hints supplied by

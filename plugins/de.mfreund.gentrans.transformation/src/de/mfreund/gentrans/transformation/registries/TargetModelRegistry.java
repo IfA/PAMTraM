@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import pamtram.metamodel.FileAttribute;
-import pamtram.metamodel.FileTypeEnum;
+import pamtram.structure.FileAttribute;
+import pamtram.structure.FileTypeEnum;
 
 /**
  * This class represents a registry for the various target models to be created during a transformation.

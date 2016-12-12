@@ -24,12 +24,12 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
+import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.InstancePointer;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
 
 /**
  * This represents an abstract base class that allows to extract {@link AttributeValueRepresentation values}

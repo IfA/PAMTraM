@@ -13,12 +13,12 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.InstancePointerSourceInterface;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
+import pamtram.structure.InstancePointer;
+import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
 
 /**
  * This class can be used to extract values required by an {@link InstancePointer}

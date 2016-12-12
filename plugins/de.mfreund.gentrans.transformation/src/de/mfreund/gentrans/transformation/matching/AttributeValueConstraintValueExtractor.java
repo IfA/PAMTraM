@@ -11,18 +11,18 @@ import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExec
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.ValueModifierSet;
+import pamtram.structure.RangeBound;
+import pamtram.structure.SingleReferenceValueConstraint;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
+import pamtram.structure.ValueConstraint;
+import pamtram.structure.ValueConstraintSourceInterface;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.ValueConstraint;
-import pamtram.metamodel.ValueConstraintSourceInterface;
-import pamtram.metamodel.RangeBound;
-import pamtram.metamodel.SingleReferenceValueConstraint;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
 
 /**
  * This class can be used to extract values required by an {@link ValueConstraint}

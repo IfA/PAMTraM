@@ -15,10 +15,10 @@ import de.mfreund.gentrans.transformation.matching.InstancePointerValueExtractor
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
-import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.InstancePointer;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionClass;
 
 /**
  * This class will be used to get/extract specific model objects supported by model 'InstancePointers'

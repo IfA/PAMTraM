@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation">
+    <metaModelSections xsi:type="structure:SourceSection" name="Confirmation">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
+        <valueConstraint xsi:type="structure:EqualityMatcher" name="confirmation" expression="confirmation"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel xsi:type="pamtram:TargetSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Button">
+    <metaModelSections xsi:type="structure:TargetSection" name="Button">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>

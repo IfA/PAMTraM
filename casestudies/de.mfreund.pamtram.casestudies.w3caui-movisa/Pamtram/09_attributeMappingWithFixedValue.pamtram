@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation">
+    <metaModelSections xsi:type="structure:SourceSection" name="Confirmation">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" expression="confirmation"/>
+        <valueConstraint xsi:type="structure:EqualityMatcher" name="confirmation" expression="confirmation"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Button">
+    <metaModelSections xsi:type="structure:TargetSection" name="Button">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Comment">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Comment">
         <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>

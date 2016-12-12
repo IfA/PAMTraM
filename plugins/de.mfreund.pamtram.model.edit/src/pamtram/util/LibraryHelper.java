@@ -29,7 +29,6 @@ import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
 import pamtram.structure.ActualTargetSectionAttribute;
 import pamtram.structure.AttributeParameter;
-import pamtram.structure.CardinalityType;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.LibraryEntry;
@@ -40,6 +39,7 @@ import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionContainmentReference;
 import pamtram.structure.TargetSectionNonContainmentReference;
 import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.MetaModelElement;
 
 /**

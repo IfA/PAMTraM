@@ -26,6 +26,7 @@ import pamtram.structure.FileAttribute;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.provider.TargetSectionItemProvider;
@@ -33,14 +34,14 @@ import pamtram.structure.provider.TargetSectionItemProvider;
 /**
  * This is the item provider adapter for a {@link pamtram.structure.generic.MetaModelElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class MetaModelElementItemProvider extends NamedElementItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public MetaModelElementItemProvider(AdapterFactory adapterFactory) {
@@ -49,7 +50,7 @@ public class MetaModelElementItemProvider extends NamedElementItemProvider {
 
 	/**
 	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -64,7 +65,7 @@ public class MetaModelElementItemProvider extends NamedElementItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -75,7 +76,7 @@ public class MetaModelElementItemProvider extends NamedElementItemProvider {
 
 	/**
 	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -96,7 +97,7 @@ public class MetaModelElementItemProvider extends NamedElementItemProvider {
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -109,7 +110,7 @@ public class MetaModelElementItemProvider extends NamedElementItemProvider {
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
 	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -120,7 +121,7 @@ public class MetaModelElementItemProvider extends NamedElementItemProvider {
 
 	/**
 	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -173,7 +174,7 @@ public class MetaModelElementItemProvider extends NamedElementItemProvider {
 		command.append(
 				super.createDragAndDropCommand(domain, owner, location, operations, operation, collectionWithoutFile));
 		command.append(targetSectionItemProvider.createRemoveCommand(domain, file.eContainer(),
-				StructurePackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
+				GenericPackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
 		domain.createCommand(SetCommand.class,
 				new CommandParameter(targetSection, StructurePackage.Literals.TARGET_SECTION__FILE, file));
 		return command;

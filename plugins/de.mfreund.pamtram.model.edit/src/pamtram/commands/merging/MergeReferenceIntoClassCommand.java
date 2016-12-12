@@ -15,10 +15,10 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.NonContainmentReference;
 import pamtram.structure.generic.Reference;
@@ -67,10 +67,9 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		if (!leftReference.isPresent()) {
 			if (this.right.eContainer() instanceof Class<?, ?, ?, ?>) {
 				this.append(new RemoveCommand(this.domain, this.right.eContainer(),
-						StructurePackage.Literals.CLASS__REFERENCES, this.right));
+						GenericPackage.Literals.CLASS__REFERENCES, this.right));
 			}
-			this.append(
-					new AddCommand(this.domain, this.left, StructurePackage.Literals.CLASS__REFERENCES, this.right));
+			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.CLASS__REFERENCES, this.right));
 
 			return super.prepare();
 		}
@@ -104,13 +103,13 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		//
 		if (leftReference.get() instanceof ContainmentReference<?, ?, ?, ?>) {
 			List<C> values = new ArrayList<>(this.right.getValuesGeneric());
-			this.append(new RemoveCommand(this.domain, this.right,
-					StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
+			this.append(new RemoveCommand(this.domain, this.right, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+					values));
 			this.append(new AddCommand(this.domain, leftReference.get(),
-					StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
+					GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
 		} else if (leftReference.get() instanceof NonContainmentReference<?, ?, ?, ?>) {
 			this.append(new AddCommand(this.domain, leftReference.get(),
-					StructurePackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
+					GenericPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
 
 		} else {
 			return false;

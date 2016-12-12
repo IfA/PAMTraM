@@ -2,7 +2,6 @@
  */
 package pamtram.structure.provider;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -34,19 +33,20 @@ import pamtram.structure.FileAttribute;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.TargetSection} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link pamtram.structure.TargetSection} object. <!-- begin-user-doc --> <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
+
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TargetSectionItemProvider(AdapterFactory adapterFactory) {
@@ -54,150 +54,130 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAbstractPropertyDescriptor(object);
-			addExtendPropertyDescriptor(object);
-			addReferencingMappingHintGroupsPropertyDescriptor(object);
+			this.addAbstractPropertyDescriptor(object);
+			this.addExtendPropertyDescriptor(object);
+			this.addReferencingMappingHintGroupsPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Abstract feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Section_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-				 StructurePackage.Literals.SECTION__ABSTRACT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Section_abstract_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature",
+						"_UI_Section_type"),
+				GenericPackage.Literals.SECTION__ABSTRACT, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Extend feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Extend feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	protected void addExtendPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_Section_extend_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
-						StructurePackage.Literals.SECTION__EXTEND,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null)
-		{
 
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
+		this.itemPropertyDescriptors.add(
+				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_Section_extend_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature",
+								"_UI_Section_type"),
+						GenericPackage.Literals.SECTION__EXTEND, true, false, true, null, null, null) {
 
-				TargetSection targetSection = (TargetSection) object;
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
 
-				if(targetSection.getEClass() == null) {
-					return new BasicEList<>();
-				}
+						TargetSection targetSection = (TargetSection) object;
 
-				Collection<TargetSection> values = (Collection<TargetSection>) super.getChoiceOfValues(object);
-				Collection<TargetSection> ret = new BasicEList<>();
+						if (targetSection.getEClass() == null) {
+							return new BasicEList<>();
+						}
 
-				for (TargetSection val : values) {
-					// only abstract sections that have a matching eClass can be used as extended section
-					if(val.isAbstract() && (val.getEClass() == targetSection.getEClass() || targetSection.getEClass().getEAllSuperTypes().contains(val.getEClass()))) {
-						ret.add(val);
+						Collection<TargetSection> values = (Collection<TargetSection>) super.getChoiceOfValues(object);
+						Collection<TargetSection> ret = new BasicEList<>();
+
+						for (TargetSection val : values) {
+							// only abstract sections that have a matching eClass can be used as extended section
+							if (val.isAbstract() && (val.getEClass() == targetSection.getEClass()
+									|| targetSection.getEClass().getEAllSuperTypes().contains(val.getEClass()))) {
+								ret.add(val);
+							}
+						}
+
+						return ret;
 					}
-				}
-
-				return ret;
-			}
-		}
-				);
+				});
 	}
 
 	/**
-	 * This adds a property descriptor for the Referencing Mapping Hint Groups feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Referencing Mapping Hint Groups feature. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addReferencingMappingHintGroupsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
-				 StructurePackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
+				this.getString("_UI_PropertyDescriptor_description",
+						"_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
+				StructurePackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS, false, false, false, null,
+				null, null));
 	}
 
 	@Override
 	protected Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
-		if(this.labelRelatedChildrenFeatures == null) {
+
+		if (this.labelRelatedChildrenFeatures == null) {
 			this.labelRelatedChildrenFeatures = new ArrayList<>();
-			this.labelRelatedChildrenFeatures.add(StructurePackage.eINSTANCE.getSection_Extend());
+			this.labelRelatedChildrenFeatures.add(GenericPackage.eINSTANCE.getSection_Extend());
 		}
 		return this.labelRelatedChildrenFeatures;
 	}
 
 	/**
-	 * This returns TargetSection.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns TargetSection.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
+
 		return super.getImage(object);
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
+
 		return (((TargetSection) object).isAbstract() ? "<<abstract>> " : "") + super.getText(object);
 	}
 
-
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -209,13 +189,13 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 		StyledString styledLabel = new StyledString();
 
-		if(!section.isAbstract() || section.getName() == null || section.getName().isEmpty()) {
+		if (!section.isAbstract() || section.getName() == null || section.getName().isEmpty()) {
 			styledLabel.append((StyledString) super.getStyledText(object));
 		} else {
 			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				Fragment next = it.next();
-				if(next.getString().equals(section.getName())) {
+				if (next.getString().equals(section.getName())) {
 					// use the 'qualifier styler' for the label
 					styledLabel.append(next.getString(), StyledString.Style.QUALIFIER_STYLER);
 				} else {
@@ -226,7 +206,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		}
 
 		// add the 'extends'
-		if(!section.getExtend().isEmpty()) {
+		if (!section.getExtend().isEmpty()) {
 			ArrayList<String> extend = new ArrayList<>();
 			for (Object e : section.getExtend()) {
 				extend.add(((Section) e).getName());
@@ -238,19 +218,20 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSection.class)) {
 			case StructurePackage.TARGET_SECTION__ABSTRACT:
 			case StructurePackage.TARGET_SECTION__FILE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -258,31 +239,30 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 	@Override
 	public void notifyChanged(Notification notification) {
+
 		this.handleLabelRelatedChildrenFeatureChangeNotification(notification);
 		this.notifyChangedGen(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.TARGET_SECTION__FILE,
-				 StructureFactory.eINSTANCE.createFileAttribute()));
+		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.TARGET_SECTION__FILE,
+				StructureFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**
 	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -310,13 +290,14 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		/*
 		 * If a 'FileAttribute' is added, we also need to set the 'file' reference.
 		 */
-		if(feature == StructurePackage.Literals.CLASS__ATTRIBUTES) {
+		if (feature == GenericPackage.Literals.CLASS__ATTRIBUTES) {
 			for (Object object : collection) {
-				if(object instanceof FileAttribute && owner instanceof TargetSection) {
-					if(((TargetSection) owner).getFile() == null) {
+				if (object instanceof FileAttribute && owner instanceof TargetSection) {
+					if (((TargetSection) owner).getFile() == null) {
 						CompoundCommand command = new CompoundCommand();
 						command.append(new AddCommand(domain, owner, feature, collection, index));
-						command.append(new SetCommand(domain, owner, StructurePackage.Literals.TARGET_SECTION__FILE, object));
+						command.append(
+								new SetCommand(domain, owner, StructurePackage.Literals.TARGET_SECTION__FILE, object));
 						return command;
 					} else {
 						/*
@@ -339,17 +320,17 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		/*
 		 * If a 'FileAttribute' is created, we also need to add it to the 'attributes' reference.
 		 */
-		if(feature == StructurePackage.Literals.TARGET_SECTION__FILE) {
-			if(value.equals(SetCommand.UNSET_VALUE)) {
+		if (feature == StructurePackage.Literals.TARGET_SECTION__FILE) {
+			if (value.equals(SetCommand.UNSET_VALUE)) {
 				CompoundCommand command = new CompoundCommand();
-				if(((EList<Object>) owner.eGet(StructurePackage.Literals.CLASS__ATTRIBUTES)).contains(value)) {
-					command.append(new RemoveCommand(domain, owner, StructurePackage.Literals.CLASS__ATTRIBUTES, value));
+				if (((EList<Object>) owner.eGet(GenericPackage.Literals.CLASS__ATTRIBUTES)).contains(value)) {
+					command.append(new RemoveCommand(domain, owner, GenericPackage.Literals.CLASS__ATTRIBUTES, value));
 				}
 				command.append(new SetCommand(domain, owner, feature, SetCommand.UNSET_VALUE));
 				return command;
 			} else {
 				CompoundCommand command = new CompoundCommand();
-				command.append(new AddCommand(domain, owner, StructurePackage.Literals.CLASS__ATTRIBUTES, value));
+				command.append(new AddCommand(domain, owner, GenericPackage.Literals.CLASS__ATTRIBUTES, value));
 				command.append(new SetCommand(domain, owner, feature, value));
 				return command;
 			}
@@ -362,32 +343,35 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 			int operation, Collection<?> collection) {
 
 		/*
-		 * If a 'FileAttribute' is dragged, we also need to remove the 'file' from the old owner and set
-		 * the 'file' reference in the new owner..
+		 * If a 'FileAttribute' is dragged, we also need to remove the 'file' from the old owner and set the 'file'
+		 * reference in the new owner..
 		 */
 		Collection<Object> collectionWithoutFile = new ArrayList<>();
 		FileAttribute file = null;
 
 		for (Object object : collection) {
-			if(object instanceof FileAttribute) {
+			if (object instanceof FileAttribute) {
 				file = (FileAttribute) object;
 			} else {
 				collectionWithoutFile.add(object);
 			}
 		}
 
-		if(file == null) {
+		if (file == null) {
 			return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 		}
 
-		if(owner instanceof TargetSection && ((TargetSection) owner).getFile() != null) {
+		if (owner instanceof TargetSection && ((TargetSection) owner).getFile() != null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
 		BasicDragAndDropCompoundCommand command = new BasicDragAndDropCompoundCommand();
-		command.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, collectionWithoutFile));
-		command.append(this.createRemoveCommand(domain, file.eContainer(), StructurePackage.Literals.CLASS__ATTRIBUTES, Arrays.asList(file)));
-		command.append(this.createSetCommand(domain, (EObject) owner, StructurePackage.Literals.TARGET_SECTION__FILE, file));
+		command.append(
+				super.createDragAndDropCommand(domain, owner, location, operations, operation, collectionWithoutFile));
+		command.append(this.createRemoveCommand(domain, file.eContainer(), GenericPackage.Literals.CLASS__ATTRIBUTES,
+				Arrays.asList(file)));
+		command.append(
+				this.createSetCommand(domain, (EObject) owner, StructurePackage.Literals.TARGET_SECTION__FILE, file));
 		return command;
 	}
 

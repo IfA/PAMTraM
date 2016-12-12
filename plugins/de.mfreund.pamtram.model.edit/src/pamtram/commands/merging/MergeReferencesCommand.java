@@ -22,10 +22,10 @@ import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.NonContainmentReference;
 import pamtram.structure.generic.Reference;
@@ -176,13 +176,13 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 		if (this.left instanceof ContainmentReference<?, ?, ?, ?>) {
 
 			List<C> values = new ArrayList<>(this.right.getValuesGeneric());
-			this.append(new RemoveCommand(this.domain, this.right,
-					StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
-			this.append(new AddCommand(this.domain, this.left, StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+			this.append(new RemoveCommand(this.domain, this.right, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+					values));
+			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
 					values));
 		} else if (this.left instanceof NonContainmentReference<?, ?, ?, ?>) {
-			this.append(new AddCommand(this.domain, this.left,
-					StructurePackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
+			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
+					this.right.getValuesGeneric()));
 
 		} else {
 			return false;

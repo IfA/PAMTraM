@@ -19,13 +19,14 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 import de.mfreund.pamtram.util.NullComparator;
 import pamtram.PamtramPackage;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.ValueConstraint;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -81,10 +82,9 @@ public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		if (!leftAttribute.isPresent()) {
 			if (this.right.eContainer() instanceof Class<?, ?, ?, ?>) {
 				this.append(new RemoveCommand(this.domain, this.right.eContainer(),
-						StructurePackage.Literals.CLASS__ATTRIBUTES, this.right));
+						GenericPackage.Literals.CLASS__ATTRIBUTES, this.right));
 			}
-			this.append(
-					new AddCommand(this.domain, this.left, StructurePackage.Literals.CLASS__ATTRIBUTES, this.right));
+			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.CLASS__ATTRIBUTES, this.right));
 			return super.prepare();
 		}
 
